@@ -1,0 +1,10 @@
+
+# --- Talksmith --- (regenerable build artifacts & caches — keep out of Git)
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+talks/*/output/
+talks/*/images/.critique/
+.icons/
+.claude/settings.local.json

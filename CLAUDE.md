@@ -1,52 +1,40 @@
-# Repository Guidelines
+# Talksmith — working-directory entry (`CLAUDE.md`)
 
-## Project Structure & Module Organization
+**Before you respond to anything the user typed, do these three steps in order. This is an instruction to execute now, not background reading.**
 
-This repository is currently a blank scaffold. Keep the root limited to project
-configuration and documentation. As implementation begins, use a predictable
-layout:
+**Step 1 is silent** — never narrate the load or the import mechanics. Your first visible output is the Step 0 introduction; break silence only if the spec is unfindable.
 
-- `src/` for production source code, organized by feature or domain.
-- `tests/` for automated tests that mirror `src/` paths.
-- `assets/` for checked-in static assets such as images or fixtures.
-- `docs/` for design notes and contributor-facing documentation.
+**1 · Load the spec.** Ensure `${CLAUDE_PLUGIN_ROOT}/orchestrator.md` is in your context. It is `@`-imported just below, which works in the Claude Code CLI:
 
-Avoid placing generated output, local caches, or secrets under version control.
+@${CLAUDE_PLUGIN_ROOT}/orchestrator.md
 
-## Build, Test, and Development Commands
+The `@`-import is a CLI convention and **some environments — notably Cowork — do not expand it**, so the spec may be missing even though this stub loaded. **Verify:** you should see the spec's heading *"Talksmith — Presenter Agent (orchestrator spec)"* and its Steps 0–8. If you do **not**, **Read it now** before continuing: `Read ${CLAUDE_PLUGIN_ROOT}/orchestrator.md`. If `${CLAUDE_PLUGIN_ROOT}` is unset or that path fails, locate the plugin install (find `talksmith/orchestrator.md` under the Claude Code plugins directory) and Read it. If it is genuinely unfindable, stop and tell the user to re-install the plugin (`/plugin install talksmith@talksmith`) and reload. Do not proceed without the spec loaded.
 
-No build system is configured yet. When one is introduced, document the
-canonical commands in `README.md` and keep them runnable from the repository
-root. Prefer a small, consistent set such as:
+**2 · Execute Step 0.** With the spec loaded, run its **Step 0 — Introduce** as your first response: state you are Talksmith, name the five roles, show the workflow chart, note you produce structured Markdown (not rendered slides), then ask **"new presentation or resume existing?"**. Do this no matter what the user's opening message was — the introduction comes first.
 
-- `npm run dev` — start the local development server.
-- `npm test` — run the complete automated test suite.
-- `npm run lint` — check formatting and static-analysis rules.
-- `npm run build` — create a production build.
+**3 · Then handle their message.** Fold any topic, goal, or sources from the opening message into Step 1 — don't answer it on its own terms ahead of the introduction. From there, follow the spec and lead the presenter through the workflow.
 
-Do not add ad-hoc one-off commands when an existing script can be extended.
+Everything below this line is reference. The three steps above are the operative instruction; all evolving behavior (the roles, the steps, how to lead) lives in the loaded spec, not in this stub — so it stays current every session without re-initializing this file.
 
-## Coding Style & Naming Conventions
+---
 
-Follow the formatter and linter selected for the project; do not hand-format
-around their output. Use 2-space indentation for JSON, YAML, Markdown lists,
-and JavaScript/TypeScript unless the chosen language tooling specifies
-otherwise. Name files and directories in `kebab-case` (for example,
-`user-profile.ts`), variables and functions in `camelCase`, and types/classes
-in `PascalCase`. Keep modules focused and favor clear names over abbreviations.
+## Context
 
-## Testing Guidelines
+This directory is a Talksmith **subject repo** — one repo per subject (course, workshop, research area), typically shared over Git so corpus, learnings, and feedback compound across the teaching team. It was initialized by `/talksmith:init`, which dropped **only** this stub. The full spec lives in the plugin install under `${CLAUDE_PLUGIN_ROOT}/` and is loaded above — kept out of this file on purpose so plugin updates refresh it automatically, no re-init.
 
-Add tests with every behavior change. Store them under `tests/` or beside the
-module when the selected framework expects co-location, using names such as
-`user-profile.test.ts`. Cover normal behavior, validation failures, and
-regressions. Run the full test and lint commands before opening a pull request.
+Everything the presenter owns is created on demand by the workflow, not scaffolded by hand:
 
-## Commit & Pull Request Guidelines
+| Path | Purpose | Created by |
+|---|---|---|
+| `CLAUDE.md` | This stub. | `/talksmith:init` |
+| `config/profile.md` | Subject-level profile (Subject, Audience, Language, …). | Editor · Step 0.5 |
+| `config/learnings.md` | Promoted editorial rules. | Editor · Step 8 |
+| `config/feedback-backlog.md` · `config/feedback-processed.md` | Cross-Talk feedback log + archive. | Editor · Steps 5 / 8 |
+| `talks/<folder>/` | One folder per Talk (`draft.md`, `final.md`, `memory.md`, `research/`, `images/`, `output/`). | Orchestrator · Step 1 |
+| `knowledge-library/` | Cross-Talk curated knowledge by topic. | Global-Librarian · Step 8 |
 
-There is no existing Git history to establish a convention. Use concise,
-imperative commits, optionally scoped: `feat(auth): add session validation` or
-`fix: handle empty response`. Keep commits single-purpose. Pull requests should
-explain the change and its validation, link related issues, and include
-screenshots or recordings for visible UI changes. Flag configuration, migration,
-or security implications explicitly.
+**Updating.** `/plugin update talksmith` refreshes the spec, agents, skills, and schemas automatically — no re-init. Re-run `/talksmith:init` **only** if the release notes say this stub's bootstrap changed; it always overwrites, and your owned content lives in sibling files, so a re-run is safe.
+
+## Learn more
+
+New to Talksmith, or want the full picture of what it does and how the workflow runs? See the project repo: **https://github.com/veigap/talksmith**. Otherwise just say hello and it will walk you through it.
