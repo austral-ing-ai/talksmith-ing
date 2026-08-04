@@ -27,20 +27,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Preparar el sitio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Configurar GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Preparar las presentaciones
         run: |
-          mkdir -p _site/claude-cowork _site/claude-desktop-chat
-          cp -R talks/introduccion/output/html/. _site/
-          cp -R talks/claude-cowork/output/html/. _site/claude-cowork/
-          cp -R talks/claude-desktop-chat/output/html/. _site/claude-desktop-chat/
+          mkdir -p _site/introduccion/output/html
+          mkdir -p _site/claude-cowork/output/html
+          mkdir -p _site/claude-desktop-chat/output/html
+          cp -R talks/introduccion/output/html/. _site/introduccion/output/html/
+          cp -R talks/claude-cowork/output/html/. _site/claude-cowork/output/html/
+          cp -R talks/claude-desktop-chat/output/html/. _site/claude-desktop-chat/output/html/
 
       - name: Cargar las presentaciones
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: _site
 
