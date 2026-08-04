@@ -127,17 +127,9 @@ Meternos en los modelos
 
 Van a poder explicar qué hacen los transformers, cómo intervienen los datos, el entrenamiento, la inferencia y la evaluación; no sólo usar una interfaz de chat.
 
-Teoría con propósito
-
-Cada clase introduce fundamentos, arquitecturas, ejemplos y discusión técnica para construir un lenguaje compartido y poder razonar sobre decisiones de diseño.
-
 Práctica hands-on
 
 Las clases combinan teoría y práctica: notebooks, repositorios, prompts, herramientas y casos concretos para experimentar, implementar, probar y documentar.
-
-Elegir y evaluar soluciones
-
-Van a poder decidir cuándo conviene un LLM, un clasificador, una búsqueda semántica, reglas deterministas o una combinación; y qué evidencia pedir antes de integrarla.
 
 Criterio de ingeniería
 

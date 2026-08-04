@@ -64,16 +64,8 @@
           "body": "Van a poder explicar qué hacen los transformers, cómo intervienen los datos, el entrenamiento, la inferencia y la evaluación; no sólo usar una interfaz de chat."
         },
         {
-          "label": "Teoría con propósito",
-          "body": "Cada clase introduce fundamentos, arquitecturas, ejemplos y discusión técnica para construir un lenguaje compartido y poder razonar sobre decisiones de diseño."
-        },
-        {
           "label": "Práctica hands-on",
           "body": "Las clases combinan teoría y práctica: notebooks, repositorios, prompts, herramientas y casos concretos para experimentar, implementar, probar y documentar."
-        },
-        {
-          "label": "Elegir y evaluar soluciones",
-          "body": "Van a poder decidir cuándo conviene un LLM, un clasificador, una búsqueda semántica, reglas deterministas o una combinación; y qué evidencia pedir antes de integrarla."
         },
         {
           "label": "Criterio de ingeniería",
@@ -1463,7 +1455,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "5e2f8bec031ec1525cc29e1dd6c72406e4f486adc14bc4d95e8fd46a6922826f",
-    "bytes": 72306
+    "sha256": "4348791041773c3e3c7e38e607439342aaa6c34310f26be2cb43e99a84dc7c73",
+    "bytes": 71915
   }
 }
