@@ -27,7 +27,7 @@
       "title": "El problema: horas que se van en trabajo manual",
       "section": "Introducción",
       "lead": "Dos caras del mismo dolor, y una barrera que lo sostenía.",
-      "format": "list",
+      "format": "grid",
       "cards": [
         {
           "label": "Tareas repetitivas",
@@ -51,7 +51,7 @@
       "template": "concept-breakdown",
       "title": "Cómo lo vamos a atacar",
       "section": "Introducción",
-      "format": "list",
+      "format": "grid",
       "cards": [
         {
           "label": "Agentes de IA",

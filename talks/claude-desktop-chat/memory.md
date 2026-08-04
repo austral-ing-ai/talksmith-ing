@@ -227,3 +227,13 @@ Parte 1 de un par de clases para el Master in Management (MiM) del IAE Business 
   - Los cinco directorios MCP de la lamina 4.8, sin verificar online.
   - El bug de `strip_feedback.py` de arriba, para llevar al plugin.
   - Step 8 (Learnings) sin correr.
+
+### Re-render `html-strict` — 2026-08-04
+- Status: complete
+- Asks log:
+  - 2026-08-04 — "Regenera chat" → Interpretado como esta Talk (`claude-desktop-chat`); se re-renderizó el deck `html-strict`.
+- What was decided: `final.md` no cambió desde el último FILL, así que el modelo pasó el control de frescura y se re-ejecutó sólo el render. Se corrigió en el modelo un valor de formato retirado (`format: list` en 'El problema: horas que se van en trabajo manual' y 'Cómo lo vamos a atacar'), que el renderer venía degradando a `grid` con aviso; ahora queda explícito.
+- Files created/modified: `talks/claude-desktop-chat/output/html/index.html`; `talks/claude-desktop-chat/output/slide-model.json`.
+- Validation: 32 diapositivas; 10 imágenes raster, 94 gráficos vectoriales inline, 26 paneles de notas; 0 enumeraciones degeneradas, 0 campos ignorados, 0 imágenes omitidas; 0 avisos en el render final.
+- Nota de entorno: el render corrió en el contenedor de sesión y el `index.html` se escribió de vuelta en el disco del presentador.
+- Pending open questions: sigue abierta la duración (65 min contra un bloque de 60) y el paso 8 (Learnings), sin correr.
