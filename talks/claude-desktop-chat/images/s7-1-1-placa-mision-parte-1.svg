@@ -1,0 +1,18 @@
+<!-- talksmith-ascii-sha256: 72ecec84433edfa977a8f56e6b17591f5bca744a7992df2e93b60b5acda0b53a -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#3B3535">
+<title>La misión, parte 1: Faro en el chat</title>
+<desc>Placa divisoria que presenta la primera misión: construir a Faro en el chat con lo visto hasta acá.</desc>
+<rect x="0" y="0" width="680" height="320" fill="#ffffff"/>
+
+<rect x="20" y="20" width="640" height="280" rx="8" fill="#ffffff" stroke="#3B3535" stroke-width="2"/>
+<rect x="21" y="21" width="26" height="278" fill="#DA1B2E"/>
+
+<text x="80" y="80" font-size="28" font-weight="bold" fill="#DA1B2E">LA MISIÓN — PARTE 1</text>
+<path d="M80,102 L440,102" stroke="#D8D4D4" stroke-width="2"/>
+
+<text x="80" y="172" font-size="46" font-weight="bold" fill="#1F1E1E">FARO EN EL CHAT</text>
+<text x="80" y="206" font-size="20" fill="#3B3535">el analista de mercado de Atlas</text>
+
+<rect x="80" y="238" width="330" height="38" rx="6" fill="#F2EEEE"/>
+<text x="100" y="263" font-size="16" fill="#1F1E1E">con lo visto: Connectors + Schedule</text>
+</svg>

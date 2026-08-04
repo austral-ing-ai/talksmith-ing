@@ -1,0 +1,46 @@
+<!-- talksmith-ascii-sha256: cfa825b063063bc061769882ee1582b38a30dda0e9b7383248568b46a05481f1 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 388" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>Out of the box y externos</title>
+<desc>Los Connectors se separan en dos familias según quién los prepara: los que vienen listos y curados por Anthropic, y los externos que conecta el equipo sin curación.</desc>
+<defs>
+<marker id="dk" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="388" fill="#ffffff"/>
+
+<rect x="250" y="20" width="180" height="36" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="2.2"/>
+<text x="340" y="44" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">CONNECTORS</text>
+
+<path d="M340,56 L340,76 L175,76 L175,92" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+<path d="M340,56 L340,76 L505,76 L505,92" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+
+<rect x="20" y="96" width="310" height="140" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="175" y="124" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">OUT OF THE BOX</text>
+<text x="175" y="145" text-anchor="middle" font-size="12" fill="#6A737D">vienen listos</text>
+<text x="42" y="174">· búsqueda web</text>
+<text x="42" y="196">· Claude in Chrome</text>
+<text x="42" y="218">· Gmail / Calendar / Drive</text>
+
+<rect x="350" y="96" width="310" height="140" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="505" y="124" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">EXTERNOS</text>
+<text x="505" y="145" text-anchor="middle" font-size="12" fill="#6A737D">los conecta el equipo</text>
+<text x="372" y="174">· CRM / ERP</text>
+<text x="372" y="196">· base interna</text>
+<text x="372" y="218">· servicio de un tercero</text>
+
+<path d="M175,236 L175,256" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+<path d="M505,236 L505,256" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+
+<rect x="20" y="260" width="310" height="52" rx="6" fill="#F2EEEE"/>
+<text x="175" y="283" text-anchor="middle" fill="#1F1E1E">se activan desde la</text>
+<text x="175" y="303" text-anchor="middle" fill="#1F1E1E">biblioteca de Connectors</text>
+
+<rect x="350" y="260" width="310" height="52" rx="6" fill="#F2EEEE"/>
+<text x="505" y="283" text-anchor="middle" fill="#1F1E1E">todos por el</text>
+<text x="505" y="303" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">protocolo MCP</text>
+
+<rect x="20" y="324" width="310" height="44" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="2.4"/>
+<text x="175" y="353" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">CURADOS por Anthropic</text>
+
+<rect x="350" y="324" width="310" height="44" rx="6" fill="#DA1B2E"/>
+<text x="505" y="353" text-anchor="middle" font-size="17" font-weight="bold" fill="#FFFFFF">SIN curación</text>
+</svg>

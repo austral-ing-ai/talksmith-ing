@@ -1,0 +1,57 @@
+<!-- talksmith-ascii-sha256: 061e8adad0235c566bf4bf18a7a4ea67f59d04de7950f9ac627350097c354b5e -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 828 634" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="17" font-weight="bold">
+<title>El mapa: piezas que se apilan</title>
+<desc>El mapa del arco completo de las dos clases: la base es el chat que la audiencia ya usa y sube hasta los subagentes.</desc>
+<defs>
+<marker id="acaHead" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto">
+<path d="M0 0 L11 5.5 L0 11 Z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="828" height="634" fill="#ffffff"/>
+
+<text x="178" y="44" font-size="12.5" font-weight="normal" fill="#9A9292" letter-spacing="0.9">LA PILA — DE ABAJO HACIA ARRIBA</text>
+<text x="538" y="44" font-size="12.5" font-weight="normal" fill="#9A9292" letter-spacing="0.9">EL PROBLEMA QUE RESUELVE</text>
+
+<rect x="160" y="62" width="348" height="46" rx="5" fill="#F2F0F0" stroke="#C9C2C2" stroke-width="1.5"/>
+<text x="178" y="91">Subagentes</text>
+<text x="538" y="90" font-size="15" font-weight="normal" font-style="italic" fill="#6B6262">“quiero delegar en paralelo”</text>
+
+<rect x="160" y="118" width="348" height="46" rx="5" fill="#F2F0F0" stroke="#C9C2C2" stroke-width="1.5"/>
+<text x="178" y="147">Skills</text>
+<text x="538" y="146" font-size="15" font-weight="normal" font-style="italic" fill="#6B6262">“no quiero repetir la tarea”</text>
+
+<rect x="160" y="174" width="348" height="46" rx="5" fill="#F2F0F0" stroke="#C9C2C2" stroke-width="1.5"/>
+<text x="178" y="203">Instrucciones</text>
+<text x="538" y="202" font-size="15" font-weight="normal" font-style="italic" fill="#6B6262">“no quiero repetir el contexto”</text>
+
+<rect x="160" y="230" width="348" height="46" rx="5" fill="#F2F0F0" stroke="#C9C2C2" stroke-width="1.5"/>
+<text x="178" y="259">Projects</text>
+<text x="538" y="258" font-size="15" font-weight="normal" font-style="italic" fill="#6B6262">“agrupar el trabajo de un tema”</text>
+
+<rect x="160" y="286" width="348" height="46" rx="5" fill="#F2F0F0" stroke="#C9C2C2" stroke-width="1.5"/>
+<text x="178" y="315">Archivos <tspan font-family="'DejaVu Sans Mono', monospace" font-size="16">.md</tspan></text>
+<text x="538" y="314" font-size="15" font-weight="normal" font-style="italic" fill="#6B6262">“quiero que la IA entienda mi material”</text>
+
+<text x="32" y="370" font-size="14" fill="#DA1B2E">estamos acá</text>
+<path d="M136 365 L160 365" stroke="#DA1B2E" stroke-width="2.4" fill="none" marker-end="url(#acaHead)"/>
+<rect x="160" y="342" width="348" height="46" rx="5" fill="#FBEFF0" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="178" y="371" fill="#DA1B2E">Cowork: carpetas y archivos</text>
+<text x="538" y="370" font-size="15" font-weight="normal" font-style="italic">“quiero que trabaje sobre mis archivos”</text>
+
+<text x="32" y="426" font-size="13.5" font-weight="normal" fill="#7A7070">(visto)</text>
+<rect x="160" y="398" width="348" height="46" rx="5" fill="#F7F5F5" stroke="#CFC8C8" stroke-width="1.5"/>
+<text x="178" y="427" fill="#6B6262">Schedule</text>
+<text x="538" y="426" font-size="15" font-weight="normal" font-style="italic" fill="#8A8080">“quiero que corra solo”</text>
+
+<text x="32" y="482" font-size="13.5" font-weight="normal" fill="#7A7070">(visto)</text>
+<rect x="160" y="454" width="348" height="46" rx="5" fill="#F7F5F5" stroke="#CFC8C8" stroke-width="1.5"/>
+<text x="178" y="483" fill="#6B6262">Conectores</text>
+<text x="538" y="482" font-size="15" font-weight="normal" font-style="italic" fill="#8A8080">“quiero info real, y que actúe”</text>
+
+<text x="32" y="538" font-size="13.5" font-weight="normal" fill="#7A7070">(visto)</text>
+<rect x="160" y="510" width="348" height="46" rx="5" fill="#F7F5F5" stroke="#CFC8C8" stroke-width="1.5"/>
+<text x="178" y="539" fill="#6B6262">El chat</text>
+<text x="538" y="538" font-size="15" font-weight="normal" font-style="italic" fill="#8A8080">“respondía solo de memoria”</text>
+
+<text x="414" y="596" font-size="16" font-weight="normal" text-anchor="middle">Los bloques se apilan: cada tarea combina solo los que necesita.</text>
+</svg>

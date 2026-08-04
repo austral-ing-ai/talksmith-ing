@@ -1,0 +1,37 @@
+<!-- talksmith-ascii-sha256: 7bf8714ad665bc833fc542066c4037765f8c482f3fb49555d718855022b88a59 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 295" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>Describir una vez, que corra sola</title>
+<desc>Un Schedule se describe una sola vez: un disparador de calendario ejecuta la tarea, que usa los Connectors y deja el resultado listo.</desc>
+<defs>
+<marker id="dk" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="295" fill="#ffffff"/>
+
+<text x="340" y="34" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">SCHEDULE (se describe UNA vez)</text>
+
+<rect x="20" y="58" width="200" height="40" rx="6" fill="#F9D2D6"/>
+<circle cx="48" cy="78" r="13" fill="#ffffff" stroke="#1F1E1E" stroke-width="1.8"/>
+<path d="M48,70 L48,78 L54,82" fill="none" stroke="#1F1E1E" stroke-width="1.8" stroke-linecap="round"/>
+<text x="72" y="84" font-size="15" font-weight="bold" fill="#1F1E1E">lunes 8:00</text>
+
+<path d="M120,98 L120,118" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+
+<rect x="20" y="122" width="200" height="78" rx="5" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="120" y="154" text-anchor="middle" font-size="16" font-weight="bold" fill="#DA1B2E">la tarea</text>
+<text x="120" y="176" text-anchor="middle" font-size="16" font-weight="bold" fill="#DA1B2E">corre sola</text>
+
+<rect x="380" y="122" width="280" height="78" rx="5" fill="#F2EEEE" stroke="#D8D4D4" stroke-width="1.6"/>
+<text x="520" y="152" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Connectors</text>
+<text x="520" y="176" text-anchor="middle" font-size="13">mail / web / calendario</text>
+
+<text x="300" y="138" text-anchor="middle" font-size="11" fill="#6A737D">usa Connectors</text>
+<path d="M220,148 L380,148" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+<path d="M380,174 L220,174" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+<text x="300" y="192" text-anchor="middle" font-size="11" fill="#6A737D">trae la info</text>
+
+<path d="M120,200 L120,220" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+
+<rect x="20" y="224" width="640" height="48" rx="6" fill="#F9D2D6"/>
+<text x="340" y="246" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">resumen listo en el chat, cada semana,</text>
+<text x="340" y="266" text-anchor="middle" font-size="13" fill="#1F1E1E">sin pedirlo de nuevo</text>
+</svg>

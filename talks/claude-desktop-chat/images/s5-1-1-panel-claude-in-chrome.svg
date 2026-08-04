@@ -1,0 +1,33 @@
+<!-- talksmith-ascii-sha256: ce0e23b51f3c68570b79c43bce0dbba28e070b76fd110c4f713ab1d4f7b1bcc4 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 242" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>Qué es Claude in Chrome</title>
+<desc>Claude in Chrome trabaja en un panel lateral junto a la página ya abierta: lee lo que hay en pantalla y actúa sobre ese mismo sitio.</desc>
+<defs>
+<marker id="dk" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#3B3535"/></marker>
+<marker id="rd" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="242" fill="#ffffff"/>
+
+<text x="180" y="34" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">PÁGINA WEB ABIERTA</text>
+<text x="180" y="52" text-anchor="middle" font-size="12" fill="#6A737D">(sesión ya iniciada)</text>
+<text x="530" y="34" text-anchor="middle" font-size="15" font-weight="bold" fill="#DA1B2E">CLAUDE IN CHROME</text>
+<text x="530" y="52" text-anchor="middle" font-size="12" fill="#6A737D">(panel lateral)</text>
+
+<rect x="20" y="66" width="320" height="152" rx="5" fill="#F2EEEE" stroke="#D8D4D4" stroke-width="1.6"/>
+<text x="44" y="114">formulario del CRM</text>
+<text x="44" y="146">hilo de mail</text>
+<text x="44" y="178">tablero del proveedor</text>
+
+<rect x="400" y="66" width="260" height="152" rx="5" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="422" y="104" fill="#1F1E1E">lee lo que hay</text>
+<text x="422" y="124" fill="#1F1E1E">en la pantalla</text>
+<path d="M416,142 L644,142" stroke="#D8D4D4" stroke-width="1.4"/>
+<text x="422" y="166" fill="#1F1E1E">navega, hace clic,</text>
+<text x="422" y="186" fill="#1F1E1E">completa campos,</text>
+<text x="422" y="206" fill="#1F1E1E">maneja pestañas</text>
+
+<text x="370" y="102" text-anchor="middle" font-size="11" fill="#6A737D">lee</text>
+<path d="M340,114 L400,114" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+<text x="370" y="172" text-anchor="middle" font-size="11" fill="#DA1B2E">actúa</text>
+<path d="M400,184 L340,184" fill="none" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#rd)"/>
+</svg>

@@ -1,0 +1,35 @@
+   +----------------------+  "quiero delegar en paralelo"
+   | SUBAGENTES           |
+   +----------------------+
+   +----------------------+  "no quiero repetir la tarea"
+   | SKILLS               |
+   +----------------------+
+   +----------------------+  "no quiero repetir el contexto"
+   | INSTRUCCIONES        |
+   +----------------------+
+   +----------------------+  "agrupar el trabajo de un tema"
+   | PROJECTS             |
+   +----------------------+
+   +----------------------+  "quiero que la IA entienda mi material"
+   | ARCHIVOS .MD         |
+   +----------------------+
+   +----------------------+  "quiero que trabaje sobre mis archivos"   <== ACA
+   | COWORK: carpetas     |
+   +----------------------+
+   +----------------------+  "quiero que corra solo"                   (visto)
+   | SCHEDULE             |
+   +----------------------+
+   +----------------------+  "quiero info real + que actue"            (visto)
+   | CONECTORES           |
+   +----------------------+
+   +----------------------+  "respondia solo de memoria"               (visto)
+   | EL CHAT              |
+   +----------------------+
+
+   los bloques se apilan: cada tarea combina solo los que necesita
+
+<!-- ascii-note:
+intent: presentar el arco completo de las dos clases como bloques que se apilan (no una pirámide/escalera estricta): el chat (base) -> conectores -> Schedule -> Cowork (carpetas/archivos) -> archivos .md -> Projects -> Instrucciones -> Skills -> Subagentes. Los tres bloques de abajo son los de la clase anterior y están marcados "(visto)"; el bloque Cowork lleva el marcador "estamos acá".
+emphasize: el marcador "<== ACÁ" en el bloque Cowork; los "(visto)" en chat/conectores/Schedule, que son de la clase anterior; el par bloque↔problema en cada nivel.
+labels: bloques apilados (base→cima): El chat · Conectores · Schedule · Cowork: carpetas · Archivos .md · Projects · Instrucciones · Skills · Subagentes, cada uno con su frase-problema a la derecha.
+-->

@@ -1,0 +1,44 @@
+<!-- talksmith-ascii-sha256: 252612935242789f7c8ebdd07bfb63babd714a888668d26a785cafd6d34b5629 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 224" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>Qué es un Connector</title>
+<desc>Un chat aislado responde de memoria de entrenamiento; con Connectors consulta fuentes reales antes de responder.</desc>
+<defs>
+<marker id="ac" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="224" fill="#ffffff"/>
+
+<text x="135" y="34" text-anchor="middle" font-size="15" font-weight="bold" fill="#6A737D">CHAT SOLO</text>
+<text x="485" y="34" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">CHAT CON CONNECTORS</text>
+
+<rect x="20" y="48" width="230" height="92" rx="5" fill="#F2EEEE" stroke="#D8D4D4" stroke-width="1.6"/>
+<text x="135" y="76" text-anchor="middle" font-size="16" font-weight="bold" fill="#6A737D">CHAT</text>
+<text x="135" y="102" text-anchor="middle" fill="#6A737D">responde de memoria</text>
+<text x="135" y="122" text-anchor="middle" fill="#6A737D">de entrenamiento</text>
+<text x="135" y="162" text-anchor="middle" font-size="12" fill="#6A737D">(aislado)</text>
+
+<rect x="310" y="48" width="170" height="130" rx="5" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="395" y="82" text-anchor="middle" font-size="16" font-weight="bold" fill="#DA1B2E">CHAT</text>
+<text x="395" y="110" text-anchor="middle" fill="#1F1E1E">consulta fuentes</text>
+<text x="395" y="130" text-anchor="middle" fill="#1F1E1E">REALES antes</text>
+<text x="395" y="150" text-anchor="middle" fill="#1F1E1E">de responder</text>
+
+<g fill="none" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#ac)">
+<path d="M480,62 L520,62"/>
+<path d="M480,96 L520,96"/>
+<path d="M480,130 L520,130"/>
+<path d="M480,164 L520,164"/>
+</g>
+
+<g>
+<rect x="520" y="48" width="140" height="28" rx="5" fill="#F2EEEE"/>
+<text x="590" y="66.5" text-anchor="middle" fill="#1F1E1E">mail</text>
+<rect x="520" y="82" width="140" height="28" rx="5" fill="#F2EEEE"/>
+<text x="590" y="100.5" text-anchor="middle" fill="#1F1E1E">calendario</text>
+<rect x="520" y="116" width="140" height="28" rx="5" fill="#F2EEEE"/>
+<text x="590" y="134.5" text-anchor="middle" fill="#1F1E1E">documentos</text>
+<rect x="520" y="150" width="140" height="28" rx="5" fill="#F2EEEE"/>
+<text x="590" y="168.5" text-anchor="middle" fill="#1F1E1E">sistemas</text>
+</g>
+
+<text x="485" y="200" text-anchor="middle" font-size="12" fill="#1F1E1E">(conectado al mundo real)</text>
+</svg>

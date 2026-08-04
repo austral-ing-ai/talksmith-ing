@@ -1,0 +1,37 @@
+<!-- talksmith-ascii-sha256: 9152cd24fbc19479e8d062bff5c47ca316b1c13ebd3b0cd259f530348a16bb36 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 302" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>El chat responde de memoria</title>
+<desc>El chat de IA sin extensiones responde solo desde su memoria de entrenamiento y no ve el mundo del usuario.</desc>
+<rect x="0" y="0" width="680" height="302" fill="#ffffff"/>
+
+<text x="200" y="37" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">EL CHAT “COMO VIENE DE FÁBRICA”</text>
+
+<rect x="20" y="58" width="360" height="220" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
+<text x="200" y="79" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">CHAT DE IA</text>
+
+<rect x="42" y="90" width="316" height="82" rx="5" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="200" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">MEMORIA DE ENTRENAMIENTO</text>
+<text x="200" y="136" text-anchor="middle">foto congelada hasta la</text>
+<text x="200" y="154" text-anchor="middle">fecha de entrenamiento</text>
+
+<text x="200" y="198" text-anchor="middle" font-size="14">responde “de memoria”</text>
+
+<rect x="42" y="212" width="316" height="52" rx="5" fill="#F7BBC1"/>
+<text x="200" y="233" text-anchor="middle" font-size="12" fill="#1F1E1E">lo único que cambia su comportamiento:</text>
+<text x="200" y="253" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">EL PROMPT</text>
+
+<rect x="410" y="58" width="250" height="220" rx="6" fill="#F2EEEE"/>
+<text x="535" y="88" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">lo que NO ve</text>
+<g stroke="#DA1B2E" stroke-width="2.2" stroke-linecap="round">
+<path d="M436,114 L446,124 M446,114 L436,124"/>
+<path d="M436,146 L446,156 M446,146 L436,156"/>
+<path d="M436,178 L446,188 M446,178 L436,188"/>
+<path d="M436,210 L446,220 M446,210 L436,220"/>
+<path d="M436,242 L446,252 M446,242 L436,252"/>
+</g>
+<text x="460" y="124" fill="#1F1E1E">noticias de hoy</text>
+<text x="460" y="156" fill="#1F1E1E">los mails</text>
+<text x="460" y="188" fill="#1F1E1E">el calendario</text>
+<text x="460" y="220" fill="#1F1E1E">los archivos</text>
+<text x="460" y="252" fill="#1F1E1E">las apps del trabajo</text>
+</svg>

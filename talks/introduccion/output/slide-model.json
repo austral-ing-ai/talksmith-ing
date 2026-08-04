@@ -1,36 +1,44 @@
 {
   "deck": {
-    "title": "IA generativa: curso, reglas y fundamentos",
+    "title": "Inteligencia General Generativa: curso, reglas y fundamentos",
     "lang": "es",
     "institution": "Universidad Austral",
-    "class": "Inteligencia Artificial Generativa Aplicada en Ingeniería de Software · Clase 1: Bienvenida y logística",
+    "class": "Inteligencia General Generativa · Clase 1: Bienvenida y logística",
     "presenter": "Paulo Veiga, Claudio Riguetti y Marco Sorondo",
     "date": "Agosto de 2026",
     "logo": null,
     "sections": [
-      "Bienvenida, propósito y dinámica de la materia",
-      "Fundamentos de inteligencia artificial",
-      "Taxonomía de problemas de IA",
-      "Modelos fundacionales, datos y ecosistema",
-      "Conclusiones y anexo técnico"
+      "Bienvenidos",
+      "Por qué cursarla",
+      "Logística",
+      "Fundamento de AI",
+      "Taxinomia de Problemas",
+      "Modelos Fundacionales",
+      "Datos",
+      "Ecosistema Actual",
+      "Cierre y anexo"
     ]
   },
   "slides": [
     {
+      "template": "section-agenda",
+      "title": "Bienvenidos"
+    },
+    {
       "template": "content-image",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Bienvenidos",
       "title": "Bienvenidos!",
-      "lead": "Inteligencia Artificial Generativa Aplicada en Ingeniería de Software",
-      "image": {
+      "lead": "Inteligencia General Generativa",
+      "media": {
         "src": "images/bienvenida-hello.jpeg",
         "alt": "Ilustración de bienvenida"
       },
-      "layout": "text-left",
+      "design": "column-right",
       "notes": "Referencia PPTX: diapositiva 2.\n\nPrimera vez que dictamos esta materia (contar brevemente la historia de la materia)."
     },
     {
       "template": "content-image",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Bienvenidos",
       "title": "Que es Inteligencia Artificial Generativa ?",
       "lead": "Bienvenidos! Este curso explorará los fundamentos, aplicaciones y desafíos de la Inteligencia Artificial Generativa, un campo revolucionario que está transformando nuestra interacción con la tecnología.",
       "facts": [
@@ -38,16 +46,46 @@
           "body": "A lo largo de este cuatrimestre, analizaremos los conceptos básicos de la GenAI, los modelos de lenguaje generativos, la visión artificial, y los aspectos éticos relacionados con esta tecnología emergente."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/que-es-ia-generativa.jpeg",
         "alt": "Ilustración sobre inteligencia artificial"
       },
-      "layout": "text-left",
+      "design": "column-right",
       "notes": "Referencia PPTX: diapositiva 3.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
+      "template": "concept-breakdown",
+      "section": "Bienvenidos",
+      "title": "Qué esperamos que se lleven",
+      "lead": "Una materia para entender cómo funcionan los modelos y aprender a construir con ellos con criterio de Ingeniería de Software.",
+      "cards": [
+        {
+          "label": "Meternos en los modelos",
+          "body": "Van a poder explicar qué hacen los transformers, cómo intervienen los datos, el entrenamiento, la inferencia y la evaluación; no sólo usar una interfaz de chat."
+        },
+        {
+          "label": "Teoría con propósito",
+          "body": "Cada clase introduce fundamentos, arquitecturas, ejemplos y discusión técnica para construir un lenguaje compartido y poder razonar sobre decisiones de diseño."
+        },
+        {
+          "label": "Práctica hands-on",
+          "body": "Las clases combinan teoría y práctica: notebooks, repositorios, prompts, herramientas y casos concretos para experimentar, implementar, probar y documentar."
+        },
+        {
+          "label": "Elegir y evaluar soluciones",
+          "body": "Van a poder decidir cuándo conviene un LLM, un clasificador, una búsqueda semántica, reglas deterministas o una combinación; y qué evidencia pedir antes de integrarla."
+        },
+        {
+          "label": "Criterio de ingeniería",
+          "body": "El objetivo es usar IA generativa sin delegar el juicio técnico: evaluar salidas, reconocer límites y diseñar flujos con trazabilidad, seguridad y control humano."
+        }
+      ],
+      "format": "grid",
+      "notes": "Este slide anticipa el tipo de materia: no se trata sólo de aprender a usar una herramienta. Vamos a entrar en cómo se construyen y evalúan los modelos, y en cada clase llevar los conceptos a una práctica concreta de ingeniería."
+    },
+    {
       "template": "figures",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Bienvenidos",
       "title": "Antes que nada…",
       "figures": [
         {
@@ -65,13 +103,25 @@
           },
           "label": "Marco Sanchez Sorondo",
           "body": "msanchezSorondo@austral.edu.ar"
+        },
+        {
+          "image": {
+            "src": "images/docente-claudio-riguetti.png",
+            "alt": "Foto de Claudio Riguetti"
+          },
+          "label": "Claudio Riguetti",
+          "body": "Docente"
         }
       ],
       "notes": "Referencia PPTX: diapositiva 4.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
+      "template": "section-agenda",
+      "title": "Por qué cursarla"
+    },
+    {
       "template": "concept-breakdown",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Por qué cursarla",
       "title": "¿Por qué esta materia?",
       "lead": "¿Por qué esto es relevante para tu carrera? La IA generativa cambia la forma de analizar requisitos, escribir código, crear pruebas, mantener documentación y operar sistemas.",
       "cards": [
@@ -92,12 +142,12 @@
           "body": "ChatGPT, Claude, Gemini, GitHub Copilot y modelos abiertos ya forman parte del entorno de trabajo. La decisión relevante consiste en usarlos con evidencia, pruebas y responsabilidad."
         }
       ],
-      "format": "list",
+      "format": "grid",
       "notes": "Referencia PPTX: diapositiva 5.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
       "template": "concept-breakdown",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Por qué cursarla",
       "title": "¿Por qué esta materia?",
       "lead": "El Impacto de GenAI en la Economía",
       "cards": [
@@ -118,18 +168,18 @@
           "body": "Aparición de modelos de negocio inéditos y roles especializados (ej. ingeniería de prompts, auditoría algorítmica)."
         }
       ],
-      "format": "list",
+      "format": "grid",
       "highlights": [
         {
           "body": "Fuente: McKinsey & Company — The economic potential of generative AI",
-          "kind": "note"
+          "kind": "source"
         }
       ],
       "notes": "Referencia PPTX: diapositiva 6.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
       "template": "image-full",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Por qué cursarla",
       "title": "¿Por qué esta materia?",
       "lead": "Impacto por industria y funciones",
       "image": {
@@ -140,7 +190,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Por qué cursarla",
       "title": "¿Por qué esta materia?",
       "lead": "Transformación en Ingeniería de Software",
       "cards": [
@@ -161,12 +211,12 @@
           "body": "La automatización de runbooks, soporte y documentación puede devolver tiempo para resolver problemas de mayor valor. Los procesos necesitan registros, permisos y mecanismos de reversión."
         }
       ],
-      "format": "list",
+      "format": "grid",
       "notes": "Referencia PPTX: diapositiva 8.\n\nDiscurso sugerido:\n\n“La IA generativa puede acelerar partes del trabajo de ingeniería, pero no convierte un problema ambiguo en una solución correcta por sí sola. Puede leer un repositorio, proponer una migración, escribir pruebas o resumir un incidente. El equipo sigue teniendo que definir el objetivo, revisar el cambio y hacerse cargo de las consecuencias.”\n\nContexto técnico: los asistentes de código trabajan sobre representaciones incompletas del sistema. Pueden desconocer dependencias privadas, decisiones de arquitectura, reglas de negocio, restricciones de seguridad o el estado actual de producción. Un equipo confiable combina la velocidad de propuesta del modelo con pruebas automatizadas, revisión de pares, despliegues graduales y observabilidad.\n\nCaso 1. Desarrollo y mantenimiento\n\nUn modelo puede explicar una función compleja, proponer un refactor y generar pruebas para los casos que el desarrollador enumera. El equipo debe ejecutar esas pruebas, revisar cambios de comportamiento y comprobar que el resultado respeta las convenciones del repositorio.\n\nCaso 2. Conocimiento técnico\n\nUn sistema de búsqueda semántica puede recuperar decisiones de arquitectura, tickets y documentación. El resultado debe mostrar de dónde obtuvo cada respuesta para que quien consulta pueda verificar si esa información sigue vigente.\n\nCaso 3. Calidad y seguridad\n\nUn asistente puede proponer reglas de análisis estático, casos de prueba y correcciones para vulnerabilidades conocidas. Las recomendaciones no reemplazan una revisión de seguridad ni dan permiso para ejecutar código sin aislamiento.\n\nCaso 4. Operación\n\nUn agente puede resumir alertas, sugerir hipótesis y ejecutar acciones acotadas de un runbook. El diseño debe limitar permisos, registrar cada acción y permitir detener o revertir una automatización.\n\nPregunta para la clase: “¿Qué evidencia pedirían antes de aceptar una modificación de código generada por un modelo?”\n\nPunto clave: la IA amplifica las habilidades de un equipo cuando el proceso conserva responsabilidad, trazabilidad y controles humanos."
     },
     {
       "template": "concept-breakdown",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Por qué cursarla",
       "title": "¿Por qué esta materia?",
       "lead": "Problemas actuales de la IA en software",
       "cards": [
@@ -199,18 +249,18 @@
           "body": "Un uso sin comprensión puede erosionar la capacidad de depurar, diseñar y operar sistemas cuando la herramienta falla o entrega una respuesta errónea."
         }
       ],
-      "format": "list",
+      "format": "grid",
       "highlights": [
         {
           "body": "Fuente de referencia: el PPTX original organiza estos riesgos a partir de la guía de la OMS; esta adaptación los aplica al trabajo de software.",
-          "kind": "note"
+          "kind": "source"
         }
       ],
       "notes": "Referencia PPTX: diapositiva 9.\n\nCómo presentar este slide\n\nApertura: “Vimos qué puede aportar la IA generativa a un equipo de software. Ahora revisemos los problemas que aparecen cuando una salida se acepta sin evidencia, cuando los datos no tienen controles o cuando un sistema obtiene permisos que no debería tener.”\n\n1. Alucinaciones y respuestas falsas\n\nExplicación: los modelos generan secuencias plausibles a partir de patrones. Pueden inventar una API, recomendar un paquete inexistente, omitir una condición de seguridad o explicar de forma convincente un comportamiento equivocado.\n\nEjemplo: un desarrollador pide una integración con una librería y el modelo produce funciones que no existen en esa versión. El código puede compilar si se agregan sustitutos improvisados, pero falla en producción o deja un comportamiento inseguro. Una revisión debe contrastar la propuesta con documentación oficial, pruebas y el contexto del repositorio.\n\nPregunta para la clase: “¿Aceptarían un cambio que el modelo no puede justificar con una fuente y una prueba reproducible?”\n\n2. Sesgos en los datos\n\nExplicación: los modelos aprenden de datos históricos. Repositorios públicos y documentación contienen decisiones de diseño, dependencias desactualizadas, prácticas inseguras y sesgos sobre quién usa un producto.\n\nEjemplo: un sistema entrenado con tickets históricos puede asignar menor prioridad a problemas que afectan a un grupo poco representado. Un asistente de código puede sugerir patrones antiguos porque aparecen con frecuencia en sus datos, aunque el proyecto ya los haya reemplazado.\n\nPunto clave: los equipos necesitan revisar qué datos entran a un sistema, qué casos faltan y cómo miden errores por segmento o contexto.\n\n3. Privacidad y protección de datos\n\nExplicación: un prompt puede incluir código propietario, claves, información de clientes, registros de incidentes o decisiones internas. El proveedor puede almacenar, procesar o usar ese contexto según el contrato y la configuración elegida.\n\nEjemplo: si alguien copia una traza con un token de acceso o una base de datos de prueba con datos personales, el equipo puede exponer información sensible fuera de su perímetro. Las políticas deben definir qué puede enviarse, qué se debe anonimizar y qué modelos se autorizan para cada clase de dato.\n\nPunto clave: un chat no reemplaza un canal seguro ni una revisión de cumplimiento.\n\n4. Sesgo de automatización\n\nExplicación: una respuesta bien escrita puede recibir más confianza que una respuesta verificada. El riesgo aumenta cuando una herramienta aparece dentro del editor, el pipeline o el panel de operaciones.\n\nEjemplo: un asistente propone silenciar una alerta porque la clasifica como ruido. Si el operador acepta sin revisar señales relacionadas, puede ocultar un incidente real. La interfaz debe mostrar evidencia, incertidumbre y mecanismos para inspeccionar la decisión.\n\n5. Acceso desigual\n\nExplicación: los modelos de mayor capacidad requieren suscripciones, infraestructura y datos que no todos los equipos pueden pagar. La calidad también varía por idioma, contexto cultural y disponibilidad de datos locales.\n\nEjemplo: una empresa grande puede integrar modelos privados con sus repositorios y telemetría. Un equipo pequeño puede depender de una herramienta pública con límites de uso y menor control sobre privacidad. La diferencia modifica quién puede experimentar y quién puede construir productos competitivos.\n\n6. Impacto ambiental\n\nExplicación: entrenar y servir modelos consume energía, agua e infraestructura. Una arquitectura que invoca un modelo en cada interacción puede elevar costo y consumo sin mejorar la experiencia.\n\nEjemplo: antes de agregar una llamada a un modelo, el equipo puede comparar alternativas: una regla determinista, una búsqueda, un modelo pequeño, un caché o una revisión asíncrona. La decisión debe considerar precisión, latencia, costo y consumo.\n\n7. Degradación de habilidades técnicas\n\nExplicación: un uso continuo de asistentes sin comprensión puede reducir la práctica de depurar, modelar datos, leer documentación y diseñar pruebas. El problema aparece con fuerza cuando una herramienta falla, cambia de proveedor o produce una salida incorrecta.\n\nEjemplo: si un equipo acepta parches generados durante meses sin revisar arquitectura ni pruebas, pierde contexto sobre el sistema. Durante un incidente grave, ese equipo tarda más en decidir qué hipótesis descartar y qué acción es segura.\n\nPunto clave: la IA debe ampliar la capacidad de ingeniería, no sustituir el aprendizaje ni la responsabilidad técnica.\n\nCierre para debate:\n\n“¿Qué controles deberían exigir una universidad, una empresa y un equipo de producto antes de permitir que un agente modifique datos, despliegue código o responda a usuarios?”"
     },
     {
       "template": "concept-breakdown",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Por qué cursarla",
       "title": "¿Por qué esta materia?",
       "lead": "El riesgo macroeconómico y la transición abrupta",
       "cards": [
@@ -231,7 +281,7 @@
           "body": "Pocos proveedores de cómputo, modelos y datos pueden capturar una porción desproporcionada del valor. Los equipos quedan atados a precios, políticas y capacidades ajenas."
         }
       ],
-      "format": "list",
+      "format": "grid",
       "highlights": [
         {
           "body": "Pregunta para debate: ¿qué decisiones de diseño, formación y regulación reducen estos riesgos sin bloquear la innovación?",
@@ -239,107 +289,125 @@
         },
         {
           "body": "Fuente de referencia: el PPTX original presenta un escenario hipotético de transición abrupta.",
-          "kind": "note"
+          "kind": "source"
         }
       ],
       "notes": "Referencia PPTX: diapositiva 10.\n\n. Technology improved slowly enough that humans could adapt. Intelligence, the ability to analyze, decide, create, persuade, and coordinate, was the thing that could not be replicated at scale.\n\nHuman intelligence derived its inherent premium from its scarcity. Every institution in our economy, from the labor market to the mortgage market to the tax code, was designed for a world in which that assumption held.\n\nWe are now experiencing the unwind of that premium. Machine intelligence is now a competent and rapidly improving substitute for human intelligence across a growing range of tasks"
     },
     {
-      "template": "concept-breakdown",
-      "section": "Bienvenida, propósito y dinámica de la materia",
-      "title": "Que queremos que se lleven ?",
-      "lead": "Qué queremos que se lleven",
-      "cards": [
-        {
-          "label": "Fundamentos del futuro",
-          "body": "Podrán explicar cómo aprenden los modelos, qué información necesitan y qué límites arrastran de sus datos y objetivos."
-        },
-        {
-          "label": "Enfoque práctico",
-          "body": "Podrán usar asistentes de IA para explorar, implementar, probar y documentar, sin delegar el juicio técnico."
-        },
-        {
-          "label": "Modelos aplicados",
-          "body": "Podrán reconocer cuándo conviene usar un modelo generativo, un clasificador, una búsqueda semántica, reglas deterministas o una combinación."
-        },
-        {
-          "label": "Contenidos flexibles",
-          "body": "Podrán relacionar los conceptos de la materia con problemas de producto, datos, seguridad y operación."
-        },
-        {
-          "label": "IA generativa",
-          "body": "Podrán formular preguntas, evaluar salidas y diseñar flujos donde una persona conserva control sobre cambios relevantes."
-        }
-      ],
-      "format": "list",
-      "notes": "Referencia PPTX: diapositiva 11.\n\n[Sin notas en el PPTX de referencia.]"
+      "template": "section-agenda",
+      "title": "Logística"
     },
     {
       "template": "concept-breakdown",
-      "section": "Bienvenida, propósito y dinámica de la materia",
-      "title": "Logística de la Materia",
-      "lead": "Todo lo que necesitás saber para arrancar",
-      "cards": [
-        {
-          "label": "Estructura",
-          "body": ""
-        },
-        {
-          "label": "Entregables",
-          "body": ""
-        },
-        {
-          "label": "Trabajo Final",
-          "body": ""
-        }
-      ],
-      "format": "row",
-      "notes": "Referencia PPTX: diapositiva 12.\n\n[Sin notas en el PPTX de referencia.]"
-    },
-    {
-      "template": "content-text",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Logística",
       "title": "Logística de la materia",
-      "big": "Estructura de clases",
-      "panels": [
-        "14 clases, con una dinámica que combina teoría, conceptos y práctica. Cada clase tiene dos momentos: Teoría: conceptos, modelos, ejemplos y discusión. Práctica: ejercicios sobre notebooks, repositorios, herramientas y casos de uso. Cada estudiante trabaja con su equipo y documenta decisiones.",
-        "Clases participativas: diálogo, revisión de resultados y puesta en común. Cada dos clases habrá un entregable práctico asociado a los temas vistos.",
-        "Presencia activa requerida. Las reglas para ausencias, reentregas y uso de herramientas se confirmarán en el aula virtual. Nota final: se combinarán entregables de clase y trabajo final; la ponderación exacta se confirmará antes de la primera entrega."
+      "lead": "Cómo vamos a trabajar",
+      "cards": [
+        {
+          "label": "01 · Clases",
+          "body": "Son 14 clases, los miércoles. En cada una vamos a mezclar conceptos, modelos, ejemplos y práctica."
+        },
+        {
+          "label": "02 · De la idea a la práctica",
+          "body": "Primero vemos la idea y la discutimos; después la llevamos a notebooks, repositorios, herramientas y casos concretos."
+        },
+        {
+          "label": "03 · Trabajo en equipo",
+          "body": "Van a trabajar en equipo, probar cosas, comparar resultados y dejar registro de las decisiones."
+        },
+        {
+          "label": "04 · Participación y evaluación",
+          "body": "Esperamos presencia y participación activa. Cada dos clases habrá un entregable práctico; la nota final combina esos trabajos con el proyecto final. Las reglas y la ponderación estarán claras antes de la primera entrega."
+        }
       ],
+      "format": "grid",
       "notes": "Referencia PPTX: diapositiva 13.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
-      "template": "content-text",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "template": "concept-breakdown",
+      "section": "Logística",
       "title": "Logística de la materia",
-      "big": "Entregables de clase",
-      "panels": [
-        "Un entregable cada dos clases, relacionado con los temas vistos. En grupos de dos personas.",
-        "Valor de referencia: los entregables de clase y el trabajo final forman parte de la evaluación. La mayor parte del trabajo se completa durante la clase; cada equipo debe dejar trazabilidad de decisiones, prompts, código, pruebas y fuentes usadas.",
-        "Entrega: por el canal que indique la cátedra, con repositorio o artefactos reproducibles cuando corresponda. Todos los entregables son obligatorios."
+      "lead": "Entregables de clase",
+      "cards": [
+        {
+          "label": "01 · Ritmo",
+          "body": "Un entregable cada dos clases, relacionado con los temas vistos."
+        },
+        {
+          "label": "02 · Equipo",
+          "body": "Se trabaja en equipos de cuatro personas."
+        },
+        {
+          "label": "03 · Trabajo durante la clase",
+          "body": "La mayor parte del trabajo se completa durante la clase."
+        },
+        {
+          "label": "04 · Evidencia",
+          "body": "Cada equipo debe dejar trazabilidad de decisiones, prompts, código, pruebas y fuentes usadas."
+        },
+        {
+          "label": "05 · Entrega obligatoria",
+          "body": "Se entrega por el canal que indique la cátedra, con repositorio o artefactos reproducibles cuando corresponda."
+        }
       ],
+      "format": "grid",
       "notes": "Referencia PPTX: diapositiva 14.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
-      "template": "content-text",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "template": "concept-breakdown",
+      "section": "Logística",
       "title": "Logística de la materia",
-      "big": "Trabajo final",
-      "panels": [
-        "Propuesta propia que aplique conceptos de la materia a un problema de Ingeniería de Software. El equipo recibirá orientación sobre el alcance, la evidencia y la forma de evaluar el resultado. Equipos de dos personas.",
-        "Entregables: Video breve de demostración que explique el problema, la solución y sus límites. Código desplegado o ejecutable, con instrucciones de reproducción. Documentación del diseño, datos utilizados, estrategia de evaluación, riesgos y decisiones de seguridad.",
-        "Máximo detalle y evidencia técnica; la evaluación considera tanto el resultado como la capacidad de justificarlo."
+      "lead": "Trabajo final",
+      "cards": [
+        {
+          "label": "Equipo y alcance",
+          "body": "Equipos de cuatro personas. El equipo debe ser el mismo que realizó los trabajos prácticos. La cátedra orientará el alcance, la evidencia y la forma de evaluar el resultado."
+        },
+        {
+          "label": "Entregables",
+          "body": "Video breve de demostración; código desplegado o ejecutable con instrucciones de reproducción; y documentación del diseño, datos, evaluación, riesgos y decisiones de seguridad."
+        },
+        {
+          "label": "Evaluación",
+          "body": "Máximo detalle y evidencia técnica; se evalúan tanto el resultado como la capacidad de justificarlo."
+        }
       ],
+      "format": "grid",
       "notes": "Referencia PPTX: diapositiva 15.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
+      "template": "stat",
+      "section": "Logística",
+      "title": "Evaluación",
+      "lead": "Cómo se compone la nota final",
+      "stats": [
+        {
+          "value": "40%",
+          "caption": "Entregables de clase"
+        },
+        {
+          "value": "60%",
+          "caption": "Trabajo final"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Las entregas fuera de término impactan en la nota final.",
+          "kind": "important",
+          "position": "top"
+        }
+      ],
+      "notes": "La evaluación combina el trabajo sostenido durante la cursada con la capacidad de integrar lo aprendido en un proyecto final."
+    },
+    {
       "template": "concept-breakdown",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Logística",
       "title": "Contenidos de la Materia",
       "lead": "Recorrido de la materia",
       "cards": [
         {
-          "label": "01 · Módulo 1: Fundamentos de IA, aprendizaje y modelos de lenguaje",
+          "label": "01 · Módulo 1: Fundamentos de IA, arquitectura de LLM y entrenamiento",
           "body": "Clases 1–4"
         },
         {
@@ -355,26 +423,26 @@
           "body": "Clases 12–14"
         }
       ],
-      "format": "grid",
+      "format": "editorial",
       "notes": "Referencia PPTX: diapositiva 16.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
       "template": "closing-hero",
-      "section": "Bienvenida, propósito y dinámica de la materia",
+      "section": "Logística",
       "title": "Preguntas",
-      "body": "Preguntas y conversación abierta.",
+      "body": "Abrimos la conversación.",
       "notes": "Referencia PPTX: diapositiva 17.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
       "template": "statement",
-      "section": "Fundamentos de inteligencia artificial",
-      "title": "Inteligencia Artificial Generativa Aplicada en Ingeniería de Software",
+      "section": "Fundamento de AI",
+      "title": "Inteligencia General Generativa",
       "sub": "Clase 1: Fundamentos, modelos y ecosistema actual",
       "notes": "Referencia PPTX: diapositiva 18.\n\nDiscurso Sugerido: \"Bienvenidos. Hoy vamos a desmitificar la Inteligencia Artificial. Intuitivamente, solemos pensar en la IA como 'máquinas haciendo cosas que requerirían inteligencia si las hiciera un humano'. Pero si queremos ser rigurosos, como proponen Russell y Norvig, la IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. No se trata de crear humanos sintéticos, sino de resolver problemas complejos con matemáticas a gran escala.\"\n\nContexto Técnico Profundo: La definición de agente racional evita el debate filosófico sobre la \"conciencia\" y se centra en la función matemática que mapea secuencias de percepciones a acciones (arquitectura de agentes).\n\nEnlace Recomendado: Sitio oficial del libro \"Artificial Intelligence: A Modern Approach\" (Russell & Norvig)"
     },
     {
       "template": "single-point",
-      "section": "Fundamentos de inteligencia artificial",
+      "section": "Fundamento de AI",
       "title": "¿Qué es la Inteligencia Artificial?",
       "point": {
         "label": "De la teoría a la intuición",
@@ -390,7 +458,7 @@
     },
     {
       "template": "timeline",
-      "section": "Fundamentos de inteligencia artificial",
+      "section": "Fundamento de AI",
       "title": "Una Breve Historia (Parte 1)",
       "lead": "De Turing al primer invierno — 1948 a 1997",
       "milestones": [
@@ -434,11 +502,11 @@
     },
     {
       "template": "content-image",
-      "section": "Fundamentos de inteligencia artificial",
+      "section": "Fundamento de AI",
       "title": "Redes Neuronales — Estructura y Celda Básica",
       "lead": "De la neurona biológica al perceptrón artificial",
-      "layout": "image-left",
-      "image": {
+      "design": "split-left",
+      "media": {
         "src": "images/neurona-artificial.jpeg",
         "alt": "Estructura de una neurona artificial"
       },
@@ -472,7 +540,7 @@
     },
     {
       "template": "timeline",
-      "section": "Fundamentos de inteligencia artificial",
+      "section": "Fundamento de AI",
       "title": "Una Breve Historia (Parte 2)",
       "lead": "Del deep learning a la era generativa — 2011 a 2022",
       "milestones": [
@@ -510,8 +578,12 @@
       "notes": "Referencia PPTX: diapositiva 22.\n\nAlexNet\n\nMás de 14 millones de imágenes\n\nMás de 20.000 categorías\n\n2017\n\nEliminar las redes recurrentes (RNN/LSTM) y usar solo mecanismos de atención.\n\n¿Por qué fue tan revolucionario?\n\n1. Paralelización total\n\nLas RNN procesaban secuencialmente.\n\nLos Transformers pueden procesar todo en paralelo.\n\n Mucho más rápidos en GPUs.\n\n2. Mejor manejo de contexto largo\n\nLas RNN olvidaban información lejana.\n\nLa atención permite conectar cualquier palabra con cualquier otra directamente.\n\n3. Escalabilidad\n\nLa arquitectura escala muy bien con:\n\nMás datos\n\nMás parámetros\n\nMás cómputo\n\nY eso abrió la puerta a modelos gigantes."
     },
     {
+      "template": "section-agenda",
+      "title": "Taxinomia de Problemas"
+    },
+    {
       "template": "concept-breakdown",
-      "section": "Taxonomía de problemas de IA",
+      "section": "Taxinomia de Problemas",
       "title": "La Taxonomía de Problemas",
       "lead": "¿Qué tipos de problemas resuelve la IA?",
       "cards": [
@@ -554,10 +626,17 @@
       "notes": "Referencia PPTX: diapositiva 23.\n\nDiapositiva 3: La Taxonomía de Problemas: ¿Qué resolvemos?\n\nDiscurso Sugerido: \"Para entender la IA, hay que verla como una caja de herramientas. ¿Qué problemas resuelve? Principalmente, podemos categorizarlos en siete áreas clave. Por ejemplo, en Predicción, la IA puede predecir categorías o valores continuos, como si una planta tiene una plaga o estimar el rendimiento de una cosecha. En Percepción, la IA extrae significado de imágenes o audio. La Generación nos permite crear nuevo contenido. Los sistemas de Decisión Secuencial aprenden a tomar series de acciones para lograr objetivos, como en los juegos. Y el Razonamiento Simbólico permite a la IA usar reglas lógicas.\"\n\nContexto Técnico Profundo: La Predicción mapea entradas $X$ a salidas $Y$ (discretas o continuas). La Percepción extrae características de datos crudos. La Representación busca estructuras subyacentes (embeddings). La Generación modela distribuciones de probabilidad. La Decisión Secuencial optimiza acciones a lo largo del tiempo (Reinforcement Learning). La Búsqueda y Planificación encuentran secuencias óptimas de acciones. El Razonamiento Simbólico se basa en sistemas expertos y lógica."
     },
     {
+      "template": "statement",
+      "section": "Taxinomia de Problemas",
+      "title": "Predicción",
+      "sub": "Aprender una función X → Y a partir de datos etiquetados. El modelo mapea entradas a salidas conocidas y minimiza el error. Esta categoría sostiene muchas aplicaciones industriales.",
+      "notes": "Presentar Predicción como una de las familias más frecuentes de problemas de IA antes de recorrer sus variantes."
+    },
+    {
       "template": "concept-breakdown",
-      "section": "Taxonomía de problemas de IA",
+      "section": "Taxinomia de Problemas",
       "title": "La taxonomía de problemas",
-      "lead": "Predicción Aprender una función X → Y a partir de datos etiquetados. El modelo mapea entradas a salidas conocidas y minimiza el error. Esta categoría sostiene muchas aplicaciones industriales.",
+      "lead": "Ejemplos de problemas predictivos",
       "cards": [
         {
           "label": "Clasificación binaria",
@@ -576,7 +655,7 @@
           "body": "Ventas · uso de recursos · tráfico · volumen de alertas"
         }
       ],
-      "format": "list",
+      "format": "editorial",
       "highlights": [
         {
           "body": "Herramientas: Scikit-learn · XGBoost · LightGBM · TensorFlow · PyTorch · AutoML",
@@ -595,7 +674,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Taxonomía de problemas de IA",
+      "section": "Taxinomia de Problemas",
       "title": "La taxonomía de problemas",
       "lead": "Percepción Extraer estructura significativa de señales sensoriales y documentos.",
       "cards": [
@@ -608,7 +687,7 @@
           "body": "Procesamiento de facturas y formularios · accesibilidad · moderación de contenido · análisis de capturas de interfaz · extracción de información de documentos."
         }
       ],
-      "format": "list",
+      "format": "grid",
       "highlights": [
         {
           "body": "Herramientas: OpenCV · YOLO · PyTorch · TensorFlow · Whisper · modelos multimodales.",
@@ -623,7 +702,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Taxonomía de problemas de IA",
+      "section": "Taxinomia de Problemas",
       "title": "La taxonomía de problemas",
       "lead": "Representación Aprender estructuras internas que capturan relaciones entre datos.",
       "cards": [
@@ -644,7 +723,7 @@
           "body": "El modelo señala patrones alejados del comportamiento habitual."
         }
       ],
-      "format": "list",
+      "format": "editorial",
       "highlights": [
         {
           "body": "Herramientas: Scikit-learn · Sentence Transformers · FAISS · Pinecone · Qdrant.",
@@ -659,7 +738,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Taxonomía de problemas de IA",
+      "section": "Taxinomia de Problemas",
       "title": "La taxonomía de problemas",
       "lead": "Decisión secuencial Maximizar una recompensa acumulada a través de acciones en el tiempo. Formalizado como Reinforcement Learning: un agente interactúa con un entorno, toma acciones, observa resultados y ajusta su política.",
       "cards": [
@@ -684,7 +763,7 @@
           "body": "Alineación de modelos mediante preferencias humanas."
         }
       ],
-      "format": "list",
+      "format": "editorial",
       "highlights": [
         {
           "body": "Herramientas: OpenAI Gym · Stable Baselines3 · Ray RLlib · MuJoCo · RLHF tooling.",
@@ -699,7 +778,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Taxonomía de problemas de IA",
+      "section": "Taxinomia de Problemas",
       "title": "La taxonomía de problemas",
       "lead": "Búsqueda y planificación Encontrar la mejor secuencia de acciones en un espacio de estados.",
       "cards": [
@@ -720,7 +799,7 @@
           "body": "Trayectorias, espacios físicos y decisiones de varios pasos."
         }
       ],
-      "format": "list",
+      "format": "editorial",
       "highlights": [
         {
           "body": "Herramientas: Google OR-Tools · A* · Dijkstra · PDDL · Fast Downward · OptaPlanner.",
@@ -735,7 +814,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Taxonomía de problemas de IA",
+      "section": "Taxinomia de Problemas",
       "title": "La taxonomía de problemas",
       "lead": "Razonamiento y simbólico Manipular símbolos y reglas explícitas para derivar conclusiones lógicas.",
       "cards": [
@@ -760,7 +839,7 @@
           "body": "Propiedades de código, contratos y restricciones de arquitectura."
         }
       ],
-      "format": "list",
+      "format": "editorial",
       "highlights": [
         {
           "body": "Herramientas: Prolog · Datalog · OWL · RDF/SPARQL · Graph Rules · Knowledge Graphs.",
@@ -775,7 +854,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Taxonomía de problemas de IA",
+      "section": "Taxinomia de Problemas",
       "title": "La taxonomía de problemas",
       "lead": "Generación Modelar la distribución de los datos y producir nuevas muestras coherentes.",
       "cards": [
@@ -800,7 +879,7 @@
           "body": "Diseño de componentes, estructuras y simulaciones; el ejemplo se preserva como antecedente de la presentación original."
         }
       ],
-      "format": "list",
+      "format": "grid",
       "highlights": [
         {
           "body": "Herramientas: GPT-4 · Claude · Gemini · Stable Diffusion · VAE · GAN · modelos de difusión.",
@@ -814,42 +893,58 @@
       "notes": "Referencia PPTX: diapositiva 30.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
-      "template": "value-columns",
-      "section": "Modelos fundacionales, datos y ecosistema",
+      "template": "section-agenda",
+      "title": "Modelos Fundacionales"
+    },
+    {
+      "template": "concept-columns",
+      "section": "Modelos Fundacionales",
       "title": "Conceptos clave",
-      "lead": "LLMs, Foundation Models y Multimodal",
+      "subtitle": "LLMs, Foundation Models y Multimodal",
       "columns": [
         {
-          "header": "Language Models",
-          "cells": [
-            "Un modelo que asigna probabilidades a secuencias de palabras. Dado un contexto, predice cuál es la siguiente palabra más probable.",
-            "Características: Existen desde los años 1950 Basados en la idea: P(palabra | contexto) Primero estadísticos (n-gramas), luego neuronales",
-            "Ejemplos: N-gramas · Shannon (1948) · Modelos de Markov · RNNs"
-          ]
+          "label": "Language Models",
+          "body": "Un modelo que asigna probabilidades a secuencias de palabras. Dado un contexto, predice cuál es la siguiente palabra más probable.",
+          "text_label": "Características",
+          "text": [
+            "Existen desde los años 1950",
+            "Basados en la idea: P(palabra | contexto)",
+            "Primero estadísticos (n-gramas), luego neuronales"
+          ],
+          "example": "Ejemplos: N-gramas · Shannon (1948) · Modelos de Markov · RNNs"
         },
         {
-          "header": "Foundation Model",
-          "cells": [
-            "Un modelo entrenado a escala masiva sobre datos generales, que puede adaptarse a múltiples tareas con poco o ningún reentrenamiento (fine-tuning o prompting).",
-            "Características: Entrenado con billones de tokens Generalista por naturaleza Base para construir aplicaciones específicas",
-            "Ejemplos: GPT-4, Gemini, Claude, LLaMA, DALL·E, Stable Diffusion"
-          ]
+          "label": "Foundation Model",
+          "body": "Un modelo entrenado a escala masiva sobre datos generales, que puede adaptarse a múltiples tareas con poco o ningún reentrenamiento (fine-tuning o prompting).",
+          "text_label": "Características",
+          "text": [
+            "Entrenado con billones de tokens",
+            "Generalista por naturaleza",
+            "Base para construir aplicaciones específicas"
+          ],
+          "example": "Ejemplos: GPT-4, Gemini, Claude, LLaMA, DALL·E, Stable Diffusion"
         },
         {
-          "header": "LLM (Large Language Model)",
-          "cells": [
-            "Un Foundation Model especializado en texto. Aprende la distribución del lenguaje natural y puede generar, resumir, traducir, razonar y escribir código.",
-            "Características: Solo procesa y genera texto (tokens) Arquitectura Transformer con atención Escala: desde 7B hasta +1T parámetros",
-            "Ejemplos: GPT-4, Claude 3, Gemini Pro, LLaMA 3, Mistral"
-          ]
+          "label": "LLM (Large Language Model)",
+          "body": "Un Foundation Model especializado en texto. Aprende la distribución del lenguaje natural y puede generar, resumir, traducir, razonar y escribir código.",
+          "text_label": "Características",
+          "text": [
+            "Solo procesa y genera texto (tokens)",
+            "Arquitectura Transformer con atención",
+            "Escala: desde 7B hasta +1T parámetros"
+          ],
+          "example": "Ejemplos: GPT-4, Claude 3, Gemini Pro, LLaMA 3, Mistral"
         },
         {
-          "header": "Modelo Multimodal",
-          "cells": [
-            "Un Foundation Model que procesa y genera múltiples tipos de datos simultáneamente: texto, imágenes, audio, video y código en un mismo modelo unificado.",
-            "Características: Combina encoders de distintas modalidades Un solo modelo para ver, escuchar y hablar Permite razonamiento cruzado entre modalidades",
-            "Ejemplos: GPT-4o, Gemini 1.5 Pro, Claude 3.5, LLaVA"
-          ]
+          "label": "Modelo Multimodal",
+          "body": "Un Foundation Model que procesa y genera múltiples tipos de datos simultáneamente: texto, imágenes, audio, video y código en un mismo modelo unificado.",
+          "text_label": "Características",
+          "text": [
+            "Combina encoders de distintas modalidades",
+            "Un solo modelo para ver, escuchar y hablar",
+            "Permite razonamiento cruzado entre modalidades"
+          ],
+          "example": "Ejemplos: GPT-4o, Gemini 1.5 Pro, Claude 3.5, LLaVA"
         }
       ],
       "highlights": [
@@ -861,35 +956,39 @@
       "notes": "Referencia PPTX: diapositiva 31.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
-      "template": "value-columns",
-      "section": "Modelos fundacionales, datos y ecosistema",
+      "template": "concept-columns",
+      "section": "Modelos Fundacionales",
       "title": "Concepto clave",
-      "lead": "Por que Foundation models es relevante ? IA Tradicional vs. Foundation Models",
+      "lead": "¿Por qué son relevantes los Foundation Models?",
+      "subtitle": "IA Tradicional vs. Foundation Models",
       "columns": [
         {
-          "header": "IA Tradicional (Machine Learning/InHouse)",
-          "cells": [
-            "Un modelo por tarea específica Requiere datos etiquetados abundantes para cada caso de uso Difícil de reutilizar entre dominios distintos Ejemplo: un detector de fallos en autopartes en Pilar solo detecta eso"
-          ]
+          "label": "IA Tradicional (Machine Learning/InHouse)",
+          "body": "Un modelo por tarea específica. Requiere datos etiquetados abundantes para cada caso de uso. Difícil de reutilizar entre dominios distintos.",
+          "example": "Ejemplo: un detector de fallos en autopartes en Pilar solo detecta eso."
         },
         {
-          "header": "Foundation Models",
-          "cells": [
-            "Modelos gigantescos entrenados con datos a gran escala que adquieren una comprensión general del mundo y se adaptan a múltiples tareas: traducir texto, escribir código, analizar contratos legales o generar imágenes. Se exponen como SaaS o se pueden correr localmente. No es necesario tener un data science en tu empresa para empezar a hacer uso de los mismos."
-          ]
+          "label": "Foundation Models",
+          "body": "Modelos gigantescos entrenados con datos a gran escala que adquieren una comprensión general del mundo y se adaptan a múltiples tareas: traducir texto, escribir código, analizar contratos legales o generar imágenes.",
+          "text_label": "En la práctica",
+          "text": [
+            "Se exponen como SaaS o se pueden correr localmente.",
+            "No es necesario tener un equipo de data science para empezar a usarlos."
+          ],
+          "emphasis": true
         }
       ],
       "highlights": [
         {
           "body": "Lectura recomendada: On the Opportunities and Risks of Foundation Models (Stanford HAI, arXiv:2108.07258)",
-          "kind": "note"
+          "kind": "source"
         }
       ],
       "notes": "Referencia PPTX: diapositiva 32.\n\nDiapositiva 5: El Salto Cuantitativo: IA Tradicional vs. Foundation Models\n\nDiscurso Sugerido: \"Hasta hace pocos años, la IA era 'artesanal'. Si una empresa en el Parque Industrial de Pilar quería un modelo para detectar fallas en autopartes, entrenaba una IA solo para eso. Hoy entramos en la era de los Foundation Models (Modelos Fundacionales). Son modelos gigantescos, entrenados con datos a gran escala, que no saben hacer una sola cosa, sino que tienen una comprensión general del mundo y pueden adaptarse a múltiples tareas: desde traducir texto hasta escribir código o analizar un contrato legal.\"\n\nContexto Técnico Profundo: El término fue acuñado por el Stanford Institute for Human-Centered AI (HAI) en 2021 para describir modelos entrenados con datos amplios a gran escala que pueden adaptarse (fine-tuning o in-context learning) a una amplia gama de tareas downstream.\n\nEnlace Recomendado: On the Opportunities and Risks of Foundation Models (Stanford HAI, arXiv:2108.07258)"
     },
     {
       "template": "concept-breakdown",
-      "section": "Modelos fundacionales, datos y ecosistema",
+      "section": "Datos",
       "title": "Paradigmas de Aprendizaje",
       "lead": "¿Cómo aprenden las máquinas?",
       "cards": [
@@ -918,7 +1017,7 @@
           "body": "Definición: el modelo selecciona ejemplos inciertos o informativos para que una persona los etiquete. Dataset: pequeño, pero seleccionado de forma estratégica. Ejemplos: modelo elige qué cambios de código revisar · sistema pide resolver casos ambiguos. Casos: revisión de seguridad asistida · clasificación legal con revisión mínima."
         }
       ],
-      "format": "list",
+      "format": "grid",
       "highlights": [
         {
           "body": "Regla general: supervisado maximiza precisión si existen datos etiquetados; self-supervised escala con datos crudos; RL aprende de interacción; active learning reduce el costo de etiquetado.",
@@ -929,7 +1028,7 @@
     },
     {
       "template": "timeline",
-      "section": "Modelos fundacionales, datos y ecosistema",
+      "section": "Datos",
       "title": "Es todo escala",
       "lead": "La Escala es Masiva — Tokens de entrenamiento por modelo — 2020 a 2024",
       "milestones": [
@@ -972,7 +1071,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Modelos fundacionales, datos y ecosistema",
+      "section": "Datos",
       "title": "¿Con qué datos se entrenan?",
       "lead": "Fuentes de datos de los foundation models",
       "cards": [
@@ -1009,7 +1108,7 @@
           "body": "Conjuntos internos de fine-tuning: alineación, seguridad y comportamiento."
         }
       ],
-      "format": "list",
+      "format": "grid",
       "highlights": [
         {
           "body": "Cada fuente introduce decisiones de calidad, licencias, privacidad y sesgo.",
@@ -1020,7 +1119,7 @@
     },
     {
       "template": "value-columns",
-      "section": "Modelos fundacionales, datos y ecosistema",
+      "section": "Datos",
       "title": "Es todo escala",
       "lead": "La escala es masiva — Escala, datos y poder de cómputo",
       "columns": [
@@ -1070,55 +1169,66 @@
       "notes": "Referencia PPTX: diapositiva 36.\n\nDiapositiva 6: La Anatomía de un Foundation Model (Escala y Datos)\n\nDiscurso Sugerido: \"La magia de estos modelos no radica en un algoritmo místico, sino en la fuerza bruta y la escala. Estamos hablando de modelos entrenados con billones de palabras (prácticamente todo el internet público). Sus 'cerebros' tienen cientos o miles de millones de 'parámetros', que son las conexiones neuronales artificiales. Entrenar uno de estos modelos requiere miles de tarjetas gráficas (GPUs) funcionando durante meses y millones de dólares en electricidad.\"\n\nContexto Técnico Profundo: La relación entre el volumen de datos (tokens), el tamaño del modelo (parámetros) y el cómputo (FLOPs) se rige por las \"Scaling Laws\" (Leyes de Escalamiento). Modelos actuales como GPT-4 o Gemini manejan arquitecturas Mixture-of-Experts (MoE) con billones de parámetros dispersos.\n\nEnlace Recomendado: Scaling Laws for Neural Language Models (OpenAI, arXiv:2001.08361)"
     },
     {
-      "template": "figures",
-      "section": "Modelos fundacionales, datos y ecosistema",
-      "title": "El Ecosistema Actual",
-      "lead": "El ecosistema actual — Actores, modelos y competencia global",
-      "figures": [
-        {
-          "image": {
-            "src": "images/ecosistema-openai.png",
-            "alt": "Ecosistema de OpenAI"
-          },
-          "label": "OpenAI — GPT y o-series",
-          "body": "Proveedores de modelos cerrados y APIs con foco en productos conversacionales, razonamiento y herramientas."
-        },
-        {
-          "image": {
-            "src": "images/ecosistema-google-deepmind.png",
-            "alt": "Ecosistema de Google DeepMind"
-          },
-          "label": "Google DeepMind — Gemini",
-          "body": "Modelos multimodales integrados con búsqueda, productividad y plataformas de nube."
-        },
-        {
-          "image": {
-            "src": "images/ecosistema-anthropic.png",
-            "alt": "Ecosistema de Anthropic"
-          },
-          "label": "Anthropic — Claude",
-          "body": "Modelos con foco en seguridad, contexto extenso y tareas complejas de conocimiento y código."
-        },
-        {
-          "image": {
-            "src": "images/ecosistema-meta-ai.png",
-            "alt": "Ecosistema de Meta AI"
-          },
-          "label": "Meta AI — Llama",
-          "body": "Familia de pesos abiertos que permite despliegues propios, fine-tuning e investigación fuera de una única API."
-        }
-      ],
-      "highlights": [
-        {
-          "body": "El ecosistema incluye además proveedores de infraestructura, modelos especializados, herramientas de evaluación, observabilidad y marcos de orquestación.",
-          "kind": "note"
-        }
-      ],
-      "notes": "Referencia PPTX: diapositiva 37.\n\nDiapositiva 7: El Ecosistema Actual: Actores y Competencia\n\nDiscurso Sugerido: \"¿Quiénes están construyendo estos gigantes? El ecosistema está dominado por unos pocos actores con el capital para costear este nivel de cómputo. Por un lado, modelos cerrados y comerciales como los de OpenAI (ChatGPT), Google DeepMind (Gemini) y Anthropic (Claude). Por otro lado, un ecosistema de código abierto liderado por Meta (Llama) y Mistral, que permite a universidades y startups descargar los pesos de los modelos y ejecutarlos localmente, democratizando el acceso a la tecnología.\"\n\nContexto Técnico Profundo: La distinción entre pesos abiertos (open weights) y modelos propietarios es el debate central en la seguridad y monopolización de la IA. Modelos como Llama democratizan el fine-tuning local (ej. QLoRA) sin depender de APIs en la nube.\n\nEnlace Recomendado: State of AI Report (Análisis anual de la industria)"
+      "template": "image-full",
+      "section": "Datos",
+      "title": "Estimar lo que los laboratorios no publican",
+      "image": {
+        "src": "images/ikp-calibration-curve.png",
+        "alt": "Curva de calibración IKP: conocimiento factual y tamaño total estimado de modelos"
+      },
+      "notes": "La figura calibra puntajes de conocimiento factual contra el tamaño conocido de modelos abiertos. Las líneas punteadas de la derecha son estimaciones para modelos cerrados, no revelaciones de arquitectura por parte de los laboratorios. El paper presenta estas cifras como capacidad efectiva de orden de magnitud: su intervalo de predicción al 90% es aproximadamente un factor de 3 en cada dirección. La figura indica 89 modelos abiertos; la versión 2 del abstract reporta una calibración sobre 93."
     },
     {
       "template": "concept-breakdown",
-      "section": "Conclusiones y anexo técnico",
+      "section": "Ecosistema Actual",
+      "title": "El Ecosistema Actual",
+      "lead": "Modelos de propósito general relevantes en agosto de 2026",
+      "cards": [
+        {
+          "label": "OpenAI — GPT-5.2",
+          "body": "Razonamiento, herramientas y desarrollo de software."
+        },
+        {
+          "label": "Google DeepMind — Gemini 3.6 Flash",
+          "body": "Modelo multimodal rápido para tareas agentic y de código."
+        },
+        {
+          "label": "Anthropic — Claude 4",
+          "body": "Familia Opus y Sonnet para razonamiento, análisis y programación."
+        },
+        {
+          "label": "Meta — Llama 4 Maverick y Scout",
+          "body": "Pesos abiertos y multimodalidad para despliegue propio."
+        },
+        {
+          "label": "DeepSeek — V4 Pro y V4 Flash",
+          "body": "Razonamiento y agentes con fuerte relación costo-rendimiento."
+        },
+        {
+          "label": "Moonshot AI — Kimi K3",
+          "body": "Código, análisis y automatización agentic."
+        },
+        {
+          "label": "Alibaba — Qwen3.7-Max",
+          "body": "Modelo orientado a coding, razonamiento y agentes de larga duración."
+        }
+      ],
+      "format": "editorial",
+      "highlights": [
+        {
+          "body": "El mercado combina modelos cerrados por API, familias abiertas y modelos diseñados específicamente para agentes. La disponibilidad y las versiones cambian con rapidez.",
+          "kind": "note"
+        }
+      ],
+      "notes": "Actualizado el 4 de agosto de 2026. Esta slide ofrece un mapa de familias y modelos representativos, no un ranking. Antes de adoptar un modelo, verificar versión, disponibilidad regional, licencia, precio, límites de uso y políticas de datos."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Cierre y anexo"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Cierre y anexo",
       "title": "Conclusiones Clave",
       "lead": "Conclusiones clave — Lo que debes llevarte de esta sesión",
       "cards": [
@@ -1150,31 +1260,33 @@
     },
     {
       "template": "divider",
-      "section": "Conclusiones y anexo técnico",
+      "section": "Cierre y anexo",
       "title": "Anexo",
       "notes": "Referencia PPTX: diapositiva 39.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
-      "template": "value-columns",
-      "section": "Conclusiones y anexo técnico",
+      "template": "concept-columns",
+      "section": "Cierre y anexo",
       "title": "Modelos Discriminativos vs Generativos",
       "lead": "La distinción entre modelos discriminativos y generativos ayuda a elegir el enfoque técnico adecuado. Los modelos discriminativos dibujan fronteras de decisión para clasificar datos existentes. Los generativos aprenden una distribución y producen nuevas instancias.",
       "columns": [
         {
-          "header": "Discriminativo",
-          "cells": [
-            "¿Qué aprenden? — p(y|x): la probabilidad de una etiqueta dado un input.",
-            "¿Qué responden? — “¿A qué clase pertenece este dato?”",
-            "Ejemplos — Clasificación de tickets · detección de fraude · priorización de alertas."
-          ]
+          "label": "Discriminativo",
+          "body": "Qué aprenden: p(y|x), la probabilidad de una etiqueta dado un input.",
+          "text_label": "Qué responden",
+          "text": [
+            "¿A qué clase pertenece este dato?"
+          ],
+          "example": "Ejemplos: Clasificación de tickets · detección de fraude · priorización de alertas."
         },
         {
-          "header": "Generativo",
-          "cells": [
-            "¿Qué aprenden? — p(x) o p(x,y): la distribución completa de los datos.",
-            "¿Qué responden? — “¿Cómo se vería una instancia compatible con esta distribución?”",
-            "Ejemplos — Generación de código de prueba · documentación · GPT-4 · Stable Diffusion."
-          ]
+          "label": "Generativo",
+          "body": "Qué aprenden: p(x) o p(x,y), la distribución completa de los datos.",
+          "text_label": "Qué responden",
+          "text": [
+            "¿Cómo se vería una instancia compatible con esta distribución?"
+          ],
+          "example": "Ejemplos: Generación de código de prueba · documentación · GPT-4 · Stable Diffusion."
         }
       ],
       "highlights": [
@@ -1186,24 +1298,20 @@
       "notes": "Referencia PPTX: diapositiva 40.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
-      "template": "value-columns",
-      "section": "Conclusiones y anexo técnico",
+      "template": "concept-columns",
+      "section": "Cierre y anexo",
       "title": "El Desafío del Mundo Real",
       "lead": "De la teoría a la práctica",
       "columns": [
         {
-          "header": "Entorno Ideal (Laboratorio)",
-          "cells": [
-            "Totalmente observable, determinista, episódico, estático, discreto, conocido y de agente único.",
-            "Ejemplo: Resolver un Sudoku o jugar al Tres en Raya (Tic-Tac-Toe). Resultado: Problemas resueltos hace décadas con algoritmos simples."
-          ]
+          "label": "Entorno Ideal (Laboratorio)",
+          "body": "Totalmente observable, determinista, episódico, estático, discreto, conocido y de agente único.",
+          "example": "Ejemplo: Resolver un Sudoku o jugar al Tres en Raya (Tic-Tac-Toe). Resultado: Problemas resueltos hace décadas con algoritmos simples."
         },
         {
-          "header": "Entorno Real (El campo de batalla)",
-          "cells": [
-            "Parcialmente observable, estocástico, secuencial, dinámico, continuo, multiagente y desconocido.",
-            "Ejemplo: Conducción autónoma en una ciudad con tráfico impredecible o robótica de rescate. Resultado: Requiere agentes que aprenden, planifican con incertidumbre y optimizan utilidades."
-          ]
+          "label": "Entorno Real (El campo de batalla)",
+          "body": "Parcialmente observable, estocástico, secuencial, dinámico, continuo, multiagente y desconocido.",
+          "example": "Ejemplo: Conducción autónoma en una ciudad con tráfico impredecible o robótica de rescate. Resultado: Requiere agentes que aprenden, planifican con incertidumbre y optimizan utilidades."
         }
       ],
       "highlights": [
@@ -1216,11 +1324,11 @@
     },
     {
       "template": "content+cards+image",
-      "section": "Conclusiones y anexo técnico",
+      "section": "Cierre y anexo",
       "title": "Tema crítico",
       "lead": "El futuro: agentes autónomos e IA multimodal",
-      "layout": "text-left",
-      "image": {
+      "design": "column-right",
+      "media": {
         "src": "images/agentes-autonomos.jpeg",
         "alt": "Agente autónomo operando herramientas y flujos"
       },
@@ -1242,7 +1350,7 @@
     },
     {
       "template": "value-columns",
-      "section": "Conclusiones y anexo técnico",
+      "section": "Cierre y anexo",
       "title": "Tipos de Agentes en IA",
       "lead": "De la reacción simple al aprendizaje autónomo",
       "columns": [
@@ -1291,7 +1399,7 @@
     },
     {
       "template": "value-columns",
-      "section": "Conclusiones y anexo técnico",
+      "section": "Cierre y anexo",
       "title": "Dimensiones del Entorno",
       "lead": "Simple (Laboratorio) vs. Complejo (Mundo Real)",
       "columns": [
@@ -1348,14 +1456,14 @@
     },
     {
       "template": "divider",
-      "section": "Conclusiones y anexo técnico",
+      "section": "Cierre y anexo",
       "title": "Diapositiva de reserva",
       "notes": "Referencia PPTX: diapositiva 45.\n\n[Sin notas en el PPTX de referencia.]\n\n# Conclusions\n\nLa diapositiva de conclusiones se conserva como 5.1 porque el PPTX original continúa con un anexo técnico.\n\n# Open questions\n\n- El contenido completo se conserva por instrucción del presentador, aunque algunas diapositivas excedan la densidad habitual para una proyección en vivo.\n- Confirmar días, horarios, aula, plataforma de entregas y ponderación final de la cursada.\n- Decidir qué diapositivas del anexo se mostrarán dentro de los 90 minutos y cuáles quedarán como material de consulta.\n- Validar qué recursos visuales del PPTX original se reutilizarán en la versión de Ingeniería de Software.\n\n# Cut material\n\nNinguno. El contenido del PPTX de referencia permanece preservado en el corpus y en este borrador 1:1."
     }
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "00603f602f3cba62c3b333b2b6d3f29a130aed011b0e47e2e67be92f2a42dbd9",
-    "bytes": 69851
+    "sha256": "5e2f8bec031ec1525cc29e1dd6c72406e4f486adc14bc4d95e8fd46a6922826f",
+    "bytes": 72306
   }
 }

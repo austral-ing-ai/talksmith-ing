@@ -1,0 +1,23 @@
+  LO QUE SE ESCRIBE  (archivo .md)          LO QUE SE VE  (mismo archivo)
++----------------------------------+        +-----------------------------------+
+| # Informe mensual del equipo     |        |  INFORME MENSUAL DEL EQUIPO       |  <- "#" = titulo
+| Mayo 2026 · Norte · Centro · Sur |        |  Mayo 2026 · Norte · Centro · Sur |
+|                                  |        |                                   |
+| ## Resumen                       |        |  Resumen                          |  <- "##" = subtitulo
+| - La region Norte **sube 3,1%**  |        |   • La region Norte sube 3,1%     |  <- "-" = viñeta
+|   contra abril.                  |        |     contra abril.                 |  <- ** = negrita
+| - Centro presenta su cierre      |  ==>   |   • Centro presenta su cierre     |
+|   el jueves.                     |        |     el jueves.                    |
+|                                  |        |                                   |
+| | Region | Ventas  | Variacion | |        |  +--------+---------+-----------+ |
+| |--------|---------|-----------| |        |  | Region | Ventas  | Variacion | |  <- "|" = tabla
+| | Norte  | $4,21 M | +3,1%     | |        |  | Norte  | $4,21 M | +3,1%     | |
+|                                  |        |  +--------+---------+-----------+ |
++----------------------------------+        +-----------------------------------+
+  texto plano, cualquier editor             las marcas se vuelven formato
+
+<!-- ascii-note:
+intent: presentar qué es un archivo .md mostrando el MISMO archivo dos veces, lado a lado: a la izquierda el texto plano tal como se escribe (con #, ##, -, ** y las barras de tabla visibles) y a la derecha ese archivo ya formateado en un visor de Markdown, unidos por una flecha en el medio.
+emphasize: la equivalencia entre los dos paneles (es un solo archivo, no dos); las etiquetas laterales que conectan cada marca de sintaxis con el elemento visual que produce (# -> título, ## -> subtítulo, - -> viñeta, ** -> negrita, | -> tabla); la flecha central "==>".
+labels: panel izquierdo = LO QUE SE ESCRIBE (archivo .md), pie "texto plano, cualquier editor"; panel derecho = LO QUE SE VE (mismo archivo), pie "las marcas se vuelven formato"; a la derecha del todo, la marca que genera cada elemento.
+-->

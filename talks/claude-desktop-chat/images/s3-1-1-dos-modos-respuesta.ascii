@@ -1,0 +1,19 @@
+   la MISMA pregunta: "¿ultima version de X?"
+
+   DE MEMORIA                        CON BUSQUEDA WEB
++------------------+             +------------------+
+| entrenamiento    |             | busca ahora en   |
+| hasta fecha de   |             | la web           |
+| entrenamiento    |             |   |              |
+|   |              |             |   v              |
+|   v              |             | info REAL y      |
+| respuesta        |             | actual + fuentes |
+| (quizas vieja o  |             | citadas          |
+|  inventada)      |             +------------------+
++------------------+
+
+<!-- ascii-note:
+intent: contrastar, para una misma pregunta, la respuesta de memoria de entrenamiento (posiblemente vieja o inventada) contra la respuesta con búsqueda web (información real y actual, con fuentes citadas).
+emphasize: que es la MISMA pregunta con dos caminos; el lado derecho termina en "info REAL y actual + fuentes citadas"; el lado izquierdo en "quizás vieja o inventada".
+labels: izquierda = DE MEMORIA (fecha de entrenamiento); derecha = CON BÚSQUEDA WEB (busca ahora, cita fuentes).
+-->

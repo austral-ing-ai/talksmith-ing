@@ -1,0 +1,16 @@
+   el Schedule: ¿DONDE corre?
+              |
+      +-------+----------------------+
+      v                              v
+  LOCAL (hoy, la mayoria)      NUBE (beta, jul 2026 ->)
+  · computadora prendida       · sin computadora prendida
+  · app abierta                · rollout gradual (Max 1ro)
+  · apagada o suspendida:      · PERO: archivos/apps
+    la corrida puede perderse    locales => local igual
+  · ojo laptops suspendidas
+
+<!-- ascii-note:
+intent: mostrar la bifurcación práctica de un Schedule según dónde corre: LOCAL (computadora prendida + app abierta; si está apagada o suspendida la corrida puede perderse; cuidado con laptops que se suspenden) vs NUBE (sin computadora prendida, beta desde julio 2026, rollout Max primero; excepción: tareas con archivos/apps locales corren local igual).
+emphasize: la bifurcación como pregunta ("¿DÓNDE corre?"); en LOCAL los tres cuidados prácticos (prendida, app abierta, la corrida puede perderse); en NUBE que no hace falta la computadora prendida pero es beta/rollout gradual, con la excepción de archivos locales.
+labels: raíz = el Schedule ¿dónde corre?; rama izquierda = LOCAL (hoy, la mayoría) con cuidados; rama derecha = NUBE (beta, julio 2026) con condiciones.
+-->

@@ -6,7 +6,7 @@
 
 ## Subject
 
-IA Generativa — materia optativa de grado de Ingeniería de Software, Universidad Austral. Explora LLMs, imágenes generativas, transformers y fundamentos.
+Inteligencia General Generativa — materia optativa de grado de Ingeniería de Software, Universidad Austral. Explora LLMs, imágenes generativas, transformers y fundamentos.
 
 ## Presenter
 

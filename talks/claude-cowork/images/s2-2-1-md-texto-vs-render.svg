@@ -1,0 +1,76 @@
+<!-- talksmith-ascii-sha256: e08cae56f3f86d0429e2b94448f6d49210ad0b1c9d3c075001c05c9ba0bd1cef -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 772 322" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Qué es un .md: el texto y lo que se ve</title>
+<desc>El mismo archivo Markdown mostrado dos veces: a la izquierda el texto plano tal como se escribe, a la derecha ya formateado en un visor.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="11" refX="13" refY="5.5" orient="auto">
+<path d="M0,0 L13,5.5 L0,11 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="772" height="322" fill="#ffffff"/>
+
+<text x="24" y="33" font-size="12.5" font-weight="bold" xml:space="preserve">LO QUE SE ESCRIBE<tspan font-weight="normal" fill="#8A8080" font-size="11"> (archivo .md)</tspan></text>
+<text x="352" y="33" font-size="12.5" font-weight="bold" xml:space="preserve">LO QUE SE VE<tspan font-weight="normal" fill="#8A8080" font-size="11"> (el mismo archivo)</tspan></text>
+
+<rect x="24" y="52" width="250" height="225" fill="#F4F2F2" stroke="#C9C2C2" stroke-width="1.2"/>
+<rect x="352" y="52" width="290" height="225" fill="#ffffff" stroke="#C9C2C2" stroke-width="1.2"/>
+
+<g font-family="'DejaVu Sans Mono', monospace" font-size="11">
+<text x="38" y="74" xml:space="preserve"><tspan fill="#DA1B2E">#</tspan> Informe mensual del equipo</text>
+<text x="38" y="91" xml:space="preserve">Mayo 2026 · Norte · Centro · Sur</text>
+<text x="38" y="125" xml:space="preserve"><tspan fill="#DA1B2E">##</tspan> Resumen</text>
+<text x="38" y="142" xml:space="preserve"><tspan fill="#DA1B2E">-</tspan> La región Norte <tspan fill="#DA1B2E">**</tspan>sube 3,1%<tspan fill="#DA1B2E">**</tspan></text>
+<text x="38" y="159" xml:space="preserve">  contra abril.</text>
+<text x="38" y="176" xml:space="preserve"><tspan fill="#DA1B2E">-</tspan> Centro presenta su cierre</text>
+<text x="38" y="193" xml:space="preserve">  el jueves.</text>
+<text x="38" y="227" xml:space="preserve"><tspan fill="#DA1B2E">|</tspan> Región <tspan fill="#DA1B2E">|</tspan> Ventas  <tspan fill="#DA1B2E">|</tspan> Variación <tspan fill="#DA1B2E">|</tspan></text>
+<text x="38" y="244" xml:space="preserve" fill="#DA1B2E">|--------|---------|-----------|</text>
+<text x="38" y="261" xml:space="preserve"><tspan fill="#DA1B2E">|</tspan> Norte  <tspan fill="#DA1B2E">|</tspan> $4,21 M <tspan fill="#DA1B2E">|</tspan> +3,1%     <tspan fill="#DA1B2E">|</tspan></text>
+</g>
+
+<text x="316" y="143" font-size="9.5" fill="#8A8080" text-anchor="middle">el mismo</text>
+<text x="316" y="154" font-size="9.5" fill="#8A8080" text-anchor="middle">archivo</text>
+<path d="M280,168 L352,168" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#ah)"/>
+
+<text x="362" y="77" font-size="15.5" font-weight="bold">Informe mensual del equipo</text>
+<text x="362" y="95" font-size="10" fill="#8A8080">Mayo 2026 · Norte · Centro · Sur</text>
+
+<text x="362" y="127" font-size="12.5" font-weight="bold">Resumen</text>
+<line x1="362" y1="133" x2="616" y2="133" stroke="#E0DBDB" stroke-width="1"/>
+
+<circle cx="368" cy="147" r="2.2" fill="#3B3535"/>
+<text x="378" y="151" font-size="11" xml:space="preserve">La región Norte <tspan font-weight="bold">sube 3,1%</tspan></text>
+<text x="378" y="166" font-size="11">contra abril.</text>
+<circle cx="368" cy="183" r="2.2" fill="#3B3535"/>
+<text x="378" y="187" font-size="11">Centro presenta su cierre</text>
+<text x="378" y="202" font-size="11">el jueves.</text>
+
+<rect x="362" y="216" width="254" height="22" fill="#F0EDED" stroke="#B9B1B1" stroke-width="1"/>
+<rect x="362" y="238" width="254" height="22" fill="#ffffff" stroke="#B9B1B1" stroke-width="1"/>
+<line x1="442" y1="216" x2="442" y2="260" stroke="#B9B1B1" stroke-width="1"/>
+<line x1="530" y1="216" x2="530" y2="260" stroke="#B9B1B1" stroke-width="1"/>
+<text x="370" y="231" font-size="10.5" font-weight="bold">Región</text>
+<text x="450" y="231" font-size="10.5" font-weight="bold">Ventas</text>
+<text x="538" y="231" font-size="10.5" font-weight="bold">Variación</text>
+<text x="370" y="253" font-size="10.5">Norte</text>
+<text x="450" y="253" font-size="10.5">$4,21 M</text>
+<text x="538" y="253" font-size="10.5">+3,1%</text>
+
+<g stroke="#C9C2C2" stroke-width="1">
+<line x1="642" y1="73" x2="662" y2="73"/>
+<line x1="642" y1="123" x2="662" y2="123"/>
+<line x1="642" y1="147" x2="662" y2="147"/>
+<line x1="642" y1="164" x2="662" y2="164"/>
+<line x1="642" y1="227" x2="662" y2="227"/>
+</g>
+<g font-size="11" fill="#6E6565">
+<text x="668" y="77" xml:space="preserve"><tspan font-family="'DejaVu Sans Mono', monospace" fill="#DA1B2E">#</tspan> = título</text>
+<text x="668" y="127" xml:space="preserve"><tspan font-family="'DejaVu Sans Mono', monospace" fill="#DA1B2E">##</tspan> = subtítulo</text>
+<text x="668" y="151" xml:space="preserve"><tspan font-family="'DejaVu Sans Mono', monospace" fill="#DA1B2E">-</tspan> = viñeta</text>
+<text x="668" y="168" xml:space="preserve"><tspan font-family="'DejaVu Sans Mono', monospace" fill="#DA1B2E">**</tspan> = negrita</text>
+<text x="668" y="231" xml:space="preserve"><tspan font-family="'DejaVu Sans Mono', monospace" fill="#DA1B2E">|</tspan> = tabla</text>
+</g>
+
+<text x="149" y="295" font-size="10.5" fill="#8A8080" text-anchor="middle">texto plano, cualquier editor</text>
+<text x="497" y="295" font-size="10.5" fill="#8A8080" text-anchor="middle">las marcas se vuelven formato</text>
+</svg>

@@ -1,0 +1,54 @@
+<!-- talksmith-ascii-sha256: 47f8848ce282f9fa87ec928ef7afa4dd1bb39884f82710e4d3696371dddaa08a -->
+<svg viewBox="0 0 564 474" xmlns="http://www.w3.org/2000/svg"
+     font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#3B3535">
+  <title>Grabar una Skill</title>
+  <desc>El flujo de cuatro tiempos de una Skill grabada: se graba y narra la tarea, Claude revisa la grabación y propone la Skill, y recién al revisarla, editarla y guardarla habilitada queda activa.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 8" refX="10" refY="4"
+            markerWidth="10" markerHeight="8" orient="auto"
+            markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#3B3535"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="564" height="474" fill="#ffffff"/>
+
+  <text x="184" y="36" text-anchor="middle" font-size="16" font-weight="bold">GRABAR UNA SKILL</text>
+
+  <rect x="24" y="56" width="320" height="66" rx="8" fill="#F7F5F5" stroke="#8A8080" stroke-width="1.4"/>
+  <text x="184" y="79" text-anchor="middle" font-size="14" font-weight="bold">1 · GRABAR Y NARRAR</text>
+  <text x="184" y="97" text-anchor="middle" fill="#6B6363">pantalla, clicks, tipeo y voz</text>
+  <text x="184" y="112" text-anchor="middle" fill="#6B6363">hasta unos 10 minutos</text>
+
+  <line x1="184" y1="122" x2="184" y2="144" stroke="#3B3535" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <rect x="24" y="144" width="320" height="66" rx="8" fill="#F7F5F5" stroke="#8A8080" stroke-width="1.4"/>
+  <text x="184" y="167" text-anchor="middle" font-size="14" font-weight="bold">2 · CLAUDE MIRA</text>
+  <text x="184" y="185" text-anchor="middle" fill="#6B6363">abre una tarea de Cowork</text>
+  <text x="184" y="200" text-anchor="middle" fill="#6B6363">y revisa la grabación</text>
+
+  <line x1="184" y1="210" x2="184" y2="232" stroke="#3B3535" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <rect x="24" y="232" width="320" height="66" rx="8" fill="#F7F5F5" stroke="#8A8080" stroke-width="1.4"/>
+  <text x="184" y="255" text-anchor="middle" font-size="14" font-weight="bold">3 · PROPONE LA SKILL</text>
+  <text x="184" y="273" text-anchor="middle" fill="#6B6363">nueva, o actualización</text>
+  <text x="184" y="288" text-anchor="middle" fill="#6B6363">de una que ya existe</text>
+
+  <line x1="184" y1="298" x2="184" y2="320" stroke="#3B3535" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <rect x="24" y="320" width="320" height="62" rx="8" fill="#FBEEF0" stroke="#DA1B2E" stroke-width="2"/>
+  <rect x="28" y="324" width="312" height="54" rx="5" fill="none" stroke="#DA1B2E" stroke-width="1"/>
+  <text x="184" y="346" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">4 · REVISAR, EDITAR</text>
+  <text x="184" y="364" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">Y GUARDAR</text>
+
+  <line x1="344" y1="351" x2="372" y2="351" stroke="#DA1B2E" stroke-width="1.2"/>
+  <rect x="372" y="328" width="168" height="46" rx="6" fill="#FBEEF0" stroke="#DA1B2E" stroke-width="1.2"/>
+  <text x="456" y="347" text-anchor="middle" font-size="12" font-weight="bold" fill="#DA1B2E">la trampa del Save</text>
+  <text x="456" y="362" text-anchor="middle" font-size="10" fill="#6B6363">sin guardar, no hay Skill</text>
+
+  <line x1="184" y1="382" x2="184" y2="404" stroke="#3B3535" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <rect x="84" y="404" width="200" height="46" rx="8" fill="#F2EFEF" stroke="#3B3535" stroke-width="1.6"/>
+  <text x="184" y="432" text-anchor="middle" font-size="15" font-weight="bold">SKILL ACTIVA</text>
+</svg>

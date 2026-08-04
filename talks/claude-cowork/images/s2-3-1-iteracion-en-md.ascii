@@ -1,0 +1,19 @@
+   DONDE VIVE LA ITERACION
+
+  fuentes                ITERACION                  entrega (1 vez,
+  (lo que llega)         (muchas vueltas)           al final)
++--------------+     +---------------------+      +---------------+
+| .docx  pdf   | --> |    ARCHIVOS .MD     | -->  | .docx  .xlsx  |
+| mails  webs  |     |                     |      | PDF    slides |
++--------------+     |  <--+  "sumá Sur"   |      +---------------+
+                     |     |  "acortalo"   |
+  "convertime        |     +--  "reordena" |        "generame el
+   esto a .md"       +---------------------+         entregable"
+                       cada vuelta: barata,
+                       sin romper el formato
+
+<!-- ascii-note:
+intent: mostrar DONDE vive la iteración con la IA. Las fuentes (docx, pdf, mails, webs) entran una vez y se convierten a .md; TODAS las vueltas de trabajo (pedidos chicos y sucesivos sobre el mismo archivo) pasan adentro de la caja de los .md, marcada con una flecha que vuelve sobre sí misma; el formato final se genera una sola vez, a la salida.
+emphasize: el bucle de la caja central (la flecha que retorna con los tres pedidos de ejemplo) como el corazón del diagrama — es lo que distingue esta lámina de un flujo lineal; el contraste entre las MUCHAS vueltas del centro y la UNA entrada y UNA salida de los costados.
+labels: izquierda = fuentes (lo que llega), leyenda "convertime esto a .md"; centro = ARCHIVOS .MD con el bucle de iteración y los pedidos de ejemplo ("sumá Sur", "acortalo", "reordena"), pie "cada vuelta: barata, sin romper el formato"; derecha = entrega final (.docx/.xlsx/PDF/slides), leyenda "generame el entregable".
+-->

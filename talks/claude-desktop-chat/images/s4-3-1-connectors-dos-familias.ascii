@@ -1,0 +1,20 @@
+                  CONNECTORS
+                       |
+        +--------------+---------------+
+        v                              v
+  OUT OF THE BOX                   EXTERNOS
+  vienen listos                    los conecta el equipo
+  · busqueda web                   · CRM / ERP
+  · Claude in Chrome               · base interna
+  · Gmail / Calendar / Drive       · servicio de un tercero
+        |                              |
+        v                              v
+  se activan desde la              todos por el
+  biblioteca de Connectors         protocolo MCP
+  CURADOS por Anthropic            SIN curacion
+
+<!-- ascii-note:
+intent: separar los Connectors en dos familias según quién los prepara: los que vienen listos con el producto (out of the box) y los externos que conecta un equipo, y marcar que toda la rama externa pasa por el protocolo MCP.
+emphasize: las dos ramas como categorías paralelas; el remate de cada rama (biblioteca de Connectors y curación de Anthropic a la izquierda, protocolo MCP y ausencia de curación a la derecha).
+labels: raíz = CONNECTORS; rama izquierda = OUT OF THE BOX (búsqueda web, Claude in Chrome, Gmail/Calendar/Drive); rama derecha = EXTERNOS (CRM/ERP, base interna, servicio de un tercero).
+-->

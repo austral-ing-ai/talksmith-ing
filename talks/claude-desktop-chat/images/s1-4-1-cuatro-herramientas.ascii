@@ -1,0 +1,24 @@
+   LAS CUATRO HERRAMIENTAS DE CLAUDE
+
++---------------+ +---------------+ +---------------+ +---------------+
+|  Web / Chat   | |  Claude Code  | |    Cowork     | |    Design     |
+| navegador,    | | terminal,     | | escritorio,   | | prototipos,   |
+| tareas        | | developers    | | carpetas y    | | mockups y     |
+| puntuales     | |               | | archivos      | | slides        |
++---------------+ +---------------+ +---------------+ +---------------+
+        |                 |                 |                 |
+        |                 +-- misma base ---+                 |
+        |                        |                            |
+        +------------------------+----------------------------+
+                                 |
+                     +--------------------------+
+                     |   MISMOS MODELOS CLAUDE  |
+                     +--------------------------+
+
+   misma base tecnica = mismos archivos, Skills, MCP y el mismo loop
+
+<!-- ascii-note:
+intent: mostrar las cuatro herramientas de Claude una al lado de la otra y cómo se relacionan por debajo: las cuatro corren sobre los mismos modelos Claude, y Claude Code y Cowork comparten además la misma base técnica.
+emphasize: la caja base "MISMOS MODELOS CLAUDE" como cimiento de las cuatro; el lazo "misma base técnica" que une solo a Claude Code y Cowork; resaltar Web/Chat como el foco de esta clase y Cowork como el de la segunda.
+labels: cuatro columnas (Web/Chat = navegador; Claude Code = terminal, developers; Cowork = escritorio, carpetas y archivos; Design = prototipos, mockups y slides) sobre una base de modelos Claude compartida.
+-->

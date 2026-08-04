@@ -1,0 +1,35 @@
+<!-- talksmith-ascii-sha256: b933e0996d52e2e9a12b1a21c93e50ecd7e8ff2408c685f0ca013a3093a1f279 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>La misma pregunta, dos modos de responder</title>
+<desc>Una misma pregunta se responde de memoria de entrenamiento o con búsqueda web, y solo el segundo camino cita fuentes reales.</desc>
+<defs>
+<marker id="ag" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#3B3535"/></marker>
+<marker id="arr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="300" fill="#ffffff"/>
+
+<text x="340" y="30" text-anchor="middle" font-size="13" fill="#6A737D">la MISMA pregunta</text>
+<rect x="210" y="40" width="260" height="36" rx="6" fill="#F2EEEE"/>
+<text x="340" y="64" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">“¿última versión de X?”</text>
+
+<text x="170" y="104" text-anchor="middle" font-size="15" font-weight="bold" fill="#6A737D">DE MEMORIA</text>
+<text x="510" y="104" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">CON BÚSQUEDA WEB</text>
+
+<rect x="20" y="116" width="300" height="64" rx="5" fill="#F2EEEE" stroke="#D8D4D4" stroke-width="1.6"/>
+<text x="170" y="143" text-anchor="middle">entrenamiento hasta la</text>
+<text x="170" y="163" text-anchor="middle">fecha de entrenamiento</text>
+
+<rect x="360" y="116" width="300" height="64" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="510" y="153" text-anchor="middle" font-size="14">busca ahora en la web</text>
+
+<path d="M170,180 L170,204" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#ag)"/>
+<path d="M510,180 L510,204" fill="none" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#arr)"/>
+
+<rect x="20" y="206" width="300" height="72" rx="5" fill="#F2EEEE" stroke="#D8D4D4" stroke-width="1.6"/>
+<text x="170" y="237" text-anchor="middle" font-size="15" font-weight="bold" fill="#6A737D">respuesta</text>
+<text x="170" y="260" text-anchor="middle" fill="#6A737D">quizás vieja o inventada</text>
+
+<rect x="360" y="206" width="300" height="72" rx="5" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="510" y="237" text-anchor="middle" font-size="15" font-weight="bold" fill="#DA1B2E">info REAL y actual</text>
+<text x="510" y="260" text-anchor="middle" fill="#1F1E1E">+ fuentes citadas</text>
+</svg>

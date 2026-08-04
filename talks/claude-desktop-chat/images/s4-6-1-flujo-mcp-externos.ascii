@@ -1,0 +1,11 @@
++--------+   pide datos    +-----------+   protocolo   +----------------+
+| CHAT / | --------------> | Connector |  -- MCP -->   | Servicio       |
+| agente |                 |  externo  |               | CRM/ERP/base   |
++--------+ <-------------- +-----------+ <-----------  +----------------+
+            devuelve datos
+
+<!-- ascii-note:
+intent: mostrar el flujo de una llamada a un Connector externo: el chat/agente pide datos, el Connector traduce el pedido vía el protocolo MCP, el servicio de la empresa responde.
+emphasize: la etiqueta "MCP" sobre la flecha del medio, como el estándar único de toda la familia externa; el Connector como puente entre el chat y el servicio.
+labels: Chat/agente -> Connector externo -> Servicio (CRM / ERP / base interna); flecha de ida "pide datos", flecha de vuelta "devuelve datos".
+-->

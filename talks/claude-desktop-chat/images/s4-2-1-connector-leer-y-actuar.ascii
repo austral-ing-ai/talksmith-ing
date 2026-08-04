@@ -1,0 +1,17 @@
+        CONNECTOR: dos direcciones
+
+   LEER (traer info)          ACTUAR (hacer)
+   <------------------        ------------------>
++------+           +----------+           +----------+
+| CHAT |  <------- |connector |  ------>  | el mundo |
++------+   inbox,  +----------+  mandar   | mail     |
+           agenda,              mail,     |calendario|
+           noticias             agendar,  | tickets  |
+                                ticket    | mensajes |
+                                          +----------+
+
+<!-- ascii-note:
+intent: mostrar que un Connector funciona en dos direcciones: leer (traer información: inbox, agenda, noticias) y actuar (ejecutar acciones: mandar mail, agendar reunión, abrir ticket, mandar mensaje).
+emphasize: las dos flechas opuestas LEER vs ACTUAR sobre el mismo Connector; que ACTUAR es la capacidad ejecutiva nueva de esta slide.
+labels: izquierda = CHAT; centro = Connector; derecha = el mundo del usuario (mail, calendario, tickets, mensajes); flecha de lectura y flecha de acción.
+-->

@@ -1,0 +1,65 @@
+<!-- talksmith-ascii-sha256: 814081f696994e08821a6155a649058982eaf128a41450d23d9b02305b8fe318 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 6 954 656" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="16" text-anchor="middle">
+<title>Método 1: Crear una Skill desde el panel</title>
+<desc>Las cuatro entradas del menú Agregar del panel de Habilidades: tres crean una Skill nueva y una importa una ya hecha, y las cuatro desembocan en la misma compuerta de guardar y habilitar.</desc>
+<defs>
+<marker id="a" markerWidth="13" markerHeight="10" refX="13" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L13,5 L0,10 Z" fill="#6E6464"/></marker>
+</defs>
+<rect x="10" y="6" width="954" height="656" fill="#ffffff"/>
+
+<text x="40" y="50" text-anchor="start" font-size="19" font-weight="bold">Configuración &gt; Habilidades &gt; Agregar</text>
+
+<text x="373" y="90" font-size="16" font-weight="bold">3 CREAN una Skill nueva</text>
+<path d="M40,110 L40,102 L706,102 L706,110" fill="none" stroke="#6E6464" stroke-width="2.5"/>
+<text x="829" y="90" font-size="16" font-weight="bold">1 IMPORTA una ya hecha</text>
+<path d="M724,110 L724,102 L934,102 L934,110" fill="none" stroke="#6E6464" stroke-width="2.5" stroke-dasharray="7 4"/>
+
+<rect x="40" y="122" width="210" height="126" rx="8" fill="#F2EFEF" stroke="#B9AFAF" stroke-width="1.5"/>
+<text x="145" y="146" font-size="13" font-weight="bold" fill="#8A8080" letter-spacing="1.5">CREAR</text>
+<text x="145" y="176" font-size="17" font-weight="bold">Crear con</text>
+<text x="145" y="196" font-size="17" font-weight="bold">Claude</text>
+<text x="145" y="220" font-size="14" fill="#6E6464">en un ida y vuelta</text>
+<text x="145" y="238" font-size="14" fill="#6E6464">de chat</text>
+
+<rect x="268" y="122" width="210" height="126" rx="8" fill="#F2EFEF" stroke="#B9AFAF" stroke-width="1.5"/>
+<text x="373" y="146" font-size="13" font-weight="bold" fill="#8A8080" letter-spacing="1.5">CREAR</text>
+<text x="373" y="176" font-size="17" font-weight="bold">Escribir las</text>
+<text x="373" y="196" font-size="17" font-weight="bold">instrucciones</text>
+<text x="373" y="220" font-size="14" fill="#6E6464">las escribís vos</text>
+<text x="373" y="238" font-size="14" fill="#6E6464">directo en la UI</text>
+
+<rect x="496" y="122" width="210" height="126" rx="8" fill="#F2EFEF" stroke="#B9AFAF" stroke-width="1.5"/>
+<text x="601" y="146" font-size="13" font-weight="bold" fill="#8A8080" letter-spacing="1.5">CREAR</text>
+<text x="601" y="176" font-size="17" font-weight="bold">Grabá tu</text>
+<text x="601" y="196" font-size="17" font-weight="bold">pantalla</text>
+<text x="601" y="220" font-size="14" fill="#6E6464">hacés la tarea</text>
+<text x="601" y="238" font-size="14" fill="#6E6464">y la narrás</text>
+
+<rect x="724" y="122" width="210" height="126" rx="8" fill="#ffffff" stroke="#8A8080" stroke-width="1.5" stroke-dasharray="7 4"/>
+<text x="829" y="146" font-size="13" font-weight="bold" letter-spacing="1.5">IMPORTAR</text>
+<text x="829" y="176" font-size="17" font-weight="bold">Subir una</text>
+<text x="829" y="196" font-size="17" font-weight="bold">habilidad (ZIP)</text>
+<text x="829" y="220" font-size="14" fill="#6E6464">importa una Skill</text>
+<text x="829" y="238" font-size="14" fill="#6E6464">ya existente</text>
+
+<path d="M145,256 L267,366" fill="none" stroke="#6E6464" stroke-width="2.5" marker-end="url(#a)"/>
+<path d="M373,256 L413,366" fill="none" stroke="#6E6464" stroke-width="2.5" marker-end="url(#a)"/>
+<path d="M601,256 L561,366" fill="none" stroke="#6E6464" stroke-width="2.5" marker-end="url(#a)"/>
+<path d="M829,256 L707,366" fill="none" stroke="#6E6464" stroke-width="2.5" marker-end="url(#a)"/>
+
+<rect x="137" y="366" width="700" height="100" rx="10" fill="#FDECEE" stroke="#DA1B2E" stroke-width="3.5"/>
+<path d="M657,384 L657,448" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="397" y="410" font-size="27" font-weight="bold" fill="#DA1B2E">GUARDAR / HABILITAR</text>
+<text x="397" y="436" font-size="16" fill="#6E6464">en la lista de Habilidades</text>
+<text x="747" y="406" font-size="22" font-weight="bold" fill="#DA1B2E">la trampa</text>
+<text x="747" y="430" font-size="13" fill="#6E6464">el paso que se olvida</text>
+
+<path d="M487,466 L487,510" fill="none" stroke="#6E6464" stroke-width="2.5" marker-end="url(#a)"/>
+
+<rect x="347" y="510" width="280" height="62" rx="8" fill="#ffffff" stroke="#3B3535" stroke-width="2.5"/>
+<text x="487" y="540" font-size="21" font-weight="bold">SKILL ACTIVA</text>
+<text x="487" y="560" font-size="14" fill="#6E6464">lista para usar</text>
+
+<rect x="207" y="592" width="560" height="40" rx="8" fill="#F2EFEF"/>
+<text x="487" y="618" font-size="17">frenar en la compuerta = la Skill “no funciona”</text>
+</svg>

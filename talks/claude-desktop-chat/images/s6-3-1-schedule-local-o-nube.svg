@@ -1,0 +1,32 @@
+<!-- talksmith-ascii-sha256: 2213b007a7576c2f714ac4cf766bc7fd8a711c7ba9d014f56257ede18c6045c3 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 296" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>¿Dónde corre? Local o nube</title>
+<desc>Un Schedule corre local, con la computadora prendida y la app abierta, o en la nube, en beta y con rollout gradual.</desc>
+<defs>
+<marker id="dk" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="296" fill="#ffffff"/>
+
+<rect x="220" y="20" width="240" height="38" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="2.2"/>
+<text x="340" y="45" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">el Schedule: ¿DÓNDE corre?</text>
+
+<path d="M340,58 L340,76 L175,76 L175,88" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+<path d="M340,58 L340,76 L505,76 L505,88" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+
+<rect x="20" y="92" width="310" height="184" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
+<text x="175" y="121" text-anchor="middle" font-size="18" font-weight="bold" fill="#DA1B2E">LOCAL</text>
+<text x="175" y="141" text-anchor="middle" font-size="12" fill="#6A737D">hoy, la mayoría</text>
+<text x="42" y="171">· computadora prendida</text>
+<text x="42" y="193">· app abierta</text>
+<text x="42" y="215">· apagada o suspendida:</text>
+<text x="56" y="233" font-size="12" fill="#6A737D">la corrida puede perderse</text>
+<text x="42" y="259">· ojo con laptops suspendidas</text>
+
+<rect x="350" y="92" width="310" height="184" rx="6" fill="#F2EEEE" stroke="#D8D4D4" stroke-width="1.8"/>
+<text x="505" y="121" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">NUBE</text>
+<text x="505" y="141" text-anchor="middle" font-size="12" fill="#6A737D">beta, desde julio 2026</text>
+<text x="372" y="171">· sin computadora prendida</text>
+<text x="372" y="193">· rollout gradual (Max primero)</text>
+<text x="372" y="215" fill="#DA1B2E">· PERO: archivos o apps locales</text>
+<text x="386" y="233" font-size="12" fill="#DA1B2E">corren en local igual</text>
+</svg>

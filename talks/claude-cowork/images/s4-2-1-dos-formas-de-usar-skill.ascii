@@ -1,0 +1,30 @@
+        COMO SE USA UNA SKILL
+
+  EXPLICITO                    AUTOMATICO
+  tipeas "/" y la elegis       pedis la tarea en español
+ +----------------------+    +----------------------------+
+ | /informe-mensual     |    | "armame el informe de mayo |
+ |                      |    |  con lo que hay en notas/" |
+ +----------------------+    +----------------------------+
+            |                             |
+            |                             v
+            |                +----------------------------+
+            |                | Claude compara el pedido   |
+            |                | con la DESCRIPCION de las  |
+            |                | habilidades habilitadas    |
+            |                +----------------------------+
+            |                             |
+            +--------------+--------------+
+                           |
+                           v
+              +==============================+
+              |     SKILL EN EJECUCION       |
+              +==============================+
+
+   la descripcion es lo que decide si se dispara sola
+
+<!-- ascii-note:
+intent: mostrar los dos caminos de invocación de una Skill ya guardada — el explícito (tipear "/" y elegirla como comando) y el automático (pedir la tarea en lenguaje natural y que Claude la reconozca por su descripción) — convergiendo los dos en la misma caja de ejecución.
+emphasize: la caja de doble línea "SKILL EN EJECUCION" donde convergen los dos caminos; el paso intermedio que solo tiene el camino automático, donde Claude compara el pedido contra la DESCRIPCION; la leyenda de abajo.
+labels: columna izquierda = EXPLICITO (/informe-mensual); columna derecha = AUTOMATICO (pedido en español) con el paso de comparación por descripción; salida común = SKILL EN EJECUCION.
+-->

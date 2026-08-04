@@ -1,0 +1,38 @@
+        GRABAR UNA SKILL
+
+ +----------------------------+
+ | 1. GRABAR Y NARRAR         |
+ | pantalla + clicks +        |
+ | tipeo + voz  (~10 min)     |
+ +----------------------------+
+               |
+               v
+ +----------------------------+
+ | 2. CLAUDE MIRA             |
+ | abre una tarea de Cowork   |
+ | y revisa la grabacion      |
+ +----------------------------+
+               |
+               v
+ +----------------------------+
+ | 3. PROPONE LA SKILL        |
+ | nueva, o update de una     |
+ | que ya existe              |
+ +----------------------------+
+               |
+               v
+ +============================+
+ | 4. REVISAR, EDITAR         |
+ |    Y GUARDAR               |  <== la trampa del Save
+ +============================+
+               |
+               v
+      +------------------+
+      |   SKILL ACTIVA   |
+      +------------------+
+
+<!-- ascii-note:
+intent: mostrar el flujo de cuatro tiempos de una Skill grabada, desde la grabación narrada hasta la Skill activa, y que la última etapa es la misma compuerta de guardar y habilitar que marca el diagrama de 4.4.
+emphasize: la caja de doble línea "REVISAR, EDITAR Y GUARDAR" marcada como la trampa del Save; la bajada vertical de los cuatro pasos numerados, uno debajo del otro.
+labels: 1 grabar y narrar (pantalla, clicks, tipeo, voz, ~10 min); 2 Claude mira (abre una tarea de Cowork); 3 propone la Skill (nueva o actualización de una existente); 4 revisar, editar y guardar; salida = Skill activa.
+-->

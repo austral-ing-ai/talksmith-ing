@@ -1,0 +1,20 @@
+        EL CHAT "COMO VIENE DE FABRICA"
+                                             lo que NO ve:
+   +---------------------------------+       x  noticias de hoy
+   |            CHAT DE IA           |       x  los mails
+   |  +---------------------------+  |       x  el calendario
+   |  |  MEMORIA DE ENTRENAMIENTO |  |       x  los archivos
+   |  |  (foto congelada hasta la |  |       x  las apps del trabajo
+   |  |   fecha de entrenamiento) |  |
+   |  +---------------------------+  |
+   |     responde "de memoria"       |
+   |                                 |
+   |  lo unico que cambia su         |
+   |  comportamiento: EL PROMPT      |
+   +---------------------------------+
+
+<!-- ascii-note:
+intent: mostrar que el chat de IA sin extensiones responde solo desde su memoria de entrenamiento (foto congelada hasta la fecha de entrenamiento), no tiene acceso al mundo del usuario, y que lo único que modifica su comportamiento en el momento es el prompt (in-context learning).
+emphasize: la caja interna "MEMORIA DE ENTRENAMIENTO (foto congelada)"; la línea "lo único que cambia su comportamiento: EL PROMPT"; la lista de lo que NO ve (noticias de hoy, mails, calendario, archivos, apps) fuera de la caja.
+labels: caja exterior = CHAT DE IA; caja interior = memoria de entrenamiento / fecha de entrenamiento; columna derecha = lo que no ve.
+-->

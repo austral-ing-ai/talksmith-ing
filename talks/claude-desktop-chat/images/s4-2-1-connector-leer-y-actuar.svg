@@ -1,0 +1,38 @@
+<!-- talksmith-ascii-sha256: f2b6a6291bfbe4f655e03f6aff87bca18d9892dee392cbf9e50cbf2738e97fb6 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 250" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>Un Connector deja de ser pasivo</title>
+<desc>Un Connector funciona en dos direcciones: leer información del mundo del usuario y actuar sobre él.</desc>
+<defs>
+<marker id="dk" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#3B3535"/></marker>
+<marker id="rd" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="250" fill="#ffffff"/>
+
+<text x="340" y="34" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">CONNECTOR: dos direcciones</text>
+
+<text x="190" y="66" text-anchor="middle" font-size="14" font-weight="bold" fill="#3B3535">LEER (traer info)</text>
+<path d="M340,80 L40,80" fill="none" stroke="#3B3535" stroke-width="2" marker-end="url(#dk)"/>
+<text x="490" y="66" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">ACTUAR (hacer)</text>
+<path d="M340,80 L640,80" fill="none" stroke="#DA1B2E" stroke-width="2" marker-end="url(#rd)"/>
+
+<rect x="20" y="137" width="120" height="54" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="80" y="170" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">CHAT</text>
+
+<rect x="250" y="131" width="180" height="66" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="2.2"/>
+<text x="340" y="170" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">CONNECTOR</text>
+
+<rect x="540" y="100" width="120" height="128" rx="5" fill="#F2EEEE" stroke="#D8D4D4" stroke-width="1.6"/>
+<text x="600" y="126" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">EL MUNDO</text>
+<text x="600" y="152" text-anchor="middle" font-size="12">mail</text>
+<text x="600" y="172" text-anchor="middle" font-size="12">calendario</text>
+<text x="600" y="192" text-anchor="middle" font-size="12">tickets</text>
+<text x="600" y="212" text-anchor="middle" font-size="12">mensajes</text>
+
+<path d="M250,150 L140,150" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+<text x="195" y="174" text-anchor="middle" font-size="11" fill="#6A737D">inbox, agenda,</text>
+<text x="195" y="189" text-anchor="middle" font-size="11" fill="#6A737D">noticias</text>
+
+<path d="M430,150 L540,150" fill="none" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#rd)"/>
+<text x="485" y="174" text-anchor="middle" font-size="11" fill="#DA1B2E">mandar mail,</text>
+<text x="485" y="189" text-anchor="middle" font-size="11" fill="#DA1B2E">agendar, ticket</text>
+</svg>

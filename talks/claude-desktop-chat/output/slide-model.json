@@ -1,0 +1,710 @@
+{
+  "deck": {
+    "title": "Agentes Inteligentes",
+    "lang": "es",
+    "institution": "Master in Management (MiM), IAE Business School",
+    "class": "Claude Desktop - Chat",
+    "presenter": "Paulo Veiga y Marco Sánchez Sorondo",
+    "date": "Julio 2026",
+    "logo": null,
+    "sections": [
+      "Introducción",
+      "Context augmentation",
+      "Web search",
+      "Connectors",
+      "Claude in Chrome",
+      "Schedule",
+      "La mission"
+    ]
+  },
+  "slides": [
+    {
+      "template": "section-agenda",
+      "title": "Introducción"
+    },
+    {
+      "template": "concept-breakdown",
+      "title": "El problema: horas que se van en trabajo manual",
+      "section": "Introducción",
+      "lead": "Dos caras del mismo dolor, y una barrera que lo sostenía.",
+      "format": "list",
+      "cards": [
+        {
+          "label": "Tareas repetitivas",
+          "body": "Armar el mismo reporte, pasar datos de un lado a otro, resumir el inbox, consolidar planillas.",
+          "icon": "repeat"
+        },
+        {
+          "label": "Información dispersa",
+          "body": "Mails, planillas, PDFs, sistemas internos. Analizarla junta cuesta horas.",
+          "icon": "scatter_plot"
+        },
+        {
+          "label": "Había que saber programar",
+          "body": "Hasta ahora automatizar eso pedía código, o resignarse a hacerlo a mano.",
+          "icon": "code_off"
+        }
+      ],
+      "notes": "Abrir con el dolor, no con la herramienta: preguntar a mano alzada quién arma el mismo reporte todas las semanas, o pasa datos de una planilla a un sistema. La problemática tiene dos caras: tareas repetitivas que consumen horas, e información dispersa en mails, planillas y sistemas que nadie logra analizar junta. Y la barrera histórica: automatizar era territorio de quien programa. Esta clase existe porque esa barrera acaba de caer. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "concept-breakdown",
+      "title": "Cómo lo vamos a atacar",
+      "section": "Introducción",
+      "format": "list",
+      "cards": [
+        {
+          "label": "Agentes de IA",
+          "body": "No solo responden, ejecutan trabajo: automatizan tareas y analizan datos.",
+          "icon": "smart_toy"
+        },
+        {
+          "label": "La herramienta",
+          "body": "Claude Desktop y sus dos caras, Chat y Cowork.",
+          "icon": "desktop_windows"
+        },
+        {
+          "label": "El camino",
+          "body": "Esta clase extiende el chat que ya usan con búsqueda, Connectors y Schedule; la segunda baja a Cowork, donde se delega trabajo completo.",
+          "icon": "route"
+        }
+      ],
+      "notes": "La respuesta al dolor de la slide anterior, en alto nivel y sin mecánica: agentes de IA que ejecutan trabajo por vos. No desarrollar acá qué es un agente: el concepto completo se enseña en la segunda clase, la de Cowork, cuando ya se vio qué le faltaba al chat. Presentar la herramienta (Claude Desktop, dos caras) y el mapa del camino: esta clase extiende el chat que ya usan, la segunda da el salto a Cowork. Todo lo que sigue construye pieza por pieza hacia eso. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "concept-breakdown",
+      "title": "Quién es Anthropic",
+      "section": "Introducción",
+      "cards": [
+        {
+          "label": "Qué es",
+          "body": "Empresa de IA fundada en 2021 en San Francisco por ex-OpenAI, entre ellos los hermanos Dario y Daniela Amodei. Creadora de Claude.",
+          "icon": "corporate_fare"
+        },
+        {
+          "label": "Por qué existe",
+          "body": "Su apuesta es que la IA va a ser transformacional y que hay que desarrollarla con foco en seguridad. El safety-first es su diferencial de marca frente a otros labs.",
+          "icon": "shield"
+        },
+        {
+          "label": "Cómo se estructura",
+          "body": "Public Benefit Corporation, con mandato de balancear ganancias y misión. Entre sus inversores están Google y Amazon.",
+          "icon": "account_balance"
+        },
+        {
+          "label": "Qué la distingue",
+          "body": "Constitutional AI, foco en interpretabilidad y alineación, y políticas de uso responsable (Acceptable Use Policy, Responsible Scaling Policy).",
+          "icon": "policy"
+        }
+      ],
+      "notes": "Aparte de un minuto y medio, no más: quién está detrás de la herramienta que van a usar toda la charla. Las cuatro cajas se leen como cuatro respuestas cortas. Qué es: empresa de IA fundada en 2021 en San Francisco, con los hermanos Amodei entre sus fundadores y varios de sus primeros investigadores venidos de OpenAI. Por qué existe: la apuesta declarada es que la IA va a ser transformacional y que por eso hay que construirla con foco en seguridad, y esa postura funciona además como diferencial de marca. Cómo se estructura: Public Benefit Corporation, así que el estatuto la obliga a balancear retorno financiero y misión, con Google y Amazon entre los grandes inversores. Qué la distingue: Constitutional AI como método de entrenamiento, el trabajo en interpretabilidad y alineación, y dos políticas públicas, la de uso aceptable y la de escalado responsable. Nada de historia corporativa más allá de esto: la audiencia viene a usar la herramienta. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "content+cards+image",
+      "title": "Las cuatro herramientas de Claude",
+      "section": "Introducción",
+      "image": {
+        "src": "images/s1-4-1-cuatro-herramientas.svg",
+        "alt": "Las cuatro herramientas de Claude sobre una base de modelos compartida"
+      },
+      "cards": [
+        {
+          "label": "Claude Chat/Web",
+          "body": "claude.ai, el asistente conversacional de uso diario en el navegador. El tema de esta clase.",
+          "icon": "chat"
+        },
+        {
+          "label": "Claude Code",
+          "body": "CLI agéntico en la terminal, para developers. Coding de punta a punta.",
+          "icon": "terminal"
+        },
+        {
+          "label": "Claude Cowork",
+          "body": "Claude instalado en la computadora, para quien no programa. Trabajo multipaso sobre carpetas y archivos reales. El foco de la segunda clase.",
+          "icon": "folder_open"
+        },
+        {
+          "label": "Claude Design",
+          "body": "Prototipos, mockups y slides a partir de una idea, para quien no tiene formación de diseño.",
+          "icon": "design_services"
+        }
+      ],
+      "notes": "El catálogo y el mapa en una sola lámina. Cuatro herramientas, cuatro públicos: Chat/Web es el asistente de uso diario en claude.ai, para cualquiera, y el tema de esta clase; Code, para quien programa, en la terminal; Cowork, para quien no programa, instalado en la computadora, el foco de la segunda clase; Design, el más nuevo (research preview de abril de 2026), para armar prototipos, mockups y slides sin formación de diseño.\n\nCon el diagrama, la relación entre ellas: es el mismo agente con varias caras, cambia la superficie y para quién está pensada. El matiz técnico, para decir y no para la lámina: Cowork está construido sobre las mismas bases que Claude Code (el Claude Agent SDK), así que Code y Cowork comparten el mismo engine de agente, con los mismos archivos, las mismas Skills, el mismo MCP y el mismo loop de plan, aprobar y redirigir. Web/Chat es ese mismo modelo en una superficie de chat, sin el loop agéntico completo. Design corre sobre los mismos modelos pero con su propia superficie.\n\nDejar claro el reparto: esta clase se queda en Chat/Web, y la segunda clase entera es Cowork, la cara para quien no trabaja en una terminal. Claude Code aparece solo como contraste; no entramos en sus internals. No hace falta demo acá. Tiempo objetivo: ~4 min."
+    },
+    {
+      "template": "concept-breakdown",
+      "title": "Claude Desktop Chat",
+      "section": "Introducción",
+      "cards": [
+        {
+          "label": "El mismo producto",
+          "body": "Mismo modelo, misma cuenta y la conversación sincronizada entre claude.ai y la app de escritorio. Cambia el empaquetado.",
+          "icon": "sync_alt"
+        },
+        {
+          "label": "Las diferencias aparecen en la periferia",
+          "body": "No en la pestaña Chat: lo que la app de escritorio alcanza en la computadora y la pestaña Cowork que trae al lado.",
+          "icon": "desktop_windows"
+        },
+        {
+          "label": "El foco de esta clase",
+          "body": "Los aspectos avanzados del chat.",
+          "icon": "center_focus_strong"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "body": "El core es el mismo, así que todo lo que se ve acá aplica también a Cowork."
+        }
+      ],
+      "notes": "Slide corta, de encuadre, para cortar la confusión antes de que aparezca. La pregunta que la audiencia trae es si el chat del navegador y el de la app de escritorio son cosas distintas. Respuesta: es el mismo producto. Mismo modelo, misma cuenta, la conversación arranca en un lado y sigue en el otro. Lo que cambia es el empaquetado.\n\nLas diferencias existen y aparecen alrededor de la pestaña Chat: la app de escritorio alcanza la computadora del usuario y trae Cowork al lado. Marcarlas cuando aparezcan durante la clase, sin abrir el tema acá.\n\nLa nota que conviene decir en voz alta: como el core es el mismo, todo lo que se enseña hoy sobre el chat vale igual dentro de Cowork, así que la segunda clase arranca con esto ya sabido. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "image-full",
+      "title": "El chat en Claude Desktop",
+      "section": "Introducción",
+      "lead": "La pantalla sobre la que se trabaja el resto de la clase.",
+      "image": {
+        "src": "images/chat-home.png",
+        "alt": "La pantalla inicial del chat en Claude Desktop"
+      },
+      "notes": "Lámina de pantalla, casi sin texto. Mostrar dónde está cada cosa: el campo de entrada, el selector de modelo, el acceso a las herramientas y conexiones, el historial de conversaciones al costado. Es el mapa físico de todo lo que viene después, así que conviene señalar con el mouse en vivo en lugar de leer la lámina. Si la clase es presencial y hay proyección, abrir la app real y hacerlo ahí. Tiempo objetivo: ~1 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Context augmentation"
+    },
+    {
+      "template": "content+cards+image",
+      "title": "El chat responde de memoria",
+      "section": "Context augmentation",
+      "image": {
+        "src": "images/s2-1-1-chat-de-memoria.svg",
+        "alt": "El chat sin extensiones responde solo desde su memoria de entrenamiento"
+      },
+      "cards": [
+        {
+          "label": "Memoria de entrenamiento",
+          "body": "De fábrica el chat responde de una foto que llega hasta la fecha de entrenamiento. No busca información nueva.",
+          "icon": "photo_camera"
+        },
+        {
+          "label": "Información vieja",
+          "body": "Lo posterior al corte no existe.",
+          "icon": "history"
+        },
+        {
+          "label": "Alucinación",
+          "body": "Inventa con confianza.",
+          "icon": "warning"
+        },
+        {
+          "label": "In-context learning",
+          "body": "El modelo adapta su comportamiento con lo que ve en el prompt, sin que se actualicen sus pesos ni se lo reentrene.",
+          "icon": "psychology"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "body": "Enriquecer el contexto es la única palanca disponible."
+        }
+      ],
+      "notes": "Arrancar desde lo conocido: pedir a mano alzada quién usó un chat de IA esta semana. Van a levantar la mano casi todos (ChatGPT, Gemini, Claude). La idea a instalar: ese chat, tal como viene, responde de memoria. Cuando le preguntás no busca nada; recuerda lo que leyó hasta su fecha de entrenamiento (knowledge cutoff). Un colega brillante que leyó muchísimo hasta una fecha y desde entonces está incomunicado.\n\nTres consecuencias que ya sufrieron sin saberlo. Una, datos viejos: precios, noticias, versiones de software y papers posteriores al corte no existen para el modelo. Dos, inventos con cara de verdad: cifras, citas y referencias que suenan perfectas y son falsas (insistir en verificar toda salida). Tres, la más limitante para el trabajo real: no ve nada tuyo, ni mails, ni calendario, ni archivos, ni apps.\n\nEl cuarto bullet es el que da nombre a la sección y hay que decirlo despacio. Los pesos del modelo están congelados; no se reentrena por usarlo. Lo único que cambia su comportamiento en el momento es lo que entra en el prompt, y a esa capacidad se la llama in-context learning: el modelo aprende una tarea nueva solo a partir de lo que ve ahí. De ahí sale toda la clase: si el prompt es la única palanca, la pregunta es cómo meterle más y mejor contexto. Eso es context augmentation, y tiene dos formas, que vienen en la próxima lámina. Tiempo objetivo: ~5 min."
+    },
+    {
+      "template": "concept-breakdown",
+      "title": "Dos formas de enriquecer el modelo",
+      "section": "Context augmentation",
+      "lead": "El contexto es la única palanca, y hay dos maneras de llenarlo. Las dos recorren el resto de la clase.",
+      "cards": [
+        {
+          "label": "Buscar en la web",
+          "body": "El chat consulta información actual y cita sus fuentes. Es la más universal y ya viene integrada en casi todos los chats.",
+          "icon": "travel_explore"
+        },
+        {
+          "label": "Conectar el chat a los sistemas del usuario",
+          "body": "Mail, calendario, documentos, sistemas internos. Además de traer información, ejecuta acciones.",
+          "icon": "hub"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "body": "Las dos se abren en las secciones que siguen."
+        }
+      ],
+      "notes": "Slide puente, corta a propósito: la lámina anterior dejó la pregunta de cómo enriquecer el contexto y esta la contesta en dos ítems, sin desarrollar ninguno. Primero, buscar en la web, que es lo más cercano a lo que la audiencia ya hace. Segundo, conectar el chat a los sistemas donde vive el trabajo de cada uno. El nombre técnico de esa segunda familia (Connectors) aparece recién en la sección 4; acá alcanza con la idea. Las secciones 3 y 4 los abren en profundidad, con demo. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Web search"
+    },
+    {
+      "template": "content+cards+image",
+      "title": "La misma pregunta, dos modos de responder",
+      "section": "Web search",
+      "layout": "image-left",
+      "image": {
+        "src": "images/s3-1-1-dos-modos-respuesta.svg",
+        "alt": "La misma pregunta respondida de memoria o con búsqueda web"
+      },
+      "cards": [
+        {
+          "label": "Viene en casi todos los chats",
+          "body": "Claude, ChatGPT y Gemini la traen. Se activa desde la configuración.",
+          "icon": "toggle_on"
+        },
+        {
+          "label": "Dos modos de responder",
+          "body": "La misma pregunta admite los dos, y el usuario decide cuál.",
+          "icon": "alt_route"
+        },
+        {
+          "label": "El punto de verificación",
+          "body": "El “buscando...” y las fuentes citadas marcan dónde chequear.",
+          "icon": "fact_check"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "important",
+          "label": "Regla",
+          "body": "Si la respuesta pudo cambiar desde el entrenamiento, la búsqueda es obligatoria. Precios, noticias, versiones, papers, normativa."
+        }
+      ],
+      "notes": "Acá se fija la distinción memoria vs información viva, que es la primera respuesta al problema de la sección anterior. Los dos modos, que el diagrama contrasta y la lámina no repite en texto: de memoria, recuerda hasta la fecha de entrenamiento y puede estar viejo o mal; con búsqueda, va a buscar información real y actualizada y cita fuentes.\n\nCon conexión, hacerlo en demo de 2 minutos: la misma pregunta (\"¿cuál es la última versión de X?\" o \"¿qué pasó ayer con Y?\") con búsqueda apagada y prendida, y comparar. Señalar el indicador de \"buscando...\" y las fuentes citadas; enseñarles a mirar eso cada vez.\n\nEl tercer bullet es lo que tienen que anotar, y conviene decirlo como regla, no como sugerencia: si la respuesta pudo haber cambiado desde el entrenamiento, exigí búsqueda. Precios, noticias, versiones, papers, normativa. Si hay una sola cosa que se lleven de esta sección, es esa línea. Arrancamos por acá porque ya lo tienen activado; lo que falta es saber cuándo está actuando. Tiempo objetivo: ~5 min (con demo)."
+    },
+    {
+      "template": "image-full",
+      "title": "La búsqueda en pantalla",
+      "section": "Web search",
+      "image": {
+        "src": "images/websearch.png",
+        "alt": "El chat de Claude buscando en la web, con las fuentes citadas"
+      },
+      "notes": "Lámina de pantalla, sin texto que competir con la imagen. Señalar dos cosas y nada más: el indicador de que está buscando mientras responde, y las fuentes citadas al pie de la respuesta. Ese es el punto de verificación que se pidió mirar siempre. Si hay conexión, reemplazar la captura por la pantalla en vivo. Tiempo objetivo: ~1 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Connectors"
+    },
+    {
+      "template": "content+cards+image",
+      "title": "Qué es un Connector",
+      "section": "Connectors",
+      "image": {
+        "src": "images/s4-1-1-chat-aislado-vs-connector.svg",
+        "alt": "Chat aislado frente a chat con Connectors"
+      },
+      "cards": [
+        {
+          "label": "Qué es",
+          "body": "Una extensión que conecta el chat a un sistema externo: mail, calendario, documentos.",
+          "icon": "extension"
+        },
+        {
+          "label": "Transversal",
+          "body": "Vale igual en ChatGPT, Gemini y Claude.",
+          "icon": "public"
+        },
+        {
+          "label": "Cómo se activa",
+          "body": "A través de la biblioteca de Connectors. Muchos requieren autenticación.",
+          "icon": "key"
+        }
+      ],
+      "notes": "La slide instala el concepto que ordena la sección: un Connector saca al chat de su aislamiento y le da acceso a leer mail, ver calendario, consultar documentos y entrar a sistemas internos. Repetir que es transversal: vale para ChatGPT, Gemini y Claude. Los nombres cambian (\"connectors\", \"apps\", \"extensiones\"), la idea es la misma.\n\nUsar el diagrama para el contraste: mismo chat, ahora con líneas hacia afuera, y antes de responder puede ir a buscar información a la fuente. El contraste que la lámina ya no repite en texto y el diagrama sí dibuja: chat solo responde de memoria, chat con Connectors consulta fuentes reales antes de responder.\n\nCerrar bajando la barrera de entrada: esto se activa desde la configuración o desde la biblioteca de Connectors; muchos piden autenticación, así que no es instantáneo, pero tampoco es programar. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "title": "Un Connector deja de ser pasivo",
+      "section": "Connectors",
+      "image": {
+        "src": "images/s4-2-1-connector-leer-y-actuar.svg",
+        "alt": "Un Connector funciona en dos direcciones: leer y actuar"
+      },
+      "cards": [
+        {
+          "label": "Además de traer info, actúa",
+          "body": "Un Connector expone acciones: la IA hace.",
+          "icon": "bolt"
+        },
+        {
+          "label": "Verificado de primera mano",
+          "body": "Dejar redactado un mail (borrador en Gmail) y agendar una reunión (evento en el calendario).",
+          "icon": "verified"
+        },
+        {
+          "label": "Capacidad del ecosistema",
+          "body": "Abrir un ticket (Jira, ServiceNow) o mandar un mensaje (Slack), sin Connector puntual probado en clase.",
+          "icon": "lan"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "important",
+          "body": "Cuidado con las autorizaciones y los permisos. Un mail enviado sin revisión humana puede generar muchos problemas."
+        }
+      ],
+      "notes": "Segunda idea de la sección, pegada a la definición: el Connector no se queda en traer información, también ejecuta acciones sobre los sistemas conectados. Los dos primeros ejemplos están verificados de primera mano y se pueden demostrar en vivo: el borrador de Gmail (misión de Faro) y agendar por Calendar, que el docente chequeó. Los otros dos, tickets y mensajes, son capacidad del ecosistema (el estándar MCP y los Connectors lo permiten) y así están marcados en la lámina: no prometer una demo en vivo de esos dos sin chequear antes.\n\nBalancear con el control: nada de esto pasa sin que el usuario haya conectado y autorizado el servicio, y ninguna acción que importe debería ejecutarse sin que un humano la apruebe. La práctica sana mientras aprenden es borrador y no envío directo; Faro hace eso, deja el borrador en Gmail y no lo manda. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "title": "Out of the box y externos",
+      "section": "Connectors",
+      "lead": "Los Connectors se dividen en dos familias, según quién los prepara: los que vienen listos con el producto y los que conecta el equipo.",
+      "image": {
+        "src": "images/s4-3-1-connectors-dos-familias.svg",
+        "alt": "Connectors out of the box, curados por Anthropic, frente a externos sin curación"
+      },
+      "cards": [
+        {
+          "label": "Out of the box",
+          "body": "Curados por Anthropic: entran al directorio oficial después de pasar por su revisión.",
+          "icon": "verified_user"
+        },
+        {
+          "label": "Externos",
+          "body": "Toda la familia se conecta por el protocolo MCP, y ahí la curación no existe: Anthropic no verifica esos servicios.",
+          "icon": "link_off"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "important",
+          "label": "De ahí el criterio de confianza",
+          "body": "Autorizar un Connector externo le da acceso a los datos del usuario, así que conviene reservarlo para servicios confiables."
+        }
+      ],
+      "notes": "El ordenador mental de la sección: no todos los Connectors salen del mismo lugar. Los out of the box vienen con el producto, están curados por Anthropic (pasan por su revisión antes de entrar al directorio) y el usuario solo los activa; la búsqueda web que se vio en la sección anterior está en esa familia, igual que Gmail, Calendar, Drive y Claude in Chrome, que llega en la sección 5. Los externos son los que una empresa monta contra sus propios sistemas (CRM, ERP, una base interna), y ahí aparece el estándar: todos hablan MCP.\n\nLa curación es lo que sostiene el criterio de confianza, así que conviene decirlo con todas las letras: lo que está en el directorio pasó por Anthropic, lo que se conecta por MCP no. Eso no vuelve peligroso a lo externo, pero cambia quién responde si algo sale mal.\n\nPara esta audiencia el mensaje es de rol. La familia out of the box la maneja cualquier usuario desde la biblioteca de Connectors; la externa la arma un equipo técnico y después el usuario la usa desde el mismo lugar que las otras. Las cuatro slides que siguen bajan a cada familia, una por vez. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "content-image",
+      "title": "El directorio de Connectors",
+      "section": "Connectors",
+      "layout": "image-top",
+      "image": {
+        "src": "images/connectors_directory.png",
+        "alt": "El directorio oficial de Connectors de Claude"
+      },
+      "facts": [
+        {
+          "body": "El directorio oficial de Claude lista los Connectors listos para usar, incluidos proveedores de datos del sector, por ejemplo un proveedor de noticias financieras."
+        }
+      ],
+      "notes": "Primera de las dos láminas de pantalla de esta familia, una imagen por slide para que se lea proyectada. Mostrar el directorio y recorrer con el mouse dos o tres categorías, para desarmar el \"esto es técnico\": lo que hay ahí es un catálogo, no una consola.\n\nMencionar que el directorio también trae proveedores de datos de sector, sin nombrar todavía el de la misión: el reveal de Faro es la sección 7 y adelantarlo acá lo gasta. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "content+cards+image",
+      "title": "Buscar, conectar y autorizar",
+      "section": "Connectors",
+      "image": {
+        "src": "images/connector_browser.png",
+        "alt": "La pantalla de conexión de un Connector"
+      },
+      "cards": [
+        {
+          "label": "Flujo básico",
+          "body": "Buscar el servicio, conectar y autorizar. Como conectar Gmail a una app nueva.",
+          "icon": "search"
+        },
+        {
+          "label": "Ejemplos guía",
+          "body": "Mail y calendario. “¿Qué mails me perdí ayer? ¿Qué tengo esta semana?”",
+          "icon": "mail"
+        }
+      ],
+      "notes": "Segunda lámina de pantalla y la parte práctica: conectar un servicio implica buscarlo, tocar Connect y autorizarlo, igual que cuando se conecta Gmail a cualquier app. Se configura por la interfaz, sin archivo local que editar.\n\nInsistir en mail y calendario, los ejemplos guía de la sección: con Gmail conectado el chat lee y resume el inbox, con Calendar ve la agenda. Son preguntas que el chat aislado no puede responder, y las dos frases del bullet funcionan bien como demo si hay cuenta conectada.\n\nNota: las capturas son de la app de Claude; el flujo de buscar, conectar y autorizar es el mismo en el chat del navegador. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "content+cards+image",
+      "title": "External connectors: todo pasa por MCP",
+      "section": "Connectors",
+      "image": {
+        "src": "images/s4-6-1-flujo-mcp-externos.svg",
+        "alt": "Flujo de una llamada a un Connector externo a través del protocolo MCP"
+      },
+      "cards": [
+        {
+          "label": "Qué son",
+          "body": "Los que una empresa conecta contra sus propios sistemas o los de un tercero, fuera del catálogo listo para usar.",
+          "icon": "domain"
+        },
+        {
+          "label": "MCP",
+          "body": "El Model Context Protocol es el estándar que traduce el pedido del usuario en llamadas al servicio conectado.",
+          "icon": "cable"
+        },
+        {
+          "label": "Ejemplo",
+          "body": "El usuario pide “los pedidos abiertos del cliente X” y el Connector consulta el ERP de la empresa y devuelve la respuesta al chat.",
+          "icon": "inventory"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "body": "Un chat que se informa y actúa puede trabajar solo: eso es la sección 6."
+        }
+      ],
+      "notes": "Cierre técnico de la sección, sin asustar a nadie. La familia externa es la que una empresa arma contra sus propios sistemas, y toda ella pasa por el mismo estándar: MCP, el Model Context Protocol. Usar el diagrama para explicar qué pasa por debajo: el chat pide datos, el Connector traduce ese pedido en llamadas al servicio, el servicio responde. El patrón se repite siempre: la plataforma expone sus acciones como herramientas y la IA las usa.\n\nLa imagen que mejor funciona, para decir: los Connectors son las manos de la IA, lo que puede tocar y que de otro modo no podría (Drive, Gmail, Calendar, Slack, bases de datos). Quién lo arma: el equipo técnico expone un servidor MCP y ese servicio queda disponible como un Connector más; nadie de esta clase va a escribir uno.\n\nCerrar anunciando la sección 5, que es un Connector con entidad propia, y sembrando la 6: un chat que se informa y actúa, más una cadencia fija, trabaja solo. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "content+cards+image",
+      "title": "Agregar un external connector",
+      "section": "Connectors",
+      "image": {
+        "src": "images/custom-connector.png",
+        "alt": "La pantalla de alta de un custom connector en Claude"
+      },
+      "cards": [
+        {
+          "label": "Dónde se agrega",
+          "body": "Desde la misma biblioteca de Connectors, con la opción de conector propio.",
+          "icon": "add_link"
+        },
+        {
+          "label": "Lo que hay que tener a mano",
+          "body": "La URL del servidor MCP y, si el servicio lo pide, sus credenciales.",
+          "icon": "vpn_key"
+        },
+        {
+          "label": "Quién hace qué",
+          "body": "Quien monta el servidor es el equipo técnico. Quien lo agrega y lo usa, cualquiera.",
+          "icon": "group"
+        }
+      ],
+      "notes": "Lámina de pantalla que baja a tierra la sección anterior: cómo se agrega en la práctica uno de los externos. El punto que desarma el miedo es que el alta vive en el mismo lugar que todo lo demás, la biblioteca de Connectors, con una opción para conector propio.\n\nLo único distinto es lo que hay que pegar ahí: la URL del servidor MCP, y credenciales si el servicio las pide. De nuevo el reparto de roles, que es lo que esta audiencia necesita: el servidor lo levanta el equipo técnico, el alta la hace cualquiera con la URL en la mano.\n\nRepetir el cuidado de la lámina anterior antes de pasar: acá no hay curación de Anthropic, así que el servicio tiene que ser confiable. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "concept-breakdown",
+      "title": "Dónde buscar servidores MCP publicados",
+      "section": "Connectors",
+      "cards": [
+        {
+          "label": "modelcontextprotocol/servers",
+          "body": "En GitHub. Repo de referencia mantenido por la comunidad y Anthropic.",
+          "icon": "code"
+        },
+        {
+          "label": "PulseMCP",
+          "body": "pulsemcp.com. Directorio curado, marca cuáles son oficiales del proveedor.",
+          "icon": "verified"
+        },
+        {
+          "label": "Smithery",
+          "body": "smithery.ai. Marketplace de servidores MCP, con instalación asistida.",
+          "icon": "storefront"
+        },
+        {
+          "label": "Glama",
+          "body": "glama.ai/mcp/servers. Directorio con ranking y metadata de cada servidor.",
+          "icon": "leaderboard"
+        },
+        {
+          "label": "mcp.so",
+          "body": "Listado comunitario amplio.",
+          "icon": "list"
+        }
+      ],
+      "notes": "Lámina de referencia, para que se la lleven anotada más que para leerla en voz alta. La idea de fondo: MCP es un estándar abierto, así que ya existe un ecosistema de servidores publicados y directorios que los listan.\n\nMarcar la diferencia de criterio entre las cinco, que es lo único que importa acá. El repo de modelcontextprotocol es la referencia; PulseMCP marca cuáles son oficiales del proveedor, que es el dato más útil para decidir si conectarlo; Smithery agrega instalación asistida; Glama suma ranking y metadata; mcp.so es el listado más amplio y el menos filtrado.\n\nCerrar con la advertencia que ya se dio dos veces y vale la tercera: ninguno de estos directorios es Anthropic. Antes de autorizar uno, mirar quién publica el servidor. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Claude in Chrome"
+    },
+    {
+      "template": "content+cards+image",
+      "title": "Que es Claude in Chrome ?",
+      "section": "Claude in Chrome",
+      "image": {
+        "src": "images/s5-1-1-panel-claude-in-chrome.svg",
+        "alt": "Claude in Chrome trabaja en un panel al costado de la página abierta"
+      },
+      "cards": [
+        {
+          "label": "Una extensión de Chrome",
+          "body": "Claude abre un panel al costado de la página y ve lo mismo que ve el usuario.",
+          "icon": "dock_to_right"
+        },
+        {
+          "label": "Dentro de la sesión ya iniciada",
+          "body": "Trabaja en los sitios donde el usuario ya está identificado.",
+          "icon": "lock_open"
+        },
+        {
+          "label": "Qué hace ahí",
+          "body": "Navega, hace clic, completa formularios y encadena varios pasos entre pestañas.",
+          "icon": "ads_click"
+        },
+        {
+          "label": "Conocimiento incorporado",
+          "body": "Slack, Google Calendar, Gmail y Google Docs, así que responde a un pedido en lenguaje corriente.",
+          "icon": "school"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "body": "Se habilita desde la biblioteca de Connectors en Claude Desktop, como cualquier otro."
+        }
+      ],
+      "notes": "El caso que más sorprende a esta audiencia. La idea a instalar: hasta acá el Connector traía datos de un servicio; Claude in Chrome opera el navegador que el usuario ya tiene abierto, con las sesiones ya iniciadas. Por eso entra a sistemas que no tienen API ni integración: si el usuario puede hacerlo con el mouse, Claude puede hacerlo. Mostrar el panel lateral en la pantalla si hay conexión; con eso solo se entiende.\n\nDisponibilidad, para decir y no para la lámina: planes pagos (Pro, Max, Team, Enterprise) y solo en Chrome de escritorio, no en otros navegadores basados en Chromium ni en móvil.\n\nEl cuidado, en voz y sin lámina propia (la slide de prompt injection salió del deck por decisión del presentador el 2026-07-31): una página o un mail pueden traer instrucciones ocultas que Claude lea como si vinieran del usuario. Anthropic lo documenta como el riesgo principal de cualquier IA que navegue, corre clasificadores sobre el contenido entrante y sobre cada acción antes de ejecutarla, y aun así aclara que el riesgo no es cero. La postura práctica: sitios confiables, un perfil de navegador separado de las cuentas sensibles, y el humano aprueba antes de que se ejecute algo que importa. Decirlo con esas palabras, sin suavizarlo, y volver sobre ello en la lámina de cierre. Tiempo objetivo: ~4 min."
+    },
+    {
+      "template": "content+cards+image",
+      "title": "Cuándo sirve Claude in Chrome",
+      "section": "Claude in Chrome",
+      "image": {
+        "src": "images/s5-2-1-cuando-sirve-chrome.svg",
+        "alt": "El denominador común de los casos de uso de Claude in Chrome"
+      },
+      "cards": [
+        {
+          "label": "Cargar datos en un sistema web",
+          "body": "Pasar al CRM o al ERP lo que llegó por mail o en una planilla, campo por campo.",
+          "icon": "upload_file"
+        },
+        {
+          "label": "Comparar proveedores",
+          "body": "Precios y condiciones abiertos en varias pestañas, consolidados en un cuadro.",
+          "icon": "compare_arrows"
+        },
+        {
+          "label": "Coordinar agenda y correo",
+          "body": "Leer el hilo, agendar la reunión en Google Calendar y dejar la respuesta escrita.",
+          "icon": "event"
+        },
+        {
+          "label": "Relevar un portal que no exporta",
+          "body": "Listados de precios, licitaciones o estados de pedido, volcados a una tabla.",
+          "icon": "table_view"
+        }
+      ],
+      "notes": "Los cuatro casos están elegidos para un perfil de gestión, no de desarrollo. El denominador común, que el diagrama dibuja, es un sitio web sin exportación ni integración y una tarea repetitiva de copiar y pegar. Preguntar a mano alzada quién carga datos a mano en un sistema interno: ahí aterriza el primer caso. El segundo es el que mejor muestra el manejo de varias pestañas a la vez. El tercero se apoya en que Claude ya sabe moverse dentro de Gmail y Google Calendar. El cuarto es el clásico portal del proveedor o del organismo público sin botón de exportar.\n\nCerrar la sección repitiendo el cuidado en una frase: el humano aprueba antes de cada acción que importa. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Schedule"
+    },
+    {
+      "template": "content+cards+image",
+      "title": "Describir una vez, que corra sola",
+      "section": "Schedule",
+      "image": {
+        "src": "images/s6-1-1-ciclo-schedule.svg",
+        "alt": "Ciclo de un Schedule: disparador, tarea, Connectors y entrega"
+      },
+      "highlights": [
+        {
+          "kind": "definition",
+          "label": "Schedule",
+          "position": "top",
+          "body": "Describir un trabajo una vez y fijarle una cadencia; el prompt se ejecuta solo, sin volver a pedirlo."
+        }
+      ],
+      "cards": [
+        {
+          "label": "El ejemplo",
+          "body": "“Todos los días 8:00, resumí mi inbox, lo urgente arriba.”",
+          "icon": "inbox"
+        },
+        {
+          "label": "Dónde existe",
+          "body": "En ChatGPT se llama tasks; en Claude, desde claude.ai en el navegador.",
+          "icon": "apps"
+        }
+      ],
+      "notes": "Slide-concepto de la sección, en dos mitades. Primera: se describe el trabajo una vez, se elige cadencia (diaria, semanal, a demanda) y corre solo, avisando con el resultado. Segunda, que el diagrama dibuja en su caja del medio y la lámina ya no repite en texto: la tarea hereda los Connectors ya configurados (mail, web, calendario).\n\nEl resumidor de mails funciona como ejemplo porque el inbox desbordado es un problema que la audiencia vive. Variante semanal: \"los lunes a las 8:00, resumime la semana del calendario más los mails sin responder\". Contarlo en primera persona si se puede (\"mi resumen de las 8:00\").\n\nMarcar que existe en los dos mundos: ChatGPT lo llama \"tasks\" (recordatorios, briefings diarios, monitoreo) y Claude ya las ofrece en claude.ai desde el navegador. Si el rollout lo permite, mostrarlas EN VIVO desde la cuenta del docente, que ya las usa. La pregunta de dónde corre la tarea viene en la próxima slide; no adelantarla. Tiempo objetivo: ~5 min."
+    },
+    {
+      "template": "content-image",
+      "title": "Dónde vive el Schedule",
+      "section": "Schedule",
+      "layout": "image-top",
+      "image": {
+        "src": "images/schedule.png",
+        "alt": "La pantalla de tareas programadas en Claude, con el alta de una tarea nueva"
+      },
+      "facts": [
+        {
+          "body": "Se crea desde la misma conversación: describir el trabajo, elegir la cadencia y guardar."
+        }
+      ],
+      "notes": "Lámina de pantalla, pegada al concepto de la anterior. Señalar dos cosas: dónde está la entrada a las tareas programadas y cómo se ve el alta de una nueva. Con eso la audiencia sabe adónde ir el lunes.\n\nSi hay conexión, hacerlo en vivo desde la cuenta del docente en lugar de mostrar la captura: crear una tarea de prueba lleva menos de un minuto y se entiende mejor que cualquier explicación. Aprovechar para mostrar también dónde se listan las tareas ya creadas, que es donde van a volver a mirar si el resumen de las 8:00 no aparece. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "content+cards+image",
+      "title": "¿Dónde corre? Local o nube",
+      "section": "Schedule",
+      "layout": "image-left",
+      "image": {
+        "src": "images/s6-3-1-schedule-local-o-nube.svg",
+        "alt": "Dónde corre un Schedule: local o en la nube"
+      },
+      "cards": [
+        {
+          "label": "La pregunta previa",
+          "body": "Antes de confiarle algo a un Schedule, saber dónde corre.",
+          "icon": "help"
+        },
+        {
+          "label": "La excepción que siempre gana",
+          "body": "Los Schedule que usan archivos o apps locales corren local siempre, incluso con la ejecución en la nube disponible.",
+          "icon": "computer"
+        }
+      ],
+      "notes": "La slide del consejo práctico que pidió el presentador: \"tengan en cuenta que la computadora esté prendida\". Hoy conviven dos realidades y hay que enseñar las dos. Una: la ejecución en la nube existe desde el 7 de julio de 2026, la tarea corre sin la computadora del usuario, pero es beta y llega de a poco, empezando por el plan Max. Dos: mientras a la cuenta no le llegue, la tarea corre local. Computadora prendida y app abierta, o no corre.\n\nLos cuidados del modo local son los que la mayoría de la audiencia va a vivir este cuatrimestre. Si la computadora está apagada o suspendida a la hora programada, la corrida puede perderse: la versión anterior del artículo 13854387 (verificada en junio de 2026, cuando la ejecución era solo local) documentaba que la tarea se salteaba y corría al volver, y la versión actual ya no lo detalla. Decirlo como cuidado práctico con esa atribución, nunca como spec vigente. Las laptops se suspenden solas; revisar la configuración de energía si el resumen de las 8:00 nunca aparece.\n\nCerrar con la excepción que sobrevive incluso con nube: una tarea que necesita archivos o apps locales corre local siempre. Eso anticipa la segunda clase, donde Cowork trabaja sobre carpetas y archivos reales. Antes de confiarle el reporte del lunes a una tarea, contestar \"¿dónde corre esto?\". Aviso de vigencia: la nube es beta con rollout gradual desde el 7 de julio de 2026; re-verificar el estado del rollout el día de la clase, porque es el dato más probable de haber cambiado. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "concept-breakdown",
+      "title": "El lunes: qué hacer con esto",
+      "cards": [
+        {
+          "label": "La idea que queda",
+          "body": "El chat consulta información actual y ejecuta acciones sobre el mail y la agenda. Alcanza con configurar la cuenta que ya está en uso, sin instalar nada ni escribir código.",
+          "icon": "lightbulb"
+        },
+        {
+          "label": "Para esta semana",
+          "body": "Activar la búsqueda, conectar el mail y la agenda, y dejar programado un trabajo recurrente.",
+          "icon": "checklist"
+        },
+        {
+          "label": "Aprobación humana",
+          "body": "Ninguna acción que importe se ejecuta sin ella. El contenido que la IA lee puede traer instrucciones que nadie pidió, y Anthropic lo documenta como riesgo abierto.",
+          "icon": "how_to_reg"
+        },
+        {
+          "label": "La segunda clase",
+          "body": "Retoma este chat extendido y sigue en Claude Cowork, donde el agente trabaja sobre carpetas y archivos del usuario.",
+          "icon": "arrow_forward"
+        }
+      ],
+      "notes": "Cierre del contenido. La audiencia acaba de ver todo el material, así que esta lámina no vuelve sobre el temario: contesta qué hacer con lo visto. Bajar el ritmo y darle una frase a cada bullet. Después viene la placa de la misión, que es lo último que se proyecta.\n\nPrimero, la idea que se llevan: el chat que ya usan todos los días consulta información actual y ejecuta acciones sobre el mail y la agenda, y eso se resuelve con configuración, sin instalar nada ni escribir código. Es el punto que ordena los otros tres.\n\nDespués, lo concreto para esta semana: activar la búsqueda, conectar mail y calendario y dejar una tarea programada corriendo. Se puede tener andando con la cuenta que ya tienen, y si se van con una sola cosa hecha, que sea esta.\n\nLa advertencia va acá y es la última palabra sobre el tema. El humano aprueba antes de que se ejecute algo que importa. Una página o un mail pueden traer instrucciones ocultas que la IA lea como si vinieran del usuario, y Anthropic documenta ese riesgo como abierto. La lámina dedicada salió del deck, así que este bullet es el único lugar donde el tema aparece proyectado: darle su medio minuto y las tres prácticas (sitios confiables, perfil de navegador separado, revisión humana).\n\nCerrar con el puente a la segunda clase, que arranca con Claude Cowork instalado, ya sobre carpetas y archivos. Después de esta lámina queda la placa de la misión, así que no cerrar del todo acá: el Q&A va después de la placa, no antes. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "La mission"
+    },
+    {
+      "template": "image-full",
+      "title": "La misión, parte 1: Faro en el chat",
+      "section": "La mission",
+      "lead": "Ahora vamos a la misión.",
+      "image": {
+        "src": "images/s7-1-1-placa-mision-parte-1.svg",
+        "alt": "Placa divisoria: La misión, parte 1 — Faro en el chat"
+      },
+      "notes": "Placa divisoria, sin contenido que leer. Es el pie para pasar a mostrar la misión en vivo, así que la lámina se queda en el cartel y el desarrollo va en voz.\n\nPresentar a Faro en dos frases: el analista de mercado virtual de Atlas, que sigue la actualidad del sector, consolida un reporte semanal y deja el borrador de correo listo antes de la reunión del lunes. Decir con qué se resuelve la parte 1: solo con el chat, la búsqueda, los Connectors y Schedule, sin instalar nada. Aclarar que la parte 2 se resuelve en la segunda clase, ya en Cowork, y que no depende de esta.\n\nDesde acá se pasa a mostrar la consigna, y el Q&A va después. Tiempo objetivo: ~2 min."
+    }
+  ],
+  "_source": {
+    "file": "final.md",
+    "sha256": "c874c5e8e93ecddd5350846887c96bd8a3c6ea2e8521a34eee2355ae23d3dfcf",
+    "bytes": 75177
+  }
+}

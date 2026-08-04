@@ -1,0 +1,38 @@
+<!-- talksmith-ascii-sha256: 16c5336b693793949eeae5b897cca2621282a8b4d5065567b00f112a3d69ebde -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 361" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>Cuándo sirve Claude in Chrome</title>
+<desc>El denominador común de los casos de uso es un sitio sin exportación ni API más una tarea repetitiva sobre esa misma pantalla.</desc>
+<defs>
+<marker id="dk" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#3B3535"/></marker>
+<marker id="gy" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0,0 L10,4.5 L0,9 Z" fill="#6A737D"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="361" fill="#ffffff"/>
+
+<text x="340" y="34" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">EL PATRÓN COMÚN DE LOS CUATRO CASOS</text>
+
+<rect x="20" y="58" width="300" height="54" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="170" y="82" text-anchor="middle">un sitio web SIN exportar</text>
+<text x="170" y="102" text-anchor="middle">ni integración (sin API)</text>
+
+<path d="M170,112 L170,132" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+
+<rect x="20" y="136" width="300" height="56" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="170" y="161" text-anchor="middle">una tarea repetitiva sobre</text>
+<text x="170" y="181" text-anchor="middle">esa misma pantalla</text>
+
+<path d="M320,164 L376,164" fill="none" stroke="#6A737D" stroke-width="1.6" marker-end="url(#gy)"/>
+<rect x="380" y="136" width="280" height="56" rx="5" fill="#F2EEEE"/>
+<text x="520" y="160" text-anchor="middle" font-size="12" fill="#6A737D">a mano: pestaña por pestaña,</text>
+<text x="520" y="180" text-anchor="middle" font-size="12" fill="#6A737D">campo por campo, todas las semanas</text>
+
+<path d="M170,192 L170,212" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+
+<rect x="20" y="216" width="300" height="58" rx="5" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="170" y="242" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">CLAUDE IN CHROME opera el</text>
+<text x="170" y="262" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">navegador ya abierto</text>
+
+<path d="M170,274 L170,294" fill="none" stroke="#3B3535" stroke-width="1.8" marker-end="url(#dk)"/>
+
+<rect x="20" y="298" width="640" height="40" rx="6" fill="#F9D2D6"/>
+<text x="340" y="323" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">el dato queda cargado / la tabla queda armada</text>
+</svg>

@@ -11,7 +11,7 @@
   tags: [remove-editorial-reference]
 - talk: introduccion
   date: 2026-08-03
-  location: Slide "1. Inteligencia Artificial Generativa Aplicada en Ingeniería de Software"
-  feedback: "La diapositiva 'Inteligencia Artificial Generativa Aplicada en Ingeniería de Software — Clase 1: Fundamentos, modelos y ecosistema actual' necesita un estilo mucho mejor, quote o similar."
+  location: Slide "1. Inteligencia General Generativa"
+  feedback: "La diapositiva 'Inteligencia General Generativa — Clase 1: Fundamentos, modelos y ecosistema actual' necesita un estilo mucho mejor, quote o similar."
   resolution: Se cambió la diapositiva de divider a statement para separar el título principal del subtítulo de clase, sin tratarlo como una cita.
   tags: [template-selection, statement-slide]

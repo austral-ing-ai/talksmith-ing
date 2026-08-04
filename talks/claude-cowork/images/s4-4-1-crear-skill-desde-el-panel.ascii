@@ -1,0 +1,33 @@
+     CREAR UNA SKILL EN COWORK
+
+ Configuracion > Habilidades > AGREGAR
+ +-------------------+---------------------+
+ | Crear con Claude  | Escribir las        |  crear
+ | (ida y vuelta de  | instrucciones en    |
+ |  chat)            | la UI               |
+ +-------------------+---------------------+
+ | Grabar tu pantalla:                     |  crear
+ | hacés la tarea y la narrás              |
+ +-----------------------------------------+
+ | Subir una habilidad (ZIP):              |  importar
+ | importa una Skill ya existente          |
+ +-----------------------------------------+
+        \              |              /
+         v             v             v
+   +====================================+
+   |   GUARDAR / HABILITAR              |  <== la trampa
+   |   (lista de Habilidades)           |
+   +====================================+
+                   |
+                   v
+          +-----------------+
+          |  SKILL ACTIVA   |
+          +-----------------+
+
+   frenar en la compuerta = la Skill "no funciona"
+
+<!-- ascii-note:
+intent: mostrar las CUATRO entradas del menú Agregar del panel Habilidades y separarlas por lo que hacen. Tres CREAN una Skill nueva (Crear con Claude, en un ida y vuelta de chat; escribir las instrucciones directo en la UI; grabar la pantalla haciendo la tarea y narrándola) y una IMPORTA una ya existente (subir un ZIP). Las cuatro desembocan en la misma compuerta: guardar y habilitar la Skill en la lista.
+emphasize: la compuerta "GUARDAR / HABILITAR" como cuello de botella (caja de doble línea, marcada "la trampa") y la leyenda inferior; el corte entre las tres entradas marcadas "crear" y la marcada "importar", que es la distinción que la lámina enseña; las flechas que convergen en la compuerta desde el bloque de la UI.
+labels: bloque UI = menú Agregar, con las cuatro entradas y su marca al costado (crear / crear / crear / importar); compuerta = guardar/habilitar en la lista de Habilidades; salida = Skill activa.
+-->

@@ -1,0 +1,674 @@
+{
+  "deck": {
+    "title": "Agentes Inteligentes",
+    "lang": "es",
+    "institution": "Master in Management (MiM), IAE Business School",
+    "class": "Claude Cowork",
+    "presenter": "Paulo Veiga y Marco Sánchez Sorondo",
+    "date": "Julio 2026",
+    "logo": null,
+    "sections": [
+      "Claude Cowork",
+      "Knowledge & Output",
+      "Projects",
+      "Skills",
+      "Subagentes",
+      "Conclusions",
+      "La misión · parte 2"
+    ]
+  },
+  "slides": [
+    {
+      "template": "section-agenda",
+      "title": "Claude Cowork"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Claude Cowork",
+      "title": "Cowork, de propósito general",
+      "cards": [
+        {
+          "label": "Cowork",
+          "body": "Claude instalado en la computadora, trabajando sobre las carpetas y archivos del usuario."
+        },
+        {
+          "label": "La herramienta de propósito general del knowledge worker",
+          "body": "El «lenguaje de programación» es el español."
+        },
+        {
+          "label": "«El nuevo Excel»",
+          "body": "Hay analistas que la llaman así: la habilidad base del trabajo de oficina para los próximos años (encuadre de la industria, no de Anthropic)."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "quote",
+          "position": "bottom",
+          "label": "Anthropic",
+          "body": "Claude Code para el resto de tu trabajo."
+        }
+      ],
+      "notes": "El beat de \"¿y a mí por qué me importa?\". Cowork es Claude instalado en la computadora, con acceso a las carpetas y archivos del usuario; eso habilita una forma de trabajar distinta de la del chat. En la clase anterior la audiencia extendió un chat; esta slide anuncia otra categoría de herramienta. Tono motivacional y de alto nivel; la mecánica viene después.\n\nEl gancho de la analogía del Excel va acá, dicho con cuidado. Durante unas cuatro décadas Excel fue la habilidad base del trabajo de oficina, la herramienta de propósito general que se usaba sin escribir código. Varios analistas sostienen que las herramientas agénticas van camino a ese mismo lugar, Claude Code para quien programa y Cowork para quien no. Atribuirlo cada vez que se dice: \"hay quien lo llama el nuevo Excel\" es encuadre de analistas y de la industria, NO de Anthropic.\n\nLo que sí es de Anthropic, y conviene citarlo como su framing propio, es \"Claude Code para el resto de tu trabajo\": que cualquier knowledge worker sienta con Cowork lo que los ingenieros ya sienten con Claude Code. Cowork generaliza algo que ya funcionó primero con developers.\n\nAterrizarlo en la audiencia: son alumnos de management y la mayoría no programa; por eso Cowork les sirve. Después de este beat viene la mecánica, cómo se delega. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "value-columns",
+      "section": "Claude Cowork",
+      "title": "De chatear a delegar",
+      "lead": "Lo que cambia ahora es el rol: delegar. ¿Qué delegamos?",
+      "columns": [
+        {
+          "header": "",
+          "cells": [
+            "La forma de trabajo",
+            "Los pasos",
+            "La salida",
+            "El rol humano"
+          ]
+        },
+        {
+          "header": "Chatear",
+          "cells": [
+            "Un mensaje a la vez",
+            "Los hace la persona",
+            "Texto en la ventana",
+            "Hacer cada paso intermedio"
+          ]
+        },
+        {
+          "header": "Delegar a un agente",
+          "cells": [
+            "Se describe un resultado",
+            "El agente planifica y ejecuta",
+            "Archivos en el disco",
+            "Revisar el plan y corregir el rumbo"
+          ]
+        }
+      ],
+      "image": {
+        "src": "images/s1-2-1-chat-vs-agente.svg",
+        "alt": "Chat contra agente: pedir pasos de a uno contra delegar un resultado completo"
+      },
+      "layout": "image-left",
+      "notes": "El concepto-ancla de la charla. En la clase anterior, los conectores y Schedule extendieron qué puede hacer el chat; el agente cambia tu rol: en vez de pedir un paso intermedio, se describe un resultado completo que el agente planifica y ejecuta sobre archivos reales mientras vos supervisás. La lámina deja abierta la pregunta \"¿qué delegamos?\"; contestarla con la tabla y con un ejemplo concreto de ellos, el informe mensual del equipo entero. Pedir un dato suelto sigue siendo chat. Si se llevan una sola idea, que sea esta: el valor está en aprender a delegar un resultado y guiar el proceso. Usar la tabla para hacerlo concreto: la salida son archivos en el disco, no texto en una ventana. Anticipar la misión: vamos a \"contratar\" a Faro y entrenarlo una vez para que después trabaje solo. Cerrar citando a Anthropic: \"menos una sesión de chat, más asignarle tareas a un colega\". Tiempo objetivo: ~4 min."
+    },
+    {
+      "template": "content-image",
+      "section": "Claude Cowork",
+      "title": "El mapa: piezas que se apilan",
+      "lead": "Idea clave: cada bloque resuelve un problema conocido y se apila sobre el anterior; cada tarea usa solo los que necesita.",
+      "image": {
+        "src": "images/s1-3-1-mapa-piezas-apiladas.svg",
+        "alt": "El mapa de piezas que se apilan, del chat a los subagentes, con el marcador de dónde estamos"
+      },
+      "layout": "image-top",
+      "notes": "El mapa del arco completo, que empieza antes de esta clase: la base es el chat que la audiencia ya usa. La lámina es el diagrama y una línea de lead destacada, así que todo lo demás va hablado. Esa línea es la moraleja del mapa y conviene leerla en voz alta apenas aparece la lámina, antes de recorrer los bloques. La lectura en voz alta es bloque por bloque, cada uno con su frase-problema al lado. La mitad de abajo es la clase anterior y la de arriba lo que queda por recorrer, y ese corte conviene nombrarlo de entrada. De abajo hacia arriba, los tres que trajimos de la clase anterior: el chat respondía solo de memoria, los conectores traen información real y actúan, Schedule hace que corra solo. Un repaso de una línea por bloque alcanza; no volver a enseñarlos. Señalar \"estamos acá\": Cowork, donde la IA empieza a trabajar sobre carpetas y archivos reales. Los cinco de arriba son el roadmap de esta clase y cada uno tiene su sección: archivos `.md` para que la IA entienda el material (sección 2), Projects para agrupar el trabajo de un tema e Instrucciones para no repetir el contexto (sección 3), Skills para no repetir la tarea (sección 4) y Subagentes para delegar en paralelo (sección 5). Cuidado con la metáfora: los bloques se apilan y se combinan, cada tarea usa solo los que necesita. Decir que pueden volver a esta slide entre secciones para ubicarse. Al final, la pila entera es Faro. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "image-full",
+      "section": "Claude Cowork",
+      "title": "Dónde se empieza en Cowork",
+      "image": {
+        "src": "images/cowork.png",
+        "alt": "La ventana de Claude Desktop con `+ New`, el toggle Chat / Cowork y el selector Project or folder señalados en violeta"
+      },
+      "notes": "Primer contacto con la app. La lámina es la captura sola, así que todo el recorrido va hablado, señalando en pantalla. Los tres círculos marcan el orden en que se usa la interfaz. Primero **`+ New`**, arriba en la barra lateral, que abre la sesión. Después el toggle **`Chat` / `Cowork`** del compositor, que elige el modo de trabajo. Y tercero **`Project or folder`**, que concede la carpeta o el Project sobre el que Cowork va a trabajar. Ese tercer paso es el que engancha con todo lo anterior, porque es el momento en que Claude pasa a trabajar sobre archivos reales.\n\nEl cuarto elemento de esa fila es el **selector de modo**, donde se decide si el agente pide permiso en cada acción o corre solo, y ahí conviene ser prudente. Decir el beat de control sin comprometerse con el nombre del modo ni con cuál viene por defecto: la app viene cambiando y en esta captura dice `Auto`. Confirmar contra la app el día de la clase antes de decir nada más preciso.\n\nLa barra lateral tiene otras entradas que esta clase no cubre (Artifacts, Scheduled, Dispatch); mencionarlas al pasar solo si preguntan.\n\nOpcional, si sobra tiempo o para el workshop: la carpeta `missions/CoWork/escritorio-del-pasante/` (Misión 0) sirve para mostrar esto vivo. Conceder la carpeta, pedir \"¿qué hay acá y en qué estado está?\" y un ordenamiento con renombres, aprobando cada acción (ejercicios 1 y 2 de intro-escritorio-pasante.md; 3 a 5 quedan para el workshop). La carpeta es regenerable por script. Fuera del presupuesto de tiempo de la lámina. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Knowledge & Output"
+    },
+    {
+      "template": "icon-list",
+      "section": "Knowledge & Output",
+      "title": "Qué lee el agente en la carpeta",
+      "rows": [
+        {
+          "label": "Lee y escribe en la carpeta",
+          "body": "Delegar un resultado significa que el agente trabaja sobre la carpeta: lee el material que hay ahí y escribe ahí mismo sus entregables y sus notas."
+        },
+        {
+          "label": "Conocimiento e instrucciones",
+          "body": "Lo que hay en la carpeta es, casi siempre, conocimiento e instrucciones: notas, material de referencia, cómo se hace acá cada tarea."
+        },
+        {
+          "label": "Un formato que lea la máquina",
+          "body": "Ese material necesita un formato pensado para que lo lea la máquina. Las apps de notas están hechas para lectura humana."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "position": "bottom",
+          "label": "Nota",
+          "body": "El «LLM wiki» de Andrej Karpathy guarda el conocimiento propio en archivos .md estructurados que el modelo consulta directo. https://www.mindstudio.ai/blog/andrej-karpathy-llm-wiki-knowledge-base-claude-code"
+        }
+      ],
+      "notes": "La bisagra entre el cambio de rol y la mecánica. La audiencia ya sabe que delega un resultado; falta decir sobre qué trabaja el agente mientras lo hace. La respuesta es la carpeta, y lo que hay en una carpeta de trabajo casi nunca son datos sueltos: son notas, material de referencia y procedimientos, o sea conocimiento e instrucciones. Ese es el punto que justifica las tres láminas que siguen, así que conviene decirlo despacio.\n\nInsistir en que la carpeta se usa en las dos direcciones. El agente lee lo que hay adentro para entender el trabajo, y también deja ahí lo que produce: el borrador, el informe consolidado, las notas que va tomando en el camino. La carpeta es el material de entrada y el lugar donde aparece la entrega, así que conviene elegirla pensando en las dos cosas.\n\nDe ahí sale la pregunta del formato. Un `.docx` está hecho para que lo lea una persona y el agente lo atraviesa perdiendo estructura por el camino. El `.md` es texto plano con marcas simples, que es lo que el modelo lee mejor.\n\nLa nota al pie de la lámina deja el encuadre que a esta audiencia le va a sonar, el \"LLM wiki\" de Karpathy: el conocimiento propio en archivos `.md` estructurados que el modelo consulta directo, sin base de datos vectorial ni embeddings de por medio. Nombrarla al pasar y no detenerse ahí; el link está proyectado para quien quiera el detalle después. Atribuirla bien si alguien pregunta, porque la propuesta es de él y el artículo que la desarrolla es del equipo de MindStudio. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "content-image",
+      "section": "Knowledge & Output",
+      "title": "Qué es un .md: el texto y lo que se ve",
+      "lead": "Un .md (Markdown) = texto plano + unas pocas marcas de estructura: # para títulos, - para listas, **negrita**, | para tablas.",
+      "facts": [
+        {
+          "body": "Se escribe y se lee con cualquier editor de texto, en cualquier computadora, sin formato propietario. Y la IA lo lee nativo: está entrenada para entender esas marcas."
+        },
+        {
+          "label": "Metadata (header YAML)",
+          "body": "Puede llevar arriba una metadata que declara qué es el archivo y cuándo usarlo. Vuelve con las Skills (sección 4)."
+        }
+      ],
+      "image": {
+        "src": "images/s2-2-1-md-texto-vs-render.svg",
+        "alt": "El mismo archivo .md dos veces: a la izquierda el texto plano como se escribe, a la derecha ya formateado"
+      },
+      "notes": "La sintaxis, después del porqué de la lámina anterior. La lámina contesta las dos preguntas de una: qué es un `.md` y qué pasa cuando se abre. El diagrama muestra el mismo archivo dos veces, un informe mensual de equipo cualquiera: a la izquierda tal como se escribe, a la derecha tal como se ve.\n\nRecorrer la correspondencia de izquierda a derecha, rápido y sin detenerse en detalle fino de formato: un `#` marca el título, `##` un subtítulo, `-` una viñeta, los asteriscos la negrita y las barras verticales una tabla. La idea es que las marcas son pocas y se aprenden en minutos. Insistir en que es un solo archivo, no dos: nadie \"convierte\" nada, el visor interpreta las marcas.\n\nSeñalar que es texto plano, sin formato propietario: se abre con cualquier editor, en cualquier computadora, y el mismo estándar funciona entre herramientas. Por eso es portable y versionable, y por eso el modelo trabaja mejor así: cuanto menos formato opaco haya entre el contenido y el modelo, mejor. Si hay conexión, mejor en vivo: abrir el archivo en un visor de Markdown y alternar entre fuente y render.\n\nLa metadata (el header YAML entre `---`) es la etiqueta del frasco: dice qué es el archivo y cuándo usarlo. La `description` de una Skill cumple exactamente esa función, con activación semántica y no por palabra clave; se retoma en la sección 4. La próxima slide baja todo esto a la práctica: en qué formato conviene trabajar. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Knowledge & Output",
+      "title": "Iterar en .md, exportar al final",
+      "lead": "Idea clave: con la IA nada sale bien a la primera. El trabajo son muchas vueltas sobre el mismo archivo, y el .md es el formato donde esa vuelta sale barata.",
+      "cards": [
+        {
+          "label": "Cada vuelta es un pedido chico",
+          "body": "Sobre el archivo que ya existe: «sumá la región Sur», «acortá el resumen a cinco líneas», «poné la tabla antes del texto»."
+        },
+        {
+          "label": "En .md nada se rompe",
+          "body": "La IA reescribe el archivo entero sin romper nada, porque ve la estructura directa. En .docx/.xlsx cada vuelta atraviesa capas de formato y se degrada."
+        },
+        {
+          "label": "Regla de bolsillo",
+          "body": "Se itera en .md y se entrega en el formato que pida el destinatario."
+        },
+        {
+          "label": "El entregable, una sola vez",
+          "body": "Se genera al final: .docx, PDF o slides salen de un único pedido cuando el trabajo ya está."
+        }
+      ],
+      "image": {
+        "src": "images/s2-3-1-iteracion-en-md.svg",
+        "alt": "Dónde vive la iteración: una entrada, muchas vueltas sobre los archivos .md, una entrega al final"
+      },
+      "notes": "La lámina de práctica de la sección, y el hábito concreto que se llevan. El beat que la sostiene es la iteración, no el trabajo en general: **con la IA nada sale bien a la primera**, y eso no es un defecto, es el modo de uso. Se pide, se lee lo que salió, se corrige, se vuelve a pedir. Decirlo de entrada y sin vergüenza, porque el que espera el resultado perfecto en el primer prompt se frustra y abandona.\n\nDe ahí sale la pregunta útil: si el trabajo son veinte vueltas, ¿sobre qué archivo conviene darlas? Esa es la lámina. Recorrer el diagrama en tres tiempos, cargando el peso en el del medio: el material entra **una vez** (primer pedido, \"convertime esto a `.md`\"), las vueltas pasan **todas** adentro de la caja de los `.md` —ahí está el bucle del dibujo— y el entregable sale **una vez**, al final.\n\nLos pedidos de ejemplo del diagrama conviene decirlos en voz alta porque son el tipo de vuelta real: \"sumá la región Sur\", \"acortá el resumen a cinco líneas\", \"poné la tabla antes del texto\". Ninguno es un pedido grande; el trabajo se construye acumulando pedidos chicos sobre el mismo archivo.\n\nEl porqué técnico, en una frase: en texto plano la IA ve la estructura directa y reescribe el archivo entero sin romper nada; en `.docx` o `.xlsx` cada vuelta atraviesa capas de formato que agregan ruido y errores, y a la quinta vuelta el documento está sucio. La analogía que cierra: el `.md` es la mesa de trabajo y el `.docx`/PDF es la vitrina. Nadie construye dentro de la vitrina.\n\nAterrizarlo con el ejemplo de la sección: el informe mensual vive como `.md` en el Project mientras el trabajo sigue abierto, y el PDF que recibe el jefe sale de un único pedido al final. Aplica igual a lo que el agente recuerda: Instrucciones y memoria del Project también son texto plano. Este mecanismo se da por enseñado más adelante, cuando la placa de la misión (6.1) nombre su entregable. Tiempo objetivo: ~4 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Projects"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Projects",
+      "title": "Qué es un Project",
+      "cards": [
+        {
+          "label": "Project",
+          "body": "Espacio de trabajo autocontenido: carpeta propia + memoria + instrucciones."
+        },
+        {
+          "label": "Un ejemplo de oficina",
+          "body": "«Informe mensual del equipo», apuntado a la carpeta Documentos/Informe-Mensual."
+        },
+        {
+          "label": "Tres capas persistentes",
+          "body": "Instrucciones · Knowledge base · Chats."
+        },
+        {
+          "label": "Los chats no comparten contexto",
+          "body": "Entre sí no comparten nada; solo la base de conocimiento."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "position": "bottom",
+          "label": "Nota",
+          "body": "Cowork trabaja la carpeta concedida con herramientas de archivo: abre, busca y escribe los archivos que la tarea necesita, en lugar de traer el contenido entero a la conversación."
+        }
+      ],
+      "notes": "El Project es el contenedor de todo lo demás: Instrucciones, archivos, memoria. Todo queda organizado y reutilizable: las Instrucciones valen para todo el Project, la memoria recuerda preferencias, los archivos viven en una carpeta concreta del disco. En el ejemplo, el Project \"Informe mensual del equipo\" apunta a `Documentos/Informe-Mensual`. Un punto práctico que sorprende: los chats no comparten contexto entre sí, solo las Instrucciones y la base de conocimiento. La carpeta se concede con el explorador de archivos del sistema, garantía de seguridad y límite a la vez, y la slide siguiente lo muestra en pantalla, así que acá solo anticiparlo.\n\nLa nota al pie marca la diferencia con la lámina de acá a dos. Acá se habla de la carpeta concedida, donde el agente abre, busca y escribe archivos con sus herramientas según lo que pida la tarea, sin volcar la carpeta en la conversación. La 3.3 trata el otro caso, la base de conocimiento del Project, donde la herramienta elige sola entre leer todo y buscar fragmentos. Si alguien pregunta cuánto material aguanta una carpeta grande, mandarlo a esa lámina. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "image-full",
+      "section": "Projects",
+      "title": "Conceder una carpeta y ver el contexto",
+      "image": {
+        "src": "images/context.png",
+        "alt": "Panel de contexto del Project"
+      },
+      "notes": "Slide de apoyo visual, con una sola captura: el panel de contexto del Project. El explorador de archivos ya no se proyecta, así que ese paso va hablado — contar que la carpeta se concede con el explorador del sistema y que Cowork no ve nada fuera de ella. Después señalar en la captura las tres cosas que conviven: Instrucciones, base de conocimiento y la carpeta concedida. Mensaje de seguridad: Cowork solo ve lo que le concedés, así que la carpeta ES el control de privacidad, nunca datos sensibles. De ahí la buena práctica que conviene decir en voz alta: usar una carpeta dedicada al trabajo del Project y revisar antes que no tenga adentro nada confidencial. El Project del informe mensual trabaja sobre `Documentos/Informe-Mensual`, nada más. Tiempo objetivo: ~1,5 min."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Projects",
+      "title": "¿Los lee todos?",
+      "cards": [
+        {
+          "label": "Pocos archivos",
+          "body": "Claude los lee completos, todos, cada vez que llega una pregunta. Máxima precisión, a costa de ocupar la ventana de contexto entera en cada vuelta."
+        },
+        {
+          "label": "Muchos archivos",
+          "body": "Claude cambia solo de estrategia: en lugar de leer todo, busca y trae los fragmentos que hacen falta. Multiplica por 10 la capacidad del Project, y la respuesta pasa a apoyarse en esos fragmentos."
+        },
+        {
+          "label": "Trabajar sobre los archivos",
+          "body": "Consultarlos no alcanza. Claude abre, modifica y guarda dentro de la carpeta concedida, como lo haría una persona."
+        },
+        {
+          "label": "Regla · Subir lo que importa",
+          "body": "El relleno «por las dudas» empeora las respuestas."
+        },
+        {
+          "label": "Regla · Nombres de archivo claros",
+          "body": "Un nombre que no dice qué hay adentro tampoco le sirve a la IA."
+        },
+        {
+          "label": "Regla · PDFs escaneados",
+          "body": "Sin capa de texto son imágenes vacías. Conviene convertirlos antes."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "position": "top",
+          "body": "Cuando se le dan archivos a la IA, ¿los lee todos? Dos formas de trabajar, y cuál conviene en cada caso."
+        }
+      ],
+      "notes": "La lámina contesta la pregunta que aparece apenas alguien sube su primera carpeta. La analogía que conviene usar: es la diferencia entre un colega que leyó todo el expediente antes de la reunión y uno que sabe exactamente en qué carpeta buscar. El primero es más preciso pero no escala; el segundo escala pero puede abrir el cajón equivocado. La herramienta elige sola cuál de los dos modos usar según cuánto material haya, sin que nadie configure nada, y ahí está lo accionable: no se elige el modo, se elige qué material entra.\n\nEnganchar con la lámina 2.1, que ya explicó qué hay en una carpeta de trabajo (conocimiento e instrucciones) y por qué conviene el `.md`. Esta lámina agrega el otro lado: qué hace la herramienta con ese material según cuánto haya. Una frase alcanza para hacer el puente.\n\nEl matiz de fuentes, para tenerlo a mano si alguien pregunta. La documentación de Anthropic sostiene que la calidad se mantiene cuando entra el modo de búsqueda (\"Response accuracy remains consistent with in-context processing\"). La intuición práctica de la casa es otra: cuando la respuesta se arma con los fragmentos que trajo una búsqueda, aparece un paso del que antes no se dependía, y ese paso puede traer lo que no era. La lámina no toma partido a propósito. Si sale el tema, decir las dos cosas y quedarse ahí.\n\nSobre los PDFs escaneados: la regla vale sobre todo para el material que se carga como base de conocimiento del Project. En Cowork el agente tiene herramientas y puede abrir un PDF y trabajarlo igual, así que el consejo es una buena práctica de carga, no un límite duro de la herramienta.\n\nCierre sugerido, para decir en voz alta: \"La calidad de lo que sale depende menos del modelo que de cómo ordenaste lo que entra.\" Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Projects",
+      "title": "Instrucciones: el contrato de trabajo",
+      "cards": [
+        {
+          "label": "El contrato de trabajo",
+          "body": "Reglas en lenguaje natural que aplican a todo el Project."
+        },
+        {
+          "label": "Se escriben una vez",
+          "body": "El usuario las escribe una vez y valen para todos los chats."
+        },
+        {
+          "label": "Dónde viven",
+          "body": "El panel de contexto del Project, en la interfaz. No es un archivo que se edite a mano."
+        },
+        {
+          "label": "Cortas y claras",
+          "body": "Conviene que lo sean: es el lugar de las reglas no negociables."
+        }
+      ],
+      "image": {
+        "src": "images/instructions.png",
+        "alt": "Panel de contexto de un Project en la app de escritorio, con Instructions rodeado en violeta y debajo Memory, Context con la carpeta concedida y Scheduled"
+      },
+      "notes": "En lugar de re-explicarle el contexto a Claude cada vez, el usuario lo escribe una vez en las Instrucciones y queda fijo. Dónde viven: en el panel de contexto del Project (GUI), no un archivo que se edita a mano. La captura lo muestra, con Instructions rodeado arriba y debajo Memory, Context con la carpeta concedida y Scheduled.\n\nAprovechar la captura para cerrar las dos láminas anteriores. En esa misma pantalla están las tres capas que se enumeraron en 3.1 y la carpeta concedida de 3.2, así que sirve para que la audiencia ubique dónde vive cada cosa antes de entrar al ejemplo.\n\nUn detalle de forma, para decir al pasar: esta captura tiene la app en inglés (\"Instructions\") y la de la Sección 4 en español (\"Habilidades\"). Conviene avisarlo o unificar el idioma de la app antes de sacar capturas nuevas.\n\nLa lámina que sigue muestra unas Instrucciones completas. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "code-example",
+      "section": "Projects",
+      "title": "Un ejemplo de Instrucciones",
+      "language": "text",
+      "code": "Sos el asistente de informes del equipo comercial.\nPreparás el informe mensual para colegas NO técnicos (incluido el jefe),\nque se lee en 5 minutos antes de la reunión de cierre de mes.\n\n· Regiones que cubrís: Norte, Centro y Sur.\n· Escribís en español, claro y breve, sin jerga.\n  Si usás un término técnico, lo explicás en una línea.\n· Trabajás con las notas que están en la carpeta notas/.\n· REGLA DE ORO: toda cifra lleva su fuente y su fecha.\n  NUNCA publicás un número sin decir de dónde salió.\n  Si el dato no está en las notas, lo aclarás en el informe.",
+      "notes": "Recorrer el ejemplo de arriba abajo: quién es el agente, para quién escribe, con qué material trabaja. No hace falta leerlo palabra por palabra, alcanza con señalar las cuatro zonas.\n\nDetenerse en la regla de oro, que toda cifra lleve su fuente y su fecha. Ese es el tipo de restricción dura que conviene fijar acá, la que el agente nunca puede saltear aunque el pedido del momento empuje para otro lado. Cada equipo tiene la suya, y en áreas reguladas suele ser un disclaimer obligatorio al pie. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Skills"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Skills",
+      "title": "Qué es una Skill",
+      "cards": [
+        {
+          "label": "Es un instructivo escrito",
+          "body": "Una tarea explicada en pasos, guardada en un archivo. Se escribe en español, no es código."
+        },
+        {
+          "label": "Se enseña una vez",
+          "body": "Después la tarea se pide y sale siempre igual: mismos pasos, mismo formato de salida."
+        },
+        {
+          "label": "Un trabajo por Skill",
+          "body": "Si al describirla aparece un «y además», son dos Skills."
+        },
+        {
+          "label": "Queda disponible",
+          "body": "Vive en la lista de Habilidades y está a mano en cualquier chat, no dentro de uno."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "quote",
+          "position": "top",
+          "body": "Todo lo que le explicás a Claude más de una vez es una Skill que deberías escribir una vez."
+        },
+        {
+          "kind": "example",
+          "position": "bottom",
+          "label": "Ejemplo del que vamos a hablar toda la sección",
+          "body": "La Skill informe-mensual lee la carpeta notas/ y devuelve el informe del mes con el formato de siempre."
+        }
+      ],
+      "notes": "Arranca el bloque avanzado, partido por tema: esta sección cubre Skills y la siguiente, Subagentes. Abrir con la frase, que es el resumen de todo: lo que le explicás a Claude más de una vez conviene escribirlo una sola vez.\n\nLas cuatro tarjetas se recorren de a una, sin apurarse, porque son la definición completa. **Es un instructivo escrito**: una tarea explicada en pasos y guardada en un archivo, en español y sin una línea de código — bajar la barrera acá, porque la palabra \"Skill\" suena a programación y no lo es. **Se enseña una vez**: la primera vez cuesta escribirla, todas las siguientes la tarea sale igual, con los mismos pasos y el mismo formato de salida; ese es el retorno. **Un trabajo por Skill**: el criterio práctico para saber si está bien recortada — si al describirla aparece un \"y además\", son dos Skills, no una. **Queda disponible**: vive en la lista de Habilidades, no adentro de un chat, así que está a mano la próxima vez sin volver a buscarla.\n\nEl ejemplo es el hilo del resto de la sección, así que conviene presentarlo bien acá y no volver a explicarlo después: `informe-mensual` lee todos los archivos crudos de `notas/` (uno por región), consolida por región y devuelve el informe con el formato de siempre. Convierte varios archivos desordenados en un documento prolijo, sin que nadie tenga que repetir las indicaciones.\n\nLo que esta lámina **no** contesta, a propósito, es cómo se dispara una Skill; eso es la lámina que sigue. Después vienen los tres caminos de creación: el panel de Habilidades, el prompt de un chat y la grabación de pantalla. Tiempo objetivo: ~4 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Skills",
+      "title": "Cómo se usa una Skill",
+      "lead": "Una vez guardada y habilitada, una Skill se usa de dos formas.",
+      "cards": [
+        {
+          "label": "Explícita",
+          "body": "Se tipea / en el chat y se elige la Skill como comando. Ejemplo: /informe-mensual."
+        },
+        {
+          "label": "Automática",
+          "body": "Se pide la tarea en español y Claude reconoce que el pedido coincide con la descripción de la Skill, y la carga solo. Ejemplo: «armame el informe de mayo con lo que hay en notas/»."
+        }
+      ],
+      "image": {
+        "src": "images/s4-2-1-dos-formas-de-usar-skill.svg",
+        "alt": "Las dos formas de usar una Skill: explícita con barra y automática por descripción, convergiendo en la ejecución"
+      },
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "position": "bottom",
+          "body": "Por eso la descripción de una Skill importa tanto: es lo que decide si se dispara sin que nadie la nombre."
+        }
+      ],
+      "notes": "La lámina que faltaba entre \"qué es una Skill\" y \"cómo se crea\": una Skill guardada no se usa de una sola manera. Decirlo con el ejemplo que ya conocen, `informe-mensual`.\n\nEl camino explícito es el que se demuestra más rápido: se tipea `/` en el chat, aparece la lista y se elige la Skill como si fuera un comando. Es el modo a usar cuando uno quiere estar seguro de que corre esa Skill y no otra. Vale el mismo tip de siempre: tipear `/` es la forma de ver qué hay disponible, y en Cowork la lista es corta.\n\nEl camino automático es el que más sorprende: no hace falta nombrarla. Se pide la tarea en español, \"armame el informe de mayo con lo que hay en `notas/`\", y Claude carga la Skill solo porque el pedido se parece a lo que dice su descripción. De ahí sale el consejo práctico que se llevan: al escribir una Skill, la descripción no es decoración, es el disparador. Una descripción vaga hace que la Skill nunca se active sola; una que nombra la tarea y las palabras con que la gente la pide, sí.\n\n**Nivel de certeza, para ser honestos si alguien pregunta.** El camino explícito está verificado de primera mano en la app. El mecanismo del camino automático —que la activación se decide comparando el pedido contra la `description`, de forma semántica y no por palabra clave— lo sostiene hoy el deck interno del equipo y no una fuente oficial de producto que tengamos citada. Es consistente con cómo se comporta la herramienta, pero conviene decirlo como \"así funciona en la práctica\" y no como una especificación publicada. **Pendiente de verificación** contra la documentación oficial antes de la clase.\n\nLas láminas que siguen recorren los caminos de creación; esta explica qué pasa una vez que la Skill existe. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "card-row",
+      "section": "Skills",
+      "title": "Tres formas de crear una Skill",
+      "lead": "Cuando la Skill que hace falta no existe todavía, hay tres caminos para crearla.",
+      "cards": [
+        {
+          "label": "Desde el panel",
+          "body": "Configuración → Habilidades → Agregar. Dos entradas crean una Skill nueva. «Crear con Claude» la arma en un ida y vuelta de chat y «Escribir las instrucciones» se edita directo en la interfaz. Es el camino explícito, donde se ve cada paso."
+        },
+        {
+          "label": "Desde el prompt",
+          "body": "Se abre un chat y se describe lo que se quiere. Claude pregunta por el proceso, arma la Skill y la empaqueta. Es el camino con menos fricción para quien ya está trabajando."
+        },
+        {
+          "label": "Grabando la pantalla",
+          "body": "Se hace la tarea narrándola en voz alta, Claude mira la grabación y propone la Skill. Es la barrera más baja de las tres, porque no hay nada que escribir."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "position": "bottom",
+          "label": "Los tres terminan en la misma compuerta",
+          "body": "Guardar y habilitar la Skill en la lista de Habilidades, o parece que «no funciona»."
+        }
+      ],
+      "notes": "La lámina índice de la sección. Acá se nombran los tres caminos y no se desarrollan, porque cada uno tiene su propia lámina y llega enseguida.\n\nRecorrer las tarjetas en el orden en que van a aparecer. El panel es el camino explícito, el que muestra el menú entero y sirve para ubicar dónde vive la lista de Habilidades. El prompt es el que menos interrumpe a alguien que ya está trabajando, porque la Skill se pide en el mismo chat donde estaba la tarea. La grabación es la que más baja la barrera para esta audiencia: la tarea que cada uno repite todas las semanas la tiene en los dedos y no escrita en pasos.\n\nEl cierre conviene fijarlo antes de pasar de lámina. Los tres caminos desembocan en el mismo lugar, la Skill guardada y habilitada en la lista, que es la compuerta que el diagrama de la lámina siguiente desarrolla y la razón número uno de que a alguien \"no le funcione\".\n\nTiempo objetivo: ~1,5 min."
+    },
+    {
+      "template": "image-full",
+      "section": "Skills",
+      "title": "Metodo 1: Crear desde el panel",
+      "image": {
+        "src": "images/s4-4-1-crear-skill-desde-el-panel.svg",
+        "alt": "Las cuatro entradas del menú Agregar: tres crean una Skill y una importa un ZIP, y las cuatro pasan por la compuerta de guardar y habilitar"
+      },
+      "notes": "El primero de los tres caminos que anunció la lámina índice: la creación por el panel. Con conexión, hacerlo en vivo, Configuración → Habilidades → Agregar, y nombrar las entradas del menú mientras se ven en la captura.\n\nEl corte que conviene marcar es **crear contra importar**, que es lo que el diagrama separa al costado. Tres de las cuatro entradas crean una Skill nueva: \"Crear con Claude\" abre un ida y vuelta de chat donde Claude escribe el `SKILL.md`; \"Escribir las instrucciones\" edita la habilidad directo en la UI; y \"Grabá tu pantalla\" es el camino de la grabación, que se nombra acá al pasar porque tiene lámina propia dos slides más adelante — decir solo que existe y que se entra por el mismo menú. La cuarta, \"Subir una habilidad\", **no crea nada**: importa una Skill ya hecha desde su ZIP, por ejemplo una que compartió un colega.\n\nEl diagrama desarrolla la compuerta de guardar y habilitar que la lámina índice anunció, y donde desembocan las cuatro entradas. Es el diagrama que las dos láminas siguientes retoman al cerrar, así que acá conviene contarlo entero.\n\nUn cuidado con la captura: es del 21 de julio y puede no mostrar todavía la entrada de grabación, que se desplegó después. Si el panel proyectado y el diagrama no coinciden, decirlo al pasar en vez de dejar que lo noten. La doc oficial va detrás del producto en este punto; re-mirar el panel el día de la clase, y resacar la captura si ya cambió. Tiempo objetivo: ~3 min (con demo)."
+    },
+    {
+      "template": "process",
+      "section": "Skills",
+      "title": "Metodo 2: Crear desde el prompt",
+      "steps": [
+        {
+          "label": "Se describe lo que se quiere",
+          "body": "Se abre un chat nuevo y se pide la Skill en una línea, por ejemplo «quiero armar una Skill para el informe mensual del equipo»."
+        },
+        {
+          "label": "Claude pregunta por el proceso",
+          "body": "Hay que contarlo con el detalle que necesitaría alguien capaz que nunca hizo esa tarea. También pregunta por los casos de uso concretos y por cómo se reconoce un buen resultado."
+        },
+        {
+          "label": "Se le suben los materiales",
+          "body": "En la misma conversación entran las plantillas, los ejemplos de trabajos anteriores, las guías de estilo y los archivos de datos."
+        },
+        {
+          "label": "Claude arma la Skill",
+          "body": "Escribe el SKILL.md, el archivo de instrucciones que toda Skill necesita, ordena los materiales que recibió y genera el código de las operaciones descritas. No hay ningún comando que tipear."
+        },
+        {
+          "label": "Se prueba",
+          "body": "Se le pide una tarea que la Skill debería resolver. Si se activó, aparece «Usando [nombre de la Skill]» en el razonamiento de Claude. Si algo no cierra, se le pide el ajuste a Claude y se prueba de nuevo."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "position": "bottom",
+          "label": "Antes de probar, la compuerta de siempre",
+          "body": "Guardar y habilitar en Configuración → Capacidades → Habilidades, o parece que «no funciona»."
+        }
+      ],
+      "notes": "El camino que menos se conoce y el que más le sirve a alguien que ya está trabajando, porque no pide salir del chat. Si hay conexión, conviene hacerlo en vivo con el ejemplo del deck.\n\nEl pedido inicial es corto y no hace falta que sea preciso, alcanza con nombrar la tarea. Lo que decide la calidad de la Skill es lo que viene después, cuando Claude pregunta por el proceso. La doc trae un criterio que conviene repetir tal cual desde el escenario: contalo con el detalle que necesitaría alguien capaz que nunca hizo esa tarea. El error típico es contestar en dos líneas y después quejarse de que la Skill quedó genérica.\n\nLos materiales son la otra mitad del trabajo. Una plantilla vieja, dos informes anteriores y la guía de estilo del equipo enseñan más que cualquier descripción escrita en el momento. Claude además pregunta por los casos de uso concretos y por cómo se reconoce un buen resultado, así que conviene llegar con esa respuesta pensada.\n\nLo que hace Claude por debajo se cuenta en una frase y sin abrir el capó. Escribe el `SKILL.md`, que es el archivo de instrucciones que toda Skill necesita, ordena los materiales que recibió y arma el código de las operaciones que se le describieron. Decir en voz alta que no hay ningún comando que tipear, porque alguien que vio Claude Code va a preguntar por `/skill-creator` y en Cowork esa opción no existe.\n\nCerrar en la compuerta de siempre, guardar y habilitar en Configuración → Capacidades → Habilidades, y en la prueba. La señal de que la Skill se activó es la línea \"Usando [nombre de la Skill]\" en el razonamiento, y vale la pena mostrarla porque es la respuesta visual a la pregunta de cómo saber que la está usando. Si el resultado no cierra, se le pide el ajuste a Claude en el mismo chat y se prueba otra vez; son varias vueltas y salen baratas.\n\n**Procedencia, por si alguien pregunta.** El camino conversacional lo documenta el tutorial de Anthropic; el artículo de support que sostiene el panel y la grabación no lo menciona. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Skills",
+      "title": "Metodo 3: Crear grabando una Skill",
+      "cards": [
+        {
+          "label": "Tercer camino de creación",
+          "body": "Grabar la pantalla mientras se hace la tarea y narrarla en voz alta. Claude mira la grabación y propone la Skill."
+        },
+        {
+          "label": "Dónde",
+          "body": "El botón «+» del compositor del chat, en «Record a skill»; también en Configuración → Habilidades → Agregar → «Grabá tu pantalla», la cuarta entrada del menú de la lámina 4.4."
+        },
+        {
+          "label": "Para qué sirve",
+          "body": "La tarea que uno ya hace de memoria y le costaría escribir en pasos. Es el camino con la barrera más baja de los tres."
+        },
+        {
+          "label": "Qué captura",
+          "body": "Pantalla, clicks, tipeo y voz, hasta unos 10 minutos."
+        },
+        {
+          "label": "Cuidado",
+          "body": "No tipear contraseñas ni información sensible mientras corre la grabación."
+        },
+        {
+          "label": "Disponibilidad",
+          "body": "Planes Pro, Max y Team, en Cowork en Claude para Mac."
+        }
+      ],
+      "image": {
+        "src": "images/s4-6-1-flujo-grabar-skill.svg",
+        "alt": "El flujo de cuatro pasos para grabar una Skill, hasta la compuerta de guardar"
+      },
+      "notes": "El tercero de los tres caminos. Tiene dos puertas de entrada y conviene mostrar las dos, el botón \"+\" del compositor del chat, en \"Record a skill\", y la cuarta entrada del menú Agregar que se vio en 4.4. El pitch en una frase: se hace la tarea una vez con la grabación andando y Claude escribe la Skill a partir de eso. Para esta audiencia es el camino más accesible de los tres, porque la tarea que cada uno repite todas las semanas la tiene en los dedos y no en un instructivo.\n\nRecorrer el diagrama en cuatro tiempos, rápido. Uno, se graba mientras se trabaja y se narra en voz alta qué se hace y por qué; esa narración es la mitad del valor, porque una grabación muda deja a Claude adivinando el porqué de cada click. Dos, Claude abre una tarea de Cowork y revisa la grabación. Tres, propone una Skill, que puede ser nueva o una actualización de una que ya existe. Y cuatro, vuelve la trampa del Save de la lámina anterior: la Skill propuesta hay que revisarla, editarla y guardarla habilitada. Una vez guardada es una Skill como cualquier otra, editable desde el panel de Habilidades y también desde el chat con \"Editar con Claude\".\n\nLos límites, dichos en voz alta antes de que alguien lo intente en el recreo: Pro, Max y Team; por ahora solo en Cowork en Claude para Mac; unos 10 minutos de tope, así que conviene elegir una tarea corta o partirla en dos. Y el cuidado que más importa, nada de contraseñas ni de información sensible en pantalla mientras la grabación corre, que es el mismo criterio de la lámina de cuidados del cierre, donde la carpeta concedida es el control de privacidad.\n\nSi alguien pregunta qué pasa con la grabación después (si queda guardada, si se usa para entrenar), la documentación no lo dice y la respuesta honesta es que no lo sabemos; recomendar tratarla como cualquier material sensible y no afirmar nada más. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Subagentes"
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Subagentes",
+      "title": "Subagentes: varios trabajando a la vez",
+      "cards": [
+        {
+          "label": "Subagente",
+          "body": "Asistente aislado, con contexto propio; devuelve un resumen, no la transcripción."
+        },
+        {
+          "label": "Ejemplo",
+          "body": "8 propuestas de proveedores, un subagente por propuesta: los 8 corren en paralelo y el agente principal arma la tabla comparativa final."
+        },
+        {
+          "label": "Corren por debajo",
+          "body": "En Cowork trabajan «por debajo», varios en paralelo."
+        },
+        {
+          "label": "No se configuran a mano",
+          "body": "Los coordina Claude solo, según la tarea. No hay panel de subagentes en Cowork."
+        },
+        {
+          "label": "Lo que sí está en la mano del usuario",
+          "body": "Pedir el trabajo en partes separables («compará estas 8 propuestas»), que es lo que habilita el paralelo."
+        }
+      ],
+      "image": {
+        "src": "images/s5-1-1-subagentes-fanout.svg",
+        "alt": "Un agente principal reparte el trabajo en subagentes con contexto propio y combina el resumen"
+      },
+      "notes": "Nivel avanzado: un subagente conviene cuando una sub-tarea es pesada o genera mucho texto intermedio que nadie necesita leer — corre aparte y vuelve con el resumen. No es opuesto de las Skills (se combinan); acá solo se enseña qué es. El ejemplo del fan-out: 8 propuestas de proveedores, un subagente por propuesta, corren en paralelo y el agente principal arma la tabla comparativa. Ser claro con el límite: en este caso todo pasa por debajo, lo decide Claude según la tarea, y **no hay pantalla** donde el usuario arme o edite estos subagentes. Lo accionable para la audiencia es cómo se pide el trabajo: si la tarea se puede partir en pedazos independientes, conviene decirlo así, porque es lo que habilita el paralelo. Alto nivel, sin internals. Si alguien pregunta por armarse uno propio, no contestarlo acá: es exactamente la lámina que sigue.\n\nLa transición a la lámina que sigue es la pregunta que alguien ya se está haciendo: \"¿y si yo quiero un subagente mío, con instrucciones fijas?\". Ahí va la respuesta. Tiempo objetivo: ~4 min."
+    },
+    {
+      "template": "icon-list",
+      "section": "Subagentes",
+      "title": "Armar un subagente propio",
+      "lead": "En Cowork no hay un botón de «crear subagente». Un subagente es un archivo de texto, y para que quede disponible siempre se lo empaqueta en un plugin.",
+      "rows": [
+        {
+          "label": "Es un archivo .md",
+          "body": "Arriba, un encabezado con cuatro campos: name, description, tools y model. Abajo, en prosa, las instrucciones del asistente."
+        },
+        {
+          "label": "La description es el disparador",
+          "body": "Es lo único que decide cuándo Claude lo delega. Conviene ser explícito: «usar cuando el usuario pida una revisión»."
+        },
+        {
+          "label": "Corre aparte",
+          "body": "Ventana de contexto propia, sus instrucciones, sus herramientas. Devuelve el resumen, no la transcripción."
+        },
+        {
+          "label": "Para que persista, un plugin",
+          "body": "Los archivos de una sesión de Cowork no le sobreviven. Un plugin —manifiesto plugin.json + carpeta agents/— los deja instalados y disponibles siempre, junto con las Skills y conectores que se le sumen."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "important",
+          "position": "bottom",
+          "label": "No confundir con la lámina anterior",
+          "body": "Para paralelizar, Claude lanza subagentes solo, sin que nadie configure nada. Esto es el otro caso: cuando uno quiere un asistente propio, con instrucciones fijas, disponible siempre."
+        }
+      ],
+      "notes": "La lámina que contesta la pregunta que deja abierta la anterior: \"¿y si yo quiero uno mío?\". Arrancar por la frase de arriba, que es la que ordena todo: en Cowork **no hay una pantalla de crear subagente**. Eso no significa que no se pueda; significa que la pieza es un archivo, no un formulario.\n\nRecorrer las cuatro tarjetas sin tecnicismos. **Es un archivo `.md`**: el mismo formato que vieron en la sección 2, con un encabezado corto de cuatro campos y abajo, en español, las instrucciones. **La `description` es el disparador**: exactamente la misma idea que en las Skills (4.2), y conviene decirlo así, porque es el segundo lugar donde aparece el mismo principio — el texto de la descripción es lo que hace que la pieza se active sola. **Corre aparte**: ventana propia, y devuelve el resumen; eso ya se explicó en la lámina anterior, alcanza con nombrarlo. **Para que persista, un plugin**: acá está el punto práctico, y es el que se olvida — un archivo que quedó en la sesión de ayer no está mañana, así que si el subagente vale la pena, se empaqueta.\n\nEl bloque de ejemplo no se lee palabra por palabra. Señalar tres cosas y seguir: el nombre, la línea de descripción (que es la importante) y que lo de abajo es prosa en español, no código. Si la audiencia se pone incómoda con el formato, decir en voz alta lo que corresponde: nadie tiene que escribir esto a mano, se le pide a Claude que lo escriba.\n\nLa cita al pie es la que evita el malentendido más probable, así que conviene no saltearla: **son dos cosas distintas**. Los subagentes que Claude lanza solo para paralelizar (lámina anterior) no requieren configuración ninguna. Esto de acá es querer un asistente propio con instrucciones fijas. Nadie necesita lo segundo para aprovechar lo primero.\n\nSi preguntan por Claude Code: ahí los subagentes viven sueltos en `.claude/agents/` del proyecto o `~/.claude/agents/` del usuario, sin necesidad de plugin. Es otra herramienta y queda fuera de esta clase; contestarlo en una línea y volver.\n\nNivel de la lámina: es la más técnica del deck y es opcional en el recorrido. Si el tiempo aprieta, se puede dar en un minuto quedándose solo con las dos ideas ancla (es un archivo, y para que dure va en un plugin) y dejar el resto para quien pregunte. La lámina que sigue muestra el archivo entero. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "code-example",
+      "section": "Subagentes",
+      "title": "Un subagente, por dentro",
+      "language": "markdown",
+      "code": "\n---\nname: revisor-de-informes\ndescription: Revisa un informe y marca cifras sin fuente. Usar cuando pidan una revisión.\ntools: Read, Grep, Glob\nmodel: sonnet\n\n---\n\nSos un revisor de informes. Para cada problema: nombrá la cifra,\nmostrá dónde está y proponé la corrección.",
+      "explanation": [
+        "Así se ve el archivo completo. Arriba el encabezado, abajo las instrucciones en prosa.",
+        "Nadie escribe esto a mano: se le pide a Claude que lo escriba, y se revisa que la description diga bien cuándo usarlo."
+      ],
+      "notes": "El ejemplo completo, después de las cuatro tarjetas. **No se lee palabra por palabra.** Señalar tres cosas y seguir.\n\nUno, el bloque de arriba entre las dos líneas de guiones es el encabezado, y son cuatro renglones: cómo se llama, cuándo usarlo, qué herramientas puede tocar y con qué modelo corre. Dos, el renglón de `description` es el importante, porque es el que decide cuándo Claude lo llama —el mismo principio que la `description` de una Skill en 4.2, dicho por segunda vez a propósito. Tres, todo lo de abajo es **prosa en español**, no código: son las instrucciones del asistente, escritas como se las explicarías a una persona.\n\nEl cierre es el que baja la ansiedad de la sala, y conviene decirlo mirando a la audiencia y no a la pantalla: **nadie escribe esto a mano**. Se le pide a Claude que lo escriba y uno revisa que la descripción diga bien cuándo usarlo. Lo mismo que ya vieron con \"Crear con Claude\" en la Sección 4.\n\nSi el tiempo aprieta, esta lámina es la primera candidata a saltearse: la anterior ya dejó las dos ideas ancla. Tiempo objetivo: ~1 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Conclusions"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Conclusions",
+      "title": "Lo que se llevan: cambió el rol",
+      "cards": [
+        {
+          "label": "El rol cambió",
+          "body": "Ahora se delega un resultado completo y se guía el proceso mientras corre."
+        },
+        {
+          "label": "Las piezas están al servicio de eso",
+          "body": "Los archivos .md, el Project, las Instrucciones, las Skills y los Subagentes: cada trabajo usa solo las que necesita."
+        },
+        {
+          "label": "El chat extendido sigue en pie",
+          "body": "Lo de la clase anterior se conserva y ahora se le suma la computadora."
+        },
+        {
+          "label": "La barrera de entrada está en cero",
+          "body": "Se opera en español y no hace falta escribir código."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "position": "bottom",
+          "label": "Para el lunes",
+          "body": "Elegir una tarea propia que se repite todas las semanas y armarla una sola vez, para que después corra sola."
+        }
+      ],
+      "notes": "Primera lámina del cierre y última de contenido antes de los cuidados. Se llega desde los Subagentes, la última pieza; acá se sube un escalón y se deja de hablar de piezas para hablar de qué significan juntas para el trabajo de cada uno. No re-explicar ninguna: la audiencia acaba de verlas todas.\n\nEl punto que conviene decir despacio es el primero. Antes se pedían pasos, uno por vez; ahora se delega un resultado y se guía el proceso. Las cinco piezas de la clase existen para sostener eso, y nadie necesita las cinco para empezar: con un Project y un par de archivos `.md` ya se trabaja distinto.\n\nDe ahí sale la consigna, y conviene plantearla como pregunta antes de darla: \"¿qué tarea de las que hacen todas las semanas le delegarían a un agente?\". Dejar que la piensen dos segundos y recién ahí bajar la consigna concreta: elegir esa tarea y armarla una sola vez, para que después corra sola. La misión parte 2 es el lugar para practicarlo, y la barrera de entrada es la que ya conocen desde la primera lámina, el español.\n\nSi alguien pide apoyo visual, volver un momento al mapa de la slide 1.3, que es esta misma idea dibujada como bloques apilados. No hace falta un diagrama nuevo acá.\n\nEl caveat de que lo que se arma una vez después hay que revisarlo se deja para la lámina que sigue, la de cuidados, que es la que cierra el contenido de la charla. Después de esa queda una sola lámina, la placa de la misión. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Conclusions",
+      "title": "Antes de cerrar: cuidados",
+      "cards": [
+        {
+          "label": "Toda salida es un borrador",
+          "body": "Cifras, citas y afirmaciones se verifican contra la fuente."
+        },
+        {
+          "label": "Nada de datos de clientes, financieros, PII ni bajo NDA",
+          "body": "La actividad de Cowork no queda en el registro de auditoría estándar: solo hay rastro si la organización lo configura aparte (Team/Enterprise), y por defecto no se registra nada."
+        },
+        {
+          "label": "Capas de guardarraíles",
+          "body": "Permisos de carpeta → reglas en Instrucciones → solo conectores verificados → revisión humana."
+        }
+      ],
+      "notes": "Slide de cierre responsable, breve y obligatoria: acá la audiencia tiene que estar escuchando, no leyendo. Decirlo sin vueltas: Cowork sirve para trabajo recurrente de oficina y no para datos regulados, confidenciales o de clientes. El matiz que conviene decir bien, porque es el que se van a repetir en la oficina: no es que Cowork no deje ningún rastro, es que su actividad no entra en el registro de auditoría estándar de la cuenta (la Compliance API), y el registro que sí existe (OpenTelemetry hacia el SIEM de la empresa) es de planes Team y Enterprise y solo funciona si un administrador lo configura; por defecto no se exporta nada. Traducción para ellos: en una cuenta personal, nadie va a poder reconstruir después qué hizo el agente. Recordar que toda salida es un borrador que hay que verificar, lo mismo que se dijo en la clase anterior sobre el chat: el modelo puede alucinar, el conector cita fuentes, el humano verifica. Dos cosas que no están en la lámina y sí conviene decir: guardar juntos el prompt, las entradas y las salidas es lo que vuelve reproducible el trabajo, y en el trabajo real, con datos de la empresa o de clientes, nada de esto sin aprobación del área que corresponda. Los guardarraíles se leen de afuera hacia adentro. Con esto cierra la charla; lo que sigue es la placa de la misión, que ya no agrega contenido y queda proyectada mientras se abre el Q&A. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "La misión · parte 2"
+    },
+    {
+      "template": "content+cards+image",
+      "section": "La misión · parte 2",
+      "title": "La misión, parte 2: Faro en Cowork",
+      "cards": [
+        {
+          "label": "Parte 2, en Cowork",
+          "body": "Faro baja a la computadora y trabaja sobre la carpeta real del equipo."
+        },
+        {
+          "label": "Las piezas de esta mitad",
+          "body": "Projects, Instrucciones, archivos .md, Skills y Subagentes."
+        },
+        {
+          "label": "El entregable final",
+          "body": "El tablero para el jefe: se arma en .md y se exporta al formato de entrega, con el flujo de la sección 2."
+        },
+        {
+          "label": "No hace falta haber resuelto la parte 1",
+          "body": "La parte 2 arranca del material que ya viene con la misión."
+        }
+      ],
+      "image": {
+        "src": "images/s6-1-1-mision-faro-cowork.svg",
+        "alt": "Placa de la misión: Faro en Cowork, parte 2"
+      },
+      "layout": "image-left",
+      "notes": "Placa de misión con el mismo formato que la de la parte 1 de la clase anterior, para que se lea como el cierre del arco entero. Llega después de las conclusiones, así que la charla ya cerró y esto es la consigna con la que se van. Acá ya están todas las piezas sobre la mesa. Decir qué cambia respecto de la parte 1: Faro deja de vivir en el chat y pasa a trabajar sobre la carpeta real del equipo, con su Project, sus Instrucciones, sus archivos `.md` y sus Skills. Nombrar el entregable con el que cierra la misión, el tablero que se le lleva al jefe, y decir de dónde sale: no es una pieza nueva, se arma con el flujo de la sección 2, se consolida en `.md` mientras el trabajo está abierto y recién al final se le pide a Claude el formato de entrega. Decirlo con todas las letras, porque ahora importa más que antes: **la parte 2 no exige tener resuelta la parte 1**, que quedó como tarea de la clase anterior. Arranca del material incluido en la misión, la pila de notas en crudo que dejó el pasante, así que quien no la hizo entra igual. Si alguien sí viene de la parte 1, los conectores ya autorizados se reutilizan y el arranque es más corto. Cerrar la clase mandando al material de la misión y dejar la placa proyectada durante el Q&A. Tiempo objetivo: ~2 min."
+    }
+  ],
+  "_source": {
+    "file": "final.md",
+    "sha256": "fb81561a77bc357e3efbbad8ffb9404b1887b766d7b696c4831fb8182cf9d5a1",
+    "bytes": 96891
+  }
+}

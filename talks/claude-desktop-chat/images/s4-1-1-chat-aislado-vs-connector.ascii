@@ -1,0 +1,15 @@
+   CHAT SOLO                        CHAT CON CONNECTORS
++----------------+              +----------------+
+|     CHAT       |              |     CHAT       |----> [ mail ]
+|  responde de   |              |  consulta      |----> [ calendario ]
+|  memoria de    |              |  fuentes       |----> [ documentos ]
+|  entrenamiento |              |  REALES antes  |----> [ sistemas ]
++----------------+              |  de responder  |
+   (aislado)                    +----------------+
+                                  (conectado al mundo real)
+
+<!-- ascii-note:
+intent: contrastar lado a lado el chat aislado (responde de memoria de entrenamiento) contra el chat con Connectors (consulta fuentes reales; mail, calendario, documentos, sistemas internos; antes de responder).
+emphasize: el lado derecho con las flechas hacia mail/calendario/documentos/sistemas; la etiqueta "(conectado al mundo real)" vs "(aislado)".
+labels: izquierda = CHAT SOLO (aislado, memoria de entrenamiento); derecha = CHAT CON CONNECTORS (mail, calendario, documentos, sistemas).
+-->

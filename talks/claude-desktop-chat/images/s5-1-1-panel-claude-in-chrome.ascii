@@ -1,0 +1,17 @@
+   PAGINA WEB ABIERTA          CLAUDE IN CHROME
+   (sesion ya iniciada)        (panel lateral)
++------------------------+   +--------------------+
+|                        |   |                    |
+|  formulario del CRM    |-->| lee lo que hay     |
+|  hilo de mail          |   | en la pantalla     |
+|  tablero del proveedor |   |                    |
+|                        |<--| navega, hace clic, |
+|                        |   | completa campos,   |
++------------------------+   | maneja pestanas    |
+                             +--------------------+
+
+<!-- ascii-note:
+intent: mostrar que Claude in Chrome trabaja en un panel al costado de la página abierta, dentro de la sesión que el usuario ya tiene iniciada: lee lo que aparece en pantalla y ejecuta acciones sobre ese mismo sitio.
+emphasize: las dos flechas opuestas (de la página hacia Claude = leer; de Claude hacia la página = actuar); que el panel convive con la página en la misma ventana.
+labels: izquierda = página web abierta (sesión ya iniciada); derecha = Claude in Chrome (panel lateral), con lo que lee y lo que hace.
+-->

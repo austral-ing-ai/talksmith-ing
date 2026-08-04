@@ -1,0 +1,27 @@
+   EL PATRON COMUN DE LOS CUATRO CASOS
+
+   +-----------------------------+
+   | un sitio web SIN exportar   |
+   | ni integracion (sin API)    |
+   +-----------------------------+
+                 |
+                 v
+   +-----------------------------+      a mano: pestana por
+   | una tarea repetitiva sobre  | ---> pestana, campo por
+   | esa misma pantalla          |      campo, todas las semanas
+   +-----------------------------+
+                 |
+                 v
+   +-----------------------------+
+   | CLAUDE IN CHROME opera el   |
+   | navegador ya abierto        |
+   +-----------------------------+
+                 |
+                 v
+   el dato queda cargado / la tabla queda armada
+
+<!-- ascii-note:
+intent: mostrar el denominador común de los cuatro casos de uso, en vez de repetirlos en texto: un sitio web sin exportación ni integración, más una tarea repetitiva sobre esa misma pantalla, es exactamente el terreno donde Claude in Chrome opera el navegador que ya está abierto.
+emphasize: la caja "CLAUDE IN CHROME opera el navegador ya abierto" como el punto de la lámina; el contraste entre el camino manual (pestaña por pestaña, campo por campo) y el resultado de abajo.
+labels: cadena vertical de tres cajas (sitio sin exportar → tarea repetitiva → Claude in Chrome) con el remate "el dato queda cargado / la tabla queda armada" al pie.
+-->

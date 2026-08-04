@@ -1,0 +1,16 @@
+ANTES (chat)                    AHORA (agente / Cowork)
++----------+                    +------------------------+
+| vos: msg | --> respuesta      | vos: "entrega X"       |
+| vos: msg | --> respuesta      |        |               |
+| vos: msg | --> respuesta      |        v               |
+| vos: msg | --> respuesta      | agente: planifica      |
++----------+                    | agente: toca archivos  |
+ paso a paso, lo hacés vos      | vos: leés y guiás      |
+                                +------------------------+
+                                 entregás un resultado
+
+<!-- ascii-note:
+intent: contrastar el modo "chat" (un mensaje a la vez, vos hacés cada paso) contra el modo "agente" (delegás un resultado, el agente planifica y ejecuta sobre tus archivos).
+emphasize: la flecha de paradigma de izquierda (ANTES) a derecha (AHORA); que en AHORA el agente hace el trabajo y vos guiás.
+labels: ANTES (chat) vs AHORA (agente / Cowork).
+-->

@@ -1,0 +1,20 @@
+        SCHEDULE (se describe UNA vez)
+
+  [reloj: lunes 8:00]
+        |
+        v
+  +-----------+   usa Connectors   +--------------+
+  |  la tarea | -----------------> | mail / web / |
+  |  corre    | <----------------- | calendario   |
+  |  sola     |    trae la info    +--------------+
+  +-----------+
+        |
+        v
+  resumen listo en el chat, cada semana,
+  sin pedirlo de nuevo
+
+<!-- ascii-note:
+intent: mostrar el ciclo de un Schedule: un disparador de calendario (lunes 8:00) ejecuta la tarea, que usa los Connectors (mail/web/calendario) para traer información y deja el resultado listo sin intervención del usuario.
+emphasize: que se describe UNA vez y corre sola; el reloj como disparador; el uso de Connectors dentro de la corrida; el resultado que "aparece" cada semana.
+labels: reloj (cadencia) -> la tarea corre sola -> Connectors (mail/web/calendario) -> resumen listo en el chat.
+-->

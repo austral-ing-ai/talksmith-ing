@@ -1,6 +1,6 @@
 ---
-presentation: "IA Generativa — materia optativa de grado de Ingeniería de Software, Universidad Austral"
-class: "IA generativa: curso, reglas y fundamentos"
+presentation: "Inteligencia General Generativa — materia optativa de grado de Ingeniería de Software, Universidad Austral"
+class: "Inteligencia General Generativa: curso, reglas y fundamentos"
 research: research/corpus/
 description: Slides are grouped into Sections. Each Section contains one or more Slides.
 presenter: "Paulo Veiga, Claudio Riguetti y Marco Sorondo — docentes, Universidad Austral"
@@ -23,21 +23,25 @@ date: "2026-08"
 
 **Sections (in delivery order):
 
-- 1. Bienvenida, propósito y dinámica de la materia
-- 2. Fundamentos de inteligencia artificial
-- 3. Taxonomía de problemas de IA
-- 4. Modelos fundacionales, datos y ecosistema
-- 5. Conclusiones y anexo técnico
+- 1. Bienvenidos
+- 2. Por qué cursarla
+- 3. Logística
+- 4. Fundamento de AI
+- 5. Taxinomia de Problemas
+- 6. Modelos Fundacionales
+- 7. Datos
+- 8. Ecosistema Actual
+- 9. Cierre y anexo
 
 ---
 
-# 1. Bienvenida, propósito y dinámica de la materia
+# 1. Bienvenidos
 
-**Goal of this section:** Alinear expectativas, explicar el propósito del curso y presentar su funcionamiento.
+**Goal of this section:** Presentar la materia y alinear expectativas sobre el enfoque, los docentes y el modo de trabajo.
 
 ---
 
-## 1. Inteligencia Artificial Generativa Aplicada en Ingeniería de Software
+## 1. Inteligencia General Generativa
 
 <!-- template: statement -->
 
@@ -67,11 +71,11 @@ Enlace Recomendado: Sitio oficial del libro "Artificial Intelligence: A Modern A
 ## 2. Bienvenidos!
 
 <!-- template: content-image -->
-<!-- layout: text-left -->
+<!-- design: column-right -->
 
 ### Content
 
-Inteligencia Artificial Generativa Aplicada en Ingeniería de Software
+Inteligencia General Generativa
 
 ![Ilustración de bienvenida](images/bienvenida-hello.jpeg)
 
@@ -90,7 +94,7 @@ Primera vez que dictamos esta materia (contar brevemente la historia de la mater
 ## 3. Que es Inteligencia Artificial Generativa ?
 
 <!-- template: content-image -->
-<!-- layout: text-left -->
+<!-- design: column-right -->
 
 ### Content
 
@@ -108,6 +112,44 @@ A lo largo de este cuatrimestre, analizaremos los conceptos básicos de la GenAI
 Referencia PPTX: diapositiva 3.
 
 [Sin notas en el PPTX de referencia.]
+
+---
+
+## Qué esperamos que se lleven
+
+<!-- template: concept-breakdown -->
+
+### Content
+
+Una materia para entender cómo funcionan los modelos y aprender a construir con ellos con criterio de Ingeniería de Software.
+
+Meternos en los modelos
+
+Van a poder explicar qué hacen los transformers, cómo intervienen los datos, el entrenamiento, la inferencia y la evaluación; no sólo usar una interfaz de chat.
+
+Teoría con propósito
+
+Cada clase introduce fundamentos, arquitecturas, ejemplos y discusión técnica para construir un lenguaje compartido y poder razonar sobre decisiones de diseño.
+
+Práctica hands-on
+
+Las clases combinan teoría y práctica: notebooks, repositorios, prompts, herramientas y casos concretos para experimentar, implementar, probar y documentar.
+
+Elegir y evaluar soluciones
+
+Van a poder decidir cuándo conviene un LLM, un clasificador, una búsqueda semántica, reglas deterministas o una combinación; y qué evidencia pedir antes de integrarla.
+
+Criterio de ingeniería
+
+El objetivo es usar IA generativa sin delegar el juicio técnico: evaluar salidas, reconocer límites y diseñar flujos con trazabilidad, seguridad y control humano.
+
+### Sources
+
+- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 11; adaptación y reubicación)
+
+### Speaker notes
+
+Este slide anticipa el tipo de materia: no se trata sólo de aprender a usar una herramienta. Vamos a entrar en cómo se construyen y evalúan los modelos, y en cada clase llevar los conceptos a una práctica concreta de ingeniería.
 
 ---
 
@@ -129,6 +171,12 @@ Marco Sanchez Sorondo
 
 Email: msanchezSorondo@austral.edu.ar
 
+![Foto de Claudio Riguetti](images/docente-claudio-riguetti.png)
+
+Claudio Riguetti
+
+Docente
+
 ### Sources
 
 - corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 4; adaptación íntegra)
@@ -138,6 +186,12 @@ Email: msanchezSorondo@austral.edu.ar
 Referencia PPTX: diapositiva 4.
 
 [Sin notas en el PPTX de referencia.]
+
+---
+
+# 2. Por qué cursarla
+
+**Goal of this section:** Explicar por qué la IA generativa importa para la formación y la práctica de Ingeniería de Software.
 
 ---
 
@@ -449,95 +503,36 @@ We are now experiencing the unwind of that premium. Machine intelligence is now 
 
 ---
 
-## 11. Que queremos que se lleven ?
+# 3. Logística
 
-<!-- template: concept-breakdown -->
-
-### Content
-
-Qué queremos que se lleven
-
-Fundamentos del futuro
-
-Podrán explicar cómo aprenden los modelos, qué información necesitan y qué límites arrastran de sus datos y objetivos.
-
-Enfoque práctico
-
-Podrán usar asistentes de IA para explorar, implementar, probar y documentar, sin delegar el juicio técnico.
-
-Modelos aplicados
-
-Podrán reconocer cuándo conviene usar un modelo generativo, un clasificador, una búsqueda semántica, reglas deterministas o una combinación.
-
-Contenidos flexibles
-
-Podrán relacionar los conceptos de la materia con problemas de producto, datos, seguridad y operación.
-
-IA generativa
-
-Podrán formular preguntas, evaluar salidas y diseñar flujos donde una persona conserva control sobre cambios relevantes.
-
-### Sources
-
-- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 11; adaptación íntegra)
-
-### Speaker notes
-
-Referencia PPTX: diapositiva 11.
-
-[Sin notas en el PPTX de referencia.]
-
----
-
-## 12. Logística de la Materia
-
-<!-- template: concept-breakdown -->
-
-### Content
-
-Todo lo que necesitás saber para arrancar
-
-Estructura
-
-Entregables
-
-Trabajo Final
-
-### Sources
-
-- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 12; adaptación íntegra)
-
-### Speaker notes
-
-Referencia PPTX: diapositiva 12.
-
-[Sin notas en el PPTX de referencia.]
+**Goal of this section:** Acordar cómo se cursa, cómo se entrega el trabajo y cómo se compone la evaluación.
 
 ---
 
 ## 13. Logística de la materia
 
-<!-- template: content-text -->
+<!-- template: concept-breakdown -->
+<!-- format: grid -->
 
 ### Content
 
-Estructura de clases
+Cómo vamos a trabajar
 
-14 clases, con una dinámica que combina teoría, conceptos y práctica.
+01 · Clases
 
-Cada clase tiene dos momentos:
+Son 14 clases, los miércoles. En cada una vamos a mezclar conceptos, modelos, ejemplos y práctica.
 
-Teoría: conceptos, modelos, ejemplos y discusión.
+02 · De la idea a la práctica
 
-Práctica: ejercicios sobre notebooks, repositorios, herramientas y casos de uso. Cada estudiante trabaja con su equipo y documenta decisiones.
+Primero vemos la idea y la discutimos; después la llevamos a notebooks, repositorios, herramientas y casos concretos.
 
-Clases participativas: diálogo, revisión de resultados y puesta en común.
+03 · Trabajo en equipo
 
-Cada dos clases habrá un entregable práctico asociado a los temas vistos.
+Van a trabajar en equipo, probar cosas, comparar resultados y dejar registro de las decisiones.
 
-Presencia activa requerida. Las reglas para ausencias, reentregas y uso de herramientas se confirmarán en el aula virtual.
+04 · Participación y evaluación
 
-Nota final: se combinarán entregables de clase y trabajo final; la ponderación exacta se confirmará antes de la primera entrega.
+Esperamos presencia y participación activa. Cada dos clases habrá un entregable práctico; la nota final combina esos trabajos con el proyecto final. Las reglas y la ponderación estarán claras antes de la primera entrega.
 
 ### Sources
 
@@ -553,23 +548,34 @@ Referencia PPTX: diapositiva 13.
 
 ## 14. Logística de la materia
 
-<!-- template: content-text -->
+<!-- template: concept-breakdown -->
+<!-- format: grid -->
 
 ### Content
 
 Entregables de clase
 
+Forman parte de la evaluación junto con el trabajo final.
+
+01 · Ritmo
+
 Un entregable cada dos clases, relacionado con los temas vistos.
 
-En grupos de dos personas.
+02 · Equipo
 
-Valor de referencia: los entregables de clase y el trabajo final forman parte de la evaluación.
+Se trabaja en equipos de cuatro personas.
 
-La mayor parte del trabajo se completa durante la clase; cada equipo debe dejar trazabilidad de decisiones, prompts, código, pruebas y fuentes usadas.
+03 · Trabajo durante la clase
 
-Entrega: por el canal que indique la cátedra, con repositorio o artefactos reproducibles cuando corresponda.
+La mayor parte del trabajo se completa durante la clase.
 
-Todos los entregables son obligatorios.
+04 · Evidencia
+
+Cada equipo debe dejar trazabilidad de decisiones, prompts, código, pruebas y fuentes usadas.
+
+05 · Entrega obligatoria
+
+Se entrega por el canal que indique la cátedra, con repositorio o artefactos reproducibles cuando corresponda.
 
 ### Sources
 
@@ -585,23 +591,32 @@ Referencia PPTX: diapositiva 14.
 
 ## 15. Logística de la materia
 
-<!-- template: content-text -->
+<!-- template: concept-breakdown -->
+<!-- format: grid -->
 
 ### Content
 
 Trabajo final
 
-Propuesta propia que aplique conceptos de la materia a un problema de Ingeniería de Software. El equipo recibirá orientación sobre el alcance, la evidencia y la forma de evaluar el resultado.
+Un proyecto propio que aplique conceptos de la materia a un problema de Ingeniería de Software.
 
-Equipos de dos personas.
+Equipo y alcance
 
-Entregables:
+Equipos de cuatro personas.
+
+El equipo debe ser el mismo que realizó los trabajos prácticos.
+
+La cátedra orientará el alcance, la evidencia y la forma de evaluar el resultado.
+
+Entregables
 
 Video breve de demostración que explique el problema, la solución y sus límites.
 
 Código desplegado o ejecutable, con instrucciones de reproducción.
 
 Documentación del diseño, datos utilizados, estrategia de evaluación, riesgos y decisiones de seguridad.
+
+Evaluación
 
 Máximo detalle y evidencia técnica; la evaluación considera tanto el resultado como la capacidad de justificarlo.
 
@@ -617,15 +632,44 @@ Referencia PPTX: diapositiva 15.
 
 ---
 
+## Evaluación
+
+<!-- template: stat -->
+
+### Content
+
+Cómo se compone la nota final
+
+40%
+
+Entregables de clase
+
+60%
+
+Trabajo final
+
+**Importante:** Las entregas fuera de término impactan en la nota final.
+
+### Sources
+
+- Criterio de evaluación de la cátedra (2026)
+
+### Speaker notes
+
+La evaluación combina el trabajo sostenido durante la cursada con la capacidad de integrar lo aprendido en un proyecto final.
+
+---
+
 ## 16. Contenidos de la Materia
 
 <!-- template: concept-breakdown -->
+<!-- format: editorial -->
 
 ### Content
 
 01
 
-Módulo 1: Fundamentos de IA, aprendizaje y modelos de lenguaje
+Módulo 1: Fundamentos de IA, arquitectura de LLM y entrenamiento
 
 Clases 1–4
 
@@ -665,7 +709,7 @@ Referencia PPTX: diapositiva 16.
 
 ### Content
 
-[Sin contenido visible en el PPTX de referencia.]
+Abrimos la conversación.
 
 ### Sources
 
@@ -679,13 +723,13 @@ Referencia PPTX: diapositiva 17.
 
 ---
 
-# 2. Fundamentos de inteligencia artificial
+# 4. Fundamento de AI
 
 **Goal of this section:** Construir un lenguaje compartido sobre IA, redes neuronales e historia del campo.
 
 ---
 
-## 1. Inteligencia Artificial Generativa Aplicada en Ingeniería de Software
+## 1. Inteligencia General Generativa
 
 <!-- template: statement -->
 
@@ -863,7 +907,7 @@ Deap blue - IA = búsqueda + poder de cómputo + heurísticas
 ## 4. Redes Neuronales — Estructura y Celda Básica
 
 <!-- template: content-image -->
-<!-- layout: image-left -->
+<!-- design: split-left -->
 
 ### Content
 
@@ -998,7 +1042,7 @@ Y eso abrió la puerta a modelos gigantes.
 
 ---
 
-# 3. Taxonomía de problemas de IA
+# 5. Taxinomia de Problemas
 
 **Goal of this section:** Distinguir familias de problemas y vincularlas con sistemas de software.
 
@@ -1058,17 +1102,34 @@ Contexto Técnico Profundo: La Predicción mapea entradas $X$ a salidas $Y$ (dis
 
 ---
 
-## 2. La taxonomía de problemas
+## Predicción
 
-<!-- template: concept-breakdown -->
+<!-- template: statement -->
 
 ### Content
-
-Predicción
 
 Aprender una función X → Y a partir de datos etiquetados.
 
 El modelo mapea entradas a salidas conocidas y minimiza el error. Esta categoría sostiene muchas aplicaciones industriales.
+
+### Sources
+
+- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 24; adaptación separada)
+
+### Speaker notes
+
+Presentar Predicción como una de las familias más frecuentes de problemas de IA antes de recorrer sus variantes.
+
+---
+
+## 2. La taxonomía de problemas
+
+<!-- template: concept-breakdown -->
+<!-- format: editorial -->
+
+### Content
+
+Ejemplos de problemas predictivos
 
 Clasificación binaria
 
@@ -1141,6 +1202,7 @@ Referencia PPTX: diapositiva 25.
 ## 4. La taxonomía de problemas
 
 <!-- template: concept-breakdown -->
+<!-- format: editorial -->
 
 ### Content
 
@@ -1183,6 +1245,7 @@ Referencia PPTX: diapositiva 26.
 ## 5. La taxonomía de problemas
 
 <!-- template: concept-breakdown -->
+<!-- format: editorial -->
 
 ### Content
 
@@ -1231,6 +1294,7 @@ Referencia PPTX: diapositiva 27.
 ## 6. La taxonomía de problemas
 
 <!-- template: concept-breakdown -->
+<!-- format: editorial -->
 
 ### Content
 
@@ -1273,6 +1337,7 @@ Referencia PPTX: diapositiva 28.
 ## 7. La taxonomía de problemas
 
 <!-- template: concept-breakdown -->
+<!-- format: editorial -->
 
 ### Content
 
@@ -1362,15 +1427,15 @@ Referencia PPTX: diapositiva 30.
 
 ---
 
-# 4. Modelos fundacionales, datos y ecosistema
+# 6. Modelos Fundacionales
 
-**Goal of this section:** Explicar modelos de lenguaje, datos, escala y actores del ecosistema.
+**Goal of this section:** Explicar qué son los modelos fundacionales y por qué cambiaron la forma de construir productos de IA.
 
 ---
 
 ## 1. Conceptos clave
 
-<!-- template: value-columns -->
+<!-- template: concept-columns -->
 
 ### Content
 
@@ -1440,7 +1505,7 @@ Referencia PPTX: diapositiva 31.
 
 ## 2. Concepto clave
 
-<!-- template: value-columns -->
+<!-- template: concept-columns -->
 
 ### Content
 
@@ -1477,6 +1542,12 @@ Discurso Sugerido: "Hasta hace pocos años, la IA era 'artesanal'. Si una empres
 Contexto Técnico Profundo: El término fue acuñado por el Stanford Institute for Human-Centered AI (HAI) en 2021 para describir modelos entrenados con datos amplios a gran escala que pueden adaptarse (fine-tuning o in-context learning) a una amplia gama de tareas downstream.
 
 Enlace Recomendado: On the Opportunities and Risks of Foundation Models (Stanford HAI, arXiv:2108.07258)
+
+---
+
+# 7. Datos
+
+**Goal of this section:** Entender cómo aprenden los modelos, con qué datos se entrenan y qué implica operar a escala.
 
 ---
 
@@ -1715,61 +1786,90 @@ Enlace Recomendado: Scaling Laws for Neural Language Models (OpenAI, arXiv:2001.
 
 ---
 
+## Estimar lo que los laboratorios no publican
+
+<!-- template: image-full -->
+
+### Content
+
+![Curva de calibración IKP: conocimiento factual y tamaño total estimado de modelos](images/ikp-calibration-curve.png)
+
+### Sources
+
+- corpus/arxiv-2604-24827-ikp.web.md
+- [Incompressible Knowledge Probes: Estimating Black-Box LLM Parameter Counts via Factual Capacity](https://arxiv.org/abs/2604.24827)
+
+### Speaker notes
+
+La figura calibra puntajes de conocimiento factual contra el tamaño conocido de modelos abiertos. Las líneas punteadas de la derecha son estimaciones para modelos cerrados, no revelaciones de arquitectura por parte de los laboratorios. El paper presenta estas cifras como capacidad efectiva de orden de magnitud: su intervalo de predicción al 90% es aproximadamente un factor de 3 en cada dirección. La figura indica 89 modelos abiertos; la versión 2 del abstract reporta una calibración sobre 93.
+
+---
+
+# 8. Ecosistema Actual
+
+**Goal of this section:** Ubicar las familias y actores relevantes del ecosistema de modelos actual.
+
+---
+
 ## 7. El Ecosistema Actual
 
-<!-- template: figures -->
+<!-- template: concept-breakdown -->
+<!-- format: editorial -->
 
 ### Content
 
 El ecosistema actual
 
-Actores, modelos y competencia global
+Modelos de propósito general relevantes en agosto de 2026
 
-![Ecosistema de OpenAI](images/ecosistema-openai.png)
+OpenAI — GPT-5.2
 
-OpenAI — GPT y o-series
+Razonamiento, herramientas y desarrollo de software.
 
-Proveedores de modelos cerrados y APIs con foco en productos conversacionales, razonamiento y herramientas.
+Google DeepMind — Gemini 3.6 Flash
 
-![Ecosistema de Google DeepMind](images/ecosistema-google-deepmind.png)
+Modelo multimodal rápido para tareas agentic y de código.
 
-Google DeepMind — Gemini
+Anthropic — Claude 4
 
-Modelos multimodales integrados con búsqueda, productividad y plataformas de nube.
+Familia Opus y Sonnet para razonamiento, análisis y programación.
 
-![Ecosistema de Anthropic](images/ecosistema-anthropic.png)
+Meta — Llama 4 Maverick y Scout
 
-Anthropic — Claude
+Pesos abiertos y multimodalidad para despliegue propio.
 
-Modelos con foco en seguridad, contexto extenso y tareas complejas de conocimiento y código.
+DeepSeek — V4 Pro y V4 Flash
 
-![Ecosistema de Meta AI](images/ecosistema-meta-ai.png)
+Razonamiento y agentes con fuerte relación costo-rendimiento.
 
-Meta AI — Llama
+Moonshot AI — Kimi K3
 
-Familia de pesos abiertos que permite despliegues propios, fine-tuning e investigación fuera de una única API.
+Código, análisis y automatización agentic.
 
-El ecosistema incluye además proveedores de infraestructura, modelos especializados, herramientas de evaluación, observabilidad y marcos de orquestación.
+Alibaba — Qwen3.7-Max
+
+Modelo orientado a coding, razonamiento y agentes de larga duración.
+
+El mercado combina modelos cerrados por API, familias abiertas y modelos diseñados específicamente para agentes. La disponibilidad y las versiones cambian con rapidez.
 
 ### Sources
 
-- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 37; adaptación íntegra)
+- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 37; referencia de estructura)
+- [OpenAI Models](https://platform.openai.com/docs/api-reference/models/object)
+- [Google Gemini API Models](https://ai.google.dev/gemini-api/docs/models)
+- [Anthropic Claude](https://docs.anthropic.com/en/docs/welcome)
+- [Meta Llama 4](https://about.fb.com/ltam/news/2025/04/la-coleccion-de-modelos-llama-4-el-inicio-de-una-nueva-era-de-innovacion-multimodal-nativa-para-inteligencia-artificial/)
+- [DeepSeek API — novedades](https://api-docs.deepseek.com/updates/)
+- [Moonshot AI](https://www.moonshot.ai/)
+- [Alibaba Qwen3.7-Max](https://www.alibabagroup.com/en-US/document-1994119844504535040)
 
 ### Speaker notes
 
-Referencia PPTX: diapositiva 37.
-
-Diapositiva 7: El Ecosistema Actual: Actores y Competencia
-
-Discurso Sugerido: "¿Quiénes están construyendo estos gigantes? El ecosistema está dominado por unos pocos actores con el capital para costear este nivel de cómputo. Por un lado, modelos cerrados y comerciales como los de OpenAI (ChatGPT), Google DeepMind (Gemini) y Anthropic (Claude). Por otro lado, un ecosistema de código abierto liderado por Meta (Llama) y Mistral, que permite a universidades y startups descargar los pesos de los modelos y ejecutarlos localmente, democratizando el acceso a la tecnología."
-
-Contexto Técnico Profundo: La distinción entre pesos abiertos (open weights) y modelos propietarios es el debate central en la seguridad y monopolización de la IA. Modelos como Llama democratizan el fine-tuning local (ej. QLoRA) sin depender de APIs en la nube.
-
-Enlace Recomendado: State of AI Report (Análisis anual de la industria)
+Actualizado el 4 de agosto de 2026. Esta slide ofrece un mapa de familias y modelos representativos, no un ranking. Antes de adoptar un modelo, verificar versión, disponibilidad regional, licencia, precio, límites de uso y políticas de datos.
 
 ---
 
-# 5. Conclusiones y anexo técnico
+# 9. Cierre y anexo
 
 **Goal of this section:** Cerrar los conceptos centrales y preservar el material complementario en su orden original.
 
@@ -1837,7 +1937,7 @@ Referencia PPTX: diapositiva 39.
 
 ## 3. Modelos Discriminativos vs Generativos
 
-<!-- template: value-columns -->
+<!-- template: concept-columns -->
 
 ### Content
 
@@ -1883,7 +1983,7 @@ Referencia PPTX: diapositiva 40.
 
 ## 4. El Desafío del Mundo Real
 
-<!-- template: value-columns -->
+<!-- template: concept-columns -->
 
 ### Content
 
@@ -1920,7 +2020,7 @@ Referencia PPTX: diapositiva 41.
 ## 5. Tema crítico
 
 <!-- template: content+cards+image -->
-<!-- layout: text-left -->
+<!-- design: column-right -->
 
 ### Content
 

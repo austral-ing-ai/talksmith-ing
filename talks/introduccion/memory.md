@@ -46,7 +46,7 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
 ## 2026-08-03 — Step 4 (Draft)
 - Status: complete
 - Asks log:
-  - 2026-08-03 20:13 — "¿Cómo querés llamar a esta clase?" → "IA generativa: curso, reglas y fundamentos"
+  - 2026-08-03 20:13 — "¿Cómo querés llamar a esta clase?" → "Inteligencia General Generativa: curso, reglas y fundamentos"
   - 2026-08-03 20:13 — "¿Cuándo se dicta esta clase?" → "Agosto de 2026"
   - 2026-08-03 20:13 — "¿Cómo querés encarar el borrador?" → "Copia exacta de la presentación original, ajustada a Ingeniería de Software y sin reducir el contenido."
   - 2026-08-03 20:13 — "Revisá el borrador completo y avisame qué cambios querés aplicar o si está listo para pasar a revisión final." → "pasalo a polish"
@@ -120,8 +120,13 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
 
 ### Revisión posterior del estilo
 - 2026-08-03 — La diapositiva de apertura de fundamentos necesitaba un estilo tipo quote o similar. Se eligió `statement`: el texto no es una cita atribuida, por lo que `quote` sería semánticamente incorrecto.
-- What changed: título principal `Inteligencia Artificial Generativa Aplicada en Ingeniería de Software`; subtítulo `Clase 1: Fundamentos, modelos y ecosistema actual`.
+- What changed: título principal `Inteligencia General Generativa`; subtítulo `Clase 1: Fundamentos, modelos y ecosistema actual`.
 - Validation: el HTML usa `data-kind="statement"` y conserva 45 diapositivas.
+
+### Regeneración con formato editorial
+- 2026-08-03 — Se actualizó Talksmith y se aplicó `<!-- format: editorial -->` sólo a las slides cuyos conceptos caben en una composición plana sin reducir contenido.
+- What changed: diapositivas 12, 16, 24, 26, 27, 28 y 29 usan una grilla editorial sin tarjetas; las enumeraciones más densas conservan su formato anterior para evitar recortes o reducción de legibilidad.
+- Validation: `final.md` no conserva campos de feedback; el modelo coincide con `final.md`; 44 slides de contenido más la portada sintetizada producen 45 slides HTML; 7 bloques editoriales; cobertura de campos e imágenes completa.
 
 ## 2026-08-03 — Step 8 (Learnings)
 - Status: deferred_until_render_acceptance
