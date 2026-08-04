@@ -15,8 +15,8 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 
 | Clase | Fecha | Tema / actividad | Presentación |
 |---:|---|---|---|
-| 1 | Miércoles 5 de agosto | Bienvenida + CoWork | [Introducción](https://veigap.github.io/talksmith-ing/introduccion/output/html/index.html) |
-| 2 | Miércoles 12 de agosto | CoWork | [Claude Desktop — Chat](https://veigap.github.io/talksmith-ing/claude-desktop-chat/output/html/index.html) · [Claude Cowork](https://veigap.github.io/talksmith-ing/claude-cowork/output/html/index.html) |
+| 1 | Miércoles 5 de agosto | Bienvenida + CoWork | [Introducción](https://veigap.github.io/talksmith-ing/talks/introduccion/output/html/) |
+| 2 | Miércoles 12 de agosto | CoWork | [Claude Desktop — Chat](https://veigap.github.io/talksmith-ing/talks/claude-desktop-chat/output/html/) · [Claude Cowork](https://veigap.github.io/talksmith-ing/talks/claude-cowork/output/html/) |
 | 3 | Miércoles 19 de agosto | — | — |
 | 4 | Miércoles 26 de agosto | — | — |
 | 5 | Miércoles 2 de septiembre | — | — |
@@ -30,5 +30,4 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 | 12 | Miércoles 28 de octubre | — | — |
 | 13 | Miércoles 4 de noviembre | — | — |
 | 14 | Miércoles 11 de noviembre | — | — |
-
 
