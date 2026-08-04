@@ -283,8 +283,6 @@ Eficiencia operativa
 
 La automatización de runbooks, soporte y documentación puede devolver tiempo para resolver problemas de mayor valor. Los procesos necesitan registros, permisos y mecanismos de reversión.
 
-Fuente de referencia: el PPTX original usa ejemplos de impacto sectorial; esta versión los traslada a Ingeniería de Software.
-
 ### Sources
 
 - corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 8; adaptación íntegra)
@@ -320,6 +318,9 @@ Pregunta para la clase: “¿Qué evidencia pedirían antes de aceptar una modif
 Punto clave: la IA amplifica las habilidades de un equipo cuando el proceso conserva responsabilidad, trazabilidad y controles humanos.
 
 ### Presenter feedback
+
+- [closed] 2026-08-03 — "Borra Fuente de referencia: el PPTX original usa ejemplos de impacto sectorial; esta versión los traslada a Ingeniería de Software."
+  Resolution: Se eliminó la referencia editorial del contenido visible de la diapositiva 8.
 
 ---
 
@@ -731,7 +732,7 @@ Referencia PPTX: diapositiva 17.
 
 ## 1. Inteligencia Artificial Generativa Aplicada en Ingeniería de Software
 
-<!-- template: divider -->
+<!-- template: statement -->
 
 ### Content
 
@@ -752,6 +753,9 @@ Contexto Técnico Profundo: La definición de agente racional evita el debate fi
 Enlace Recomendado: Sitio oficial del libro "Artificial Intelligence: A Modern Approach" (Russell & Norvig)
 
 ### Presenter feedback
+
+- [closed] 2026-08-03 — "La diapositiva 'Inteligencia Artificial Generativa Aplicada en Ingeniería de Software — Clase 1: Fundamentos, modelos y ecosistema actual' necesita un estilo mucho mejor, quote o similar."
+  Resolution: Se cambió la diapositiva de divider a statement para separar el título principal del subtítulo de clase, sin tratarlo como una cita.
 
 ---
 

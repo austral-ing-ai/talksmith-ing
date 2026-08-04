@@ -1,7 +1,7 @@
 # memory.md — introduccion
 
-**Current step:** 5 — Review revision_in_progress
-**Awaiting:** 2026-08-03 — "Revisar las plantillas y layouts anotados en `draft.md`; luego volver a ejecutar Polish y FILL."
+**Current step:** 7 — Render awaiting_presenter_review
+**Awaiting:** 2026-08-03 — "Revisar el HTML regenerado con el nuevo modelo semántico y marcar ajustes visuales por diapositiva."
 **Topic:** Introducción, normas de trabajo y encuadre inicial de la materia.
 **Folder:** talks/introduccion/
 **Started:** 2026-08-03
@@ -83,6 +83,12 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
 - Validation: 45 diapositivas; 0 bloques ASCII; 0 directivas de imágenes generativas; 0 campos de Presenter feedback restantes.
 - Pending open questions: ninguna.
 
+### Regeneración posterior a la revisión semántica
+- Status: complete
+- What was decided: Regenerar `final.md` desde el `draft.md` anotado, conservar las 45 directivas de plantilla y conectar 11 recursos visuales del PPTX original en las diapositivas que requieren imágenes.
+- Files created/modified: `talks/introduccion/final.md`; 11 recursos bajo `talks/introduccion/images/`.
+- Validation: 45 diapositivas H2; 45 directivas `template`; 11 referencias visuales; 0 campos `Presenter feedback`; 0 diagramas ASCII o imágenes generativas pendientes.
+
 ## 2026-08-03 — Step 7 (Render)
 - Status: revision_planning
 - Asks log:
@@ -99,6 +105,18 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
   - 2026-08-03 — Se volvió a Step 5 para anotar explícitamente los estilos en `draft.md`. `final.md`, `slide-model.json` y el HTML actual quedan intencionalmente desactualizados hasta completar la revisión semántica.
 - Hallazgos de formato: el PPTX contiene 706 formas, 121 imágenes y 33 diapositivas con imágenes; `final.md` no referencia ninguna imagen. Parte de la brecha corresponde a una clasificación incompleta y parte a layouts/variantes que no existen en el catálogo HTML.
 - Pending open questions: confirmar el inicio de la reconstrucción completa del modelo semántico de las 45 diapositivas antes de tocar el repertorio de estilos.
+
+### Regeneración `html-strict` posterior a la revisión semántica
+- Status: awaiting_presenter_review
+- What was decided: Reconstruir el modelo desde `final.md`, preservando una salida de 45 diapositivas: portada sintetizada a partir de la diapositiva 1 y 44 diapositivas de contenido correspondientes a las diapositivas 2–45 del PPTX original.
+- Files created/modified: `talks/introduccion/output/slide-model.json`; `talks/introduccion/output/html/index.html`.
+- Validation: 45 diapositivas HTML; 3 timelines; 19 concept-breakdowns con iconos; 11 imágenes incluidas; modelo vigente respecto de `final.md`; sin enumeraciones degeneradas, campos ignorados ni imágenes omitidas.
+- Visual review note: la revisión automatizada del archivo local confirmó estructura y cobertura; la captura directa del navegador quedó bloqueada por la política de URLs `file://`. Revisar especialmente las diapositivas densas 31, 43 y 44, que preservan cuatro columnas aunque el catálogo recomienda hasta tres.
+- Pending open questions: ajustes visuales que surjan de la revisión del presentador.
+
+### Revisión posterior del contenido
+- 2026-08-03 — "Borra Fuente de referencia: el PPTX original usa ejemplos de impacto sectorial; esta versión los traslada a Ingeniería de Software." → Se eliminó de la diapositiva 8, se registró la resolución en `draft.md` y se regeneraron `final.md`, `slide-model.json` y el HTML.
+- Validation: la frase no aparece en `final.md`, el modelo ni el HTML; la presentación conserva 45 diapositivas.
 
 ## 2026-08-03 — Step 8 (Learnings)
 - Status: deferred_until_render_acceptance

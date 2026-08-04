@@ -263,8 +263,6 @@ Eficiencia operativa
 
 La automatización de runbooks, soporte y documentación puede devolver tiempo para resolver problemas de mayor valor. Los procesos necesitan registros, permisos y mecanismos de reversión.
 
-Fuente de referencia: el PPTX original usa ejemplos de impacto sectorial; esta versión los traslada a Ingeniería de Software.
-
 ### Sources
 
 - corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 8; adaptación íntegra)
