@@ -2,7 +2,7 @@
   "deck": {
     "title": "Agentes Inteligentes",
     "lang": "es",
-    "institution": "Master in Management (MiM), IAE Business School",
+    "institution": "Universidad Austral",
     "class": "Claude Cowork",
     "presenter": "Paulo Veiga y Marco Sánchez Sorondo",
     "date": "Julio 2026",
@@ -668,7 +668,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "fb81561a77bc357e3efbbad8ffb9404b1887b766d7b696c4831fb8182cf9d5a1",
-    "bytes": 96891
+    "sha256": "1a3f16fc7572024b637d6883ee08bfcc43256a92a5657071fcc3c42dfd4182bd",
+    "bytes": 96837
   }
 }

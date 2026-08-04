@@ -134,3 +134,37 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
 - Key inputs: config/learnings.md; config/feedback-backlog.md; config/strict-learnings.md (ausentes, sin entradas).
 - Files created/modified: none
 - Pending open questions: decidir si se promueve esta presentación a la biblioteca de conocimiento compartida.
+
+### Regeneración `html-strict` — 2026-08-04
+- Status: complete
+- Asks log:
+  - 2026-08-04 — "Regeneremos introduccion html-strict" → Re-render solicitado explícitamente con estilo `html-strict`; no hizo falta preguntar el estilo.
+- What was decided: Re-renderizar el deck desde el modelo vigente. `final.md` no cambió desde el último FILL (sha256 7acec772…), así que el modelo pasó el control de frescura y se re-ejecutó solo el paso mecánico de render.
+- Key inputs: `talks/introduccion/final.md`; `talks/introduccion/output/slide-model.json`; 13 recursos en `images/`; `config/logo.png`.
+- Files created/modified: `talks/introduccion/output/html/index.html`.
+- Validation: frescura del modelo ok; 0 enumeraciones degeneradas; 0 campos ignorados por plantilla; 0 referencias de imagen omitidas. Salida: 52 diapositivas, 13 imágenes embebidas, 47 paneles de notas del orador, 145 iconos vectoriales, 76 iconos en caché. Render byte-idéntico al anterior (3.359.733 bytes) — confirma determinismo.
+- Nota de entorno: el render corrió en el contenedor de sesión (los scripts del plugin no están montados en la carpeta local) y el `index.html` se escribió de vuelta en el disco del presentador.
+- Pending open questions: ajustes visuales que surjan de la revisión del presentador — siguen abiertas las diapositivas densas 31, 43 y 44 (cuatro columnas donde el catálogo recomienda hasta tres).
+
+## 2026-08-04 — Step 5 (Review) + re-render `html-strict`
+- Status: complete
+- Asks log:
+  - 2026-08-04 — "Borrar 'Fuente de referencia: el PPTX original organiza estos riesgos a partir de la guía de la OMS…'" → Eliminada de la diapositiva 9 (Problemas actuales de la IA en software).
+  - 2026-08-04 — "Borrar 'el PPTX original presenta' en todos lados" → Eliminada la referencia de la diapositiva 10 (El riesgo macroeconómico y la transición abrupta); única aparición de esa frase.
+  - 2026-08-04 — "Conceptos clave el titulo es -> LLMs, Foundation Models y Multimodal" → Título reemplazado; se retiró el subtítulo que pasó a duplicarlo.
+  - 2026-08-04 — "Lo mismo que '¿Por qué son relevantes los Foundation Models?'" → Título reemplazado por su subtítulo, "IA Tradicional vs. Foundation Models"; subtítulo retirado.
+- What was decided: Se purgan del contenido visible las referencias editoriales al PPTX de origen, y dos diapositivas de la sección Modelos Fundacionales promueven su subtítulo a título. Las citas externas legítimas (McKinsey, Stanford HAI) se conservan.
+- Key inputs: `draft.md`; `final.md`; `output/slide-model.json`.
+- Files created/modified: `talks/introduccion/draft.md` (4 bullets `[closed]`); `talks/introduccion/final.md`; `talks/introduccion/output/slide-model.json`; `talks/introduccion/output/html/index.html`.
+- Validation: modelo re-sellado contra `final.md` (c709216f…); 0 enumeraciones degeneradas; 0 campos ignorados; 0 imágenes omitidas. Salida: 52 diapositivas, 13 imágenes, 47 paneles de notas; 0 apariciones de "Fuente de referencia" y de los títulos viejos en el deck.
+- Pending open questions:
+  - Queda una mención visible al PPTX de origen en la diapositiva "Escala, datos y poder de cómputo": "La tabla conserva el orden de magnitud del PPTX original para explicar por qué muchos equipos consumen modelos existentes en vez de entrenarlos desde cero." No coincide con la frase pedida; decisión del presentador.
+  - Diapositivas densas 31, 43 y 44 (cuatro columnas donde el catálogo recomienda hasta tres).
+
+### Continuación de la ronda — 2026-08-04
+- Asks log:
+  - 2026-08-04 — "Deja el titulo 'Modelos de propósito general'… Y un pequeño highlight de cada uno." → Título acortado (la fecha queda en las notas del orador) y las siete descripciones genéricas reemplazadas por un rasgo diferenciador de ≤64 caracteres cada una.
+  - 2026-08-04 — "Hay varios cards que tiene un numero. Ej: 46. Sería mejor usar el que numera como estilo." → Cuatro diapositivas pasaron de `concept-breakdown` a `process`: 'Cómo vamos a trabajar', 'Entregables de clase', 'Contenidos de la Materia' y 'Conclusiones Clave' (la 46, el ejemplo señalado). El ordinal ahora lo dibuja el estilo y se retiró del texto.
+- What was decided: Los ordinales son cromo del renderer, no contenido — se aplicó la regla del catálogo de plantillas. La diapositiva de conclusiones queda como lista numerada de una columna, sin etiquetas artificiales.
+- Validation: primer render avisó que el formato `editorial` con 7 conceptos no soporta cuerpos de 115 caracteres (~70 entran); se acortaron y el render volvió limpio. Salida final: 52 diapositivas, 13 imágenes, 47 paneles de notas, 0 apariciones de los títulos viejos ni de "Fuente de referencia".
+- Riesgo abierto: los rasgos diferenciadores de los siete modelos son afirmaciones de posicionamiento (cerrado vs. pesos abiertos, costo, contexto), no especificaciones verificadas — la búsqueda web sobre versiones de agosto de 2026 sólo devolvió agregadores de baja calidad. Conviene que el presentador los valide antes de dictar la clase.

@@ -1,10 +1,10 @@
 ---
-presentation: "Agentes Inteligentes — Master in Management (MiM), IAE Business School"
+presentation: "Agentes Inteligentes — Universidad Austral"
 class: "Claude Desktop - Chat"
 research: research/corpus/
 description: Slides are grouped into Sections. Each Section contains one or more Slides.
 presenter: Paulo Veiga y Marco Sánchez Sorondo
-audience: Estudiantes del Master in Management (MiM), IAE Business School. Perfil de gestión y negocios, mayormente no técnico; poca exposición previa a agentes de IA.
+audience: Estudiantes de la Universidad Austral. Perfil de gestión y negocios, mayormente no técnico; poca exposición previa a agentes de IA.
 duration: 60 min (a confirmar)
 date: Julio 2026
 ---

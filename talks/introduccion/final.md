@@ -24,7 +24,7 @@ date: "2026-08"
 **Sections (in delivery order):
 
 - 1. Bienvenidos
-- 2. Por qué cursarla
+- 2. ¿Por qué esta materia?
 - 3. Logística
 - 4. Fundamento de AI
 - 5. Taxinomia de Problemas
@@ -181,19 +181,17 @@ Referencia PPTX: diapositiva 4.
 
 ---
 
-# 2. Por qué cursarla
+# 2. ¿Por qué esta materia?
 
 **Goal of this section:** Explicar por qué la IA generativa importa para la formación y la práctica de Ingeniería de Software.
 
 ---
 
-## 5. ¿Por qué esta materia?
+## 5. ¿Por qué esto es relevante para tu carrera?
 
 <!-- template: concept-breakdown -->
 
 ### Content
-
-¿Por qué esto es relevante para tu carrera?
 
 La IA generativa cambia la forma de analizar requisitos, escribir código, crear pruebas, mantener documentación y operar sistemas.
 
@@ -225,13 +223,11 @@ Referencia PPTX: diapositiva 5.
 
 ---
 
-## 6. ¿Por qué esta materia?
+## 6. El impacto de GenAI en la economía
 
 <!-- template: concept-breakdown -->
 
 ### Content
-
-El Impacto de GenAI en la Economía
 
 Impulso histórico a la productividad
 
@@ -263,13 +259,11 @@ Referencia PPTX: diapositiva 6.
 
 ---
 
-## 7. ¿Por qué esta materia?
+## 7. Impacto por industria y funciones
 
 <!-- template: image-full -->
 
 ### Content
-
-Impacto Por Industria y Funcionalistas
 
 ![Impacto de la IA generativa por industria y función](images/impacto-por-industria.jpeg)
 
@@ -285,13 +279,11 @@ Referencia PPTX: diapositiva 7.
 
 ---
 
-## 8. ¿Por qué esta materia?
+## 8. Transformación en Ingeniería de Software
 
 <!-- template: concept-breakdown -->
 
 ### Content
-
-Transformación en Ingeniería de Software
 
 Aceleración del desarrollo de software
 
@@ -345,13 +337,11 @@ Punto clave: la IA amplifica las habilidades de un equipo cuando el proceso cons
 
 ---
 
-## 9. ¿Por qué esta materia?
+## 9. Problemas actuales de la IA en software
 
 <!-- template: concept-breakdown -->
 
 ### Content
-
-Problemas actuales de la IA en software
 
 Alucinaciones y respuestas falsas
 
@@ -380,8 +370,6 @@ Entrenar y operar modelos a gran escala requiere energía, agua e infraestructur
 Degradación de habilidades técnicas
 
 Un uso sin comprensión puede erosionar la capacidad de depurar, diseñar y operar sistemas cuando la herramienta falla o entrega una respuesta errónea.
-
-Fuente de referencia: el PPTX original organiza estos riesgos a partir de la guía de la OMS; esta adaptación los aplica al trabajo de software.
 
 ### Sources
 
@@ -451,13 +439,11 @@ Cierre para debate:
 
 ---
 
-## 10. ¿Por qué esta materia?
+## 10. El riesgo macroeconómico y la transición abrupta
 
 <!-- template: concept-breakdown -->
 
 ### Content
-
-El riesgo macroeconómico y la transición abrupta
 
 La crisis global de capacidades, escenario hipotético
 
@@ -476,8 +462,6 @@ Espiral deflacionaria y concentración
 Pocos proveedores de cómputo, modelos y datos pueden capturar una porción desproporcionada del valor. Los equipos quedan atados a precios, políticas y capacidades ajenas.
 
 Pregunta para debate: ¿qué decisiones de diseño, formación y regulación reducen estos riesgos sin bloquear la innovación?
-
-Fuente de referencia: el PPTX original presenta un escenario hipotético de transición abrupta.
 
 ### Sources
 
@@ -501,28 +485,25 @@ We are now experiencing the unwind of that premium. Machine intelligence is now 
 
 ---
 
-## 13. Logística de la materia
+## 13. Cómo vamos a trabajar
 
-<!-- template: concept-breakdown -->
-<!-- format: grid -->
+<!-- template: process -->
 
 ### Content
 
-Cómo vamos a trabajar
-
-01 · Clases
+Clases
 
 Son 14 clases, los miércoles. En cada una vamos a mezclar conceptos, modelos, ejemplos y práctica.
 
-02 · De la idea a la práctica
+De la idea a la práctica
 
 Primero vemos la idea y la discutimos; después la llevamos a notebooks, repositorios, herramientas y casos concretos.
 
-03 · Trabajo en equipo
+Trabajo en equipo
 
 Van a trabajar en equipo, probar cosas, comparar resultados y dejar registro de las decisiones.
 
-04 · Participación y evaluación
+Participación y evaluación
 
 Esperamos presencia y participación activa. Cada dos clases habrá un entregable práctico; la nota final combina esos trabajos con el proyecto final. Las reglas y la ponderación estarán claras antes de la primera entrega.
 
@@ -538,34 +519,31 @@ Referencia PPTX: diapositiva 13.
 
 ---
 
-## 14. Logística de la materia
+## 14. Entregables de clase
 
-<!-- template: concept-breakdown -->
-<!-- format: grid -->
+<!-- template: process -->
 
 ### Content
 
-Entregables de clase
-
 Forman parte de la evaluación junto con el trabajo final.
 
-01 · Ritmo
+Ritmo
 
 Un entregable cada dos clases, relacionado con los temas vistos.
 
-02 · Equipo
+Equipo
 
 Se trabaja en equipos de cuatro personas.
 
-03 · Trabajo durante la clase
+Trabajo durante la clase
 
 La mayor parte del trabajo se completa durante la clase.
 
-04 · Evidencia
+Evidencia
 
 Cada equipo debe dejar trazabilidad de decisiones, prompts, código, pruebas y fuentes usadas.
 
-05 · Entrega obligatoria
+Entrega obligatoria
 
 Se entrega por el canal que indique la cátedra, con repositorio o artefactos reproducibles cuando corresponda.
 
@@ -581,14 +559,12 @@ Referencia PPTX: diapositiva 14.
 
 ---
 
-## 15. Logística de la materia
+## 15. Trabajo final
 
 <!-- template: concept-breakdown -->
 <!-- format: grid -->
 
 ### Content
-
-Trabajo final
 
 Un proyecto propio que aplique conceptos de la materia a un problema de Ingeniería de Software.
 
@@ -654,30 +630,21 @@ La evaluación combina el trabajo sostenido durante la cursada con la capacidad 
 
 ## 16. Contenidos de la Materia
 
-<!-- template: concept-breakdown -->
-<!-- format: editorial -->
+<!-- template: process -->
 
 ### Content
-
-01
 
 Módulo 1: Fundamentos de IA, arquitectura de LLM y entrenamiento
 
 Clases 1–4
 
-02
-
 Módulo 2: Ingeniería de prompts, RAG y desarrollo asistido por IA
 
 Clases 5–8
 
-03
-
 Módulo 3: Generación multimodal, visión e interfaces
 
 Clases 9–12
-
-04
 
 Módulo 4: Agentes, evaluación, ética, seguridad y regulación
 
@@ -1040,13 +1007,11 @@ Y eso abrió la puerta a modelos gigantes.
 
 ---
 
-## 1. La Taxonomía de Problemas
+## 1. ¿Qué tipos de problemas resuelve la IA?
 
 <!-- template: concept-breakdown -->
 
 ### Content
-
-¿Qué tipos de problemas resuelve la IA?
 
 Predicción
 
@@ -1114,14 +1079,12 @@ Presentar Predicción como una de las familias más frecuentes de problemas de I
 
 ---
 
-## 2. La taxonomía de problemas
+## 2. Ejemplos de problemas predictivos
 
 <!-- template: concept-breakdown -->
 <!-- format: editorial -->
 
 ### Content
-
-Ejemplos de problemas predictivos
 
 Clasificación binaria
 
@@ -1157,13 +1120,11 @@ Referencia PPTX: diapositiva 24.
 
 ---
 
-## 3. La taxonomía de problemas
+## 3. Percepción
 
 <!-- template: concept-breakdown -->
 
 ### Content
-
-Percepción
 
 Extraer estructura significativa de señales sensoriales y documentos.
 
@@ -1191,14 +1152,12 @@ Referencia PPTX: diapositiva 25.
 
 ---
 
-## 4. La taxonomía de problemas
+## 4. Representación
 
 <!-- template: concept-breakdown -->
 <!-- format: editorial -->
 
 ### Content
-
-Representación
 
 Aprender estructuras internas que capturan relaciones entre datos.
 
@@ -1234,14 +1193,12 @@ Referencia PPTX: diapositiva 26.
 
 ---
 
-## 5. La taxonomía de problemas
+## 5. Decisión secuencial
 
 <!-- template: concept-breakdown -->
 <!-- format: editorial -->
 
 ### Content
-
-Decisión secuencial
 
 Maximizar una recompensa acumulada a través de acciones en el tiempo.
 
@@ -1283,14 +1240,12 @@ Referencia PPTX: diapositiva 27.
 
 ---
 
-## 6. La taxonomía de problemas
+## 6. Búsqueda y planificación
 
 <!-- template: concept-breakdown -->
 <!-- format: editorial -->
 
 ### Content
-
-Búsqueda y planificación
 
 Encontrar la mejor secuencia de acciones en un espacio de estados.
 
@@ -1326,14 +1281,12 @@ Referencia PPTX: diapositiva 28.
 
 ---
 
-## 7. La taxonomía de problemas
+## 7. Razonamiento y simbólico
 
 <!-- template: concept-breakdown -->
 <!-- format: editorial -->
 
 ### Content
-
-Razonamiento y simbólico
 
 Manipular símbolos y reglas explícitas para derivar conclusiones lógicas.
 
@@ -1373,13 +1326,11 @@ Referencia PPTX: diapositiva 29.
 
 ---
 
-## 8. La taxonomía de problemas
+## 8. Generación
 
 <!-- template: concept-breakdown -->
 
 ### Content
-
-Generación
 
 Modelar la distribución de los datos y producir nuevas muestras coherentes.
 
@@ -1425,13 +1376,11 @@ Referencia PPTX: diapositiva 30.
 
 ---
 
-## 1. Conceptos clave
+## 1. LLMs, Foundation Models y Multimodal
 
 <!-- template: concept-columns -->
 
 ### Content
-
-LLMs, Foundation Models y Multimodal
 
 Language Models
 
@@ -1495,15 +1444,11 @@ Referencia PPTX: diapositiva 31.
 
 ---
 
-## 2. Concepto clave
+## 2. IA Tradicional vs. Foundation Models
 
 <!-- template: concept-columns -->
 
 ### Content
-
-Por que Foundation models es relevante ?
-
-IA Tradicional vs. Foundation Models
 
 IA Tradicional (Machine Learning/InHouse)
 
@@ -1624,13 +1569,11 @@ Necesita infraestructura enorme (clusters de GPUs / TPUs).
 
 ---
 
-## 4. Es todo escala
+## 4. La escala es masiva
 
 <!-- template: timeline -->
 
 ### Content
-
-La Escala es Masiva
 
 Tokens de entrenamiento por modelo — 2020 a 2024
 
@@ -1732,13 +1675,11 @@ Referencia PPTX: diapositiva 35.
 
 ---
 
-## 6. Es todo escala
+## 6. Escala, datos y poder de cómputo
 
 <!-- template: value-columns -->
 
 ### Content
-
-La escala es masiva
 
 Escala, datos y poder de cómputo
 
@@ -1803,44 +1744,40 @@ La figura calibra puntajes de conocimiento factual contra el tamaño conocido de
 
 ---
 
-## 7. El Ecosistema Actual
+## 7. Modelos de propósito general
 
 <!-- template: concept-breakdown -->
 <!-- format: editorial -->
 
 ### Content
 
-El ecosistema actual
-
-Modelos de propósito general relevantes en agosto de 2026
-
 OpenAI — GPT-5.2
 
-Razonamiento, herramientas y desarrollo de software.
+Cerrado, por API. El ecosistema de herramientas más grande.
 
 Google DeepMind — Gemini 3.6 Flash
 
-Modelo multimodal rápido para tareas agentic y de código.
+La variante Flash cambia potencia por latencia y costo.
 
 Anthropic — Claude 4
 
-Familia Opus y Sonnet para razonamiento, análisis y programación.
+Familia escalonada: Opus para lo difícil, Sonnet para el resto.
 
 Meta — Llama 4 Maverick y Scout
 
-Pesos abiertos y multimodalidad para despliegue propio.
+Pesos abiertos: se despliega en infraestructura propia.
 
 DeepSeek — V4 Pro y V4 Flash
 
-Razonamiento y agentes con fuerte relación costo-rendimiento.
+Compite por costo por token, no por el primer puesto.
 
 Moonshot AI — Kimi K3
 
-Código, análisis y automatización agentic.
+Contexto largo y uso de herramientas en varios pasos.
 
 Alibaba — Qwen3.7-Max
 
-Modelo orientado a coding, razonamiento y agentes de larga duración.
+Familia amplia, con versiones abiertas y foco no estadounidense.
 
 El mercado combina modelos cerrados por API, familias abiertas y modelos diseñados específicamente para agentes. La disponibilidad y las versiones cambian con rapidez.
 
@@ -1869,7 +1806,7 @@ Actualizado el 4 de agosto de 2026. Esta slide ofrece un mapa de familias y mode
 
 ## 1. Conclusiones Clave
 
-<!-- template: concept-breakdown -->
+<!-- template: process -->
 
 ### Content
 
@@ -1877,19 +1814,11 @@ Conclusiones clave
 
 Lo que debes llevarte de esta sesión
 
-1
-
 La IA aprende de datos, objetivos y retroalimentación; no funciona como un conjunto fijo de reglas escritas a mano.
-
-2
 
 Los foundation models cambiaron las reglas del juego: un modelo entrenado a escala puede adaptarse a texto, código, imágenes y tareas de producto.
 
-3
-
 La escala importa, pero también la alineación, la seguridad, la evaluación y el control sobre los datos.
-
-4
 
 Los agentes y la multimodalidad amplían las capacidades de los sistemas. Los equipos deben diseñar permisos, trazabilidad y mecanismos de supervisión.
 
@@ -2009,14 +1938,12 @@ Referencia PPTX: diapositiva 41.
 
 ---
 
-## 5. Tema crítico
+## 5. El futuro: agentes autónomos e IA multimodal
 
 <!-- template: content+cards+image -->
 <!-- design: column-right -->
 
 ### Content
-
-El futuro: agentes autónomos e IA multimodal
 
 Agentes autónomos
 
