@@ -687,7 +687,7 @@ Referencia PPTX: diapositiva 17.
 
 ## 1. Inteligencia Artificial Generativa Aplicada en Ingeniería de Software
 
-<!-- template: divider -->
+<!-- template: statement -->
 
 ### Content
 

@@ -4,7 +4,12 @@
 .venv/
 __pycache__/
 *.pyc
-talks/*/output/
+# Ignore build artifacts under output/, but keep index.html and any images/
+talks/*/output/**
+!talks/*/output/**/
+!talks/*/output/**/index.html
+!talks/*/output/**/images/**
+!talks/*/output/slide-model.json
 talks/*/images/.critique/
 .icons/
 .claude/settings.local.json

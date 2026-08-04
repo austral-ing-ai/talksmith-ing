@@ -118,6 +118,11 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
 - 2026-08-03 — "Borra Fuente de referencia: el PPTX original usa ejemplos de impacto sectorial; esta versión los traslada a Ingeniería de Software." → Se eliminó de la diapositiva 8, se registró la resolución en `draft.md` y se regeneraron `final.md`, `slide-model.json` y el HTML.
 - Validation: la frase no aparece en `final.md`, el modelo ni el HTML; la presentación conserva 45 diapositivas.
 
+### Revisión posterior del estilo
+- 2026-08-03 — La diapositiva de apertura de fundamentos necesitaba un estilo tipo quote o similar. Se eligió `statement`: el texto no es una cita atribuida, por lo que `quote` sería semánticamente incorrecto.
+- What changed: título principal `Inteligencia Artificial Generativa Aplicada en Ingeniería de Software`; subtítulo `Clase 1: Fundamentos, modelos y ecosistema actual`.
+- Validation: el HTML usa `data-kind="statement"` y conserva 45 diapositivas.
+
 ## 2026-08-03 — Step 8 (Learnings)
 - Status: deferred_until_render_acceptance
 - What was decided: No hay feedback acumulado ni candidatos de conformidad estricta que puedan promoverse como aprendizaje reutilizable.
