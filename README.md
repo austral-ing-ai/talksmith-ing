@@ -1,7 +1,5 @@
 # talksmith-ing
 
-[Ver la presentación de introducción](https://veigap.github.io/talksmith-ing/talks/introduccion/output/html/index.html)
-
 ## Calendario académico — segundo cuatrimestre 2026
 
 - **Inicio del cuatrimestre:** lunes 3 de agosto.
