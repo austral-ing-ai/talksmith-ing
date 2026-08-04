@@ -30,3 +30,5 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 | 12 | Miércoles 28 de octubre | — | — |
 | 13 | Miércoles 4 de noviembre | — | — |
 | 14 | Miércoles 11 de noviembre | — | — |
+
+
