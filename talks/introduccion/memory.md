@@ -410,3 +410,22 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
   - El hito de Predicción quedó con la cifra del PPTX ("error un 10% menor que el segundo lugar"). El de la Breve Historia (Parte 1) usa 15,3% contra 26,2% de error top-5, que es la formulación precisa. Conviene unificar.
   - La sección ahora tiene 15 diapositivas de las 60 del deck. Vale revisar si entra en los 90 minutos o si parte de ella pasa a material de consulta.
   - Las de siempre: la cifra del cuello blanco en la diapositiva del riesgo macroeconómico; "Codificar a entrenar" truncado; timeline Parte 1 ajustado contra el borde; etiqueta y cuerpo pegados en Move 37.
+
+
+## 2026-08-05 — Cierre de pendientes menores + escaneo de Step 8
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Completa lo pendiente." → Se cerraron los cuatro retoques que no dependían de una decisión del presentador y se corrió el escaneo de Step 8.
+- What was decided:
+  - **"Codificar a entrenar"** (Breve Historia Parte 2, hito 2012) quedó redactado completo: "el ingeniero de visión ya no escribe los detectores a mano, los aprende la red".
+  - **Hito de AlexNet unificado.** La diapositiva de Predicción usaba la formulación del PPTX ("error un 10% menor que el segundo lugar") y la Breve Historia las cifras precisas. Las dos usan ahora 15,3% de error top-5 contra 26,2% del segundo. Las notas de Predicción señalan que la cifra se repite en la otra diapositiva.
+  - **Cuello blanco.** La cifra pasó de 70% a 75%, que es la que trae Citrini, y la línea abre con "En el escenario" para que se lea como parte del escenario hipotético y no como dato observado. Es la corrección mínima defendible: no inventa una fuente real ni borra el contenido que el presentador pidió preservar.
+  - **Move 37.** La etiqueta del punto cierra con punto, así el render la separa del cuerpo en vez de encadenarlos en una sola oración.
+  - **Timeline Parte 1:** revisado por captura. Siete entradas entran con margen inferior; queda denso pero no desborda. No se tocó.
+- Files created/modified: `draft.md`; `final.md`; `config/feedback-backlog.md` (4 filas); `output/slide-model.json`; `output/html/index.html`.
+- Validation: 60 diapositivas más portada; tres auditorías en verde; frescura verificada; cero errores de consola. Verificación sobre el `textContent` del deck renderizado (no `innerText`, que solo devuelve la diapositiva visible y había dado lecturas vacías): 0 apariciones de las cuatro líneas borradas en rondas anteriores, 0 de "Codificar a entrenar", 0 de la formulación vieja del hito, 0 de "70% del gasto", y 0 de cualquier campo de trabajo.
+- **Escaneo de Step 8 (Learnings):** 45 filas en el backlog. Nueve etiquetas recurren tres veces o más, contra la lectura anterior de que ninguna llegaba al umbral: `template-selection` (9), `numbered-list` (6), `content-addition` (6), `slide-title` (5), `content-fidelity` (5), `remove-redundancy` (4), `remove-editorial-reference` (3), `new-slide` (3), `external-source` (3). `config/learnings.md` no existe todavía, así que una promoción lo crearía. La decisión de qué promover quedó en manos del presentador.
+- Pending open questions (las que sí dependen del presentador):
+  - Confirmar las cuatro preguntas de la diapositiva de Slido contra el evento real.
+  - Decidir si las 15 diapositivas de la Taxonomía entran en los 90 minutos.
+  - Elegir qué patrones del backlog se promueven a `config/learnings.md` y si el Talk se promueve a la biblioteca compartida.

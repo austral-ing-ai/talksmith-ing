@@ -549,7 +549,7 @@ Récord de productividad y ganancias corporativas impulsadas por IA que no circu
 
 Desplazamiento del “cuello blanco”
 
-La IA reemplaza a los trabajadores del conocimiento, que representan el 50% del empleo y el 70% del gasto discrecional.
+En el escenario, la IA reemplaza a los trabajadores del conocimiento, que representan el 50% del empleo y el 75% del gasto discrecional.
 
 La espiral deflacionaria
 
@@ -576,6 +576,9 @@ Entrada sugerida (del PPTX de referencia): "¿Cómo va? Vos que ya viste varias 
 Pregunta para debate: ¿qué decisiones de diseño, formación y regulación reducen estos riesgos sin bloquear la innovación?
 
 ### Presenter feedback
+
+- [closed] 2026-08-05 — "Corregir la cifra del cuello blanco contra la fuente."
+  Resolution: La cifra pasó de 70% a 75%, que es la que trae la fuente, y la línea ahora abre con 'En el escenario' para que se lea como parte del escenario hipotético y no como dato observado.
 
 - [closed] 2026-08-04 — "Borrar el PPTX original presenta en todos lados."
   Resolution: Se eliminó la referencia editorial restante que mencionaba el PPTX de origen en el contenido visible de la diapositiva.
@@ -1030,6 +1033,9 @@ Cómo lo hacía: búsqueda alfa-beta sobre el árbol de jugadas, unos 200 millon
 El contraste con lo que viene: AlphaGo en 2016 y los LLMs de hoy aprenden de datos en lugar de recibir la heurística escrita. Deep Blue cierra la era de las reglas y la Parte 2 abre la del aprendizaje.
 
 ### Presenter feedback
+
+- [closed] 2026-08-05 — "Definir la redacción final de "Codificar a entrenar"."
+  Resolution: La línea quedó redactada completa: el trabajo del ingeniero de visión deja de ser escribir detectores a mano.
 - [closed] 2026-08-05 — "Mejorar y expander los presenter notes con mas detalles."
   Resolution: Las notas del orador se reorganizaron por hito y se ampliaron. Se conservó todo el material previo (máquina universal, problema de la parada, juego de la imitación, sistemas expertos, Deep Blue) y se sumaron 1936, 1969, fechas, fuentes y ganchos de discusión para la clase.
 - [closed] 2026-08-05 — "Deep Blue vence a Kasparov  no esta correcto. Revisa y atualiza con summary de esto."
@@ -1108,7 +1114,7 @@ IBM Watson derrota a los mejores campeones humanos del concurso de preguntas. De
 
 La revolución del deep learning
 
-AlexNet gana ImageNet con una ventaja histórica. Las redes neuronales profundas y las GPUs cambian todo. Codificar a entrenar.
+AlexNet gana ImageNet con una ventaja histórica. Las redes neuronales profundas y las GPUs cambian todo: el ingeniero de visión ya no escribe los detectores a mano, los aprende la red.
 
 2016 
 
@@ -1268,7 +1274,7 @@ Segunda partida del match entre AlphaGo y Lee Sedol. Seúl, marzo de 2016.
 
 En la jugada 37 AlphaGo apoya una piedra en la quinta línea, lejos de donde se estaba jugando. Los comentaristas la dieron por error. Lee Sedol se levantó de la mesa y tardó más de diez minutos en responder. AlphaGo ganó esa partida y después el match por 4-1.
 
-Una jugada que ningún humano habría elegido
+Una jugada que ningún humano habría elegido.
 
 El sistema estimó que un jugador humano la jugaría una vez cada diez mil. La eligió igual, porque su evaluación de la posición venía de millones de partidas contra sí mismo y no solo del repertorio humano con el que había empezado a entrenar.
 
@@ -1293,6 +1299,9 @@ Pregunta para la clase: si un sistema propone una decisión de arquitectura que 
 Aclaración técnica: AlphaGo (2016) sí se entrenó con partidas humanas antes de la etapa de refuerzo. AlphaGo Zero, un año después, aprendió sin ningún dato humano y jugaba mejor. Si alguien pregunta, la distinción importa.
 
 ### Presenter feedback
+
+- [closed] 2026-08-05 — "La etiqueta y el cuerpo se leen corridos en el render."
+  Resolution: La etiqueta cierra con punto, así el render la separa del cuerpo en lugar de encadenarlos en la misma oración.
 
 ---
 
@@ -1412,7 +1421,7 @@ Herramientas: Scikit-learn · XGBoost · LightGBM · TensorFlow · PyTorch · Au
 
 Métricas: Accuracy · F1-Score · AUC-ROC · MAE · RMSE · R²
 
-Hito: en 2012, AlexNet (Krizhevsky et al.) ganó ImageNet con un error un 10% menor que el segundo lugar, usando predicción sobre imágenes. Marcó el inicio de la era del deep learning.
+Hito: en 2012, AlexNet (Krizhevsky et al.) ganó ImageNet con 15,3% de error top-5 contra 26,2% del segundo, usando predicción sobre imágenes. Marcó el inicio de la era del deep learning.
 
 ### Sources
 
@@ -1424,9 +1433,12 @@ Referencia PPTX: diapositiva 24.
 
 [Sin notas en el PPTX de referencia.]
 
-Contexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en GPU. La distancia con el segundo puesto abrió la década del deep learning.
+Contexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en dos GPUs de consumo. Más de diez puntos de diferencia con el segundo puesto, en una competencia donde se peleaba por décimas, abrieron la década del deep learning. La misma cifra aparece en la Breve Historia (Parte 2).
 
 ### Presenter feedback
+
+- [closed] 2026-08-05 — "Unificar la formulación del hito de AlexNet con la de la Breve Historia."
+  Resolution: El hito pasó a las cifras precisas, 15,3% de error top-5 contra 26,2% del segundo, iguales a las de la Breve Historia (Parte 2). Las notas suman el contexto y señalan que la cifra se repite en la otra diapositiva.
 
 ---
 

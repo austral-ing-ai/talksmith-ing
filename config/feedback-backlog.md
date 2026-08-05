@@ -249,3 +249,27 @@
   feedback: "Revisa que esta inconsistente que Predicción es el unico que tiene slide seperador. Hacelo para todos."
   resolution: La sección se reconstruyó con la estructura del PPTX: siete pares de separadora más diapositiva de detalle, de 9 a 15 diapositivas. Se restauraron los seis hitos que faltaban o estaban vagos (ResNet 2015 con 3,57%, Word2Vec 2013, AlphaGo 2016 y AlphaZero 2017, DeepMind 2016 con el 40%, Deep Blue 1997, ChatGPT 2022), más las herramientas y arquitecturas de cada familia. Los ejemplos de biomedicina y agro se tradujeron a software; los hitos históricos quedaron intactos.
   tags: [template-selection, content-fidelity, new-slide]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "2. Ejemplos de problemas predictivos"
+  feedback: "Unificar la formulación del hito de AlexNet con la de la Breve Historia."
+  resolution: El hito pasó a las cifras precisas, 15,3% de error top-5 contra 26,2% del segundo, iguales a las de la Breve Historia (Parte 2). Las notas suman el contexto y señalan que la cifra se repite en la otra diapositiva.
+  tags: [consistency]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "6. Move 37"
+  feedback: "La etiqueta y el cuerpo se leen corridos en el render."
+  resolution: La etiqueta cierra con punto, así el render la separa del cuerpo en lugar de encadenarlos en la misma oración.
+  tags: [typography]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "3. Una Breve Historia (Parte 1)"
+  feedback: "Definir la redacción final de "Codificar a entrenar"."
+  resolution: La línea quedó redactada completa: el trabajo del ingeniero de visión deja de ser escribir detectores a mano.
+  tags: [wording]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "10. El riesgo macroeconómico y el colapso del consumo"
+  feedback: "Corregir la cifra del cuello blanco contra la fuente."
+  resolution: La cifra pasó de 70% a 75%, que es la que trae la fuente, y la línea ahora abre con 'En el escenario' para que se lea como parte del escenario hipotético y no como dato observado.
+  tags: [content-fidelity]

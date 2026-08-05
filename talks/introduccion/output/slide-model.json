@@ -294,7 +294,7 @@
         },
         {
           "label": "Desplazamiento del “cuello blanco”",
-          "body": "La IA reemplaza a los trabajadores del conocimiento, que representan el 50% del empleo y el 70% del gasto discrecional."
+          "body": "En el escenario, la IA reemplaza a los trabajadores del conocimiento, que representan el 50% del empleo y el 75% del gasto discrecional."
         },
         {
           "label": "La espiral deflacionaria",
@@ -572,7 +572,7 @@
         },
         {
           "label": "2012",
-          "body": "**La revolución del deep learning** — AlexNet gana ImageNet con una ventaja histórica. Las redes neuronales profundas y las GPUs cambian todo. Codificar a entrenar."
+          "body": "**La revolución del deep learning** — AlexNet gana ImageNet con una ventaja histórica. Las redes neuronales profundas y las GPUs cambian todo: el ingeniero de visión ya no escribe los detectores a mano, los aprende la red."
         },
         {
           "label": "2016",
@@ -607,7 +607,7 @@
       "title": "Move 37",
       "lead": "Segunda partida del match entre AlphaGo y Lee Sedol. Seúl, marzo de 2016. En la jugada 37 AlphaGo apoya una piedra en la quinta línea, lejos de donde se estaba jugando. Los comentaristas la dieron por error. Lee Sedol se levantó de la mesa y tardó más de diez minutos en responder. AlphaGo ganó esa partida y después el match por 4-1.",
       "point": {
-        "label": "Una jugada que ningún humano habría elegido",
+        "label": "Una jugada que ningún humano habría elegido.",
         "body": "El sistema estimó que un jugador humano la jugaría una vez cada diez mil. La eligió igual, porque su evaluación de la posición venía de millones de partidas contra sí mismo y no solo del repertorio humano con el que había empezado a entrenar."
       },
       "highlights": [
@@ -713,13 +713,13 @@
           "kind": "note"
         },
         {
-          "body": "En 2012, AlexNet (Krizhevsky et al.) ganó ImageNet con un error un 10% menor que el segundo lugar, usando predicción sobre imágenes. Marcó el inicio de la era del deep learning.",
+          "body": "En 2012, AlexNet (Krizhevsky et al.) ganó ImageNet con 15,3% de error top-5 contra 26,2% del segundo, usando predicción sobre imágenes. Marcó el inicio de la era del deep learning.",
           "label": "Hito",
           "kind": "takeaway",
           "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 24.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en GPU. La distancia con el segundo puesto abrió la década del deep learning."
+      "notes": "Referencia PPTX: diapositiva 24.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en dos GPUs de consumo. Más de diez puntos de diferencia con el segundo puesto, en una competencia donde se peleaba por décimas, abrieron la década del deep learning. La misma cifra aparece en la Breve Historia (Parte 2)."
     },
     {
       "template": "statement",
@@ -1609,7 +1609,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "60ee84e6005501dc144ae7fc601b487ec453c0c9a1229421d308210a41e2cccc",
-    "bytes": 97107
+    "sha256": "8b1d55ea222f4f92d6cefe5e49b91865ca893f7a096087cdc603c89a66fa4c3d",
+    "bytes": 97332
   }
 }

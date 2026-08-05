@@ -497,7 +497,7 @@ Récord de productividad y ganancias corporativas impulsadas por IA que no circu
 
 Desplazamiento del “cuello blanco”
 
-La IA reemplaza a los trabajadores del conocimiento, que representan el 50% del empleo y el 70% del gasto discrecional.
+En el escenario, la IA reemplaza a los trabajadores del conocimiento, que representan el 50% del empleo y el 75% del gasto discrecional.
 
 La espiral deflacionaria
 
@@ -977,7 +977,7 @@ IBM Watson derrota a los mejores campeones humanos del concurso de preguntas. De
 
 La revolución del deep learning
 
-AlexNet gana ImageNet con una ventaja histórica. Las redes neuronales profundas y las GPUs cambian todo. Codificar a entrenar.
+AlexNet gana ImageNet con una ventaja histórica. Las redes neuronales profundas y las GPUs cambian todo: el ingeniero de visión ya no escribe los detectores a mano, los aprende la red.
 
 2016 
 
@@ -1122,7 +1122,7 @@ Segunda partida del match entre AlphaGo y Lee Sedol. Seúl, marzo de 2016.
 
 En la jugada 37 AlphaGo apoya una piedra en la quinta línea, lejos de donde se estaba jugando. Los comentaristas la dieron por error. Lee Sedol se levantó de la mesa y tardó más de diez minutos en responder. AlphaGo ganó esa partida y después el match por 4-1.
 
-Una jugada que ningún humano habría elegido
+Una jugada que ningún humano habría elegido.
 
 El sistema estimó que un jugador humano la jugaría una vez cada diez mil. La eligió igual, porque su evaluación de la posición venía de millones de partidas contra sí mismo y no solo del repertorio humano con el que había empezado a entrenar.
 
@@ -1253,7 +1253,7 @@ Herramientas: Scikit-learn · XGBoost · LightGBM · TensorFlow · PyTorch · Au
 
 Métricas: Accuracy · F1-Score · AUC-ROC · MAE · RMSE · R²
 
-Hito: en 2012, AlexNet (Krizhevsky et al.) ganó ImageNet con un error un 10% menor que el segundo lugar, usando predicción sobre imágenes. Marcó el inicio de la era del deep learning.
+Hito: en 2012, AlexNet (Krizhevsky et al.) ganó ImageNet con 15,3% de error top-5 contra 26,2% del segundo, usando predicción sobre imágenes. Marcó el inicio de la era del deep learning.
 
 ### Sources
 
@@ -1265,7 +1265,7 @@ Referencia PPTX: diapositiva 24.
 
 [Sin notas en el PPTX de referencia.]
 
-Contexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en GPU. La distancia con el segundo puesto abrió la década del deep learning.
+Contexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en dos GPUs de consumo. Más de diez puntos de diferencia con el segundo puesto, en una competencia donde se peleaba por décimas, abrieron la década del deep learning. La misma cifra aparece en la Breve Historia (Parte 2).
 
 ---
 
