@@ -19,14 +19,14 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 | 2 | Miércoles 12 de agosto | CoWork | [Claude Desktop — Chat](https://veigap.github.io/talksmith-ing/talks/claude-desktop-chat/output/html/) · [Claude Cowork](https://veigap.github.io/talksmith-ing/talks/claude-cowork/output/html/) |
 | 3 | Miércoles 19 de agosto | NN, 1 dimention, 2 dimentions, training  | — |
 | 4 | Miércoles 26 de agosto | Embeddings, Tokens, word2Vec, Sec, Transformers | — |
-| 5 | Miércoles 2 de septiembre | Embeddings, Tokens, word2Vec, Sec, Transformers | — |
-| 6 | Miércoles 9 de septiembre | Advanced Transformers | — |
-| 7 | Miércoles 16 de septiembre | RAG, MCP, Prompting, Limitaciones | — |
+| 5 | Miércoles 2 de septiembre | Advanced Transformers | — |
+| 6 | Miércoles 9 de septiembre | Prompting, Limitaciones (Que cortar aca)?? | — |
+| 7 | Miércoles 16 de septiembre | RAG, MCP, Bases Vectoriales, etc | — |
 | 8 | Miércoles 23 de septiembre | Fine Tunning | — |
 | 9 | Miércoles 30 de septiembre | Vision, Adversarial Networks | — |
 | 10 | Miércoles 7 de octubre | CNN | — |
-| — | Miércoles 14 de octubre — exámenes extraordinarios |  | — |
-| 11 | Miércoles 21 de octubre | — | — |
+| — | Miércoles 14 de octubre — exámenes extraordinarios |  | TBD |
+| 11 | Miércoles 21 de octubre | TBD | — |
 | 12 | Miércoles 28 de octubre | Agentes | — |
 | 13 | Miércoles 4 de noviembre | Agentes | — |
 | 14 | Miércoles 11 de noviembre | Seguridad y Etica | — |
