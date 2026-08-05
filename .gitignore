@@ -11,5 +11,7 @@ talks/*/output/**
 !talks/*/output/**/images/**
 !talks/*/output/slide-model.json
 talks/*/images/.critique/
+# Scratch/throwaway folders — never track
+**/_to_delete/
 .icons/
 .claude/settings.local.json

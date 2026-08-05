@@ -1,7 +1,7 @@
 # memory.md — introduccion
 
-**Current step:** 7 — Render awaiting_presenter_review
-**Awaiting:** 2026-08-03 — "Revisar el HTML regenerado con el nuevo modelo semántico y marcar ajustes visuales por diapositiva."
+**Current step:** 5 — Review awaiting_presenter
+**Awaiting:** 2026-08-05 — "Seguir iterando sobre draft.md. Pendiente de decisión del presentador: la cifra del cuello blanco en la diapositiva 10 (fuente de ficción especulativa, y 70% donde la fuente dice 75%)."
 **Topic:** Introducción, normas de trabajo y encuadre inicial de la materia.
 **Folder:** talks/introduccion/
 **Started:** 2026-08-03
@@ -168,3 +168,127 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
 - What was decided: Los ordinales son cromo del renderer, no contenido — se aplicó la regla del catálogo de plantillas. La diapositiva de conclusiones queda como lista numerada de una columna, sin etiquetas artificiales.
 - Validation: primer render avisó que el formato `editorial` con 7 conceptos no soporta cuerpos de 115 caracteres (~70 entran); se acortaron y el render volvió limpio. Salida final: 52 diapositivas, 13 imágenes, 47 paneles de notas, 0 apariciones de los títulos viejos ni de "Fuente de referencia".
 - Riesgo abierto: los rasgos diferenciadores de los siete modelos son afirmaciones de posicionamiento (cerrado vs. pesos abiertos, costo, contexto), no especificaciones verificadas — la búsqueda web sobre versiones de agosto de 2026 sólo devolvió agregadores de baja calidad. Conviene que el presentador los valide antes de dictar la clase.
+
+## 2026-08-04 — Step 5 (Review) — trabajo final y composición de equipos
+- Status: complete
+- Asks log:
+  - 2026-08-04 — "En el Trabajo práctico final, agreguemos que lo vamos a mencionar a mitad de cuatrimestre. Confirmar si no estaba ya ahí." → Verificado: no estaba. Se agregó la línea a la diapositiva 15.
+  - 2026-08-04 — "Los grupos tiene que ser 2 personas de sistemas + 2 datos." → Actualizadas las diapositivas 14 y 15 con la misma redacción.
+- What was decided:
+  - La consigna del trabajo final se anuncia en la diapositiva 15 con "La consigna completa se presenta a mitad de cuatrimestre.", dentro del bloque "Equipo y alcance". Se descartó abrir un cuarto bloque "Cuándo se presenta": la diapositiva usa `concept-breakdown` con `format: grid` y un cuarto concepto la empuja a cuatro columnas, el patrón que el catálogo desaconseja y que ya quedó registrado como riesgo abierto en las diapositivas densas 31, 43 y 44. El anuncio también pertenece al alcance, así que el bloque existente lo absorbe sin forzar la semántica.
+  - La composición del equipo queda en una sola redacción para las dos diapositivas: "Se trabaja en equipos de cuatro personas: dos de Ingeniería en Sistemas y dos de Ciencia de Datos." La diapositiva 15 conserva intacta la línea siguiente sobre continuidad del equipo entre los trabajos prácticos y el final.
+  - Corrección dentro de la misma ronda: el presentador confirmó los nombres de carrera y "Sistemas"/"Datos" pasaron a "Ingeniería en Sistemas"/"Ciencia de Datos" en el contenido de las dos diapositivas y en las dos `Resolution:`. La frase mide 98 caracteres, por debajo de las líneas más largas que ya cargaban esas diapositivas (110 en la 14, 113 en la 15), así que ninguna tarjeta necesitó una versión corta.
+- Key inputs: feedback del presentador en el chat (no escrito en el archivo); `talks/introduccion/draft.md`.
+- Files created/modified: `talks/introduccion/draft.md` (2 líneas de contenido modificadas, 1 línea de contenido agregada, 3 bullets `[closed]` con `Resolution:` en las diapositivas 14 y 15).
+- Validation:
+  - Antes de editar, "mitad" no aparecía ninguna vez en las 2344 líneas del draft. Confirmado el pedido del presentador de verificar que no estuviera.
+  - Después de editar, la frase de composición aparece en las líneas 582 y 626 con texto byte a byte idéntico; sin discrepancia entre las diapositivas 14 y 15. Cero residuos de "dos de Sistemas" o "dos de Datos" en el draft.
+  - La diapositiva 15 mantiene tres bloques de concepto: "Equipo y alcance", "Entregables" y "Evaluación".
+  - Prosa nueva pasada por `desrobotizar`, incluidas las reglas propias del presentador: sin em-dashes, sin adverbios en -mente, sin adjetivos de relleno, registro impersonal como el resto del deck.
+- Pending open questions:
+  - `final.md`, `output/slide-model.json` y el HTML quedaron desactualizados respecto de `draft.md`. Hay que rehacer Step 6 (Polish) y Step 7 (Render) para que los cambios lleguen al deck.
+  - Los tres bullets no se replicaron en `config/feedback-backlog.md`; la ronda anterior del 2026-08-04 tampoco lo hizo. Conviene decidir si se recupera el espejo antes de Step 8.
+  - Sigue abierto: diapositivas densas 31, 43 y 44 (cuatro columnas donde el catálogo recomienda hasta tres).
+
+## 2026-08-04 — Step 6 (Polish) + Step 7 (Render `html-strict`)
+- Status: complete
+- Asks log:
+  - 2026-08-04 — "Rehacer Polish y Render para que los cambios de la ronda de Review lleguen al deck." → Ejecutados los dos pasos sobre `talks/introduccion/`.
+- What was decided:
+  - Polish quedó reducido a su mínimo: el Talk no tiene diagramas ASCII ni SVG (0 bloques con fence, 0 referencias `.svg`), así que no corrieron las etapas de `polish-ascii` ni de consolidación de imágenes. Tampoco había bullets `[open]` que rescatar, de modo que el paso se limitó a derivar `final.md` desde `draft.md` y quitar los campos `Presenter feedback`.
+  - `final.md` se actualizó como edición quirúrgica de 3 líneas sobre el archivo existente en lugar de reescribirlo entero, y después se verificó que el resultado coincide con el derivado mecánico del draft sin los campos de feedback (`diff -B` limpio, sin diferencias fuera de líneas en blanco).
+  - En el render solo se tocaron dos entradas de `output/slide-model.json`: la diapositiva 14 (`Entregables de clase`, plantilla `process`, paso "Equipo") y la 15 (`Trabajo final`, plantilla `concept-breakdown` con `format: grid`, tarjeta "Equipo y alcance").
+- Key inputs: `talks/introduccion/draft.md` (76.325 bytes); `talks/introduccion/final.md`; `talks/introduccion/output/slide-model.json`; 13 recursos en `images/`; `config/logo.png`.
+- Files created/modified: `talks/introduccion/final.md`; `talks/introduccion/output/slide-model.json`; `talks/introduccion/output/html/index.html`.
+- Validation:
+  - `final.md`: 71.031 bytes, sha256 `8e243a8d10fc…`, 0 apariciones de "Presenter feedback". Los tres cambios de la ronda de Review llegaron al archivo (líneas 536 y 573 con la composición del equipo, línea 579 con la consigna a mitad de cuatrimestre).
+  - Modelo re-sellado contra `final.md`. Las tres auditorías previas al render en verde: `degenerate_enum` ok, `field_coverage` ok, `image_coverage` ok.
+  - Render `build_html.py --talk talks/introduccion`: 52 diapositivas, 13 imágenes embebidas, `output/html/index.html` de 3.350.242 bytes.
+  - Captura headless de las dos diapositivas afectadas: ambas renderizan completas y sin desborde (`scrollHeight == clientHeight` en la tarjeta más densa).
+- Riesgo estético anotado: la tarjeta "Equipo y alcance" de la diapositiva 15 quedó en 302 caracteres, contra 176 y 100 de sus dos hermanas en la misma grilla de tres. Entra sin recorte, pero si más adelante se le suma texto conviene revisar el balance o partir el concepto.
+- Notas de entorno:
+  - El render corrió en el contenedor de sesión (los scripts del plugin no están montados en la carpeta local) y `final.md`, `slide-model.json` e `index.html` se escribieron de vuelta al disco del presentador.
+  - El montaje de staging del contenedor devolvió una copia desactualizada de `draft.md` (la versión previa a la ronda de Review, mismo path, 75.205 bytes) aunque el archivo en disco ya pesaba 76.325. Se resolvió trabajando directo sobre la carpeta montada y copiando a un nombre nuevo para forzar un staging fresco. Para futuras rondas: no confiar en un re-staging del mismo path dentro de la misma sesión.
+  - Quedaron dos archivos temporales de sincronización en `talks/introduccion/_to_delete/`: `final.sync.md` y `slide-model.sync.json`. Los borra el presentador cuando quiera.
+- Pending open questions (siguen abiertas):
+  - Diapositivas densas 31, 43 y 44 (cuatro columnas donde el catálogo recomienda hasta tres).
+  - Los rasgos diferenciadores de los siete modelos de propósito general son afirmaciones de posicionamiento sin verificar contra fuentes.
+  - Queda una mención al PPTX de origen en la diapositiva "Escala, datos y poder de cómputo".
+  - Los bullets de feedback de las rondas del 2026-08-04 no están espejados en `config/feedback-backlog.md`. Hay que decidirlo antes de Step 8.
+
+
+## 2026-08-05 — Step 5 (Review) — ronda de 10 comentarios
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Volvamos a la presentacion de introduccion a draft." → Resume del Talk `introduccion` en Step 5.
+  - 2026-08-05 — "Aplica los comentarios." → Se aplicaron los 10 bullets abiertos que el presentador había escrito en `draft.md`.
+- What was decided:
+  - Diapositiva 2: el cuerpo pasó a las dos preguntas de apertura ("¿Por qué eligieron esta materia?" / "¿Qué esperan llevarse de la cursada?"). Se retiró la línea "Inteligencia General Generativa", que repetía el título del curso. La imagen de bienvenida se conserva.
+  - Diapositiva 4: las tres fotos de docentes se redimensionaron a 500 px de alto conservando el aspect ratio (paulo 810x674 -> 601x500; marco 1154x1154 -> 500x500; claudio 300x300 -> 500x500). Claudio es el único que se amplía; el original de 300 px es la mejor copia disponible. Los archivos previos están en el historial de git.
+  - Diapositiva 5: el concepto "El futuro ya está disponible" pasó a "Impacto en todas las ciencias", con dos ejemplos concretos (ingeniero químico, contador) y un cierre sobre qué aporta el ingeniero de software.
+  - Diapositiva 6: se repuso el enlace de McKinsey. Salió de los hipervínculos del propio PPTX de referencia (`ppt/slides/_rels/slide6.xml.rels`), no de una búsqueda web.
+  - Diapositiva 8: se agregó un quinto concepto, "Redefinición de roles y responsabilidades". La grilla pasa de 4 a 5 tarjetas.
+  - Diapositiva 9: título "Problemas actuales de la IA en software" -> "Limitaciones de la IA Generativa".
+  - Diapositiva 10: el PPTX no tiene hipervínculo en esa diapositiva, pero sí una línea de fuente en el texto ("Citrini Research - The 2028 Global Intelligence Crisis"); se repuso con el enlace https://www.citriniresearch.com/p/2028gic. La verificación mostró que el contenido SÍ se había cambiado respecto del original, así que se restauraron el título ("El riesgo macroeconómico y el colapso del consumo"), "La crisis global de inteligencia 2028", el PIB fantasma, el 50%/70% del cuello blanco y la cadena de la espiral deflacionaria. La pregunta de debate y la entrada sugerida del PPTX se movieron a las notas del orador.
+  - Diapositivas 13 y 15: el estilo pedido ("bullets numerados") es `process` con pasos planos, que el catálogo renderiza como lista numerada de una sola columna con chip de número. La 13 pasó de 4 tarjetas con etiqueta a 7 líneas cortas; la 15 pasó de `concept-breakdown` + `format: grid` a `process`, con la lead intacta y 8 pasos planos. Se retiraron las etiquetas de agrupación (Equipo y alcance / Entregables / Evaluación) porque una lista numerada no las admite.
+  - Diapositiva "Evaluación": la línea Importante ya estaba última en el contenido; el render la subía porque el FILL la clasificó como `important` en `position: top`. Corresponde `position: bottom` en `output/slide-model.json`. Todavía no se aplicó: el modelo se re-sella en Step 7.
+- Key inputs: `talks/introduccion/draft.md`; `research/articles/Clase-1-AI-for-BIO-Fundamento.pptx` (hipervínculos y texto de las diapositivas 6 y 10); catálogo `config/pptx-styles/slide-templates.md`.
+- Files created/modified: `talks/introduccion/draft.md` (10 bullets `[closed]` con `Resolution:`); `config/feedback-backlog.md` (10 filas nuevas + 12 filas retroactivas); `talks/introduccion/images/docente-{paulo-veiga,marco-sorondo,claudio-riguetti}.*`.
+- Validation:
+  - 47 diapositivas H2 antes y después; 47 directivas `template`. Cero bullets abiertos al cerrar la ronda.
+  - `find-closed-unmirrored` en verde: se espejaron también los 12 bullets `[closed]` de las rondas del 2026-08-04 que habían quedado sin fila en el backlog. Esa pregunta abierta queda cerrada antes de Step 8.
+  - Prosa nueva escrita bajo `desrobotizar`, incluidas las reglas propias (registro impersonal en slides, sin em-dash, sin adverbios en -mente, sin hendidas de revelación).
+- Nota de concurrencia: el presentador editó `draft.md` durante la ronda (timeline de "Una Breve Historia" reestructurado por año y 3 bullets nuevos). Se resolvió con un merge a tres bandas (`git merge-file`) contra el snapshot base, sin conflictos: los cambios del presentador viven arriba de la línea 840 y los de esta ronda por debajo de la 750. Regla para próximas rondas: snapshot antes de editar y merge antes de escribir, nunca sobrescribir el archivo del presentador.
+- Pending open questions:
+  - Tres comentarios nuevos sin aplicar, llegados durante esta ronda: (1) "Buscar que otro slide formay podriamos usar. Son dos conceptos que se enotrodice."; (2) "De la teoría a la intuición es realmente un lead title"; (3) "Mejorar y expander los presenter notes con mas detalles."
+  - `final.md`, `output/slide-model.json` y el HTML quedaron desactualizados respecto de `draft.md`. Falta rehacer Step 6 (Polish) y Step 7 (Render).
+  - Al re-sellar el modelo en Step 7: la diapositiva "Evaluación" necesita `position: bottom` en su highlight, y la 8 pasa a 5 tarjetas (verificar que no caiga en 4 columnas).
+  - Siguen abiertas: diapositivas densas 31, 43 y 44; los rasgos de los siete modelos de propósito general sin verificar; la mención al PPTX de origen en "Escala, datos y poder de cómputo".
+
+
+## 2026-08-05 — Step 5 (Review) — segunda ronda, 4 comentarios
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Applica los nuevos cambios y vamos a seguir iterando." → Se aplicaron los 4 bullets que el presentador había escrito durante la ronda anterior.
+- What was decided:
+  - Diapositiva "2. ¿Qué es la Inteligencia Artificial?": pasó de `single-point` a `concept-columns`. La diapositiva introduce dos conceptos (Intuición / Un poco más formal) y el catálogo asigna `concept-columns` a 2-4 términos explicados en paralelo, cada columna autónoma y sin estructura de filas compartida. `single-point` exige exactamente un ítem etiquetado, así que la clasificación anterior estaba mal. Se corrigieron "Intuicion" -> "Intuición" y "Un Poco mas Formal" -> "Un poco más formal".
+  - "De la teoría a la intuición" queda como lead, arriba de las columnas. La atribución a Russell & Norvig pasó de una línea con em-dash dentro del cuerpo a una línea de fuente al pie.
+  - Diapositiva "3. Una Breve Historia (Parte 1)", entrada 1997: se reemplazó el cuerpo por el resumen que escribió el presentador (3½-2½, primer match completo ganado al campeón mundial, 200M de posiciones por segundo, sin aprendizaje). El texto anterior decía "primera victoria de la IA sobre el mejor humano", impreciso: Deep Blue ya había ganado una partida suelta en 1996 y Kasparov ganó ese match 4-2.
+  - Mismas diapositiva, notas del orador: se reorganizaron por hito y se ampliaron de ~1.900 a ~7.400 caracteres. Se conservó todo el material previo, incluido el que estaba suelto y sin formato (máquina universal de Turing, problema de la parada, juego de la imitación, definición de sistema experto, la línea "Deap blue - IA = búsqueda + poder de cómputo + heurísticas"). Se sumaron 1936 y 1969 como hitos de contexto, fechas y publicaciones (Mind 1950, Nature 1986, Bell System Technical Journal 1948), los sistemas expertos concretos (MYCIN, DENDRAL, XCON) y ganchos de discusión para la clase.
+  - Limpieza dentro de la misma diapositiva: la entrada de 1950 tenía "Test de turing ?" pegado al final del cuerpo, una nota al margen del presentador que se estaba proyectando. El cuerpo ahora explica el juego de la imitación y la pregunta quedó desarrollada en las notas.
+- Key inputs: `talks/introduccion/draft.md`; catálogo `config/pptx-styles/slide-templates.md` (familia "Aligned columns" y ficha `concept-columns`).
+- Files created/modified: `talks/introduccion/draft.md` (4 bullets `[closed]`); `config/feedback-backlog.md` (4 filas nuevas).
+- Validation: 47 diapositivas H2 y 47 directivas `template` antes y después; 0 bullets abiertos; `find-closed-unmirrored` en verde. `draft.md` pasó de 80.223 a 85.960 bytes, casi todo en notas del orador.
+- Pending open questions:
+  - Verificar en el render que `concept-columns` con dos columnas entra sin recorte, y decidir si una de las dos lleva `emphasis`.
+  - `final.md`, `output/slide-model.json` y el HTML siguen desactualizados. Falta Step 6 (Polish) y Step 7 (Render).
+  - Al re-sellar el modelo: "Evaluación" necesita `position: bottom` en su highlight; la diapositiva 8 pasó a 5 tarjetas.
+  - Siguen abiertas: diapositivas densas 31, 43 y 44; los rasgos de los siete modelos de propósito general sin verificar; la mención al PPTX de origen en "Escala, datos y poder de cómputo".
+
+
+## 2026-08-05 — Step 5 (Review) — tercera ronda + ingesta de fuentes
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Procesa mas cambios." → Se aplicaron los 3 bullets nuevos de la diapositiva "5. Una Breve Historia (Parte 2)".
+  - 2026-08-05 — "Asegurate que todos los links que referencia esten ingestados." → Auditoría de las 12 URLs de `draft.md` más 3 arXiv citados por ID sin URL.
+- What was decided:
+  - Nueva diapositiva 6, "Move 37", después de la Breve Historia (Parte 2). El video que pidió el presentador es "Move 37!! Lee Sedol vs AlphaGo Match 2", del canal Daniel Estrada. Plantilla `single-point`: prosa de contexto más un punto emfatizado, con el enlace al video al pie. La diapositiva cierra con la frase que el presentador pidió como summary, sobre el conocimiento estratégico que generó el self-play. La frase se puso acá y no en la Parte 2 porque es el remate del argumento de esta diapositiva; se mueve si el presentador prefiere.
+  - Notas del orador de la Parte 2: reorganizadas por hito y ampliadas de ~1.000 a ~5.900 caracteres, conservando todo el material previo sobre AlexNet y Transformers. Se sumaron los números de Watson (2.880 núcleos POWER7, 16 TB, el error "Toronto"), los de AlexNet (15,3% vs 26,2% de error top-5, dos GTX 580), la arquitectura de AlphaGo (red de política + red de valor + MCTS) y tres reparos de precisión: AlphaGo sí entrenó con partidas humanas (fue AlphaGo Zero el que no), el costo cuadrático de la atención, y que los 100 millones de usuarios de ChatGPT son una estimación de UBS cuyo récord Threads le quitó en julio de 2023.
+  - Ingesta: de las 15 fuentes referenciadas, 2 ya estaban en el corpus. Se capturaron 11 nuevas con `talksmith:ingest` y el rol Librarian construyó un registro por cada una. Dos no se pudieron traer: McKinsey (timeout de lectura, dos intentos) y `platform.openai.com/docs/api-reference/models/object` (HTTP 403). Las carpetas parciales se borraron; no quedaron restos.
+- Key inputs: `draft.md`; endpoint oEmbed público de YouTube para identificar el video; catálogo de plantillas.
+- Files created/modified: `talks/introduccion/draft.md` (48 diapositivas, 3 bullets `[closed]`, 4 entradas nuevas en Open questions); `config/feedback-backlog.md` (3 filas); `research/web/` (11 carpetas nuevas); `research/corpus/` (11 registros nuevos + carpetas companion con 37 imágenes).
+- Validation: 48 diapositivas H2 y 48 directivas `template`; 0 bullets abiertos; `find-closed-unmirrored` en verde. Las 2 capturas previas (`arxiv-2604-24827-ikp`, `linkedin-gpt-5-5-parameter-estimate`) sobrevivieron intactas al desempaquetado.
+- Hallazgos de la ingesta que afectan contenido ya escrito:
+  - **Citrini Research es ficción especulativa declarada.** Abre con "What follows is a scenario, not a prediction", se publicó el 22 de febrero de 2026 y está escrito como un memo fechado en junio de 2028. La diapositiva 10 lo cita. Además la cifra del cuello blanco no coincide: la fuente dice 50% del empleo y **75%** del gasto discrecional; la diapositiva proyecta 70%. Queda en Open questions, sin tocar el contenido, porque el presentador había pedido fidelidad al PPTX original.
+  - `anthropic-docs-welcome`: la captura trae nomenclatura de modelos inusual y menciona un modelo sin clasificadores de seguridad. Sin verificar y sin uso en ninguna diapositiva. Registrado como no citable hasta confirmarlo con otra fuente.
+  - `meta-llama-4`: la página tiene 16 meses, compara contra modelos ya superados y no publica números. No sirve como referencia de estado del arte.
+  - `alibaba-qwen-doc`: el benchmark que destaca es interno y circular (compara contra un kernel de la propia Alibaba).
+  - Los tres arXiv capturaron solo la página de abstract, sin figuras. Si hace falta el diagrama del Transformer o las curvas de Kaplan, hay que traer los PDFs aparte.
+  - 14 de las 37 imágenes copiadas quedaron con `<!-- pending: process_images -->`: 10 gráficos de Citrini, 3 de Moonshot y la cabecera de Meta. Correr la Fase 2 del Librarian si se van a usar.
+- Nota de transferencia: 118 archivos nuevos se pasaron al disco del presentador como un solo `.tgz` (14 MB) desempaquetado con `device_bash`, en lugar de 118 entregas individuales. Sirve como patrón para futuras ingestas grandes.
+- Pending open questions:
+  - Decidir qué hacer con la cifra y el encuadre de la diapositiva 10.
+  - "Codificar a entrenar" en la diapositiva de AlexNet parece una frase truncada. Definir redacción.
+  - `final.md`, `output/slide-model.json` y el HTML siguen desactualizados. Falta Step 6 y Step 7, ahora con 48 diapositivas en vez de 47.
+  - Al re-sellar el modelo: "Evaluación" necesita `position: bottom`; la diapositiva 8 pasó a 5 tarjetas; verificar `concept-columns` a dos columnas en "¿Qué es la Inteligencia Artificial?".
+  - Siguen abiertas: diapositivas densas 31, 43 y 44; los rasgos de los siete modelos de propósito general sin verificar; la mención al PPTX de origen en "Escala, datos y poder de cómputo".

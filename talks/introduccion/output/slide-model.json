@@ -3,7 +3,7 @@
     "title": "Inteligencia General Generativa: curso, reglas y fundamentos",
     "lang": "es",
     "institution": "Universidad Austral",
-    "class": "Inteligencia General Generativa · Clase 1: Bienvenida y logística",
+    "class": "Inteligencia Artificial Generativa  (AI Gen)· Clase 1: Bienvenida y logística",
     "presenter": "Paulo Veiga, Claudio Riguetti y Marco Sorondo",
     "date": "Agosto de 2026",
     "logo": null,
@@ -311,7 +311,7 @@
           "label": "Ritmo"
         },
         {
-          "body": "Se trabaja en equipos de cuatro personas.",
+          "body": "Se trabaja en equipos de cuatro personas: dos de Ingeniería en Sistemas y dos de Ciencia de Datos.",
           "label": "Equipo"
         },
         {
@@ -336,7 +336,7 @@
       "cards": [
         {
           "label": "Equipo y alcance",
-          "body": "Equipos de cuatro personas. El equipo debe ser el mismo que realizó los trabajos prácticos. La cátedra orientará el alcance, la evidencia y la forma de evaluar el resultado."
+          "body": "Se trabaja en equipos de cuatro personas: dos de Ingeniería en Sistemas y dos de Ciencia de Datos. El equipo debe ser el mismo que realizó los trabajos prácticos. La cátedra orientará el alcance, la evidencia y la forma de evaluar el resultado. La consigna completa se presenta a mitad de cuatrimestre."
         },
         {
           "label": "Entregables",
@@ -1424,7 +1424,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "8ee94367498027dbb3106f5b18db2a230f24f3dec975cf3f067336d431de618c",
-    "bytes": 70842
+    "sha256": "8e243a8d10fcaaa849bf4ad8d85aa5779da4267b6ce60e0f759bf936b4fda2db",
+    "bytes": 71031
   }
 }

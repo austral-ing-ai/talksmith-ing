@@ -1,0 +1,10 @@
+url: "https://arxiv.org/abs/2001.08361"
+fetched_at: "2026-08-05T12:19:24Z"
+title: "[2001.08361] Scaling Laws for Neural Language Models"
+http_status: 200
+byte_size: 43365
+assets:
+  - { src: "/static/base/1.0.1/images/icons/smileybones-small.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/icons/smileybones-small.svg", saved_as: "smileybones-small.svg", alt: "" }
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "archive" }
+  - { src: "/static/browse/0.3.4/images/icons/social/bibsonomy.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/bibsonomy.png", saved_as: "bibsonomy.png", alt: "BibSonomy" }
+  - { src: "/static/browse/0.3.4/images/icons/social/reddit.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/reddit.png", saved_as: "reddit.png", alt: "Reddit" }

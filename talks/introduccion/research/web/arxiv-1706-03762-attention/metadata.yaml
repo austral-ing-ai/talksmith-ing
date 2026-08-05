@@ -1,0 +1,10 @@
+url: "https://arxiv.org/abs/1706.03762"
+fetched_at: "2026-08-05T12:19:22Z"
+title: "[1706.03762] Attention Is All You Need"
+http_status: 200
+byte_size: 44193
+assets:
+  - { src: "/static/base/1.0.1/images/icons/smileybones-small.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/icons/smileybones-small.svg", saved_as: "smileybones-small.svg", alt: "" }
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "archive" }
+  - { src: "/static/browse/0.3.4/images/icons/social/bibsonomy.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/bibsonomy.png", saved_as: "bibsonomy.png", alt: "BibSonomy" }
+  - { src: "/static/browse/0.3.4/images/icons/social/reddit.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/reddit.png", saved_as: "reddit.png", alt: "Reddit" }

@@ -1,5 +1,5 @@
 ---
-presentation: "Inteligencia General Generativa — materia optativa de grado de Ingeniería de Software, Universidad Austral"
+presentation: "Inteligencia Artificial Generativa  (AI Gen)— materia optativa de grado de Ingeniería de Software, Universidad Austral"
 class: "Inteligencia General Generativa: curso, reglas y fundamentos"
 research: research/corpus/
 description: Slides are grouped into Sections. Each Section contains one or more Slides.
@@ -533,7 +533,7 @@ Un entregable cada dos clases, relacionado con los temas vistos.
 
 Equipo
 
-Se trabaja en equipos de cuatro personas.
+Se trabaja en equipos de cuatro personas: dos de Ingeniería en Sistemas y dos de Ciencia de Datos.
 
 Trabajo durante la clase
 
@@ -570,11 +570,13 @@ Un proyecto propio que aplique conceptos de la materia a un problema de Ingenier
 
 Equipo y alcance
 
-Equipos de cuatro personas.
+Se trabaja en equipos de cuatro personas: dos de Ingeniería en Sistemas y dos de Ciencia de Datos.
 
 El equipo debe ser el mismo que realizó los trabajos prácticos.
 
 La cátedra orientará el alcance, la evidencia y la forma de evaluar el resultado.
+
+La consigna completa se presenta a mitad de cuatrimestre.
 
 Entregables
 
