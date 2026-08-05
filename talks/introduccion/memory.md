@@ -1,7 +1,7 @@
 # memory.md — introduccion
 
-**Current step:** 7 — Render awaiting_presenter
-**Awaiting:** 2026-08-05 — "Elegir estilo de render (pptx-strict / pptx-free-form / html-strict) o saltear el render. Sigue pendiente la decisión sobre la cifra del cuello blanco en la diapositiva 10."
+**Current step:** 8 — Learnings in_progress
+**Awaiting:** 2026-08-05 — "Decisiones de Step 8: promoción de aprendizajes y de este Talk a la biblioteca compartida. Sigue pendiente la cifra del cuello blanco en la diapositiva 10."
 **Topic:** Introducción, normas de trabajo y encuadre inicial de la materia.
 **Folder:** talks/introduccion/
 **Started:** 2026-08-03
@@ -331,3 +331,19 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
   - El guard de línea en blanco antes de cada `---` pasa: el único caso sin línea previa es el cierre del frontmatter YAML en la línea 10, que es correcto.
   - `# Open questions` y `# Cut material` sobreviven en `final.md`.
 - Pending open questions: las mismas de la ronda anterior. `output/slide-model.json` y el HTML de `output/html/` corresponden al preview de `draft.md`; Step 7 tiene que re-FILLear contra `final.md`.
+
+
+## 2026-08-05 — Step 7 (Render `html-strict`)
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Render this Talk as which format?" → "html-strict".
+- What was decided: el modelo no se re-FILLeó desde cero. `final.md` difiere de `draft.md` solo en los campos de trabajo, que el FILL ignora por contrato, así que se promovió `slide-model.draft.json` a `slide-model.json` y se re-selló contra `final.md`. Se verificó la equivalencia con un diff de contenido: la única diferencia es el párrafo de cuatro líneas sobre Deep Blue que el presentador había pegado debajo de un bullet de feedback, que el strip retiró como corresponde.
+- Key inputs: `talks/introduccion/final.md` (84.270 bytes, sha256 ec9ca141aadf…); `slide-model.draft.json`; 13 recursos en `images/`; `config/logo.png`.
+- Files created/modified: `talks/introduccion/output/slide-model.json`; `talks/introduccion/output/html/index.html`.
+- Validation:
+  - Guard de frescura sellado y verificado contra `final.md`.
+  - Las tres auditorías en verde: `degenerate_enum` sin enumeraciones de un solo ítem, `field_coverage` con todos los campos poblados consumidos por su plantilla, `image_coverage` con todas las referencias de `final.md` presentes en el modelo.
+  - Salida: 53 diapositivas más portada, 47 paneles de notas del orador, 10 imágenes, 57 enlaces activos. Cero errores de consola.
+  - Chequeo de fugas sobre el texto renderizado: cero apariciones de "Presenter feedback", `[closed]`, `[open]` y "Resolution:".
+  - Portada verificada por captura: título, institución, clase, autoría, fecha y logo de Austral en su lugar.
+- Pending open questions: las de siempre, más las dos estéticas del preview (timeline Parte 1 ajustado contra el borde; etiqueta y cuerpo pegados en Move 37).

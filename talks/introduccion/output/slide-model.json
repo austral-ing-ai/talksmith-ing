@@ -1,9 +1,9 @@
 {
   "deck": {
-    "title": "Inteligencia General Generativa: curso, reglas y fundamentos",
+    "title": "Inteligencia Artificial Generativa (AI Gen)",
     "lang": "es",
     "institution": "Universidad Austral",
-    "class": "Inteligencia Artificial Generativa  (AI Gen)· Clase 1: Bienvenida y logística",
+    "class": "Clase 1: Bienvenidos / Introducción",
     "presenter": "Paulo Veiga, Claudio Riguetti y Marco Sorondo",
     "date": "Agosto de 2026",
     "logo": null,
@@ -28,7 +28,14 @@
       "template": "content-image",
       "section": "Bienvenidos",
       "title": "Bienvenidos!",
-      "lead": "Inteligencia General Generativa",
+      "facts": [
+        {
+          "body": "¿Por qué eligieron esta materia?"
+        },
+        {
+          "body": "¿Qué esperan llevarse de la cursada?"
+        }
+      ],
       "media": {
         "src": "images/bienvenida-hello.jpeg",
         "alt": "Ilustración de bienvenida"
@@ -130,8 +137,8 @@
           "body": "Un ingeniero que entiende IA puede liderar proyectos, definir controles de calidad y conversar con producto, seguridad, datos y negocio."
         },
         {
-          "label": "El futuro ya está disponible",
-          "body": "ChatGPT, Claude, Gemini, GitHub Copilot y modelos abiertos ya forman parte del entorno de trabajo. La decisión relevante consiste en usarlos con evidencia, pruebas y responsabilidad."
+          "label": "Impacto en todas las ciencias",
+          "body": "Hoy desarrolla cualquiera. Un ingeniero químico arma su script de simulación y un contador automatiza un cierre contable, con ChatGPT, Claude, Gemini o Copilot. El ingeniero de software sabe exigir evidencia, pruebas y responsabilidad antes de que ese código llegue a producción."
         }
       ],
       "format": "grid",
@@ -162,7 +169,7 @@
       "format": "grid",
       "highlights": [
         {
-          "body": "Fuente: McKinsey & Company — The economic potential of generative AI",
+          "body": "Fuente: McKinsey & Company — [The economic potential of generative AI: the next productivity frontier](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier)",
           "kind": "source"
         }
       ],
@@ -198,6 +205,10 @@
         {
           "label": "Eficiencia operativa",
           "body": "La automatización de runbooks, soporte y documentación puede devolver tiempo para resolver problemas de mayor valor. Los procesos necesitan registros, permisos y mecanismos de reversión."
+        },
+        {
+          "label": "Redefinición de roles y responsabilidades",
+          "body": "El equipo se reorganiza alrededor de la revisión. Quien integra código generado responde por él, y la revisión de pares concentra el control sobre la salida del modelo. Aparecen responsabilidades nuevas sobre datos, permisos y trazabilidad."
         }
       ],
       "format": "grid",
@@ -206,7 +217,7 @@
     {
       "template": "concept-breakdown",
       "section": "¿Por qué esta materia?",
-      "title": "Problemas actuales de la IA en software",
+      "title": "Limitaciones de la IA Generativa",
       "cards": [
         {
           "label": "Alucinaciones y respuestas falsas",
@@ -243,33 +254,33 @@
     {
       "template": "concept-breakdown",
       "section": "¿Por qué esta materia?",
-      "title": "El riesgo macroeconómico y la transición abrupta",
+      "title": "El riesgo macroeconómico y el colapso del consumo",
       "cards": [
         {
-          "label": "La crisis global de capacidades, escenario hipotético",
-          "body": "El escenario permite discutir qué ocurre si la productividad crece más rápido que la formación, la redistribución de oportunidades y los controles de adopción."
+          "label": "La crisis global de inteligencia 2028",
+          "body": "Un escenario hipotético sobre los peligros de una transición demasiado abrupta hacia la IA."
         },
         {
           "label": "El “PIB fantasma”",
-          "body": "Las empresas pueden registrar más producción gracias a la automatización mientras parte del mercado laboral pierde tareas de entrada y capacidad de consumo."
+          "body": "Récord de productividad y ganancias corporativas impulsadas por IA que no circulan en la economía real, porque las máquinas no consumen."
         },
         {
-          "label": "Desplazamiento del empleo inicial",
-          "body": "Roles junior y tareas repetitivas pueden cambiar antes de que universidades y empresas ofrezcan nuevas rutas de aprendizaje, mentoría y especialización."
+          "label": "Desplazamiento del “cuello blanco”",
+          "body": "La IA reemplaza a los trabajadores del conocimiento, que representan el 50% del empleo y el 70% del gasto discrecional."
         },
         {
-          "label": "Espiral deflacionaria y concentración",
-          "body": "Pocos proveedores de cómputo, modelos y datos pueden capturar una porción desproporcionada del valor. Los equipos quedan atados a precios, políticas y capacidades ajenas."
+          "label": "La espiral deflacionaria",
+          "body": "Las empresas despiden, cae el poder adquisitivo y el consumo colapsa. Para bajar costos las empresas invierten más en IA, y el ciclo se refuerza."
         }
       ],
       "format": "grid",
       "highlights": [
         {
-          "body": "Pregunta para debate: ¿qué decisiones de diseño, formación y regulación reducen estos riesgos sin bloquear la innovación?",
-          "kind": "important"
+          "body": "Fuente: Citrini Research — [The 2028 Global Intelligence Crisis](https://www.citriniresearch.com/p/2028gic)",
+          "kind": "source"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 10.\n\n. Technology improved slowly enough that humans could adapt. Intelligence, the ability to analyze, decide, create, persuade, and coordinate, was the thing that could not be replicated at scale.\n\nHuman intelligence derived its inherent premium from its scarcity. Every institution in our economy, from the labor market to the mortgage market to the tax code, was designed for a world in which that assumption held.\n\nWe are now experiencing the unwind of that premium. Machine intelligence is now a competent and rapidly improving substitute for human intelligence across a growing range of tasks"
+      "notes": "Referencia PPTX: diapositiva 10.\n\n. Technology improved slowly enough that humans could adapt. Intelligence, the ability to analyze, decide, create, persuade, and coordinate, was the thing that could not be replicated at scale.\n\nHuman intelligence derived its inherent premium from its scarcity. Every institution in our economy, from the labor market to the mortgage market to the tax code, was designed for a world in which that assumption held.\n\nWe are now experiencing the unwind of that premium. Machine intelligence is now a competent and rapidly improving substitute for human intelligence across a growing range of tasks\n\nEntrada sugerida (del PPTX de referencia): \"¿Cómo va? Vos que ya viste varias corridas y pánico en el mundo:\"\n\nPregunta para debate: ¿qué decisiones de diseño, formación y regulación reducen estos riesgos sin bloquear la innovación?"
     },
     {
       "template": "section-agenda",
@@ -282,20 +293,25 @@
       "notes": "Referencia PPTX: diapositiva 13.\n\n[Sin notas en el PPTX de referencia.]",
       "steps": [
         {
-          "body": "Son 14 clases, los miércoles. En cada una vamos a mezclar conceptos, modelos, ejemplos y práctica.",
-          "label": "Clases"
+          "body": "Son 14 clases, los miércoles, y cada una mezcla concepto, ejemplo y práctica."
         },
         {
-          "body": "Primero vemos la idea y la discutimos; después la llevamos a notebooks, repositorios, herramientas y casos concretos.",
-          "label": "De la idea a la práctica"
+          "body": "Primero discutimos la idea y después la llevamos a notebooks, repositorios y casos concretos."
         },
         {
-          "body": "Van a trabajar en equipo, probar cosas, comparar resultados y dejar registro de las decisiones.",
-          "label": "Trabajo en equipo"
+          "body": "El trabajo es en equipo, con registro de las pruebas y de las decisiones."
         },
         {
-          "body": "Esperamos presencia y participación activa. Cada dos clases habrá un entregable práctico; la nota final combina esos trabajos con el proyecto final. Las reglas y la ponderación estarán claras antes de la primera entrega.",
-          "label": "Participación y evaluación"
+          "body": "Cada dos clases hay un entregable práctico."
+        },
+        {
+          "body": "La nota final combina los entregables con el proyecto final."
+        },
+        {
+          "body": "Las reglas y la ponderación se publican antes de la primera entrega."
+        },
+        {
+          "body": "Esperamos presencia y participación activa."
         }
       ]
     },
@@ -329,26 +345,37 @@
       ]
     },
     {
-      "template": "concept-breakdown",
+      "template": "process",
       "section": "Logística",
       "title": "Trabajo final",
       "lead": "Un proyecto propio que aplique conceptos de la materia a un problema de Ingeniería de Software.",
-      "cards": [
+      "notes": "Referencia PPTX: diapositiva 15.\n\n[Sin notas en el PPTX de referencia.]",
+      "steps": [
         {
-          "label": "Equipo y alcance",
-          "body": "Se trabaja en equipos de cuatro personas: dos de Ingeniería en Sistemas y dos de Ciencia de Datos. El equipo debe ser el mismo que realizó los trabajos prácticos. La cátedra orientará el alcance, la evidencia y la forma de evaluar el resultado. La consigna completa se presenta a mitad de cuatrimestre."
+          "body": "Se trabaja en equipos de cuatro personas, dos de Ingeniería en Sistemas y dos de Ciencia de Datos."
         },
         {
-          "label": "Entregables",
-          "body": "Video breve de demostración; código desplegado o ejecutable con instrucciones de reproducción; y documentación del diseño, datos, evaluación, riesgos y decisiones de seguridad."
+          "body": "El equipo debe ser el mismo que realizó los trabajos prácticos."
         },
         {
-          "label": "Evaluación",
-          "body": "Máximo detalle y evidencia técnica; se evalúan tanto el resultado como la capacidad de justificarlo."
+          "body": "La consigna completa se presenta a mitad de cuatrimestre."
+        },
+        {
+          "body": "La cátedra orienta el alcance, la evidencia y la forma de evaluar el resultado."
+        },
+        {
+          "body": "Se entrega un video breve de demostración que explique el problema, la solución y sus límites."
+        },
+        {
+          "body": "Se entrega el código desplegado o ejecutable, con instrucciones de reproducción."
+        },
+        {
+          "body": "Se entrega la documentación del diseño, los datos, la estrategia de evaluación, los riesgos y las decisiones de seguridad."
+        },
+        {
+          "body": "La evaluación considera el resultado y la capacidad de justificarlo con evidencia técnica."
         }
-      ],
-      "format": "grid",
-      "notes": "Referencia PPTX: diapositiva 15.\n\n[Sin notas en el PPTX de referencia.]"
+      ]
     },
     {
       "template": "stat",
@@ -369,7 +396,7 @@
         {
           "body": "Las entregas fuera de término impactan en la nota final.",
           "kind": "important",
-          "position": "top"
+          "position": "bottom"
         }
       ],
       "notes": "La evaluación combina el trabajo sostenido durante la cursada con la capacidad de integrar lo aprendido en un proyecto final."
@@ -410,21 +437,34 @@
       "template": "statement",
       "section": "Fundamento de AI",
       "title": "Inteligencia General Generativa",
-      "sub": "Clase 1: Fundamentos, modelos y ecosistema actual",
+      "sub": "Clase 1: Fundamentos, Modelos y el Ecosistema Actual",
       "notes": "Referencia PPTX: diapositiva 18.\n\nDiscurso Sugerido: \"Bienvenidos. Hoy vamos a desmitificar la Inteligencia Artificial. Intuitivamente, solemos pensar en la IA como 'máquinas haciendo cosas que requerirían inteligencia si las hiciera un humano'. Pero si queremos ser rigurosos, como proponen Russell y Norvig, la IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. No se trata de crear humanos sintéticos, sino de resolver problemas complejos con matemáticas a gran escala.\"\n\nContexto Técnico Profundo: La definición de agente racional evita el debate filosófico sobre la \"conciencia\" y se centra en la función matemática que mapea secuencias de percepciones a acciones (arquitectura de agentes).\n\nEnlace Recomendado: Sitio oficial del libro \"Artificial Intelligence: A Modern Approach\" (Russell & Norvig)"
     },
     {
-      "template": "single-point",
+      "template": "concept-columns",
       "section": "Fundamento de AI",
       "title": "¿Qué es la Inteligencia Artificial?",
-      "point": {
-        "label": "De la teoría a la intuición",
-        "body": "Intuicion No se trata de programar reglas explícitas para cada situación. Se trata de construir sistemas que aprenden patrones a partir de datos y los generalizan a situaciones nuevas, de forma parecida a cómo aprende el cerebro humano. Un Poco mas Formal La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. No se trata de crear humanos sintéticos, sino de resolver problemas complejos con matemáticas a gran escala. — Russell & Norvig La IA no es magia: es estadística, álgebra lineal y grandes cantidades de datos bien organizados."
-      },
+      "lead": "De la teoría a la intuición",
+      "columns": [
+        {
+          "label": "Intuición",
+          "body": "Un sistema de IA no lleva escrita una regla por cada situación. Aprende patrones a partir de datos y los aplica a casos que nunca vio, con un mecanismo que recuerda al del cerebro humano."
+        },
+        {
+          "label": "Un poco más formal",
+          "body": "La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos."
+        }
+      ],
       "highlights": [
         {
+          "label": "Fuente",
+          "body": "Russell & Norvig, \"Artificial Intelligence: A Modern Approach\"",
+          "kind": "source"
+        },
+        {
           "body": "La IA no es magia: es estadística, álgebra lineal y grandes cantidades de datos bien organizados.",
-          "kind": "takeaway"
+          "kind": "takeaway",
+          "position": "bottom"
         }
       ],
       "notes": "Referencia PPTX: diapositiva 19.\n\nDiapositiva 1: ¿Qué es la Inteligencia Artificial? (De la teoría a la intuición)\n\nDiscurso Sugerido: \"Bienvenidos. Hoy vamos a desmitificar la Inteligencia Artificial. Intuitivamente, solemos pensar en la IA como 'máquinas haciendo cosas que requerirían inteligencia si las hiciera un humano'. Pero si queremos ser rigurosos, como proponen Russell y Norvig, la IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. No se trata de crear humanos sintéticos, sino de resolver problemas complejos con matemáticas a gran escala.\"\n\nContexto Técnico Profundo: La definición de agente racional evita el debate filosófico sobre la \"conciencia\" y se centra en la función matemática que mapea secuencias de percepciones a acciones (arquitectura de agentes).\n\nEnlace Recomendado: Sitio oficial del libro \"Artificial Intelligence: A Modern Approach\" (Russell & Norvig)"
@@ -436,42 +476,35 @@
       "lead": "De Turing al primer invierno — 1948 a 1997",
       "milestones": [
         {
-          "label": "1948 — La Teoría de la Información (Claude Shannon)",
-          "body": "Shannon publica \"A Mathematical Theory of Communication\". Define conceptos como bit, entropía y canal de comunicación, sentando las bases matemáticas para el procesamiento de datos.",
-          "marker": "1"
+          "label": "1948",
+          "body": "**La Teoría de la Información (Claude Shannon)** — Shannon publica \"A Mathematical Theory of Communication\". Define conceptos como bit, entropía y canal de comunicación, sentando las bases matemáticas para el procesamiento de datos."
         },
         {
-          "label": "1950 — El test de Turing",
-          "body": "Alan Turing propone la pregunta: \"¿Pueden pensar las máquinas?\" Nace el marco conceptual de la IA.",
-          "marker": "2"
+          "label": "1950",
+          "body": "**El test de Turing** — Alan Turing propone la pregunta \"¿Pueden pensar las máquinas?\" y la reemplaza por un experimento observable, el juego de la imitación. Nace el marco conceptual de la IA."
         },
         {
-          "label": "1956 — Nacimiento oficial",
-          "body": "Conferencia de Dartmouth. John McCarthy acuña el término \"Inteligencia Artificial\". Comienza la primera era de optimismo.",
-          "marker": "3"
+          "label": "1956",
+          "body": "**Nacimiento oficial** — Conferencia de Dartmouth. John McCarthy acuña el término \"Inteligencia Artificial\". Comienza la primera era de optimismo."
         },
         {
-          "label": "1958 — El Perceptrón (Frank Rosenblatt)",
-          "body": "Rosenblatt crea la primera red neuronal artificial capaz de aprender. Minsky y Papert demostrarían en 1969 sus limitaciones, desencadenando el primer \"invierno de la IA\".",
-          "marker": "4"
+          "label": "1958",
+          "body": "**El Perceptrón (Frank Rosenblatt)** — Rosenblatt crea la primera red neuronal artificial capaz de aprender. Minsky y Papert demostrarían en 1969 sus limitaciones, desencadenando el primer \"invierno de la IA\"."
         },
         {
-          "label": "1980-90s — Sistemas expertos e inviernos",
-          "body": "Auge y caída de los sistemas basados en reglas. Los \"inviernos de la IA\" frenan la inversión y la investigación.",
-          "marker": "5"
+          "label": "1980-90s",
+          "body": "**Sistemas expertos e inviernos** — Auge y caída de los sistemas basados en reglas. Los \"inviernos de la IA\" frenan la inversión y la investigación."
         },
         {
-          "label": "1986 — Backpropagation revoluciona el aprendizaje",
-          "body": "Rumelhart, Hinton y Williams popularizan el algoritmo de retropropagación del error, permitiendo entrenar redes neuronales multicapa.",
-          "marker": "6"
+          "label": "1986",
+          "body": "**Backpropagation revoluciona el aprendizaje** — Rumelhart, Hinton y Williams popularizan el algoritmo de retropropagación del error, permitiendo entrenar redes neuronales multicapa."
         },
         {
-          "label": "1997 — Deep Blue vence a Kasparov",
-          "body": "La supercomputadora de IBM derrota al campeón mundial de ajedrez Garry Kasparov. Primera victoria de la IA sobre el mejor humano en un juego de estrategia complejo.",
-          "marker": "7"
+          "label": "1997",
+          "body": "**Deep Blue vence a Kasparov** — La supercomputadora de IBM derrota al campeón mundial Garry Kasparov por 3½-2½. Primera vez que una máquina gana un match completo contra el mejor ajedrecista del mundo. No hay aprendizaje: es fuerza bruta (200M de posiciones por segundo) más reglas escritas por humanos."
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 20.\n\nDiapositiva 2: Una Breve Historia (De Turing a la Generación)\n\nDiscurso Sugerido: \"La IA no nació con ChatGPT. Sus bases matemáticas tienen más de 70 años. Desde el Test de Turing en 1950 y la Conferencia de Dartmouth en 1956, pasamos por 'inviernos de la IA' por falta de cómputo. El punto de inflexión llegó en 2012 con las redes neuronales profundas (AlexNet) y en 2017 con una arquitectura llamada 'Transformer', creada por Google, que cambió las reglas del juego y nos trajo a la era generativa en la que estamos hoy.\"\n\nContexto Técnico Profundo: El artículo \"Attention Is All You Need\" (2017) introdujo el mecanismo de autoatención (self-attention), eliminando la necesidad de procesamiento secuencial (RNNs) y permitiendo la paralelizabilidad masiva en GPUs, lo que habilitó el entrenamiento de los LLMs modernos.\n\nEnlace Recomendado: Paper original: \"Attention Is All You Need\" (arXiv:1706.03762)\n\n--\n\nExcelente elección! Vamos a sumergirnos El Juego de la Imitación .\n\nPara entender por qué Alan Turing propuso este experimento, primero debemos notar que en 1950 era casi imposible definir qué es \"pensar\" de una forma que todos aceptaran. Turing decidió que, si una máquina podía actuar de manera indistinguible a un ser humano, entonces debíamos tratarla como si tuviera inteligencia.\n\n¿Cómo funciona el juego?\n\nEl experimento original involucra a tres participantes en habitaciones separadas:\n\nUn interrogador humano.\n\nUn hombre (o una máquina, en la versión de IA).\n\nUna mujer (o un humano, que sirve de control).\n\n-\n\nMáquina de Turing/Universal no es un objeto físico con engranajes o cables, sino un modelo matemático que Alan Turing ideó en 1936. Su objetivo era definir, de una vez por todas, qué significa que algo sea \"calculable\".\n\n-> Aunque suena extremadamente simple, Turing demostró que este modelo puede resolver cualquier problema matemático que tenga una solución lógica. Es el \"plano\" original de cómo funciona cualquier procesador moderno.\n\n--\n\nEl Problema de la Parada\n\nTuring demostró que existen límites fundamentales en lo que una máquina puede calcular, sin importar cuánta memoria o velocidad tenga. El ejemplo más famoso es el Problema de la Parada (Halting Problem) .\n\nImagina que quieres crear un programa maestro que pueda analizar cualquier otro programa y decirte, antes de ejecutarlo, si ese programa eventualmente terminará su tarea o si se quedará \"colgado\" en un bucle infinito para siempre.\n\nTuring demostró mediante la lógica que es imposible construir tal programa.\n\nPara probarlo, utilizó una técnica llamada \"reducción al absurdo\":\n\nSupongamos que existe un programa llamado CALCULADOR_DE_PARADA.\n\nCreamos un segundo programa \"rebelde\" que consulta al primero.\n\nSi el CALCULADOR dice que el programa parará, el rebelde entra en un bucle infinito. Si el CALCULADOR dice que no parará, el rebelde se detiene inmediatamente.\n\nEsto crea una paradoja lógica (como decir \"esta oración es falsa\"). Si el programa intenta analizarse a sí mismo, la lógica se rompe.\n\nUn sistema experto es un programa que intenta imitar el razonamiento de un experto humano en un dominio específico.\n\nDeap blue - IA = búsqueda + poder de cómputo + heurísticas"
+      "notes": "Referencia PPTX: diapositiva 20.\n\nDiapositiva 2: Una Breve Historia (De Turing a la Generación)\n\nDiscurso sugerido: \"La IA no nació con ChatGPT. Sus bases matemáticas tienen más de 70 años. Desde el Test de Turing en 1950 y la Conferencia de Dartmouth en 1956, pasamos por 'inviernos de la IA' por falta de cómputo. El punto de inflexión llegó en 2012 con las redes neuronales profundas (AlexNet) y en 2017 con una arquitectura llamada 'Transformer', creada por Google, que cambió las reglas del juego y nos trajo a la era generativa en la que estamos hoy.\"\n\nContexto técnico profundo: el artículo \"Attention Is All You Need\" (2017) introdujo el mecanismo de autoatención (self-attention) y eliminó la necesidad de procesamiento secuencial (RNNs). Eso habilitó la paralelización masiva en GPUs y, con ella, el entrenamiento de los LLMs modernos. Los dos hitos que cierran el arco, AlexNet y el Transformer, se desarrollan en la Parte 2; acá funcionan como anticipo.\n\nEnlace recomendado: paper original \"Attention Is All You Need\" (arXiv:1706.03762).\n\nNota de ritmo: la diapositiva tiene siete entradas y unos 12 minutos de material si se cuenta todo. Para una clase de 90 minutos conviene detenerse en tres (1950, 1958 y 1997) y pasar el resto en dos frases.\n\n---\n\n1936 · La máquina universal de Turing\n\nNo es un objeto físico con engranajes ni cables, sino un modelo matemático que Turing definió en \"On Computable Numbers\" para responder qué significa que algo sea calculable. La máquina tiene una cinta infinita, un cabezal que lee y escribe un símbolo por vez y una tabla de estados. Nada más.\n\nTuring demostró que ese modelo mínimo resuelve cualquier problema que tenga una solución algorítmica. Es el plano original de cualquier procesador moderno: un CPU con miles de millones de transistores no calcula nada que una máquina de Turing no pueda calcular, solo lo hace más rápido.\n\nEl problema de la parada. En el mismo trabajo Turing mostró que hay límites que ninguna cantidad de memoria o velocidad levanta. Supongamos un programa CALCULADOR_DE_PARADA que recibe cualquier otro programa y responde, antes de ejecutarlo, si va a terminar o si va a quedar colgado en un bucle infinito. Construimos entonces un programa rebelde que consulta al CALCULADOR sobre sí mismo: si la respuesta es \"termina\", el rebelde entra en un bucle infinito; si es \"no termina\", el rebelde se detiene. La paradoja es la misma de \"esta oración es falsa\". El CALCULADOR no puede existir.\n\nPor qué importa en 2026: cuando un alumno pregunta si un modelo puede verificar automáticamente que el código que generó es correcto, la respuesta de fondo tiene 90 años. Hay preguntas sobre programas que ninguna máquina responde en general, por más grande que sea el modelo.\n\n1948 · La teoría de la información (Claude Shannon)\n\nShannon publica \"A Mathematical Theory of Communication\" en el Bell System Technical Journal. Define el bit como unidad de información, la entropía como medida de incertidumbre y la capacidad de un canal como límite de lo que se puede transmitir con ruido.\n\nConexión directa con la clase: la entropía de Shannon es la misma función de pérdida con la que se entrena un LLM. Cuando un modelo predice el token siguiente, lo que minimiza es la entropía cruzada entre su distribución y la real. La métrica de perplejidad es la exponencial de ese número.\n\n1950 · El juego de la imitación\n\nTuring publica \"Computing Machinery and Intelligence\" en la revista Mind. En 1950 nadie lograba definir \"pensar\" de una forma que todos aceptaran, así que Turing cambió la pregunta: si una máquina actúa de manera indistinguible de un ser humano, la tratamos como inteligente.\n\nCómo funciona el juego. Tres participantes en habitaciones separadas, comunicados solo por texto: un interrogador humano, un hombre (o la máquina, en la versión de IA) y una mujer (o un humano, que sirve de control). El interrogador hace preguntas por escrito y tiene que decidir quién es quién. La máquina pasa la prueba si el interrogador se equivoca con la misma frecuencia con que se equivocaría entre dos personas.\n\nDiscusión para la clase: los LLMs actuales pasan versiones cortas del test y siguen fallando en aritmética de varios pasos o en mantener coherencia en un texto largo. Sirve para preguntar si el test mide inteligencia o mide imitación del lenguaje, que es exactamente lo que Turing eligió medir.\n\n1956 · Nacimiento oficial\n\nLa conferencia de Dartmouth reúne durante un verano a John McCarthy, Marvin Minsky, Nathaniel Rochester y el propio Shannon. McCarthy acuña el término \"Inteligencia Artificial\" en la propuesta de financiamiento de 1955. La propuesta estimaba que un grupo de diez personas podía avanzar de forma significativa en dos meses.\n\nEse optimismo de calendario es un patrón que se repite en cada ola, incluida la actual. Vale la pena señalarlo acá y volver a él cuando se hable de plazos de adopción.\n\n1958 · El perceptrón (Frank Rosenblatt)\n\nRosenblatt construye en el Cornell Aeronautical Laboratory la primera red neuronal artificial que aprende de ejemplos en lugar de seguir reglas escritas. El Mark I Perceptron era hardware: una cámara de 400 fotoceldas y potenciómetros que ajustaban los pesos con motores.\n\n1969 · Minsky y Papert\n\nEl libro \"Perceptrons\" demuestra que un perceptrón de una sola capa no puede representar la función XOR. El resultado era correcto y limitado a esa arquitectura, pero se leyó como una condena a las redes neuronales en general. La inversión en el área se cortó y empezó el primer invierno de la IA.\n\n1980-90s · Sistemas expertos e inviernos\n\nUn sistema experto es un programa que imita el razonamiento de un especialista humano en un dominio acotado, con una base de reglas del tipo \"si estos síntomas, entonces esta hipótesis\" y un motor de inferencia que las encadena. MYCIN diagnosticaba infecciones bacterianas, DENDRAL identificaba estructuras moleculares y XCON configuraba equipos en Digital Equipment Corporation, donde llegó a ahorrar decenas de millones de dólares al año.\n\nPor qué se cayeron: cada regla se escribía a mano, el mantenimiento crecía más rápido que el sistema y ninguno generalizaba fuera de su dominio. El mercado de las máquinas LISP colapsó a fines de los 80 y llegó el segundo invierno.\n\nParalelo útil para la clase: la ingeniería de prompts tiene el mismo riesgo si se convierte en una colección de reglas escritas a mano que nadie puede mantener.\n\n1986 · Backpropagation\n\nRumelhart, Hinton y Williams publican en Nature \"Learning representations by back-propagating errors\" y popularizan el algoritmo que permite entrenar redes de varias capas. La idea ya circulaba (Linnainmaa en 1970, Werbos en 1974); lo que cambió fue mostrar que funcionaba en la práctica y que las capas ocultas aprendían representaciones útiles.\n\nCon varias capas la limitación del XOR desaparece. Faltaban los datos y el cómputo, que llegaron recién con las GPUs.\n\n1997 · Deep Blue vence a Kasparov\n\nEn mayo de 1997, en Nueva York, la supercomputadora de IBM gana el match por 3½-2½. En 1996 Kasparov había ganado el enfrentamiento anterior por 4-2, así que la revancha es la primera vez que una máquina gana un match completo contra el campeón mundial.\n\nCómo lo hacía: búsqueda alfa-beta sobre el árbol de jugadas, unos 200 millones de posiciones por segundo en hardware dedicado, y una función de evaluación con miles de parámetros que ajustaron grandes maestros humanos. No hay aprendizaje. Deep Blue es búsqueda más poder de cómputo más heurísticas escritas por personas.\n\nEl contraste con lo que viene: AlphaGo en 2016 y los LLMs de hoy aprenden de datos en lugar de recibir la heurística escrita. Deep Blue cierra la era de las reglas y la Parte 2 abre la del aprendizaje."
     },
     {
       "template": "content-image",
@@ -518,37 +551,54 @@
       "lead": "Del deep learning a la era generativa — 2011 a 2022",
       "milestones": [
         {
-          "label": "2011 — Watson gana en Jeopardy!",
-          "body": "IBM Watson derrota a los mejores campeones humanos del concurso de preguntas. Demuestra comprensión del lenguaje natural a gran escala.",
-          "marker": "1"
+          "label": "2011",
+          "body": "**Watson gana en Jeopardy!** — IBM Watson derrota a los mejores campeones humanos del concurso de preguntas. Demuestra comprensión del lenguaje natural a gran escala."
         },
         {
-          "label": "2012 — La revolución del deep learning",
-          "body": "AlexNet gana ImageNet con una ventaja histórica. Las redes neuronales profundas y las GPUs cambian todo. Codificar a entrenar.",
-          "marker": "2"
+          "label": "2012",
+          "body": "**La revolución del deep learning** — AlexNet gana ImageNet con una ventaja histórica. Las redes neuronales profundas y las GPUs cambian todo. Codificar a entrenar."
         },
         {
-          "label": "2016 — AlphaGo vence a Lee Sedol",
-          "body": "DeepMind derrota al campeón mundial de Go, un juego con más combinaciones posibles que átomos en el universo. Considerado imposible para la IA hasta ese momento. Toma decisiones estratégicas en un espacio de búsqueda enorme.",
-          "marker": "3"
+          "label": "2016",
+          "body": "**AlphaGo vence a Lee Sedol** — Google DeepMind derrota al campeón mundial de Go, un juego con más combinaciones posibles que átomos en el universo. Considerado imposible para la IA hasta ese momento. Toma decisiones estratégicas en un espacio de búsqueda enorme."
         },
         {
-          "label": "2017 — Atención es todo",
-          "body": "Google publica \"Attention Is All You Need\". Nace la arquitectura Transformer, base de todos los modelos modernos.",
-          "marker": "4"
+          "label": "2017",
+          "body": "**Atención es todo** — Google publica \"Attention Is All You Need\". Nace la arquitectura Transformer, base de todos los modelos modernos."
         },
         {
-          "label": "2020s — Era generativa",
-          "body": "GPT-3, ChatGPT, Gemini, Claude. Los Foundation Models democratizan el acceso a capacidades de IA sin precedentes.",
-          "marker": "5"
+          "label": "2020s",
+          "body": "**Era generativa** — GPT-3, ChatGPT, Gemini, Claude. Los Foundation Models democratizan el acceso a capacidades de IA sin precedentes."
         },
         {
-          "label": "2022 — ChatGPT rompe internet",
-          "body": "OpenAI lanza ChatGPT. Alcanza 100 millones de usuarios en 2 meses, el producto de mayor crecimiento en la historia.",
-          "marker": "6"
+          "label": "2022",
+          "body": "**ChatGPT rompe internet** — OpenAI lanza ChatGPT. Alcanza 100 millones de usuarios en 2 meses, el producto de mayor crecimiento en la historia."
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 22.\n\nAlexNet\n\nMás de 14 millones de imágenes\n\nMás de 20.000 categorías\n\n2017\n\nEliminar las redes recurrentes (RNN/LSTM) y usar solo mecanismos de atención.\n\n¿Por qué fue tan revolucionario?\n\n1. Paralelización total\n\nLas RNN procesaban secuencialmente.\n\nLos Transformers pueden procesar todo en paralelo.\n\n Mucho más rápidos en GPUs.\n\n2. Mejor manejo de contexto largo\n\nLas RNN olvidaban información lejana.\n\nLa atención permite conectar cualquier palabra con cualquier otra directamente.\n\n3. Escalabilidad\n\nLa arquitectura escala muy bien con:\n\nMás datos\n\nMás parámetros\n\nMás cómputo\n\nY eso abrió la puerta a modelos gigantes."
+      "notes": "Referencia PPTX: diapositiva 22.\n\nNota de ritmo: seis entradas. Para 90 minutos conviene detenerse en 2012, 2016 y 2017, y pasar 2011, 2020s y 2022 en una frase cada una. La diapositiva siguiente (Move 37) desarrolla 2016.\n\n---\n\n2011 · Watson gana en Jeopardy!\n\nIBM Watson derrota a Ken Jennings y Brad Rutter, los dos mejores jugadores en la historia del programa. Watson corría sobre 2.880 núcleos POWER7 con 16 TB de memoria y unos 4 TB de contenido indexado. Durante el juego estuvo desconectado de internet: todo lo que sabía estaba cargado de antemano.\n\nCómo funcionaba: la arquitectura DeepQA generaba cientos de hipótesis por pregunta, buscaba evidencia para cada una en paralelo y las puntuaba con alrededor de cien algoritmos distintos. Respondía solo cuando la confianza superaba un umbral.\n\nEl error que vale contar: en el Final Jeopardy de categoría \"Ciudades de Estados Unidos\", Watson respondió \"Toronto\". Sirve para mostrar que un sistema puede ganar un torneo y equivocarse en algo que ningún humano erraría, porque su noción de categoría no es la nuestra.\n\n2012 · La revolución del deep learning\n\nAlexNet, de Krizhevsky, Sutskever y Hinton, gana el ImageNet Large Scale Visual Recognition Challenge con 15,3% de error top-5 contra 26,2% del segundo. Una diferencia de más de diez puntos en una competencia donde se peleaba por décimas.\n\nLos números de ImageNet: más de 14 millones de imágenes etiquetadas y más de 20.000 categorías en el dataset completo. La competencia usaba un subconjunto de 1.000 clases y 1,2 millones de imágenes de entrenamiento.\n\nLo que cambió: la red se entrenó en dos GPUs GTX 580 de consumo. El salto no fue una idea nueva (las redes convolucionales son de los 80) sino la combinación de datos etiquetados a escala, GPUs baratas y ReLU + dropout para entrenar redes profundas sin que se degraden. De acá sale la frase de la diapositiva sobre pasar de codificar a entrenar: antes un ingeniero de visión escribía a mano los detectores de bordes y texturas; después los aprende la red.\n\n2016 · AlphaGo vence a Lee Sedol\n\nDeepMind gana el match 4-1 en Seúl, en marzo. El Go tiene un factor de ramificación de alrededor de 250 contra 35 del ajedrez, así que la búsqueda por fuerza bruta que le alcanzó a Deep Blue acá no sirve.\n\nCómo funcionaba: dos redes neuronales (una de política, que propone jugadas, y una de valor, que evalúa posiciones) guiando una búsqueda Monte Carlo por árbol. El entrenamiento tuvo dos etapas: primero aprendizaje supervisado sobre partidas de jugadores humanos fuertes, después aprendizaje por refuerzo jugando millones de partidas contra versiones de sí mismo.\n\nLa aclaración que conviene hacer en clase: AlphaGo sí aprendió de humanos. El que se entrenó sin ningún dato humano fue AlphaGo Zero, un año después, y jugaba mejor.\n\nLa jugada 78 de Lee Sedol en la cuarta partida, la única que ganó, es el espejo de la jugada 37: una jugada que AlphaGo no tenía contemplada y que le desarmó la evaluación.\n\n2017 · Atención es todo\n\nVaswani y otros publican \"Attention Is All You Need\" en NeurIPS. La propuesta es eliminar las redes recurrentes (RNN/LSTM) y quedarse solo con mecanismos de atención.\n\nPor qué fue revolucionario, en tres puntos:\n\n1. Paralelización total. Las RNN procesaban la secuencia palabra por palabra, cada paso dependiendo del anterior. Los Transformers procesan toda la secuencia a la vez, y eso los vuelve mucho más rápidos en GPUs.\n\n2. Mejor manejo de contexto largo. Las RNN olvidaban información lejana. La atención conecta cualquier palabra con cualquier otra de forma directa, sin importar la distancia.\n\n3. Escalabilidad. La arquitectura mejora de forma predecible con más datos, más parámetros y más cómputo, y eso abrió la puerta a los modelos gigantes.\n\nEl costo que no está en la diapositiva: la atención es cuadrática en la longitud de la secuencia. Duplicar el contexto cuadruplica el cómputo. Es la razón por la que el contexto largo sigue siendo caro y por la que hay tanta investigación en variantes eficientes.\n\n2020s · Era generativa\n\nGPT-3 llega en 2020 con 175.000 millones de parámetros y muestra que un modelo suficientemente grande resuelve tareas nuevas con solo verlas descritas en el prompt, sin reentrenamiento.\n\nDos referencias que ordenan la década y ya están en el corpus: las leyes de escala de Kaplan y otros (arXiv:2001.08361), que muestran que la performance mejora como una ley de potencia frente a datos, parámetros y cómputo; y el reporte de Stanford que acuña el término foundation model (arXiv:2108.07258).\n\n2022 · ChatGPT rompe internet\n\nOpenAI lanza ChatGPT el 30 de noviembre de 2022. Llegó al millón de usuarios en cinco días y se le estimaron 100 millones de usuarios mensuales en enero de 2023.\n\nPrecisión que conviene tener a mano: esa cifra de 100 millones es una estimación de UBS, no un dato publicado por OpenAI, y el título de producto de más rápido crecimiento se lo quitó Threads en julio de 2023. La afirmación de la diapositiva vale para el momento, no para siempre.\n\nLo que cambió no fue el modelo: GPT-3.5 ya existía. Cambió la interfaz. Un chat gratuito y sin fricción convirtió una API para desarrolladores en un producto masivo, y ese es el punto que vale para una carrera de Ingeniería de Software."
+    },
+    {
+      "template": "single-point",
+      "section": "Fundamento de AI",
+      "title": "Move 37",
+      "lead": "Segunda partida del match entre AlphaGo y Lee Sedol. Seúl, marzo de 2016. En la jugada 37 AlphaGo apoya una piedra en la quinta línea, lejos de donde se estaba jugando. Los comentaristas la dieron por error. Lee Sedol se levantó de la mesa y tardó más de diez minutos en responder. AlphaGo ganó esa partida y después el match por 4-1.",
+      "point": {
+        "label": "Una jugada que ningún humano habría elegido",
+        "body": "El sistema estimó que un jugador humano la jugaría una vez cada diez mil. La eligió igual, porque su evaluación de la posición venía de millones de partidas contra sí mismo y no solo del repertorio humano con el que había empezado a entrenar."
+      },
+      "highlights": [
+        {
+          "body": "El aprendizaje por refuerzo con self-play generó conocimiento estratégico que la comunidad humana no tenía después de 2.500 años de juego.",
+          "kind": "takeaway",
+          "position": "bottom"
+        },
+        {
+          "label": "Ver en clase",
+          "body": "\"Move 37!! Lee Sedol vs AlphaGo Match 2\" (https://www.youtube.com/watch?v=JNrXgpSEEIE)",
+          "kind": "source"
+        }
+      ],
+      "notes": "Momento sugerido: proyectar el video justo después de la diapositiva de la Breve Historia (Parte 2), cuando aparece la entrada de 2016.\n\nPor qué esta jugada y no otra: es el caso más limpio para mostrar que un sistema entrenado por refuerzo no imita al humano, sino que lo supera por caminos que el humano no considera. Fan Hui, el jugador europeo al que AlphaGo había derrotado meses antes, la describió como hermosa después de entenderla.\n\nEl contrapunto honesto: en la cuarta partida Lee Sedol jugó la 78, una cuña que AlphaGo no tenía contemplada, y el sistema se desarmó durante varias jugadas. Fue la única partida que AlphaGo perdió. Conviene contar las dos.\n\nPregunta para la clase: si un sistema propone una decisión de arquitectura que ningún miembro del equipo habría propuesto, ¿qué evidencia hace falta para aceptarla? Es la misma pregunta que enfrentaron los comentaristas en 2016, trasladada a un code review.\n\nAclaración técnica: AlphaGo (2016) sí se entrenó con partidas humanas antes de la etapa de refuerzo. AlphaGo Zero, un año después, aprendió sin ningún dato humano y jugaba mejor. Si alguien pregunta, la distinción importa."
     },
     {
       "template": "section-agenda",
@@ -1424,7 +1474,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "8e243a8d10fcaaa849bf4ad8d85aa5779da4267b6ce60e0f759bf936b4fda2db",
-    "bytes": 71031
+    "sha256": "ec9ca141aadffa3fd9345a2e04dbfa50fd64e427850c13c3d5182813486573af",
+    "bytes": 84270
   }
 }
