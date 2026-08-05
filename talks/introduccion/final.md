@@ -1,6 +1,6 @@
 ---
-presentation: "Inteligencia Artificial Generativa  (AI Gen)— materia optativa de grado de Ingeniería de Software, Universidad Austral"
-class: "Inteligencia General Generativa: curso, reglas y fundamentos"
+presentation: "Inteligencia Artificial Generativa  (AI Gen)- Universidad Austral"
+class: "Clase 1: Bienvenidos/Introduccion"
 research: research/corpus/
 description: Slides are grouped into Sections. Each Section contains one or more Slides.
 presenter: "Paulo Veiga, Claudio Riguetti y Marco Sorondo — docentes, Universidad Austral"
@@ -49,8 +49,8 @@ date: "2026-08"
 
 Clase 1: Bienvenida y Logistica
 
-Autor: Paulo Gustavo Veiga
-Ultima Modification: Marzo, 2026
+Autor: Paulo Gustavo Veiga, Marco Sorondo
+Ultima Modification: Aug, 2026
 
 ### Sources
 
@@ -75,7 +75,9 @@ Enlace Recomendado: Sitio oficial del libro "Artificial Intelligence: A Modern A
 
 ### Content
 
-Inteligencia General Generativa
+¿Por qué eligieron esta materia?
+
+¿Qué esperan llevarse de la cursada?
 
 ![Ilustración de bienvenida](images/bienvenida-hello.jpeg)
 
@@ -207,9 +209,9 @@ Diferenciación profesional
 
 Un ingeniero que entiende IA puede liderar proyectos, definir controles de calidad y conversar con producto, seguridad, datos y negocio.
 
-El futuro ya está disponible
+Impacto en todas las ciencias
 
-ChatGPT, Claude, Gemini, GitHub Copilot y modelos abiertos ya forman parte del entorno de trabajo. La decisión relevante consiste en usarlos con evidencia, pruebas y responsabilidad.
+Hoy desarrolla cualquiera. Un ingeniero químico arma su script de simulación y un contador automatiza un cierre contable, con ChatGPT, Claude, Gemini o Copilot. El ingeniero de software sabe exigir evidencia, pruebas y responsabilidad antes de que ese código llegue a producción.
 
 ### Sources
 
@@ -245,7 +247,7 @@ Nuevas industrias
 
 Aparición de modelos de negocio inéditos y roles especializados (ej. ingeniería de prompts, auditoría algorítmica).
 
-Fuente: McKinsey & Company — The economic potential of generative AI
+Fuente: McKinsey & Company, "The economic potential of generative AI: the next productivity frontier" (https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier)
 
 ### Sources
 
@@ -301,6 +303,10 @@ Eficiencia operativa
 
 La automatización de runbooks, soporte y documentación puede devolver tiempo para resolver problemas de mayor valor. Los procesos necesitan registros, permisos y mecanismos de reversión.
 
+Redefinición de roles y responsabilidades
+
+El equipo se reorganiza alrededor de la revisión. Quien integra código generado responde por él, y la revisión de pares concentra el control sobre la salida del modelo. Aparecen responsabilidades nuevas sobre datos, permisos y trazabilidad.
+
 ### Sources
 
 - corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 8; adaptación íntegra)
@@ -337,7 +343,7 @@ Punto clave: la IA amplifica las habilidades de un equipo cuando el proceso cons
 
 ---
 
-## 9. Problemas actuales de la IA en software
+## 9. Limitaciones de la IA Generativa
 
 <!-- template: concept-breakdown -->
 
@@ -439,29 +445,29 @@ Cierre para debate:
 
 ---
 
-## 10. El riesgo macroeconómico y la transición abrupta
+## 10. El riesgo macroeconómico y el colapso del consumo
 
 <!-- template: concept-breakdown -->
 
 ### Content
 
-La crisis global de capacidades, escenario hipotético
+La crisis global de inteligencia 2028
 
-El escenario permite discutir qué ocurre si la productividad crece más rápido que la formación, la redistribución de oportunidades y los controles de adopción.
+Un escenario hipotético sobre los peligros de una transición demasiado abrupta hacia la IA.
 
 El “PIB fantasma”
 
-Las empresas pueden registrar más producción gracias a la automatización mientras parte del mercado laboral pierde tareas de entrada y capacidad de consumo.
+Récord de productividad y ganancias corporativas impulsadas por IA que no circulan en la economía real, porque las máquinas no consumen.
 
-Desplazamiento del empleo inicial
+Desplazamiento del “cuello blanco”
 
-Roles junior y tareas repetitivas pueden cambiar antes de que universidades y empresas ofrezcan nuevas rutas de aprendizaje, mentoría y especialización.
+La IA reemplaza a los trabajadores del conocimiento, que representan el 50% del empleo y el 70% del gasto discrecional.
 
-Espiral deflacionaria y concentración
+La espiral deflacionaria
 
-Pocos proveedores de cómputo, modelos y datos pueden capturar una porción desproporcionada del valor. Los equipos quedan atados a precios, políticas y capacidades ajenas.
+Las empresas despiden, cae el poder adquisitivo y el consumo colapsa. Para bajar costos las empresas invierten más en IA, y el ciclo se refuerza.
 
-Pregunta para debate: ¿qué decisiones de diseño, formación y regulación reducen estos riesgos sin bloquear la innovación?
+Fuente: Citrini Research, "The 2028 Global Intelligence Crisis" (https://www.citriniresearch.com/p/2028gic)
 
 ### Sources
 
@@ -477,6 +483,10 @@ Human intelligence derived its inherent premium from its scarcity. Every institu
 
 We are now experiencing the unwind of that premium. Machine intelligence is now a competent and rapidly improving substitute for human intelligence across a growing range of tasks
 
+Entrada sugerida (del PPTX de referencia): "¿Cómo va? Vos que ya viste varias corridas y pánico en el mundo:"
+
+Pregunta para debate: ¿qué decisiones de diseño, formación y regulación reducen estos riesgos sin bloquear la innovación?
+
 ---
 
 # 3. Logística
@@ -491,21 +501,19 @@ We are now experiencing the unwind of that premium. Machine intelligence is now 
 
 ### Content
 
-Clases
+Son 14 clases, los miércoles, y cada una mezcla concepto, ejemplo y práctica.
 
-Son 14 clases, los miércoles. En cada una vamos a mezclar conceptos, modelos, ejemplos y práctica.
+Primero discutimos la idea y después la llevamos a notebooks, repositorios y casos concretos.
 
-De la idea a la práctica
+El trabajo es en equipo, con registro de las pruebas y de las decisiones.
 
-Primero vemos la idea y la discutimos; después la llevamos a notebooks, repositorios, herramientas y casos concretos.
+Cada dos clases hay un entregable práctico.
 
-Trabajo en equipo
+La nota final combina los entregables con el proyecto final.
 
-Van a trabajar en equipo, probar cosas, comparar resultados y dejar registro de las decisiones.
+Las reglas y la ponderación se publican antes de la primera entrega.
 
-Participación y evaluación
-
-Esperamos presencia y participación activa. Cada dos clases habrá un entregable práctico; la nota final combina esos trabajos con el proyecto final. Las reglas y la ponderación estarán claras antes de la primera entrega.
+Esperamos presencia y participación activa.
 
 ### Sources
 
@@ -533,7 +541,7 @@ Un entregable cada dos clases, relacionado con los temas vistos.
 
 Equipo
 
-Se trabaja en equipos de cuatro personas: dos de Ingeniería en Sistemas y dos de Ciencia de Datos.
+Se trabaja en equipos de 4 personas: 2 de Ingeniería en Sistemas y dos de Ciencia de Datos.
 
 Trabajo durante la clase
 
@@ -561,34 +569,27 @@ Referencia PPTX: diapositiva 14.
 
 ## 15. Trabajo final
 
-<!-- template: concept-breakdown -->
-<!-- format: grid -->
+<!-- template: process -->
 
 ### Content
 
 Un proyecto propio que aplique conceptos de la materia a un problema de Ingeniería de Software.
 
-Equipo y alcance
-
-Se trabaja en equipos de cuatro personas: dos de Ingeniería en Sistemas y dos de Ciencia de Datos.
+Se trabaja en equipos de cuatro personas, dos de Ingeniería en Sistemas y dos de Ciencia de Datos.
 
 El equipo debe ser el mismo que realizó los trabajos prácticos.
 
-La cátedra orientará el alcance, la evidencia y la forma de evaluar el resultado.
-
 La consigna completa se presenta a mitad de cuatrimestre.
 
-Entregables
+La cátedra orienta el alcance, la evidencia y la forma de evaluar el resultado.
 
-Video breve de demostración que explique el problema, la solución y sus límites.
+Se entrega un video breve de demostración que explique el problema, la solución y sus límites.
 
-Código desplegado o ejecutable, con instrucciones de reproducción.
+Se entrega el código desplegado o ejecutable, con instrucciones de reproducción.
 
-Documentación del diseño, datos utilizados, estrategia de evaluación, riesgos y decisiones de seguridad.
+Se entrega la documentación del diseño, los datos, la estrategia de evaluación, los riesgos y las decisiones de seguridad.
 
-Evaluación
-
-Máximo detalle y evidencia técnica; la evaluación considera tanto el resultado como la capacidad de justificarlo.
+La evaluación considera el resultado y la capacidad de justificarlo con evidencia técnica.
 
 ### Sources
 
@@ -716,20 +717,21 @@ Enlace Recomendado: Sitio oficial del libro "Artificial Intelligence: A Modern A
 
 ## 2. ¿Qué es la Inteligencia Artificial?
 
-<!-- template: single-point -->
+<!-- template: concept-columns -->
 
 ### Content
 
 De la teoría a la intuición
 
-Intuicion
+Intuición
 
-No se trata de programar reglas explícitas para cada situación. Se trata de construir sistemas que aprenden patrones a partir de datos y los generalizan a situaciones nuevas, de forma parecida a cómo aprende el cerebro humano.
+Un sistema de IA no lleva escrita una regla por cada situación. Aprende patrones a partir de datos y los aplica a casos que nunca vio, con un mecanismo que recuerda al del cerebro humano.
 
-Un Poco mas Formal
+Un poco más formal
 
-La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. No se trata de crear humanos sintéticos, sino de resolver problemas complejos con matemáticas a gran escala.
-— Russell & Norvig
+La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos.
+
+Fuente: Russell & Norvig, "Artificial Intelligence: A Modern Approach"
 
 La IA no es magia: es estadística, álgebra lineal y grandes cantidades de datos bien organizados.
 
@@ -759,47 +761,47 @@ Enlace Recomendado: Sitio oficial del libro "Artificial Intelligence: A Modern A
 
 De Turing al primer invierno — 1948 a 1997
 
-1
+1948
 
-1948 — La Teoría de la Información (Claude Shannon)
+La Teoría de la Información (Claude Shannon)
 
 Shannon publica "A Mathematical Theory of Communication". Define conceptos como bit, entropía y canal de comunicación, sentando las bases matemáticas para el procesamiento de datos.
 
-2
+1950
 
-1950 — El test de Turing
+El test de Turing
 
-Alan Turing propone la pregunta: "¿Pueden pensar las máquinas?" Nace el marco conceptual de la IA.
+Alan Turing propone la pregunta "¿Pueden pensar las máquinas?" y la reemplaza por un experimento observable, el juego de la imitación. Nace el marco conceptual de la IA.
 
-3
+1956
 
-1956 — Nacimiento oficial
+Nacimiento oficial
 
 Conferencia de Dartmouth. John McCarthy acuña el término "Inteligencia Artificial". Comienza la primera era de optimismo.
 
-4
+1958
 
-1958 — El Perceptrón (Frank Rosenblatt)
+El Perceptrón (Frank Rosenblatt)
 
 Rosenblatt crea la primera red neuronal artificial capaz de aprender. Minsky y Papert demostrarían en 1969 sus limitaciones, desencadenando el primer "invierno de la IA".
 
-5
+1980-90s
 
-1980-90s — Sistemas expertos e inviernos
+Sistemas expertos e inviernos
 
 Auge y caída de los sistemas basados en reglas. Los "inviernos de la IA" frenan la inversión y la investigación.
 
-6
+1986
 
-1986 — Backpropagation revoluciona el aprendizaje
+Backpropagation revoluciona el aprendizaje
 
 Rumelhart, Hinton y Williams popularizan el algoritmo de retropropagación del error, permitiendo entrenar redes neuronales multicapa.
 
-7
+1997
 
-1997 — Deep Blue vence a Kasparov
+Deep Blue vence a Kasparov
 
-La supercomputadora de IBM derrota al campeón mundial de ajedrez Garry Kasparov. Primera victoria de la IA sobre el mejor humano en un juego de estrategia complejo.
+La supercomputadora de IBM derrota al campeón mundial Garry Kasparov por 3½-2½. Primera vez que una máquina gana un match completo contra el mejor ajedrecista del mundo. No hay aprendizaje: es fuerza bruta (200M de posiciones por segundo) más reglas escritas por humanos.
 
 ### Sources
 
@@ -811,57 +813,75 @@ Referencia PPTX: diapositiva 20.
 
 Diapositiva 2: Una Breve Historia (De Turing a la Generación)
 
-Discurso Sugerido: "La IA no nació con ChatGPT. Sus bases matemáticas tienen más de 70 años. Desde el Test de Turing en 1950 y la Conferencia de Dartmouth en 1956, pasamos por 'inviernos de la IA' por falta de cómputo. El punto de inflexión llegó en 2012 con las redes neuronales profundas (AlexNet) y en 2017 con una arquitectura llamada 'Transformer', creada por Google, que cambió las reglas del juego y nos trajo a la era generativa en la que estamos hoy."
+Discurso sugerido: "La IA no nació con ChatGPT. Sus bases matemáticas tienen más de 70 años. Desde el Test de Turing en 1950 y la Conferencia de Dartmouth en 1956, pasamos por 'inviernos de la IA' por falta de cómputo. El punto de inflexión llegó en 2012 con las redes neuronales profundas (AlexNet) y en 2017 con una arquitectura llamada 'Transformer', creada por Google, que cambió las reglas del juego y nos trajo a la era generativa en la que estamos hoy."
 
-Contexto Técnico Profundo: El artículo "Attention Is All You Need" (2017) introdujo el mecanismo de autoatención (self-attention), eliminando la necesidad de procesamiento secuencial (RNNs) y permitiendo la paralelizabilidad masiva en GPUs, lo que habilitó el entrenamiento de los LLMs modernos.
+Contexto técnico profundo: el artículo "Attention Is All You Need" (2017) introdujo el mecanismo de autoatención (self-attention) y eliminó la necesidad de procesamiento secuencial (RNNs). Eso habilitó la paralelización masiva en GPUs y, con ella, el entrenamiento de los LLMs modernos. Los dos hitos que cierran el arco, AlexNet y el Transformer, se desarrollan en la Parte 2; acá funcionan como anticipo.
 
-Enlace Recomendado: Paper original: "Attention Is All You Need" (arXiv:1706.03762)
+Enlace recomendado: paper original "Attention Is All You Need" (arXiv:1706.03762).
 
---
+Nota de ritmo: la diapositiva tiene siete entradas y unos 12 minutos de material si se cuenta todo. Para una clase de 90 minutos conviene detenerse en tres (1950, 1958 y 1997) y pasar el resto en dos frases.
 
-Excelente elección! Vamos a sumergirnos El Juego de la Imitación .
+---
 
-Para entender por qué Alan Turing propuso este experimento, primero debemos notar que en 1950 era casi imposible definir qué es "pensar" de una forma que todos aceptaran. Turing decidió que, si una máquina podía actuar de manera indistinguible a un ser humano, entonces debíamos tratarla como si tuviera inteligencia.
+1936 · La máquina universal de Turing
 
-¿Cómo funciona el juego?
+No es un objeto físico con engranajes ni cables, sino un modelo matemático que Turing definió en "On Computable Numbers" para responder qué significa que algo sea calculable. La máquina tiene una cinta infinita, un cabezal que lee y escribe un símbolo por vez y una tabla de estados. Nada más.
 
-El experimento original involucra a tres participantes en habitaciones separadas:
+Turing demostró que ese modelo mínimo resuelve cualquier problema que tenga una solución algorítmica. Es el plano original de cualquier procesador moderno: un CPU con miles de millones de transistores no calcula nada que una máquina de Turing no pueda calcular, solo lo hace más rápido.
 
-Un interrogador humano.
+El problema de la parada. En el mismo trabajo Turing mostró que hay límites que ninguna cantidad de memoria o velocidad levanta. Supongamos un programa CALCULADOR_DE_PARADA que recibe cualquier otro programa y responde, antes de ejecutarlo, si va a terminar o si va a quedar colgado en un bucle infinito. Construimos entonces un programa rebelde que consulta al CALCULADOR sobre sí mismo: si la respuesta es "termina", el rebelde entra en un bucle infinito; si es "no termina", el rebelde se detiene. La paradoja es la misma de "esta oración es falsa". El CALCULADOR no puede existir.
 
-Un hombre (o una máquina, en la versión de IA).
+Por qué importa en 2026: cuando un alumno pregunta si un modelo puede verificar automáticamente que el código que generó es correcto, la respuesta de fondo tiene 90 años. Hay preguntas sobre programas que ninguna máquina responde en general, por más grande que sea el modelo.
 
-Una mujer (o un humano, que sirve de control).
+1948 · La teoría de la información (Claude Shannon)
 
--
+Shannon publica "A Mathematical Theory of Communication" en el Bell System Technical Journal. Define el bit como unidad de información, la entropía como medida de incertidumbre y la capacidad de un canal como límite de lo que se puede transmitir con ruido.
 
-Máquina de Turing/Universal no es un objeto físico con engranajes o cables, sino un modelo matemático que Alan Turing ideó en 1936. Su objetivo era definir, de una vez por todas, qué significa que algo sea "calculable".
+Conexión directa con la clase: la entropía de Shannon es la misma función de pérdida con la que se entrena un LLM. Cuando un modelo predice el token siguiente, lo que minimiza es la entropía cruzada entre su distribución y la real. La métrica de perplejidad es la exponencial de ese número.
 
--> Aunque suena extremadamente simple, Turing demostró que este modelo puede resolver cualquier problema matemático que tenga una solución lógica. Es el "plano" original de cómo funciona cualquier procesador moderno.
+1950 · El juego de la imitación
 
---
+Turing publica "Computing Machinery and Intelligence" en la revista Mind. En 1950 nadie lograba definir "pensar" de una forma que todos aceptaran, así que Turing cambió la pregunta: si una máquina actúa de manera indistinguible de un ser humano, la tratamos como inteligente.
 
-El Problema de la Parada
+Cómo funciona el juego. Tres participantes en habitaciones separadas, comunicados solo por texto: un interrogador humano, un hombre (o la máquina, en la versión de IA) y una mujer (o un humano, que sirve de control). El interrogador hace preguntas por escrito y tiene que decidir quién es quién. La máquina pasa la prueba si el interrogador se equivoca con la misma frecuencia con que se equivocaría entre dos personas.
 
-Turing demostró que existen límites fundamentales en lo que una máquina puede calcular, sin importar cuánta memoria o velocidad tenga. El ejemplo más famoso es el Problema de la Parada (Halting Problem) .
+Discusión para la clase: los LLMs actuales pasan versiones cortas del test y siguen fallando en aritmética de varios pasos o en mantener coherencia en un texto largo. Sirve para preguntar si el test mide inteligencia o mide imitación del lenguaje, que es exactamente lo que Turing eligió medir.
 
-Imagina que quieres crear un programa maestro que pueda analizar cualquier otro programa y decirte, antes de ejecutarlo, si ese programa eventualmente terminará su tarea o si se quedará "colgado" en un bucle infinito para siempre.
+1956 · Nacimiento oficial
 
-Turing demostró mediante la lógica que es imposible construir tal programa.
+La conferencia de Dartmouth reúne durante un verano a John McCarthy, Marvin Minsky, Nathaniel Rochester y el propio Shannon. McCarthy acuña el término "Inteligencia Artificial" en la propuesta de financiamiento de 1955. La propuesta estimaba que un grupo de diez personas podía avanzar de forma significativa en dos meses.
 
-Para probarlo, utilizó una técnica llamada "reducción al absurdo":
+Ese optimismo de calendario es un patrón que se repite en cada ola, incluida la actual. Vale la pena señalarlo acá y volver a él cuando se hable de plazos de adopción.
 
-Supongamos que existe un programa llamado CALCULADOR_DE_PARADA.
+1958 · El perceptrón (Frank Rosenblatt)
 
-Creamos un segundo programa "rebelde" que consulta al primero.
+Rosenblatt construye en el Cornell Aeronautical Laboratory la primera red neuronal artificial que aprende de ejemplos en lugar de seguir reglas escritas. El Mark I Perceptron era hardware: una cámara de 400 fotoceldas y potenciómetros que ajustaban los pesos con motores.
 
-Si el CALCULADOR dice que el programa parará, el rebelde entra en un bucle infinito. Si el CALCULADOR dice que no parará, el rebelde se detiene inmediatamente.
+1969 · Minsky y Papert
 
-Esto crea una paradoja lógica (como decir "esta oración es falsa"). Si el programa intenta analizarse a sí mismo, la lógica se rompe.
+El libro "Perceptrons" demuestra que un perceptrón de una sola capa no puede representar la función XOR. El resultado era correcto y limitado a esa arquitectura, pero se leyó como una condena a las redes neuronales en general. La inversión en el área se cortó y empezó el primer invierno de la IA.
 
-Un sistema experto es un programa que intenta imitar el razonamiento de un experto humano en un dominio específico.
+1980-90s · Sistemas expertos e inviernos
 
-Deap blue - IA = búsqueda + poder de cómputo + heurísticas
+Un sistema experto es un programa que imita el razonamiento de un especialista humano en un dominio acotado, con una base de reglas del tipo "si estos síntomas, entonces esta hipótesis" y un motor de inferencia que las encadena. MYCIN diagnosticaba infecciones bacterianas, DENDRAL identificaba estructuras moleculares y XCON configuraba equipos en Digital Equipment Corporation, donde llegó a ahorrar decenas de millones de dólares al año.
+
+Por qué se cayeron: cada regla se escribía a mano, el mantenimiento crecía más rápido que el sistema y ninguno generalizaba fuera de su dominio. El mercado de las máquinas LISP colapsó a fines de los 80 y llegó el segundo invierno.
+
+Paralelo útil para la clase: la ingeniería de prompts tiene el mismo riesgo si se convierte en una colección de reglas escritas a mano que nadie puede mantener.
+
+1986 · Backpropagation
+
+Rumelhart, Hinton y Williams publican en Nature "Learning representations by back-propagating errors" y popularizan el algoritmo que permite entrenar redes de varias capas. La idea ya circulaba (Linnainmaa en 1970, Werbos en 1974); lo que cambió fue mostrar que funcionaba en la práctica y que las capas ocultas aprendían representaciones útiles.
+
+Con varias capas la limitación del XOR desaparece. Faltaban los datos y el cómputo, que llegaron recién con las GPUs.
+
+1997 · Deep Blue vence a Kasparov
+
+En mayo de 1997, en Nueva York, la supercomputadora de IBM gana el match por 3½-2½. En 1996 Kasparov había ganado el enfrentamiento anterior por 4-2, así que la revancha es la primera vez que una máquina gana un match completo contra el campeón mundial.
+
+Cómo lo hacía: búsqueda alfa-beta sobre el árbol de jugadas, unos 200 millones de posiciones por segundo en hardware dedicado, y una función de evaluación con miles de parámetros que ajustaron grandes maestros humanos. No hay aprendizaje. Deep Blue es búsqueda más poder de cómputo más heurísticas escritas por personas.
+
+El contraste con lo que viene: AlphaGo en 2016 y los LLMs de hoy aprenden de datos en lugar de recibir la heurística escrita. Deep Blue cierra la era de las reglas y la Parte 2 abre la del aprendizaje.
 
 ---
 
@@ -919,39 +939,39 @@ Referencia PPTX: diapositiva 21.
 
 Del deep learning a la era generativa — 2011 a 2022
 
-1
+2011 
 
-2011 — Watson gana en Jeopardy!
+Watson gana en Jeopardy!
 
 IBM Watson derrota a los mejores campeones humanos del concurso de preguntas. Demuestra comprensión del lenguaje natural a gran escala.
 
-2
+2012 
 
-2012 — La revolución del deep learning
+La revolución del deep learning
 
 AlexNet gana ImageNet con una ventaja histórica. Las redes neuronales profundas y las GPUs cambian todo. Codificar a entrenar.
 
-3
+2016 
 
-2016 — AlphaGo vence a Lee Sedol
+AlphaGo vence a Lee Sedol
 
-DeepMind derrota al campeón mundial de Go, un juego con más combinaciones posibles que átomos en el universo. Considerado imposible para la IA hasta ese momento. Toma decisiones estratégicas en un espacio de búsqueda enorme.
+Google DeepMind derrota al campeón mundial de Go, un juego con más combinaciones posibles que átomos en el universo. Considerado imposible para la IA hasta ese momento. Toma decisiones estratégicas en un espacio de búsqueda enorme.
 
-4
+2017  
 
-2017 — Atención es todo
+Atención es todo
 
 Google publica "Attention Is All You Need". Nace la arquitectura Transformer, base de todos los modelos modernos.
 
-5
+2020s 
 
-2020s — Era generativa
+Era generativa
 
 GPT-3, ChatGPT, Gemini, Claude. Los Foundation Models democratizan el acceso a capacidades de IA sin precedentes.
 
-6
+2022  
 
-2022 — ChatGPT rompe internet
+ChatGPT rompe internet
 
 OpenAI lanza ChatGPT. Alcanza 100 millones de usuarios en 2 meses, el producto de mayor crecimiento en la historia.
 
@@ -963,43 +983,99 @@ OpenAI lanza ChatGPT. Alcanza 100 millones de usuarios en 2 meses, el producto d
 
 Referencia PPTX: diapositiva 22.
 
-AlexNet
+Nota de ritmo: seis entradas. Para 90 minutos conviene detenerse en 2012, 2016 y 2017, y pasar 2011, 2020s y 2022 en una frase cada una. La diapositiva siguiente (Move 37) desarrolla 2016.
 
-Más de 14 millones de imágenes
+---
 
-Más de 20.000 categorías
+2011 · Watson gana en Jeopardy!
 
-2017
+IBM Watson derrota a Ken Jennings y Brad Rutter, los dos mejores jugadores en la historia del programa. Watson corría sobre 2.880 núcleos POWER7 con 16 TB de memoria y unos 4 TB de contenido indexado. Durante el juego estuvo desconectado de internet: todo lo que sabía estaba cargado de antemano.
 
-Eliminar las redes recurrentes (RNN/LSTM) y usar solo mecanismos de atención.
+Cómo funcionaba: la arquitectura DeepQA generaba cientos de hipótesis por pregunta, buscaba evidencia para cada una en paralelo y las puntuaba con alrededor de cien algoritmos distintos. Respondía solo cuando la confianza superaba un umbral.
 
-¿Por qué fue tan revolucionario?
+El error que vale contar: en el Final Jeopardy de categoría "Ciudades de Estados Unidos", Watson respondió "Toronto". Sirve para mostrar que un sistema puede ganar un torneo y equivocarse en algo que ningún humano erraría, porque su noción de categoría no es la nuestra.
 
-1. Paralelización total
+2012 · La revolución del deep learning
 
-Las RNN procesaban secuencialmente.
+AlexNet, de Krizhevsky, Sutskever y Hinton, gana el ImageNet Large Scale Visual Recognition Challenge con 15,3% de error top-5 contra 26,2% del segundo. Una diferencia de más de diez puntos en una competencia donde se peleaba por décimas.
 
-Los Transformers pueden procesar todo en paralelo.
+Los números de ImageNet: más de 14 millones de imágenes etiquetadas y más de 20.000 categorías en el dataset completo. La competencia usaba un subconjunto de 1.000 clases y 1,2 millones de imágenes de entrenamiento.
 
- Mucho más rápidos en GPUs.
+Lo que cambió: la red se entrenó en dos GPUs GTX 580 de consumo. El salto no fue una idea nueva (las redes convolucionales son de los 80) sino la combinación de datos etiquetados a escala, GPUs baratas y ReLU + dropout para entrenar redes profundas sin que se degraden. De acá sale la frase de la diapositiva sobre pasar de codificar a entrenar: antes un ingeniero de visión escribía a mano los detectores de bordes y texturas; después los aprende la red.
 
-2. Mejor manejo de contexto largo
+2016 · AlphaGo vence a Lee Sedol
 
-Las RNN olvidaban información lejana.
+DeepMind gana el match 4-1 en Seúl, en marzo. El Go tiene un factor de ramificación de alrededor de 250 contra 35 del ajedrez, así que la búsqueda por fuerza bruta que le alcanzó a Deep Blue acá no sirve.
 
-La atención permite conectar cualquier palabra con cualquier otra directamente.
+Cómo funcionaba: dos redes neuronales (una de política, que propone jugadas, y una de valor, que evalúa posiciones) guiando una búsqueda Monte Carlo por árbol. El entrenamiento tuvo dos etapas: primero aprendizaje supervisado sobre partidas de jugadores humanos fuertes, después aprendizaje por refuerzo jugando millones de partidas contra versiones de sí mismo.
 
-3. Escalabilidad
+La aclaración que conviene hacer en clase: AlphaGo sí aprendió de humanos. El que se entrenó sin ningún dato humano fue AlphaGo Zero, un año después, y jugaba mejor.
 
-La arquitectura escala muy bien con:
+La jugada 78 de Lee Sedol en la cuarta partida, la única que ganó, es el espejo de la jugada 37: una jugada que AlphaGo no tenía contemplada y que le desarmó la evaluación.
 
-Más datos
+2017 · Atención es todo
 
-Más parámetros
+Vaswani y otros publican "Attention Is All You Need" en NeurIPS. La propuesta es eliminar las redes recurrentes (RNN/LSTM) y quedarse solo con mecanismos de atención.
 
-Más cómputo
+Por qué fue revolucionario, en tres puntos:
 
-Y eso abrió la puerta a modelos gigantes.
+1. Paralelización total. Las RNN procesaban la secuencia palabra por palabra, cada paso dependiendo del anterior. Los Transformers procesan toda la secuencia a la vez, y eso los vuelve mucho más rápidos en GPUs.
+
+2. Mejor manejo de contexto largo. Las RNN olvidaban información lejana. La atención conecta cualquier palabra con cualquier otra de forma directa, sin importar la distancia.
+
+3. Escalabilidad. La arquitectura mejora de forma predecible con más datos, más parámetros y más cómputo, y eso abrió la puerta a los modelos gigantes.
+
+El costo que no está en la diapositiva: la atención es cuadrática en la longitud de la secuencia. Duplicar el contexto cuadruplica el cómputo. Es la razón por la que el contexto largo sigue siendo caro y por la que hay tanta investigación en variantes eficientes.
+
+2020s · Era generativa
+
+GPT-3 llega en 2020 con 175.000 millones de parámetros y muestra que un modelo suficientemente grande resuelve tareas nuevas con solo verlas descritas en el prompt, sin reentrenamiento.
+
+Dos referencias que ordenan la década y ya están en el corpus: las leyes de escala de Kaplan y otros (arXiv:2001.08361), que muestran que la performance mejora como una ley de potencia frente a datos, parámetros y cómputo; y el reporte de Stanford que acuña el término foundation model (arXiv:2108.07258).
+
+2022 · ChatGPT rompe internet
+
+OpenAI lanza ChatGPT el 30 de noviembre de 2022. Llegó al millón de usuarios en cinco días y se le estimaron 100 millones de usuarios mensuales en enero de 2023.
+
+Precisión que conviene tener a mano: esa cifra de 100 millones es una estimación de UBS, no un dato publicado por OpenAI, y el título de producto de más rápido crecimiento se lo quitó Threads en julio de 2023. La afirmación de la diapositiva vale para el momento, no para siempre.
+
+Lo que cambió no fue el modelo: GPT-3.5 ya existía. Cambió la interfaz. Un chat gratuito y sin fricción convirtió una API para desarrolladores en un producto masivo, y ese es el punto que vale para una carrera de Ingeniería de Software.
+
+---
+
+## 6. Move 37
+
+<!-- template: single-point -->
+
+### Content
+
+Segunda partida del match entre AlphaGo y Lee Sedol. Seúl, marzo de 2016.
+
+En la jugada 37 AlphaGo apoya una piedra en la quinta línea, lejos de donde se estaba jugando. Los comentaristas la dieron por error. Lee Sedol se levantó de la mesa y tardó más de diez minutos en responder. AlphaGo ganó esa partida y después el match por 4-1.
+
+Una jugada que ningún humano habría elegido
+
+El sistema estimó que un jugador humano la jugaría una vez cada diez mil. La eligió igual, porque su evaluación de la posición venía de millones de partidas contra sí mismo y no solo del repertorio humano con el que había empezado a entrenar.
+
+El aprendizaje por refuerzo con self-play generó conocimiento estratégico que la comunidad humana no tenía después de 2.500 años de juego.
+
+Ver en clase: "Move 37!! Lee Sedol vs AlphaGo Match 2" (https://www.youtube.com/watch?v=JNrXgpSEEIE)
+
+### Sources
+
+- corpus/youtube-jnrxgpseeie.web.md (video del momento de la jugada 37)
+
+### Speaker notes
+
+Momento sugerido: proyectar el video justo después de la diapositiva de la Breve Historia (Parte 2), cuando aparece la entrada de 2016.
+
+Por qué esta jugada y no otra: es el caso más limpio para mostrar que un sistema entrenado por refuerzo no imita al humano, sino que lo supera por caminos que el humano no considera. Fan Hui, el jugador europeo al que AlphaGo había derrotado meses antes, la describió como hermosa después de entenderla.
+
+El contrapunto honesto: en la cuarta partida Lee Sedol jugó la 78, una cuña que AlphaGo no tenía contemplada, y el sistema se desarmó durante varias jugadas. Fue la única partida que AlphaGo perdió. Conviene contar las dos.
+
+Pregunta para la clase: si un sistema propone una decisión de arquitectura que ningún miembro del equipo habría propuesto, ¿qué evidencia hace falta para aceptarla? Es la misma pregunta que enfrentaron los comentaristas en 2016, trasladada a un code review.
+
+Aclaración técnica: AlphaGo (2016) sí se entrenó con partidas humanas antes de la etapa de refuerzo. AlphaGo Zero, un año después, aprendió sin ningún dato humano y jugaba mejor. Si alguien pregunta, la distinción importa.
 
 ---
 
@@ -2181,6 +2257,10 @@ La diapositiva de conclusiones se conserva como 5.1 porque el PPTX original cont
 - Confirmar días, horarios, aula, plataforma de entregas y ponderación final de la cursada.
 - Decidir qué diapositivas del anexo se mostrarán dentro de los 90 minutos y cuáles quedarán como material de consulta.
 - Validar qué recursos visuales del PPTX original se reutilizarán en la versión de Ingeniería de Software.
+- Diapositiva 10 (riesgo macroeconómico): la fuente Citrini Research es ficción especulativa declarada. El propio texto abre con "What follows is a scenario, not a prediction" y está escrito como un memo fechado en junio de 2028, publicado el 22 de febrero de 2026. La diapositiva ya enmarca el punto 1 como escenario hipotético, pero la línea del cuello blanco proyecta "50% del empleo y 70% del gasto discrecional" como dato. En la fuente la cifra es 75%, no 70%, y pertenece a la narrativa del escenario. Decidir si se corrige el número, si se enmarca toda la diapositiva como escenario o si se busca una fuente real de participación del empleo de cuello blanco.
+- Registro de corpus `anthropic-docs-welcome.web.md`: la captura trae nomenclatura de modelos inusual y una mención a un modelo sin clasificadores de seguridad. No verificado y no usado en ninguna diapositiva. Verificar contra otra fuente antes de citarlo.
+- Registro de corpus `meta-llama-4.web.md`: la página tiene 16 meses y compara contra modelos ya superados, sin publicar números. No sirve como referencia de estado del arte.
+- Diapositiva "La revolución del deep learning": la línea "Codificar a entrenar" parece una frase truncada. Definir la redacción final.
 
 # Cut material
 

@@ -1,7 +1,7 @@
 # memory.md — introduccion
 
-**Current step:** 5 — Review awaiting_presenter
-**Awaiting:** 2026-08-05 — "Seguir iterando sobre draft.md. Pendiente de decisión del presentador: la cifra del cuello blanco en la diapositiva 10 (fuente de ficción especulativa, y 70% donde la fuente dice 75%)."
+**Current step:** 7 — Render awaiting_presenter
+**Awaiting:** 2026-08-05 — "Elegir estilo de render (pptx-strict / pptx-free-form / html-strict) o saltear el render. Sigue pendiente la decisión sobre la cifra del cuello blanco en la diapositiva 10."
 **Topic:** Introducción, normas de trabajo y encuadre inicial de la materia.
 **Folder:** talks/introduccion/
 **Started:** 2026-08-03
@@ -292,3 +292,42 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
   - `final.md`, `output/slide-model.json` y el HTML siguen desactualizados. Falta Step 6 y Step 7, ahora con 48 diapositivas en vez de 47.
   - Al re-sellar el modelo: "Evaluación" necesita `position: bottom`; la diapositiva 8 pasó a 5 tarjetas; verificar `concept-columns` a dos columnas en "¿Qué es la Inteligencia Artificial?".
   - Siguen abiertas: diapositivas densas 31, 43 y 44; los rasgos de los siete modelos de propósito general sin verificar; la mención al PPTX de origen en "Escala, datos y poder de cómputo".
+
+
+## 2026-08-05 — Step 5.5 (vista HTML en vivo)
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Guarda el research." → Los archivos ya estaban en disco. El commit lo hizo el presentador desde su máquina (`9f783a6 WIP`, 371 archivos de research incluidos).
+  - 2026-08-05 — "Genera un preview en html para poder ver como estamos." → Render `html-strict --draft` desde `draft.md`.
+- What was decided:
+  - El FILL se hizo incremental, no desde cero: se partió del `slide-model.json` vigente (52 entradas, revisado en varias rondas) y se re-FILLearon solo las 4 secciones que cambiaron (Bienvenidos, ¿Por qué esta materia?, Logística, Fundamento de AI), en paralelo, una por agente. Las 5 secciones restantes se copiaron intactas. Resultado: 53 entradas.
+  - `deck.title` y `deck.class` se alinearon con el frontmatter que editó el presentador: título "Inteligencia Artificial Generativa (AI Gen)" y clase "Clase 1: Bienvenidos / Introducción". Se limpió el doble espacio y se sacó "- Universidad Austral" del título, que ya vive en `institution`.
+- Files created/modified: `talks/introduccion/output/slide-model.draft.json`; `talks/introduccion/output/html/index.html`.
+- Validation: guard de frescura sellado contra `draft.md` (ca4c5a1f…, 95.163 bytes); render de 53 diapositivas; 0 errores de consola. Capturas headless de las 10 diapositivas que cambiaron, revisadas una por una.
+- Verificación visual, diapositiva por diapositiva:
+  - "Cómo vamos a trabajar" y "Trabajo final": la lista numerada de una columna sale como la pidió el presentador, chip de número más línea.
+  - "Evaluación": la línea Importante quedó en la banda inferior.
+  - "¿Qué es la Inteligencia Artificial?": las dos columnas entran cómodas, con la fuente al pie y el remate arriba de ella.
+  - Timelines Parte 1 y Parte 2: el año como etiqueta funciona mucho mejor que la numeración anterior. La Parte 1 con siete entradas queda ajustada contra el borde inferior.
+  - "Transformación en Ingeniería de Software": las 5 tarjetas caen en 3+2, no en 4 columnas.
+  - "Move 37": entra completa. La etiqueta del punto y su cuerpo se renderizan en el mismo párrafo, así que se leen corridos.
+- Pending open questions (nuevas de esta vuelta):
+  - Timeline Parte 1: siete entradas rozan el borde inferior. Evaluar partir en dos o acortar descripciones.
+  - "Move 37": la etiqueta en negrita y el cuerpo van pegados en un párrafo. Ver si conviene reformular la etiqueta o el arranque del cuerpo.
+
+
+## 2026-08-05 — Step 6 (Polish)
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Move a polish." → Ejecutado Step 6 completo sobre `talks/introduccion/`.
+- What was decided: Polish quedó otra vez en su mínimo. El Talk no tiene diagramas ASCII (0 bloques) ni directivas `generate-image` (0), así que no corrieron las etapas de dibujo ni de revisión visual. Las nueve referencias de imagen ya apuntaban a `images/` y todas existen en disco, así que la consolidación no tuvo nada que copiar. No había bullets `[open]` que rescatar. El paso se redujo a derivar `final.md` desde `draft.md` y quitar los campos de trabajo.
+- Key inputs: `talks/introduccion/draft.md` (95.163 bytes, sha256 ca4c5a1f091f…, sin cambios del presentador desde el preview).
+- Files created/modified: `talks/introduccion/final.md` (84.270 bytes, era 71.043).
+- Validation:
+  - 48 diapositivas H2 y 48 directivas `template` en `final.md`, idénticas a `draft.md`; 9 secciones H1.
+  - Strip: 48 campos H3 `### Presenter feedback` y 11 en forma de párrafo. Cero apariciones de "Presenter feedback", `[closed]` u `[open]` en `final.md`.
+  - Cero bloques ASCII, cero referencias con extensión prohibida (.svg/.webp/.avif/.heic).
+  - Las nueve referencias `images/...` resuelven a archivos existentes.
+  - El guard de línea en blanco antes de cada `---` pasa: el único caso sin línea previa es el cierre del frontmatter YAML en la línea 10, que es correcto.
+  - `# Open questions` y `# Cut material` sobreviven en `final.md`.
+- Pending open questions: las mismas de la ronda anterior. `output/slide-model.json` y el HTML de `output/html/` corresponden al preview de `draft.md`; Step 7 tiene que re-FILLear contra `final.md`.
