@@ -225,3 +225,15 @@
   feedback: "Marcar en negrita "sus posibilidades de éxito en un objetivo dado""
   resolution: La frase quedó en negrita en la columna 'Un poco más formal'. Se dejó sin tocar en las notas del orador, donde la cita va corrida.
   tags: [emphasis]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "5. Una Breve Historia (Parte 2)"
+  feedback: "Agreguemos en itos" 2025 — La IA se abarata y empieza a actuar. DeepSeek R1 derrumba el costo del razonamiento y borra ~US$590.000M de valor de Nvidia en un día; en paralelo, los agentes pasan de demo a producción y MCP se consolida como estándar de conexión.""
+  resolution: Se agregó el hito 2025 al final del timeline, con el texto del presentador. El lead de la diapositiva pasó de '2011 a 2022' a '2011 a 2025' para no contradecir la entrada nueva. Las notas del orador suman el detalle: fechas de R1 y de la caída de Nvidia, qué significa que un agente actúe, y qué estandariza MCP.
+  tags: [content-addition, timeline]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "5. Una Breve Historia (Parte 2)"
+  feedback: "Indexa: https://medium.com/data-science-collective/mythos-found-bugs-that-50-million-security-tests-missed-nobody-asked-it-to-92c204d6e738 y agrega el bug de BSD y el impacto"
+  resolution: Se indexaron tres fuentes (el artículo de Medium, el hilo del foro de FreeBSD y la nota de Engadget) y se agregó el hito 2026 al timeline: el bug de NFS de 17 años en FreeBSD con acceso root sin autenticar, más las cifras del primer mes de Glasswing. El artículo de Medium no contiene el caso de FreeBSD; sale del hilo del foro.
+  tags: [content-addition, timeline, external-source]

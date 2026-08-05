@@ -1,0 +1,10 @@
+url: "https://medium.com/data-science-collective/mythos-found-bugs-that-50-million-security-tests-missed-nobody-asked-it-to-92c204d6e738"
+fetched_at: "2026-08-05T15:50:00Z"
+title: "Mythos Found Bugs That 50 Million Security Tests Missed. Nobody Asked It To."
+http_status: 403
+byte_size: 0
+assets:
+  []
+extraction: "manual — talksmith:ingest recibe 403 de Medium; contenido obtenido con WebFetch, parcial por muro de pago"
+author: "Satyam Sahu"
+published: "2026-04-13"

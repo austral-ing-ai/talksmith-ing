@@ -1,0 +1,9 @@
+url: "https://www.engadget.com/2180028/anthropic-claude-mythos-preview-project-glasswing-update/"
+fetched_at: "2026-08-05T15:48:21Z"
+title: "Anthropic Says Mythos Has Already Found More Than 10,000 Vulnerabilities"
+http_status: 200
+byte_size: 59163
+assets:
+  - { src: "https://www.engadget.com/img/engadget-logo-RGB-default.svg", absolute: "https://www.engadget.com/img/engadget-logo-RGB-default.svg", saved_as: "engadget-logo-RGB-default.svg", alt: "Engadget" }
+  - { src: "https://www.engadget.com/img/engadget-icon-RGB-default.svg", absolute: "https://www.engadget.com/img/engadget-icon-RGB-default.svg", saved_as: "engadget-icon-RGB-default.svg", alt: "Engadget" }
+  - { src: "https://www.engadget.com/img/gallery/anthropic-says-mythos-has-already-found-more-than-10000-vulnerabilities/intro-1779540303.jpg", absolute: "https://www.engadget.com/img/gallery/anthropic-says-mythos-has-already-found-more-than-10000-vulnerabilities/intro-1779540303.jpg", saved_as: "intro-1779540303.jpg", alt: "A man speaking." }

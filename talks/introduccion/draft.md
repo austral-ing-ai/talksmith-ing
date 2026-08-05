@@ -1096,7 +1096,7 @@ Referencia PPTX: diapositiva 21.
 
 ### Content
 
-Del deep learning a la era generativa — 2011 a 2022
+Del deep learning a la era generativa — 2011 a 2026
 
 2011 
 
@@ -1136,9 +1136,24 @@ ChatGPT rompe internet
 
 OpenAI lanza ChatGPT. Alcanza 100 millones de usuarios en 2 meses, el producto de mayor crecimiento en la historia.
 
+2025
+
+La IA se abarata y empieza a actuar
+
+DeepSeek R1 derrumba el costo del razonamiento y borra ~US$590.000M de valor de Nvidia en un día; en paralelo, los agentes pasan de demo a producción y MCP se consolida como estándar de conexión.
+
+2026
+
+La IA encuentra lo que décadas de revisión humana no vieron
+
+Anthropic reporta más de 10.000 vulnerabilidades halladas por Claude Mythos en el primer mes de Glasswing: 2.000 en Cloudflare y 271 de Firefox ya corregidas. El caso más citado, una ejecución remota de 17 años en el NFS de FreeBSD explotada sin intervención humana, circula sin CVE ni aviso de seguridad y el propio foro de FreeBSD lo discute.
+
 ### Sources
 
 - corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 22; adaptación íntegra)
+- corpus/freebsd-forums-mythos-zero-days.web.md (el bug de NFS en FreeBSD)
+- corpus/engadget-mythos-glasswing-10000.web.md (cifras de impacto del programa Glasswing)
+- corpus/medium-mythos-bugs-seguridad.web.md (anuncio y encuadre de Project Glasswing)
 
 ### Speaker notes
 
@@ -1202,6 +1217,32 @@ Precisión que conviene tener a mano: esa cifra de 100 millones es una estimaci�
 
 Lo que cambió no fue el modelo: GPT-3.5 ya existía. Cambió la interfaz. Un chat gratuito y sin fricción convirtió una API para desarrolladores en un producto masivo, y ese es el punto que vale para una carrera de Ingeniería de Software.
 
+2025 · La IA se abarata y empieza a actuar
+
+DeepSeek publica R1 el 20 de enero de 2025, un modelo de razonamiento con pesos abiertos y un costo por token muy por debajo del de sus competidores cerrados. El 27 de enero Nvidia pierde alrededor de 589.000 millones de dólares de capitalización en una sola rueda, la mayor caída diaria de una empresa en la historia del mercado estadounidense. La tesis que se rompió ese día no fue técnica sino económica: que el razonamiento de frontera exigía siempre más cómputo y más gasto.
+
+El segundo movimiento del año es el paso de los agentes de la demo a la producción. Un agente no responde una pregunta: ejecuta una secuencia de acciones sobre sistemas reales, con permisos, registros y posibilidad de reversión. Eso convierte el problema en uno de ingeniería, no de prompt.
+
+MCP (Model Context Protocol) es el protocolo abierto que estandariza cómo un modelo se conecta a herramientas y fuentes de datos. Durante 2025 lo adoptaron los principales proveedores, y con eso la integración dejó de ser un desarrollo a medida por cada par modelo-herramienta.
+
+Por qué cierra la clase: los tres movimientos apuntan al mismo lugar. Si el costo baja, si el modelo actúa y si conectarlo es estándar, lo que queda como trabajo distintivo del ingeniero de software es el criterio, los controles y la responsabilidad sobre lo que el sistema hace. Es la tesis de la materia.
+
+2026 · La IA encuentra lo que décadas de revisión humana no vieron
+
+Anthropic publica Claude Mythos Preview el 7 de abril de 2026 con acceso restringido: 12 empresas socias y 40 organizaciones de infraestructura crítica, bajo el programa Project Glasswing. No lo liberó al público, con el argumento de que el modelo es demasiado capaz para publicarlo de forma segura.
+
+El caso de FreeBSD es el que conviene contar. Mythos identificó y explotó por su cuenta una vulnerabilidad de ejecución remota de código en el servicio NFS que llevaba 17 años en el árbol, y obtuvo acceso root sin autenticación. Sin que nadie le pidiera buscar ahí.
+
+Las cifras del primer mes, del reporte de Anthropic del 23 de mayo de 2026: más de 10.000 vulnerabilidades entre los socios, con la mayoría reportando cientos de severidad alta o crítica. Cloudflare encontró 2.000 bugs, 400 de ellos altos o críticos. Mozilla corrigió 271 vulnerabilidades de Firefox. Un barrido sobre 1.000 proyectos de código abierto devolvió 6.202 vulnerabilidades altas o críticas sobre 23.019 halladas.
+
+Qué discutir en clase: NFS es código revisado durante 17 años por una comunidad que se toma la seguridad en serio, con auditorías, fuzzing y análisis estático encima. Que un modelo lo encuentre solo no dice que los humanos sean malos revisando; dice que el costo de buscar exhaustivamente se derrumbó. La pregunta para un ingeniero es qué cambia en su proceso cuando esa búsqueda deja de ser cara, y qué pasa cuando la misma capacidad está del otro lado.
+
+La cadena de procedencia del caso de FreeBSD, que vale la pena mostrar en clase tal cual: la frase la escribe Valentin Monteiro en un post de dev.to, blackbird9 la pega en el foro de FreeBSD el 9 de abril de 2026, y el enlace de respaldo apunta a una página de Anthropic sobre sí misma. Tres saltos y ninguna verificación independiente. No hay número de CVE ni aviso FreeBSD-SA en toda la captura, y en el hilo participa al menos un desarrollador del proyecto sin aportar ninguno. La comunidad discute la afirmación con escepticismo.
+
+Por qué eso es material de clase y no un problema: la diapositiva enseña dos cosas a la vez. Una capacidad nueva, y cómo se verifica una afirmación técnica antes de repetirla. Si alguien pregunta si el bug de FreeBSD es real, la respuesta honesta es que Anthropic lo afirma, la prensa lo repite y el proyecto afectado no lo confirmó. Esa es la respuesta correcta y es la que conviene modelar.
+
+Las cifras de Glasswing son autoinformadas por Anthropic. La única con respaldo de un tercero es la de Mozilla, que publicó por su cuenta las 271 vulnerabilidades de Firefox corregidas. No sumar los 10.000 con los 23.019 del barrido de código abierto: son ventanas y poblaciones distintas.
+
 ### Presenter feedback
 
 - [closed] 2026-08-05 — "Agregar un slide con https://www.youtube.com/watch?v=JNrXgpSEEIE"
@@ -1210,6 +1251,10 @@ Lo que cambió no fue el modelo: GPT-3.5 ya existía. Cambió la interfaz. Un ch
   Resolution: La frase quedó como remate de la diapositiva 6 (Move 37), que es donde se paga el argumento, arriba del enlace al video. Si preferís que cierre la Breve Historia (Parte 2), se mueve en un minuto.
 - [closed] 2026-08-05 — "Agregar mas detalles en la seccion de notas para presenter."
   Resolution: Las notas del orador se reorganizaron por hito y se ampliaron de ~1.000 a ~5.900 caracteres. Se conservó todo el material previo sobre AlexNet y Transformers, y se sumaron cifras, fechas, arquitecturas y los reparos de precisión de 2011, 2016 y 2022.
+- [closed] 2026-08-05 — "Agreguemos en itos" 2025 — La IA se abarata y empieza a actuar. DeepSeek R1 derrumba el costo del razonamiento y borra ~US$590.000M de valor de Nvidia en un día; en paralelo, los agentes pasan de demo a producción y MCP se consolida como estándar de conexión.""
+  Resolution: Se agregó el hito 2025 al final del timeline, con el texto del presentador. El lead de la diapositiva pasó de '2011 a 2022' a '2011 a 2025' para no contradecir la entrada nueva. Las notas del orador suman el detalle: fechas de R1 y de la caída de Nvidia, qué significa que un agente actúe, y qué estandariza MCP.
+- [closed] 2026-08-05 — "Indexa: https://medium.com/data-science-collective/mythos-found-bugs-that-50-million-security-tests-missed-nobody-asked-it-to-92c204d6e738 y agrega el bug de BSD y el impacto"
+  Resolution: Se indexaron tres fuentes (el artículo de Medium, el hilo del foro de FreeBSD y la nota de Engadget) y se agregó el hito 2026 al timeline: el bug de NFS de 17 años en FreeBSD con acceso root sin autenticar, más las cifras del primer mes de Glasswing. El artículo de Medium no contiene el caso de FreeBSD; sale del hilo del foro.
 
 ---
 

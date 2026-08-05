@@ -564,7 +564,7 @@
       "template": "timeline",
       "section": "Fundamento de AI",
       "title": "Una Breve Historia (Parte 2)",
-      "lead": "Del deep learning a la era generativa — 2011 a 2022",
+      "lead": "Del deep learning a la era generativa — 2011 a 2026",
       "milestones": [
         {
           "label": "2011",
@@ -589,9 +589,17 @@
         {
           "label": "2022",
           "body": "**ChatGPT rompe internet** — OpenAI lanza ChatGPT. Alcanza 100 millones de usuarios en 2 meses, el producto de mayor crecimiento en la historia."
+        },
+        {
+          "label": "2025",
+          "body": "**La IA se abarata y empieza a actuar** — DeepSeek R1 derrumba el costo del razonamiento y borra ~US$590.000M de valor de Nvidia en un día; en paralelo, los agentes pasan de demo a producción y MCP se consolida como estándar de conexión."
+        },
+        {
+          "label": "2026",
+          "body": "**La IA encuentra lo que décadas de revisión humana no vieron** — Anthropic reporta más de 10.000 vulnerabilidades halladas por Claude Mythos en el primer mes de Glasswing: 2.000 en Cloudflare y 271 de Firefox ya corregidas. El caso más citado, una ejecución remota de 17 años en el NFS de FreeBSD explotada sin intervención humana, circula sin CVE ni aviso de seguridad y el propio foro de FreeBSD lo discute."
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 22.\n\nNota de ritmo: seis entradas. Para 90 minutos conviene detenerse en 2012, 2016 y 2017, y pasar 2011, 2020s y 2022 en una frase cada una. La diapositiva siguiente (Move 37) desarrolla 2016.\n\n---\n\n2011 · Watson gana en Jeopardy!\n\nIBM Watson derrota a Ken Jennings y Brad Rutter, los dos mejores jugadores en la historia del programa. Watson corría sobre 2.880 núcleos POWER7 con 16 TB de memoria y unos 4 TB de contenido indexado. Durante el juego estuvo desconectado de internet: todo lo que sabía estaba cargado de antemano.\n\nCómo funcionaba: la arquitectura DeepQA generaba cientos de hipótesis por pregunta, buscaba evidencia para cada una en paralelo y las puntuaba con alrededor de cien algoritmos distintos. Respondía solo cuando la confianza superaba un umbral.\n\nEl error que vale contar: en el Final Jeopardy de categoría \"Ciudades de Estados Unidos\", Watson respondió \"Toronto\". Sirve para mostrar que un sistema puede ganar un torneo y equivocarse en algo que ningún humano erraría, porque su noción de categoría no es la nuestra.\n\n2012 · La revolución del deep learning\n\nAlexNet, de Krizhevsky, Sutskever y Hinton, gana el ImageNet Large Scale Visual Recognition Challenge con 15,3% de error top-5 contra 26,2% del segundo. Una diferencia de más de diez puntos en una competencia donde se peleaba por décimas.\n\nLos números de ImageNet: más de 14 millones de imágenes etiquetadas y más de 20.000 categorías en el dataset completo. La competencia usaba un subconjunto de 1.000 clases y 1,2 millones de imágenes de entrenamiento.\n\nLo que cambió: la red se entrenó en dos GPUs GTX 580 de consumo. El salto no fue una idea nueva (las redes convolucionales son de los 80) sino la combinación de datos etiquetados a escala, GPUs baratas y ReLU + dropout para entrenar redes profundas sin que se degraden. De acá sale la frase de la diapositiva sobre pasar de codificar a entrenar: antes un ingeniero de visión escribía a mano los detectores de bordes y texturas; después los aprende la red.\n\n2016 · AlphaGo vence a Lee Sedol\n\nDeepMind gana el match 4-1 en Seúl, en marzo. El Go tiene un factor de ramificación de alrededor de 250 contra 35 del ajedrez, así que la búsqueda por fuerza bruta que le alcanzó a Deep Blue acá no sirve.\n\nCómo funcionaba: dos redes neuronales (una de política, que propone jugadas, y una de valor, que evalúa posiciones) guiando una búsqueda Monte Carlo por árbol. El entrenamiento tuvo dos etapas: primero aprendizaje supervisado sobre partidas de jugadores humanos fuertes, después aprendizaje por refuerzo jugando millones de partidas contra versiones de sí mismo.\n\nLa aclaración que conviene hacer en clase: AlphaGo sí aprendió de humanos. El que se entrenó sin ningún dato humano fue AlphaGo Zero, un año después, y jugaba mejor.\n\nLa jugada 78 de Lee Sedol en la cuarta partida, la única que ganó, es el espejo de la jugada 37: una jugada que AlphaGo no tenía contemplada y que le desarmó la evaluación.\n\n2017 · Atención es todo\n\nVaswani y otros publican \"Attention Is All You Need\" en NeurIPS. La propuesta es eliminar las redes recurrentes (RNN/LSTM) y quedarse solo con mecanismos de atención.\n\nPor qué fue revolucionario, en tres puntos:\n\n1. Paralelización total. Las RNN procesaban la secuencia palabra por palabra, cada paso dependiendo del anterior. Los Transformers procesan toda la secuencia a la vez, y eso los vuelve mucho más rápidos en GPUs.\n\n2. Mejor manejo de contexto largo. Las RNN olvidaban información lejana. La atención conecta cualquier palabra con cualquier otra de forma directa, sin importar la distancia.\n\n3. Escalabilidad. La arquitectura mejora de forma predecible con más datos, más parámetros y más cómputo, y eso abrió la puerta a los modelos gigantes.\n\nEl costo que no está en la diapositiva: la atención es cuadrática en la longitud de la secuencia. Duplicar el contexto cuadruplica el cómputo. Es la razón por la que el contexto largo sigue siendo caro y por la que hay tanta investigación en variantes eficientes.\n\n2020s · Era generativa\n\nGPT-3 llega en 2020 con 175.000 millones de parámetros y muestra que un modelo suficientemente grande resuelve tareas nuevas con solo verlas descritas en el prompt, sin reentrenamiento.\n\nDos referencias que ordenan la década y ya están en el corpus: las leyes de escala de Kaplan y otros (arXiv:2001.08361), que muestran que la performance mejora como una ley de potencia frente a datos, parámetros y cómputo; y el reporte de Stanford que acuña el término foundation model (arXiv:2108.07258).\n\n2022 · ChatGPT rompe internet\n\nOpenAI lanza ChatGPT el 30 de noviembre de 2022. Llegó al millón de usuarios en cinco días y se le estimaron 100 millones de usuarios mensuales en enero de 2023.\n\nPrecisión que conviene tener a mano: esa cifra de 100 millones es una estimación de UBS, no un dato publicado por OpenAI, y el título de producto de más rápido crecimiento se lo quitó Threads en julio de 2023. La afirmación de la diapositiva vale para el momento, no para siempre.\n\nLo que cambió no fue el modelo: GPT-3.5 ya existía. Cambió la interfaz. Un chat gratuito y sin fricción convirtió una API para desarrolladores en un producto masivo, y ese es el punto que vale para una carrera de Ingeniería de Software."
+      "notes": "Referencia PPTX: diapositiva 22.\n\nNota de ritmo: seis entradas. Para 90 minutos conviene detenerse en 2012, 2016 y 2017, y pasar 2011, 2020s y 2022 en una frase cada una. La diapositiva siguiente (Move 37) desarrolla 2016."
     },
     {
       "template": "single-point",
@@ -1490,7 +1498,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "f97848e84af908ced53134d3c33659da4e1f87ac75ec93aa4c0aaeb3a2c4ad79",
-    "bytes": 86157
+    "sha256": "85fe293c3a479086050bde04c100fa38af273a84829870fcf1a5097d3f37dd3c",
+    "bytes": 91285
   }
 }
