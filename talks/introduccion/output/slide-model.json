@@ -672,10 +672,14 @@
       "notes": "Referencia PPTX: diapositiva 23.\n\nDiapositiva 3: La Taxonomía de Problemas: ¿Qué resolvemos?\n\nDiscurso Sugerido: \"Para entender la IA, hay que verla como una caja de herramientas. ¿Qué problemas resuelve? Principalmente, podemos categorizarlos en siete áreas clave. Por ejemplo, en Predicción, la IA puede predecir categorías o valores continuos, como si una planta tiene una plaga o estimar el rendimiento de una cosecha. En Percepción, la IA extrae significado de imágenes o audio. La Generación nos permite crear nuevo contenido. Los sistemas de Decisión Secuencial aprenden a tomar series de acciones para lograr objetivos, como en los juegos. Y el Razonamiento Simbólico permite a la IA usar reglas lógicas.\"\n\nContexto Técnico Profundo: La Predicción mapea entradas $X$ a salidas $Y$ (discretas o continuas). La Percepción extrae características de datos crudos. La Representación busca estructuras subyacentes (embeddings). La Generación modela distribuciones de probabilidad. La Decisión Secuencial optimiza acciones a lo largo del tiempo (Reinforcement Learning). La Búsqueda y Planificación encuentran secuencias óptimas de acciones. El Razonamiento Simbólico se basa en sistemas expertos y lógica."
     },
     {
-      "template": "statement",
+      "template": "image-full",
       "section": "Taxinomia de Problemas",
       "title": "Predicción",
-      "sub": "Aprender una función X → Y a partir de datos etiquetados. El modelo mapea entradas a salidas conocidas y minimiza el error. Esta categoría sostiene muchas aplicaciones industriales.",
+      "lead": "Aprender una función X → Y a partir de datos etiquetados.",
+      "image": {
+        "src": "images/s5-1-1-prediccion-funcion-aprendida.png",
+        "alt": "Predicción: se aprende una función a partir de ejemplos con respuesta conocida y se aplica a un caso nuevo"
+      },
       "notes": "Presentar Predicción como una de las familias más frecuentes de problemas de IA antes de recorrer sus variantes."
     },
     {
@@ -837,10 +841,14 @@
       "notes": "Referencia PPTX: diapositiva 26.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: la aritmética vectorial de Word2Vec mostró que la geometría del espacio codifica relaciones de género, número y categoría sin que nadie las declare. De ahí bajan las bases de datos vectoriales que hoy sostienen RAG."
     },
     {
-      "template": "statement",
+      "template": "image-full",
       "section": "Taxinomia de Problemas",
       "title": "Decisión Secuencial",
-      "sub": "Maximizar recompensa acumulada a través de acciones en el tiempo. Formalizado como Reinforcement Learning (RL): un agente interactúa con un entorno, toma acciones y recibe recompensas. Aprende por ensayo y error qué secuencia de decisiones maximiza el resultado a largo plazo.",
+      "lead": "Maximizar recompensa acumulada a través de acciones en el tiempo.",
+      "image": {
+        "src": "images/s5-4-1-decision-secuencial-lazo.png",
+        "alt": "Decisión secuencial: el lazo entre agente, acción y entorno que devuelve recompensa"
+      },
       "notes": "Encuadrar Decisión Secuencial marcando la diferencia con Predicción. Acá no hay una etiqueta correcta por ejemplo, sino una señal de recompensa que llega tarde y evalúa una secuencia entera."
     },
     {
@@ -891,10 +899,14 @@
       "notes": "Referencia PPTX: diapositiva 27.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: AlphaGo combinó redes de política y valor con búsqueda Monte Carlo. AlphaZero eliminó las partidas humanas del entrenamiento y aprendió solo por autojuego. RLHF es la aplicación de esta misma familia sobre modelos de lenguaje."
     },
     {
-      "template": "statement",
+      "template": "image-full",
       "section": "Taxinomia de Problemas",
       "title": "Búsqueda / Planificación",
-      "sub": "Encontrar la mejor secuencia de acciones en un espacio de estados.",
+      "lead": "Encontrar la mejor secuencia de acciones en un espacio de estados.",
+      "image": {
+        "src": "images/s5-5-1-busqueda-arbol-camino.png",
+        "alt": "Búsqueda y planificación: recorrer un árbol de opciones para encontrar el mejor camino"
+      },
       "notes": "Encuadrar Búsqueda y Planificación como la familia con modelo del entorno conocido. Conviene anticipar la comparación con RL, que aparece en la diapositiva siguiente."
     },
     {
@@ -949,10 +961,14 @@
       "notes": "Referencia PPTX: diapositiva 28.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: el sistema de DeepMind ajustaba refrigeración a partir de miles de sensores. El 40% corresponde a la energía de enfriamiento, no al consumo total del data center."
     },
     {
-      "template": "statement",
+      "template": "image-full",
       "section": "Taxinomia de Problemas",
       "title": "Razonamiento Simbólico",
-      "sub": "Manipular símbolos y reglas explícitas para derivar conclusiones lógicas. El razonamiento simbólico opera sobre representaciones explícitas del conocimiento: reglas IF–THEN, ontologías y lógica formal. Resulta interpretable, auditable y determinista. Los sistemas expertos son su aplicación práctica.",
+      "lead": "Manipular símbolos y reglas explícitas para derivar conclusiones lógicas.",
+      "image": {
+        "src": "images/s5-6-1-razonamiento-cadena-reglas.png",
+        "alt": "Razonamiento simbólico: hechos y reglas escritas por personas llevan a una conclusión auditable"
+      },
       "notes": "Encuadrar Razonamiento Simbólico como la familia anterior al aprendizaje estadístico y todavía vigente donde hace falta trazabilidad: crédito, seguros, cumplimiento normativo, verificación de código."
     },
     {
@@ -1003,10 +1019,14 @@
       "notes": "Referencia PPTX: diapositiva 29.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: Deep Blue evaluaba unas 200 millones de posiciones por segundo con una función escrita por sus autores. Ninguna parte del sistema aprendía de los datos, lo que ilustra hasta dónde llega el enfoque simbólico puro."
     },
     {
-      "template": "statement",
+      "template": "image-full",
       "section": "Taxinomia de Problemas",
       "title": "Generación",
-      "sub": "Modelar la distribución de los datos y producir nuevas muestras coherentes.",
+      "lead": "Modelar la distribución de los datos y producir nuevas muestras coherentes.",
+      "image": {
+        "src": "images/s5-7-1-generacion-muestras-nuevas.png",
+        "alt": "Generación: a partir de la distribución de los datos se producen muestras nuevas"
+      },
       "notes": "Encuadrar Generación señalando lo que la separa de Predicción: la cantidad de salidas válidas no está acotada, así que la evaluación deja de apoyarse en accuracy."
     },
     {
@@ -1059,6 +1079,17 @@
     {
       "template": "section-agenda",
       "title": "Modelos Fundacionales"
+    },
+    {
+      "template": "image-full",
+      "section": "Modelos Fundacionales",
+      "title": "Modelos Fundacionales",
+      "lead": "Un modelo entrenado a escala sobre datos generales, que se adapta a muchas tareas sin volver a entrenarse.",
+      "image": {
+        "src": "images/s6-0-1-foundation-model-contiene.png",
+        "alt": "LLM y multimodal son dos cajas contenidas dentro de Foundation Model; modelo de lenguaje es un linaje aparte, más viejo y más amplio"
+      },
+      "notes": "Encuadre antes del detalle. La diapositiva siguiente define los cuatro términos uno por uno; esta muestra cómo se relacionan, que es lo que la lista no deja ver.\n\nEl punto que más cuesta: un LLM no es algo distinto de un Foundation Model, es un Foundation Model especializado en texto. La lista de cuatro columnas los pone al mismo nivel y eso confunde.\n\nEl término \"foundation model\" lo acuña el reporte de Stanford de 2021 (arXiv:2108.07258), que está en el corpus de la materia."
     },
     {
       "template": "concept-columns",
@@ -1617,7 +1648,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "e811d038bea4224671fd95970e29038be7c7591630011fb680d0f6ff671f0822",
-    "bytes": 99561
+    "sha256": "1fd4886c5159206ffd873312d97f2f7ea6d39f6d68603630e776a9445fb1dc05",
+    "bytes": 107996
   }
 }

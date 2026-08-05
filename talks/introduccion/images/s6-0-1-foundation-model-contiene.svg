@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- talksmith-ascii-sha256: 1e3e97db729dee54b819c6a3691d06ae813378faacfc242fcb4c1418a0c98d24 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>Modelos Fundacionales</title>
+  <desc>LLM y multimodal son dos especializaciones contenidas dentro de un mismo Foundation Model; modelar el lenguaje es un linaje anterior y más amplio que convive con él.</desc>
+  <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
+
+  <text x="170" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">MODELO DE LENGUAJE</text>
+  <text x="590" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2" fill="#DA1B2E">FOUNDATION MODEL</text>
+
+  <text x="170" y="96" text-anchor="middle" fill="#6B6363">la idea, desde 1950</text>
+  <text x="590" y="96" text-anchor="middle" fill="#6B6363">la escala, desde 2018</text>
+
+  <rect x="60" y="116" width="220" height="152" rx="4" fill="#ffffff" stroke="#C9C4C4" stroke-width="1.5"/>
+
+  <text x="170" y="158" text-anchor="middle">asigna probabilidad a la</text>
+  <text x="170" y="176" text-anchor="middle">próxima palabra</text>
+  <text x="170" y="206" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace">P(palabra | contexto)</text>
+  <text x="170" y="236" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" fill="#6B6363">n-gramas, RNN</text>
+
+  <rect x="340" y="116" width="500" height="152" rx="4" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2"/>
+
+  <text x="590" y="142" text-anchor="middle">entrenado sobre datos generales,</text>
+  <text x="590" y="162" text-anchor="middle">se adapta con prompting o fine-tuning</text>
+
+  <rect x="368" y="180" width="208" height="68" rx="4" fill="#F2F2F2" stroke="#C9C4C4" stroke-width="1.5"/>
+  <rect x="604" y="180" width="208" height="68" rx="4" fill="#F2F2F2" stroke="#C9C4C4" stroke-width="1.5"/>
+
+  <text x="472" y="206" text-anchor="middle" font-size="14" font-weight="bold">LLM</text>
+  <text x="472" y="228" text-anchor="middle" font-size="12.5" fill="#6B6363">solo texto</text>
+
+  <text x="708" y="206" text-anchor="middle" font-size="14" font-weight="bold">MULTIMODAL</text>
+  <text x="708" y="228" text-anchor="middle" font-size="12.5" fill="#6B6363">texto + imagen</text>
+
+  <text x="170" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">modelar el lenguaje es un</text>
+  <text x="170" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">problema viejo y más amplio</text>
+
+  <text x="590" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">un LLM es un Foundation Model</text>
+  <text x="590" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">especializado en texto; un multimodal</text>
+  <text x="590" y="338" text-anchor="middle" font-size="12.5" fill="#6B6363">procesa varios tipos de dato a la vez</text>
+</svg>

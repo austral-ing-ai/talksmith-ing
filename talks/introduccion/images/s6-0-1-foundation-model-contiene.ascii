@@ -1,0 +1,22 @@
+   MODELO DE LENGUAJE                    FOUNDATION MODEL
+   la idea, desde 1950                   la escala, desde 2018
+
+  +------------------+     +---------------------------------------+
+  |  asigna P(palabra|     |  entrenado sobre datos generales,     |
+  |  | contexto)     |     |  se adapta con prompting o fine-tuning|
+  |                  |     |                                       |
+  |  n-gramas, RNN   |     |   +--------------+  +--------------+  |
+  +------------------+     |   |     LLM      |  |  MULTIMODAL  |  |
+                           |   |  solo texto  |  | texto+imagen |  |
+                           |   +--------------+  +--------------+  |
+                           +---------------------------------------+
+
+   modelar lenguaje es viejo; lo nuevo es la escala. Un LLM es un
+   Foundation Model especializado en texto, y un multimodal es uno
+   que procesa varios tipos de dato a la vez
+
+<!-- ascii-note:
+intent: mostrar que LLM y multimodal estan CONTENIDOS en Foundation Model, y que modelo de lenguaje es un linaje mas viejo y mas amplio
+emphasize: la caja grande de Foundation Model conteniendo las dos chicas; el contraste de fechas entre las dos columnas
+labels: MODELO DE LENGUAJE y FOUNDATION MODEL como rotulos de columna
+-->

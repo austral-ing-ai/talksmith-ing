@@ -1,0 +1,19 @@
+      ENTRADA                    MODELO                    SALIDA
+   ejemplos con                                        prediccion para
+   respuesta conocida                                  un caso nuevo
+
+  +---------------+          +---------------+       +---------------+
+  |  X      -> Y  |          |               |       |   X nuevo     |
+  |  ticket -> P1 |  ---->   |    funcion    | ----> |      |        |
+  |  ticket -> P3 |          |    f(X) = Y   |       |      v        |
+  |  ticket -> P1 |          |               |       |     "P1"      |
+  +---------------+          +---------------+       +---------------+
+
+  cada entrada trae           ajusta f hasta que      responde sobre
+  su respuesta                el error es minimo      casos que no vio
+
+<!-- ascii-note:
+intent: la prediccion aprende una funcion a partir de pares entrada-respuesta y la aplica a un caso nuevo
+emphasize: las flechas X -> Y dentro de la caja de entrada; el caso nuevo bajando a su prediccion en la salida
+labels: ENTRADA / MODELO / SALIDA como rotulos de columna
+-->

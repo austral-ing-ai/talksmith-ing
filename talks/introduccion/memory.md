@@ -463,3 +463,23 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
   2. **La crítica ciega no corrió.** Un subagente no puede despachar otro subagente en esta sesión, así que el `diagram-critic` quedó sin ejecutar y los bloques figuran `critique_unavailable` en `images/.critique/`. El rol no sustituyó la crítica por su propio juicio, que es lo correcto. La revisión visual la hice yo sobre los PNG.
   3. **`cairosvg` no estaba instalado** en el contenedor; el rol lo instaló por la vía documentada del skill. Si el contenedor se recrea hay que repetirlo.
 - Pending open questions: sin cambios — confirmar las preguntas contra el evento de Slido, y decidir las promociones de Step 8.
+
+
+## 2026-08-05 — Diagramas: la taxonomía completa + Modelos Fundacionales
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Que otro slide podriamos agregar un diagrama?" → Se propuso un orden; el presentador eligió empezar por la taxonomía.
+  - 2026-08-05 — "En vez de crear un nuevo slide, ponelo en el slide que introduce el tema. Ej: Predicción, que es el slide 30."
+  - 2026-08-05 — "Primero hagamos consistencia en la taxonomia de problemas."
+  - 2026-08-05 — "Propongo que cada vez que se presenta un tipo de 'problemas resuelve', confirmar que hay un slide que lo define y un ASCII chart en el mismo. Luego el slide de ejemplos." → Promovido a `config/learnings.md` como **L1**.
+  - 2026-08-05 — "Me gusta agregar en ASCCI para LLMs, Foundation Models y Multimodal como sugeriste."
+- What was decided:
+  - **Las siete separadoras de la taxonomía tienen diagrama.** Se sumaron cinco a las dos que ya estaban: Predicción, Decisión Secuencial, Búsqueda / Planificación, Razonamiento Simbólico y Generación. Ninguna diapositiva nueva: el diagrama va en la que ya introducía cada familia.
+  - **La forma del diagrama sigue al concepto, no al layout.** Predicción, Percepción, Representación y Generación usan la tubería de tres columnas ENTRADA / MODELO / SALIDA. Decisión Secuencial es un lazo cerrado agente ⇄ entorno con las flechas rotuladas en los dos sentidos. Búsqueda es un árbol de estados con el camino resaltado. Razonamiento es una cadena hechos → reglas → conclusión. La consistencia la sostienen el lienzo, los márgenes, la tipografía, el tratamiento de cajas y el acento rojo reservado a un solo elemento por diagrama.
+  - **Modelos Fundacionales estrena diapositiva de definición** al inicio de la sección, con un diagrama de contención: LLM y MULTIMODAL dentro de la caja de FOUNDATION MODEL, y MODELO DE LENGUAJE al lado como linaje más viejo y más amplio. La sección no tenía apertura, así que crearla es lo que pide la regla L1; la de cuatro columnas quedó intacta como detalle. Si el presentador prefiere fusionarlas, se revierte en una edición.
+  - **`config/learnings.md` creado**, con L1 (el par definición + diagrama, después ejemplos) y L2 (el diagrama va en la diapositiva que ya introduce el tema, no en una nueva). Es el primer archivo de aprendizajes del repositorio, así que aplica desde la próxima clase.
+- Files created/modified: `draft.md`; `final.md`; `config/feedback-backlog.md`; **`config/learnings.md` (nuevo)**; `output/slide-model.json`; `output/html/index.html`; seis tríos `.ascii`/`.svg`/`.png` en `images/`.
+- Validation: 56 diapositivas H2; deck de 61 más portada; las tres auditorías en verde; `validate_svg` y `audit_aspect` ok en los seis nuevos; cero fences ASCII y cero referencias `.svg` en `final.md`; cero errores de consola; cero fugas de campos de trabajo. Los seis PNG revisados a ojo uno por uno.
+- Riesgo conocido: la **crítica visual ciega no corrió en ninguno** de los ocho diagramas. Un subagente no puede despachar otro en esta sesión, así que el `diagram-critic` quedó como `critique_unavailable` y la revisión la hice yo mirando los PNG. Queda anotado en `images/.critique/`.
+- Bug del plugin confirmado dos veces: `polish_ascii.py` corre el `slide_title` un lugar cuando la sección tiene separadoras sin numerar, porque `H2_SLIDE` solo matchea encabezados numerados. El rol lo corrigió a mano antes de cada render. Vale arreglarlo en el plugin.
+- Pending open questions: sin cambios.

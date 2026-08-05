@@ -1,0 +1,20 @@
+                    +---------------------+
+          +-------> |       AGENTE        | --------+
+          |         |  elige una accion   |         |
+          |         +---------------------+         |
+          |                                         |
+    estado, recompensa                           accion
+          |                                         |
+          |         +---------------------+         |
+          +-------- |       ENTORNO       | <-------+
+                    |  cambia de estado   |
+                    +---------------------+
+
+    no hay respuesta correcta que copiar: la senal es la recompensa,
+    llega tarde, y el agente aprende que secuencia la maximiza
+
+<!-- ascii-note:
+intent: en decision secuencial no hay pares entrada-respuesta sino un lazo entre agente y entorno donde la recompensa llega despues de actuar
+emphasize: el lazo cerrado; las dos etiquetas sobre las flechas, accion en un sentido y estado/recompensa en el otro
+labels: AGENTE y ENTORNO como las dos cajas del ciclo
+-->

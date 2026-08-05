@@ -1,0 +1,161 @@
+===== PPTX SLIDE 23 =====
+La Taxonomía de Problemas
+¿Qué tipos de problemas resuelve la IA?
+Predicción
+Aprender X → Y a partir de datos etiquetados. Incluye clasificación y regresión.
+Percepción
+Extraer estructura de señales sensoriales: imagen, audio, video.
+Representación
+Aprender embeddings y espacios latentes que capturan relaciones entre datos.
+Decisión Secuencial
+Maximizar recompensa acumulada. Formalizado como Reinforcement Learning.
+Búsqueda / Planificación
+Encontrar la mejor secuencia de acciones en un espacio de estados.
+Razonamiento Simbólico
+Manipular símbolos y reglas IF–THEN para derivar conclusiones lógicas.
+Generación
+Producir nuevas muestras coherentes: texto, imagen, audio, código. Infinita cantidad de outputs.
+💡
+ Un auto autónomo combina percepción + decisión secuencial + planificación
+
+===== PPTX SLIDE 24 =====
+LA TAXONOMÍA DE PROBLEMAS
+Predicción
+Aprender una función X → Y a partir de datos etiquetados
+El modelo aprende a mapear entradas a salidas conocidas minimizando el error. Es la categoría más madura de la IA y la base de la mayoría de aplicaciones industriales.
+Clasificación Binaria
+Spam/no spam · Fraude/legítimo · Sano/enfermo
+Clasificación Multiclase
+¿Qué cultivo? · ¿Qué enfermedad?
+Regresión
+Precio de vivienda · Demanda energética · Cosecha
+Series Temporales
+Ventas · Temperatura · Tráfico
+Tools:
+Scikit-learn · XGBoost · LightGBM · TensorFlow · PyTorch · AutoML (H2O, AutoGluon)
+Métricas: Accuracy · F1-Score · AUC-ROC (clasificación) · MAE · RMSE · R² (regresión)
+🏆
+ Hito: En 2012, AlexNet (Krizhevsky et al.) ganó ImageNet con un error un 10% menor que el segundo lugar, usando predicción sobre imágenes. Marcó el inicio de la era del deep learning.
+
+===== PPTX SLIDE 25 =====
+LA TAXONOMÍA DE PROBLEMAS
+Percepción
+Extraer estructura significativa de señales sensoriales
+Convierte datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos o conceptos interpretables. Es la base de la visión por computadora y el procesamiento del habla.
+Problemas típicos
+Clasificación de Imágenes
+¿Qué hay en esta foto?
+Detección de Objetos
+¿Dónde están y qué son?
+Segmentación Semántica
+Etiquetar cada píxel por clase
+Reconocimiento de Voz
+Audio → texto (ASR)
+Análisis de Video
+Detección de eventos, seguimiento de objetos
+🔧
+ Tools: OpenCV · YOLO v8/v11 · PyTorch + torchvision · Whisper (OpenAI) · Hugging Face
+Arquitecturas: CNN · Vision Transformer (ViT) · U-Net · Wav2Vec
+🏆
+ Hito: En 2015, ResNet (Microsoft) superó la precisión humana en reconocimiento de imágenes con un error del 3.57% en ImageNet, por debajo del 5% humano.
+
+===== PPTX SLIDE 26 =====
+LA TAXONOMÍA DE PROBLEMAS
+Representación
+Aprender estructuras internas que capturan relaciones entre datos
+Embeddings de Texto
+Palabras/frases como vectores de significado
+Búsqueda Semántica
+Documentos por significado, no por palabras exactas
+Recomendación
+Usuarios y productos en el mismo espacio vectorial
+Detección de Anomalías
+Puntos alejados del espacio normal
+Clustering
+Agrupar datos similares sin etiquetas
+Tools: Word2Vec · GloVe · Sentence Transformers · FAISS (Meta) · Pinecone · Qdrant
+Hito: En 2013, Word2Vec (Google) demostró que los embeddings capturan relaciones semánticas: Rey − Hombre + Mujer ≈ Reina. Revolucionó el procesamiento del lenguaje natural.
+
+===== PPTX SLIDE 27 =====
+LA TAXONOMÍA DE PROBLEMAS
+Decisión Secuencial
+Maximizar recompensa acumulada a través de acciones en el tiempo
+Formalizado como Reinforcement Learning (RL): un agente interactúa con un entorno, toma acciones y recibe recompensas. Aprende por ensayo y error qué secuencia de decisiones maximiza el resultado a largo plazo.
+Juegos
+Go · ajedrez · Atari · StarCraft
+Robótica
+Control de movimiento · manipulación de objetos
+Trading Algorítmico
+Estrategias de inversión adaptativas
+Optimización de Redes
+Tráfico · data centers
+RLHF
+Alinear LLMs con preferencias humanas
+Tools: OpenAI Gym · Stable Baselines3 · Ray RLlib · MuJoCo · TRL (Hugging Face)
+Hito: AlphaGo (2016) y AlphaZero (2017) usaron RL para superar a campeones mundiales en Go y ajedrez.
+🏆
+ Hito: En 2016, AlphaGo (DeepMind) venció a Lee Sedol 4-1 en Go — un juego con más combinaciones que átomos en el universo. En 2017, AlphaZero aprendió ajedrez, Go y shogi desde cero en menos de 24 horas.
+
+===== PPTX SLIDE 28 =====
+LA TAXONOMÍA DE PROBLEMAS
+Búsqueda / Planificación
+Encontrar la mejor secuencia de acciones en un espacio de estados
+Logística
+Ruta óptima para flotas de reparto (VRP)
+Manufactura
+Secuenciación de tareas en producción
+Planificación
+Asignación de recursos con restricciones
+Robótica
+Trayectorias en espacios físicos
+Juegos de Estrategia
+MCTS en ajedrez y Go
+🔧
+ Tools: Google OR-Tools · A* / Dijkstra · MCTS · PDDL / Fast Downward · OptaPlanner
+Diferencia clave con RL: aquí el modelo del entorno es conocido. En RL, el agente debe descubrirlo por experiencia.
+🏆
+ Hito: En 2016, DeepMind usó planificación + RL para reducir el consumo energético de los data centers de Google en un 40%, ahorrando cientos de millones de dólares anuales.
+
+===== PPTX SLIDE 29 =====
+LA TAXONOMÍA DE PROBLEMAS
+Razonamiento Simbólico
+Manipular símbolos y reglas explícitas para derivar conclusiones lógicas. 
+A diferencia del aprendizaje estadístico, el razonamiento simbólico opera sobre representaciones explícitas del conocimiento: reglas IF–THEN, ontologías y lógica formal. Es interpretable, auditable y 
+determinista
+.Sistemas expertos son la aplicacion practica de los mismos
+Problemas típicos
+Sistemas Expertos Médicos
+Diagnóstico basado en reglas clínicas
+Validación Legal
+Verificación automática de cumplimiento normativo
+Reglas de Negocio
+Decisiones de crédito · seguros
+Grafos de Conocimiento
+Wikidata · Knowledge Graphs
+Verificación Formal
+Demostración de propiedades de código
+🔧
+ Tools: Prolog · Drools · OWL / RDF / SPARQL · Neo4j · LLMs + Knowledge Graphs
+🏆
+ Hito: En 1997, Deep Blue (IBM) venció a Garry Kasparov usando búsqueda simbólica y evaluación de posiciones — sin aprendizaje automático. Fue la primera victoria de una máquina sobre el campeón mundial de ajedrez.
+
+===== PPTX SLIDE 30 =====
+LA TAXONOMÍA DE PROBLEMAS
+Generación
+Modelar la distribución de los datos y producir nuevas muestras coherentes
+Texto
+Respuestas · resúmenes · traducción · código
+Imágenes
+Arte · diseño · síntesis fotorrealista
+Audio &amp; Música
+Voz sintética · composición musical
+Video
+Animación · síntesis de escenas
+Moléculas
+Candidatos a fármacos (biomedicina)
+🔧
+ Tools: GPT-4 · Claude · Gemini · Stable Diffusion · DALL·E · GitHub Copilot · Suno · AlphaFold
+Arquitecturas: Transformer · Diffusion Models · VAE · GAN — todas modelan P(X) o P(Y|X)
+🏆
+ Hito: En noviembre de 2022, ChatGPT alcanzó 100 millones de usuarios en solo 2 meses — el producto de mayor crecimiento en la historia. La IA generativa pasó de laboratorio a fenómeno global.
+

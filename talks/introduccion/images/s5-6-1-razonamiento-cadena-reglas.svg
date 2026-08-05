@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- talksmith-ascii-sha256: 237de29f41466664729eef03c986a9e072d5a84e9efa0ba1e8a2ebde9bc0c1e4 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>Razonamiento Simbólico</title>
+  <desc>Encuadrar Razonamiento Simbólico como la familia anterior al aprendizaje estadístico y todavía vigente donde hace falta trazabilidad: hechos y reglas escritas por personas llevan a una conclusión auditable.</desc>
+  <defs>
+    <marker id="flecha" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10" refX="13" refY="5" orient="auto">
+      <path d="M0,0 L13,5 L0,10 z" fill="#3B3535"/>
+    </marker>
+    <marker id="flechita" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#C9C4C4"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
+
+  <text x="170" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">HECHOS</text>
+  <text x="450" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">REGLAS</text>
+  <text x="730" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2" fill="#DA1B2E">CONCLUSIÓN</text>
+
+  <text x="170" y="96" text-anchor="middle" font-size="13" fill="#6B6363">lo que se sabe del caso</text>
+  <text x="730" y="96" text-anchor="middle" font-size="13" fill="#6B6363">la decisión y su porqué</text>
+
+  <rect x="60" y="116" width="220" height="152" rx="4" fill="#F2F2F2" stroke="#C9C4C4" stroke-width="1.5"/>
+  <rect x="340" y="116" width="220" height="152" rx="4" fill="#ffffff" stroke="#C9C4C4" stroke-width="1.5"/>
+  <rect x="620" y="116" width="220" height="152" rx="4" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2"/>
+
+  <text x="170" y="174" text-anchor="middle" font-size="14">el pago vence hoy</text>
+  <text x="170" y="212" text-anchor="middle" font-size="14">no hay fondos</text>
+
+  <text x="358" y="170" font-size="13" font-family="'DejaVu Sans Mono', monospace">SI vence hoy</text>
+  <text x="358" y="192" font-size="13" font-family="'DejaVu Sans Mono', monospace">Y no hay fondos</text>
+  <text x="358" y="214" font-size="13" font-family="'DejaVu Sans Mono', monospace">ENTONCES rechazar</text>
+
+  <text x="730" y="184" text-anchor="middle" font-size="14">rechazar</text>
+  <text x="730" y="210" text-anchor="middle" font-size="14">el pago</text>
+
+  <line x1="282" y1="192" x2="340" y2="192" stroke="#3B3535" stroke-width="3" marker-end="url(#flecha)"/>
+  <line x1="562" y1="192" x2="620" y2="192" stroke="#3B3535" stroke-width="3" marker-end="url(#flecha)"/>
+
+  <line x1="450" y1="268" x2="450" y2="286" stroke="#C9C4C4" stroke-width="1.5" marker-end="url(#flechita)"/>
+  <line x1="730" y1="268" x2="730" y2="286" stroke="#C9C4C4" stroke-width="1.5" marker-end="url(#flechita)"/>
+
+  <text x="450" y="302" text-anchor="middle" font-size="12.5" fill="#6B6363">cada paso queda</text>
+  <text x="450" y="321" text-anchor="middle" font-size="12.5" fill="#6B6363">escrito por una</text>
+  <text x="450" y="340" text-anchor="middle" font-size="12.5" fill="#6B6363">persona</text>
+
+  <text x="730" y="302" text-anchor="middle" font-size="12.5" fill="#6B6363">se puede auditar</text>
+  <text x="730" y="321" text-anchor="middle" font-size="12.5" fill="#6B6363">por qué se decidió</text>
+  <text x="730" y="340" text-anchor="middle" font-size="12.5" fill="#6B6363">lo que se decidió</text>
+</svg>

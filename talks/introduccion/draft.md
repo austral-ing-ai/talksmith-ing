@@ -1374,13 +1374,34 @@ Contexto Técnico Profundo: La Predicción mapea entradas $X$ a salidas $Y$ (dis
 
 ## Predicción
 
-<!-- template: statement -->
+<!-- template: image-full -->
 
 ### Content
 
 Aprender una función X → Y a partir de datos etiquetados.
 
 El modelo mapea entradas a salidas conocidas y minimiza el error. Esta categoría sostiene muchas aplicaciones industriales.
+
+```ascii
+      ENTRADA                    MODELO                    SALIDA
+   ejemplos con                                        prediccion para
+   respuesta conocida                                  un caso nuevo
+
+  +---------------+          +---------------+       +---------------+
+  |  X      -> Y  |          |               |       |   X nuevo     |
+  |  ticket -> P1 |  ---->   |    funcion    | ----> |      |        |
+  |  ticket -> P3 |          |    f(X) = Y   |       |      v        |
+  |  ticket -> P1 |          |               |       |     "P1"      |
+  +---------------+          +---------------+       +---------------+
+
+  cada entrada trae           ajusta f hasta que      responde sobre
+  su respuesta                el error es minimo      casos que no vio
+```
+<!-- ascii-note:
+intent: la prediccion aprende una funcion a partir de pares entrada-respuesta y la aplica a un caso nuevo
+emphasize: las flechas X -> Y dentro de la caja de entrada; el caso nuevo bajando a su prediccion en la salida
+labels: ENTRADA / MODELO / SALIDA como rotulos de columna
+-->
 
 ### Sources
 
@@ -1391,6 +1412,9 @@ El modelo mapea entradas a salidas conocidas y minimiza el error. Esta categorí
 Presentar Predicción como una de las familias más frecuentes de problemas de IA antes de recorrer sus variantes.
 
 ### Presenter feedback
+
+- [closed] 2026-08-05 — "En vez de crear un nuevo slide, poné el diagrama en el slide que introduce el tema. Ej: Predicción, que es el slide 30."
+  Resolution: El diagrama va en la separadora que introduce cada familia, sin crear diapositivas nuevas. Se completaron las cinco que faltaban (Predicción, Decisión Secuencial, Búsqueda / Planificación, Razonamiento Simbólico, Generación), así las siete de la taxonomía quedan iguales. Predicción y Generación repiten la gramática de tres columnas; Decisión Secuencial es un ciclo, Búsqueda un árbol y Razonamiento una cadena, porque esa forma es parte de lo que enseña cada familia.
 
 ---
 
@@ -1629,13 +1653,35 @@ Contexto del hito: la aritmética vectorial de Word2Vec mostró que la geometrí
 
 ## Decisión Secuencial
 
-<!-- template: statement -->
+<!-- template: image-full -->
 
 ### Content
 
 Maximizar recompensa acumulada a través de acciones en el tiempo.
 
 Formalizado como Reinforcement Learning (RL): un agente interactúa con un entorno, toma acciones y recibe recompensas. Aprende por ensayo y error qué secuencia de decisiones maximiza el resultado a largo plazo.
+
+```ascii
+                    +---------------------+
+          +-------> |       AGENTE        | --------+
+          |         |  elige una accion   |         |
+          |         +---------------------+         |
+          |                                         |
+    estado, recompensa                           accion
+          |                                         |
+          |         +---------------------+         |
+          +-------- |       ENTORNO       | <-------+
+                    |  cambia de estado   |
+                    +---------------------+
+
+    no hay respuesta correcta que copiar: la senal es la recompensa,
+    llega tarde, y el agente aprende que secuencia la maximiza
+```
+<!-- ascii-note:
+intent: en decision secuencial no hay pares entrada-respuesta sino un lazo entre agente y entorno donde la recompensa llega despues de actuar
+emphasize: el lazo cerrado; las dos etiquetas sobre las flechas, accion en un sentido y estado/recompensa en el otro
+labels: AGENTE y ENTORNO como las dos cajas del ciclo
+-->
 
 ### Sources
 
@@ -1700,11 +1746,35 @@ Contexto del hito: AlphaGo combinó redes de política y valor con búsqueda Mon
 
 ## Búsqueda / Planificación
 
-<!-- template: statement -->
+<!-- template: image-full -->
 
 ### Content
 
 Encontrar la mejor secuencia de acciones en un espacio de estados.
+
+```ascii
+                         ESTADO INICIAL
+                              (o)
+                             /   \
+                            /     \
+                          (o)     (o)
+                          / \     / \
+                         /   \   /   \
+                       (o)  [o] (o)  (o)
+                             |
+                            [o]
+                             |
+                            [X]  META
+
+    el modelo del entorno se conoce de antemano: cada rama es una
+    accion posible y su costo. El problema es elegir el camino,
+    no descubrir las reglas
+```
+<!-- ascii-note:
+intent: la busqueda explora un arbol de estados con reglas conocidas y elige el mejor camino hasta la meta
+emphasize: el camino marcado con corchetes desde la raiz hasta la meta, frente a las ramas descartadas
+labels: ESTADO INICIAL arriba y META abajo
+-->
 
 ### Sources
 
@@ -1773,13 +1843,34 @@ Contexto del hito: el sistema de DeepMind ajustaba refrigeración a partir de mi
 
 ## Razonamiento Simbólico
 
-<!-- template: statement -->
+<!-- template: image-full -->
 
 ### Content
 
 Manipular símbolos y reglas explícitas para derivar conclusiones lógicas.
 
 El razonamiento simbólico opera sobre representaciones explícitas del conocimiento: reglas IF–THEN, ontologías y lógica formal. Resulta interpretable, auditable y determinista. Los sistemas expertos son su aplicación práctica.
+
+```ascii
+     HECHOS                    REGLAS                  CONCLUSION
+
+  +---------------+       +-------------------+     +---------------+
+  | el pago vence |       | SI vence hoy      |     |               |
+  |     hoy       | ----> | Y no hay fondos   |---> |   rechazar    |
+  |               |       | ENTONCES rechazar |     |   el pago     |
+  | no hay fondos |       +-------------------+     |               |
+  +---------------+                                 +---------------+
+                                    |                       |
+                                    v                       v
+                          cada paso queda            se puede auditar
+                          escrito por una            por que se decidio
+                          persona                    lo que se decidio
+```
+<!-- ascii-note:
+intent: el razonamiento simbolico encadena hechos y reglas escritas por personas hasta una conclusion trazable
+emphasize: la cadena de izquierda a derecha; las dos flechas hacia abajo que explican por que el resultado es auditable
+labels: HECHOS / REGLAS / CONCLUSION como rotulos de columna
+-->
 
 ### Sources
 
@@ -1844,11 +1935,32 @@ Contexto del hito: Deep Blue evaluaba unas 200 millones de posiciones por segund
 
 ## Generación
 
-<!-- template: statement -->
+<!-- template: image-full -->
 
 ### Content
 
 Modelar la distribución de los datos y producir nuevas muestras coherentes.
+
+```ascii
+      ENTRADA                    MODELO                    SALIDA
+   muchos ejemplos                                     muestras nuevas
+   del mismo tipo                                      que nunca existieron
+
+  +---------------+          +---------------+       +---------------+
+  |  . . .  . .   |          |               |       |      *        |
+  |   . .  . . .  |  ---->   |  distribucion | ----> |        *      |
+  |  . .  . . .   |          |     P(X)      |       |   *           |
+  +---------------+          +---------------+       +---------------+
+
+  el corpus de                aprende la forma        cada muestra es
+  entrenamiento               de la nube, no los      plausible y nueva
+                              puntos                  a la vez
+```
+<!-- ascii-note:
+intent: la generacion aprende la forma de la distribucion y muestrea puntos nuevos que podrian haber pertenecido a ella
+emphasize: los puntos del corpus frente a los asteriscos de la salida, que ocupan lugares distintos dentro de la misma nube
+labels: ENTRADA / MODELO / SALIDA como rotulos de columna
+-->
 
 ### Sources
 
@@ -1916,6 +2028,58 @@ Contexto del hito: los 100 millones de usuarios en 2 meses se comparan con los 9
 **Goal of this section:** Explicar qué son los modelos fundacionales y por qué cambiaron la forma de construir productos de IA.
 
 **Presenter feedback:**
+
+---
+
+## Modelos Fundacionales
+
+<!-- template: image-full -->
+
+### Content
+
+Un modelo entrenado a escala sobre datos generales, que se adapta a muchas tareas sin volver a entrenarse.
+
+```ascii
+   MODELO DE LENGUAJE                    FOUNDATION MODEL
+   la idea, desde 1950                   la escala, desde 2018
+
+  +------------------+     +---------------------------------------+
+  |  asigna P(palabra|     |  entrenado sobre datos generales,     |
+  |  | contexto)     |     |  se adapta con prompting o fine-tuning|
+  |                  |     |                                       |
+  |  n-gramas, RNN   |     |   +--------------+  +--------------+  |
+  +------------------+     |   |     LLM      |  |  MULTIMODAL  |  |
+                           |   |  solo texto  |  | texto+imagen |  |
+                           |   +--------------+  +--------------+  |
+                           +---------------------------------------+
+
+   modelar lenguaje es viejo; lo nuevo es la escala. Un LLM es un
+   Foundation Model especializado en texto, y un multimodal es uno
+   que procesa varios tipos de dato a la vez
+```
+<!-- ascii-note:
+intent: mostrar que LLM y multimodal estan CONTENIDOS en Foundation Model, y que modelo de lenguaje es un linaje mas viejo y mas amplio
+emphasize: la caja grande de Foundation Model conteniendo las dos chicas; el contraste de fechas entre las dos columnas
+labels: MODELO DE LENGUAJE y FOUNDATION MODEL como rotulos de columna
+-->
+
+### Sources
+
+- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 31; encuadre separado del detalle)
+- corpus/arxiv-2108-07258-foundation-models.web.md (el reporte de Stanford que acuña el término)
+
+### Speaker notes
+
+Encuadre antes del detalle. La diapositiva siguiente define los cuatro términos uno por uno; esta muestra cómo se relacionan, que es lo que la lista no deja ver.
+
+El punto que más cuesta: un LLM no es algo distinto de un Foundation Model, es un Foundation Model especializado en texto. La lista de cuatro columnas los pone al mismo nivel y eso confunde.
+
+El término "foundation model" lo acuña el reporte de Stanford de 2021 (arXiv:2108.07258), que está en el corpus de la materia.
+
+### Presenter feedback
+
+- [closed] 2026-08-05 — "Me gusta agregar en ASCCI para LLMs, Foundation Models y Multimodal como sugeriste."
+  Resolution: El diagrama de contención va en una diapositiva de definición al inicio de la sección, siguiendo la regla que propusiste para la taxonomía: primero define y muestra el esquema, después la diapositiva de detalle. La de cuatro columnas queda intacta.
 
 ---
 

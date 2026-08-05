@@ -1,0 +1,19 @@
+     HECHOS                    REGLAS                  CONCLUSION
+
+  +---------------+       +-------------------+     +---------------+
+  | el pago vence |       | SI vence hoy      |     |               |
+  |     hoy       | ----> | Y no hay fondos   |---> |   rechazar    |
+  |               |       | ENTONCES rechazar |     |   el pago     |
+  | no hay fondos |       +-------------------+     |               |
+  +---------------+                                 +---------------+
+                                    |                       |
+                                    v                       v
+                          cada paso queda            se puede auditar
+                          escrito por una            por que se decidio
+                          persona                    lo que se decidio
+
+<!-- ascii-note:
+intent: el razonamiento simbolico encadena hechos y reglas escritas por personas hasta una conclusion trazable
+emphasize: la cadena de izquierda a derecha; las dos flechas hacia abajo que explican por que el resultado es auditable
+labels: HECHOS / REGLAS / CONCLUSION como rotulos de columna
+-->

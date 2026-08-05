@@ -1,0 +1,22 @@
+                         ESTADO INICIAL
+                              (o)
+                             /   \
+                            /     \
+                          (o)     (o)
+                          / \     / \
+                         /   \   /   \
+                       (o)  [o] (o)  (o)
+                             |
+                            [o]
+                             |
+                            [X]  META
+
+    el modelo del entorno se conoce de antemano: cada rama es una
+    accion posible y su costo. El problema es elegir el camino,
+    no descubrir las reglas
+
+<!-- ascii-note:
+intent: la busqueda explora un arbol de estados con reglas conocidas y elige el mejor camino hasta la meta
+emphasize: el camino marcado con corchetes desde la raiz hasta la meta, frente a las ramas descartadas
+labels: ESTADO INICIAL arriba y META abajo
+-->

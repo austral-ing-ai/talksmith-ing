@@ -279,3 +279,15 @@
   feedback: "Para cada uno de los slides Representación/Percepción genera un ASCCI chart que explique el concepto. Idealmente, que tengan consistencia entre ellos."
   resolution: Las dos separadoras llevan un diagrama ASCII con la misma gramática: tres columnas ENTRADA / MODELO / SALIDA, cajas del mismo ancho, la misma flecha y un pie por columna. Percepción va de señal cruda a estructura nombrada; Representación, de símbolos sueltos a un espacio donde la distancia mide parecido. Las dos pasaron de statement a content-image.
   tags: [ascii-diagram, template-selection, consistency]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "Predicción"
+  feedback: "En vez de crear un nuevo slide, poné el diagrama en el slide que introduce el tema. Ej: Predicción, que es el slide 30."
+  resolution: El diagrama va en la separadora que introduce cada familia, sin crear diapositivas nuevas. Se completaron las cinco que faltaban (Predicción, Decisión Secuencial, Búsqueda / Planificación, Razonamiento Simbólico, Generación), así las siete de la taxonomía quedan iguales. Predicción y Generación repiten la gramática de tres columnas; Decisión Secuencial es un ciclo, Búsqueda un árbol y Razonamiento una cadena, porque esa forma es parte de lo que enseña cada familia.
+  tags: [ascii-diagram, consistency]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "Modelos Fundacionales"
+  feedback: "Me gusta agregar en ASCCI para LLMs, Foundation Models y Multimodal como sugeriste."
+  resolution: El diagrama de contención va en una diapositiva de definición al inicio de la sección, siguiendo la regla que propusiste para la taxonomía: primero define y muestra el esquema, después la diapositiva de detalle. La de cuatro columnas queda intacta.
+  tags: [ascii-diagram, new-slide]

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- talksmith-ascii-sha256: fd52179af885bb5585916db1da64d9c83df1ceeb3b11cb0373be19fa1969c70c -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>Generación</title>
+  <desc>Encuadrar Generación señalando lo que la separa de Predicción: el modelo aprende la forma de la distribución y muestrea puntos nuevos que podrían haber pertenecido a ella.</desc>
+  <defs>
+    <marker id="flecha" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10" refX="13" refY="5" orient="auto">
+      <path d="M0,0 L13,5 L0,10 z" fill="#3B3535"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
+
+  <text x="170" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">ENTRADA</text>
+  <text x="450" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">MODELO</text>
+  <text x="730" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2" fill="#DA1B2E">SALIDA</text>
+
+  <text x="170" y="96" text-anchor="middle" font-size="13" fill="#6B6363">muchos ejemplos del mismo tipo</text>
+  <text x="730" y="96" text-anchor="middle" font-size="13" fill="#6B6363">muestras que nunca existieron</text>
+
+  <rect x="60" y="116" width="220" height="152" rx="4" fill="#F2F2F2" stroke="#C9C4C4" stroke-width="1.5"/>
+  <rect x="340" y="116" width="220" height="152" rx="4" fill="#ffffff" stroke="#C9C4C4" stroke-width="1.5"/>
+  <rect x="620" y="116" width="220" height="152" rx="4" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2"/>
+
+  <circle cx="96" cy="152" r="3.5" fill="#6B6363"/>
+  <circle cx="124" cy="146" r="3.5" fill="#6B6363"/>
+  <circle cx="152" cy="158" r="3.5" fill="#6B6363"/>
+  <circle cx="186" cy="150" r="3.5" fill="#6B6363"/>
+  <circle cx="214" cy="160" r="3.5" fill="#6B6363"/>
+  <circle cx="240" cy="150" r="3.5" fill="#6B6363"/>
+  <circle cx="104" cy="186" r="3.5" fill="#6B6363"/>
+  <circle cx="136" cy="192" r="3.5" fill="#6B6363"/>
+  <circle cx="168" cy="182" r="3.5" fill="#6B6363"/>
+  <circle cx="198" cy="194" r="3.5" fill="#6B6363"/>
+  <circle cx="228" cy="188" r="3.5" fill="#6B6363"/>
+  <circle cx="252" cy="196" r="3.5" fill="#6B6363"/>
+  <circle cx="112" cy="224" r="3.5" fill="#6B6363"/>
+  <circle cx="146" cy="232" r="3.5" fill="#6B6363"/>
+  <circle cx="180" cy="222" r="3.5" fill="#6B6363"/>
+  <circle cx="212" cy="234" r="3.5" fill="#6B6363"/>
+  <circle cx="242" cy="226" r="3.5" fill="#6B6363"/>
+
+  <ellipse cx="450" cy="192" rx="78" ry="52" fill="none" stroke="#B9B3B3" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <text x="450" y="186" text-anchor="middle" font-size="14" font-family="'DejaVu Sans Mono', monospace">distribución</text>
+  <text x="450" y="212" text-anchor="middle" font-size="14" font-family="'DejaVu Sans Mono', monospace">P(X)</text>
+
+  <ellipse cx="730" cy="192" rx="82" ry="54" fill="none" stroke="#B9B3B3" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <circle cx="692" cy="166" r="3" fill="#C9C4C4"/>
+  <circle cx="722" cy="158" r="3" fill="#C9C4C4"/>
+  <circle cx="756" cy="172" r="3" fill="#C9C4C4"/>
+  <circle cx="700" cy="206" r="3" fill="#C9C4C4"/>
+  <circle cx="744" cy="214" r="3" fill="#C9C4C4"/>
+  <circle cx="772" cy="196" r="3" fill="#C9C4C4"/>
+  <circle cx="716" cy="232" r="3" fill="#C9C4C4"/>
+  <circle cx="676" cy="186" r="5" fill="#DA1B2E"/>
+  <circle cx="752" cy="150" r="5" fill="#DA1B2E"/>
+  <circle cx="738" cy="230" r="5" fill="#DA1B2E"/>
+
+  <line x1="282" y1="192" x2="340" y2="192" stroke="#3B3535" stroke-width="3" marker-end="url(#flecha)"/>
+  <line x1="562" y1="192" x2="620" y2="192" stroke="#3B3535" stroke-width="3" marker-end="url(#flecha)"/>
+
+  <text x="170" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">el corpus de</text>
+  <text x="170" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">entrenamiento</text>
+
+  <text x="450" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">aprende la forma</text>
+  <text x="450" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">de la nube, no los</text>
+  <text x="450" y="338" text-anchor="middle" font-size="12.5" fill="#6B6363">puntos</text>
+
+  <text x="730" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">cada muestra es</text>
+  <text x="730" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">plausible y nueva</text>
+  <text x="730" y="338" text-anchor="middle" font-size="12.5" fill="#6B6363">a la vez</text>
+</svg>

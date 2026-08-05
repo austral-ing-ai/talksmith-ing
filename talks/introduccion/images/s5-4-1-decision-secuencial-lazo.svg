@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- talksmith-ascii-sha256: 49ab3312345772c05c2054665749638c637956ec4262f1c6c4ad086fab9d026c -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>Decisión Secuencial</title>
+  <desc>Encuadrar Decisión Secuencial marcando la diferencia con Predicción: no hay una etiqueta correcta por ejemplo, sino una señal de recompensa que llega tarde y evalúa una secuencia entera.</desc>
+  <defs>
+    <marker id="flecha" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10" refX="13" refY="5" orient="auto">
+      <path d="M0,0 L13,5 L0,10 z" fill="#3B3535"/>
+    </marker>
+    <marker id="flecha-roja" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10" refX="13" refY="5" orient="auto">
+      <path d="M0,0 L13,5 L0,10 z" fill="#DA1B2E"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
+
+  <text x="190" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">AGENTE</text>
+  <text x="710" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">ENTORNO</text>
+
+  <text x="190" y="96" text-anchor="middle" font-size="13" fill="#6B6363">quien decide</text>
+  <text x="710" y="96" text-anchor="middle" font-size="13" fill="#6B6363">el mundo que responde</text>
+
+  <rect x="60" y="116" width="260" height="152" rx="4" fill="#ffffff" stroke="#C9C4C4" stroke-width="1.5"/>
+  <rect x="580" y="116" width="260" height="152" rx="4" fill="#F2F2F2" stroke="#C9C4C4" stroke-width="1.5"/>
+
+  <text x="190" y="192" text-anchor="middle" font-size="14">elige una acción</text>
+  <text x="710" y="192" text-anchor="middle" font-size="14">cambia de estado</text>
+
+  <text x="450" y="156" text-anchor="middle" font-size="13">acción</text>
+  <line x1="322" y1="168" x2="580" y2="168" stroke="#3B3535" stroke-width="3" marker-end="url(#flecha)"/>
+
+  <text x="450" y="204" text-anchor="middle" font-size="13" fill="#DA1B2E">estado, recompensa</text>
+  <line x1="578" y1="216" x2="320" y2="216" stroke="#DA1B2E" stroke-width="3" marker-end="url(#flecha-roja)"/>
+
+  <text x="450" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">no hay respuesta correcta que copiar:</text>
+  <text x="450" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">la señal es la recompensa y llega tarde;</text>
+  <text x="450" y="338" text-anchor="middle" font-size="12.5" fill="#6B6363">el agente aprende qué secuencia la maximiza</text>
+</svg>

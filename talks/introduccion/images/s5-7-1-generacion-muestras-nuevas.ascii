@@ -1,0 +1,19 @@
+      ENTRADA                    MODELO                    SALIDA
+   muchos ejemplos                                     muestras nuevas
+   del mismo tipo                                      que nunca existieron
+
+  +---------------+          +---------------+       +---------------+
+  |  . . .  . .   |          |               |       |      *        |
+  |   . .  . . .  |  ---->   |  distribucion | ----> |        *      |
+  |  . .  . . .   |          |     P(X)      |       |   *           |
+  +---------------+          +---------------+       +---------------+
+
+  el corpus de                aprende la forma        cada muestra es
+  entrenamiento               de la nube, no los      plausible y nueva
+                              puntos                  a la vez
+
+<!-- ascii-note:
+intent: la generacion aprende la forma de la distribucion y muestrea puntos nuevos que podrian haber pertenecido a ella
+emphasize: los puntos del corpus frente a los asteriscos de la salida, que ocupan lugares distintos dentro de la misma nube
+labels: ENTRADA / MODELO / SALIDA como rotulos de columna
+-->
