@@ -429,3 +429,17 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
   - Confirmar las cuatro preguntas de la diapositiva de Slido contra el evento real.
   - Decidir si las 15 diapositivas de la Taxonomía entran en los 90 minutos.
   - Elegir qué patrones del backlog se promueven a `config/learnings.md` y si el Talk se promueve a la biblioteca compartida.
+
+
+## 2026-08-05 — Decisión: el tiempo no acota el contenido
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Ignora el tiempo." → La duración deja de ser un criterio para recortar contenido en este Talk.
+- What was decided:
+  - Se retiró de `# Open questions` la línea que pedía decidir qué diapositivas mostrar dentro de los 90 minutos y cuáles dejar como material de consulta. La pregunta ya no aplica.
+  - Las dos notas de ritmo de los timelines dejaron de recomendar qué saltear. Ahora solo señalan qué hitos dan más para desarrollar, sin presupuesto de minutos: Parte 1 marca 1950, 1958 y 1997; Parte 2 marca 2012, 2016, 2017 y 2026. De paso la de la Parte 2 pasó de decir seis entradas a ocho, que es lo que tiene desde que se sumaron 2025 y 2026.
+  - El campo `duration: "90 minutos"` del frontmatter **no se tocó**: viene del perfil de la materia y describe la clase, no un límite editorial.
+  - **Regla para futuras rondas de este Talk: no proponer recortes por duración.** La densidad se evalúa por legibilidad de cada diapositiva, no por cuántas entran en la clase.
+- Files created/modified: `draft.md`; `final.md`; `output/slide-model.json`; `output/html/index.html`.
+- Validation: 60 diapositivas; frescura verificada; render limpio.
+- Pending open questions: quedan dos, las dos del presentador — confirmar las cuatro preguntas contra el evento de Slido, y elegir qué patrones del backlog se promueven a `config/learnings.md` (más la promoción del Talk a la biblioteca compartida).

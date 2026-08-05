@@ -847,7 +847,7 @@ Contexto técnico profundo: el artículo "Attention Is All You Need" (2017) intr
 
 Enlace recomendado: paper original "Attention Is All You Need" (arXiv:1706.03762).
 
-Nota de ritmo: la diapositiva tiene siete entradas y unos 12 minutos de material si se cuenta todo. Para una clase de 90 minutos conviene detenerse en tres (1950, 1958 y 1997) y pasar el resto en dos frases.
+Nota de ritmo: siete entradas, unos 12 minutos si se cuenta todo. Los tres hitos que más dan para desarrollar son 1950, 1958 y 1997.
 
 ---
 
@@ -1026,7 +1026,7 @@ Anthropic reporta más de 10.000 vulnerabilidades halladas por Claude Mythos en 
 
 Referencia PPTX: diapositiva 22.
 
-Nota de ritmo: seis entradas. Para 90 minutos conviene detenerse en 2012, 2016 y 2017, y pasar 2011, 2020s y 2022 en una frase cada una. La diapositiva siguiente (Move 37) desarrolla 2016.
+Nota de ritmo: ocho entradas. Las que más dan para desarrollar son 2012, 2016, 2017 y 2026. La diapositiva siguiente (Move 37) desarrolla 2016.
 
 ---
 
@@ -2476,7 +2476,6 @@ La diapositiva de conclusiones se conserva como 5.1 porque el PPTX original cont
 
 - El contenido completo se conserva por instrucción del presentador, aunque algunas diapositivas excedan la densidad habitual para una proyección en vivo.
 - Confirmar días, horarios, aula, plataforma de entregas y ponderación final de la cursada.
-- Decidir qué diapositivas del anexo se mostrarán dentro de los 90 minutos y cuáles quedarán como material de consulta.
 - Validar qué recursos visuales del PPTX original se reutilizarán en la versión de Ingeniería de Software.
 - Diapositiva 10 (riesgo macroeconómico): la fuente Citrini Research es ficción especulativa declarada. El propio texto abre con "What follows is a scenario, not a prediction" y está escrito como un memo fechado en junio de 2028, publicado el 22 de febrero de 2026. La diapositiva ya enmarca el punto 1 como escenario hipotético, pero la línea del cuello blanco proyecta "50% del empleo y 70% del gasto discrecional" como dato. En la fuente la cifra es 75%, no 70%, y pertenece a la narrativa del escenario. Decidir si se corrige el número, si se enmarca toda la diapositiva como escenario o si se busca una fuente real de participación del empleo de cuello blanco.
 - Registro de corpus `anthropic-docs-welcome.web.md`: la captura trae nomenclatura de modelos inusual y una mención a un modelo sin clasificadores de seguridad. No verificado y no usado en ninguna diapositiva. Verificar contra otra fuente antes de citarlo.
