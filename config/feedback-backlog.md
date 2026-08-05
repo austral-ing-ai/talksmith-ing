@@ -189,3 +189,9 @@
   feedback: "Agregar summary: El aprendizaje por refuerzo con self-play generó conocimiento estratégico que la comunidad humana no tenía después de 2.500 años de juego."
   resolution: La frase quedó como remate de la diapositiva 6 (Move 37), que es donde se paga el argumento, arriba del enlace al video. Si preferís que cierre la Breve Historia (Parte 2), se mueve en un minuto.
   tags: [content-addition, takeaway]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "5. Ahora cuéntennos ustedes"
+  feedback: "Agregar un slide con 4 que va ser conjunto de preguntas en vivo: https://app.sli.do/event/s7Ccr6C4awbUzRW1RpH19c"
+  resolution: Se agregó la diapositiva 5 al cierre de la sección Bienvenidos, con las cuatro preguntas como lista numerada y el enlace al evento. Las dos primeras reproducen las que ya abren la diapositiva 2; las otras dos son propuesta editorial y hay que confirmarlas contra lo que esté cargado en Slido.
+  tags: [new-slide, live-poll, external-source]

@@ -183,6 +183,42 @@ Referencia PPTX: diapositiva 4.
 
 ---
 
+## 5. Ahora cuéntennos ustedes
+
+<!-- template: process -->
+
+### Content
+
+Cuatro preguntas para responder en vivo desde el celular.
+
+¿Por qué eligieron esta materia?
+
+¿Qué esperan llevarse de la cursada?
+
+¿Cuánto usan hoy herramientas de IA generativa para estudiar o programar?
+
+¿Qué es lo que más les preocupa de la IA en su futuro profesional?
+
+Entrar en https://app.sli.do/event/s7Ccr6C4awbUzRW1RpH19c
+
+### Sources
+
+- corpus/slido-preguntas-en-vivo.web.md (evento de Slido para la Clase 1)
+
+### Speaker notes
+
+Momento sugerido: al cierre de la bienvenida, después de presentar a los docentes y antes de entrar en por qué esta materia. Da un corte de ritmo y pone a la clase a hablar antes de la primera diapositiva de contenido.
+
+Cómo correrlo: proyectar la diapositiva, dar dos o tres minutos para que respondan desde el celular y después mostrar los resultados en pantalla desde el panel de Slido. Conviene abrir el evento antes de que arranque la clase.
+
+Las respuestas a la tercera pregunta sirven de calibración para el resto del cuatrimestre: si la mayoría ya usa asistentes a diario, los módulos de ingeniería de prompts pueden ir más rápido y conviene invertir el tiempo ganado en evaluación y límites.
+
+Las respuestas a la cuarta se pueden retomar en la diapositiva de limitaciones y en la del riesgo macroeconómico. Anotar dos o tres preocupaciones concretas y nombrarlas cuando lleguen esos temas.
+
+Las preguntas de la diapositiva tienen que coincidir con las que estén cargadas en el evento de Slido.
+
+---
+
 # 2. ¿Por qué esta materia?
 
 **Goal of this section:** Explicar por qué la IA generativa importa para la formación y la práctica de Ingeniería de Software.

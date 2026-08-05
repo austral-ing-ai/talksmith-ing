@@ -1,7 +1,7 @@
 # memory.md — introduccion
 
-**Current step:** 8 — Learnings in_progress
-**Awaiting:** 2026-08-05 — "Decisiones de Step 8: promoción de aprendizajes y de este Talk a la biblioteca compartida. Sigue pendiente la cifra del cuello blanco en la diapositiva 10."
+**Current step:** 8 — Learnings awaiting_presenter
+**Awaiting:** 2026-08-05 — "Confirmar las cuatro preguntas de la diapositiva de Slido contra el evento real, y decidir la promoción a la biblioteca compartida. Sigue pendiente la cifra del cuello blanco en la diapositiva 10."
 **Topic:** Introducción, normas de trabajo y encuadre inicial de la materia.
 **Folder:** talks/introduccion/
 **Started:** 2026-08-03
@@ -347,3 +347,26 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
   - Chequeo de fugas sobre el texto renderizado: cero apariciones de "Presenter feedback", `[closed]`, `[open]` y "Resolution:".
   - Portada verificada por captura: título, institución, clase, autoría, fecha y logo de Austral en su lugar.
 - Pending open questions: las de siempre, más las dos estéticas del preview (timeline Parte 1 ajustado contra el borde; etiqueta y cuerpo pegados en Move 37).
+
+
+## 2026-08-05 — Step 5 → 6 → 7 (diapositiva de preguntas en vivo)
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Agregar un slide con 4 que va ser conjunto de preguntas en vivo: https://app.sli.do/event/s7Ccr6C4awbUzRW1RpH19c" → Nueva diapositiva 5 al cierre de la sección Bienvenidos.
+  - 2026-08-05 — "Grabar el documento en disco." → draft.md, final.md, modelo, deck y corpus escritos a la carpeta local.
+- What was decided:
+  - **Ubicación**: al final de la sección Bienvenidos, después de "Antes que nada…". Así no hubo que renumerar ninguna diapositiva existente, y el recorrido queda bienvenida → qué es esto → qué se llevan → quiénes somos → ahora hablan ustedes.
+  - **Plantilla `process` con pasos planos**: la misma lista numerada de una columna que el presentador eligió para Logística. Cuatro preguntas numeradas, con la lead arriba y el enlace al evento en una banda `important` al pie, para que la URL se lea grande y sea clickeable.
+  - **Las cuatro preguntas son propuesta editorial.** Las dos primeras reproducen las que ya abren la diapositiva 2. Las otras dos (uso actual de herramientas de IA, preocupación sobre el futuro profesional) las escribí yo. Slido no expone las preguntas configuradas en el evento, así que hay que confirmarlas contra el panel del presentador: si no coinciden, la diapositiva proyecta preguntas que la audiencia no encuentra al entrar.
+  - Las notas del orador explican cuándo correrla, cómo proyectarla y cómo reutilizar las respuestas: la tercera pregunta calibra el ritmo de los módulos de prompts, la cuarta se retoma en la diapositiva de limitaciones y en la del riesgo macroeconómico.
+- Key inputs: URL del evento de Slido.
+- Files created/modified: `talks/introduccion/draft.md` (97.185 bytes, 49 diapositivas); `talks/introduccion/final.md` (85.816); `config/feedback-backlog.md` (1 fila); `research/web/slido-preguntas-en-vivo/`; `research/corpus/slido-preguntas-en-vivo.web.md`; `output/slide-model.json`; `output/html/index.html`.
+- Validation:
+  - Ingesta: Slido responde 200 pero es una app de una sola página, así que `page.md` se reescribió a mano y el registro de corpus deja constancia de que las preguntas del evento no se pueden capturar.
+  - Polish: 49 campos H3 de feedback y 11 de sección retirados; 0 fugas de campos de trabajo en `final.md`.
+  - Render: las tres auditorías en verde; 54 diapositivas; 48 paneles de notas; el enlace a Slido sale como `<a>` clickeable; 0 errores de consola.
+  - Captura headless de la diapositiva nueva: las cuatro preguntas entran sin recorte y la banda del enlace queda al pie.
+- Pending open questions:
+  - **Confirmar las cuatro preguntas contra el evento de Slido antes de la clase**, y verificar que el enlace siga vivo.
+  - La diapositiva 2 sigue abriendo con dos de las cuatro preguntas. Si la repetición molesta, se puede dejar la 2 solo como bienvenida.
+  - Las de siempre: la cifra del cuello blanco en la diapositiva 10; el timeline Parte 1 ajustado contra el borde; etiqueta y cuerpo pegados en Move 37; "Codificar a entrenar" truncado.

@@ -115,6 +115,34 @@
       "notes": "Referencia PPTX: diapositiva 4.\n\n[Sin notas en el PPTX de referencia.]"
     },
     {
+      "template": "process",
+      "section": "Bienvenidos",
+      "title": "Ahora cuéntennos ustedes",
+      "lead": "Cuatro preguntas para responder en vivo desde el celular.",
+      "steps": [
+        {
+          "body": "¿Por qué eligieron esta materia?"
+        },
+        {
+          "body": "¿Qué esperan llevarse de la cursada?"
+        },
+        {
+          "body": "¿Cuánto usan hoy herramientas de IA generativa para estudiar o programar?"
+        },
+        {
+          "body": "¿Qué es lo que más les preocupa de la IA en su futuro profesional?"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Entrar en https://app.sli.do/event/s7Ccr6C4awbUzRW1RpH19c",
+          "kind": "important",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Momento sugerido: al cierre de la bienvenida, después de presentar a los docentes y antes de entrar en por qué esta materia. Da un corte de ritmo y pone a la clase a hablar antes de la primera diapositiva de contenido.\n\nCómo correrlo: proyectar la diapositiva, dar dos o tres minutos para que respondan desde el celular y después mostrar los resultados en pantalla desde el panel de Slido. Conviene abrir el evento antes de que arranque la clase.\n\nLas respuestas a la tercera pregunta sirven de calibración para el resto del cuatrimestre: si la mayoría ya usa asistentes a diario, los módulos de ingeniería de prompts pueden ir más rápido y conviene invertir el tiempo ganado en evaluación y límites.\n\nLas respuestas a la cuarta se pueden retomar en la diapositiva de limitaciones y en la del riesgo macroeconómico. Anotar dos o tres preocupaciones concretas y nombrarlas cuando lleguen esos temas.\n\nLas preguntas de la diapositiva tienen que coincidir con las que estén cargadas en el evento de Slido."
+    },
+    {
       "template": "section-agenda",
       "title": "¿Por qué esta materia?"
     },
@@ -1474,7 +1502,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "ec9ca141aadffa3fd9345a2e04dbfa50fd64e427850c13c3d5182813486573af",
-    "bytes": 84270
+    "sha256": "76116b93f0700ea9d1e2fe54a6748d18385adde7a3515d9888456f387ff14968",
+    "bytes": 85816
   }
 }
