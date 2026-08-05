@@ -722,11 +722,15 @@
       "notes": "Referencia PPTX: diapositiva 24.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en dos GPUs de consumo. Más de diez puntos de diferencia con el segundo puesto, en una competencia donde se peleaba por décimas, abrieron la década del deep learning. La misma cifra aparece en la Breve Historia (Parte 2)."
     },
     {
-      "template": "statement",
+      "template": "image-full",
       "section": "Taxinomia de Problemas",
       "title": "Percepción",
-      "sub": "Extraer estructura significativa de señales sensoriales. Los sistemas de percepción convierten datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos y conceptos interpretables. Sostienen la visión por computadora y el procesamiento del habla.",
-      "notes": "Encuadrar Percepción antes de los ejemplos. Acá el sistema lee señales crudas y las traduce a entidades sobre las que después se decide."
+      "lead": "Extraer estructura significativa de señales sensoriales.",
+      "image": {
+        "src": "images/s5-2-1-percepcion-senal-a-simbolos.png",
+        "alt": "Percepción: de señal cruda a estructura nombrada — entrada, modelo y salida"
+      },
+      "notes": "Los sistemas de percepción convierten datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos y conceptos interpretables. Sostienen la visión por computadora y el procesamiento del habla.\n\nEncuadrar Percepción antes de los ejemplos. Acá el sistema lee señales crudas y las traduce a entidades sobre las que después se decide."
     },
     {
       "template": "concept-breakdown",
@@ -780,11 +784,15 @@
       "notes": "Referencia PPTX: diapositiva 25.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: ResNet introdujo las conexiones residuales, que permitieron entrenar redes mucho más profundas. El 3.57% de error quedó por debajo del 5% que se atribuye a un anotador humano en la misma tarea."
     },
     {
-      "template": "statement",
+      "template": "image-full",
       "section": "Taxinomia de Problemas",
       "title": "Representación",
-      "sub": "Aprender estructuras internas que capturan relaciones entre datos.",
-      "notes": "Encuadrar Representación como la familia que produce embeddings y espacios latentes. Es la pieza que después usan la búsqueda semántica, la recomendación y buena parte de los LLMs."
+      "lead": "Aprender estructuras internas que capturan relaciones entre datos.",
+      "image": {
+        "src": "images/s5-3-1-representacion-espacio-vectores.png",
+        "alt": "Representación: de símbolos sueltos a un espacio de vectores donde la distancia mide el parecido"
+      },
+      "notes": "Un modelo de representación ubica cada objeto en un espacio de vectores donde la cercanía significa parecido. Ese espacio es lo que después permite buscar por significado, recomendar y detectar lo anómalo.\n\nEncuadrar Representación como la familia que produce embeddings y espacios latentes. Es la pieza que después usan la búsqueda semántica, la recomendación y buena parte de los LLMs."
     },
     {
       "template": "concept-breakdown",
@@ -1609,7 +1617,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "dc744940ee4a685b5354281bb653eed7eb26566a20785ddcba2e564cba1355aa",
-    "bytes": 97090
+    "sha256": "e811d038bea4224671fd95970e29038be7c7591630011fb680d0f6ff671f0822",
+    "bytes": 99561
   }
 }

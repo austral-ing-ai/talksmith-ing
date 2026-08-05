@@ -925,7 +925,54 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 
 </div></div>
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p><b>Herramientas</b>: Scikit-learn · XGBoost · LightGBM · TensorFlow · PyTorch · AutoML</p></div><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p><b>Métricas</b>: Accuracy · F1-Score · AUC-ROC · MAE · RMSE · R²</p></div><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p><b>Hito</b>: En 2012, AlexNet (Krizhevsky et al.) ganó ImageNet con 15,3% de error top-5 contra 26,2% del segundo, usando predicción sobre imágenes. Marcó el inicio de la era del deep learning.</p></div></div></div>
-<aside class="notes"><p>Referencia PPTX: diapositiva 24.</p><p>[Sin notas en el PPTX de referencia.]</p><p>Contexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en dos GPUs de consumo. Más de diez puntos de diferencia con el segundo puesto, en una competencia donde se peleaba por décimas, abrieron la década del deep learning. La misma cifra aparece en la Breve Historia (Parte 2).</p></aside></section><section class="slide" data-kind="statement"><div class="stage cover"><div class="stmt"><p class="steyebrow">Taxinomia de Problemas</p><p class="big">Percepción</p><p class="sub">Extraer estructura significativa de señales sensoriales. Los sistemas de percepción convierten datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos y conceptos interpretables. Sostienen la visión por computadora y el procesamiento del habla.</p></div></div><aside class="notes"><p>Encuadrar Percepción antes de los ejemplos. Acá el sistema lee señales crudas y las traduce a entidades sobre las que después se decide.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
+<aside class="notes"><p>Referencia PPTX: diapositiva 24.</p><p>[Sin notas en el PPTX de referencia.]</p><p>Contexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en dos GPUs de consumo. Más de diez puntos de diferencia con el segundo puesto, en una competencia donde se peleaba por décimas, abrieron la década del deep learning. La misma cifra aparece en la Breve Historia (Parte 2).</p></aside></section><section class="slide" data-kind="image-full"><div class="stage imgfull">
+<div class="shead"><span class="pill">Taxinomia de Problemas</span><h2 class="stitle">Percepción</h2><p class="lead">Extraer estructura significativa de señales sensoriales.</p></div>
+<div class="iffill"><div class="imgph svg"><!-- talksmith-ascii-sha256: 337525ec5c7ebeebaf93ef931385bd2147ea0ea962391ab724f4122b7f2fbc8d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>Percepción</title>
+  <desc>Encuadrar Percepción antes de los ejemplos: el sistema lee señales crudas y las traduce a entidades sobre las que después se decide.</desc>
+  <defs>
+    <marker id="e1-flecha" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10" refX="13" refY="5" orient="auto">
+      <path d="M0,0 L13,5 L0,10 z" fill="#3B3535"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
+
+  <text x="170" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">ENTRADA</text>
+  <text x="450" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">MODELO</text>
+  <text x="730" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2" fill="#DA1B2E">SALIDA</text>
+
+  <text x="170" y="96" text-anchor="middle" font-size="13" fill="#6B6363">señal cruda</text>
+  <text x="730" y="96" text-anchor="middle" font-size="13" fill="#6B6363">estructura nombrada</text>
+
+  <rect x="60" y="116" width="220" height="152" rx="4" fill="#F2F2F2" stroke="#C9C4C4" stroke-width="1.5"/>
+  <rect x="340" y="116" width="220" height="152" rx="4" fill="#ffffff" stroke="#C9C4C4" stroke-width="1.5"/>
+  <rect x="620" y="116" width="220" height="152" rx="4" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2"/>
+
+  <text x="170" y="160" text-anchor="middle" font-size="14">píxeles</text>
+  <text x="170" y="192" text-anchor="middle" font-size="14">ondas</text>
+  <text x="170" y="224" text-anchor="middle" font-size="14">frames</text>
+
+  <text x="450" y="192" text-anchor="middle" font-size="14" font-family="'DejaVu Sans Mono', monospace">encoder</text>
+
+  <text x="730" y="160" text-anchor="middle" font-size="14" font-family="'DejaVu Sans Mono', monospace">“factura”</text>
+  <text x="730" y="192" text-anchor="middle" font-size="14" font-family="'DejaVu Sans Mono', monospace">“botón #3”</text>
+  <text x="730" y="224" text-anchor="middle" font-size="14" font-family="'DejaVu Sans Mono', monospace">“hola, qué...”</text>
+
+  <line x1="282" y1="192" x2="340" y2="192" stroke="#3B3535" stroke-width="3" marker-end="url(#e1-flecha)"/>
+  <line x1="562" y1="192" x2="620" y2="192" stroke="#3B3535" stroke-width="3" marker-end="url(#e1-flecha)"/>
+
+  <text x="170" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">el programa no</text>
+  <text x="170" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">puede operar sobre</text>
+  <text x="170" y="338" text-anchor="middle" font-size="12.5" fill="#6B6363">esto directamente</text>
+
+  <text x="450" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">aprende qué rasgos</text>
+  <text x="450" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">importan en la señal</text>
+
+  <text x="730" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">cada cosa tiene</text>
+  <text x="730" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">nombre y lugar</text>
+</svg></div></div>
+</div><aside class="notes"><p>Los sistemas de percepción convierten datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos y conceptos interpretables. Sostienen la visión por computadora y el procesamiento del habla.</p><p>Encuadrar Percepción antes de los ejemplos. Acá el sistema lee señales crudas y las traduce a entidades sobre las que después se decide.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
 <div class="shead"><span class="pill">Taxinomia de Problemas</span><h2 class="stitle">Ejemplos de problemas de percepción</h2></div><div class="cbody"><div class="cfit"><div class="cards">
 <div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M319-250h322v-60H319v60Zm0-170h322v-60H319v60ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"/></svg></span><h3>Clasificación de imágenes</h3><p>Qué hay en esta imagen: una captura de pantalla, una foto, un documento escaneado.</p></div>
 <div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m421-298 283-283-46-45-237 237-120-120-45 45 165 166Zm59 218q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-156t86-127Q252-817 325-848.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82-31.5 155T763-197.5q-54 54.5-127 86T480-80Zm0-60q142 0 241-99.5T820-480q0-142-99-241t-241-99q-141 0-240.5 99T140-480q0 141 99.5 240.5T480-140Zm0-340Z"/></svg></span><h3>Detección de objetos</h3><p>Dónde están los elementos y qué son: controles de interfaz, defectos, matrículas.</p></div>
@@ -937,7 +984,61 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 
 </div></div>
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p><b>Herramientas</b>: OpenCV · YOLO v8/v11 · PyTorch + torchvision · TensorFlow · Whisper (OpenAI) · Hugging Face</p></div><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p><b>Arquitecturas</b>: CNN · Vision Transformer (ViT) · U-Net · Wav2Vec</p></div><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p><b>Hito</b>: En 2015, ResNet (Microsoft) superó la precisión humana en reconocimiento de imágenes con un error del 3.57% en ImageNet, por debajo del 5% humano.</p></div></div></div>
-<aside class="notes"><p>Referencia PPTX: diapositiva 25.</p><p>[Sin notas en el PPTX de referencia.]</p><p>Contexto del hito: ResNet introdujo las conexiones residuales, que permitieron entrenar redes mucho más profundas. El 3.57% de error quedó por debajo del 5% que se atribuye a un anotador humano en la misma tarea.</p></aside></section><section class="slide" data-kind="statement"><div class="stage cover"><div class="stmt"><p class="steyebrow">Taxinomia de Problemas</p><p class="big">Representación</p><p class="sub">Aprender estructuras internas que capturan relaciones entre datos.</p></div></div><aside class="notes"><p>Encuadrar Representación como la familia que produce embeddings y espacios latentes. Es la pieza que después usan la búsqueda semántica, la recomendación y buena parte de los LLMs.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
+<aside class="notes"><p>Referencia PPTX: diapositiva 25.</p><p>[Sin notas en el PPTX de referencia.]</p><p>Contexto del hito: ResNet introdujo las conexiones residuales, que permitieron entrenar redes mucho más profundas. El 3.57% de error quedó por debajo del 5% que se atribuye a un anotador humano en la misma tarea.</p></aside></section><section class="slide" data-kind="image-full"><div class="stage imgfull">
+<div class="shead"><span class="pill">Taxinomia de Problemas</span><h2 class="stitle">Representación</h2><p class="lead">Aprender estructuras internas que capturan relaciones entre datos.</p></div>
+<div class="iffill"><div class="imgph svg"><!-- talksmith-ascii-sha256: c2fedf6dbc790fbadb415608c1768ee3eec48856b47d4af869ddeb4ab21f452c -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>Representación</title>
+  <desc>Encuadrar Representación como la familia que produce embeddings y espacios latentes, donde la cercanía significa parecido.</desc>
+  <defs>
+    <marker id="e2-flecha" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10" refX="13" refY="5" orient="auto">
+      <path d="M0,0 L13,5 L0,10 z" fill="#3B3535"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
+
+  <text x="170" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">ENTRADA</text>
+  <text x="450" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2">MODELO</text>
+  <text x="730" y="72" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.2" fill="#DA1B2E">SALIDA</text>
+
+  <text x="170" y="96" text-anchor="middle" font-size="13" fill="#6B6363">símbolos sueltos</text>
+  <text x="730" y="96" text-anchor="middle" font-size="13" fill="#6B6363">espacio de vectores</text>
+
+  <rect x="60" y="116" width="220" height="152" rx="4" fill="#F2F2F2" stroke="#C9C4C4" stroke-width="1.5"/>
+  <rect x="340" y="116" width="220" height="152" rx="4" fill="#ffffff" stroke="#C9C4C4" stroke-width="1.5"/>
+  <rect x="620" y="116" width="220" height="152" rx="4" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2"/>
+
+  <text x="170" y="160" text-anchor="middle" font-size="14" font-family="'DejaVu Sans Mono', monospace">“rey”</text>
+  <text x="170" y="192" text-anchor="middle" font-size="14" font-family="'DejaVu Sans Mono', monospace">“reina”</text>
+  <text x="170" y="224" text-anchor="middle" font-size="14" font-family="'DejaVu Sans Mono', monospace">“banana”</text>
+
+  <text x="450" y="192" text-anchor="middle" font-size="14" font-family="'DejaVu Sans Mono', monospace">encoder</text>
+
+  <line x1="664" y1="238" x2="778" y2="172" stroke="#B9B3B3" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <line x1="760" y1="156" x2="778" y2="172" stroke="#DA1B2E" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <text x="752" y="172" text-anchor="end" font-size="11.5" fill="#DA1B2E">cerca</text>
+  <text x="736" y="220" font-size="11.5" fill="#8A8383">lejos</text>
+  <circle cx="760" cy="156" r="4.5" fill="#DA1B2E"/>
+  <circle cx="778" cy="172" r="4.5" fill="#DA1B2E"/>
+  <circle cx="664" cy="238" r="4.5" fill="#6B6363"/>
+  <text x="769" y="150" font-size="12.5">rey</text>
+  <text x="787" y="177" font-size="12.5">reina</text>
+  <text x="673" y="243" font-size="12.5">banana</text>
+
+  <line x1="282" y1="192" x2="340" y2="192" stroke="#3B3535" stroke-width="3" marker-end="url(#e2-flecha)"/>
+  <line x1="562" y1="192" x2="620" y2="192" stroke="#3B3535" stroke-width="3" marker-end="url(#e2-flecha)"/>
+
+  <text x="170" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">cadenas sin</text>
+  <text x="170" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">relación entre sí</text>
+
+  <text x="450" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">aprende qué cosas</text>
+  <text x="450" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">aparecen en contextos</text>
+  <text x="450" y="338" text-anchor="middle" font-size="12.5" fill="#6B6363">parecidos</text>
+
+  <text x="730" y="300" text-anchor="middle" font-size="12.5" fill="#6B6363">la distancia es</text>
+  <text x="730" y="319" text-anchor="middle" font-size="12.5" fill="#6B6363">el significado</text>
+</svg></div></div>
+</div><aside class="notes"><p>Un modelo de representación ubica cada objeto en un espacio de vectores donde la cercanía significa parecido. Ese espacio es lo que después permite buscar por significado, recomendar y detectar lo anómalo.</p><p>Encuadrar Representación como la familia que produce embeddings y espacios latentes. Es la pieza que después usan la búsqueda semántica, la recomendación y buena parte de los LLMs.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
 <div class="shead"><span class="pill">Taxinomia de Problemas</span><h2 class="stitle">Ejemplos de problemas de representación</h2></div><div class="cbody"><div class="cfit"><div class="editgrid">
 <div class="eitem fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M320-242 80-482l242-242 43 43-199 199 197 197-43 43Zm318 2-43-43 199-199-197-197 43-43 240 240-242 242Z"/></svg></span><h3>Embeddings de texto</h3><p>Palabras, frases, fragmentos de código, documentos y tickets convertidos en vectores de significado.</p></div>
 <div class="eitem fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M560-574v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-610q-38 0-73 9.5T560-574Zm0 220v-49q33-13.5 67.5-20.25T700-430q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-390q-38 0-73 9t-67 27Zm0-110v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-500q-38 0-73 9.5T560-464ZM248-300q53.57 0 104.28 12.5Q403-275 452-250v-427q-45-30-97.62-46.5Q301.76-740 248-740q-38 0-74.5 9.5T100-707v434q31-14 70.5-20.5T248-300Zm264 50q50-25 98-37.5T712-300q38 0 78.5 6t69.5 16v-429q-34-17-71.82-25-37.82-8-76.18-8-54 0-104.5 16.5T512-677v427Zm-30 90q-51-38-111-58.5T248-239q-36.54 0-71.77 9T106-208q-23.1 11-44.55-3Q40-225 40-251v-463q0-15 7-27.5T68-761q42-20 87.39-29.5 45.4-9.5 92.61-9.5 63 0 122.5 17T482-731q51-35 109.5-52T712-800q46.87 0 91.93 9.5Q849-781 891-761q14 7 21.5 19.5T920-714v463q0 27.89-22.5 42.45Q875-194 853-208q-34-14-69.23-22.5Q748.54-239 712-239q-63 0-121 21t-109 58ZM276-489Z"/></svg></span><h3>Búsqueda semántica</h3><p>Recuperar documentación y decisiones pasadas por significado, aunque las palabras no coincidan.</p></div>

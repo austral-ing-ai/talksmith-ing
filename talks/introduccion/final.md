@@ -1271,19 +1271,40 @@ Contexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional 
 
 ## Percepción
 
-<!-- template: statement -->
+<!-- template: image-full -->
 
 ### Content
 
 Extraer estructura significativa de señales sensoriales.
 
-Los sistemas de percepción convierten datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos y conceptos interpretables. Sostienen la visión por computadora y el procesamiento del habla.
+![Percepción: de señal cruda a estructura nombrada — entrada, modelo y salida](images/s5-2-1-percepcion-senal-a-simbolos.png)
+<!-- ascii-source:
+      ENTRADA                    MODELO                    SALIDA
+   senal cruda                                       estructura nombrada
+
+  +---------------+          +---------------+       +---------------+
+  |    pixeles    |          |               |       |   "factura"   |
+  |    ondas      |  ----&gt;   |    encoder    | ----&gt; |   "boton #3"  |
+  |    frames     |          |               |       |   "hola, que" |
+  +---------------+          +---------------+       +---------------+
+
+  el programa no             aprende que rasgos       cada cosa tiene
+  puede operar sobre         importan en la senal     nombre y lugar
+  esto directamente
+-->
+<!-- ascii-note:
+intent: la percepcion convierte una senal sin significado en simbolos que el programa puede manipular
+emphasize: el contraste entre la caja de entrada y la de salida; la flecha de izquierda a derecha
+labels: ENTRADA / MODELO / SALIDA como rotulos de columna
+-->
 
 ### Sources
 
 - corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 25; adaptación separada)
 
 ### Speaker notes
+
+Los sistemas de percepción convierten datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos y conceptos interpretables. Sostienen la visión por computadora y el procesamiento del habla.
 
 Encuadrar Percepción antes de los ejemplos. Acá el sistema lee señales crudas y las traduce a entidades sobre las que después se decide.
 
@@ -1340,17 +1361,40 @@ Contexto del hito: ResNet introdujo las conexiones residuales, que permitieron e
 
 ## Representación
 
-<!-- template: statement -->
+<!-- template: image-full -->
 
 ### Content
 
 Aprender estructuras internas que capturan relaciones entre datos.
+
+![Representación: de símbolos sueltos a un espacio de vectores donde la distancia mide el parecido](images/s5-3-1-representacion-espacio-vectores.png)
+<!-- ascii-source:
+      ENTRADA                    MODELO                    SALIDA
+   simbolos sueltos                                   espacio de vectores
+
+  +---------------+          +---------------+       +---------------+
+  |     "rey"     |          |               |       |  rey . reina  |
+  |    "reina"    |  ----&gt;   |    encoder    | ----&gt; |               |
+  |   "banana"    |          |               |       |  banana .     |
+  +---------------+          +---------------+       +---------------+
+
+  cadenas sin                aprende que cosas        la distancia es
+  relacion entre si          aparecen en contextos    el significado
+                             parecidos
+-->
+<!-- ascii-note:
+intent: la representacion convierte simbolos sin relacion en puntos de un espacio donde la distancia mide parecido
+emphasize: la cercania entre rey y reina frente a banana en la caja de salida; la flecha de izquierda a derecha
+labels: ENTRADA / MODELO / SALIDA como rotulos de columna
+-->
 
 ### Sources
 
 - corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 26; adaptación separada)
 
 ### Speaker notes
+
+Un modelo de representación ubica cada objeto en un espacio de vectores donde la cercanía significa parecido. Ese espacio es lo que después permite buscar por significado, recomendar y detectar lo anómalo.
 
 Encuadrar Representación como la familia que produce embeddings y espacios latentes. Es la pieza que después usan la búsqueda semántica, la recomendación y buena parte de los LLMs.
 

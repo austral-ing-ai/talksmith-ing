@@ -1,0 +1,18 @@
+      ENTRADA                    MODELO                    SALIDA
+   senal cruda                                       estructura nombrada
+
+  +---------------+          +---------------+       +---------------+
+  |    pixeles    |          |               |       |   "factura"   |
+  |    ondas      |  ---->   |    encoder    | ----> |   "boton #3"  |
+  |    frames     |          |               |       |   "hola, que" |
+  +---------------+          +---------------+       +---------------+
+
+  el programa no             aprende que rasgos       cada cosa tiene
+  puede operar sobre         importan en la senal     nombre y lugar
+  esto directamente
+
+<!-- ascii-note:
+intent: la percepcion convierte una senal sin significado en simbolos que el programa puede manipular
+emphasize: el contraste entre la caja de entrada y la de salida; la flecha de izquierda a derecha
+labels: ENTRADA / MODELO / SALIDA como rotulos de columna
+-->

@@ -443,3 +443,23 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
 - Files created/modified: `draft.md`; `final.md`; `output/slide-model.json`; `output/html/index.html`.
 - Validation: 60 diapositivas; frescura verificada; render limpio.
 - Pending open questions: quedan dos, las dos del presentador — confirmar las cuatro preguntas contra el evento de Slido, y elegir qué patrones del backlog se promueven a `config/learnings.md` (más la promoción del Talk a la biblioteca compartida).
+
+
+## 2026-08-05 — Step 6 (Polish) — dos diagramas ASCII para Percepción y Representación
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Para cada uno de los slides Representación/Percepción genera un ASCCI chart que explique el concepto. Idealmente, que tengan consistencia entre ellos."
+- What was decided:
+  - Los diagramas van en las **separadoras**, no en las diapositivas de detalle: la separadora carga la definición y ahí el esquema explica el concepto, mientras que las de detalle ya están llenas con seis tarjetas y tres highlights.
+  - **Gramática compartida a propósito**: tres columnas rotuladas ENTRADA / MODELO / SALIDA, cajas del mismo ancho, la misma flecha y un pie por columna. Percepción va de señal cruda a estructura nombrada; Representación, de símbolos sueltos a un espacio de vectores. Proyectadas una después de la otra se leen como dos instancias del mismo esquema.
+  - En la caja de SALIDA de Representación la distancia está dibujada: rey y reina cerca unidos por un tie rojo rotulado "cerca", banana lejos con tie gris rotulado "lejos". Esa distancia es el punto del diagrama.
+  - Las dos diapositivas pasaron de `statement` a **`image-full`**: primero se probó `content-image`, pero el diagrama quedaba comprimido en media columna. Con `image-full` el esquema ocupa el ancho y el párrafo de expansión se movió a las notas del orador, que es donde el presentador lo narra.
+- Files created/modified: `draft.md`; `final.md`; `config/feedback-backlog.md`; `output/slide-model.json`; `output/html/index.html`; `images/s5-2-1-percepcion-senal-a-simbolos.{ascii,svg,png}`; `images/s5-3-1-representacion-espacio-vectores.{ascii,svg,png}`.
+- Validation:
+  - `validate_svg` y `audit_aspect` en verde en los dos. Consistencia verificada estructuralmente por diff de los SVG: mismo viewBox, mismos tres paneles 220×152 en las mismas x, mismo marker de flecha, mismas baselines. Los dos PNG salen 1800×800.
+  - Tres auditorías del render en verde; 60 diapositivas; cero errores de consola. Revisión visual de los dos PNG y de las dos diapositivas renderizadas.
+- **Hallazgos del rol Diagram-Illustrator, que conviene arreglar en el plugin:**
+  1. **Bug de `slide_id` en `polish_ascii.py`.** El regex `H2_SLIDE` solo matchea encabezados numerados (`## 3. Título`). Las separadoras sin número no incrementan el contador y **heredan el id y el título del slide numerado anterior**. Por eso los diagramas salieron con ids `s5-2-1` y `s5-3-1` en vez de los esperados, y hubo que corregir a mano los `slide_title` del plan antes de renderizar para que los SVG no se dibujaran con el título equivocado. Riesgo latente: si más adelante se agrega un bloque ASCII a `## 2.` o `## 3.` de esa sección, va a colisionar de nombre.
+  2. **La crítica ciega no corrió.** Un subagente no puede despachar otro subagente en esta sesión, así que el `diagram-critic` quedó sin ejecutar y los bloques figuran `critique_unavailable` en `images/.critique/`. El rol no sustituyó la crítica por su propio juicio, que es lo correcto. La revisión visual la hice yo sobre los PNG.
+  3. **`cairosvg` no estaba instalado** en el contenedor; el rol lo instaló por la vía documentada del skill. Si el contenedor se recrea hay que repetirlo.
+- Pending open questions: sin cambios — confirmar las preguntas contra el evento de Slido, y decidir las promociones de Step 8.

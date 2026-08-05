@@ -1,0 +1,18 @@
+      ENTRADA                    MODELO                    SALIDA
+   simbolos sueltos                                   espacio de vectores
+
+  +---------------+          +---------------+       +---------------+
+  |     "rey"     |          |               |       |  rey . reina  |
+  |    "reina"    |  ---->   |    encoder    | ----> |               |
+  |   "banana"    |          |               |       |  banana .     |
+  +---------------+          +---------------+       +---------------+
+
+  cadenas sin                aprende que cosas        la distancia es
+  relacion entre si          aparecen en contextos    el significado
+                             parecidos
+
+<!-- ascii-note:
+intent: la representacion convierte simbolos sin relacion en puntos de un espacio donde la distancia mide parecido
+emphasize: la cercania entre rey y reina frente a banana en la caja de salida; la flecha de izquierda a derecha
+labels: ENTRADA / MODELO / SALIDA como rotulos de columna
+-->

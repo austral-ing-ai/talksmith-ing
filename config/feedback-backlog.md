@@ -273,3 +273,9 @@
   feedback: "Corregir la cifra del cuello blanco contra la fuente."
   resolution: La cifra pasó de 70% a 75%, que es la que trae la fuente, y la línea ahora abre con 'En el escenario' para que se lea como parte del escenario hipotético y no como dato observado.
   tags: [content-fidelity]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "Percepción"
+  feedback: "Para cada uno de los slides Representación/Percepción genera un ASCCI chart que explique el concepto. Idealmente, que tengan consistencia entre ellos."
+  resolution: Las dos separadoras llevan un diagrama ASCII con la misma gramática: tres columnas ENTRADA / MODELO / SALIDA, cajas del mismo ancho, la misma flecha y un pie por columna. Percepción va de señal cruda a estructura nombrada; Representación, de símbolos sueltos a un espacio donde la distancia mide parecido. Las dos pasaron de statement a content-image.
+  tags: [ascii-diagram, template-selection, consistency]
