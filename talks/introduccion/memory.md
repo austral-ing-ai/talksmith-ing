@@ -370,3 +370,22 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
   - **Confirmar las cuatro preguntas contra el evento de Slido antes de la clase**, y verificar que el enlace siga vivo.
   - La diapositiva 2 sigue abriendo con dos de las cuatro preguntas. Si la repetición molesta, se puede dejar la 2 solo como bienvenida.
   - Las de siempre: la cifra del cuello blanco en la diapositiva 10; el timeline Parte 1 ajustado contra el borde; etiqueta y cuerpo pegados en Move 37; "Codificar a entrenar" truncado.
+
+
+## 2026-08-05 — Step 5 (Review) — recorte de logística y una negrita
+- Status: complete
+- Asks log:
+  - 2026-08-05 — Borrar "La nota final combina los entregables con el proyecto final." → Diapositiva 13.
+  - 2026-08-05 — Borrar "Las reglas y la ponderación se publican antes de la primera entrega." → Diapositiva 13.
+  - 2026-08-05 — Borrar "La cátedra orienta el alcance, la evidencia y la forma de evaluar el resultado." → Diapositiva 15.
+  - 2026-08-05 — Borrar "La evaluación considera el resultado y la capacidad de justificarlo con evidencia técnica." → Diapositiva 15.
+  - 2026-08-05 — Marcar en negrita "sus posibilidades de éxito en un objetivo dado" → Diapositiva "¿Qué es la Inteligencia Artificial?".
+- What was decided:
+  - "Cómo vamos a trabajar" bajó de 7 a 5 pasos y "Trabajo final" de 8 a 6. Las cuatro líneas retiradas duplicaban lo que ya cubren la diapositiva "Evaluación" (40% entregables / 60% trabajo final) y la propia consigna. Las cuatro quedaron archivadas en `# Cut material` con su fecha y motivo, no se borraron en silencio.
+  - La negrita se aplicó solo en el cuerpo de la columna "Un poco más formal". En las notas del orador la cita de Russell & Norvig queda corrida, sin marcas.
+- Files created/modified: `talks/introduccion/draft.md`; `final.md`; `config/feedback-backlog.md` (5 filas); `output/slide-model.json`; `output/html/index.html`.
+- Validation:
+  - 49 diapositivas H2 y 49 directivas `template` antes y después; 0 bullets abiertos; `find-closed-unmirrored` en verde.
+  - Modelo re-sellado; las tres auditorías en verde; render de 54 diapositivas sin errores de consola.
+  - Chequeo sobre el texto renderizado: las cuatro líneas retiradas aparecen 0 veces en el deck. La negrita se verificó por captura.
+- Pending open questions: sin cambios respecto de la ronda anterior.

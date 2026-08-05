@@ -605,10 +605,6 @@ El trabajo es en equipo, con registro de las pruebas y de las decisiones.
 
 Cada dos clases hay un entregable práctico.
 
-La nota final combina los entregables con el proyecto final.
-
-Las reglas y la ponderación se publican antes de la primera entrega.
-
 Esperamos presencia y participación activa.
 
 ### Sources
@@ -628,6 +624,10 @@ Referencia PPTX: diapositiva 13.
 
 - [closed] 2026-08-05 — "Existe un estilo que son bullets, numerados. Buscar este estilo."
   Resolution: La diapositiva pasó a la lista numerada plana. Las cuatro tarjetas con etiqueta se abrieron en siete líneas cortas y el ordinal lo dibuja el estilo.
+- [closed] 2026-08-05 — "Borra "La nota final combina los entregables con el proyecto final.""
+  Resolution: Línea retirada de la diapositiva 13 y archivada en Cut material. El desglose de la nota vive en la diapositiva Evaluación (40% / 60%).
+- [closed] 2026-08-05 — "Borra "Las reglas y la ponderación se publican antes de la primera entrega.""
+  Resolution: Línea retirada de la diapositiva 13 y archivada en Cut material. Duplicaba lo que ya cubre la diapositiva Evaluación.
 ---
 
 ## 14. Entregables de clase
@@ -691,15 +691,11 @@ El equipo debe ser el mismo que realizó los trabajos prácticos.
 
 La consigna completa se presenta a mitad de cuatrimestre.
 
-La cátedra orienta el alcance, la evidencia y la forma de evaluar el resultado.
-
 Se entrega un video breve de demostración que explique el problema, la solución y sus límites.
 
 Se entrega el código desplegado o ejecutable, con instrucciones de reproducción.
 
 Se entrega la documentación del diseño, los datos, la estrategia de evaluación, los riesgos y las decisiones de seguridad.
-
-La evaluación considera el resultado y la capacidad de justificarlo con evidencia técnica.
 
 ### Sources
 
@@ -719,6 +715,10 @@ Referencia PPTX: diapositiva 15.
   Resolution: La composición del equipo ahora dice cuatro personas, dos de Ingeniería en Sistemas y dos de Ciencia de Datos. Misma redacción que la diapositiva 14.
 - [closed] 2026-08-05 — "Existe un estilo que son bullets, numerados. Buscar este estilo."
   Resolution: La diapositiva pasó a la lista numerada de una sola columna. Los tres bloques de tarjetas se abrieron en ocho pasos planos, sin perder ninguna línea.
+- [closed] 2026-08-05 — "Borra "La cátedra orienta el alcance, la evidencia y la forma de evaluar el resultado.""
+  Resolution: Línea retirada de la diapositiva 15 y archivada en Cut material.
+- [closed] 2026-08-05 — "Borra "La evaluación considera el resultado y la capacidad de justificarlo con evidencia técnica.""
+  Resolution: Línea retirada de la diapositiva 15 y archivada en Cut material.
 
 ---
 
@@ -866,7 +866,7 @@ Un sistema de IA no lleva escrita una regla por cada situación. Aprende patrone
 
 Un poco más formal
 
-La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos.
+La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar **sus posibilidades de éxito en un objetivo dado**. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos.
 
 Fuente: Russell & Norvig, "Artificial Intelligence: A Modern Approach"
 
@@ -893,6 +893,8 @@ Enlace Recomendado: Sitio oficial del libro "Artificial Intelligence: A Modern A
   Resolution: La diapositiva pasó de single-point a concept-columns: Intuición y Un poco más formal quedan como dos columnas paralelas, con la atribución a Russell & Norvig como fuente al pie y el cierre sobre estadística y álgebra lineal como remate.
 - [closed] 2026-08-05 — "De la teoría a la intuición es realmente un lead title"
   Resolution: 'De la teoría a la intuición' queda como lead de la diapositiva, arriba de las dos columnas.
+- [closed] 2026-08-05 — "Marcar en negrita "sus posibilidades de éxito en un objetivo dado""
+  Resolution: La frase quedó en negrita en la columna 'Un poco más formal'. Se dejó sin tocar en las notas del orador, donde la cita va corrida.
 
 
 ---
@@ -2508,4 +2510,14 @@ La diapositiva de conclusiones se conserva como 5.1 porque el PPTX original cont
 
 # Cut material
 
-Ninguno. El contenido del PPTX de referencia permanece preservado en el corpus y en este borrador 1:1.
+Retirado de la diapositiva "Cómo vamos a trabajar" el 2026-08-05, a pedido del presentador. Las dos líneas duplicaban lo que ya dice la diapositiva "Evaluación", que desglosa la nota en 40% de entregables y 60% de trabajo final:
+
+- "La nota final combina los entregables con el proyecto final."
+- "Las reglas y la ponderación se publican antes de la primera entrega."
+
+Retirado de la diapositiva "Trabajo final" el 2026-08-05, a pedido del presentador:
+
+- "La cátedra orienta el alcance, la evidencia y la forma de evaluar el resultado."
+- "La evaluación considera el resultado y la capacidad de justificarlo con evidencia técnica."
+
+Fuera de eso, el contenido del PPTX de referencia permanece preservado en el corpus y en este borrador 1:1.

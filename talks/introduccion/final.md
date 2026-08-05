@@ -545,10 +545,6 @@ El trabajo es en equipo, con registro de las pruebas y de las decisiones.
 
 Cada dos clases hay un entregable práctico.
 
-La nota final combina los entregables con el proyecto final.
-
-Las reglas y la ponderación se publican antes de la primera entrega.
-
 Esperamos presencia y participación activa.
 
 ### Sources
@@ -617,15 +613,11 @@ El equipo debe ser el mismo que realizó los trabajos prácticos.
 
 La consigna completa se presenta a mitad de cuatrimestre.
 
-La cátedra orienta el alcance, la evidencia y la forma de evaluar el resultado.
-
 Se entrega un video breve de demostración que explique el problema, la solución y sus límites.
 
 Se entrega el código desplegado o ejecutable, con instrucciones de reproducción.
 
 Se entrega la documentación del diseño, los datos, la estrategia de evaluación, los riesgos y las decisiones de seguridad.
-
-La evaluación considera el resultado y la capacidad de justificarlo con evidencia técnica.
 
 ### Sources
 
@@ -765,7 +757,7 @@ Un sistema de IA no lleva escrita una regla por cada situación. Aprende patrone
 
 Un poco más formal
 
-La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos.
+La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar **sus posibilidades de éxito en un objetivo dado**. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos.
 
 Fuente: Russell & Norvig, "Artificial Intelligence: A Modern Approach"
 
@@ -2300,4 +2292,14 @@ La diapositiva de conclusiones se conserva como 5.1 porque el PPTX original cont
 
 # Cut material
 
-Ninguno. El contenido del PPTX de referencia permanece preservado en el corpus y en este borrador 1:1.
+Retirado de la diapositiva "Cómo vamos a trabajar" el 2026-08-05, a pedido del presentador. Las dos líneas duplicaban lo que ya dice la diapositiva "Evaluación", que desglosa la nota en 40% de entregables y 60% de trabajo final:
+
+- "La nota final combina los entregables con el proyecto final."
+- "Las reglas y la ponderación se publican antes de la primera entrega."
+
+Retirado de la diapositiva "Trabajo final" el 2026-08-05, a pedido del presentador:
+
+- "La cátedra orienta el alcance, la evidencia y la forma de evaluar el resultado."
+- "La evaluación considera el resultado y la capacidad de justificarlo con evidencia técnica."
+
+Fuera de eso, el contenido del PPTX de referencia permanece preservado en el corpus y en este borrador 1:1.

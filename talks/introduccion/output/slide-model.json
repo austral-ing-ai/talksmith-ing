@@ -333,12 +333,6 @@
           "body": "Cada dos clases hay un entregable práctico."
         },
         {
-          "body": "La nota final combina los entregables con el proyecto final."
-        },
-        {
-          "body": "Las reglas y la ponderación se publican antes de la primera entrega."
-        },
-        {
           "body": "Esperamos presencia y participación activa."
         }
       ]
@@ -389,9 +383,6 @@
           "body": "La consigna completa se presenta a mitad de cuatrimestre."
         },
         {
-          "body": "La cátedra orienta el alcance, la evidencia y la forma de evaluar el resultado."
-        },
-        {
           "body": "Se entrega un video breve de demostración que explique el problema, la solución y sus límites."
         },
         {
@@ -399,9 +390,6 @@
         },
         {
           "body": "Se entrega la documentación del diseño, los datos, la estrategia de evaluación, los riesgos y las decisiones de seguridad."
-        },
-        {
-          "body": "La evaluación considera el resultado y la capacidad de justificarlo con evidencia técnica."
         }
       ]
     },
@@ -480,7 +468,7 @@
         },
         {
           "label": "Un poco más formal",
-          "body": "La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos."
+          "body": "La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar **sus posibilidades de éxito en un objetivo dado**. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos."
         }
       ],
       "highlights": [
@@ -1502,7 +1490,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "76116b93f0700ea9d1e2fe54a6748d18385adde7a3515d9888456f387ff14968",
-    "bytes": 85816
+    "sha256": "f97848e84af908ced53134d3c33659da4e1f87ac75ec93aa4c0aaeb3a2c4ad79",
+    "bytes": 86157
   }
 }

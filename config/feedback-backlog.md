@@ -195,3 +195,33 @@
   feedback: "Agregar un slide con 4 que va ser conjunto de preguntas en vivo: https://app.sli.do/event/s7Ccr6C4awbUzRW1RpH19c"
   resolution: Se agregó la diapositiva 5 al cierre de la sección Bienvenidos, con las cuatro preguntas como lista numerada y el enlace al evento. Las dos primeras reproducen las que ya abren la diapositiva 2; las otras dos son propuesta editorial y hay que confirmarlas contra lo que esté cargado en Slido.
   tags: [new-slide, live-poll, external-source]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "13. Cómo vamos a trabajar"
+  feedback: "Borra "Las reglas y la ponderación se publican antes de la primera entrega.""
+  resolution: Línea retirada de la diapositiva 13 y archivada en Cut material. Duplicaba lo que ya cubre la diapositiva Evaluación.
+  tags: [remove-redundancy]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "13. Cómo vamos a trabajar"
+  feedback: "Borra "La nota final combina los entregables con el proyecto final.""
+  resolution: Línea retirada de la diapositiva 13 y archivada en Cut material. El desglose de la nota vive en la diapositiva Evaluación (40% / 60%).
+  tags: [remove-redundancy]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "15. Trabajo final"
+  feedback: "Borra "La evaluación considera el resultado y la capacidad de justificarlo con evidencia técnica.""
+  resolution: Línea retirada de la diapositiva 15 y archivada en Cut material.
+  tags: [remove-redundancy]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "15. Trabajo final"
+  feedback: "Borra "La cátedra orienta el alcance, la evidencia y la forma de evaluar el resultado.""
+  resolution: Línea retirada de la diapositiva 15 y archivada en Cut material.
+  tags: [remove-redundancy]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "2. ¿Qué es la Inteligencia Artificial?"
+  feedback: "Marcar en negrita "sus posibilidades de éxito en un objetivo dado""
+  resolution: La frase quedó en negrita en la columna 'Un poco más formal'. Se dejó sin tocar en las notas del orador, donde la cita va corrida.
+  tags: [emphasis]
