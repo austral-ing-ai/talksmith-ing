@@ -389,3 +389,24 @@ La primera presentacion va a ser introducion, normas de trabajo, etc.
   - Modelo re-sellado; las tres auditorías en verde; render de 54 diapositivas sin errores de consola.
   - Chequeo sobre el texto renderizado: las cuatro líneas retiradas aparecen 0 veces en el deck. La negrita se verificó por captura.
 - Pending open questions: sin cambios respecto de la ronda anterior.
+
+
+## 2026-08-05 — Step 5 (Review) — reconstrucción de la Taxonomía de Problemas
+- Status: complete
+- Asks log:
+  - 2026-08-05 — "Revisa que esta inconsistente que Predicción es el unico que tiene slide seperador. Hacelo para todos."
+  - 2026-08-05 — "Revisar si '¿Qué tipos de problemas resuelve la IA?' lo copiaste en forma erroneal del pptx." → La diapositiva de resumen estaba **bien copiada**; el problema era el resto de la sección.
+  - 2026-08-05 — El presentador eligió la opción 1: restaurar la sección completa.
+- What was decided:
+  - **Diagnóstico.** El PPTX dedica una diapositiva por familia (24 a 30). El borrador había comprimido seis de las siete en una sola cada una. La única que conservó la estructura del PPTX fue Predicción, partida en separadora + detalle, y de ahí venía la inconsistencia que marcó el presentador. La compresión había perdido los hitos con sus fechas y cifras, las sub-descripciones de cada problema típico, las listas de herramientas y las arquitecturas.
+  - **Reconstrucción.** La sección pasó de 9 a 15 diapositivas: la de resumen (intacta, verificada contra la diapositiva 23) más siete pares de separadora `statement` y detalle `concept-breakdown`. Las de detalle se renumeraron 2 a 8 y se retitularon "Ejemplos de problemas de <familia>", siguiendo el patrón que ya tenía Predicción.
+  - **Hitos restaurados con sus cifras:** AlexNet 2012 (error 10% menor que el segundo), ResNet 2015 (3,57% contra 5% humano), Word2Vec 2013 (Rey − Hombre + Mujer ≈ Reina), AlphaGo 2016 4-1 y AlphaZero 2017 en menos de 24 horas, DeepMind 2016 (40% menos de consumo en los data centers de Google), Deep Blue 1997 sin aprendizaje automático, ChatGPT noviembre de 2022.
+  - **Adaptación a Ingeniería de Software** en los ejemplos de biomedicina y agro del PPTX (cultivos, enfermedades, cosecha, moléculas). Los hitos históricos quedaron intactos por ser hechos.
+  - Dos diapositivas pasaron de `format: editorial` a `format: grid` porque el render avisó que los cuerpos no entraban: "Ejemplos de problemas de percepción" (164 caracteres contra ~100 de presupuesto) y "Ejemplos de problemas de búsqueda y planificación" (109). Con tarjetas entran completas y no hubo que recortar texto.
+- Key inputs: texto verbatim de las diapositivas 23 a 30 del PPTX de referencia.
+- Files created/modified: `draft.md`; `final.md`; `config/feedback-backlog.md`; `output/slide-model.json`; `output/html/index.html`.
+- Validation: 55 diapositivas H2 y 55 directivas `template` en el markdown; el deck sale con 60 más portada; 54 paneles de notas; las tres auditorías en verde; cero avisos del render tras el cambio a `grid`; cero errores de consola. Captura de un par separadora + detalle revisada a ojo.
+- Pending open questions:
+  - El hito de Predicción quedó con la cifra del PPTX ("error un 10% menor que el segundo lugar"). El de la Breve Historia (Parte 1) usa 15,3% contra 26,2% de error top-5, que es la formulación precisa. Conviene unificar.
+  - La sección ahora tiene 15 diapositivas de las 60 del deck. Vale revisar si entra en los 90 minutos o si parte de ella pasa a material de consulta.
+  - Las de siempre: la cifra del cuello blanco en la diapositiva del riesgo macroeconómico; "Codificar a entrenar" truncado; timeline Parte 1 ajustado contra el borde; etiqueta y cuerpo pegados en Move 37.

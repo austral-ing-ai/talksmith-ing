@@ -237,3 +237,15 @@
   feedback: "Indexa: https://medium.com/data-science-collective/mythos-found-bugs-that-50-million-security-tests-missed-nobody-asked-it-to-92c204d6e738 y agrega el bug de BSD y el impacto"
   resolution: Se indexaron tres fuentes (el artículo de Medium, el hilo del foro de FreeBSD y la nota de Engadget) y se agregó el hito 2026 al timeline: el bug de NFS de 17 años en FreeBSD con acceso root sin autenticar, más las cifras del primer mes de Glasswing. El artículo de Medium no contiene el caso de FreeBSD; sale del hilo del foro.
   tags: [content-addition, timeline, external-source]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "1. ¿Qué tipos de problemas resuelve la IA?"
+  feedback: "Revisar si "¿Qué tipos de problemas resuelve la IA?" lo copiaste en forma erroneal del pptx."
+  resolution: La diapositiva de resumen está bien copiada: las siete familias, sus descripciones y la línea del auto autónomo coinciden palabra por palabra con la diapositiva 23 del PPTX. Lo que estaba mal era el resto de la sección, que había comprimido seis diapositivas del PPTX en una cada una y perdido los hitos con sus fechas y cifras.
+  tags: [content-fidelity]
+- talk: introduccion
+  date: 2026-08-05
+  location: Slide "1. ¿Qué tipos de problemas resuelve la IA?"
+  feedback: "Revisa que esta inconsistente que Predicción es el unico que tiene slide seperador. Hacelo para todos."
+  resolution: La sección se reconstruyó con la estructura del PPTX: siete pares de separadora más diapositiva de detalle, de 9 a 15 diapositivas. Se restauraron los seis hitos que faltaban o estaban vagos (ResNet 2015 con 3,57%, Word2Vec 2013, AlphaGo 2016 y AlphaZero 2017, DeepMind 2016 con el 40%, Deep Blue 1997, ChatGPT 2022), más las herramientas y arquitecturas de cada familia. Los ejemplos de biomedicina y agro se tradujeron a software; los hitos históricos quedaron intactos.
+  tags: [template-selection, content-fidelity, new-slide]

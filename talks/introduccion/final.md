@@ -1253,7 +1253,7 @@ Herramientas: Scikit-learn · XGBoost · LightGBM · TensorFlow · PyTorch · Au
 
 Métricas: Accuracy · F1-Score · AUC-ROC · MAE · RMSE · R²
 
-Hito de referencia: AlexNet mostró en 2012 que una red profunda entrenada a escala podía mejorar de forma sustancial la clasificación de imágenes.
+Hito: en 2012, AlexNet (Krizhevsky et al.) ganó ImageNet con un error un 10% menor que el segundo lugar, usando predicción sobre imágenes. Marcó el inicio de la era del deep learning.
 
 ### Sources
 
@@ -1265,27 +1265,64 @@ Referencia PPTX: diapositiva 24.
 
 [Sin notas en el PPTX de referencia.]
 
+Contexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en GPU. La distancia con el segundo puesto abrió la década del deep learning.
+
 ---
 
-## 3. Percepción
+## Percepción
 
-<!-- template: concept-breakdown -->
+<!-- template: statement -->
 
 ### Content
 
-Extraer estructura significativa de señales sensoriales y documentos.
+Extraer estructura significativa de señales sensoriales.
 
-Problemas típicos
+Los sistemas de percepción convierten datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos y conceptos interpretables. Sostienen la visión por computadora y el procesamiento del habla.
 
-Clasificación de imágenes · detección de objetos · OCR · reconocimiento de voz · análisis de video.
+### Sources
 
-Aplicaciones en software
+- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 25; adaptación separada)
 
-Procesamiento de facturas y formularios · accesibilidad · moderación de contenido · análisis de capturas de interfaz · extracción de información de documentos.
+### Speaker notes
 
-Herramientas: OpenCV · YOLO · PyTorch · TensorFlow · Whisper · modelos multimodales.
+Encuadrar Percepción antes de los ejemplos. Acá el sistema lee señales crudas y las traduce a entidades sobre las que después se decide.
 
-Hito de referencia: los modelos de visión modernos superaron benchmarks cerrados y habilitaron productos basados en imágenes, documentos y video.
+---
+
+## 3. Ejemplos de problemas de percepción
+
+<!-- template: concept-breakdown -->
+<!-- format: grid -->
+
+### Content
+
+Clasificación de imágenes
+
+Qué hay en esta imagen: una captura de pantalla, una foto, un documento escaneado.
+
+Detección de objetos
+
+Dónde están los elementos y qué son: controles de interfaz, defectos, matrículas.
+
+Segmentación semántica
+
+Etiquetar cada píxel según su clase.
+
+Reconocimiento de voz
+
+Audio a texto (ASR) para transcripción, comandos y subtitulado.
+
+Análisis de video
+
+Detección de eventos y seguimiento de objetos a lo largo de los frames.
+
+Aplicaciones en software: procesamiento de facturas y formularios · OCR · accesibilidad · moderación de contenido · análisis de capturas de interfaz · extracción de información de documentos
+
+Herramientas: OpenCV · YOLO v8/v11 · PyTorch + torchvision · TensorFlow · Whisper (OpenAI) · Hugging Face
+
+Arquitecturas: CNN · Vision Transformer (ViT) · U-Net · Wav2Vec
+
+Hito: en 2015, ResNet (Microsoft) superó la precisión humana en reconocimiento de imágenes con un error del 3.57% en ImageNet, por debajo del 5% humano.
 
 ### Sources
 
@@ -1297,36 +1334,58 @@ Referencia PPTX: diapositiva 25.
 
 [Sin notas en el PPTX de referencia.]
 
+Contexto del hito: ResNet introdujo las conexiones residuales, que permitieron entrenar redes mucho más profundas. El 3.57% de error quedó por debajo del 5% que se atribuye a un anotador humano en la misma tarea.
+
 ---
 
-## 4. Representación
+## Representación
+
+<!-- template: statement -->
+
+### Content
+
+Aprender estructuras internas que capturan relaciones entre datos.
+
+### Sources
+
+- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 26; adaptación separada)
+
+### Speaker notes
+
+Encuadrar Representación como la familia que produce embeddings y espacios latentes. Es la pieza que después usan la búsqueda semántica, la recomendación y buena parte de los LLMs.
+
+---
+
+## 4. Ejemplos de problemas de representación
 
 <!-- template: concept-breakdown -->
 <!-- format: editorial -->
 
 ### Content
 
-Aprender estructuras internas que capturan relaciones entre datos.
-
 Embeddings de texto
 
-Palabras, fragmentos de código, documentos y tickets se convierten en vectores comparables.
+Palabras, frases, fragmentos de código, documentos y tickets convertidos en vectores de significado.
 
 Búsqueda semántica
 
-Los equipos recuperan documentación y decisiones pasadas por significado, no solo por coincidencia exacta de palabras.
+Recuperar documentación y decisiones pasadas por significado, aunque las palabras no coincidan.
 
 Recomendación
 
-Un sistema propone librerías, componentes, ejemplos, expertos o documentación relevante.
+Usuarios, productos, librerías, componentes y expertos ubicados en el mismo espacio vectorial.
 
 Detección de anomalías
 
-El modelo señala patrones alejados del comportamiento habitual.
+Puntos alejados de la región normal del espacio.
 
-Herramientas: Scikit-learn · Sentence Transformers · FAISS · Pinecone · Qdrant.
+Clustering
 
-Hito de referencia: los embeddings permiten relacionar texto, código y documentación en un espacio común.
+Agrupar datos similares sin etiquetas previas.
+
+Herramientas: Word2Vec · GloVe · Sentence Transformers · Scikit-learn · FAISS (Meta) · Pinecone · Qdrant
+
+Hito: en 2013, Word2Vec (Google) mostró que los embeddings capturan relaciones semánticas: Rey − Hombre + Mujer ≈ Reina. Cambió el procesamiento del lenguaje natural.
 
 ### Sources
 
@@ -1338,42 +1397,62 @@ Referencia PPTX: diapositiva 26.
 
 [Sin notas en el PPTX de referencia.]
 
+Contexto del hito: la aritmética vectorial de Word2Vec mostró que la geometría del espacio codifica relaciones de género, número y categoría sin que nadie las declare. De ahí bajan las bases de datos vectoriales que hoy sostienen RAG.
+
 ---
 
-## 5. Decisión secuencial
+## Decisión Secuencial
+
+<!-- template: statement -->
+
+### Content
+
+Maximizar recompensa acumulada a través de acciones en el tiempo.
+
+Formalizado como Reinforcement Learning (RL): un agente interactúa con un entorno, toma acciones y recibe recompensas. Aprende por ensayo y error qué secuencia de decisiones maximiza el resultado a largo plazo.
+
+### Sources
+
+- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 27; adaptación separada)
+
+### Speaker notes
+
+Encuadrar Decisión Secuencial marcando la diferencia con Predicción. Acá no hay una etiqueta correcta por ejemplo, sino una señal de recompensa que llega tarde y evalúa una secuencia entera.
+
+---
+
+## 5. Ejemplos de problemas de decisión secuencial
 
 <!-- template: concept-breakdown -->
 <!-- format: editorial -->
 
 ### Content
 
-Maximizar una recompensa acumulada a través de acciones en el tiempo.
-
-Formalizado como Reinforcement Learning: un agente interactúa con un entorno, toma acciones, observa resultados y ajusta su política.
-
 Juegos
 
-Ajedrez · Atari · StarCraft · Go.
+Go · ajedrez · Atari · StarCraft
 
 Robótica
 
-Control de brazos · navegación · manipulación.
-
-Optimización de redes
-
-Asignación de recursos · balanceo de carga · ajuste de capacidad.
+Control de movimiento y manipulación de objetos.
 
 Trading algorítmico
 
-Decisiones bajo incertidumbre y restricciones.
+Estrategias de inversión adaptativas bajo incertidumbre y restricciones.
+
+Optimización de redes
+
+Tráfico, data centers, balanceo de carga y ajuste de capacidad.
 
 RLHF
 
-Alineación de modelos mediante preferencias humanas.
+Alinear LLMs con preferencias humanas.
 
-Herramientas: OpenAI Gym · Stable Baselines3 · Ray RLlib · MuJoCo · RLHF tooling.
+Herramientas: OpenAI Gym · Stable Baselines3 · Ray RLlib · MuJoCo · TRL (Hugging Face)
 
-Riesgo central: una recompensa mal definida puede inducir comportamientos útiles para la métrica y dañinos para el objetivo real.
+Riesgo central: una recompensa mal definida induce comportamientos útiles para la métrica y dañinos para el objetivo real.
+
+Hito: en 2016, AlphaGo (DeepMind) venció a Lee Sedol 4-1 en Go, un juego con más combinaciones que átomos en el universo. En 2017, AlphaZero aprendió ajedrez, Go y shogi desde cero en menos de 24 horas.
 
 ### Sources
 
@@ -1385,36 +1464,64 @@ Referencia PPTX: diapositiva 27.
 
 [Sin notas en el PPTX de referencia.]
 
+Contexto del hito: AlphaGo combinó redes de política y valor con búsqueda Monte Carlo. AlphaZero eliminó las partidas humanas del entrenamiento y aprendió solo por autojuego. RLHF es la aplicación de esta misma familia sobre modelos de lenguaje.
+
 ---
 
-## 6. Búsqueda y planificación
+## Búsqueda / Planificación
 
-<!-- template: concept-breakdown -->
-<!-- format: editorial -->
+<!-- template: statement -->
 
 ### Content
 
 Encontrar la mejor secuencia de acciones en un espacio de estados.
 
+### Sources
+
+- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 28; adaptación separada)
+
+### Speaker notes
+
+Encuadrar Búsqueda y Planificación como la familia con modelo del entorno conocido. Conviene anticipar la comparación con RL, que aparece en la diapositiva siguiente.
+
+---
+
+## 6. Ejemplos de problemas de búsqueda y planificación
+
+<!-- template: concept-breakdown -->
+<!-- format: grid -->
+
+### Content
+
 Logística
 
-Rutas óptimas, planificación de capacidad y preparación de despliegues.
+Ruta óptima para flotas de reparto (VRP).
 
-Manufactura y operación
+Manufactura
 
-Secuenciación de tareas, asignación de recursos y mantenimiento.
+Secuenciación de tareas en producción.
+
+Planificación
+
+Asignación de recursos con restricciones.
 
 Planificación de software
 
 Resolución de dependencias · orden de pruebas · orquestación de runbooks · asignación de recursos en la nube.
 
-Robótica y juegos de estrategia
+Robótica
 
-Trayectorias, espacios físicos y decisiones de varios pasos.
+Trayectorias en espacios físicos.
 
-Herramientas: Google OR-Tools · A* · Dijkstra · PDDL · Fast Downward · OptaPlanner.
+Juegos de estrategia
 
-Diferencia clave: el razonamiento genera alternativas; la planificación verifica precondiciones y organiza acciones factibles.
+MCTS en ajedrez y Go.
+
+Herramientas: Google OR-Tools · A* / Dijkstra · MCTS · PDDL / Fast Downward · OptaPlanner
+
+Diferencia clave con RL: acá el modelo del entorno es conocido. En RL, el agente lo descubre por experiencia.
+
+Hito: en 2016, DeepMind aplicó planificación y RL para reducir el consumo energético de los data centers de Google en un 40%, con un ahorro de cientos de millones de dólares anuales.
 
 ### Sources
 
@@ -1426,40 +1533,62 @@ Referencia PPTX: diapositiva 28.
 
 [Sin notas en el PPTX de referencia.]
 
+Contexto del hito: el sistema de DeepMind ajustaba refrigeración a partir de miles de sensores. El 40% corresponde a la energía de enfriamiento, no al consumo total del data center.
+
 ---
 
-## 7. Razonamiento y simbólico
+## Razonamiento Simbólico
+
+<!-- template: statement -->
+
+### Content
+
+Manipular símbolos y reglas explícitas para derivar conclusiones lógicas.
+
+El razonamiento simbólico opera sobre representaciones explícitas del conocimiento: reglas IF–THEN, ontologías y lógica formal. Resulta interpretable, auditable y determinista. Los sistemas expertos son su aplicación práctica.
+
+### Sources
+
+- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 29; adaptación separada)
+
+### Speaker notes
+
+Encuadrar Razonamiento Simbólico como la familia anterior al aprendizaje estadístico y todavía vigente donde hace falta trazabilidad: crédito, seguros, cumplimiento normativo, verificación de código.
+
+---
+
+## 7. Ejemplos de problemas de razonamiento simbólico
 
 <!-- template: concept-breakdown -->
 <!-- format: editorial -->
 
 ### Content
 
-Manipular símbolos y reglas explícitas para derivar conclusiones lógicas.
-
 Sistemas expertos
 
-Políticas, reglas de negocio y validaciones trazables.
+Diagnóstico de incidentes a partir de reglas y runbooks verificables.
 
-Validación formal
+Validación normativa
 
-Verificación de configuraciones, propiedades de código y restricciones de seguridad.
+Verificación automática de cumplimiento legal y regulatorio.
 
 Reglas de negocio
 
-Decisiones de crédito, seguros, facturación y cumplimiento.
+Decisiones de crédito, seguros, facturación y límites de uso.
 
-Diagnóstico basado en reglas técnicas
+Grafos de conocimiento
 
-Árboles de decisión, runbooks y clasificación de incidentes mediante condiciones verificables.
+Wikidata y knowledge graphs internos de servicios, equipos y dependencias.
 
-Demostración formal
+Verificación formal
 
-Propiedades de código, contratos y restricciones de arquitectura.
+Demostración de propiedades de código, contratos y restricciones de arquitectura.
 
-Herramientas: Prolog · Datalog · OWL · RDF/SPARQL · Graph Rules · Knowledge Graphs.
+Herramientas: Prolog · Drools · Datalog · OWL / RDF / SPARQL · Neo4j · LLMs combinados con knowledge graphs
 
-Hito de referencia: los LLMs pueden proponer pasos de razonamiento; un sistema simbólico permite verificarlos cuando el caso exige trazabilidad.
+Uso actual: un LLM propone pasos de razonamiento y un motor simbólico los verifica cuando el caso exige trazabilidad.
+
+Hito: en 1997, Deep Blue (IBM) venció a Garry Kasparov con búsqueda simbólica y evaluación de posiciones, sin aprendizaje automático. Fue la primera victoria de una máquina sobre el campeón mundial de ajedrez.
 
 ### Sources
 
@@ -1471,39 +1600,60 @@ Referencia PPTX: diapositiva 29.
 
 [Sin notas en el PPTX de referencia.]
 
+Contexto del hito: Deep Blue evaluaba unas 200 millones de posiciones por segundo con una función escrita por sus autores. Ninguna parte del sistema aprendía de los datos, lo que ilustra hasta dónde llega el enfoque simbólico puro.
+
 ---
 
-## 8. Generación
+## Generación
 
-<!-- template: concept-breakdown -->
+<!-- template: statement -->
 
 ### Content
 
 Modelar la distribución de los datos y producir nuevas muestras coherentes.
 
+### Sources
+
+- corpus/Clase-1-AI-for-BIO-Fundamento.pptx.md (diapositiva 30; adaptación separada)
+
+### Speaker notes
+
+Encuadrar Generación señalando lo que la separa de Predicción: la cantidad de salidas válidas no está acotada, así que la evaluación deja de apoyarse en accuracy.
+
+---
+
+## 8. Ejemplos de problemas de generación
+
+<!-- template: concept-breakdown -->
+<!-- format: editorial -->
+
+### Content
+
 Texto
 
-Respuestas · resúmenes · traducción · documentación · pruebas.
+Respuestas · resúmenes · traducción · código · documentación · pruebas.
 
 Imágenes
 
-Diseño de interfaz · prototipos · íconos · síntesis visual.
+Diseño de interfaz · prototipos · íconos · síntesis fotorrealista.
 
 Audio y música
 
-Voz · síntesis · composición · edición.
+Voz sintética y composición musical.
 
 Video
 
-Animación · escenas · demostraciones de producto.
+Animación y síntesis de escenas para demostraciones de producto.
 
-Moléculas y ciencia aplicada
+Datos sintéticos
 
-Diseño de componentes, estructuras y simulaciones; el ejemplo se preserva como antecedente de la presentación original.
+Casos de prueba, datasets de entrenamiento y escenarios de carga generados a medida.
 
-Herramientas: GPT-4 · Claude · Gemini · Stable Diffusion · VAE · GAN · modelos de difusión.
+Herramientas: GPT-4 · Claude · Gemini · Stable Diffusion · DALL·E · GitHub Copilot · Suno · AlphaFold
 
-Hito de referencia: ChatGPT mostró cómo un producto generativo puede alcanzar adopción masiva y transformar expectativas de interacción.
+Arquitecturas: Transformer · Diffusion Models · VAE · GAN, todas modelan P(X) o P(Y|X)
+
+Hito: en noviembre de 2022, ChatGPT alcanzó 100 millones de usuarios en 2 meses, el producto de mayor crecimiento de la historia. Marcó la entrada de la IA generativa en el uso masivo.
 
 ### Sources
 
@@ -1514,6 +1664,8 @@ Hito de referencia: ChatGPT mostró cómo un producto generativo puede alcanzar 
 Referencia PPTX: diapositiva 30.
 
 [Sin notas en el PPTX de referencia.]
+
+Contexto del hito: los 100 millones de usuarios en 2 meses se comparan con los 9 meses de TikTok y los 30 meses de Instagram. El PPTX original cierra esta familia con Moléculas y candidatos a fármacos; acá el ejemplo equivalente son los datos sintéticos, y AlphaFold queda en la lista de herramientas.
 
 ---
 

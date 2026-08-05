@@ -703,239 +703,350 @@
       "format": "editorial",
       "highlights": [
         {
-          "body": "Herramientas: Scikit-learn · XGBoost · LightGBM · TensorFlow · PyTorch · AutoML",
+          "body": "Scikit-learn · XGBoost · LightGBM · TensorFlow · PyTorch · AutoML",
+          "label": "Herramientas",
           "kind": "note"
         },
         {
-          "body": "Métricas: Accuracy · F1-Score · AUC-ROC · MAE · RMSE · R²",
+          "body": "Accuracy · F1-Score · AUC-ROC · MAE · RMSE · R²",
+          "label": "Métricas",
           "kind": "note"
         },
         {
-          "body": "Hito de referencia: AlexNet mostró en 2012 que una red profunda entrenada a escala podía mejorar de forma sustancial la clasificación de imágenes.",
-          "kind": "example"
+          "body": "En 2012, AlexNet (Krizhevsky et al.) ganó ImageNet con un error un 10% menor que el segundo lugar, usando predicción sobre imágenes. Marcó el inicio de la era del deep learning.",
+          "label": "Hito",
+          "kind": "takeaway",
+          "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 24.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 24.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en GPU. La distancia con el segundo puesto abrió la década del deep learning."
+    },
+    {
+      "template": "statement",
+      "section": "Taxinomia de Problemas",
+      "title": "Percepción",
+      "sub": "Extraer estructura significativa de señales sensoriales. Los sistemas de percepción convierten datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos y conceptos interpretables. Sostienen la visión por computadora y el procesamiento del habla.",
+      "notes": "Encuadrar Percepción antes de los ejemplos. Acá el sistema lee señales crudas y las traduce a entidades sobre las que después se decide."
     },
     {
       "template": "concept-breakdown",
       "section": "Taxinomia de Problemas",
-      "title": "Percepción",
-      "lead": "Extraer estructura significativa de señales sensoriales y documentos.",
+      "title": "Ejemplos de problemas de percepción",
       "cards": [
         {
-          "label": "Problemas típicos",
-          "body": "Clasificación de imágenes · detección de objetos · OCR · reconocimiento de voz · análisis de video."
+          "label": "Clasificación de imágenes",
+          "body": "Qué hay en esta imagen: una captura de pantalla, una foto, un documento escaneado."
+        },
+        {
+          "label": "Detección de objetos",
+          "body": "Dónde están los elementos y qué son: controles de interfaz, defectos, matrículas."
+        },
+        {
+          "label": "Segmentación semántica",
+          "body": "Etiquetar cada píxel según su clase."
+        },
+        {
+          "label": "Reconocimiento de voz",
+          "body": "Audio a texto (ASR) para transcripción, comandos y subtitulado."
+        },
+        {
+          "label": "Análisis de video",
+          "body": "Detección de eventos y seguimiento de objetos a lo largo de los frames."
         },
         {
           "label": "Aplicaciones en software",
-          "body": "Procesamiento de facturas y formularios · accesibilidad · moderación de contenido · análisis de capturas de interfaz · extracción de información de documentos."
+          "body": "Procesamiento de facturas y formularios · OCR · accesibilidad · moderación de contenido · análisis de capturas de interfaz · extracción de información de documentos"
         }
       ],
       "format": "grid",
       "highlights": [
         {
-          "body": "Herramientas: OpenCV · YOLO · PyTorch · TensorFlow · Whisper · modelos multimodales.",
+          "body": "OpenCV · YOLO v8/v11 · PyTorch + torchvision · TensorFlow · Whisper (OpenAI) · Hugging Face",
+          "label": "Herramientas",
           "kind": "note"
         },
         {
-          "body": "Hito de referencia: los modelos de visión modernos superaron benchmarks cerrados y habilitaron productos basados en imágenes, documentos y video.",
-          "kind": "example"
+          "body": "CNN · Vision Transformer (ViT) · U-Net · Wav2Vec",
+          "label": "Arquitecturas",
+          "kind": "note"
+        },
+        {
+          "body": "En 2015, ResNet (Microsoft) superó la precisión humana en reconocimiento de imágenes con un error del 3.57% en ImageNet, por debajo del 5% humano.",
+          "label": "Hito",
+          "kind": "takeaway",
+          "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 25.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 25.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: ResNet introdujo las conexiones residuales, que permitieron entrenar redes mucho más profundas. El 3.57% de error quedó por debajo del 5% que se atribuye a un anotador humano en la misma tarea."
+    },
+    {
+      "template": "statement",
+      "section": "Taxinomia de Problemas",
+      "title": "Representación",
+      "sub": "Aprender estructuras internas que capturan relaciones entre datos.",
+      "notes": "Encuadrar Representación como la familia que produce embeddings y espacios latentes. Es la pieza que después usan la búsqueda semántica, la recomendación y buena parte de los LLMs."
     },
     {
       "template": "concept-breakdown",
       "section": "Taxinomia de Problemas",
-      "title": "Representación",
-      "lead": "Aprender estructuras internas que capturan relaciones entre datos.",
+      "title": "Ejemplos de problemas de representación",
       "cards": [
         {
           "label": "Embeddings de texto",
-          "body": "Palabras, fragmentos de código, documentos y tickets se convierten en vectores comparables."
+          "body": "Palabras, frases, fragmentos de código, documentos y tickets convertidos en vectores de significado."
         },
         {
           "label": "Búsqueda semántica",
-          "body": "Los equipos recuperan documentación y decisiones pasadas por significado, no solo por coincidencia exacta de palabras."
+          "body": "Recuperar documentación y decisiones pasadas por significado, aunque las palabras no coincidan."
         },
         {
           "label": "Recomendación",
-          "body": "Un sistema propone librerías, componentes, ejemplos, expertos o documentación relevante."
+          "body": "Usuarios, productos, librerías, componentes y expertos ubicados en el mismo espacio vectorial."
         },
         {
           "label": "Detección de anomalías",
-          "body": "El modelo señala patrones alejados del comportamiento habitual."
+          "body": "Puntos alejados de la región normal del espacio."
+        },
+        {
+          "label": "Clustering",
+          "body": "Agrupar datos similares sin etiquetas previas."
         }
       ],
       "format": "editorial",
       "highlights": [
         {
-          "body": "Herramientas: Scikit-learn · Sentence Transformers · FAISS · Pinecone · Qdrant.",
+          "body": "Word2Vec · GloVe · Sentence Transformers · Scikit-learn · FAISS (Meta) · Pinecone · Qdrant",
+          "label": "Herramientas",
           "kind": "note"
         },
         {
-          "body": "Hito de referencia: los embeddings permiten relacionar texto, código y documentación en un espacio común.",
-          "kind": "example"
+          "body": "En 2013, Word2Vec (Google) mostró que los embeddings capturan relaciones semánticas: Rey − Hombre + Mujer ≈ Reina. Cambió el procesamiento del lenguaje natural.",
+          "label": "Hito",
+          "kind": "takeaway",
+          "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 26.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 26.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: la aritmética vectorial de Word2Vec mostró que la geometría del espacio codifica relaciones de género, número y categoría sin que nadie las declare. De ahí bajan las bases de datos vectoriales que hoy sostienen RAG."
+    },
+    {
+      "template": "statement",
+      "section": "Taxinomia de Problemas",
+      "title": "Decisión Secuencial",
+      "sub": "Maximizar recompensa acumulada a través de acciones en el tiempo. Formalizado como Reinforcement Learning (RL): un agente interactúa con un entorno, toma acciones y recibe recompensas. Aprende por ensayo y error qué secuencia de decisiones maximiza el resultado a largo plazo.",
+      "notes": "Encuadrar Decisión Secuencial marcando la diferencia con Predicción. Acá no hay una etiqueta correcta por ejemplo, sino una señal de recompensa que llega tarde y evalúa una secuencia entera."
     },
     {
       "template": "concept-breakdown",
       "section": "Taxinomia de Problemas",
-      "title": "Decisión secuencial",
-      "lead": "Maximizar una recompensa acumulada a través de acciones en el tiempo. Formalizado como Reinforcement Learning: un agente interactúa con un entorno, toma acciones, observa resultados y ajusta su política.",
+      "title": "Ejemplos de problemas de decisión secuencial",
       "cards": [
         {
           "label": "Juegos",
-          "body": "Ajedrez · Atari · StarCraft · Go."
+          "body": "Go · ajedrez · Atari · StarCraft"
         },
         {
           "label": "Robótica",
-          "body": "Control de brazos · navegación · manipulación."
-        },
-        {
-          "label": "Optimización de redes",
-          "body": "Asignación de recursos · balanceo de carga · ajuste de capacidad."
+          "body": "Control de movimiento y manipulación de objetos."
         },
         {
           "label": "Trading algorítmico",
-          "body": "Decisiones bajo incertidumbre y restricciones."
+          "body": "Estrategias de inversión adaptativas bajo incertidumbre y restricciones."
+        },
+        {
+          "label": "Optimización de redes",
+          "body": "Tráfico, data centers, balanceo de carga y ajuste de capacidad."
         },
         {
           "label": "RLHF",
-          "body": "Alineación de modelos mediante preferencias humanas."
+          "body": "Alinear LLMs con preferencias humanas."
         }
       ],
       "format": "editorial",
       "highlights": [
         {
-          "body": "Herramientas: OpenAI Gym · Stable Baselines3 · Ray RLlib · MuJoCo · RLHF tooling.",
+          "body": "OpenAI Gym · Stable Baselines3 · Ray RLlib · MuJoCo · TRL (Hugging Face)",
+          "label": "Herramientas",
           "kind": "note"
         },
         {
-          "body": "Riesgo central: una recompensa mal definida puede inducir comportamientos útiles para la métrica y dañinos para el objetivo real.",
+          "body": "Una recompensa mal definida induce comportamientos útiles para la métrica y dañinos para el objetivo real.",
+          "label": "Riesgo central",
           "kind": "important"
+        },
+        {
+          "body": "En 2016, AlphaGo (DeepMind) venció a Lee Sedol 4-1 en Go, un juego con más combinaciones que átomos en el universo. En 2017, AlphaZero aprendió ajedrez, Go y shogi desde cero en menos de 24 horas.",
+          "label": "Hito",
+          "kind": "takeaway",
+          "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 27.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 27.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: AlphaGo combinó redes de política y valor con búsqueda Monte Carlo. AlphaZero eliminó las partidas humanas del entrenamiento y aprendió solo por autojuego. RLHF es la aplicación de esta misma familia sobre modelos de lenguaje."
+    },
+    {
+      "template": "statement",
+      "section": "Taxinomia de Problemas",
+      "title": "Búsqueda / Planificación",
+      "sub": "Encontrar la mejor secuencia de acciones en un espacio de estados.",
+      "notes": "Encuadrar Búsqueda y Planificación como la familia con modelo del entorno conocido. Conviene anticipar la comparación con RL, que aparece en la diapositiva siguiente."
     },
     {
       "template": "concept-breakdown",
       "section": "Taxinomia de Problemas",
-      "title": "Búsqueda y planificación",
-      "lead": "Encontrar la mejor secuencia de acciones en un espacio de estados.",
+      "title": "Ejemplos de problemas de búsqueda y planificación",
       "cards": [
         {
           "label": "Logística",
-          "body": "Rutas óptimas, planificación de capacidad y preparación de despliegues."
+          "body": "Ruta óptima para flotas de reparto (VRP)."
         },
         {
-          "label": "Manufactura y operación",
-          "body": "Secuenciación de tareas, asignación de recursos y mantenimiento."
+          "label": "Manufactura",
+          "body": "Secuenciación de tareas en producción."
+        },
+        {
+          "label": "Planificación",
+          "body": "Asignación de recursos con restricciones."
         },
         {
           "label": "Planificación de software",
           "body": "Resolución de dependencias · orden de pruebas · orquestación de runbooks · asignación de recursos en la nube."
         },
         {
-          "label": "Robótica y juegos de estrategia",
-          "body": "Trayectorias, espacios físicos y decisiones de varios pasos."
-        }
-      ],
-      "format": "editorial",
-      "highlights": [
-        {
-          "body": "Herramientas: Google OR-Tools · A* · Dijkstra · PDDL · Fast Downward · OptaPlanner.",
-          "kind": "note"
+          "label": "Robótica",
+          "body": "Trayectorias en espacios físicos."
         },
         {
-          "body": "Diferencia clave: el razonamiento genera alternativas; la planificación verifica precondiciones y organiza acciones factibles.",
-          "kind": "takeaway"
-        }
-      ],
-      "notes": "Referencia PPTX: diapositiva 28.\n\n[Sin notas en el PPTX de referencia.]"
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Taxinomia de Problemas",
-      "title": "Razonamiento y simbólico",
-      "lead": "Manipular símbolos y reglas explícitas para derivar conclusiones lógicas.",
-      "cards": [
-        {
-          "label": "Sistemas expertos",
-          "body": "Políticas, reglas de negocio y validaciones trazables."
-        },
-        {
-          "label": "Validación formal",
-          "body": "Verificación de configuraciones, propiedades de código y restricciones de seguridad."
-        },
-        {
-          "label": "Reglas de negocio",
-          "body": "Decisiones de crédito, seguros, facturación y cumplimiento."
-        },
-        {
-          "label": "Diagnóstico basado en reglas técnicas",
-          "body": "Árboles de decisión, runbooks y clasificación de incidentes mediante condiciones verificables."
-        },
-        {
-          "label": "Demostración formal",
-          "body": "Propiedades de código, contratos y restricciones de arquitectura."
-        }
-      ],
-      "format": "editorial",
-      "highlights": [
-        {
-          "body": "Herramientas: Prolog · Datalog · OWL · RDF/SPARQL · Graph Rules · Knowledge Graphs.",
-          "kind": "note"
-        },
-        {
-          "body": "Hito de referencia: los LLMs pueden proponer pasos de razonamiento; un sistema simbólico permite verificarlos cuando el caso exige trazabilidad.",
-          "kind": "takeaway"
-        }
-      ],
-      "notes": "Referencia PPTX: diapositiva 29.\n\n[Sin notas en el PPTX de referencia.]"
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Taxinomia de Problemas",
-      "title": "Generación",
-      "lead": "Modelar la distribución de los datos y producir nuevas muestras coherentes.",
-      "cards": [
-        {
-          "label": "Texto",
-          "body": "Respuestas · resúmenes · traducción · documentación · pruebas."
-        },
-        {
-          "label": "Imágenes",
-          "body": "Diseño de interfaz · prototipos · íconos · síntesis visual."
-        },
-        {
-          "label": "Audio y música",
-          "body": "Voz · síntesis · composición · edición."
-        },
-        {
-          "label": "Video",
-          "body": "Animación · escenas · demostraciones de producto."
-        },
-        {
-          "label": "Moléculas y ciencia aplicada",
-          "body": "Diseño de componentes, estructuras y simulaciones; el ejemplo se preserva como antecedente de la presentación original."
+          "label": "Juegos de estrategia",
+          "body": "MCTS en ajedrez y Go."
         }
       ],
       "format": "grid",
       "highlights": [
         {
-          "body": "Herramientas: GPT-4 · Claude · Gemini · Stable Diffusion · VAE · GAN · modelos de difusión.",
+          "body": "Google OR-Tools · A* / Dijkstra · MCTS · PDDL / Fast Downward · OptaPlanner",
+          "label": "Herramientas",
           "kind": "note"
         },
         {
-          "body": "Hito de referencia: ChatGPT mostró cómo un producto generativo puede alcanzar adopción masiva y transformar expectativas de interacción.",
-          "kind": "example"
+          "body": "Acá el modelo del entorno es conocido. En RL, el agente lo descubre por experiencia.",
+          "label": "Diferencia clave con RL",
+          "kind": "takeaway"
+        },
+        {
+          "body": "En 2016, DeepMind aplicó planificación y RL para reducir el consumo energético de los data centers de Google en un 40%, con un ahorro de cientos de millones de dólares anuales.",
+          "label": "Hito",
+          "kind": "takeaway",
+          "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 30.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 28.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: el sistema de DeepMind ajustaba refrigeración a partir de miles de sensores. El 40% corresponde a la energía de enfriamiento, no al consumo total del data center."
+    },
+    {
+      "template": "statement",
+      "section": "Taxinomia de Problemas",
+      "title": "Razonamiento Simbólico",
+      "sub": "Manipular símbolos y reglas explícitas para derivar conclusiones lógicas. El razonamiento simbólico opera sobre representaciones explícitas del conocimiento: reglas IF–THEN, ontologías y lógica formal. Resulta interpretable, auditable y determinista. Los sistemas expertos son su aplicación práctica.",
+      "notes": "Encuadrar Razonamiento Simbólico como la familia anterior al aprendizaje estadístico y todavía vigente donde hace falta trazabilidad: crédito, seguros, cumplimiento normativo, verificación de código."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Taxinomia de Problemas",
+      "title": "Ejemplos de problemas de razonamiento simbólico",
+      "cards": [
+        {
+          "label": "Sistemas expertos",
+          "body": "Diagnóstico de incidentes a partir de reglas y runbooks verificables."
+        },
+        {
+          "label": "Validación normativa",
+          "body": "Verificación automática de cumplimiento legal y regulatorio."
+        },
+        {
+          "label": "Reglas de negocio",
+          "body": "Decisiones de crédito, seguros, facturación y límites de uso."
+        },
+        {
+          "label": "Grafos de conocimiento",
+          "body": "Wikidata y knowledge graphs internos de servicios, equipos y dependencias."
+        },
+        {
+          "label": "Verificación formal",
+          "body": "Demostración de propiedades de código, contratos y restricciones de arquitectura."
+        }
+      ],
+      "format": "editorial",
+      "highlights": [
+        {
+          "body": "Prolog · Drools · Datalog · OWL / RDF / SPARQL · Neo4j · LLMs combinados con knowledge graphs",
+          "label": "Herramientas",
+          "kind": "note"
+        },
+        {
+          "body": "Un LLM propone pasos de razonamiento y un motor simbólico los verifica cuando el caso exige trazabilidad.",
+          "label": "Uso actual",
+          "kind": "takeaway"
+        },
+        {
+          "body": "En 1997, Deep Blue (IBM) venció a Garry Kasparov con búsqueda simbólica y evaluación de posiciones, sin aprendizaje automático. Fue la primera victoria de una máquina sobre el campeón mundial de ajedrez.",
+          "label": "Hito",
+          "kind": "takeaway",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Referencia PPTX: diapositiva 29.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: Deep Blue evaluaba unas 200 millones de posiciones por segundo con una función escrita por sus autores. Ninguna parte del sistema aprendía de los datos, lo que ilustra hasta dónde llega el enfoque simbólico puro."
+    },
+    {
+      "template": "statement",
+      "section": "Taxinomia de Problemas",
+      "title": "Generación",
+      "sub": "Modelar la distribución de los datos y producir nuevas muestras coherentes.",
+      "notes": "Encuadrar Generación señalando lo que la separa de Predicción: la cantidad de salidas válidas no está acotada, así que la evaluación deja de apoyarse en accuracy."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Taxinomia de Problemas",
+      "title": "Ejemplos de problemas de generación",
+      "cards": [
+        {
+          "label": "Texto",
+          "body": "Respuestas · resúmenes · traducción · código · documentación · pruebas."
+        },
+        {
+          "label": "Imágenes",
+          "body": "Diseño de interfaz · prototipos · íconos · síntesis fotorrealista."
+        },
+        {
+          "label": "Audio y música",
+          "body": "Voz sintética y composición musical."
+        },
+        {
+          "label": "Video",
+          "body": "Animación y síntesis de escenas para demostraciones de producto."
+        },
+        {
+          "label": "Datos sintéticos",
+          "body": "Casos de prueba, datasets de entrenamiento y escenarios de carga generados a medida."
+        }
+      ],
+      "format": "editorial",
+      "highlights": [
+        {
+          "body": "GPT-4 · Claude · Gemini · Stable Diffusion · DALL·E · GitHub Copilot · Suno · AlphaFold",
+          "label": "Herramientas",
+          "kind": "note"
+        },
+        {
+          "body": "Transformer · Diffusion Models · VAE · GAN, todas modelan P(X) o P(Y|X)",
+          "label": "Arquitecturas",
+          "kind": "note"
+        },
+        {
+          "body": "En noviembre de 2022, ChatGPT alcanzó 100 millones de usuarios en 2 meses, el producto de mayor crecimiento de la historia. Marcó la entrada de la IA generativa en el uso masivo.",
+          "label": "Hito",
+          "kind": "takeaway",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Referencia PPTX: diapositiva 30.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: los 100 millones de usuarios en 2 meses se comparan con los 9 meses de TikTok y los 30 meses de Instagram. El PPTX original cierra esta familia con Moléculas y candidatos a fármacos; acá el ejemplo equivalente son los datos sintéticos, y AlphaFold queda en la lista de herramientas."
     },
     {
       "template": "section-agenda",
@@ -1498,7 +1609,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "85fe293c3a479086050bde04c100fa38af273a84829870fcf1a5097d3f37dd3c",
-    "bytes": 91285
+    "sha256": "60ee84e6005501dc144ae7fc601b487ec453c0c9a1229421d308210a41e2cccc",
+    "bytes": 97107
   }
 }
