@@ -1,0 +1,6 @@
+/* estilos viejos, antes del redisenio. dejo por las dudas */
+body { font-family: Arial; background: #ffffff; }
+.container { width: 600px; margin: 0 auto; }
+h1 { color: #333333; text-align: center; }
+input { width: 300px; }
+.boton { background: blue; color: white; }

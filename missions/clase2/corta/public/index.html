@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corta — acortador interno</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <main class="tarjeta">
+    <img src="logo (1).png" alt="Corta" class="logo">
+    <h1>Corta</h1>
+    <p class="sub">El acortador de URLs interno</p>
+
+    <form id="form">
+      <input type="url" id="url" placeholder="https://una-url-muy-larga..." required>
+      <button type="submit">Acortar</button>
+    </form>
+
+    <div id="resultado" class="oculto">
+      <p>Tu link corto:</p>
+      <a id="link-corto" href="#" target="_blank"></a>
+      <button id="copiar" type="button">Copiar</button>
+    </div>
+
+    <p class="pie"><a href="stats.html">Ver estadísticas de un link</a></p>
+  </main>
+
+  <script>
+    const form = document.getElementById('form');
+    const resultado = document.getElementById('resultado');
+    const linkCorto = document.getElementById('link-corto');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const url = document.getElementById('url').value;
+      const res = await fetch('/api/links', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const data = await res.json();
+      const corta = window.location.origin + data.corta;
+      linkCorto.textContent = corta;
+      linkCorto.href = corta;
+      resultado.classList.remove('oculto');
+    });
+
+    document.getElementById('copiar').addEventListener('click', () => {
+      navigator.clipboard.writeText(linkCorto.textContent);
+    });
+  </script>
+</body>
+</html>

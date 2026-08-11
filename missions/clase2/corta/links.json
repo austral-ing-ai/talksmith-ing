@@ -1,0 +1,50 @@
+[
+  {
+    "codigo": "a3k",
+    "url": "https://www.austral.edu.ar/ingenieria/",
+    "clicks": 42,
+    "creado": "2026-03-02T14:11:09.000Z"
+  },
+  {
+    "codigo": "9fz",
+    "url": "https://docs.google.com/spreadsheets/d/1AbCdEfGh/edit",
+    "clicks": 17,
+    "creado": "2026-03-05T09:30:44.000Z"
+  },
+  {
+    "codigo": "qq1",
+    "url": "https://github.com/expressjs/express",
+    "clicks": 8,
+    "creado": "2026-03-11T18:02:31.000Z"
+  },
+  {
+    "codigo": "m2m",
+    "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "clicks": 156,
+    "creado": "2026-03-12T11:45:00.000Z"
+  },
+  {
+    "codigo": "x0p",
+    "url": "https://developer.mozilla.org/es/docs/Web/JavaScript",
+    "clicks": 23,
+    "creado": "2026-04-01T08:15:22.000Z"
+  },
+  {
+    "codigo": "7hh",
+    "url": "https://drive.google.com/drive/folders/fotos-after-office-marzo",
+    "clicks": 61,
+    "creado": "2026-04-03T16:40:10.000Z"
+  },
+  {
+    "codigo": "k8s",
+    "url": "https://kubernetes.io/es/docs/home/",
+    "clicks": 3,
+    "creado": "2026-04-18T10:05:55.000Z"
+  },
+  {
+    "codigo": "pz4",
+    "url": "https://es.wikipedia.org/wiki/Acortador_de_URL",
+    "clicks": 5,
+    "creado": "2026-05-06T13:27:38.000Z"
+  }
+]

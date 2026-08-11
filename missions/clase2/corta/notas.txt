@@ -1,0 +1,16 @@
+NOTAS (no borrar)
+=================
+
+- password del postgres viejo (el server de la oficina, YA NO EXISTE ese server):
+  postgres://corta:S3cr3taDeLaOficina2023@10.0.4.17:5432/corta
+
+- sacar moment del package.json, creo que ya no se usa. lodash tampoco me acuerdo para que era
+
+- TODO: la pagina de stats (public/stats.html) esta maquetada pero no consulta nada,
+  falta el endpoint. la idea era GET /api/links/:codigo/stats -> clicks, url, fecha
+
+- TODO: que pasa si dos urls reciben el mismo codigo?? revisar algun dia
+
+- idea a futuro: codigos personalizados tipo /mi-promo
+
+- deploy: ??? preguntar a sistemas
