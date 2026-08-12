@@ -44,3 +44,78 @@ este repositorio y aplican sin volver a pedirlas.
 - **Evidencia:** indicación explícita del presentador el 2026-08-05, sobre la diapositiva 30
   (Predicción).
 - **Fecha:** 2026-08-05
+
+---
+
+## L3 — Listas con ordinales usan la plantilla de lista numerada
+
+- **Regla:** cuando una lista lleva el número dentro del texto, o son tarjetas con un ordinal en la
+  etiqueta (el caso señalado: cards que arrancan con "46."), la diapositiva usa la plantilla de
+  **lista / secuencia numerada**: el ordinal lo dibuja el estilo, nunca el contenido. Al convertir,
+  se retiran los ordinales de las etiquetas y las tarjetas se abren en líneas planas sin perder
+  ninguna.
+- **Por qué:** un número escrito dentro de la tarjeta compite con el que dibuja el estilo y se lee
+  como dato, no como orden. La plantilla numerada da el conteo que vuelve una lista en un conjunto
+  que el presentador puede señalar, y deja el texto limpio.
+- **Dónde aplica:** todo el repositorio, cualquier lista de pasos, entregables, conclusiones o
+  contenidos.
+- **Evidencia:** recurrió ~10 veces en `talks/introduccion` (diapositivas 1, 13, 14, 15, 16,
+  Conclusiones) entre el 2026-08-04 y el 2026-08-05; el presentador lo pidió repetidamente como
+  "el estilo que numera".
+- **Fecha:** 2026-08-12
+
+---
+
+## L4 — Fidelidad a la fuente al adaptar desde un PPTX de referencia
+
+- **Regla:** al adaptar contenido desde un PPTX de referencia, se preservan **cifras, datos, fechas
+  y enlaces verbatim**. Antes de reescribir una diapositiva se verifica contra el original; los
+  hipervínculos perdidos en la adaptación se reponen desde los del PPTX. Los ejemplos se pueden
+  trasladar de dominio; los hechos históricos y las fuentes quedan intactos.
+- **Por qué:** la adaptación cambia el mundo del ejemplo, no la verdad de los datos. Una cifra
+  cambiada o un link perdido rompe la credibilidad de la clase y es difícil de detectar después.
+- **Dónde aplica:** toda Talk que se arme adaptando material de origen.
+- **Evidencia:** recurrió ~5 veces en `talks/introduccion` (cuello blanco 70→75%, Deep Blue,
+  taxonomía de problemas, links de McKinsey y Citrini repuestos, AlexNet) el 2026-08-05.
+- **Fecha:** 2026-08-12
+
+---
+
+## L5 — Sin subtítulo que duplique el título
+
+- **Regla:** una diapositiva no lleva un subtítulo que repita lo que ya dice el título. Cuando el
+  feedback renombra la diapositiva, se retira el subtítulo que quedó redundante.
+- **Por qué:** el subtítulo repetido gasta la línea más visible de la diapositiva sin agregar
+  información; el espacio es para lo que el título no dice.
+- **Dónde aplica:** todo el repositorio.
+- **Evidencia:** recurrió ~5 veces en `talks/introduccion` (LLMs/Foundation Models, IA Tradicional
+  vs. Foundation Models, Limitaciones, Modelos de propósito general, ¿Por qué relevantes?) entre el
+  2026-08-04 y el 2026-08-05.
+- **Fecha:** 2026-08-12
+
+---
+
+## L6 — No repetir líneas entre diapositivas
+
+- **Regla:** una línea que ya cubre otra diapositiva no se duplica: se retira de la diapositiva
+  secundaria y se archiva en `Cut material`, nunca se borra en silencio.
+- **Por qué:** el contenido repetido diluye ambas diapositivas y deja al presentador diciendo dos
+  veces lo mismo; el desglose vive en un solo lugar (ej. la ponderación de la nota vive en
+  Evaluación, no en Cómo vamos a trabajar).
+- **Dónde aplica:** todo el repositorio.
+- **Evidencia:** recurrió 4 veces en `talks/introduccion` (diapositivas 13 y 15) el 2026-08-05.
+- **Fecha:** 2026-08-12
+
+---
+
+## L7 — Referencias editoriales fuera del contenido visible
+
+- **Regla:** las menciones al material de origen o a decisiones de adaptación ("el PPTX original
+  presenta…", "esta versión traslada…") no van en el contenido visible de la diapositiva. Se
+  eliminan, o si aportan contexto para presentar, pasan a las notas del orador.
+- **Por qué:** la audiencia no ve el material de origen; una referencia editorial en la diapositiva
+  expone el andamiaje de producción en lugar del contenido.
+- **Dónde aplica:** todo el repositorio.
+- **Evidencia:** recurrió 3 veces en `talks/introduccion` (diapositivas 8, 9, 10) entre el
+  2026-08-03 y el 2026-08-04.
+- **Fecha:** 2026-08-12

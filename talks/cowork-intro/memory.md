@@ -1,6 +1,7 @@
 # memory.md — clase2
 
-**Current step:** 6 — Polish complete; en Step 7 (Render) awaiting_presenter (elegir estilo o saltear)
+**Current step:** 8 — Learnings (Render html-strict completo 2026-08-12)
+Render 2026-08-12: estilo `html-strict`. FILL manual de `output/slide-model.json` (32 slides = portada + 8 section-agenda + 24 de contenido; sellado con model_freshness). Preflights limpios: degenerate_enum ok, field_coverage ok, image_coverage ok (refs .png de final.md conservadas verbatim). Render OK: `output/html/index.html` (571 KB) + landing `index.html` en la raiz actualizada. Un warning menor de icono: `file_download` no resuelto en 7.2 -> fallback a `info` (no bloqueante). La directiva generate-image de la 1.1 sigue sin generar (aside atmosferica, sesion sin capacidad de imagenes); el resto de los diagramas se inlinearon.
 Polish 2026-08-12: 6 diagramas ASCII renderizados a SVG+PNG, todos clean a la primera pasada del critico (logs en images/.critique/). Ronda 5 de Review absorbida en el mismo paso: laminas nuevas 2.3 (Markdown, formato del ecosistema) y 2.4 (conocimiento en .md) por pedido del presentador; iterar paso a 2.5; 24 laminas, ~74 min. La directiva generate-image de la 1.1 quedo sin generar (sesion sin capacidad de generacion de imagenes); reintentar en una sesion con esa capacidad re-corriendo Polish. final.md limpio: refs a .png, sin campos de feedback.
 Ronda 3 (2026-08-12): nuevo extra de la mision, la Skill /collect-memory (mission.md + lamina 7.2).
 Ronda 4 (2026-08-12): bullets del presentador en el draft: dos frases slop cortadas de la 1.4 (y de Conclusions 1) y la 3.2 reescrita con las dos fuentes del CLAUDE.md (repo + instrucciones de la conversacion).
