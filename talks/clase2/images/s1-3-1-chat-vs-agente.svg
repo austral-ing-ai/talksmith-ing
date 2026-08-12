@@ -1,0 +1,42 @@
+<!-- talksmith-ascii-sha256: 43c3b08c89816592ea829e8ea4e9341a89db02210c3593f6e552edff1831c2fa -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 328" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Delegar una tarea completa</title>
+<desc>Contraste entre el modo autocomplete o chat, donde la persona hace cada paso, y el modo agente de código, donde se delega una tarea completa y la persona revisa el diff.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto">
+<path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="700" height="328" fill="#ffffff"/>
+
+<text x="22" y="34" font-size="15" font-weight="bold" fill="#6B6363">ANTES (autocomplete / chat)</text>
+<rect x="22" y="52" width="300" height="166" rx="6" fill="#F4F2F2" stroke="#C9C2C2" stroke-width="1.5"/>
+<rect x="42" y="75" width="6" height="6" fill="#9A9292"/>
+<text x="58" y="81" font-size="13">vos: escribís</text>
+<rect x="42" y="103" width="6" height="6" fill="#9A9292"/>
+<text x="58" y="109" font-size="13">IA: completa la línea</text>
+<rect x="42" y="131" width="6" height="6" fill="#9A9292"/>
+<text x="58" y="137" font-size="13">vos: pegás el error</text>
+<rect x="42" y="159" width="6" height="6" fill="#9A9292"/>
+<text x="58" y="165" font-size="13">IA: sugiere un fix</text>
+<rect x="42" y="187" width="6" height="6" fill="#9A9292"/>
+<text x="58" y="193" font-size="13">vos: lo aplicás</text>
+<text x="22" y="240" font-size="12" font-style="italic" fill="#6B6363">paso a paso, lo hacés vos</text>
+
+<text x="362" y="34" font-size="15" font-weight="bold" fill="#DA1B2E">AHORA (agente de código)</text>
+<rect x="362" y="52" width="316" height="228" rx="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<rect x="382" y="70" width="276" height="52" rx="5" fill="#FDECEE" stroke="#F0AAB2" stroke-width="1.5"/>
+<text x="398" y="92" font-size="13">vos: “arreglá el bug del redirect</text>
+<text x="398" y="112" font-size="13">y corré los tests”</text>
+<line x1="520" y1="122" x2="520" y2="150" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="382" y="168" width="6" height="6" fill="#DA1B2E"/>
+<text x="398" y="174" font-size="13">agente: lee el repo</text>
+<rect x="382" y="192" width="6" height="6" fill="#DA1B2E"/>
+<text x="398" y="198" font-size="13">agente: planifica los pasos</text>
+<rect x="382" y="216" width="6" height="6" fill="#DA1B2E"/>
+<text x="398" y="222" font-size="13">agente: edita y corre comandos</text>
+<line x1="382" y1="238" x2="658" y2="238" stroke="#E0D9D9" stroke-width="1"/>
+<rect x="382" y="254" width="6" height="6" fill="#3B3535"/>
+<text x="398" y="260" font-size="13" font-weight="bold">vos: revisás el diff</text>
+<text x="362" y="302" font-size="12" font-style="italic" fill="#6B6363">entregás un resultado</text>
+</svg>

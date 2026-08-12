@@ -1,0 +1,20 @@
+        EL MODELO "COMO VIENE DE FABRICA"
+                                             lo que NO ve:
+   +---------------------------------+       x  el repo
+   |            EL MODELO            |       x  los issues
+   |  +---------------------------+  |       x  la historia de git
+   |  |  MEMORIA DE ENTRENAMIENTO |  |       x  las convenciones
+   |  |  (foto congelada hasta la |  |       x  la infraestructura
+   |  |   fecha de corte)         |  |
+   |  +---------------------------+  |
+   |     responde "de memoria"       |
+   |                                 |
+   |  lo unico que cambia su         |
+   |  comportamiento: EL CONTEXTO    |
+   +---------------------------------+
+
+<!-- ascii-note:
+intent: mostrar que el modelo sin contexto responde solo desde su memoria de entrenamiento (foto congelada hasta la fecha de corte), no conoce nada del proyecto del usuario, y que lo unico que modifica su comportamiento en el momento es el contexto (in-context learning).
+emphasize: la caja interna "MEMORIA DE ENTRENAMIENTO (foto congelada)"; la linea "lo unico que cambia su comportamiento: EL CONTEXTO"; la lista de lo que NO ve (repo, issues, historia de git, convenciones, infraestructura) fuera de la caja.
+labels: caja exterior = EL MODELO; caja interior = memoria de entrenamiento / fecha de corte; columna derecha = lo que no ve.
+-->

@@ -84,6 +84,15 @@ Hasta acá alcanza con una cuenta de GitHub. Este extra convierte el repo en un 
 
 **Criterio de éxito:** el repo muestra commits de todos los integrantes, y cada uno puede mostrar su tarea programada disparándose y produciendo el reporte con los cambios reales del repo.
 
+## Extra: la memoria del agente
+
+Durante la misión le van a explicar cosas al agente más de una vez: cómo correr la app, qué decidieron sobre los archivos dudosos, qué formato de commits usan. Este extra convierte ese aprendizaje en una pieza permanente:
+
+1. **Creen una Skill `/collect-memory`**: al invocarla, revisa la conversación en curso y actualiza la memoria y las instrucciones del agente (el `CLAUDE.md` / `AGENTS.md` del repo) con dos cosas: los avances (qué milestones están hechos, qué quedó a medias, qué decisiones se tomaron) y las preferencias que ustedes expresaron en la conversación (convenciones, reglas, gustos del equipo).
+2. **Úsenla de verdad**: al cerrar cada sesión de trabajo, `/collect-memory`. La sesión siguiente arranca con el contrato al día.
+
+**Criterio de éxito:** en una sesión nueva, el agente ya sabe qué está hecho y qué reglas rigen sin que nadie se lo repita, y la historia de git de `CLAUDE.md` muestra las actualizaciones que la Skill fue haciendo.
+
 ## La entrega
 
 - **La URL pública** de Corta en producción.

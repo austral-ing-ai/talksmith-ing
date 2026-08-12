@@ -1,0 +1,13 @@
++-----------+   pide accion   +-------------+   API del      +--------------+
+| AGENTE DE | --------------> | MCP SERVER  |   servicio     | GitHub /     |
+| CODIGO    |                 | (expone     | -------------> | Railway /    |
+|           | <-------------- | tools)      | <------------- | base de datos|
++-----------+   resultado     +-------------+                +--------------+
+
+        "crea el repo y pushea"     tool: create_repository
+
+<!-- ascii-note:
+intent: mostrar el flujo de una llamada MCP: el agente de codigo pide una accion, el MCP server la expone como herramienta y traduce el pedido en llamadas a la API del servicio real (GitHub, Railway, una base de datos), y el resultado vuelve al agente.
+emphasize: el MCP server como puente en el medio; la linea inferior que muestra la traduccion de un pedido en lenguaje natural ("crea el repo y pushea") a una tool concreta (create_repository).
+labels: Agente de codigo -> MCP server (expone tools) -> servicio (GitHub / Railway / base de datos); flecha de ida "pide accion", flecha de vuelta "resultado".
+-->

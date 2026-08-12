@@ -1,0 +1,18 @@
+ANTES (autocomplete / chat)         AHORA (agente de codigo)
++---------------------+             +--------------------------+
+| vos: escribis       |             | vos: "arregla el bug de  |
+| IA: completa linea  |             |       redirect y testea" |
+| vos: pegas error    |             |          |               |
+| IA: sugiere fix     |             |          v               |
+| vos: lo aplicas     |             | agente: lee el repo      |
++---------------------+             | agente: planifica        |
+ paso a paso, lo haces vos          | agente: edita y corre    |
+                                    | vos: revisas el diff     |
+                                    +--------------------------+
+                                     entregas un resultado
+
+<!-- ascii-note:
+intent: contrastar el modo "autocomplete / chat" (la persona hace cada paso y la IA sugiere texto) contra el modo "agente de codigo" (se delega una tarea completa, el agente lee el repo, planifica, edita y corre comandos, y la persona revisa el diff).
+emphasize: el cambio de paradigma de izquierda (ANTES) a derecha (AHORA); que en AHORA el agente hace el trabajo sobre el repo real y la persona revisa y guia.
+labels: ANTES (autocomplete / chat) vs AHORA (agente de codigo); pie izquierdo "paso a paso, lo haces vos", pie derecho "entregas un resultado".
+-->

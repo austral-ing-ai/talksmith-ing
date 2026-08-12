@@ -1,122 +1,134 @@
 # CLAUDE.md: talks/clase2 (talksmith-ing)
 
-Contexto de traspaso para continuar el trabajo empezado en una sesión sobre
-`talksmith-mim`. Leé esto entero antes de tocar nada.
+Plan de trabajo para armar las diapositivas de la **clase 2** de la materia de
+ingeniería informática (Universidad Austral). Este deck es la **versión
+adaptada a ingeniería** de la clase Claude Cowork que se dio en el MiM (IAE):
+mismos conceptos, pero en el mundo del código con **Claude Code / Codex**, y
+con la misión "Corta" integrada en la misma clase. Leé esto entero antes de
+empezar.
 
-## Qué es esto
+## La idea central
 
-Deck de la **clase 2** de la materia de **ingeniería informática (Universidad
-Austral)**: la variante técnica de la clase Claude Cowork que se dio en el MiM
-(IAE). Mismos conceptos (agente, contexto, herramientas, tareas, verificación),
-pero traducidos al mundo del código con **Claude Code / Codex**; cada grupo usa
-el que tenga.
+El deck del MiM (`talks/claude-cowork/`, de Paulo Veiga, también presente en
+este repo) enseña a delegar trabajo en un agente de escritorio (Cowork) usando
+carpetas, archivos .md, Projects, Skills y subagentes, y remata con la misión
+Faro. Esta clase enseña **lo mismo pero para programadores**: delegar trabajo
+de desarrollo en un agente de código, con el repo como contexto, MCP servers
+como herramientas, y la misión Corta como práctica.
 
-Diferencias clave con el MiM:
+La audiencia sabe programar, así que:
 
-- **Audiencia técnica**: estudiantes de ingeniería informática, saben programar.
-- **Una sola clase**: toda la presentación junta. En el MiM la misión se partió
-  en 2 partes con un kickoff cada una; acá NO, es un solo deck.
-- **Enunciado en `.md`**, no PDF: vive dentro de la propia misión.
+- No se explica qué es una terminal, un repo ni un deploy.
+- Se va más rápido por los conceptos y más profundo en los mecanismos
+  (qué contexto ve el agente, cómo decide usar una herramienta MCP).
+- Es **una sola clase**: teoría + presentación de la misión juntas, sin
+  kickoffs separados como en el MiM.
 
-## La misión ya está construida
+## Cómo se arma el deck: mapeo desde las clases del MiM
 
-`../../missions/clase2/` (relativo a esta carpeta):
+Se usan **las dos** clases del MiM como fuente (decisión de Marco,
+2026-08-12): `talks/claude-cowork/draft.md` (estructura base) y
+`talks/claude-desktop-chat/draft.md` (aporta el encuadre introductorio,
+el argumento de contexto, el material MCP de la sección Connectors y
+Schedule). La traducción propuesta, sección por sección (a validar con
+Marco antes de escribir):
 
-- **`mission.md`**: el enunciado. Historia: heredan "Corta" (acortador de URLs
-  interno de una empresa) del desarrollador que se fue; la carpeta está
-  desordenada, sin git, con errores y una feature a medio hacer.
-- **`corta/`**: la carpeta desordenada, real y funcionando (`npm start`, puerto
-  3000). Node + Express, persistencia en `links.json`.
+| Deck MiM (Cowork) | Deck ingeniería (Claude Code/Codex) |
+|---|---|
+| 1. Claude Cowork: de propósito general, de chatear a delegar, el mapa de piezas, dónde se empieza | 1. Agentes de código: qué son Claude Code y Codex, de autocompletar/chatear a delegar tareas enteras, el mapa de piezas (modelo, agente, contexto, herramientas, tareas), instalación y arranque en una carpeta |
+| 2. Knowledge & Output: qué lee el agente en la carpeta, qué es un .md, iterar en .md | 2. El repo como contexto: qué lee el agente al pararse en una carpeta (código, README, configs), CLAUDE.md / AGENTS.md como memoria e instrucciones del repo, iterar con el agente sobre el código |
+| 3. Projects: conceder carpeta, contexto, Instrucciones como contrato | 3. El contrato de trabajo: CLAUDE.md del proyecto (equivalente de las Instrucciones del Project), qué conviene fijar ahí y qué no |
+| 4. Skills | 4. Skills y comandos en Claude Code/Codex (versión breve: la audiencia las va a descubrir sola; mostrar una de ejemplo) |
+| 5. Subagentes | 5. Subagentes en Claude Code (versión breve) |
+| (los conectores aparecen dentro de la misión del MiM) | 6. **MCP servers** (sección central y nueva): qué es MCP, cómo un agente descubre y usa herramientas, los dos de la misión: GitHub MCP y Railway MCP, leer la spec antes de usar |
+| Conclusions + cuidados | Conclusions + cuidados (secretos, revisar diffs antes de commitear, el agente se equivoca con confianza) |
+| 6. La misión parte 2 | 7. La misión: Corta (enunciado, reglas de trabajo, entrega) |
 
-**El arco de la misión** (todo con los MCP servers de GitHub y Railway):
+Aportes de `talks/claude-desktop-chat/draft.md` por sección destino:
 
-0. *Obligatorio antes de todo*: parar el agente en `corta/`, configurar ambos
-   MCPs y hacerle **leer las especificaciones** de los dos
-   (github.com/github/github-mcp-server y docs.railway.com/ai/mcp-server).
-1. Crear repo en GitHub vía MCP y **pushear la carpeta tal cual está**: el
-   desorden queda en la historia y todo lo posterior es diff visible.
-2. Ordenar el repo (muertos, duplicados, deps sin uso, README, .gitignore).
-3. Corregir los errores (encontrarlos es parte del trabajo; la pista es usar la app).
-4. Completar la feature faltante: endpoint `GET /api/links/:codigo/stats` y
-   conectar `public/stats.html`.
-5. Deploy a producción en Railway vía MCP. La persistencia en `links.json` no
-   sobrevive al filesystem efímero, lo que **obliga a crear Postgres desde el
-   MCP de Railway**. Criterio: la clase acorta links desde el celular y los
-   datos sobreviven a un redeploy.
-6. Extra de trabajo en equipo: todos los integrantes se suman como
-   colaboradores del repo (cada uno con su GitHub, invitación vía MCP), y cada
-   uno configura una tarea programada en su máquina que actualiza la copia
-   local desde el remote y genera un reporte de los cambios del repositorio
-   (commits nuevos, autores, archivos tocados).
+| Deck MiM (Desktop Chat) | Va a la sección de ingeniería |
+|---|---|
+| 1. Introducción: el problema, cómo lo atacamos, quién es Anthropic, las cuatro herramientas | 1. Agentes de código (encuadre del problema y catálogo, adaptado a desarrollo) |
+| 2. Context augmentation: el chat responde de memoria, dos formas de enriquecer | 2. El repo como contexto (el argumento de por qué el contexto importa) |
+| 4. Connectors, slides 6 a 8: todo pasa por MCP, agregar un external connector, dónde buscar servidores publicados | 6. MCP servers (base principal de la sección) |
+| 6. Schedule: describir una vez, que corra sola; dónde vive; local o nube | 7. La misión (extra de equipo: la tarea programada de reporte de cambios) |
+| Conclusions y cuidados (prompt injection) | Conclusions + cuidados |
 
-**Los 4 bugs plantados** (verificados en vivo):
+Criterio general de adaptación: **el concepto se mantiene, el ejemplo cambia
+de mundo**. Donde el MiM muestra una carpeta de finanzas desordenada, acá hay
+un repo desordenado; donde el MiM programa un email semanal, acá una tarea
+programada que reporta cambios del repo; donde el MiM conecta Gmail y Massive,
+acá GitHub y Railway por MCP.
 
-1. Estructural: `links.json` como base de datos (`fs.writeFileSync`); anda
-   local, inviable en producción. Es el que fuerza la DB.
-2. Lógica: el redirect hace `res.send(url)` en vez de `res.redirect(url)`;
-   devuelve 200 con la URL como texto.
-3. Datos: los clicks se incrementan en memoria pero nunca se persisten (falta
-   `guardarLinks` en el handler del redirect); quedan clavados.
-4. Colisión: `utils.js` genera códigos de 3 chars con `Math.random()` sin
-   chequear existencia.
+Para la parte de la misión, la referencia de tono y estructura son nuestros
+kickoffs del MiM: `talksmith-mim/talks/mision-kickoff-parte1/` y `-parte2/`
+(reglas de trabajo en grupo, checklist, entrega). Acá se condensa en pocas
+slides porque el enunciado completo vive en `missions/clase2/mission.md`.
 
-Extra sutil: puerto 3000 hardcodeado (Railway necesita `process.env.PORT`).
-Extra de secretos: `notas.txt` tiene la credencial de un postgres viejo, que
-habilita la conversación de secretos/variables de entorno y qué se pushea.
+## El pipeline de producción
 
-Desorden fabricado: `server_OLD.js`, `index_v2_FINAL.js`, `test.js` a medio
-hacer, `notas.txt` (los TODOs funcionan como pistas), `links_backup_marzo.json`,
-`estilos_viejos.css`, `logo (1).png`, `Nueva carpeta/` vacía, lodash/moment sin
-uso, `node_modules/` instalado (18MB).
+El mismo de Talksmith que usamos en el MiM:
 
-## Material de referencia en talksmith-mim
+1. `draft.md` en esta carpeta (canónico, con Thesis, Agenda, secciones y
+   slides; seguir el formato de los drafts existentes en `talks/`).
+2. Review y polish; `final.md` se deriva del draft.
+3. `output/slide-model.json` (FILL manual sobre los templates) y render HTML
+   con el skill `talksmith:md-to-deck` (estilo `html-strict`).
+4. Export a PDF solo si hace falta: chrome headless con `?print-pdf` es
+   intermitente, reintentar hasta que la cantidad de páginas coincida.
 
-`~/Escritorio/austral/talksmith-mim/talks/`:
+Trampas de templates conocidas (del MiM): 4 cards en 2x2 desbordan (usar 3,
+la tercera va full-width, o 5+ en 3 columnas); listas de 4 items van bien en
+`icon-list`; `content-image` con `facts:[]` deja la barra de cita vacía;
+`divider` no soporta imagen.
 
-- **`claude-cowork/`**: la clase Cowork del MiM (deck de Paulo Veiga). Es la
-  base conceptual a traducir. OJO: ese talk es territorio de Paulo; se lee, NO
-  se edita.
-- **`mision-kickoff-parte1/` y `-parte2/`**: nuestros kickoffs de la misión del
-  MiM (draft.md, slide-model.json, HTML). Útiles como referencia de tono,
-  templates y del pipeline completo.
-- El enunciado del MiM: `talksmith-mim/missions/CoWork/mission.md` (misión
-  "Faro", analista financiero con conectores y tarea programada).
+## La misión ya construida (contexto para las slides)
 
-Notas de pipeline aprendidas en el MiM (ver `memory.md` de esos talks): export
-a PDF con chrome headless `?print-pdf` es intermitente, reintentar hasta que
-las páginas coincidan; templates: 4 cards en 2x2 desbordan, con 3 cards la
-tercera va full-width; `content-image` con `facts:[]` deja la barra de cita
-vacía.
+`../../missions/clase2/`: enunciado `mission.md` + carpeta `corta/` (acortador
+de URLs Node/Express, real y funcionando con `npm start`).
+
+Arco: (0) obligatorio: parar el agente en `corta/`, configurar los MCPs de
+GitHub y Railway y hacerle leer las specs de ambos; (1) crear repo y pushear
+el desorden tal cual; (2) ordenar; (3) corregir los errores; (4) completar
+stats (`GET /api/links/:codigo/stats` + `stats.html`); (5) deploy en Railway,
+donde `links.json` muere con el filesystem efímero y fuerza Postgres vía MCP;
+(6) extra de equipo: todos colaboradores del repo y una tarea programada por
+integrante que actualiza desde el remote y genera un reporte de cambios;
+(7) extra de memoria (agregado 2026-08-12): una Skill `/collect-memory` que
+actualiza la memoria y las instrucciones del agente (CLAUDE.md / AGENTS.md)
+con los avances de la conversación y las preferencias expresadas por el equipo.
+
+Bugs plantados (verificados): redirect con `res.send` en vez de
+`res.redirect`; clicks que no se persisten; colisión de códigos
+(`Math.random()` de 3 chars sin chequeo); `links.json` como base de datos.
+Extras: puerto 3000 hardcodeado, credencial vieja en `notas.txt`.
+
+Requisitos de los alumnos: cuenta de GitHub y cuenta gratuita de Railway.
+Herramienta libre, recomendadas Claude Code o Codex.
 
 ## Decisiones ya tomadas
 
-- Caso elegido: **acortador de URLs** ("Corta") por ser técnicamente simple; la
-  DB es obligatoria vía el bug estructural, no por capricho del enunciado.
-- El enunciado exige leer las specs de los MCPs **antes** de empezar.
-- Herramienta: pueden usar cualquier herramienta de IA, pero se recomienda
-  Claude Code o Codex. Requisitos: cuenta de GitHub y cuenta gratuita de
-  Railway por grupo.
-- Sin fechas ni deadlines en los materiales (regla heredada del MiM).
+- Mapeo validado por Marco (2026-08-12): MCP queda como sección 6, al final
+  de la teoría y pegada a la misión; Skills y Subagentes van breves, 2 slides
+  cada una.
+- Duración: 90 minutos.
+- Byline: Paulo Veiga y Marco Sánchez Sorondo.
+- Una sola clase, un solo deck (teoría + misión).
+- Enunciado en `.md` dentro de la misión, no PDF.
+- Sin fechas ni deadlines en los materiales.
 - Sin em dashes ni emojis en los documentos de este repo (pedido de Marco).
-- Idioma: español rioplatense, registro profesional cercano; términos técnicos
-  en inglés.
+- Idioma: español rioplatense, registro profesional cercano; términos
+  técnicos en inglés.
+- `talks/claude-cowork/` es territorio de Paulo: se lee como referencia, NO se
+  edita.
+- Commit/push solo si Marco lo pide explícitamente.
 
-## Pendiente (en orden)
+## Pendiente
 
-1. **Este deck**: la presentación de la clase, análoga a `claude-cowork` del MiM
-   pero para Claude Code/Codex, más la presentación de la misión (una sola
-   clase, todo junto). Falta definir estructura y contenido; ese es el trabajo
-   a continuar acá.
-2. `/talksmith:init` en la raíz de `talksmith-ing`: Marco dijo "todavía no";
-   preguntar antes de correrlo. OJO: el repo NO estaba vacío, ya tiene `talks/`
-   (claude-cowork, introduccion, claude-desktop-chat), `config/`, README y
-   AGENTS.md propios; revisar qué hay antes de pisar nada.
-3. **Byline de autores**: sin definir para esta materia (en el MiM era
-   Paulo Veiga, Marco Sánchez Sorondo, Claudio Righetti y Juan Pablo
-   Cosentino). Preguntar a Marco quiénes van.
-4. Commit/push **solo si Marco lo pide** explícitamente.
-
-## Estado de la memoria
-
-`~/Escritorio/austral/CLAUDE.md` ya tiene la sección `talksmith-ing/` con el
-estado del subproyecto; mantenerla al día al cerrar tareas.
+1. `draft.md` escrito (2026-08-12, 22 laminas, 8 bloques). Falta: review de
+   Marco (feedback como bullets en los `Presenter feedback` del draft o en
+   chat), y resolver las Open questions del final del draft (fecha de la
+   clase, re-verificar URLs de docs, presupuesto de tiempo, mecanismo
+   sugerido para la tarea programada del extra).
+2. Al cerrar tareas, actualizar la sección `talksmith-ing/` de
+   `~/Escritorio/austral/CLAUDE.md`.

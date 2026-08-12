@@ -291,3 +291,39 @@
   feedback: "Me gusta agregar en ASCCI para LLMs, Foundation Models y Multimodal como sugeriste."
   resolution: El diagrama de contención va en una diapositiva de definición al inicio de la sección, siguiendo la regla que propusiste para la taxonomía: primero define y muestra el esquema, después la diapositiva de detalle. La de cuatro columnas queda intacta.
   tags: [ascii-diagram, new-slide]
+- talk: clase2
+  date: 2026-08-12
+  location: Thesis
+  feedback: "hay muchos conectores mcp mas alla de github y railway para desarrollo"
+  resolution: La lamina 6.3 paso de "los dos de la mision" al ecosistema MCP para desarrollo (tabla de 8 categorias con ejemplos); GitHub y Railway se movieron a la seccion 7 de la mision.
+  tags: [broaden-scope, mcp-ecosystem]
+- talk: clase2
+  date: 2026-08-12
+  location: Deck completo (chat)
+  feedback: "la presentacion esta girando en torno a la mision; los conceptos van mucho mas alla de recibir un repo con codigo heredado"
+  resolution: La mision se descentro de las secciones 1 a 6 (ejemplos generalizados, referencias al paso 0 y guiños removidos de la teoria); toda la especificidad quedo en la seccion 7.
+  tags: [decenter-mission, generalize-examples]
+- talk: clase2
+  date: 2026-08-12
+  location: Seccion 7 (mision) + missions/clase2/mission.md
+  feedback: "agregar a la mision una skill /collect-memory que actualice la memoria y las instrucciones del agente segun los avances de la conversacion y las preferencias del usuario"
+  resolution: Nuevo extra "la memoria del agente" en mission.md y en la lamina 7.2 (bullet, placa y speaker notes).
+  tags: [mission-content, skill-collect-memory]
+- talk: clase2
+  date: 2026-08-12
+  location: Slide "El mapa: piezas que se apilan"
+  feedback: "'quiero que toque el mundo' y 'cada tarea usa solo las que necesita' son AI slop"
+  resolution: Etiqueta MCP concreta ("quiero que use GitHub, la base de datos, el deploy"); la frase de "cada tarea usa..." cortada de la idea clave, del pie del diagrama y de Conclusions 1.
+  tags: [anti-slop, concrete-labels]
+- talk: clase2
+  date: 2026-08-12
+  location: Slide "Un ejemplo de CLAUDE.md"
+  feedback: "el CLAUDE.md se genera leyendo el repo y las instrucciones explicitas del usuario durante la conversacion; decir lo mas posible desde el principio y pedirle al agente que recolecte preferencias en el CLAUDE.md"
+  resolution: Remate de la lamina reescrito con las dos fuentes y las dos practicas; speaker notes desarrolladas.
+  tags: [claude-md, memory-collection]
+- talk: clase2
+  date: 2026-08-12
+  location: Seccion 2 (el repo como contexto)
+  feedback: "agregar un par de diapositivas sobre los .md, mencionando que la memoria, las especificaciones y el conocimiento en general se guardan en ese formato"
+  resolution: Laminas nuevas 2.3 (Markdown, el formato del ecosistema) y 2.4 (el conocimiento del proyecto en .md); iterar paso a 2.5.
+  tags: [md-format, knowledge-in-repo, new-slides]

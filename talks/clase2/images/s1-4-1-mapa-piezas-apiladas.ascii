@@ -1,0 +1,27 @@
+   +----------------------+  "quiero delegar en paralelo"
+   | SUBAGENTES           |
+   +----------------------+
+   +----------------------+  "no quiero repetir la tarea"
+   | SKILLS / COMANDOS    |
+   +----------------------+
+   +----------------------+  "no quiero repetirte las reglas de desarrollo"
+   | CLAUDE.md / AGENTS.md|
+   +----------------------+
+   +----------------------+  "quiero que use GitHub,
+   | MCP SERVERS          |   la base de datos, el deploy"
+   +----------------------+
+   +----------------------+  "quiero que entienda mi proyecto"
+   | EL REPO COMO CONTEXTO|
+   +----------------------+
+   +----------------------+  "quiero que trabaje, no que        <== ACA
+   | AGENTE DE CODIGO     |   complete lineas"
+   +----------------------+
+   +----------------------+  "respondia solo de memoria"        (conocido)
+   | EL MODELO / EL CHAT  |
+   +----------------------+
+
+<!-- ascii-note:
+intent: presentar el arco de la clase como piezas que se apilan: el modelo/chat (base, ya conocido) -> el agente de codigo -> el repo como contexto -> MCP servers -> CLAUDE.md/AGENTS.md -> Skills/comandos -> subagentes. El bloque del agente lleva el marcador "estamos aca"; la base lleva "(conocido)".
+emphasize: el marcador "<== ACA" en el bloque del agente; el par pieza-problema en cada nivel; que no es una escalera estricta sino piezas que se combinan.
+labels: bloques apilados (base a cima): El modelo / el chat, Agente de codigo, El repo como contexto, MCP servers, CLAUDE.md / AGENTS.md, Skills / comandos, Subagentes, cada uno con su frase-problema a la derecha.
+-->

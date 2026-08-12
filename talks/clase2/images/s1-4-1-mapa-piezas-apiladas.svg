@@ -1,0 +1,55 @@
+<!-- talksmith-ascii-sha256: 81e4504321fc4adefe7308c0f80d9a4ed4b108306e3745f03777dc6121a0c440 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 781 456" font-family="Helvetica, Arial, sans-serif" font-size="14.5" fill="#3B3535">
+  <title>El mapa: piezas que se apilan</title>
+  <desc>El roadmap de la clase en una lamina: siete piezas apiladas desde el modelo que responde de memoria hasta los subagentes, cada una con el problema que resuelve.</desc>
+
+  <defs>
+    <marker id="ah-red" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="781" height="456" fill="#ffffff"/>
+
+  <g stroke="#C9C2C2" stroke-width="1.25">
+    <rect x="175" y="30" width="270" height="44" rx="4" fill="#F2F0F0"/>
+    <rect x="175" y="84" width="270" height="44" rx="4" fill="#F2F0F0"/>
+    <rect x="175" y="138" width="270" height="44" rx="4" fill="#F2F0F0"/>
+    <rect x="175" y="192" width="270" height="44" rx="4" fill="#F2F0F0"/>
+    <rect x="175" y="246" width="270" height="44" rx="4" fill="#F2F0F0"/>
+  </g>
+
+  <rect x="175" y="300" width="270" height="44" rx="4" fill="#FDEDEE" stroke="#DA1B2E" stroke-width="2.25"/>
+  <rect x="175" y="354" width="270" height="44" rx="4" fill="#ffffff" stroke="#D8D2D2" stroke-width="1.25" stroke-dasharray="5 4"/>
+
+  <g font-size="15" font-weight="bold">
+    <text x="193" y="57">SUBAGENTES</text>
+    <text x="193" y="111">SKILLS / COMANDOS</text>
+    <text x="193" y="219">MCP SERVERS</text>
+    <text x="193" y="273">EL REPO COMO CONTEXTO</text>
+  </g>
+
+  <text x="193" y="165" font-family="'DejaVu Sans Mono', monospace" font-size="13.5" font-weight="bold">CLAUDE.md / AGENTS.md</text>
+  <text x="193" y="327" font-size="15" font-weight="bold" fill="#DA1B2E">AGENTE DE C&#211;DIGO</text>
+  <text x="193" y="381" font-size="15" font-weight="bold" fill="#9A9090">EL MODELO / EL CHAT</text>
+
+  <g fill="#6B6060">
+    <text x="465" y="57">&#8220;quiero delegar en paralelo&#8221;</text>
+    <text x="465" y="111">&#8220;no quiero repetir la tarea&#8221;</text>
+    <text x="465" y="165">&#8220;no quiero repetirte las reglas de desarrollo&#8221;</text>
+    <text x="465" y="210">&#8220;quiero que use GitHub,</text>
+    <text x="465" y="228">la base de datos, el deploy&#8221;</text>
+    <text x="465" y="273">&#8220;quiero que entienda mi proyecto&#8221;</text>
+    <text x="465" y="318" fill="#3B3535">&#8220;quiero que trabaje,</text>
+    <text x="465" y="336" fill="#3B3535">no que complete l&#237;neas&#8221;</text>
+    <text x="465" y="381" fill="#9A9090">&#8220;respond&#237;a solo de memoria&#8221;</text>
+  </g>
+
+  <text x="676" y="381" font-size="13" fill="#9A9090">(ya conocido)</text>
+
+  <rect x="30" y="310" width="118" height="24" rx="12" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.5"/>
+  <text x="89" y="326" text-anchor="middle" font-size="12" font-weight="bold" fill="#DA1B2E">ESTAMOS AC&#193;</text>
+  <path d="M152,322 L175,322" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ah-red)"/>
+
+  <text x="175" y="424" font-size="13" fill="#8A8080">Las piezas se combinan; no hace falta usarlas todas.</text>
+</svg>

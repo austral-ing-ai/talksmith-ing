@@ -1,0 +1,41 @@
+<!-- talksmith-ascii-sha256: 96efb4c73f4d03f1521d5b1ddd74ba6298dbb37d06f3059058cd444f91964683 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 616 350" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>El modelo responde de memoria</title>
+  <desc>De fábrica, el modelo responde desde su memoria de entrenamiento, una foto congelada hasta la fecha de corte, y no conoce nada del proyecto.</desc>
+
+  <rect x="0" y="0" width="616" height="350" fill="#ffffff"/>
+
+  <text x="30" y="43" font-size="17" font-weight="bold">El modelo &#8220;como viene de fábrica&#8221;</text>
+
+  <rect x="30" y="70" width="390" height="250" rx="6" fill="#F6F4F4" stroke="#C9C2C2" stroke-width="1.5"/>
+  <text x="225" y="98" font-size="15" font-weight="bold" text-anchor="middle" letter-spacing="1.2">EL MODELO</text>
+
+  <rect x="58" y="114" width="334" height="88" rx="4" fill="#FBE9EB" stroke="#DA1B2E" stroke-width="2"/>
+  <text x="225" y="142" font-size="14" font-weight="bold" text-anchor="middle" fill="#DA1B2E">MEMORIA DE ENTRENAMIENTO</text>
+  <text x="225" y="166" font-size="12.5" text-anchor="middle">foto congelada hasta</text>
+  <text x="225" y="184" font-size="12.5" text-anchor="middle">la fecha de corte</text>
+
+  <text x="225" y="228" font-size="13.5" text-anchor="middle" font-style="italic">responde &#8220;de memoria&#8221;</text>
+
+  <line x1="58" y1="252" x2="392" y2="252" stroke="#DDD6D6" stroke-width="1"/>
+
+  <text x="225" y="278" font-size="12.5" text-anchor="middle">lo único que cambia su comportamiento:</text>
+  <text x="225" y="300" font-size="16" font-weight="bold" text-anchor="middle" fill="#DA1B2E" letter-spacing="0.8">EL CONTEXTO</text>
+
+  <text x="450" y="98" font-size="13.5" font-weight="bold">lo que NO ve:</text>
+
+  <g stroke="#B9B0B0" stroke-width="2" stroke-linecap="round">
+    <path d="M452 121 L464 133 M464 121 L452 133"/>
+    <path d="M452 147 L464 159 M464 147 L452 159"/>
+    <path d="M452 173 L464 185 M464 173 L452 185"/>
+    <path d="M452 199 L464 211 M464 199 L452 211"/>
+    <path d="M452 225 L464 237 M464 225 L452 237"/>
+  </g>
+  <g font-size="13">
+    <text x="474" y="132">el repo</text>
+    <text x="474" y="158">los issues</text>
+    <text x="474" y="184">la historia de git</text>
+    <text x="474" y="210">las convenciones</text>
+    <text x="474" y="236">la infraestructura</text>
+  </g>
+</svg>
