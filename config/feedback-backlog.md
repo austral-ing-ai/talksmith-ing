@@ -327,3 +327,27 @@
   feedback: "agregar un par de diapositivas sobre los .md, mencionando que la memoria, las especificaciones y el conocimiento en general se guardan en ese formato"
   resolution: Laminas nuevas 2.3 (Markdown, el formato del ecosistema) y 2.4 (el conocimiento del proyecto en .md); iterar paso a 2.5.
   tags: [md-format, knowledge-in-repo, new-slides]
+- talk: clase2
+  date: 2026-08-12
+  location: Laminas 2.3, 2.4 y Conclusiones
+  feedback: "'Todas las piezas son Markdown' es mentira (usar 'El cerebro en Markdown'); titulo de 2.4 con coma de fragmento; 'Lo que se llevan' es AI slop puro; Conclusions en español"
+  resolution: Retitulados; los patrones "titulo de cosecha" y "coma de fragmento en titulos" se agregaron a reglas-propias de desrobotizar.
+  tags: [anti-slop, wording, slide-title]
+- talk: clase2
+  date: 2026-08-12
+  location: Laminas 2.4-2.6 + mission.md
+  feedback: "los tests como unidad principal de revision, TDD fuerte con bateria derivada de SPEC.md; hablar de SPEC.md y pedirlo en la mision; hablar de manejo de contexto (/compact, ventana finita, contexto > prompting)"
+  resolution: Lamina nueva 2.5 (manejo del contexto), 2.6 reescrita (tests + TDD + SPEC.md), 2.4 define SPEC.md; mision suma seccion obligatoria "La forma de trabajo: SPEC.md y TDD" y la premisa de que Corta no tiene specs escritas.
+  tags: [content-addition, tdd-spec, context-management, new-slide]
+- talk: clase2
+  date: 2026-08-12
+  location: Render html (laminas 16, 22, 23)
+  feedback: "texto explicativo chico en el ejemplo de CLAUDE.md; textos ilegibles en Que es MCP; colores por campo en el frontmatter del subagente"
+  resolution: Contenido acortado en 16 y 23 para que el content-fit no achique tipografia; post-proceso deterministico de colores (talks/clase2/postprocess-subagent-colors.py).
+  tags: [render-legibility, content-density]
+- talk: clase2
+  date: 2026-08-12
+  location: Lamina 6.4
+  feedback: "faltan las bibliotecas oficiales de Claude/ChatGPT en donde buscar MCP servers"
+  resolution: Dos filas oficiales al tope de la tabla; notas reordenadas oficial-primero; URLs pendientes en Open questions.
+  tags: [content-addition, mcp-directories]

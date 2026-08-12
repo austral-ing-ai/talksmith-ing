@@ -19,7 +19,7 @@ date: Agosto 2026 (a confirmar)
 
 # Agenda
 
-**Narrative arc:** La clase abre con el problema que la audiencia ya vive: el trabajo de desarrollo está lleno de tareas que no son escribir código nuevo (entender un repo heredado, ordenar, documentar, migrar, deployar) y hasta ahora la IA solo ayudaba a tipear. La primera sección presenta la categoría nueva: agentes de código que ejecutan tareas enteras, el catálogo (Claude Code y Codex, misma familia que el chat que ya usan), el cambio de rol al delegar, el mapa de piezas que se apilan y el arranque concreto: pararse en una carpeta y abrir el agente (1). De ahí, la pregunta técnica que ordena todo: ¿qué ve el agente? El modelo responde de memoria de entrenamiento y lo único que cambia su comportamiento es el contexto; para un agente de código, el contexto es el repo: el árbol de archivos, el código, el README, las configs. De ahí el rol de Markdown: todas las piezas del ecosistema son archivos `.md` con frontmatter, y la regla práctica es guardar la memoria, las especificaciones y el conocimiento del proyecto en ese formato dentro del repo, donde cada sesión futura los encuentra. Sobre esa base se enseña el hábito de trabajo: iterar con el agente sobre el código en vueltas chicas (2). Si el repo es el contexto, el contrato es CLAUDE.md / AGENTS.md: la memoria del repo, donde se fijan una vez las reglas que el agente respeta en cada sesión; se muestra un ejemplo completo (3). Después, dos piezas de reuso en versión breve, porque la audiencia las va a descubrir sola: Skills y comandos, la tarea explicada una vez que se dispara con / o por su descripción (4), y subagentes, asistentes con contexto propio que corren en paralelo y devuelven un resumen (5). La última sección de teoría es la central y la nueva: MCP, el estándar por el que un agente descubre y usa herramientas externas; cómo funciona el protocolo, por qué conviene hacerle leer la spec de un server antes de usarlo, y el ecosistema que ya existe para desarrollo: servers para versionado, bases de datos, browsers, observabilidad, gestión de proyectos, diseño e infraestructura, con directorios donde encontrarlos (6). Las conclusiones cierran la teoría con el cambio de rol y los cuidados del oficio: secretos fuera del código y del contexto, revisar los diffs antes de commitear, y la regla de que el agente se equivoca con confianza (Conclusions). Recién entonces aparece la misión, como práctica de todo lo anterior: Corta, el acortador de URLs heredado sin git ni documentación, sus herramientas concretas (los MCPs de GitHub y Railway) y el arco de milestones que lo lleva del caos a producción; la clase termina en esa consigna, con Q&A sobre la placa (7).
+**Narrative arc:** La clase abre con el problema que la audiencia ya vive: el trabajo de desarrollo está lleno de tareas que no son escribir código nuevo (entender un repo heredado, ordenar, documentar, migrar, deployar) y hasta ahora la IA solo ayudaba a tipear. La primera sección presenta la categoría nueva: agentes de código que ejecutan tareas enteras, el catálogo (Claude Code y Codex, misma familia que el chat que ya usan), el cambio de rol al delegar, el mapa de piezas que se apilan y el arranque concreto: pararse en una carpeta y abrir el agente (1). De ahí, la pregunta técnica que ordena todo: ¿qué ve el agente? El modelo responde de memoria de entrenamiento y lo único que cambia su comportamiento es el contexto; para un agente de código, el contexto es el repo: el árbol de archivos, el código, el README, las configs. De ahí el rol de Markdown: el cerebro del ecosistema son archivos `.md` con frontmatter, y la regla práctica es guardar la memoria, las especificaciones (SPEC.md, donde se plasma con detalle lo que se espera del proyecto) y el conocimiento en ese formato dentro del repo, donde cada sesión futura los encuentra. Sigue la mecánica de la ventana de contexto: es finita, conviene mantenerla chica con la máxima información relevante, /compact la resume, y el principio de fondo es contexto sobre prompting. Sobre esa base se enseña el hábito de trabajo: iterar en vueltas chicas con los tests como unidad de revisión principal, TDD derivado del SPEC.md (2). Si el repo es el contexto, el contrato es CLAUDE.md / AGENTS.md: la memoria del repo, donde se fijan una vez las reglas que el agente respeta en cada sesión; se muestra un ejemplo completo (3). Después, dos piezas de reuso en versión breve, porque la audiencia las va a descubrir sola: Skills y comandos, la tarea explicada una vez que se dispara con / o por su descripción (4), y subagentes, asistentes con contexto propio que corren en paralelo y devuelven un resumen (5). La última sección de teoría es la central y la nueva: MCP, el estándar por el que un agente descubre y usa herramientas externas; cómo funciona el protocolo, por qué conviene hacerle leer la documentación de un server antes de usarlo, y el ecosistema que ya existe para desarrollo: servers para versionado, bases de datos, browsers, observabilidad, gestión de proyectos, diseño e infraestructura, con directorios donde encontrarlos (6). Las conclusiones cierran la teoría con el cambio de rol y los cuidados del oficio: secretos fuera del código y del contexto, revisar los diffs antes de commitear, y la regla de que el agente se equivoca con confianza (Conclusiones). Recién entonces aparece la misión, como práctica de todo lo anterior: Corta, el acortador de URLs heredado sin git ni documentación, sus herramientas concretas (los MCPs de GitHub y Railway) y el arco de milestones que lo lleva del caos a producción; la clase termina en esa consigna, con Q&A sobre la placa (7).
 
 **Sections (in delivery order):**
 
@@ -29,7 +29,7 @@ date: Agosto 2026 (a confirmar)
 - 4. Skills y comandos
 - 5. Subagentes
 - 6. MCP servers
-- Conclusions (cierra la teoría, va antes de la misión)
+- Conclusiones (cierra la teoría, va antes de la misión)
 - 7. La misión: Corta (última: después de la misión termina la clase)
 
 ---
@@ -205,7 +205,7 @@ La pregunta de reconocimiento es el hábito a instalar: ante cualquier proyecto 
 
 # 2. El repo como contexto
 
-**Goal of this section:** La pregunta técnica que ordena la clase: qué ve el agente. El modelo responde de memoria de entrenamiento y lo único que cambia su comportamiento es el contexto; para un agente de código el contexto es el repo. Qué lee al pararse en una carpeta, el rol de Markdown como formato del ecosistema, la regla de guardar memoria, especificaciones y conocimiento en `.md` dentro del repo, y el hábito de iterar en vueltas chicas sobre el código. Cinco láminas.
+**Goal of this section:** La pregunta técnica que ordena la clase: qué ve el agente. El modelo responde de memoria de entrenamiento y lo único que cambia su comportamiento es el contexto; para un agente de código el contexto es el repo. Qué lee al pararse en una carpeta, el rol de Markdown como formato del ecosistema, la regla de guardar memoria, especificaciones (SPEC.md) y conocimiento en `.md` dentro del repo, el manejo de la ventana de contexto (finita, /compact, contexto sobre prompting), y el hábito de iterar con TDD sobre el código. Seis láminas.
 
 ---
 
@@ -277,7 +277,7 @@ La consecuencia práctica es la que conviene dejar clavada: el orden del repo es
 
 ### Content
 
-- Todas las piezas de las secciones que siguen son **archivos Markdown**: el contrato (`CLAUDE.md`), las Skills (`SKILL.md`), los subagentes.
+- **El cerebro en Markdown**: el contrato (`CLAUDE.md`), las Skills (`SKILL.md`) y los subagentes son archivos `.md`.
 - Por qué: **texto plano** que el modelo lee nativo, con marcas de estructura simples y un **frontmatter YAML** que declara qué es el archivo y cuándo usarlo.
 - Entra en diffs, commits y PRs **como el código**: el mismo flujo de revisión vale para el conocimiento.
 
@@ -294,14 +294,14 @@ La consecuencia de ingeniería es la que vale decir despacio: si las piezas son 
 
 ---
 
-## 4. El conocimiento del proyecto, en .md
+## 4. El conocimiento del proyecto en .md
 
 ### Content
 
 **La regla:** lo que el agente deba saber se guarda en **`.md` dentro del repo**: memoria, especificaciones y conocimiento en general.
 
 - **Memoria**: decisiones tomadas, estado de un trabajo largo, preferencias del equipo.
-- **Especificaciones**: la spec de una feature escrita antes de implementarla; el agente la usa como guía y como criterio de terminado.
+- **Especificaciones**: `SPEC.md`, el archivo donde se plasma con lujo de detalle lo que se espera del proyecto. El agente lo usa como guía, y de ahí se deriva la batería de tests (lámina 2.6).
 - **Conocimiento**: notas de arquitectura, hallazgos de una investigación, documentación de procesos.
 - El agente lo lee como contexto en cualquier sesión futura: **el conocimiento sobrevive a la conversación.** En una wiki externa o un formato opaco, el agente no lo ve.
 
@@ -312,7 +312,7 @@ La consecuencia de ingeniería es la que vale decir despacio: si las piezas son 
 
 ### Speaker notes
 
-La lámina que baja la regla a la práctica del equipo. El razonamiento viene armado de las láminas anteriores: el contexto es la única palanca (2.1), el agente lee el repo (2.2) y el formato nativo es Markdown (2.3); entonces el conocimiento que el agente necesita se escribe en `.md` y se commitea. Recorrer los tres tipos con un ejemplo hablado cada uno: la memoria (qué se decidió y por qué, el estado de una migración a medio hacer), las especificaciones (escribir la spec en `.md` antes de implementar, y que el agente implemente contra ella), y el conocimiento general (notas de arquitectura, hallazgos, procesos del equipo).
+La lámina que baja la regla a la práctica del equipo. El razonamiento viene armado de las láminas anteriores: el contexto es la única palanca (2.1), el agente lee el repo (2.2) y el formato nativo es Markdown (2.3); entonces el conocimiento que el agente necesita se escribe en `.md` y se commitea. Recorrer los tres tipos con un ejemplo hablado cada uno: la memoria (qué se decidió y por qué, el estado de una migración a medio hacer), las especificaciones (el `SPEC.md` se escribe antes de implementar, con todo el detalle de lo que se espera del proyecto; el agente implementa contra él y la batería de tests se deriva de ahí, como desarrolla la lámina de iterar), y el conocimiento general (notas de arquitectura, hallazgos, procesos del equipo).
 
 El contraste que fija la regla: ese mismo material en una wiki externa, un Google Doc o un `.docx` queda fuera del alcance del agente; en el repo, cada sesión futura lo encuentra sola. Para quien quiera una referencia externa, el "LLM wiki" de Karpathy es la misma idea llevada al conocimiento personal: archivos `.md` estructurados que el modelo consulta directo. Atribuirla como propuesta de Karpathy recogida por el equipo de MindStudio.
 
@@ -320,14 +320,43 @@ Enganchar con lo que sigue: la lámina de iterar (2.5) muestra el hábito de tra
 
 ---
 
-## 5. Iterar con el agente sobre el código
+## 5. El manejo del contexto
 
 ### Content
 
-**Idea clave:** con un agente nada sale bien a la primera, y no hace falta. El trabajo son **vueltas chicas**: pedir, revisar el diff, corregir el rumbo, volver a pedir.
+- **La ventana de contexto es finita.** El objetivo: la ventana más chica posible con la máxima cantidad de información relevante.
+- Una ventana grande sostiene la visión de un repo entero y mucha información. El costo: **la performance del modelo puede empeorar**, y se **acumulan instrucciones contradictorias** sin que nadie lo recuerde.
+- **`/compact`**: resume la conversación en curso y libera ventana; lo importante sobrevive como resumen.
+- La conexión con el `.md`: **destilar el conocimiento a archivos** (CLAUDE.md, SPEC.md, notas) permite sesiones frescas con ventanas chicas.
 
-- **Cada vuelta es un pedido chico y verificable**: *"arreglá el redirect"*, *"agregá el test que lo cubre"*, *"renombrá y actualizá los imports"*.
-- **El diff es la unidad de revisión.** Se lee antes de aceptar, siempre. Commits chicos y frecuentes hacen cada vuelta reversible.
+**Contexto > prompting:** el buen desarrollo basado en IA se trata del buen manejo del contexto sobre el proyecto más que de los prompts.
+
+### Sources
+
+- Claude Code docs, el comando `/compact` y el manejo de la conversación: https://code.claude.com/docs/en/costs (URL pendiente de verificación antes de la clase; el comando existe verificado de primera mano por los presentadores).
+- Encuadre aportado por el presentador (2026-08-12): contexto sobre prompting como principio del desarrollo basado en IA; ventaja y desventaja de la ventana grande.
+
+### Speaker notes
+
+La lámina de mecánica fina de la sección, y la que deja el principio de fondo. Arrancar por el límite físico: la ventana de contexto es finita, y todo lo que el agente ve (el contrato, los archivos leídos, la conversación entera) compite por ese espacio. El objetivo de ingeniería es una ventana lo más chica posible que conserve la máxima información relevante.
+
+El trade-off de la ventana grande, dicho con las dos caras. La ventaja: puede sostener la visión de un repo entero y mucha información a la vez, que es lo que hace posible delegar tareas grandes. La desventaja: la performance del modelo puede empeorar a medida que la ventana se llena, y se acumulan instrucciones contradictorias de distintos momentos de la conversación sin que nadie lo recuerde; el agente obedece algo que se le dijo hace dos horas y ya no aplica.
+
+Las dos herramientas prácticas. Una, `/compact`: resume la conversación en curso y libera ventana; conviene usarlo al cerrar una sub-tarea. Dos, la que conecta con toda la sección: destilar el conocimiento a archivos `.md` (el contrato, el SPEC.md, las notas) y arrancar sesiones frescas que los lean, en lugar de arrastrar conversaciones eternas.
+
+Cerrar con el principio, que es de las frases importantes de la clase: contexto sobre prompting. El buen desarrollo basado en IA se juega en el manejo del contexto sobre el proyecto más que en la redacción de los prompts. Tiempo objetivo: ~3 min.
+
+---
+
+## 6. Iterar con el agente sobre el código
+
+### Content
+
+**Idea clave:** con un agente nada sale bien a la primera, y no hace falta. El trabajo son **vueltas chicas**: pedir, verificar, corregir el rumbo, volver a pedir.
+
+- **Los tests son la unidad de revisión principal.** El diff se lee, pero lo que valida cada vuelta es la batería de tests.
+- **TDD, fuertemente recomendado**: una batería de tests bien grande, derivada de `SPEC.md`, escrita antes de implementar. El agente trabaja hasta que pasen.
+- **Cada vuelta es un pedido chico y verificable**: *"arreglá el redirect"*, *"agregá el test que lo cubre"*. Commits chicos y frecuentes hacen cada vuelta reversible.
 - Pedidos gigantes ("hacé todo el proyecto") producen diffs imposibles de revisar. **Partir la tarea en pedidos revisables.**
 
 ### Sources
@@ -336,9 +365,11 @@ Enganchar con lo que sigue: la lámina de iterar (2.5) muestra el hábito de tra
 
 ### Speaker notes
 
-El hábito de trabajo que se llevan, y el equivalente exacto de "iterar en .md" de la clase de oficina: acá la mesa de trabajo es el repo y la moneda de la iteración es el diff. Decir sin vergüenza que nada sale bien a la primera, y que eso no es un defecto de la herramienta sino el modo de uso: se pide, se lee lo que salió, se corrige el rumbo, se vuelve a pedir. Cada vuelta sale barata. Aceptar un diff sin leerlo es lo que después cuesta caro.
+El hábito de trabajo que se llevan. Decir sin vergüenza que nada sale bien a la primera, y que eso no es un defecto de la herramienta sino el modo de uso: se pide, se verifica, se corrige el rumbo, se vuelve a pedir. Cada vuelta sale barata; aceptar sin verificar es lo que después cuesta caro.
 
-Los tres ejemplos de pedido conviene decirlos en voz alta porque marcan el tamaño correcto de la vuelta: chico y verificable. El anti-patrón es el pedido gigante, que devuelve un diff de 40 archivos que nadie va a leer; la habilidad nueva del oficio es partir la tarea en pedidos revisables. Enganchar con git: commits chicos y frecuentes convierten cada vuelta en un checkpoint reversible, y la historia del repo queda contando cómo se llegó, cambio por cambio. Tiempo objetivo: ~3 min.
+El punto que ordena la lámina: la unidad de revisión principal son los tests. El diff se lee (sigue siendo code review), pero con un agente que produce mucho código rápido, lo que sostiene la confianza es una batería de tests bien grande que valide cada vuelta. De ahí la recomendación fuerte de TDD: los tests se escriben primero, derivados del `SPEC.md` de la lámina anterior a la de contexto (2.4), donde está plasmado con detalle lo que se espera del proyecto. Con la batería escrita, el loop del agente queda anclado: implementa, corre los tests, itera hasta que pasen, y el humano revisa contra criterios que ya estaban acordados.
+
+Los ejemplos de pedido conviene decirlos en voz alta porque marcan el tamaño correcto de la vuelta: chico y verificable. El anti-patrón es el pedido gigante, que devuelve un diff de 40 archivos que nadie va a leer; la habilidad nueva del oficio es partir la tarea en pedidos revisables. Enganchar con git: commits chicos y frecuentes convierten cada vuelta en un checkpoint reversible, y la historia del repo queda contando cómo se llegó, cambio por cambio. Tiempo objetivo: ~4 min.
 
 ---
 
@@ -352,7 +383,7 @@ Los tres ejemplos de pedido conviene decirlos en voz alta porque marcan el tama�
 
 ### Content
 
-- Un archivo en la raíz del repo que el agente **lee al arrancar cada sesión**: contexto e instrucciones permanentes del proyecto.
+- Un archivo en la raíz del repo que el agente **lee automáticamente al arrancar cada sesión**: contexto e instrucciones permanentes del proyecto.
 - **CLAUDE.md** (Claude Code) y **AGENTS.md** (Codex y otros): mismo concepto, el contrato de trabajo del repo.
 - Qué va ahí: cómo correr y testear el proyecto, convenciones del equipo, arquitectura en dos líneas, **reglas no negociables**.
 - Qué no va: nada que el código ya diga por sí solo, ni detalle que se desactualiza en una semana.
@@ -381,28 +412,24 @@ Mencionar la dualidad de nombres sin dramatizarla: CLAUDE.md para Claude Code, A
 <!-- ascii-render: documentation-only -->
 ```markdown
 # CLAUDE.md, API de turnos del hospital
-
-Servicio Node/Express + Postgres. Frontend aparte (repo turnos-web).
+Servicio Node/Express + Postgres.
 
 ## Correr y testear
-- `npm install && npm run dev` (puerto: variable PORT, no hardcodear)
-- Tests: `npm test`. Ningun cambio se commitea con tests rotos.
+- `npm install && npm run dev` (puerto: variable PORT)
+- Tests: `npm test`. Nada se commitea con tests rotos.
 
 ## Convenciones
-- TypeScript estricto. Codigo en ingles, comentarios en español.
-- Commits chicos, mensaje en imperativo: "Corrige solapamiento de turnos".
-- Migraciones de schema solo via migrations/, nunca SQL a mano.
+- TypeScript estricto. Commits chicos, mensaje imperativo.
 
 ## Reglas no negociables
-- NUNCA commitear secretos: credenciales van en variables de entorno.
-- No tocar la carpeta legacy/ sin avisar: la mantiene otro equipo.
+- NUNCA commitear secretos: credenciales en variables de entorno.
+- No tocar legacy/ sin avisar: la mantiene otro equipo.
 - Todo diff se revisa antes de commitear.
 ```
 
 **Nadie escribe esto a mano desde cero.** El agente lo genera de dos fuentes: **leyendo el repo** y **de las instrucciones explícitas del usuario** a medida que avanza la conversación.
 
-- Conviene **decirle lo más posible desde el principio**, y pedirle que **vaya recolectando en el CLAUDE.md** las preferencias e instrucciones que aparezcan.
-- El trabajo humano: revisar que las reglas duras estén.
+- Conviene **decirle lo más posible desde el principio**, y pedirle que **vaya recolectando en el CLAUDE.md** las preferencias e instrucciones que aparezcan. El trabajo humano: revisar que las reglas duras estén.
 
 ### Sources
 
@@ -559,7 +586,7 @@ El ejemplo (revisor de seguridad que busca secretos en diffs) está elegido para
 
 # 6. MCP servers
 
-**Goal of this section:** La sección central y nueva: MCP como el estándar por el que un agente descubre y usa herramientas externas. Qué es el protocolo, cómo el agente decide usar una herramienta, la práctica de leer la spec de un server antes de usarlo, el ecosistema de servers que ya existe para desarrollo (versionado, bases de datos, browsers, observabilidad, gestión, diseño, infraestructura) y dónde encontrarlos. Cuatro láminas.
+**Goal of this section:** La sección central y nueva: MCP como el estándar por el que un agente descubre y usa herramientas externas. Qué es el protocolo, cómo el agente decide usar una herramienta, la práctica de leer la documentación de un server antes de usarlo, el ecosistema de servers que ya existe para desarrollo (versionado, bases de datos, browsers, observabilidad, gestión, diseño, infraestructura) y dónde encontrarlos. Cuatro láminas.
 
 ---
 
@@ -567,9 +594,9 @@ El ejemplo (revisor de seguridad que busca secretos en diffs) está elegido para
 
 ### Content
 
-- El agente edita archivos y corre comandos, pero el trabajo real toca **sistemas externos**: GitHub, la base de datos, la plataforma de deploy.
-- **MCP (Model Context Protocol)**: el estándar abierto que conecta agentes con esos sistemas. Un **MCP server** expone las acciones de un servicio como **herramientas** que el agente puede llamar.
-- El mismo protocolo para todo: GitHub, Railway, bases de datos, browsers. **Se configura una vez por server y queda disponible.**
+- El trabajo real toca **sistemas externos**: GitHub, la base de datos, el deploy.
+- **MCP (Model Context Protocol)**: el estándar abierto. Un **MCP server** expone las acciones de un servicio como **herramientas** que el agente llama.
+- **El mismo protocolo para todo.** Se configura una vez por server y queda disponible.
 
 ![Flujo de una llamada MCP: el agente pide una accion, el MCP server la expone como tool y la traduce en llamadas a la API del servicio](images/s6-1-1-flujo-llamada-mcp.png)
 <!-- ascii-source:
@@ -607,8 +634,8 @@ Para esta audiencia vale el paralelo técnico: es una capa de API pensada para m
 
 - Al conectar un server, el agente recibe el **catálogo de tools**: nombre, descripción y parámetros de cada una.
 - Ante una tarea, el agente **elige por descripción**: el mismo mecanismo que las Skills y los subagentes.
-- El catálogo dice **qué** hace cada tool. **Cuándo y cómo conviene usarla** lo dice la spec del server.
-- **La práctica: hacerle leer la spec antes de usar.** *"Leé la documentación de este MCP y explicame qué herramientas expone y para qué las vas a usar acá."*
+- El catálogo dice **qué** hace cada tool. **Cuándo y cómo conviene usarla** lo dice la documentación del server.
+- **La práctica: hacerle leer la documentación antes de usar.** *"Leé la documentación de este MCP y explicame qué herramientas expone y para qué las vas a usar acá."*
 
 ### Sources
 
@@ -618,7 +645,7 @@ Para esta audiencia vale el paralelo técnico: es una capa de API pensada para m
 
 Primera mitad, el mecanismo: al conectar un server el agente recibe el catálogo de tools, cada una con nombre, descripción y parámetros, y cuando la tarea lo pide elige por descripción. Marcar la tercera aparición del patrón: Skills, subagentes y tools se disparan todos por descripción; a esta altura la audiencia lo tiene que poder completar sola.
 
-Segunda mitad, el límite y la práctica. El catálogo dice qué hace cada tool, no cuándo conviene usarla en un flujo concreto: no dice que conviene crear el repo antes del primer push, ni que la base de datos se provisiona antes de configurar la variable de entorno. Por eso la práctica profesional es hacerle leer la spec y la documentación del server antes de usarlo, y pedirle que explique qué va a usar y para qué. Es barato y detecta malentendidos antes de que toquen infraestructura real; vale para cualquier server que conecten, hoy y en el trabajo. Tiempo objetivo: ~3 min.
+Segunda mitad, el límite y la práctica. El catálogo dice qué hace cada tool, no cuándo conviene usarla en un flujo concreto: no dice que conviene crear el repo antes del primer push, ni que la base de datos se provisiona antes de configurar la variable de entorno. Por eso la práctica profesional es hacerle leer la documentación del server antes de usarlo, y pedirle que explique qué va a usar y para qué. Es barato y detecta malentendidos antes de que toquen infraestructura real; vale para cualquier server que conecten, hoy y en el trabajo. Tiempo objetivo: ~3 min.
 
 ---
 
@@ -651,7 +678,7 @@ Casi todo el toolchain de un equipo de desarrollo ya expone un MCP server:
 
 La lámina que muestra el tamaño real del asunto, y la razón de que MCP sea la sección central: el toolchain entero del oficio ya está expuesto al agente. Recorrer la tabla por filas, rápido, con una frase de uso por categoría: la base de datos para inspeccionar el schema y correr queries mientras debuggea; Playwright o Chrome DevTools para que el agente pruebe la app como un usuario y vea la consola; Sentry para arrancar del stack trace real de producción; Jira o Linear para leer el ticket y dejar el estado actualizado; Figma para implementar desde el diseño real; Context7 para docs de librerías actualizadas (la memoria de entrenamiento tiene fecha de corte, lámina 2.1); Railway o AWS para la infraestructura.
 
-El punto conceptual, dicho despacio: el patrón es uno solo. Server que expone tools, agente que las descubre por descripción, spec que se lee antes de usar. Aprendido con uno, vale para todos. La tabla va a quedar vieja en meses; el patrón queda. Aclarar que los ejemplos son eso, ejemplos: hay cientos, y la lámina siguiente dice dónde buscarlos. En la misión van a usar dos de estos (GitHub y Railway), pero eso se cuenta en la sección 7. Tiempo objetivo: ~4 min.
+El punto conceptual, dicho despacio: el patrón es uno solo. Server que expone tools, agente que las descubre por descripción, documentación que se lee antes de usar. Aprendido con uno, vale para todos. La tabla va a quedar vieja en meses; el patrón queda. Aclarar que los ejemplos son eso, ejemplos: hay cientos, y la lámina siguiente dice dónde buscarlos. En la misión van a usar dos de estos (GitHub y Railway), pero eso se cuenta en la sección 7. Tiempo objetivo: ~4 min.
 
 ---
 
@@ -661,6 +688,8 @@ El punto conceptual, dicho despacio: el patrón es uno solo. Server que expone t
 
 | Fuente | Qué encontrás |
 |---|---|
+| Directorio de conectores de Claude (Anthropic) | El catálogo oficial del proveedor del agente; conectores verificados |
+| Apps y conectores de ChatGPT (OpenAI) | El equivalente oficial del otro lab |
 | github.com/modelcontextprotocol/servers | Repo de referencia mantenido por la comunidad y Anthropic |
 | PulseMCP (pulsemcp.com) | Directorio curado, marca cuáles son oficiales del proveedor |
 | Smithery (smithery.ai) | Marketplace de servidores MCP, instalación asistida |
@@ -676,19 +705,19 @@ El punto conceptual, dicho despacio: el patrón es uno solo. Server que expone t
 
 ### Speaker notes
 
-Lámina de referencia, para que se la lleven anotada más que para leerla en voz alta. La idea de fondo: MCP es un estándar abierto y ya hay un ecosistema de servers publicados para casi cualquier servicio. En voz alta alcanza con el criterio de curación de cada directorio. El repo de modelcontextprotocol es la referencia; PulseMCP marca cuáles son oficiales del proveedor, que es el dato más útil para decidir; Smithery agrega instalación asistida; Glama, ranking y metadata; mcp.so es el más amplio y el menos filtrado.
+Lámina de referencia, para que se la lleven anotada más que para leerla en voz alta. La idea de fondo: MCP es un estándar abierto y ya hay un ecosistema de servers publicados para casi cualquier servicio. En voz alta alcanza con el criterio de curación de cada fuente. Empezar por las oficiales: el directorio de conectores de Claude y el de apps de ChatGPT son los catálogos curados por los proveedores de los agentes, el primer lugar donde mirar. Después las comunitarias: el repo de modelcontextprotocol es la referencia; PulseMCP marca cuáles son oficiales del proveedor del servicio, que es el dato más útil para decidir; Smithery agrega instalación asistida; Glama, ranking y metadata; mcp.so es el más amplio y el menos filtrado.
 
 El cierre es la advertencia, dicha en serio y con el argumento técnico: un MCP server corre con las credenciales que se le dan, así que conectar uno es darle las llaves de ese servicio a código de un tercero. Antes de autorizar, mirar quién lo publica. El tema reaparece en los cuidados del cierre. Tiempo objetivo: ~2 min.
 
 ---
 
-# Conclusions
+# Conclusiones
 
-## 1. Lo que se llevan: cambió el rol
+## 1. El nuevo rol: Diseñar, delegar y revisar
 
 ### Content
 
-- **El rol cambió**: se delega una tarea completa y se revisa el proceso, en vueltas chicas y con el diff como unidad.
+- **El nuevo rol**: se delega una tarea completa y se revisa el proceso, en vueltas chicas y con el diff como unidad.
 - Las piezas: el repo como contexto, CLAUDE.md como contrato, Skills y subagentes para reusar, MCP para las herramientas externas.
 - Todo es **archivos versionados en el repo**: el contrato, las Skills, los subagentes. El equipo los hereda con un clone.
 - **Para esta semana:** la misión Corta. Todo lo de hoy se usa ahí.
@@ -748,7 +777,8 @@ El tercero es el mismo prompt injection de la clase de chat, en versión código
 - `server_OLD.js` · `index_v2_FINAL.js` · `links_backup_marzo.json` · `notas.txt` · `Nueva carpeta` ...
 - El trabajo: **llevar Corta a producción**, con historia completa en GitHub desde el estado en que la recibieron.
 - Las herramientas: su agente + dos MCP servers. **GitHub MCP** (github.com/github/github-mcp-server) para versionado y repo remoto; **Railway MCP** (docs.railway.com/ai/mcp-server) para infraestructura, deploy y **provisionar la base de datos**. Requisitos: cuenta de GitHub y cuenta gratuita de Railway.
-- Paso 0 obligatorio: **pararse en `corta/`, configurar los dos MCPs, y hacerle leer las specs al agente** (criterio: que pueda explicar qué herramientas expone cada uno y para qué las va a usar).
+- Paso 0 obligatorio: **pararse en `corta/`, configurar los dos MCPs, y hacerle leer al agente la documentación de ambos** (criterio: que pueda explicar qué herramientas expone cada uno y para qué las va a usar).
+- **Corta no tiene specs escritas**: el dueño tenía ese conocimiento en la cabeza. Escribir el `SPEC.md` (y la batería de tests que se deriva) **es parte del ejercicio**.
 
 ### Sources
 
@@ -762,7 +792,7 @@ Contarla como una historia: heredaron un proyecto real de un dev que se fue, y l
 
 La app funciona en local con `npm start` y tiene errores conocidos por los usuarios; encontrarlos es parte del trabajo y la mejor pista es usar la app. No spoilear los bugs desde el escenario.
 
-Acá se presentan las dos herramientas concretas, aterrizando la tabla del ecosistema de la sección 6: de todos los servers posibles, esta misión usa GitHub MCP (versionado, repo remoto, colaboradores) y Railway MCP (servicios, deploy, y la palabra a subrayar: provisionar la base de datos, sin tocar la consola web). Rematar con el paso 0, que es la práctica de la lámina 6.2 aplicada: antes de tocar un archivo, el agente parado en la carpeta, los dos MCPs configurados, y las specs leídas; el criterio es que el agente pueda explicar qué herramientas expone cada server y para qué las va a usar. Recién ahí empieza la misión. Recordatorio logístico: cuentas de GitHub y Railway por grupo, mejor creadas antes de sentarse a trabajar. Tiempo objetivo: ~5 min.
+Acá se presentan las dos herramientas concretas, aterrizando la tabla del ecosistema de la sección 6: de todos los servers posibles, esta misión usa GitHub MCP (versionado, repo remoto, colaboradores) y Railway MCP (servicios, deploy, y la palabra a subrayar: provisionar la base de datos, sin tocar la consola web). Rematar con el paso 0, que es la práctica de la lámina 6.2 aplicada: antes de tocar un archivo, el agente parado en la carpeta, los dos MCPs configurados, y la documentación de ambos leída; el criterio es que el agente pueda explicar qué herramientas expone cada server y para qué las va a usar. Decir también la premisa del ejercicio: Corta no tiene specs escritas, el conocimiento estaba en la cabeza del dev que se fue, y hacer lo que él no hizo (el SPEC.md con su batería de tests, la práctica de la lámina 2.6) es parte del trabajo. Recién ahí empieza la misión. Recordatorio logístico: cuentas de GitHub y Railway por grupo, mejor creadas antes de sentarse a trabajar. Tiempo objetivo: ~5 min.
 
 ---
 
@@ -788,6 +818,7 @@ emphasize: "LA MISION: CORTA" arriba y "del caos a produccion" como bajada, en e
 labels: arriba = LA MISION: CORTA (del caos a produccion); centro = los cinco milestones numerados; abajo = extras: trabajo en equipo y memoria del agente.
 -->
 
+- **La forma de trabajo:** `SPEC.md` (lo que se espera de Corta, con detalle) + **TDD**: la batería de tests se deriva del SPEC, se escribe antes y corre verde en cada milestone.
 - **1 Trackear:** repo en GitHub vía MCP; el desorden inicial se pushea **tal cual**, primer commit.
 - **2 Ordenar** · **3 Corregir los errores** (usen la app: ahí están las pistas) · **4 Completar stats** (endpoint + `stats.html`).
 - **5 Producción:** deploy en Railway vía MCP. La pregunta que va a aparecer sola: **¿dónde viven los datos?** La prueba de fuego: sobreviven a un redeploy.
@@ -813,7 +844,9 @@ El extra de equipo conecta con Schedule para quien viene del MiM y es concepto n
 
 - **Fecha de la clase sin confirmar**: el frontmatter dice `Agosto 2026 (a confirmar)`.
 - **URLs de documentación pendientes de verificación**: las páginas de Claude Code (`code.claude.com/docs/en/*`: overview, quickstart, memory, skills, mcp, sub-agents), Codex (`developers.openai.com/codex`), AGENTS.md (`agents.md`) y los cinco directorios MCP de la lámina 6.4 están citadas desde los decks del MiM o de memoria; re-verificar antes de la clase.
-- **Presupuesto de tiempo**: la suma de los tiempos objetivo da ~74 min sobre 24 láminas, contra un bloque de 90; el margen (~16 min) queda para demos en vivo (1.5, 4.2, arranque de la misión) y Q&A. Revisar tras la primera pasada del presentador.
+- **Presupuesto de tiempo**: la suma de los tiempos objetivo da ~78 min sobre 25 láminas, contra un bloque de 90; el margen (~12 min) queda para demos en vivo (1.5, 4.2, arranque de la misión) y Q&A. Quedó justo: si hace falta aire, candidatas a comprimir son 2.3 (Markdown) y 6.4 (directorios, repartible como referencia).
+- **URLs de los directorios oficiales (6.4)**: el directorio de conectores de Claude y el de apps/conectores de ChatGPT se citan sin URL; verificar las vigentes antes de la clase.
+- **URL de la doc de /compact (2.5)**: citada tentativamente; verificar la página vigente de Claude Code sobre manejo de contexto.
 - **Ejemplos de la tabla del ecosistema MCP (6.3)**: los servers concretos por categoría (Sentry, Figma, Context7, Playwright, etc.) están citados de memoria del ecosistema; re-verificar existencia y estado oficial/comunitario de cada uno antes de la clase.
 - **Mecanismo de activación automática de Skills por descripción**: heredado del deck del MiM, donde quedó anotado como consistente con el comportamiento observado pero sin fuente oficial de producto; misma reserva acá (lámina 4.2).
 - **Tarea programada del extra de equipo**: la misión no fija el mecanismo (cron, Schedule de Claude, GitHub Actions queda fuera del espíritu "en su propia máquina"). Decidir si la clase sugiere uno o lo deja abierto a propósito.

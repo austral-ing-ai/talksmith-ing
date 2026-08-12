@@ -28,9 +28,18 @@ Lo primero que tienen que lograr, antes de tocar un solo archivo:
 
 1. **Parar el agente en la carpeta** `corta/` (abrir Claude Code, Codex o la herramienta que hayan elegido con esa carpeta como directorio de trabajo).
 2. **Configurar los dos MCP servers** (GitHub y Railway) en el agente.
-3. **Hacer que el agente lea las especificaciones de ambos MCPs** (los links de arriba). El criterio: el agente tiene que poder explicarles qué herramientas expone cada server y para qué las va a usar en esta misión.
+3. **Hacer que el agente lea la documentación de ambos MCP servers** (los links de arriba). El criterio: el agente tiene que poder explicarles qué herramientas expone cada server y para qué las va a usar en esta misión.
 
 Recién ahí empieza la misión.
+
+## La forma de trabajo: SPEC.md y TDD
+
+El dueño de Corta tenía todo el conocimiento del proyecto en la cabeza y nunca lo plasmó en un documento. Ustedes van a hacer lo que él no hizo. Dos prácticas obligatorias que atraviesan todos los milestones:
+
+1. **SPEC.md**: escriban un archivo `SPEC.md` en la raíz del repo donde se plasme, con lujo de detalle, lo que se espera de Corta: qué hace cada endpoint, qué pasa en los casos borde (códigos repetidos, URLs inválidas, links inexistentes), qué cuenta como "las estadísticas dicen la verdad". Se escribe temprano (con lo que vayan descubriendo del proyecto heredado) y se actualiza cuando el entendimiento cambia.
+2. **TDD**: deriven de `SPEC.md` una batería de tests bien grande, escrita **antes** de implementar cada corrección o feature. El agente implementa hasta que los tests pasen; ustedes revisan contra criterios que ya estaban acordados.
+
+**Criterio de éxito:** `SPEC.md` está en el repo y refleja el comportamiento real de la app; la batería de tests lo cubre y corre verde en cada milestone; la historia de git muestra tests que aparecen antes que las implementaciones que los hacen pasar.
 
 ## Milestones
 

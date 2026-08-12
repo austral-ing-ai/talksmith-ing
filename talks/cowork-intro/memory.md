@@ -1,14 +1,17 @@
-# memory.md — clase2
+# memory.md — cowork-intro (ex clase2)
 
-**Current step:** 8 — Learnings (Render html-strict completo 2026-08-12)
-Render 2026-08-12: estilo `html-strict`. FILL manual de `output/slide-model.json` (32 slides = portada + 8 section-agenda + 24 de contenido; sellado con model_freshness). Preflights limpios: degenerate_enum ok, field_coverage ok, image_coverage ok (refs .png de final.md conservadas verbatim). Render OK: `output/html/index.html` (571 KB) + landing `index.html` en la raiz actualizada. Un warning menor de icono: `file_download` no resuelto en 7.2 -> fallback a `info` (no bloqueante). La directiva generate-image de la 1.1 sigue sin generar (aside atmosferica, sesion sin capacidad de imagenes); el resto de los diagramas se inlinearon.
+**Current step:** 8 — Learnings awaiting_presenter (promociones de reglas y biblioteca pendientes)
+**Nota de rename:** la carpeta paso de `talks/clase2/` a `talks/cowork-intro/` en el remoto (commit f66f9ee); todas las referencias internas a `talks/clase2/` en este archivo y en CLAUDE.md se leen como `talks/cowork-intro/`.
+Render vigente 2026-08-12: `html-strict` post ronda 5, 33 laminas (portada + 8 section-agenda + 24 de contenido + El manejo del contexto) en `output/html/index.html`; reemplaza al render de 32 laminas que otra sesion habia subido desde el contenido pre-ronda-5. Preflights limpios. La directiva generate-image de la 1.1 sigue sin generar (sesion sin capacidad de imagenes).
+Ronda 5 (2026-08-12, sobre el deck renderizado): lamina nueva "El manejo del contexto" (/compact, ventana finita, contexto > prompting); iterar reescrita (tests como unidad de revision, TDD, SPEC.md); retitulados anti-slop (El cerebro en Markdown; El conocimiento del proyecto en .md; Conclusiones; "El nuevo rol: Diseñar, delegar y revisar"); directorios MCP oficiales en 6.4; "specs" del paso 0 renombrado a "documentacion de los MCP servers"; premisa sin-specs + seccion SPEC.md/TDD en mission.md.
+**Post-proceso obligatorio del render:** despues de cada `build_html.py`, correr `python3 talks/cowork-intro/postprocess-subagent-colors.py` (colores por campo en la lamina del subagente; idempotente).
 Polish 2026-08-12: 6 diagramas ASCII renderizados a SVG+PNG, todos clean a la primera pasada del critico (logs en images/.critique/). Ronda 5 de Review absorbida en el mismo paso: laminas nuevas 2.3 (Markdown, formato del ecosistema) y 2.4 (conocimiento en .md) por pedido del presentador; iterar paso a 2.5; 24 laminas, ~74 min. La directiva generate-image de la 1.1 quedo sin generar (sesion sin capacidad de generacion de imagenes); reintentar en una sesion con esa capacidad re-corriendo Polish. final.md limpio: refs a .png, sin campos de feedback.
 Ronda 3 (2026-08-12): nuevo extra de la mision, la Skill /collect-memory (mission.md + lamina 7.2).
 Ronda 4 (2026-08-12): bullets del presentador en el draft: dos frases slop cortadas de la 1.4 (y de Conclusions 1) y la 3.2 reescrita con las dos fuentes del CLAUDE.md (repo + instrucciones de la conversacion).
 **Awaiting:** siguiente ronda de feedback del presentador sobre `draft.md`, o el ready-signal para pasar a Polish. Ronda 1 (2026-08-12) aplicada: la mision descentrada de la teoria (secciones 1 a 6 generalizadas) y la seccion MCP ampliada al ecosistema de desarrollo (nueva 6.3); detalle de GitHub/Railway movido a la 7.1.
 **Mode:** B (Agent Draft) — el borrador sale del plan de `CLAUDE.md` y de los dos decks del MiM como fuente.
 **Topic:** Clase 2 de la materia de ingeniería informática: agentes de código (Claude Code / Codex), el repo como contexto, CLAUDE.md como contrato, Skills, subagentes, MCP servers y la misión Corta.
-**Folder:** talks/clase2/
+**Folder:** talks/cowork-intro/ (ex talks/clase2/)
 **Started:** 2026-08-12
 
 ---
