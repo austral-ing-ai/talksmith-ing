@@ -25,6 +25,11 @@
     },
     {
       "template": "icon-list",
+      "design": "column-right",
+      "media": {
+        "src": "images/s1-1-1-aside.png",
+        "alt": "Ilustración editorial del trabajo de desarrollo que excede escribir código"
+      },
       "section": "Agentes de código",
       "title": "El problema: el trabajo que no es escribir código",
       "rows": [
@@ -696,6 +701,11 @@
     },
     {
       "template": "icon-list",
+      "design": "column-left",
+      "media": {
+        "src": "images/s7-1-1-aside.png",
+        "alt": "Ilustración editorial de un proyecto heredado sin dueño"
+      },
       "section": "La misión: Corta",
       "title": "La historia de Corta",
       "lead": "Se suman al equipo de una empresa. El dev anterior se fue hace un mes sin dejar documentación, y era el dueño de Corta, el acortador de URLs interno.",
@@ -766,7 +776,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "27a882f2b2b0e683d2def88c80bc064c940e8db9f9c937fe857623fe1cfa794f",
-    "bytes": 71732
+    "sha256": "7477e7678c4dfe3f34504c2e34ce71be603193317587654e2bebd55218384950",
+    "bytes": 71639
   }
 }

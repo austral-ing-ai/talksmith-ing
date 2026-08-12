@@ -48,7 +48,8 @@ date: Agosto 2026
 - Hasta ahora la IA ayudaba a **tipear**: autocomplete, snippets, un chat al costado donde se pega un error.
 - Ninguna de esas herramientas **resuelve la tarea entera**: leer el proyecto, decidir, tocar archivos, verificar.
 
-<!-- generate-image: right | un escritorio de desarrollador desbordado: un repo heredado sin documentacion, issues abiertos, una terminal con errores, el reloj corriendo -->
+<!-- aside: right ![Ilustración editorial del trabajo de desarrollo que excede escribir código](images/s1-1-1-aside.png) -->
+<!-- generate-source: un escritorio de desarrollador desbordado: un repo heredado sin documentacion, issues abiertos, una terminal con errores, el reloj corriendo -->
 
 ### Sources
 
@@ -101,7 +102,7 @@ No demorarse acá: la mecánica del cambio de rol es la lámina siguiente. Tiemp
 | La salida | Texto para copiar y pegar | Diffs, commits, archivos, deploys |
 | El rol humano | Escribir y pegar | Revisar el plan y los diffs, corregir el rumbo |
 
-![Antes y ahora: del autocomplete y el chat paso a paso al agente que planifica, edita y corre mientras la persona revisa el diff](images/s1-3-1-chat-vs-agente.png)
+![Contraste entre chat y agente de código](images/s1-3-1-chat-vs-agente.svg)
 <!-- ascii-source:
 ANTES (autocomplete / chat)         AHORA (agente de codigo)
 +---------------------+             +--------------------------+
@@ -139,7 +140,7 @@ La misma tabla que en la versión de oficina, con los ejemplos en su mundo. Reco
 
 **Idea clave:** cada pieza resuelve un problema conocido y se apila sobre la anterior.
 
-![Las piezas apiladas de la clase: del modelo y el chat al agente de codigo, el repo como contexto, MCP servers, CLAUDE.md, Skills y subagentes](images/s1-4-1-mapa-piezas-apiladas.png)
+![Mapa de las piezas que componen un agente de código](images/s1-4-1-mapa-piezas-apiladas.svg)
 <!-- ascii-source:
    +----------------------+  "quiero delegar en paralelo"
    | SUBAGENTES           |
@@ -217,7 +218,7 @@ La pregunta de reconocimiento es el hábito a instalar: ante cualquier proyecto 
 - **In-context learning**: el modelo adapta su comportamiento con lo que ve en el prompt, sin reentrenarse. El contexto es **la única palanca**.
 - Para un agente de código, la consecuencia es directa: **la calidad del resultado depende del contexto que le llega**, y ese contexto es el repo.
 
-![El modelo de fabrica responde desde su memoria de entrenamiento congelada; lo unico que cambia su comportamiento es el contexto](images/s2-1-1-modelo-memoria-contexto.png)
+![Modelo que responde desde memoria y contexto](images/s2-1-1-modelo-memoria-contexto.svg)
 <!-- ascii-source:
         EL MODELO "COMO VIENE DE FABRICA"
                                              lo que NO ve:
@@ -511,7 +512,7 @@ Adelantar en una frase que el principio se repite: los subagentes de la sección
 - El agente principal reparte, espera y **consolida los resúmenes**.
 - **Pedir el trabajo en partes separables** habilita el paralelo.
 
-![Fan-out y fan-in: el agente principal reparte la tarea entre subagentes con contexto propio y consolida un resumen combinado](images/s5-1-1-subagentes-paralelo.png)
+![Subagentes que trabajan en paralelo](images/s5-1-1-subagentes-paralelo.svg)
 <!-- ascii-source:
                 +------------------+
                 | agente principal |
@@ -556,11 +557,13 @@ Un subagente propio es **un archivo `.md`**: frontmatter corto y las instruccion
 
 <!-- ascii-render: documentation-only -->
 ```markdown
+
 ---
 name: revisor-de-seguridad
 description: Revisa un diff buscando secretos, credenciales y datos
   sensibles. Usar antes de cada commit importante.
 tools: Read, Grep, Glob
+
 ---
 
 Sos un revisor de seguridad. Para cada hallazgo: nombra el archivo
@@ -598,7 +601,7 @@ El ejemplo (revisor de seguridad que busca secretos en diffs) está elegido para
 - **MCP (Model Context Protocol)**: el estándar abierto. Un **MCP server** expone las acciones de un servicio como **herramientas** que el agente llama.
 - **El mismo protocolo para todo.** Se configura una vez por server y queda disponible.
 
-![Flujo de una llamada MCP: el agente pide una accion, el MCP server la expone como tool y la traduce en llamadas a la API del servicio](images/s6-1-1-flujo-llamada-mcp.png)
+![Flujo de una llamada MCP](images/s6-1-1-flujo-llamada-mcp.svg)
 <!-- ascii-source:
 +-----------+   pide accion   +-------------+   API del      +--------------+
 | AGENTE DE | --------------&gt; | MCP SERVER  |   servicio     | GitHub /     |
@@ -780,6 +783,9 @@ El tercero es el mismo prompt injection de la clase de chat, en versión código
 - Paso 0 obligatorio: **pararse en `corta/`, configurar los dos MCPs, y hacerle leer al agente la documentación de ambos** (criterio: que pueda explicar qué herramientas expone cada uno y para qué las va a usar).
 - **Corta no tiene specs escritas**: el dueño tenía ese conocimiento en la cabeza. Escribir el `SPEC.md` (y la batería de tests que se deriva) **es parte del ejercicio**.
 
+<!-- aside: left ![Ilustración editorial de un proyecto heredado sin dueño](images/s7-1-1-aside.png) -->
+<!-- generate-source: la herencia opaca de un proyecto sin dueño: fragmentos de sistema desconectados, versiones que se superponen y una ruta de recuperación aún por construir -->
+
 ### Sources
 
 - `missions/clase2/mission.md`, "La historia", "Las herramientas", "Requisitos" y "Antes de todo".
@@ -800,7 +806,7 @@ Acá se presentan las dos herramientas concretas, aterrizando la tabla del ecosi
 
 ### Content
 
-![Placa de la mision Corta, del caos a produccion: cinco milestones y dos extras](images/s7-2-1-placa-mision-corta.png)
+![Placa de la misión Corta](images/s7-2-1-placa-mision-corta.svg)
 <!-- ascii-source:
    ______________________________________________
   |                                              |

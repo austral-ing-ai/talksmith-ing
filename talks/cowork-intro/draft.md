@@ -877,6 +877,8 @@ El tercero es el mismo prompt injection de la clase de chat, en versión código
 - Paso 0 obligatorio: **pararse en `corta/`, configurar los dos MCPs, y hacerle leer al agente la documentación de ambos** (criterio: que pueda explicar qué herramientas expone cada uno y para qué las va a usar).
 - **Corta no tiene specs escritas**: el dueño tenía ese conocimiento en la cabeza. Escribir el `SPEC.md` (y la batería de tests que se deriva) **es parte del ejercicio**.
 
+<!-- generate-image: left | la herencia opaca de un proyecto sin dueño: fragmentos de sistema desconectados, versiones que se superponen y una ruta de recuperación aún por construir -->
+
 ### Sources
 
 - `missions/clase2/mission.md`, "La historia", "Las herramientas", "Requisitos" y "Antes de todo".
@@ -892,6 +894,9 @@ La app funciona en local con `npm start` y tiene errores conocidos por los usuar
 Acá se presentan las dos herramientas concretas, aterrizando la tabla del ecosistema de la sección 6: de todos los servers posibles, esta misión usa GitHub MCP (versionado, repo remoto, colaboradores) y Railway MCP (servicios, deploy, y la palabra a subrayar: provisionar la base de datos, sin tocar la consola web). Rematar con el paso 0, que es la práctica de la lámina 6.2 aplicada: antes de tocar un archivo, el agente parado en la carpeta, los dos MCPs configurados, y la documentación de ambos leída; el criterio es que el agente pueda explicar qué herramientas expone cada server y para qué las va a usar. Decir también la premisa del ejercicio: Corta no tiene specs escritas, el conocimiento estaba en la cabeza del dev que se fue, y hacer lo que él no hizo (el SPEC.md con su batería de tests, la práctica de la lámina 2.6) es parte del trabajo. Recién ahí empieza la misión. Recordatorio logístico: cuentas de GitHub y Railway por grupo, mejor creadas antes de sentarse a trabajar. Tiempo objetivo: ~5 min.
 
 ### Presenter feedback
+
+- [closed] 2026-08-12 — "Agregar una imagen decorativa de costado que refuerce la historia de Corta: un proyecto heredado, opaco y desordenado, sin llevar información que haya que leer."
+  Resolution: Se agregó una imagen atmosférica a la izquierda, como metáfora del proyecto heredado y desordenado.
 
 ---
 

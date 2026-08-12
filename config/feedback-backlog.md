@@ -351,3 +351,9 @@
   feedback: "faltan las bibliotecas oficiales de Claude/ChatGPT en donde buscar MCP servers"
   resolution: Dos filas oficiales al tope de la tabla; notas reordenadas oficial-primero; URLs pendientes en Open questions.
   tags: [content-addition, mcp-directories]
+- talk: cowork-intro
+  date: 2026-08-12
+  location: Slide "1. La historia de Corta"
+  feedback: "Agregar una imagen decorativa de costado que refuerce la historia de Corta: un proyecto heredado, opaco y desordenado, sin llevar información que haya que leer."
+  resolution: Se agregó una imagen atmosférica a la izquierda, como metáfora del proyecto heredado y desordenado.
+  tags: [atmospheric-aside, image-addition]
