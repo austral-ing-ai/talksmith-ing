@@ -1,5 +1,13 @@
 # talksmith-ing
 
+<p align="center">
+  <a href="https://github.com/austral-ing-ai/talksmith-ing">
+    <img src="qr-github.svg" alt="QR: repositorio en GitHub" width="180" height="180">
+  </a>
+  <br>
+  <sub><a href="https://github.com/austral-ing-ai/talksmith-ing">github.com/austral-ing-ai/talksmith-ing</a></sub>
+</p>
+
 ## Calendario académico — segundo cuatrimestre 2026
 
 - **Inicio del cuatrimestre:** lunes 3 de agosto.
