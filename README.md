@@ -31,3 +31,11 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 | 13 | Miércoles 4 de noviembre | Agentes | — |
 | 14 | Miércoles 11 de noviembre | Seguridad y Etica | — |
 
+## Calendario de entregas — trabajos prácticos
+
+Las entregas de los trabajos prácticos se realizan en la clase indicada.
+
+| TP | Clase | Fecha de entrega | Tema / consigna |
+|---:|---:|---|---|
+| 1 | 2 | Miércoles 12 de agosto | [Corta, del caos a producción](missions/clase2/mission.md) |
+
