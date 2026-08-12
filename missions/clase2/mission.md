@@ -1,5 +1,11 @@
 # Misión: Corta, del caos a producción
 
+## Descarga
+
+El punto de partida es la carpeta `corta/`, tal cual la recibieron: **[descargar `corta.zip`](https://austral-ing-ai.github.io/talksmith-ing/missions/clase2/corta.zip)**.
+
+Descompriman el zip y usen esa carpeta como fuente. No la ordenen todavía: el desorden inicial es parte del ejercicio (ver Milestone 1).
+
 ## La historia
 
 Se incorporan al equipo de desarrollo de una empresa. El desarrollador anterior, que se fue hace un mes y no dejó documentación, era el dueño de **Corta**, el acortador de URLs interno que usa toda la empresa. Antes de irse, lo único que entregó fue una carpeta copiada de su computadora.
