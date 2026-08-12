@@ -16,7 +16,7 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 | Clase | Fecha | Tema / actividad | Presentación |
 |---:|---|---|---|
 | 1 | Miércoles 5 de agosto | Bienvenida + CoWork | [Introducción](https://veigap.github.io/talksmith-ing/talks/introduccion/output/html/) |
-| 2 | Miércoles 12 de agosto | CoWork | [Claude Desktop — Chat](https://veigap.github.io/talksmith-ing/talks/claude-desktop-chat/output/html/) · [Claude Cowork](https://veigap.github.io/talksmith-ing/talks/claude-cowork/output/html/) |
+| 2 | Miércoles 12 de agosto | CoWork | [Cowork Intro](https://veigap.github.io/talksmith-ing/talks/cowork-intro/output/html/) |
 | 3 | Miércoles 19 de agosto | NN, input, output, backpropagation, funcion de error, training  | — |
 | 4 | Miércoles 26 de agosto | LLM - Embeddings, Tokens, word2Vec, Sec, Transformers | — |
 | 5 | Miércoles 2 de septiembre | LLM - Advanced Transformers | — |
