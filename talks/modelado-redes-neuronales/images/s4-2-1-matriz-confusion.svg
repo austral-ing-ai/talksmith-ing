@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>La matriz de confusión</title>
+  <desc>La tabla 2x2 cruza lo que el modelo predijo con lo que era verdad; las dos celdas de error son FP y FN.</desc>
+  <rect x="0" y="0" width="600" height="460" fill="#ffffff"/>
+
+  <text x="350" y="40" font-size="17" text-anchor="middle" font-weight="bold">REALIDAD</text>
+  <text x="270" y="70" font-size="15" text-anchor="middle">Positivo</text>
+  <text x="450" y="70" font-size="15" text-anchor="middle">Negativo</text>
+
+  <text x="60" y="200" font-size="17" text-anchor="middle" font-weight="bold" transform="rotate(-90 60 200)">PREDICHO</text>
+  <text x="150" y="185" font-size="15" text-anchor="middle" transform="rotate(-90 150 185)">Positivo</text>
+  <text x="150" y="345" font-size="15" text-anchor="middle" transform="rotate(-90 150 345)">Negativo</text>
+
+  <rect x="180" y="90" width="180" height="150" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.4"/>
+  <text x="270" y="150" font-size="30" text-anchor="middle" font-weight="bold">TP</text>
+  <text x="270" y="180" font-size="14" text-anchor="middle" fill="#7A7373">acierto</text>
+
+  <rect x="360" y="90" width="180" height="150" fill="#FBE7EA" stroke="#DA1B2E" stroke-width="1.8"/>
+  <text x="450" y="150" font-size="30" text-anchor="middle" font-weight="bold" fill="#DA1B2E">FP</text>
+  <text x="450" y="180" font-size="14" text-anchor="middle" fill="#7A7373">falsa alarma</text>
+
+  <rect x="180" y="240" width="180" height="150" fill="#FBE7EA" stroke="#DA1B2E" stroke-width="1.8"/>
+  <text x="270" y="300" font-size="30" text-anchor="middle" font-weight="bold" fill="#DA1B2E">FN</text>
+  <text x="270" y="330" font-size="14" text-anchor="middle" fill="#7A7373">se escapó</text>
+
+  <rect x="360" y="240" width="180" height="150" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.4"/>
+  <text x="450" y="300" font-size="30" text-anchor="middle" font-weight="bold">TN</text>
+  <text x="450" y="330" font-size="14" text-anchor="middle" fill="#7A7373">acierto</text>
+
+  <text x="360" y="435" font-size="15" text-anchor="middle" fill="#7A7373">las dos celdas rojas son los errores: FP molesta, FN se escapa</text>
+</svg>

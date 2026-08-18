@@ -1,0 +1,802 @@
+{
+  "deck": {
+    "title": "Inteligencia Artificial Generativa (AI Gen)",
+    "institution": "Universidad Austral",
+    "class": "Diseño de redes neuronales: del dato a la predicción",
+    "presenter": "Paulo Veiga, Claudio Riguetti, Marco Sorondo",
+    "date": "a definir",
+    "lang": "es",
+    "logo": null,
+    "sections": [
+      "Qué se diseña de verdad",
+      "Modelar la entrada",
+      "Modelar la salida",
+      "La matriz de confusión",
+      "Overfitting",
+      "Regularización y L2"
+    ]
+  },
+  "slides": [
+    {
+      "template": "section-agenda",
+      "section": "Qué se diseña de verdad",
+      "title": "Qué se diseña de verdad"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué se diseña de verdad",
+      "title": "La red no ve el problema, ve un tensor",
+      "cards": [
+        {
+          "label": "Todo entra como números",
+          "body": "Un cliente, una máquina, una foto o un contrato llegan a la red como un vector de floats de tamaño fijo. La semántica original desaparece en la codificación."
+        },
+        {
+          "label": "El input es una traducción",
+          "body": "Como toda traducción, puede perder cosas. Si lo que importa no quedó en el tensor, o quedó de una forma que borra su estructura, ninguna arquitectura lo recupera después."
+        },
+        {
+          "label": "Codificar mal es fatal",
+          "body": "La red solo ve floats y no puede detectar que una posición era un código y otra una cantidad. El error entra silencioso y se queda."
+        }
+      ],
+      "notes": "Abrí con esto porque reordena toda la clase. La mayoría llega pensando que diseñar una red es elegir capas. Planteales la pregunta: ¿qué ve realmente la red cuando le pasás un cliente? La respuesta (un vector de números) es el hilo de las próximas dos secciones. Anclá la idea de traducción con pérdida: es la que justifica dedicarle 20 minutos a la entrada."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué se diseña de verdad",
+      "title": "La mitad de la arquitectura no se elige",
+      "lead": "Buena parte de lo que parece decisión de diseño sale sola del problema.",
+      "cards": [
+        {
+          "label": "Lo determina la tarea",
+          "body": "Neuronas de salida, activación de salida y loss. Un precio pide salida lineal con MSE; N clases piden softmax con cross-entropy. No hay margen."
+        },
+        {
+          "label": "Lo determina la codificación",
+          "body": "Cantidad de neuronas de entrada y si se normaliza. Salen de cómo se representan las variables, y es donde se gana o se pierde el modelo."
+        },
+        {
+          "label": "Lo que sí se elige (importa poco)",
+          "body": "Capas ocultas (1 a 3 para tabular), ancho de cada capa (potencias de 2, decreciente) y activación oculta (ReLU salvo motivo)."
+        }
+      ],
+      "notes": "Este es el mapa mental que quiero que se lleven. Pasan horas tuneando capas y el retorno está en la entrada. Dato honesto: en tabular una red muchas veces pierde contra gradient boosting (XGBoost, LightGBM); las redes brillan cuando hay estructura que explotar (imágenes, texto, señales)."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Qué se diseña de verdad",
+      "title": "Una neurona, en una línea",
+      "lead": "Una capa hace dos cosas: una combinación lineal y una no linealidad.",
+      "media": {
+        "src": "images/s1-3-1-neurona.svg",
+        "alt": "Las entradas se combinan en la pre-activación z y una no linealidad f produce la activación a"
+      },
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Pre-activación",
+          "body": "`z = W·x + b`. Combinación lineal de las entradas más un sesgo."
+        },
+        {
+          "label": "Activación",
+          "body": "`a = f(z)`. La no linealidad `f` hace que apilar capas sirva. Sin ella, la composición de capas lineales colapsa a una sola matriz."
+        },
+        {
+          "label": "ReLU por defecto",
+          "body": "En capas ocultas, `max(0, z)`. GELU o SiLU en transformers. La activación de salida se elige con otro criterio."
+        }
+      ],
+      "notes": "Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Los parámetros de una capa son m·n + m."
+    },
+    {
+      "template": "section-agenda",
+      "section": "Modelar la entrada",
+      "title": "Modelar la entrada"
+    },
+    {
+      "template": "value-columns",
+      "section": "Modelar la entrada",
+      "title": "Todo termina en un vector de floats",
+      "lead": "Lo que cambia entre un caso y otro es qué significa la posición dentro del vector, y eso determina la arquitectura.",
+      "columns": [
+        {
+          "header": "Estructura del dato",
+          "cells": [
+            "Sin estructura (tabular)",
+            "Grilla 1D (señal)",
+            "Grilla 2D (imagen)",
+            "Secuencia (texto)",
+            "Conjunto (carrito)",
+            "Grafo (cuentas)"
+          ]
+        },
+        {
+          "header": "Qué se puede cambiar sin cambiar la respuesta",
+          "cells": [
+            "El orden de las columnas",
+            "Desplazar en el tiempo",
+            "Desplazar en el espacio",
+            "Nada, el orden es todo",
+            "El orden de los elementos",
+            "Renumerar los nodos"
+          ]
+        },
+        {
+          "header": "Arquitectura natural",
+          "cells": [
+            "Fully connected",
+            "Conv 1D, RNN, Transformer",
+            "Conv 2D",
+            "Transformer",
+            "Deep Sets, attention",
+            "GNN"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "body": "¿Qué transformaciones puedo aplicarle al input sin cambiar la respuesta correcta? Esa invariancia elige la arquitectura.",
+          "kind": "takeaway"
+        }
+      ],
+      "notes": "Este marco es elegante. La invariancia traslacional de las imágenes es la razón de ser de las convoluciones. Para el resto de la clase nos quedamos en el caso tabular, el más común en negocio y donde las decisiones de codificación se ven más claras."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Modelar la entrada",
+      "title": "La pregunta que decide la codificación",
+      "lead": "Frente a cualquier variable, una sola pregunta ordena la decisión: ¿qué significa la resta entre dos valores?",
+      "cards": [
+        {
+          "label": "Da una cantidad interpretable",
+          "body": "85 m² menos 60 m² son 25 m² reales. Un float normalizado, una neurona."
+        },
+        {
+          "label": "Da orden pero no magnitud",
+          "body": "Satisfacción 4 menos 2. Ordinal; evaluar también one-hot."
+        },
+        {
+          "label": "No significa nada",
+          "body": "Barrio 14 menos barrio 7. One-hot o embedding según cuántos valores haya."
+        },
+        {
+          "label": "No se puede ni plantear",
+          "body": "Probablemente no sea una feature útil."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Todo termina en floats. Los enteros aparecen en un solo lugar: como índice para buscar una fila en una tabla de embeddings.",
+          "kind": "note"
+        }
+      ],
+      "notes": "La herramienta más transferible de la clase. Ejemplo en vivo: tirales edad, código postal y nivel educativo y que apliquen la pregunta en voz alta. El código postal es la trampa: parece número, la resta no significa nada."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Modelar la entrada",
+      "title": "Numéricas: normalizar no es opcional",
+      "lead": "El gradiente de un peso es proporcional a su entrada, pero el learning rate es uno solo: escalas dispares hacen zigzaguear el entrenamiento.",
+      "cards": [
+        {
+          "label": "z-score por defecto",
+          "body": "`(x − μ) / σ`. El valor se lee como cuántos desvíos por encima o por debajo del promedio; la unidad original desaparece."
+        },
+        {
+          "label": "log antes del z-score con colas largas",
+          "body": "Ingresos, transacciones, días desde la última compra. La diferencia entre 1 y 10 importa más que entre 4000 y 4010."
+        },
+        {
+          "label": "Los booleanos y one-hot no se tocan",
+          "body": "Ya están en 0 y 1."
+        },
+        {
+          "label": "Escala pareja no es importancia pareja",
+          "body": "Normalizar no le quita peso a una variable; la importancia la aprenden los pesos. Solo la pone en condiciones de ser evaluada."
+        }
+      ],
+      "notes": "El porqué formal es el número de condición de la Hessiana, pero alcanza con las curvas de nivel: parejas dan círculos y el gradiente apunta al mínimo; dispares dan elipses y apunta a la pared. Efecto secundario: entradas grandes saturan sigmoide o tanh. Árboles y boosting no necesitan normalización."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Modelar la entrada",
+      "title": "Categóricas: one-hot contra embedding",
+      "lead": "Una categoría sin orden se codifica de dos formas, y la cardinalidad decide cuál.",
+      "media": {
+        "src": "images/s2-4-1-one-hot.svg",
+        "alt": "One-hot selecciona una columna de W: como solo una posición vale 1, el producto con W toma los pesos de esa categoría"
+      },
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "One-hot (cardinalidad baja)",
+          "body": "Una neurona por valor, todas en 0 salvo una en 1. Todas las categorías a la misma distancia. No se aprende, es interpretable, necesita pocos datos."
+        },
+        {
+          "label": "Embedding (cardinalidad alta)",
+          "body": "Una tabla de `k × d` floats entrenable. La red aprende la distancia entre categorías. Con 500 barrios, d=24 usa 24 neuronas donde one-hot usaría 500."
+        },
+        {
+          "label": "La regla de la cardinalidad",
+          "body": "Hasta 15 valores, one-hot; de 15 a 50, cualquiera; 50 o más, embedding."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Un embedding equivale a un one-hot seguido de una capa lineal sin sesgo. Conceptualmente, es la primera capa de la red.",
+          "kind": "takeaway"
+        }
+      ],
+      "notes": "El puente que engancha: así arranca un LLM. Cada token es un índice que busca su fila en una tabla de ~50.000 por 4096. El embedding de categorías y el de palabras son la misma idea. Dos ventajas no obvias: comparte estadística entre categorías parecidas y es reutilizable."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Modelar la entrada",
+      "title": "Errores de codificación caros",
+      "format": "editorial",
+      "lead": "Casi todos entran silenciosos: el modelo entrena sin dar error y falla en producción.",
+      "cards": [
+        {
+          "label": "Código como número",
+          "body": "Barrio 7 y 14 cargados como 7 y 14. La red asume que 14 es el doble de 7. Van como one-hot o embedding."
+        },
+        {
+          "label": "ID único como feature",
+          "body": "DNI, póliza, CUIT. No tienen poder predictivo; si el modelo aprende de ellos, memoriza ejemplos. Se descartan."
+        },
+        {
+          "label": "Cíclicas aplastadas",
+          "body": "Las 23:00 y las 00:00 están a una hora, pero como números planos a 23. Se codifican con `sin` y `cos`."
+        },
+        {
+          "label": "Faltantes rellenados con 0",
+          "body": "Cuando 0 es válido, confunde ausencia con valor. Imputar más un flag binario, que a veces predice más que la variable."
+        }
+      ],
+      "notes": "Sección de no lo hagas. Estos cuatro son los que más vas a ver en trabajos y en producción. El de códigos y el de IDs únicos son los favoritos. El ID memoriza el train, da accuracy perfecto y se derrumba con datos nuevos: puente natural a overfitting."
+    },
+    {
+      "template": "code-example",
+      "section": "Modelar la entrada",
+      "title": "μ y σ: el modelo no son solo los pesos",
+      "language": "python",
+      "code": "# MAL: μ y σ contaminados con el test (data leakage)\nscaler.fit_transform(X_test)\n\n# BIEN: μ y σ aprendidos solo del train\nscaler.fit(X_train)\nscaler.transform(X_test)",
+      "explanation": [
+        "**Calcularlos sobre todo el dataset es data leakage.** Información del test se filtra al entrenamiento y la métrica sale optimista. Todo lo que se aprende de los datos se aprende solo del train, transformaciones incluidas.",
+        "**El modelo desplegado no son solo `W` y `b`.** Son los pesos, los μ y σ de cada variable, el diccionario categoría a índice y los valores de imputación. Con solo los pesos, queda inservible.",
+        "**El bug es silencioso.** Normalizar en producción con μ=120 en vez de 95 no lanza ninguna excepción. Solo devuelve predicciones incorrectas."
+      ],
+      "notes": "Cierre práctico del input y puente al mundo real. Este es el error número uno de producción en ML: que la normalización o el diccionario queden fuera del artefacto. La regla: preprocesamiento y modelo se despliegan juntos, siempre. Data drift: no recalcular μ y σ en producción, detectar drift y reentrenar."
+    },
+    {
+      "template": "section-agenda",
+      "section": "Modelar la salida",
+      "title": "Modelar la salida"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Modelar la salida",
+      "title": "La capa de salida la determina la tarea",
+      "lead": "La activación de salida se elige por un criterio: poner el número en el rango y la interpretación correctos.",
+      "cards": [
+        {
+          "label": "Lineal (ninguna)",
+          "body": "Salida en todo ℝ. Un precio puede ser cualquier número."
+        },
+        {
+          "label": "Sigmoide",
+          "body": "Salida en (0, 1). Una probabilidad, para un sí o no."
+        },
+        {
+          "label": "Softmax",
+          "body": "Salidas en (0, 1) que suman 1. Probabilidades sobre clases excluyentes."
+        },
+        {
+          "label": "Softplus o exp",
+          "body": "Salida en (0, ∞). Un conteo o un desvío no pueden ser negativos."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Activación lineal es una forma elegante de decir ninguna activación. Es la única capa donde no poner activación es correcto.",
+          "kind": "note"
+        }
+      ],
+      "notes": "Contraste con las ocultas: ahí la activación casi no importa. En la salida, cada opción corresponde a una forma del rango. ¿Qué activación para unidades vendidas? Softplus o exp, un conteo no puede ser negativo. Lineal con MSE para conteos permite predicciones negativas."
+    },
+    {
+      "template": "value-columns",
+      "section": "Modelar la salida",
+      "title": "Un catálogo para elegir sin dudar",
+      "lead": "Casi cualquier tarea entra en esta tabla. Elegida la fila, la salida queda determinada.",
+      "columns": [
+        {
+          "header": "Qué predice",
+          "cells": [
+            "Un real (precio)",
+            "Sí o no (churn)",
+            "Una de N clases",
+            "Varias de N (tags)",
+            "Conteo (demanda)",
+            "Cuantiles (P10/50/90)",
+            "Distribución (μ, σ)"
+          ]
+        },
+        {
+          "header": "Neuronas",
+          "cells": [
+            "1",
+            "1",
+            "N",
+            "N",
+            "1",
+            "k",
+            "2"
+          ]
+        },
+        {
+          "header": "Activación",
+          "cells": [
+            "Lineal",
+            "Sigmoide",
+            "Softmax",
+            "Sigmoide ×N",
+            "Softplus / exp",
+            "Lineal",
+            "μ lineal, σ softplus"
+          ]
+        },
+        {
+          "header": "Loss",
+          "cells": [
+            "MSE / MAE / Huber",
+            "BCE",
+            "Cross-entropy",
+            "BCE",
+            "Poisson NLL",
+            "Pinball",
+            "NLL gaussiana"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Cuando el negocio necesita un rango y no un punto, los cuantiles (P10, P50, P90) son lo más rentable: no asumen forma y dan el intervalo directo.",
+          "kind": "example"
+        }
+      ],
+      "notes": "No leas toda la tabla; detenete en dos o tres filas. La de cuantiles suele ser nueva y es muy útil (stock, riesgo, capacidad). La media es la respuesta correcta a una pregunta que nadie hizo. La distribución con μ y σ conecta con estadística que ya vieron."
+    },
+    {
+      "template": "code-example",
+      "section": "Modelar la salida",
+      "title": "Activación y loss se eligen juntas",
+      "language": "python",
+      "code": "nn.Linear(32, 1)                # sin sigmoide en la capa\nloss = nn.BCEWithLogitsLoss()   # la sigmoide está acá adentro",
+      "explanation": [
+        "El par activación-de-salida y loss se decide en bloque. Combinaciones cruzadas, como softmax con MSE, entrenan pero convergen mal.",
+        "**`BCEWithLogitsLoss` y `CrossEntropyLoss` ya incluyen la sigmoide y el softmax** por estabilidad numérica. Ponerla también en la capa la aplica dos veces y el modelo entrena mal.",
+        "**En inferencia la activación la aplica quien usa el modelo.** Con logits crudos, `prob = torch.sigmoid(model(x))`. El error frecuente es leer un logit de 2.3 como si fuera una probabilidad."
+      ],
+      "notes": "Detalle que muerde en la primera práctica con PyTorch. La doble sigmoide es un bug clásico: el modelo entrena raro y nadie entiende por qué. Regla: si el loss termina en WithLogits o es CrossEntropyLoss, la capa va sin activación y la aplicás vos en inferencia."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Modelar la salida",
+      "title": "Dos formas de modelar mal la salida",
+      "cards": [
+        {
+          "label": "Softmax donde iba sigmoide",
+          "body": "Un ticket puede ser urgente y de facturación a la vez. Softmax fuerza a que las clases compitan y sumen 1. Si no son excluyentes, van N sigmoides independientes."
+        },
+        {
+          "label": "Predecir un punto cuando iba un rango",
+          "body": "Si la decisión depende del peor escenario (stock, riesgo, capacidad), un valor puntual no alcanza. Ahí van cuantiles o una distribución."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Los dos comparten causa: la salida se eligió mirando la arquitectura en vez de la pregunta del negocio.",
+          "kind": "takeaway"
+        }
+      ],
+      "notes": "El de softmax vs sigmoide se entiende con el ticket multi-etiqueta. ¿Clasificar géneros de una película es softmax o sigmoide? Sigmoide, una película puede ser comedia y drama. El modelado de la salida es una decisión de producto, no solo técnica."
+    },
+    {
+      "template": "section-agenda",
+      "section": "La matriz de confusión",
+      "title": "La matriz de confusión"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "La matriz de confusión",
+      "title": "El 99% de accuracy que no sirve",
+      "lead": "Un detector de fraude donde 99 de cada 100 son legítimas alcanza 99% de accuracy con una regla: decir siempre no es fraude.",
+      "cards": [
+        {
+          "label": "Accuracy es la fracción de aciertos",
+          "body": "Con clases desbalanceadas la mide la clase mayoritaria y esconde el error que importa."
+        },
+        {
+          "label": "No todos los errores cuestan igual",
+          "body": "Marcar sana a una transacción fraudulenta y molestar a un cliente legítimo son errores distintos, con costos distintos."
+        },
+        {
+          "label": "Hace falta separar los tipos de error",
+          "body": "No un solo número. Ahí entra la matriz de confusión."
+        }
+      ],
+      "notes": "Arranque con gancho: el clasificador que dice siempre no. Es la mejor forma de que se les caiga la ficha de que accuracy sola no alcanza. El 99% es ilustrativo, no un dato de una fuente. Puente desde la salida (clasificación con sigmoide) hacia cómo se evalúa."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "La matriz de confusión",
+      "title": "La matriz de confusión",
+      "lead": "Para clasificación binaria, todos los resultados caen en una tabla de 2×2 que cruza predicción y verdad.",
+      "media": {
+        "src": "images/s4-2-1-matriz-confusion.svg",
+        "alt": "La matriz de confusión 2x2: cruza lo que el modelo predijo con lo que era verdad; las dos celdas de error son FP y FN"
+      },
+      "design": "split-left",
+      "cards": [
+        {
+          "label": "TP, verdadero positivo",
+          "body": "Era positivo y el modelo lo marcó. Acierto."
+        },
+        {
+          "label": "FP, falso positivo",
+          "body": "Era negativo y el modelo lo marcó. Falsa alarma."
+        },
+        {
+          "label": "FN, falso negativo",
+          "body": "Era positivo y el modelo lo dejó pasar. Lo más caro en fraude o diagnóstico."
+        },
+        {
+          "label": "TN, verdadero negativo",
+          "body": "Era negativo y el modelo lo dejó pasar. Acierto."
+        }
+      ],
+      "notes": "El centro de la sección. Dibujá la matriz mientras aparece y pedí que ubiquen el fraude en cada celda. La confusión típica es FP vs FN; anclalo con el costo: un FN médico (mandar a casa a alguien enfermo) suele ser peor que un FP. Accuracy es la diagonal sobre el total."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "La matriz de confusión",
+      "title": "Precision, recall y F1",
+      "lead": "De las cuatro celdas salen las métricas que describen a un clasificador.",
+      "cards": [
+        {
+          "label": "Precision = TP / (TP + FP)",
+          "body": "De lo que el modelo marcó como positivo, cuánto lo era. Importa cuando el FP es caro (marcar spam un mail importante)."
+        },
+        {
+          "label": "Recall = TP / (TP + FN)",
+          "body": "De lo que era positivo, cuánto agarró. Importa cuando el FN es caro (no detectar una enfermedad o un fraude)."
+        },
+        {
+          "label": "F1, media armónica",
+          "body": "Un solo número cuando ambas importan. Castiga los desbalances: si una es 1.0 y la otra 0.0, F1 es 0, no 0.5."
+        },
+        {
+          "label": "Precision y recall están en tensión",
+          "body": "Subir una suele bajar la otra. Qué priorizar lo decide el costo del error, no la matemática."
+        }
+      ],
+      "notes": "Insistí en la intuición antes que en la fórmula. Precision: cuando dice que sí, ¿le creo? Recall: de todos los que eran, ¿cuántos encontró? Precision mira la columna de predichos positivos, recall la fila de reales positivos. F1 solo es peligroso; mirá las dos."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "La matriz de confusión",
+      "title": "El umbral y la matriz N×N",
+      "lead": "Un clasificador no devuelve sí o no, devuelve una probabilidad. El umbral (por defecto 0.5) la convierte en decisión.",
+      "cards": [
+        {
+          "label": "Bajar el umbral",
+          "body": "Sube el recall y baja la precision: el modelo marca más positivos, agarra más verdaderos y también más falsas alarmas."
+        },
+        {
+          "label": "Subir el umbral",
+          "body": "Hace lo contrario. Se elige según el costo del error, no se deja en 0.5 por inercia."
+        },
+        {
+          "label": "La curva precision-recall",
+          "body": "Resume el trade-off para todos los umbrales de una vez, y sirve para comparar modelos sin fijar uno."
+        },
+        {
+          "label": "Multiclase: la matriz N×N",
+          "body": "La diagonal son los aciertos; cada celda fuera de ella dice con qué clase se confunde cada una. Precision y recall por clase y se promedian."
+        }
+      ],
+      "notes": "El umbral es lo más útil en la práctica y lo que más cuesta. Un modelo de fraude con recall bajo en 0.5 puede pasar a recall alto bajando a 0.2, a costa de más falsas alarmas. Es una perilla de negocio. La matriz N×N conecta con el softmax de la sección 3."
+    },
+    {
+      "template": "section-agenda",
+      "section": "Overfitting",
+      "title": "Overfitting"
+    },
+    {
+      "template": "value-columns",
+      "section": "Overfitting",
+      "title": "El diagnóstico en dos números",
+      "lead": "Overfitting es la brecha entre el error de entrenamiento y el de validación. El diagnóstico sale de mirar los dos juntos.",
+      "columns": [
+        {
+          "header": "Error de train",
+          "cells": [
+            "Alto",
+            "Bajo",
+            "Bajo"
+          ]
+        },
+        {
+          "header": "Error de validación",
+          "cells": [
+            "Alto",
+            "Alto",
+            "Bajo"
+          ]
+        },
+        {
+          "header": "Diagnóstico",
+          "cells": [
+            "Underfitting",
+            "Overfitting",
+            "Bien"
+          ]
+        },
+        {
+          "header": "Qué hacer",
+          "cells": [
+            "Más capacidad",
+            "Regularizar",
+            "Nada"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "body": "El síntoma es la separación: el error de train baja sin parar y el de validación deja de bajar y empieza a subir. La red pasó de aprender el patrón a memorizar los ejemplos.",
+          "kind": "takeaway"
+        }
+      ],
+      "notes": "El mapa de decisión de la sección 6. Insistí en el orden: primero se diagnostica, después se trata. Regularizar un modelo con underfitting empeora las dos métricas. Conectá con el ID único: memorizar el DNI es overfitting en estado puro."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Overfitting",
+      "title": "Sesgo contra varianza",
+      "lead": "La regularización no mejora el ajuste: lo empeora en train a cambio de que el modelo generalice mejor.",
+      "media": {
+        "src": "images/s5-2-1-curvas-overfitting.svg",
+        "alt": "Curvas de train y validación: el error de train baja sin parar mientras el de validación deja de bajar y vuelve a subir"
+      },
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Mucha capacidad da alta varianza",
+          "body": "El modelo pasa por cada punto de train, incluido el ruido, y cambia mucho con datos nuevos. Es la curva de validación que sube."
+        },
+        {
+          "label": "Poca capacidad da alto sesgo",
+          "body": "No captura el patrón ni en train."
+        },
+        {
+          "label": "Regularizar es un intercambio explícito",
+          "body": "Se acepta un poco más de sesgo (peor ajuste en train) para bajar la varianza (mejor desempeño fuera de train)."
+        },
+        {
+          "label": "El objetivo nunca fue el error de train",
+          "body": "Un modelo que ajusta perfecto lo que ya vio y falla en lo nuevo no sirve para nada."
+        }
+      ],
+      "notes": "El fundamento teórico de la sección 6. Metáfora: estudiar memorizando las respuestas de los ejercicios viejos (alta varianza) contra entender el método (algo de sesgo, generaliza). Todas las técnicas que siguen son formas de bajar varianza."
+    },
+    {
+      "template": "section-agenda",
+      "section": "Regularización y L2",
+      "title": "Regularización y L2"
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Regularización y L2",
+      "title": "L2: penalizar los pesos grandes",
+      "lead": "L2 agrega un término al objetivo que penaliza los pesos grandes.",
+      "media": {
+        "src": "images/s6-1-1-objetivo-l2.svg",
+        "alt": "El objetivo J igual a cost más lambda por suma de w al cuadrado: el término L2 penaliza los pesos grandes y los empuja hacia cero"
+      },
+      "design": "split-left",
+      "cards": [
+        {
+          "label": "Por qué funciona",
+          "body": "Un peso grande hace la salida muy sensible a esa entrada. Con pesos chicos la función es más suave, y una función suave pasa peor por cada punto de train, que es lo que hace el overfitting."
+        },
+        {
+          "label": "De ahí el nombre decay",
+          "body": "El gradiente de λΣw² empuja cada peso un poco hacia cero en cada paso."
+        },
+        {
+          "label": "λ es el hiperparámetro",
+          "body": "Típicamente entre 1e-5 y 1e-2. En PyTorch, `Adam(params, weight_decay=1e-4)`."
+        },
+        {
+          "label": "Al sesgo no se le aplica",
+          "body": "El bias no controla la sensibilidad a la entrada. En inferencia L2 no hace nada, ya quedó en los pesos."
+        }
+      ],
+      "notes": "El tema del título, dedicale tiempo. El porqué funciona es lo importante: pesos grandes, función que oscila para tocar cada punto; pesos chicos, función suave que generaliza. Dibujá dos ajustes sobre los mismos puntos. El detalle del bias: penalizás pesos, no sesgos, porque el bias solo desplaza."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Regularización y L2",
+      "title": "L1 contra L2",
+      "cards": [
+        {
+          "label": "L2 penaliza w²",
+          "body": "Reduce todos los pesos sin llevarlos a cero. Pesos parejos y chicos. Es el estándar en redes."
+        },
+        {
+          "label": "L1 penaliza |w|",
+          "body": "Lleva los pesos chicos exactamente a cero. Una solución rala que selecciona features. Más en modelos lineales (Lasso)."
+        },
+        {
+          "label": "Elastic net",
+          "body": "Combina las dos. Rara vez hace falta en una red."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Si querés que el modelo descarte features solo, L1. Si querés que ningún peso domine, L2.",
+          "kind": "takeaway"
+        }
+      ],
+      "notes": "Comparación corta. El punto geométrico si profundizan: la bola L1 tiene puntas sobre los ejes y ahí cae el óptimo (rala); la L2 es redonda, empuja parejo. Para la clase alcanza con L1 selecciona, L2 empareja."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Regularización y L2",
+      "title": "Dropout: no depender de ninguna neurona",
+      "lead": "Durante el entrenamiento, dropout apaga al azar una fracción de las neuronas en cada paso hacia adelante.",
+      "cards": [
+        {
+          "label": "Cómo actúa",
+          "body": "Cada neurona se apaga con probabilidad p (0.2 a 0.5 en ocultas). La red no puede depender de ninguna, así que reparte la representación."
+        },
+        {
+          "label": "Es un ensamble implícito",
+          "body": "De muchas subredes que comparten pesos."
+        },
+        {
+          "label": "En inferencia se desactiva",
+          "body": "Todas las neuronas quedan activas. En PyTorch, `nn.Dropout(0.2)`."
+        },
+        {
+          "label": "El bug que muerde",
+          "body": "Olvidar `model.eval()` deja dropout activo en inferencia, y el modelo devuelve predicciones distintas cada llamada. Le pasa también a BatchNorm."
+        }
+      ],
+      "notes": "El model.eval() es el bug de PyTorch que van a cometer sí o sí; que suene fuerte ahora. La lectura de ensamble: en cada paso entrenás una subred distinta, en inferencia usás el promedio. En visión moderna casi no se usa dropout: se lleva mal con BatchNorm."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Regularización y L2",
+      "title": "El resto del arsenal",
+      "lead": "Hay más de una herramienta, y la mejor a veces no es la más sofisticada.",
+      "cards": [
+        {
+          "label": "Early stopping",
+          "body": "Cortar cuando la validación deja de mejorar. Gratis, sin hiperparámetro, funciona con cualquier arquitectura. El que más rinde y menos se menciona."
+        },
+        {
+          "label": "Más datos",
+          "body": "Ataca la causa, no el síntoma. Caro, pero es el mejor remedio."
+        },
+        {
+          "label": "Data augmentation",
+          "body": "Genera variantes del dato (recortes, giros, ruido). Muy efectivo en visión."
+        },
+        {
+          "label": "Reducir capacidad",
+          "body": "Menos capas o neuronas. Simple y directo."
+        }
+      ],
+      "notes": "Early stopping es el primer reflejo que quiero que se lleven: cero costo, siempre conviene. Tres matices para no aplicar mal: regularizar sin overfitting empeora ambas; dropout y BatchNorm se llevan mal; weight decay sobre embeddings castiga a las categorías raras que no aparecieron en el batch."
+    },
+    {
+      "template": "value-columns",
+      "section": "Regularización y L2",
+      "title": "Cuál usar según el caso",
+      "lead": "El primer reflejo cambia con la arquitectura y con cuántos datos hay.",
+      "columns": [
+        {
+          "header": "Situación",
+          "cells": [
+            "Tabular, red chica",
+            "Red profunda",
+            "Visión",
+            "Transformers"
+          ]
+        },
+        {
+          "header": "Elegir",
+          "cells": [
+            "L2 + early stopping",
+            "Dropout + L2",
+            "Data augmentation, después dropout",
+            "Dropout bajo (0.1) + weight decay"
+          ]
+        }
+      ],
+      "notes": "Tabla de referencia, no la leas entera. La regla general: L2 y early stopping son el baseline; dropout entra en redes profundas; en visión primero se aumenta el dato. Para embeddings con pocos datos por categoría, weight decay y agrupar las raras."
+    },
+    {
+      "template": "divider",
+      "title": "Conclusiones"
+    },
+    {
+      "template": "closing-cta",
+      "section": "Regularización y L2",
+      "title": "Lo que hay que llevarse",
+      "items": [
+        {
+          "label": "El diseño está en la entrada y la salida",
+          "body": "La cantidad de capas importa poco; cómo se codifica cada variable y cómo se modela la respuesta es donde se gana o se pierde el modelo."
+        },
+        {
+          "label": "La red solo ve floats",
+          "body": "Codificar mal es fatal porque el error entra silencioso. La pregunta de la resta ordena casi toda la decisión de codificación."
+        },
+        {
+          "label": "Accuracy sola engaña",
+          "body": "La matriz de confusión separa los tipos de error; precision, recall y F1 describen lo que accuracy esconde, y el umbral es una perilla de negocio."
+        },
+        {
+          "label": "Regularizar es bajar varianza a propósito",
+          "body": "Primero se diagnostica el overfitting, después se trata: L2 de base, dropout en redes profundas, early stopping casi siempre."
+        }
+      ],
+      "notes": "Recapitulá siguiendo el recorrido del dato: entró, salió, lo medimos, lo cuidamos. Cuatro ideas, una por sección troncal. Dejá espacio para preguntas antes del checklist."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Regularización y L2",
+      "title": "Checklist operativo para la práctica",
+      "format": "editorial",
+      "lead": "Para cada variable de un problema real, antes de tocar la red:",
+      "cards": [
+        {
+          "label": "¿Es número, categoría, ciclo, fecha o texto?",
+          "body": "Define la familia de codificación."
+        },
+        {
+          "label": "¿Qué significa la resta entre dos valores?",
+          "body": "Decide float, ordinal, one-hot o embedding."
+        },
+        {
+          "label": "¿Cuántos valores distintos tiene?",
+          "body": "One-hot o embedding según la cardinalidad."
+        },
+        {
+          "label": "¿Puede faltar, y faltar significa algo?",
+          "body": "Imputación más flag, o categoría propia."
+        },
+        {
+          "label": "¿La voy a tener al momento de predecir?",
+          "body": "Si no, no es una feature."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Para la salida: ¿qué pregunta responde, necesita un valor o un rango, las clases son excluyentes, el valor tiene que ser positivo? Con eso, la cantidad de neuronas sale sola.",
+          "kind": "note"
+        }
+      ],
+      "notes": "Cierre accionable, directamente aplicable al TP. Sugiero dejarlo como material de la clase. Si hay práctica a continuación, que apliquen el checklist a un dataset real antes de escribir una línea de la red."
+    }
+  ],
+  "_source": {
+    "file": "final.md",
+    "sha256": "1bb2abbbf2d4b45bd4cf871690c070d23f81e18bb5458358db7537118908f721",
+    "bytes": 38814
+  }
+}

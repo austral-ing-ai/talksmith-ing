@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>Las curvas de train y validación</title>
+  <desc>El error de train baja sin parar mientras el de validación deja de bajar y vuelve a subir: ahí empieza el overfitting.</desc>
+  <defs>
+    <marker id="arw5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#3B3535"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="640" height="380" fill="#ffffff"/>
+
+  <line x1="80" y1="40" x2="80" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#arw5)"/>
+  <line x1="80" y1="300" x2="600" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#arw5)"/>
+  <text x="50" y="50" font-size="14" text-anchor="middle" fill="#7A7373">error</text>
+  <text x="590" y="326" font-size="14" text-anchor="middle" fill="#7A7373">épocas</text>
+
+  <path d="M95,90 C200,180 320,235 560,270" fill="none" stroke="#9A9393" stroke-width="2.6"/>
+  <text x="565" y="268" font-size="14" fill="#7A7373">train</text>
+
+  <path d="M95,110 C210,200 300,235 360,238 C440,242 500,215 560,170" fill="none" stroke="#DA1B2E" stroke-width="2.8"/>
+  <text x="565" y="168" font-size="14" fill="#DA1B2E" font-weight="bold">validación</text>
+
+  <line x1="360" y1="238" x2="360" y2="300" stroke="#DA1B2E" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <circle cx="360" cy="238" r="5" fill="#DA1B2E"/>
+  <text x="360" y="345" font-size="14" text-anchor="middle" fill="#DA1B2E">acá empieza a sobreajustar</text>
+</svg>
