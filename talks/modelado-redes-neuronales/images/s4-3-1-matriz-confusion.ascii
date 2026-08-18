@@ -1,0 +1,16 @@
+                        REALIDAD
+                  Positivo      Negativo
+              +-------------+-------------+
+   PREDICHO   |     TP      |     FP      |   Positivo
+              | (acierto)   | (falsa      |
+              |             |  alarma)    |
+              +-------------+-------------+
+              |     FN      |     TN      |   Negativo
+              | (se escapó) |  (acierto)  |
+              +-------------+-------------+
+
+<!-- ascii-note:
+intent: la matriz de confusión 2x2 cruzando predicción y realidad
+emphasize: las dos celdas de error FP y FN
+labels: TP verdadero positivo, FP falso positivo, FN falso negativo, TN verdadero negativo
+-->

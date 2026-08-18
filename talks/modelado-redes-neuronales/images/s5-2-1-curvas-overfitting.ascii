@@ -1,0 +1,13 @@
+error
+  |\                         curva de validación
+  | \                    __/  (vuelve a subir)
+  |  \___             __/
+  |      \______   __/   <-- acá empieza a sobreajustar
+  |             \_/______  curva de entrenamiento (sigue bajando)
+  +------------------------------> épocas
+
+<!-- ascii-note:
+intent: curvas de train y validación que se separan (overfitting = alta varianza)
+emphasize: el punto donde validación deja de bajar y empieza a subir
+labels: eje x épocas, eje y error, dos curvas train y validación
+-->

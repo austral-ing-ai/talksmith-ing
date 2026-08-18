@@ -25,7 +25,7 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 |---:|---|---|---|
 | 1 | Miércoles 5 de agosto | Bienvenida + CoWork | [Introducción](https://austral-ing-ai.github.io/talksmith-ing/talks/introduccion/output/html/) |
 | 2 | Miércoles 12 de agosto | CoWork | [Cowork Intro](https://austral-ing-ai.github.io/talksmith-ing/talks/cowork-intro/output/html/) |
-| 3 | Miércoles 19 de agosto | NN, input, output, backpropagation, funcion de error, training  | — |
+| 3 | Miércoles 19 de agosto | NN, input, output, backpropagation, funcion de error, training  | [Diseño de redes neuronales](https://austral-ing-ai.github.io/talksmith-ing/talks/modelado-redes-neuronales/output/html/) |
 | 4 | Miércoles 26 de agosto | LLM - Embeddings, Tokens, word2Vec, Sec, Transformers | — |
 | 5 | Miércoles 2 de septiembre | LLM - Advanced Transformers | — |
 | 6 | Miércoles 9 de septiembre | Prompting (fine-tune), Effort, MCP, Limitaciones (Que cortar aca)?? | — |
@@ -46,4 +46,5 @@ Las entregas de los trabajos prácticos se realizan en la clase indicada.
 | TP | Clase | Fecha de entrega | Tema / consigna |
 |---:|---:|---|---|
 | 1 | 2 | Viernes 21 de agosto | [Corta, del caos a producción](missions/clase2/mission.md) |
+| 2 | 3 | Viernes 4 de septiembre | [¿Cuánto vale esta casa?](missions/clase3/mission.md) |
 

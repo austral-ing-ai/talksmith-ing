@@ -1,0 +1,9 @@
+   x1 ---w1--\
+   x2 ---w2---> [ z = W·x + b ] --> [ f ] --> a
+   x3 ---w3--/    (pre-activación)   (activación)
+
+<!-- ascii-note:
+intent: mostrar el paso de entradas a activación en una neurona
+emphasize: las dos etapas z (lineal) y f (no lineal)
+labels: x entradas, W·x+b pre-activación, f activación, a salida
+-->

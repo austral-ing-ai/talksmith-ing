@@ -1,0 +1,9 @@
+one-hot "Depto":  [0, 1, 0, 0]   una neurona por valor, todas equidistantes
+                      |
+        W · x  selecciona la columna de W  -->  cada categoría, sus propios pesos
+
+<!-- ascii-note:
+intent: mostrar que one-hot con W selecciona una columna de pesos
+emphasize: el 1 activa una sola columna de W
+labels: one-hot vector, W matriz de pesos
+-->

@@ -1,3 +1,4 @@
+<!-- talksmith-ascii-sha256: 5f5141c6377eed4f717f132e3e0cd8b1e737cfb0e3d2b2f0afba854891a10d27 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
   <title>Las curvas de train y validación</title>
   <desc>El error de train baja sin parar mientras el de validación deja de bajar y vuelve a subir: ahí empieza el overfitting.</desc>

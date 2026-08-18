@@ -46,7 +46,8 @@ date: a definir
 - **El input es una traducción.** Como toda traducción, puede perder cosas. Si la información que importa no quedó en el tensor, o quedó de una forma que borra su estructura, ninguna arquitectura la recupera después.
 - **Por eso codificar mal es fatal.** La red solo ve floats y no tiene forma de detectar que una posición "era un código" y otra "era una cantidad". El error entra silencioso y se queda.
 
-<!-- format: editorial -->
+<!-- template: quote -->
+<!-- generate-image: right | la traducción frágil entre un mundo complejo y un tensor de números, con información que puede perderse en el paso -->
 
 ### Sources
 
@@ -86,8 +87,12 @@ Este es el mapa mental que quiero que se lleven. Contrastá con la expectativa: 
 
 Antes de diseñar conviene fijar el objeto mínimo. Una capa hace dos cosas: una combinación lineal y una no linealidad.
 
-![Una neurona: las entradas se combinan en la pre-activación z y una no linealidad f produce la activación a](images/s1-3-1-neurona.svg)
-<!-- ascii-source: s1-3-1-neurona.svg -->
+![Esquema de una neurona con preactivación y activación](images/s1-3-1-neurona.svg)
+<!-- ascii-source:
+   x1 ---w1--\
+   x2 ---w2---&gt; [ z = W·x + b ] --&gt; [ f ] --&gt; a
+   x3 ---w3--/    (pre-activación)   (activación)
+-->
 <!-- ascii-note:
 intent: mostrar el paso de entradas a activación en una neurona
 emphasize: las dos etapas z (lineal) y f (no lineal)
@@ -118,16 +123,16 @@ Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar
 
 ### Content
 
-El input es todo lo que sabés del problema, convertido a números. Lo que cambia entre un caso y otro es qué significa la posición dentro del vector, y eso determina la arquitectura natural.
+El input es todo lo que sabés del problema, convertido a números. Vamos a concentrarnos en el primer caso, **sin estructura (tabular)**: una fila por ejemplo y una columna por variable, sin vecindad ni orden intrínseco entre las columnas. Lo que cambia entre un caso y otro es qué significa la posición dentro del vector, y eso determina la arquitectura natural.
 
-| Estructura del dato | Qué se puede cambiar sin cambiar la respuesta | Arquitectura natural |
-|---|---|---|
-| Sin estructura (tabular) | El orden de las columnas | Fully connected |
-| Grilla 1D (señal) | Desplazar en el tiempo | Conv 1D, RNN, Transformer |
-| Grilla 2D (imagen) | Desplazar en el espacio | Conv 2D |
-| Secuencia (texto) | Nada, el orden es todo | Transformer |
-| Conjunto (carrito) | El orden de los elementos | Deep Sets, attention |
-| Grafo (red de cuentas) | Renumerar los nodos | GNN |
+| Estructura del dato | Ejemplo | Qué se puede cambiar sin cambiar la respuesta | Arquitectura natural |
+|---|---|---|---|
+| Sin estructura (tabular) | Cliente: edad, ingreso, barrio | El orden de las columnas | Fully connected |
+| Grilla 1D (señal) | ECG o audio | Desplazar en el tiempo | Conv 1D, RNN, Transformer |
+| Grilla 2D (imagen) | Radiografía o foto | Desplazar en el espacio | Conv 2D |
+| Secuencia (texto) | Reseña o mensaje | Nada, el orden es todo | Transformer |
+| Conjunto (carrito) | Productos comprados | El orden de los elementos | Deep Sets, attention |
+| Grafo (red de cuentas) | Transferencias entre cuentas | Renumerar los nodos | GNN |
 
 La pregunta que ordena todo el zoológico: **¿qué transformaciones puedo aplicarle al input sin cambiar la respuesta correcta?** Esa invariancia elige la familia de arquitectura.
 
@@ -137,7 +142,7 @@ corpus/chat.md.md (§2 El input: principio general)
 
 ### Speaker notes
 
-Este marco es elegante y vale la pena bajarlo despacio. La invariancia traslacional de las imágenes es la razón de ser de las convoluciones. Para el resto de la clase nos quedamos en el caso tabular (sin estructura), que es el más común en problemas de negocio y donde las decisiones de codificación se ven más claras. Mencioná que texto e imágenes terminan también en un vector de tamaño fijo (un embedding) y de ahí vuelven al caso simple.
+Este marco es elegante y vale la pena bajarlo despacio. Definí "sin estructura" en contraste con una imagen: en una tabla, intercambiar dos columnas no cambia el significado si el modelo conserva sus nombres; no hay píxeles vecinos ni orden temporal que explotar. Para el resto de la clase nos quedamos en el caso tabular, el más común en problemas de negocio y donde las decisiones de codificación se ven más claras. Usá los ejemplos de la tabla para que cada familia tenga una imagen mental. Mencioná que texto e imágenes terminan también en un vector de tamaño fijo (un embedding) y de ahí vuelven al caso simple.
 
 ---
 
@@ -191,8 +196,12 @@ El "por qué" formal es el número de condición de la Hessiana, pero para la cl
 
 Una categoría sin orden se codifica de dos formas, y la cardinalidad decide cuál.
 
-![One-hot selecciona una columna de W: como solo una posición vale 1, el producto con W toma los pesos de esa categoría](images/s2-4-1-one-hot.svg)
-<!-- ascii-source: s2-4-1-one-hot.svg -->
+![One-hot y embedding para variables categóricas](images/s2-4-1-one-hot.svg)
+<!-- ascii-source:
+one-hot "Depto":  [0, 1, 0, 0]   una neurona por valor, todas equidistantes
+                      |
+        W · x  selecciona la columna de W  --&gt;  cada categoría, sus propios pesos
+-->
 <!-- ascii-note:
 intent: mostrar que one-hot con W selecciona una columna de pesos
 emphasize: el 1 activa una sola columna de W
@@ -275,14 +284,18 @@ Cierre práctico de la sección de input y el puente al mundo real. Este es el e
 
 ### Content
 
-La activación de salida es el mismo tipo de objeto que ReLU, pero se elige con otro criterio: poner el número en el rango y la interpretación correctos.
+La activación de salida es el mismo tipo de objeto que ReLU, pero se elige con otro criterio: poner el número en el rango y la interpretación correctos. Las cuatro representaciones viven en una misma slide para comparar su forma y su rango.
 
-- **Lineal (ninguna):** salida en todo ℝ. Un precio puede ser cualquier número.
-- **Sigmoide:** salida en (0, 1). Una probabilidad, para un sí/no.
-- **Softmax:** salidas en (0, 1) que suman 1. Probabilidades sobre clases excluyentes.
-- **Softplus o exp:** salida en (0, ∞). Un conteo o un desvío no pueden ser negativos.
+| Activación | Representación | Rango | Ejemplo |
+|---|---|---|---|
+| Lineal (ninguna) | `y = z` | todo ℝ | precio |
+| Sigmoide | `σ(z) = 1 / (1 + e⁻ᶻ)` | (0, 1) | probabilidad de churn |
+| Softmax | `eᶻⁱ / Σⱼeᶻʲ` | vector que suma 1 | clase de una imagen |
+| Softplus | `log(1 + eᶻ)` | (0, ∞) | demanda o desvío |
 
 "Activación lineal" es una forma elegante de decir ninguna activación. Es la única capa donde no poner activación es lo correcto.
+
+<!-- template: concept-breakdown -->
 
 ### Sources
 
@@ -290,7 +303,7 @@ corpus/chat.md.md (§8 La capa de salida)
 
 ### Speaker notes
 
-Contraste con las capas ocultas: ahí la activación casi no importa (ReLU y listo). En la salida, cada opción corresponde a una forma del rango de la respuesta. Preguntá por casos: ¿qué activación para predecir la cantidad de unidades vendidas? Softplus o exp, porque un conteo no puede ser negativo. La salida lineal con MSE para conteos permite predicciones negativas, un error clásico.
+Contrastá con las capas ocultas: ahí la activación casi no importa (ReLU y listo). En la salida, cada opción corresponde a una forma y un rango. Recorré las cuatro filas como representaciones: recta para lineal, curva acotada para sigmoide, competencia entre clases para softmax y curva positiva para softplus. Preguntá por casos: ¿qué activación para predecir la cantidad de unidades vendidas? Softplus o exp, porque un conteo no puede ser negativo. La salida lineal con MSE para conteos permite predicciones negativas, un error clásico.
 
 ---
 
@@ -322,31 +335,7 @@ No leas toda la tabla; usala como referencia y detenete en dos o tres filas. La 
 
 ---
 
-## 3. Activación y loss se eligen juntas
-
-### Content
-
-El par activación-de-salida y loss se decide en bloque. Combinaciones cruzadas (softmax con MSE, por ejemplo) entrenan, pero convergen mal.
-
-```python
-nn.Linear(32, 1)                # sin sigmoide en la capa
-loss = nn.BCEWithLogitsLoss()   # la sigmoide está acá adentro
-```
-
-- **`BCEWithLogitsLoss` y `CrossEntropyLoss` ya incluyen la sigmoide y el softmax** por estabilidad numérica. Si además se pone la activación en la capa, se aplica dos veces y el modelo entrena mal.
-- **En inferencia la activación la aplica quien usa el modelo.** Con logits crudos, `prob = torch.sigmoid(model(x))`. El error frecuente es leer un logit de 2.3 como si fuera una probabilidad.
-
-### Sources
-
-corpus/chat.md.md (§8 El detalle de implementación; los pares que no se rompen)
-
-### Speaker notes
-
-Detalle de implementación que muerde en la primera práctica con PyTorch. La doble sigmoide es un bug clásico: el modelo entrena raro y nadie entiende por qué. Que quede clara la regla: si el loss termina en "WithLogits" o es CrossEntropyLoss, la capa va sin activación y la aplicás vos en inferencia.
-
----
-
-## 4. Dos formas de modelar mal la salida
+## 3. Dos formas de modelar mal la salida
 
 ### Content
 
@@ -381,6 +370,7 @@ Un detector de fraude sobre transacciones donde 99 de cada 100 son legítimas al
 - **No todos los errores cuestan lo mismo.** Marcar como sana a una transacción fraudulenta y molestar a un cliente legítimo con una alerta son errores distintos, con costos distintos.
 - **Hace falta separar los tipos de error,** no un solo número. Ahí entra la matriz de confusión.
 
+<!-- template: stat -->
 
 ### Sources
 
@@ -392,14 +382,49 @@ Arranque con gancho concreto: el clasificador que dice siempre "no". Es la mejor
 
 ---
 
-## 2. La matriz de confusión
+## 2. Quiz: ¿precisión o recall?
+
+### Content
+
+En cada caso, elegí qué error es menos tolerable. La métrica que priorizás cae sola.
+
+1. **Filtro de spam:** bloquear un mail legítimo es peor que dejar pasar uno dudoso. ¿Priorizás precisión o recall?
+2. **Test de una enfermedad grave:** dejar ir a una persona enferma es peor que pedir estudios extra. ¿Priorizás precisión o recall?
+3. **Alerta de fraude:** el equipo puede revisar pocas alertas, pero cada fraude no detectado cuesta caro. ¿Qué priorizás y qué costo aceptás?
+
+**Respuesta:** precisión cuando una alerta falsa es cara; recall cuando dejar pasar un positivo es más grave. En fraude no hay respuesta universal: depende de la capacidad de revisión y del costo del fraude.
+
+<!-- template: quiz -->
+
+### Sources
+
+Conocimiento del área (no cubierto por el corpus). Casos ilustrativos.
+
+### Speaker notes
+
+Hacé las tres preguntas antes de mostrar la respuesta. En spam, la respuesta esperada es precisión; en diagnóstico, recall. En fraude, no cierres con una métrica automática: pediles que expliciten el costo de una revisión y el costo de no detectar. Usá esta slide como puente: precision y recall no son trofeos técnicos, son decisiones de operación.
+
+---
+
+## 3. La matriz de confusión
 
 ### Content
 
 Para clasificación binaria, todos los resultados caen en una tabla de 2×2 que cruza lo que el modelo predijo con lo que era verdad.
 
-![La matriz de confusión 2x2: cruza lo que el modelo predijo con lo que era verdad; las dos celdas de error son FP y FN](images/s4-2-1-matriz-confusion.svg)
-<!-- ascii-source: s4-2-1-matriz-confusion.svg -->
+![Matriz de confusión binaria](images/s4-3-1-matriz-confusion.svg)
+<!-- ascii-source:
+                        REALIDAD
+                  Positivo      Negativo
+              +-------------+-------------+
+   PREDICHO   |     TP      |     FP      |   Positivo
+              | (acierto)   | (falsa      |
+              |             |  alarma)    |
+              +-------------+-------------+
+              |     FN      |     TN      |   Negativo
+              | (se escapó) |  (acierto)  |
+              +-------------+-------------+
+-->
 <!-- ascii-note:
 intent: la matriz de confusión 2x2 cruzando predicción y realidad
 emphasize: las dos celdas de error FP y FN
@@ -421,7 +446,7 @@ El centro de la sección. Dibujá la matriz en el pizarrón mientras aparece en 
 
 ---
 
-## 3. Precision, recall y F1
+## 4. Precision, recall y F1
 
 ### Content
 
@@ -442,7 +467,7 @@ Insistí en la intuición antes que en la fórmula. Precision responde "cuando d
 
 ---
 
-## 4. El umbral y la matriz N×N
+## 5. El umbral y la matriz N×N
 
 ### Content
 
@@ -483,6 +508,8 @@ Overfitting es la brecha entre el error de entrenamiento y el de validación. El
 
 El síntoma es la separación: el error de train baja sin parar y el de validación deja de bajar y empieza a subir. La red dejó de aprender el patrón y empezó a memorizar los ejemplos.
 
+<!-- generate-image: left | una brecha que se abre entre aprendizaje aparente y desempeño real, tensión entre memorizar y generalizar -->
+
 ### Sources
 
 corpus/chat.md.md (§10 Regularización: qué problema resuelve)
@@ -499,8 +526,16 @@ Este es el mapa de decisión que ordena la sección 6. Insistí en el orden: pri
 
 La regularización no mejora el ajuste. Lo empeora a propósito en entrenamiento, a cambio de que el modelo generalice mejor a datos nuevos. La brecha de la slide anterior se ve así a lo largo del entrenamiento:
 
-![Curvas de train y validación: el error de train baja sin parar mientras el de validación deja de bajar y vuelve a subir](images/s5-2-1-curvas-overfitting.svg)
-<!-- ascii-source: s5-2-1-curvas-overfitting.svg -->
+![Curvas de entrenamiento y validación durante overfitting](images/s5-2-1-curvas-overfitting.svg)
+<!-- ascii-source:
+error
+  |\                         curva de validación
+  | \                    __/  (vuelve a subir)
+  |  \___             __/
+  |      \______   __/   <-- acá empieza a sobreajustar
+  |             \_/______  curva de entrenamiento (sigue bajando)
+  +------------------------------&gt; épocas
+-->
 <!-- ascii-note:
 intent: curvas de train y validación que se separan (overfitting = alta varianza)
 emphasize: el punto donde validación deja de bajar y empieza a subir
@@ -534,8 +569,13 @@ El intercambio sesgo-varianza es el fundamento teórico de todo lo que viene. La
 
 L2 agrega un término al objetivo que penaliza los pesos grandes:
 
-![El objetivo J igual a cost más lambda por suma de w al cuadrado: el término L2 penaliza los pesos grandes y los empuja hacia cero](images/s6-1-1-objetivo-l2.svg)
-<!-- ascii-source: s6-1-1-objetivo-l2.svg -->
+![Objetivo con penalización L2](images/s6-1-1-objetivo-l2.svg)
+<!-- ascii-source:
+   J  =  cost  +  λ · Σ w²
+         \___/     \______/
+         ajuste    penalización
+                   (empuja cada w hacia 0)
+-->
 <!-- ascii-note:
 intent: descomponer el objetivo con el término de regularización L2
 emphasize: el término lambda por suma de w al cuadrado
@@ -682,3 +722,9 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 - Duración: el borrador tiene ~25 slides para 90 min. La sección 2 (input) es la más cargada. Si en el ensayo queda largo, candidatas a recortar: slide 4.4 (umbral + multiclase, a dos bullets) y slide 6.2 (L1 vs L2).
 
 # Cut material
+
+## Activación y loss se eligen juntas (retirada por feedback)
+
+- `BCEWithLogitsLoss` y `CrossEntropyLoss` ya incluyen la sigmoide y el softmax por estabilidad numérica. Si además se pone la activación en la capa, se aplica dos veces y el modelo entrena mal.
+- En inferencia, con logits crudos: `prob = torch.sigmoid(model(x))`. Un logit de 2.3 no es una probabilidad.
+- Fuente: corpus/chat.md.md (§8 El detalle de implementación; los pares que no se rompen).

@@ -1,3 +1,4 @@
+<!-- talksmith-ascii-sha256: 97a6c0659fe3a4ec6c8987bb660d636d7230d79e719b7d166e74c1437c576e74 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
   <title>La matriz de confusión</title>
   <desc>La tabla 2x2 cruza lo que el modelo predijo con lo que era verdad; las dos celdas de error son FP y FN.</desc>

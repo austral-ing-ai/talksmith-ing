@@ -1,6 +1,6 @@
 # memory.md — modelado-redes-neuronales
 
-**Current step:** 8 — Learnings in_progress
+**Current step:** complete
 **Topic:** Diseño y modelado de una red neuronal — entradas/salidas, matriz de confusión, overfitting y regularización L2
 **Folder:** talks/modelado-redes-neuronales/
 **Started:** 2026-08-18
@@ -77,10 +77,18 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Pending open questions: pptx pendiente si en el futuro hay Cowork; entorno de render usa venv en scratchpad (jinja2).
 
 ## 2026-08-18 — Step 8 (Learnings)
-- Status: in_progress
+- Status: complete
 - Asks log:
-  - 2026-08-18 — "¿Promover esta Talk a la biblioteca de conocimiento compartida?" → pending
-- What was decided: <filled at closure>
-- Key inputs: Sin feedback nuevo este Talk (Modo B aprobado sin ediciones) → nada que promover a learnings.md desde este Talk. learnings.md L1–L7 ya respetados en el borrador.
-- Files created/modified: <list>
-- Pending open questions: <filled at closure>
+  - 2026-08-18 — "Promover esta Talk a la biblioteca de conocimiento compartida" → omitido al cerrar por pedido del presentador.
+- What was decided: Se volvió a Draft para procesar 6 observaciones; se cerraron y registraron en el backlog. Se reabrió el flujo completo, se rehízo final.md y se renderizó html-strict. La Talk queda cerrada sin promoción a biblioteca.
+- Key inputs: Feedback del presentador sobre foco tabular, ejemplos, activaciones, eliminación de una slide y un quiz de precisión/recall. Se detectaron dos oportunidades de imagen atmosférica; quedaron como directivas porque esta sesión no tenía capacidad de generación disponible.
+- Files created/modified: draft.md, final.md, images/ (diagrama de matriz actualizado y sidecars), output/slide-model.json, output/html/index.html, config/feedback-backlog.md, /index.html.
+- Pending open questions: Las dos directivas de imagen se pueden generar al reabrir esta Talk en una sesión con capacidad de imágenes.
+
+## 2026-08-18 — Step 7 (Render) — re-render html-strict
+- Status: complete
+- Asks log: none (pedido directo: "completa la generacion de strict html para modelado")
+- What was decided: Re-render limpio de html-strict tras confirmar que slide-model.json seguía fresco (sha256 == final.md; freshness check [fresh]). 33 slides. Se eliminó SVG huérfano images/s4-2-1-matriz-confusion.svg (final.md ahora referencia s4-3-1). Dos íconos inferidos ('email', 'remove_red_eye') sin entrada en el set → fallback a 'info' (cosmético, por diseño del renderer).
+- Key inputs: output/slide-model.json (fresco), final.md.
+- Files created/modified: output/html/index.html, output/html/.render.json, /index.html (raíz); eliminado images/s4-2-1-matriz-confusion.svg.
+- Pending open questions: los 2 íconos fallback quedan como 'info'; para el glifo exacto habría que ajustar el wording de esas cards o aliasar en el plugin.

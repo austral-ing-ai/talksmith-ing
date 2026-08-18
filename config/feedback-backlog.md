@@ -357,3 +357,39 @@
   feedback: "Agregar una imagen decorativa de costado que refuerce la historia de Corta: un proyecto heredado, opaco y desordenado, sin llevar información que haya que leer."
   resolution: Se agregó una imagen atmosférica a la izquierda, como metáfora del proyecto heredado y desordenado.
   tags: [atmospheric-aside, image-addition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-18
+  location: Slide "1. Todo termina en un vector de floats"
+  feedback: "Marcar aca que lo que vamos a enforcanos en el caso 1 Sin estructura (tabular) |"
+  resolution: Se marcó el foco de la clase en el caso tabular.
+  tags: [scope, tabular]
+- talk: modelado-redes-neuronales
+  date: 2026-08-18
+  location: Slide "1. Todo termina en un vector de floats"
+  feedback: "Que significa Sin estructura (tabular)"
+  resolution: Se definió explícitamente el caso tabular como filas y columnas sin vecindad ni orden intrínseco.
+  tags: [definition, tabular]
+- talk: modelado-redes-neuronales
+  date: 2026-08-18
+  location: Slide "1. Todo termina en un vector de floats"
+  feedback: "?. Poner ejemplos en la tabla de que es cada caso."
+  resolution: Se añadieron ejemplos concretos para cada familia de estructura.
+  tags: [examples, table]
+- talk: modelado-redes-neuronales
+  date: 2026-08-18
+  location: Slide "1. La capa de salida la determina la tarea"
+  feedback: "Seria bueno si podemos meter todas en en un slide como es la representacion de cada una de estas funciones."
+  resolution: Se reorganizó la diapositiva como una tabla comparativa de las cuatro funciones, con fórmula, rango y ejemplo.
+  tags: [visuals, output-functions]
+- talk: modelado-redes-neuronales
+  date: 2026-08-18
+  location: Slide "3. Dos formas de modelar mal la salida"
+  feedback: "Borrar este slide."
+  resolution: Se retiró la diapositiva; su detalle de implementación quedó preservado en Cut material.
+  tags: [cut, slide-removal]
+- talk: modelado-redes-neuronales
+  date: 2026-08-18
+  location: Slide "2. Quiz: ¿precisión o recall?"
+  feedback: "Hagamos un quiz de 3 pregutas donde mostremos la decision en cuanto queres que elegir precision sobre recall."
+  resolution: Se agregó un quiz de tres casos para decidir entre precisión y recall, con una respuesta que explicita los costos.
+  tags: [quiz, precision-recall]

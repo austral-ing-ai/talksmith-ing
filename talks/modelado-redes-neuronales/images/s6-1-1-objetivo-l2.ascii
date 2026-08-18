@@ -1,0 +1,10 @@
+   J  =  cost  +  λ · Σ w²
+         \___/     \______/
+         ajuste    penalización
+                   (empuja cada w hacia 0)
+
+<!-- ascii-note:
+intent: descomponer el objetivo con el término de regularización L2
+emphasize: el término lambda por suma de w al cuadrado
+labels: J objetivo, cost ajuste, término L2
+-->

@@ -53,6 +53,7 @@ date: a definir
 - **Por eso codificar mal es fatal.** La red solo ve floats y no tiene forma de detectar que una posición "era un código" y otra "era una cantidad". El error entra silencioso y se queda.
 
 <!-- template: quote -->
+<!-- generate-image: right | la traducción frágil entre un mundo complejo y un tensor de números, con información que puede perderse en el paso -->
 
 ### Sources
 
@@ -135,16 +136,16 @@ Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar
 
 ### Content
 
-El input es todo lo que sabés del problema, convertido a números. Lo que cambia entre un caso y otro es qué significa la posición dentro del vector, y eso determina la arquitectura natural.
+El input es todo lo que sabés del problema, convertido a números. Vamos a concentrarnos en el primer caso, **sin estructura (tabular)**: una fila por ejemplo y una columna por variable, sin vecindad ni orden intrínseco entre las columnas. Lo que cambia entre un caso y otro es qué significa la posición dentro del vector, y eso determina la arquitectura natural.
 
-| Estructura del dato | Qué se puede cambiar sin cambiar la respuesta | Arquitectura natural |
-|---|---|---|
-| Sin estructura (tabular) | El orden de las columnas | Fully connected |
-| Grilla 1D (señal) | Desplazar en el tiempo | Conv 1D, RNN, Transformer |
-| Grilla 2D (imagen) | Desplazar en el espacio | Conv 2D |
-| Secuencia (texto) | Nada, el orden es todo | Transformer |
-| Conjunto (carrito) | El orden de los elementos | Deep Sets, attention |
-| Grafo (red de cuentas) | Renumerar los nodos | GNN |
+| Estructura del dato | Ejemplo | Qué se puede cambiar sin cambiar la respuesta | Arquitectura natural |
+|---|---|---|---|
+| Sin estructura (tabular) | Cliente: edad, ingreso, barrio | El orden de las columnas | Fully connected |
+| Grilla 1D (señal) | ECG o audio | Desplazar en el tiempo | Conv 1D, RNN, Transformer |
+| Grilla 2D (imagen) | Radiografía o foto | Desplazar en el espacio | Conv 2D |
+| Secuencia (texto) | Reseña o mensaje | Nada, el orden es todo | Transformer |
+| Conjunto (carrito) | Productos comprados | El orden de los elementos | Deep Sets, attention |
+| Grafo (red de cuentas) | Transferencias entre cuentas | Renumerar los nodos | GNN |
 
 La pregunta que ordena todo el zoológico: **¿qué transformaciones puedo aplicarle al input sin cambiar la respuesta correcta?** Esa invariancia elige la familia de arquitectura.
 
@@ -154,9 +155,15 @@ corpus/chat.md.md (§2 El input: principio general)
 
 ### Speaker notes
 
-Este marco es elegante y vale la pena bajarlo despacio. La invariancia traslacional de las imágenes es la razón de ser de las convoluciones. Para el resto de la clase nos quedamos en el caso tabular (sin estructura), que es el más común en problemas de negocio y donde las decisiones de codificación se ven más claras. Mencioná que texto e imágenes terminan también en un vector de tamaño fijo (un embedding) y de ahí vuelven al caso simple.
+Este marco es elegante y vale la pena bajarlo despacio. Definí "sin estructura" en contraste con una imagen: en una tabla, intercambiar dos columnas no cambia el significado si el modelo conserva sus nombres; no hay píxeles vecinos ni orden temporal que explotar. Para el resto de la clase nos quedamos en el caso tabular, el más común en problemas de negocio y donde las decisiones de codificación se ven más claras. Usá los ejemplos de la tabla para que cada familia tenga una imagen mental. Mencioná que texto e imágenes terminan también en un vector de tamaño fijo (un embedding) y de ahí vuelven al caso simple.
 
 ### Presenter feedback
+- [closed] 2026-08-18 — "Marcar aca que lo que vamos a enforcanos en el caso 1 Sin estructura (tabular) |"
+  Resolution: Se marcó el foco de la clase en el caso tabular.
+- [closed] 2026-08-18 — "Que significa Sin estructura (tabular)"
+  Resolution: Se definió explícitamente el caso tabular como filas y columnas sin vecindad ni orden intrínseco.
+- [closed] 2026-08-18 — "?. Poner ejemplos en la tabla de que es cada caso."
+  Resolution: Se añadieron ejemplos concretos para cada familia de estructura.
 
 ---
 
@@ -309,14 +316,18 @@ Cierre práctico de la sección de input y el puente al mundo real. Este es el e
 
 ### Content
 
-La activación de salida es el mismo tipo de objeto que ReLU, pero se elige con otro criterio: poner el número en el rango y la interpretación correctos.
+La activación de salida es el mismo tipo de objeto que ReLU, pero se elige con otro criterio: poner el número en el rango y la interpretación correctos. Las cuatro representaciones viven en una misma slide para comparar su forma y su rango.
 
-- **Lineal (ninguna):** salida en todo ℝ. Un precio puede ser cualquier número.
-- **Sigmoide:** salida en (0, 1). Una probabilidad, para un sí/no.
-- **Softmax:** salidas en (0, 1) que suman 1. Probabilidades sobre clases excluyentes.
-- **Softplus o exp:** salida en (0, ∞). Un conteo o un desvío no pueden ser negativos.
+| Activación | Representación | Rango | Ejemplo |
+|---|---|---|---|
+| Lineal (ninguna) | `y = z` | todo ℝ | precio |
+| Sigmoide | `σ(z) = 1 / (1 + e⁻ᶻ)` | (0, 1) | probabilidad de churn |
+| Softmax | `eᶻⁱ / Σⱼeᶻʲ` | vector que suma 1 | clase de una imagen |
+| Softplus | `log(1 + eᶻ)` | (0, ∞) | demanda o desvío |
 
 "Activación lineal" es una forma elegante de decir ninguna activación. Es la única capa donde no poner activación es lo correcto.
+
+<!-- template: concept-breakdown -->
 
 ### Sources
 
@@ -324,9 +335,11 @@ corpus/chat.md.md (§8 La capa de salida)
 
 ### Speaker notes
 
-Contraste con las capas ocultas: ahí la activación casi no importa (ReLU y listo). En la salida, cada opción corresponde a una forma del rango de la respuesta. Preguntá por casos: ¿qué activación para predecir la cantidad de unidades vendidas? Softplus o exp, porque un conteo no puede ser negativo. La salida lineal con MSE para conteos permite predicciones negativas, un error clásico.
+Contrastá con las capas ocultas: ahí la activación casi no importa (ReLU y listo). En la salida, cada opción corresponde a una forma y un rango. Recorré las cuatro filas como representaciones: recta para lineal, curva acotada para sigmoide, competencia entre clases para softmax y curva positiva para softplus. Preguntá por casos: ¿qué activación para predecir la cantidad de unidades vendidas? Softplus o exp, porque un conteo no puede ser negativo. La salida lineal con MSE para conteos permite predicciones negativas, un error clásico.
 
 ### Presenter feedback
+- [closed] 2026-08-18 — "Seria bueno si podemos meter todas en en un slide como es la representacion de cada una de estas funciones."
+  Resolution: Se reorganizó la diapositiva como una tabla comparativa de las cuatro funciones, con fórmula, rango y ejemplo.
 
 ---
 
@@ -360,33 +373,7 @@ No leas toda la tabla; usala como referencia y detenete en dos o tres filas. La 
 
 ---
 
-## 3. Activación y loss se eligen juntas
-
-### Content
-
-El par activación-de-salida y loss se decide en bloque. Combinaciones cruzadas (softmax con MSE, por ejemplo) entrenan, pero convergen mal.
-
-```python
-nn.Linear(32, 1)                # sin sigmoide en la capa
-loss = nn.BCEWithLogitsLoss()   # la sigmoide está acá adentro
-```
-
-- **`BCEWithLogitsLoss` y `CrossEntropyLoss` ya incluyen la sigmoide y el softmax** por estabilidad numérica. Si además se pone la activación en la capa, se aplica dos veces y el modelo entrena mal.
-- **En inferencia la activación la aplica quien usa el modelo.** Con logits crudos, `prob = torch.sigmoid(model(x))`. El error frecuente es leer un logit de 2.3 como si fuera una probabilidad.
-
-### Sources
-
-corpus/chat.md.md (§8 El detalle de implementación; los pares que no se rompen)
-
-### Speaker notes
-
-Detalle de implementación que muerde en la primera práctica con PyTorch. La doble sigmoide es un bug clásico: el modelo entrena raro y nadie entiende por qué. Que quede clara la regla: si el loss termina en "WithLogits" o es CrossEntropyLoss, la capa va sin activación y la aplicás vos en inferencia.
-
-### Presenter feedback
-
----
-
-## 4. Dos formas de modelar mal la salida
+## 3. Dos formas de modelar mal la salida
 
 ### Content
 
@@ -404,6 +391,9 @@ corpus/chat.md.md (§8 Los dos errores más comunes)
 Cierre de sección. El de softmax vs sigmoide es conceptual y se entiende con el ejemplo del ticket multi-etiqueta. Preguntá: ¿clasificar géneros de una película es softmax o sigmoide? Sigmoide, porque una película puede ser comedia y drama. Buen momento para reforzar que el modelado de la salida es una decisión de producto, no solo técnica.
 
 ### Presenter feedback
+
+- [closed] 2026-08-18 — "Borrar este slide."
+  Resolution: Se retiró la diapositiva; su detalle de implementación quedó preservado en Cut material.
 
 ---
 
@@ -439,7 +429,36 @@ Arranque con gancho concreto: el clasificador que dice siempre "no". Es la mejor
 
 ---
 
-## 2. La matriz de confusión
+## 2. Quiz: ¿precisión o recall?
+
+### Content
+
+En cada caso, elegí qué error es menos tolerable. La métrica que priorizás cae sola.
+
+1. **Filtro de spam:** bloquear un mail legítimo es peor que dejar pasar uno dudoso. ¿Priorizás precisión o recall?
+2. **Test de una enfermedad grave:** dejar ir a una persona enferma es peor que pedir estudios extra. ¿Priorizás precisión o recall?
+3. **Alerta de fraude:** el equipo puede revisar pocas alertas, pero cada fraude no detectado cuesta caro. ¿Qué priorizás y qué costo aceptás?
+
+**Respuesta:** precisión cuando una alerta falsa es cara; recall cuando dejar pasar un positivo es más grave. En fraude no hay respuesta universal: depende de la capacidad de revisión y del costo del fraude.
+
+<!-- template: quiz -->
+
+### Sources
+
+Conocimiento del área (no cubierto por el corpus). Casos ilustrativos.
+
+### Speaker notes
+
+Hacé las tres preguntas antes de mostrar la respuesta. En spam, la respuesta esperada es precisión; en diagnóstico, recall. En fraude, no cierres con una métrica automática: pediles que expliciten el costo de una revisión y el costo de no detectar. Usá esta slide como puente: precision y recall no son trofeos técnicos, son decisiones de operación.
+
+### Presenter feedback
+
+- [closed] 2026-08-18 — "Hagamos un quiz de 3 pregutas donde mostremos la decision en cuanto queres que elegir precision sobre recall."
+  Resolution: Se agregó un quiz de tres casos para decidir entre precisión y recall, con una respuesta que explicita los costos.
+
+---
+
+## 3. La matriz de confusión
 
 ### Content
 
@@ -480,7 +499,7 @@ El centro de la sección. Dibujá la matriz en el pizarrón mientras aparece en 
 
 ---
 
-## 3. Precision, recall y F1
+## 4. Precision, recall y F1
 
 ### Content
 
@@ -503,7 +522,7 @@ Insistí en la intuición antes que en la fórmula. Precision responde "cuando d
 
 ---
 
-## 4. El umbral y la matriz N×N
+## 5. El umbral y la matriz N×N
 
 ### Content
 
@@ -547,6 +566,8 @@ Overfitting es la brecha entre el error de entrenamiento y el de validación. El
 | Bajo | Bajo | Bien | Nada |
 
 El síntoma es la separación: el error de train baja sin parar y el de validación deja de bajar y empieza a subir. La red dejó de aprender el patrón y empezó a memorizar los ejemplos.
+
+<!-- generate-image: left | una brecha que se abre entre aprendizaje aparente y desempeño real, tensión entre memorizar y generalizar -->
 
 ### Sources
 
@@ -776,3 +797,9 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 - Duración: el borrador tiene ~25 slides para 90 min. La sección 2 (input) es la más cargada. Si en el ensayo queda largo, candidatas a recortar: slide 4.4 (umbral + multiclase, a dos bullets) y slide 6.2 (L1 vs L2).
 
 # Cut material
+
+## Activación y loss se eligen juntas (retirada por feedback)
+
+- `BCEWithLogitsLoss` y `CrossEntropyLoss` ya incluyen la sigmoide y el softmax por estabilidad numérica. Si además se pone la activación en la capa, se aplica dos veces y el modelo entrena mal.
+- En inferencia, con logits crudos: `prob = torch.sigmoid(model(x))`. Un logit de 2.3 no es una probabilidad.
+- Fuente: corpus/chat.md.md (§8 El detalle de implementación; los pares que no se rompen).
