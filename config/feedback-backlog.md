@@ -495,3 +495,63 @@
   feedback: "Tambien faltaria en el input las funciones de activation como relu, etc. Seguiria el mismo patron de defincion y luego la visualizacion de como se ven las funciones."
   resolution: Nueva diapositiva 1.4 "Las activaciones ocultas, y cómo se ven", con el mismo patrón: definición de qué es una activación oculta, tabla de las cuatro candidatas con fórmula, rango y cuándo, y un diagrama con las cuatro formas. Cierra con la saturación, que es la razón por la que ganó ReLU. La card de la 1.3 dejó de adelantar la respuesta y ahora apunta a esta diapositiva.
   tags: [new-slide, visualization-requested]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. Lo que hay que diseñar"
+  feedback: "Las capas y las neuronas -> # Capas & # Neuronas."
+  resolution: La card se renombró a "# Capas & # Neuronas". Al dejar de titularse como negación deja de ser el remate y pasa a ser un aspecto más de la lista, así que el cuerpo se reescribió: cuántas capas ocultas y cuántas neuronas por capa, lo único que se elige libremente y lo que menos impacto tiene.
+  tags: [card-wording, card-ordering, missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. Lo que hay que diseñar"
+  feedback: "Overfitting ponelo al final."
+  resolution: La card del overfitting pasó al último lugar. La lista queda entrada, dataset, salida, error, # capas & # neuronas, overfitting. Se ajustaron el encabezado (de cinco decisiones a seis) y la nota al pie (de "las cinco de arriba" a "las otras cinco"), que con el reorden habrían quedado mintiendo.
+  tags: [card-wording, card-ordering, missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. Lo que hay que diseñar"
+  feedback: "Con qué se mide que el modelo sirve. Accuracy sola engaña; la matriz separa los errores. Este texto es confuso en este contexto. Todavia no se definiuon. EXplicar que es el error."
+  resolution: La card nombraba accuracy y la matriz de confusión, que recién se definen en la sección 5, así que en la diapositiva 2 no significaban nada. Ahora define el error en sus propios términos: la distancia entre lo que el modelo predice y lo que de verdad pasó, y que resumirla en un solo número es una decisión de diseño. Es L8 aplicada a una card que reenviaba a términos todavía sin definir.
+  tags: [card-wording, card-ordering, missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "4. Partir mal: los errores que arruinan la medición"
+  feedback: "Partir mal: los errores que arruinan la medición -> exploicar un pcoo cada boxed."
+  resolution: Las cinco cards pasaron de una línea a tres, con el mismo patrón cada una: qué es el error, por qué infla la métrica y qué se hace en su lugar. Se agregaron el "se deduplica antes de partir", el ejemplo del recall sobre tres casos, el de predecir enero mirando marzo, el efecto concreto del ruido (dos modelos que parecen iguales) y cómo funciona k-fold. La diapositiva pasa de grilla editorial a lista, que es lo que tolera cuerpos largos sin encogerse.
+  tags: [slide-ordering, slide-removal, expand-content, layout-consistency]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. Un catálogo para elegir sin dudar"
+  feedback: "Dos formas de modelar mal la salida, borra este slide"
+  resolution: Se retiró la última diapositiva de la sección; el contenido completo, incluidas las notas del orador que se pierden, quedó archivado en Cut material. La sección queda con tres diapositivas: catálogo, capa de salida, cómo se ven las cuatro.
+  tags: [slide-ordering, slide-removal, expand-content, layout-consistency]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. Un catálogo para elegir sin dudar"
+  feedback: "Mover Un catálogo para elegir sin dudar antes de Cómo se ven las cuatro y La capa de salida la determina la tarea."
+  resolution: El catálogo pasó a abrir la sección. El orden queda catálogo, capa de salida, cómo se ven las cuatro, dos formas de modelar mal: primero el mapa completo de tarea a salida, después el detalle de la activación y recién ahí su forma. El diagrama de las formas se renombró de s4-2-1 a s4-3-1 para seguir a su diapositiva.
+  tags: [slide-ordering, slide-removal, expand-content, layout-consistency]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "3. Precision, recall y F1"
+  feedback: "Agregar en Precision, recall y F1 en cada box una descripcion de lo que es. Eg: Precicion es: Cuantos detected correctamente ?" / "'Importa...' que esta ahi deberia tener un especio de la descripcion que esta."
+  resolution: Cada métrica pasó a tres zonas separadas en vez de un párrafo corrido. Arriba el nombre y la pregunta en castellano que responde (precisión: de todo lo que marcó, ¿cuánto era de verdad?; recall: de todo lo que había, ¿cuánto encontró?; F1: ¿y si las dos importan parecido?). Debajo la fórmula y el comportamiento. Y aparte, con su propio espacio, el "Importa cuando". La diapositiva pasó de lista de cards a plantilla de columnas, que es la que da esas tres zonas. La tensión entre precisión y recall bajó a nota al pie.
+  tags: [missing-definition, card-structure]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "4. Quiz 1: el filtro de spam"
+  feedback: "El problema del quiz es que deberia ser 3 quiz la verdad donde esta la pregunta y luego seleciona precicion o recall"
+  resolution: El quiz único se partió en tres, uno por caso, cada uno con su pregunta y opciones reales para elegir: spam (precisión), enfermedad grave (recall) y churn (F1, con tres opciones). Así la mecánica de la plantilla funciona: hay una sola respuesta correcta por diapositiva y el renderer la resalta al avanzar. El caso de fraude no quedó como quiz porque no tiene respuesta única; pasó a las notas del orador de la tercera, como discusión abierta si sobra tiempo. Las diapositivas 4.1 a 4.3 anteriores del quiz único quedaron reemplazadas, y el umbral pasó de 5.5 a 5.7.
+  tags: [quiz-mechanics, missing-definition, slide-split]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "7. El umbral, y qué pasa con más de dos clases"
+  feedback: "Que es 'la matriz N×N'?"
+  resolution: El término estaba en el título de la diapositiva y recién se explicaba en una línea al pie, o sea L8 al revés. La diapositiva pasó a llamarse "El umbral, y qué pasa con más de dos clases", sin jerga sin definir, y la línea de cierre pasó a definirla de verdad: una fila por clase real, una columna por clase predicha, la diagonal como aciertos y cada celda fuera de la diagonal diciendo con qué clase concreta se confundió cada una. Las notas suman el ejemplo del clasificador de dígitos que confunde el 4 con el 9.
+  tags: [quiz-mechanics, missing-definition, slide-split]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "7. El umbral, una perilla de negocio"
+  feedback: "Ok, enfoquemosnos solo a 2 clases. Y poner solo una nota al final."
+  resolution: La sección queda binaria de punta a punta. La diapositiva pasó a llamarse "El umbral, una perilla de negocio", sin la matriz en el título, y el bloque de multiclase se redujo a una nota de dos líneas al pie: la matriz crece a una fila por clase real y una columna por clase predicha, precisión y recall se calculan por clase, y la idea no cambia. El ejemplo del clasificador de dígitos quedó en las notas del orador por si alguien pregunta. El goal de la sección dice ahora explícitamente que trabaja sobre dos clases.
+  tags: [scope, note-demotion]

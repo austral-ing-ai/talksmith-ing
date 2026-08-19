@@ -47,7 +47,7 @@
       "template": "concept-breakdown",
       "section": "Qué se diseña de verdad",
       "title": "Lo que hay que diseñar",
-      "lead": "Diseñar una red son cinco decisiones, y ninguna de las cinco es cuántas capas ponerle. Son las cinco que recorre esta clase, en este orden.",
+      "lead": "Diseñar una red son seis decisiones, y la que todos creen que es la principal, cuántas capas ponerle, es la que menos pesa. Son las seis que recorre esta clase, en este orden.",
       "cards": [
         {
           "label": "La entrada",
@@ -63,22 +63,22 @@
         },
         {
           "label": "El error",
-          "body": "Con qué se mide que el modelo sirve. Accuracy sola engaña; la matriz separa los errores."
+          "body": "La distancia entre lo que el modelo predice y lo que pasó. Resumirla en un número se decide."
+        },
+        {
+          "label": "# Capas & # Neuronas",
+          "body": "Lo único que se elige libremente, y lo que menos impacto tiene en el resultado."
         },
         {
           "label": "El overfitting",
           "body": "Cómo se detecta que el modelo memorizó en vez de aprender, y qué lo controla."
-        },
-        {
-          "label": "Las capas y las neuronas",
-          "body": "No están en la lista. Eso sí se elige, y es lo que menos importa del diseño."
         }
       ],
       "notes": "Este es el mapa mental que quiero que se lleven, y además es la agenda de la clase disfrazada de contenido: cada viñeta es una sección. Recorrelas señalando hacia adelante, sin desarrollar ninguna. El remate es la última línea: pasan horas tuneando capas y el retorno está en la entrada. Dato honesto: en tabular una red muchas veces pierde contra gradient boosting; las redes brillan cuando hay estructura que explotar.",
       "format": "editorial",
       "highlights": [
         {
-          "body": "1 a 3 capas ocultas alcanzan para datos tabulares, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las cinco de arriba.",
+          "body": "1 a 3 capas ocultas alcanzan para datos tabulares, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las otras cinco.",
           "kind": "note"
         }
       ]
@@ -509,23 +509,23 @@
       "cards": [
         {
           "label": "Duplicados repartidos entre conjuntos",
-          "body": "Si el mismo caso cae en train y en test, el test deja de medir generalización y mide memoria. Se conoce como train/test bleed."
+          "body": "El mismo caso cae en train y en test. El test deja de medir generalización y mide memoria. Se deduplica antes de partir."
         },
         {
           "label": "No estratificar con clases desbalanceadas",
-          "body": "Con 2% de fraude, un split aleatorio puede dejar el test con tres casos positivos. Se estratifica por la clase."
+          "body": "El azar reparte sin mirar la clase. Con 2% de fraude el test puede quedar con tres positivos, y eso no es una métrica."
         },
         {
           "label": "Partir al azar una serie de tiempo",
-          "body": "El split aleatorio pone futuro en train y pasado en test: el modelo predice con información que en producción no va a tener. Se corta por fecha."
+          "body": "El azar pone futuro en train y pasado en test: el modelo predice enero mirando marzo. Se corta por fecha."
         },
         {
           "label": "Achicar validación y test",
-          "body": "Más datos, mejor modelo tienta a dejar 90% en train. Con validación y test chicos la métrica queda ruidosa y te lleva a elegir un modelo peor."
+          "body": "Dejar 90% en train deja la métrica tan ruidosa que el peor modelo puede parecer mejor. Piso: unos cientos por conjunto."
         },
         {
           "label": "Cross-validation, y cuándo paga",
-          "body": "K-fold parte train en k porciones y entrena k veces, promediando. Más confiable con datasets chicos, y cuesta k entrenamientos. Con modelos profundos rara vez conviene."
+          "body": "K-fold entrena k veces reservando una porción distinta y promedia. Más confiable con pocos datos, cuesta k entrenamientos."
         }
       ],
       "highlights": [
@@ -540,68 +540,6 @@
       "template": "section-agenda",
       "section": "Modelar la salida",
       "title": "Modelar la salida"
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Modelar la salida",
-      "title": "La capa de salida la determina la tarea",
-      "lead": "Las cuatro representaciones se comparan por su forma, rango e interpretación.",
-      "format": "editorial",
-      "cards": [
-        {
-          "label": "Lineal (ninguna)",
-          "body": "`y = z` · todo ℝ · precio."
-        },
-        {
-          "label": "Sigmoide",
-          "body": "`σ(z) = 1 / (1 + e⁻ᶻ)` · (0, 1) · probabilidad de churn."
-        },
-        {
-          "label": "Softmax",
-          "body": "`eᶻⁱ / Σⱼeᶻʲ` · vector que suma 1 · clase de una imagen."
-        },
-        {
-          "label": "Softplus",
-          "body": "`log(1 + eᶻ)` · (0, ∞) · demanda o desvío."
-        }
-      ],
-      "highlights": [
-        {
-          "body": "Activación lineal es una forma elegante de decir ninguna activación. Es la única capa donde no poner activación es correcto.",
-          "kind": "note"
-        }
-      ],
-      "notes": "Recorré las cuatro filas como representaciones: recta para lineal, curva acotada para sigmoide, competencia entre clases para softmax y curva positiva para softplus. ¿Qué activación para unidades vendidas? Softplus o exp; lineal con MSE permitiría predicciones negativas."
-    },
-    {
-      "template": "content-image",
-      "section": "Modelar la salida",
-      "title": "Cómo se ven las cuatro",
-      "lead": "La tabla anterior dice el rango; el dibujo dice la forma. Es lo que hace evidente por qué cada una sirve para lo que sirve.",
-      "media": {
-        "src": "images/s4-2-1-activaciones-salida.png",
-        "alt": "Formas de las cuatro activaciones de salida"
-      },
-      "design": "split-right",
-      "facts": [
-        {
-          "label": "Lineal",
-          "body": "Sin piso ni techo. Un precio."
-        },
-        {
-          "label": "Sigmoide",
-          "body": "Tiene techo en 1. Una probabilidad."
-        },
-        {
-          "label": "Softplus",
-          "body": "Tiene piso en 0 y no tiene techo. Un conteo."
-        },
-        {
-          "label": "Softmax",
-          "body": "No es una curva: reparte 1 entre N clases que compiten. Es la única que necesita ver todas las neuronas de salida a la vez."
-        }
-      ],
-      "notes": "Es el complemento visual de la diapositiva anterior y se da rápido, dos minutos. El punto que la justifica: la forma explica el uso. La sigmoide tiene techo en 1, por eso es una probabilidad; softplus tiene piso en 0 y no tiene techo, por eso sirve para conteos; la lineal no tiene ninguno de los dos, por eso sirve para un precio. Y softmax no es una curva: si alguien la dibuja como curva, no la entendió."
     },
     {
       "template": "value-columns",
@@ -669,24 +607,64 @@
     {
       "template": "concept-breakdown",
       "section": "Modelar la salida",
-      "title": "Dos formas de modelar mal la salida",
+      "title": "La capa de salida la determina la tarea",
+      "lead": "Las cuatro representaciones se comparan por su forma, rango e interpretación.",
+      "format": "editorial",
       "cards": [
         {
-          "label": "Softmax donde iba sigmoide",
-          "body": "Softmax fuerza a que las clases compitan y sumen 1, así que solo sirve cuando las etiquetas son excluyentes. Un ticket puede ser urgente y de facturación a la vez: ahí van N sigmoides independientes, una por etiqueta."
+          "label": "Lineal (ninguna)",
+          "body": "`y = z` · todo ℝ · precio."
         },
         {
-          "label": "Predecir un punto cuando iba un rango",
-          "body": "Si la decisión depende del peor escenario (stock, riesgo, capacidad), un valor puntual no alcanza. Ahí van cuantiles o una distribución."
+          "label": "Sigmoide",
+          "body": "`σ(z) = 1 / (1 + e⁻ᶻ)` · (0, 1) · probabilidad de churn."
+        },
+        {
+          "label": "Softmax",
+          "body": "`eᶻⁱ / Σⱼeᶻʲ` · vector que suma 1 · clase de una imagen."
+        },
+        {
+          "label": "Softplus",
+          "body": "`log(1 + eᶻ)` · (0, ∞) · demanda o desvío."
         }
       ],
       "highlights": [
         {
-          "body": "Los dos comparten causa: la salida se eligió mirando la arquitectura en vez de la pregunta del negocio.",
-          "kind": "takeaway"
+          "body": "Activación lineal es una forma elegante de decir ninguna activación. Es la única capa donde no poner activación es correcto.",
+          "kind": "note"
         }
       ],
-      "notes": "El de softmax vs sigmoide se entiende con el ticket multi-etiqueta. ¿Clasificar géneros de una película es softmax o sigmoide? Sigmoide, una película puede ser comedia y drama. El modelado de la salida es una decisión de producto, no solo técnica."
+      "notes": "Recorré las cuatro filas como representaciones: recta para lineal, curva acotada para sigmoide, competencia entre clases para softmax y curva positiva para softplus. ¿Qué activación para unidades vendidas? Softplus o exp; lineal con MSE permitiría predicciones negativas."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Modelar la salida",
+      "title": "Cómo se ven las cuatro",
+      "lead": "La tabla del catálogo dice el rango; el dibujo dice la forma. Es lo que hace evidente por qué cada una sirve para lo que sirve.",
+      "media": {
+        "src": "images/s4-3-1-activaciones-salida.png",
+        "alt": "Formas de las cuatro activaciones de salida"
+      },
+      "design": "split-right",
+      "notes": "Es el complemento visual de la diapositiva anterior y se da rápido, dos minutos. El punto que la justifica: la forma explica el uso. La sigmoide tiene techo en 1, por eso es una probabilidad; softplus tiene piso en 0 y no tiene techo, por eso sirve para conteos; la lineal no tiene ninguno de los dos, por eso sirve para un precio. Y softmax no es una curva: si alguien la dibuja como curva, no la entendió.",
+      "cards": [
+        {
+          "label": "Lineal",
+          "body": "La recta `y = z`. Sin piso ni techo, y por eso sirve para un precio: cualquier real es válido."
+        },
+        {
+          "label": "Sigmoide",
+          "body": "Aplasta cualquier número en (0, 1). El techo en 1 la convierte en una probabilidad."
+        },
+        {
+          "label": "Softplus",
+          "body": "Piso en 0 y sin techo. La forma correcta para un conteo o un desvío, que no pueden ser negativos."
+        },
+        {
+          "label": "Softmax",
+          "body": "No transforma un valor: reparte 1 entre N clases que compiten. Necesita ver todas las salidas a la vez."
+        }
+      ]
     },
     {
       "template": "section-agenda",
@@ -757,49 +735,88 @@
       "notes": "El centro de la sección. Dibujá la matriz mientras aparece y pedí que ubiquen el fraude en cada celda. La confusión típica es FP vs FN; anclalo con el costo: un FN médico (mandar a casa a alguien enfermo) suele ser peor que un FP. Accuracy es la diagonal sobre el total."
     },
     {
-      "template": "concept-breakdown",
+      "template": "concept-columns",
       "section": "La matriz de confusión",
       "title": "Precision, recall y F1",
-      "lead": "De las cuatro celdas salen las métricas que describen a un clasificador.",
-      "cards": [
+      "lead": "De las cuatro celdas salen las métricas que de verdad describen a un clasificador.",
+      "notes": "Insistí en la intuición antes que en la fórmula. Precision: cuando dice que sí, ¿le creo? Recall: de todos los que eran, ¿cuántos encontró? Si preguntan por qué media armónica y no promedio: el promedio deja que un 1.0 tape un 0.0, y un clasificador que marca todo tiene recall 1.0 con precision pésima. Hacé la cuenta de 0.9 y 0.5 en el pizarrón. Si dan tiempo, accuracy = (TP+TN)/total cierra el círculo con la primera diapositiva de la sección.",
+      "columns": [
         {
-          "label": "Precision = TP / (TP + FP)",
-          "body": "De lo que el modelo marcó como positivo, cuánto lo era. Importa cuando el FP es caro (marcar spam un mail importante)."
+          "label": "Precisión",
+          "body": "De todo lo que el modelo marcó, ¿cuánto era de verdad?",
+          "text_label": "Fórmula:",
+          "text": "`TP / (TP + FP)`. Sube cuando el modelo molesta poco con falsas alarmas.",
+          "example": "Importa cuando el falso positivo es caro: mandar a spam un mail importante."
         },
         {
-          "label": "Recall = TP / (TP + FN)",
-          "body": "De lo que era positivo, cuánto agarró. Importa cuando el FN es caro (no detectar una enfermedad o un fraude)."
+          "label": "Recall",
+          "body": "De todo lo que había, ¿cuánto encontró?",
+          "text_label": "Fórmula:",
+          "text": "`TP / (TP + FN)`. Sube cuando se escapan pocos.",
+          "example": "Importa cuando el falso negativo es caro: no detectar una enfermedad o un fraude."
         },
         {
-          "label": "F1 = 2 · (P · R) / (P + R)",
-          "body": "La media armónica entre precision y recall. A diferencia del promedio común, la manda el número más chico: con precision 0.9 y recall 0.5 el promedio da 0.70 y F1 da 0.64; con recall 0, el promedio da 0.45 y F1 da 0."
-        },
-        {
-          "label": "Precision y recall están en tensión",
-          "body": "Subir una suele bajar la otra. Qué priorizar lo decide el costo del error, no la matemática."
+          "label": "F1",
+          "body": "¿Y si las dos importan parecido?",
+          "text_label": "Fórmula:",
+          "text": "`2 · (P · R) / (P + R)`, la media armónica. La manda el número más chico: con 0.9 y 0.5 el promedio da 0.70 y F1 da 0.64; con recall 0, F1 da 0.",
+          "example": "Importa cuando ninguna de las dos alcanza sola, como el caso de churn del quiz."
         }
       ],
-      "notes": "Insistí en la intuición antes que en la fórmula. Precision: cuando dice que sí, ¿le creo? Recall: de todos los que eran, ¿cuántos encontró? Si preguntan por qué media armónica y no promedio: el promedio deja que un 1.0 tape un 0.0, y un clasificador que marca todo tiene recall 1.0 con precision pésima. Hacé la cuenta de 0.9 y 0.5 en el pizarrón. Si dan tiempo, accuracy = (TP+TN)/total cierra el círculo con la primera diapositiva de la sección."
+      "highlights": [
+        {
+          "body": "Precisión y recall están en tensión: subir una suele bajar la otra. Qué priorizar lo decide el costo del error, no la matemática.",
+          "kind": "takeaway"
+        }
+      ]
     },
     {
       "template": "quiz",
       "section": "La matriz de confusión",
-      "title": "Quiz: ¿precisión o recall?",
-      "question": "¿Qué error es menos tolerable en cada caso?",
+      "title": "Quiz 1: el filtro de spam",
+      "question": "Un filtro de spam. Bloquear un mail legítimo es peor que dejar pasar uno dudoso: el usuario perdona ver basura en la bandeja, no perdona perder una factura. ¿Qué métrica priorizás?",
       "options": [
-        "Filtro de spam: bloquear un mail legítimo es peor que dejar pasar uno dudoso",
-        "Test de una enfermedad grave: dejar ir a una persona enferma es peor que pedir estudios extra",
-        "Alerta de fraude: el equipo revisa pocas alertas, pero cada fraude no detectado cuesta caro",
-        "Modelo de churn: a cada marcado se le ofrece un descuento; el descuento regalado y el cliente perdido cuestan parecido"
+        "Precisión",
+        "Recall"
       ],
-      "answer": "Precisión cuando una alerta falsa es cara (spam); recall cuando dejar pasar un positivo es más grave (diagnóstico). En fraude no hay respuesta universal: depende de la capacidad de revisión y del costo del fraude. En churn los dos errores cuestan parecido y ninguna sola describe el modelo: ese es el caso donde F1 sirve como número único.",
-      "explanation": "En fraude no hay respuesta universal: depende de la capacidad de revisión y del costo del fraude.",
-      "notes": "Hacé las cuatro preguntas antes de mostrar la respuesta. En spam la respuesta esperada es precisión; en diagnóstico, recall. En fraude no cierres con una métrica automática: pediles que expliciten el costo de una revisión y el costo de no detectar. El de churn cierra la idea de F1. La diapositiva cierra la secuencia: la matriz separó los errores, precision y recall los nombraron, y acá se decide cuál duele."
+      "correct": 1,
+      "answer": "Precisión. El error caro es el falso positivo, marcar como spam algo que no lo era.",
+      "explanation": "Priorizar precisión significa que el filtro solo bloquea cuando está seguro, a costa de dejar pasar algo de spam.",
+      "notes": "El primero de los tres, y el más fácil. Pedí voto a mano alzada antes de revelar. Si alguien contesta recall, la pregunta que lo desarma: ¿qué preferís, ver tres spams por día o perder un mail de tu jefe?"
+    },
+    {
+      "template": "quiz",
+      "section": "La matriz de confusión",
+      "title": "Quiz 2: el test de una enfermedad grave",
+      "question": "Un test para detectar una enfermedad grave y tratable. Dejar ir a una persona enferma es peor que pedirle estudios extra a una sana. ¿Qué métrica priorizás?",
+      "options": [
+        "Precisión",
+        "Recall"
+      ],
+      "correct": 2,
+      "answer": "Recall. El error caro es el falso negativo, no detectar a quien sí estaba enfermo.",
+      "explanation": "Priorizar recall significa que el test marca ante la duda, a costa de mandar a estudios a gente sana.",
+      "notes": "El espejo del anterior, y el contraste es el punto: mismo modelo, misma matemática, decisión opuesta. Lo que cambió no es técnico, es cuánto cuesta cada error. Acá conviene decir en voz alta que la métrica la elige el negocio, no el modelo."
+    },
+    {
+      "template": "quiz",
+      "section": "La matriz de confusión",
+      "title": "Quiz 3: el modelo de churn",
+      "question": "Un modelo que marca quién se va a dar de baja, y a cada marcado se le ofrece un descuento. Un descuento regalado a alguien que no se iba cuesta plata; un cliente que se va sin oferta también. ¿Qué métrica priorizás?",
+      "options": [
+        "Precisión",
+        "Recall",
+        "F1"
+      ],
+      "correct": 3,
+      "answer": "F1. Los dos errores cuestan parecido, así que optimizar una sola métrica deja la otra libre.",
+      "explanation": "F1 es el número que las mantiene atadas, y por eso este es el caso donde sirve como número único.",
+      "notes": "El que cierra la secuencia y el que justifica F1. Los dos anteriores tenían un error claramente más caro; este no, y ahí es donde una sola métrica deja de alcanzar. Un cuarto caso para tirar en voz alta si sobra tiempo, sin diapositiva: una alerta de fraude donde el equipo revisa pocas alertas pero cada fraude no detectado cuesta caro. No tiene respuesta única y funciona mejor como discusión abierta."
     },
     {
       "template": "content+cards+image",
       "section": "La matriz de confusión",
-      "title": "El umbral y la matriz N×N",
+      "title": "El umbral, una perilla de negocio",
       "lead": "Un clasificador binario no devuelve sí o no, devuelve una probabilidad. El umbral es el número que la convierte en decisión.",
       "cards": [
         {
@@ -814,12 +831,12 @@
       "notes": "El umbral es lo que más cuesta que entiendan y lo más útil en la práctica. Recorré el diagrama con el dedo, de izquierda a derecha, y que ellos digan qué pasa con cada métrica antes de que lo leas. Un modelo de fraude con recall bajo en 0.5 pasa a recall alto bajando a 0.2, a costa de más falsas alarmas. La línea de N×N va al pasar, conecta con el softmax de la sección 4.",
       "design": "split-right",
       "media": {
-        "src": "images/s5-5-1-umbral.png",
+        "src": "images/s5-7-1-umbral.png",
         "alt": "El umbral sobre el eje de probabilidad intercambia recall por precisión"
       },
       "highlights": [
         {
-          "body": "En multiclase la matriz crece a N×N: la diagonal son los aciertos y cada celda fuera de ella dice con qué clase se confunde. Precision y recall se calculan por clase y se promedian.",
+          "body": "Toda esta sección trabaja sobre dos clases. Con más de dos, la matriz crece a una fila por clase real y una columna por clase predicha, y precisión y recall se calculan por clase y se promedian. La idea es la misma.",
           "kind": "note"
         }
       ]
@@ -1091,7 +1108,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "230bc426f76857d857546631f971a72f9e9691acc6e88fae858cb00e236bd548",
-    "bytes": 65882
+    "sha256": "b5ae51d3f291d2f0bf128766233b9fa23d74a1b1606891a4e0d45fb76794aadc",
+    "bytes": 68157
   }
 }

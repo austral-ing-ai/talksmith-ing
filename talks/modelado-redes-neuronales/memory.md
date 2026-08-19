@@ -234,3 +234,56 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Files created/modified: draft.md, final.md, images/s1-4-1-activaciones-ocultas.{ascii,svg,png}, images/s4-2-1-activaciones-salida.{ascii,svg,png}, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
 - Defecto corregido durante el dibujo: en las dos primeras versiones la sigmoide cruzaba el eje horizontal hacia abajo, o sea tomaba valores negativos, que una sigmoide nunca tiene. Se rebajó el eje de esos paneles al 0 real y se marcó el techo en 1 con línea punteada. La auditoría de aspecto pidió recortar el viewBox de s1-4-1 y se aplicó el recorte sugerido.
 - Pending open questions: el mazo pasó de 37 a 39 diapositivas para 90 minutos, y ya venía justo. Es lo primero a mirar en el ensayo. Sigue pendiente la promoción a la biblioteca compartida.
+
+## 2026-08-19 — Step 5/6/7 — ronda 10
+- Status: complete
+- Asks log:
+  - 2026-08-19 — Tres pedidos sobre la diapositiva 1.2: reescribir la card del error, renombrar "Las capas y las neuronas" a "# Capas & # Neuronas", y mover overfitting al final
+- What was decided: La card "El error" nombraba accuracy y la matriz de confusión, que recién se definen en la sección 5: en la diapositiva 2 no significaban nada. Ahora define el error en sus propios términos, la distancia entre lo predicho y lo que pasó, y que resumirla en un número es una decisión de diseño. Es L8 aplicada a una card que reenviaba a términos sin definir. La card de capas se renombró a "# Capas & # Neuronas" y, al dejar de titularse como negación, dejó de ser el remate: el cuerpo pasó a describirla como un aspecto más, el único que se elige libremente y el que menos impacto tiene. Overfitting quedó último.
+- Ajustes de coherencia que arrastró el reorden: el encabezado decía "cinco decisiones" y ahora dice seis; la nota al pie decía "las cinco de arriba" y ahora dice "las otras cinco"; las notas del orador decían "cada viñeta es una sección" y ahora dicen "casi cada viñeta", porque la de capas no lo es. Sin esos tres arreglos la diapositiva habría quedado mintiendo.
+- Key inputs: draft.md, config/learnings.md L8.
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Pending open questions: 39 diapositivas para 90 minutos, ajustado. Sigue pendiente la promoción a la biblioteca compartida.
+
+## 2026-08-19 — Step 5/6/7 — ronda 11
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Partir mal: explicar un poco cada boxed"
+  - 2026-08-19 — "Mover Un catálogo para elegir sin dudar antes de Cómo se ven las cuatro y La capa de salida"
+  - 2026-08-19 — "Cómo se ven las cuatro: que tenga un layout equivalente a la de input"
+  - 2026-08-19 — "Dos formas de modelar mal la salida: borrar este slide"
+- What was decided: (a) Las cinco cards de "Partir mal" pasaron a tres líneas cada una en draft.md, con el patrón qué es, por qué infla la métrica, qué se hace en su lugar. En el modelo van condensadas porque el renderer rechazó `format: list` (avisa que un conjunto etiquetado siempre se lee como grilla) y la grilla no tolera cuerpos de 260 caracteres. (b) La sección 4 quedó catálogo, capa de salida, cómo se ven las cuatro: primero el mapa completo de tarea a salida, después el detalle de la activación y recién ahí su forma. (c) Se rehízo el diagrama de las activaciones de salida con el mismo layout de cuatro paneles que el de las ocultas, mismo viewBox y misma retícula, y softmax pasó de bloque aparte a cuarto panel con barras chicas. La diapositiva pasó de content-image con facts a content+cards+image con cuatro cards, igual que la 1.4. (d) Se borró "Dos formas de modelar mal la salida", archivada completa en Cut material con sus notas del orador.
+- Key inputs: draft.md, corpus/chat.md.md §8.
+- Files created/modified: draft.md, final.md, images/s4-3-1-activaciones-salida.{ascii,svg,png} (renombrado desde s4-2-1 y redibujado), output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Pending open questions: el mazo bajó de 39 a 38 diapositivas. Sigue pendiente la promoción a la biblioteca compartida.
+
+## 2026-08-19 — Step 5/6/7 — ronda 12
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Agregar en Precision, recall y F1 en cada box una descripcion de lo que es" + "'Importa...' deberia tener un espacio de la descripcion"
+- What was decided: La diapositiva 5.3 pasó de cuatro cards de párrafo corrido a plantilla de columnas con tres zonas por métrica. Arriba el nombre y la pregunta en castellano que responde: precisión, de todo lo que marcó, ¿cuánto era de verdad?; recall, de todo lo que había, ¿cuánto encontró?; F1, ¿y si las dos importan parecido? Debajo la fórmula y el comportamiento. Y aparte, con su propio espacio, el "Importa cuando". La tensión entre precisión y recall bajó a nota al pie. Es L8 llevada a la estructura visual: la etiqueta nombra, la primera línea define en lenguaje llano, la fórmula viene después y el caso de uso queda separado.
+- Key inputs: draft.md, schemas/slide-model.md (concept-columns con label, body, text_label, text, example).
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Nota de estilo: la primera redacción usaba guiones largos para separar el nombre de la pregunta; se reemplazaron por punto, que es la regla 11 de desrobotizar.
+- Pending open questions: sigue pendiente la promoción a la biblioteca compartida.
+
+## 2026-08-19 — Step 5/6/7 — ronda 13
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "¿Por qué cuando la seleccioné no se marcó la correcta en el quiz?"
+  - 2026-08-19 — "El problema del quiz es que deberían ser 3 quiz, con la pregunta y luego seleccionar precisión o recall"
+  - 2026-08-19 — "¿Qué es la matriz N×N?"
+- What was decided: (a) El quiz no marcaba nada por dos razones: al moverlo de lugar le saqué el campo `correct`, y de fondo los cuatro casos estaban cargados como opciones de una única pregunta de opción múltiple cuando cada uno tenía su propia respuesta. (b) Se partió en tres diapositivas de quiz, una por caso, cada una con pregunta propia y opciones reales: spam con precisión, enfermedad grave con recall, churn con F1 y tres opciones. Ahora hay una sola respuesta correcta por diapositiva y el renderer la resalta al avanzar; verificado, tres opciones marcadas como correctas en el HTML. El caso de fraude no quedó como quiz porque no tiene respuesta única y pasó a las notas del orador de la tercera. (c) "La matriz N×N" estaba en el título de una diapositiva y solo se explicaba en una línea al pie: L8 al revés. La diapositiva pasó a "El umbral, y qué pasa con más de dos clases" y la línea de cierre define de verdad la matriz (fila por clase real, columna por clase predicha, diagonal de aciertos, celdas fuera de la diagonal como confusiones concretas). El diagrama del umbral se renombró de s5-5-1 a s5-7-1.
+- Key inputs: draft.md, schemas/slide-model.md (quiz con options y correct), templates/html/quiz.j2.
+- Files created/modified: draft.md, final.md, images/s5-7-1-umbral.{ascii,svg,png} (renombrado), output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Pending open questions: el mazo pasó de 38 a 40 diapositivas para 90 minutos. Ya venía justo y esto lo estira más; es lo primero a cronometrar en el ensayo. Sigue pendiente la promoción a la biblioteca compartida.
+
+## 2026-08-19 — Step 5/6/7 — ronda 14
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Enfoquémonos solo a 2 clases. Y poner solo una nota al final."
+- What was decided: La sección 5 queda binaria de punta a punta. La diapositiva 5.7 pasó a "El umbral, una perilla de negocio" y el bloque de multiclase, que ocupaba un párrafo entero, se redujo a una nota de dos líneas al pie: la matriz crece a una fila por clase real y una columna por clase predicha, precisión y recall se calculan por clase, la idea no cambia. El ejemplo del clasificador de dígitos quedó en las notas del orador, marcado como "no lo desarrolles salvo que lo pidan". El goal de la sección declara ahora explícitamente el alcance binario.
+- Key inputs: draft.md.
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Defecto de proceso: en el primer intento el reemplazo del goal falló porque el texto tenía "el quiz obliga a elegir cuál duele en cuatro casos" y yo buscaba una variante. El script aborta antes de escribir cuando un reemplazo no matchea, así que el borrador quedó intacto pero el modelo ya se había actualizado por separado: quedaron desincronizados un momento. Conviene tocar borrador y modelo en el mismo script, o verificar el sha del stamp después de cada ronda.
+- Pending open questions: 40 diapositivas para 90 minutos. Sigue pendiente la promoción a la biblioteca compartida.

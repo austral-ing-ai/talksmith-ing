@@ -1,0 +1,15 @@
+     Lineal  y = z          Sigmoide  1/(1+e^-z)     Softplus  log(1+e^z)     Softmax  reparte 1
+        |       /              |     _______            |         /
+        |      /             1 |    /                   |        /            gato  [######   ]
+    ----+-----/----        ----+---/-------         ----+------/------        perro [##       ]
+        |    /               0 |__/                   0 |____/                zorro [#        ]
+        |   /                  |                        |                          suma = 1
+
+    sin piso ni techo      tiene techo en 1       tiene piso en 0        no es una curva
+    un precio              una probabilidad       un conteo              una clase entre N
+
+<!-- ascii-note:
+intent: mostrar la forma de las cuatro activaciones de salida en cuatro paneles iguales, con el mismo layout que el diagrama de las activaciones ocultas
+emphasize: el techo de la sigmoide en 1 y el piso de softplus en 0; que softmax no es una curva sino un reparto que suma 1
+labels: Lineal, Sigmoide, Softplus, Softmax; sin piso ni techo, techo en 1, piso en 0, reparto entre clases
+-->

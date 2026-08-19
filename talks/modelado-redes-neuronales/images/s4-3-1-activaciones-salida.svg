@@ -1,0 +1,52 @@
+<!-- talksmith-ascii-sha256: bb7374e23ed3059a2788611e9d8fc8ef733fc5f55520b3da6801fff2c6245565 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="22 22 835 298" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>Cómo se ven las cuatro</title>
+  <desc>Lineal, sigmoide y softplus son curvas sobre un número; softmax reparte una probabilidad entre clases que compiten.</desc>
+  <rect x="0" y="0" width="900" height="340" fill="#ffffff"/>
+
+  <g stroke="#B9B3B3" stroke-width="1.2" fill="none">
+    <path d="M 40 200 L 210 200 M 125 120 L 125 250"/>
+    <path d="M 250 246 L 420 246 M 335 130 L 335 262"/>
+    <path d="M 460 246 L 630 246 M 545 130 L 545 262"/>
+  </g>
+
+  <text x="125" y="52" font-size="16" text-anchor="middle" font-weight="bold">Lineal</text>
+  <text x="335" y="52" font-size="16" text-anchor="middle" font-weight="bold">Sigmoide</text>
+  <text x="545" y="52" font-size="16" text-anchor="middle" font-weight="bold">Softplus</text>
+  <text x="755" y="52" font-size="16" text-anchor="middle" font-weight="bold" fill="#DA1B2E">Softmax</text>
+
+  <text x="125" y="74" font-size="13" text-anchor="middle" fill="#7A7373">y = z</text>
+  <text x="335" y="74" font-size="13" text-anchor="middle" fill="#7A7373">1 / (1 + e a la menos z)</text>
+  <text x="545" y="74" font-size="13" text-anchor="middle" fill="#7A7373">log(1 + e a la z)</text>
+  <text x="755" y="74" font-size="13" text-anchor="middle" fill="#7A7373">reparte 1 entre N clases</text>
+
+  <path d="M 48 248 L 202 122" stroke="#3B3535" stroke-width="2.4" fill="none"/>
+
+  <path d="M 255 244 C 295 244 315 238 335 200 C 355 162 375 156 415 156" stroke="#3B3535" stroke-width="2.4" fill="none"/>
+  <line x1="250" y1="156" x2="420" y2="156" stroke="#D9D4D4" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="242" y="160" font-size="12" text-anchor="end" fill="#7A7373">1</text>
+  <text x="242" y="250" font-size="12" text-anchor="end" fill="#7A7373">0</text>
+
+  <path d="M 465 244 C 505 244 525 240 545 228 C 570 210 595 175 625 140" stroke="#3B3535" stroke-width="2.4" fill="none"/>
+  <text x="452" y="250" font-size="12" text-anchor="end" fill="#7A7373">0</text>
+
+  <text x="678" y="152" font-size="12" fill="#7A7373">gato</text>
+  <rect x="722" y="141" width="118" height="14" fill="#F2EFEF" stroke="#D9D4D4" stroke-width="1"/>
+  <rect x="722" y="141" width="73" height="14" fill="#DA1B2E"/>
+  <text x="678" y="182" font-size="12" fill="#7A7373">perro</text>
+  <rect x="722" y="171" width="118" height="14" fill="#F2EFEF" stroke="#D9D4D4" stroke-width="1"/>
+  <rect x="722" y="171" width="32" height="14" fill="#B9B3B3"/>
+  <text x="678" y="212" font-size="12" fill="#7A7373">zorro</text>
+  <rect x="722" y="201" width="118" height="14" fill="#F2EFEF" stroke="#D9D4D4" stroke-width="1"/>
+  <rect x="722" y="201" width="13" height="14" fill="#B9B3B3"/>
+  <text x="840" y="240" font-size="12" text-anchor="end" fill="#7A7373">suma = 1</text>
+
+  <text x="125" y="284" text-anchor="middle">sin piso ni techo</text>
+  <text x="125" y="302" text-anchor="middle" fill="#7A7373">un precio</text>
+  <text x="335" y="284" text-anchor="middle">tiene techo en 1</text>
+  <text x="335" y="302" text-anchor="middle" fill="#7A7373">una probabilidad</text>
+  <text x="545" y="284" text-anchor="middle">tiene piso en 0, sin techo</text>
+  <text x="545" y="302" text-anchor="middle" fill="#7A7373">un conteo</text>
+  <text x="755" y="284" text-anchor="middle">no es una curva</text>
+  <text x="755" y="302" text-anchor="middle" fill="#7A7373">una clase entre N</text>
+</svg>

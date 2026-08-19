@@ -79,16 +79,16 @@ Abrí con esto porque reordena toda la clase. La mayoría llega pensando que dis
 
 ### Content
 
-Diseñar una red son cinco decisiones, y ninguna de las cinco es cuántas capas ponerle. Son las cinco que recorre esta clase, en este orden.
+Diseñar una red son seis decisiones, y la que todos creen que es la principal, cuántas capas ponerle, es la que menos pesa. Son las seis que recorre esta clase, en este orden.
 
 - **La entrada.** Cómo cada variable del problema se convierte en floats. Es donde se gana o se pierde el modelo, y donde más tiempo vamos a estar.
 - **El dataset.** Cómo se parte antes de entrenar, en train, validación y test. Sin esto ninguna métrica posterior es honesta.
 - **La salida.** Cuántas neuronas, qué activación y qué loss. No se elige: la determina la tarea. Predecir un precio pide salida lineal con MSE; clasificar en N clases, softmax con cross-entropy.
-- **El error.** Con qué se mide que el modelo sirve. Accuracy sola engaña, y la matriz de confusión separa los tipos de error que accuracy suma.
+- **El error.** La distancia entre lo que el modelo predice y lo que de verdad pasó. Resumirla en un solo número es una decisión de diseño, y ningún número sirve para todos los casos.
+- **# Capas & # Neuronas.** Cuántas capas ocultas y cuántas neuronas por capa. Es lo único de la lista que se elige libremente, y lo que menos impacto tiene.
 - **El overfitting.** Cómo se detecta que el modelo memorizó en vez de aprender, y qué herramientas lo controlan.
-- **Las capas y las neuronas.** No están en la lista. Eso sí se elige, y es lo que menos importa del diseño.
 
-**Nota:** 1 a 3 capas ocultas alcanzan para datos tabulares, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las cinco de arriba.
+**Nota:** 1 a 3 capas ocultas alcanzan para datos tabulares, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las otras cinco.
 
 <!-- format: editorial -->
 
@@ -98,9 +98,15 @@ corpus/chat.md.md (§9 Diseño de la red: qué se decide y qué no)
 
 ### Speaker notes
 
-Este es el mapa mental que quiero que se lleven, y además es la agenda de la clase disfrazada de contenido: cada viñeta es una sección. Recorrelas señalando hacia adelante, sin desarrollar ninguna. El remate es la última línea: contrastá con la expectativa, pasan horas tuneando capas y el retorno está en la entrada. Dato honesto para dejar caer acá o al final: en datos tabulares una red muchas veces pierde contra gradient boosting (XGBoost, LightGBM); las redes brillan cuando hay estructura que explotar (imágenes, texto, señales). Sirve para bajar la sobreexpectativa.
+Este es el mapa mental que quiero que se lleven, y además es la agenda de la clase disfrazada de contenido: casi cada viñeta es una sección. Recorrelas señalando hacia adelante, sin desarrollar ninguna. El remate es la última línea: contrastá con la expectativa, pasan horas tuneando capas y el retorno está en la entrada. Dato honesto para dejar caer acá o al final: en datos tabulares una red muchas veces pierde contra gradient boosting (XGBoost, LightGBM); las redes brillan cuando hay estructura que explotar (imágenes, texto, señales). Sirve para bajar la sobreexpectativa.
 
 ### Presenter feedback
+- [closed] 2026-08-19 — "Las capas y las neuronas -> # Capas & # Neuronas."
+  Resolution: La card se renombró a "# Capas & # Neuronas". Al dejar de titularse como negación deja de ser el remate y pasa a ser un aspecto más de la lista, así que el cuerpo se reescribió: cuántas capas ocultas y cuántas neuronas por capa, lo único que se elige libremente y lo que menos impacto tiene.
+- [closed] 2026-08-19 — "Overfitting ponelo al final."
+  Resolution: La card del overfitting pasó al último lugar. La lista queda entrada, dataset, salida, error, # capas & # neuronas, overfitting. Se ajustaron el encabezado (de cinco decisiones a seis) y la nota al pie (de "las cinco de arriba" a "las otras cinco"), que con el reorden habrían quedado mintiendo.
+- [closed] 2026-08-19 — "Con qué se mide que el modelo sirve. Accuracy sola engaña; la matriz separa los errores. Este texto es confuso en este contexto. Todavia no se definiuon. EXplicar que es el error."
+  Resolution: La card nombraba accuracy y la matriz de confusión, que recién se definen en la sección 5, así que en la diapositiva 2 no significaban nada. Ahora define el error en sus propios términos: la distancia entre lo que el modelo predice y lo que de verdad pasó, y que resumirla en un solo número es una decisión de diseño. Es L8 aplicada a una card que reenviaba a términos todavía sin definir.
 - [closed] 2026-08-19 — "Podriamos remplazar que lista algunos de los aspectos importantes. Aca estamos mencionando, input, output, error, overfitting, data set que es lo que vamos a ver en la presentacion."
   Resolution: La diapositiva pasó de "La mitad de la arquitectura no se elige" a "Lo que hay que diseñar", con los cinco aspectos que recorre la clase en orden de sección: entrada, dataset, salida, error, overfitting. El desglose en tres baldes se archivó en Cut material.
 - [closed] 2026-08-19 — "Agreguemos esto como un item pero podemos poner una nota"
@@ -502,11 +508,11 @@ Esta diapositiva venía de la sección de input y encaja mejor acá, con la part
 
 Ninguno de estos lanza una excepción. Todos devuelven una métrica mejor que la real.
 
-- **Duplicados repartidos entre conjuntos.** Si el mismo caso (o uno casi idéntico) cae en train y en test, el test deja de medir generalización y mide memoria. Se conoce como train/test bleed y aparece en cualquier dataset que se armó juntando fuentes.
-- **No estratificar con clases desbalanceadas.** Con 2% de fraude, un split aleatorio puede dejar el test con tres casos positivos. La partición se estratifica por la clase para que las tres porciones tengan la misma proporción.
-- **Partir al azar una serie de tiempo.** Si el dato tiene orden temporal, el split aleatorio pone futuro en train y pasado en test: el modelo predice con información que en producción no va a tener. Ahí se corta por fecha, no al azar.
-- **Achicar validación y test.** "Más datos, mejor modelo" tienta a dejar 90% en train. Con validación y test chicos la métrica queda ruidosa y te lleva a elegir un modelo peor.
-- **Cross-validation, y cuándo paga.** K-fold parte train en k porciones y entrena k veces, promediando. Da una estimación más confiable con datasets chicos, y cuesta k entrenamientos. Con modelos profundos rara vez conviene; con datasets chicos o modelos baratos, sí.
+- **Duplicados repartidos entre conjuntos.** El mismo caso, o uno casi idéntico, cae en train y también en test. El test deja de medir generalización y mide memoria: el modelo ya vio la respuesta. Aparece en cualquier dataset armado juntando fuentes. Se deduplica antes de partir, nunca después.
+- **No estratificar con clases desbalanceadas.** El split aleatorio reparte sin mirar la clase. Con 2% de fraude, el test puede quedar con tres casos positivos, y un recall calculado sobre tres casos no es una métrica, es una anécdota. Se estratifica por la clase, así las tres porciones conservan la proporción original.
+- **Partir al azar una serie de tiempo.** Si el dato tiene orden temporal, el azar pone futuro en train y pasado en test. El modelo predice enero mirando marzo, información que en producción nunca va a tener. El número se ve espectacular y no se sostiene. Se corta por fecha: lo anterior a un día entrena, lo posterior evalúa.
+- **Achicar validación y test.** "Más datos, mejor modelo" tienta a dejar 90% en train. Con validación y test chicos la métrica tiene tanto ruido que dos modelos distintos parecen iguales, o el peor parece mejor. El piso práctico son unos pocos cientos de ejemplos en cada uno.
+- **Cross-validation, y cuándo paga.** K-fold parte el train en k porciones y entrena k veces, reservando una distinta cada vez y promediando los resultados. Da una estimación mucho más confiable cuando hay pocos datos, y cuesta k entrenamientos. Con modelos profundos rara vez conviene; con datasets chicos o modelos baratos, sí.
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -532,6 +538,8 @@ Los dos del medio son aporte propio: ninguna de las dos fuentes cubre estratific
 
 
 ### Presenter feedback
+- [closed] 2026-08-19 — "Partir mal: los errores que arruinan la medición -> exploicar un pcoo cada boxed."
+  Resolution: Las cinco cards pasaron de una línea a tres, con el mismo patrón cada una: qué es el error, por qué infla la métrica y qué se hace en su lugar. Se agregaron el "se deduplica antes de partir", el ejemplo del recall sobre tres casos, el de predecir enero mirando marzo, el efecto concreto del ruido (dos modelos que parecen iguales) y cómo funciona k-fold. La diapositiva pasa de grilla editorial a lista, que es lo que tolera cuerpos largos sin encogerse.
 ---
 
 # 4. Modelar la salida
@@ -542,7 +550,41 @@ Los dos del medio son aporte propio: ninguna de las dos fuentes cubre estratific
 
 ---
 
-## 1. La capa de salida la determina la tarea
+## 1. Un catálogo para elegir sin dudar
+
+### Content
+
+Casi cualquier tarea entra en esta tabla. Elegida la fila, la salida queda determinada.
+
+| Qué predice | Neuronas | Activación | Loss |
+|---|---|---|---|
+| Un real (precio) | 1 | Lineal | MSE / MAE / Huber |
+| Sí o no (churn) | 1 | Sigmoide | BCE |
+| Una de N clases | N | Softmax | Cross-entropy |
+| Varias de N (tags) | N | Sigmoide ×N | BCE |
+| Conteo (demanda) | 1 | Softplus / exp | Poisson NLL |
+| Cuantiles (P10, P50, P90) | k | Lineal | Pinball |
+| Distribución (μ, σ) | 2 | μ lineal, σ softplus | NLL gaussiana |
+
+Un caso que conviene remarcar: cuando el negocio necesita un rango y no un punto, los cuantiles (P10, P50, P90) son la opción más rentable. No asumen forma de la distribución y dan directamente el intervalo que el negocio quiere.
+
+### Sources
+
+corpus/chat.md.md (§8 Catálogo completo de outputs; predecir una distribución, no un punto)
+
+### Speaker notes
+
+No leas toda la tabla; usala como referencia y detenete en dos o tres filas. La de cuantiles suele ser nueva para los alumnos y es muy útil en la práctica (stock, riesgo, capacidad, donde importa el peor escenario). La media es la respuesta correcta a una pregunta que muchas veces nadie hizo. La distribución con μ y σ conecta con estadística que ya vieron.
+
+### Presenter feedback
+- [closed] 2026-08-19 — "Dos formas de modelar mal la salida, borra este slide"
+  Resolution: Se retiró la última diapositiva de la sección; el contenido completo, incluidas las notas del orador que se pierden, quedó archivado en Cut material. La sección queda con tres diapositivas: catálogo, capa de salida, cómo se ven las cuatro.
+- [closed] 2026-08-19 — "Mover Un catálogo para elegir sin dudar antes de Cómo se ven las cuatro y La capa de salida la determina la tarea."
+  Resolution: El catálogo pasó a abrir la sección. El orden queda catálogo, capa de salida, cómo se ven las cuatro, dos formas de modelar mal: primero el mapa completo de tarea a salida, después el detalle de la activación y recién ahí su forma. El diagrama de las formas se renombró de s4-2-1 a s4-3-1 para seguir a su diapositiva.
+
+---
+
+## 2. La capa de salida la determina la tarea
 
 ### Content
 
@@ -578,36 +620,33 @@ Contrastá con las capas ocultas: ahí la activación casi no importa (ReLU y li
 
 ---
 
-## 2. Cómo se ven las cuatro
+## 3. Cómo se ven las cuatro
 
 ### Content
 
-La tabla de al lado dice el rango; el dibujo dice la forma. Es lo que hace evidente por qué cada una sirve para lo que sirve.
+La tabla del catálogo dice el rango; el dibujo dice la forma. Es lo que hace evidente por qué cada una sirve para lo que sirve.
 
 ```ascii
-    Lineal  y = z           Sigmoide  1/(1+e^-z)        Softplus  log(1+e^z)
-       |       /               |    ________               |         /
-       |      /              1 |   /                       |        /
-    ---+-----/-----            |  /                        |      _/
-       |    /                0 |_/                       0 |____/
-       |   /                   +-----------                +-----------
-    todo R, sin techo       (0,1), una probabilidad     (0,inf), un conteo
+     Lineal  y = z          Sigmoide  1/(1+e^-z)     Softplus  log(1+e^z)     Softmax  reparte 1
+        |       /              |     _______            |         /
+        |      /             1 |    /                   |        /            gato  [######   ]
+    ----+-----/----        ----+---/-------         ----+------/------        perro [##       ]
+        |    /               0 |__/                   0 |____/                zorro [#        ]
+        |   /                  |                        |                          suma = 1
 
-
-    Softmax   e^zi / sum(e^zj)        no es una curva: reparte 1 entre N clases
-
-       gato    [##################        ]  0.62
-       perro   [########                  ]  0.27
-       zorro   [###                       ]  0.11
-                                             suma = 1
+    sin piso ni techo      tiene techo en 1       tiene piso en 0        no es una curva
+    un precio              una probabilidad       un conteo              una clase entre N
 ```
 <!-- ascii-note:
-intent: mostrar la forma de las cuatro activaciones de salida; softmax se muestra como reparto entre clases porque no es una curva
-emphasize: el techo de la sigmoide en 1 y el piso de softplus en 0; que las barras de softmax suman 1
-labels: Lineal, Sigmoide, Softplus, Softmax; rangos todo R, (0,1), (0,inf), suma 1
+intent: mostrar la forma de las cuatro activaciones de salida en cuatro paneles iguales, con el mismo layout que el diagrama de las activaciones ocultas
+emphasize: el techo de la sigmoide en 1 y el piso de softplus en 0; que softmax no es una curva sino un reparto que suma 1
+labels: Lineal, Sigmoide, Softplus, Softmax; sin piso ni techo, techo en 1, piso en 0, reparto entre clases
 -->
 
-Tres son curvas sobre un solo número. **Softmax es distinta:** no transforma un valor, reparte una probabilidad entre N clases que compiten. Por eso es la única que necesita ver todas las neuronas de salida a la vez.
+- **Lineal.** La recta `y = z`. No tiene piso ni techo, y por eso sirve para un precio: cualquier valor real es una respuesta válida.
+- **Sigmoide.** Aplasta cualquier número en (0, 1). El techo en 1 es lo que la convierte en una probabilidad.
+- **Softplus.** Piso en 0 y sin techo. Es la forma correcta para un conteo o un desvío, que no pueden ser negativos.
+- **Softmax.** No transforma un valor, reparte 1 entre N clases que compiten. Es la única que necesita ver todas las neuronas de salida a la vez.
 
 ### Sources
 
@@ -621,63 +660,9 @@ Es el complemento visual de la diapositiva anterior y se da rápido, dos minutos
 
 ---
 
-## 3. Un catálogo para elegir sin dudar
-
-### Content
-
-Casi cualquier tarea entra en esta tabla. Elegida la fila, la salida queda determinada.
-
-| Qué predice | Neuronas | Activación | Loss |
-|---|---|---|---|
-| Un real (precio) | 1 | Lineal | MSE / MAE / Huber |
-| Sí o no (churn) | 1 | Sigmoide | BCE |
-| Una de N clases | N | Softmax | Cross-entropy |
-| Varias de N (tags) | N | Sigmoide ×N | BCE |
-| Conteo (demanda) | 1 | Softplus / exp | Poisson NLL |
-| Cuantiles (P10, P50, P90) | k | Lineal | Pinball |
-| Distribución (μ, σ) | 2 | μ lineal, σ softplus | NLL gaussiana |
-
-Un caso que conviene remarcar: cuando el negocio necesita un rango y no un punto, los cuantiles (P10, P50, P90) son la opción más rentable. No asumen forma de la distribución y dan directamente el intervalo que el negocio quiere.
-
-### Sources
-
-corpus/chat.md.md (§8 Catálogo completo de outputs; predecir una distribución, no un punto)
-
-### Speaker notes
-
-No leas toda la tabla; usala como referencia y detenete en dos o tres filas. La de cuantiles suele ser nueva para los alumnos y es muy útil en la práctica (stock, riesgo, capacidad, donde importa el peor escenario). La media es la respuesta correcta a una pregunta que muchas veces nadie hizo. La distribución con μ y σ conecta con estadística que ya vieron.
-
-### Presenter feedback
-
----
-
-## 4. Dos formas de modelar mal la salida
-
-### Content
-
-- **Softmax donde iba sigmoide.** Softmax fuerza a que las clases compitan y sumen 1, así que solo sirve cuando las etiquetas son excluyentes. Un ticket puede ser "urgente" y "de facturación" a la vez: ahí la salida está mal modelada de raíz y van N sigmoides independientes, una por etiqueta.
-- **Predecir un punto cuando el negocio pedía un rango.** Si la decisión depende del peor escenario (cuánto stock, cuánto riesgo, cuánta capacidad), un valor puntual no alcanza. Ahí van cuantiles o una distribución.
-
-Los dos errores comparten causa: la salida se eligió mirando la arquitectura en vez de la pregunta del negocio.
-
-### Sources
-
-corpus/chat.md.md (§8 Los dos errores más comunes)
-
-### Speaker notes
-
-Cierre de sección. El de softmax vs sigmoide es conceptual y se entiende con el ejemplo del ticket multi-etiqueta. Preguntá: ¿clasificar géneros de una película es softmax o sigmoide? Sigmoide, porque una película puede ser comedia y drama. Buen momento para reforzar que el modelado de la salida es una decisión de producto, no solo técnica.
-
-### Presenter feedback
-
-- [closed] 2026-08-18 — "Borrar este slide."
-  Resolution: Se retiró la diapositiva; su detalle de implementación quedó preservado en Cut material.
-
----
-
 # 5. La matriz de confusión
 
-**Goal of this section:** El modelo ya está diseñado y entrenado; ahora, ¿anda? La sección va en cadena: accuracy engaña, la matriz de confusión separa los cuatro tipos de resultado, de ahí salen precision, recall y F1, con eso ya definido el quiz obliga a elegir cuál duele en cuatro casos reales, y el umbral cierra mostrando que la elección es una perilla y no un destino. Nota: este tema no está en el corpus; el contenido viene del conocimiento del área (ver Open questions).
+**Goal of this section:** El modelo ya está diseñado y entrenado; ahora, ¿anda? La sección va en cadena y trabaja sobre dos clases de punta a punta: accuracy engaña, la matriz de confusión separa los cuatro tipos de resultado, de ahí salen precisión, recall y F1, con eso ya definido tres quiz obligan a elegir cuál duele en tres casos reales, y el umbral cierra mostrando que la elección es una perilla y no un destino. El caso multiclase queda como una nota al final. Nota: este tema no está en el corpus; el contenido viene del conocimiento del área (ver Open questions).
 
 **Presenter feedback:**
 
@@ -780,10 +765,22 @@ El centro de la sección. Dibujá la matriz en el pizarrón mientras aparece en 
 
 De las cuatro celdas salen las métricas que de verdad describen a un clasificador.
 
-- **Precision = TP / (TP + FP).** De todo lo que el modelo marcó como positivo, cuánto lo era. Sube cuando molesta poco con falsas alarmas. Importa cuando el costo del FP es alto (marcar spam un mail importante).
-- **Recall = TP / (TP + FN).** De todo lo que era positivo, cuánto agarró. Sube cuando se escapan pocos. Importa cuando el costo del FN es alto (no detectar una enfermedad o un fraude).
-- **F1 = 2 · (P · R) / (P + R).** La media armónica entre precision y recall. A diferencia del promedio común, la manda el número más chico: con precision 0.9 y recall 0.5, el promedio da 0.70 y F1 da 0.64; con recall 0, el promedio da 0.45 y F1 da 0. Es el número único cuando las dos importan parecido.
-- **Precision y recall están en tensión.** Subir una suele bajar la otra. Qué priorizar lo decide el costo del error, no la matemática.
+**Precisión.** De todo lo que el modelo marcó, ¿cuánto era de verdad?
+
+- Fórmula: `TP / (TP + FP)`. Sube cuando el modelo molesta poco con falsas alarmas.
+- **Importa cuando** el falso positivo es caro: mandar a spam un mail importante.
+
+**Recall.** De todo lo que había, ¿cuánto encontró?
+
+- Fórmula: `TP / (TP + FN)`. Sube cuando se escapan pocos.
+- **Importa cuando** el falso negativo es caro: no detectar una enfermedad o un fraude.
+
+**F1.** ¿Y si las dos importan parecido?
+
+- Fórmula: `2 · (P · R) / (P + R)`, la media armónica. La manda el número más chico: con precisión 0.9 y recall 0.5 el promedio da 0.70 y F1 da 0.64; con recall 0, F1 da 0.
+- **Importa cuando** ninguna de las dos alcanza sola, como el caso de churn del quiz.
+
+**Nota:** precisión y recall están en tensión. Subir una suele bajar la otra, y qué priorizar lo decide el costo del error, no la matemática.
 
 ### Sources
 
@@ -794,46 +791,98 @@ Conocimiento del área (no cubierto por el corpus).
 Insistí en la intuición antes que en la fórmula. Precision responde "cuando dice que sí, ¿le creo?"; recall responde "de todos los que eran, ¿cuántos encontró?". El truco mnemotécnico: precisión mira la columna de predichos positivos, recall mira la fila de reales positivos. Si preguntan por qué media armónica y no promedio: el promedio deja que un 1.0 tape un 0.0, y un clasificador que marca todo tiene recall 1.0 con precision pésima. La armónica no lo permite, porque tiende al más chico de los dos. Hacé la cuenta de 0.9 y 0.5 en el pizarrón, son diez segundos y se entiende de una. F1 es útil pero peligroso si se reporta solo; siempre conviene mirar las dos. Si dan tiempo, escribí accuracy = (TP+TN)/total: es la misma fórmula de la 5.1, ahora con los cuatro términos ya definidos, y cierra el círculo de la sección.
 
 ### Presenter feedback
+- [closed] 2026-08-19 — "Agregar en Precision, recall y F1 en cada box una descripcion de lo que es. Eg: Precicion es: Cuantos detected correctamente ?" / "'Importa...' que esta ahi deberia tener un especio de la descripcion que esta."
+  Resolution: Cada métrica pasó a tres zonas separadas en vez de un párrafo corrido. Arriba el nombre y la pregunta en castellano que responde (precisión: de todo lo que marcó, ¿cuánto era de verdad?; recall: de todo lo que había, ¿cuánto encontró?; F1: ¿y si las dos importan parecido?). Debajo la fórmula y el comportamiento. Y aparte, con su propio espacio, el "Importa cuando". La diapositiva pasó de lista de cards a plantilla de columnas, que es la que da esas tres zonas. La tensión entre precisión y recall bajó a nota al pie.
 - [closed] 2026-08-19 — "No se definio 'F1, media armónica'"
   Resolution: La card ahora abre con la fórmula `2 · (P · R) / (P + R)` y define la media armónica por contraste con el promedio común, con dos números concretos (0.9 y 0.5 dan 0.70 de promedio y 0.64 de F1). Las notas del orador suman el porqué de la armónica y el caso del clasificador que marca todo.
 
 ---
 
-## 4. Quiz: ¿precisión o recall?
+## 4. Quiz 1: el filtro de spam
 
 ### Content
 
-En cada caso, elegí qué error es menos tolerable. La métrica que priorizás cae sola.
+Un filtro de spam. Bloquear un mail legítimo es peor que dejar pasar uno dudoso: el usuario perdona ver basura en la bandeja, no perdona perder una factura.
 
-1. **Filtro de spam:** bloquear un mail legítimo es peor que dejar pasar uno dudoso. ¿Priorizás precisión o recall?
-2. **Test de una enfermedad grave:** dejar ir a una persona enferma es peor que pedir estudios extra. ¿Priorizás precisión o recall?
-3. **Alerta de fraude:** el equipo puede revisar pocas alertas, pero cada fraude no detectado cuesta caro. ¿Qué priorizás y qué costo aceptás?
-4. **Modelo de churn:** el modelo marca quién se va a dar de baja y a cada marcado se le ofrece un descuento. Un descuento regalado a alguien que no se iba cuesta plata; un cliente que se va sin oferta también. ¿Qué métrica reportás?
+**¿Qué métrica priorizás?**
 
-**Respuesta:** precisión cuando una alerta falsa es cara; recall cuando dejar pasar un positivo es más grave. En fraude no hay respuesta universal, depende de la capacidad de revisión y del costo del fraude. En churn los dos errores cuestan parecido y ninguna de las dos sola describe el modelo: ese es el caso donde F1 sirve como número único.
+1. Precisión
+2. Recall
+
+**Respuesta: precisión.** El error caro es el falso positivo, marcar como spam algo que no lo era. Priorizar precisión significa que el filtro solo bloquea cuando está seguro, a costa de dejar pasar algo de spam.
 
 <!-- template: quiz -->
 
 ### Sources
 
-Conocimiento del área (no cubierto por el corpus). Casos ilustrativos.
+Conocimiento del área (no cubierto por el corpus). Caso ilustrativo.
 
 ### Speaker notes
 
-Hacé las cuatro preguntas antes de mostrar la respuesta. En spam, la respuesta esperada es precisión; en diagnóstico, recall. En fraude, no cierres con una métrica automática: pediles que expliciten el costo de una revisión y el costo de no detectar. El de churn es el que cierra la idea de F1: los dos errores cuestan parecido, así que optimizar una sola métrica deja la otra libre y F1 es el número que las mantiene atadas. La diapositiva cierra la secuencia: la matriz separó los errores, precision y recall los nombraron, y acá se decide cuál duele.
+El primero de los tres, y el más fácil. Pedí voto a mano alzada antes de revelar. Si alguien contesta recall, la pregunta que lo desarma: ¿qué preferís, ver tres spams por día o perder un mail de tu jefe?
 
 ### Presenter feedback
-
-- [closed] 2026-08-18 — "Hagamos un quiz de 3 pregutas donde mostremos la decision en cuanto queres que elegir precision sobre recall."
-  Resolution: Se agregó un quiz de tres casos para decidir entre precisión y recall, con una respuesta que explicita los costos.
-- [closed] 2026-08-19 — "el quiz deberia ir despues de 'Precision, recall y F1'. Sino se usan los terminos sin explicarlos."
-  Resolution: El quiz pasó de 5.2 a 5.4, después de la matriz de confusión y de precision/recall/F1. La sección queda: accuracy engaña → la matriz separa los errores → precision, recall y F1 los nombran → el quiz decide cuál duele → el umbral. "La matriz de confusión" y "Precision, recall y F1" subieron a 5.2 y 5.3.
-- [closed] 2026-08-19 — "Agregar 1 caso ms para explicar esto."
-  Resolution: Cuarto caso, un modelo de churn donde los dos errores cuestan parecido. Es el caso que justifica F1 como número único, y aprovecha que ahora F1 ya está explicado cuando llega el quiz.
+- [closed] 2026-08-19 — "El problema del quiz es que deberia ser 3 quiz la verdad donde esta la pregunta y luego seleciona precicion o recall"
+  Resolution: El quiz único se partió en tres, uno por caso, cada uno con su pregunta y opciones reales para elegir: spam (precisión), enfermedad grave (recall) y churn (F1, con tres opciones). Así la mecánica de la plantilla funciona: hay una sola respuesta correcta por diapositiva y el renderer la resalta al avanzar. El caso de fraude no quedó como quiz porque no tiene respuesta única; pasó a las notas del orador de la tercera, como discusión abierta si sobra tiempo. Las diapositivas 4.1 a 4.3 anteriores del quiz único quedaron reemplazadas, y el umbral pasó de 5.5 a 5.7.
 
 ---
 
-## 5. El umbral y la matriz N×N
+## 5. Quiz 2: el test de una enfermedad grave
+
+### Content
+
+Un test para detectar una enfermedad grave y tratable. Dejar ir a una persona enferma es peor que pedirle estudios extra a una sana.
+
+**¿Qué métrica priorizás?**
+
+1. Precisión
+2. Recall
+
+**Respuesta: recall.** El error caro es el falso negativo, no detectar a quien sí estaba enfermo. Priorizar recall significa que el test marca ante la duda, a costa de mandar a estudios a gente sana.
+
+<!-- template: quiz -->
+
+### Sources
+
+Conocimiento del área (no cubierto por el corpus). Caso ilustrativo.
+
+### Speaker notes
+
+El espejo del anterior, y el contraste es el punto: mismo modelo, misma matemática, decisión opuesta. Lo que cambió no es técnico, es cuánto cuesta cada error. Acá es donde conviene decir en voz alta que la métrica la elige el negocio, no el modelo.
+
+### Presenter feedback
+
+---
+
+## 6. Quiz 3: el modelo de churn
+
+### Content
+
+Un modelo que marca quién se va a dar de baja, y a cada marcado se le ofrece un descuento. Un descuento regalado a alguien que no se iba cuesta plata; un cliente que se va sin oferta también.
+
+**¿Qué métrica priorizás?**
+
+1. Precisión
+2. Recall
+3. F1
+
+**Respuesta: F1.** Los dos errores cuestan parecido, así que optimizar una sola métrica deja la otra libre. F1 es el número que las mantiene atadas, y por eso es el caso donde sirve como número único.
+
+<!-- template: quiz -->
+
+### Sources
+
+Conocimiento del área (no cubierto por el corpus). Caso ilustrativo.
+
+### Speaker notes
+
+El que cierra la secuencia y el que justifica F1. Los dos anteriores tenían un error claramente más caro; este no, y ahí es donde una sola métrica deja de alcanzar. Un cuarto caso para tirar en voz alta si sobra tiempo, sin diapositiva: una alerta de fraude donde el equipo puede revisar pocas alertas pero cada fraude no detectado cuesta caro. No tiene respuesta única, depende de la capacidad de revisión y del costo del fraude, y por eso funciona mejor como discusión abierta que como quiz.
+
+### Presenter feedback
+
+---
+
+## 7. El umbral, una perilla de negocio
 
 ### Content
 
@@ -858,7 +907,7 @@ labels: probabilidad 0.0 a 1.0, umbral 0.2 / 0.5 / 0.8, recall, precision
 - **El umbral es una perilla de negocio.** Se mueve según cuál de los dos errores duele más. Dejarlo en 0.5 también es una decisión, no un default neutro.
 - **La curva precision-recall** muestra ese intercambio para todos los umbrales de una vez, y sirve para comparar dos modelos sin fijar ninguno.
 
-En multiclase la matriz crece a N×N: la diagonal son los aciertos y cada celda fuera de ella dice con qué clase se confunde. Precision y recall se calculan por clase y se promedian.
+**Nota:** toda esta sección trabaja sobre dos clases. Con más de dos, la matriz crece a una fila por clase real y una columna por clase predicha, y precisión y recall se calculan por clase y se promedian. La idea es la misma.
 
 ### Sources
 
@@ -866,9 +915,13 @@ Conocimiento del área (no cubierto por el corpus).
 
 ### Speaker notes
 
-El umbral es lo que más cuesta que entiendan y lo más útil en la práctica. Recorré el diagrama con el dedo, de izquierda a derecha, y que ellos digan qué pasa con cada métrica antes de que lo leas. Ejemplo para anclar: un modelo de fraude con recall bajo en 0.5 pasa a recall alto bajando el umbral a 0.2, a costa de más falsas alarmas que el equipo antifraude tendrá que revisar. Ahí se ve que es una decisión de operación y no de modelado. La línea de N×N va al pasar, conecta con el softmax de la sección 4 y no necesita más de treinta segundos. Si el tiempo aprieta, esta diapositiva se puede dar solo con el diagrama.
+El umbral es lo que más cuesta que entiendan y lo más útil en la práctica. Recorré el diagrama con el dedo, de izquierda a derecha, y que ellos digan qué pasa con cada métrica antes de que lo leas. Ejemplo para anclar: un modelo de fraude con recall bajo en 0.5 pasa a recall alto bajando el umbral a 0.2, a costa de más falsas alarmas que el equipo antifraude tendrá que revisar. Ahí se ve que es una decisión de operación y no de modelado. La nota del final va al pasar, en diez segundos: toda la sección es binaria a propósito, y con más clases la idea no cambia. Si alguien pregunta, el ejemplo concreto es un clasificador de diez dígitos que confunde el 4 con el 9 y nunca el 4 con el 0; eso se ve en la celda de la matriz y jamás en la accuracy. No lo desarrolles salvo que lo pidan. Si el tiempo aprieta, esta diapositiva se puede dar solo con el diagrama.
 
 ### Presenter feedback
+- [closed] 2026-08-19 — "Ok, enfoquemosnos solo a 2 clases. Y poner solo una nota al final."
+  Resolution: La sección queda binaria de punta a punta. La diapositiva pasó a llamarse "El umbral, una perilla de negocio", sin la matriz en el título, y el bloque de multiclase se redujo a una nota de dos líneas al pie: la matriz crece a una fila por clase real y una columna por clase predicha, precisión y recall se calculan por clase, y la idea no cambia. El ejemplo del clasificador de dígitos quedó en las notas del orador por si alguien pregunta. El goal de la sección dice ahora explícitamente que trabaja sobre dos clases.
+- [closed] 2026-08-19 — "Que es 'la matriz N×N'?"
+  Resolution: El término estaba en el título de la diapositiva y recién se explicaba en una línea al pie, o sea L8 al revés. La diapositiva pasó a llamarse "El umbral, y qué pasa con más de dos clases", sin jerga sin definir, y la línea de cierre pasó a definirla de verdad: una fila por clase real, una columna por clase predicha, la diagonal como aciertos y cada celda fuera de la diagonal diciendo con qué clase concreta se confundió cada una. Las notas suman el ejemplo del clasificador de dígitos que confunde el 4 con el 9.
 - [closed] 2026-08-19 — "El slide deberi explicar un pocmo las de lo que se esta hablando. Es confuzo. Creo que se puede mostrar esto con un diagrama y menos texto."
   Resolution: La confusión venía de que la diapositiva hacía dos cosas a la vez. Ahora el umbral es el centro y se explica con un diagrama del eje de probabilidad con tres posiciones, que reemplaza los dos primeros bullets. Quedan dos cards en vez de cuatro, y la matriz N×N baja a una línea de cierre al pie. El texto se redujo a poco menos de la mitad.
 
@@ -1125,6 +1178,19 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 - El artículo de Roboflow está escrito para visión por computadora y esta clase es tabular. Los ejemplos se trasladaron (imágenes a filas), la lógica no cambió. Revisar en el ensayo que no quede ningún resto de vocabulario de visión.
 
 # Cut material
+
+## Diapositiva 4.4 "Dos formas de modelar mal la salida" (retirada por feedback, 2026-08-19)
+
+Se retiró por pedido del presentador. El contenido queda archivado acá:
+
+- **Softmax donde iba sigmoide.** Softmax fuerza a que las clases compitan y sumen 1, así que solo sirve cuando las etiquetas son excluyentes. Un ticket puede ser "urgente" y "de facturación" a la vez: ahí la salida está mal modelada de raíz y van N sigmoides independientes, una por etiqueta.
+- **Predecir un punto cuando el negocio pedía un rango.** Si la decisión depende del peor escenario (cuánto stock, cuánto riesgo, cuánta capacidad), un valor puntual no alcanza. Ahí van cuantiles o una distribución.
+
+Los dos errores comparten causa: la salida se eligió mirando la arquitectura en vez de la pregunta del negocio.
+
+Notas del orador que se pierden con ella: el ejemplo del ticket multi-etiqueta, la pregunta de control (¿clasificar géneros de una película es softmax o sigmoide? sigmoide, porque puede ser comedia y drama) y el remate de que modelar la salida es una decisión de producto, no solo técnica.
+
+Fuente: corpus/chat.md.md (§8 Los dos errores más comunes).
 
 ## Desglose en tres baldes de la diapositiva 1.2 (reemplazado por feedback, 2026-08-19)
 
