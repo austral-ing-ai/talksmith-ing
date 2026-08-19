@@ -305,3 +305,27 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - What was decided: El campo `date` del frontmatter pasó de "a definir" a 2026-08-19, en draft.md y en deck.date del modelo. Es el campo que el renderer rotula "Última modificación" en la portada. Polish y Render rehechos; los 10 diagramas se reusaron.
 - Nota: según el schema ese campo es la fecha de dictado de la clase, y el renderer lo muestra como última modificación. Si el dictado no es hoy, es el mismo campo el que hay que cambiar.
 - Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html
+
+## 2026-08-19 — Step 5/6/7 — ronda 15
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "En la tabla de neuronas para el input hay una tabla. ¿Es eso correcto?"
+  - 2026-08-19 — "Leí que el input realmente no son neuronas"
+- What was decided: La tabla de decisiones tenía cuatro problemas y se corrigieron todos. (1) `k` y `d` se usaban en cinco filas sin definirse; ahora se definen en la bajada. (2) "Con faltantes" no era un tipo de variable sino un modificador que se cruza con todas las filas, y su "1 + 1" solo valía para una variable numérica: con un barrio en one-hot son k + 1. Salió de la tabla y pasó a un párrafo propio. (3) "Fecha 2 + 1" asumía un solo ciclo; pasó a "2 por ciclo + 1". (4) La columna se llamaba "Neuronas" y es incorrecto: la capa de entrada no tiene pesos ni calcula nada, es el vector en sí, y la primera que hace `z = W·x + b` más activación es la primera capa oculta. Pasó a llamarse "Floats", que además es el término con el que abre la sección, y se agregó la explicación de la distinción. Se corrigieron también el goal de la sección 2 y el cierre de la diapositiva, que decían "cantidad de neuronas de entrada".
+- El encabezado "Neuronas" del catálogo de salida (sección 4) no se tocó: ahí sí son neuronas de verdad.
+- Key inputs: draft.md, corpus/chat.md.md §1 y §3.
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Pending open questions: la referencia a "neuronas de entrada" que quedó en Cut material es de contenido archivado y no se tocó a propósito.
+
+## 2026-08-19 — Step 5/6/7 — ronda 16: revisión crítica completa
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Revisá toda la presentación con espíritu crítico buscando inconsistencias" → 13 hallazgos
+  - 2026-08-19 — "Aplicá todo, usá criterio más claro"
+  - 2026-08-19 — "Agregar después de 'La red no ve el problema, ve un tensor' cómo son estos tensores: señal 1D, imagen con un color, RGB y el input. Un slide con ASCII."
+- Hallazgos y resolución: (1) Un comentario del presentador había quedado sin procesar por estar escrito sin espacio después del guion, y pedía partir la 5.7 para mostrar la matriz N×N, o sea lo contrario de la instrucción posterior de enfocarse en dos clases. Criterio aplicado: la instrucción más reciente gana. (2) La 2.6 se contradecía a sí misma, decía "floats, no neuronas" y seis líneas después "se suma una neurona"; el término estaba mal en cinco lugares más (2.2, 2.4 ×2 y ASCII, 2.5). Todos a float o posición del vector. (3) La tesis no mencionaba la partición del dataset, que es un sexto de la clase; reescrita a tres lugares de decisión. (4) El goal de la sección 4 prometía una diapositiva borrada. (5) La 4.3 decía "la tabla del catálogo dice el rango" y el rango está en la 4.2, no en el catálogo. (6) La 4.2 decía que las cuatro representaciones viven en una misma diapositiva y sus notas describían los dibujos, que desde la partición están en la 4.3. (7) El goal de la sección 1 prometía una diapositiva reemplazada y no mencionaba las activaciones ocultas. (8) Open questions tenía cuatro datos viejos (29 diapositivas, sección 4, slide 5.5, 8 diagramas). (9) Anglicismo "slide" en cuatro lugares. (10) Referencia colgada en las notas de la 1.4 a una cuenta de parámetros que no existe en el mazo. (11) La sección 5 y su diapositiva 5.2 se llamaban igual; la sección pasó a "Medir un clasificador". (12) Faltaba el separador entre la 2.2 y la 2.3. (13) La conclusión decía "cuatro ideas, una por sección troncal" con seis secciones y sin cubrir la partición; se agregó el bullet y se corrigió el conteo.
+- Diapositiva nueva: 1.2 "Cómo se ve un tensor", con un diagrama de los cuatro casos (tabular, señal 1D, imagen gris, RGB) con su shape, de un eje a tres, más la dimensión de lote. Cuatro cards y el canal RGB marcado como eje no espacial. Las diapositivas 1.2 a 1.4 pasaron a 1.3 a 1.5 y los diagramas de la neurona y las activaciones ocultas se renombraron en consecuencia.
+- Key inputs: draft.md completo, corpus/chat.md.md §2.
+- Files created/modified: draft.md, final.md, images/s1-2-1-formas-de-tensor.{ascii,svg,png} nuevo, s1-4-1-neurona.* y s1-5-1-activaciones-ocultas.* renombrados, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Verificación: cero usos incorrectos de "neurona" para el input, cero anglicismos "slide", 12 huecos de imagen con SVG inlineado y ninguno vacío, auditorías en verde.
+- Pending open questions: 41 diapositivas para 90 minutos. Es el punto abierto más serio y está anotado en Open questions con las candidatas a recortar.

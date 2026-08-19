@@ -1,0 +1,16 @@
+  tabular: un cliente       senal 1D: un ECG          imagen gris 28x28       imagen RGB 224x224
+                                                                                +-------------+ R
+  [ 0.4 1.2 0.0 ... 0.7 ]   [ .10 .31 .28 ... .55 ]   +---------------+        +-------------+ G
+                                                      |               |        +-------------+ B
+   10 floats en fila          1000 muestras            |    28 x 28    |
+                                                      |               |         224 x 224 x 3
+                                                      +---------------+
+   shape (10,)                shape (1000,)            shape (28, 28)           shape (224, 224, 3)
+
+  y siempre, adelante, el lote:  (B, 10)   (B, 1000)   (B, 28, 28)   (B, 224, 224, 3)
+
+<!-- ascii-note:
+intent: hacer concreto qué forma tiene el tensor en cuatro casos, del más simple al de tres ejes
+emphasize: la progresión de 1 a 3 ejes y la dimensión de lote que se antepone en todos
+labels: tabular shape (10,), señal shape (1000,), imagen gris shape (28,28), RGB shape (224,224,3), lote B
+-->

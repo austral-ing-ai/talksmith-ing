@@ -555,3 +555,27 @@
   feedback: "Ok, enfoquemosnos solo a 2 clases. Y poner solo una nota al final."
   resolution: La sección queda binaria de punta a punta. La diapositiva pasó a llamarse "El umbral, una perilla de negocio", sin la matriz en el título, y el bloque de multiclase se redujo a una nota de dos líneas al pie: la matriz crece a una fila por clase real y una columna por clase predicha, precisión y recall se calculan por clase, y la idea no cambia. El ejemplo del clasificador de dígitos quedó en las notas del orador por si alguien pregunta. El goal de la sección dice ahora explícitamente que trabaja sobre dos clases.
   tags: [scope, note-demotion]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "6. De la variable al tensor: la tabla de decisiones"
+  feedback: "Leí que el input realmente no son neuronas"
+  resolution: Correcto, y la tabla decía "Neuronas". La capa de entrada no tiene pesos ni calcula nada: es el vector en sí, y la primera que hace `z = W·x + b` más activación es la primera capa oculta. La columna pasó a llamarse "Floats", que además es el término con el que abre la sección ("Todo termina en un vector de floats"), y se agregó un párrafo que explica la distinción. También se corrigieron el goal de la sección y el cierre de la diapositiva, que decían "cantidad de neuronas de entrada", y las notas del orador para responder si alguien pregunta. El encabezado "Neuronas" del catálogo de salida no se tocó: ahí sí son neuronas de verdad.
+  tags: [factual-correction, terminology, missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "6. De la variable al tensor: la tabla de decisiones"
+  feedback: "En la tabla de neuronas para el input hay una tabla. ¿Es eso correcto?"
+  resolution: Los números estaban bien, pero la tabla tenía tres problemas. (1) `k` y `d` aparecían en cinco filas sin definirse; ahora se definen en la bajada, antes de la tabla. (2) "Con faltantes" no era un tipo de variable sino un modificador que se cruza con todas las filas, y su "1 + 1" solo valía si la variable de abajo era numérica: con un barrio en one-hot son k + 1. Salió de la tabla y pasó a un párrafo que dice que faltar le pasa a cualquiera y suma una neurona de flag. (3) "Fecha 2 + 1" asumía un solo ciclo; pasó a "2 por ciclo + 1", porque una fecha suele tener mes del año y día de la semana. El cierre ahora suma también los flags.
+  tags: [factual-correction, terminology, missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. Cómo se ve un tensor"
+  feedback: "Agregar después de 'La red no ve el problema, ve un tensor' cómo son estos tensores si vemos una señal 1D, imagen con un color, RGB y el input. Creo que lo mejor es que solo sea un slide con ASCII."
+  resolution: Nueva diapositiva 1.2 "Cómo se ve un tensor", con un solo diagrama que muestra los cuatro casos y su shape, de un eje a tres, más la dimensión de lote que se antepone en todos. Cuatro cards cortas, una por caso, y el canal RGB marcado como no espacial, que es el punto que menos se entiende. Las diapositivas 1.2 a 1.4 pasaron a 1.3 a 1.5.
+  tags: [consistency, new-slide, superseded]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "7. El umbral, una perilla de negocio"
+  feedback: "Mostrar 'la matriz N×N'. Tal vez el slide hay que partirlo en dos. Son dos conceptos distintos."
+  resolution: Este comentario quedó sin procesar porque estaba escrito sin espacio después del guion y el barrido no lo detectó. Pedía lo contrario de la instrucción posterior ("enfoquémonos solo a 2 clases, poner solo una nota al final"), que es la que vale por ser más reciente. La diapositiva no se parte: la matriz con más de dos clases queda como nota al pie y el ejemplo del clasificador de dígitos en las notas del orador. Si más adelante se quiere una diapositiva propia de multiclase, el material está en las notas.
+  tags: [consistency, new-slide, superseded]

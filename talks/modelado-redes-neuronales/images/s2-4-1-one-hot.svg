@@ -1,4 +1,4 @@
-<!-- talksmith-ascii-sha256: 05109ea1d22bc9ba3de6cef82a47c6cc3d8e55c5342b18e87aa3ccbc80224399 -->
+<!-- talksmith-ascii-sha256: e0e4e0e3a237c013aa1d503be63eb5c442e6667823044dec32585db6d05d084d -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
   <title>One-hot selecciona una columna de W</title>
   <desc>Como solo una posición del vector one-hot vale 1, el producto con W selecciona los pesos de esa categoría.</desc>

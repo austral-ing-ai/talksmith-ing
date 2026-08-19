@@ -1,4 +1,4 @@
-one-hot "Depto":  [0, 1, 0, 0]   una neurona por valor, todas equidistantes
+one-hot "Depto":  [0, 1, 0, 0]   un float por valor, todas equidistantes
                       |
         W · x  selecciona la columna de W  -->  cada categoría, sus propios pesos
 

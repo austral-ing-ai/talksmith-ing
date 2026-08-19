@@ -12,7 +12,7 @@
       "Modelar la entrada",
       "Partir el dataset",
       "Modelar la salida",
-      "La matriz de confusión",
+      "Medir un clasificador",
       "Overfitting y regularización"
     ]
   },
@@ -42,6 +42,42 @@
       ],
       "notes": "Abrí con esto porque reordena toda la clase. La mayoría llega pensando que diseñar una red es elegir capas. Planteales la pregunta: ¿qué ve realmente la red cuando le pasás un cliente? La respuesta (un vector de números) es el hilo de las próximas dos secciones. Anclá la idea de traducción con pérdida: es la que justifica dedicarle 20 minutos a la entrada.",
       "lead": "Un tensor es un arreglo de números de N dimensiones, todos float y con forma fija: un escalar tiene 0 dimensiones, un vector 1, una matriz 2, una imagen RGB 3. Todo lo que entra, circula y sale de una red es un tensor."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Qué se diseña de verdad",
+      "title": "Cómo se ve un tensor",
+      "lead": "La forma del tensor la decide la estructura del dato, y es lo primero que hay que saber decir de un problema.",
+      "media": {
+        "src": "images/s1-2-1-formas-de-tensor.png",
+        "alt": "Formas de tensor: tabular, señal 1D, imagen gris y RGB"
+      },
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Tabular: un eje",
+          "body": "Un vector de largo fijo, una posición por variable ya codificada. Es el caso de esta clase."
+        },
+        {
+          "label": "Señal 1D: un eje ordenado",
+          "body": "También un vector, pero la posición es el tiempo y las vecinas están relacionadas. Eso explota una Conv 1D."
+        },
+        {
+          "label": "Imagen gris: dos ejes",
+          "body": "Una matriz, un número por píxel, con vecindad en alto y ancho."
+        },
+        {
+          "label": "Imagen RGB: tres ejes",
+          "body": "Tres matrices apiladas. El canal no es espacial: son tres variables en el mismo punto, y se puede reordenar."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "El lote es una dimensión más, siempre adelante. Un `Dense(32)` que recibe `(B, 10)` devuelve `(B, 32)`: los mismos pesos se aplican a las B filas.",
+          "kind": "note"
+        }
+      ],
+      "notes": "Esta diapositiva vuelve concreto lo que la anterior definió. La pregunta que funciona antes de mostrarla: si les paso una foto de 224 por 224 en color, ¿cuántos números son? Respuesta, 150.528. El punto que más rinde es el del canal: casi todos asumen que los tres ejes de una imagen RGB son espacio, y el tercero no lo es, son tres mediciones en el mismo píxel. De ahí sale la convención que rompe todo al portar código: PyTorch usa (N, C, H, W) y TensorFlow (N, H, W, C); olvidar el permute no explota, da resultados malos, que es peor. El lote va al pasar, pero decilo: es la dimensión que aparece en todos los errores de shape que van a ver."
     },
     {
       "template": "concept-breakdown",
@@ -89,7 +125,7 @@
       "title": "Una neurona, en una línea",
       "lead": "Una capa hace dos cosas: una combinación lineal y una no linealidad.",
       "media": {
-        "src": "images/s1-3-1-neurona.png",
+        "src": "images/s1-4-1-neurona.png",
         "alt": "Las entradas se combinan en la pre-activación z y una no linealidad f produce la activación a"
       },
       "design": "split-right",
@@ -115,7 +151,7 @@
       "title": "Las activaciones ocultas, y cómo se ven",
       "lead": "Una activación oculta es la función no lineal `f` que se aplica después de `z = W·x + b` en las capas del medio. Su trabajo no es acotar el resultado a un rango con sentido, como en la salida, sino romper la linealidad para que apilar capas sirva.",
       "media": {
-        "src": "images/s1-4-1-activaciones-ocultas.png",
+        "src": "images/s1-5-1-activaciones-ocultas.png",
         "alt": "Formas de ReLU, GELU/SiLU, tanh y sigmoide"
       },
       "design": "split-right",
@@ -274,7 +310,7 @@
         },
         {
           "label": "Embedding (cardinalidad alta)",
-          "body": "Una tabla de `k × d` floats entrenable. La red aprende la distancia entre categorías. Con 500 barrios, d=24 usa 24 neuronas donde one-hot usaría 500."
+          "body": "Una tabla de `k × d` floats entrenable. La red aprende la distancia entre categorías. Con 500 barrios, d=24 usa 24 floats donde one-hot usaría 500."
         },
         {
           "label": "La regla de la cardinalidad",
@@ -319,7 +355,7 @@
       "template": "value-columns",
       "section": "Modelar la entrada",
       "title": "De la variable al tensor: la tabla de decisiones",
-      "lead": "La sección entera cabe en una tabla. Cada fila es una variable que te vas a encontrar; la columna del medio es la única decisión.",
+      "lead": "Cada fila es un tipo de variable, y la columna del medio es la única decisión. `k` es la cantidad de valores distintos; `d` es la dimensión del embedding, que se elige.",
       "columns": [
         {
           "header": "Variable",
@@ -334,8 +370,7 @@
             "Identificador único",
             "Cíclica",
             "Fecha",
-            "Texto libre",
-            "Con faltantes"
+            "Texto libre"
           ]
         },
         {
@@ -351,8 +386,7 @@
             "DNI, CUIT",
             "Hora del día, mes",
             "Fecha de alta",
-            "Reseña",
-            "Frente del lote"
+            "Reseña"
           ]
         },
         {
@@ -368,12 +402,11 @@
             "Se descarta",
             "`sin(2πt/T)` y `cos(2πt/T)`",
             "Cíclica más continua",
-            "Sentence transformer",
-            "Imputar más flag binario"
+            "Sentence transformer"
           ]
         },
         {
-          "header": "Neuronas",
+          "header": "Floats",
           "cells": [
             "1",
             "1",
@@ -384,15 +417,23 @@
             "d",
             "0",
             "2",
-            "2 + 1",
-            "d",
-            "1 + 1"
+            "2 por ciclo + 1",
+            "d"
           ]
         }
       ],
       "highlights": [
         {
-          "body": "Sumar la última columna da la cantidad de neuronas de entrada. Esa cuenta no se elige: sale de la tabla.",
+          "body": "La columna dice floats, no neuronas: la capa de entrada no tiene pesos ni calcula nada, es el vector en sí. Una neurona hace `z = W·x + b` y después una activación, y la primera que hace eso es la primera capa oculta.",
+          "kind": "definition",
+          "position": "top"
+        },
+        {
+          "body": "Faltar no es un tipo, le pasa a cualquiera. Se imputa (media o mediana en las numéricas, categoría propia en las categóricas) y se suma un float: el flag binario que dice si el dato estaba, que muchas veces predice más que la variable misma.",
+          "kind": "important"
+        },
+        {
+          "body": "Sumar la última columna, más un flag por cada variable que pueda faltar, da el largo del vector de entrada. Esa cuenta no se elige: sale de la tabla.",
           "kind": "takeaway"
         }
       ],
@@ -668,12 +709,12 @@
     },
     {
       "template": "section-agenda",
-      "section": "La matriz de confusión",
-      "title": "La matriz de confusión"
+      "section": "Medir un clasificador",
+      "title": "Medir un clasificador"
     },
     {
       "template": "content+cards+image",
-      "section": "La matriz de confusión",
+      "section": "Medir un clasificador",
       "title": "El 99% de accuracy que no sirve",
       "lead": "Un detector de fraude sobre 10.000 transacciones, donde 100 son fraude. La regla más tonta posible: decir siempre que no es fraude.",
       "cards": [
@@ -706,7 +747,7 @@
     },
     {
       "template": "content+cards+image",
-      "section": "La matriz de confusión",
+      "section": "Medir un clasificador",
       "title": "La matriz de confusión",
       "lead": "Para clasificación binaria, todos los resultados caen en una tabla de 2×2 que cruza predicción y verdad.",
       "media": {
@@ -736,7 +777,7 @@
     },
     {
       "template": "concept-columns",
-      "section": "La matriz de confusión",
+      "section": "Medir un clasificador",
       "title": "Precision, recall y F1",
       "lead": "De las cuatro celdas salen las métricas que de verdad describen a un clasificador.",
       "notes": "Insistí en la intuición antes que en la fórmula. Precision: cuando dice que sí, ¿le creo? Recall: de todos los que eran, ¿cuántos encontró? Si preguntan por qué media armónica y no promedio: el promedio deja que un 1.0 tape un 0.0, y un clasificador que marca todo tiene recall 1.0 con precision pésima. Hacé la cuenta de 0.9 y 0.5 en el pizarrón. Si dan tiempo, accuracy = (TP+TN)/total cierra el círculo con la primera diapositiva de la sección.",
@@ -772,7 +813,7 @@
     },
     {
       "template": "quiz",
-      "section": "La matriz de confusión",
+      "section": "Medir un clasificador",
       "title": "Quiz 1: el filtro de spam",
       "question": "Un filtro de spam. Bloquear un mail legítimo es peor que dejar pasar uno dudoso: el usuario perdona ver basura en la bandeja, no perdona perder una factura. ¿Qué métrica priorizás?",
       "options": [
@@ -786,7 +827,7 @@
     },
     {
       "template": "quiz",
-      "section": "La matriz de confusión",
+      "section": "Medir un clasificador",
       "title": "Quiz 2: el test de una enfermedad grave",
       "question": "Un test para detectar una enfermedad grave y tratable. Dejar ir a una persona enferma es peor que pedirle estudios extra a una sana. ¿Qué métrica priorizás?",
       "options": [
@@ -800,7 +841,7 @@
     },
     {
       "template": "quiz",
-      "section": "La matriz de confusión",
+      "section": "Medir un clasificador",
       "title": "Quiz 3: el modelo de churn",
       "question": "Un modelo que marca quién se va a dar de baja, y a cada marcado se le ofrece un descuento. Un descuento regalado a alguien que no se iba cuesta plata; un cliente que se va sin oferta también. ¿Qué métrica priorizás?",
       "options": [
@@ -815,7 +856,7 @@
     },
     {
       "template": "content+cards+image",
-      "section": "La matriz de confusión",
+      "section": "Medir un clasificador",
       "title": "El umbral, una perilla de negocio",
       "lead": "Un clasificador binario no devuelve sí o no, devuelve una probabilidad. El umbral es el número que la convierte en decisión.",
       "cards": [
@@ -1108,7 +1149,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "82a15fafc4927db296a53af363c77d064ee31c09a6a72aa55cafc252d9525b9d",
-    "bytes": 68158
+    "sha256": "10985886d1a70e949b5bf08fbf8bedacea310c02c382a765404accbca540a125",
+    "bytes": 73685
   }
 }

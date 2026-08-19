@@ -11,9 +11,9 @@ date: 2026-08-19
 
 # Thesis
 
-**Claim:** El diseño de una red neuronal se decide casi entero en cómo se codifica la entrada y cómo se modela la salida; el resto de la arquitectura sale del problema. Medir con la matriz de confusión y frenar el overfitting con regularización es lo que separa un modelo que entrena de uno que sirve.
+**Claim:** El diseño de una red neuronal se decide casi entero en tres lugares: cómo se codifica la entrada, cómo se parte el dataset y cómo se modela la salida. El resto de la arquitectura sale del problema. Medir separando los tipos de error y frenar el overfitting con regularización es lo que separa un modelo que entrena de uno que sirve.
 
-**Why it matters:** Una red no ve un cliente, una imagen ni un contrato: ve un tensor de floats. Si la información que importa quedó mal codificada, ninguna cantidad de capas la recupera, y la mayoría de los errores de producción en ML nacen en la frontera entre el dato crudo y el modelo. Del otro lado, un modelo con 99% de accuracy puede ser inútil y uno que ajusta perfecto en entrenamiento puede fallar en cada caso nuevo. Diseñar bien la entrada y la salida, saber medir y saber regularizar cubre el 80% de las decisiones reales.
+**Why it matters:** Una red no ve un cliente, una imagen ni un contrato: ve un tensor de floats. Si la información que importa quedó mal codificada, ninguna cantidad de capas la recupera, y la mayoría de los errores de producción en ML nacen en la frontera entre el dato crudo y el modelo. En el medio está la partición del dataset, que no cambia el modelo pero decide si la métrica dice la verdad: medir con los mismos datos con los que se entrenó es tomar examen con las respuestas a la vista. Del otro lado, un modelo con 99% de accuracy puede ser inútil y uno que ajusta perfecto en entrenamiento puede fallar en cada caso nuevo. Codificar bien, partir bien, modelar bien la salida, saber medir y saber regularizar cubre el 80% de las decisiones reales.
 
 ---
 
@@ -27,14 +27,14 @@ date: 2026-08-19
 - 2. Modelar la entrada
 - 3. Partir el dataset
 - 4. Modelar la salida
-- 5. La matriz de confusión
+- 5. Medir un clasificador
 - 6. Overfitting y regularización
 
 ---
 
 # 1. Qué se diseña de verdad
 
-**Goal of this section:** Reencuadrar el diseño de una red. La intuición del alumno suele estar en "cuántas capas, cuántas neuronas"; el mensaje es que esas decisiones importan poco y que el trabajo real está en la entrada y la salida. Sienta la base (neurona, activación) y el mapa de qué se decide y qué sale solo.
+**Goal of this section:** Reencuadrar el diseño de una red y dar el vocabulario mínimo. La intuición del alumno suele estar en "cuántas capas, cuántas neuronas"; el mensaje es que esas decisiones importan poco y que el trabajo real está en cómo entra y cómo sale el dato. Deja tres cosas: qué es un tensor, cuáles son las seis decisiones que recorre la clase, y qué es una neurona y su activación, con las cuatro ocultas y sus formas.
 
 ---
 
@@ -61,7 +61,49 @@ Abrí con esto porque reordena toda la clase. La mayoría llega pensando que dis
 
 ---
 
-## 2. Lo que hay que diseñar
+## 2. Cómo se ve un tensor
+
+### Content
+
+La forma del tensor la decide la estructura del dato, y es lo primero que hay que saber decir de un problema.
+
+![Formas de tensor: tabular, señal 1D, imagen gris y RGB](images/s1-2-1-formas-de-tensor.png)
+<!-- ascii-source:
+  tabular: un cliente       senal 1D: un ECG          imagen gris 28x28       imagen RGB 224x224
+                                                                                +-------------+ R
+  [ 0.4 1.2 0.0 ... 0.7 ]   [ .10 .31 .28 ... .55 ]   +---------------+        +-------------+ G
+                                                      |               |        +-------------+ B
+   10 floats en fila          1000 muestras            |    28 x 28    |
+                                                      |               |         224 x 224 x 3
+                                                      +---------------+
+   shape (10,)                shape (1000,)            shape (28, 28)           shape (224, 224, 3)
+
+  y siempre, adelante, el lote:  (B, 10)   (B, 1000)   (B, 28, 28)   (B, 224, 224, 3)
+-->
+<!-- ascii-note:
+intent: hacer concreto qué forma tiene el tensor en cuatro casos, del más simple al de tres ejes
+emphasize: la progresión de 1 a 3 ejes y la dimensión de lote que se antepone en todos
+labels: tabular shape (10,), señal shape (1000,), imagen gris shape (28,28), RGB shape (224,224,3), lote B
+-->
+
+- **Tabular: un eje.** Un vector de largo fijo, una posición por variable ya codificada. Es el caso de esta clase.
+- **Señal 1D: un eje, pero el orden importa.** También es un vector, pero la posición es el tiempo y las vecinas están relacionadas. Eso es lo que explota una Conv 1D y lo que en tabular no existe.
+- **Imagen en gris: dos ejes.** Una matriz, un número por píxel, con vecindad en alto y ancho.
+- **Imagen RGB: tres ejes.** Tres matrices apiladas. Ojo con el tercero: **el canal no es espacial**. Se comporta como tabular, son tres variables distintas medidas en el mismo punto, y por eso se puede reordenar sin cambiar nada.
+
+**Nota:** el lote es una dimensión más, siempre adelante. Un `Dense(32)` que recibe `(B, 10)` devuelve `(B, 32)`: los mismos pesos se aplican a las B filas.
+
+### Sources
+
+corpus/chat.md.md (§2 El input: principio general; el eje de canales)
+
+### Speaker notes
+
+Esta diapositiva vuelve concreto lo que la anterior definió. La pregunta que funciona antes de mostrarla: si les paso una foto de 224 por 224 en color, ¿cuántos números son? Respuesta, 150.528. Sirve para que dimensionen. El punto que más rinde es el del canal: casi todos asumen que los tres ejes de una imagen RGB son "espacio", y el tercero no lo es, son tres mediciones en el mismo píxel. Es reordenable, igual que las columnas de una tabla. De ahí sale la convención que rompe todo al portar código: PyTorch usa (N, C, H, W) y TensorFlow (N, H, W, C); olvidar el permute no explota, da resultados malos, que es peor. El lote va al pasar, pero decilo: es la dimensión que aparece en todos los mensajes de error de shape que van a ver.
+
+---
+
+## 3. Lo que hay que diseñar
 
 ### Content
 
@@ -88,13 +130,13 @@ Este es el mapa mental que quiero que se lleven, y además es la agenda de la cl
 
 ---
 
-## 3. Una neurona, en una línea
+## 4. Una neurona, en una línea
 
 ### Content
 
 Antes de diseñar conviene fijar el objeto mínimo. Una capa hace dos cosas: una combinación lineal y una no linealidad.
 
-![Una neurona: de las entradas a la activación](images/s1-3-1-neurona.png)
+![Una neurona: de las entradas a la activación](images/s1-4-1-neurona.png)
 <!-- ascii-source:
    x1 ---w1--\
    x2 ---w2---&gt; [ z = W·x + b ] --&gt; [ f ] --&gt; a
@@ -116,11 +158,11 @@ corpus/chat.md.md (§1 Conceptos base: Activación, Pesos y bias)
 
 ### Speaker notes
 
-Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Los parámetros de una capa son m·n + m; útil para la cuenta de parámetros que aparece más adelante.
+Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Si preguntan cuántos parámetros tiene una capa: `m·n + m`, con n entradas y m neuronas. No lo desarrolles, no hace falta en el resto de la clase.
 
 ---
 
-## 4. Las activaciones ocultas, y cómo se ven
+## 5. Las activaciones ocultas, y cómo se ven
 
 ### Content
 
@@ -133,7 +175,7 @@ Una **activación oculta** es la función no lineal `f` que se aplica después d
 | Tanh | `(eᶻ − e⁻ᶻ) / (eᶻ + e⁻ᶻ)` | (−1, 1) | Redes recurrentes, salidas centradas |
 | Sigmoide | `1 / (1 + e⁻ᶻ)` | (0, 1) | Casi nunca en capas ocultas |
 
-![Formas de ReLU, GELU/SiLU, tanh y sigmoide](images/s1-4-1-activaciones-ocultas.png)
+![Formas de ReLU, GELU/SiLU, tanh y sigmoide](images/s1-5-1-activaciones-ocultas.png)
 <!-- ascii-source:
      ReLU  max(0,z)          GELU / SiLU            Tanh  (-1,1)         Sigmoide  (0,1)
         |        /              |        /             |    _______         |    _______
@@ -165,7 +207,7 @@ Esta es la diapositiva que faltaba: hasta acá la activación era un nombre, aho
 
 # 2. Modelar la entrada
 
-**Goal of this section:** El corazón de la clase. Mostrar el método para convertir cualquier variable en floats: la pregunta de la resta, one-hot contra embedding, la normalización y la tabla de decisiones que cierra la sección. Que salgan sabiendo decidir cuántas neuronas de entrada necesita un problema real.
+**Goal of this section:** El corazón de la clase. Mostrar el método para convertir cualquier variable en floats: la pregunta de la resta, one-hot contra embedding, la normalización y la tabla de decisiones que cierra la sección. Que salgan sabiendo decidir de qué largo es el vector de entrada de un problema real.
 
 ---
 
@@ -204,7 +246,7 @@ Este marco es elegante y vale la pena bajarlo despacio. Definí "sin estructura"
 
 Frente a cualquier variable, una sola pregunta ordena la decisión: **¿qué significa la resta entre dos valores?**
 
-- **Da una cantidad interpretable** (85 m² menos 60 m² son 25 m² reales): 1 float normalizado, una neurona.
+- **Da una cantidad interpretable** (85 m² menos 60 m² son 25 m² reales): 1 float normalizado, una posición del vector.
 - **Da un orden pero no una magnitud confiable** (satisfacción 4 menos 2): ordinal, evaluar también one-hot.
 - **No significa nada** (barrio 14 menos barrio 7): one-hot o embedding según cuántos valores distintos haya.
 - **No se puede ni plantear:** probablemente no sea una feature útil.
@@ -220,6 +262,8 @@ corpus/chat.md.md (§3 Codificación de variables: la pregunta que decide todo; 
 ### Speaker notes
 
 Esta pregunta es la herramienta más transferible de la clase. Si se llevan una sola cosa de la sección, que sea esta. Ejemplo en vivo: tirales tres variables de un dataset que conozcan (edad, código postal, nivel educativo) y que apliquen la pregunta en voz alta. El código postal es la trampa clásica: parece número, la resta no significa nada.
+
+---
 
 ## 3. Numéricas: normalizar no es opcional
 
@@ -252,7 +296,7 @@ Una categoría sin orden se codifica de dos formas, y la cardinalidad decide cu�
 
 ![One-hot selecciona una columna de W](images/s2-4-1-one-hot.png)
 <!-- ascii-source:
-one-hot "Depto":  [0, 1, 0, 0]   una neurona por valor, todas equidistantes
+one-hot "Depto":  [0, 1, 0, 0]   un float por valor, todas equidistantes
                       |
         W · x  selecciona la columna de W  --&gt;  cada categoría, sus propios pesos
 -->
@@ -262,8 +306,8 @@ emphasize: el 1 activa una sola columna de W
 labels: one-hot vector, W matriz de pesos
 -->
 
-- **One-hot** (cardinalidad baja): una neurona por valor, todas en 0 salvo una en 1. Todas las categorías quedan a la misma distancia, que es la verdad del dato. No se aprende, es interpretable, necesita pocos datos.
-- **Embedding** (cardinalidad alta): una tabla de `k × d` floats entrenable. La red aprende la distancia entre categorías desde los datos. Con 500 barrios, un embedding de dimensión 24 usa 24 neuronas donde one-hot usaría 500.
+- **One-hot** (cardinalidad baja): un float por valor, todas en 0 salvo una en 1. Todas las categorías quedan a la misma distancia, que es la verdad del dato. No se aprende, es interpretable, necesita pocos datos.
+- **Embedding** (cardinalidad alta): una tabla de `k × d` floats entrenable. La red aprende la distancia entre categorías desde los datos. Con 500 barrios, un embedding de dimensión 24 usa 24 floats donde one-hot usaría 500.
 - **La regla de la cardinalidad:** hasta 15 valores, one-hot; de 15 a 50, cualquiera; 50 o más, embedding.
 
 Un embedding es matemáticamente equivalente a un one-hot seguido de una capa lineal sin sesgo. Conceptualmente, la tabla de embeddings es la primera capa de la red.
@@ -286,7 +330,7 @@ Casi todos entran silenciosos: el modelo entrena sin dar error y falla en produc
 
 - **Código como número.** Un identificador de categoría cargado como entero. La red lee orden y magnitud donde no hay ninguno: con barrio 7 y barrio 14, asume que 14 es "el doble" de 7. Van como one-hot o embedding.
 - **Identificador único como feature.** Una columna cuyo valor no se repite entre ejemplos, como DNI, CUIT o número de póliza. No tiene poder predictivo porque no hay nada que generalizar; si el modelo "aprende" de ella, está memorizando. Se descarta.
-- **Variable cíclica aplastada.** Una magnitud que vuelve a empezar (hora, día de la semana, mes) codificada como número plano. Los extremos del ciclo quedan lejísimos: las 23:00 y las 00:00 están a una hora y como números planos están a 23. Se codifica con dos neuronas, `sin(2πt/T)` y `cos(2πt/T)`.
+- **Variable cíclica aplastada.** Una magnitud que vuelve a empezar (hora, día de la semana, mes) codificada como número plano. Los extremos del ciclo quedan lejísimos: las 23:00 y las 00:00 están a una hora y como números planos están a 23. Se codifica con dos floats, `sin(2πt/T)` y `cos(2πt/T)`.
 - **Faltante rellenado con 0.** Un hueco tapado con un valor que la red no distingue de un dato real. Cuando 0 es válido, confunde ausencia con valor. La receta es imputar (media o mediana) más un flag binario, que muchas veces predice más que la variable misma.
 
 ### Sources
@@ -303,9 +347,11 @@ Sección de "no lo hagas". Estos cuatro son los que más veces vas a ver en trab
 
 ### Content
 
-La sección entera cabe en una tabla. Cada fila es una variable que te vas a encontrar, y la columna del medio es la única decisión que hay que tomar.
+La sección entera cabe en una tabla. Cada fila es un tipo de variable que te vas a encontrar, y la columna del medio es la única decisión que hay que tomar. En la última columna, **`k` es la cantidad de valores distintos** que toma la variable y **`d` es la dimensión del embedding**, que se elige.
 
-| Variable | Ejemplo | Codificación | Neuronas |
+La columna dice **floats, no neuronas**. La capa de entrada no es una capa: no tiene pesos ni calcula nada, es el vector en sí. Una neurona hace `z = W·x + b` y después una activación, y la primera que hace eso es la primera capa oculta. Lo que la tabla cuenta son posiciones del vector de entrada.
+
+| Variable | Ejemplo | Codificación | Floats |
 |---|---|---|---|
 | Booleana | Tiene cochera | 0 o 1, tal cual | 1 |
 | Numérica con magnitud | Superficie 85 m² | z-score `(x − μ) / σ` | 1 |
@@ -316,11 +362,12 @@ La sección entera cabe en una tabla. Cada fila es una variable que te vas a enc
 | Código con forma de número | Código postal, código de producto | Embedding. Nunca como número | d |
 | Identificador único | DNI, CUIT, número de póliza | Se descarta | 0 |
 | Cíclica | Hora del día, mes de venta | `sin(2πt/T)` y `cos(2πt/T)` | 2 |
-| Fecha | Fecha de alta del cliente | "Cuándo en el ciclo" (cíclica) más "hace cuánto" (continua) | 2 + 1 |
+| Fecha | Fecha de alta del cliente | "Cuándo en el ciclo" (cíclica) más "hace cuánto" (continua) | 2 por ciclo + 1 |
 | Texto libre | Reseña, descripción | Sentence transformer (TF-IDF como baseline) | d |
-| Con faltantes | Frente del lote sin dato | Imputar media o mediana más flag binario | 1 + 1 |
 
-Sumar la última columna da la cantidad de neuronas de entrada. Esa cuenta no se elige: sale de la tabla.
+**Faltar no es un tipo, le pasa a cualquiera.** Puede faltar un booleano, un barrio o una fecha, así que no es una fila más: es un modificador que se aplica sobre la fila que corresponda. Se imputa (media o mediana en las numéricas, categoría propia en las categóricas) y **se suma un float**, el flag binario que dice si el dato estaba. Ese flag muchas veces predice más que la variable misma.
+
+Sumar la última columna, más un flag por cada variable que pueda faltar, da el **largo del vector de entrada**. Esa cuenta no se elige: sale de la tabla.
 
 <!-- format: editorial -->
 
@@ -330,7 +377,7 @@ corpus/chat.md.md (§3 Codificación de variables; §4 One-hot vs. embedding)
 
 ### Speaker notes
 
-Es la diapositiva de referencia de la sección, la que van a fotografiar. No la leas fila por fila: pediles que elijan tres variables de un dataset que conozcan y las ubiquen. Las filas que más discusión generan son las tres del medio (ordinal, código con forma de número, identificador único) y son justamente las tres que más aparecen mal resueltas en los trabajos. El cierre importa: la cantidad de neuronas de entrada es una consecuencia de la tabla, no una decisión de arquitectura.
+Es la diapositiva de referencia de la sección, la que van a fotografiar. No la leas fila por fila: pediles que elijan tres variables de un dataset que conozcan y las ubiquen. Las filas que más discusión generan son las tres del medio (ordinal, código con forma de número, identificador único) y son justamente las tres que más aparecen mal resueltas en los trabajos. Dos aclaraciones para tener a mano: la fila de fecha dice "2 por ciclo" porque una fecha suele tener más de uno, el mes del año y el día de la semana, y ahí son 2 + 2 + 1; y si alguien pregunta por qué faltantes no está en la tabla, la respuesta es que faltar no es un tipo de variable sino algo que le puede pasar a cualquiera. El cierre importa: el largo del vector de entrada es una consecuencia de la tabla, no una decisión de arquitectura. Si alguien pregunta por qué la columna dice floats y no neuronas, la respuesta corta es que la entrada no calcula nada: una neurona hace `z = W·x + b` más activación, y la primera que hace eso es la primera capa oculta. Es una imprecisión frecuente en los libros y vale la pena marcarla, porque es la misma idea con la que abre la clase: la red ve un vector de floats.
 
 ---
 
@@ -469,7 +516,7 @@ Los dos del medio son aporte propio: ninguna de las dos fuentes cubre estratific
 
 # 4. Modelar la salida
 
-**Goal of this section:** Mostrar que la última capa no se elige, la determina la tarea, y que activación de salida y loss van siempre juntas. Que salgan sabiendo mapear "qué predice el modelo" a "cuántas neuronas, qué activación, qué loss", y evitar los dos errores de modelado de salida más comunes.
+**Goal of this section:** Mostrar que la última capa no se elige, la determina la tarea, y que activación de salida y loss van siempre juntas. Que salgan sabiendo mapear "qué predice el modelo" a "cuántas neuronas, qué activación, qué loss", y sabiendo por qué la forma de cada activación de salida corresponde a lo que se predice.
 
 ---
 
@@ -505,7 +552,7 @@ No leas toda la tabla; usala como referencia y detenete en dos o tres filas. La 
 
 ### Content
 
-La activación de salida es el mismo tipo de objeto que ReLU, pero se elige con otro criterio: poner el número en el rango y la interpretación correctos. Las cuatro representaciones viven en una misma slide para comparar su forma y su rango.
+La activación de salida es el mismo tipo de objeto que ReLU, pero se elige con otro criterio: poner el número en el rango y la interpretación correctos. Son cuatro, y cada una corresponde a un tipo de respuesta.
 
 | Activación | Representación | Rango | Ejemplo |
 |---|---|---|---|
@@ -524,7 +571,7 @@ corpus/chat.md.md (§8 La capa de salida)
 
 ### Speaker notes
 
-Contrastá con las capas ocultas: ahí la activación casi no importa (ReLU y listo). En la salida, cada opción corresponde a una forma y un rango. Recorré las cuatro filas como representaciones: recta para lineal, curva acotada para sigmoide, competencia entre clases para softmax y curva positiva para softplus. Preguntá por casos: ¿qué activación para predecir la cantidad de unidades vendidas? Softplus o exp, porque un conteo no puede ser negativo. La salida lineal con MSE para conteos permite predicciones negativas, un error clásico.
+Contrastá con las capas ocultas: ahí la activación casi no importa (ReLU y listo). En la salida, cada opción corresponde a un rango y a una interpretación. Quedate en la fórmula y el rango; las formas las dibuja la diapositiva que sigue, no las adelantes. Preguntá por casos: ¿qué activación para predecir la cantidad de unidades vendidas? Softplus o exp, porque un conteo no puede ser negativo. La salida lineal con MSE para conteos permite predicciones negativas, un error clásico.
 
 ---
 
@@ -532,7 +579,7 @@ Contrastá con las capas ocultas: ahí la activación casi no importa (ReLU y li
 
 ### Content
 
-La tabla del catálogo dice el rango; el dibujo dice la forma. Es lo que hace evidente por qué cada una sirve para lo que sirve.
+La tabla de la diapositiva anterior dice el rango; el dibujo dice la forma. Es lo que hace evidente por qué cada una sirve para lo que sirve.
 
 ![Formas de las cuatro activaciones de salida](images/s4-3-1-activaciones-salida.png)
 <!-- ascii-source:
@@ -567,7 +614,7 @@ Es el complemento visual de la diapositiva anterior y se da rápido, dos minutos
 
 ---
 
-# 5. La matriz de confusión
+# 5. Medir un clasificador
 
 **Goal of this section:** El modelo ya está diseñado y entrenado; ahora, ¿anda? La sección va en cadena y trabaja sobre dos clases de punta a punta: accuracy engaña, la matriz de confusión separa los cuatro tipos de resultado, de ahí salen precisión, recall y F1, con eso ya definido tres quiz obligan a elegir cuál duele en tres casos reales, y el umbral cierra mostrando que la elección es una perilla y no un destino. El caso multiclase queda como una nota al final. Nota: este tema no está en el corpus; el contenido viene del conocimiento del área (ver Open questions).
 
@@ -655,7 +702,7 @@ Conocimiento del área (no cubierto por el corpus).
 
 ### Speaker notes
 
-El centro de la sección. Dibujá la matriz en el pizarrón mientras aparece en la slide y pedí que ubiquen el ejemplo del fraude en cada celda. La confusión típica del alumno es FP vs FN; anclalo con el costo: en un test médico, un FN (mandar a casa a alguien enfermo) suele ser mucho peor que un FP (un estudio de más). Que se lleven que la matriz es la foto completa y accuracy es solo la diagonal sobre el total.
+El centro de la sección. Dibujá la matriz en el pizarrón mientras aparece en la diapositiva y pedí que ubiquen el ejemplo del fraude en cada celda. La confusión típica del alumno es FP vs FN; anclalo con el costo: en un test médico, un FN (mandar a casa a alguien enfermo) suele ser mucho peor que un FP (un estudio de más). Que se lleven que la matriz es la foto completa y accuracy es solo la diagonal sobre el total.
 
 ---
 
@@ -842,7 +889,7 @@ Este es el mapa de decisión que ordena la segunda mitad de la sección. Insist�
 
 ### Content
 
-La regularización no mejora el ajuste. Lo empeora a propósito en entrenamiento, a cambio de que el modelo generalice mejor a datos nuevos. La brecha de la slide anterior se ve así a lo largo del entrenamiento:
+La regularización no mejora el ajuste. Lo empeora a propósito en entrenamiento, a cambio de que el modelo generalice mejor a datos nuevos. La brecha de la diapositiva anterior se ve así a lo largo del entrenamiento:
 
 ![Curvas de train y validación al separarse](images/s6-2-1-curvas-overfitting.png)
 <!-- ascii-source:
@@ -990,6 +1037,7 @@ Early stopping es el que quiero que se lleven como primer reflejo: cero costo, s
 
 - **El diseño está en la entrada y la salida.** La cantidad de capas importa poco; cómo se codifica cada variable y cómo se modela la respuesta es donde se gana o se pierde el modelo.
 - **La red solo ve floats.** Codificar mal es fatal porque el error entra silencioso y ninguna arquitectura lo corrige. La pregunta de la resta ordena casi toda la decisión de codificación.
+- **La partición decide si la métrica dice la verdad.** Train para aprender, validación para decidir, test una sola vez al final. Y todo lo que se aprende de los datos, μ y σ incluidos, se aprende solo del train.
 - **Accuracy sola engaña.** La matriz de confusión separa los tipos de error; precision, recall y F1 describen lo que accuracy esconde, y el umbral es una perilla de negocio.
 - **Regularizar es bajar varianza a propósito.** Primero se diagnostica el overfitting (brecha train-validación), después se trata: L2 de base, dropout en redes profundas, early stopping casi siempre.
 
@@ -999,7 +1047,7 @@ corpus/chat.md.md (§9, §10, §13); conocimiento del área (sección 5)
 
 ### Speaker notes
 
-Recapitulá siguiendo el recorrido del dato: entró (input), salió (output), lo medimos (matriz de confusión), lo cuidamos (regularización). Cuatro ideas, una por sección troncal. Dejá espacio para preguntas antes del checklist.
+Recapitulá siguiendo el recorrido del dato: se codificó (entrada), se partió (dataset), salió (salida), lo medimos (clasificador) y lo cuidamos (regularización). Cinco ideas, una por sección troncal. Dejá espacio para preguntas antes del checklist.
 
 ---
 
@@ -1029,11 +1077,12 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 
 # Open questions
 
-- Sección 4 (Matriz de confusión) no está cubierta por el corpus (`chat.md.md`). El contenido viene del conocimiento del área. Si el presentador quiere anclarlo a una fuente propia (apunte, capítulo, ejemplo con números reales de un dataset del curso), conviene sumarla en la Colecta y re-verificar los números. El ejemplo del "99% de accuracy" y los costos FP/FN son ilustrativos, no datos de una fuente.
+- Sección 5 (Medir un clasificador) no está cubierta por el corpus (`chat.md.md`). El contenido viene del conocimiento del área. Si el presentador quiere anclarlo a una fuente propia (apunte, capítulo, ejemplo con números reales de un dataset del curso), conviene sumarla en la Colecta y re-verificar los números. El ejemplo del "99% de accuracy" y los costos FP/FN son ilustrativos, no datos de una fuente.
 - La fuente advierte que en datos tabulares una red suele perder contra gradient boosting (XGBoost, LightGBM). Está en las notas del orador (slide 1.2) como contrapunto honesto. Decidir si darle más aire en clase o dejarlo como comentario al pasar.
-- Duración: con la sección 3 nueva el borrador pasó de ~25 a ~29 diapositivas para 90 min, y es el punto que más conviene mirar en el ensayo. Candidatas a recortar, en este orden: slide 6.4 (L1 contra L2), slide 3.4 (errores de partición, dejando los dos primeros bullets más el código) y slide 5.5, que ya quedó aligerada y se puede dar solo con el diagrama.
-- Diagramas a dibujar en Polish: 8 (los 5 originales más el de la partición en 3.1, el del desbalance en 5.1 y el del umbral en 5.5). Los 3 nuevos son de esta ronda de review.
-- Ninguna de las dos fuentes nuevas cubre partición estratificada ni partición temporal, y las dos importan para los trabajos que entregan los alumnos. En la slide 3.4 están como aporte del docente, sin fuente detrás. Si se quiere anclar, hace falta sumar una tercera fuente en la Colecta.
+- Duración: el borrador pasó de ~25 diapositivas al arranque a 40, con el mismo presupuesto de 90 minutos. Es el punto que más conviene mirar, y conviene cronometrar un pase completo antes de la clase. Candidatas a recortar, en este orden: slide 6.4 (L1 contra L2), slide 3.4 (errores de partición, dejando los dos primeros bullets más el código) y slide 5.7 (el umbral), que ya quedó aligerada y se puede dar solo con el diagrama.
+- Diagramas: 10 (neurona, activaciones ocultas, one-hot, partición, activaciones de salida, desbalance de accuracy, matriz de confusión, umbral, curvas de overfitting, objetivo L2).
+- Las dos directivas `generate-image` (slides 1.1 y 6.1) siguen sin cumplir: ninguna sesión tuvo capacidad de generación de imágenes. Las diapositivas conservan su texto y no dependen de ellas.
+- Ninguna de las dos fuentes nuevas cubre partición estratificada ni partición temporal, y las dos importan para los trabajos que entregan los alumnos. En la diapositiva 3.4 están como aporte del docente, sin fuente detrás. Si se quiere anclar, hace falta sumar una tercera fuente en la Colecta.
 - Los ratios 70/20/10 y 80/10/10 son recomendación de la casa de Roboflow (contenido de marketing de producto), no resultado de un estudio. Están citados como criterio práctico de la industria; si alguien en clase pregunta de dónde salen, esa es la respuesta honesta.
 - El artículo de Roboflow está escrito para visión por computadora y esta clase es tabular. Los ejemplos se trasladaron (imágenes a filas), la lógica no cambió. Revisar en el ensayo que no quede ningún resto de vocabulario de visión.
 
