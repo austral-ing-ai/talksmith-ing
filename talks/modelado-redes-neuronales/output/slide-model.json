@@ -431,10 +431,6 @@
         {
           "body": "Faltar no es un tipo, le pasa a cualquiera. Se imputa (media o mediana en las numéricas, categoría propia en las categóricas) y se suma un float: el flag binario que dice si el dato estaba, que muchas veces predice más que la variable misma.",
           "kind": "important"
-        },
-        {
-          "body": "Sumar la última columna, más un flag por cada variable que pueda faltar, da el largo del vector de entrada. Esa cuenta no se elige: sale de la tabla.",
-          "kind": "takeaway"
         }
       ],
       "notes": "Es la diapositiva de referencia de la sección, la que van a fotografiar. No la leas fila por fila: pediles que elijan tres variables de un dataset que conozcan y las ubiquen. Las que más discusión generan son ordinal, código con forma de número e identificador único, y son justo las tres que más aparecen mal resueltas en los trabajos."
@@ -1149,7 +1145,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "4336ea9f6f9e8a00fe0ca45528fa513dee5781c409c852cf663193073ae4b6e1",
-    "bytes": 75033
+    "sha256": "5a9b9f3db28c595f324b36d2877444077ca0d94bc02d97b209de5ce6b1fe97d7",
+    "bytes": 74876
   }
 }

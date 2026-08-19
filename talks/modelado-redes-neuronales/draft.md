@@ -448,8 +448,6 @@ La columna dice **floats, no neuronas**. La capa de entrada no es una capa: no t
 
 **Faltar no es un tipo, le pasa a cualquiera.** Puede faltar un booleano, un barrio o una fecha, así que no es una fila más: es un modificador que se aplica sobre la fila que corresponda. Se imputa (media o mediana en las numéricas, categoría propia en las categóricas) y **se suma un float**, el flag binario que dice si el dato estaba. Ese flag muchas veces predice más que la variable misma.
 
-Sumar la última columna, más un flag por cada variable que pueda faltar, da el **largo del vector de entrada**. Esa cuenta no se elige: sale de la tabla.
-
 <!-- format: editorial -->
 
 ### Sources
@@ -461,6 +459,8 @@ corpus/chat.md.md (§3 Codificación de variables; §4 One-hot vs. embedding)
 Es la diapositiva de referencia de la sección, la que van a fotografiar. No la leas fila por fila: pediles que elijan tres variables de un dataset que conozcan y las ubiquen. Las filas que más discusión generan son las tres del medio (ordinal, código con forma de número, identificador único) y son justamente las tres que más aparecen mal resueltas en los trabajos. Dos aclaraciones para tener a mano: la fila de fecha dice "2 por ciclo" porque una fecha suele tener más de uno, el mes del año y el día de la semana, y ahí son 2 + 2 + 1; y si alguien pregunta por qué faltantes no está en la tabla, la respuesta es que faltar no es un tipo de variable sino algo que le puede pasar a cualquiera. El cierre importa: el largo del vector de entrada es una consecuencia de la tabla, no una decisión de arquitectura. Si alguien pregunta por qué la columna dice floats y no neuronas, la respuesta corta es que la entrada no calcula nada: una neurona hace `z = W·x + b` más activación, y la primera que hace eso es la primera capa oculta. Es una imprecisión frecuente en los libros y vale la pena marcarla, porque es la misma idea con la que abre la clase: la red ve un vector de floats.
 
 ### Presenter feedback
+- [closed] 2026-08-19 — "Borrar 'Sumar la última columna, más un flag por cada variable que pueda faltar, da el largo del vector de entrada. Esa cuenta no se elige: sale de la tabla.'"
+  Resolution: Se retiró el cierre. La tabla y el párrafo de faltantes se sostienen solos.
 - [closed] 2026-08-19 — "Leí que el input realmente no son neuronas"
   Resolution: Correcto, y la tabla decía "Neuronas". La capa de entrada no tiene pesos ni calcula nada: es el vector en sí, y la primera que hace `z = W·x + b` más activación es la primera capa oculta. La columna pasó a llamarse "Floats", que además es el término con el que abre la sección ("Todo termina en un vector de floats"), y se agregó un párrafo que explica la distinción. También se corrigieron el goal de la sección y el cierre de la diapositiva, que decían "cantidad de neuronas de entrada", y las notas del orador para responder si alguien pregunta. El encabezado "Neuronas" del catálogo de salida no se tocó: ahí sí son neuronas de verdad.
 - [closed] 2026-08-19 — "En la tabla de neuronas para el input hay una tabla. ¿Es eso correcto?"

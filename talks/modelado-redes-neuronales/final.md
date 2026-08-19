@@ -373,8 +373,6 @@ La columna dice **floats, no neuronas**. La capa de entrada no es una capa: no t
 
 **Faltar no es un tipo, le pasa a cualquiera.** Puede faltar un booleano, un barrio o una fecha, así que no es una fila más: es un modificador que se aplica sobre la fila que corresponda. Se imputa (media o mediana en las numéricas, categoría propia en las categóricas) y **se suma un float**, el flag binario que dice si el dato estaba. Ese flag muchas veces predice más que la variable misma.
 
-Sumar la última columna, más un flag por cada variable que pueda faltar, da el **largo del vector de entrada**. Esa cuenta no se elige: sale de la tabla.
-
 <!-- format: editorial -->
 
 ### Sources

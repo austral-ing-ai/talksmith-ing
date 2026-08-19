@@ -1,0 +1,1231 @@
+{
+  "deck": {
+    "title": "Inteligencia Artificial Generativa (AI Gen)",
+    "institution": "Universidad Austral",
+    "class": "Introducción a las Redes Neuronales Artificiales (ANN)",
+    "presenter": "Paulo Veiga, Marcos Sanchez Sorondo",
+    "date": "2026-08-19",
+    "lang": "es",
+    "logo": null,
+    "sections": [
+      "De la intuición a la red",
+      "La neurona y la capa",
+      "Redes profundas",
+      "El recorrido completo",
+      "Funciones de activación",
+      "Backpropagation",
+      "Anexo: material de apoyo"
+    ]
+  },
+  "slides": [
+    {
+      "template": "section-agenda",
+      "section": "De la intuición a la red",
+      "title": "De la intuición a la red"
+    },
+    {
+      "section": "De la intuición a la red",
+      "title": "Una red de sensores y actuadores",
+      "notes": "Abrí con esto y no adelantes nada de matemática. La metáfora tiene que quedar firme antes de la primera fórmula, porque es la que sostiene el resto de la clase y vuelve en el cierre como la idea número uno. Pediles que nombren los tres roles antes de que aparezcan: qué mide, qué decide y qué actúa. Si alguien pregunta por qué esto es una red neuronal y no simplemente un circuito, la respuesta es la diapositiva que sigue: porque los nodos se ajustan solos. ---",
+      "lead": "Imaginemos un auto con sensores, \"viene algo por la izquierda\", \"estoy cerca de la pared\", conectados por cables a dos actuadores: el acelerador y el freno. Entre medio hay nodos que reparten la electricidad.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s04-5f38a6a6454d.png",
+        "alt": "Circuito de sensores, nodos y actuadores"
+      },
+      "facts": [
+        {
+          "body": "Eso es, literalmente, una red neuronal."
+        }
+      ]
+    },
+    {
+      "section": "De la intuición a la red",
+      "title": "Aprender es ajustar qué caminos conducen",
+      "notes": "Esta es la diapositiva que define entrenamiento, y conviene decir la frase completa en voz alta: nadie programa reglas. Es lo que más cuesta aceptar a quien viene de programar. El ciclo \"adivinar, medir, corregir un poco, repetir\" vuelve textual en el cierre como la sexta idea, así que dejalo instalado acá. Si querés anticipar, este ciclo es exactamente backpropagation, que es el último capítulo: lo único que falta es cómo se decide cuánto retocar cada compuerta. ---",
+      "lead": "Al principio los parámetros son azarosos y el auto choca. Probamos, medimos el error, retocamos apenas las compuertas y volvemos a probar. Después de muchísimas repeticiones, ciertos caminos quedan reforzados: son los que llevan del sensor correcto al actuador correcto.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s05-7d4e5ffebc44.png",
+        "alt": "Los caminos que quedan reforzados después de entrenar"
+      },
+      "facts": [
+        {
+          "body": "Esto es el entrenamiento. No hay nadie programando reglas: hay un procedimiento incremental que ajusta números hasta que el comportamiento del circuito se parece al que queríamos."
+        }
+      ]
+    },
+    {
+      "section": "De la intuición a la red",
+      "title": "El modelo más simple que ya conocemos",
+      "notes": "Puente entre lo conocido y lo nuevo. La audiencia ya vio regresión lineal, así que esto es un repaso de treinta segundos, no una explicación. El detalle que sí conviene marcar: las tres piezas de esta diapositiva son exactamente las que van a reaparecer en toda la clase. La entrada es el vector x del capítulo 4, el modelo es la parte lineal de la neurona del capítulo 2, y el error es la función de coste del capítulo 6. Decirlo acá ahorra explicaciones después. ---",
+      "lead": "Antes de complicar el circuito, recordemos el punto de partida: un modelo lineal que combina las entradas y produce una salida, y una medida del error entre lo que predijo y lo que esperábamos.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "La entrada",
+          "body": "Un vector de números `x`, las variables que describen el caso."
+        },
+        {
+          "label": "El modelo",
+          "body": "Una combinación lineal de esas variables, con un peso por cada una."
+        },
+        {
+          "label": "El error",
+          "body": "La suma de las diferencias al cuadrado entre lo que predijo y lo que esperábamos."
+        }
+      ],
+      "media": {
+        "src": "images/s06-8bfdede90321.png",
+        "alt": "Modelo lineal: entrada, combinación y error"
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "La neurona y la capa",
+      "title": "La neurona y la capa"
+    },
+    {
+      "section": "La neurona y la capa",
+      "title": "El mundo real no es lineal",
+      "notes": "El motivo antes que la herramienta. Los dos ejemplos son buenos porque son familiares y tienen formas distintas: la temperatura es periódica, el ingreso es una caída con cola. Pediles otros ejemplos de la vida real donde una recta claramente no alcanza; suelen salir buenos. La palabra clave es \"forma\": lo que la recta pierde no es precisión, es forma. ---",
+      "lead": "La temperatura a lo largo del año sube y baja; la distribución del ingreso cae de forma abrupta y después se aplana. Una recta puede aproximar el promedio, pero pierde justamente la forma que nos importa.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s08-40ba91b6a999.png",
+        "alt": "Datos con forma que una recta no captura"
+      },
+      "facts": [
+        {
+          "body": "Si queremos mejores predicciones, necesitamos mejores modelos. Y mejor acá significa: capaz de representar curvas, saturaciones y quiebres."
+        }
+      ]
+    },
+    {
+      "section": "La neurona y la capa",
+      "title": "La neurona: primero, una combinación lineal",
+      "notes": "Marcá el \"primero\" del título: la neurona todavía no está completa, falta la no linealidad, y eso llega en dos diapositivas. El sesgo es lo que más se pasa por alto; la frase que lo fija es la del mazo, \"un desplazamiento que le permite activarse antes o después\". Si querés una imagen, el sesgo mueve el umbral de decisión sin cambiar la pendiente. ---",
+      "lead": "Cada neurona recibe varias entradas, las multiplica por sus pesos, las suma y le agrega un sesgo. Ese único número es todo lo que produce la parte lineal.",
+      "template": "figures",
+      "figures": [
+        {
+          "image": {
+            "src": "images/s09-4d516fc1e6a4.png",
+            "alt": "Una neurona: entradas, pesos, suma y sesgo"
+          },
+          "label": "Una neurona: entradas, pesos, suma y sesgo",
+          "body": ""
+        },
+        {
+          "image": {
+            "src": "images/s09-d050a6977b8b.png",
+            "alt": "La fórmula de la combinación lineal"
+          },
+          "label": "La fórmula de la combinación lineal",
+          "body": ""
+        }
+      ],
+      "highlights": [
+        {
+          "body": "`x` es el vector de entradas, `w` los pesos que la neurona aprendió y `b` el sesgo: un desplazamiento que le permite activarse antes o después.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "La neurona y la capa",
+      "title": "La sigmoide: la no linealidad clásica",
+      "notes": "De las cuatro propiedades, la que hay que subrayar es \"diferenciable\", porque es la única que se usa después: sin derivada no hay backpropagation, y eso es el capítulo 6. Aviso importante para no dejar una idea equivocada instalada: acá la sigmoide aparece como la no linealidad por defecto, pero en el capítulo 5 vamos a decir que el estándar en capas ocultas es ReLU. Si te alcanza el tiempo, adelantalo en una frase; si no, al menos no la presentes como \"la que se usa hoy\". ---",
+      "lead": "La combinación lineal da un número cualquiera. La función sigmoide lo aplasta al intervalo entre 0 y 1, y con eso convierte una suma en algo que podemos leer como una probabilidad o como un grado de activación.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Rango acotado",
+          "body": "Devuelve siempre valores entre 0 y 1; se lee como probabilidad."
+        },
+        {
+          "label": "Diferenciable",
+          "body": "Es suave en todo punto: sin eso no habría backpropagation."
+        },
+        {
+          "label": "Monótona creciente",
+          "body": "Si sube la entrada, sube la salida. Conserva el orden."
+        },
+        {
+          "label": "Punto medio en 0",
+          "body": "`σ(0) = 0.5`; un umbral natural de decisión."
+        }
+      ],
+      "media": {
+        "src": "images/s10-3c2d24dbb626.png",
+        "alt": "La curva sigmoide"
+      }
+    },
+    {
+      "section": "La neurona y la capa",
+      "title": "La capa: el bloque que se repite",
+      "notes": "Esta es la diapositiva más importante del capítulo y vuelve en el cierre como la segunda idea. La frase que se llevan: no hay una pieza más grande que entender. Sirve para bajar la ansiedad de quien cree que las arquitecturas modernas son otra cosa; son esta pieza repetida con variaciones. El \"toma un vector y devuelve otro vector\" es lo que hace obvio el encadenado, y prepara el producto matricial del capítulo 4. ---",
+      "lead": "Combinación lineal seguida de una no linealidad. Ese par es una capa, y es la unidad con la que se construye cualquier red: **no hay una pieza más grande que aprender, solo esta repetida.**",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s11-54a05bc4894e.png",
+        "alt": "La capa: combinación lineal más no linealidad"
+      },
+      "facts": [
+        {
+          "body": "Una capa toma un vector y devuelve otro vector. Encadenarlas es simplemente pasarle a la siguiente lo que produjo la anterior."
+        }
+      ]
+    },
+    {
+      "template": "section-agenda",
+      "section": "Redes profundas",
+      "title": "Redes profundas"
+    },
+    {
+      "section": "Redes profundas",
+      "title": "Apilar capas: qué es una red profunda",
+      "notes": "Diapositiva corta, un minuto. El único punto que hay que dejar claro es de dónde sale la palabra \"oculta\", porque suena a misterio y no lo es: oculta significa que no la observás, ni a la entrada ni a la salida. Si alguien pregunta qué representan esas unidades, la respuesta honesta es que nadie se lo indicó y la red lo descubre sola; está desarrollado en el anexo, diapositiva 7.3. ---",
+      "lead": "Entre la entrada y la salida metemos capas intermedias. Se llaman **ocultas** porque no las observamos directamente: no son ni el dato que entra ni la respuesta que sale.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s13-6be945f50483.png",
+        "alt": "Capas ocultas entre la entrada y la salida"
+      },
+      "facts": [
+        {
+          "body": "Entre la entrada y la salida metemos capas intermedias. Se llaman **ocultas** porque no las observamos directamente: no son ni el dato que entra ni la respuesta que sale."
+        }
+      ]
+    },
+    {
+      "section": "Redes profundas",
+      "title": "Las dos dimensiones: ancho y profundidad",
+      "notes": "Dos definiciones y listo. El detalle que se pregunta siempre: la profundidad no cuenta la capa de entrada ni la de salida. Una red \"de tres capas\" en la jerga suele significar tres ocultas, y conviene aclararlo porque los papers no son consistentes. Señalá el diagrama con el dedo mientras decís cada número. ---",
+      "lead": "Toda arquitectura se describe con dos números. Cambiarlos cambia por completo la capacidad, y el costo, del modelo.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Ancho",
+          "body": "La cantidad de unidades dentro de una capa. El ancho de la red es el de su capa más grande."
+        },
+        {
+          "label": "Profundidad",
+          "body": "La cantidad de capas ocultas. No cuentan ni la entrada ni la salida: solo lo que hay en el medio."
+        }
+      ],
+      "media": {
+        "src": "images/s14-1d954f83773d.png",
+        "alt": "Ancho y profundidad de una red"
+      }
+    },
+    {
+      "section": "Redes profundas",
+      "title": "Parámetros contra hiperparámetros",
+      "notes": "La tabla es de referencia, no la leas entera. Detenete en dos filas: la de cuántos hay, que da la escala real (decenas contra millones), y la del ciclo externo contra el interno, que es la que ordena todo. La confusión típica es creer que la tasa de aprendizaje se aprende; no, se elige. El ciclo de ajuste completo está desarrollado en el anexo, diapositiva 7.6. ---",
+      "lead": "Es la distinción que más confusión genera, y es simple: unos los fija quien diseña el modelo antes de entrenar; los otros los descubre la red mientras entrena.",
+      "template": "value-columns",
+      "columns": [
+        {
+          "header": "Aspecto",
+          "cells": [
+            "¿Quién los fija?",
+            "Ejemplos",
+            "¿Cuándo cambian?",
+            "¿Cuántos hay?",
+            "¿Cómo se eligen?"
+          ]
+        },
+        {
+          "header": "Hiperparámetros",
+          "cells": [
+            "Los definimos nosotros, a mano, antes de entrenar",
+            "Ancho, profundidad, tasa de aprendizaje η, tamaño de lote",
+            "Solo si volvemos a lanzar el entrenamiento",
+            "Unos pocos: decenas como mucho",
+            "Búsqueda, experiencia previa y validación"
+          ]
+        },
+        {
+          "header": "Parámetros",
+          "cells": [
+            "Los aprende la red durante el entrenamiento",
+            "Pesos `w` de cada conexión y sesgos `b` de cada unidad",
+            "En cada iteración, con cada lote de datos",
+            "Millones, o miles de millones en modelos grandes",
+            "Descenso por gradiente sobre el error"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Ajustar hiperparámetros es un ciclo externo; entrenar es el ciclo interno que corre dentro de cada configuración.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "template": "section-agenda",
+      "section": "El recorrido completo",
+      "title": "El recorrido completo"
+    },
+    {
+      "section": "El recorrido completo",
+      "title": "Tres preguntas antes de empezar",
+      "notes": "Es la diapositiva de encuadre del capítulo. Léela rápido y no la desarrolles: las tres respuestas son las tres diapositivas que siguen. Sirve para que sepan dónde están parados en el capítulo más denso de la clase. El \"nada más\" del punto tres es deliberado y conviene decirlo con énfasis: una capa es un producto y una función, no hay una tercera cosa escondida. ---",
+      "lead": "Del input a la salida con un caso real: pesos, matrices y notación.",
+      "template": "concept-breakdown",
+      "cards": [
+        {
+          "label": "¿Cómo se ve un caso real?",
+          "body": "Ocho variables meteorológicas entrando a una red concreta."
+        },
+        {
+          "label": "¿Dónde viven los pesos?",
+          "body": "En una matriz cuyas dimensiones podemos anticipar de memoria."
+        },
+        {
+          "label": "¿Cómo se calcula una capa?",
+          "body": "Un producto matricial y una función de activación. Nada más."
+        }
+      ]
+    },
+    {
+      "section": "El recorrido completo",
+      "title": "Un caso concreto: predecir el clima",
+      "notes": "El ejemplo del clima es el hilo de todo el capítulo, así que instalá los tres números y no los cambies después: ocho, nueve, setenta y dos. Antes de mostrar el tercer punto, preguntá cuántas conexiones hay; que hagan la cuenta ellos. El nueve es un hiperparámetro elegido, y conviene decirlo para que se vea el capítulo anterior en acción. ---",
+      "lead": "Ocho variables de entrada, temperatura media, máxima, mínima, humedad, precipitación, presión, nubosidad y visibilidad, y una primera capa oculta de nueve unidades. Con este ejemplo vamos a recorrer todo el camino, de punta a punta.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Ocho entradas",
+          "body": "Una unidad por variable medida. Es el vector `x` que entra a la red."
+        },
+        {
+          "label": "Nueve unidades ocultas",
+          "body": "El ancho de la primera capa. Lo elegimos nosotros: es un hiperparámetro."
+        },
+        {
+          "label": "Setenta y dos conexiones",
+          "body": "Cada entrada se conecta con cada unidad oculta. Ahí viven los pesos que se aprenden."
+        }
+      ],
+      "media": {
+        "src": "images/s18-f1889f090f73.png",
+        "alt": "La red del ejemplo: ocho entradas y nueve unidades ocultas"
+      }
+    },
+    {
+      "section": "El recorrido completo",
+      "title": "Cada conexión es un peso",
+      "notes": "Acá aparecen los sesgos, que en la diapositiva anterior no estaban contados. Hacé la suma en voz alta: 72 más 9 son 81. Es la primera vez en la clase que aparece un conteo de parámetros y conviene que sea a mano, porque después los números se vuelven enormes y dejan de tener escala. Si alguien pregunta por qué un sesgo por unidad y no uno por conexión: el sesgo desplaza la unidad entera, no cada entrada por separado. ---",
+      "lead": "Cada flecha que sale de una unidad de entrada y llega a una unidad oculta tiene su propio número asociado. Ese número es lo que la red aprende.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s19-4331b60351e7.png",
+        "alt": "Las 72 conexiones entre entrada y capa oculta"
+      },
+      "facts": [
+        {
+          "body": "Ocho entradas por nueve unidades ocultas dan 72 conexiones. Setenta y dos números que arrancan al azar y que el entrenamiento va a corregir, uno por uno."
+        },
+        {
+          "body": "A los 72 pesos se les suma un sesgo por unidad oculta: nueve números más que también se aprenden. En total, 81 parámetros solo en esta primera capa."
+        }
+      ]
+    },
+    {
+      "section": "El recorrido completo",
+      "title": "Todos los pesos, en una matriz",
+      "notes": "El salto conceptual del capítulo: de flechas sueltas a una estructura. La frase que lo justifica es la del final, y vale decirla completa, porque si no la matriz parece notación por notación. Señalá una celda concreta en el diagrama y preguntá qué conexión es; el ejercicio de leer la matriz es lo que fija la convención fila-columna. La notación de subíndices está en el anexo, diapositiva 7.7. ---",
+      "lead": "Los 72 números no viven sueltos: se ordenan en una matriz de 8 filas por 9 columnas. Cada fila es una variable de entrada y cada columna, una unidad de la capa oculta.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Las filas",
+          "body": "Una por cada variable de entrada: ocho filas, de `w1·` a `w8·`."
+        },
+        {
+          "label": "Las columnas",
+          "body": "Una por cada unidad oculta: nueve columnas."
+        },
+        {
+          "label": "La celda",
+          "body": "El peso de esa conexión concreta. Es el número que el entrenamiento corrige."
+        }
+      ],
+      "media": {
+        "src": "images/s20-21f2fd47d0a3.png",
+        "alt": "La matriz de pesos 8 por 9"
+      },
+      "highlights": [
+        {
+          "body": "Pensar en matrices no es un capricho de notación. Es lo que permite calcular la capa entera con una sola operación y aprovechar la GPU.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "El recorrido completo",
+      "title": "El cálculo de la capa es un producto matricial",
+      "notes": "Marcá el \"antes de aplicar la activación\" del punto tres: la capa todavía no está terminada, falta la no linealidad, que es el capítulo que sigue. Es el enganche entre los dos capítulos y conviene dejarlo explícito. La frase \"las dimensiones encajan de una única manera posible\" es la que prepara la regla práctica de la diapositiva siguiente. ---",
+      "lead": "El vector de entrada multiplica a la matriz de pesos, y el resultado es el vector de la capa oculta. Las dimensiones encajan de una única manera posible.",
+      "template": "figures",
+      "figures": [
+        {
+          "image": {
+            "src": "images/s21-51491d0e73ef.png",
+            "alt": "El producto matricial de la capa"
+          },
+          "label": "El producto matricial de la capa",
+          "body": ""
+        },
+        {
+          "image": {
+            "src": "images/s21-cf87887ddd74.png",
+            "alt": "La fórmula del producto"
+          },
+          "label": "La fórmula del producto",
+          "body": ""
+        }
+      ],
+      "highlights": [
+        {
+          "body": "**Entrada.** Un vector fila de 8 números: una observación del clima.",
+          "kind": "note"
+        },
+        {
+          "body": "**Pesos.** La matriz de 8×9 que la red aprendió.",
+          "kind": "note"
+        },
+        {
+          "body": "**Salida.** Un vector de 9 números: la capa oculta, antes de aplicar la activación.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "El recorrido completo",
+      "title": "Resumen de dimensiones",
+      "notes": "Ojo con un salto de la tabla original, que conviene tapar en vivo: el ejemplo se construyó con 8 entradas y 9 unidades ocultas, y las dos últimas filas pasan de golpe a 100×4 sin decir de dónde salen las 100 unidades ni las 4 salidas. Decilo vos: entre la primera capa oculta y la salida hay otras capas que no dibujamos, la última tiene 100 unidades y la red predice 4 valores. Está desarrollado en el anexo, diapositiva 7.9. Sin esa aclaración la tabla parece tener un error. ---",
+      "lead": "Con esta tabla se puede reconstruir la arquitectura completa del ejemplo, y verificar que ninguna multiplicación quede mal encajada.",
+      "template": "value-columns",
+      "columns": [
+        {
+          "header": "Etapa",
+          "cells": [
+            "Entrada `x`",
+            "Pesos `W⁽¹⁾`",
+            "Capa oculta `h⁽¹⁾`",
+            "Pesos `W⁽ⁿ⁾`",
+            "Salida `y`"
+          ]
+        },
+        {
+          "header": "Dimensión",
+          "cells": [
+            "1 × 8",
+            "8 × 9",
+            "1 × 9",
+            "100 × 4",
+            "1 × 4"
+          ]
+        },
+        {
+          "header": "Qué representa",
+          "cells": [
+            "Las ocho variables meteorológicas de una observación",
+            "Todas las conexiones entre la entrada y la primera capa oculta",
+            "El resultado del producto, ya pasado por la activación",
+            "Las conexiones entre la última capa oculta y la salida",
+            "Los cuatro valores que la red predice"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Regla práctica: el número de columnas de la izquierda tiene que coincidir con el de filas de la derecha. Si no coincide, la arquitectura está mal planteada.",
+          "kind": "takeaway"
+        }
+      ]
+    },
+    {
+      "template": "section-agenda",
+      "section": "Funciones de activación",
+      "title": "Funciones de activación"
+    },
+    {
+      "section": "Funciones de activación",
+      "title": "Tres preguntas antes de empezar",
+      "notes": "Encuadre del capítulo, léelo rápido. La respuesta al punto uno ya está adelantada en la propia diapositiva, y está bien: el spoiler es el gancho. La analogía del termostato, que explica bien el punto dos, está en el anexo, diapositiva 7.10, y es la que más ayuda si ves caras de duda. ---",
+      "lead": "Por qué sin no linealidad la red colapsa, y cuál conviene elegir.",
+      "template": "concept-breakdown",
+      "cards": [
+        {
+          "label": "¿Qué pasa si no ponemos activación?",
+          "body": "La red profunda colapsa en una sola capa lineal."
+        },
+        {
+          "label": "¿Qué hace exactamente la activación?",
+          "body": "Transforma la salida de la combinación lineal en algo de otra naturaleza."
+        },
+        {
+          "label": "¿Cuál conviene usar?",
+          "body": "Sigmoide, tanh, ReLU y softmax, y en qué situación va cada una."
+        }
+      ]
+    },
+    {
+      "section": "Funciones de activación",
+      "title": "¿Por qué necesitamos no linealidades?",
+      "notes": "Es la diapositiva bisagra de la clase: sin ella, todo el capítulo 3 no se justifica. La frase del cierre vuelve textual en las conclusiones como la tercera idea. Sobre el teorema de aproximación universal, decilo pero no lo desarrolles: garantiza que existe una red que aproxima la función, no dice cuántas unidades hace falta ni cómo encontrarla, y esa distinción es la que evita que suene a magia. ---",
+      "lead": "Es la pregunta que sostiene todo el capítulo, y conviene contestarla antes de mirar una sola fórmula más.",
+      "template": "concept-breakdown",
+      "cards": [
+        {
+          "label": "Sin no linealidad",
+          "body": "La red puede ser tan profunda como queramos: sigue siendo equivalente a una única transformación lineal. Diez capas y una capa tienen el mismo poder expresivo."
+        },
+        {
+          "label": "Con no linealidad",
+          "body": "Cada capa dobla el espacio a su manera. Al encadenarlas podemos aproximar prácticamente cualquier función continua, que es el **teorema de aproximación universal**."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Necesitamos las no linealidades para poder romper la linealidad y representar relaciones más complicadas.",
+          "kind": "quote",
+          "position": "top"
+        },
+        {
+          "body": "La no linealidad no es un detalle de implementación. Es lo único que justifica apilar capas.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "Funciones de activación",
+      "title": "Sin activación, la red colapsa",
+      "notes": "La demostración es de una línea y conviene hacerla en el pizarrón, no leerla: W₂(W₁x) = (W₂W₁)x = W*x. Cuando lo ven escrito ya no se discute. La pregunta de control que funciona: ¿qué pasa si saco la activación de una red de diez capas? Respuesta, te queda una regresión lineal disfrazada. Conecta directo con el capítulo 2, donde la capa se definió como el par lineal más no lineal. ---",
+      "lead": "Dos transformaciones lineales encadenadas equivalen a una sola. Multiplicar por `W₁` y después por `W₂` es lo mismo que multiplicar por una única matriz `W*`: la profundidad desaparece.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s26-6bddaf9b74ea.png",
+        "alt": "Dos matrices encadenadas colapsan en una"
+      },
+      "facts": [
+        {
+          "body": "Diez capas lineales tienen exactamente el mismo poder expresivo que una. La no linealidad es lo único que impide ese colapso."
+        }
+      ]
+    },
+    {
+      "section": "Funciones de activación",
+      "title": "Las funciones de activación más comunes",
+      "notes": "Acá se corrige la impresión que dejó el capítulo 2: la sigmoide fue el default histórico, pero el estándar en capas ocultas hoy es ReLU. Decilo explícito, porque tres capítulos atrás presentamos la sigmoide como \"la\" no linealidad. La última frase es la que conecta con backpropagation y conviene subrayarla: la derivada que se aplana es el gradiente que se desvanece, y ese es el problema de la sigmoide. El porqué histórico y la derivada de la sigmoide están en el anexo, diapositiva 7.11. ---",
+      "lead": "Todas comparten tres propiedades que el entrenamiento necesita: son **monótonas, continuas y diferenciables**. Se diferencian en el rango de salida y en cómo se comportan sus derivadas.",
+      "template": "value-columns",
+      "columns": [
+        {
+          "header": "Función",
+          "cells": [
+            "Sigmoide",
+            "Tanh",
+            "ReLU",
+            "Softmax"
+          ]
+        },
+        {
+          "header": "Definición",
+          "cells": [
+            "`σ(a) = 1 / (1 + e⁻ᵃ)`",
+            "`(eᵃ − e⁻ᵃ) / (eᵃ + e⁻ᵃ)`",
+            "`max(0, a)`",
+            "`eᵃⁱ / Σⱼ eᵃʲ`"
+          ]
+        },
+        {
+          "header": "Rango",
+          "cells": [
+            "(0, 1)",
+            "(−1, 1)",
+            "[0, ∞)",
+            "(0, 1)"
+          ]
+        },
+        {
+          "header": "Cuándo usarla",
+          "cells": [
+            "Salida binaria; interpretable como probabilidad",
+            "Capas ocultas; centrada en 0, converge más rápido que la sigmoide",
+            "El estándar en capas ocultas: barata y evita el gradiente que se desvanece",
+            "Capa de salida en clasificación multiclase; las salidas suman 1"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "body": "La derivada importa tanto como la función: es la que viaja hacia atrás durante el entrenamiento. Una derivada que se aplana frena el aprendizaje.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "Funciones de activación",
+      "title": "Softmax: de puntajes a probabilidades",
+      "notes": "La advertencia es el punto de la diapositiva, no la fórmula. Softmax en una capa oculta es un error que se ve en trabajos de alumnos, y la razón es concreta: normaliza, así que la magnitud se pierde y solo queda la proporción. Softmax es también la única de las cuatro que mira todas las unidades de salida a la vez; las otras tres se aplican número por número. Vale la pena marcarlo. ---",
+      "lead": "En la capa de salida no queremos números sueltos sino una distribución. Softmax toma valores arbitrariamente grandes o chicos y devuelve probabilidades que suman exactamente 1.",
+      "template": "figures",
+      "figures": [
+        {
+          "image": {
+            "src": "images/s28-c9cadec7c247.png",
+            "alt": "Softmax convierte puntajes en probabilidades"
+          },
+          "label": "Softmax convierte puntajes en probabilidades",
+          "body": ""
+        },
+        {
+          "image": {
+            "src": "images/s28-6322673fdf1b.png",
+            "alt": "La fórmula de softmax"
+          },
+          "label": "La fórmula de softmax",
+          "body": ""
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Ojo con dónde se aplica. Softmax se usa en la activación de la capa final. Si se la aplica en una capa oculta, se pierde información sobre la magnitud de los valores y solo sobrevive su proporción.",
+          "kind": "takeaway"
+        }
+      ]
+    },
+    {
+      "template": "section-agenda",
+      "section": "Backpropagation",
+      "title": "Backpropagation"
+    },
+    {
+      "section": "Backpropagation",
+      "title": "Tres preguntas antes de empezar",
+      "notes": "Encuadre del capítulo más denso. Las tres preguntas son literalmente las tres diapositivas que siguen, y decirlo baja la ansiedad: no es un bloque indivisible, son tres pasos. Si el grupo viene cansado, este es el momento de avisar que lo que sigue se puede seguir con lápiz y papel y que no hay que memorizar nada. ---",
+      "lead": "Cómo la red mide su error y ajusta cada uno de sus pesos.",
+      "template": "concept-breakdown",
+      "cards": [
+        {
+          "label": "¿Cómo sabe la red que se equivocó?",
+          "body": "Una función de coste que compara la predicción con el objetivo."
+        },
+        {
+          "label": "¿Cómo reparte la culpa entre pesos?",
+          "body": "La regla de la cadena, aplicada capa por capa hacia atrás."
+        },
+        {
+          "label": "¿Cómo se corrige cada peso?",
+          "body": "Un paso en la dirección opuesta al gradiente, del tamaño de η."
+        }
+      ]
+    },
+    {
+      "section": "Backpropagation",
+      "title": "Ida y vuelta: forward y backward",
+      "notes": "El mapa del capítulo. Volvé explícitamente al auto del capítulo 1: forward es dejar que el auto ande, backward es retocar las compuertas después de ver dónde chocó. Es el mismo ciclo, ahora con nombre. La palabra \"época\" aparece por primera vez acá; definila al pasar, una pasada completa por todos los datos de entrenamiento. ---",
+      "lead": "El entrenamiento es un ciclo de dos movimientos. Hacia adelante, la red calcula su predicción; hacia atrás, propaga el error y ajusta cada peso según cuánto contribuyó a equivocarse.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Propagación hacia adelante",
+          "body": "Empujar la entrada a través de la red. Al final de cada época, comparamos las salidas obtenidas con los objetivos y formamos el error."
+        },
+        {
+          "label": "Propagación hacia atrás",
+          "body": "Propagar ese error hacia atrás por la red y actualizar los parámetros, pesos y sesgos, en consecuencia."
+        }
+      ],
+      "media": {
+        "src": "images/s31-222a372707cc.png",
+        "alt": "El ciclo forward y backward"
+      }
+    },
+    {
+      "section": "Backpropagation",
+      "title": "El error: la función de coste",
+      "notes": "Las tres justificaciones son buenas porque desarman las tres preguntas que siempre salen. La del medio es la que más sorprende: está puesto por comodidad algebraica, el 2 del exponente baja al derivar y se cancela. Decilo, porque si no parece arbitrario. Conectá con el capítulo 1: esta es la misma \"suma de diferencias al cuadrado\" que apareció en el modelo lineal, ahora con nombre. ---",
+      "lead": "Necesitamos un único número que resuma qué tan mal lo hizo la red. La pérdida L2 suma las diferencias al cuadrado entre lo que predijo y lo que debería haber predicho.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Al cuadrado",
+          "body": "Los errores por exceso y por defecto no se cancelan entre sí, y los grandes pesan más que los chicos."
+        },
+        {
+          "label": "El medio",
+          "body": "El factor ½ no cambia dónde está el mínimo: está puesto para que la derivada quede limpia."
+        },
+        {
+          "label": "Diferenciable",
+          "body": "Es lo que permite calcular el gradiente y saber en qué dirección mover cada peso."
+        }
+      ],
+      "media": {
+        "src": "images/s32-d1a3c2fb290d.png",
+        "alt": "La función de coste L2"
+      },
+      "highlights": [
+        {
+          "body": "`y` es lo que la red predijo y `t` el objetivo, el valor verdadero del dato de entrenamiento. La suma recorre todas las unidades de salida.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "Backpropagation",
+      "title": "La regla de la cadena",
+      "notes": "El corazón matemático, y se entiende si se recorre en orden. La clave está en la primera frase: el peso no toca el error directamente. Dibujá la cadena en el pizarrón, peso, suma, activación, error, y recorrela con el dedo hacia atrás. El tercer factor es el que más sorprende por lo simple: la derivada de la suma respecto de un peso es la entrada que lo multiplicaba, nada más. ---",
+      "lead": "¿Cuánto cambia el error si movemos un peso en particular? El peso no toca el error directamente: lo hace a través de la suma ponderada, y esta a través de la activación. La regla de la cadena encadena esos tres efectos.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Cuánto cambia el error si cambia la salida",
+          "body": "Sale directo de la función de coste: la diferencia entre predicción y objetivo."
+        },
+        {
+          "label": "Cuánto cambia la salida si cambia la suma",
+          "body": "Es la derivada de la activación evaluada en ese punto."
+        },
+        {
+          "label": "Cuánto cambia la suma si cambia el peso",
+          "body": "Es simplemente la entrada que multiplicaba a ese peso."
+        }
+      ],
+      "media": {
+        "src": "images/s33-1ccbc75a127c.png",
+        "alt": "La regla de la cadena en tres factores"
+      }
+    },
+    {
+      "section": "Backpropagation",
+      "title": "Capa de salida: el delta",
+      "notes": "Delta es una abreviatura, no un concepto nuevo, y conviene decirlo así para que no asuste: son los dos primeros factores de la diapositiva anterior, juntos. La ganancia es concreta: una vez que tenés delta, el gradiente de cualquier peso que llega a esa unidad es una multiplicación, no hay que rehacer la cadena. Esa economía es la que hace viable entrenar millones de parámetros. ---",
+      "lead": "Agrupamos los dos primeros factores en un solo término, `δ`, que representa la sensibilidad del error respecto de la suma ponderada de esa unidad.",
+      "template": "figures",
+      "figures": [
+        {
+          "image": {
+            "src": "images/s34-4c04b498f28d.png",
+            "alt": "La definición de delta"
+          },
+          "label": "La definición de delta",
+          "body": ""
+        },
+        {
+          "image": {
+            "src": "images/s34-7e1441f8b259.png",
+            "alt": "El gradiente en términos de delta"
+          },
+          "label": "El gradiente en términos de delta",
+          "body": ""
+        },
+        {
+          "image": {
+            "src": "images/s34-453542b3b9d8.png",
+            "alt": "Delta en la capa de salida"
+          },
+          "label": "Delta en la capa de salida",
+          "body": ""
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Con `δ` calculado, el gradiente de cualquier peso que llega a la unidad es una multiplicación.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "Backpropagation",
+      "title": "Capa oculta: propagar el delta hacia atrás",
+      "notes": "Esta es la diapositiva que le da nombre al algoritmo, y la pregunta que la abre es la correcta: ¿contra qué se compara una unidad oculta? Contra nada, no tiene objetivo propio. La respuesta, que hereda la culpa de las unidades que alimenta, es lo que hay que dejar firme. La palabra \"culpa\" funciona mejor que \"error\" para explicarlo: cada unidad recibe la parte que le toca según cuánto influyó. ---",
+      "lead": "Una unidad oculta no tiene un objetivo con el cual compararse: nadie le dice cuál era su valor correcto. Su culpa se calcula sumando los deltas de todas las unidades de la capa siguiente a las que alimenta, ponderados por los pesos que las conectan.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Capa de salida",
+          "body": "`δ` se calcula directo: hay un objetivo contra el cual comparar."
+        },
+        {
+          "label": "Capas ocultas",
+          "body": "`δ` se hereda de la capa siguiente, ponderado por los pesos de conexión."
+        },
+        {
+          "label": "Recursión",
+          "body": "El mismo cálculo se repite hacia atrás, hasta llegar a la primera capa."
+        }
+      ],
+      "media": {
+        "src": "images/s35-747d5b5238c4.png",
+        "alt": "Delta heredado de la capa siguiente"
+      },
+      "highlights": [
+        {
+          "body": "Acá está el corazón del algoritmo. El error se reparte hacia atrás capa por capa: cada unidad recibe la parte de culpa que le corresponde según cuánto influyó en las que venían después. De ahí el nombre \"propagación hacia atrás\".",
+          "kind": "takeaway"
+        }
+      ]
+    },
+    {
+      "section": "Backpropagation",
+      "title": "El paso de actualización",
+      "notes": "Cierre del capítulo y del recorrido técnico. El signo menos es el detalle que más se pasa por alto y el que más confunde después: el gradiente apunta hacia arriba, nosotros queremos bajar. La imagen de la pelota bajando por un valle funciona, con η como el tamaño del paso: pasos chicos tardan una eternidad, pasos grandes saltan de una ladera a la otra sin bajar nunca. Volvé al capítulo 3: η es un hiperparámetro, se elige, no se aprende. ---",
+      "lead": "Con el gradiente calculado, corregir el peso es restar una fracción de él. La tasa de aprendizaje `η` controla el tamaño del paso, y es uno de los hiperparámetros más sensibles del entrenamiento.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "η muy chico",
+          "body": "El entrenamiento avanza, pero tan despacio que puede volverse impracticable."
+        },
+        {
+          "label": "η muy grande",
+          "body": "Los pasos se pasan del mínimo y el error oscila o directamente diverge."
+        },
+        {
+          "label": "El signo menos",
+          "body": "El gradiente apunta hacia donde el error crece; nos movemos justo en la dirección opuesta."
+        }
+      ],
+      "media": {
+        "src": "images/s36-f3642b53d48c.png",
+        "alt": "El paso de actualización del peso"
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Anexo: material de apoyo",
+      "title": "Anexo: material de apoyo"
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "Cada nodo decide cuánta energía deja pasar",
+      "notes": "Extiende la 1.1. Sacala si alguien pregunta qué hace exactamente un nodo, porque nombra los tres roles con precisión. ---",
+      "lead": "Los nodos no son cables pelados: cada uno tiene una compuerta que decide si conduce mucha, poca o ninguna electricidad hacia el siguiente. Ese \"cuánto deja pasar\" es todo el secreto.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Sensor",
+          "body": "La entrada. Un número que describe algo del mundo: una distancia, una temperatura, un píxel."
+        },
+        {
+          "label": "Compuerta",
+          "body": "El nodo intermedio. Deja pasar más o menos energía según el parámetro que aprendió."
+        },
+        {
+          "label": "Actuador",
+          "body": "La salida. Frenar o acelerar; en una red real, una clase o un número."
+        }
+      ],
+      "media": {
+        "src": "images/s40-8cc2e024855d.png",
+        "alt": "Sensor, compuerta y actuador"
+      }
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "Deep Learning: el mismo truco, más piezas",
+      "notes": "La aclaración del final es la que más rinde y la pregunta aparece seguido: qué tiene de profundo el deep learning. Nada conceptual, son capas apiladas. ---",
+      "lead": "Deep Learning es el reconocimiento de que podemos poner otras cosas en el circuito además de resistencias y compuertas. Por ejemplo, un cálculo matemático en el medio que suma y multiplica antes de dejar pasar la electricidad. La técnica de fondo, adivinar parámetros de forma incremental, sigue siendo exactamente la misma.",
+      "template": "concept-breakdown",
+      "cards": [
+        {
+          "label": "Más piezas",
+          "body": "Dentro de cada nodo entra una operación matemática, no solo una compuerta binaria."
+        },
+        {
+          "label": "Más capas",
+          "body": "Los nodos se organizan en capas sucesivas: la salida de una es la entrada de la siguiente."
+        },
+        {
+          "label": "Misma idea",
+          "body": "Adivinar, medir el error, corregir. Repetir millones de veces."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "\"Deep\" no se refiere a la profundidad conceptual, sino a la cantidad de capas apiladas.",
+          "kind": "takeaway"
+        }
+      ]
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "Del ejemplo mínimo a la red neuronal",
+      "notes": "Puente entre la 1.3 y el capítulo 2. Útil si alguien pregunta en qué se diferencia esto de una regresión. ---",
+      "lead": "En el ejemplo mínimo entrenamos una red sin profundidad: una capa de entrada, una de salida y nada en el medio. La salida era una combinación lineal de la entrada, nada que una regresión no pudiera hacer.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Ejemplo mínimo",
+          "body": "Sin capas ocultas. La salida es una combinación lineal de la entrada, y el modelo se queda ahí."
+        },
+        {
+          "label": "Red neuronal",
+          "body": "Sigue apoyándose en combinaciones lineales, pero les agrega una no linealidad a cada una."
+        }
+      ],
+      "media": {
+        "src": "images/s42-ea23758b1e80.png",
+        "alt": "Del modelo lineal a la red neuronal"
+      },
+      "highlights": [
+        {
+          "body": "Mezclando ambas cosas podemos modelar funciones arbitrarias.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "¿Qué pasa dentro de las capas ocultas?",
+      "notes": "Es la pregunta que sale sí o sí en la 3.1. Tenela a mano. El ejemplo de bordes, texturas y objetos es el que la vuelve concreta, y el remate importa: nadie se lo indicó. ---",
+      "lead": "Esta es la pregunta incómoda. No hay una etiqueta que diga qué representa cada unidad: la red descubre por su cuenta qué combinaciones de la entrada le sirven para reducir el error.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s43-b0e0fdd242eb.png",
+        "alt": "Representaciones intermedias en capas sucesivas"
+      },
+      "facts": [
+        {
+          "body": "Las capas ocultas construyen representaciones intermedias. En una red de visión, las primeras detectan bordes; las siguientes, texturas; las últimas, objetos. Nadie se lo indicó."
+        }
+      ]
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "Cómo leer un diagrama de red",
+      "notes": "Si el grupo no viene con base, esta conviene darla temprano, antes del capítulo 3, aunque esté en el anexo. ---",
+      "lead": "Los círculos son unidades, las flechas son transformaciones matemáticas con pesos asociados, y cada columna es una capa. Con esas tres convenciones se lee cualquier diagrama del curso.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s44-eda1f816d334.png",
+        "alt": "Las convenciones de un diagrama de red"
+      },
+      "facts": [
+        {
+          "body": "Los círculos son unidades, las flechas son transformaciones matemáticas con pesos asociados, y cada columna es una capa. Con esas tres convenciones se lee cualquier diagrama del curso."
+        }
+      ]
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "El ciclo de ajuste",
+      "notes": "Extiende la 3.3, el ciclo externo contra el interno. Es la que hace concreto de dónde salen los hiperparámetros. ---",
+      "lead": "Elegimos una configuración, entrenamos, medimos, y volvemos a elegir. El entrenamiento produce los parámetros del modelo; la búsqueda de hiperparámetros produce la mejor configuración.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Elegir la configuración",
+          "body": "Fijamos ancho, profundidad y tasa de aprendizaje antes de empezar."
+        },
+        {
+          "label": "Entrenar y medir",
+          "body": "La red ajusta sus pesos, y nosotros evaluamos el error en validación."
+        },
+        {
+          "label": "Volver a probar",
+          "body": "Cambiamos la configuración y repetimos, hasta que el error deja de mejorar."
+        }
+      ],
+      "media": {
+        "src": "images/s45-f160ea1eefb4.png",
+        "alt": "El ciclo externo de ajuste de hiperparámetros"
+      }
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "Notación: quién se conecta con quién",
+      "notes": "Complementa la 4.4. Sacala si alguien se pierde leyendo la matriz de pesos. ---",
+      "lead": "El subíndice no es decorativo. El primer número identifica la unidad de entrada; el segundo, la unidad oculta a la que llega. Así, `w₃₆` es el peso que va de la tercera entrada a la sexta unidad oculta.",
+      "template": "figures",
+      "figures": [
+        {
+          "image": {
+            "src": "images/s46-42838f7f1626.png",
+            "alt": "La convención de subíndices"
+          },
+          "label": "La convención de subíndices",
+          "body": ""
+        },
+        {
+          "image": {
+            "src": "images/s46-bc3931b1a4a0.png",
+            "alt": "Los subíndices sobre el diagrama de red"
+          },
+          "label": "Los subíndices sobre el diagrama de red",
+          "body": ""
+        }
+      ]
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "La capa oculta, completa",
+      "notes": "Extiende la 4.5. El punto que aporta es \"mismo input, distinto peso\": lo único que diferencia a dos unidades de la misma capa es su columna. ---",
+      "lead": "Cada una de las nueve unidades recibe una combinación de las ocho entradas, con sus propios pesos. Todas se calculan a la vez, no una después de la otra.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Todo a la vez",
+          "body": "Las nueve unidades se calculan en paralelo, con una única multiplicación de matrices."
+        },
+        {
+          "label": "Mismo input, distinto peso",
+          "body": "Todas ven las mismas ocho variables; lo que las diferencia es su columna de pesos."
+        }
+      ],
+      "media": {
+        "src": "images/s47-842a83c0c695.png",
+        "alt": "La capa oculta completa"
+      },
+      "highlights": [
+        {
+          "body": "Después del producto matricial viene la activación. Sin ese paso la capa sería lineal y toda la profundidad se desperdiciaría.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "Hacia la capa de salida",
+      "notes": "Esta es la que explica de dónde salen el 100 y el 4 de la tabla de dimensiones de la 4.6. Si diste esa tabla sin aclararlo, esta diapositiva es la respuesta. ---",
+      "lead": "El mismo mecanismo se repite. Si la última capa oculta tiene 100 unidades y queremos 4 salidas, la matriz que las conecta es de 100×4: cuatrocientos pesos más.",
+      "template": "figures",
+      "figures": [
+        {
+          "image": {
+            "src": "images/s48-080d39f77284.png",
+            "alt": "De la última capa oculta a la salida"
+          },
+          "label": "De la última capa oculta a la salida",
+          "body": ""
+        },
+        {
+          "image": {
+            "src": "images/s48-0711e53ea0d0.png",
+            "alt": "Las dimensiones de la capa de salida"
+          },
+          "label": "Las dimensiones de la capa de salida",
+          "body": ""
+        }
+      ]
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "La función de activación, con el termostato",
+      "notes": "La mejor analogía del mazo para explicar qué hace una activación. Si en el capítulo 5 ves caras de duda, esta es la que la destraba. ---",
+      "lead": "Pensémosla como el termostato: la temperatura baja de forma continua, pero nuestra decisión, ponerse el abrigo o no, es binaria. La activación es lo que convierte una magnitud continua en una respuesta de otra naturaleza.",
+      "template": "figures",
+      "figures": [
+        {
+          "image": {
+            "src": "images/s49-1361be4b725f.png",
+            "alt": "La analogía del termostato"
+          },
+          "label": "La analogía del termostato",
+          "body": ""
+        },
+        {
+          "image": {
+            "src": "images/s49-0c5c7d04e27c.png",
+            "alt": "Continuo a discreto"
+          },
+          "label": "Continuo a discreto",
+          "body": ""
+        }
+      ],
+      "highlights": [
+        {
+          "body": "**La entrada es continua.** La suma ponderada da cualquier número real.",
+          "kind": "note"
+        },
+        {
+          "body": "**La activación decide.** Aplasta, corta o normaliza ese número.",
+          "kind": "note"
+        },
+        {
+          "body": "**La salida cambia de naturaleza.** Pasa a ser una probabilidad, una activación o un cero.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "La sigmoide y su derivada",
+      "notes": "Es la que cierra el círculo entre el capítulo 2 y el 5: por qué la sigmoide fue el default y por qué dejó de serlo. El gradiente que se desvanece se entiende solo cuando se ve que la derivada se aplana en los extremos. ---",
+      "lead": "Antes de derivar la red completa hace falta una pieza. La derivada de la sigmoide tiene una forma notablemente cómoda: se escribe en términos de la propia sigmoide, así que no hay que recalcular nada.",
+      "template": "figures",
+      "figures": [
+        {
+          "image": {
+            "src": "images/s50-fd950a8d8f36.png",
+            "alt": "La derivada de la sigmoide"
+          },
+          "label": "La derivada de la sigmoide",
+          "body": ""
+        },
+        {
+          "image": {
+            "src": "images/s50-3f7e68cecb38.png",
+            "alt": "La fórmula de la derivada"
+          },
+          "label": "La fórmula de la derivada",
+          "body": ""
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Por eso la sigmoide fue la activación por defecto durante años: su derivada sale casi gratis. Su problema aparece en los extremos, donde se aplana y el gradiente se desvanece.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "section": "Anexo: material de apoyo",
+      "title": "Glosario de símbolos",
+      "notes": "Vale la pena repartirla impresa o dejarla como material. Si vas a dar el capítulo 6 completo, tener esta tabla proyectada al costado ahorra la mitad de las preguntas. ---",
+      "lead": "Toda la notación del capítulo de backpropagation, en un solo lugar.",
+      "template": "value-columns",
+      "columns": [
+        {
+          "header": "Símbolo",
+          "cells": [
+            "`x`",
+            "`w`",
+            "`a`",
+            "`y`",
+            "`t`",
+            "`L`",
+            "`δ`",
+            "`η`"
+          ]
+        },
+        {
+          "header": "Nombre",
+          "cells": [
+            "Entrada",
+            "Peso",
+            "Suma ponderada",
+            "Salida",
+            "Objetivo",
+            "Pérdida",
+            "Delta",
+            "Tasa de aprendizaje"
+          ]
+        },
+        {
+          "header": "Qué representa",
+          "cells": [
+            "El valor que llega a la unidad desde la capa anterior",
+            "El número que se aprende, asociado a cada conexión",
+            "La combinación lineal `xw + b`, antes de la activación",
+            "El resultado de aplicar la activación a la suma ponderada",
+            "El valor verdadero que viene con el dato de entrenamiento",
+            "El número único que mide cuánto se equivocó la red",
+            "La sensibilidad del error respecto de la suma ponderada de esa unidad",
+            "El tamaño del paso con el que se corrige cada peso"
+          ]
+        }
+      ]
+    },
+    {
+      "template": "divider",
+      "title": "Conclusiones"
+    },
+    {
+      "section": "Conclusiones",
+      "title": "Lo que nos llevamos",
+      "notes": "Recapitulá siguiendo el orden de la clase: cada idea es un capítulo. Si tenés tiempo, pedí que las digan ellos antes de mostrarlas. La primera y la última son la misma metáfora del auto, abierta y cerrada, y vale la pena señalarlo: empezamos y terminamos en el mismo lugar, ahora con nombres. ---",
+      "lead": "Seis ideas que sostienen todo lo que viene después. Si estas quedan firmes, cualquier arquitectura moderna es una variación sobre el mismo tema.",
+      "template": "concept-breakdown",
+      "cards": [
+        {
+          "label": "Una red es un circuito",
+          "body": "Sensores, compuertas y actuadores. Aprender es ajustar cuánta señal deja pasar cada compuerta."
+        },
+        {
+          "label": "La capa es el bloque",
+          "body": "Combinación lineal más no linealidad, repetido. No hay una pieza más grande que entender."
+        },
+        {
+          "label": "La no linealidad es obligatoria",
+          "body": "Sin ella, apilar capas no agrega nada: la red colapsa en una sola transformación lineal."
+        },
+        {
+          "label": "Los pesos viven en matrices",
+          "body": "Las dimensiones se deducen de la arquitectura, y el cálculo de una capa es un producto matricial."
+        },
+        {
+          "label": "El error se propaga hacia atrás",
+          "body": "La regla de la cadena reparte la culpa entre todos los pesos, capa por capa."
+        },
+        {
+          "label": "El aprendizaje es incremental",
+          "body": "Adivinar, medir, corregir un poco, repetir. Millones de veces."
+        }
+      ]
+    },
+    {
+      "section": "Conclusiones",
+      "title": "Próximos pasos",
+      "notes": "El cierre del mazo original apunta a la clase 8 de la materia de biomedicina, y esta diapositiva está copiada tal cual. Si esta clase se da en Ingeniería de Software, la tercera viñeta y la referencia a la clase 8 hay que reemplazarlas por el hilo real del curso. Está anotado en Open questions. ---",
+      "lead": "Con la red neuronal como base, el curso avanza hacia las arquitecturas que la usan para generar contenido.",
+      "template": "concept-breakdown",
+      "cards": [
+        {
+          "label": "Redes convolucionales",
+          "body": "El mismo esqueleto, adaptado a imágenes: pesos compartidos y detección de patrones locales."
+        },
+        {
+          "label": "Redes generativas",
+          "body": "GANs y modelos de difusión. Dejamos de clasificar lo que existe para crear lo que no existía."
+        },
+        {
+          "label": "Aplicaciones en biomedicina",
+          "body": "Datos sintéticos, traducción entre modalidades y segmentación de estructuras clínicas."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Las GANs son dos de estas redes compitiendo entre sí, entrenadas con el mismo mecanismo de backpropagation que acabamos de ver.",
+          "kind": "note"
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "file": "final.md",
+    "sha256": "97d5751ab19bac8ab32a71295468c670eb8d75cadc0bbb4329be9ffdcf33c67a",
+    "bytes": 50226
+  }
+}
