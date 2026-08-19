@@ -19,7 +19,7 @@ date: a definir
 
 # Agenda
 
-**Narrative arc:** La clase sigue el recorrido de un dato a través de la red. Primero, qué se decide de verdad al diseñar (casi todo está en la entrada y la salida). Después el input en detalle: cómo un problema cualquiera se convierte en un vector de floats. Con el dato ya codificado, qué se hace con el dataset antes de entrenar: partirlo en tres, que es lo que vuelve honesta cualquier métrica posterior. Luego el output: cómo la tarea determina la última capa y su loss. Con la red ya armada, cómo se mide de verdad su desempeño con la matriz de confusión (accuracy sola no alcanza). Y para cerrar, el problema que arruina modelos que parecían buenos, el overfitting, y las herramientas para controlarlo, con L2 al frente.
+**Narrative arc:** La clase sigue el recorrido de un dato a través de la red. Primero, qué se decide de verdad al diseñar (casi todo está en la entrada y la salida). Después el input en detalle: cómo un problema cualquiera se convierte en un vector de floats. Con el dato ya codificado, qué se hace con el dataset antes de entrenar: partirlo en tres, que es lo que vuelve honesta cualquier métrica posterior. Luego el output: cómo la tarea determina la última capa y su loss. Con la red ya armada, cómo se mide de verdad su desempeño con la matriz de confusión (accuracy sola no alcanza). Y para cerrar, el problema que arruina modelos que parecían buenos, el overfitting: cómo se diagnostica y cómo se trata, con L2 al frente del arsenal.
 
 **Sections (in delivery order):**
 
@@ -28,8 +28,7 @@ date: a definir
 - 3. Partir el dataset
 - 4. Modelar la salida
 - 5. La matriz de confusión
-- 6. Overfitting
-- 7. Regularización y L2
+- 6. Overfitting y regularización
 
 ---
 
@@ -62,15 +61,19 @@ Abrí con esto porque reordena toda la clase. La mayoría llega pensando que dis
 
 ---
 
-## 2. La mitad de la arquitectura no se elige
+## 2. Lo que hay que diseñar
 
 ### Content
 
-Buena parte de lo que parece "decisión de diseño" sale sola del problema. Lo que queda para decidir es más chico de lo que parece.
+Diseñar una red son cinco decisiones, y ninguna de las cinco es cuántas capas ponerle. Son las cinco que recorre esta clase, en este orden.
 
-- **Lo determina la tarea (no se decide):** cantidad de neuronas de salida, activación de salida y función de loss. Predecir un precio pide una salida lineal con MSE; clasificar en N clases pide softmax con cross-entropy. No hay margen.
-- **Lo determina la codificación (crítico):** cantidad de neuronas de entrada y si se normaliza. Salen de cómo se representan las variables, y es donde se gana o se pierde el modelo.
-- **Lo que sí se elige (importa poco):** cantidad de capas ocultas (1 a 3 alcanza para datos tabulares), ancho de cada capa (potencias de 2, decreciente) y activación oculta (ReLU salvo motivo).
+- **La entrada.** Cómo cada variable del problema se convierte en floats. Es donde se gana o se pierde el modelo, y donde más tiempo vamos a estar.
+- **El dataset.** Cómo se parte antes de entrenar, en train, validación y test. Sin esto ninguna métrica posterior es honesta.
+- **La salida.** Cuántas neuronas, qué activación y qué loss. No se elige: la determina la tarea. Predecir un precio pide salida lineal con MSE; clasificar en N clases, softmax con cross-entropy.
+- **El error.** Con qué se mide que el modelo sirve. Accuracy sola engaña, y la matriz de confusión separa los tipos de error que accuracy suma.
+- **El overfitting.** Cómo se detecta que el modelo memorizó en vez de aprender, y qué herramientas lo controlan.
+
+**La cantidad de capas y de neuronas no está en esa lista.** Eso sí se elige, y es lo que menos importa: 1 a 3 capas ocultas alcanzan para datos tabulares, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las cinco de arriba.
 
 <!-- format: editorial -->
 
@@ -80,7 +83,7 @@ corpus/chat.md.md (§9 Diseño de la red: qué se decide y qué no)
 
 ### Speaker notes
 
-Este es el mapa mental que quiero que se lleven. Contrastá con la expectativa: pasan horas tuneando capas y el retorno está en la entrada. Dato honesto para dejar caer acá o al final: en datos tabulares una red muchas veces pierde contra gradient boosting (XGBoost, LightGBM); las redes brillan cuando hay estructura que explotar (imágenes, texto, señales). Sirve para bajar la sobreexpectativa.
+Este es el mapa mental que quiero que se lleven, y además es la agenda de la clase disfrazada de contenido: cada viñeta es una sección. Recorrelas señalando hacia adelante, sin desarrollar ninguna. El remate es la última línea: contrastá con la expectativa, pasan horas tuneando capas y el retorno está en la entrada. Dato honesto para dejar caer acá o al final: en datos tabulares una red muchas veces pierde contra gradient boosting (XGBoost, LightGBM); las redes brillan cuando hay estructura que explotar (imágenes, texto, señales). Sirve para bajar la sobreexpectativa.
 
 ---
 
@@ -677,9 +680,9 @@ El umbral es lo que más cuesta que entiendan y lo más útil en la práctica. R
 
 ---
 
-# 6. Overfitting
+# 6. Overfitting y regularización
 
-**Goal of this section:** Definir overfitting como la brecha train-validación, dar el diagnóstico de tres casos y explicar el intercambio sesgo-varianza que justifica por qué regularizar empeora el entrenamiento a propósito. Prepara la sección 7.
+**Goal of this section:** Diagnosticar y tratar, en ese orden. Primero definir overfitting como la brecha train-validación, dar el diagnóstico de tres casos y explicar el intercambio sesgo-varianza que justifica por qué regularizar empeora el entrenamiento a propósito. Después el tratamiento: L2 (weight decay) en detalle porque es el estándar y está en el título de la clase, L1 por contraste, dropout, y el resto del arsenal con la guía de cuál usar y los errores de aplicación.
 
 ---
 
@@ -705,7 +708,7 @@ corpus/chat.md.md (§10 Regularización: qué problema resuelve)
 
 ### Speaker notes
 
-Este es el mapa de decisión que ordena la sección 7. Insistí en el orden: primero se diagnostica, después se trata. Regularizar un modelo que hace underfitting (train alto) empeora las dos métricas. Conectá con el ID único de la sección 2: memorizar el DNI es overfitting en estado puro, train perfecto y validación mala.
+Este es el mapa de decisión que ordena la segunda mitad de la sección. Insistí en el orden: primero se diagnostica, después se trata. Regularizar un modelo que hace underfitting (train alto) empeora las dos métricas. Conectá con el ID único de la sección 2: memorizar el DNI es overfitting en estado puro, train perfecto y validación mala.
 
 ---
 
@@ -742,23 +745,17 @@ corpus/chat.md.md (§10 Regularización: qué problema resuelve)
 
 ### Speaker notes
 
-El intercambio sesgo-varianza es el fundamento teórico de todo lo que viene. La metáfora que funciona: estudiar para un examen memorizando las respuestas de los ejercicios viejos (varianza alta, te va mal con ejercicios nuevos) contra entender el método (algo de sesgo, generaliza). Preparen el terreno: todas las técnicas de la sección 7 son formas distintas de bajar varianza.
+El intercambio sesgo-varianza es el fundamento teórico de todo lo que viene. La metáfora que funciona: estudiar para un examen memorizando las respuestas de los ejercicios viejos (varianza alta, te va mal con ejercicios nuevos) contra entender el método (algo de sesgo, generaliza). Preparen el terreno: todas las técnicas que vienen a continuación son formas distintas de bajar varianza.
 
 ---
 
-# 7. Regularización y L2
-
-**Goal of this section:** El cierre técnico. L2 (weight decay) en detalle porque es el estándar y está en el título de la clase, después L1 por contraste, dropout, y el resto del arsenal con la guía de cuál usar y los errores de aplicación.
-
----
-
-## 1. L2: penalizar los pesos grandes
+## 3. L2: penalizar los pesos grandes
 
 ### Content
 
 L2 agrega un término al objetivo que penaliza los pesos grandes:
 
-![El objetivo con el término de regularización L2](images/s7-1-1-objetivo-l2.png)
+![El objetivo con el término de regularización L2](images/s6-3-1-objetivo-l2.png)
 <!-- ascii-source:
    J  =  cost  +  λ · Σ w²
          \___/     \______/
@@ -786,7 +783,7 @@ El tema del título, dedicale tiempo. El "por qué funciona" es lo importante: p
 
 ---
 
-## 2. L1 contra L2
+## 4. L1 contra L2
 
 ### Content
 
@@ -808,7 +805,7 @@ Comparación corta, no te extiendas. El punto geométrico, si quieren profundiza
 
 ---
 
-## 3. Dropout: no depender de ninguna neurona
+## 5. Dropout: no depender de ninguna neurona
 
 ### Content
 
@@ -829,7 +826,7 @@ El `model.eval()` es el bug de PyTorch que van a cometer sí o sí en la prácti
 
 ---
 
-## 4. El resto del arsenal y cuál usar
+## 6. El resto del arsenal y cuál usar
 
 ### Content
 
@@ -908,13 +905,23 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 
 - Sección 4 (Matriz de confusión) no está cubierta por el corpus (`chat.md.md`). El contenido viene del conocimiento del área. Si el presentador quiere anclarlo a una fuente propia (apunte, capítulo, ejemplo con números reales de un dataset del curso), conviene sumarla en la Colecta y re-verificar los números. El ejemplo del "99% de accuracy" y los costos FP/FN son ilustrativos, no datos de una fuente.
 - La fuente advierte que en datos tabulares una red suele perder contra gradient boosting (XGBoost, LightGBM). Está en las notas del orador (slide 1.2) como contrapunto honesto. Decidir si darle más aire en clase o dejarlo como comentario al pasar.
-- Duración: con la sección 3 nueva el borrador pasó de ~25 a ~29 diapositivas para 90 min, y es el punto que más conviene mirar en el ensayo. Candidatas a recortar, en este orden: slide 7.2 (L1 contra L2), slide 3.4 (errores de partición, dejando los dos primeros bullets más el código) y slide 5.5, que ya quedó aligerada y se puede dar solo con el diagrama.
+- Duración: con la sección 3 nueva el borrador pasó de ~25 a ~29 diapositivas para 90 min, y es el punto que más conviene mirar en el ensayo. Candidatas a recortar, en este orden: slide 6.4 (L1 contra L2), slide 3.4 (errores de partición, dejando los dos primeros bullets más el código) y slide 5.5, que ya quedó aligerada y se puede dar solo con el diagrama.
 - Diagramas a dibujar en Polish: 8 (los 5 originales más el de la partición en 3.1, el del desbalance en 5.1 y el del umbral en 5.5). Los 3 nuevos son de esta ronda de review.
 - Ninguna de las dos fuentes nuevas cubre partición estratificada ni partición temporal, y las dos importan para los trabajos que entregan los alumnos. En la slide 3.4 están como aporte del docente, sin fuente detrás. Si se quiere anclar, hace falta sumar una tercera fuente en la Colecta.
 - Los ratios 70/20/10 y 80/10/10 son recomendación de la casa de Roboflow (contenido de marketing de producto), no resultado de un estudio. Están citados como criterio práctico de la industria; si alguien en clase pregunta de dónde salen, esa es la respuesta honesta.
 - El artículo de Roboflow está escrito para visión por computadora y esta clase es tabular. Los ejemplos se trasladaron (imágenes a filas), la lógica no cambió. Revisar en el ensayo que no quede ningún resto de vocabulario de visión.
 
 # Cut material
+
+## Desglose en tres baldes de la diapositiva 1.2 (reemplazado por feedback, 2026-08-19)
+
+La versión anterior de la diapositiva 1.2 organizaba el diseño en tres baldes en vez de listar los aspectos de la clase. Se reemplazó por pedido del presentador; el contraste final sobrevive como remate de la diapositiva nueva, y este es el detalle que se retiró:
+
+- **Lo determina la tarea (no se decide):** cantidad de neuronas de salida, activación de salida y función de loss. Predecir un precio pide una salida lineal con MSE; clasificar en N clases pide softmax con cross-entropy. No hay margen.
+- **Lo determina la codificación (crítico):** cantidad de neuronas de entrada y si se normaliza. Salen de cómo se representan las variables, y es donde se gana o se pierde el modelo.
+- **Lo que sí se elige (importa poco):** cantidad de capas ocultas (1 a 3 alcanza para datos tabulares), ancho de cada capa (potencias de 2, decreciente) y activación oculta (ReLU salvo motivo).
+
+Fuente: corpus/chat.md.md (§9 Diseño de la red: qué se decide y qué no).
 
 ## Diapositiva 2.6 "μ y σ: el modelo no son solo los pesos" (retirada por feedback, 2026-08-19)
 

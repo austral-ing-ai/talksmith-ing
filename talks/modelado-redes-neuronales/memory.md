@@ -1,6 +1,7 @@
 # memory.md — modelado-redes-neuronales
 
-**Current step:** 8 — Learnings in_progress
+**Current step:** 8 — Learnings awaiting_presenter
+**Awaiting:** ¿Promover esta Talk a la biblioteca de conocimiento compartida, o saltear?
 **Topic:** Diseño y modelado de una red neuronal — entradas/salidas, matriz de confusión, overfitting y regularización L2
 **Folder:** talks/modelado-redes-neuronales/
 **Started:** 2026-08-18
@@ -166,3 +167,32 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Key inputs: final.md, slide-model.json de la corrida anterior como base para lo no modificado.
 - Files created/modified: output/slide-model.json, output/html/index.html (588 KB), output/html/.render.json, /index.html (índice raíz)
 - Pending open questions: un ícono inferido ('remove_red_eye') no existe en el set y cae a 'info'; es cosmético. El .pptx sigue sin poder generarse (no hay Cowork), pero ahora los PNG existen, así que el día que haya Cowork el render no arranca de cero.
+
+## 2026-08-19 — Step 8 (Learnings)
+- Status: in_progress
+- Asks log:
+  - 2026-08-19 — "Promover L8 (definir antes de ejemplificar) / con cambios / saltear" → Promover tal cual
+  - 2026-08-19 — "Promover esta Talk a la biblioteca de conocimiento compartida" → pendiente
+- What was decided: Las 16 observaciones de las cuatro rondas se espejaron al backlog con etiquetas. Dos etiquetas cruzaron el umbral de 3 y decían lo mismo: missing-definition (4) y definition-before-example (3), las siete de esta Talk. Se promovió **L8 — Definir antes de ejemplificar, en cada card**, con la regla de card (etiqueta nombra, oración define, ejemplo después), la extensión a consistencia gramatical de etiquetas dentro de una diapositiva, y el chequeo de leer solo las negritas seguidas. Se creó config/feedback-processed.md (no existía) y se movieron las 6 filas que la sustentan con promoted_to: L8.
+- Key inputs: config/feedback-backlog.md (81 filas antes, 75 después), config/learnings.md L1–L7.
+- Files created/modified: config/learnings.md (L8), config/feedback-processed.md (nuevo, 6 filas), config/feedback-backlog.md
+- Pending open questions: sin candidatos de conformidad strict (config/strict-learnings.md no existe). Falta la decisión de biblioteca compartida. Otras etiquetas con 3 o más (template-selection, content-addition, slide-title, new-slide) ya están cubiertas por L1–L7 o no son promovibles porque describen el tipo de edición, no una regla.
+
+## 2026-08-19 — Step 5 (Review) — ronda 5, reabierta después de Render
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Volver a draft" → dos comentarios nuevos en draft.md
+  - 2026-08-19 — "¿Fusionar Regularización y L2 con Overfitting, o dejarlas separadas?" → pendiente
+- What was decided: Se aplicó el primero. La diapositiva 1.2 pasó de "La mitad de la arquitectura no se elige" a "Lo que hay que diseñar": cinco aspectos en orden de sección (entrada, dataset, salida, error, overfitting), con el contraste original como remate al pie y el desglose viejo archivado en Cut material. Sin números de sección en el contenido visible, a propósito, porque la otra decisión pendiente puede renumerar.
+- Key inputs: draft.md, config/learnings.md L1–L8.
+- Files created/modified: draft.md, memory.md
+- Pending open questions: (1) el comentario sobre Regularización y L2 tiene dos lecturas opuestas y quedó [open]; (2) final.md, slide-model.json y el deck HTML son de antes de este cambio, hay que rehacer Polish y Render al cerrar la ronda; (3) sigue pendiente la biblioteca compartida.
+
+## 2026-08-19 — Step 5/6/7 — cierre de la ronda 5
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "¿Fusionar Regularización y L2 con Overfitting, o dejarlas separadas?" → la primera, fusionar
+- What was decided: Se fusionaron las secciones 6 y 7 en "Overfitting y regularización" (6 diapositivas: 2 de diagnóstico, 4 de tratamiento). Las cuatro de regularización se renumeraron 7.1–7.4 a 6.3–6.6; agenda, arco narrativo y tres referencias cruzadas actualizadas. El triplet del diagrama de L2 se renombró s7-1-1 a s6-3-1, así que Polish lo reusó sin redibujar: los 8 diagramas quedaron intactos. Polish y Render rehechos de punta a punta. El mazo pasó de 38 a 37 diapositivas y de 7 secciones a 6.
+- Key inputs: draft.md, plan2.json, slide-model.json.
+- Files created/modified: draft.md, final.md, images/s6-3-1-objetivo-l2.{ascii,svg,png}, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Pending open questions: (1) al espejar el feedback aparecieron 6 duplicados, porque las filas promovidas a feedback-processed.md dejan de estar en el backlog y find-closed-unmirrored las vuelve a listar; se quitaron a mano, pero conviene recordarlo la próxima vez que se promueva algo; (2) sigue pendiente la biblioteca compartida; (3) el ícono 'remove_red_eye' sigue cayendo a 'info'.

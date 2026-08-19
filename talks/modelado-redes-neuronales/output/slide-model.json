@@ -13,8 +13,7 @@
       "Partir el dataset",
       "Modelar la salida",
       "La matriz de confusión",
-      "Overfitting",
-      "Regularización y L2"
+      "Overfitting y regularización"
     ]
   },
   "slides": [
@@ -47,23 +46,38 @@
     {
       "template": "concept-breakdown",
       "section": "Qué se diseña de verdad",
-      "title": "La mitad de la arquitectura no se elige",
-      "lead": "Buena parte de lo que parece decisión de diseño sale sola del problema.",
+      "title": "Lo que hay que diseñar",
+      "lead": "Diseñar una red son cinco decisiones, y ninguna de las cinco es cuántas capas ponerle. Son las cinco que recorre esta clase, en este orden.",
       "cards": [
         {
-          "label": "Lo determina la tarea",
-          "body": "Neuronas de salida, activación de salida y loss. Un precio pide salida lineal con MSE; N clases piden softmax con cross-entropy. No hay margen."
+          "label": "La entrada",
+          "body": "Cómo cada variable se convierte en floats. Donde se gana o se pierde el modelo."
         },
         {
-          "label": "Lo determina la codificación",
-          "body": "Cantidad de neuronas de entrada y si se normaliza. Salen de cómo se representan las variables, y es donde se gana o se pierde el modelo."
+          "label": "El dataset",
+          "body": "Cómo se parte en train, validación y test. Sin esto ninguna métrica es honesta."
         },
         {
-          "label": "Lo que sí se elige (importa poco)",
-          "body": "Capas ocultas (1 a 3 para tabular), ancho de cada capa (potencias de 2, decreciente) y activación oculta (ReLU salvo motivo)."
+          "label": "La salida",
+          "body": "Cuántas neuronas, qué activación y qué loss. No se elige: la determina la tarea."
+        },
+        {
+          "label": "El error",
+          "body": "Con qué se mide que el modelo sirve. Accuracy sola engaña; la matriz separa los errores."
+        },
+        {
+          "label": "El overfitting",
+          "body": "Cómo se detecta que el modelo memorizó en vez de aprender, y qué lo controla."
         }
       ],
-      "notes": "Este es el mapa mental que quiero que se lleven. Pasan horas tuneando capas y el retorno está en la entrada. Dato honesto: en tabular una red muchas veces pierde contra gradient boosting (XGBoost, LightGBM); las redes brillan cuando hay estructura que explotar (imágenes, texto, señales)."
+      "notes": "Este es el mapa mental que quiero que se lleven, y además es la agenda de la clase disfrazada de contenido: cada viñeta es una sección. Recorrelas señalando hacia adelante, sin desarrollar ninguna. El remate es la última línea: pasan horas tuneando capas y el retorno está en la entrada. Dato honesto: en tabular una red muchas veces pierde contra gradient boosting; las redes brillan cuando hay estructura que explotar.",
+      "format": "editorial",
+      "highlights": [
+        {
+          "body": "La cantidad de capas y de neuronas no está en esa lista. Eso sí se elige, y es lo que menos importa: 1 a 3 capas ocultas para tabular, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las cinco de arriba.",
+          "kind": "takeaway"
+        }
+      ]
     },
     {
       "template": "content+cards+image",
@@ -747,12 +761,12 @@
     },
     {
       "template": "section-agenda",
-      "section": "Overfitting",
-      "title": "Overfitting"
+      "section": "Overfitting y regularización",
+      "title": "Overfitting y regularización"
     },
     {
       "template": "content+cards+image",
-      "section": "Overfitting",
+      "section": "Overfitting y regularización",
       "title": "El diagnóstico en dos números",
       "lead": "Overfitting es la brecha entre el error de entrenamiento y el de validación. El diagnóstico sale de mirar los dos juntos.",
       "media": {
@@ -784,7 +798,7 @@
     },
     {
       "template": "content+cards+image",
-      "section": "Overfitting",
+      "section": "Overfitting y regularización",
       "title": "Sesgo contra varianza",
       "lead": "La regularización no mejora el ajuste: lo empeora en train a cambio de que el modelo generalice mejor.",
       "media": {
@@ -813,17 +827,12 @@
       "notes": "El fundamento teórico de la sección 6. Metáfora: estudiar memorizando las respuestas de los ejercicios viejos (alta varianza) contra entender el método (algo de sesgo, generaliza). Todas las técnicas que siguen son formas de bajar varianza."
     },
     {
-      "template": "section-agenda",
-      "section": "Regularización y L2",
-      "title": "Regularización y L2"
-    },
-    {
       "template": "content+cards+image",
-      "section": "Regularización y L2",
+      "section": "Overfitting y regularización",
       "title": "L2: penalizar los pesos grandes",
       "lead": "L2 agrega un término al objetivo que penaliza los pesos grandes.",
       "media": {
-        "src": "images/s7-1-1-objetivo-l2.png",
+        "src": "images/s6-3-1-objetivo-l2.png",
         "alt": "El objetivo J igual a cost más lambda por suma de w al cuadrado: el término L2 penaliza los pesos grandes y los empuja hacia cero"
       },
       "design": "split-left",
@@ -849,7 +858,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Regularización y L2",
+      "section": "Overfitting y regularización",
       "title": "L1 contra L2",
       "cards": [
         {
@@ -875,7 +884,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Regularización y L2",
+      "section": "Overfitting y regularización",
       "title": "Dropout: no depender de ninguna neurona",
       "lead": "Durante el entrenamiento, dropout apaga al azar una fracción de las neuronas en cada paso hacia adelante.",
       "cards": [
@@ -900,7 +909,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Regularización y L2",
+      "section": "Overfitting y regularización",
       "title": "El resto del arsenal",
       "lead": "Hay más de una herramienta, y la mejor a veces no es la más sofisticada.",
       "cards": [
@@ -925,7 +934,7 @@
     },
     {
       "template": "value-columns",
-      "section": "Regularización y L2",
+      "section": "Overfitting y regularización",
       "title": "Cuál usar según el caso",
       "lead": "El primer reflejo cambia con la arquitectura y con cuántos datos hay.",
       "columns": [
@@ -956,7 +965,7 @@
     },
     {
       "template": "closing-cta",
-      "section": "Regularización y L2",
+      "section": "Overfitting y regularización",
       "title": "Lo que hay que llevarse",
       "items": [
         {
@@ -980,7 +989,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Regularización y L2",
+      "section": "Overfitting y regularización",
       "title": "Checklist operativo para la práctica",
       "format": "editorial",
       "lead": "Para cada variable de un problema real, antes de tocar la red:",
@@ -1017,7 +1026,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "d550c322fd285d2b033ae9431d3b9cbec0cb1a2d18dfcdf23a24b3b5b63d88d9",
-    "bytes": 59324
+    "sha256": "c34b9e0cf1c3ec6e0bd1ae03f4ec621362e4d9434301b465bc46faa0854765cb",
+    "bytes": 60950
   }
 }

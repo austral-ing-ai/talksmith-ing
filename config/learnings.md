@@ -119,3 +119,33 @@ este repositorio y aplican sin volver a pedirlas.
 - **Evidencia:** recurrió 3 veces en `talks/introduccion` (diapositivas 8, 9, 10) entre el
   2026-08-03 y el 2026-08-04.
 - **Fecha:** 2026-08-12
+
+---
+
+## L8 — Definir antes de ejemplificar, en cada card
+
+- **Regla:** la etiqueta en negrita de una card **nombra la cosa**; la oración que sigue **la define o
+  la afirma**; el ejemplo viene **después** de la definición. Nunca una card que abra con el caso
+  concreto y deje la definición implícita, y nunca un término técnico (tensor, media armónica,
+  normalizar, F1) usado en una card sin haberlo definido antes en el mazo. Cuando una diapositiva
+  introduce un concepto, el orden es definición, a qué se aplica, efecto, recetas.
+- **Por qué:** el ejemplo solo enseña si el que escucha ya sabe de qué es ejemplo. Al revés obliga a
+  inferir la categoría desde un caso, que es justo el trabajo que la diapositiva tendría que
+  ahorrarle. El síntoma es una diapositiva que se lee bien y no explica nada: el presentador la da
+  por entendida porque él sí sabe qué es lo que está ejemplificando.
+- **Dónde aplica:** todo el repositorio, cualquier card, columna o fila de tabla con etiqueta.
+  Vale también para las etiquetas: dentro de una diapositiva las cards comparten forma gramatical
+  (todas sintagma nominal, o todas término más definición), nunca una mezcla de pregunta,
+  consecuencia y término.
+- **Cómo se revisa:** leer solo las etiquetas en negrita de una diapositiva, seguidas. Si se leen
+  como una lista coherente, la diapositiva está bien; si saltan de pregunta a ejemplo a término,
+  hay que emparejarlas.
+- **Evidencia:** recurrió 7 veces en `talks/modelado-redes-neuronales` el 2026-08-19, con las
+  etiquetas `missing-definition` (4) y `definition-before-example` (3). El presentador lo marcó
+  primero como "en casi todos los slides es confuso que no se define" y después lo precisó: "en los
+  cards veo que se empieza definiendo ejemplo y no se define. No veo consistencia". Casos: tensor
+  sin definir (1.1), Secuencia sin definición y con un solo ejemplo (2.1), normalizar que abría por
+  el gradiente (2.3), las cuatro cards de errores de codificación que abrían por el caso (2.5),
+  softmax que abría por el ticket (4.3), accuracy usada sin fórmula (5.1), F1 nombrado como "media
+  armónica" sin decir qué es (5.3).
+- **Fecha:** 2026-08-19
