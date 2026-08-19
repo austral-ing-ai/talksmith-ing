@@ -104,8 +104,6 @@ labels: tabular shape (10,), señal shape (1000,), imagen gris shape (28,28), RG
 - **Imagen en gris: dos ejes.** Una matriz, un número por píxel, con vecindad en alto y ancho.
 - **Imagen RGB: tres ejes, y el tercero es distinto.** No son tres imágenes una atrás de la otra: es **la misma grilla, con tres números en cada píxel**. Alto y ancho tienen vecindad; el canal no, R no está "cerca" de G. Son tres mediciones en el mismo punto, como tres columnas de una tabla.
 
-**Nota:** el lote es una dimensión más, siempre adelante. Un `Dense(32)` que recibe `(B, 10)` devuelve `(B, 32)`: los mismos pesos se aplican a las B filas.
-
 El resto de la clase trabaja sobre el primer caso, el tabular. Los otros tres están para que se vea que la forma la decide el dato.
 
 ### Sources
@@ -123,6 +121,8 @@ Dato verificado que sirve si querés cerrar la idea del canal: una capa densa op
 Cerrá volviendo al primer panel: el resto de la clase trabaja sobre el caso tabular.
 
 ### Presenter feedback
+- [closed] 2026-08-19 — "Borrar 'El lote es una dimensión más, siempre adelante. Un Dense(32) que recibe (B, 10) devuelve (B, 32): los mismos pesos se aplican a las B filas.'"
+  Resolution: Se retiró la nota. El diagrama ya muestra la fila del lote con las cuatro formas, así que el texto la repetía; queda menos texto y el dibujo haciendo el trabajo. La indicación de mencionarlo al pasar sigue en las notas del orador, porque es la dimensión que aparece en todos los errores de shape.
 - [closed] 2026-08-19 — "Confirmá esto con documentación formal sobre cómo modelar esto en un NN."
   Resolution: Verificado contra la documentación de Keras y PyTorch, y ejecutado en el venv de la misión. La nota anterior decía "se aplana" como si fuera automático y **eso estaba mal**: una capa densa opera solo sobre el último eje y no aplana sola. Keras: "If the input to the layer has a rank greater than 2, Dense computes the dot product between the inputs and the kernel along the last axis of the inputs". PyTorch nn.Linear: "Output: (*, H_out) where all but the last dimension are the same shape as the input". Aplanar es una capa explícita, Flatten() o nn.Flatten(). Medido: Dense(32) sobre (8,224,224,3) sin aplanar devuelve (8,224,224,32) con 128 parámetros, que es kernel (3,32) más bias; con Flatten() antes devuelve (8,32) con 4.816.928, que es kernel (150.528,32) más bias. El hallazgo confirma la card: el framework por defecto trata el eje de canal como el eje de variables. También valida el número del corpus, los 38,5M eran con 256 unidades.
 - [closed] 2026-08-19 — "Pero si son tres números en el mismo píxel, ¿no se puede modelar la red?"

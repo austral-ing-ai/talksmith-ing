@@ -91,8 +91,6 @@ labels: tabular shape (10,), señal shape (1000,), imagen gris shape (28,28), RG
 - **Imagen en gris: dos ejes.** Una matriz, un número por píxel, con vecindad en alto y ancho.
 - **Imagen RGB: tres ejes, y el tercero es distinto.** No son tres imágenes una atrás de la otra: es **la misma grilla, con tres números en cada píxel**. Alto y ancho tienen vecindad; el canal no, R no está "cerca" de G. Son tres mediciones en el mismo punto, como tres columnas de una tabla.
 
-**Nota:** el lote es una dimensión más, siempre adelante. Un `Dense(32)` que recibe `(B, 10)` devuelve `(B, 32)`: los mismos pesos se aplican a las B filas.
-
 El resto de la clase trabaja sobre el primer caso, el tabular. Los otros tres están para que se vea que la forma la decide el dato.
 
 ### Sources

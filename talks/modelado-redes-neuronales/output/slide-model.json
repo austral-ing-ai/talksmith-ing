@@ -73,10 +73,6 @@
       ],
       "highlights": [
         {
-          "body": "El lote es una dimensión más, siempre adelante. Un `Dense(32)` que recibe `(B, 10)` devuelve `(B, 32)`: los mismos pesos se aplican a las B filas.",
-          "kind": "note"
-        },
-        {
           "body": "El resto de la clase trabaja sobre el primer caso, el tabular. Los otros tres están para que se vea que la forma la decide el dato.",
           "kind": "takeaway"
         }
@@ -1153,7 +1149,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "a617b18ea1cbe8fa5f760bc0c01168c91fd02b8f294f1e87cd99fb28e09eef69",
-    "bytes": 75193
+    "sha256": "4336ea9f6f9e8a00fe0ca45528fa513dee5781c409c852cf663193073ae4b6e1",
+    "bytes": 75033
   }
 }
