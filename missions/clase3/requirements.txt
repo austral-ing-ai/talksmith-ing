@@ -1,0 +1,15 @@
+# Dependencias del notebook de la clase 3 y de la misión.
+# Versiones fijadas a las que se usaron para generar las salidas del notebook.
+# Instalación: ./setup.sh  (o pip install -r requirements.txt dentro de un venv)
+
+tensorflow==2.21.0
+keras==3.15.1
+pandas==3.0.5
+numpy==2.4.6
+scikit-learn==1.9.0
+matplotlib==3.11.1
+ipykernel==7.3.0
+
+# Servidor de Jupyter. Hace falta solo si vas a correr `jupyter lab` desde la
+# terminal; VS Code no lo necesita porque trae su propio cliente de notebooks.
+jupyterlab==4.6.3
