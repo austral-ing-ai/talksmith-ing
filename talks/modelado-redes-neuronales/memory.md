@@ -1,6 +1,6 @@
 # memory.md — modelado-redes-neuronales
 
-**Current step:** complete
+**Current step:** 8 — Learnings in_progress
 **Topic:** Diseño y modelado de una red neuronal — entradas/salidas, matriz de confusión, overfitting y regularización L2
 **Folder:** talks/modelado-redes-neuronales/
 **Started:** 2026-08-18
@@ -92,3 +92,77 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Key inputs: output/slide-model.json (fresco), final.md.
 - Files created/modified: output/html/index.html, output/html/.render.json, /index.html (raíz); eliminado images/s4-2-1-matriz-confusion.svg.
 - Pending open questions: los 2 íconos fallback quedan como 'info'; para el glifo exacto habría que ajustar el wording de esas cards o aliasar en el plugin.
+
+## 2026-08-19 — Step 2 (Collect) — fuente nueva
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Ingestar https://medium.com/data-science/train-validation-and-test-sets-72cb40cba9e7" (pedido directo, sin ask previo)
+- What was decided: Se capturó el artículo de Tarang Shah sobre train/validation/test como respaldo de la sección nueva que pide el feedback de la diapositiva 2.6.
+- Key inputs: research/web/train-validation-test-sets/ (page.md cuerpo completo, original.html verbatim, 9 assets).
+- Files created/modified: research/web/train-validation-test-sets/{metadata.yaml, original.html, page.md, assets/}
+- Pending open questions: el fetcher no resuelve `srcset`, así que las dos figuras reales del artículo se bajaron a mano (hero + "A visualization of the splits"). Los otros 7 assets son avatares de Medium sin valor editorial.
+
+## 2026-08-19 — Step 3 (Corpus) — registro incremental
+- Status: complete
+- Asks log: none
+- What was decided: Registro nuevo para la captura web, Phase 1 (bytes en disco + stubs). El registro previo chat.md.md quedó intacto.
+- Key inputs: research/web/train-validation-test-sets/page.md + original.html + metadata.yaml.
+- Files created/modified: research/corpus/train-validation-test-sets.web.md, research/corpus/train-validation-test-sets.web/images/ (9 archivos)
+- Pending open questions: Phase 2 (transcripción) sin correr para las 2 figuras reales; los 7 avatares quedaron descritos como chrome y no necesitan Phase 2.
+
+## 2026-08-19 — Step 5 (Review) — ronda 2
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Alcance de 'Borremos esta seccion' + ubicación de la sección nueva" → el presentador no respondió la pregunta; mandó dos fuentes más y "usá esta info para enriquecer la sección nueva", así que se avanzó bajo los supuestos recomendados (borrar solo la diapositiva 2.6; sección nueva entre "Modelar la entrada" y "Modelar la salida"), declarados en el reporte.
+  - 2026-08-19 — "La tabla Test Set vs. Training Set vs. Validation Set deberia estar" → aplicado como diapositiva 3.2.
+- What was decided: Se cerraron las 6 observaciones de la ronda. (1.1) definición de tensor al inicio y el bullet "Por eso codificar mal es fatal" renombrado a "El error de codificación entra silencioso". (2.1) tabla a cinco columnas con definición propia, tres ejemplos por fila, Secuencia corregida y párrafo que la separa de Señal. (2.2) párrafo sobre lo que promete un float (diferencias comparables, magnitud que escala vía W·x). (2.3) reordenada a definición → datos → efecto → recetas. (2.6) reemplazada: sale μ y σ, entra "De la variable al tensor: la tabla de decisiones" con doce filas desde el corpus. Sección 3 nueva "Partir el dataset" con cuatro diapositivas; secciones 3–6 renumeradas a 4–7, agenda, arco narrativo y ocho referencias cruzadas actualizadas.
+- Key inputs: draft.md (6 bloques de feedback), config/learnings.md L1–L7, corpus/chat.md.md §3 §4 §6, corpus/train-validation-test-sets.web.md, corpus/train-test-split-roboflow.web.md.
+- Files created/modified: draft.md (~25 → ~29 diapositivas), memory.md
+- Pending open questions: (1) barrido definición-primero sobre todo el mazo, que el presentador marcó como patrón general y quedó sin responder; (2) Phase 2 de las 7 figuras pendientes en los dos registros web nuevos; (3) duración: la sección nueva suma cuatro diapositivas a un mazo que ya estaba justo para 90 min; (4) estratificación y partición temporal en la slide 3.4 van sin fuente, como aporte del docente.
+
+## 2026-08-19 — Step 2/3 (Collect + Corpus) — segunda fuente
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Ingest: https://blog.roboflow.com/train-test-split/" (pedido directo)
+- What was decided: Se capturó el post de Roboflow, que cubre justo los huecos del de Medium: ratios concretos (70/20/10, 80/10/10), tabla comparativa de los tres conjuntos, regla de augmentation, errores típicos, código de sklearn y el intercambio de cross-validation. Registro Phase 1 con 6 imágenes en el companion.
+- Key inputs: research/web/train-test-split-roboflow/page.md (extracción limpia y completa).
+- Files created/modified: research/web/train-test-split-roboflow/, research/corpus/train-test-split-roboflow.web.md, research/corpus/train-test-split-roboflow.web/images/
+- Pending open questions: la fuente está escrita para visión por computadora y es contenido de marketing de Roboflow; ambas cosas quedaron anotadas en el registro y en Open questions del borrador. Phase 2 sin correr para 5 de las 6 imágenes.
+
+## 2026-08-19 — Step 5 (Review) — ronda 3
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Lo que quise decir es que en los cards veo que se empieza definiendo ejemplo y no se define. No veo consistencia." (aclaración del comentario general de la ronda 2)
+  - 2026-08-19 — "Agregue tambien mas ffeedback." → dos bullets en la 5.1
+  - 2026-08-19 — "El quiz deberia estar despues de presentar el slide 'La matriz de confusión'" → corregido por el propio presentador en el mensaje siguiente
+  - 2026-08-19 — "el quiz deberia ir despues de 'Precision, recall y F1'. Sino se usan los terminos sin explicarlos." + "Agregar 1 caso ms"
+- What was decided: (a) Regla de card fijada para todo el mazo (etiqueta nombra, oración siguiente define, ejemplo después) y barrido de las seis diapositivas que no la cumplían: 1.3, 2.3, 2.5, 4.3, 7.1, 7.3. Registrada a nivel Agenda. (b) 5.1 reescrita con la fórmula de accuracy en bloque propio, ejemplo de 10.000 transacciones y diagrama ASCII nuevo que enfrenta accuracy 99% contra 0 de 100 fraudes; se retiró la plantilla `stat`. (c) El quiz pasó de 5.2 a 5.4, con cuarto caso (churn) que justifica F1; "La matriz de confusión" y "Precision, recall y F1" subieron a 5.2 y 5.3; goal de sección y referencia cruzada de accuracy actualizadas.
+- Key inputs: draft.md, config/learnings.md L1–L7, skills/desrobotizar.
+- Files created/modified: draft.md, memory.md
+- Pending open questions: (1) el diagrama nuevo de la 5.1 y el de la 3.1 se suman a los 5 que ya había, así que Polish va a dibujar 7; (2) duración: el mazo quedó en ~29 diapositivas para 90 min; (3) sigue sin confirmarse el supuesto de la ronda 2 (borrar solo la 2.6, sección nueva en el lugar 3); (4) Phase 2 de las 7 imágenes pendientes en los dos registros web.
+
+## 2026-08-19 — Step 5 (Review) — ronda 4
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Revisa mas comentarios" → dos bullets nuevos, en 5.3 y 5.5
+- What was decided: (a) 5.3: la card de F1 abre con la fórmula 2·(P·R)/(P+R) y define la media armónica por contraste con el promedio común, con el par 0.9 / 0.5 (promedio 0.70, F1 0.64) y el caso degenerado de recall 0. Notas del orador ampliadas con el argumento del clasificador que marca todo. (b) 5.5: la diapositiva hacía dos cosas a la vez y esa era la fuente de confusión. El umbral pasa a ser el centro con un diagrama ASCII del eje de probabilidad y tres posiciones de umbral, que reemplaza dos cards; quedan dos cards en vez de cuatro y la matriz N×N baja a una línea de cierre. Texto reducido a poco menos de la mitad.
+- Key inputs: draft.md, config/learnings.md L1–L7.
+- Files created/modified: draft.md, memory.md
+- Pending open questions: (1) Polish tiene que dibujar 8 diagramas, no 5: se sumaron partición (3.1), desbalance (5.1) y umbral (5.5); (2) mazo en ~29 diapositivas para 90 min, candidatas de recorte actualizadas en Open questions; (3) sigue sin confirmarse el supuesto de la ronda 2 (borrar solo la 2.6, sección nueva en el lugar 3); (4) Phase 2 de las 7 imágenes pendientes en los registros web.
+
+## 2026-08-19 — Step 6 (Polish)
+- Status: complete
+- Asks log: none (paso automático)
+- What was decided: cp draft.md → final.md. 8 bloques ASCII renderizables (el noveno, la fórmula de accuracy en la 5.1, quedó como bloque de código sin mapear, que es lo correcto). Tres triplets renombrados por la renumeración de secciones (s4-3-1→s5-2-1 matriz, s5-2-1→s6-2-1 curvas, s6-1-1→s7-1-1 L2): los sidecars quedaron byte-idénticos, así que los 5 SVG viejos se reusaron sin redibujar. Se dibujaron 3 nuevos (partición 3.1, desbalance 5.1, umbral 5.5), los tres validados y auditados (márgenes parejos, fondo blanco). Se armó un venv en el scratchpad con cairosvg y jinja2, así que esta vez sí hay los 8 PNG deliverables. final.md: 8 refs reescritas de .svg a .png, 34 bloques de Presenter feedback quitados, sin [open] que rescatar, gc sin huérfanos.
+- Key inputs: draft.md congelado, config/diagram-style.md, sidecars .ascii.
+- Files created/modified: final.md, images/ (8 .svg + 8 .ascii + 8 .png; 3 triplets renombrados)
+- Pending open questions: las 2 directivas generate-image (slides 1.1 y 6.1) siguen sin cumplir, esta sesión no tiene capacidad de generación de imágenes. Las slides conservan su texto.
+
+## 2026-08-19 — Step 7 (Render)
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "pasar a final y luego generar strict-html" → html-strict (elegido por el presentador en el mismo pedido)
+- What was decided: slide-model.json re-FILLeado desde cero para la estructura nueva: 38 diapositivas más portada (eran 33). Nuevas: la tabla de decisiones 2.6 (value-columns de 12 filas), las 4 de "Partir el dataset", y el separador de sección. Reescritas: 1.1, 1.3, 2.1, 2.2, 2.3, 2.5, 4.3, 5.1, 5.3, 5.4 (quiz con cuarto caso), 5.5, 7.1, 7.3. Auditorías degenerate_enum, field_coverage e image_coverage en verde. Dos avisos de desborde en grillas editoriales (2.1 y 2.5) corregidos acortando los bodies; re-render limpio. Los 9 huecos de imagen quedaron con SVG inlineado (el renderer canjea el .png por su gemelo vectorial), sin placeholders vacíos.
+- Key inputs: final.md, slide-model.json de la corrida anterior como base para lo no modificado.
+- Files created/modified: output/slide-model.json, output/html/index.html (588 KB), output/html/.render.json, /index.html (índice raíz)
+- Pending open questions: un ícono inferido ('remove_red_eye') no existe en el set y cae a 'info'; es cosmético. El .pptx sigue sin poder generarse (no hay Cowork), pero ahora los PNG existen, así que el día que haya Cowork el render no arranca de cero.

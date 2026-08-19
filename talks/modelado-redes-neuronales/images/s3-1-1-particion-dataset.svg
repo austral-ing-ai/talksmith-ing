@@ -1,0 +1,25 @@
+<!-- talksmith-ascii-sha256: 6a5b243ccfa6d5ce1e9329a2fa3c4114c2df998682f503611e3405fb74fc0e39 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 236" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="15">
+  <title>Un dataset, tres trabajos distintos</title>
+  <desc>El dataset se parte en tres porciones y solo la de entrenamiento actualiza los pesos del modelo.</desc>
+  <rect x="0" y="0" width="780" height="236" fill="#ffffff"/>
+
+  <text x="40" y="52" font-size="16" fill="#7A7373">dataset completo</text>
+
+  <rect x="40" y="72" width="490" height="70" fill="#F2EFEF" stroke="#DA1B2E" stroke-width="2"/>
+  <rect x="530" y="72" width="140" height="70" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.4"/>
+  <rect x="670" y="72" width="70" height="70" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.4"/>
+
+  <text x="285" y="116" font-size="22" text-anchor="middle" font-weight="bold">train 70%</text>
+  <text x="600" y="115" font-size="16" text-anchor="middle" font-weight="bold">val 20%</text>
+  <text x="705" y="114" font-size="12" text-anchor="middle" font-weight="bold">test 10%</text>
+
+  <text x="285" y="170" text-anchor="middle">aprende de él</text>
+  <text x="285" y="192" text-anchor="middle" font-weight="bold" fill="#DA1B2E">actualiza W y b</text>
+
+  <text x="600" y="170" text-anchor="middle">se mira</text>
+  <text x="600" y="192" text-anchor="middle" fill="#7A7373">cada epoch</text>
+
+  <text x="705" y="170" text-anchor="middle">se abre</text>
+  <text x="705" y="192" text-anchor="middle" fill="#7A7373">una vez</text>
+</svg>

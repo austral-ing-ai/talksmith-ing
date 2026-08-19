@@ -393,3 +393,99 @@
   feedback: "Hagamos un quiz de 3 pregutas donde mostremos la decision en cuanto queres que elegir precision sobre recall."
   resolution: Se agregó un quiz de tres casos para decidir entre precisión y recall, con una respuesta que explicita los costos.
   tags: [quiz, precision-recall]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Agenda
+  feedback: "En casi todos los slides es confusdo que no se define y en algunos caso se empieza con ejemplos." / "Lo que quise decir es que en los cards veo que se empieza definiendo ejemplo y no se define. No veo consistencia."
+  resolution: Se fijó una regla de card para todo el mazo y se barrieron las que no la cumplían. **La etiqueta en negrita nombra la cosa; la oración que sigue la define o la afirma; el ejemplo viene después de la definición, nunca antes.** Corregidas: 1.3 (la tercera card rompía el patrón término-definición de sus hermanas), 2.3 (la card de log abría con una lista de ejemplos), 2.5 (las cuatro abrían con el ejemplo y nunca definían el error), 4.3 (la de softmax abría con el ticket), 7.1 y 7.3 (etiquetas mezcladas entre pregunta, consecuencia y término; pasaron todas a sintagma nominal).
+  tags: [definition-before-example, card-consistency]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. La red no ve el problema, ve un tensor"
+  feedback: "Ojo que no se definir tensor en ningun lado."
+  resolution: Se abrió la diapositiva con la definición de tensor (arreglo N-dimensional de floats, forma fija) y la escala escalar/vector/matriz/imagen, antes de los bullets.
+  tags: [missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. La red no ve el problema, ve un tensor"
+  feedback: "Codificar mal es fatal no es un buen titulo"
+  resolution: El bullet pasó de "Por eso codificar mal es fatal" a "El error de codificación entra silencioso", que describe el mecanismo en vez de calificarlo.
+  tags: [card-label-wording]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Section "2. Modelar la entrada"
+  feedback: "Borremos esta seccion"
+  resolution: Se retiró la diapositiva 2.6 (μ y σ). Su contenido de data leakage y artefacto de producción no se descartó: pasó a la diapositiva 3.3 de la sección nueva, que es donde el tema se entiende mejor. Registrado en Cut material.
+  tags: [slide-removal]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Section "2. Modelar la entrada"
+  feedback: "Y agreghemos una new seccion sobre como partir el data set entre test, training (...). La idea es cubir que es lo que se hace con el data set."
+  resolution: Se creó la sección 3 "Partir el dataset" con cuatro diapositivas, entre "Modelar la entrada" y "Modelar la salida". Las secciones 3 a 6 se renumeraron a 4 a 7.
+  tags: [new-section-requested]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Section "2. Modelar la entrada"
+  feedback: "En est seccion falta alguna tabla que tome ejemplos de entradas y a que se deberia mapear o previa tarformacion. Eso estaba en el corpus, eso es un nuevo slide."
+  resolution: Nueva diapositiva 2.6 "De la variable al tensor: la tabla de decisiones", con doce filas de variable → ejemplo → codificación → neuronas, armada desde corpus/chat.md.md §3 y §4.
+  tags: [summary-table-requested]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Section "2. Modelar la entrada"
+  feedback: "La tabla Test Set vs. Training Set vs. Validation Set deberia estar"
+  resolution: Es la diapositiva 3.2, con las cinco filas de la fuente (propósito, cuándo lo ve el modelo, actualiza pesos, augmentation, proporción).
+  tags: [source-table-requested]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. Todo termina en un vector de floats"
+  feedback: "Secuencia no se si es la definicion correcta. Seria bueno que introducca de definicion del tipo y luego ejemplos. Los ejemplos son procos."
+  resolution: La tabla pasó a cinco columnas con una de definición propia ("Qué es") antes de los ejemplos, y cada fila subió a tres ejemplos. Se corrigió Secuencia (elementos discretos de un vocabulario, orden, largo variable) y se agregó un párrafo que la separa de Señal. Las notas del orador recogen la distinción.
+  tags: [missing-definition, definition-before-example]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. La pregunta que decide la codificación"
+  feedback: "Seria bueno aca agregar una nota que los valores al sear reales hay cierta expectativa que las deferencias y magntides modelan algo. g: Barrio 14-7 no dice nada de ahi que hay que modelarlo distinto"
+  resolution: Se agregó el párrafo "Poner un número real en el tensor es afirmar algo", con las dos promesas que hace un float (diferencias comparables y magnitud que escala el efecto vía W·x) y el contraste 85 m² contra barrio 14.
+  tags: [missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "3. Numéricas: normalizar no es opcional"
+  feedback: "En casi todos los slides es confusdo que no se define y en algunos caso se empieza con ejemplos. En este caso, fata la defincion, luego se peude mencionar datos tipo y el effecto de."
+  resolution: La diapositiva pasa a orden definición → a qué datos aplica → efecto → recetas. Se abre definiendo qué es normalizar y sobre qué variables aplica; el argumento del gradiente quedó después, bajo "Por qué no es opcional". La parte general del comentario (que casi todas las diapositivas arrancan por el ejemplo) queda pendiente de decisión del presentador como barrido definición-primero de todo el mazo.
+  tags: [definition-before-example]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. El 99% de accuracy que no sirve"
+  feedback: "Falta agregar la formula de accuracy, es como que se habla pero no se explica"
+  resolution: La diapositiva abre con la definición y la fórmula en bloque propio (predicciones correctas sobre total de casos). La versión con TP y TN queda para la 5.3, donde esos términos ya están definidos.
+  tags: [missing-formula]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. El 99% de accuracy que no sirve"
+  feedback: "Creo que este slide pude tener un mejor exploy y diagrama que valas al punto"
+  resolution: El ejemplo pasó de "99 de cada 100" a 10.000 transacciones con 100 fraudes, que permite hacer la cuenta en voz alta. Se agregó un diagrama ASCII con la barra desbalanceada y los dos números enfrentados: accuracy 99% contra 0 de 100 fraudes detectados. Se retiró la plantilla `stat`, que ya no corresponde con un diagrama en la diapositiva..
+  tags: [diagram-requested, better-example]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "3. Precision, recall y F1"
+  feedback: "No se definio 'F1, media armónica'"
+  resolution: La card ahora abre con la fórmula `2 · (P · R) / (P + R)` y define la media armónica por contraste con el promedio común, con dos números concretos (0.9 y 0.5 dan 0.70 de promedio y 0.64 de F1). Las notas del orador suman el porqué de la armónica y el caso del clasificador que marca todo.
+  tags: [missing-definition, missing-formula]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "4. Quiz: ¿precisión o recall?"
+  feedback: "el quiz deberia ir despues de 'Precision, recall y F1'. Sino se usan los terminos sin explicarlos."
+  resolution: El quiz pasó de 5.2 a 5.4, después de la matriz de confusión y de precision/recall/F1. La sección queda: accuracy engaña → la matriz separa los errores → precision, recall y F1 los nombran → el quiz decide cuál duele → el umbral. "La matriz de confusión" y "Precision, recall y F1" subieron a 5.2 y 5.3.
+  tags: [slide-ordering]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "4. Quiz: ¿precisión o recall?"
+  feedback: "Agregar 1 caso ms para explicar esto."
+  resolution: Cuarto caso, un modelo de churn donde los dos errores cuestan parecido. Es el caso que justifica F1 como número único, y aprovecha que ahora F1 ya está explicado cuando llega el quiz.
+  tags: [quiz-extra-case]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "5. El umbral y la matriz N×N"
+  feedback: "El slide deberi explicar un pocmo las de lo que se esta hablando. Es confuzo. Creo que se puede mostrar esto con un diagrama y menos texto."
+  resolution: La confusión venía de que la diapositiva hacía dos cosas a la vez. Ahora el umbral es el centro y se explica con un diagrama del eje de probabilidad con tres posiciones, que reemplaza los dos primeros bullets. Quedan dos cards en vez de cuatro, y la matriz N×N baja a una línea de cierre al pie. El texto se redujo a poco menos de la mitad.
+  tags: [too-much-text, diagram-requested]

@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <link href="https://blog.roboflow.com/assets/css/prism.css?v=UEWawqshioLdyWlI" rel="stylesheet" />
+    <link rel="stylesheet" href="https://blog.roboflow.com/assets/built/index.css?v=Hov_PBcxOs4q-Gku" />
+
+    <script src="https://blog.roboflow.com/assets/built/index.js?v=ktoilRTmIN3w--V_" defer></script>
+
+    <title>Train, Validation, Test Split Explained (with Ratios)</title>
+    <meta name="description" content="Learn how to split data into train, validation, and test sets, why 70/20/10 works, how to avoid train/test bleed, and when to cross-validate.">
+    <link rel="icon" href="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w256h256/2021/08/256.png" type="image/png">
+    <link rel="canonical" href="https://blog.roboflow.com/train-test-split/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Roboflow Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Train, Validation, Test Split Explained (with Ratios)">
+    <meta property="og:description" content="At Roboflow, we often get asked, what is the train, validation, test split and why do I need it? The motivation is quite simple: you should separate you data into train, validation, and test splits to prevent your model from overfitting and to accurately evaluate your model.">
+    <meta property="og:url" content="https://blog.roboflow.com/train-test-split/">
+    <meta property="og:image" content="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/06/img-blog-train-validation-and-test-split.png">
+    <meta property="article:published_time" content="2026-04-07T21:20:00.000Z">
+    <meta property="article:modified_time" content="2026-07-31T03:34:43.000Z">
+    <meta property="article:tag" content="Dataset Management">
+    <meta property="article:tag" content="Computer Vision">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Train, Validation, Test Split Explained (with Ratios)">
+    <meta name="twitter:description" content="At Roboflow, we often get asked, what is the train, validation, test split and why do I need it? The motivation is quite simple: you should separate you data into train, validation, and test splits to prevent your model from overfitting and to accurately evaluate your model.">
+    <meta name="twitter:url" content="https://blog.roboflow.com/train-test-split/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/06/img-blog-train-validation-and-test-split.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Jacob Solawetz">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Dataset Management, Computer Vision">
+    <meta name="twitter:site" content="@roboflow">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="731">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Roboflow Blog",
+        "url": "https://blog.roboflow.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2021/08/logo-cropped-@4x.png"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Jacob Solawetz",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2021/06/jacob_linked_in.jpeg",
+            "width": 250,
+            "height": 250
+        },
+        "url": "https://blog.roboflow.com/author/jacob/",
+        "sameAs": [
+            "http://jacobsolawetz.com"
+        ]
+    },
+    "headline": "Train, Validation, Test Split Explained (with Ratios)",
+    "url": "https://blog.roboflow.com/train-test-split/",
+    "datePublished": "2026-04-07T21:20:00.000Z",
+    "dateModified": "2026-07-31T03:34:43.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/06/img-blog-train-validation-and-test-split.png",
+        "width": 1200,
+        "height": 731
+    },
+    "keywords": "Dataset Management, Computer Vision",
+    "description": "At Roboflow, we often get asked, what is the train, validation, test split and why do I need it? The motivation is quite simple: you should separate you data into train, validation, and test splits to prevent your model from overfitting and to accurately evaluate your model.",
+    "mainEntityOfPage": "https://blog.roboflow.com/train-test-split/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.58">
+    <link rel="alternate" type="application/rss+xml" title="Roboflow Blog" href="https://blog.roboflow.com/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="5e611243674d8457ab31ea894c" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://roboflow.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.roboflow.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=ShRHxgy4po8zN-Wf"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=Jw0334E-A8vpuWdm">
+    <script defer src="/public/ghost-stats.min.js?v=RYVTbqYSu0JtTYwE" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.roboflow.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="2c8d8c0d-1c15-4b6d-825e-02b78d61d40a" tb_post_uuid="c202ae2f-2464-465f-a490-36f979aa0e85" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined" tb_gift_link=""></script><style>:root {--ghost-accent-color: #15171A;}</style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106836089-7"></script>
+<script>!function () {var reb2b = window.reb2b = window.reb2b || [];if (reb2b.invoked) return;reb2b.invoked = true;reb2b.methods = ["identify", "collect"];reb2b.factory = function (method) {return function () {var args = Array.prototype.slice.call(arguments);args.unshift(method);reb2b.push(args);return reb2b;};};for (var i = 0; i < reb2b.methods.length; i++) {var key = reb2b.methods[i];reb2b[key] = reb2b.factory(key);}reb2b.load = function (key) {var script = document.createElement("script");script.type = "text/javascript";script.async = true;script.src = "https://s3-us-west-2.amazonaws.com/b2bjsstore/b/" + key + "/reb2b.js.gz";var first = document.getElementsByTagName("script")[0];first.parentNode.insertBefore(script, first);};reb2b.SNIPPET_VERSION = "1.0.1";reb2b.load("L9NMMZHVD7NW");}();</script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-106836089-7');
+</script>
+<script type="text/javascript">
+_linkedin_partner_id = "6901572";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script><script type="text/javascript">
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=6901572&fmt=gif" />
+</noscript>
+<meta name="google-site-verification" content="mPhL-zp0YyXVU6ZQ1P8gFaREs09EF1J_mThXZ_bAinc" />
+
+<script>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1";
+  analytics.load("dU8v97X2RsPR5PDs0EmXCCRGTuouxiQ6");
+  analytics.page();
+  }}();
+</script>
+
+<script>
+  function hideLiteYoutubeAfter(id) {
+    const liteYoutube = document.getElementById(id);
+
+    if (liteYoutube) {
+        liteYoutube.classList.toggle('lite-youtube-hide');
+    }
+}
+
+</script>
+<style>
+  .post-wrapper iframe {
+    margin-bottom: 0px !important;
+    height: 500px !important;
+  }
+  /* Style when ::after should be hidden */
+.lite-youtube-hide::after {
+    display: none;
+}
+      lite-youtube {
+    background-color: #000;
+    position: relative;
+    display: block;
+    contain: content;
+    background-position: center center;
+    background-size: cover;
+    cursor: pointer;
+    max-width: 720px;
+}
+
+/* gradient */
+lite-youtube::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==);
+    background-position: top;
+    background-repeat: repeat-x;
+    height: 60px;
+    padding-bottom: 50px;
+    width: 100%;
+    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* responsive iframe with a 16:9 aspect ratio
+    thanks https://css-tricks.com/responsive-iframes/
+*/
+lite-youtube::after {
+    content: "";
+    display: block;
+    padding-bottom: calc(100% / (16 / 9));
+}
+lite-youtube > iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+}
+
+/* play button */
+lite-youtube > .lty-playbtn {
+    display: block;
+    /* Make the button element cover the whole area for a large hover/click target… */
+    width: 100%;
+    height: 100%;
+    /* …but visually it's still the same size */
+    background: no-repeat center/68px 48px;
+    /* YT's actual play button svg */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20" fill="white"/></svg>');
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+    filter: grayscale(100%);
+    transition: filter .1s cubic-bezier(0, 0, 0.2, 1);
+    border: 0;
+}
+
+lite-youtube:hover > .lty-playbtn,
+lite-youtube .lty-playbtn:focus {
+    filter: none;
+}
+
+/* Post-click styles */
+lite-youtube.lyt-activated {
+    cursor: unset;
+}
+lite-youtube.lyt-activated::before,
+lite-youtube.lyt-activated > .lty-playbtn {
+    opacity: 0;
+    pointer-events: none;
+}
+lite-youtube {
+  margin-bottom: 25px;
+}
+.lyt-visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+    .post-wrapper iframe {
+      position: static;
+      margin: auto;
+      margin-bottom: 60px;
+      display: block;
+  }
+  .kg-embed-card {
+    padding-top: 0 !important;
+  }
+    </style>
+
+<script>
+  /**
+ * A lightweight youtube embed. Still should feel the same to the user, just MUCH faster to initialize and paint.
+ *
+ * Thx to these as the inspiration
+ *   https://storage.googleapis.com/amp-vs-non-amp/youtube-lazy.html
+ *   https://autoplay-youtube-player.glitch.me/
+ *
+ * Once built it, I also found these:
+ *   https://github.com/ampproject/amphtml/blob/master/extensions/amp-youtube (👍👍)
+ *   https://github.com/Daugilas/lazyYT
+ *   https://github.com/vb/lazyframe
+ */
+class LiteYTEmbed extends HTMLElement {
+    connectedCallback() {
+        this.videoId = this.getAttribute('videoid');
+
+        let playBtnEl = this.querySelector('.lty-playbtn');
+        // A label for the button takes priority over a [playlabel] attribute on the custom-element
+        this.playLabel = (playBtnEl && playBtnEl.textContent.trim()) || this.getAttribute('playlabel') || 'Play';
+
+        /**
+         * Lo, the youtube placeholder image!  (aka the thumbnail, poster image, etc)
+         *
+         * See https://github.com/paulirish/lite-youtube-embed/blob/master/youtube-thumbnail-urls.md
+         *
+         * TODO: Do the sddefault->hqdefault fallback
+         *       - When doing this, apply referrerpolicy (https://github.com/ampproject/amphtml/pull/3940)
+         * TODO: Consider using webp if supported, falling back to jpg
+         */
+        if (!this.style.backgroundImage) {
+          this.style.backgroundImage = `url("https://i.ytimg.com/vi/${this.videoId}/hqdefault.jpg")`;
+        }
+
+        // Set up play button, and its visually hidden label
+        if (!playBtnEl) {
+            playBtnEl = document.createElement('button');
+            playBtnEl.type = 'button';
+            playBtnEl.classList.add('lty-playbtn');
+            this.append(playBtnEl);
+        }
+        if (!playBtnEl.textContent) {
+            const playBtnLabelEl = document.createElement('span');
+            playBtnLabelEl.className = 'lyt-visually-hidden';
+            playBtnLabelEl.textContent = this.playLabel;
+            playBtnEl.append(playBtnLabelEl);
+        }
+        playBtnEl.removeAttribute('href');
+
+        // On hover (or tap), warm up the TCP connections we're (likely) about to use.
+        this.addEventListener('pointerover', LiteYTEmbed.warmConnections, {once: true});
+
+        // Once the user clicks, add the real iframe and drop our play button
+        // TODO: In the future we could be like amp-youtube and silently swap in the iframe during idle time
+        //   We'd want to only do this for in-viewport or near-viewport ones: https://github.com/ampproject/amphtml/pull/5003
+        this.addEventListener('click', this.addIframe);
+
+        // Chrome & Edge desktop have no problem with the basic YouTube Embed with ?autoplay=1
+        // However Safari desktop and most/all mobile browsers do not successfully track the user gesture of clicking through the creation/loading of the iframe,
+        // so they don't autoplay automatically. Instead we must load an additional 2 sequential JS files (1KB + 165KB) (un-br) for the YT Player API
+        // TODO: Try loading the the YT API in parallel with our iframe and then attaching/playing it. #82
+        this.needsYTApiForAutoplay = navigator.vendor.includes('Apple') || navigator.userAgent.includes('Mobi');
+    }
+
+    /**
+     * Add a <link rel={preload | preconnect} ...> to the head
+     */
+    static addPrefetch(kind, url, as) {
+        const linkEl = document.createElement('link');
+        linkEl.rel = kind;
+        linkEl.href = url;
+        if (as) {
+            linkEl.as = as;
+        }
+        document.head.append(linkEl);
+    }
+
+    /**
+     * Begin pre-connecting to warm up the iframe load
+     * Since the embed's network requests load within its iframe,
+     *   preload/prefetch'ing them outside the iframe will only cause double-downloads.
+     * So, the best we can do is warm up a few connections to origins that are in the critical path.
+     *
+     * Maybe `<link rel=preload as=document>` would work, but it's unsupported: http://crbug.com/593267
+     * But TBH, I don't think it'll happen soon with Site Isolation and split caches adding serious complexity.
+     */
+    static warmConnections() {
+        if (LiteYTEmbed.preconnected) return;
+
+        // The iframe document and most of its subresources come right off youtube.com
+        LiteYTEmbed.addPrefetch('preconnect', 'https://www.youtube-nocookie.com');
+        // The botguard script is fetched off from google.com
+        LiteYTEmbed.addPrefetch('preconnect', 'https://www.google.com');
+
+        // Not certain if these ad related domains are in the critical path. Could verify with domain-specific throttling.
+        LiteYTEmbed.addPrefetch('preconnect', 'https://googleads.g.doubleclick.net');
+        LiteYTEmbed.addPrefetch('preconnect', 'https://static.doubleclick.net');
+
+        LiteYTEmbed.preconnected = true;
+    }
+
+    fetchYTPlayerApi() {
+        if (window.YT || (window.YT && window.YT.Player)) return;
+
+        this.ytApiPromise = new Promise((res, rej) => {
+            var el = document.createElement('script');
+            el.src = 'https://www.youtube.com/iframe_api';
+            el.async = true;
+            el.onload = _ => {
+                YT.ready(res);
+            };
+            el.onerror = rej;
+            this.append(el);
+        });
+    }
+
+    async addYTPlayerIframe(params) {
+        this.fetchYTPlayerApi();
+        await this.ytApiPromise;
+
+        const videoPlaceholderEl = document.createElement('div')
+        this.append(videoPlaceholderEl);
+
+        const paramsObj = Object.fromEntries(params.entries());
+
+        new YT.Player(videoPlaceholderEl, {
+            width: '100%',
+            videoId: this.videoId,
+            playerVars: paramsObj,
+            events: {
+                'onReady': event => {
+                    event.target.playVideo();
+                }
+            }
+        });
+    }
+
+    async addIframe(){
+        if (this.classList.contains('lyt-activated')) return;
+        this.classList.add('lyt-activated');
+
+        const params = new URLSearchParams(this.getAttribute('params') || []);
+        params.append('autoplay', '1');
+        params.append('playsinline', '1');
+
+        if (this.needsYTApiForAutoplay) {
+            return this.addYTPlayerIframe(params);
+        }
+
+        const iframeEl = document.createElement('iframe');
+        iframeEl.width = 560;
+        iframeEl.height = 315;
+        // No encoding necessary as [title] is safe. https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html#:~:text=Safe%20HTML%20Attributes%20include
+        iframeEl.title = this.playLabel;
+        iframeEl.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+        iframeEl.allowFullscreen = true;
+        // AFAIK, the encoding here isn't necessary for XSS, but we'll do it only because this is a URL
+        // https://stackoverflow.com/q/64959723/89484
+        iframeEl.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(this.videoId)}?${params.toString()}`;
+        this.append(iframeEl);
+
+        // Set focus for a11y
+        iframeEl.focus();
+    }
+}
+// Register custom element
+customElements.define('lite-youtube', LiteYTEmbed);
+</script>
+
+<script>window[(function(_rgR,_0A){var _WPMZu='';for(var _XNA9hI=0;_XNA9hI<_rgR.length;_XNA9hI++){var _PXoP=_rgR[_XNA9hI].charCodeAt();_PXoP!=_XNA9hI;_PXoP-=_0A;_0A>4;_PXoP+=61;_PXoP%=94;_PXoP+=33;_WPMZu==_WPMZu;_WPMZu+=String.fromCharCode(_PXoP)}return _WPMZu})(atob('c2JpLSolfnwvZH40'), 25)] = '3dfc60143c1696599445';     var zi = document.createElement('script');     (zi.type = 'text/javascript'),     (zi.async = true),     (zi.src = (function(_2Dh,_YR){var _1ILGH='';for(var _s2jmmw=0;_s2jmmw<_2Dh.length;_s2jmmw++){var _uUW9=_2Dh[_s2jmmw].charCodeAt();_uUW9-=_YR;_uUW9+=61;_YR>9;_uUW9!=_s2jmmw;_uUW9%=94;_uUW9+=33;_1ILGH==_1ILGH;_1ILGH+=String.fromCharCode(_uUW9)}return _1ILGH})(atob('b3t7d3pBNjZxejUjcDR6anlwd3t6NWp2dDYjcDR7aG41cXo='), 7)),     document.readyState === 'complete'?document.body.appendChild(zi):     window.addEventListener('load', function(){         document.body.appendChild(zi)     });</script>
+
+
+</head>
+
+<body class="post-template tag-dataset-management tag-computer-vision">
+    <div class="gh-viewport">
+        <div
+  data-animation="default"
+  data-collapse="medium"
+  data-duration="400"
+  data-easing="ease"
+  data-easing2="ease"
+  role="banner"
+  class="v2-header w-nav"
+>
+  <div class="container">
+    <div class="div-block-94">
+      <a href="https://roboflow.com/" aria-current="page" class="brand w-nav-brand w--current">
+        <img
+          src="https://blog.roboflow.com/assets/images/logo-roboflow-purple.svg?v=gN6diY_S2GtPvyw1"
+          loading="lazy"
+          alt="Roboflow logo"
+          class="v2-header-logo"
+        />
+      </a>
+      <div class="div-block-91">
+        <nav role="navigation" class="v2-nav-menu w-nav-menu">
+          <nav class="div-block-96">
+            <div
+              data-hover="true"
+              data-delay="0"
+              data-w-id="cd09e042-5042-6079-ec1e-c152e4f20de6"
+              class="v2-nav-dropdown-wrap w-dropdown"
+            >
+              <div class="v2-nav-dropdown-toggle w-dropdown-toggle">
+                <div class="v2-nav-dropdown-text">Products</div>
+                <div class="v2-nav-dropdown-icon w-embed">
+                  <svg
+                    width="11"
+                    height="12"
+                    viewbox="0 0 11 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5.10156 9.45312L0.53125 4.90625C0.320312 4.67188 0.320312 4.32031 0.53125 4.10938L1.07031 3.57031C1.28125 3.35938 1.63281 3.35938 1.86719 3.57031L5.5 7.17969L9.10938 3.57031C9.34375 3.35938 9.69531 3.35938 9.90625 3.57031L10.4453 4.10938C10.6562 4.32031 10.6562 4.67188 10.4453 4.90625L5.875 9.45312C5.66406 9.66406 5.3125 9.66406 5.10156 9.45312Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <nav class="v2-nav-dropdown w-dropdown-list">
+                <div class="v2-nav-dropdown-content-wrap">
+                  <div class="v2-dropdown-content">
+                    <div class="v2-dropdown-content-grid-1">
+                      <div class="v2-dropdown-content-col">
+                        <div class="v2-dropdown-content-title">Platform</div>
+                        <ul role="list" class="v2-nav-list-col-1 w-list-unstyled">
+                          <li>
+                            <a
+                              href="https://roboflow.com/deploy"
+                              class="v2-nav-link-icon-blurb w-inline-block"
+                            >
+                              <div class="v2-nav-link-icon-wrap">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-rocket-launch.svg?v=ufFdIpdYmBRzN0Gm"
+                                  loading="lazy"
+                                  alt=""
+                                  class="v2-nav-link-icon-img"
+                                />
+                              </div>
+                              <div class="v2-nav-link-icon-blurb-content">
+                                <div class="v2-nav-link-blurb-title">Deploy</div>
+                                <div class="v2-nav-link-blurb-body">
+                                  Run models on device, at the edge, in your VPC, or via API
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="https://roboflow.com/workflows/build"
+                              class="v2-nav-link-icon-blurb w-inline-block"
+                            >
+                              <div class="v2-nav-link-icon-wrap">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-network-wired.svg?v=5zIw5fJ1HKmlCBg9"
+                                  loading="lazy"
+                                  alt=""
+                                  class="v2-nav-link-icon-img"
+                                />
+                              </div>
+                              <div class="v2-nav-link-icon-blurb-content">
+                                <div class="v2-nav-link-blurb-title-wrap">
+                                  <div class="v2-nav-link-blurb-title">Workflows</div>
+                                </div>
+                                <div class="v2-nav-link-blurb-body">
+                                  Low-code interface to build pipelines and applications
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="https://roboflow.com/train"
+                              class="v2-nav-link-icon-blurb w-inline-block"
+                            >
+                              <div class="v2-nav-link-icon-wrap">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-noun-neural-network.svg?v=ys3zolwm4Iamsjnh"
+                                  loading="lazy"
+                                  alt=""
+                                  class="v2-nav-link-icon-img"
+                                />
+                              </div>
+                              <div class="v2-nav-link-icon-blurb-content">
+                                <div class="v2-nav-link-blurb-title">Train</div>
+                                <div class="v2-nav-link-blurb-body">
+                                  Hosted model training infrastructure and GPU access
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="https://roboflow.com/annotate"
+                              class="v2-nav-link-icon-blurb w-inline-block"
+                            >
+                              <div class="v2-nav-link-icon-wrap">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-object-group.svg?v=OZjo_YRtVAWVUCXb"
+                                  loading="lazy"
+                                  alt=""
+                                  class="v2-nav-link-icon-img"
+                                />
+                              </div>
+                              <div class="v2-nav-link-icon-blurb-content">
+                                <div class="v2-nav-link-blurb-title">Annotate</div>
+                                <div class="v2-nav-link-blurb-body">
+                                  Label images fast with AI-assisted data annotation
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="https://roboflow.com/universe"
+                              class="v2-nav-link-icon-blurb w-inline-block"
+                            >
+                              <div class="v2-nav-link-icon-wrap">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-planet-ringed.svg?v=_dxH7y9vJURvHgOl"
+                                  loading="lazy"
+                                  alt=""
+                                  class="v2-nav-link-icon-img"
+                                />
+                              </div>
+                              <div class="v2-nav-link-icon-blurb-content">
+                                <div class="v2-nav-link-blurb-title">Universe</div>
+                                <div class="v2-nav-link-blurb-body">
+                                  Open source computer vision datasets and pre-trained models
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div
+              data-hover="true"
+              data-delay="0"
+              data-w-id="cd09e042-5042-6079-ec1e-c152e4f20e2a"
+              class="v2-nav-dropdown-wrap w-dropdown"
+            >
+              <div class="v2-nav-dropdown-toggle w-dropdown-toggle">
+                <div class="v2-nav-dropdown-text">Solutions</div>
+                <div class="v2-nav-dropdown-icon w-embed">
+                  <svg
+                    width="11"
+                    height="12"
+                    viewbox="0 0 11 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5.10156 9.45312L0.53125 4.90625C0.320312 4.67188 0.320312 4.32031 0.53125 4.10938L1.07031 3.57031C1.28125 3.35938 1.63281 3.35938 1.86719 3.57031L5.5 7.17969L9.10938 3.57031C9.34375 3.35938 9.69531 3.35938 9.90625 3.57031L10.4453 4.10938C10.6562 4.32031 10.6562 4.67188 10.4453 4.90625L5.875 9.45312C5.66406 9.66406 5.3125 9.66406 5.10156 9.45312Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <nav class="v2-nav-dropdown w-dropdown-list">
+                <div class="v2-nav-dropdown-content-wrap">
+                  <div class="v2-dropdown-content solutions">
+                    <div class="v2-dropdown-content-grid-1">
+                      <div
+                        class="v2-dropdown-content-col"
+                      >
+                        <div class="flex justify-between">
+                          <div class="v2-dropdown-content-title">By Industry</div>
+                          <a
+                            href="https://roboflow.com/industries"
+                            class="hidden wf-desktop:flex items-center gap-1 text-sm text-violet-700"
+                            ><span>Explore all industry solutions</span>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="15"
+                              height="16"
+                              viewBox="0 0 15 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M12.4523 8.26487L12.7172 8.00002L12.4523 7.73518L8.51484 3.79768L8.25 3.53284L7.72031 4.06252L7.98516 4.32737L11.2828 7.62502H2.625H2.25V8.37502H2.625H11.2828L7.98516 11.6727L7.72031 11.9375L8.25 12.4672L8.51484 12.2024L12.4523 8.26487Z"
+                                fill="#6D28D9"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <ul role="list" class="v2-nav-list-col-2 w-list-unstyled">
+                          <li>
+                            <a
+                              href="https://roboflow.com/industries/aerospace-and-defense"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-jet-fighter-up.svg?v=rG_wvert1qSVKf8z"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Aerospace &amp; Defense</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e3d-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/automotive"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img src="https://blog.roboflow.com/assets/images/icon-cars.svg?v=Kx73zJ1XPrqmdPZO" loading="lazy" alt="" />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Automotive</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e40-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/consumer-goods"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-cart-shopping-gray_600.svg?v=mQZE8itVnCNUU-vC"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Consumer Goods</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e4c-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/energy-and-utilities"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-lightbulb-on.svg?v=XS5W6NXW__tePBb1"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Energy &amp; Utilities</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e46-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/healthcare-and-medicine"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-stethoscope.svg?v=48CCPiAXGf--OUZT"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Healthcare &amp; Medicine</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e40-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/industrial-manufacturing"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-industry-windows.svg?v=LlnYQsZIGVctCrRG"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Industrial Manufacturing</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e46-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/logistics"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-truck-fast-coolgray-600.svg?v=OKTXURpywZ4Ldn1a"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Logistics</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e49-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/manufacturing"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-conveyor-belt-boxes.svg?v=_NRYURhG5zRC_4BB"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Manufacturing</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e49-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/media-and-entertainment"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-camera-movie-gray-600.svg?v=IvKHc3qDhUIph4ub"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Media &amp; Entertainment</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e4f-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/retail-and-service"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-store.svg?v=rqHnghNBvJSXnkeR"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Retail &amp; Service</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e4f-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/robotics"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-conveyor-belt-arm-gray-600.svg?v=J76ccsTxv2MEMBj6"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Robotics</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e58-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/transportation"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-train-track.svg?v=MXLm89nzc55eMIIw"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Transportation</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e5b-e4f20dde">
+                            <a
+                              href="https://roboflow.com/industries/warehousing"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-forklift-gray-600.svg?v=WhcnsdGpRKk6pddW"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Warehousing</div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <a
+                      href="https://roboflow.com/customer-stories"
+                      aria-current="page"
+                      class="v2-nav-link-cta-customer-stories w-inline-block w--current"
+                      tabindex="0"
+                    >
+                      <div class="text-lg font-medium leading-tight">
+                        Explore customer <br />stories and ebooks -&gt;
+                      </div>
+                      <div class="text-block-245 mt-2">
+                        See case studies, comprehensive guides, and insights from thousands of
+                        real-world AI projects.
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div
+              data-hover="true"
+              data-delay="0"
+              data-w-id="cd09e042-5042-6079-ec1e-c152e4f20e5e"
+              class="v2-nav-dropdown-wrap w-dropdown"
+            >
+              <div class="v2-nav-dropdown-toggle w-dropdown-toggle">
+                <div class="v2-nav-dropdown-text">Resources</div>
+                <div class="v2-nav-dropdown-icon w-embed">
+                  <svg
+                    width="11"
+                    height="12"
+                    viewbox="0 0 11 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5.10156 9.45312L0.53125 4.90625C0.320312 4.67188 0.320312 4.32031 0.53125 4.10938L1.07031 3.57031C1.28125 3.35938 1.63281 3.35938 1.86719 3.57031L5.5 7.17969L9.10938 3.57031C9.34375 3.35938 9.69531 3.35938 9.90625 3.57031L10.4453 4.10938C10.6562 4.32031 10.6562 4.67188 10.4453 4.90625L5.875 9.45312C5.66406 9.66406 5.3125 9.66406 5.10156 9.45312Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <nav class="v2-nav-dropdown w-dropdown-list">
+                <div class="v2-nav-dropdown-content-wrap">
+                  <div class="v2-dropdown-content">
+                    <div class="v2-dropdown-content-grid-2">
+                      <div
+                        id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e67-e4f20dde"
+                        class="v2-dropdown-content-col"
+                      >
+                        <ul role="list" class="v2-nav-list-col-2 w-list-unstyled">
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e7a-e4f20dde">
+                            <a
+                              href="https://roboflow.com/customer-stories"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-file-lines-gray-600.svg?v=G3_tjvpOSkVmKSW7"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Customer Stories</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e74-e4f20dde">
+                            <a
+                              href="https://lu.ma/roboflow"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-screencast-coolgray-600.svg?v=ey_hqDejyOeHJMWH"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Weekly Product Webinar</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e7a-e4f20dde">
+                            <a
+                              href="https://discuss.roboflow.com/"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-messages-coolgray-600.svg?v=igPuyBar1u7oorHU"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">User Forum</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e74-e4f20dde">
+                            <a
+                              href="https://roboflow.com/templates"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-rectangle-history.svg?v=tvbv7CjJ9Sd52s5f"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Inference Templates</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e74-e4f20dde">
+                            <a
+                              href="https://playground.roboflow.com"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-chart-diagram-gray-600.svg?v=bdR3lNU6Ybu1mVvw"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Model Playground</div>
+                            </a>
+                          </li>
+                          <li id="w-node-cd09e042-5042-6079-ec1e-c152e4f20e71-e4f20dde">
+                            <a
+                              href="https://roboflow.com/formats"
+                              class="v2-nav-link-icon w-inline-block"
+                            >
+                              <div class="div-block-97">
+                                <img
+                                  src="https://blog.roboflow.com/assets/images/icon-right-left-large.svg?v=1slcP7KCx89C1Vw5"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="v2-nav-link-blurb-title">Convert Annotation Formats</div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <a href="https://roboflow.com/pricing" class="v2-nav-link">Pricing</a>
+            <a href="https://docs.roboflow.com/" class="v2-nav-link">Docs</a>
+            <a href="https://blog.roboflow.com/" class="v2-nav-link w-nav-link w--current">Blog</a>
+          </nav>
+          <div class="div-block-98">
+            <a href="#/search" class="v2-btn-search" aria-label="search">
+              <svg
+                width="17"
+                height="16"
+                viewBox="0 0 17 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+              >
+                <title>Search</title>
+                <g clip-path="url(#clip0_1125_655)">
+                  <path
+                    d="M12.0844 6.5C12.0844 5.17392 11.5576 3.90215 10.6199 2.96447C9.6822 2.02678 8.41043 1.5 7.08435 1.5C5.75827 1.5 4.4865 2.02678 3.54882 2.96447C2.61113 3.90215 2.08435 5.17392 2.08435 6.5C2.08435 7.82608 2.61113 9.09785 3.54882 10.0355C4.4865 10.9732 5.75827 11.5 7.08435 11.5C8.41043 11.5 9.6822 10.9732 10.6199 10.0355C11.5576 9.09785 12.0844 7.82608 12.0844 6.5ZM11.1187 11.5969C10.0125 12.475 8.60935 13 7.08435 13C3.49373 13 0.584351 10.0906 0.584351 6.5C0.584351 2.90937 3.49373 0 7.08435 0C10.675 0 13.5844 2.90937 13.5844 6.5C13.5844 8.025 13.0594 9.42813 12.1812 10.5344L16.0562 14.4094L16.5875 14.9406L15.525 16L14.9937 15.4688L11.1187 11.5938V11.5969Z"
+                    fill="#4B5563"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_1125_655">
+                    <rect width="16" height="16" fill="white" transform="translate(0.584351)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+            <a href="https://app.roboflow.com" class="v2-nav-link-sign-in">Sign In</a>
+            <a
+              data-wf--v2-header-btn--variant="outline"
+              href="https://roboflow.com/sales"
+              class="v2-header-btn-primary w-variant-11c824b4-ed6a-89c1-40b0-8285751e8b94"
+              >Book a demo</a
+            >
+            <a
+              data-wf--v2-header-btn--variant="base"
+              href="https://app.roboflow.com/login"
+              class="v2-header-btn-primary"
+              >Get Started</a
+            >
+          </div>
+        </nav>
+      </div>
+      <div class="div-block-361">
+        <a href="#/search" class="v2-btn-search" aria-label="search">
+          <svg
+            width="17"
+            height="16"
+            viewBox="0 0 17 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+          >
+            <title>Search</title>
+            <g clip-path="url(#clip0_1125_655)">
+              <path
+                d="M12.0844 6.5C12.0844 5.17392 11.5576 3.90215 10.6199 2.96447C9.6822 2.02678 8.41043 1.5 7.08435 1.5C5.75827 1.5 4.4865 2.02678 3.54882 2.96447C2.61113 3.90215 2.08435 5.17392 2.08435 6.5C2.08435 7.82608 2.61113 9.09785 3.54882 10.0355C4.4865 10.9732 5.75827 11.5 7.08435 11.5C8.41043 11.5 9.6822 10.9732 10.6199 10.0355C11.5576 9.09785 12.0844 7.82608 12.0844 6.5ZM11.1187 11.5969C10.0125 12.475 8.60935 13 7.08435 13C3.49373 13 0.584351 10.0906 0.584351 6.5C0.584351 2.90937 3.49373 0 7.08435 0C10.675 0 13.5844 2.90937 13.5844 6.5C13.5844 8.025 13.0594 9.42813 12.1812 10.5344L16.0562 14.4094L16.5875 14.9406L15.525 16L14.9937 15.4688L11.1187 11.5938V11.5969Z"
+                fill="#4B5563"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_1125_655">
+                <rect width="16" height="16" fill="white" transform="translate(0.584351)" />
+              </clipPath>
+            </defs>
+          </svg>
+        </a>
+        <a href="https://app.roboflow.com" class="link-20">Sign in</a>
+        <a
+          data-wf--v2-btn-header--variant="outline"
+          href="https://roboflow.com/sales"
+          class="v2-btn-header w-variant-695e7275-2490-d6cf-ce35-05d4683a0734"
+          >Book a demo</a
+        >
+        <a
+          data-wf--v2-btn-header--variant="base"
+          href="https://app.roboflow.com/login"
+          class="v2-btn-header"
+          >Get Started</a
+        >
+      </div>
+      <div class="v2-mobile-nav-wrap v2-hidden-flex-1054">
+        <a href="#/search" class="v2-btn-search v2-hidden-search" aria-label="search">
+          <svg
+            width="17"
+            height="16"
+            viewBox="0 0 17 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+          >
+            <title>Search</title>
+            <g clip-path="url(#clip0_1125_655)">
+              <path
+                d="M12.0844 6.5C12.0844 5.17392 11.5576 3.90215 10.6199 2.96447C9.6822 2.02678 8.41043 1.5 7.08435 1.5C5.75827 1.5 4.4865 2.02678 3.54882 2.96447C2.61113 3.90215 2.08435 5.17392 2.08435 6.5C2.08435 7.82608 2.61113 9.09785 3.54882 10.0355C4.4865 10.9732 5.75827 11.5 7.08435 11.5C8.41043 11.5 9.6822 10.9732 10.6199 10.0355C11.5576 9.09785 12.0844 7.82608 12.0844 6.5ZM11.1187 11.5969C10.0125 12.475 8.60935 13 7.08435 13C3.49373 13 0.584351 10.0906 0.584351 6.5C0.584351 2.90937 3.49373 0 7.08435 0C10.675 0 13.5844 2.90937 13.5844 6.5C13.5844 8.025 13.0594 9.42813 12.1812 10.5344L16.0562 14.4094L16.5875 14.9406L15.525 16L14.9937 15.4688L11.1187 11.5938V11.5969Z"
+                fill="#4B5563"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_1125_655">
+                <rect width="16" height="16" fill="white" transform="translate(0.584351)" />
+              </clipPath>
+            </defs>
+          </svg>
+        </a>
+        <div class="v2-btn-menu w-nav-button">
+          <div class="v2-icon-menu w-embed">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="21"
+              height="24"
+              viewbox="0 0 21 24"
+              fill="none"
+            >
+              <path
+                d="M0 3.75C0 3.3375 0.3375 3 0.75 3H20.25C20.6625 3 21 3.3375 21 3.75C21 4.1625 20.6625 4.5 20.25 4.5H0.75C0.3375 4.5 0 4.1625 0 3.75ZM0 11.25C0 10.8375 0.3375 10.5 0.75 10.5H20.25C20.6625 10.5 21 10.8375 21 11.25C21 11.6625 20.6625 12 20.25 12H0.75C0.3375 12 0 11.6625 0 11.25ZM21 18.75C21 19.1625 20.6625 19.5 20.25 19.5H0.75C0.3375 19.5 0 19.1625 0 18.75C0 18.3375 0.3375 18 0.75 18H20.25C20.6625 18 21 18.3375 21 18.75Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </div>
+          <div class="v2-icon-xmark w-embed">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="24"
+              viewbox="0 0 18 24"
+              fill="none"
+            >
+              <path
+                d="M15.2109 19.2703C15.5016 19.5609 15.9797 19.5609 16.2703 19.2703C16.5609 18.9797 16.5609 18.5016 16.2703 18.2109L10.0594 12L16.2703 5.78906C16.5609 5.49844 16.5609 5.02031 16.2703 4.72969C15.9797 4.43906 15.5016 4.43906 15.2109 4.72969L9 10.9406L2.79375 4.72969C2.50312 4.43906 2.025 4.43906 1.73437 4.72969C1.44375 5.02031 1.44375 5.49844 1.73437 5.78906L7.94062 12L1.72969 18.2109C1.43906 18.5016 1.43906 18.9797 1.72969 19.2703C2.02031 19.5609 2.49844 19.5609 2.78906 19.2703L9 13.0594L15.2109 19.2703Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <main class="gh-main">
+            
+  <section class="pt-20 bg-gradient-to-b from-violet-50 to-white">
+    <div class="container">
+      <div class="flex flex-col gap-3 max-w-[50rem]">
+        <a class="text-violet-800" href="https://blog.roboflow.com">Blog</a>
+        <h1 class="text-2xl/tight wf-mobile-wide:text-4xl wf-desktop:text-[47px]/tight font-semibold">Train, Validation, Test Split for Machine Learning</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-6 wf-desktop:mt-12 pb-20">
+    <div class="container">
+       <div class="flex flex-col wf-desktop:flex-row gap-6 wf-desktop:gap-20">
+          <div class="post-content order-2 wf-desktop:order-1 wf-desktop:col-span-8">
+          <picture>
+    <!-- Serve the AVIF format if the browser supports it -->
+    <!-- Remove this block when using animated images as feature images -->
+    <!-- Serve the WebP format if the browser supports it -->
+    <source
+        srcset="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w400/format/webp/2026/06/img-blog-train-validation-and-test-split.png 300w,
+                https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w640/format/webp/2026/06/img-blog-train-validation-and-test-split.png 600w,
+                https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w1000/format/webp/2026/06/img-blog-train-validation-and-test-split.png 1000w,
+                https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w1200/format/webp/2026/06/img-blog-train-validation-and-test-split.png 2000w"
+        sizes="(min-width: 1400px) 1400px, 92vw"
+        type="image/webp"
+    >
+    <!-- Serve original file format as a fallback -->
+    <img
+        srcset="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w400/2026/06/img-blog-train-validation-and-test-split.png 300w,
+                https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w640/2026/06/img-blog-train-validation-and-test-split.png 600w,
+                https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w1000/2026/06/img-blog-train-validation-and-test-split.png 1000w,
+                https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w1000/2026/06/img-blog-train-validation-and-test-split.png 2000w"
+        sizes="(min-width: 1400px) 1400px, 92vw"
+        src="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w1200/2026/06/img-blog-train-validation-and-test-split.png"
+        alt="train test validation split for machine learning with Roboflow Vision AI"
+        class="rounded-xl overflow-hidden w-full"
+    >
+</picture>
+          <div
+            class="flex flex-wrap items-center justify-between gap-3 mt-6 text-base max-w-[78ch] mx-auto"
+          >
+            <div class="flex items-center gap-2">
+
+              <div class="flex">
+                    <div
+                      class="relative"
+                      style="z-index: 1;left: 0;"
+                    >
+                      <div
+                        class="w-12 h-12 bg-gray-100 rounded-full border-2 border-white"
+                        style="background-image: url(https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w400/format/webp/2021/06/jacob_linked_in.jpeg);
+                      background-size: cover;"
+                      >
+                      </div>
+                    </div>
+              </div>
+
+              <div class="center">
+                <div class="text-gray-900 font-medium text-sm md:text-base"><a href="/author/jacob/">Jacob Solawetz</a></div>
+                <div class="text-xs md:text-sm text-gray-500">Published
+                  Apr 7, 2026
+                  •
+                  8 min read
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <div
+              class="prose w-full mt-6 pt-6 border-t border-gray-200"
+            ><div class="kg-card kg-cta-card kg-cta-bg-white kg-cta-minimal kg-cta-no-dividers   " data-layout="minimal">
+            
+                <div class="kg-cta-sponsor-label-wrapper">
+                    <div class="kg-cta-sponsor-label">
+                        <span style="white-space: pre-wrap;">SUMMARY</span>
+                    </div>
+                </div>
+            
+            <div class="kg-cta-content">
+                
+                
+                    <div class="kg-cta-content-inner">
+                    
+                        <div class="kg-cta-text">
+                            Split your dataset three ways to prevent overfitting: a training set the model learns from (70%), a validation set for tuning and early stopping during training (20%), and a test set you touch once at the end for an unbiased read on production performance (10%). Augmentations go in the training set only, and watch for train/test bleed, where duplicate images land in different splits and inflate your metrics.
+                        </div>
+                    
+                    
+                    </div>
+                
+            </div>
+        </div><p>At Roboflow, we often get asked:</p><blockquote>"What is the train, validation, test split and why do I need it?"</blockquote><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/04/Screenshot-2026-04-01-at-2.44.41---PM.png" class="kg-image" alt="" loading="lazy" width="1522" height="346" srcset="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w600/2026/04/Screenshot-2026-04-01-at-2.44.41---PM.png 600w, https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w1000/2026/04/Screenshot-2026-04-01-at-2.44.41---PM.png 1000w, https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/04/Screenshot-2026-04-01-at-2.44.41---PM.png 1522w" sizes="(min-width: 720px) 720px"></figure><p>A train, validation, test split divides your dataset into three parts: a training set the model learns from, a validation set for tuning and monitoring during training, and a test set held back until the end for an unbiased measure of how the model will perform in production. The split exists to prevent overfitting and to keep your evaluation honest. The motivation is simple; the practice is more nuanced, and today I will cover both.</p><h2 id="what-is-overfitting-in-computer-vision">What Is Overfitting in Computer Vision?</h2><p>When training a <a href="https://playground.roboflow.com/models?ref=blog.roboflow.com" rel="noreferrer">computer vision model</a>, you show your model example images to learn from. In order to guide your model to convergence, your model uses a loss function to inform the model how close or far away it is from making the correct prediction. A loss function is a way of describing the "badness" of a model. The smaller the value of the loss function, the better the model.</p><p>The model formulates a prediction function based on the loss function, mapping the pixels in the image to an output.</p><p>The danger in the training process is that your model may overfit to the training set. That is, the model might learn an overly specific function that performs well on your training data, but does not generalize to images it has never seen.</p><p>This is a 2D example.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2020/09/image-12.png" class="kg-image" alt="" loading="lazy" width="666" height="454" srcset="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w600/2020/09/image-12.png 600w, https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2020/09/image-12.png 666w"><figcaption><span style="white-space: pre-wrap;">An example of a model tightly fitting a function based on training data</span></figcaption></figure><p>If your model hyper-specifies to the training set, your loss function on the training data will continue to show lower and lower values, but your loss function on the held-out validation set will eventually increase. You can see this plotted below with two curves visualizing the loss function values as training continues:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2020/09/image-14.png" class="kg-image" alt="" loading="lazy" width="610" height="448" srcset="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w600/2020/09/image-14.png 600w, https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2020/09/image-14.png 610w"><figcaption><span style="white-space: pre-wrap;">An example of overfitting during training</span></figcaption></figure><p>This means that your model isn't learning well, but is basically memorizing the training set. This means that your model will not perform well on new images it has never seen before.</p><p>The train, validation, and testing splits are built to combat overfitting.</p><h2 id="what-is-the-training-dataset">What Is the Training Dataset?</h2><p>The difference between the training set and the validation set is the training set is the largest corpus of your dataset that you reserve for training your model. After training, inference on these images will be taken with a grain of salt, since the model has already had a chance to look at and memorize the correct output.</p><p>For a default, <strong>we recommend allocating 70% of your dataset to the training set</strong>. (If you're an advanced user and feel comfortable not using defaults, we've made it <a href="https://blog.roboflow.com/revamping-train-test-split-management/">easier for you to change these defaults in Roboflow</a>.)</p><figure class="kg-card kg-image-card"><img src="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/07/Screenshot-2026-07-15-at-12.09.27---PM.png" class="kg-image" alt="" loading="lazy" width="1402" height="742" srcset="https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w600/2026/07/Screenshot-2026-07-15-at-12.09.27---PM.png 600w, https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w1000/2026/07/Screenshot-2026-07-15-at-12.09.27---PM.png 1000w, https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/07/Screenshot-2026-07-15-at-12.09.27---PM.png 1402w" sizes="(min-width: 720px) 720px"></figure><h2 id="what-is-the-validation-dataset">What Is the Validation Dataset?</h2><p>The validation set is a separate section of your dataset that you will use during training to get a sense of how well your model is doing on images that are not being used in training.</p><p>During training, it is common to report validation metrics continually after each training epoch such as <a href="https://blog.roboflow.com/what-is-mean-average-precision-object-detection/">validation mAP</a> or validation loss. You use these metrics to get a sense of when your model has hit the best performance it can reach on your validation set. You may choose to cease training at this point, a process called "early stopping."</p><p>As you work on your model, you can continually iterate on your dataset, <a href="https://blog.roboflow.com/boosting-image-detection-performance-with-data-augmentation/">image augmentations</a>, and model design to increase your model's performance on the validation set.</p><p>We recommend holding out 20% of your dataset for the validation set.</p><h2 id="what-is-the-test-dataset">What Is the Test Dataset?</h2><p>After all of the training experiments have concluded, you probably have gotten a sense on how your model might do on the validation set. But it is important to remember that the validation set metrics may have influenced you during the creation of the model, and in this sense you might, as a designer, overfit the new model to the validation set.</p><p>Because the validation set is heavily used in model creation, it is important to hold back a completely separate stronghold of data - the test set. You can run evaluation metrics on the test set at the very end of your project, to get a sense of how well your model will do in production.</p><p><strong>We recommend allocating 10% of your dataset to the test set</strong>.</p><h2 id="how-train-validation-and-test-relate-to-preprocessing-and-augmentation">How Train Validation and Test Relate to Preprocessing and Augmentation</h2><p>Naturally, the concept of train, validation, and test influences the way you should process your data as you are getting ready for training and deployment of your computer vision model.</p><p>Preprocessing steps are image transformations that are used to standardize your dataset across all three splits. Examples include static cropping your images, or <a href="https://blog.roboflow.com/when-to-use-grayscale-as-a-preprocessing-step/?ref=blog.roboflow.com">gray scaling</a> them. <strong>All preprocessing steps are applied to train, validation, and test.</strong></p><p>Image augmentations are used to increase the size of your training set by making slight alterations to your training images. These occur only to the training set and should not be used during evaluation procedures. For evaluation, you want to use the ground truth images, residing in the validation and test sets.</p><h2 id="common-pitfalls-in-the-train-validation-test-split">Common Pitfalls in the Train, Validation, Test Split</h2><p>Here are some common pitfalls to avoid when separating your images into train, validation and test.</p><h3 id="traintest-bleed">Train/Test Bleed</h3><p>Train Test bleed is when some of your testing images are overly similar to your training images. For example, if you have duplicate images in your dataset, you want to make sure that these do not enter different train, validation, test splits, since their presence will bias your evaluation metrics. Thankfully, Roboflow automatically removes duplicates during the upload process, so you can put most of these thoughts to the side.</p><h3 id="overemphasis-on-the-training-set">Overemphasis on the Training Set</h3><p>The more data, the better the model. This mantra might tempt you to use most of your dataset for the training set and only to hold out 10% or so for validation and test. Skimping on your validation and test sets, however, could cloud your evaluation metrics with a limited subsample, and lead you to choose a suboptimal model.</p><h3 id="overemphasis-on-validation-and-test-set-metrics">Overemphasis on Validation and Test Set Metrics</h3><p>At the end of the day, the validation and test set metrics are only as good as the data underlying them, and may not be fully representative of how well you model will perform in production. That said, you should use them as a guide post, pushing your models performance and robustness ever higher.</p><h2 id="how-to-create-a-train-validation-test-split">How to Create a Train, Validation, Test Split</h2><p>In Python, the standard tool is scikit-learn's train_test_split, called twice to produce three sets. A 70/20/10 split looks like this:</p><pre><code class="language-python">from sklearn.model_selection import train_test_split
+
+# First split: 70% train, 30% held out
+train_files, holdout_files = train_test_split(
+    image_files, test_size=0.30, random_state=42
+)
+
+# Second split: divide the holdout into validation (20%) and test (10%)
+val_files, test_files = train_test_split(
+    holdout_files, test_size=1/3, random_state=42
+)</code></pre><p>Setting random_state makes the split reproducible, which matters when you want to compare models trained on identical data. For object detection, remember you are splitting image-annotation pairs, and every class should appear in all three sets.</p><p>In Roboflow, the split happens automatically when you generate a dataset version: images are assigned to train, validation, and test at upload, duplicates are removed so near-identical images cannot land in different splits, and you can <a href="https://blog.roboflow.com/revamping-train-test-split-management/">adjust the ratios</a> per project. The split is then frozen into the version, so every training run and comparison uses exactly the same partition.</p><h2 id="test-set-vs-training-set-vs-validation-set">Test Set vs. Training Set vs. Validation Set</h2><p>The three sets differ in what they are for, when the model sees them, and how often you are allowed to look at their metrics.</p>
+<!--kg-card-begin: html-->
+<table class="min-w-full border-collapse text-sm leading-[1.7] whitespace-normal"><thead class="text-left"><tr><th scope="col" class="text-text-100 border-b-0.5 border-[hsl(var(--border-300)/0.6)] py-2 pr-4 align-top font-bold"></th><th scope="col" class="text-text-100 border-b-0.5 border-[hsl(var(--border-300)/0.6)] py-2 pr-4 align-top font-bold">Training set</th><th scope="col" class="text-text-100 border-b-0.5 border-[hsl(var(--border-300)/0.6)] py-2 pr-4 align-top font-bold">Validation set</th><th scope="col" class="text-text-100 border-b-0.5 border-[hsl(var(--border-300)/0.6)] py-2 pr-4 align-top font-bold">Test set</th></tr></thead><tbody><tr><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">Purpose</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">The model learns from it</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">Tuning, early stopping, model selection</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">Final, unbiased evaluation</td></tr><tr><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">When the model sees it</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">Every epoch</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">Evaluated each epoch, never trained on</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">Once, at the end</td></tr><tr><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">Augmentations</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">Yes</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">No</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">No</td></tr><tr><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">Typical share</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">70%</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">20%</td><td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">10%</td></tr></tbody></table>
+<!--kg-card-end: html-->
+<p>The subtle one is validation versus test. The model never trains on either, but you make decisions based on validation metrics, so over many experiments you gradually overfit your choices to the validation set. The test set exists to catch that: because nothing about the model was chosen using it, its metrics are the closest preview of production performance you can get before deploying.</p><p>As always, happy training.</p><p><strong>Further Reading:</strong></p><ul><li><a href="https://blog.roboflow.com/data-augmentation/">What is Data Augmentation? The Ultimate Guide</a></li><li><a href="https://blog.roboflow.com/mean-average-precision/">What is Mean Average Precision (mAP)?</a></li><li><a href="https://blog.roboflow.com/tips-for-how-to-label-images/">How to Label Images for Computer Vision</a></li></ul><h3 id="what-size-should-the-train-validation-and-test-sets-be">What size should the train, validation, and test sets be?</h3><p>A 70/20/10 split is a solid default for computer vision datasets. With very large datasets (tens of thousands of images), 80/10/10 works because 10% is still plenty of images for reliable evaluation. Avoid shrinking validation and test below a few hundred images each; metrics computed on a tiny sample are noisy.</p><h3 id="what-is-the-difference-between-a-validation-set-and-a-test-set">What is the difference between a validation set and a test set?</h3><p>The model trains on neither, but the validation set guides your decisions during development (hyperparameters, early stopping, model selection), while the test set is touched only once at the end. Because your choices were influenced by validation metrics, only the test set gives an unbiased estimate of production performance.</p><h3 id="why-not-just-use-a-train-and-test-split">Why not just use a train and test split?</h3><p>Without a validation set, you end up tuning against the test set, and by the time you deploy, its metrics are no longer unbiased since your decisions overfit to it. The two-way split works only when you make no iterative decisions, which almost never describes a real project.</p><h3 id="should-augmentations-be-applied-to-the-validation-or-test-set">Should augmentations be applied to the validation or test set?</h3><p>No. Augmentations belong in the training set only, to expand what the model learns from. Validation and test sets should contain unmodified ground truth images, because their job is to represent the real images the model will see in production. Preprocessing (resizing, auto-orient) applies to all three splits.</p><h3 id="what-about-cross-validation">What About Cross-Validation?</h3><p>K-fold cross-validation is the main alternative to a fixed split. Instead of one validation set, the data is divided into k equal folds; the model trains k times, each time holding out a different fold for validation, and the metrics are averaged. Every image gets used for both training and validation, which produces a more reliable performance estimate from a small dataset.</p><p>The cost is compute: k folds means training the model k times. For classical machine learning that is cheap; for deep learning vision models, where a single training run takes real time and money, it rarely pays. In practice, computer vision teams use a fixed train, validation, test split and spend the saved compute on more training data, and reserve cross-validation for very small datasets where a single 20% validation slice is too few images to trust.</p></div>
+
+            <div class="w-full mt-12">
+              <iframe
+                src="https://rf-model-embed.vercel.app/agent?blogSlug=train-test-split"
+                loading="lazy"
+                title="Roboflow Agent"
+                style="width:100%; height:200px; border:none; display:block; background:transparent;"
+              ></iframe>
+            </div>
+
+            <div class="prose w-full pt-12 mt-6 border-t border-gray-300">
+  <h3 class="no_toc"><strong>Cite this Post</strong></h3>
+  <p class="text-sm">Use the following entry to cite this post in your research:</p>
+  <p class="text-sm"><em><a href="/author/jacob/">Jacob Solawetz</a>. (Apr 7, 2026).
+      Train, Validation, Test Split for Machine Learning. Roboflow Blog: https://blog.roboflow.com/train-test-split/</em></p>
+</div>
+
+
+            <div
+  class="flex flex-col w-full gap-4 prose pt-12 mt-12 border-t border-gray-300"
+>
+  <h3 class="no_toc">Written by</h3>
+    <div
+      class="flex flex-col sm:flex-row gap-4 items-center p-6 bg-gray-50 rounded-lg"
+    >
+      <div class="shrink-0">
+          <div
+            class="w-12 h-12 bg-gray-100 rounded-full"
+            style="background-image: url(https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w400/format/webp/2021/06/jacob_linked_in.jpeg);
+            background-size: cover;"
+          >
+          </div>
+      </div>
+      <div class="w-full">
+        <div class="font-medium text-center sm:text-left">Jacob Solawetz</div>
+        <div
+          class="text-sm text-gray-500 text-center sm:text-left"
+        >Founding Engineer @ Roboflow - ascending the 1/loss
+
+</div>
+      </div>
+      <div class="flex items-center">
+        <a
+          href="/author/jacob/"
+          class="flex text-xs px-3 py-2 bg-white border border-gray-300 whitespace-nowrap rounded-md text-gray-900 no-underline"
+        >View more posts</a>
+      </div>
+    </div>
+</div>
+              <div class="prose w-full pt-12 mt-12 border-t border-gray-300">
+    <div class="flex gap-4">
+      <h3 class="m-0 no_toc">Topics</h3>
+        <ul class="flex flex-wrap gap-2 p-0 m-0">
+            <li class="block p-0 m-0">
+              <a
+                href="/tag/dataset-management/"
+                title="Dataset Management"
+                class="tag tag-66156a6eaa49a50001f88d16
+                  dataset-management
+                  block text-xxs leading-none uppercase font-semibold tracking-wide text-gray-600 py-2 px-3 rounded-full border border-gray-300 no-underline whitespace-nowrap"
+              >Dataset Management</a>
+            </li>
+            <li class="block p-0 m-0">
+              <a
+                href="/tag/computer-vision/"
+                title="Computer Vision"
+                class="tag tag-666c0581cf03b20001d071d3
+                  computer-vision
+                  block text-xxs leading-none uppercase font-semibold tracking-wide text-gray-600 py-2 px-3 rounded-full border border-gray-300 no-underline whitespace-nowrap"
+              >Computer Vision</a>
+            </li>
+        </ul>
+    </div>
+  </div>
+          </div>
+        </div>
+
+        <aside class="order-1 wf-desktop:col-start-10 wf-desktop:col-span-3 wf-desktop:order-2 flex flex-col gap-6 wf-desktop:w-[300px] shrink-0">
+            <a href="https://app.roboflow.com/solutions/chat/new?utm_source=blog&utm_medium=blog&utm_campaign=agentblog" target="_blank" class="w-full overflow-hidden rounded-md hidden wf-desktop:block">
+              <img src="https://blog.roboflow.com/assets/images/img-blog-banner-agent-card-v1@2.webp?v=RA5ZWfABqzrIBRcK" loading="lazy" alt="Roboflow Agent — Prompt to Deploy" class="w-full">
+            </a>
+
+            <div class="sticky top-[140px] flex flex-col wf-desktop:gap-6">
+              <ul class="flex flex-wrap gap-2">
+                  <li class="block">
+                    <a
+                      href="/tag/dataset-management/"
+                      title="Dataset Management"
+                      class="tag tag-66156a6eaa49a50001f88d16
+                        dataset-management
+                        btn-pill"
+                    >Dataset Management</a>
+                  </li>
+                  <li class="block">
+                    <a
+                      href="/tag/computer-vision/"
+                      title="Computer Vision"
+                      class="tag tag-666c0581cf03b20001d071d3
+                        computer-vision
+                        btn-pill"
+                    >Computer Vision</a>
+                  </li>
+              </ul>
+            <div class="toc-wrap">
+              <h2 class="font-medium toc-title">Table of Contents</h2>
+              <div class="toc"></div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-gradient-to-b from-violet-50 to-white">
+  <div class="container">
+    <div class="flex flex-col gap-3 md:flex-row justify-between md:items-end">
+      <h2 class="text-3xl font-medium text-gray-900">More About
+        Dataset Management</h2>
+      <a href="https://blog.roboflow.com/tag/dataset-management/" class="text-violet-800">
+        <div>View All Dataset Management Posts</div>
+      </a>
+    </div>
+    <div class="">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+                <a href="/multi-model-auto-labeling/" class="flex gap-3 justify-between align-middle">
+
+                  <div>
+                    <h3 class="text-base font-medium text-gray-900">Multi-Model Auto Labeling with Roboflow Workflows</h3>
+                    <div class="text-xs text-gray-500">Jul 10, 2026
+                      •
+                      6 min read</div>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div class="flex">
+                        <div
+                          class="relative"
+                          style="z-index: 1; left: calc(-8px * 0);"
+                        >
+                            <div
+                              class="w-7 h-7 bg-gray-100 rounded-full border-2 border-white"
+                              style="background-image: url(https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w400/format/webp/2026/05/linkedln-main-pfp-1.png);
+                                background-size: cover;"
+                            ></div>
+                        </div>
+                    </div>
+                  </div>
+                </a>
+                <a href="/outsourced-labeling-roboflow/" class="flex gap-3 justify-between align-middle">
+
+                  <div>
+                    <h3 class="text-base font-medium text-gray-900">Outsourced Data Labeling in Roboflow</h3>
+                    <div class="text-xs text-gray-500">Jun 27, 2026
+                      •
+                      8 min read</div>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div class="flex">
+                        <div
+                          class="relative"
+                          style="z-index: 1; left: calc(-8px * 0);"
+                        >
+                            <div
+                              class="w-7 h-7 bg-gray-100 rounded-full border-2 border-white"
+                              style="background-image: url(https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w400/format/webp/2026/07/DSC_4459.JPG);
+                                background-size: cover;"
+                            ></div>
+                        </div>
+                    </div>
+                  </div>
+                </a>
+                <a href="/missing-and-null-image-annotations/" class="flex gap-3 justify-between align-middle">
+
+                  <div>
+                    <h3 class="text-base font-medium text-gray-900">The Difference Between Missing and Null Annotations</h3>
+                    <div class="text-xs text-gray-500">Jun 11, 2026
+                      •
+                      10 min read</div>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div class="flex">
+                        <div
+                          class="relative"
+                          style="z-index: 1; left: calc(-8px * 0);"
+                        >
+                            <div
+                              class="w-7 h-7 bg-gray-100 rounded-full border-2 border-white"
+                              style="background-image: url(https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w400/format/webp/2020/01/headshot-jn-dsm-bw.png);
+                                background-size: cover;"
+                            ></div>
+                        </div>
+                    </div>
+                  </div>
+                </a>
+                <a href="/how-to-create-a-synthetic-dataset-for-computer-vision/" class="flex gap-3 justify-between align-middle">
+
+                  <div>
+                    <h3 class="text-base font-medium text-gray-900">How to Create a Synthetic Dataset for Computer Vision</h3>
+                    <div class="text-xs text-gray-500">Jun 1, 2026
+                      •
+                      9 min read</div>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div class="flex">
+                        <div
+                          class="relative"
+                          style="z-index: 1; left: calc(-8px * 0);"
+                        >
+                            <div
+                              class="w-7 h-7 bg-gray-100 rounded-full border-2 border-white"
+                              style="background-image: url(https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w400/format/webp/2026/07/DSC_4459.JPG);
+                                background-size: cover;"
+                            ></div>
+                        </div>
+                    </div>
+                  </div>
+                </a>
+                <a href="/edge-tiling-during-inference/" class="flex gap-3 justify-between align-middle">
+
+                  <div>
+                    <h3 class="text-base font-medium text-gray-900">How to Use Tiling During Inference</h3>
+                    <div class="text-xs text-gray-500">Jun 1, 2026
+                      •
+                      7 min read</div>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div class="flex">
+                        <div
+                          class="relative"
+                          style="z-index: 1; left: calc(-8px * 0);"
+                        >
+                            <div
+                              class="w-7 h-7 bg-gray-100 rounded-full border-2 border-white"
+                              style="background-image: url(https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w400/format/webp/2026/07/DSC_4459.JPG);
+                                background-size: cover;"
+                            ></div>
+                        </div>
+                    </div>
+                  </div>
+                </a>
+                <a href="/team-image-annotation-workflow/" class="flex gap-3 justify-between align-middle">
+
+                  <div>
+                    <h3 class="text-base font-medium text-gray-900">How To Annotate Images with Your Team Using Roboflow</h3>
+                    <div class="text-xs text-gray-500">Jun 1, 2026
+                      •
+                      4 min read</div>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div class="flex">
+                        <div
+                          class="relative"
+                          style="z-index: 1; left: calc(-8px * 0);"
+                        >
+                            <div
+                              class="w-7 h-7 bg-gray-100 rounded-full border-2 border-white"
+                              style="background-image: url(https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w400/format/webp/2026/05/linkedln-main-pfp-1.png);
+                                background-size: cover;"
+                            ></div>
+                        </div>
+                    </div>
+                  </div>
+                </a>
+            </div>
+    </div>
+  </div>
+</section>
+
+
+
+        </main>
+    </div>
+    <footer id="footer" class="v2-footer">
+  <div class="w-layout-blockcontainer container">
+    <div class="v2-footer-inner">
+      <div class="v2-footer-top-row">
+        <a href="https://roboflow.com" aria-current="page" class="w-inline-block w--current"><img
+            src="https://blog.roboflow.com/assets/images/logo-roboflow-white.svg?v=cVm8-vrolAgqhvm_" loading="lazy" alt="Roboflow logo"></a>
+        <div class="v2-footer-social-wrap">
+          <a href="https://www.linkedin.com/company/roboflow-ai" target="_blank"
+            class="v2-btn-footer-social w-inline-block">
+            <div class="code-embed-5 w-embed"><svg width="14" height="14" viewbox="0 0 14 14" fill="none"
+                xmlns="http://www.w3.org/2000/svg" aria-label="linkedin logo">
+                <path
+                  d="M13 0H0.996875C0.446875 0 0 0.453125 0 1.00938V12.9906C0 13.5469 0.446875 14 0.996875 14H13C13.55 14 14 13.5469 14 12.9906V1.00938C14 0.453125 13.55 0 13 0ZM4.23125 12H2.15625V5.31875H4.23438V12H4.23125ZM3.19375 4.40625C2.52812 4.40625 1.99063 3.86563 1.99063 3.20312C1.99063 2.54062 2.52812 2 3.19375 2C3.85625 2 4.39687 2.54062 4.39687 3.20312C4.39687 3.86875 3.85937 4.40625 3.19375 4.40625ZM12.0094 12H9.93437V8.75C9.93437 7.975 9.91875 6.97813 8.85625 6.97813C7.775 6.97813 7.60938 7.82188 7.60938 8.69375V12H5.53438V5.31875H7.525V6.23125H7.55312C7.83125 5.70625 8.50938 5.15312 9.51875 5.15312C11.6188 5.15312 12.0094 6.5375 12.0094 8.3375V12Z"
+                  fill="currentColor"></path>
+              </svg></div>
+          </a>
+          <a href="https://x.com/roboflow" target="_blank" class="v2-btn-footer-social w-inline-block">
+            <div class="code-embed-3 w-embed"><svg width="14" height="14" viewbox="0 0 14 14" fill="none"
+                xmlns="http://www.w3.org/2000/svg" aria-label="x logo">
+                <path
+                  d="M2 0C0.896875 0 0 0.896875 0 2V12C0 13.1031 0.896875 14 2 14H12C13.1031 14 14 13.1031 14 12V2C14 0.896875 13.1031 0 12 0H2ZM11.2844 2.625L8.04062 6.33125L11.8562 11.375H8.86875L6.53125 8.31563L3.85313 11.375H2.36875L5.8375 7.40938L2.17812 2.625H5.24062L7.35625 5.42188L9.8 2.625H11.2844ZM10.1031 10.4875L4.79375 3.46562H3.90937L9.27812 10.4875H10.1H10.1031Z"
+                  fill="currentColor"></path>
+              </svg></div>
+          </a>
+          <a href="https://www.youtube.com/c/roboflow" target="_blank" class="v2-btn-footer-social w-inline-block">
+            <div class="code-embed-4 w-embed"><svg width="18" height="12" viewbox="0 0 18 12" fill="none"
+                xmlns="http://www.w3.org/2000/svg" aria-label="youtube logo">
+                <path
+                  d="M17.1767 1.87759C16.9804 1.13853 16.4021 0.556469 15.6678 0.358938C14.3369 0 8.99999 0 8.99999 0C8.99999 0 3.66311 0 2.33214 0.358938C1.59786 0.5565 1.01955 1.13853 0.823269 1.87759C0.466644 3.21719 0.466644 6.01213 0.466644 6.01213C0.466644 6.01213 0.466644 8.80706 0.823269 10.1467C1.01955 10.8857 1.59786 11.4435 2.33214 11.6411C3.66311 12 8.99999 12 8.99999 12C8.99999 12 14.3369 12 15.6678 11.6411C16.4021 11.4435 16.9804 10.8857 17.1767 10.1467C17.5333 8.80706 17.5333 6.01213 17.5333 6.01213C17.5333 6.01213 17.5333 3.21719 17.1767 1.87759ZM7.25452 8.54972V3.47453L11.7151 6.01219L7.25452 8.54972Z"
+                  fill="currentColor"></path>
+              </svg></div>
+          </a>
+          <a href="https://github.com/roboflow" target="_blank" class="v2-btn-footer-social w-inline-block"><div class="code-embed-4 w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="github logo">
+            <path d="M5.43437 12.4187C5.43437 12.4812 5.3625 12.5312 5.27187 12.5312C5.16875 12.5406 5.09688 12.4906 5.09688 12.4187C5.09688 12.3562 5.16875 12.3062 5.25938 12.3062C5.35313 12.2969 5.43437 12.3469 5.43437 12.4187ZM4.4625 12.2781C4.44063 12.3406 4.50313 12.4125 4.59688 12.4312C4.67813 12.4625 4.77188 12.4312 4.79063 12.3687C4.80938 12.3062 4.75 12.2344 4.65625 12.2063C4.575 12.1844 4.48438 12.2156 4.4625 12.2781ZM5.84375 12.225C5.75312 12.2469 5.69062 12.3063 5.7 12.3781C5.70937 12.4406 5.79063 12.4813 5.88438 12.4594C5.975 12.4375 6.0375 12.3781 6.02812 12.3156C6.01875 12.2563 5.93438 12.2156 5.84375 12.225ZM7.9 0.25C3.56563 0.25 0.25 3.54063 0.25 7.875C0.25 11.3406 2.43125 14.3063 5.54688 15.35C5.94688 15.4219 6.0875 15.175 6.0875 14.9719C6.0875 14.7781 6.07812 13.7094 6.07812 13.0531C6.07812 13.0531 3.89063 13.5219 3.43125 12.1219C3.43125 12.1219 3.075 11.2125 2.5625 10.9781C2.5625 10.9781 1.84687 10.4875 2.6125 10.4969C2.6125 10.4969 3.39062 10.5594 3.81875 11.3031C4.50312 12.5094 5.65 12.1625 6.09688 11.9563C6.16875 11.4563 6.37188 11.1094 6.59688 10.9031C4.85 10.7094 3.0875 10.4562 3.0875 7.45C3.0875 6.59062 3.325 6.15938 3.825 5.60938C3.74375 5.40625 3.47813 4.56875 3.90625 3.4875C4.55937 3.28437 6.0625 4.33125 6.0625 4.33125C6.6875 4.15625 7.35938 4.06563 8.025 4.06563C8.69063 4.06563 9.3625 4.15625 9.9875 4.33125C9.9875 4.33125 11.4906 3.28125 12.1438 3.4875C12.5719 4.57187 12.3063 5.40625 12.225 5.60938C12.725 6.1625 13.0312 6.59375 13.0312 7.45C13.0312 10.4656 11.1906 10.7062 9.44375 10.9031C9.73125 11.15 9.975 11.6187 9.975 12.3531C9.975 13.4062 9.96562 14.7094 9.96562 14.9656C9.96562 15.1687 10.1094 15.4156 10.5063 15.3438C13.6313 14.3062 15.75 11.3406 15.75 7.875C15.75 3.54063 12.2344 0.25 7.9 0.25ZM3.2875 11.0281C3.24687 11.0594 3.25625 11.1313 3.30938 11.1906C3.35938 11.2406 3.43125 11.2625 3.47187 11.2219C3.5125 11.1906 3.50313 11.1187 3.45 11.0594C3.4 11.0094 3.32812 10.9875 3.2875 11.0281ZM2.95 10.775C2.92813 10.8156 2.95937 10.8656 3.02187 10.8969C3.07187 10.9281 3.13438 10.9187 3.15625 10.875C3.17812 10.8344 3.14687 10.7844 3.08437 10.7531C3.02187 10.7344 2.97188 10.7437 2.95 10.775ZM3.9625 11.8875C3.9125 11.9281 3.93125 12.0219 4.00312 12.0813C4.075 12.1531 4.16562 12.1625 4.20625 12.1125C4.24687 12.0719 4.22813 11.9781 4.16563 11.9187C4.09688 11.8469 4.00313 11.8375 3.9625 11.8875ZM3.60625 11.4281C3.55625 11.4594 3.55625 11.5406 3.60625 11.6125C3.65625 11.6844 3.74063 11.7156 3.78125 11.6844C3.83125 11.6437 3.83125 11.5625 3.78125 11.4906C3.7375 11.4188 3.65625 11.3875 3.60625 11.4281Z" fill="currentColor"></path>
+            </svg></div>
+          </a>
+        </div>
+      </div>
+      <div class="v2-footer-nav-row">
+        <div class="v2-footer-nav-col">
+          <div class="v2-nav-col-title">Product</div>
+          <ul role="list" class="v2-footer-nav-list">
+            <li>
+              <a href="https://roboflow.com/deploy" class="v2-footer-link">Deploy</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/workflows/build" class="v2-footer-link">Workflows</a>
+            </li>
+            <li class="v2-footer-link">
+              <a href="https://roboflow.com/train" class="v2-footer-link">Train</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/annotate" class="v2-footer-link">Annotate</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/universe" class="v2-footer-link">Universe</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/managed-compute" class="v2-footer-link">Cloud Hosting</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/pricing" class="v2-footer-link">Pricing</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/sales" class="v2-footer-link">Talk to Sales</a>
+            </li>
+            <li></li>
+              <a href="https://roboflow.com/enterprise" class="v2-footer-link">Enterprise</a>
+            </li>
+          </ul>
+        </div>
+        <div id="w-node-dd5bce72-ad2f-1aeb-cc95-67c1f04d0fe7-f93613f6" class="v2-footer-nav-col">
+          <div class="v2-nav-col-title">Ecosystem</div>
+          <ul role="list" class="v2-footer-nav-list">
+            <li>
+              <a href="https://github.com/roboflow/notebooks" class="v2-footer-link">Notebooks</a>
+            </li>
+            <li>
+              <a href="https://github.com/autodistill/autodistill" class="v2-footer-link">Autodistill</a>
+            </li>
+            <li>
+              <a href="https://github.com/roboflow/supervision" class="v2-footer-link">Supervision</a>
+            </li>
+            <li>
+              <a href="https://github.com/roboflow/inference" class="v2-footer-link">Inference</a>
+            </li>
+            <li>
+              <a href="https://blog.roboflow.com/roboflow-100/" class="v2-footer-link">Roboflow 100</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/open-source" class="v2-footer-link">Open Source</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/hardware" class="v2-footer-link">Hardware</a>
+            </li>
+          </ul>
+        </div>
+        <div id="w-node-_6694c5c1-1d12-9c34-6d5f-3ed373b5fb88-f93613f6" class="v2-footer-nav-col">
+          <div class="v2-nav-col-title">Developers</div>
+          <ul role="list" class="v2-footer-nav-list">
+            <li>
+              <a href="https://docs.roboflow.com" class="v2-footer-link">Documentation</a>
+            </li>
+            <li>
+              <a href="https://discuss.roboflow.com" class="v2-footer-link">User Forum</a>
+            </li>
+            <li>
+              <a href="https://docs.roboflow.com/changelog" class="v2-footer-link">Changelog</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/learn" class="v2-footer-link">What is computer vision?</a>
+            </li>
+            <li>
+              <a href="https://lu.ma/roboflow" class="v2-footer-link">Weekly Product Webinar</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/formats" class="v2-footer-link">Convert Annotation Formats</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/models" class="v2-footer-link">Computer Vision Models</a>
+            </li>
+            <li>
+              <a href="https://playground.roboflow.com" class="v2-footer-link">Model Playground</a>
+            </li>
+          </ul>
+        </div>
+        <div id="w-node-f1b935c3-33e0-c40f-9a72-3362fa1a5d2d-f93613f6" class="v2-footer-nav-col">
+          <div class="v2-nav-col-title">Industries</div>
+          <ul role="list" class="v2-footer-nav-list">
+            <li>
+              <a href="https://roboflow.com/customer-stories" class="v2-footer-link">Customer Stories</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/aerospace-and-defense" class="v2-footer-link">Aerospace &amp; Defense</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/automotive" class="v2-footer-link">Automotive</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/consumer-goods" class="v2-footer-link">Consumer Goods</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/energy-and-utilities" class="v2-footer-link">Energy and Utilities</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/healthcare-and-medicine" class="v2-footer-link">Healthcare &amp; Medicine</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/industrial-manufacturing" class="v2-footer-link">Industrial Manufacturing</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/logistics" class="v2-footer-link">Logistics</a>
+              </li>
+            <li>
+              <a href="https://roboflow.com/industries/manufacturing" class="v2-footer-link">Manufacturing</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/media-and-entertainment" class="v2-footer-link">Media &amp; Entertainment</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/retail-and-service" class="v2-footer-link">Retail &amp; Service</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/transportation" class="v2-footer-link">Transportation</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/industries/warehousing" class="v2-footer-link">Warehousing</a>
+            </li>
+          </ul>
+        </div>
+        <div id="w-node-d6140afe-711b-b0a1-6610-baaecd4b5c5d-f93613f6" class="v2-footer-nav-col">
+          <div class="v2-nav-col-title">Models</div>
+          <ul role="list" class="v2-footer-nav-list">
+            <li>
+              <a href="https://roboflow.com/model/rf-detr" class="v2-footer-link">RF-DETR</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/model/segment-anything-3" class="v2-footer-link">SAM 3</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/model/yolo26" class="v2-footer-link">YOLO26</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/model/yolo11" class="v2-footer-link">YOLO11</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/model/yolov8" class="v2-footer-link">YOLOv8</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/model/yolov5" class="v2-footer-link">YOLOv5</a>
+            </li>
+            
+            <li>
+              <a href="https://roboflow.com/model-feature/multimodal-vision" class="v2-footer-link">Multimodal
+                Models</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/models" class="v2-footer-link">Explore All Models</a>
+            </li>
+          </ul>
+        </div>
+        <div id="w-node-_26b74fbc-1a6b-ee8e-a6e0-aed250fbd85e-f93613f6" class="v2-footer-nav-col">
+          <div class="v2-nav-col-title">Company</div>
+          <ul role="list" class="v2-footer-nav-list">
+            <li>
+              <a href="https://roboflow.com/about" class="v2-footer-link">About Us</a>
+            </li>
+            <li></li>
+              <a href="https://blog.roboflow.com" class="v2-footer-link">Blog</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/careers" class="v2-footer-link hiring">Careers</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/press" class="v2-footer-link">Press</a>
+            </li>
+            <li>
+              <a href="https://roboflow.com/contact" class="v2-footer-link">Contact</a>
+            </li>
+            <li>
+              <a href="https://status.roboflow.com" class="v2-footer-link">Service Status</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="v2-footer-bottom-row">
+        <div class="v2-footer-badge-wrap">
+            <img src="https://blog.roboflow.com/assets/images/badge-AWS-partner-ML.webp?v=rkAf8K1ftSGUY1CX" loading="lazy" alt="Badge AWS Qualified">
+            <img src="https://blog.roboflow.com/assets/images/badge-AWS-qualified.webp?v=0sL243cijNb-_3Ji" loading="lazy" alt="Badge AWS Qualified">
+            <img src="https://blog.roboflow.com/assets/images/badge-g2.svg?v=2VDs8dnIrNE9zww6" loading="lazy" alt="G2 Badge logo" class="w-12 ">
+            <img src="https://blog.roboflow.com/assets/images/badge-SOC-NonCPA.webp?v=-j7ah3V8IWaE0ga3" loading="lazy" alt="Badge SOC-NonCPA">
+            <img src="https://blog.roboflow.com/assets/images/2024-Prometheus_Wordmark_800px_F_1.webp?v=zhlargXtltAZs2r_" loading="lazy" alt="2024 Prometeus Awards Winner Badge">
+          </div>
+        <div class="v2-footer-bottom-nav-wrap">
+          <a href="https://roboflow.com/terms" class="v2-footer-link-sm">Terms of Service</a>
+          <a href="https://roboflow.com/enterprise-terms" class="v2-footer-link-sm">Enterprise Terms</a>
+          <a href="https://roboflow.com/privacy" class="v2-footer-link-sm">Privacy Policy</a>
+          <a href="https://blog.roboflow.com/sitemap/" class="v2-footer-link-sm">Sitemap</a>
+        </div>
+        <div class="v2-footer-copyright w-embed">&copy; <span class="current-year"></span> Roboflow, Inc. All rights reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5f0640a53424bf5860a0e6f8"
+  type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script defer src="https://blog.roboflow.com/assets/js/webflow.js?v=KYeaZEY4YnPOylqP" type="text/javascript"></script>
+<!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->    <!-- fix image gallery aspect ratio via https://forum.ghost.org/t/error-ghost-gallery/5909/3 -->
+<script type="text/javascript">
+$(function() {
+    var images = document.querySelectorAll('.kg-gallery-image img');
+        images.forEach(function (image) {
+            var container = image.closest('.kg-gallery-image');
+            var width = image.attributes.width.value;
+            var height = image.attributes.height.value;
+            var ratio = width / height;
+            container.style.flex = ratio + ' 1 0%';
+    });
+});
+</script>
+<script src="https://app.roboflow.com/scripts/utm.js" ></script>
+    <script type="text/javascript">
+      (function () {
+        var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+        t.async = true;
+        t.id = 'cio-forms-handler';
+        t.setAttribute('data-site-id', 'bd767cfa913dbbe0bac4');
+        t.setAttribute('data-base-url', 'https://customerioforms.com');
+
+        t.src = 'https://customerioforms.com/assets/forms.js';
+
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const currentYear = new Date().getFullYear();
+        document.querySelector('.current-year').textContent = currentYear;
+      });
+
+
+
+    </script>
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.30.0/tocbot.min.js"></script>
+    <script src="https://blog.roboflow.com/assets/js/prism.js?v=yTsrHsV3a_F1Xoxx" type="text/javascript"></script>
+    <script src="https://blog.roboflow.com/assets/js/pages/post.js?v=AkUvpsozQ8uHS5bT" type="text/javascript"></script>
+    <script src="https://unpkg.com/@rive-app/canvas"></script>
+    <script>
+        const r = new rive.Rive({
+            src: `https://blog.roboflow.com/assets/rive/playground-logos.riv?v=jvgQojfj_N9HE8Lv`,
+            canvas: document.getElementById('canvas'),
+            autoplay: true,
+            onLoad: () => {
+                r.resizeDrawingSurfaceToCanvas();
+            },
+        });
+    </script>
+
+
+</body>
+
+</html>

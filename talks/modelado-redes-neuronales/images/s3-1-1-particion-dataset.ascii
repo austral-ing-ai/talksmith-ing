@@ -1,0 +1,12 @@
+  dataset completo
+  +-----------------------------+----------+---------+
+  |          train  70%         | val  20% | test 10%|
+  +-----------------------------+----------+---------+
+     aprende de el                se mira    se abre
+     actualiza W y b              cada epoch una vez
+
+<!-- ascii-note:
+intent: mostrar las tres porciones del dataset y qué hace el modelo con cada una
+emphasize: los tres bloques y la asimetría de tamaño; que solo train actualiza pesos
+labels: train 70%, val 20%, test 10%
+-->

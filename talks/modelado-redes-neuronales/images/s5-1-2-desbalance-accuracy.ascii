@@ -1,0 +1,15 @@
+  10.000 transacciones
+  +-------------------------------------------------+---+
+  |             9.900 legitimas                     |100|
+  +-------------------------------------------------+---+
+                                                      ^
+                            el modelo dice "no es fraude" a todo
+
+    aciertos           9.900 / 10.000  =  accuracy 99%
+    fraudes detectados     0 / 100     =  se escapa el 100% de lo que importa
+
+<!-- ascii-note:
+intent: mostrar que el 99% de accuracy sale de la clase mayoritaria y que la clase que importa se pierde entera
+emphasize: el contraste entre la barra enorme de legitimas y el bloque chico de fraudes; los dos numeros de abajo
+labels: 9.900 legitimas, 100 fraudes, accuracy 99%, fraudes detectados 0
+-->

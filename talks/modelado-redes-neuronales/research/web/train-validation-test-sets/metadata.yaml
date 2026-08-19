@@ -1,0 +1,13 @@
+url: "https://medium.com/data-science/train-validation-and-test-sets-72cb40cba9e7"
+fetched_at: "2026-08-19T12:18:52Z"
+title: "MediumAbout Train, Validation and Test Sets in Machine Learning | by Tarang Shah | TDS Archive | Medium"
+http_status: 200
+byte_size: 176749
+assets:
+  - { src: "https://miro.medium.com/v2/resize:fill:64:64/1*dmbNkD5D-u45r44go_cf0g.png", absolute: "https://miro.medium.com/v2/resize:fill:64:64/1*dmbNkD5D-u45r44go_cf0g.png", saved_as: "1*dmbNkD5D-u45r44go_cf0g.png", alt: "Unknown user" }
+  - { src: "https://miro.medium.com/v2/resize:fill:76:76/1*JEuS4KBdakUcjg9sC7Wo4A.png", absolute: "https://miro.medium.com/v2/resize:fill:76:76/1*JEuS4KBdakUcjg9sC7Wo4A.png", saved_as: "1*JEuS4KBdakUcjg9sC7Wo4A.png", alt: "TDS Archive" }
+  - { src: "https://miro.medium.com/v2/resize:fill:64:64/0*zndPPKgmW_e7SWzR.jpeg", absolute: "https://miro.medium.com/v2/resize:fill:64:64/0*zndPPKgmW_e7SWzR.jpeg", saved_as: "0*zndPPKgmW_e7SWzR.jpeg", alt: "Tarang Shah" }
+  - { src: "https://miro.medium.com/v2/resize:fill:96:96/1*JEuS4KBdakUcjg9sC7Wo4A.png", absolute: "https://miro.medium.com/v2/resize:fill:96:96/1*JEuS4KBdakUcjg9sC7Wo4A.png", saved_as: "1*JEuS4KBdakUcjg9sC7Wo4A-2.png", alt: "TDS Archive" }
+  - { src: "https://miro.medium.com/v2/resize:fill:128:128/1*JEuS4KBdakUcjg9sC7Wo4A.png", absolute: "https://miro.medium.com/v2/resize:fill:128:128/1*JEuS4KBdakUcjg9sC7Wo4A.png", saved_as: "1*JEuS4KBdakUcjg9sC7Wo4A-3.png", alt: "TDS Archive" }
+  - { src: "https://miro.medium.com/v2/resize:fill:96:96/0*zndPPKgmW_e7SWzR.jpeg", absolute: "https://miro.medium.com/v2/resize:fill:96:96/0*zndPPKgmW_e7SWzR.jpeg", saved_as: "0*zndPPKgmW_e7SWzR-2.jpeg", alt: "Tarang Shah" }
+  - { src: "https://miro.medium.com/v2/resize:fill:128:128/0*zndPPKgmW_e7SWzR.jpeg", absolute: "https://miro.medium.com/v2/resize:fill:128:128/0*zndPPKgmW_e7SWzR.jpeg", saved_as: "0*zndPPKgmW_e7SWzR-3.jpeg", alt: "Tarang Shah" }

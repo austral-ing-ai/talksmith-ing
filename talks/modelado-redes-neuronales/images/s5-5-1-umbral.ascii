@@ -1,0 +1,14 @@
+        probabilidad que devuelve el modelo
+   0.0 ----------------------------------------------- 1.0
+              |                  |                |
+           umbral 0.2        umbral 0.5       umbral 0.8
+
+           marca mucho        el default       marca poco
+           recall  alto                        recall  bajo
+           precision baja                      precision alta
+
+<!-- ascii-note:
+intent: mostrar que mover el umbral sobre el eje de probabilidad intercambia recall por precision
+emphasize: el eje 0.0 a 1.0 y las tres posiciones del umbral; el cruce de recall y precision entre los extremos
+labels: probabilidad 0.0 a 1.0, umbral 0.2 / 0.5 / 0.8, recall, precision
+-->

@@ -1,0 +1,12 @@
+url: "https://blog.roboflow.com/train-test-split/"
+fetched_at: "2026-08-19T12:29:51Z"
+title: "Train, Validation, Test Split Explained (with Ratios)SearchSearch"
+http_status: 200
+byte_size: 112529
+assets:
+  - { src: "https://blog.roboflow.com/assets/images/logo-roboflow-purple.svg?v=gN6diY_S2GtPvyw1", absolute: "https://blog.roboflow.com/assets/images/logo-roboflow-purple.svg?v=gN6diY_S2GtPvyw1", saved_as: "logo-roboflow-purple.svg", alt: "Roboflow logo" }
+  - { src: "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w1200/2026/06/img-blog-train-validation-and-test-split.png", absolute: "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/size/w1200/2026/06/img-blog-train-validation-and-test-split.png", saved_as: "img-blog-train-validation-and-test-split.png", alt: "train test validation split for machine learning with Roboflow Vision AI" }
+  - { src: "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/04/Screenshot-2026-04-01-at-2.44.41---PM.png", absolute: "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/04/Screenshot-2026-04-01-at-2.44.41---PM.png", saved_as: "Screenshot-2026-04-01-at-2.44.41---PM.png", alt: "" }
+  - { src: "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2020/09/image-12.png", absolute: "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2020/09/image-12.png", saved_as: "image-12.png", alt: "" }
+  - { src: "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2020/09/image-14.png", absolute: "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2020/09/image-14.png", saved_as: "image-14.png", alt: "" }
+  - { src: "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/07/Screenshot-2026-07-15-at-12.09.27---PM.png", absolute: "https://storage.ghost.io/c/2c/8d/2c8d8c0d-1c15-4b6d-825e-02b78d61d40a/content/images/2026/07/Screenshot-2026-07-15-at-12.09.27---PM.png", saved_as: "Screenshot-2026-07-15-at-12.09.27---PM.png", alt: "" }
