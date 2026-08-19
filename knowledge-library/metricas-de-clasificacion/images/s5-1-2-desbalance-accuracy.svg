@@ -1,0 +1,23 @@
+<!-- talksmith-ascii-sha256: da911c453237877dadb6ed796c13526a022ca95b2afc15a3d1ee87dc1b21fd7f -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 300" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>El 99% de accuracy que no sirve</title>
+  <desc>Con 100 fraudes en 10.000 transacciones, decir siempre que no hay fraude da 99% de accuracy y cero detecciones.</desc>
+  <rect x="0" y="0" width="780" height="300" fill="#ffffff"/>
+
+  <text x="40" y="52" font-size="16" fill="#7A7373">10.000 transacciones</text>
+
+  <rect x="40" y="72" width="693" height="52" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.4"/>
+  <rect x="733" y="72" width="7" height="52" fill="#DA1B2E"/>
+  <text x="386" y="105" font-size="17" text-anchor="middle">9.900 legítimas</text>
+
+  <path d="M 736 128 L 736 148" stroke="#DA1B2E" stroke-width="1.5" fill="none"/>
+  <text x="740" y="168" font-size="14" text-anchor="end" font-weight="bold" fill="#DA1B2E">100 fraudes (1%)</text>
+
+  <text x="40" y="220" font-size="15">aciertos</text>
+  <text x="250" y="220" font-size="15" font-family="'DejaVu Sans Mono', monospace">9.900 / 10.000</text>
+  <text x="430" y="220" font-size="15" font-weight="bold">accuracy 99%</text>
+
+  <text x="40" y="254" font-size="15">fraudes detectados</text>
+  <text x="250" y="254" font-size="15" font-family="'DejaVu Sans Mono', monospace">0 / 100</text>
+  <text x="430" y="254" font-size="15" font-weight="bold" fill="#DA1B2E">se escapa el 100% de lo que importa</text>
+</svg>

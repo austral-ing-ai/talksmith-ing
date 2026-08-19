@@ -1,0 +1,39 @@
+<!-- talksmith-ascii-sha256: 18982659a0c7300733d38607b4a3d2ab5c770a1e8ef8c1869b1367f5b8d32e01 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 376" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>El umbral y la matriz N por N</title>
+  <desc>Mover el umbral sobre el eje de probabilidad intercambia recall por precisión.</desc>
+  <rect x="0" y="0" width="760" height="376" fill="#ffffff"/>
+
+  <text x="380" y="54" font-size="16" text-anchor="middle" fill="#7A7373">probabilidad que devuelve el modelo</text>
+
+  <line x1="90" y1="100" x2="670" y2="100" stroke="#3B3535" stroke-width="2"/>
+  <line x1="90" y1="94" x2="90" y2="106" stroke="#3B3535" stroke-width="2"/>
+  <line x1="670" y1="94" x2="670" y2="106" stroke="#3B3535" stroke-width="2"/>
+  <text x="76" y="106" font-size="14" text-anchor="end" fill="#7A7373">0.0</text>
+  <text x="684" y="106" font-size="14" fill="#7A7373">1.0</text>
+
+  <line x1="206" y1="84" x2="206" y2="116" stroke="#3B3535" stroke-width="2"/>
+  <line x1="380" y1="84" x2="380" y2="116" stroke="#DA1B2E" stroke-width="2.6"/>
+  <line x1="554" y1="84" x2="554" y2="116" stroke="#3B3535" stroke-width="2"/>
+
+  <text x="206" y="142" font-size="15" text-anchor="middle" font-weight="bold">umbral 0.2</text>
+  <text x="380" y="142" font-size="15" text-anchor="middle" font-weight="bold" fill="#DA1B2E">umbral 0.5</text>
+  <text x="554" y="142" font-size="15" text-anchor="middle" font-weight="bold">umbral 0.8</text>
+
+  <text x="206" y="184" font-size="15" text-anchor="middle">marca mucho</text>
+  <text x="206" y="208" font-size="14" text-anchor="middle" fill="#7A7373">recall alto</text>
+  <text x="206" y="230" font-size="14" text-anchor="middle" fill="#7A7373">precisión baja</text>
+
+  <text x="380" y="184" font-size="15" text-anchor="middle">el default</text>
+  <text x="380" y="208" font-size="14" text-anchor="middle" fill="#DA1B2E">también es una decisión</text>
+
+  <text x="554" y="184" font-size="15" text-anchor="middle">marca poco</text>
+  <text x="554" y="208" font-size="14" text-anchor="middle" fill="#7A7373">recall bajo</text>
+  <text x="554" y="230" font-size="14" text-anchor="middle" fill="#7A7373">precisión alta</text>
+
+  <polygon points="90,262 670,296 90,296" fill="#E4E0E0"/>
+  <text x="98" y="290" font-size="13" fill="#3B3535">recall</text>
+
+  <polygon points="90,336 670,302 670,336" fill="#E4E0E0"/>
+  <text x="662" y="330" font-size="13" text-anchor="end" fill="#3B3535">precisión</text>
+</svg>
