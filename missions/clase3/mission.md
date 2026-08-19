@@ -36,7 +36,11 @@ Antes de escribir una línea de red, pasen **cada columna** por el checklist de 
 
 Entrenen una red usando **solo** las columnas numéricas, con salida de regresión. Es el piso contra el que se mide todo lo demás.
 
-**Criterio de éxito:** el par activación-loss de la última capa es el correcto para predecir un real, y saben decir por qué la `accuracy` acá no significa nada. Reporten MAE, RMSE y MAPE sobre el conjunto de prueba.
+**Criterio de éxito:** el par activación-loss de la última capa es el correcto para predecir un real, y saben decir por qué la `accuracy` acá no significa nada. Reporten sobre el conjunto de prueba las tres métricas de regresión:
+
+- **MAE** — *Mean Absolute Error*, error absoluto medio. El promedio de `|real - predicho|`. Sale en dólares.
+- **RMSE** — *Root Mean Squared Error*, raíz del error cuadrático medio. También en dólares, pero el cuadrado castiga los errores grandes de forma desproporcionada.
+- **MAPE** — *Mean Absolute Percentage Error*, error porcentual absoluto medio. El error relativo al precio de cada casa, en porcentaje.
 
 ### 3. Que entren las categóricas
 
