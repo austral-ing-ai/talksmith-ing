@@ -1,0 +1,21 @@
+    Lineal  y = z           Sigmoide  1/(1+e^-z)        Softplus  log(1+e^z)
+       |       /               |    ________               |         /
+       |      /              1 |   /                       |        /
+    ---+-----/-----            |  /                        |      _/
+       |    /                0 |_/                       0 |____/
+       |   /                   +-----------                +-----------
+    todo R, sin techo       (0,1), una probabilidad     (0,inf), un conteo
+
+
+    Softmax   e^zi / sum(e^zj)        no es una curva: reparte 1 entre N clases
+
+       gato    [##################        ]  0.62
+       perro   [########                  ]  0.27
+       zorro   [###                       ]  0.11
+                                             suma = 1
+
+<!-- ascii-note:
+intent: mostrar la forma de las cuatro activaciones de salida; softmax se muestra como reparto entre clases porque no es una curva
+emphasize: el techo de la sigmoide en 1 y el piso de softplus en 0; que las barras de softmax suman 1
+labels: Lineal, Sigmoide, Softplus, Softmax; rangos todo R, (0,1), (0,inf), suma 1
+-->

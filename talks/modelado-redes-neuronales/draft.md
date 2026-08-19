@@ -86,8 +86,9 @@ Diseñar una red son cinco decisiones, y ninguna de las cinco es cuántas capas 
 - **La salida.** Cuántas neuronas, qué activación y qué loss. No se elige: la determina la tarea. Predecir un precio pide salida lineal con MSE; clasificar en N clases, softmax con cross-entropy.
 - **El error.** Con qué se mide que el modelo sirve. Accuracy sola engaña, y la matriz de confusión separa los tipos de error que accuracy suma.
 - **El overfitting.** Cómo se detecta que el modelo memorizó en vez de aprender, y qué herramientas lo controlan.
+- **Las capas y las neuronas.** No están en la lista. Eso sí se elige, y es lo que menos importa del diseño.
 
-**La cantidad de capas y de neuronas no está en esa lista.** Eso sí se elige, y es lo que menos importa: 1 a 3 capas ocultas alcanzan para datos tabulares, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las cinco de arriba.
+**Nota:** 1 a 3 capas ocultas alcanzan para datos tabulares, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las cinco de arriba.
 
 <!-- format: editorial -->
 
@@ -101,7 +102,9 @@ Este es el mapa mental que quiero que se lleven, y además es la agenda de la cl
 
 ### Presenter feedback
 - [closed] 2026-08-19 — "Podriamos remplazar que lista algunos de los aspectos importantes. Aca estamos mencionando, input, output, error, overfitting, data set que es lo que vamos a ver en la presentacion."
-  Resolution: La diapositiva pasó de "La mitad de la arquitectura no se elige" a "Lo que hay que diseñar", con los cinco aspectos que recorre la clase en orden de sección: entrada, dataset, salida, error, overfitting. El contraste original (lo que sí se elige importa poco) se conservó como remate al pie, que es donde pega. El desglose en tres baldes se archivó en Cut material.
+  Resolution: La diapositiva pasó de "La mitad de la arquitectura no se elige" a "Lo que hay que diseñar", con los cinco aspectos que recorre la clase en orden de sección: entrada, dataset, salida, error, overfitting. El desglose en tres baldes se archivó en Cut material.
+- [closed] 2026-08-19 — "Agreguemos esto como un item pero podemos poner una nota"
+  Resolution: El remate al pie pasó a ser el sexto ítem de la lista ("Las capas y las neuronas. No están en la lista. Eso sí se elige, y es lo que menos importa del diseño"), y el detalle numérico (1 a 3 capas, potencias de 2, ReLU) bajó a una nota al pie de la diapositiva.
 
 ---
 
@@ -124,7 +127,7 @@ labels: x entradas, W·x+b pre-activación, f activación, a salida
 
 - **Pre-activación:** `z = W·x + b`. Combinación lineal de las entradas más un sesgo.
 - **Activación:** `a = f(z)`. La no linealidad `f` es lo que hace que apilar capas sirva. Sin ella, la composición de capas lineales colapsa a una sola matriz.
-- **Elección de `f`:** ReLU por defecto en capas ocultas, `max(0, z)`. GELU o SiLU en transformers. La activación de salida la determina la tarea, y la vemos en la sección 4.
+- **Elección de `f`:** hay un puñado de candidatas y casi siempre gana ReLU. Las vemos en la diapositiva que sigue. La activación de salida es otra historia: la determina la tarea, y va en la sección 4.
 
 ### Sources
 
@@ -133,6 +136,50 @@ corpus/chat.md.md (§1 Conceptos base: Activación, Pesos y bias)
 ### Speaker notes
 
 Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Los parámetros de una capa son m·n + m; útil para la cuenta de parámetros que aparece más adelante.
+
+### Presenter feedback
+
+---
+
+## 4. Las activaciones ocultas, y cómo se ven
+
+### Content
+
+Una **activación oculta** es la función no lineal `f` que se aplica después de `z = W·x + b` en las capas del medio. Su trabajo no es acotar el resultado a un rango con sentido, como en la salida, sino **romper la linealidad** para que apilar capas sirva de algo. Son cuatro candidatas y una gana casi siempre.
+
+| Función | Fórmula | Rango | Cuándo |
+|---|---|---|---|
+| ReLU | `max(0, z)` | [0, ∞) | El default de las capas ocultas |
+| GELU / SiLU | suavizaciones de ReLU | (−0.3, ∞) aprox. | Transformers |
+| Tanh | `(eᶻ − e⁻ᶻ) / (eᶻ + e⁻ᶻ)` | (−1, 1) | Redes recurrentes, salidas centradas |
+| Sigmoide | `1 / (1 + e⁻ᶻ)` | (0, 1) | Casi nunca en capas ocultas |
+
+```ascii
+     ReLU  max(0,z)          GELU / SiLU            Tanh  (-1,1)         Sigmoide  (0,1)
+        |        /              |        /             |    _______         |    _______
+        |       /               |       /            1 |   /              1 |   /
+    ----+------/----        ----+---.--/----       ----+--/-------      ----+--/-------
+        |     /                 |  \_/               0 | /              0.5 | /
+        |____/                  |__/                -1 |/                 0 |/
+
+    plana y despues        igual pero suave       acotada y            acotada, nunca
+    recta. barata          en el cero             centrada en 0        negativa
+```
+<!-- ascii-note:
+intent: mostrar la forma de las cuatro activaciones ocultas una al lado de la otra, para compararlas de un vistazo
+emphasize: el codo de ReLU en el cero, que es lo que la distingue; la saturación de tanh y sigmoide en los extremos
+labels: ReLU, GELU/SiLU, Tanh, Sigmoide; eje horizontal z, eje vertical f(z)
+-->
+
+**Nota:** la sigmoide y la tanh saturan. Con `z` grande su derivada es casi cero, el gradiente que llega a las capas de abajo se apaga y la red deja de aprender. ReLU no satura del lado positivo, y esa es la razón por la que ganó.
+
+### Sources
+
+corpus/chat.md.md (§1 Conceptos base: Activación)
+
+### Speaker notes
+
+Esta es la diapositiva que faltaba: hasta acá la activación era un nombre, ahora tiene forma. Recorré el diagrama de izquierda a derecha y detenete en el codo de ReLU: es literalmente dos rectas pegadas, y con eso alcanza. La pregunta que funciona: ¿por qué una función tan tonta le gana a las suaves? Respuesta corta, no satura y es baratísima de calcular. La saturación es el concepto que se llevan, y vuelve en la sección 2 con la normalización: una entrada grande sin normalizar satura la neurona igual que un `z` grande.
 
 ### Presenter feedback
 
@@ -225,12 +272,12 @@ Esta pregunta es la herramienta más transferible de la clase. Si se llevan una 
 
 **Normalizar** es reexpresar una variable en una escala comparable con las demás antes de que entre a la red. Cambia la unidad en la que se lee el número, no la información que trae. Aplica a las numéricas con magnitud real: superficie, ingreso, edad, cantidad de transacciones.
 
-**Por qué no es opcional.** El gradiente respecto a un peso es proporcional al valor de la entrada (`∂J/∂wⱼ = δ · xⱼ`), pero el learning rate es uno solo para toda la red. Si una variable vale ~200 (m²) y otra vale 0 o 1 (cochera), sus gradientes están a escala 200 a 1 y el entrenamiento zigzaguea.
-
 - **z-score por defecto:** `(x − μ) / σ`. El valor pasa a leerse como "cuántos desvíos por encima o por debajo del promedio". La unidad original desaparece.
 - **log antes del z-score:** con colas largas, `log(1+x)` comprime los valores altos antes de estandarizar. La diferencia entre 1 y 10 transacciones importa más que entre 4000 y 4010. Casos típicos: ingresos, cantidad de transacciones, días desde la última compra.
 - **Los booleanos y one-hot no se tocan:** ya están en 0 y 1.
 - **Escala pareja no es importancia pareja.** Normalizar no le quita peso a una variable; la importancia la aprenden los pesos. Solo la pone en condiciones de ser evaluada.
+
+**Nota:** por qué no es opcional. El gradiente respecto a un peso es proporcional al valor de la entrada (`∂J/∂wⱼ = δ · xⱼ`), pero el learning rate es uno solo para toda la red. Si una variable vale ~200 (m²) y otra vale 0 o 1 (cochera), sus gradientes están a escala 200 a 1 y el entrenamiento zigzaguea.
 
 ### Sources
 
@@ -241,8 +288,10 @@ corpus/chat.md.md (§5 Escalas y normalización)
 El "por qué" formal es el número de condición de la Hessiana, pero para la clase alcanza con la imagen de las curvas de nivel: escalas parejas dan círculos y el gradiente apunta al mínimo; escalas dispares dan elipses alargadas y el gradiente apunta a la pared. Efecto secundario importante: con sigmoide o tanh una entrada grande satura la neurona (derivada casi cero) y deja de aprender. Aclará que árboles y gradient boosting no necesitan normalización; es una particularidad de los métodos basados en gradiente.
 
 ### Presenter feedback
+- [closed] 2026-08-19 — "Movelo como una nota abajo."
+  Resolution: Sobre el bloque "Por qué no es opcional". El argumento del gradiente bajó de párrafo destacado, arriba de las recetas, a nota al pie de la diapositiva. La apertura queda solo con la definición.
 - [closed] 2026-08-19 — "En casi todos los slides es confusdo que no se define y en algunos caso se empieza con ejemplos. En este caso, fata la defincion, luego se peude mencionar datos tipo y el effecto de."
-  Resolution: La diapositiva pasa a orden definición → a qué datos aplica → efecto → recetas. Se abre definiendo qué es normalizar y sobre qué variables aplica; el argumento del gradiente quedó después, bajo "Por qué no es opcional". La parte general del comentario (que casi todas las diapositivas arrancan por el ejemplo) queda pendiente de decisión del presentador como barrido definición-primero de todo el mazo.
+  Resolution: La diapositiva pasa a orden definición → a qué datos aplica → recetas, con el efecto al pie. Se abre definiendo qué es normalizar y sobre qué variables aplica; el argumento del gradiente quedó después, bajo "Por qué no es opcional". La parte general del comentario (que casi todas las diapositivas arrancan por el ejemplo) queda pendiente de decisión del presentador como barrido definición-primero de todo el mazo.
 
 ---
 
@@ -372,7 +421,6 @@ labels: train 70%, val 20%, test 10%
 - **Train.** La muestra con la que se ajusta el modelo. Es la única que actualiza `W` y `b`. El modelo la ve y aprende de ella.
 - **Validación.** Evaluación frecuente durante el entrenamiento, para tunear hiperparámetros y decidir cuándo cortar (early stopping). El modelo la ve después de cada epoch y nunca entrena con ella. También se la llama dev set.
 - **Test.** Se abre una sola vez, con el modelo ya terminado. Es la lectura más cercana al desempeño en producción que se puede conseguir antes de desplegar.
-- **Proporciones de arranque:** 70 / 20 / 10. Con datasets muy grandes, 80 / 10 / 10, porque ese 10% sigue siendo mucha muestra. No bajar validación ni test de unos pocos cientos de ejemplos: por debajo de eso la métrica es ruido.
 
 ### Sources
 
@@ -380,8 +428,12 @@ corpus/train-test-split-roboflow.web.md (§1 Resumen; §3 Training set; §4 Vali
 
 ### Speaker notes
 
-Arranca por el porqué, no por los porcentajes: medir con los datos de entrenamiento es como tomar examen con las respuestas a la vista. Los números 70/20/10 son criterio práctico de la industria (Roboflow los recomienda como default), no un resultado empírico; decilo así si alguien pregunta de dónde salen. El punto que más se olvida es el piso absoluto: con 200 ejemplos totales, un 10% de test son 20 casos y cualquier métrica sobre 20 casos es ruido. Ahí conviene cross-validation, que aparece en la 3.4.
+Arranca por el porqué, no por los porcentajes: medir con los datos de entrenamiento es como tomar examen con las respuestas a la vista. Los números 70/20/10 están en el diagrama y son criterio práctico de la industria (Roboflow los recomienda como default), no un resultado empírico; decilo así si alguien pregunta de dónde salen. Con datasets muy grandes, de decenas de miles de ejemplos, 80/10/10 también funciona, porque ese 10% sigue siendo mucha muestra. El punto que más se olvida es el piso absoluto: con 200 ejemplos totales, un 10% de test son 20 casos y cualquier métrica sobre 20 casos es ruido. Ahí conviene cross-validation, que aparece en la 3.4.
 
+
+### Presenter feedback
+- [closed] 2026-08-19 — "Borrar Proporciones 70 / 20 / 10 de arranque. Con datasets muy grandes, 80 / 10 / 10. No bajar validación ni test de unos pocos cientos de ejemplos, ya esta en el assci."
+  Resolution: Se retiró la card. Los 70/20/10 ya los dibuja el diagrama, así que la card los repetía. Lo que la card decía y el diagrama no dice pasó a las notas del orador: el 80/10/10 para datasets grandes, y el piso de unos pocos cientos de ejemplos por debajo del cual la métrica es ruido.
 ---
 
 ## 2. Los tres, lado a lado
@@ -408,6 +460,8 @@ corpus/train-test-split-roboflow.web.md (§6 La distinción sutil; §7 Preproces
 
 Esta tabla es el resumen que se llevan de la sección. La fila que cuesta es "actualiza los pesos": muchos creen que el modelo aprende algo de validación porque la métrica aparece en pantalla cada epoch. No aprende nada; el que aprende sos vos, y por eso hace falta el test. La analogía que funciona: validación son los simulacros que hacés para estudiar, test es el examen final; si te dan el examen final de simulacro, deja de medir. Menciona que en Kaggle el test set se libera recién al cierre de la competencia, exactamente por esto.
 
+
+### Presenter feedback
 ---
 
 ## 3. Todo lo que se aprende sale solo del train
@@ -438,6 +492,8 @@ corpus/chat.md.md (§6 μ, σ y el artefacto de producción); corpus/train-test-
 
 Esta diapositiva venía de la sección de input y encaja mejor acá, con la partición ya explicada. Es el error número uno de producción en ML según la fuente: que la normalización o el diccionario de categorías queden fuera del artefacto. La regla para llevarse: el preprocesamiento y el modelo se despliegan juntos; quien consume el modelo no debería tener que saber que la normalización existe. Ojo con un matiz que la fuente de Roboflow no cubre: ellos dicen "el preprocesamiento se aplica a los tres splits" y es cierto, pero no advierten que los parámetros salen solo de train. Si hay tiempo, mencioná data drift: la solución no es recalcular μ y σ en producción, es detectar el drift y reentrenar.
 
+
+### Presenter feedback
 ---
 
 ## 4. Partir mal: los errores que arruinan la medición
@@ -474,6 +530,8 @@ corpus/train-test-split-roboflow.web.md (§8 Errores típicos; §9 Cómo se hace
 
 Los dos del medio son aporte propio: ninguna de las dos fuentes cubre estratificación ni series de tiempo, y las dos importan para los trabajos que entregan. El de series de tiempo es el que más veces vas a ver mal resuelto, y el síntoma es un modelo que en el papel anda espectacular. Conectá con la sección 2: el identificador único es la versión extrema de este problema, memorizar en vez de aprender. Y dejá el puente abierto hacia overfitting: la brecha entre train y validación, que es el diagnóstico de la sección 6, solo se puede mirar si esta partición está bien hecha.
 
+
+### Presenter feedback
 ---
 
 # 4. Modelar la salida
@@ -512,10 +570,58 @@ Contrastá con las capas ocultas: ahí la activación casi no importa (ReLU y li
 ### Presenter feedback
 - [closed] 2026-08-18 — "Seria bueno si podemos meter todas en en un slide como es la representacion de cada una de estas funciones."
   Resolution: Se reorganizó la diapositiva como una tabla comparativa de las cuatro funciones, con fórmula, rango y ejemplo.
+- [closed] 2026-08-19 — "Agregar otro slide que sea para cada una de las funciones la representacion. Tal vez solo un ASCCI con tido."
+  Resolution: Nueva diapositiva 4.2 "Cómo se ven las cuatro", con un solo diagrama que pone lineal, sigmoide y softplus como curvas y softmax como reparto entre clases, que es lo que realmente es. La tabla de fórmulas y rangos queda en la 4.1 y el dibujo en la 4.2.
+- [closed] 2026-08-19 — "Tambien faltaria en el input las funciones de activation como relu, etc. Seguiria el mismo patron de defincion y luego la visualizacion de como se ven las funciones."
+  Resolution: Nueva diapositiva 1.4 "Las activaciones ocultas, y cómo se ven", con el mismo patrón: definición de qué es una activación oculta, tabla de las cuatro candidatas con fórmula, rango y cuándo, y un diagrama con las cuatro formas. Cierra con la saturación, que es la razón por la que ganó ReLU. La card de la 1.3 dejó de adelantar la respuesta y ahora apunta a esta diapositiva.
+
 
 ---
 
-## 2. Un catálogo para elegir sin dudar
+## 2. Cómo se ven las cuatro
+
+### Content
+
+La tabla de al lado dice el rango; el dibujo dice la forma. Es lo que hace evidente por qué cada una sirve para lo que sirve.
+
+```ascii
+    Lineal  y = z           Sigmoide  1/(1+e^-z)        Softplus  log(1+e^z)
+       |       /               |    ________               |         /
+       |      /              1 |   /                       |        /
+    ---+-----/-----            |  /                        |      _/
+       |    /                0 |_/                       0 |____/
+       |   /                   +-----------                +-----------
+    todo R, sin techo       (0,1), una probabilidad     (0,inf), un conteo
+
+
+    Softmax   e^zi / sum(e^zj)        no es una curva: reparte 1 entre N clases
+
+       gato    [##################        ]  0.62
+       perro   [########                  ]  0.27
+       zorro   [###                       ]  0.11
+                                             suma = 1
+```
+<!-- ascii-note:
+intent: mostrar la forma de las cuatro activaciones de salida; softmax se muestra como reparto entre clases porque no es una curva
+emphasize: el techo de la sigmoide en 1 y el piso de softplus en 0; que las barras de softmax suman 1
+labels: Lineal, Sigmoide, Softplus, Softmax; rangos todo R, (0,1), (0,inf), suma 1
+-->
+
+Tres son curvas sobre un solo número. **Softmax es distinta:** no transforma un valor, reparte una probabilidad entre N clases que compiten. Por eso es la única que necesita ver todas las neuronas de salida a la vez.
+
+### Sources
+
+corpus/chat.md.md (§8 La capa de salida)
+
+### Speaker notes
+
+Es el complemento visual de la diapositiva anterior y se da rápido, dos minutos. El punto que justifica la diapositiva: la forma explica el uso. La sigmoide tiene techo en 1, por eso es una probabilidad. Softplus tiene piso en 0 y no tiene techo, por eso sirve para conteos. La lineal no tiene ni piso ni techo, por eso sirve para un precio. Y softmax no es una curva: si alguien la dibuja como curva, no la entendió. Cerrá con la pregunta de la diapositiva anterior si no la hiciste: ¿cuál para unidades vendidas?
+
+### Presenter feedback
+
+---
+
+## 3. Un catálogo para elegir sin dudar
 
 ### Content
 
@@ -545,7 +651,7 @@ No leas toda la tabla; usala como referencia y detenete en dos o tres filas. La 
 
 ---
 
-## 3. Dos formas de modelar mal la salida
+## 4. Dos formas de modelar mal la salida
 
 ### Content
 

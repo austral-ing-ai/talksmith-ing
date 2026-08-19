@@ -196,3 +196,41 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Key inputs: draft.md, plan2.json, slide-model.json.
 - Files created/modified: draft.md, final.md, images/s6-3-1-objetivo-l2.{ascii,svg,png}, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
 - Pending open questions: (1) al espejar el feedback aparecieron 6 duplicados, porque las filas promovidas a feedback-processed.md dejan de estar en el backlog y find-closed-unmirrored las vuelve a listar; se quitaron a mano, pero conviene recordarlo la próxima vez que se promueva algo; (2) sigue pendiente la biblioteca compartida; (3) el ícono 'remove_red_eye' sigue cayendo a 'info'.
+
+## 2026-08-19 — Step 5/6/7 — ronda 6
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Agreguemos esto como un item pero podemos poner una nota" (sobre el remate de la 1.2)
+- What was decided: El remate al pie de la 1.2 pasó a ser el sexto ítem de la lista ("Las capas y las neuronas. No están en la lista. Eso sí se elige, y es lo que menos importa del diseño") y el detalle numérico (1 a 3 capas ocultas, ancho en potencias de 2 decreciente, ReLU salvo motivo) bajó a una nota al pie, que en el modelo es un highlight kind: note. Polish y Render rehechos; los 8 diagramas se reusaron sin redibujar. Sigue en 37 diapositivas.
+- Key inputs: draft.md, slide-model.json.
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Pending open questions: sigue pendiente la promoción a la biblioteca compartida. Volvieron a aparecer los 6 duplicados de espejado (mismo problema de find-closed-unmirrored contra filas ya promovidas); se quitaron otra vez.
+
+## 2026-08-19 — Step 5/6/7 — ronda 7
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Movelo como una nota abajo" (el bloque "Por qué no es opcional" de la 2.3)
+- What was decided: El argumento del gradiente bajó de párrafo destacado arriba de las recetas a nota al pie de la diapositiva 2.3; en el modelo pasó de highlight kind definition / position top a kind note al pie. La apertura de la diapositiva queda solo con la definición de normalizar. Polish y Render rehechos, los 8 diagramas reusados. Sigue en 37 diapositivas.
+- Key inputs: draft.md, slide-model.json.
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Defecto encontrado y corregido: las cuatro diapositivas de la sección 3, que escribí yo al crear la sección, nunca llevaron campo `### Presenter feedback`. El schema lo pide en toda diapositiva de draft.md. La consecuencia fue concreta: al archivar este comentario, la búsqueda del campo saltó a la diapositiva siguiente que sí lo tenía y la observación quedó registrada en 4.1 en vez de 3.1. Se agregó el campo a las cuatro y se corrigió la fila del backlog. strip_feedback pasó de quitar 33 bloques a 37, que confirma el arreglo.
+- Pending open questions: sigue pendiente la promoción a la biblioteca compartida.
+
+## 2026-08-19 — Step 5/6/7 — ronda 8
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Borrar la card Proporciones de la 3.1, ya está en el ASCII"
+- What was decided: Se retiró la card "Proporciones de arranque" de la diapositiva 3.1; los 70/20/10 ya los dibuja el diagrama y la card los repetía (L6). Lo que la card decía y el diagrama no dice pasó a las notas del orador: el 80/10/10 para datasets de decenas de miles, y el piso de unos pocos cientos de ejemplos, que ya estaba anotado. La diapositiva queda con tres cards, una por conjunto, alineadas con los tres bloques del diagrama. Polish y Render rehechos, 8 diagramas reusados.
+- Key inputs: draft.md, slide-model.json.
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Pending open questions: sigue pendiente la promoción a la biblioteca compartida.
+
+## 2026-08-19 — Step 5/6/7 — ronda 9
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Reprocesar el feedback" → dos comentarios nuevos en la 4.1, los dos pidiendo ver la forma de las funciones
+- What was decided: Dos diapositivas nuevas, las dos con diagrama propio. (1.4) "Las activaciones ocultas, y cómo se ven": definición de qué es una activación oculta, tabla de las cuatro candidatas con fórmula, rango y cuándo, diagrama con las cuatro formas y cierre sobre la saturación, que es la razón por la que ganó ReLU. La card de la 1.3 dejó de adelantar la respuesta y ahora apunta acá. (4.2) "Cómo se ven las cuatro": el complemento visual de la tabla de la 4.1, con lineal, sigmoide y softplus como curvas y softmax como reparto entre clases, que es lo que realmente es. Las diapositivas 4.2 y 4.3 se renumeraron a 4.3 y 4.4.
+- Key inputs: draft.md, corpus/chat.md.md §1 y §8.
+- Files created/modified: draft.md, final.md, images/s1-4-1-activaciones-ocultas.{ascii,svg,png}, images/s4-2-1-activaciones-salida.{ascii,svg,png}, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Defecto corregido durante el dibujo: en las dos primeras versiones la sigmoide cruzaba el eje horizontal hacia abajo, o sea tomaba valores negativos, que una sigmoide nunca tiene. Se rebajó el eje de esos paneles al 0 real y se marcó el techo en 1 con línea punteada. La auditoría de aspecto pidió recortar el viewBox de s1-4-1 y se aplicó el recorte sugerido.
+- Pending open questions: el mazo pasó de 37 a 39 diapositivas para 90 minutos, y ya venía justo. Es lo primero a mirar en el ensayo. Sigue pendiente la promoción a la biblioteca compartida.

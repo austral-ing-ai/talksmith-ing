@@ -1,0 +1,48 @@
+<!-- talksmith-ascii-sha256: 3e5bb0696f8a0e78582412bb6824d12c7243508d68c467a53151526142ddaf1c -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="22 22 835 298" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>Las activaciones ocultas, y cómo se ven</title>
+  <desc>ReLU, GELU o SiLU, tanh y sigmoide dibujadas una al lado de la otra para comparar su forma.</desc>
+  <rect x="0" y="0" width="900" height="320" fill="#ffffff"/>
+
+  <g stroke="#B9B3B3" stroke-width="1.2" fill="none">
+    <path d="M 40 200 L 210 200 M 125 120 L 125 250"/>
+    <path d="M 250 200 L 420 200 M 335 120 L 335 250"/>
+    <path d="M 460 200 L 630 200 M 545 120 L 545 250"/>
+    <path d="M 670 246 L 840 246 M 755 130 L 755 262"/>
+  </g>
+
+  <text x="125" y="52" font-size="16" text-anchor="middle" font-weight="bold" fill="#DA1B2E">ReLU</text>
+  <text x="335" y="52" font-size="16" text-anchor="middle" font-weight="bold">GELU / SiLU</text>
+  <text x="545" y="52" font-size="16" text-anchor="middle" font-weight="bold">Tanh</text>
+  <text x="755" y="52" font-size="16" text-anchor="middle" font-weight="bold">Sigmoide</text>
+
+  <text x="125" y="74" font-size="13" text-anchor="middle" fill="#7A7373">max(0, z)</text>
+  <text x="335" y="74" font-size="13" text-anchor="middle" fill="#7A7373">ReLU suavizada</text>
+  <text x="545" y="74" font-size="13" text-anchor="middle" fill="#7A7373">(-1, 1)</text>
+  <text x="755" y="74" font-size="13" text-anchor="middle" fill="#7A7373">(0, 1)</text>
+
+  <path d="M 45 200 L 125 200 L 205 128" stroke="#DA1B2E" stroke-width="2.6" fill="none"/>
+  <circle cx="125" cy="200" r="4" fill="#DA1B2E"/>
+
+  <path d="M 255 200 C 300 200 318 202 335 194 C 355 184 380 158 415 128" stroke="#3B3535" stroke-width="2.2" fill="none"/>
+
+  <path d="M 465 246 C 505 246 525 240 545 200 C 565 160 585 154 625 154" stroke="#3B3535" stroke-width="2.2" fill="none"/>
+  <line x1="460" y1="154" x2="630" y2="154" stroke="#D9D4D4" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="460" y1="246" x2="630" y2="246" stroke="#D9D4D4" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="452" y="158" font-size="12" text-anchor="end" fill="#7A7373">1</text>
+  <text x="452" y="250" font-size="12" text-anchor="end" fill="#7A7373">-1</text>
+
+  <path d="M 675 244 C 715 244 735 238 755 200 C 775 162 795 156 835 156" stroke="#3B3535" stroke-width="2.2" fill="none"/>
+  <line x1="670" y1="156" x2="840" y2="156" stroke="#D9D4D4" stroke-width="1" stroke-dasharray="4 4"/>
+    <text x="662" y="160" font-size="12" text-anchor="end" fill="#7A7373">1</text>
+  <text x="662" y="250" font-size="12" text-anchor="end" fill="#7A7373">0</text>
+
+  <text x="125" y="284" text-anchor="middle">plana y después recta</text>
+  <text x="125" y="302" text-anchor="middle" fill="#7A7373">el codo la define</text>
+  <text x="335" y="284" text-anchor="middle">igual, sin el codo</text>
+  <text x="335" y="302" text-anchor="middle" fill="#7A7373">suave en el cero</text>
+  <text x="545" y="284" text-anchor="middle">acotada y centrada</text>
+  <text x="545" y="302" text-anchor="middle" fill="#7A7373">satura en los extremos</text>
+  <text x="755" y="284" text-anchor="middle">acotada, nunca negativa</text>
+  <text x="755" y="302" text-anchor="middle" fill="#7A7373">satura en los extremos</text>
+</svg>

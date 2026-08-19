@@ -1,0 +1,15 @@
+     ReLU  max(0,z)          GELU / SiLU            Tanh  (-1,1)         Sigmoide  (0,1)
+        |        /              |        /             |    _______         |    _______
+        |       /               |       /            1 |   /              1 |   /
+    ----+------/----        ----+---.--/----       ----+--/-------      ----+--/-------
+        |     /                 |  \_/               0 | /              0.5 | /
+        |____/                  |__/                -1 |/                 0 |/
+
+    plana y despues        igual pero suave       acotada y            acotada, nunca
+    recta. barata          en el cero             centrada en 0        negativa
+
+<!-- ascii-note:
+intent: mostrar la forma de las cuatro activaciones ocultas una al lado de la otra, para compararlas de un vistazo
+emphasize: el codo de ReLU en el cero, que es lo que la distingue; la saturación de tanh y sigmoide en los extremos
+labels: ReLU, GELU/SiLU, Tanh, Sigmoide; eje horizontal z, eje vertical f(z)
+-->

@@ -465,3 +465,33 @@
   feedback: "Regularización y L2 no es parte de formas de solucional Overfeeting. No deberia estar en la misma seccion. ?"
   resolution: Se fusionaron las secciones 6 y 7 en una sola, "Overfitting y regularización", con seis diapositivas: dos de diagnóstico y cuatro de tratamiento. La regularización es el tratamiento canónico del overfitting y las notas de la 6.1 ya la trataban como continuación, así que la división por secciones contradecía el arco. El mazo pasa de siete secciones a seis.
   tags: [section-merge, structure]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. Lo que hay que diseñar"
+  feedback: "Agreguemos esto como un item pero podemos poner una nota"
+  resolution: El remate al pie pasó a ser el sexto ítem de la lista ("Las capas y las neuronas. No están en la lista. Eso sí se elige, y es lo que menos importa del diseño"), y el detalle numérico (1 a 3 capas, potencias de 2, ReLU) bajó a una nota al pie de la diapositiva.
+  tags: [item-promotion, note-demotion]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "3. Numéricas: normalizar no es opcional"
+  feedback: "Movelo como una nota abajo."
+  resolution: Sobre el bloque "Por qué no es opcional". El argumento del gradiente bajó de párrafo destacado, arriba de las recetas, a nota al pie de la diapositiva. La apertura queda solo con la definición.
+  tags: [note-demotion, content-position]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. Un dataset, tres trabajos distintos"
+  feedback: "Borrar Proporciones 70 / 20 / 10 de arranque. Con datasets muy grandes, 80 / 10 / 10. No bajar validación ni test de unos pocos cientos de ejemplos, ya esta en el assci."
+  resolution: Se retiró la card. Los 70/20/10 ya los dibuja el diagrama, así que la card los repetía. Lo que la card decía y el diagrama no dice pasó a las notas del orador: el 80/10/10 para datasets grandes, y el piso de unos pocos cientos de ejemplos por debajo del cual la métrica es ruido, que ya estaba anotado.
+  tags: [remove-redundancy, diagram-covers-it]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. La capa de salida la determina la tarea"
+  feedback: "Agregar otro slide que sea para cada una de las funciones la representacion. Tal vez solo un ASCCI con tido."
+  resolution: Nueva diapositiva 4.2 "Cómo se ven las cuatro", con un solo diagrama que pone lineal, sigmoide y softplus como curvas y softmax como reparto entre clases, que es lo que realmente es. La tabla de fórmulas y rangos queda en la 4.1 y el dibujo en la 4.2.
+  tags: [new-slide, visualization-requested]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. La capa de salida la determina la tarea"
+  feedback: "Tambien faltaria en el input las funciones de activation como relu, etc. Seguiria el mismo patron de defincion y luego la visualizacion de como se ven las funciones."
+  resolution: Nueva diapositiva 1.4 "Las activaciones ocultas, y cómo se ven", con el mismo patrón: definición de qué es una activación oculta, tabla de las cuatro candidatas con fórmula, rango y cuándo, y un diagrama con las cuatro formas. Cierra con la saturación, que es la razón por la que ganó ReLU. La card de la 1.3 dejó de adelantar la respuesta y ahora apunta a esta diapositiva.
+  tags: [new-slide, visualization-requested]

@@ -68,14 +68,18 @@
         {
           "label": "El overfitting",
           "body": "Cómo se detecta que el modelo memorizó en vez de aprender, y qué lo controla."
+        },
+        {
+          "label": "Las capas y las neuronas",
+          "body": "No están en la lista. Eso sí se elige, y es lo que menos importa del diseño."
         }
       ],
       "notes": "Este es el mapa mental que quiero que se lleven, y además es la agenda de la clase disfrazada de contenido: cada viñeta es una sección. Recorrelas señalando hacia adelante, sin desarrollar ninguna. El remate es la última línea: pasan horas tuneando capas y el retorno está en la entrada. Dato honesto: en tabular una red muchas veces pierde contra gradient boosting; las redes brillan cuando hay estructura que explotar.",
       "format": "editorial",
       "highlights": [
         {
-          "body": "La cantidad de capas y de neuronas no está en esa lista. Eso sí se elige, y es lo que menos importa: 1 a 3 capas ocultas para tabular, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las cinco de arriba.",
-          "kind": "takeaway"
+          "body": "1 a 3 capas ocultas alcanzan para datos tabulares, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las cinco de arriba.",
+          "kind": "note"
         }
       ]
     },
@@ -100,10 +104,46 @@
         },
         {
           "label": "Elección de `f`",
-          "body": "ReLU por defecto en capas ocultas, `max(0, z)`. GELU o SiLU en transformers. La activación de salida la determina la tarea."
+          "body": "Hay un puñado de candidatas y casi siempre gana ReLU. Las vemos en la diapositiva que sigue. La de salida la determina la tarea."
         }
       ],
       "notes": "Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Los parámetros de una capa son m·n + m."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Qué se diseña de verdad",
+      "title": "Las activaciones ocultas, y cómo se ven",
+      "lead": "Una activación oculta es la función no lineal `f` que se aplica después de `z = W·x + b` en las capas del medio. Su trabajo no es acotar el resultado a un rango con sentido, como en la salida, sino romper la linealidad para que apilar capas sirva.",
+      "media": {
+        "src": "images/s1-4-1-activaciones-ocultas.png",
+        "alt": "Formas de ReLU, GELU/SiLU, tanh y sigmoide"
+      },
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "ReLU",
+          "body": "`max(0, z)`, rango [0, ∞). El default de las capas ocultas: no satura y es baratísima."
+        },
+        {
+          "label": "GELU / SiLU",
+          "body": "Suavizaciones de ReLU, sin el codo en el cero. Es lo que usan los transformers."
+        },
+        {
+          "label": "Tanh",
+          "body": "Rango (−1, 1), acotada y centrada en cero. Redes recurrentes y salidas centradas."
+        },
+        {
+          "label": "Sigmoide",
+          "body": "Rango (0, 1). Casi nunca en capas ocultas, y la diapositiva explica por qué."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "La sigmoide y la tanh saturan: con `z` grande su derivada es casi cero, el gradiente que llega a las capas de abajo se apaga y la red deja de aprender. ReLU no satura del lado positivo, y esa es la razón por la que ganó.",
+          "kind": "important"
+        }
+      ],
+      "notes": "Esta es la diapositiva que faltaba: hasta acá la activación era un nombre, ahora tiene forma. Recorré el diagrama de izquierda a derecha y detenete en el codo de ReLU: son dos rectas pegadas, y con eso alcanza. La pregunta que funciona: ¿por qué una función tan tonta le gana a las suaves? No satura y es baratísima de calcular. La saturación es el concepto que se llevan, y vuelve en la sección 2: una entrada grande sin normalizar satura la neurona igual que un `z` grande."
     },
     {
       "template": "section-agenda",
@@ -213,8 +253,7 @@
       "highlights": [
         {
           "body": "Por qué no es opcional: el gradiente respecto a un peso es proporcional al valor de la entrada (`∂J/∂wⱼ = δ · xⱼ`), pero el learning rate es uno solo para toda la red. Con una variable en ~200 y otra en 0 o 1, los gradientes están a escala 200 a 1 y el entrenamiento zigzaguea.",
-          "kind": "definition",
-          "position": "top"
+          "kind": "note"
         }
       ]
     },
@@ -386,13 +425,9 @@
         {
           "label": "Test",
           "body": "Se abre una sola vez, con el modelo ya terminado. Es la lectura más cercana al desempeño en producción."
-        },
-        {
-          "label": "Proporciones",
-          "body": "70 / 20 / 10 de arranque. Con datasets muy grandes, 80 / 10 / 10. No bajar validación ni test de unos pocos cientos de ejemplos."
         }
       ],
-      "notes": "Arranca por el porqué, no por los porcentajes: medir con los datos de entrenamiento es como tomar examen con las respuestas a la vista. Los 70/20/10 son criterio práctico de la industria, no un resultado empírico; decilo así si preguntan. Con 200 ejemplos totales, un 10% de test son 20 casos y cualquier métrica sobre 20 casos es ruido; ahí conviene cross-validation."
+      "notes": "Arranca por el porqué, no por los porcentajes: medir con los datos de entrenamiento es como tomar examen con las respuestas a la vista. Los 70/20/10 están en el diagrama y son criterio práctico de la industria, no un resultado empírico; decilo así si preguntan. Con datasets de decenas de miles de ejemplos, 80/10/10 también funciona. Con 200 ejemplos totales, un 10% de test son 20 casos y cualquier métrica sobre 20 casos es ruido; ahí conviene cross-validation."
     },
     {
       "template": "value-columns",
@@ -537,6 +572,36 @@
         }
       ],
       "notes": "Recorré las cuatro filas como representaciones: recta para lineal, curva acotada para sigmoide, competencia entre clases para softmax y curva positiva para softplus. ¿Qué activación para unidades vendidas? Softplus o exp; lineal con MSE permitiría predicciones negativas."
+    },
+    {
+      "template": "content-image",
+      "section": "Modelar la salida",
+      "title": "Cómo se ven las cuatro",
+      "lead": "La tabla anterior dice el rango; el dibujo dice la forma. Es lo que hace evidente por qué cada una sirve para lo que sirve.",
+      "media": {
+        "src": "images/s4-2-1-activaciones-salida.png",
+        "alt": "Formas de las cuatro activaciones de salida"
+      },
+      "design": "split-right",
+      "facts": [
+        {
+          "label": "Lineal",
+          "body": "Sin piso ni techo. Un precio."
+        },
+        {
+          "label": "Sigmoide",
+          "body": "Tiene techo en 1. Una probabilidad."
+        },
+        {
+          "label": "Softplus",
+          "body": "Tiene piso en 0 y no tiene techo. Un conteo."
+        },
+        {
+          "label": "Softmax",
+          "body": "No es una curva: reparte 1 entre N clases que compiten. Es la única que necesita ver todas las neuronas de salida a la vez."
+        }
+      ],
+      "notes": "Es el complemento visual de la diapositiva anterior y se da rápido, dos minutos. El punto que la justifica: la forma explica el uso. La sigmoide tiene techo en 1, por eso es una probabilidad; softplus tiene piso en 0 y no tiene techo, por eso sirve para conteos; la lineal no tiene ninguno de los dos, por eso sirve para un precio. Y softmax no es una curva: si alguien la dibuja como curva, no la entendió."
     },
     {
       "template": "value-columns",
@@ -1026,7 +1091,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "c34b9e0cf1c3ec6e0bd1ae03f4ec621362e4d9434301b465bc46faa0854765cb",
-    "bytes": 60950
+    "sha256": "230bc426f76857d857546631f971a72f9e9691acc6e88fae858cb00e236bd548",
+    "bytes": 65882
   }
 }
