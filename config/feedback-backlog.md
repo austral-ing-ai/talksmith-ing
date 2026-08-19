@@ -579,3 +579,33 @@
   feedback: "Mostrar 'la matriz N×N'. Tal vez el slide hay que partirlo en dos. Son dos conceptos distintos."
   resolution: Este comentario quedó sin procesar porque estaba escrito sin espacio después del guion y el barrido no lo detectó. Pedía lo contrario de la instrucción posterior ("enfoquémonos solo a 2 clases, poner solo una nota al final"), que es la que vale por ser más reciente. La diapositiva no se parte: la matriz con más de dos clases queda como nota al pie y el ejemplo del clasificador de dígitos en las notas del orador. Si más adelante se quiere una diapositiva propia de multiclase, el material está en las notas.
   tags: [consistency, new-slide, superseded]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. Cómo se ve un tensor"
+  feedback: "'El canal no es espacial: son tres variables en el mismo punto, y se puede reordenar.' ¿No es verdad si es un DNN?"
+  resolution: La afirmación es cierta sobre el dato (el canal no tiene vecindad, alto y ancho sí), pero la card decía "se puede reordenar sin cambiar nada" sin decir respecto de qué, y ahí el comentario tiene razón: el contraste solo tiene consecuencias contra una Conv2D, que es la que trata alto y ancho como espacio al deslizar el mismo kernel. En un Dense sobre la imagen aplanada no hay ningún eje espacial y todas las posiciones son reordenables, las espaciales incluidas. La card pasó a decir que el canal es el único de los tres que se puede reordenar, que es lo preciso, y las notas del orador suman el matiz completo con los números del corpus: kernel 3×3 sobre RGB son 27 pesos y no 9; RGB 224×224 aplanada son 150.528 entradas y 38,5M de parámetros en la primera capa contra 896 de un Conv2d(3,32,3).
+  tags: [factual-correction, precision]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. Cómo se ve un tensor"
+  feedback: "Acá estamos no explicando redes convolucionales. El hablar de muchas capas produce ruido."
+  resolution: Se sacó todo lo convolucional. La card de señal ya no menciona Conv 1D, la de RGB ya no habla de reordenar (era la afirmación que arrastraba la explicación de Conv2D para tener sentido) y las notas del orador perdieron el párrafo de kernels, pesos compartidos y conteos de parámetros. Queda solo la forma del tensor, más una línea que aclara que el resto de la clase va sobre el caso tabular.
+  tags: [scope, factual-correction]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. Cómo se ve un tensor"
+  feedback: "El apilada no está bien."
+  resolution: Correcto, y era el peor error de la diapositiva. "Tres matrices apiladas" sugiere profundidad, o sea un tercer eje espacial, que es exactamente la confusión que la card quería corregir. Y el diagrama las dibujaba apiladas con desfase, reforzando el error. Ahora la card dice "la misma grilla, con tres números en cada píxel" y el diagrama muestra una sola grilla con un píxel ampliado que guarda R, G y B.
+  tags: [scope, factual-correction]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. Cómo se ve un tensor"
+  feedback: "Confirmá esto con documentación formal sobre cómo modelar esto en un NN."
+  resolution: Verificado contra la documentación de Keras y PyTorch, y ejecutado en el venv de la misión. La nota anterior decía "se aplana" como si fuera automático y **eso estaba mal**: una capa densa opera solo sobre el último eje y no aplana sola. Keras: "If the input to the layer has a rank greater than 2, Dense computes the dot product between the inputs and the kernel along the last axis of the inputs". PyTorch nn.Linear: "Output: (*, H_out) where all but the last dimension are the same shape as the input". Aplanar es una capa explícita, Flatten() o nn.Flatten(). Medido: Dense(32) sobre (8,224,224,3) sin aplanar devuelve (8,224,224,32) con 128 parámetros, que es kernel (3,32) más bias; con Flatten() antes devuelve (8,32) con 4.816.928, que es kernel (150.528,32) más bias. El hallazgo confirma la card: el framework por defecto trata el eje de canal como el eje de variables. También valida el número del corpus, los 38,5M eran con 256 unidades.
+  tags: [factual-correction, external-source]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. Cómo se ve un tensor"
+  feedback: "Pero si son tres números en el mismo píxel, ¿no se puede modelar la red?"
+  resolution: Sí se puede, y es exactamente la pregunta que va a hacer un alumno, así que quedó anticipada en las notas del orador. Para una red densa se aplana: los 224 por 224 por 3 se estiran en una fila de 150.528 floats y la red los trata como 150.528 variables sueltas, igual que las columnas de una tabla. Lo que se pierde al aplanar es que tres de esos números eran del mismo píxel y que dos píxeles eran vecinos: esa estructura vive en el dato, no en lo que la red usa. La respuesta refuerza la tesis de la clase, que la red ve un vector de floats, y deja claro que la forma importa para elegir arquitectura, no para poder modelar. No se agregó nada al contenido visible para no reintroducir el ruido de arquitecturas.
+  tags: [factual-correction, external-source]

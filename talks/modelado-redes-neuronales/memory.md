@@ -329,3 +329,33 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Files created/modified: draft.md, final.md, images/s1-2-1-formas-de-tensor.{ascii,svg,png} nuevo, s1-4-1-neurona.* y s1-5-1-activaciones-ocultas.* renombrados, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
 - Verificación: cero usos incorrectos de "neurona" para el input, cero anglicismos "slide", 12 huecos de imagen con SVG inlineado y ninguno vacío, auditorías en verde.
 - Pending open questions: 41 diapositivas para 90 minutos. Es el punto abierto más serio y está anotado en Open questions con las candidatas a recortar.
+
+## 2026-08-19 — Step 5/6/7 — ronda 17
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "'El canal no es espacial... y se puede reordenar' ¿no es verdad si es un DNN?"
+- What was decided: La objeción era parcialmente correcta y valía la corrección. La afirmación sobre el dato es cierta (el canal no tiene vecindad, alto y ancho sí), pero la card decía "se puede reordenar sin cambiar nada" sin decir respecto de qué. El contraste solo tiene consecuencias contra una Conv2D, que trata alto y ancho como espacio al deslizar el mismo kernel; en un Dense sobre la imagen aplanada no hay ningún eje espacial y todas las posiciones son reordenables, las espaciales incluidas. La card pasó a decir que el canal es el único de los tres reordenable, y las notas del orador incorporan el matiz completo con los números del corpus: kernel 3x3 sobre RGB son 27 pesos y no 9; RGB 224x224 aplanada son 150.528 entradas y 38,5M de parámetros en la primera capa contra 896 de un Conv2d(3,32,3).
+- El matiz refuerza la tesis de la clase en vez de debilitarla: que un Dense no distinga ejes es exactamente por qué es la arquitectura equivocada para una imagen.
+- Key inputs: draft.md, corpus/chat.md.md (líneas 30, 81, 161, 296: el eje de canales y los conteos de parámetros).
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+
+## 2026-08-19 — Step 5/6/7 — ronda 18
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Acá no estamos explicando redes convolucionales. Hablar de muchas capas produce ruido."
+  - 2026-08-19 — "El apilada no está bien."
+- What was decided: (a) Se sacó todo lo convolucional de la 1.2. La card de señal ya no menciona Conv 1D y la de RGB ya no habla de reordenar, que era la afirmación que obligaba a explicar Conv2D para tener sentido; las notas perdieron el párrafo de kernels, pesos compartidos y conteos de parámetros que yo mismo había agregado la ronda anterior. En el mazo entero solo queda una mención a convolución, la columna "Arquitectura" de la tabla de la 2.1, que es un nombre por fila y no una explicación. Se agregó una línea que declara el alcance: el resto de la clase trabaja sobre el caso tabular. (b) "Tres matrices apiladas" era un error, no una imprecisión: apilar sugiere profundidad, o sea un tercer eje espacial, que es justo la confusión que la card quería corregir. Y el diagrama las dibujaba apiladas con desfase. Ahora la card dice "la misma grilla, con tres números en cada píxel" y el diagrama muestra una sola grilla, igual que la de escala de grises, con un píxel ampliado que guarda R, G y B. El paralelismo entre los dos paneles hace el punto sin texto.
+- Aprendizaje de proceso: en la ronda 17 respondí una objeción del presentador agregando precisión técnica a las notas, y esa precisión se salió del alcance de la clase. La respuesta correcta a "esto no es del todo cierto" no siempre es explicar más; acá era sacar la afirmación que no se podía sostener sin material de otra clase.
+- Files created/modified: draft.md, final.md, images/s1-2-1-formas-de-tensor.{svg,png}, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+
+## 2026-08-19 — Step 5/6/7 — ronda 19
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Pero si son tres números en el mismo píxel, ¿no se puede modelar la red?"
+  - 2026-08-19 — "Confirmá esto con documentación formal sobre cómo modelar esto en un NN."
+- What was decided: La pregunta quedó anticipada en las notas del orador, y la verificación contra documentación encontró un error en mi primera respuesta. Yo había dicho "se aplana" como si fuera automático y no lo es: una capa densa opera solo sobre el último eje. Keras: "If the input to the layer has a rank greater than 2, Dense computes the dot product between the inputs and the kernel along the last axis of the inputs". PyTorch nn.Linear: "Output: (*, H_out) where all but the last dimension are the same shape as the input". Aplanar es una capa explícita, Flatten() o nn.Flatten().
+- Verificación empírica en el venv de missions/clase3: Dense(32) sobre (8,224,224,3) sin aplanar devuelve (8,224,224,32) con 128 parámetros, que es kernel (3,32) más bias; con Flatten() antes devuelve (8,32) con 4.816.928, que es kernel (150.528,32) más bias.
+- El hallazgo confirma la card en vez de contradecirla: el framework, por defecto, trata el eje de canal como el eje de variables, o sea que "tres columnas de una tabla" no es una analogía pedagógica sino lo que Keras hace literalmente. También valida el número del corpus: los 38,5M eran con 256 unidades (150.528 x 256 + 256 = 38.535.424).
+- Fuentes: https://keras.io/api/layers/core_layers/dense/ , https://keras.io/api/layers/reshaping_layers/flatten/ , https://docs.pytorch.org/docs/2.13/generated/torch.nn.Linear.html
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Pending open questions: las citas de Keras y PyTorch están en las notas del orador pero no en el corpus. Si se quieren como fuente formal de la Talk, habría que ingerir las dos páginas de documentación en la Colecta.

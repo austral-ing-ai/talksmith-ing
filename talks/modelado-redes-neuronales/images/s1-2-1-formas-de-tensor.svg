@@ -1,5 +1,5 @@
 <!-- talksmith-ascii-sha256: 55f4ff0f5bd879887e4936d1398d8ae567543619b772ea6fdf0751f08a0a7bca -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="23 24 877 350" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="24 26 851 348" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
   <title>Cómo se ve un tensor</title>
   <desc>La forma del tensor la decide la estructura del dato: un eje en tabular y señal, dos en una imagen gris, tres en RGB.</desc>
   <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
@@ -38,13 +38,19 @@
   <text x="570" y="200" text-anchor="middle" fill="#7A7373"> </text>
   <text x="570" y="230" text-anchor="middle" fill="#7A7373">un número por píxel</text>
 
-  <rect x="726" y="106" width="118" height="52" fill="#FBE7EA" stroke="#DA1B2E" stroke-width="1.4"/>
-  <rect x="738" y="130" width="118" height="52" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
-  <rect x="750" y="154" width="118" height="52" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
-  <text x="852" y="126" font-size="12" text-anchor="start" font-weight="bold" fill="#DA1B2E">R</text>
-  <text x="864" y="150" font-size="12" text-anchor="start" fill="#7A7373">G</text>
-  <text x="876" y="174" font-size="12" text-anchor="start" fill="#7A7373">B</text>
-  <text x="790" y="230" text-anchor="middle" fill="#7A7373">tres matrices apiladas</text>
+  <rect x="700" y="118" width="120" height="90" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
+  <g stroke="#D9D4D4" stroke-width="0.7">
+    <path d="M 730 118 L 730 208 M 760 118 L 760 208 M 790 118 L 790 208 M 700 148 L 820 148 M 700 178 L 820 178"/>
+  </g>
+  <rect x="730" y="148" width="30" height="30" fill="#FBE7EA" stroke="#DA1B2E" stroke-width="1.6"/>
+  <path d="M 760 148 L 828 128 M 760 178 L 828 196" stroke="#DA1B2E" stroke-width="0.9" fill="none" stroke-dasharray="3 3"/>
+  <rect x="828" y="128" width="24" height="22" fill="#FBE7EA" stroke="#DA1B2E" stroke-width="1.2"/>
+  <rect x="828" y="150" width="24" height="22" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"/>
+  <rect x="828" y="172" width="24" height="22" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"/>
+  <text x="840" y="144" font-size="11" text-anchor="middle" font-weight="bold" fill="#DA1B2E">R</text>
+  <text x="840" y="166" font-size="11" text-anchor="middle" fill="#7A7373">G</text>
+  <text x="840" y="188" font-size="11" text-anchor="middle" fill="#7A7373">B</text>
+  <text x="770" y="230" text-anchor="middle" fill="#7A7373">tres números en cada píxel</text>
 
   <text x="130" y="272" font-size="14" text-anchor="middle" font-weight="bold" font-family="'DejaVu Sans Mono', monospace">shape (10,)</text>
   <text x="350" y="272" font-size="14" text-anchor="middle" font-weight="bold" font-family="'DejaVu Sans Mono', monospace">shape (1000,)</text>

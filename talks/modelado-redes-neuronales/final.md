@@ -87,11 +87,13 @@ labels: tabular shape (10,), señal shape (1000,), imagen gris shape (28,28), RG
 -->
 
 - **Tabular: un eje.** Un vector de largo fijo, una posición por variable ya codificada. Es el caso de esta clase.
-- **Señal 1D: un eje, pero el orden importa.** También es un vector, pero la posición es el tiempo y las vecinas están relacionadas. Eso es lo que explota una Conv 1D y lo que en tabular no existe.
+- **Señal 1D: un eje, pero el orden importa.** También es un vector, pero la posición es el tiempo y las posiciones vecinas están relacionadas. En tabular esa relación no existe.
 - **Imagen en gris: dos ejes.** Una matriz, un número por píxel, con vecindad en alto y ancho.
-- **Imagen RGB: tres ejes.** Tres matrices apiladas. Ojo con el tercero: **el canal no es espacial**. Se comporta como tabular, son tres variables distintas medidas en el mismo punto, y por eso se puede reordenar sin cambiar nada.
+- **Imagen RGB: tres ejes, y el tercero es distinto.** No son tres imágenes una atrás de la otra: es **la misma grilla, con tres números en cada píxel**. Alto y ancho tienen vecindad; el canal no, R no está "cerca" de G. Son tres mediciones en el mismo punto, como tres columnas de una tabla.
 
 **Nota:** el lote es una dimensión más, siempre adelante. Un `Dense(32)` que recibe `(B, 10)` devuelve `(B, 32)`: los mismos pesos se aplican a las B filas.
+
+El resto de la clase trabaja sobre el primer caso, el tabular. Los otros tres están para que se vea que la forma la decide el dato.
 
 ### Sources
 
@@ -99,7 +101,13 @@ corpus/chat.md.md (§2 El input: principio general; el eje de canales)
 
 ### Speaker notes
 
-Esta diapositiva vuelve concreto lo que la anterior definió. La pregunta que funciona antes de mostrarla: si les paso una foto de 224 por 224 en color, ¿cuántos números son? Respuesta, 150.528. Sirve para que dimensionen. El punto que más rinde es el del canal: casi todos asumen que los tres ejes de una imagen RGB son "espacio", y el tercero no lo es, son tres mediciones en el mismo píxel. Es reordenable, igual que las columnas de una tabla. De ahí sale la convención que rompe todo al portar código: PyTorch usa (N, C, H, W) y TensorFlow (N, H, W, C); olvidar el permute no explota, da resultados malos, que es peor. El lote va al pasar, pero decilo: es la dimensión que aparece en todos los mensajes de error de shape que van a ver.
+Esta diapositiva vuelve concreto lo que la anterior definió, y se da rápido. La pregunta que funciona antes de mostrarla: si les paso una foto de 224 por 224 en color, ¿cuántos números son? Respuesta, 150.528. Sirve para que dimensionen. El punto que más rinde es el del canal: casi todos asumen que los tres ejes de una imagen RGB son "espacio", y el tercero no lo es. La imagen que lo arregla: no son tres fotos una atrás de la otra, es una sola foto donde cada píxel guarda tres números. No te metas con qué arquitectura aprovecha cada forma, eso no es esta clase; alcanza con que vean que la forma la decide el dato. El lote va al pasar, pero decilo: es la dimensión que aparece en todos los mensajes de error de shape que van a ver.
+
+La pregunta que sale seguido acá, tenela lista: si un píxel tiene tres números, ¿cómo entra eso a la red? Se aplana, y el aplanado es una capa que vos ponés, `Flatten()` en Keras o `nn.Flatten()` en PyTorch. Los 224 por 224 por 3 se estiran en una fila de 150.528 floats y a partir de ahí la red los trata como 150.528 variables sueltas, igual que las columnas de una tabla. Modelar siempre se puede; lo que se pierde al aplanar es que tres de esos números eran del mismo píxel y que dos píxeles eran vecinos. Esa estructura vive en el dato, no en lo que la red usa.
+
+Dato verificado que sirve si querés cerrar la idea del canal: una capa densa opera **solo sobre el último eje**, no aplana sola (Keras: "Dense computes the dot product between the inputs and the kernel along the last axis"; PyTorch nn.Linear: "all but the last dimension are the same shape as the input"). Si le pasás la imagen RGB sin aplanar, el kernel queda de (3, 32) y son 128 parámetros: un peso por canal, la misma transformación repetida en los 50.176 píxeles. Con Flatten primero, el kernel pasa a (150.528, 32) y son 4,8 millones. O sea que el framework, por defecto, trata el canal como el eje de variables, que es justo lo que dice la card.
+
+Cerrá volviendo al primer panel: el resto de la clase trabaja sobre el caso tabular.
 
 ---
 

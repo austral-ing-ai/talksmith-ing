@@ -59,25 +59,29 @@
           "body": "Un vector de largo fijo, una posición por variable ya codificada. Es el caso de esta clase."
         },
         {
-          "label": "Señal 1D: un eje ordenado",
-          "body": "También un vector, pero la posición es el tiempo y las vecinas están relacionadas. Eso explota una Conv 1D."
+          "label": "Señal 1D: un eje, pero el orden importa",
+          "body": "También un vector, pero la posición es el tiempo y las vecinas están relacionadas. En tabular esa relación no existe."
         },
         {
           "label": "Imagen gris: dos ejes",
           "body": "Una matriz, un número por píxel, con vecindad en alto y ancho."
         },
         {
-          "label": "Imagen RGB: tres ejes",
-          "body": "Tres matrices apiladas. El canal no es espacial: son tres variables en el mismo punto, y se puede reordenar."
+          "label": "Imagen RGB: tres ejes, y el tercero es distinto",
+          "body": "No son tres imágenes una atrás de otra: es la misma grilla, con tres números en cada píxel. Alto y ancho tienen vecindad; el canal no."
         }
       ],
       "highlights": [
         {
           "body": "El lote es una dimensión más, siempre adelante. Un `Dense(32)` que recibe `(B, 10)` devuelve `(B, 32)`: los mismos pesos se aplican a las B filas.",
           "kind": "note"
+        },
+        {
+          "body": "El resto de la clase trabaja sobre el primer caso, el tabular. Los otros tres están para que se vea que la forma la decide el dato.",
+          "kind": "takeaway"
         }
       ],
-      "notes": "Esta diapositiva vuelve concreto lo que la anterior definió. La pregunta que funciona antes de mostrarla: si les paso una foto de 224 por 224 en color, ¿cuántos números son? Respuesta, 150.528. El punto que más rinde es el del canal: casi todos asumen que los tres ejes de una imagen RGB son espacio, y el tercero no lo es, son tres mediciones en el mismo píxel. De ahí sale la convención que rompe todo al portar código: PyTorch usa (N, C, H, W) y TensorFlow (N, H, W, C); olvidar el permute no explota, da resultados malos, que es peor. El lote va al pasar, pero decilo: es la dimensión que aparece en todos los errores de shape que van a ver."
+      "notes": "Esta diapositiva vuelve concreto lo que la anterior definió, y se da rápido. La pregunta que funciona antes de mostrarla: si les paso una foto de 224 por 224 en color, ¿cuántos números son? Respuesta, 150.528. El punto que más rinde es el del canal: casi todos asumen que los tres ejes de una imagen RGB son espacio, y el tercero no lo es. La imagen que lo arregla: no son tres fotos una atrás de la otra, es una sola foto donde cada píxel guarda tres números. El lote va al pasar, pero decilo: es la dimensión que aparece en todos los errores de shape que van a ver. La pregunta que sale seguido: si un píxel tiene tres números, ¿cómo entra eso a la red? Se aplana, y el aplanado es una capa que vos ponés, Flatten() en Keras o nn.Flatten() en PyTorch: una capa densa opera solo sobre el último eje y no aplana sola. Medido: Dense(32) sobre (8,224,224,3) sin aplanar da (8,224,224,32) con 128 parámetros, un peso por canal; con Flatten() antes da (8,32) con 4,8 millones. O sea que el framework por defecto trata el canal como el eje de variables. Lo que se pierde al aplanar es que tres números eran del mismo píxel y que dos píxeles eran vecinos: eso vive en el dato, no en lo que la red usa. Cerrá volviendo al primer panel: el resto de la clase trabaja sobre el caso tabular."
     },
     {
       "template": "concept-breakdown",
@@ -1149,7 +1153,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "10985886d1a70e949b5bf08fbf8bedacea310c02c382a765404accbca540a125",
-    "bytes": 73685
+    "sha256": "a617b18ea1cbe8fa5f760bc0c01168c91fd02b8f294f1e87cd99fb28e09eef69",
+    "bytes": 75193
   }
 }
