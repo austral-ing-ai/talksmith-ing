@@ -4,7 +4,7 @@
     "institution": "Universidad Austral",
     "class": "Diseño de redes neuronales: del dato a la predicción",
     "presenter": "Paulo Veiga, Claudio Riguetti, Marco Sorondo",
-    "date": "a definir",
+    "date": "2026-08-19",
     "lang": "es",
     "logo": null,
     "sections": [
@@ -1108,7 +1108,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "b5ae51d3f291d2f0bf128766233b9fa23d74a1b1606891a4e0d45fb76794aadc",
-    "bytes": 68157
+    "sha256": "82a15fafc4927db296a53af363c77d064ee31c09a6a72aa55cafc252d9525b9d",
+    "bytes": 68158
   }
 }

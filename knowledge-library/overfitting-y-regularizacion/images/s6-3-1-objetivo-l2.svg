@@ -1,0 +1,23 @@
+<!-- talksmith-ascii-sha256: 3d1b9e6f0d73606b66c95b3000c89a0b2cb49bb13241466ecdd7453dcffefca7 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 260" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>El objetivo con regularización L2</title>
+  <desc>L2 suma un término que penaliza los pesos grandes y empuja cada peso hacia cero en cada paso.</desc>
+  <rect x="0" y="0" width="680" height="260" fill="#ffffff"/>
+
+  <g font-family="'DejaVu Sans Mono', monospace" font-size="34">
+    <text x="120" y="120">J</text>
+    <text x="175" y="120">=</text>
+    <text x="235" y="120">cost</text>
+    <text x="360" y="120">+</text>
+    <text x="415" y="120" fill="#DA1B2E">λ · Σ w²</text>
+  </g>
+
+  <path d="M225,140 Q285,165 345,140" fill="none" stroke="#B9B3B3" stroke-width="1.6"/>
+  <text x="285" y="195" font-size="16" text-anchor="middle" fill="#7A7373">ajuste</text>
+
+  <path d="M410,140 Q490,165 570,140" fill="none" stroke="#DA1B2E" stroke-width="1.6"/>
+  <text x="490" y="195" font-size="16" text-anchor="middle" fill="#DA1B2E">penalización</text>
+  <text x="490" y="218" font-size="14" text-anchor="middle" fill="#7A7373">empuja cada w hacia 0</text>
+
+  <text x="340" y="248" font-size="14" text-anchor="middle" fill="#7A7373">pesos chicos dan una función más suave, que generaliza mejor</text>
+</svg>

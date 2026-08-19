@@ -1,7 +1,6 @@
 # memory.md — modelado-redes-neuronales
 
-**Current step:** 8 — Learnings awaiting_presenter
-**Awaiting:** ¿Promover esta Talk a la biblioteca de conocimiento compartida, o saltear?
+**Current step:** complete
 **Topic:** Diseño y modelado de una red neuronal — entradas/salidas, matriz de confusión, overfitting y regularización L2
 **Folder:** talks/modelado-redes-neuronales/
 **Started:** 2026-08-18
@@ -287,3 +286,22 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
 - Defecto de proceso: en el primer intento el reemplazo del goal falló porque el texto tenía "el quiz obliga a elegir cuál duele en cuatro casos" y yo buscaba una variante. El script aborta antes de escribir cuando un reemplazo no matchea, así que el borrador quedó intacto pero el modelo ya se había actualizado por separado: quedaron desincronizados un momento. Conviene tocar borrador y modelo en el mismo script, o verificar el sha del stamp después de cada ronda.
 - Pending open questions: 40 diapositivas para 90 minutos. Sigue pendiente la promoción a la biblioteca compartida.
+
+## 2026-08-19 — Step 8 (Learnings) — cierre
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Promover esta Talk a la biblioteca de conocimiento compartida" → sí
+- What was decided: Se creó knowledge-library/, que no existía, con cinco temas nuevos curados desde los tres registros del corpus, final.md y los diez diagramas. Los temas se organizaron por materia y no por sección de la clase: codificacion-de-variables, particion-del-dataset, metricas-de-clasificacion, activaciones-y-capa-de-salida, overfitting-y-regularizacion. Cada uno con index.md, frontmatter con sources, y su propia carpeta images/ autocontenida. Las diez imágenes se copiaron en svg y png a la carpeta del tema que las usa; los sidecars .ascii no, porque la biblioteca guarda artefactos renderizados y el fuente queda recuperable desde el Talk.
+- Curación, no copia: se dejó afuera el andamiaje de diapositivas (agenda, orden de secciones, notas del orador, feedback) y se conservaron los conceptos, la evidencia y los enlaces de vuelta a los registros del corpus por ruta relativa. Se agregaron enlaces cruzados entre los cinco temas donde el contenido se apoya mutuamente.
+- Advertencias de procedencia que se propagaron a la biblioteca: metricas-de-clasificacion no tiene fuente en el corpus y sus números son ilustrativos; los ratios 70/20/10 son recomendación de Roboflow y no un estudio; estratificación y partición temporal son aporte del docente sin fuente detrás.
+- Files created/modified: knowledge-library/{codificacion-de-variables, particion-del-dataset, metricas-de-clasificacion, activaciones-y-capa-de-salida, overfitting-y-regularizacion}/{index.md, images/} — 5 index.md, 20 archivos de imagen, 492 KB.
+- Verificación: todas las referencias de imagen resuelven dentro de la carpeta del tema, todos los enlaces relativos al corpus del Talk existen, y todos los enlaces entre temas existen.
+- Pending open questions: ninguna. El Talk queda cerrado.
+
+## 2026-08-19 — retoque post-cierre
+- Status: complete
+- Asks log:
+  - 2026-08-19 — "Última modificación: a definir, poner la fecha de hoy"
+- What was decided: El campo `date` del frontmatter pasó de "a definir" a 2026-08-19, en draft.md y en deck.date del modelo. Es el campo que el renderer rotula "Última modificación" en la portada. Polish y Render rehechos; los 10 diagramas se reusaron.
+- Nota: según el schema ese campo es la fecha de dictado de la clase, y el renderer lo muestra como última modificación. Si el dictado no es hoy, es el mismo campo el que hay que cambiar.
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html

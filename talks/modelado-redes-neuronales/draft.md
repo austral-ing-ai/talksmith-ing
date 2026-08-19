@@ -6,7 +6,7 @@ description: Slides are grouped into Sections. Each Section contains one or more
 presenter: Paulo Veiga, Claudio Riguetti, Marco Sorondo (Universidad Austral)
 audience: Estudiantes de grado de Ingeniería de Software con base técnica fuerte
 duration: 90 min
-date: a definir
+date: 2026-08-19
 ---
 
 # Thesis
