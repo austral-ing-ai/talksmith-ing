@@ -1,6 +1,6 @@
 ---
 presentation: Inteligencia Artificial Generativa (AI Gen)
-class: "Diseño de redes neuronales: del dato a la predicción"
+class: "Modelado de un Multi-Layer Perceptron (MLP)"
 research: research/corpus/
 description: Slides are grouped into Sections. Each Section contains one or more Slides.
 presenter: Paulo Veiga, Claudio Riguetti, Marco Sorondo (Universidad Austral)
@@ -13,7 +13,7 @@ date: 2026-08-19
 
 **Claim:** El diseño de una red neuronal se decide casi entero en tres lugares: cómo se codifica la entrada, cómo se parte el dataset y cómo se modela la salida. El resto de la arquitectura sale del problema. Medir separando los tipos de error y frenar el overfitting con regularización es lo que separa un modelo que entrena de uno que sirve.
 
-**Why it matters:** Una red no ve un cliente, una imagen ni un contrato: ve un tensor de floats. Si la información que importa quedó mal codificada, ninguna cantidad de capas la recupera, y la mayoría de los errores de producción en ML nacen en la frontera entre el dato crudo y el modelo. En el medio está la partición del dataset, que no cambia el modelo pero decide si la métrica dice la verdad: medir con los mismos datos con los que se entrenó es tomar examen con las respuestas a la vista. Del otro lado, un modelo con 99% de accuracy puede ser inútil y uno que ajusta perfecto en entrenamiento puede fallar en cada caso nuevo. Codificar bien, partir bien, modelar bien la salida, saber medir y saber regularizar cubre el 80% de las decisiones reales.
+**Why it matters:** Una red no ve un cliente, una imagen ni un contrato: ve una fila de números. Si la información que importa quedó mal codificada, ninguna cantidad de capas la recupera, y la mayoría de los errores de producción en ML nacen en la frontera entre el dato crudo y el modelo. En el medio está la partición del dataset, que no cambia el modelo pero decide si la métrica dice la verdad: medir con los mismos datos con los que se entrenó es tomar examen con las respuestas a la vista. Del otro lado, un modelo con 99% de accuracy puede ser inútil y uno que ajusta perfecto en entrenamiento puede fallar en cada caso nuevo. Codificar bien, partir bien, modelar bien la salida, saber medir y saber regularizar cubre el 80% de las decisiones reales.
 
 ---
 
@@ -34,22 +34,22 @@ date: 2026-08-19
 
 # 1. Qué se diseña de verdad
 
-**Goal of this section:** Reencuadrar el diseño de una red y dar el vocabulario mínimo. La intuición del alumno suele estar en "cuántas capas, cuántas neuronas"; el mensaje es que esas decisiones importan poco y que el trabajo real está en cómo entra y cómo sale el dato. Deja tres cosas: qué es un tensor, cuáles son las seis decisiones que recorre la clase, y qué es una neurona y su activación, con las cuatro ocultas y sus formas.
+**Goal of this section:** Reencuadrar el diseño de una red y dar el vocabulario mínimo. La intuición del alumno suele estar en "cuántas capas, cuántas neuronas"; el mensaje es que esas decisiones importan poco y que el trabajo real está en cómo entra y cómo sale el dato. Deja cuatro cosas: que la forma del input la decide la arquitectura y que esta clase modela un MLP, cuáles son las seis decisiones que recorre la clase, qué es una neurona y su activación con las cuatro ocultas y sus formas, y de qué está hecho el vector de entrada.
 
 ---
 
-## 1. La red no ve el problema, ve un tensor
+## 1. La red no ve el problema, ve una fila de números
 
 ### Content
 
-Un **tensor** es un arreglo de números de N dimensiones, todos del mismo tipo (float) y con una forma fija. Un escalar es un tensor de 0 dimensiones, un vector de 1, una matriz de 2, una imagen RGB de 3 (alto, ancho, canal). Todo lo que entra, circula y sale de una red es un tensor.
+Todo lo que entra a una red es una fila de números de largo fijo, todos del mismo tipo (float). Esa fila es el único acceso que la red tiene al problema.
 
 - **Todo entra como números.** Un cliente, una máquina, una foto o un contrato llegan a la red como un vector de floats de tamaño fijo. La semántica original (que esto era una edad y aquello un barrio) desaparece en la codificación.
-- **El input es una traducción.** Como toda traducción, puede perder cosas. Si la información que importa no quedó en el tensor, o quedó de una forma que borra su estructura, ninguna arquitectura la recupera después.
+- **El input es una traducción.** Como toda traducción, puede perder cosas. Si la información que importa no quedó en esa fila, o quedó de una forma que borra su estructura, ninguna arquitectura la recupera después.
 - **El error de codificación entra silencioso.** La red solo ve floats y no tiene forma de detectar que una posición "era un código" y otra "era una cantidad". Nadie recibe una excepción: el modelo entrena, converge y se equivoca.
 
 <!-- template: quote -->
-<!-- generate-image: right | la traducción frágil entre un mundo complejo y un tensor de números, con información que puede perderse en el paso -->
+<!-- generate-image: right | la traducción frágil entre un mundo complejo y una fila de números, con información que puede perderse en el paso -->
 
 ### Sources
 
@@ -61,51 +61,57 @@ Abrí con esto porque reordena toda la clase. La mayoría llega pensando que dis
 
 ---
 
-## 2. Cómo se ve un tensor
+## 2. La forma del input la decide la arquitectura
 
 ### Content
 
-La forma del tensor la decide la estructura del dato, y es lo primero que hay que saber decir de un problema.
+La misma imagen de 28 por 28 píxeles entra a una red densa como una fila de 784 números y a una convolucional como una grilla de 28 por 28. La arquitectura decide qué forma necesita.
 
-![Formas de tensor: tabular, señal 1D, imagen gris y RGB](images/s1-2-1-formas-de-tensor.png)
+![La misma imagen de 28 x 28 como fila, grilla y secuencia](images/s1-2-1-formas-de-input.png)
 <!-- ascii-source:
-  tabular: un cliente       senal 1D: un ECG          imagen gris 28x28       imagen RGB 224x224
-                                                                                +-------------+ R
-  [ 0.4 1.2 0.0 ... 0.7 ]   [ .10 .31 .28 ... .55 ]   +---------------+        +-------------+ G
-                                                      |               |        +-------------+ B
-   10 floats en fila          1000 muestras            |    28 x 28    |
-                                                      |               |         224 x 224 x 3
-                                                      +---------------+
-   shape (10,)                shape (1000,)            shape (28, 28)           shape (224, 224, 3)
+            la misma imagen de 28 x 28, tres arquitecturas
 
-  y siempre, adelante, el lote:  (B, 10)   (B, 1000)   (B, 28, 28)   (B, 224, 224, 3)
+  MLP (capa densa)         CNN (convolucional)      RNN / Transformer
+  ----------------         -------------------      -----------------
+
+  [ ][ ][ ] ... [ ]          +-------------+         [v1] [v2] ... [vT]
+   1  2  3      784          |             |          t=1  t=2      t=T
+                             |   28 x 28   |
+  una fila de 784            |             |         una secuencia de
+  numeros                    +-------------+         vectores, en orden
+
+  hay que aplanarla          la grilla, intacta      el orden es el dato
 -->
 <!-- ascii-note:
-intent: hacer concreto qué forma tiene el tensor en cuatro casos, del más simple al de tres ejes
-emphasize: la progresión de 1 a 3 ejes y la dimensión de lote que se antepone en todos
-labels: tabular shape (10,), señal shape (1000,), imagen gris shape (28,28), RGB shape (224,224,3), lote B
+intent: mostrar que un mismo dato cambia de forma segun la arquitectura que lo recibe
+emphasize: el contraste entre la fila aplanada del MLP y la grilla intacta de la CNN
+labels: MLP fila de 784, CNN grilla 28 x 28, RNN/Transformer secuencia v1..vT
 -->
 
-- **Tabular: un eje.** Un vector de largo fijo, una posición por variable ya codificada. Es el caso de esta clase.
-- **Señal 1D: un eje, pero el orden importa.** También es un vector, pero la posición es el tiempo y las posiciones vecinas están relacionadas. En tabular esa relación no existe.
-- **Imagen en gris: dos ejes.** Una matriz, un número por píxel, con vecindad en alto y ancho.
-- **Imagen RGB: tres ejes, y el tercero es distinto.** No son tres imágenes una atrás de la otra: es **la misma grilla, con tres números en cada píxel**. Alto y ancho tienen vecindad; el canal no, R no está "cerca" de G. Son tres mediciones en el mismo punto, como tres columnas de una tabla.
+| Arquitectura | Qué input espera | Por qué |
+|---|---|---|
+| MLP (densa) | Una fila de números de largo fijo | Cada neurona se conecta con todas las entradas, y la posición dentro de la fila no significa nada para ella |
+| CNN | Una grilla: alto por ancho por color | La convolución necesita saber qué píxel está al lado de cuál |
+| RNN / Transformer | Una secuencia de vectores | Cada paso es un vector y el orden entre pasos es parte del dato |
 
-El resto de la clase trabaja sobre el primer caso, el tabular. Los otros tres están para que se vea que la forma la decide el dato.
+**Qué es un MLP.** Multi-Layer Perceptron, o perceptrón multicapa. Una capa de entrada, una o más capas ocultas donde cada neurona se conecta con todas las de la capa anterior (de ahí el nombre "densa", o *fully connected*), y una capa de salida. Es la arquitectura más simple y sigue siendo el bloque final de muchas CNN.
+
+**El alcance de esta clase es el MLP.** Aplanar una imagen pierde qué píxel estaba al lado de cuál, y ese es el motivo por el que visión usa CNN. Acá el foco está en el MLP sobre datos tabulares, donde no hay ninguna vecindad que perder.
 
 ### Sources
 
-corpus/chat.md.md (§2 El input: principio general; el eje de canales)
+corpus/chat.md.md (§2 El input: principio general — familias de estructura y su arquitectura natural)
+784 = 28 × 28 — ejemplo aportado por el presentador (MNIST), no figura en el corpus
 
 ### Speaker notes
 
-Esta diapositiva vuelve concreto lo que la anterior definió, y se da rápido. La pregunta que funciona antes de mostrarla: si les paso una foto de 224 por 224 en color, ¿cuántos números son? Respuesta, 150.528. Sirve para que dimensionen. El punto que más rinde es el del canal: casi todos asumen que los tres ejes de una imagen RGB son "espacio", y el tercero no lo es. La imagen que lo arregla: no son tres fotos una atrás de la otra, es una sola foto donde cada píxel guarda tres números. No te metas con qué arquitectura aprovecha cada forma, eso no es esta clase; alcanza con que vean que la forma la decide el dato. El lote va al pasar, pero decilo: es la dimensión que aparece en todos los mensajes de error de shape que van a ver.
+Esta diapositiva fija el alcance de la clase y conviene darla despacio, porque todo lo que sigue se apoya en ella. La pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 en escala de grises, ¿cuántos números son? Respuesta, 784. Sirve para que dimensionen.
 
-La pregunta que sale seguido acá, tenela lista: si un píxel tiene tres números, ¿cómo entra eso a la red? Se aplana, y el aplanado es una capa que vos ponés, `Flatten()` en Keras o `nn.Flatten()` en PyTorch. Los 224 por 224 por 3 se estiran en una fila de 150.528 floats y a partir de ahí la red los trata como 150.528 variables sueltas, igual que las columnas de una tabla. Modelar siempre se puede; lo que se pierde al aplanar es que tres de esos números eran del mismo píxel y que dos píxeles eran vecinos. Esa estructura vive en el dato, no en lo que la red usa.
+El punto que más rinde: la forma no es una propiedad del dato, es un requisito de la arquitectura. Una imagen es una grilla siempre; lo que cambia es si la red aprovecha esa grilla. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden y por eso pide la fila aplanada.
 
-Dato verificado que sirve si querés cerrar la idea del canal: una capa densa opera **solo sobre el último eje**, no aplana sola (Keras: "Dense computes the dot product between the inputs and the kernel along the last axis"; PyTorch nn.Linear: "all but the last dimension are the same shape as the input"). Si le pasás la imagen RGB sin aplanar, el kernel queda de (3, 32) y son 128 parámetros: un peso por canal, la misma transformación repetida en los 50.176 píxeles. Con Flatten primero, el kernel pasa a (150.528, 32) y son 4,8 millones. O sea que el framework, por defecto, trata el canal como el eje de variables, que es justo lo que dice la card.
+Por si alguien pregunta si el aplanado es automático: no lo es. Una capa densa opera solo sobre el último eje (Keras: "Dense computes the dot product between the inputs and the kernel along the last axis"; PyTorch nn.Linear: "all but the last dimension are the same shape as the input"). Aplanar es una capa que uno pone, `Flatten()` en Keras o `nn.Flatten()` en PyTorch.
 
-Cerrá volviendo al primer panel: el resto de la clase trabaja sobre el caso tabular.
+No te metas con cómo funciona una convolución ni con attention. Alcanza con que quede claro que existen, que esperan otra forma de input, y que de acá en adelante la clase modela un MLP sobre datos tabulares.
 
 ---
 
@@ -113,7 +119,7 @@ Cerrá volviendo al primer panel: el resto de la clase trabaja sobre el caso tab
 
 ### Content
 
-Diseñar una red son seis decisiones, y la que todos creen que es la principal, cuántas capas ponerle, es la que menos pesa. Son las seis que recorre esta clase, en este orden.
+Diseñar un MLP son seis decisiones, y la que todos creen que es la principal, cuántas capas ponerle, es la que menos pesa. Son las seis que recorre esta clase, en este orden.
 
 - **La entrada.** Cómo cada variable del problema se convierte en floats. Es donde se gana o se pierde el modelo, y donde más tiempo vamos a estar.
 - **El dataset.** Cómo se parte antes de entrenar, en train, validación y test. Sin esto ninguna métrica posterior es honesta.
@@ -156,7 +162,7 @@ labels: x entradas, W·x+b pre-activación, f activación, a salida
 
 - **Pre-activación:** `z = W·x + b`. Combinación lineal de las entradas más un sesgo.
 - **Activación:** `a = f(z)`. La no linealidad `f` es lo que hace que apilar capas sirva. Sin ella, la composición de capas lineales colapsa a una sola matriz.
-- **Elección de `f`:** hay un puñado de candidatas y casi siempre gana ReLU. Las vemos en la diapositiva que sigue. La activación de salida es otra historia: la determina la tarea, y va en la sección 4.
+- **Elección de `f`:** hay un puñado de candidatas y casi siempre gana ReLU. Las vemos al cierre de esta sección. La activación de salida es otra historia: la determina la tarea, y va en la sección 4.
 
 ### Sources
 
@@ -168,7 +174,49 @@ Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar
 
 ---
 
-## 5. Las activaciones ocultas, y cómo se ven
+## 5. El vector de entrada, una posición por feature
+
+### Content
+
+Cada posición del vector de entrada es una **feature**: una medición del problema ya convertida en número. El largo del vector es la cantidad de features, y queda fijo para toda la vida del modelo.
+
+- **Tabular.** Una posición por columna ya codificada: edad, ingreso, antigüedad.
+- **Imagen en escala de grises de 28 por 28.** 784 posiciones, una por píxel, con el valor de gris normalizado.
+
+| Tipo de dato | Cómo se convierte en input |
+|---|---|
+| Numérico | Directo, normalizado a media 0 y desvío 1 |
+| Categórico | One-hot hasta unas 15 categorías, embedding de 50 en adelante |
+| Imagen | Píxeles normalizados, aplanados para un MLP |
+| Texto | Tokenización y después embeddings |
+| Audio | Espectrograma, o la forma de onda muestreada |
+
+Tres cosas que se confunden seguido:
+
+- **El largo no cambia.** La red espera siempre la misma cantidad de posiciones. Por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo.
+- **La escala.** Con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia.
+- **One-hot contra embedding.** Con muchas categorías posibles, one-hot da vectores enormes y casi todos ceros. El embedding las comprime en pocas dimensiones densas que además aprenden qué categorías se parecen.
+
+Los dos últimos son el material de la sección que sigue.
+
+### Sources
+
+corpus/chat.md.md (§2 El input: principio general; §3 Codificación de variables; §4 One-hot vs. embedding — umbrales ≤15 one-hot / ≥50 embedding; §5 Escalas y normalización — z-score media 0 desvío 1)
+784 = 28 × 28 — ejemplo aportado por el presentador (MNIST), no figura en el corpus
+
+### Speaker notes
+
+Esta diapositiva contesta la pregunta que queda colgando después de la neurona: qué es exactamente esa `x`. La respuesta corta, una feature por posición, y con eso alcanza para seguir el resto de la clase.
+
+MNIST funciona bien acá porque es contraintuitivo de la manera correcta: 784 posiciones suena a mucho para un dígito escrito a mano, y sin embargo es un problema chico. Si preguntan cuántos parámetros tiene la primera capa con 32 unidades, son 784 × 32 + 32 = 25.120.
+
+La tabla se recorre rápido, es un panorama. La sección que sigue desarrolla las dos primeras filas, que son las que aparecen en problemas tabulares. Texto y audio están para cerrar el mapa, no para desarrollarlos.
+
+De los tres puntos de confusión, el del largo fijo es el que más preguntas genera. El ejemplo que lo cierra: un modelo entrenado con imágenes de 28 por 28 no acepta una de 32 por 32, hay que redimensionar antes. Con texto pasa lo mismo, y de ahí sale el padding.
+
+---
+
+## 6. Las activaciones ocultas, y cómo se ven
 
 ### Content
 
@@ -181,7 +229,7 @@ Una **activación oculta** es la función no lineal `f` que se aplica después d
 | Tanh | `(eᶻ − e⁻ᶻ) / (eᶻ + e⁻ᶻ)` | (−1, 1) | Redes recurrentes, salidas centradas |
 | Sigmoide | `1 / (1 + e⁻ᶻ)` | (0, 1) | Casi nunca en capas ocultas |
 
-![Formas de ReLU, GELU/SiLU, tanh y sigmoide](images/s1-5-1-activaciones-ocultas.png)
+![Formas de ReLU, GELU/SiLU, tanh y sigmoide](images/s1-6-1-activaciones-ocultas.png)
 <!-- ascii-source:
      ReLU  max(0,z)          GELU / SiLU            Tanh  (-1,1)         Sigmoide  (0,1)
         |        /              |        /             |    _______         |    _______
@@ -217,32 +265,27 @@ Esta es la diapositiva que faltaba: hasta acá la activación era un nombre, aho
 
 ---
 
-## 1. Todo termina en un vector de floats
+## 1. Qué significa que el dato sea tabular
 
 ### Content
 
-El input es todo lo que sabés del problema, convertido a números. Vamos a concentrarnos en el primer caso, **sin estructura (tabular)**: una fila por ejemplo y una columna por variable, sin vecindad ni orden intrínseco entre las columnas. Lo que cambia entre un caso y otro es qué significa la posición dentro del vector, y eso determina la arquitectura natural.
+Esta clase modela datos **tabulares**: una fila por ejemplo y una columna por variable, sin vecindad ni orden intrínseco entre las columnas. Intercambiar la columna de edad con la de ingreso no cambia el significado del dato mientras cada una conserve su nombre.
 
-| Estructura | Qué es | Ejemplos | Invariancia | Arquitectura |
-|---|---|---|---|---|
-| Sin estructura (tabular) | Filas y columnas, sin vecindad ni orden intrínseco entre columnas | Cliente (edad, ingreso, barrio), solicitud de préstamo, ficha clínica | El orden de las columnas | Fully connected |
-| Grilla 1D (señal) | Muestras tomadas a intervalos regulares sobre un eje continuo | ECG, audio, vibración de una máquina, temperatura horaria | Desplazar en el tiempo | Conv 1D, RNN, Transformer |
-| Grilla 2D (imagen) | Píxeles con vecindad en dos ejes | Radiografía, foto satelital, captura de pantalla | Desplazar en el espacio | Conv 2D |
-| Secuencia | Elementos discretos de un vocabulario, en orden y de largo variable | Reseña, log de eventos, código fuente, cadena de ADN | Nada, el orden es todo | Transformer |
-| Conjunto | Elementos sin orden y en cantidad variable | Carrito de compras, síntomas de un paciente, hashtags de un post | El orden de los elementos | Deep Sets, attention |
-| Grafo | Nodos y aristas, sin numeración canónica | Transferencias entre cuentas, red social, molécula | Renumerar los nodos | GNN |
+Esa propiedad es la que hace que un MLP encaje. Una capa densa conecta cada neurona con todas las entradas y no usa la posición para nada, así que recibir las columnas en otro orden no le quita información. En una imagen sí se la quitaría, porque ahí la posición del píxel es parte del dato.
 
-Señal y secuencia se confunden seguido y son distintas. La señal está muestreada a intervalos regulares y una ventana de 50 muestras significa lo mismo al principio o al final; la secuencia es una lista de símbolos de un vocabulario, sin intervalo temporal fijo y sin invariancia por desplazamiento.
-
-La pregunta que ordena todo el zoológico: **¿qué transformaciones puedo aplicarle al input sin cambiar la respuesta correcta?** Esa invariancia elige la familia de arquitectura.
+Falta el paso de la columna al número. Cada columna se convierte en una o más posiciones del vector, y de qué depende esa conversión es el resto de esta sección.
 
 ### Sources
 
-corpus/chat.md.md (§2 El input: principio general)
+corpus/chat.md.md (§2 El input: principio general — el caso sin estructura y su invariancia al orden de columnas)
 
 ### Speaker notes
 
-Este marco es elegante y vale la pena bajarlo despacio. Definí "sin estructura" en contraste con una imagen: en una tabla, intercambiar dos columnas no cambia el significado si el modelo conserva sus nombres; no hay píxeles vecinos ni orden temporal que explotar. La confusión que más aparece es señal contra secuencia: el audio es señal (muestreo regular, invariante al desplazamiento), el texto es secuencia (símbolos discretos, largo variable, sin invariancia). El ADN sirve de ejemplo tramposo porque parece señal y es secuencia. Para el resto de la clase nos quedamos en el caso tabular, el más común en problemas de negocio y donde las decisiones de codificación se ven más claras. Usá los ejemplos de la tabla para que cada familia tenga una imagen mental. Mencioná que texto e imágenes terminan también en un vector de tamaño fijo (un embedding) y de ahí vuelven al caso simple.
+Definí "tabular" por contraste con una imagen, que es el ejemplo que todos tienen a mano: en una tabla no hay píxeles vecinos ni orden temporal que explotar, y el modelo puede recibir las columnas en cualquier orden mientras sepa cuál es cuál. Ese es el punto que conecta con la diapositiva de arquitecturas de la sección anterior: el MLP no usa la posición, y en tabular no hay posición que usar, así que la arquitectura y el dato se corresponden.
+
+El resto de la sección es método, y conviene anunciarlo así: cada columna del dataset se convierte en una o más posiciones del vector, y lo que decide en cuántas y con qué valores es el tipo de variable.
+
+Si alguien pregunta por imágenes, texto o series temporales, la respuesta corta es que cada familia tiene su arquitectura y que las vimos al pasar en la sección 1. No abras ese frente acá.
 
 ---
 
@@ -257,7 +300,7 @@ Frente a cualquier variable, una sola pregunta ordena la decisión: **¿qué sig
 - **No significa nada** (barrio 14 menos barrio 7): one-hot o embedding según cuántos valores distintos haya.
 - **No se puede ni plantear:** probablemente no sea una feature útil.
 
-**Poner un número real en el tensor es afirmar algo.** Cada float le promete a la red dos cosas sobre esa posición: que las diferencias son comparables (14 está más lejos de 7 que de 13) y que la magnitud escala el efecto, porque el aporte a `z = W·x + b` es el peso por el valor. Con 85 m² y 60 m² la promesa se cumple. Con barrio 14 y barrio 7 es falsa, y ahí es donde hay que cambiar de codificación.
+**Poner un número real en el vector es afirmar algo.** Cada float le promete a la red dos cosas sobre esa posición: que las diferencias son comparables (14 está más lejos de 7 que de 13) y que la magnitud escala el efecto, porque el aporte a `z = W·x + b` es el peso por el valor. Con 85 m² y 60 m² la promesa se cumple. Con barrio 14 y barrio 7 es falsa, y ahí es donde hay que cambiar de codificación.
 
 Todo termina en floats, nunca en enteros. Los enteros aparecen en un solo lugar: como índice para buscar una fila en una tabla de embeddings. El entero no entra a la red, entra al lookup.
 
@@ -349,7 +392,7 @@ Sección de "no lo hagas". Estos cuatro son los que más veces vas a ver en trab
 
 ---
 
-## 6. De la variable al tensor: la tabla de decisiones
+## 6. De la variable al vector: la tabla de decisiones
 
 ### Content
 
@@ -1082,15 +1125,48 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 # Open questions
 
 - Sección 5 (Medir un clasificador) no está cubierta por el corpus (`chat.md.md`). El contenido viene del conocimiento del área. Si el presentador quiere anclarlo a una fuente propia (apunte, capítulo, ejemplo con números reales de un dataset del curso), conviene sumarla en la Colecta y re-verificar los números. El ejemplo del "99% de accuracy" y los costos FP/FN son ilustrativos, no datos de una fuente.
-- La fuente advierte que en datos tabulares una red suele perder contra gradient boosting (XGBoost, LightGBM). Está en las notas del orador (slide 1.2) como contrapunto honesto. Decidir si darle más aire en clase o dejarlo como comentario al pasar.
-- Duración: el borrador pasó de ~25 diapositivas al arranque a 40, con el mismo presupuesto de 90 minutos. Es el punto que más conviene mirar, y conviene cronometrar un pase completo antes de la clase. Candidatas a recortar, en este orden: slide 6.4 (L1 contra L2), slide 3.4 (errores de partición, dejando los dos primeros bullets más el código) y slide 5.7 (el umbral), que ya quedó aligerada y se puede dar solo con el diagrama.
-- Diagramas: 10 (neurona, activaciones ocultas, one-hot, partición, activaciones de salida, desbalance de accuracy, matriz de confusión, umbral, curvas de overfitting, objetivo L2).
+- La fuente advierte que en datos tabulares una red suele perder contra gradient boosting (XGBoost, LightGBM). Está en las notas del orador (slide 1.3) como contrapunto honesto. Decidir si darle más aire en clase o dejarlo como comentario al pasar.
+- Duración: 34 diapositivas de contenido, con el mismo presupuesto de 90 minutos. La ronda del enfoque MLP sumó una diapositiva (la 1.5) y aligeró la 2.1, así que el balance queda parejo. Sigue siendo el punto que más conviene mirar, y conviene cronometrar un pase completo antes de la clase. Candidatas a recortar, en este orden: slide 6.4 (L1 contra L2), slide 3.4 (errores de partición, dejando los dos primeros bullets más el código) y slide 5.7 (el umbral), que ya quedó aligerada y se puede dar solo con el diagrama.
+- Diagramas: 10 (formas de input por arquitectura, neurona, activaciones ocultas, one-hot, partición, activaciones de salida, desbalance de accuracy, matriz de confusión, umbral, curvas de overfitting, objetivo L2). El de formas de input reemplaza al de formas de tensor, retirado con el vocabulario de tensor.
 - Las dos directivas `generate-image` (slides 1.1 y 6.1) siguen sin cumplir: ninguna sesión tuvo capacidad de generación de imágenes. Las diapositivas conservan su texto y no dependen de ellas.
 - Ninguna de las dos fuentes nuevas cubre partición estratificada ni partición temporal, y las dos importan para los trabajos que entregan los alumnos. En la diapositiva 3.4 están como aporte del docente, sin fuente detrás. Si se quiere anclar, hace falta sumar una tercera fuente en la Colecta.
 - Los ratios 70/20/10 y 80/10/10 son recomendación de la casa de Roboflow (contenido de marketing de producto), no resultado de un estudio. Están citados como criterio práctico de la industria; si alguien en clase pregunta de dónde salen, esa es la respuesta honesta.
 - El artículo de Roboflow está escrito para visión por computadora y esta clase es tabular. Los ejemplos se trasladaron (imágenes a filas), la lógica no cambió. Revisar en el ensayo que no quede ningún resto de vocabulario de visión.
+- El framing MLP de la sección 1 (diapositivas 1.2 y 1.5) viene de una exploración del presentador en un chat, no del corpus. El corpus respalda las familias de estructura y su arquitectura natural (§2), los umbrales de one-hot contra embedding (§4) y la normalización z-score (§5), pero no el ejemplo de MNIST 28x28 con 784 posiciones ni el contraste de tres arquitecturas tal como quedó armado. Si se quiere anclar, la exploración se puede sumar en la Colecta como fuente propia.
+- Las citas de Keras y PyTorch sobre el aplanado (notas del orador de la 1.2) están verificadas contra la documentación oficial pero no viven en el corpus. Ingerir las dos páginas si se las quiere como fuente formal de la Talk.
 
 # Cut material
+
+## Diapositiva 2.1 "Todo termina en un vector de floats" — tabla de seis familias de estructura (recortada por feedback, 2026-08-20)
+
+Se retiró al declararse el alcance MLP en la sección 1. La tabla listaba seis familias (sin estructura, grilla 1D, grilla 2D, secuencia, conjunto, grafo) con su arquitectura natural, y quedaba solapada con la tabla de tres arquitecturas de la diapositiva 1.2 y con la tabla de tipos de dato de la 1.5. La 2.1 pasó a definir solo el caso tabular.
+
+## 1. Todo termina en un vector de floats
+
+### Content
+
+El input es todo lo que sabés del problema, convertido a números. Vamos a concentrarnos en el primer caso, **sin estructura (tabular)**: una fila por ejemplo y una columna por variable, sin vecindad ni orden intrínseco entre las columnas. Lo que cambia entre un caso y otro es qué significa la posición dentro del vector, y eso determina la arquitectura natural.
+
+| Estructura | Qué es | Ejemplos | Invariancia | Arquitectura |
+|---|---|---|---|---|
+| Sin estructura (tabular) | Filas y columnas, sin vecindad ni orden intrínseco entre columnas | Cliente (edad, ingreso, barrio), solicitud de préstamo, ficha clínica | El orden de las columnas | Fully connected |
+| Grilla 1D (señal) | Muestras tomadas a intervalos regulares sobre un eje continuo | ECG, audio, vibración de una máquina, temperatura horaria | Desplazar en el tiempo | Conv 1D, RNN, Transformer |
+| Grilla 2D (imagen) | Píxeles con vecindad en dos ejes | Radiografía, foto satelital, captura de pantalla | Desplazar en el espacio | Conv 2D |
+| Secuencia | Elementos discretos de un vocabulario, en orden y de largo variable | Reseña, log de eventos, código fuente, cadena de ADN | Nada, el orden es todo | Transformer |
+| Conjunto | Elementos sin orden y en cantidad variable | Carrito de compras, síntomas de un paciente, hashtags de un post | El orden de los elementos | Deep Sets, attention |
+| Grafo | Nodos y aristas, sin numeración canónica | Transferencias entre cuentas, red social, molécula | Renumerar los nodos | GNN |
+
+Señal y secuencia se confunden seguido y son distintas. La señal está muestreada a intervalos regulares y una ventana de 50 muestras significa lo mismo al principio o al final; la secuencia es una lista de símbolos de un vocabulario, sin intervalo temporal fijo y sin invariancia por desplazamiento.
+
+La pregunta que ordena todo el zoológico: **¿qué transformaciones puedo aplicarle al input sin cambiar la respuesta correcta?** Esa invariancia elige la familia de arquitectura.
+
+### Sources
+
+corpus/chat.md.md (§2 El input: principio general)
+
+### Speaker notes
+
+Este marco es elegante y vale la pena bajarlo despacio. Definí "sin estructura" en contraste con una imagen: en una tabla, intercambiar dos columnas no cambia el significado si el modelo conserva sus nombres; no hay píxeles vecinos ni orden temporal que explotar. La confusión que más aparece es señal contra secuencia: el audio es señal (muestreo regular, invariante al desplazamiento), el texto es secuencia (símbolos discretos, largo variable, sin invariancia). El ADN sirve de ejemplo tramposo porque parece señal y es secuencia. Para el resto de la clase nos quedamos en el caso tabular, el más común en problemas de negocio y donde las decisiones de codificación se ven más claras. Usá los ejemplos de la tabla para que cada familia tenga una imagen mental. Mencioná que texto e imágenes terminan también en un vector de tamaño fijo (un embedding) y de ahí vuelven al caso simple.
 
 ## Diapositiva 4.4 "Dos formas de modelar mal la salida" (retirada por feedback, 2026-08-19)
 

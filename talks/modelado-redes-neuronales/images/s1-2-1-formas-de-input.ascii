@@ -1,0 +1,18 @@
+            la misma imagen de 28 x 28, tres arquitecturas
+
+  MLP (capa densa)         CNN (convolucional)      RNN / Transformer
+  ----------------         -------------------      -----------------
+
+  [ ][ ][ ] ... [ ]          +-------------+         [v1] [v2] ... [vT]
+   1  2  3      784          |             |          t=1  t=2      t=T
+                             |   28 x 28   |
+  una fila de 784            |             |         una secuencia de
+  numeros                    +-------------+         vectores, en orden
+
+  hay que aplanarla          la grilla, intacta      el orden es el dato
+
+<!-- ascii-note:
+intent: mostrar que un mismo dato cambia de forma segun la arquitectura que lo recibe
+emphasize: el contraste entre la fila aplanada del MLP y la grilla intacta de la CNN
+labels: MLP fila de 784, CNN grilla 28 x 28, RNN/Transformer secuencia v1..vT
+-->

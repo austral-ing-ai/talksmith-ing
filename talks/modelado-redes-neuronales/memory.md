@@ -1,6 +1,7 @@
 # memory.md — modelado-redes-neuronales
 
-**Current step:** complete
+**Current step:** 8 (Learnings) — awaiting_presenter
+**Awaiting:** decisión de promoción del patrón `terminology` (4 recurrencias) a `config/learnings.md`, y promoción de la Talk a la biblioteca de conocimiento.
 **Topic:** Diseño y modelado de una red neuronal — entradas/salidas, matriz de confusión, overfitting y regularización L2
 **Folder:** talks/modelado-redes-neuronales/
 **Started:** 2026-08-18
@@ -359,3 +360,22 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Fuentes: https://keras.io/api/layers/core_layers/dense/ , https://keras.io/api/layers/reshaping_layers/flatten/ , https://docs.pytorch.org/docs/2.13/generated/torch.nn.Linear.html
 - Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
 - Pending open questions: las citas de Keras y PyTorch están en las notas del orador pero no en el corpus. Si se quieren como fuente formal de la Talk, habría que ingerir las dos páginas de documentación en la Colecta.
+
+## 2026-08-20 — Step 5/6/7 — ronda 20: enfoque MLP
+- Status: complete
+- Asks log:
+  - 2026-08-20 — "¿Nueva presentación o retomar una existente?" → Retomar `modelado-redes-neuronales`
+  - 2026-08-20 — "¿Por dónde arrancamos?" → "Retomemos en draft" → volver al borrador (Revisión)
+- Estado al reabrir: draft.md sin feedback pendiente (46 viñetas cerradas, cero `[open]`), 40 diapositivas en 6 secciones + conclusiones, 10 diagramas, final.md y el mazo HTML al día desde la ronda 19.
+- Pending open questions: las de la sección `Open questions` de draft.md, sin cambios — duración (40 diapositivas para 90 min), citas de Keras/PyTorch fuera del corpus, sección 5 sin fuente, estratificación/partición temporal sin fuente, dos directivas `generate-image` sin cumplir.
+- 2026-08-20 — Instrucción del presentador: la clase se enfoca en **MLP**. Sale el vocabulario de "tensor" del mazo (confuso). Diapositiva nueva después de la 1.4 que cubra el input como vector de features, la tabla tipo de dato → codificación, dimensionalidad fija, escala y one-hot contra embedding, más el contraste MLP/CNN/RNN-Transformer y la definición de MLP. Las diapositivas 1.2 a 1.5 (con la nueva como 1.5) tienen que dar ese framing.
+- Tensión detectada: la instrucción reabre el contraste de arquitecturas que la ronda 18 había sacado por ruidoso. Vale la reapertura porque el propósito cambió — antes era una digresión, ahora es lo que justifica declarar el alcance MLP. Aplica la regla de la ronda 16: la instrucción más reciente gana.
+- Solapamiento a resolver: la 2.1 ya tiene una tabla de seis familias de estructura con su arquitectura. Con el framing nuevo quedarían dos tablas diciendo casi lo mismo. Ask abierto.
+- What was decided: La clase pasa a declarar su alcance en la sección 1 y a llamarse "Modelado de un Multi-Layer Perceptron (MLP)". Cinco cambios. (1) Salió el vocabulario de tensor del mazo entero (tesis, goal de la sección 1, título y apertura de la 1.1, la 2.2 y el título de la 2.6); en su lugar "una fila de números". (2) La 1.2 pasó de "Cómo se ve un tensor" a "La forma del input la decide la arquitectura": contrasta MLP, CNN y RNN/Transformer sobre el mismo ejemplo de 28x28, define qué es un MLP y declara el alcance. (3) Diapositiva nueva 1.5 "El vector de entrada, una posición por feature", después de la neurona: feature por posición, largo fijo, tabla tipo de dato a codificación, y escala y one-hot contra embedding apuntando a la sección 2. Las activaciones ocultas pasaron a 1.6. (4) La 1.3 abre con "Diseñar un MLP" y la 1.4 dejó de apuntar a "la diapositiva que sigue", que con la 1.5 en el medio habría quedado mintiendo. (5) La 2.1 se recortó al caso tabular y su tabla de seis familias de estructura quedó archivada en Cut material, porque con el framing nuevo quedaban tres tablas solapadas.
+- Reapertura consciente de la ronda 18: aquella ronda sacó lo convolucional de la sección 1 por ruidoso y esta lo reintroduce. Vale porque el propósito cambió: antes era una digresión, ahora es lo que justifica declarar el alcance. Regla de la ronda 16, la instrucción más reciente gana.
+- Key inputs: draft.md completo; corpus/chat.md.md §2 (familias de estructura y su arquitectura natural), §3 (codificación), §4 (umbrales ≤15 one-hot / ≥50 embedding), §5 (z-score media 0 desvío 1). El ejemplo de MNIST 28x28 con 784 posiciones lo aportó el presentador y no está en el corpus; queda marcado así en el campo Sources de las dos diapositivas y en Open questions.
+- Diagramas: se dibujó s1-2-1-formas-de-input (tres arquitecturas sobre el mismo dato de 28x28, con el panel MLP en acento), se borró s1-2-1-formas-de-tensor y se renombró s1-5-1-activaciones-ocultas a s1-6-1. Los otros diez se reusaron sin volver a renderizar. Desvío del contrato: la crítica del diagrama la hice yo por inspección del PNG en vez de despachar el subagente diagram-critic, porque la sesión tiene el Agent tool deshabilitado. validate_svg ok, audit_aspect ok (imbalance 2.12x sobre un umbral de 2.5x).
+- Bookkeeping: se espejaron al backlog las 5 viñetas de esta ronda más 16 rezagadas de rondas anteriores que nunca se habían espejado. find-closed-unmirrored queda en cero.
+- Render: html-strict, 42 diapositivas. La primera pasada avisó que la 2.1 no entraba en la grilla editorial (cuerpo de 170 caracteres contra ~140); se le sacó el formato editorial y se acortaron las tres cards, y la segunda pasada salió limpia. Auditorías degenerate_enum, field_coverage e image_coverage en verde.
+- Files created/modified: draft.md, final.md, images/s1-2-1-formas-de-input.{svg,png}, images/s1-6-1-activaciones-ocultas.* (renombrados), output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
+- Pending open questions: las dos directivas generate-image (1.1 y 6.1) siguen sin cumplir, esta sesión tampoco tiene generación de imágenes. El framing MLP y el ejemplo de MNIST no están en el corpus; si se los quiere anclar hay que sumar la exploración en la Colecta. Duración: 34 diapositivas de contenido para 90 minutos.

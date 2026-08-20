@@ -467,18 +467,6 @@
   tags: [section-merge, structure]
 - talk: modelado-redes-neuronales
   date: 2026-08-19
-  location: Slide "2. Lo que hay que diseñar"
-  feedback: "Agreguemos esto como un item pero podemos poner una nota"
-  resolution: El remate al pie pasó a ser el sexto ítem de la lista ("Las capas y las neuronas. No están en la lista. Eso sí se elige, y es lo que menos importa del diseño"), y el detalle numérico (1 a 3 capas, potencias de 2, ReLU) bajó a una nota al pie de la diapositiva.
-  tags: [item-promotion, note-demotion]
-- talk: modelado-redes-neuronales
-  date: 2026-08-19
-  location: Slide "3. Numéricas: normalizar no es opcional"
-  feedback: "Movelo como una nota abajo."
-  resolution: Sobre el bloque "Por qué no es opcional". El argumento del gradiente bajó de párrafo destacado, arriba de las recetas, a nota al pie de la diapositiva. La apertura queda solo con la definición.
-  tags: [note-demotion, content-position]
-- talk: modelado-redes-neuronales
-  date: 2026-08-19
   location: Slide "1. Un dataset, tres trabajos distintos"
   feedback: "Borrar Proporciones 70 / 20 / 10 de arranque. Con datasets muy grandes, 80 / 10 / 10. No bajar validación ni test de unos pocos cientos de ejemplos, ya esta en el assci."
   resolution: Se retiró la card. Los 70/20/10 ya los dibuja el diagrama, así que la card los repetía. Lo que la card decía y el diagrama no dice pasó a las notas del orador: el 80/10/10 para datasets grandes, y el piso de unos pocos cientos de ejemplos por debajo del cual la métrica es ruido, que ya estaba anotado.
@@ -551,12 +539,6 @@
   tags: [quiz-mechanics, missing-definition, slide-split]
 - talk: modelado-redes-neuronales
   date: 2026-08-19
-  location: Slide "7. El umbral, una perilla de negocio"
-  feedback: "Ok, enfoquemosnos solo a 2 clases. Y poner solo una nota al final."
-  resolution: La sección queda binaria de punta a punta. La diapositiva pasó a llamarse "El umbral, una perilla de negocio", sin la matriz en el título, y el bloque de multiclase se redujo a una nota de dos líneas al pie: la matriz crece a una fila por clase real y una columna por clase predicha, precisión y recall se calculan por clase, y la idea no cambia. El ejemplo del clasificador de dígitos quedó en las notas del orador por si alguien pregunta. El goal de la sección dice ahora explícitamente que trabaja sobre dos clases.
-  tags: [scope, note-demotion]
-- talk: modelado-redes-neuronales
-  date: 2026-08-19
   location: Slide "6. De la variable al tensor: la tabla de decisiones"
   feedback: "Leí que el input realmente no son neuronas"
   resolution: Correcto, y la tabla decía "Neuronas". La capa de entrada no tiene pesos ni calcula nada: es el vector en sí, y la primera que hace `z = W·x + b` más activación es la primera capa oculta. La columna pasó a llamarse "Floats", que además es el término con el que abre la sección ("Todo termina en un vector de floats"), y se agregó un párrafo que explica la distinción. También se corrigieron el goal de la sección y el cierre de la diapositiva, que decían "cantidad de neuronas de entrada", y las notas del orador para responder si alguien pregunta. El encabezado "Neuronas" del catálogo de salida no se tocó: ahí sí son neuronas de verdad.
@@ -580,32 +562,128 @@
   resolution: Este comentario quedó sin procesar porque estaba escrito sin espacio después del guion y el barrido no lo detectó. Pedía lo contrario de la instrucción posterior ("enfoquémonos solo a 2 clases, poner solo una nota al final"), que es la que vale por ser más reciente. La diapositiva no se parte: la matriz con más de dos clases queda como nota al pie y el ejemplo del clasificador de dígitos en las notas del orador. Si más adelante se quiere una diapositiva propia de multiclase, el material está en las notas.
   tags: [consistency, new-slide, superseded]
 - talk: modelado-redes-neuronales
+  date: 2026-08-20
+  location: Slide "1. Qué significa que el dato sea tabular"
+  feedback: "Si, vamos con eso (recortar la 2.1 al caso tabular; el zoologico de seis familias queda solapado con el framing nuevo de la seccion 1)."
+  resolution: Se recortó la 2.1 al caso tabular. Salió la tabla de seis familias de estructura (archivada en Cut material) y la diapositiva pasa a definir qué significa tabular y por qué esa propiedad es la que hace encajar un MLP: la capa densa no usa la posición y en tabular no hay posición que usar. El resto de la sección queda anunciado como el método de columna a número.
+  tags: [slide-content, redundant, cut]
+- talk: modelado-redes-neuronales
+  date: 2026-08-20
+  location: Slide "5. El vector de entrada, una posición por feature"
+  feedback: "Complementario a slide 4, pongamos slide 5 que cubra: el input de una red neuronal es en esencia un vector numerico; cada posicion representa una dimension (una feature); segun el tipo de dato cambia como se codifica; y los puntos que confunden: dimensionalidad fija, normalizacion/escala, y embeddings vs. one-hot."
+  resolution: Diapositiva nueva 1.5 'El vector de entrada, una posición por feature', después de 'Una neurona, en una línea'. Define feature por posición, el largo fijo del vector, MNIST 28x28 como 784 posiciones, la tabla tipo de dato a codificación (numérico, categórico, imagen, texto, audio) y los tres puntos que confunden: largo fijo, escala y one-hot contra embedding. Los dos últimos quedan apuntando a la sección 2, que es donde se desarrollan.
+  tags: [new-slide, content-addition, missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-20
+  location: Slide "2. La forma del input la decide la arquitectura"
+  feedback: "Que mencione que dependiendo de la arquitectura de la red neuronal, el tipo de dato a procesar. Que de ahora en adelante nos vamos a enfocar en MLP. Que es MLP?"
+  resolution: La 1.2 pasó de 'Cómo se ve un tensor' a 'La forma del input la decide la arquitectura'. Contrasta MLP, CNN y RNN/Transformer con la forma de input que espera cada una sobre el mismo ejemplo de 28x28, define qué es un MLP (perceptrón multicapa, capas densas, bloque final de muchas CNN) y declara el alcance de la clase. El diagrama nuevo reemplaza al de formas de tensor.
+  tags: [slide-title, slide-content, rewrite, missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-20
+  location: Section "1. Qué se diseña de verdad"
+  feedback: "Creo que tenemos que ser claros en el foco. La presentacion va a ser modelado MLP. Entonces, no hablamos mas de tensores por que es confuso. Es decir, los slide 2 al 5 (este nuevo es el 5) tienen que proveer este framing."
+  resolution: Se sacó el vocabulario de tensor del mazo entero: tesis, objetivo de la sección 1, título y apertura de la 1.1, título de la 2.6 y la 2.2. En su lugar, 'una fila de números'. Las diapositivas 1.2 a 1.5 quedaron como el bloque que fija el framing MLP, con la 1.5 nueva, y las activaciones ocultas pasaron a 1.6.
+  tags: [terminology, section-goal, rewrite]
+- talk: modelado-redes-neuronales
+  date: 2026-08-20
+  location: Thesis
+  feedback: "Y tal vez el titulo sea Modelado de Multi Layer Perceptron (para ser mas especifico)"
+  resolution: El campo class del frontmatter pasó de 'Diseño de redes neuronales: del dato a la predicción' a 'Modelado de un Multi-Layer Perceptron (MLP)'. Es el rótulo que el renderer pone en la portada bajo la materia.
+  tags: [slide-title, wording]
+- talk: modelado-redes-neuronales
   date: 2026-08-19
-  location: Slide "2. Cómo se ve un tensor"
+  location: Slide "7. El umbral, una perilla de negocio"
+  feedback: "Ok, enfoquemosnos solo a 2 clases. Y poner solo una nota al final."
+  resolution: La sección queda binaria de punta a punta. La diapositiva pasó a llamarse "El umbral, una perilla de negocio", sin la matriz en el título, y el bloque de multiclase se redujo a una nota de dos líneas al pie: la matriz crece a una fila por clase real y una columna por clase predicha, precisión y recall se calculan por clase, y la idea no cambia. El ejemplo del clasificador de dígitos quedó en las notas del orador por si alguien pregunta. El goal de la sección dice ahora explícitamente que trabaja sobre dos clases.
+  tags: [slide-scope, cut]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "3. Precision, recall y F1"
+  feedback: "No se definio 'F1, media armónica'"
+  resolution: La card ahora abre con la fórmula `2 · (P · R) / (P + R)` y define la media armónica por contraste con el promedio común, con dos números concretos (0.9 y 0.5 dan 0.70 de promedio y 0.64 de F1). Las notas del orador suman el porqué de la armónica y el caso del clasificador que marca todo.
+  tags: [missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "6. De la variable al vector: la tabla de decisiones"
+  feedback: "Borrar 'Sumar la última columna, más un flag por cada variable que pueda faltar, da el largo del vector de entrada. Esa cuenta no se elige: sale de la tabla.'"
+  resolution: Se retiró el cierre. La tabla y el párrafo de faltantes se sostienen solos.
+  tags: [remove-redundancy]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "3. Numéricas: normalizar no es opcional"
+  feedback: "En casi todos los slides es confusdo que no se define y en algunos caso se empieza con ejemplos. En este caso, fata la defincion, luego se peude mencionar datos tipo y el effecto de."
+  resolution: La diapositiva pasa a orden definición → a qué datos aplica → recetas, con el efecto al pie. Se abre definiendo qué es normalizar y sobre qué variables aplica; el argumento del gradiente quedó después, bajo "Por qué no es opcional". La parte general del comentario (que casi todas las diapositivas arrancan por el ejemplo) queda pendiente de decisión del presentador como barrido definición-primero de todo el mazo.
+  tags: [slide-content, rewrite]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "3. Numéricas: normalizar no es opcional"
+  feedback: "Movelo como una nota abajo."
+  resolution: Sobre el bloque "Por qué no es opcional". El argumento del gradiente bajó de párrafo destacado, arriba de las recetas, a nota al pie de la diapositiva. La apertura queda solo con la definición.
+  tags: [missing-definition, card-wording]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. La pregunta que decide la codificación"
+  feedback: "Seria bueno aca agregar una nota que los valores al sear reales hay cierta expectativa que las deferencias y magntides modelan algo. g: Barrio 14-7 no dice nada de ahi que hay que modelarlo distinto"
+  resolution: Se agregó el párrafo "Poner un número real en el tensor es afirmar algo", con las dos promesas que hace un float (diferencias comparables y magnitud que escala el efecto vía W·x) y el contraste 85 m² contra barrio 14.
+  tags: [content-addition, speaker-notes]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. Qué significa que el dato sea tabular"
+  feedback: "Secuencia no se si es la definicion correcta. Seria bueno que introducca de definicion del tipo y luego ejemplos. Los ejemplos son procos."
+  resolution: La tabla pasó a cinco columnas con una de definición propia ("Qué es") antes de los ejemplos, y cada fila subió a tres ejemplos. Se corrigió Secuencia (elementos discretos de un vocabulario, orden, largo variable) y se agregó un párrafo que la separa de Señal. Las notas del orador recogen la distinción.
+  tags: [missing-definition, card-wording]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "3. Lo que hay que diseñar"
+  feedback: "Agreguemos esto como un item pero podemos poner una nota"
+  resolution: El remate al pie pasó a ser el sexto ítem de la lista ("Las capas y las neuronas. No están en la lista. Eso sí se elige, y es lo que menos importa del diseño"), y el detalle numérico (1 a 3 capas, potencias de 2, ReLU) bajó a una nota al pie de la diapositiva.
+  tags: [content-addition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. La forma del input la decide la arquitectura"
   feedback: "'El canal no es espacial: son tres variables en el mismo punto, y se puede reordenar.' ¿No es verdad si es un DNN?"
   resolution: La afirmación es cierta sobre el dato (el canal no tiene vecindad, alto y ancho sí), pero la card decía "se puede reordenar sin cambiar nada" sin decir respecto de qué, y ahí el comentario tiene razón: el contraste solo tiene consecuencias contra una Conv2D, que es la que trata alto y ancho como espacio al deslizar el mismo kernel. En un Dense sobre la imagen aplanada no hay ningún eje espacial y todas las posiciones son reordenables, las espaciales incluidas. La card pasó a decir que el canal es el único de los tres que se puede reordenar, que es lo preciso, y las notas del orador suman el matiz completo con los números del corpus: kernel 3×3 sobre RGB son 27 pesos y no 9; RGB 224×224 aplanada son 150.528 entradas y 38,5M de parámetros en la primera capa contra 896 de un Conv2d(3,32,3).
-  tags: [factual-correction, precision]
+  tags: [new-slide, visualization-requested]
 - talk: modelado-redes-neuronales
   date: 2026-08-19
-  location: Slide "2. Cómo se ve un tensor"
-  feedback: "Acá estamos no explicando redes convolucionales. El hablar de muchas capas produce ruido."
-  resolution: Se sacó todo lo convolucional. La card de señal ya no menciona Conv 1D, la de RGB ya no habla de reordenar (era la afirmación que arrastraba la explicación de Conv2D para tener sentido) y las notas del orador perdieron el párrafo de kernels, pesos compartidos y conteos de parámetros. Queda solo la forma del tensor, más una línea que aclara que el resto de la clase va sobre el caso tabular.
-  tags: [scope, factual-correction]
-- talk: modelado-redes-neuronales
-  date: 2026-08-19
-  location: Slide "2. Cómo se ve un tensor"
+  location: Slide "2. La forma del input la decide la arquitectura"
   feedback: "El apilada no está bien."
   resolution: Correcto, y era el peor error de la diapositiva. "Tres matrices apiladas" sugiere profundidad, o sea un tercer eje espacial, que es exactamente la confusión que la card quería corregir. Y el diagrama las dibujaba apiladas con desfase, reforzando el error. Ahora la card dice "la misma grilla, con tres números en cada píxel" y el diagrama muestra una sola grilla con un píxel ampliado que guarda R, G y B.
-  tags: [scope, factual-correction]
+  tags: [factual-correction, terminology]
 - talk: modelado-redes-neuronales
   date: 2026-08-19
-  location: Slide "2. Cómo se ve un tensor"
-  feedback: "Confirmá esto con documentación formal sobre cómo modelar esto en un NN."
-  resolution: Verificado contra la documentación de Keras y PyTorch, y ejecutado en el venv de la misión. La nota anterior decía "se aplana" como si fuera automático y **eso estaba mal**: una capa densa opera solo sobre el último eje y no aplana sola. Keras: "If the input to the layer has a rank greater than 2, Dense computes the dot product between the inputs and the kernel along the last axis of the inputs". PyTorch nn.Linear: "Output: (*, H_out) where all but the last dimension are the same shape as the input". Aplanar es una capa explícita, Flatten() o nn.Flatten(). Medido: Dense(32) sobre (8,224,224,3) sin aplanar devuelve (8,224,224,32) con 128 parámetros, que es kernel (3,32) más bias; con Flatten() antes devuelve (8,32) con 4.816.928, que es kernel (150.528,32) más bias. El hallazgo confirma la card: el framework por defecto trata el eje de canal como el eje de variables. También valida el número del corpus, los 38,5M eran con 256 unidades.
-  tags: [factual-correction, external-source]
+  location: Slide "2. La forma del input la decide la arquitectura"
+  feedback: "Acá estamos no explicando redes convolucionales. El hablar de muchas capas produce ruido."
+  resolution: Se sacó todo lo convolucional. La card de señal ya no menciona Conv 1D, la de RGB ya no habla de reordenar (era la afirmación que arrastraba la explicación de Conv2D para tener sentido) y las notas del orador perdieron el párrafo de kernels, pesos compartidos y conteos de parámetros. Queda solo la forma del tensor, más una línea que aclara que el resto de la clase va sobre el caso tabular.
+  tags: [factual-correction]
 - talk: modelado-redes-neuronales
   date: 2026-08-19
-  location: Slide "2. Cómo se ve un tensor"
+  location: Slide "2. La forma del input la decide la arquitectura"
   feedback: "Pero si son tres números en el mismo píxel, ¿no se puede modelar la red?"
   resolution: Sí se puede, y es exactamente la pregunta que va a hacer un alumno, así que quedó anticipada en las notas del orador. Para una red densa se aplana: los 224 por 224 por 3 se estiran en una fila de 150.528 floats y la red los trata como 150.528 variables sueltas, igual que las columnas de una tabla. Lo que se pierde al aplanar es que tres de esos números eran del mismo píxel y que dos píxeles eran vecinos: esa estructura vive en el dato, no en lo que la red usa. La respuesta refuerza la tesis de la clase, que la red ve un vector de floats, y deja claro que la forma importa para elegir arquitectura, no para poder modelar. No se agregó nada al contenido visible para no reintroducir el ruido de arquitecturas.
-  tags: [factual-correction, external-source]
+  tags: [slide-scope, remove-redundancy]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. La forma del input la decide la arquitectura"
+  feedback: "Confirmá esto con documentación formal sobre cómo modelar esto en un NN."
+  resolution: Verificado contra la documentación de Keras y PyTorch, y ejecutado en el venv de la misión. La nota anterior decía "se aplana" como si fuera automático y **eso estaba mal**: una capa densa opera solo sobre el último eje y no aplana sola. Keras: "If the input to the layer has a rank greater than 2, Dense computes the dot product between the inputs and the kernel along the last axis of the inputs". PyTorch nn.Linear: "Output: (*, H_out) where all but the last dimension are the same shape as the input". Aplanar es una capa explícita, Flatten() o nn.Flatten(). Medido: Dense(32) sobre (8,224,224,3) sin aplanar devuelve (8,224,224,32) con 128 parámetros, que es kernel (3,32) más bias; con Flatten() antes devuelve (8,32) con 4.816.928, que es kernel (150.528,32) más bias. El hallazgo confirma la card: el framework por defecto trata el eje de canal como el eje de variables. También valida el número del corpus, los 38,5M eran con 256 unidades.
+  tags: [missing-definition, speaker-notes]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "2. La forma del input la decide la arquitectura"
+  feedback: "Borrar 'El lote es una dimensión más, siempre adelante. Un Dense(32) que recibe (B, 10) devuelve (B, 32): los mismos pesos se aplican a las B filas.'"
+  resolution: Se retiró la nota. El diagrama ya muestra la fila del lote con las cuatro formas, así que el texto la repetía; queda menos texto y el dibujo haciendo el trabajo. La indicación de mencionarlo al pasar sigue en las notas del orador, porque es la dimensión que aparece en todos los errores de shape.
+  tags: [factual-correction, add-source]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Slide "1. La red no ve el problema, ve una fila de números"
+  feedback: "Ojo que no se definir tensor en ningun lado."
+  resolution: Se abrió la diapositiva con la definición de tensor (arreglo N-dimensional de floats, forma fija) y la escala escalar/vector/matriz/imagen, antes de los bullets.
+  tags: [missing-definition]
+- talk: modelado-redes-neuronales
+  date: 2026-08-19
+  location: Agenda
+  feedback: "En casi todos los slides es confusdo que no se define y en algunos caso se empieza con ejemplos." / "Lo que quise decir es que en los cards veo que se empieza definiendo ejemplo y no se define. No veo consistencia."
+  resolution: Se fijó una regla de card para todo el mazo y se barrieron las que no la cumplían. **La etiqueta en negrita nombra la cosa; la oración que sigue la define o la afirma; el ejemplo viene después de la definición, nunca antes.** Corregidas: 1.3 (la tercera card rompía el patrón término-definición de sus hermanas), 2.3 (la card de log abría con una lista de ejemplos), 2.5 (las cuatro abrían con el ejemplo y nunca definían el error), 4.3 (la de softmax abría con el ticket), 7.1 y 7.3 (etiquetas mezcladas entre pregunta, consecuencia y término; pasaron todas a sintagma nominal).
+  tags: [card-wording, missing-definition, layout-consistency]

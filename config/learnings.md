@@ -149,3 +149,54 @@ este repositorio y aplican sin volver a pedirlas.
   softmax que abría por el ticket (4.3), accuracy usada sin fórmula (5.1), F1 nombrado como "media
   armónica" sin decir qué es (5.3).
 - **Fecha:** 2026-08-19
+
+---
+
+## L9 — El porqué va al pie, no arriba
+
+- **Regla:** cuando una diapositiva tiene una afirmación y su justificación técnica, la afirmación va
+  arriba y la justificación baja a **nota al pie**. La apertura es para lo que hay que retener; el
+  mecanismo es para quien pregunte. Vale también para el alcance: si un tema se declara fuera de la
+  clase, se lo menciona en una nota final y no se lo desarrolla en el cuerpo.
+- **Por qué:** el argumento de fondo compite con la idea cuando está arriba. El que escucha se mete
+  en el mecanismo antes de saber para qué sirve, y llega a las recetas sin haber entendido qué
+  problema resuelven. Puesto al pie, el porqué sigue disponible sin robarle la apertura a la idea.
+- **Dónde aplica:** todo el repositorio. Cualquier diapositiva que combine una definición o una
+  receta con su fundamento.
+- **Cómo se revisa:** leer solo la primera línea del cuerpo de la diapositiva. Si es un mecanismo
+  (una derivada, una fórmula, un argumento de por qué), y no la cosa que la diapositiva enseña,
+  hay que bajarlo.
+- **Evidencia:** recurrió 3 veces en `talks/modelado-redes-neuronales` el 2026-08-19, con la etiqueta
+  `note-demotion`. Casos: el detalle numérico de capas y ancho en la diapositiva 1.2 ("agreguemos
+  esto como un ítem pero podemos poner una nota"); el argumento del gradiente en la 2.3, que abría la
+  diapositiva de normalización antes de la definición ("movelo como una nota abajo"); y el caso
+  multiclase en la 5.7 ("poner solo una nota al final").
+- **Fecha:** 2026-08-20
+
+---
+
+## L10 — Acortar la afirmación, no agregar la explicación
+
+- **Regla:** cuando una afirmación de una diapositiva resulta imprecisa y sostenerla exige traer
+  material que está fuera del alcance de la clase, **lo que se recorta es la afirmación**, no lo que
+  se agrega es la explicación. Si la precisión necesaria pertenece a otra clase, la afirmación no
+  pertenece a esta.
+- **Por qué:** la respuesta refleja a "esto no es del todo cierto" es explicar más, y esa es la
+  trampa: cada explicación agregada arrastra vocabulario de otra materia y la diapositiva termina
+  enseñando algo que no era el tema. El alcance de la clase es un límite, no una sugerencia, y una
+  afirmación que lo cruza es la que sobra.
+- **Dónde aplica:** todo el repositorio, y sobre todo en las clases introductorias, donde la
+  tentación de completar el cuadro es mayor.
+- **Cómo se revisa:** ante una corrección de precisión, preguntarse qué haría falta para sostener la
+  afirmación tal como está. Si la respuesta nombra un tema que la clase no cubre, se reescribe la
+  afirmación más chica en vez de sumar el tema.
+- **Evidencia:** recurrió 4 veces sobre la misma diapositiva de `talks/modelado-redes-neuronales` el
+  2026-08-19, etiquetado entre `factual-correction` y `scope`. La card decía que el canal de una
+  imagen RGB "se puede reordenar sin cambiar nada". El presentador marcó primero que eso no valía
+  para un DNN; la respuesta fue agregar a las notas la explicación de Conv2D, kernels y conteos de
+  parámetros. El presentador entonces marcó "acá no estamos explicando redes convolucionales, hablar
+  de muchas capas produce ruido". La corrección correcta era retirar la afirmación de reordenar, que
+  era la que obligaba a explicar Conv2D para tener sentido. En la misma ronda apareció "el apilada no
+  está bien", que era el mismo problema en otra forma: describir la imagen RGB como tres matrices
+  apiladas sugería un tercer eje espacial y contradecía lo que la card enseñaba.
+- **Fecha:** 2026-08-20

@@ -1,6 +1,6 @@
 # memory.md — intro-redes-neuronales
 
-**Current step:** 7 — Render complete
+**Current step:** complete
 **Topic:** Introducción a redes neuronales — de la intuición a la red, la neurona y la capa, redes profundas, el recorrido completo, funciones de activación y backpropagation
 **Folder:** talks/intro-redes-neuronales/
 **Started:** 2026-08-19
@@ -76,3 +76,15 @@ El material de origen es un mazo de 51 diapositivas, seis capítulos más cierre
 - Key inputs: final.md, schemas/slide-model.md
 - Files created/modified: output/slide-model.json, output/html/index.html (16 MB, 44 imágenes embebidas, cero placeholders vacíos), /index.html
 - Pending open questions: el deck pesa 16 MB porque las imágenes del mazo original son grandes y van embebidas en base64. Si molesta para compartir, conviene reescalarlas antes de un próximo render. El ícono 'remove_red_eye' cae a 'info', cosmético.
+
+## 2026-08-20 — Step 8 (Learnings)
+- Status: complete
+- Asks log:
+  - 2026-08-20 — "¿Promover L9 y L10? ¿Biblioteca compartida?" → promover sin ronda de Review
+- What was decided: Se promovieron dos learnings y se promovió la Talk a la biblioteca compartida, sin abrir Review. Yo había recomendado abrir una ronda de Review antes de cerrar; el presentador decidió avanzar igual y se dejó constancia.
+- **L9 — El porqué va al pie, no arriba.** Recurrió 3 veces con la etiqueta note-demotion, todas en modelado-redes-neuronales: el detalle numérico de capas en la 1.2, el argumento del gradiente en la 2.3 y el caso multiclase en la 5.7. La regla incluye el chequeo de revisión: leer solo la primera línea del cuerpo, y si es un mecanismo en vez de la cosa que la diapositiva enseña, bajarlo.
+- **L10 — Acortar la afirmación, no agregar la explicación.** Recurrió 4 veces sobre la misma diapositiva, entre factual-correction y scope. Es el learning más incómodo de los diez porque documenta un error mío repetido: ante "esto no es del todo cierto" agregué explicación tres veces, y las tres la respuesta correcta era recortar la afirmación que no se sostenía sin material de otra clase.
+- Biblioteca: dos temas nuevos y uno extendido. Nuevos: `backpropagation` (forward y backward, función de coste, regla de la cadena, delta, propagación hacia atrás, paso de actualización y el glosario) y `arquitectura-de-una-red` (la intuición del circuito, la capa como bloque, ancho y profundidad, parámetros contra hiperparámetros, y el recorrido con matrices del ejemplo del clima). Extendido: `activaciones-y-capa-de-salida`, con el argumento del colapso, el teorema de aproximación universal, el orden histórico sigmoide-ReLU y la advertencia de dónde va softmax. La biblioteca pasó de 5 a 7 temas.
+- Key inputs: config/feedback-backlog.md, research/corpus/Intro-Redes-Neuronales-105min.pptx.md
+- Files created/modified: config/learnings.md (L9, L10), config/feedback-processed.md (8 filas movidas), config/feedback-backlog.md (101 a 93 filas), knowledge-library/backpropagation/, knowledge-library/arquitectura-de-una-red/, knowledge-library/activaciones-y-capa-de-salida/index.md
+- Pending open questions: **Esta Talk nunca pasó por Review.** Fue de Draft a Polish a Render sin un solo bullet de feedback, así que las 42 diapositivas no fueron leídas contra el mazo original por nadie. Siguen abiertas las tres decisiones: la diapositiva de cierre habla de biomedicina y de la clase 8 de esa materia; el orden respecto de modelado-redes-neuronales, que repite neurona, capa y la tabla de activaciones; y las 41 imágenes sin transcribir, con textos alternativos inferidos del contexto. Cerrar la Talk no resuelve ninguna de las tres.

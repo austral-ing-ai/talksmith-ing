@@ -19,13 +19,15 @@
 
 ## Clases
 
+**[Índice de todas las presentaciones](https://austral-ing-ai.github.io/talksmith-ing/)** — se abren en el navegador, sin descargar nada. Las flechas avanzan, `Esc` muestra el índice de diapositivas, `F` pantalla completa y `s` las notas del orador.
+
 La materia contempla 14 clases, los miércoles. No se programa clase durante el período de exámenes extraordinarios.
 
 | Clase | Fecha | Tema / actividad | Presentación |
 |---:|---|---|---|
 | 1 | Miércoles 5 de agosto | Bienvenida + CoWork | [Introducción](https://austral-ing-ai.github.io/talksmith-ing/talks/introduccion/output/html/) |
 | 2 | Miércoles 12 de agosto | CoWork | [Cowork Intro](https://austral-ing-ai.github.io/talksmith-ing/talks/cowork-intro/output/html/) |
-| 3 | Miércoles 19 de agosto | NN, input, output, backpropagation, funcion de error, training  | [Diseño de redes neuronales](https://austral-ing-ai.github.io/talksmith-ing/talks/modelado-redes-neuronales/output/html/) |
+| 3 | Miércoles 19 de agosto | NN, input, output, backpropagation, funcion de error, training  | [Introducción a las redes neuronales](https://austral-ing-ai.github.io/talksmith-ing/talks/intro-redes-neuronales/output/html/) · [Diseño de redes neuronales](https://austral-ing-ai.github.io/talksmith-ing/talks/modelado-redes-neuronales/output/html/) |
 | 4 | Miércoles 26 de agosto | LLM - Embeddings, Tokens, word2Vec, Sec, Transformers | — |
 | 5 | Miércoles 2 de septiembre | LLM - Advanced Transformers | — |
 | 6 | Miércoles 9 de septiembre | Prompting (fine-tune), Effort, MCP, Limitaciones (Que cortar aca)?? | — |

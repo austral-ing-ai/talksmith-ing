@@ -2,7 +2,7 @@
   "deck": {
     "title": "Inteligencia Artificial Generativa (AI Gen)",
     "institution": "Universidad Austral",
-    "class": "Diseño de redes neuronales: del dato a la predicción",
+    "class": "Modelado de un Multi-Layer Perceptron (MLP)",
     "presenter": "Paulo Veiga, Claudio Riguetti, Marco Sorondo",
     "date": "2026-08-19",
     "lang": "es",
@@ -25,7 +25,7 @@
     {
       "template": "concept-breakdown",
       "section": "Qué se diseña de verdad",
-      "title": "La red no ve el problema, ve un tensor",
+      "title": "La red no ve el problema, ve una fila de números",
       "cards": [
         {
           "label": "Todo entra como números",
@@ -33,7 +33,7 @@
         },
         {
           "label": "El input es una traducción",
-          "body": "Como toda traducción, puede perder cosas. Si lo que importa no quedó en el tensor, o quedó de una forma que borra su estructura, ninguna arquitectura lo recupera después."
+          "body": "Como toda traducción, puede perder cosas. Si lo que importa no quedó en esa fila, o quedó de una forma que borra su estructura, ninguna arquitectura lo recupera después."
         },
         {
           "label": "El error de codificación entra silencioso",
@@ -41,49 +41,49 @@
         }
       ],
       "notes": "Abrí con esto porque reordena toda la clase. La mayoría llega pensando que diseñar una red es elegir capas. Planteales la pregunta: ¿qué ve realmente la red cuando le pasás un cliente? La respuesta (un vector de números) es el hilo de las próximas dos secciones. Anclá la idea de traducción con pérdida: es la que justifica dedicarle 20 minutos a la entrada.",
-      "lead": "Un tensor es un arreglo de números de N dimensiones, todos float y con forma fija: un escalar tiene 0 dimensiones, un vector 1, una matriz 2, una imagen RGB 3. Todo lo que entra, circula y sale de una red es un tensor."
+      "lead": "Todo lo que entra a una red es una fila de números de largo fijo, todos del mismo tipo (float). Esa fila es el único acceso que la red tiene al problema."
     },
     {
       "template": "content+cards+image",
       "section": "Qué se diseña de verdad",
-      "title": "Cómo se ve un tensor",
-      "lead": "La forma del tensor la decide la estructura del dato, y es lo primero que hay que saber decir de un problema.",
+      "title": "La forma del input la decide la arquitectura",
+      "lead": "La misma imagen de 28 por 28 píxeles entra a una red densa como una fila de 784 números y a una convolucional como una grilla de 28 por 28. La arquitectura decide qué forma necesita.",
       "media": {
-        "src": "images/s1-2-1-formas-de-tensor.png",
-        "alt": "Formas de tensor: tabular, señal 1D, imagen gris y RGB"
+        "src": "images/s1-2-1-formas-de-input.png",
+        "alt": "La misma imagen de 28 x 28 como fila, grilla y secuencia"
       },
       "design": "split-right",
       "cards": [
         {
-          "label": "Tabular: un eje",
-          "body": "Un vector de largo fijo, una posición por variable ya codificada. Es el caso de esta clase."
+          "label": "MLP (densa)",
+          "body": "Espera una fila de números de largo fijo. Cada neurona se conecta con todas las entradas, y la posición dentro de la fila no significa nada para ella."
         },
         {
-          "label": "Señal 1D: un eje, pero el orden importa",
-          "body": "También un vector, pero la posición es el tiempo y las vecinas están relacionadas. En tabular esa relación no existe."
+          "label": "CNN",
+          "body": "Espera una grilla: alto por ancho por color. La convolución necesita saber qué píxel está al lado de cuál."
         },
         {
-          "label": "Imagen gris: dos ejes",
-          "body": "Una matriz, un número por píxel, con vecindad en alto y ancho."
+          "label": "RNN / Transformer",
+          "body": "Espera una secuencia de vectores. Cada paso es un vector y el orden entre pasos es parte del dato."
         },
         {
-          "label": "Imagen RGB: tres ejes, y el tercero es distinto",
-          "body": "No son tres imágenes una atrás de otra: es la misma grilla, con tres números en cada píxel. Alto y ancho tienen vecindad; el canal no."
+          "label": "Qué es un MLP",
+          "body": "Multi-Layer Perceptron: una capa de entrada, una o más ocultas donde cada neurona se conecta con todas las de la capa anterior, y una de salida. Sigue siendo el bloque final de muchas CNN."
         }
       ],
       "highlights": [
         {
-          "body": "El resto de la clase trabaja sobre el primer caso, el tabular. Los otros tres están para que se vea que la forma la decide el dato.",
+          "body": "El alcance de esta clase es el MLP. Aplanar una imagen pierde qué píxel estaba al lado de cuál, y ese es el motivo por el que visión usa CNN. Acá el foco está en el MLP sobre datos tabulares, donde no hay ninguna vecindad que perder.",
           "kind": "takeaway"
         }
       ],
-      "notes": "Esta diapositiva vuelve concreto lo que la anterior definió, y se da rápido. La pregunta que funciona antes de mostrarla: si les paso una foto de 224 por 224 en color, ¿cuántos números son? Respuesta, 150.528. El punto que más rinde es el del canal: casi todos asumen que los tres ejes de una imagen RGB son espacio, y el tercero no lo es. La imagen que lo arregla: no son tres fotos una atrás de la otra, es una sola foto donde cada píxel guarda tres números. El lote va al pasar, pero decilo: es la dimensión que aparece en todos los errores de shape que van a ver. La pregunta que sale seguido: si un píxel tiene tres números, ¿cómo entra eso a la red? Se aplana, y el aplanado es una capa que vos ponés, Flatten() en Keras o nn.Flatten() en PyTorch: una capa densa opera solo sobre el último eje y no aplana sola. Medido: Dense(32) sobre (8,224,224,3) sin aplanar da (8,224,224,32) con 128 parámetros, un peso por canal; con Flatten() antes da (8,32) con 4,8 millones. O sea que el framework por defecto trata el canal como el eje de variables. Lo que se pierde al aplanar es que tres números eran del mismo píxel y que dos píxeles eran vecinos: eso vive en el dato, no en lo que la red usa. Cerrá volviendo al primer panel: el resto de la clase trabaja sobre el caso tabular."
+      "notes": "Esta diapositiva fija el alcance de la clase y conviene darla despacio, porque todo lo que sigue se apoya en ella. La pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 en escala de grises, ¿cuántos números son? Respuesta, 784. El punto que más rinde: la forma no es una propiedad del dato, es un requisito de la arquitectura. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden y por eso pide la fila aplanada. Por si preguntan si el aplanado es automático: no lo es, una capa densa opera solo sobre el último eje y aplanar es una capa que uno pone, Flatten() en Keras o nn.Flatten() en PyTorch. No te metas con cómo funciona una convolución ni con attention."
     },
     {
       "template": "concept-breakdown",
       "section": "Qué se diseña de verdad",
       "title": "Lo que hay que diseñar",
-      "lead": "Diseñar una red son seis decisiones, y la que todos creen que es la principal, cuántas capas ponerle, es la que menos pesa. Son las seis que recorre esta clase, en este orden.",
+      "lead": "Diseñar un MLP son seis decisiones, y la que todos creen que es la principal, cuántas capas ponerle, es la que menos pesa. Son las seis que recorre esta clase, en este orden.",
       "cards": [
         {
           "label": "La entrada",
@@ -140,10 +140,53 @@
         },
         {
           "label": "Elección de `f`",
-          "body": "Hay un puñado de candidatas y casi siempre gana ReLU. Las vemos en la diapositiva que sigue. La de salida la determina la tarea."
+          "body": "Hay un puñado de candidatas y casi siempre gana ReLU. Las vemos al cierre de esta sección. La de salida la determina la tarea."
         }
       ],
       "notes": "Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Los parámetros de una capa son m·n + m."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué se diseña de verdad",
+      "title": "El vector de entrada, una posición por feature",
+      "lead": "Cada posición del vector de entrada es una feature: una medición del problema ya convertida en número. El largo del vector es la cantidad de features, y queda fijo para toda la vida del modelo.",
+      "cards": [
+        {
+          "label": "Numérico",
+          "body": "Entra directo, normalizado a media 0 y desvío 1."
+        },
+        {
+          "label": "Categórico",
+          "body": "One-hot hasta unas 15 categorías, embedding de 50 en adelante."
+        },
+        {
+          "label": "Imagen",
+          "body": "Píxeles normalizados y aplanados. Una imagen gris de 28 por 28 son 784 posiciones."
+        },
+        {
+          "label": "Texto",
+          "body": "Tokenización primero, y después embeddings."
+        },
+        {
+          "label": "Audio",
+          "body": "Espectrograma, o la forma de onda muestreada."
+        },
+        {
+          "label": "El largo no cambia",
+          "body": "La red espera siempre la misma cantidad de posiciones. Por eso las imágenes se redimensionan y el texto se trunca o se rellena."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "La escala manda: con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia.",
+          "kind": "important"
+        },
+        {
+          "body": "One-hot contra embedding: con muchas categorías posibles, one-hot da vectores enormes y casi todos ceros, y el embedding las comprime en pocas dimensiones densas que además aprenden qué categorías se parecen. Los dos puntos son el material de la sección que sigue.",
+          "kind": "takeaway"
+        }
+      ],
+      "notes": "Esta diapositiva contesta la pregunta que queda colgando después de la neurona: qué es exactamente esa x. La respuesta corta, una feature por posición. MNIST funciona bien acá porque es contraintuitivo de la manera correcta: 784 posiciones suena a mucho para un dígito escrito a mano, y sin embargo es un problema chico. Si preguntan cuántos parámetros tiene la primera capa con 32 unidades, son 784 × 32 + 32 = 25.120. La tabla se recorre rápido, es un panorama; la sección que sigue desarrolla las dos primeras filas. De los tres puntos de confusión, el del largo fijo es el que más preguntas genera: un modelo entrenado con imágenes de 28 por 28 no acepta una de 32 por 32, hay que redimensionar antes."
     },
     {
       "template": "content+cards+image",
@@ -151,7 +194,7 @@
       "title": "Las activaciones ocultas, y cómo se ven",
       "lead": "Una activación oculta es la función no lineal `f` que se aplica después de `z = W·x + b` en las capas del medio. Su trabajo no es acotar el resultado a un rango con sentido, como en la salida, sino romper la linealidad para que apilar capas sirva.",
       "media": {
-        "src": "images/s1-5-1-activaciones-ocultas.png",
+        "src": "images/s1-6-1-activaciones-ocultas.png",
         "alt": "Formas de ReLU, GELU/SiLU, tanh y sigmoide"
       },
       "design": "split-right",
@@ -189,47 +232,29 @@
     {
       "template": "concept-breakdown",
       "section": "Modelar la entrada",
-      "title": "Todo termina en un vector de floats",
-      "lead": "Vamos a concentrarnos en el caso tabular: una fila por ejemplo y una columna por variable, sin vecindad ni orden intrínseco entre las columnas.",
-      "format": "editorial",
+      "title": "Qué significa que el dato sea tabular",
+      "lead": "Esta clase modela datos tabulares: una fila por ejemplo y una columna por variable, sin vecindad ni orden intrínseco entre las columnas.",
       "cards": [
         {
-          "label": "Tabular",
-          "body": "Filas y columnas, sin vecindad entre ellas. Cliente, préstamo, ficha clínica. Fully connected."
+          "label": "Filas y columnas",
+          "body": "Una fila por ejemplo y una columna por variable. Intercambiar edad con ingreso no cambia el dato mientras cada columna conserve su nombre."
         },
         {
-          "label": "Grilla 1D (señal)",
-          "body": "Muestreo a intervalos regulares. ECG, audio, vibración. Conv 1D, RNN, Transformer."
+          "label": "Por qué encaja un MLP",
+          "body": "Una capa densa conecta cada neurona con todas las entradas y no usa la posición, así que el orden de las columnas no le quita información."
         },
         {
-          "label": "Grilla 2D (imagen)",
-          "body": "Píxeles con vecindad en dos ejes. Radiografía, foto satelital. Conv 2D."
-        },
-        {
-          "label": "Secuencia",
-          "body": "Símbolos de un vocabulario, en orden y de largo variable. Reseña, log, ADN. Transformer."
-        },
-        {
-          "label": "Conjunto",
-          "body": "Sin orden y en cantidad variable. Carrito, síntomas, hashtags. Deep Sets, attention."
-        },
-        {
-          "label": "Grafo",
-          "body": "Nodos y aristas, sin numeración canónica. Transferencias, red social, molécula. GNN."
+          "label": "En una imagen no pasa",
+          "body": "Ahí la posición del píxel es parte del dato, y por eso el aplanado pierde algo que en tabular no existe."
         }
       ],
       "highlights": [
         {
-          "body": "Señal y secuencia se confunden seguido: la señal está muestreada a intervalos regulares y es invariante al desplazamiento; la secuencia es una lista de símbolos, sin intervalo fijo ni invariancia.",
-          "kind": "important",
-          "position": "top"
-        },
-        {
-          "body": "¿Qué transformaciones puedo aplicarle al input sin cambiar la respuesta correcta? Esa invariancia elige la arquitectura.",
+          "body": "Falta el paso de la columna al número. Cada columna se convierte en una o más posiciones del vector, y de qué depende esa conversión es el resto de esta sección.",
           "kind": "takeaway"
         }
       ],
-      "notes": "Definí sin estructura en contraste con una imagen: no hay píxeles vecinos ni orden temporal que explotar. La confusión que más aparece es señal contra secuencia: el audio es señal, el texto es secuencia. El ADN es el ejemplo tramposo, parece señal y es secuencia. Para el resto de la clase nos quedamos en el caso tabular."
+      "notes": "Definí tabular por contraste con una imagen, que es el ejemplo que todos tienen a mano: en una tabla no hay píxeles vecinos ni orden temporal que explotar, y el modelo puede recibir las columnas en cualquier orden mientras sepa cuál es cuál. Ese es el punto que conecta con la diapositiva de arquitecturas de la sección anterior. El resto de la sección es método: cada columna del dataset se convierte en una o más posiciones del vector, y lo que decide en cuántas y con qué valores es el tipo de variable. Si alguien pregunta por imágenes, texto o series temporales, la respuesta corta es que cada familia tiene su arquitectura y que las vimos al pasar en la sección 1."
     },
     {
       "template": "concept-breakdown",
@@ -354,7 +379,7 @@
     {
       "template": "value-columns",
       "section": "Modelar la entrada",
-      "title": "De la variable al tensor: la tabla de decisiones",
+      "title": "De la variable al vector: la tabla de decisiones",
       "lead": "Cada fila es un tipo de variable, y la columna del medio es la única decisión. `k` es la cantidad de valores distintos; `d` es la dimensión del embedding, que se elige.",
       "columns": [
         {
@@ -1145,7 +1170,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "5a9b9f3db28c595f324b36d2877444077ca0d94bc02d97b209de5ce6b1fe97d7",
-    "bytes": 74876
+    "sha256": "56a5c51a1175d2865af47363f0f00a9b44617bca6dc000b3e7f24f90fb5de454",
+    "bytes": 80154
   }
 }
