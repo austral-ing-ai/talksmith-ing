@@ -699,93 +699,104 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <aside class="notes"><p>Abrí con esto porque reordena toda la clase. La mayoría llega pensando que diseñar una red es elegir capas. Planteales la pregunta: ¿qué ve realmente la red cuando le pasás un cliente? La respuesta (un vector de números) es el hilo de las próximas dos secciones. Anclá la idea de traducción con pérdida: es la que justifica dedicarle 20 minutos a la entrada.</p></aside></section><section class="slide" data-kind="image-full"><div class="stage imgfull">
 <div class="shead"><span class="pill">Qué se diseña de verdad</span><h2 class="stitle">El dato decide la arquitectura</h2><p class="lead">Cada tipo de dato tiene una <b>forma natural</b>: cuántos ejes necesita para no perder información. Esa forma es la que decide qué arquitectura le corresponde, y no al revés.</p></div>
 <div class="iffill"><div class="imgph svg"><!-- talksmith-ascii-sha256: 4a704aeceb374fd98b9c288fb9d98989bfab2044312b80619bd63950689bf1e3 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="12.5">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 570" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="12">
   <title>El dato decide la arquitectura</title>
-  <desc>Cuatro tipos de dato, la forma natural de cada uno y la arquitectura que le corresponde.</desc>
-  <rect x="0" y="0" width="720" height="470" fill="#ffffff"/>
+  <desc>Cada tipo de dato tiene una forma natural, y esa forma decide que arquitectura le corresponde.</desc>
+  <rect x="0" y="0" width="720" height="570" fill="#ffffff"/>
   <defs>
     <marker id="e1-ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
       <path d="M0 0 L9 3.5 L0 7 z" fill="#7A7373"/>
     </marker>
+    <marker id="e1-ar" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <path d="M0 0 L9 3.5 L0 7 z" fill="#DA1B2E"/>
+    </marker>
   </defs>
 
-  <g stroke="#E2DDDD" stroke-width="1.2" fill="none">
-    <path d="M 360 34 L 360 440"/><path d="M 30 236 L 690 236"/>
+  <g font-size="11" font-weight="bold" fill="#7A7373">
+    <text x="34" y="40">EL DATO</text><text x="330" y="40">LA FORMA QUE TIENE</text>
   </g>
+  <path d="M 34 46 L 690 46" stroke="#E2DDDD" stroke-width="1.2"/>
 
-  <!-- ============ TABLA ============ -->
-  <text x="34" y="52" font-size="13.5" font-weight="bold">TABLA</text>
-  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1">
-    <rect x="34" y="66" width="182" height="20"/>
-    <rect x="34" y="86" width="182" height="19"/>
-    <rect x="34" y="105" width="182" height="19"/>
+  <text x="34" y="72" font-size="12.5" font-weight="bold">TABLA</text>
+  <text x="86" y="72" font-size="10.5" fill="#7A7373">m&#178; + barrio (12)</text>
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"><rect x="34" y="82" width="118" height="18"/><rect x="34" y="100" width="118" height="18"/><rect x="34" y="118" width="118" height="18"/></g>
+  <g font-size="9.5" fill="#7A7373"><text x="40" y="94">m&#178;</text><text x="90" y="94">barrio</text></g>
+  <g font-size="9.5"><text x="40" y="112">85</text><text x="90" y="112">Palermo</text><text x="40" y="130">120</text><text x="90" y="130">Caballito</text></g>
+  <text x="34" y="152" font-size="9.5" fill="#7A7373">una fila por caso</text>
+  <path d="M 240 108 L 314 108" stroke="#DA1B2E" stroke-width="1.6" fill="none" marker-end="url(#e1-ar)"/>
+  <rect x="330" y="58" width="360" height="100" rx="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.7"/>
+  <rect x="350" y="86" width="144" height="24" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1"/>
+  <g stroke="#E2DDDD" stroke-width="0.8">
+    <path d="M 374 86 L 374 110"/><path d="M 398 86 L 398 110"/><path d="M 422 86 L 422 110"/><path d="M 446 86 L 446 110"/><path d="M 470 86 L 470 110"/>
   </g>
-  <g font-size="11" fill="#7A7373"><text x="42" y="80">edad</text><text x="100" y="80">ingreso</text><text x="168" y="80">zona</text></g>
-  <g font-size="11"><text x="42" y="99">34</text><text x="100" y="99">52000</text><text x="168" y="99">12</text>
-     <text x="42" y="118">41</text><text x="100" y="118">38000</text><text x="168" y="118">07</text></g>
-  <path d="M 125 130 L 125 140" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#e1-ag)"/>
-  <g fill="#ffffff" stroke="#B9B3B3" stroke-width="1.1">
-    <rect x="34" y="146" width="24" height="22"/><rect x="60" y="146" width="24" height="22"/><rect x="86" y="146" width="24" height="22"/>
-    <rect x="146" y="146" width="24" height="22"/>
-  </g>
-  <text x="118" y="162" font-size="13" fill="#7A7373">…</text>
-  <g font-size="10" fill="#7A7373" text-anchor="middle"><text x="46" y="180">1</text><text x="72" y="180">2</text><text x="98" y="180">3</text><text x="158" y="180">n</text></g>
-  <text x="34" y="200" font-size="12.5">una fila de n números</text>
-  <rect x="34" y="208" width="52" height="20" rx="10" fill="#DA1B2E"/>
-  <text x="60" y="222" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">MLP</text>
+  <text x="350" y="126" font-size="9.5" fill="#7A7373">n posiciones</text>
+  <text x="512" y="84" font-size="11" font-weight="bold" fill="#DA1B2E">1 eje: (n)</text>
+  <text x="512" y="100" font-size="10">una fila de n&#250;meros,</text>
+  <text x="512" y="114" font-size="10">una posici&#243;n por variable</text>
+  <rect x="518" y="127" width="150" height="22" rx="11" fill="#DA1B2E"/>
+  <text x="593" y="142" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Perceptr&#243;n multicapa</text>
 
-  <!-- ============ SENAL 1D ============ -->
-  <text x="392" y="52" font-size="13.5" font-weight="bold">SEÑAL 1D</text>
-  <text x="478" y="52" font-size="11.5" fill="#7A7373">audio, ECG</text>
-  <path d="M 392 112 L 410 76 L 428 118 L 446 84 L 464 116 L 482 82 L 500 120 L 518 96 L 536 112"
+  <text x="34" y="206" font-size="12.5" font-weight="bold">SE&#209;AL 1D</text>
+  <text x="104" y="206" font-size="10.5" fill="#7A7373">audio, ECG</text>
+  <path d="M 34 246 L 52 218 L 70 254 L 88 224 L 106 252 L 124 220 L 142 256 L 160 234 L 178 246"
         stroke="#7A7373" stroke-width="1.8" fill="none"/>
-  <path d="M 392 122 L 560 122" stroke="#E2DDDD" stroke-width="1.1"/>
-  <path d="M 476 128 L 476 138" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#e1-ag)"/>
-  <g fill="#ffffff" stroke="#B9B3B3" stroke-width="1.1">
-    <rect x="392" y="146" width="30" height="22"/><rect x="424" y="146" width="30" height="22"/><rect x="456" y="146" width="30" height="22"/>
-    <rect x="516" y="146" width="30" height="22"/>
-  </g>
-  <g font-size="10" text-anchor="middle" fill="#3B3535"><text x="407" y="161">x1</text><text x="439" y="161">x2</text><text x="471" y="161">x3</text><text x="531" y="161">xT</text></g>
-  <text x="492" y="162" font-size="13" fill="#7A7373">…</text>
-  <text x="392" y="188" font-size="10.5" fill="#7A7373">t = 1 … T,  el orden es parte del dato</text>
-  <text x="392" y="207" font-size="12.5">una secuencia de T pasos</text>
-  <rect x="392" y="212" width="104" height="20" rx="10" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
-  <text x="444" y="226" font-size="12" font-weight="bold" text-anchor="middle">CNN 1D / RNN</text>
-
-  <!-- ============ IMAGEN EN GRISES ============ -->
-  <text x="34" y="272" font-size="13.5" font-weight="bold">IMAGEN EN GRISES</text>
-  <rect x="34" y="288" width="120" height="120" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
+  <path d="M 34 258 L 200 258" stroke="#E2DDDD" stroke-width="1.1"/>
+  <text x="34" y="272" font-size="9.5" fill="#7A7373">una medici&#243;n por instante</text>
+  <path d="M 240 229 L 314 229" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#e1-ag)"/>
+  <rect x="330" y="188" width="360" height="88" rx="6" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.3"/>
+  <rect x="350" y="206" width="144" height="24" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1"/>
   <g stroke="#E2DDDD" stroke-width="0.8">
-    <path d="M 64 288 L 64 408"/><path d="M 94 288 L 94 408"/><path d="M 124 288 L 124 408"/>
-    <path d="M 34 318 L 154 318"/><path d="M 34 348 L 154 348"/><path d="M 34 378 L 154 378"/>
+    <path d="M 374 206 L 374 230"/><path d="M 398 206 L 398 230"/><path d="M 422 206 L 422 230"/><path d="M 446 206 L 446 230"/><path d="M 470 206 L 470 230"/>
   </g>
-  <text x="94" y="353" font-size="12" text-anchor="middle" fill="#7A7373">28 x 28</text>
-  <text x="172" y="330" font-size="12.5">una grilla</text>
-  <text x="172" y="348" font-size="12.5">alto por ancho</text>
-  <text x="172" y="366" font-size="11" fill="#7A7373">importa qué píxel</text>
-  <text x="172" y="380" font-size="11" fill="#7A7373">está al lado de cuál</text>
-  <rect x="34" y="420" width="52" height="20" rx="10" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
-  <text x="60" y="434" font-size="12" font-weight="bold" text-anchor="middle">CNN</text>
+  <path d="M 350 240 L 430 240" stroke="#B9B3B3" stroke-width="1.1" fill="none" marker-end="url(#e1-ag)"/>
+  <text x="350" y="256" font-size="9.5" fill="#7A7373">t = 1 ... T</text>
+  <text x="512" y="204" font-size="11" font-weight="bold">1 eje: (T)</text>
+  <text x="512" y="220" font-size="10">una secuencia de pasos,</text>
+  <text x="512" y="234" font-size="10">y el orden es parte del dato</text>
+  <rect x="438" y="245" width="230" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="553" y="260" font-size="11" font-weight="bold" text-anchor="middle">Red recurrente o convolucional 1D</text>
 
-  <!-- ============ IMAGEN RGB ============ -->
-  <text x="392" y="272" font-size="13.5" font-weight="bold">IMAGEN RGB</text>
-  <rect x="392" y="288" width="120" height="120" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="34" y="316" font-size="12.5" font-weight="bold">IMAGEN EN GRISES</text>
+  <text x="168" y="316" font-size="10.5" fill="#7A7373">28 x 28</text>
+  <rect x="34" y="326" width="72" height="72" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
+  <g stroke="#E2DDDD" stroke-width="0.8"><path d="M 58 326 L 58 398"/><path d="M 82 326 L 82 398"/><path d="M 34 350 L 106 350"/><path d="M 34 374 L 106 374"/></g>
+  <text x="34" y="414" font-size="9.5" fill="#7A7373">un valor de gris por p&#237;xel</text>
+  <path d="M 240 362 L 314 362" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#e1-ag)"/>
+  <rect x="330" y="318" width="360" height="88" rx="6" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.3"/>
+  <rect x="350" y="332" width="57" height="57" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1"/>
+  <g stroke="#E2DDDD" stroke-width="0.8"><path d="M 369 332 L 369 389"/><path d="M 388 332 L 388 389"/><path d="M 350 351 L 407 351"/><path d="M 350 370 L 407 370"/></g>
+  <text x="422" y="334" font-size="11" font-weight="bold">2 ejes: (alto, ancho)</text>
+  <text x="422" y="350" font-size="10">una grilla, donde importa</text>
+  <text x="422" y="364" font-size="10">qu&#233; p&#237;xel est&#225; al lado de cu&#225;l</text>
+  <rect x="538" y="375" width="130" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="603" y="390" font-size="11" font-weight="bold" text-anchor="middle">Red convolucional</text>
+
+  <text x="34" y="436" font-size="12.5" font-weight="bold">IMAGEN RGB</text>
+  <text x="126" y="436" font-size="10.5" fill="#7A7373">28 x 28 x 3</text>
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1"><rect x="34" y="452" width="52" height="52"/><rect x="96" y="452" width="52" height="52"/><rect x="158" y="452" width="52" height="52"/></g>
   <g stroke="#E2DDDD" stroke-width="0.8">
-    <path d="M 422 288 L 422 408"/><path d="M 452 288 L 452 408"/><path d="M 482 288 L 482 408"/>
-    <path d="M 392 318 L 512 318"/><path d="M 392 348 L 512 348"/><path d="M 392 378 L 512 378"/>
+    <path d="M 51 452 L 51 504"/><path d="M 68 452 L 68 504"/><path d="M 34 469 L 86 469"/><path d="M 34 486 L 86 486"/>
+    <path d="M 113 452 L 113 504"/><path d="M 130 452 L 130 504"/><path d="M 96 469 L 148 469"/><path d="M 96 486 L 148 486"/>
+    <path d="M 175 452 L 175 504"/><path d="M 192 452 L 192 504"/><path d="M 158 469 L 210 469"/><path d="M 158 486 L 210 486"/>
   </g>
-  <rect x="452" y="318" width="30" height="30" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
-  <text x="452" y="400" font-size="12" text-anchor="middle" fill="#7A7373">28 x 28</text>
-  <path d="M 484 333 L 526 333" stroke="#DA1B2E" stroke-width="1.5" fill="none"/>
-  <g fill="#ffffff" stroke="#DA1B2E" stroke-width="1.3">
-    <rect x="528" y="322" width="24" height="22"/><rect x="554" y="322" width="24" height="22"/><rect x="580" y="322" width="24" height="22"/>
-  </g>
-  <g font-size="11.5" font-weight="bold" text-anchor="middle" fill="#DA1B2E"><text x="540" y="337">R</text><text x="566" y="337">G</text><text x="592" y="337">B</text></g>
-  <text x="528" y="362" font-size="11" fill="#7A7373">tres números en</text>
-  <text x="528" y="376" font-size="11" fill="#7A7373">el mismo píxel</text>
-  <text x="392" y="424" font-size="12.5">la misma grilla, 3 números por píxel</text>
-  <rect x="392" y="430" width="52" height="20" rx="10" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
-  <text x="418" y="444" font-size="12" font-weight="bold" text-anchor="middle">CNN</text>
+  <g font-size="10.5" font-weight="bold" text-anchor="middle"><text x="60" y="448">R</text><text x="122" y="448">G</text><text x="184" y="448">B</text></g>
+  <text x="34" y="520" font-size="9.5" fill="#7A7373">tres matrices, una por canal</text>
+  <path d="M 240 482 L 314 482" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#e1-ag)"/>
+  <rect x="330" y="440" width="360" height="88" rx="6" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.3"/>
+  <rect x="350" y="454" width="57" height="57" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1"/>
+  <g stroke="#E2DDDD" stroke-width="0.8"><path d="M 369 454 L 369 511"/><path d="M 388 454 L 388 511"/><path d="M 350 473 L 407 473"/><path d="M 350 492 L 407 492"/></g>
+  <rect x="369" y="473" width="19" height="19" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.8"/>
+  <path d="M 388 482 L 412 482" stroke="#DA1B2E" stroke-width="1.2" fill="none"/>
+  <g fill="#ffffff" stroke="#DA1B2E" stroke-width="1.2"><rect x="414" y="472" width="17" height="19"/><rect x="433" y="472" width="17" height="19"/><rect x="452" y="472" width="17" height="19"/></g>
+  <g font-size="10" font-weight="bold" text-anchor="middle" fill="#DA1B2E"><text x="422" y="486">R</text><text x="441" y="486">G</text><text x="460" y="486">B</text></g>
+  <text x="482" y="456" font-size="11" font-weight="bold">3 ejes: (alto, ancho, 3)</text>
+  <text x="482" y="472" font-size="10">la misma grilla, con tres</text>
+  <text x="482" y="486" font-size="10">n&#250;meros en cada p&#237;xel</text>
+  <rect x="538" y="497" width="130" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="603" y="512" font-size="11" font-weight="bold" text-anchor="middle">Red convolucional</text>
+
+  <path d="M 34 542 L 690 542" stroke="#E2DDDD" stroke-width="1.2"/>
+  <text x="34" y="562" font-size="11.5" fill="#7A7373">La forma no se elige: viene con el dato. Lo que se elige es la arquitectura que sabe aprovecharla.</text>
 </svg></div></div>
 </div><aside class="notes"><p>Esta diapositiva fija el alcance de la clase y conviene darla despacio, porque todo lo que sigue se apoya en ella. Recorré los cuatro paneles en orden y en cada uno hacé la misma pregunta: ¿cuántos ejes hacen falta para no perder nada? Uno, uno, dos, dos.</p><p>La pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 en escala de grises, ¿cuántos números son? Respuesta, 784. Sirve para que dimensionen, y para que se vea que aplanar siempre se puede.</p><p>El punto que más rinde es el que ordena la diapositiva: la forma no es una decisión de diseño, viene con el dato. Lo que uno elige es si la arquitectura la aprovecha. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden; por eso la fila aplanada le sirve y por eso la tabla es su caso natural.</p><p>Dos matices que el diagrama no dice con todas las letras y conviene decir vos: en una imagen importa qué píxel está al lado de cuál, y en una señal importa el orden de los pasos. Esa vecindad es lo que un MLP no tiene forma de aprovechar, y es la razón de que existan las otras arquitecturas.</p><p>Sobre el panel de RGB, que es el que más se malinterpreta: son tres números en el mismo punto, no tres grillas. El píxel ampliado del dibujo es para eso. De los tres ejes, el de color es el único que se podría reordenar sin cambiar el problema; alto y ancho no.</p><p>Por si alguien pregunta si el aplanado es automático: no lo es. Una capa densa opera solo sobre el último eje (Keras: "Dense computes the dot product between the inputs and the kernel along the last axis"; PyTorch nn.Linear: "all but the last dimension are the same shape as the input"). Aplanar es una capa que uno pone, <code>Flatten()</code> en Keras o <code>nn.Flatten()</code> en PyTorch.</p><p>No te metas con cómo funciona una convolución ni con attention. Alcanza con que quede claro que existen, que les corresponde otra forma de dato, y que de acá en adelante la clase modela un MLP sobre datos tabulares.</p><p>---</p></aside></section><section class="slide" data-kind="quote"><div class="stage cover"><div class="quotewrap"><p class="steyebrow">Qué se diseña de verdad</p><p class="quotemark">&ldquo;</p><p class="quotetext"><b>Multi-Layer Perceptron</b>, o perceptrón multicapa: una capa de entrada, una o más capas ocultas donde cada neurona se conecta con todas las de la capa anterior (de ahí el nombre "densa", o <i>fully connected</i>), y una capa de salida.</p></div></div><aside class="notes"><p>Una sola frase en pantalla, veinte segundos. Leela y marcá con el dedo la parte que importa: cada neurona se conecta con todas las de la capa anterior. De acá en adelante, cuando la clase diga "la red", dice esto.</p><p>El nombre es histórico y viene del perceptrón de Rosenblatt; si alguien pregunta por qué se llama perceptrón habiendo capas densas de por medio, contestá eso y seguí, no abras ese frente.</p><p>Si aparece la pregunta de para qué sirve hoy un MLP con las CNN y los transformers dando vueltas, la respuesta corta es que en visión el MLP es el bloque final. La CNN convierte la imagen en un vector de features y ese vector entra a una fully connected que produce la salida. El MLP no quedó obsoleto, quedó adentro.</p></aside></section><section class="slide" data-kind="process"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Qué se diseña de verdad</span><h2 class="stitle">Una neurona, en una línea</h2><p class="lead">Una capa hace dos cosas: una combinación lineal y una no linealidad.</p></div><div class="cbody"><div class="cfit"><div class="steps">
@@ -885,11 +896,11 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"><circle cx="430" cy="94" r="6"/><circle cx="430" cy="118" r="6"/></g>
   <circle cx="490" cy="106" r="6" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
   <g font-size="9" fill="#7A7373" text-anchor="middle"><text x="362" y="154">entrada</text><text x="430" y="154">ocultas</text><text x="490" y="154">salida</text></g>
-  <text x="524" y="86" font-size="10">un nodo por variable</text>
-  <text x="524" y="100" font-size="10">ya codificada, y los</text>
-  <text x="524" y="114" font-size="10" font-weight="bold">toma todos a la vez</text>
-  <rect x="616" y="127" width="52" height="22" rx="11" fill="#DA1B2E"/>
-  <text x="642" y="142" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">MLP</text>
+  <text x="524" y="82" font-size="10">un nodo por variable</text>
+  <text x="524" y="96" font-size="10">ya codificada, y los</text>
+  <text x="524" y="110" font-size="10" font-weight="bold">toma todos a la vez</text>
+  <rect x="518" y="127" width="150" height="22" rx="11" fill="#DA1B2E"/>
+  <text x="593" y="142" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Perceptr&#243;n multicapa</text>
 
   <text x="34" y="206" font-size="12.5" font-weight="bold">SE&#209;AL 1D</text>
   <text x="104" y="206" font-size="10.5" fill="#7A7373">ECG, T = 300</text>
@@ -915,11 +926,11 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <path d="M 348 238 L 492 238" stroke="#DA1B2E" stroke-width="1.3" fill="none" marker-end="url(#e3-ar)"/>
   <text x="348" y="200" font-size="9" fill="#DA1B2E">slice</text>
-  <text x="506" y="212" font-size="10" fill="#7A7373">toma slices de pasos</text>
-  <text x="506" y="226" font-size="10" fill="#7A7373">consecutivos, y la</text>
-  <text x="506" y="240" font-size="10" fill="#7A7373">ventana se desliza</text>
-  <rect x="552" y="245" width="116" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
-  <text x="610" y="260" font-size="12" font-weight="bold" text-anchor="middle">RNN / CNN 1D</text>
+  <text x="506" y="206" font-size="10" fill="#7A7373">toma slices de pasos</text>
+  <text x="506" y="220" font-size="10" fill="#7A7373">consecutivos, y la</text>
+  <text x="506" y="234" font-size="10" fill="#7A7373">ventana se desliza</text>
+  <rect x="438" y="245" width="230" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="553" y="260" font-size="11" font-weight="bold" text-anchor="middle">Red recurrente o convolucional 1D</text>
 
   <text x="34" y="316" font-size="12.5" font-weight="bold">IMAGEN EN GRISES</text>
   <text x="168" y="316" font-size="10.5" fill="#7A7373">28 x 28</text>
@@ -941,8 +952,8 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <text x="422" y="350" font-size="10" fill="#7A7373">se procesa por partes: una</text>
   <text x="422" y="364" font-size="10" fill="#7A7373">ventana chica recorre la grilla</text>
   <text x="422" y="378" font-size="10" fill="#7A7373">y mira vecindades</text>
-  <rect x="616" y="375" width="52" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
-  <text x="642" y="390" font-size="12" font-weight="bold" text-anchor="middle">CNN</text>
+  <rect x="538" y="375" width="130" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="603" y="390" font-size="11" font-weight="bold" text-anchor="middle">Red convolucional</text>
 
   <text x="34" y="436" font-size="12.5" font-weight="bold">IMAGEN RGB</text>
   <text x="126" y="436" font-size="10.5" fill="#7A7373">28 x 28 x 3</text>
@@ -972,14 +983,14 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <path d="M 348 502 L 472 502" stroke="#DA1B2E" stroke-width="1.3" fill="none" marker-end="url(#e3-ar)"/>
   <g font-size="9" font-weight="bold" text-anchor="middle" fill="#7A7373"><text x="366" y="454">R</text><text x="410" y="454">G</text><text x="454" y="454">B</text></g>
-  <text x="490" y="470" font-size="10" fill="#7A7373">la misma ventana toma los</text>
-  <text x="490" y="484" font-size="10" fill="#7A7373">tres canales en el mismo</text>
-  <text x="490" y="498" font-size="10" fill="#7A7373">punto, y se desliza</text>
-  <rect x="616" y="497" width="52" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
-  <text x="642" y="512" font-size="12" font-weight="bold" text-anchor="middle">CNN</text>
+  <text x="490" y="458" font-size="10" fill="#7A7373">la misma ventana toma los</text>
+  <text x="490" y="472" font-size="10" fill="#7A7373">tres canales en el mismo</text>
+  <text x="490" y="486" font-size="10" fill="#7A7373">punto, y se desliza</text>
+  <rect x="538" y="497" width="130" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="603" y="512" font-size="11" font-weight="bold" text-anchor="middle">Red convolucional</text>
 
   <path d="M 34 542 L 690 542" stroke="#E2DDDD" stroke-width="1.2"/>
-  <text x="34" y="562" font-size="11.5" fill="#7A7373">Aplanar los tres &#250;ltimos para meterlos en un MLP dar&#237;a 300, 784 y 2.352 entradas sueltas, y borra el orden y la vecindad.</text>
+  <text x="34" y="562" font-size="11.5" fill="#7A7373">Aplanar los tres &#250;ltimos para meterlos en un perceptr&#243;n multicapa dar&#237;a 300, 784 y 2.352 entradas sueltas, y borra el orden y la vecindad.</text>
 </svg></div></div>
 </div><aside class="notes"><p>Esta diapositiva es la continuación directa de la anterior, y lo que agrega es el conteo. Abrí con la corrección que trae: <b>aplanar no es algo que le pase al dato, es algo que pide el MLP</b>. Si el mismo dato va a una CNN, no se aplana nada.</p><p>Recorré los cuatro paneles con la misma pregunta: ¿qué recibe la red? Solo en el primero la respuesta es "nodos sueltos", y son trece. En los otros tres la respuesta es una secuencia, una matriz y tres matrices: la estructura sigue ahí.</p><p>El detalle del panel de la tabla: <b>dos variables dan trece nodos</b>, no dos. El one-hot del barrio ocupa doce posiciones él solo. Es la primera vez en la clase que aparece que una variable puede ocupar más de un nodo, y es lo que la sección que sigue desarrolla.</p><p>Sobre RGB, que es el que más se malinterpreta: son tres matrices, una por canal, dibujadas una al lado de la otra. No son tres imágenes apiladas ni hay un tercer eje espacial. Dicho de otro modo, cada píxel guarda tres números.</p><p>El pie es el remate y conviene leerlo entero: si igual quisieras meter los tres últimos en un MLP, se pueden aplanar, y salen 300, 784 y 2.352 entradas sueltas. Ahí es donde se borra el orden y la vecindad. La pregunta que funciona: ¿cuántas entradas tendría una foto de 224 por 224 en color? 150.528. Sirve para que se vea por qué visión no usa MLP.</p><p>Dos cosas que la diapositiva ya no dice y conviene decir vos. <b>El largo no cambia:</b> la red espera siempre la misma cantidad de entradas, y por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo. <b>La escala:</b> con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia. Esa segunda es el puente a la sección que sigue, así que dejala para el final.</p><p>Y el remate, que el pie del diagrama ya insinúa: una tabla ya viene en la forma que un MLP espera, y por eso es el caso de esta clase.</p><p>No te metas con cómo una CNN conserva la grilla. Alcanza con que quede dicho que no aplana, y seguir.</p><p>---</p></aside></section><section class="slide" id="sec-1" data-kind="section-agenda"><div class="stage"><div class="secag">
 <div class="secaglist">
@@ -994,16 +1005,57 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <a class="secagrow " href="#sec-8"><span class="secagn">09</span><span>Overfitting</span></a>
 </div>
 <div class="secagnow"><span class="secagnum">02</span><p class="secagtitle">Modelar la entrada</p></div>
-</div></div></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
-<div class="shead"><span class="pill">Modelar la entrada</span><h2 class="stitle">Qué significa que el dato sea tabular</h2><p class="lead">Esta clase modela datos tabulares: una fila por ejemplo y una columna por variable, sin vecindad ni orden intrínseco entre las columnas.</p></div><div class="cbody"><div class="cfit"><div class="cards">
-<div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M140-510q-24.75 0-42.37-17.63Q80-545.25 80-570v-170q0-24.75 17.63-42.38Q115.25-800 140-800h400v290H140Zm0-60h340v-170H140v170Zm0 410q-24.75 0-42.37-17.63Q80-195.25 80-220v-170q0-24.75 17.63-42.38Q115.25-450 140-450h480v290H140Zm0-60h420v-170H140v170Zm540 60v-350h-80v-290h280l-80 220h80L680-160ZM195-275h60v-60h-60v60Zm0-350h60v-60h-60v60Zm-55 55v-170 170Zm0 350v-170 170Z"/></svg></span><h3>Filas y columnas</h3><p>Una fila por ejemplo y una columna por variable. Intercambiar edad con ingreso no cambia el dato mientras cada columna conserve su nombre.</p></div>
-<div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M215-264q51-37 79-95t28-121q0-63-28-121.5T215-697q-38 46-56.5 101.5T140-480q0 60 18.5 115T215-264Zm383.5 104.5Q655-179 703-220q-59-48-91.5-116.5T579-480q0-75 32.5-144T703-741q-48-40-104.5-59.5T480-820q-62 0-118.5 19.5T257-741q59 48 92 117t33 144q0 75-33 143.5T257-220q48 41 104.5 60.5T480-140q62 0 118.5-19.5ZM746-264q38-46 56-101t18-115q0-60-18-115.5T746-697q-51 37-79 95.5T639-480q0 63 28 121t79 95ZM480-480ZM325-111.5q-73-31.5-127.5-86t-86-127.5Q80-398 80-480.5t31.5-155q31.5-72.5 86-127t127.5-86Q398-880 480.5-880t155 31.5q72.5 31.5 127 86t86 127Q880-563 880-480.5T848.5-325q-31.5 73-86 127.5t-127 86Q563-80 480.5-80T325-111.5Z"/></svg></span><h3>Por qué encaja un MLP</h3><p>Una capa densa conecta cada neurona con todas las entradas y no usa la posición, así que el orden de las columnas no le quita información.</p></div>
-<div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M300-80q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v520q0 24-18 42t-42 18H300Zm0-60h230v-147H300v147Zm290 0h230v-147H590v147ZM80-244v-576q0-24 18-42t42-18h576v60H140v576H80Zm220-103h230v-148H300v148Zm290 0h230v-148H590v148ZM300-555h520v-105H300v105Z"/></svg></span><h3>En una imagen no pasa</h3><p>Ahí la posición del píxel es parte del dato, y por eso el aplanado pierde algo que en tabular no existe.</p></div>
-</div>
-
+</div></div></section><section class="slide" data-kind="content+cards+image"><div class="stage d-split side-right">
+<div class="shead"><span class="pill">Modelar la entrada</span><h2 class="stitle">Qué significa que el dato sea tabular</h2><p class="lead">Esta clase modela datos tabulares: una fila por ejemplo y una columna por variable, sin vecindad ni orden intrínseco entre las columnas.</p></div><div class="cbody"><div class="cfit"><div class="ccicards">
+<div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M140-510q-24.75 0-42.37-17.63Q80-545.25 80-570v-170q0-24.75 17.63-42.38Q115.25-800 140-800h400v290H140Zm0-60h340v-170H140v170Zm0 410q-24.75 0-42.37-17.63Q80-195.25 80-220v-170q0-24.75 17.63-42.38Q115.25-450 140-450h480v290H140Zm0-60h420v-170H140v170Zm540 60v-350h-80v-290h280l-80 220h80L680-160ZM195-275h60v-60h-60v60Zm0-350h60v-60h-60v60Zm-55 55v-170 170Zm0 350v-170 170Z"/></svg></span><h3>Filas y columnas</h3><p>Una fila por ejemplo y una columna por variable. Intercambiar edad con ingreso no cambia el dato mientras cada columna conserve su nombre.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M215-264q51-37 79-95t28-121q0-63-28-121.5T215-697q-38 46-56.5 101.5T140-480q0 60 18.5 115T215-264Zm383.5 104.5Q655-179 703-220q-59-48-91.5-116.5T579-480q0-75 32.5-144T703-741q-48-40-104.5-59.5T480-820q-62 0-118.5 19.5T257-741q59 48 92 117t33 144q0 75-33 143.5T257-220q48 41 104.5 60.5T480-140q62 0 118.5-19.5ZM746-264q38-46 56-101t18-115q0-60-18-115.5T746-697q-51 37-79 95.5T639-480q0 63 28 121t79 95ZM480-480ZM325-111.5q-73-31.5-127.5-86t-86-127.5Q80-398 80-480.5t31.5-155q31.5-72.5 86-127t127.5-86Q398-880 480.5-880t155 31.5q72.5 31.5 127 86t86 127Q880-563 880-480.5T848.5-325q-31.5 73-86 127.5t-127 86Q563-80 480.5-80T325-111.5Z"/></svg></span><h3>Por qué encaja un MLP</h3><p>Una capa densa conecta cada neurona con todas las entradas y no usa la posición, así que el orden de las columnas no le quita información.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M300-80q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v520q0 24-18 42t-42 18H300Zm0-60h230v-147H300v147Zm290 0h230v-147H590v147ZM80-244v-576q0-24 18-42t42-18h576v60H140v576H80Zm220-103h230v-148H300v148Zm290 0h230v-148H590v148ZM300-555h520v-105H300v105Z"/></svg></span><h3>En una imagen no pasa</h3><p>Ahí la posición del píxel es parte del dato, y por eso el aplanado pierde algo que en tabular no existe.</p></div></div>
 </div></div>
-<div class="highlights hl-bottom fragment fade-up"><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p>Falta el paso de la columna al número. Cada columna se convierte en una o más posiciones del vector, y de qué depende esa conversión es el resto de esta sección.</p></div></div></div>
-<aside class="notes"><p>Definí tabular por contraste con una imagen, que es el ejemplo que todos tienen a mano: en una tabla no hay píxeles vecinos ni orden temporal que explotar, y el modelo puede recibir las columnas en cualquier orden mientras sepa cuál es cuál. Ese es el punto que conecta con la diapositiva de arquitecturas de la sección anterior. El resto de la sección es método: cada columna del dataset se convierte en una o más posiciones del vector, y lo que decide en cuántas y con qué valores es el tipo de variable. Si alguien pregunta por imágenes, texto o series temporales, la respuesta corta es que cada familia tiene su arquitectura y que las vimos al pasar en la sección 1.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
+<div class="smedia"><div class="imgph svg"><!-- talksmith-ascii-sha256: da825c1ce0210d82c565c2c54b0c48751917df0ab31d45ccc6e410dcb3fb7d76 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="11">
+  <title>Que significa que el dato sea tabular</title>
+  <desc>La misma tabla de casas con dos columnas intercambiadas: en datos tabulares el orden de las columnas no lleva informacion.</desc>
+  <rect x="0" y="0" width="380" height="400" fill="#ffffff"/>
+  <defs>
+    <marker id="e4-ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <path d="M0 0 L9 3.5 L0 7 z" fill="#7A7373"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="24" font-size="10.5" fill="#7A7373">una fila por casa, una columna por variable</text>
+
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"><rect x="20" y="34" width="340" height="22"/></g>
+  <g fill="#ffffff" stroke="#B9B3B3" stroke-width="1"><rect x="20" y="56" width="340" height="20"/><rect x="20" y="76" width="340" height="20"/><rect x="20" y="96" width="340" height="20"/></g>
+  <g stroke="#E2DDDD" stroke-width="0.9"><path d="M 90 34 L 90 116"/><path d="M 190 34 L 190 116"/><path d="M 248 34 L 248 116"/></g>
+  <rect x="20" y="34" width="170" height="82" fill="none" stroke="#DA1B2E" stroke-width="1.6"/>
+  <g font-size="10.5" font-weight="bold"><text x="28" y="49">m&#178;</text><text x="98" y="49">barrio</text><text x="198" y="49">amb</text><text x="256" y="49">precio</text></g>
+  <g font-size="10.5">
+    <text x="28" y="70">85</text><text x="98" y="70">Palermo</text><text x="198" y="70">3</text><text x="256" y="70">210.000</text>
+    <text x="28" y="90">120</text><text x="98" y="90">Caballito</text><text x="198" y="90">4</text><text x="256" y="90">185.000</text>
+    <text x="28" y="110">62</text><text x="98" y="110">Almagro</text><text x="198" y="110">2</text><text x="256" y="110">121.000</text>
+  </g>
+
+  <path d="M 105 130 L 105 158" stroke="#DA1B2E" stroke-width="1.5" fill="none" marker-end="url(#e4-ag)"/>
+  <text x="120" y="148" font-size="10.5" fill="#DA1B2E">intercambio las dos primeras columnas</text>
+
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"><rect x="20" y="170" width="340" height="22"/></g>
+  <g fill="#ffffff" stroke="#B9B3B3" stroke-width="1"><rect x="20" y="192" width="340" height="20"/><rect x="20" y="212" width="340" height="20"/><rect x="20" y="232" width="340" height="20"/></g>
+  <g stroke="#E2DDDD" stroke-width="0.9"><path d="M 120 170 L 120 252"/><path d="M 190 170 L 190 252"/><path d="M 248 170 L 248 252"/></g>
+  <rect x="20" y="170" width="170" height="82" fill="none" stroke="#DA1B2E" stroke-width="1.6"/>
+  <g font-size="10.5" font-weight="bold"><text x="28" y="185">barrio</text><text x="128" y="185">m&#178;</text><text x="198" y="185">amb</text><text x="256" y="185">precio</text></g>
+  <g font-size="10.5">
+    <text x="28" y="206">Palermo</text><text x="128" y="206">85</text><text x="198" y="206">3</text><text x="256" y="206">210.000</text>
+    <text x="28" y="226">Caballito</text><text x="128" y="226">120</text><text x="198" y="226">4</text><text x="256" y="226">185.000</text>
+    <text x="28" y="246">Almagro</text><text x="128" y="246">62</text><text x="198" y="246">2</text><text x="256" y="246">121.000</text>
+  </g>
+
+  <text x="20" y="284" font-size="14" font-weight="bold" fill="#DA1B2E">es el mismo dato</text>
+  <text x="20" y="306" font-size="10.5" fill="#7A7373">la posici&#243;n de la columna no significa nada,</text>
+  <text x="20" y="320" font-size="10.5" fill="#7A7373">mientras cada una conserve su nombre</text>
+
+  <path d="M 20 344 L 360 344" stroke="#E2DDDD" stroke-width="1.2"/>
+  <text x="20" y="364" font-size="10.5" fill="#7A7373">en una imagen, en cambio, mover un p&#237;xel</text>
+  <text x="20" y="378" font-size="10.5" fill="#7A7373">s&#237; cambia el dato</text>
+</svg></div></div></div>
+<aside class="notes"><p>Definí "tabular" por contraste con una imagen, que es el ejemplo que todos tienen a mano: en una tabla no hay píxeles vecinos ni orden temporal que explotar, y el modelo puede recibir las columnas en cualquier orden mientras sepa cuál es cuál. Ese es el punto que conecta con la diapositiva de arquitecturas de la sección anterior: el MLP no usa la posición, y en tabular no hay posición que usar, así que la arquitectura y el dato se corresponden.</p><p>El resto de la sección es método, y conviene anunciarlo así: cada columna del dataset se convierte en una o más posiciones del vector, y lo que decide en cuántas y con qué valores es el tipo de variable.</p><p>Si alguien pregunta por imágenes, texto o series temporales, la respuesta corta es que cada familia tiene su arquitectura y que las vimos al pasar en la sección 1. No abras ese frente acá.</p><p>---</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
 <div class="shead"><span class="pill">Modelar la entrada</span><h2 class="stitle">La pregunta que decide la codificación</h2><p class="lead">Frente a cualquier variable, una sola pregunta ordena la decisión: ¿qué significa la resta entre dos valores?</p></div><div class="cbody"><div class="cfit"><div class="cards">
 <div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M483-880q81 0 124 60t75 137q26 65 50 142.5t51.51 154.48Q810-312 842.5-245.5 875-179 917-130q8 10 8 21t-8 19q-8 8-20 8.5T875-89q-82-63-128-141.5t-99.21-136.1Q613-405 572.7-428q-40.3-23-89.5-23t-89.7 23q-40.5 23-75.29 61.4Q265-309 219-230.5 173-152 91-89q-10 8-22 7.5T49-90q-8-8-8-19t8-21q42-49 74.5-115.5t58.99-140.52Q210-463 234-540.5 258-618 284-683q30.7-76.83 74.35-136.92Q402-880 483-880Zm-86.5 108.5Q366-723 343-670q-33 75-56.5 156.5T235-357q25.96-34.08 49.98-60.04Q309-443 334-462q35-25 70.5-37t78.5-12q43 0 78.5 12t70.5 37q25 19 49.02 44.96Q705.04-391.08 731-357q-28-75-51.5-156.5T623-670q-23-53-53.5-101.5T483-820q-56 0-86.5 48.5ZM483-511Z"/></svg></span><h3>Da una cantidad interpretable</h3><p>85 m² menos 60 m² son 25 m² reales. Un float normalizado, una neurona.</p></div>
 <div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480.27-80q-82.74 0-155.5-31.5Q252-143 197.5-197.5t-86-127.34Q80-397.68 80-480.5t31.5-155.66Q143-709 197.5-763t127.34-85.5Q397.68-880 480.5-880t155.66 31.5Q709-817 763-763t85.5 127Q880-563 880-480.27q0 82.74-31.5 155.5Q817-252 763-197.68q-54 54.31-127 86Q563-80 480.27-80Zm.23-60Q622-140 721-239.5t99-241Q820-622 721.19-721T480-820q-141 0-240.5 98.81T140-480q0 141 99.5 240.5t241 99.5Zm-.5-340Zm-8 203h60v-406H389v60h83v346Z"/></svg></span><h3>Da orden pero no magnitud</h3><p>Satisfacción 4 menos 2. Ordinal; evaluar también one-hot.</p></div>
@@ -1032,7 +1084,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <title>One-hot selecciona una columna de W</title>
   <desc>Como solo una posición del vector one-hot vale 1, el producto con W selecciona los pesos de esa categoría.</desc>
   <defs>
-    <marker id="e4-arw2" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+    <marker id="e5-arw2" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
       <path d="M0,0 L8,4 L0,8 Z" fill="#3B3535"/>
     </marker>
   </defs>
@@ -1066,7 +1118,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
     <text x="427" y="90">w</text><text x="427" y="135">w</text><text x="427" y="180">w</text>
   </g>
 
-  <line x1="427" y1="215" x2="427" y2="248" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#e4-arw2)"/>
+  <line x1="427" y1="215" x2="427" y2="248" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#e5-arw2)"/>
   <text x="340" y="278" font-size="15" text-anchor="middle">cada categoría selecciona su propia columna de pesos en W</text>
 </svg></div></div></div>
 <aside class="notes"><p>El puente que engancha: así arranca un LLM. Cada token es un índice que busca su fila en una tabla de ~50.000 por 4096. El embedding de categorías y el de palabras son la misma idea. Dos ventajas no obvias: comparte estadística entre categorías parecidas y es reutilizable.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
@@ -1376,7 +1428,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>Cross-entropy ignora las clases equivocadas y solo mira la probabilidad que la red le dio a la correcta.</desc>
   <rect x="0" y="0" width="920" height="300" fill="#ffffff"/>
   <defs>
-    <marker id="e9-ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+    <marker id="e10-ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
       <path d="M0 0 L11 4.5 L0 9 z" fill="#DA1B2E"/>
     </marker>
   </defs>
@@ -1408,7 +1460,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <line x1="478" y1="188" x2="522" y2="188" stroke="#B9B3B3" stroke-width="1"/>
   <text x="468" y="206" text-anchor="end" font-size="12" fill="#7A7373">suma</text>
 
-  <path d="M 540 91 L 590 91" stroke="#DA1B2E" stroke-width="2.2" fill="none" marker-end="url(#e9-ar)"/>
+  <path d="M 540 91 L 590 91" stroke="#DA1B2E" stroke-width="2.2" fill="none" marker-end="url(#e10-ar)"/>
 
   <text x="608" y="70" font-weight="bold">cross-entropy mira una sola casilla</text>
   <text x="608" y="97" font-size="15" font-family="'DejaVu Sans Mono', monospace" fill="#DA1B2E">L = -log(0,80) = 0,22</text>
@@ -1447,15 +1499,15 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>La loss depende solo de los pesos; entrenar es caminar por esa superficie hacia el punto más bajo.</desc>
   <rect x="0" y="0" width="700" height="360" fill="#ffffff"/>
   <defs>
-    <marker id="e10-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e11-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#7A7373"/>
     </marker>
-    <marker id="e10-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e11-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/>
     </marker>
   </defs>
 
-  <g stroke="#B9B3B3" stroke-width="1.4" fill="none" marker-end="url(#e10-ag)">
+  <g stroke="#B9B3B3" stroke-width="1.4" fill="none" marker-end="url(#e11-ag)">
     <path d="M 92 300 L 92 48"/>
     <path d="M 92 300 L 656 300"/>
   </g>
@@ -1476,7 +1528,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <circle cx="372" cy="268" r="9" fill="#DA1B2E"/>
 
-  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e10-ag)">
+  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e11-ag)">
     <path d="M 130 90 L 168 145"/>
     <path d="M 190 170 L 228 200"/>
     <path d="M 250 222 L 286 238"/>
@@ -1496,7 +1548,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <text x="238" y="168" font-size="12.5">fracción del gradiente</text>
   <text x="238" y="188" font-size="12.5" font-family="'DejaVu Sans Mono', monospace">W = W - &#951; * g</text>
 
-  <path d="M 400 296 L 380 278" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e10-ar)"/>
+  <path d="M 400 296 L 380 278" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e11-ar)"/>
   <text x="406" y="302" font-size="13" font-weight="bold" fill="#DA1B2E">el mínimo</text>
   <text x="406" y="318" font-size="11.5" fill="#DA1B2E">el error más bajo alcanzable</text>
 
@@ -1516,10 +1568,10 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>El forward recorre una fila del batch; el backward reparte la culpa y la acumula, sin tocar los pesos.</desc>
   <rect x="0" y="0" width="700" height="300" fill="#ffffff"/>
   <defs>
-    <marker id="e11-ag" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+    <marker id="e12-ag" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
       <path d="M0 0 L11 4.5 L0 9 z" fill="#7A7373"/>
     </marker>
-    <marker id="e11-ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+    <marker id="e12-ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
       <path d="M0 0 L11 4.5 L0 9 z" fill="#DA1B2E"/>
     </marker>
   </defs>
@@ -1543,7 +1595,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="604" y="144" font-size="11" text-anchor="middle" fill="#7A7373">compara y con t</text>
 
-  <g stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e11-ag)">
+  <g stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e12-ag)">
     <path d="M 52 98 L 78 98"/>
     <path d="M 198 98 L 230 98"/>
     <path d="M 348 98 L 380 98"/>
@@ -1551,8 +1603,8 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="521" y="88" font-size="12" text-anchor="middle" fill="#7A7373">y</text>
 
-  <path d="M 604 164 L 604 192 L 60 192" stroke="#DA1B2E" stroke-width="2" fill="none" marker-end="url(#e11-ar)"/>
-  <g stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e11-ar)">
+  <path d="M 604 164 L 604 192 L 60 192" stroke="#DA1B2E" stroke-width="2" fill="none" marker-end="url(#e12-ar)"/>
+  <g stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e12-ar)">
     <path d="M 139 188 L 139 129"/>
     <path d="M 289 188 L 289 129"/>
     <path d="M 439 188 L 439 129"/>
@@ -1603,7 +1655,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>El train se parte en batches de tamaño fijo y cada batch produce exactamente un ajuste de los pesos.</desc>
   <rect x="0" y="0" width="700" height="310" fill="#ffffff"/>
   <defs>
-    <marker id="e12-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e13-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#7A7373"/>
     </marker>
   </defs>
@@ -1624,7 +1676,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="482" y="88" font-size="18" text-anchor="middle" fill="#7A7373">&#183; &#183; &#183;</text>
 
-  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e12-ag)">
+  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e13-ag)">
     <path d="M 90 104 L 90 130"/>
     <path d="M 222 104 L 222 130"/>
     <path d="M 354 104 L 354 130"/>
@@ -1674,10 +1726,10 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>Dentro del batch se acumula en valores intermedios; al cerrar el batch se aplica una sola vez y se pasa al siguiente.</desc>
   <rect x="0" y="0" width="700" height="430" fill="#ffffff"/>
   <defs>
-    <marker id="e13-ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+    <marker id="e14-ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
       <path d="M0 0 L9 3.5 L0 7 z" fill="#7A7373"/>
     </marker>
-    <marker id="e13-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e14-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/>
     </marker>
   </defs>
@@ -1701,13 +1753,13 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="66" y="160" font-size="15" fill="#7A7373">&#183; &#183; &#183;</text>
 
-  <g stroke="#7A7373" stroke-width="1.3" fill="none" marker-end="url(#e13-ag)">
+  <g stroke="#7A7373" stroke-width="1.3" fill="none" marker-end="url(#e14-ag)">
     <path d="M 90 105 L 106 105"/><path d="M 188 105 L 196 105"/><path d="M 228 105 L 236 105"/>
     <path d="M 90 135 L 106 135"/><path d="M 188 135 L 196 135"/><path d="M 228 135 L 236 135"/>
     <path d="M 90 177 L 106 177"/><path d="M 188 177 L 196 177"/><path d="M 228 177 L 236 177"/>
   </g>
 
-  <g stroke="#DA1B2E" stroke-width="1.5" fill="none" marker-end="url(#e13-ar)">
+  <g stroke="#DA1B2E" stroke-width="1.5" fill="none" marker-end="url(#e14-ar)">
     <path d="M 322 105 L 356 105 L 356 118 L 390 118"/>
     <path d="M 322 135 L 390 135"/>
     <path d="M 322 177 L 356 177 L 356 152 L 390 152"/>
@@ -1720,7 +1772,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 
   <text x="314" y="212" font-size="13.5" font-weight="bold" text-anchor="middle">W y b no se tocan en ningún punto de este bloque</text>
 
-  <path d="M 314 230 L 314 266" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e13-ag)"/>
+  <path d="M 314 230 L 314 266" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e14-ag)"/>
   <text x="328" y="253" font-size="12.5" fill="#7A7373">terminó el batch</text>
 
   <rect x="34" y="272" width="560" height="112" rx="4" fill="#FBF4F5" stroke="#DA1B2E" stroke-width="1.6"/>
@@ -1737,7 +1789,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="52" y="371" font-size="12.5" font-weight="bold" fill="#DA1B2E">único momento del entrenamiento en que la red cambia</text>
 
-  <path d="M 594 328 L 650 328 L 650 34 L 200 34 L 200 48" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e13-ag)"/>
+  <path d="M 594 328 L 650 328 L 650 34 L 200 34 L 200 48" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e14-ag)"/>
   <text x="424" y="26" font-size="12.5" text-anchor="middle" fill="#7A7373">batch k+1, con W y b nuevos</text>
 
   <text x="34" y="410" font-size="12.5" fill="#7A7373">agotados todos los batches = 1 época: se baraja el train y vuelve a empezar</text>
@@ -2041,14 +2093,14 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <title>Las curvas de train y validación</title>
   <desc>El error de train baja sin parar mientras el de validación deja de bajar y vuelve a subir: ahí empieza el overfitting.</desc>
   <defs>
-    <marker id="e18-arw5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+    <marker id="e19-arw5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
       <path d="M0,0 L8,4 L0,8 Z" fill="#3B3535"/>
     </marker>
   </defs>
   <rect x="0" y="0" width="640" height="380" fill="#ffffff"/>
 
-  <line x1="80" y1="40" x2="80" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e18-arw5)"/>
-  <line x1="80" y1="300" x2="600" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e18-arw5)"/>
+  <line x1="80" y1="40" x2="80" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e19-arw5)"/>
+  <line x1="80" y1="300" x2="600" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e19-arw5)"/>
   <text x="50" y="50" font-size="14" text-anchor="middle" fill="#7A7373">error</text>
   <text x="590" y="326" font-size="14" text-anchor="middle" fill="#7A7373">épocas</text>
 

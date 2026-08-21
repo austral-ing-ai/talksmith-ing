@@ -1,0 +1,46 @@
+<!-- talksmith-ascii-sha256: da825c1ce0210d82c565c2c54b0c48751917df0ab31d45ccc6e410dcb3fb7d76 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="11">
+  <title>Que significa que el dato sea tabular</title>
+  <desc>La misma tabla de casas con dos columnas intercambiadas: en datos tabulares el orden de las columnas no lleva informacion.</desc>
+  <rect x="0" y="0" width="380" height="400" fill="#ffffff"/>
+  <defs>
+    <marker id="ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <path d="M0 0 L9 3.5 L0 7 z" fill="#7A7373"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="24" font-size="10.5" fill="#7A7373">una fila por casa, una columna por variable</text>
+
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"><rect x="20" y="34" width="340" height="22"/></g>
+  <g fill="#ffffff" stroke="#B9B3B3" stroke-width="1"><rect x="20" y="56" width="340" height="20"/><rect x="20" y="76" width="340" height="20"/><rect x="20" y="96" width="340" height="20"/></g>
+  <g stroke="#E2DDDD" stroke-width="0.9"><path d="M 90 34 L 90 116"/><path d="M 190 34 L 190 116"/><path d="M 248 34 L 248 116"/></g>
+  <rect x="20" y="34" width="170" height="82" fill="none" stroke="#DA1B2E" stroke-width="1.6"/>
+  <g font-size="10.5" font-weight="bold"><text x="28" y="49">m&#178;</text><text x="98" y="49">barrio</text><text x="198" y="49">amb</text><text x="256" y="49">precio</text></g>
+  <g font-size="10.5">
+    <text x="28" y="70">85</text><text x="98" y="70">Palermo</text><text x="198" y="70">3</text><text x="256" y="70">210.000</text>
+    <text x="28" y="90">120</text><text x="98" y="90">Caballito</text><text x="198" y="90">4</text><text x="256" y="90">185.000</text>
+    <text x="28" y="110">62</text><text x="98" y="110">Almagro</text><text x="198" y="110">2</text><text x="256" y="110">121.000</text>
+  </g>
+
+  <path d="M 105 130 L 105 158" stroke="#DA1B2E" stroke-width="1.5" fill="none" marker-end="url(#ag)"/>
+  <text x="120" y="148" font-size="10.5" fill="#DA1B2E">intercambio las dos primeras columnas</text>
+
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"><rect x="20" y="170" width="340" height="22"/></g>
+  <g fill="#ffffff" stroke="#B9B3B3" stroke-width="1"><rect x="20" y="192" width="340" height="20"/><rect x="20" y="212" width="340" height="20"/><rect x="20" y="232" width="340" height="20"/></g>
+  <g stroke="#E2DDDD" stroke-width="0.9"><path d="M 120 170 L 120 252"/><path d="M 190 170 L 190 252"/><path d="M 248 170 L 248 252"/></g>
+  <rect x="20" y="170" width="170" height="82" fill="none" stroke="#DA1B2E" stroke-width="1.6"/>
+  <g font-size="10.5" font-weight="bold"><text x="28" y="185">barrio</text><text x="128" y="185">m&#178;</text><text x="198" y="185">amb</text><text x="256" y="185">precio</text></g>
+  <g font-size="10.5">
+    <text x="28" y="206">Palermo</text><text x="128" y="206">85</text><text x="198" y="206">3</text><text x="256" y="206">210.000</text>
+    <text x="28" y="226">Caballito</text><text x="128" y="226">120</text><text x="198" y="226">4</text><text x="256" y="226">185.000</text>
+    <text x="28" y="246">Almagro</text><text x="128" y="246">62</text><text x="198" y="246">2</text><text x="256" y="246">121.000</text>
+  </g>
+
+  <text x="20" y="284" font-size="14" font-weight="bold" fill="#DA1B2E">es el mismo dato</text>
+  <text x="20" y="306" font-size="10.5" fill="#7A7373">la posici&#243;n de la columna no significa nada,</text>
+  <text x="20" y="320" font-size="10.5" fill="#7A7373">mientras cada una conserve su nombre</text>
+
+  <path d="M 20 344 L 360 344" stroke="#E2DDDD" stroke-width="1.2"/>
+  <text x="20" y="364" font-size="10.5" fill="#7A7373">en una imagen, en cambio, mover un p&#237;xel</text>
+  <text x="20" y="378" font-size="10.5" fill="#7A7373">s&#237; cambia el dato</text>
+</svg>

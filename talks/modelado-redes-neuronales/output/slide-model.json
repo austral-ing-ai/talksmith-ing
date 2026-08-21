@@ -144,7 +144,7 @@
       "title": "Modelar la entrada"
     },
     {
-      "template": "concept-breakdown",
+      "template": "content+cards+image",
       "section": "Modelar la entrada",
       "title": "Qué significa que el dato sea tabular",
       "lead": "Esta clase modela datos tabulares: una fila por ejemplo y una columna por variable, sin vecindad ni orden intrínseco entre las columnas.",
@@ -162,13 +162,12 @@
           "body": "Ahí la posición del píxel es parte del dato, y por eso el aplanado pierde algo que en tabular no existe."
         }
       ],
-      "highlights": [
-        {
-          "body": "Falta el paso de la columna al número. Cada columna se convierte en una o más posiciones del vector, y de qué depende esa conversión es el resto de esta sección.",
-          "kind": "takeaway"
-        }
-      ],
-      "notes": "Definí tabular por contraste con una imagen, que es el ejemplo que todos tienen a mano: en una tabla no hay píxeles vecinos ni orden temporal que explotar, y el modelo puede recibir las columnas en cualquier orden mientras sepa cuál es cuál. Ese es el punto que conecta con la diapositiva de arquitecturas de la sección anterior. El resto de la sección es método: cada columna del dataset se convierte en una o más posiciones del vector, y lo que decide en cuántas y con qué valores es el tipo de variable. Si alguien pregunta por imágenes, texto o series temporales, la respuesta corta es que cada familia tiene su arquitectura y que las vimos al pasar en la sección 1."
+      "notes": "Definí \"tabular\" por contraste con una imagen, que es el ejemplo que todos tienen a mano: en una tabla no hay píxeles vecinos ni orden temporal que explotar, y el modelo puede recibir las columnas en cualquier orden mientras sepa cuál es cuál. Ese es el punto que conecta con la diapositiva de arquitecturas de la sección anterior: el MLP no usa la posición, y en tabular no hay posición que usar, así que la arquitectura y el dato se corresponden.\n\nEl resto de la sección es método, y conviene anunciarlo así: cada columna del dataset se convierte en una o más posiciones del vector, y lo que decide en cuántas y con qué valores es el tipo de variable.\n\nSi alguien pregunta por imágenes, texto o series temporales, la respuesta corta es que cada familia tiene su arquitectura y que las vimos al pasar en la sección 1. No abras ese frente acá.\n\n---",
+      "media": {
+        "src": "images/s2-1-1-orden-de-columnas.png",
+        "alt": "La misma tabla de casas con dos columnas intercambiadas"
+      },
+      "design": "split-right"
     },
     {
       "template": "concept-breakdown",
@@ -1776,7 +1775,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "1ebe959b42e6dc98187f3c80ab1d8130391540a7bd1e4d0e5256be608fb507e9",
-    "bytes": 152361
+    "sha256": "46fa5ffcaa1b018e443def475a0a9238d5d05f9cbe621b24c3982644d9862149",
+    "bytes": 154244
   }
 }

@@ -306,7 +306,43 @@ Esta clase modela datos **tabulares**: una fila por ejemplo y una columna por va
 
 Esa propiedad es la que hace que un MLP encaje. Una capa densa conecta cada neurona con todas las entradas y no usa la posición para nada, así que recibir las columnas en otro orden no le quita información. En una imagen sí se la quitaría, porque ahí la posición del píxel es parte del dato.
 
-Falta el paso de la columna al número. Cada columna se convierte en una o más posiciones del vector, y de qué depende esa conversión es el resto de esta sección.
+![La misma tabla de casas con dos columnas intercambiadas](images/s2-1-1-orden-de-columnas.png)
+<!-- ascii-source:
+   una fila por casa, una columna por variable
+
+   +--------+----------+------+---------+
+   |  m2    | barrio   | amb  | precio  |
+   +--------+----------+------+---------+
+   |  85    | Palermo  |  3   | 210.000 |
+   |  120   | Caballito|  4   | 185.000 |
+   |  62    | Almagro  |  2   | 121.000 |
+   +--------+----------+------+---------+
+
+              intercambio dos columnas
+                       |
+                       v
+
+   +----------+--------+------+---------+
+   | barrio   |  m2    | amb  | precio  |
+   +----------+--------+------+---------+
+   | Palermo  |  85    |  3   | 210.000 |
+   | Caballito|  120   |  4   | 185.000 |
+   | Almagro  |  62    |  2   | 121.000 |
+   +----------+--------+------+---------+
+
+              es EL MISMO dato
+
+   la posicion de la columna no significa nada,
+   mientras cada una conserve su nombre
+
+   en una imagen, en cambio, mover un pixel
+   si cambia el dato
+-->
+<!-- ascii-note:
+intent: mostrar con el caso de house pricing que en datos tabulares el orden de las columnas no lleva informacion
+emphasize: las dos columnas que se intercambian entre la primera tabla y la segunda, y que las dos tablas dicen exactamente lo mismo; el contraste final con la imagen va en tono secundario
+labels: la tabla de casas con m2, barrio, ambientes y precio; la leyenda de intercambio entre las dos tablas; el remate de que es el mismo dato; formato vertical, pensado para ir en una columna al costado de la diapositiva
+-->
 
 ### Sources
 
@@ -1998,6 +2034,10 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 - Las citas de Keras y PyTorch sobre el aplanado (notas del orador de la 1.2) están verificadas contra la documentación oficial pero no viven en el corpus. Ingerir las dos páginas si se las quiere como fuente formal de la Talk.
 
 # Cut material
+
+## Diapositiva 2.1 Que significa que el dato sea tabular - parrafo de cierre (retirado, 2026-08-21)
+
+"Falta el paso de la columna al numero. Cada columna se convierte en una o mas posiciones del vector, y de que depende esa conversion es el resto de esta seccion." Retirado por pedido del presentador: la diapositiva 1.6 ya muestra ese paso con numeros (13 nodos desde dos variables) y la seccion 2 entera es ese desarrollo, asi que el parrafo anunciaba algo ya dicho.
 
 ## Diapositiva 1.6 Del dato a los nodos de entrada - todo el texto del cuerpo (retirado, 2026-08-21)
 

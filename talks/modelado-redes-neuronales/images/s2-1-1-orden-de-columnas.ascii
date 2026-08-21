@@ -1,0 +1,35 @@
+   una fila por casa, una columna por variable
+
+   +--------+----------+------+---------+
+   |  m2    | barrio   | amb  | precio  |
+   +--------+----------+------+---------+
+   |  85    | Palermo  |  3   | 210.000 |
+   |  120   | Caballito|  4   | 185.000 |
+   |  62    | Almagro  |  2   | 121.000 |
+   +--------+----------+------+---------+
+
+              intercambio dos columnas
+                       |
+                       v
+
+   +----------+--------+------+---------+
+   | barrio   |  m2    | amb  | precio  |
+   +----------+--------+------+---------+
+   | Palermo  |  85    |  3   | 210.000 |
+   | Caballito|  120   |  4   | 185.000 |
+   | Almagro  |  62    |  2   | 121.000 |
+   +----------+--------+------+---------+
+
+              es EL MISMO dato
+
+   la posicion de la columna no significa nada,
+   mientras cada una conserve su nombre
+
+   en una imagen, en cambio, mover un pixel
+   si cambia el dato
+
+<!-- ascii-note:
+intent: mostrar con el caso de house pricing que en datos tabulares el orden de las columnas no lleva informacion
+emphasize: las dos columnas que se intercambian entre la primera tabla y la segunda, y que las dos tablas dicen exactamente lo mismo; el contraste final con la imagen va en tono secundario
+labels: la tabla de casas con m2, barrio, ambientes y precio; la leyenda de intercambio entre las dos tablas; el remate de que es el mismo dato; formato vertical, pensado para ir en una columna al costado de la diapositiva
+-->

@@ -585,3 +585,17 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - El ASCII de `draft.md` se reescribio junto con el SVG, asi que fuente y dibujo dicen lo mismo.
 - Files created/modified: draft.md, final.md, images/s1-6-1-nodos-de-entrada.{svg,png,ascii}, output/slide-model.json, output/html/index.html, index.html (raiz).
 
+## 2026-08-21 — Acronimos por su significado, simetria 4/8, y diagrama de house pricing en la 2.1
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "Pone no CNN o MLP o RNN en los graficos sino lo que significa"
+  - 2026-08-21 — "Tal vez seria bueno seguir el layout del slide 8 en vez de cajas" / "Me refiero al slide 4 como para que queden simetricos"
+  - 2026-08-21 — "La frase sobre el paso de la columna al numero se puede borrar, ya se explico antes"
+  - 2026-08-21 — "Poner una imagen al costado del slide 10 que muestre la representacion visual con el caso que seguimos de house pricing"
+- What was decided:
+  - **Acronimos fuera de los dos diagramas.** MLP pasa a "Perceptron multicapa", CNN a "Red convolucional", RNN / CNN 1D a "Red recurrente o convolucional 1D". Tambien en el pie del diagrama de la 1.6. **El pedido tiene fundamento tecnico:** el diagrama de la 1.2 usaba los tres acronimos y la definicion de MLP recien llega en la 1.3, o sea la diapositiva siguiente. Es exactamente el caso de `learnings.md` L8, un termino tecnico usado antes de definirse.
+  - **El diagrama de la 1.2 se rehizo con el layout de la 1.6** para que el par se lea igual: cabecera de dos columnas, cuatro filas, bloque a la derecha, pill abajo a la derecha, acento rojo en la fila tabular. Se diferencian por la columna derecha: la 1.2 responde **que forma tiene** (cuantos ejes) y la 1.6 responde **que recibe el modelo** y como lo procesa.
+  - **2.1**: se retiro el parrafo de cierre sobre el paso de columna a numero (archivado en Cut material); la 1.6 ya lo muestra con numeros y la seccion 2 entera es ese desarrollo. En su lugar lleva un diagrama al costado (`split-right`) con el caso de house pricing: la misma tabla de casas dos veces con las dos primeras columnas intercambiadas, el remate "es el mismo dato", y el contraste de que en una imagen mover un pixel si cambia el dato. Es la ilustracion literal de lo que la diapositiva afirma.
+  - Plantilla de 2.1 corregida de `concept-breakdown` a `content+cards+image`: el catalogo exige `images == 0` para concept-breakdown, y la diapositiva ahora tiene diagrama.
+- Files created/modified: draft.md, final.md, images/s1-2-1-formas-de-input.{svg,png,ascii} (rehecho), images/s1-6-1-nodos-de-entrada.{svg,png}, images/s2-1-1-orden-de-columnas.{svg,png,ascii} (nuevo), output/slide-model.json, output/html/index.html, index.html raiz.
+
