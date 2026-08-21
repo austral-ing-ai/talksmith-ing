@@ -842,18 +842,147 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 
 </div></div>
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p>1 a 3 capas ocultas alcanzan para datos tabulares, ancho en potencias de 2 decreciente, ReLU salvo motivo. El retorno está en las otras cinco.</p></div></div></div>
-<aside class="notes"><p>Este es el mapa mental que quiero que se lleven, y además es la agenda de la clase disfrazada de contenido: casi cada viñeta es una sección. El overfitting salió de la lista a propósito, porque no es algo que se diseñe sino un problema que aparece y que la clase trata al final; si alguien pregunta por qué no está, esa es la respuesta. Lo mismo con backpropagation: es el algoritmo que hace funcionar todo lo demás, no una decisión de diseño. Recorrelas señalando hacia adelante, sin desarrollar ninguna. El remate es la última línea: contrastá con la expectativa, pasan horas tuneando capas y el retorno está en la entrada. Dato honesto para dejar caer acá o al final: en datos tabulares una red muchas veces pierde contra gradient boosting (XGBoost, LightGBM); las redes brillan cuando hay estructura que explotar (imágenes, texto, señales). Sirve para bajar la sobreexpectativa.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
-<div class="shead"><span class="pill">Qué se diseña de verdad</span><h2 class="stitle">Una posición por variable</h2><p class="lead">Cada posición del vector de entrada es una feature: una medición del problema ya convertida en número. El largo del vector es la cantidad de features, y queda fijo para toda la vida del modelo.</p></div><div class="cbody"><div class="cfit"><div class="highlights hl-top"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p><b>El largo no cambia</b>: La red espera siempre la misma cantidad de posiciones. Por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo.</p></div></div><div class="cards">
-<div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m480-121-41-37q-105.77-97.12-174.88-167.56Q195-396 154-451.5T96.5-552Q80-597 80-643q0-90.15 60.5-150.58Q201-854 290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.42Q880-733.15 880-643q0 46-16.5 91T806-451.5Q765-396 695.88-325.56 626.77-255.12 521-158l-41 37Zm0-79q101.24-93 166.62-159.5Q712-426 750.5-476t54-89.14q15.5-39.13 15.5-77.72 0-66.14-42-108.64T670.22-794q-51.52 0-95.37 31.5T504-674h-49q-26-56-69.85-88-43.85-32-95.37-32Q224-794 182-751.5t-42 108.82q0 38.68 15.5 78.18 15.5 39.5 54 90T314-358q66 66 166 158Zm0-297Z"/></svg></span><h3>Numérico</h3><p>Entra directo, normalizado a media 0 y desvío 1.</p></div>
-<div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M220-400q0 63 28.5 118.5T328-189q-4-12-6-24.5t-2-24.5q0-32 12-60t35-51l113-111 113 111q23 23 35 51t12 60q0 12-2 24.5t-6 24.5q51-37 79.5-92.5T740-400q0-54-23-105.5T651-600q-21 15-44 23.5t-46 8.5q-61 0-101-41.5T420-714v-20q-46 33-83 73t-63 83.5q-26 43.5-40 89T220-400Zm260 24-71 70q-14 14-21.5 31t-7.5 37q0 41 29 69.5t71 28.5q42 0 71-28.5t29-69.5q0-20-7.5-37T551-306l-71-70Zm0-464v132q0 34 23.5 57t57.5 23q18 0 33.5-7.5T622-658l18-22q74 42 117 117t43 163q0 134-93 227T480-80q-134 0-227-93t-93-227q0-128 86-246.5T480-840Z"/></svg></span><h3>Categórico</h3><p>One-hot hasta unas 15 categorías, embedding de 50 en adelante.</p></div>
-<div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m421-298 283-283-46-45-237 237-120-120-45 45 165 166Zm59 218q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-156t86-127Q252-817 325-848.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82-31.5 155T763-197.5q-54 54.5-127 86T480-80Zm0-60q142 0 241-99.5T820-480q0-142-99-241t-241-99q-141 0-240.5 99T140-480q0 141 99.5 240.5T480-140Zm0-340Z"/></svg></span><h3>Imagen</h3><p>Píxeles normalizados y aplanados. Una imagen gris de 28 por 28 son 784 posiciones.</p></div>
-<div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M530-481 332-679l43-43 241 241-241 241-43-43 198-198Z"/></svg></span><h3>Texto</h3><p>Tokenización primero, y después embeddings.</p></div>
-<div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M795-120q-116 0-236.5-56T335-335Q232-438 176-558.5T120-795q0-19.29 12.86-32.14Q145.71-840 165-840h140q14 0 24 10t14 25l26.93 125.64Q372-665 369.5-653.5t-10.73 19.73L259-533q26 44 55 82t64 72q37 38 78 69.5t86 55.5l95-98q10-11 23.15-15 13.15-4 25.85-2l119 26q15 4 25 16.04 10 12.05 10 26.96v135q0 19.29-12.86 32.14Q814.29-120 795-120ZM229-588l81-82-23-110H180q2 42 13.5 88.5T229-588Zm369 363q41 19 89 31t93 14v-107l-103-21-79 83ZM229-588Zm369 363Z"/></svg></span><h3>Audio</h3><p>Espectrograma, o la forma de onda muestreada.</p></div>
-</div>
-
+<aside class="notes"><p>Este es el mapa mental que quiero que se lleven, y además es la agenda de la clase disfrazada de contenido: casi cada viñeta es una sección. El overfitting salió de la lista a propósito, porque no es algo que se diseñe sino un problema que aparece y que la clase trata al final; si alguien pregunta por qué no está, esa es la respuesta. Lo mismo con backpropagation: es el algoritmo que hace funcionar todo lo demás, no una decisión de diseño. Recorrelas señalando hacia adelante, sin desarrollar ninguna. El remate es la última línea: contrastá con la expectativa, pasan horas tuneando capas y el retorno está en la entrada. Dato honesto para dejar caer acá o al final: en datos tabulares una red muchas veces pierde contra gradient boosting (XGBoost, LightGBM); las redes brillan cuando hay estructura que explotar (imágenes, texto, señales). Sirve para bajar la sobreexpectativa.</p></aside></section><section class="slide" data-kind="content-image"><div class="stage d-banded">
+<div class="shead"><span class="pill">Qué se diseña de verdad</span><h2 class="stitle">Del dato a los nodos de entrada</h2><p class="lead">Qué recibe el modelo en cada caso. <b>Solo el MLP toma una fila de nodos sueltos y los procesa todos a la vez</b>; los otros tres reciben la estructura entera y la recorren por partes.</p></div><div class="cbody"><div class="cfit">
 </div></div>
-<div class="highlights hl-bottom fragment fade-up"><div class="highlight important"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M479.91-120q-28.91 0-49.41-20.59-20.5-20.59-20.5-49.5t20.59-49.41q20.59-20.5 49.5-20.5t49.41 20.59q20.5 20.59 20.5 49.5t-20.59 49.41q-20.59 20.5-49.5 20.5ZM410-360v-480h140v480H410Z"/></svg></span><p><b>La escala.</b> Con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia. Es el material de la sección que sigue.</p></div></div></div>
-<aside class="notes"><p>Esta diapositiva contesta la pregunta que queda colgando después de la neurona: qué es exactamente esa x. La respuesta corta, una feature por posición. MNIST funciona bien acá porque es contraintuitivo de la manera correcta: 784 posiciones suena a mucho para un dígito escrito a mano, y sin embargo es un problema chico. Si preguntan cuántos parámetros tiene la primera capa con 32 unidades, son 784 × 32 + 32 = 25.120. La tabla se recorre rápido, es un panorama; la sección que sigue desarrolla las dos primeras filas. De los tres puntos de confusión, el del largo fijo es el que más preguntas genera: un modelo entrenado con imágenes de 28 por 28 no acepta una de 32 por 32, hay que redimensionar antes.</p></aside></section><section class="slide" id="sec-1" data-kind="section-agenda"><div class="stage"><div class="secag">
+<div class="highlights hl-bottom fragment fade-up"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p><b>El largo no cambia</b>: La red espera siempre la misma cantidad de entradas. Por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo.</p></div><div class="highlight important"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M479.91-120q-28.91 0-49.41-20.59-20.5-20.59-20.5-49.5t20.59-49.41q20.59-20.5 49.5-20.5t49.41 20.59q20.5 20.59 20.5 49.5t-20.59 49.41q-20.59 20.5-49.5 20.5ZM410-360v-480h140v480H410Z"/></svg></span><p><b>La escala</b>: Con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia. Es el material de la sección que sigue.</p></div></div><div class="smedia"><div class="imgph svg"><!-- talksmith-ascii-sha256: ef30494ad428e8ebf4edf165b0c7e9ba704259725f988d22952c5a7ec07dc43d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 570" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="12">
+  <title>Del dato a los nodos de entrada</title>
+  <desc>Como pasa cada tipo de dato al modelo que lo toma: solo el MLP recibe una fila de nodos sueltos y los procesa todos juntos.</desc>
+  <rect x="0" y="0" width="720" height="570" fill="#ffffff"/>
+  <defs>
+    <marker id="e3-ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <path d="M0 0 L9 3.5 L0 7 z" fill="#7A7373"/>
+    </marker>
+    <marker id="e3-ar" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <path d="M0 0 L9 3.5 L0 7 z" fill="#DA1B2E"/>
+    </marker>
+  </defs>
+
+  <g font-size="11" font-weight="bold" fill="#7A7373">
+    <text x="34" y="40">EL DATO</text><text x="330" y="40">EL MODELO QUE LO TOMA</text>
+  </g>
+  <path d="M 34 46 L 690 46" stroke="#E2DDDD" stroke-width="1.2"/>
+
+  <text x="34" y="72" font-size="12.5" font-weight="bold">TABLA</text>
+  <text x="86" y="72" font-size="10.5" fill="#7A7373">m&#178; + barrio (12)</text>
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"><rect x="34" y="82" width="118" height="18"/><rect x="34" y="100" width="118" height="18"/><rect x="34" y="118" width="118" height="18"/></g>
+  <g font-size="9.5" fill="#7A7373"><text x="40" y="94">m&#178;</text><text x="90" y="94">barrio</text></g>
+  <g font-size="9.5"><text x="40" y="112">85</text><text x="90" y="112">Palermo</text><text x="40" y="130">120</text><text x="90" y="130">Caballito</text></g>
+  <text x="34" y="152" font-size="9.5" fill="#7A7373">una fila por caso</text>
+  <path d="M 240 108 L 314 108" stroke="#DA1B2E" stroke-width="1.6" fill="none" marker-end="url(#e3-ar)"/>
+  <text x="240" y="100" font-size="10" fill="#DA1B2E">1 fila se vuelve</text>
+  <text x="240" y="126" font-size="10" font-weight="bold" fill="#DA1B2E">13 nodos</text>
+  <rect x="330" y="58" width="360" height="100" rx="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.7"/>
+  <g fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4">
+    <circle cx="362" cy="76" r="5"/><circle cx="362" cy="92" r="5"/><circle cx="362" cy="108" r="5"/><circle cx="362" cy="140" r="5"/>
+  </g>
+  <g fill="#7A7373"><circle cx="362" cy="120" r="1.2"/><circle cx="362" cy="126" r="1.2"/><circle cx="362" cy="132" r="1.2"/></g>
+  <g stroke="#E2DDDD" stroke-width="0.8" fill="none">
+    <path d="M 368 76 L 424 94"/><path d="M 368 76 L 424 118"/><path d="M 368 92 L 424 94"/><path d="M 368 92 L 424 118"/>
+    <path d="M 368 108 L 424 94"/><path d="M 368 108 L 424 118"/><path d="M 368 140 L 424 94"/><path d="M 368 140 L 424 118"/>
+    <path d="M 436 94 L 484 106"/><path d="M 436 118 L 484 106"/>
+  </g>
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"><circle cx="430" cy="94" r="6"/><circle cx="430" cy="118" r="6"/></g>
+  <circle cx="490" cy="106" r="6" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
+  <g font-size="9" fill="#7A7373" text-anchor="middle"><text x="362" y="154">entrada</text><text x="430" y="154">ocultas</text><text x="490" y="154">salida</text></g>
+  <text x="524" y="86" font-size="10">un nodo por variable</text>
+  <text x="524" y="100" font-size="10">ya codificada, y los</text>
+  <text x="524" y="114" font-size="10" font-weight="bold">toma todos a la vez</text>
+  <rect x="616" y="127" width="52" height="22" rx="11" fill="#DA1B2E"/>
+  <text x="642" y="142" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">MLP</text>
+
+  <text x="34" y="206" font-size="12.5" font-weight="bold">SE&#209;AL 1D</text>
+  <text x="104" y="206" font-size="10.5" fill="#7A7373">ECG, T = 300</text>
+  <rect x="34" y="216" width="192" height="26" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
+  <g stroke="#E2DDDD" stroke-width="0.8">
+    <path d="M 58 216 L 58 242"/><path d="M 82 216 L 82 242"/><path d="M 106 216 L 106 242"/><path d="M 130 216 L 130 242"/>
+    <path d="M 154 216 L 154 242"/><path d="M 178 216 L 178 242"/><path d="M 202 216 L 202 242"/>
+  </g>
+  <text x="34" y="258" font-size="9.5" fill="#7A7373">1 x 300: una matriz de una sola fila, o sea un vector</text>
+  <text x="34" y="272" font-size="9.5" fill="#7A7373">el orden es el dato</text>
+  <path d="M 246 229 L 314 229" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#e3-ag)"/>
+  <text x="244" y="221" font-size="10" fill="#7A7373">entra el vector</text>
+  <text x="244" y="245" font-size="10" fill="#7A7373">entero, sin aplanar</text>
+  <rect x="330" y="188" width="360" height="88" rx="6" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.3"/>
+  <rect x="348" y="204" width="144" height="24" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"/>
+  <g stroke="#E2DDDD" stroke-width="0.8">
+    <path d="M 366 204 L 366 228"/><path d="M 384 204 L 384 228"/><path d="M 402 204 L 402 228"/>
+    <path d="M 420 204 L 420 228"/><path d="M 438 204 L 438 228"/><path d="M 456 204 L 456 228"/><path d="M 474 204 L 474 228"/>
+  </g>
+  <rect x="348" y="204" width="54" height="24" fill="none" stroke="#DA1B2E" stroke-width="2"/>
+  <g fill="none" stroke="#DA1B2E" stroke-width="1.2" stroke-dasharray="3 2">
+    <rect x="366" y="204" width="54" height="24"/><rect x="384" y="204" width="54" height="24"/>
+  </g>
+  <path d="M 348 238 L 492 238" stroke="#DA1B2E" stroke-width="1.3" fill="none" marker-end="url(#e3-ar)"/>
+  <text x="348" y="200" font-size="9" fill="#DA1B2E">slice</text>
+  <text x="506" y="212" font-size="10" fill="#7A7373">toma slices de pasos</text>
+  <text x="506" y="226" font-size="10" fill="#7A7373">consecutivos, y la</text>
+  <text x="506" y="240" font-size="10" fill="#7A7373">ventana se desliza</text>
+  <rect x="552" y="245" width="116" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="610" y="260" font-size="12" font-weight="bold" text-anchor="middle">RNN / CNN 1D</text>
+
+  <text x="34" y="316" font-size="12.5" font-weight="bold">IMAGEN EN GRISES</text>
+  <text x="168" y="316" font-size="10.5" fill="#7A7373">28 x 28</text>
+  <rect x="34" y="326" width="72" height="72" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
+  <g stroke="#E2DDDD" stroke-width="0.8"><path d="M 58 326 L 58 398"/><path d="M 82 326 L 82 398"/><path d="M 34 350 L 106 350"/><path d="M 34 374 L 106 374"/></g>
+  <text x="34" y="414" font-size="9.5" fill="#7A7373">una matriz: la vecindad es el dato</text>
+  <path d="M 246 362 L 314 362" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#e3-ag)"/>
+  <text x="244" y="354" font-size="10" fill="#7A7373">entra la grilla</text>
+  <text x="244" y="378" font-size="10" fill="#7A7373">entera, sin aplanar</text>
+  <rect x="330" y="318" width="360" height="88" rx="6" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.3"/>
+  <rect x="350" y="334" width="57" height="57" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1"/>
+  <g stroke="#E2DDDD" stroke-width="0.8"><path d="M 369 334 L 369 391"/><path d="M 388 334 L 388 391"/><path d="M 350 353 L 407 353"/><path d="M 350 372 L 407 372"/></g>
+  <rect x="350" y="334" width="19" height="19" fill="none" stroke="#DA1B2E" stroke-width="2"/>
+  <g fill="none" stroke="#DA1B2E" stroke-width="1.2" stroke-dasharray="3 2">
+    <rect x="369" y="334" width="19" height="19"/><rect x="388" y="334" width="19" height="19"/><rect x="350" y="353" width="19" height="19"/>
+  </g>
+  <path d="M 350 398 L 403 398" stroke="#DA1B2E" stroke-width="1.3" fill="none" marker-end="url(#e3-ar)"/>
+  <text x="350" y="330" font-size="9" fill="#DA1B2E">ventana</text>
+  <text x="422" y="350" font-size="10" fill="#7A7373">se procesa por partes: una</text>
+  <text x="422" y="364" font-size="10" fill="#7A7373">ventana chica recorre la grilla</text>
+  <text x="422" y="378" font-size="10" fill="#7A7373">y mira vecindades</text>
+  <rect x="616" y="375" width="52" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="642" y="390" font-size="12" font-weight="bold" text-anchor="middle">CNN</text>
+
+  <text x="34" y="436" font-size="12.5" font-weight="bold">IMAGEN RGB</text>
+  <text x="126" y="436" font-size="10.5" fill="#7A7373">28 x 28 x 3</text>
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1"><rect x="34" y="456" width="52" height="52"/><rect x="96" y="456" width="52" height="52"/><rect x="158" y="456" width="52" height="52"/></g>
+  <g stroke="#E2DDDD" stroke-width="0.8">
+    <path d="M 51 456 L 51 508"/><path d="M 68 456 L 68 508"/><path d="M 34 473 L 86 473"/><path d="M 34 490 L 86 490"/>
+    <path d="M 113 456 L 113 508"/><path d="M 130 456 L 130 508"/><path d="M 96 473 L 148 473"/><path d="M 96 490 L 148 490"/>
+    <path d="M 175 456 L 175 508"/><path d="M 192 456 L 192 508"/><path d="M 158 473 L 210 473"/><path d="M 158 490 L 210 490"/>
+  </g>
+  <g font-size="10.5" font-weight="bold" text-anchor="middle"><text x="60" y="452">R</text><text x="122" y="452">G</text><text x="184" y="452">B</text></g>
+  <text x="34" y="524" font-size="9.5" fill="#7A7373">tres matrices, una por canal</text>
+  <path d="M 246 482 L 314 482" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#e3-ag)"/>
+  <text x="244" y="474" font-size="10" fill="#7A7373">entran las tres</text>
+  <text x="244" y="498" font-size="10" fill="#7A7373">juntas, sin aplanar</text>
+  <rect x="330" y="440" width="360" height="88" rx="6" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.3"/>
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"><rect x="348" y="458" width="36" height="36"/><rect x="392" y="458" width="36" height="36"/><rect x="436" y="458" width="36" height="36"/></g>
+  <g stroke="#E2DDDD" stroke-width="0.7">
+    <path d="M 360 458 L 360 494"/><path d="M 372 458 L 372 494"/><path d="M 348 470 L 384 470"/><path d="M 348 482 L 384 482"/>
+    <path d="M 404 458 L 404 494"/><path d="M 416 458 L 416 494"/><path d="M 392 470 L 428 470"/><path d="M 392 482 L 428 482"/>
+    <path d="M 448 458 L 448 494"/><path d="M 460 458 L 460 494"/><path d="M 436 470 L 472 470"/><path d="M 436 482 L 472 482"/>
+  </g>
+  <g fill="none" stroke="#DA1B2E" stroke-width="1.8">
+    <rect x="348" y="458" width="12" height="12"/><rect x="392" y="458" width="12" height="12"/><rect x="436" y="458" width="12" height="12"/>
+  </g>
+  <g stroke="#DA1B2E" stroke-width="1" stroke-dasharray="3 2" fill="none">
+    <path d="M 360 464 L 392 464"/><path d="M 404 464 L 436 464"/>
+  </g>
+  <path d="M 348 502 L 472 502" stroke="#DA1B2E" stroke-width="1.3" fill="none" marker-end="url(#e3-ar)"/>
+  <g font-size="9" font-weight="bold" text-anchor="middle" fill="#7A7373"><text x="366" y="454">R</text><text x="410" y="454">G</text><text x="454" y="454">B</text></g>
+  <text x="490" y="470" font-size="10" fill="#7A7373">la misma ventana toma los</text>
+  <text x="490" y="484" font-size="10" fill="#7A7373">tres canales en el mismo</text>
+  <text x="490" y="498" font-size="10" fill="#7A7373">punto, y se desliza</text>
+  <rect x="616" y="497" width="52" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="642" y="512" font-size="12" font-weight="bold" text-anchor="middle">CNN</text>
+
+  <path d="M 34 542 L 690 542" stroke="#E2DDDD" stroke-width="1.2"/>
+  <text x="34" y="562" font-size="11.5" fill="#7A7373">Aplanar los tres &#250;ltimos para meterlos en un MLP dar&#237;a 300, 784 y 2.352 entradas sueltas, y borra el orden y la vecindad.</text>
+</svg></div></div></div>
+<aside class="notes"><p>Esta diapositiva es la continuación directa de la anterior, y lo que agrega es el conteo. Abrí con la corrección que trae: <b>aplanar no es algo que le pase al dato, es algo que pide el MLP</b>. Si el mismo dato va a una CNN, no se aplana nada.</p><p>Recorré los cuatro paneles con la misma pregunta: ¿qué recibe la red? Solo en el primero la respuesta es "nodos sueltos", y son trece. En los otros tres la respuesta es una secuencia, una matriz y tres matrices: la estructura sigue ahí.</p><p>El detalle del panel de la tabla: <b>dos variables dan trece nodos</b>, no dos. El one-hot del barrio ocupa doce posiciones él solo. Es la primera vez en la clase que aparece que una variable puede ocupar más de un nodo, y es lo que la sección que sigue desarrolla.</p><p>Sobre RGB, que es el que más se malinterpreta: son tres matrices, una por canal, dibujadas una al lado de la otra. No son tres imágenes apiladas ni hay un tercer eje espacial. Dicho de otro modo, cada píxel guarda tres números.</p><p>El pie es el remate y conviene leerlo entero: si igual quisieras meter los tres últimos en un MLP, se pueden aplanar, y salen 300, 784 y 2.352 entradas sueltas. Ahí es donde se borra el orden y la vecindad. La pregunta que funciona: ¿cuántas entradas tendría una foto de 224 por 224 en color? 150.528. Sirve para que se vea por qué visión no usa MLP.</p><p>No te metas con cómo una CNN conserva la grilla. Alcanza con que quede dicho que no aplana, y seguir.</p><p>---</p></aside></section><section class="slide" id="sec-1" data-kind="section-agenda"><div class="stage"><div class="secag">
 <div class="secaglist">
 <a class="secagrow " href="#sec-0"><span class="secagn">01</span><span>Qué se diseña de verdad</span></a>
 <a class="secagrow on" href="#sec-1"><span class="secagn">02</span><span>Modelar la entrada</span></a>
@@ -904,7 +1033,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <title>One-hot selecciona una columna de W</title>
   <desc>Como solo una posición del vector one-hot vale 1, el producto con W selecciona los pesos de esa categoría.</desc>
   <defs>
-    <marker id="e3-arw2" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+    <marker id="e4-arw2" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
       <path d="M0,0 L8,4 L0,8 Z" fill="#3B3535"/>
     </marker>
   </defs>
@@ -938,7 +1067,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
     <text x="427" y="90">w</text><text x="427" y="135">w</text><text x="427" y="180">w</text>
   </g>
 
-  <line x1="427" y1="215" x2="427" y2="248" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#e3-arw2)"/>
+  <line x1="427" y1="215" x2="427" y2="248" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#e4-arw2)"/>
   <text x="340" y="278" font-size="15" text-anchor="middle">cada categoría selecciona su propia columna de pesos en W</text>
 </svg></div></div></div>
 <aside class="notes"><p>El puente que engancha: así arranca un LLM. Cada token es un índice que busca su fila en una tabla de ~50.000 por 4096. El embedding de categorías y el de palabras son la misma idea. Dos ventajas no obvias: comparte estadística entre categorías parecidas y es reutilizable.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
@@ -1248,7 +1377,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>Cross-entropy ignora las clases equivocadas y solo mira la probabilidad que la red le dio a la correcta.</desc>
   <rect x="0" y="0" width="920" height="300" fill="#ffffff"/>
   <defs>
-    <marker id="e8-ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+    <marker id="e9-ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
       <path d="M0 0 L11 4.5 L0 9 z" fill="#DA1B2E"/>
     </marker>
   </defs>
@@ -1280,7 +1409,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <line x1="478" y1="188" x2="522" y2="188" stroke="#B9B3B3" stroke-width="1"/>
   <text x="468" y="206" text-anchor="end" font-size="12" fill="#7A7373">suma</text>
 
-  <path d="M 540 91 L 590 91" stroke="#DA1B2E" stroke-width="2.2" fill="none" marker-end="url(#e8-ar)"/>
+  <path d="M 540 91 L 590 91" stroke="#DA1B2E" stroke-width="2.2" fill="none" marker-end="url(#e9-ar)"/>
 
   <text x="608" y="70" font-weight="bold">cross-entropy mira una sola casilla</text>
   <text x="608" y="97" font-size="15" font-family="'DejaVu Sans Mono', monospace" fill="#DA1B2E">L = -log(0,80) = 0,22</text>
@@ -1319,15 +1448,15 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>La loss depende solo de los pesos; entrenar es caminar por esa superficie hacia el punto más bajo.</desc>
   <rect x="0" y="0" width="700" height="360" fill="#ffffff"/>
   <defs>
-    <marker id="e9-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e10-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#7A7373"/>
     </marker>
-    <marker id="e9-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e10-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/>
     </marker>
   </defs>
 
-  <g stroke="#B9B3B3" stroke-width="1.4" fill="none" marker-end="url(#e9-ag)">
+  <g stroke="#B9B3B3" stroke-width="1.4" fill="none" marker-end="url(#e10-ag)">
     <path d="M 92 300 L 92 48"/>
     <path d="M 92 300 L 656 300"/>
   </g>
@@ -1348,7 +1477,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <circle cx="372" cy="268" r="9" fill="#DA1B2E"/>
 
-  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e9-ag)">
+  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e10-ag)">
     <path d="M 130 90 L 168 145"/>
     <path d="M 190 170 L 228 200"/>
     <path d="M 250 222 L 286 238"/>
@@ -1368,7 +1497,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <text x="238" y="168" font-size="12.5">fracción del gradiente</text>
   <text x="238" y="188" font-size="12.5" font-family="'DejaVu Sans Mono', monospace">W = W - &#951; * g</text>
 
-  <path d="M 400 296 L 380 278" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e9-ar)"/>
+  <path d="M 400 296 L 380 278" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e10-ar)"/>
   <text x="406" y="302" font-size="13" font-weight="bold" fill="#DA1B2E">el mínimo</text>
   <text x="406" y="318" font-size="11.5" fill="#DA1B2E">el error más bajo alcanzable</text>
 
@@ -1388,10 +1517,10 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>El forward recorre una fila del batch; el backward reparte la culpa y la acumula, sin tocar los pesos.</desc>
   <rect x="0" y="0" width="700" height="300" fill="#ffffff"/>
   <defs>
-    <marker id="e10-ag" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+    <marker id="e11-ag" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
       <path d="M0 0 L11 4.5 L0 9 z" fill="#7A7373"/>
     </marker>
-    <marker id="e10-ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+    <marker id="e11-ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
       <path d="M0 0 L11 4.5 L0 9 z" fill="#DA1B2E"/>
     </marker>
   </defs>
@@ -1415,7 +1544,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="604" y="144" font-size="11" text-anchor="middle" fill="#7A7373">compara y con t</text>
 
-  <g stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e10-ag)">
+  <g stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e11-ag)">
     <path d="M 52 98 L 78 98"/>
     <path d="M 198 98 L 230 98"/>
     <path d="M 348 98 L 380 98"/>
@@ -1423,8 +1552,8 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="521" y="88" font-size="12" text-anchor="middle" fill="#7A7373">y</text>
 
-  <path d="M 604 164 L 604 192 L 60 192" stroke="#DA1B2E" stroke-width="2" fill="none" marker-end="url(#e10-ar)"/>
-  <g stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e10-ar)">
+  <path d="M 604 164 L 604 192 L 60 192" stroke="#DA1B2E" stroke-width="2" fill="none" marker-end="url(#e11-ar)"/>
+  <g stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e11-ar)">
     <path d="M 139 188 L 139 129"/>
     <path d="M 289 188 L 289 129"/>
     <path d="M 439 188 L 439 129"/>
@@ -1475,7 +1604,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>El train se parte en batches de tamaño fijo y cada batch produce exactamente un ajuste de los pesos.</desc>
   <rect x="0" y="0" width="700" height="310" fill="#ffffff"/>
   <defs>
-    <marker id="e11-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e12-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#7A7373"/>
     </marker>
   </defs>
@@ -1496,7 +1625,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="482" y="88" font-size="18" text-anchor="middle" fill="#7A7373">&#183; &#183; &#183;</text>
 
-  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e11-ag)">
+  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e12-ag)">
     <path d="M 90 104 L 90 130"/>
     <path d="M 222 104 L 222 130"/>
     <path d="M 354 104 L 354 130"/>
@@ -1546,10 +1675,10 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>Dentro del batch se acumula en valores intermedios; al cerrar el batch se aplica una sola vez y se pasa al siguiente.</desc>
   <rect x="0" y="0" width="700" height="430" fill="#ffffff"/>
   <defs>
-    <marker id="e12-ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+    <marker id="e13-ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
       <path d="M0 0 L9 3.5 L0 7 z" fill="#7A7373"/>
     </marker>
-    <marker id="e12-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e13-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/>
     </marker>
   </defs>
@@ -1573,13 +1702,13 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="66" y="160" font-size="15" fill="#7A7373">&#183; &#183; &#183;</text>
 
-  <g stroke="#7A7373" stroke-width="1.3" fill="none" marker-end="url(#e12-ag)">
+  <g stroke="#7A7373" stroke-width="1.3" fill="none" marker-end="url(#e13-ag)">
     <path d="M 90 105 L 106 105"/><path d="M 188 105 L 196 105"/><path d="M 228 105 L 236 105"/>
     <path d="M 90 135 L 106 135"/><path d="M 188 135 L 196 135"/><path d="M 228 135 L 236 135"/>
     <path d="M 90 177 L 106 177"/><path d="M 188 177 L 196 177"/><path d="M 228 177 L 236 177"/>
   </g>
 
-  <g stroke="#DA1B2E" stroke-width="1.5" fill="none" marker-end="url(#e12-ar)">
+  <g stroke="#DA1B2E" stroke-width="1.5" fill="none" marker-end="url(#e13-ar)">
     <path d="M 322 105 L 356 105 L 356 118 L 390 118"/>
     <path d="M 322 135 L 390 135"/>
     <path d="M 322 177 L 356 177 L 356 152 L 390 152"/>
@@ -1592,7 +1721,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 
   <text x="314" y="212" font-size="13.5" font-weight="bold" text-anchor="middle">W y b no se tocan en ningún punto de este bloque</text>
 
-  <path d="M 314 230 L 314 266" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e12-ag)"/>
+  <path d="M 314 230 L 314 266" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e13-ag)"/>
   <text x="328" y="253" font-size="12.5" fill="#7A7373">terminó el batch</text>
 
   <rect x="34" y="272" width="560" height="112" rx="4" fill="#FBF4F5" stroke="#DA1B2E" stroke-width="1.6"/>
@@ -1609,7 +1738,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="52" y="371" font-size="12.5" font-weight="bold" fill="#DA1B2E">único momento del entrenamiento en que la red cambia</text>
 
-  <path d="M 594 328 L 650 328 L 650 34 L 200 34 L 200 48" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e12-ag)"/>
+  <path d="M 594 328 L 650 328 L 650 34 L 200 34 L 200 48" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e13-ag)"/>
   <text x="424" y="26" font-size="12.5" text-anchor="middle" fill="#7A7373">batch k+1, con W y b nuevos</text>
 
   <text x="34" y="410" font-size="12.5" fill="#7A7373">agotados todos los batches = 1 época: se baraja el train y vuelve a empezar</text>
@@ -1913,14 +2042,14 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <title>Las curvas de train y validación</title>
   <desc>El error de train baja sin parar mientras el de validación deja de bajar y vuelve a subir: ahí empieza el overfitting.</desc>
   <defs>
-    <marker id="e17-arw5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+    <marker id="e18-arw5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
       <path d="M0,0 L8,4 L0,8 Z" fill="#3B3535"/>
     </marker>
   </defs>
   <rect x="0" y="0" width="640" height="380" fill="#ffffff"/>
 
-  <line x1="80" y1="40" x2="80" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e17-arw5)"/>
-  <line x1="80" y1="300" x2="600" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e17-arw5)"/>
+  <line x1="80" y1="40" x2="80" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e18-arw5)"/>
+  <line x1="80" y1="300" x2="600" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e18-arw5)"/>
   <text x="50" y="50" font-size="14" text-anchor="middle" fill="#7A7373">error</text>
   <text x="590" y="326" font-size="14" text-anchor="middle" fill="#7A7373">épocas</text>
 

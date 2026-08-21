@@ -528,3 +528,60 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Fix definitivo de la 1.2: **queda solo el diagrama**. Se retiro la tabla de 3x4 (archivada en Cut material) y el presentador ya habia retirado a mano el parrafo de alcance (tambien archivado). La diapositiva quedo en titulo, lead y diagrama a pantalla completa, plantilla `image-full`. Lo que decia la tabla y no dice el dibujo (la vecindad en imagenes, el orden en senales) y la declaracion de alcance pasaron a las notas del orador; el alcance sigue visible en el pill de MLP acentuado del diagrama.
 - Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html.
 
+## 2026-08-21 — Reconstruccion de la 1.6 (slide 8) y correccion de fondo
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "Tomando el slide 4, reconstruir la 8 que muestre como esos diagramas se mapean a nodes de entrada"
+  - 2026-08-21 — "Creo que imagen RGB no esta bien porque cada uno se mapea a una arquitectura distinta, y asi en un caso en realidad se preserva y no se aplana" / "en caso de imagen RGB se mapean dejando las matrices, y de ahi que MLP no sirve"
+  - 2026-08-21 — "Seria importante en el diagrama marcar tambien que tipo de arquitectura es cada una para evitar confusiones"
+- **Correccion de fondo, marcada por el presentador.** La primera version del diagrama aplanaba los cuatro casos por igual, y eso era falso: **aplanar es un requisito del MLP, no del dato**. La diapositiva anterior (1.2) dice que cada dato tiene su arquitectura natural, y esta la contradecia mostrando senal, imagen y RGB como columnas de nodos sueltos. Una CNN conserva la grilla y el canal; una RNN conserva el orden.
+- Version final: el eje del diagrama es **que recibe la red**. Tabla, 13 nodos sueltos que el MLP toma tal cual. Senal, una secuencia de 300 pasos en orden. Imagen en grises, una matriz intacta. RGB, **tres matrices de 28x28 una por canal, dibujadas una al lado de la otra** (nunca apiladas ni con tercer eje espacial, per el [closed] previo). Cada panel lleva su **pill de arquitectura** igual que el diagrama de la 1.2, con MLP en rojo como unico acento. El conteo de nodos que se habia pedido bajo al pie, como el precio de aplanar los tres ultimos: 300, 784 y 2.352 entradas sueltas, y lo que eso borra.
+- Se retiro la tabla 'Tipo de dato / Como se convierte en input' (archivada en Cut material): era un anticipo mas pobre de la 2.6 'La tabla de decisiones', que recorre el mismo eje con diez filas y ademas dice cuantos floats ocupa cada codificacion. Duplicacion L6.
+- Plantilla `content-image` con diseno `banded`, siguiendo la leccion de la 1.2: un solo bloque visual mas los destacados, nunca diagrama y tabla juntos.
+- **Trampa que volvio a aparecer:** el caracter U+22EE (elipsis vertical) rasteriza como tofu con cairosvg, per la regla de glifos Unicode de `diagram-style.md`. Se reemplazo por tres circulos dibujados. Verificado que ningun otro SVG del mazo usa glifos de ese grupo.
+- Files created/modified: draft.md, final.md, images/s1-6-1-nodos-de-entrada.{svg,png,ascii}, output/slide-model.json, output/html/index.html.
+
+## 2026-08-21 — La 1.6 (slide 8), version final: el traspaso al modelo
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "Deberia verse como la matriz y como pasa al modelo que toma el input"
+  - 2026-08-21 — "El del MLP quedo bien, el resto no"
+  - 2026-08-21 — "Seria importante marcar tambien que tipo de arquitectura es cada una"
+- What was decided: el diagrama paso de cuatro paneles en dos filas a **cuatro filas de traspaso**, con dos columnas rotuladas, EL DATO y EL MODELO QUE LO TOMA. La correccion que pedia el presentador: en la version anterior solo la fila de la tabla mostraba el traspaso (dato mas flecha mas nodos) y las otras tres se quedaban en el dato, sin llegar al modelo. Ahora las cuatro cruzan, con la leyenda del traspaso sobre la flecha, y del lado derecho **se dibuja el modelo con la forma de su entrada**: el MLP con sus tres capas y los rotulos entrada, ocultas y salida; la RNN con tres pasos encadenados; la CNN con la grilla entera; y la CNN de RGB con las tres matrices juntas. Cada bloque lleva su pill de arquitectura adentro y el del MLP es el unico acentuado.
+- El costo de aplanar (300, 784 y 2.352 entradas sueltas) quedo en el pie, separado por una regla.
+- El ASCII de `draft.md` se reescribio para reflejar el diagrama nuevo, no solo el SVG: la fuente y el dibujo dicen lo mismo.
+- **Aprendizaje de proceso que conviene recordar:** cuando el presentador pide un diagrama de traspaso, el eje util no es "que forma tiene el dato" sino "que recibe el modelo". La primera version fallo por quedarse del lado del dato en tres de los cuatro casos.
+- Files created/modified: draft.md, final.md, images/s1-6-1-nodos-de-entrada.{svg,png,ascii}, output/slide-model.json, output/html/index.html.
+
+## 2026-08-21 — Fix de encuadre en el diagrama de la 1.6
+- Status: complete
+- Asks log: 2026-08-21 — "Fijate que el texto de CNN en imagen de grises esta fuera de la caja."
+- Diagnostico: el pill de CNN de la fila de imagen en grises estaba en y=386 con alto 22, y la caja del modelo termina en y=406: se salia dos pixeles por abajo. Ademas estaba en una posicion distinta a la del pill de la fila de RGB, asi que las cuatro filas no leian parejas.
+- Fix: el pill paso a x=616 y=375, que es el mismo margen inferior y el mismo borde derecho que usa la fila de RGB.
+- Se agrego un chequeo programatico que recorre todos los rect del SVG y verifica que ninguno se salga de su bloque contenedor. Dio limpio en las cuatro filas. **Conviene repetirlo en cualquier diagrama con cajas anidadas antes de dar por bueno el render:** el validador de SVG comprueba el viewBox y el aspecto, no el encuadre de los elementos entre si.
+- Files created/modified: images/s1-6-1-nodos-de-entrada.{svg,png}, output/html/index.html.
+
+## 2026-08-21 — Alineacion de los pills de arquitectura en la 1.6
+- Status: complete
+- Asks log: 2026-08-21 — "Fijate tambien que queden realmente tal vez como solapado en el borde el tipo de red o derecha abajo para MLP y RNN/CNN 1D"
+- Diagnostico: los cuatro pills estaban en posiciones distintas. Los dos CNN ya estaban abajo a la derecha, pero el de MLP estaba al medio del bloque con su leyenda al lado, y el de RNN al medio a la izquierda. Ademas la leyenda del MLP ("un nodo por / variable ya codificada") arrancaba en x=592 y se pasaba del borde derecho del bloque.
+- Fix: se unifico en **abajo a la derecha** para los cuatro, que es donde ya estaban los CNN, con el mismo par de margenes: 22 px del borde derecho y 9 px del inferior. Verificado programaticamente fila por fila. La leyenda del MLP se corrio a x=524 y se rebalanceo en dos lineas para que entre en el bloque.
+- Se descarto la variante de pill solapando el borde: los CNN ya definian el patron de adentro-abajo-derecha y cambiarlo obligaba a mover tres para acomodar uno.
+- Files created/modified: images/s1-6-1-nodos-de-entrada.{svg,png}, output/html/index.html.
+
+## 2026-08-21 — Diagrama de la 1.6, version aprobada: procesamiento por partes
+- Status: complete — el presentador aprobo ("Perfecto")
+- Asks log:
+  - 2026-08-21 — "En CNN el concepto de sliding estaria bueno modelarlo"
+  - 2026-08-21 — "En las matrices una caja que muestre que se procesa de partes"
+  - 2026-08-21 — "Creo que en el caso de senal es realmente una matriz de una linea, un vector"
+  - 2026-08-21 — "Pero cuando pasa al CNN se toma de slices"
+  - 2026-08-21 — "Perfecto. Genera el index ahora."
+- What was decided: tres cambios sobre el diagrama de traspaso.
+  1. **La senal paso de cajas sueltas a una matriz de una sola fila** (una tira con divisiones), rotulada "1 x 300: una matriz de una sola fila, o sea un vector". Mas preciso, y empareja las cuatro filas: ahora son todas matrices salvo la de la tabla.
+  2. **Se modelo el recorrido por partes en las tres filas no-MLP**: ventana en rojo con la posicion actual en linea llena y las siguientes punteadas, mas flecha de recorrido debajo. En la senal es un slice de pasos consecutivos; en grises una ventana sobre la grilla; en RGB la misma ventana en el mismo punto de los tres canales, unidas por linea punteada.
+  3. **El contraste quedo explicito del lado del MLP**, que ahora dice "los toma todos a la vez". Ese es el eje del diagrama: el MLP procesa todo junto, los otros tres recorren.
+- Se mantuvo el limite del [closed] previo sobre convoluciones: se muestra **que** la ventana recorre, nunca **como** se calcula una convolucion.
+- El ASCII de `draft.md` se reescribio junto con el SVG, asi que fuente y dibujo dicen lo mismo.
+- Files created/modified: draft.md, final.md, images/s1-6-1-nodos-de-entrada.{svg,png,ascii}, output/slide-model.json, output/html/index.html, index.html (raiz).
+

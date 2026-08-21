@@ -1,0 +1,137 @@
+<!-- talksmith-ascii-sha256: ef30494ad428e8ebf4edf165b0c7e9ba704259725f988d22952c5a7ec07dc43d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 570" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="12">
+  <title>Del dato a los nodos de entrada</title>
+  <desc>Como pasa cada tipo de dato al modelo que lo toma: solo el MLP recibe una fila de nodos sueltos y los procesa todos juntos.</desc>
+  <rect x="0" y="0" width="720" height="570" fill="#ffffff"/>
+  <defs>
+    <marker id="ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <path d="M0 0 L9 3.5 L0 7 z" fill="#7A7373"/>
+    </marker>
+    <marker id="ar" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <path d="M0 0 L9 3.5 L0 7 z" fill="#DA1B2E"/>
+    </marker>
+  </defs>
+
+  <g font-size="11" font-weight="bold" fill="#7A7373">
+    <text x="34" y="40">EL DATO</text><text x="330" y="40">EL MODELO QUE LO TOMA</text>
+  </g>
+  <path d="M 34 46 L 690 46" stroke="#E2DDDD" stroke-width="1.2"/>
+
+  <text x="34" y="72" font-size="12.5" font-weight="bold">TABLA</text>
+  <text x="86" y="72" font-size="10.5" fill="#7A7373">m&#178; + barrio (12)</text>
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"><rect x="34" y="82" width="118" height="18"/><rect x="34" y="100" width="118" height="18"/><rect x="34" y="118" width="118" height="18"/></g>
+  <g font-size="9.5" fill="#7A7373"><text x="40" y="94">m&#178;</text><text x="90" y="94">barrio</text></g>
+  <g font-size="9.5"><text x="40" y="112">85</text><text x="90" y="112">Palermo</text><text x="40" y="130">120</text><text x="90" y="130">Caballito</text></g>
+  <text x="34" y="152" font-size="9.5" fill="#7A7373">una fila por caso</text>
+  <path d="M 240 108 L 314 108" stroke="#DA1B2E" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+  <text x="240" y="100" font-size="10" fill="#DA1B2E">1 fila se vuelve</text>
+  <text x="240" y="126" font-size="10" font-weight="bold" fill="#DA1B2E">13 nodos</text>
+  <rect x="330" y="58" width="360" height="100" rx="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.7"/>
+  <g fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4">
+    <circle cx="362" cy="76" r="5"/><circle cx="362" cy="92" r="5"/><circle cx="362" cy="108" r="5"/><circle cx="362" cy="140" r="5"/>
+  </g>
+  <g fill="#7A7373"><circle cx="362" cy="120" r="1.2"/><circle cx="362" cy="126" r="1.2"/><circle cx="362" cy="132" r="1.2"/></g>
+  <g stroke="#E2DDDD" stroke-width="0.8" fill="none">
+    <path d="M 368 76 L 424 94"/><path d="M 368 76 L 424 118"/><path d="M 368 92 L 424 94"/><path d="M 368 92 L 424 118"/>
+    <path d="M 368 108 L 424 94"/><path d="M 368 108 L 424 118"/><path d="M 368 140 L 424 94"/><path d="M 368 140 L 424 118"/>
+    <path d="M 436 94 L 484 106"/><path d="M 436 118 L 484 106"/>
+  </g>
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"><circle cx="430" cy="94" r="6"/><circle cx="430" cy="118" r="6"/></g>
+  <circle cx="490" cy="106" r="6" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
+  <g font-size="9" fill="#7A7373" text-anchor="middle"><text x="362" y="154">entrada</text><text x="430" y="154">ocultas</text><text x="490" y="154">salida</text></g>
+  <text x="524" y="86" font-size="10">un nodo por variable</text>
+  <text x="524" y="100" font-size="10">ya codificada, y los</text>
+  <text x="524" y="114" font-size="10" font-weight="bold">toma todos a la vez</text>
+  <rect x="616" y="127" width="52" height="22" rx="11" fill="#DA1B2E"/>
+  <text x="642" y="142" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">MLP</text>
+
+  <text x="34" y="206" font-size="12.5" font-weight="bold">SE&#209;AL 1D</text>
+  <text x="104" y="206" font-size="10.5" fill="#7A7373">ECG, T = 300</text>
+  <rect x="34" y="216" width="192" height="26" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
+  <g stroke="#E2DDDD" stroke-width="0.8">
+    <path d="M 58 216 L 58 242"/><path d="M 82 216 L 82 242"/><path d="M 106 216 L 106 242"/><path d="M 130 216 L 130 242"/>
+    <path d="M 154 216 L 154 242"/><path d="M 178 216 L 178 242"/><path d="M 202 216 L 202 242"/>
+  </g>
+  <text x="34" y="258" font-size="9.5" fill="#7A7373">1 x 300: una matriz de una sola fila, o sea un vector</text>
+  <text x="34" y="272" font-size="9.5" fill="#7A7373">el orden es el dato</text>
+  <path d="M 246 229 L 314 229" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#ag)"/>
+  <text x="244" y="221" font-size="10" fill="#7A7373">entra el vector</text>
+  <text x="244" y="245" font-size="10" fill="#7A7373">entero, sin aplanar</text>
+  <rect x="330" y="188" width="360" height="88" rx="6" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.3"/>
+  <rect x="348" y="204" width="144" height="24" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"/>
+  <g stroke="#E2DDDD" stroke-width="0.8">
+    <path d="M 366 204 L 366 228"/><path d="M 384 204 L 384 228"/><path d="M 402 204 L 402 228"/>
+    <path d="M 420 204 L 420 228"/><path d="M 438 204 L 438 228"/><path d="M 456 204 L 456 228"/><path d="M 474 204 L 474 228"/>
+  </g>
+  <rect x="348" y="204" width="54" height="24" fill="none" stroke="#DA1B2E" stroke-width="2"/>
+  <g fill="none" stroke="#DA1B2E" stroke-width="1.2" stroke-dasharray="3 2">
+    <rect x="366" y="204" width="54" height="24"/><rect x="384" y="204" width="54" height="24"/>
+  </g>
+  <path d="M 348 238 L 492 238" stroke="#DA1B2E" stroke-width="1.3" fill="none" marker-end="url(#ar)"/>
+  <text x="348" y="200" font-size="9" fill="#DA1B2E">slice</text>
+  <text x="506" y="212" font-size="10" fill="#7A7373">toma slices de pasos</text>
+  <text x="506" y="226" font-size="10" fill="#7A7373">consecutivos, y la</text>
+  <text x="506" y="240" font-size="10" fill="#7A7373">ventana se desliza</text>
+  <rect x="552" y="245" width="116" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="610" y="260" font-size="12" font-weight="bold" text-anchor="middle">RNN / CNN 1D</text>
+
+  <text x="34" y="316" font-size="12.5" font-weight="bold">IMAGEN EN GRISES</text>
+  <text x="168" y="316" font-size="10.5" fill="#7A7373">28 x 28</text>
+  <rect x="34" y="326" width="72" height="72" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2"/>
+  <g stroke="#E2DDDD" stroke-width="0.8"><path d="M 58 326 L 58 398"/><path d="M 82 326 L 82 398"/><path d="M 34 350 L 106 350"/><path d="M 34 374 L 106 374"/></g>
+  <text x="34" y="414" font-size="9.5" fill="#7A7373">una matriz: la vecindad es el dato</text>
+  <path d="M 246 362 L 314 362" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#ag)"/>
+  <text x="244" y="354" font-size="10" fill="#7A7373">entra la grilla</text>
+  <text x="244" y="378" font-size="10" fill="#7A7373">entera, sin aplanar</text>
+  <rect x="330" y="318" width="360" height="88" rx="6" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.3"/>
+  <rect x="350" y="334" width="57" height="57" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1"/>
+  <g stroke="#E2DDDD" stroke-width="0.8"><path d="M 369 334 L 369 391"/><path d="M 388 334 L 388 391"/><path d="M 350 353 L 407 353"/><path d="M 350 372 L 407 372"/></g>
+  <rect x="350" y="334" width="19" height="19" fill="none" stroke="#DA1B2E" stroke-width="2"/>
+  <g fill="none" stroke="#DA1B2E" stroke-width="1.2" stroke-dasharray="3 2">
+    <rect x="369" y="334" width="19" height="19"/><rect x="388" y="334" width="19" height="19"/><rect x="350" y="353" width="19" height="19"/>
+  </g>
+  <path d="M 350 398 L 403 398" stroke="#DA1B2E" stroke-width="1.3" fill="none" marker-end="url(#ar)"/>
+  <text x="350" y="330" font-size="9" fill="#DA1B2E">ventana</text>
+  <text x="422" y="350" font-size="10" fill="#7A7373">se procesa por partes: una</text>
+  <text x="422" y="364" font-size="10" fill="#7A7373">ventana chica recorre la grilla</text>
+  <text x="422" y="378" font-size="10" fill="#7A7373">y mira vecindades</text>
+  <rect x="616" y="375" width="52" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="642" y="390" font-size="12" font-weight="bold" text-anchor="middle">CNN</text>
+
+  <text x="34" y="436" font-size="12.5" font-weight="bold">IMAGEN RGB</text>
+  <text x="126" y="436" font-size="10.5" fill="#7A7373">28 x 28 x 3</text>
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1"><rect x="34" y="456" width="52" height="52"/><rect x="96" y="456" width="52" height="52"/><rect x="158" y="456" width="52" height="52"/></g>
+  <g stroke="#E2DDDD" stroke-width="0.8">
+    <path d="M 51 456 L 51 508"/><path d="M 68 456 L 68 508"/><path d="M 34 473 L 86 473"/><path d="M 34 490 L 86 490"/>
+    <path d="M 113 456 L 113 508"/><path d="M 130 456 L 130 508"/><path d="M 96 473 L 148 473"/><path d="M 96 490 L 148 490"/>
+    <path d="M 175 456 L 175 508"/><path d="M 192 456 L 192 508"/><path d="M 158 473 L 210 473"/><path d="M 158 490 L 210 490"/>
+  </g>
+  <g font-size="10.5" font-weight="bold" text-anchor="middle"><text x="60" y="452">R</text><text x="122" y="452">G</text><text x="184" y="452">B</text></g>
+  <text x="34" y="524" font-size="9.5" fill="#7A7373">tres matrices, una por canal</text>
+  <path d="M 246 482 L 314 482" stroke="#7A7373" stroke-width="1.5" fill="none" marker-end="url(#ag)"/>
+  <text x="244" y="474" font-size="10" fill="#7A7373">entran las tres</text>
+  <text x="244" y="498" font-size="10" fill="#7A7373">juntas, sin aplanar</text>
+  <rect x="330" y="440" width="360" height="88" rx="6" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.3"/>
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1"><rect x="348" y="458" width="36" height="36"/><rect x="392" y="458" width="36" height="36"/><rect x="436" y="458" width="36" height="36"/></g>
+  <g stroke="#E2DDDD" stroke-width="0.7">
+    <path d="M 360 458 L 360 494"/><path d="M 372 458 L 372 494"/><path d="M 348 470 L 384 470"/><path d="M 348 482 L 384 482"/>
+    <path d="M 404 458 L 404 494"/><path d="M 416 458 L 416 494"/><path d="M 392 470 L 428 470"/><path d="M 392 482 L 428 482"/>
+    <path d="M 448 458 L 448 494"/><path d="M 460 458 L 460 494"/><path d="M 436 470 L 472 470"/><path d="M 436 482 L 472 482"/>
+  </g>
+  <g fill="none" stroke="#DA1B2E" stroke-width="1.8">
+    <rect x="348" y="458" width="12" height="12"/><rect x="392" y="458" width="12" height="12"/><rect x="436" y="458" width="12" height="12"/>
+  </g>
+  <g stroke="#DA1B2E" stroke-width="1" stroke-dasharray="3 2" fill="none">
+    <path d="M 360 464 L 392 464"/><path d="M 404 464 L 436 464"/>
+  </g>
+  <path d="M 348 502 L 472 502" stroke="#DA1B2E" stroke-width="1.3" fill="none" marker-end="url(#ar)"/>
+  <g font-size="9" font-weight="bold" text-anchor="middle" fill="#7A7373"><text x="366" y="454">R</text><text x="410" y="454">G</text><text x="454" y="454">B</text></g>
+  <text x="490" y="470" font-size="10" fill="#7A7373">la misma ventana toma los</text>
+  <text x="490" y="484" font-size="10" fill="#7A7373">tres canales en el mismo</text>
+  <text x="490" y="498" font-size="10" fill="#7A7373">punto, y se desliza</text>
+  <rect x="616" y="497" width="52" height="22" rx="11" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="642" y="512" font-size="12" font-weight="bold" text-anchor="middle">CNN</text>
+
+  <path d="M 34 542 L 690 542" stroke="#E2DDDD" stroke-width="1.2"/>
+  <text x="34" y="562" font-size="11.5" fill="#7A7373">Aplanar los tres &#250;ltimos para meterlos en un MLP dar&#237;a 300, 784 y 2.352 entradas sueltas, y borra el orden y la vecindad.</text>
+</svg>

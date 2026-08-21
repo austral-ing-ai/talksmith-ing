@@ -282,46 +282,102 @@ Este es el mapa mental que quiero que se lleven, y además es la agenda de la cl
   Resolution: La card 'El overfitting' salió de la lista de decisiones de diseño y en su lugar entró 'La función de pérdida', con la fórmula que convierte una predicción equivocada en un número. Para que no quedaran dos cards diciendo lo mismo, 'La salida' dejó de mencionar la loss (ahora es solo neuronas y activación) y 'El error' pasó a ser explícitamente la medición del modelo ya entrenado. El overfitting sigue teniendo su sección al final y las notas del orador explican por qué salió de la lista: es un problema que aparece, no algo que se diseñe.
 ---
 
-## 6. Una posición por variable
+## 6. Del dato a los nodos de entrada
 
 ### Content
 
-Cada posición del vector de entrada es una **feature**: una medición del problema ya convertida en número. El largo del vector es la cantidad de features, y queda fijo para toda la vida del modelo.
+Qué recibe el modelo en cada caso. **Solo el MLP toma una fila de nodos sueltos y los procesa todos a la vez**; los otros tres reciben la estructura entera y la recorren por partes.
 
-- **Tabular.** Una posición por columna ya codificada: edad, ingreso, antigüedad.
-- **Imagen en escala de grises de 28 por 28.** 784 posiciones, una por píxel, con el valor de gris normalizado.
+```ascii
+   EL DATO                              EL MODELO QUE LO TOMA
+   ------------------------------------------------------------------
 
-| Tipo de dato | Cómo se convierte en input |
-|---|---|
-| Numérico | Directo, normalizado a media 0 y desvío 1 |
-| Categórico | One-hot hasta unas 15 categorías, embedding de 50 en adelante |
-| Imagen | Píxeles normalizados, aplanados para un MLP |
-| Texto | Tokenización y después embeddings |
-| Audio | Espectrograma, o la forma de onda muestreada |
+   TABLA   m2 + barrio (12)             1 fila se vuelve 13 nodos
+   +------+-----------+                          |
+   | m2   | barrio    |                          v            MLP
+   | 85   | Palermo   |      ------>          (o)-\
+   | 120  | Caballito |                       (o)--+--(O)--\
+   +------+-----------+                       (o)--+--(O)---+--(S)
+     una fila por caso                         ...-/
+                                              (o)-/
+                                          entrada  ocultas  salida
+                                          los toma todos a la vez
 
-Dos cosas que se confunden seguido:
 
-- **El largo no cambia.** La red espera siempre la misma cantidad de posiciones. Por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo.
-- **La escala.** Con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia.
+   SENAL 1D  ECG, T = 300               entra el vector entero, sin aplanar
 
-La escala es el material de la sección que sigue.
+   +--+--+--+--+--+--+--+--+                 slice
+   |  |  |  |  |  |  |  |  |   ------>    +======+- - -+- - -+
+   +--+--+--+--+--+--+--+--+              |      |     |     |     RNN / CNN 1D
+    1 x 300: una matriz de una             +======+- - -+- - -+
+    sola fila, o sea un vector              ---------------->
+    el orden es el dato                     toma slices de pasos
+                                            consecutivos y se desliza
+
+
+   IMAGEN EN GRISES  28 x 28            entra la grilla entera, sin aplanar
+
+   +----+----+----+                          ventana
+   |    |    |    |          ------>      +====+- - -+- - -+
+   +----+----+----+                       |    |     |     |          CNN
+   |    |    |    |                       +====+- - -+- - -+
+   +----+----+----+                       | - -|     |     |
+     una matriz: la vecindad                ------------->
+     es el dato                             se procesa por partes: una
+                                            ventana chica recorre la grilla
+
+
+   IMAGEN RGB  28 x 28 x 3              entran las tres juntas, sin aplanar
+
+    R      G      B                          R      G      B
+   +---+  +---+  +---+       ------>      +=+-+  +=+-+  +=+-+
+   |   |  |   |  |   |                    | | |--| | |--| | |          CNN
+   +---+  +---+  +---+                    +---+  +---+  +---+
+     tres matrices, una                     -------------->
+     por canal                              la misma ventana toma los tres
+                                            canales en el mismo punto
+
+   ------------------------------------------------------------------
+   aplanar los tres ultimos para un MLP daria 300, 784 y 2.352 entradas
+   sueltas, y borra el orden y la vecindad
+```
+<!-- ascii-note:
+intent: mostrar el traspaso del dato al modelo que lo toma, una fila por caso, y que solo el MLP procesa todas las entradas de una vez mientras los otros tres recorren la estructura por partes
+emphasize: el contraste entre el MLP, que toma los 13 nodos juntos, y las tres filas siguientes, donde una ventana marcada en rojo recorre el dato; la senal dibujada como una matriz de una sola fila (un vector) y no como cajas sueltas; y las tres matrices RGB con la misma ventana en el mismo punto de los tres canales
+labels: cada fila lleva el nombre del dato a la izquierda, la leyenda del traspaso sobre la flecha, y el pill de arquitectura abajo a la derecha dentro del bloque del modelo (MLP, RNN / CNN 1D, CNN, CNN); la ventana o slice va en rojo con su posicion actual en linea llena y las siguientes punteadas, mas una flecha de recorrido debajo; el pie cierra con el costo de aplanar
+-->
+
+- **El largo no cambia.** La red espera siempre la misma cantidad de entradas. Por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo.
+- **La escala.** Con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia. Es el material de la sección que sigue.
+
+**Una tabla ya viene en la forma que un MLP espera.** Por eso es el caso de esta clase.
 
 ### Sources
 
-corpus/chat.md.md (§2 El input: principio general; §3 Codificación de variables; §4 One-hot vs. embedding — umbrales ≤15 one-hot / ≥50 embedding; §5 Escalas y normalización — z-score media 0 desvío 1)
-784 = 28 × 28 — ejemplo aportado por el presentador (MNIST), no figura en el corpus
+corpus/chat.md.md (§ Ejemplos completos: 12 barrios más m² dan 13 neuronas de entrada, 1 m² normalizado más 12 one-hot, arquitectura `13→32→16→1`; § El input: el largo del vector queda fijo, y una forma que borra la estructura no se recupera con ninguna arquitectura; § Escalas y normalización)
+784 = 28 × 28 y 2.352 = 784 × 3 — ejemplo aportado por el presentador (MNIST), no figura en el corpus
 
 ### Speaker notes
 
-Esta diapositiva contesta la pregunta que queda colgando después de la neurona: qué es exactamente esa `x`. La respuesta corta, una feature por posición, y con eso alcanza para seguir el resto de la clase.
+Esta diapositiva es la continuación directa de la anterior, y lo que agrega es el conteo. Abrí con la corrección que trae: **aplanar no es algo que le pase al dato, es algo que pide el MLP**. Si el mismo dato va a una CNN, no se aplana nada.
 
-MNIST funciona bien acá porque es contraintuitivo de la manera correcta: 784 posiciones suena a mucho para un dígito escrito a mano, y sin embargo es un problema chico. Si preguntan cuántos parámetros tiene la primera capa con 32 unidades, son 784 × 32 + 32 = 25.120.
+Recorré los cuatro paneles con la misma pregunta: ¿qué recibe la red? Solo en el primero la respuesta es "nodos sueltos", y son trece. En los otros tres la respuesta es una secuencia, una matriz y tres matrices: la estructura sigue ahí.
 
-La tabla se recorre rápido, es un panorama. La sección que sigue desarrolla las dos primeras filas, que son las que aparecen en problemas tabulares. Texto y audio están para cerrar el mapa, no para desarrollarlos.
+El detalle del panel de la tabla: **dos variables dan trece nodos**, no dos. El one-hot del barrio ocupa doce posiciones él solo. Es la primera vez en la clase que aparece que una variable puede ocupar más de un nodo, y es lo que la sección que sigue desarrolla.
 
-De los tres puntos de confusión, el del largo fijo es el que más preguntas genera. El ejemplo que lo cierra: un modelo entrenado con imágenes de 28 por 28 no acepta una de 32 por 32, hay que redimensionar antes. Con texto pasa lo mismo, y de ahí sale el padding.
+Sobre RGB, que es el que más se malinterpreta: son tres matrices, una por canal, dibujadas una al lado de la otra. No son tres imágenes apiladas ni hay un tercer eje espacial. Dicho de otro modo, cada píxel guarda tres números.
+
+El pie es el remate y conviene leerlo entero: si igual quisieras meter los tres últimos en un MLP, se pueden aplanar, y salen 300, 784 y 2.352 entradas sueltas. Ahí es donde se borra el orden y la vecindad. La pregunta que funciona: ¿cuántas entradas tendría una foto de 224 por 224 en color? 150.528. Sirve para que se vea por qué visión no usa MLP.
+
+No te metas con cómo una CNN conserva la grilla. Alcanza con que quede dicho que no aplana, y seguir.
 
 ### Presenter feedback
+- [closed] 2026-08-21 - En CNN el concepto de sliding estaria bueno modelarlo. / En las matrices una caja que muestre que se procesa de partes. / Creo que en el caso de senal es realmente una matriz de una linea, un vector. / Pero cuando pasa al CNN se toma de slices.
+  Resolution: Tres cambios en el diagrama. **(1) La senal paso de cajas sueltas x1 x2 x3 a una matriz de una sola fila**, dibujada como una tira con divisiones, con el rotulo 1 x 300, una matriz de una sola fila, o sea un vector. Era mas preciso y ademas empareja las cuatro filas, que ahora son todas matrices salvo la de la tabla. **(2) Se modelo el recorrido por partes en las tres filas no-MLP**: una ventana en rojo con la posicion actual en linea llena y las siguientes punteadas, mas una flecha de recorrido debajo. En la senal la ventana es un slice de pasos consecutivos; en la imagen en grises es una ventana chica sobre la grilla; en RGB es la misma ventana en el mismo punto de los tres canales, unidas por una linea punteada. **(3) El contraste quedo explicito del lado del MLP**, que ahora dice que toma todas las entradas a la vez, que es lo que lo diferencia de los otros tres. Se mantuvo el limite del [closed] previo: se muestra que la ventana recorre, no como se calcula una convolucion.
+- [closed] 2026-08-21 - Deberia verse como la matriz y como pasa al modelo que toma el input. / El del MLP quedo bien, el resto no. / Seria importante marcar tambien que tipo de arquitectura es cada una para evitar confusiones.
+  Resolution: El diagrama paso de cuatro paneles en dos filas a **cuatro filas de traspaso**, con dos columnas rotuladas: EL DATO y EL MODELO QUE LO TOMA. Cada fila cruza la flecha con la leyenda de que pasa en ese cruce, y del lado derecho se dibuja **el modelo con la forma de su entrada**: el MLP con sus tres capas y los rotulos entrada, ocultas y salida; la RNN con tres pasos encadenados; la CNN con la grilla entera; y la CNN de RGB con las tres matrices juntas. Cada bloque lleva su pill de arquitectura adentro, y el del MLP es el unico acentuado. Antes solo la fila de la tabla mostraba el traspaso y las otras tres se quedaban en el dato, que es lo que el presentador marco.
+- [closed] 2026-08-21 - Creo que imagen RGB no esta bien porque cada uno se mapea a una arquitectura distinta, y asi en un caso en realidad se preserva y no se aplana. / eg: en caso de imagen RGB se mapean dejando las matrices, y de ahi que MLP no sirve.
+  Resolution: Correcto, y era un error de fondo, no de la RGB sola. El diagrama aplanaba los cuatro casos por igual, cuando **aplanar es un requisito del MLP y no del dato**: la diapositiva anterior dice que cada dato tiene su arquitectura natural y esta la contradecia. Se rehizo el diagrama con el eje correcto, que es que recibe la red: la tabla llega como 13 nodos sueltos y el MLP los toma tal cual; la senal llega como una secuencia de 300 pasos en orden; la imagen en grises como una matriz intacta; y la RGB como tres matrices de 28x28, una por canal, dibujadas una al lado de la otra. El conteo de nodos que el presentador habia pedido no se perdio: bajo al pie, como el precio de aplanar los tres ultimos para meterlos en un MLP (300, 784 y 2.352 entradas sueltas) y lo que eso borra. Se respetaron los dos [closed] previos sobre RGB: nada de matrices apiladas ni de tercer eje espacial, y no se explica como funciona una convolucion.
 - [closed] 2026-08-20 — "Complementario a slide 4, pongamos slide 5 que cubra: el input de una red neuronal es en esencia un vector numerico; cada posicion representa una dimension (una feature); segun el tipo de dato cambia como se codifica; y los puntos que confunden: dimensionalidad fija, normalizacion/escala, y embeddings vs. one-hot."
   Resolution: Diapositiva nueva 1.5 'El vector de entrada, una posición por feature', después de 'Una neurona, en una línea'. Define feature por posición, el largo fijo del vector, MNIST 28x28 como 784 posiciones, la tabla tipo de dato a codificación (numérico, categórico, imagen, texto, audio) y los tres puntos que confunden: largo fijo, escala y one-hot contra embedding. Los dos últimos quedan apuntando a la sección 2, que es donde se desarrollan.
 
@@ -2213,6 +2269,21 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 - Las citas de Keras y PyTorch sobre el aplanado (notas del orador de la 1.2) están verificadas contra la documentación oficial pero no viven en el corpus. Ingerir las dos páginas si se las quiere como fuente formal de la Talk.
 
 # Cut material
+
+## Diapositiva 1.6 Una posicion por variable - tabla Tipo de dato / Como se convierte en input (recortada, 2026-08-21)
+
+Reemplazada por el diagrama de mapeo a nodos de entrada. La tabla era ademas un anticipo mas pobre de la 2.6 La tabla de decisiones, que recorre el mismo eje con diez filas y ademas dice cuantos floats ocupa cada codificacion. Texto retirado:
+
+| Tipo de dato | Como se convierte en input |
+|---|---|
+| Numerico | Directo, normalizado a media 0 y desvio 1 |
+| Categorico | One-hot hasta unas 15 categorias, embedding de 50 en adelante |
+| Imagen | Pixeles normalizados, aplanados para un MLP |
+| Texto | Tokenizacion y despues embeddings |
+| Audio | Espectrograma, o la forma de onda muestreada |
+
+Tambien se retiraron los dos bullets de apertura, que el diagrama ahora muestra con numeros: "Tabular. Una posicion por columna ya codificada: edad, ingreso, antiguedad." y "Imagen en escala de grises de 28 por 28. 784 posiciones, una por pixel, con el valor de gris normalizado."
+
 
 ## Diapositiva 1.2 El dato decide la arquitectura - tabla Dato / Forma / Arquitectura (recortada por densidad, 2026-08-21)
 
