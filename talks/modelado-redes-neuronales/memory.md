@@ -518,3 +518,13 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - **El fix se hizo en la fuente, no en el modelo del render.** Es lo que manda `principles.md` en *Pipeline discipline*: una diapositiva sobrecargada es un defecto de Step 4 que aparece tarde, y arreglarlo achicando en el renderer garantiza que vuelva en el proximo render.
 - Files created/modified: draft.md (tabla retirada, lead y remate acortados, notas ampliadas, bullet [closed], entrada en Cut material), final.md, output/slide-model.json, output/html/index.html.
 
+## 2026-08-21 — Perdida de un cambio por buffer viejo del editor + fix definitivo de la 1.2
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "Revisa si se perdio el cambio" → auditoria de los 13 cambios de la sesion contra draft.md, final.md y el deck
+  - 2026-08-21 — "El problema es el texto del alcance de la clase. deja solo el diagrama en el slide"
+- **Hallazgo de proceso, importante para futuras sesiones.** El fix de densidad de la 1.2 se aplico a las 15:25 y se perdio: `draft.md` volvio a escribirse **a las 18:04** desde un buffer viejo del editor del presentador, con la tabla de nuevo y el lead sin acortar. Las otras 53 diapositivas quedaron intactas, porque el buffer era posterior a todo lo demas y solo anterior a ese ultimo fix. **Regla practica: cuando el presentador tiene `draft.md` abierto en el IDE, cualquier escritura del agente puede quedar pisada por un guardado del editor.** Conviene pedirle que cierre o recargue el archivo antes de una ronda de edicion, y verificar `mtime` de draft.md contra la hora de la ultima escritura del agente antes de dar un cambio por aplicado.
+- **Falsos positivos de la auditoria, para no volver a alarmarse:** buscar el texto eliminado en `draft.md` da positivo porque el log de `Presenter feedback` **cita el texto retirado verbatim** en el bullet `[closed]`. Es el audit trail funcionando. Hay que buscar en el contenido vivo (fuera de los bullets de feedback y fuera de `Cut material`), no en el archivo entero.
+- Fix definitivo de la 1.2: **queda solo el diagrama**. Se retiro la tabla de 3x4 (archivada en Cut material) y el presentador ya habia retirado a mano el parrafo de alcance (tambien archivado). La diapositiva quedo en titulo, lead y diagrama a pantalla completa, plantilla `image-full`. Lo que decia la tabla y no dice el dibujo (la vecindad en imagenes, el orden en senales) y la declaracion de alcance pasaron a las notas del orador; el alcance sigue visible en el pill de MLP acentuado del diagrama.
+- Files created/modified: draft.md, final.md, output/slide-model.json, output/html/index.html.
+
