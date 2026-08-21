@@ -30,7 +30,8 @@ date: 2026-08-19
 - 5. La función de pérdida
 - 6. Backpropagation
 - 7. Medir un clasificador
-- 8. Overfitting
+- 8. Capas ocultas
+- 9. Overfitting
 
 ---
 
@@ -63,40 +64,51 @@ Abrí con esto porque reordena toda la clase. La mayoría llega pensando que dis
 
 ---
 
-## 2. La forma la decide la arquitectura
+## 2. El dato decide la arquitectura
 
 ### Content
 
-La misma imagen de 28 por 28 píxeles entra a una red densa como una fila de 784 números y a una convolucional como una grilla de 28 por 28. La arquitectura decide qué forma necesita.
+Cada tipo de dato tiene una **forma natural**: cuántos ejes necesita para no perder información. Esa forma es la que decide qué arquitectura le corresponde, y no al revés.
 
-![La misma imagen de 28 x 28 como fila, grilla y secuencia](images/s1-2-1-formas-de-input.png)
+![Cuatro tipos de dato, su forma natural y la arquitectura que les corresponde](images/s1-2-1-formas-de-input.png)
 <!-- ascii-source:
-            la misma imagen de 28 x 28, tres arquitecturas
+   TABLA                              SENAL 1D  (audio, ECG)
 
-  MLP (capa densa)         CNN (convolucional)      RNN / Transformer
-  ----------------         -------------------      -----------------
+   edad  ingreso  zona                    /\      /\   /\
+   ----  -------  ----                   /  \    /  \ /  \
+    34    52000    12                   /    \  /    V
+    41    38000    07                  /      \/
 
-  [ ][ ][ ] ... [ ]          +-------------+         [v1] [v2] ... [vT]
-   1  2  3      784          |             |          t=1  t=2      t=T
-                             |   28 x 28   |
-  una fila de 784            |             |         una secuencia de
-  numeros                    +-------------+         vectores, en orden
+   -> [ ][ ][ ] ... [ ]                -> [x1][x2][x3] ... [xT]
+      una fila de n numeros               una secuencia de T pasos
+      MLP                                 CNN 1D / RNN
 
-  hay que aplanarla          la grilla, intacta      el orden es el dato
+   IMAGEN EN GRISES                   IMAGEN RGB
+
+   +---------------+                  +---------------+
+   |               |                  |      [*]      |   cada pixel
+   |    28 x 28    |                  |               |   guarda tres
+   |               |                  |    28 x 28    |   numeros: R G B
+   +---------------+                  +---------------+
+
+   -> una grilla alto x ancho         -> la misma grilla,
+      CNN                                3 numeros por pixel
+                                         CNN
 -->
 <!-- ascii-note:
-intent: mostrar que un mismo dato cambia de forma segun la arquitectura que lo recibe
-emphasize: el contraste entre la fila aplanada del MLP y la grilla intacta de la CNN
-labels: MLP fila de 784, CNN grilla 28 x 28, RNN/Transformer secuencia v1..vT
+intent: mostrar cuatro tipos de dato, la forma natural de cada uno y la arquitectura que le corresponde
+emphasize: que lo que cambia entre los cuatro es la cantidad de ejes que hace falta para no perder informacion; el pixel ampliado de RGB que guarda tres numeros en el mismo punto, no tres grillas
+labels: TABLA fila de n numeros MLP, SENAL 1D secuencia de T pasos CNN 1D o RNN, IMAGEN EN GRISES grilla alto por ancho CNN, IMAGEN RGB la misma grilla con 3 numeros por pixel CNN; cuatro paneles en dos filas, mismo lienzo y mismos margenes
 -->
 
-| Arquitectura | Qué input espera | Por qué |
+| Dato | Su forma natural | Arquitectura |
 |---|---|---|
-| MLP (densa) | Una fila de números de largo fijo | Cada neurona se conecta con todas las entradas, y la posición dentro de la fila no significa nada para ella |
-| CNN | Una grilla: alto por ancho por color | La convolución necesita saber qué píxel está al lado de cuál |
-| RNN / Transformer | Una secuencia de vectores | Cada paso es un vector y el orden entre pasos es parte del dato |
+| **Tabla** | Una fila de `n` números, una posición por columna | MLP |
+| **Señal** | Una secuencia de `T` pasos, donde el orden es parte del dato | CNN 1D / RNN |
+| **Imagen en escala de grises** | Una grilla de alto por ancho, donde importa qué píxel está al lado de cuál | CNN |
+| **Imagen RGB** | La misma grilla, con tres números en cada píxel | CNN |
 
-**El alcance de esta clase es el MLP.** Aplanar una imagen pierde qué píxel estaba al lado de cuál, y ese es el motivo por el que visión usa CNN. Acá el foco está en el MLP sobre datos tabulares, donde no hay ninguna vecindad que perder.
+**El alcance de esta clase es el MLP sobre datos tabulares.** Una tabla ya viene en la forma que un MLP espera. Los otros tres se pueden aplanar en una fila y meterlos en un MLP, pero al aplanar se pierde la vecindad, y esa pérdida es exactamente el motivo por el que existen las otras arquitecturas.
 
 ### Sources
 
@@ -105,13 +117,17 @@ corpus/chat.md.md (§2 El input: principio general — familias de estructura y 
 
 ### Speaker notes
 
-Esta diapositiva fija el alcance de la clase y conviene darla despacio, porque todo lo que sigue se apoya en ella. La pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 en escala de grises, ¿cuántos números son? Respuesta, 784. Sirve para que dimensionen.
+Esta diapositiva fija el alcance de la clase y conviene darla despacio, porque todo lo que sigue se apoya en ella. Recorré los cuatro paneles en orden y en cada uno hacé la misma pregunta: ¿cuántos ejes hacen falta para no perder nada? Uno, uno, dos, dos.
 
-El punto que más rinde: la forma no es una propiedad del dato, es un requisito de la arquitectura. Una imagen es una grilla siempre; lo que cambia es si la red aprovecha esa grilla. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden y por eso pide la fila aplanada.
+La pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 en escala de grises, ¿cuántos números son? Respuesta, 784. Sirve para que dimensionen, y para que se vea que aplanar siempre se puede.
+
+El punto que más rinde es el que ordena la diapositiva: la forma no es una decisión de diseño, viene con el dato. Lo que uno elige es si la arquitectura la aprovecha. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden; por eso la fila aplanada le sirve y por eso la tabla es su caso natural.
+
+Sobre el panel de RGB, que es el que más se malinterpreta: son tres números en el mismo punto, no tres grillas. El píxel ampliado del dibujo es para eso. De los tres ejes, el de color es el único que se podría reordenar sin cambiar el problema; alto y ancho no.
 
 Por si alguien pregunta si el aplanado es automático: no lo es. Una capa densa opera solo sobre el último eje (Keras: "Dense computes the dot product between the inputs and the kernel along the last axis"; PyTorch nn.Linear: "all but the last dimension are the same shape as the input"). Aplanar es una capa que uno pone, `Flatten()` en Keras o `nn.Flatten()` en PyTorch.
 
-No te metas con cómo funciona una convolución ni con attention. Alcanza con que quede claro que existen, que esperan otra forma de input, y que de acá en adelante la clase modela un MLP sobre datos tabulares.
+No te metas con cómo funciona una convolución ni con attention. Alcanza con que quede claro que existen, que les corresponde otra forma de dato, y que de acá en adelante la clase modela un MLP sobre datos tabulares.
 
 ---
 
@@ -137,7 +153,40 @@ Si aparece la pregunta de para qué sirve hoy un MLP con las CNN y los transform
 
 ---
 
-## 4. Lo que hay que diseñar
+## 4. Una neurona, en una línea
+
+### Content
+
+Antes de diseñar conviene fijar el objeto mínimo. Una capa hace dos cosas: una combinación lineal y una no linealidad.
+
+![Una neurona: de las entradas a la activación](images/s1-4-1-neurona.png)
+<!-- ascii-source:
+   x1 ---w1--\
+   x2 ---w2---&gt; [ z = W·x + b ] --&gt; [ f ] --&gt; a
+   x3 ---w3--/    (pre-activación)   (activación)
+-->
+<!-- ascii-note:
+intent: mostrar el paso de entradas a activación en una neurona
+emphasize: las dos etapas z (lineal) y f (no lineal)
+labels: x entradas, W·x+b pre-activación, f activación, a salida
+-->
+
+1. La neurona recibe las entradas `x` y calcula la **pre-activación** `z = W·x + b`: una combinación lineal de las entradas más un sesgo.
+2. Ese `z` pasa por la **activación** `a = f(z)`, y `a` es lo que la neurona entrega a la capa siguiente.
+3. La no linealidad de `f` es lo que hace que apilar capas sirva. Sin ella, la composición de capas lineales colapsa a una sola matriz.
+4. Hay un puñado de candidatas para `f` y casi siempre gana ReLU. Las vemos en la sección 8, junto con el resto de las decisiones de las capas ocultas; la activación de salida es otra historia, la determina la tarea.
+
+### Sources
+
+corpus/chat.md.md (§1 Conceptos base: Activación, Pesos y bias)
+
+### Speaker notes
+
+Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Si preguntan cuántos parámetros tiene una capa: `m·n + m`, con n entradas y m neuronas. No lo desarrolles, no hace falta en el resto de la clase.
+
+---
+
+## 5. Lo que hay que diseñar
 
 ### Content
 
@@ -164,38 +213,6 @@ Este es el mapa mental que quiero que se lleven, y además es la agenda de la cl
 
 ---
 
-## 5. Una neurona, en una línea
-
-### Content
-
-Antes de diseñar conviene fijar el objeto mínimo. Una capa hace dos cosas: una combinación lineal y una no linealidad.
-
-![Una neurona: de las entradas a la activación](images/s1-5-1-neurona.png)
-<!-- ascii-source:
-   x1 ---w1--\
-   x2 ---w2---&gt; [ z = W·x + b ] --&gt; [ f ] --&gt; a
-   x3 ---w3--/    (pre-activación)   (activación)
--->
-<!-- ascii-note:
-intent: mostrar el paso de entradas a activación en una neurona
-emphasize: las dos etapas z (lineal) y f (no lineal)
-labels: x entradas, W·x+b pre-activación, f activación, a salida
--->
-
-- **Pre-activación:** `z = W·x + b`. Combinación lineal de las entradas más un sesgo.
-- **Activación:** `a = f(z)`. La no linealidad `f` es lo que hace que apilar capas sirva. Sin ella, la composición de capas lineales colapsa a una sola matriz.
-- **Elección de `f`:** hay un puñado de candidatas y casi siempre gana ReLU. Las vemos al cierre de esta sección. La activación de salida es otra historia: la determina la tarea, y va en la sección 4.
-
-### Sources
-
-corpus/chat.md.md (§1 Conceptos base: Activación, Pesos y bias)
-
-### Speaker notes
-
-Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Si preguntan cuántos parámetros tiene una capa: `m·n + m`, con n entradas y m neuronas. No lo desarrolles, no hace falta en el resto de la clase.
-
----
-
 ## 6. Una posición por variable
 
 ### Content
@@ -213,13 +230,12 @@ Cada posición del vector de entrada es una **feature**: una medición del probl
 | Texto | Tokenización y después embeddings |
 | Audio | Espectrograma, o la forma de onda muestreada |
 
-Tres cosas que se confunden seguido:
+Dos cosas que se confunden seguido:
 
 - **El largo no cambia.** La red espera siempre la misma cantidad de posiciones. Por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo.
 - **La escala.** Con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia.
-- **One-hot contra embedding.** Con muchas categorías posibles, one-hot da vectores enormes y casi todos ceros. El embedding las comprime en pocas dimensiones densas que además aprenden qué categorías se parecen.
 
-Los dos últimos son el material de la sección que sigue.
+La escala es el material de la sección que sigue.
 
 ### Sources
 
@@ -235,49 +251,6 @@ MNIST funciona bien acá porque es contraintuitivo de la manera correcta: 784 po
 La tabla se recorre rápido, es un panorama. La sección que sigue desarrolla las dos primeras filas, que son las que aparecen en problemas tabulares. Texto y audio están para cerrar el mapa, no para desarrollarlos.
 
 De los tres puntos de confusión, el del largo fijo es el que más preguntas genera. El ejemplo que lo cierra: un modelo entrenado con imágenes de 28 por 28 no acepta una de 32 por 32, hay que redimensionar antes. Con texto pasa lo mismo, y de ahí sale el padding.
-
----
-
-## 7. Las activaciones ocultas, y cómo se ven
-
-### Content
-
-Una **activación oculta** es la función no lineal `f` que se aplica después de `z = W·x + b` en las capas del medio. Su trabajo no es acotar el resultado a un rango con sentido, como en la salida, sino **romper la linealidad** para que apilar capas sirva de algo. Son cuatro candidatas y una gana casi siempre.
-
-| Función | Fórmula | Rango | Cuándo |
-|---|---|---|---|
-| ReLU | `max(0, z)` | [0, ∞) | El default de las capas ocultas |
-| GELU / SiLU | suavizaciones de ReLU | (−0.3, ∞) aprox. | Transformers |
-| Tanh | `(eᶻ − e⁻ᶻ) / (eᶻ + e⁻ᶻ)` | (−1, 1) | Redes recurrentes, salidas centradas |
-| Sigmoide | `1 / (1 + e⁻ᶻ)` | (0, 1) | Casi nunca en capas ocultas |
-
-![Formas de ReLU, GELU/SiLU, tanh y sigmoide](images/s1-7-1-activaciones-ocultas.png)
-<!-- ascii-source:
-     ReLU  max(0,z)          GELU / SiLU            Tanh  (-1,1)         Sigmoide  (0,1)
-        |        /              |        /             |    _______         |    _______
-        |       /               |       /            1 |   /              1 |   /
-    ----+------/----        ----+---.--/----       ----+--/-------      ----+--/-------
-        |     /                 |  \_/               0 | /              0.5 | /
-        |____/                  |__/                -1 |/                 0 |/
-
-    plana y despues        igual pero suave       acotada y            acotada, nunca
-    recta. barata          en el cero             centrada en 0        negativa
--->
-<!-- ascii-note:
-intent: mostrar la forma de las cuatro activaciones ocultas una al lado de la otra, para compararlas de un vistazo
-emphasize: el codo de ReLU en el cero, que es lo que la distingue; la saturación de tanh y sigmoide en los extremos
-labels: ReLU, GELU/SiLU, Tanh, Sigmoide; eje horizontal z, eje vertical f(z)
--->
-
-**Nota:** la sigmoide y la tanh saturan. El **gradiente** es la derivada del error respecto de un peso: dice cuánto cambia el error si movés ese peso, y es lo único que el entrenamiento tiene para corregirlo (sección 6). Con `z` grande la derivada de estas dos es casi cero, el gradiente que llega a las capas de abajo se apaga y la red deja de aprender. ReLU no satura del lado positivo, y esa es la razón por la que ganó.
-
-### Sources
-
-corpus/chat.md.md (§1 Conceptos base: Activación)
-
-### Speaker notes
-
-Esta es la diapositiva que faltaba: hasta acá la activación era un nombre, ahora tiene forma. Recorré el diagrama de izquierda a derecha y detenete en el codo de ReLU: es literalmente dos rectas pegadas, y con eso alcanza. La pregunta que funciona: ¿por qué una función tan tonta le gana a las suaves? Respuesta corta, no satura y es baratísima de calcular. La saturación es el concepto que se llevan, y vuelve en la sección 2 con la normalización: una entrada grande sin normalizar satura la neurona igual que un `z` grande.
 
 ---
 
@@ -501,9 +474,7 @@ Arranca por el porqué, no por los porcentajes: medir con los datos de entrenami
 | Augmentation | Sí | No | No |
 | Proporción típica | 70% | 20% | 10% |
 
-- **La diferencia sutil está entre validación y test.** El modelo no entrena con ninguno de los dos. La diferencia sos vos: tomás decisiones mirando validación, y a lo largo de muchos experimentos vas sobreajustando tus elecciones a ese conjunto. El test atrapa eso, porque nada del modelo se eligió mirándolo.
 - **Por eso no alcanza con partir en dos.** Sin validación terminás tuneando contra el test, y cuando desplegás sus métricas ya no son insesgadas. El split de dos vías sirve solo si no tomás ninguna decisión iterativa, que no describe a ningún proyecto real.
-- **Augmentation solo en train.** Agrandar el training set con variaciones sirve para aprender. Validación y test tienen que quedarse con los datos originales, porque su trabajo es representar lo que viene en producción. El preprocesamiento, en cambio, se aplica a los tres.
 
 ### Sources
 
@@ -578,6 +549,50 @@ corpus/train-test-split-roboflow.web.md (§8 Errores típicos; §9 Cómo se hace
 ### Speaker notes
 
 Los dos del medio son aporte propio: ninguna de las dos fuentes cubre estratificación ni series de tiempo, y las dos importan para los trabajos que entregan. El de series de tiempo es el que más veces vas a ver mal resuelto, y el síntoma es un modelo que en el papel anda espectacular. Conectá con la sección 2: el identificador único es la versión extrema de este problema, memorizar en vez de aprender. Y dejá el puente abierto hacia overfitting: la brecha entre train y validación, que es el diagnóstico de la sección 6, solo se puede mirar si esta partición está bien hecha.
+
+---
+
+## 5. Qué hacer y qué no
+
+### Content
+
+La sección en reglas operativas. A la izquierda lo que hay que hacer siempre; a la derecha lo que más se ve mal resuelto.
+
+**Qué hacer**
+
+- Partir antes de explorar
+- Partir por grupo, no por fila
+- Fijar la semilla y guardar el split
+- Augmentation solo en train
+
+**Qué no hacer**
+
+- Tunear contra el test
+- Volver a partir porque el número no cerró
+- Confiar en el corte por defecto
+
+### Sources
+
+corpus/train-test-split-roboflow.web.md (§6 La distinción sutil; §7 Preprocesamiento contra augmentation); corpus/train-validation-test-sets.web.md (§2 Qué distingue a validación de test)
+Partir antes de explorar, partir por grupo, fijar la semilla y no volver a partir son aporte propio para la clase; no figuran en el corpus
+
+### Speaker notes
+
+Esta es la diapositiva que se fotografía y la que cierra la sección. Las dos columnas se leen enfrentadas, no en orden, y cada línea se desarrolla en voz alta: la diapositiva es el índice, vos sos el contenido.
+
+**Partir antes de explorar.** Es la que más se resiste, y la objeción típica es "pero si todavía no entrené nada". La respuesta: las decisiones que tomás mirando los datos, qué variables sacar, cómo tratar los outliers, qué imputar, también son aprendizaje. Si las tomaste mirando todo, el test ya no está limpio.
+
+**Partir por grupo.** Es la que más aparece en los trabajos que entregan. El caso que lo hace evidente: diez radiografías del mismo paciente repartidas entre train y test. El modelo no generaliza a pacientes nuevos, reconoce a ese paciente. Vale igual para varias filas del mismo cliente o de la misma sesión.
+
+**Fijar la semilla y guardar el split.** Un experimento que no se puede repetir no se puede comparar con el siguiente. Guardar los índices, no solo la semilla.
+
+**Augmentation solo en train.** Validación y test se quedan con los datos originales, porque su trabajo es representar lo que viene en producción. El preprocesamiento, en cambio, se aplica a los tres: esa es la distinción que se confunde.
+
+**Tunear contra el test.** Dala despacio porque es contraintuitiva. El modelo no entrena con validación ni con test; la diferencia sos vos, que elegís mirando validación y a lo largo de muchos experimentos vas sobreajustando tus decisiones a ese conjunto. El test atrapa eso solo si nada se eligió mirándolo, y por eso existe el tercer conjunto.
+
+**Volver a partir porque el número no cerró.** Repartir hasta que el resultado guste es elegir la partición más favorable. Es sobreajustar al test sin darse cuenta y sin que nada falle.
+
+**Confiar en el corte por defecto.** La más práctica: mostrá la firma de `train_test_split` y señalá que `stratify` es opcional y viene en `None`, que no hay parámetro de grupo, y que no mira el tiempo. La mayoría de los splits rotos que van a ver son exactamente ese default.
 
 ---
 
@@ -717,7 +732,7 @@ Una **función de pérdida** es la fórmula que convierte una predicción equivo
 
 - **Loss.** El error de un solo ejemplo. Es lo que mide la fórmula que elegimos acá.
 - **Cost.** El promedio del loss sobre un batch o sobre el dataset. Es el número que el entrenamiento reporta.
-- **Objective.** El cost más los términos de regularización. Es lo que el optimizador minimiza de verdad, y aparece en la sección 8.
+- **Objective.** El cost más los términos de regularización. Es lo que el optimizador minimiza de verdad, y aparece en la sección 9.
 
 La loss no se elige libre: viene con la salida. Para predecir un precio la tarea pide una neurona sin activación, porque el valor puede ser cualquier número real, y sobre esa salida van MSE, MAE o Huber. Cambiar la activación de salida obliga a cambiar la loss, y al revés.
 
@@ -1318,7 +1333,7 @@ En la práctica nadie mira las fórmulas: se mira la curva de loss y se toca alg
 | La loss no baja desde el arranque | `η` demasiado chico, o el gradiente se desvanece antes de llegar a las primeras capas | Subir `η` ×10; ReLU en las ocultas en vez de sigmoide; revisar la inicialización |
 | La loss oscila fuerte, o se va a `NaN` | `η` demasiado grande, o el gradiente explota | Bajar `η` ÷10; recortar el gradiente con `clipnorm` o `global_clipnorm` |
 | La loss baja pero con mucho ruido | Batch chico: el promedio sale de pocas filas y el gradiente es ruidoso | Subir el batch size |
-| Train baja y validación sube | Overfitting, no un problema de gradiente | Sección 8 |
+| Train baja y validación sube | Overfitting, no un problema de gradiente | Sección 9 |
 | Una variable domina el ajuste | Codificación de la entrada, no el gradiente | Sección 2 |
 
 - **El gradiente que se desvanece.** Cada capa hacia atrás multiplica por la derivada de su activación. Si esa derivada es chica, el producto se achica capa tras capa y las primeras dejan de recibir señal. Es el argumento formal de por qué ReLU desplazó a la sigmoide en capas ocultas.
@@ -1338,7 +1353,7 @@ La tabla de síntoma, causa y perilla es construida para la clase; no figura en 
 
 Esta es la diapositiva que los alumnos van a fotografiar, y la que más rinde en la práctica de laboratorio. Dala como checklist, no como teoría.
 
-El orden de las perillas es el mensaje principal y es contraintuitivo: el reflejo de todo el mundo es agregar capas, y es lo último de la lista. `η` es la primera y la que más mueve la aguja. Conectá con la diapositiva 4 de la sección 1, donde ya dijimos que la cantidad de capas es lo que menos pesa; esta lo confirma desde el otro lado.
+El orden de las perillas es el mensaje principal y es contraintuitivo: el reflejo de todo el mundo es agregar capas, y es lo último de la lista. `η` es la primera y la que más mueve la aguja. Conectá con la diapositiva 5 de la sección 1, donde ya dijimos que la cantidad de capas es lo que menos pesa; esta lo confirma desde el otro lado.
 
 Las dos filas de `NaN` y de loss estancada son las que van a ver de verdad en la práctica. Si tenés tiempo, provocá una en vivo subiendo `η` a 10 y mostrá el `NaN`.
 
@@ -1583,7 +1598,125 @@ El umbral es lo que más cuesta que entiendan y lo más útil en la práctica. R
 
 ---
 
-# 8. Overfitting
+# 8. Capas ocultas
+
+**Goal of this section:** La única parte de la arquitectura que se elige libremente, y la que menos pesa de las seis decisiones. Cuántas capas, cuánto ancho, qué activación y cómo arrancan los pesos. La sección da recetas de punto de partida y, sobre todo, el procedimiento para corregirlas mirando el error, en vez de adivinar. Cierra el recorrido de diseño justo antes de que el overfitting muestre qué pasa cuando sobra capacidad.
+
+---
+
+## 1. Cuántas capas y cuánto ancho
+
+### Content
+
+Es la única decisión de la lista que se elige libremente, y la que menos impacto tiene. Conviene resolverla rápido con un punto de partida y corregir después mirando el error.
+
+| Cuántos datos tenés | Punto de partida |
+|---|---|
+| Cientos de filas | 1 capa de 8 a 16 neuronas |
+| Miles | 1 o 2 capas de 32 a 64 |
+| Decenas de miles | 2 o 3 capas de 64 a 128 |
+
+- **Más ancho que la entrada.** La primera capa oculta no debería ser más angosta que el vector de entrada, para no crear un cuello de botella que tire información antes de empezar.
+- **Potencia de 2 y decreciente.** 128, 64, 32 hacia la salida. La potencia de 2 es alineación de memoria; lo decreciente es que la red va comprimiendo hacia la respuesta.
+- **Lo que manda es la cantidad de datos.** La relación que importa es parámetros contra filas de entrenamiento, no parámetros contra features.
+- **El procedimiento, no la fórmula.** Empezar chico y mirar el error de **train**: si es alto, falta capacidad y hay que agrandar; si el train está bien y la validación mal, sobra capacidad y hay que achicar o regularizar.
+
+**1 a 3 capas ocultas alcanzan para datos tabulares.** Si necesitás más profundidad que eso en una tabla, el problema casi nunca es la arquitectura.
+
+### Sources
+
+corpus/chat.md.md (§ Arquitectura: cantidad de capas 1–3 para tabular, ancho en potencias de 2 decreciente; ancho de las capas ocultas — más ancho que la entrada, alineación de memoria, decreciente; datos y punto de partida — cientos / miles / decenas de miles; el procedimiento de empezar chico y mirar el error de train; la relación parámetros contra cantidad de datos)
+
+### Speaker notes
+
+Esta es la diapositiva que la clase espera desde el principio y la que hay que desinflar. Recordales la primera diapositiva de la sección 1: de las seis decisiones, esta es la última en impacto, y llegaron hasta acá sin haberla necesitado.
+
+Lo que se llevan no es la tabla, es el procedimiento de las dos últimas líneas. La tabla es un punto de partida para no quedarse trabado; el error de train dice si hay que agrandar y la brecha con validación dice si hay que achicar. Es un lazo, no una fórmula cerrada.
+
+Si preguntan por qué potencias de 2, la respuesta honesta es alineación de memoria en la GPU, y que la diferencia entre 60 y 64 neuronas no se va a notar en un dataset tabular. No lo vendas como si fuera profundo.
+
+El cuello de botella es el error que más van a cometer: poner una primera capa de 8 neuronas después de un one-hot de 40 posiciones. La información se pierde ahí y ninguna capa posterior la recupera.
+
+Y si alguien pregunta por el teorema de aproximación universal para justificar una sola capa muy ancha: es cierto y es inútil en la práctica, porque el teorema no dice cuántas neuronas hacen falta ni que el entrenamiento las vaya a encontrar.
+
+---
+
+## 2. Las activaciones ocultas, y cómo se ven
+
+### Content
+
+Una **activación oculta** es la función no lineal `f` que se aplica después de `z = W·x + b` en las capas del medio. Su trabajo no es acotar el resultado a un rango con sentido, como en la salida, sino **romper la linealidad** para que apilar capas sirva de algo. Son cuatro candidatas y una gana casi siempre.
+
+| Función | Fórmula | Rango | Cuándo |
+|---|---|---|---|
+| ReLU | `max(0, z)` | [0, ∞) | El default de las capas ocultas |
+| GELU / SiLU | suavizaciones de ReLU | (−0.3, ∞) aprox. | Transformers |
+| Tanh | `(eᶻ − e⁻ᶻ) / (eᶻ + e⁻ᶻ)` | (−1, 1) | Redes recurrentes, salidas centradas |
+| Sigmoide | `1 / (1 + e⁻ᶻ)` | (0, 1) | Casi nunca en capas ocultas |
+
+![Formas de ReLU, GELU/SiLU, tanh y sigmoide](images/s8-2-1-activaciones-ocultas.png)
+<!-- ascii-source:
+     ReLU  max(0,z)          GELU / SiLU            Tanh  (-1,1)         Sigmoide  (0,1)
+        |        /              |        /             |    _______         |    _______
+        |       /               |       /            1 |   /              1 |   /
+    ----+------/----        ----+---.--/----       ----+--/-------      ----+--/-------
+        |     /                 |  \_/               0 | /              0.5 | /
+        |____/                  |__/                -1 |/                 0 |/
+
+    plana y despues        igual pero suave       acotada y            acotada, nunca
+    recta. barata          en el cero             centrada en 0        negativa
+-->
+<!-- ascii-note:
+intent: mostrar la forma de las cuatro activaciones ocultas una al lado de la otra, para compararlas de un vistazo
+emphasize: el codo de ReLU en el cero, que es lo que la distingue; la saturación de tanh y sigmoide en los extremos
+labels: ReLU, GELU/SiLU, Tanh, Sigmoide; eje horizontal z, eje vertical f(z)
+-->
+
+**Nota:** la sigmoide y la tanh saturan. El **gradiente** es la derivada del error respecto de un peso: dice cuánto cambia el error si movés ese peso, y es lo único que el entrenamiento tiene para corregirlo (sección 6). Con `z` grande la derivada de estas dos es casi cero, el gradiente que llega a las capas de abajo se apaga y la red deja de aprender. ReLU no satura del lado positivo, y esa es la razón por la que ganó.
+
+### Sources
+
+corpus/chat.md.md (§1 Conceptos base: Activación)
+
+### Speaker notes
+
+Esta es la diapositiva que faltaba: hasta acá la activación era un nombre, ahora tiene forma. Recorré el diagrama de izquierda a derecha y detenete en el codo de ReLU: es literalmente dos rectas pegadas, y con eso alcanza. La pregunta que funciona: ¿por qué una función tan tonta le gana a las suaves? Respuesta corta, no satura y es baratísima de calcular. La saturación es el concepto que se llevan, y vuelve en la sección 2 con la normalización: una entrada grande sin normalizar satura la neurona igual que un `z` grande.
+
+---
+
+## 3. Cómo arrancan los pesos
+
+### Content
+
+Los pesos empiezan en valores al azar, pero **no en cualquier azar**. La escala de esa inicialización decide si la señal sobrevive al atravesar las capas o se apaga en el camino.
+
+- **Por qué no todos en cero.** Si todas las neuronas de una capa arrancan iguales, calculan lo mismo y reciben el mismo gradiente: quedan idénticas para siempre. El azar es lo que las hace distintas.
+- **El efecto es multiplicativo.** Si cada capa multiplica la escala de las activaciones por un factor `c`, después de 10 capas el efecto es `c¹⁰`. Con `c = 1.5` la señal se multiplica por 58; con `c = 0.5` se divide por 1.000. Eso es exactamente el gradiente que explota y el que se desvanece de la sección 6.
+- **He para ReLU, Glorot para el resto.** Las dos eligen la varianza de `W` para que `c` quede cerca de 1 al arrancar. He (o Kaiming) está pensada para ReLU; Glorot (o Xavier) para activaciones simétricas como tanh. Son el default de los frameworks, así que casi nunca hay que tocarlas.
+- **Un solo problema, cuatro herramientas.** Normalizar la entrada, inicializar bien, normalizar entre capas (BatchNorm, LayerNorm) y recortar el gradiente atacan todos la misma cosa: que la escala no se descontrole al atravesar la red.
+
+**Lo accionable es corto.** Dejá el default del framework, normalizá la entrada, y si el entrenamiento no arranca, revisá la inicialización antes de agregar capas.
+
+### Sources
+
+corpus/chat.md.md (§ Normalización y escala: el problema entre capas — qué viaja y cómo se controla; el efecto multiplicativo c=1.2→×6, c=1.5→×58, c=0.8→×0.1, c=0.5→×0.001 tras 10 capas; Xavier/He eligen Var(W) para c≈1 al inicio; BatchNorm, LayerNorm y conexiones residuales; el concepto único que unifica normalización del input, inicialización, normalización interna y control de gradientes)
+Keras, inicializadores `HeNormal` y `GlorotUniform` — `GlorotUniform` es el default de `Dense` <https://keras.io/api/layers/initializers/>
+
+### Speaker notes
+
+Esta diapositiva es corta a propósito y cierra la sección. El mensaje operativo es el remate: no toques el default, normalizá la entrada. Todo lo demás es para que entiendan por qué el default es el que es.
+
+El punto que más rinde es el multiplicativo, y conviene hacerlo con números en voz alta: 1.5 elevado a 10 da 58, 0.5 elevado a 10 da un milésimo. Ahí se ve que no hace falta ningún fenómeno raro para que el gradiente explote o se apague, alcanza con que cada capa desajuste un poco la escala.
+
+Conectá con la sección 6: el gradiente que se desvanece y el que explota que aparecieron en la diapositiva de qué mirar durante el entrenamiento son este mismo fenómeno visto desde el backward.
+
+Lo de arrancar todos en cero es la pregunta que siempre aparece, y la respuesta de la simetría es corta y satisfactoria: si arrancan iguales, se quedan iguales.
+
+No abras BatchNorm ni LayerNorm más allá de nombrarlas. Están en la card para que sepan que existen y que atacan lo mismo, no para explicarlas.
+
+---
+
+# 9. Overfitting
 
 **Goal of this section:** Diagnosticar y tratar, en ese orden. Primero definir overfitting como la brecha train-validación, dar el diagnóstico de tres casos y explicar el intercambio sesgo-varianza que justifica por qué regularizar empeora el entrenamiento a propósito. Después el tratamiento: L2 (weight decay) en detalle porque es el estándar y está en el título de la clase, L1 por contraste, dropout, y el resto del arsenal con la guía de cuál usar y los errores de aplicación.
 
@@ -1621,7 +1754,7 @@ Este es el mapa de decisión que ordena la segunda mitad de la sección. Insist�
 
 La regularización no mejora el ajuste. Lo empeora a propósito en entrenamiento, a cambio de que el modelo generalice mejor a datos nuevos. La brecha de la diapositiva anterior se ve así a lo largo del entrenamiento:
 
-![Curvas de train y validación al separarse](images/s8-2-1-curvas-overfitting.png)
+![Curvas de train y validación al separarse](images/s9-2-1-curvas-overfitting.png)
 <!-- ascii-source:
 error
   |\                         curva de validación
@@ -1658,7 +1791,7 @@ El intercambio sesgo-varianza es el fundamento teórico de todo lo que viene. La
 
 L2 agrega un término al objetivo que penaliza los pesos grandes:
 
-![El objetivo con el término de regularización L2](images/s8-3-1-objetivo-l2.png)
+![El objetivo con el término de regularización L2](images/s9-3-1-objetivo-l2.png)
 <!-- ascii-source:
    J  =  cost  +  λ · Σ w²
          \___/     \______/
@@ -1810,7 +1943,7 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 # Open questions
 
 - Sección 7 (Medir un clasificador) no está cubierta por el corpus (`chat.md.md`). El contenido viene del conocimiento del área. Si el presentador quiere anclarlo a una fuente propia (apunte, capítulo, ejemplo con números reales de un dataset del curso), conviene sumarla en la Colecta y re-verificar los números. El ejemplo del "99% de accuracy" y los costos FP/FN son ilustrativos, no datos de una fuente.
-- La fuente advierte que en datos tabulares una red suele perder contra gradient boosting (XGBoost, LightGBM). Está en las notas del orador (slide 1.4) como contrapunto honesto. Decidir si darle más aire en clase o dejarlo como comentario al pasar.
+- La fuente advierte que en datos tabulares una red suele perder contra gradient boosting (XGBoost, LightGBM). Está en las notas del orador (slide 1.5) como contrapunto honesto. Decidir si darle más aire en clase o dejarlo como comentario al pasar.
 - **Duración: es el problema más serio del mazo y empeoró en esta ronda.** 51 diapositivas de contenido para 90 minutos, contra 48 antes de esta ronda y 34 antes de la anterior. La sección 6 pasó de 7 a 10 diapositivas. A dos minutos por diapositiva la clase da 102 minutos sin una sola pregunta del público, y esta clase es presencial. Hay que recortar o partir la clase en dos, y es una decisión del presentador. Candidatas a recortar, en este orden: slide 8.4 (L1 contra L2), slide 3.4 (errores de partición, dejando los dos primeros bullets más el código), slide 7.7 (el umbral, que se puede dar solo con el diagrama), slide 5.6 (las especializadas), y dentro de la sección 6, fusionar 6.5 (el delta) con 6.4 (la regla de la cadena), que es la fusión más natural del mazo. **Lo que no conviene recortar de la sección 6** son 6.1, 6.9 y 6.10: son las tres pedidas explícitamente y las que más rinden por minuto.
 - Diagramas: 15. Los 10 anteriores (formas de input por arquitectura, neurona, activaciones ocultas, one-hot, partición, activaciones de salida, desbalance de accuracy, matriz de confusión, umbral, curvas de overfitting, objetivo L2) más 5 nuevos de esta ronda: penalización de MSE/MAE/Huber, penalización de BCE, reparto de cross-entropy, ciclo forward-backward y batches contra época. Además hay 5 imágenes reusadas de la biblioteca de conocimiento, que no se renderizan.
 - Las dos directivas `generate-image` (slides 1.1 y 8.1) siguen sin cumplir: ninguna sesión tuvo capacidad de generación de imágenes. Las diapositivas conservan su texto y no dependen de ellas.

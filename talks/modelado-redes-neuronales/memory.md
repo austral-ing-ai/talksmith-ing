@@ -1,7 +1,7 @@
 # memory.md — modelado-redes-neuronales
 
-**Current step:** 8 (Learnings) — pending
-**Awaiting:** — (pendiente de decisión aparte: el blocker de duración)
+**Current step:** 5 (Review) — awaiting_presenter
+**Awaiting:** — (pendiente aparte y ya crítico: el blocker de duración)
 **Topic:** Diseño y modelado de una red neuronal — entradas/salidas, matriz de confusión, overfitting y regularización L2
 **Folder:** talks/modelado-redes-neuronales/
 **Started:** 2026-08-18
@@ -478,4 +478,35 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Files created/modified: output/slide-model.json (re-FILL completo + sello de frescura), output/html/index.html, index.html raíz.
 - Auditorías: `degenerate_enum` ok, `field_coverage` ok, `image_coverage` ok, render sin warnings.
 - Pending open questions: el blocker de duración sigue abierto (51 diapositivas de contenido para 90 minutos).
+
+## 2026-08-21 — Step 5 (Review, tercera ronda) + Polish + Render
+- Status: complete (queda una pregunta abierta de ubicación)
+- Asks log:
+  - 2026-08-21 — "'La forma la decide la arquitectura' … debería ser datos de una tabla, imagen, señal, imagen RGB. Y dependiendo del dato cambia la arquitectura" / "Revisa ese slide y el ASCII"
+  - 2026-08-21 — "Mover slide 7 después del slide 5" → aclarado por el presentador: era "Una neurona, en una línea" (posición 7 del deck renderizado, contando la portada), y el slide 5 es el quote "Qué es un MLP"
+  - 2026-08-21 — "Quiero decir, 'Una neurona, en una línea' quedaría mejor como bullets numerados"
+  - 2026-08-21 — "Borrar 'One-hot contra embedding: …'"
+  - 2026-08-21 — "'Las activaciones ocultas' debería moverse a una sección Capas ocultas y agregar un par de slides con recomendaciones" → **pendiente de decidir dónde va la sección**
+- What was decided:
+  - **1.2 invirtió la causalidad.** De 'La forma la decide la arquitectura' (una imagen de 28x28 contra tres arquitecturas) a **'El dato decide la arquitectura'**: cuatro tipos de dato (tabla, señal 1D, imagen en grises, imagen RGB), su forma natural y la arquitectura que les corresponde. Diagrama rehecho de cero en cuatro paneles; el acento rojo está en el pill de MLP, que es el alcance de la clase. Se respetaron los tres [closed] previos: no se explica la convolución, RGB no son matrices apiladas sino tres números en el mismo píxel, y la declaración de alcance cierra la diapositiva.
+  - **Reordenada la sección 1.** 'Una neurona, en una línea' pasó de la 5 a la 4, justo detrás del quote 'Qué es un MLP'; 'Lo que hay que diseñar' pasó a la 5. El orden ahora es definir el MLP, mostrar su átomo, y después la agenda de decisiones. Renombrado el diagrama `s1-5-1-neurona` → `s1-4-1-neurona`, y actualizadas las referencias cruzadas (notas de 6.10 y dos entradas de Open questions apuntaban a la vieja 1.4).
+  - **La neurona pasó a bullets numerados** (cuatro pasos sin etiqueta, que el renderer numera) en vez de tres cards etiquetadas.
+  - **Borrado el anticipo de one-hot contra embedding** en 'Una posición por variable'. El texto que el presentador citó estaba en el modelo como *highlight*, no como bullet del cuerpo: por eso lo veía en el deck y no en el borrador. Aprovechando el pase, 'El largo no cambia' salió de las cards de la tabla (donde estaba mezclado con las filas de tipos de dato) y pasó a highlight.
+- Files created/modified: draft.md, final.md, images/s1-2-1-formas-de-input.{svg,png,ascii} (rehecho), images/s1-4-1-neurona.* (renombrado), output/slide-model.json, output/html/index.html.
+- Pending open questions: (1) **Dónde va la sección Capas ocultas.** (2) El blocker de duración, sin resolver, y la sección nueva lo empeora (+3 diapositivas).
+
+## 2026-08-21 — Step 5 (cuarta ronda: dos cambios estructurales) + Polish + Render
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "¿Dónde va la sección Capas ocultas?" (3 opciones) → **opción 1: al final, justo antes de Overfitting**
+  - 2026-08-21 — "Mover 'La diferencia sutil…' y 'Augmentation solo en train…' a un slide Does and don'ts y expandir con tips claves"
+- What was decided:
+  - **Sección 8 nueva, Capas ocultas**, entre 'Medir un clasificador' y 'Overfitting' (que pasó a 9). Tres diapositivas: 'Cuántas capas y cuánto ancho' (nueva), 'Las activaciones ocultas' (movida desde la 1.7) y 'Cómo arrancan los pesos' (nueva). Tapa un agujero real: 'Lo que hay que diseñar' promete seis decisiones y la sexta era la única sin sección. Las dos nuevas salen del corpus (§ arquitectura: 1–3 capas para tabular, ancho potencia de 2 decreciente, tabla de punto de partida por cantidad de datos, el procedimiento de mirar el error de train; § normalización: el efecto multiplicativo c^10, Xavier/He eligen Var(W) para c≈1). La sección 1 quedó en 6 diapositivas.
+  - **Diapositiva 3.5 'Qué hacer y qué no'**, cierre de la sección 3, plantilla `pros-cons`. Los dos puntos citados se movieron ahí y se sumaron cinco tips nuevos (partir antes de explorar, partir por grupo, fijar la semilla y guardar el split, no re-partir cuando el número no cierra, no confiar en el default de `train_test_split`). Se cuidó no repetir 3.3 ni 3.4: esas explican los modos de falla, esta da las reglas operativas.
+- **Nota de plantilla:** `pros-cons` toma `pros`/`cons` como **listas planas de strings** (las une con ' · ') más `pro_label`/`con_label`. No acepta items con cuerpo. Por eso la 3.5 quedó glanceable —siete líneas cortas— y las explicaciones bajaron a las notas del orador, que es lo que pide `principles.md`.
+- **Falso positivo de auditoría:** `field_coverage` reporta `pro_label`/`con_label` como campos ignorados en `pros-cons`, pero el template los consume y el deck los renderiza correctamente ('Qué hacer' / 'Qué no hacer' en vez de los defaults 'Ventajas' / 'Riesgos'). Es la lista de campos de la auditoría la que está desactualizada, no la diapositiva. No tocar.
+- Renombres de diagramas: `s8-2-1-curvas-overfitting`→`s9-2-1`, `s8-3-1-objetivo-l2`→`s9-3-1`, `s1-7-1-activaciones-ocultas`→`s8-2-1` (en ese orden, para evitar colisión de stems).
+- Referencias cruzadas actualizadas: nota de la 5.2 y fila de la tabla de 6.10 apuntaban a la vieja sección 8 (Overfitting), ahora 9; la 1.4 ya no dice "al cierre de esta sección" sino "en la sección 8".
+- Mapeo final (65 diapositivas): content+cards+image 17, concept-breakdown 13, value-columns 9, section-agenda 9, process 6, quiz 3, quote 2, y una cada uno de pros-cons, stat, concept-columns, code-example, divider y closing-cta. **13 plantillas distintas.**
+- Pending open questions: **el blocker de duración pasó de serio a crítico.** 54 diapositivas de contenido para 90 minutos; las notas suman 6.706 palabras, ~52 minutos de narración pura sin preguntas, sin transiciones y sin los tres quizzes. Hay que recortar o partir la clase en dos.
 

@@ -15,6 +15,7 @@
       "La función de pérdida",
       "Backpropagation",
       "Medir un clasificador",
+      "Capas ocultas",
       "Overfitting"
     ]
   },
@@ -48,43 +49,46 @@
     {
       "template": "value-columns",
       "section": "Qué se diseña de verdad",
-      "title": "La forma la decide la arquitectura",
-      "lead": "La misma imagen de 28 por 28 píxeles entra a una red densa como una fila de 784 números y a una convolucional como una grilla de 28 por 28. La arquitectura decide qué forma necesita.",
+      "title": "El dato decide la arquitectura",
+      "lead": "Cada tipo de dato tiene una **forma natural**: cuántos ejes necesita para no perder información. Esa forma es la que decide qué arquitectura le corresponde, y no al revés.",
       "media": {
         "src": "images/s1-2-1-formas-de-input.png",
-        "alt": "La misma imagen de 28 x 28 como fila, grilla y secuencia"
+        "alt": "Cuatro tipos de dato, su forma natural y la arquitectura que les corresponde"
       },
-      "design": "split-right",
+      "design": "banded",
       "highlights": [
         {
-          "body": "El alcance de esta clase es el MLP. Aplanar una imagen pierde qué píxel estaba al lado de cuál, y ese es el motivo por el que visión usa CNN. Acá el foco está en el MLP sobre datos tabulares, donde no hay ninguna vecindad que perder.",
-          "kind": "takeaway"
+          "kind": "important",
+          "body": "**El alcance de esta clase es el MLP sobre datos tabulares.** Una tabla ya viene en la forma que un MLP espera. Los otros tres se pueden aplanar en una fila, pero al aplanar se pierde la vecindad, y esa pérdida es el motivo por el que existen las otras arquitecturas."
         }
       ],
       "notes": "Esta diapositiva fija el alcance de la clase y conviene darla despacio, porque todo lo que sigue se apoya en ella. La pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 en escala de grises, ¿cuántos números son? Respuesta, 784. El punto que más rinde: la forma no es una propiedad del dato, es un requisito de la arquitectura. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden y por eso pide la fila aplanada. Por si preguntan si el aplanado es automático: no lo es, una capa densa opera solo sobre el último eje y aplanar es una capa que uno pone, Flatten() en Keras o nn.Flatten() en PyTorch. No te metas con cómo funciona una convolución ni con attention.",
       "columns": [
         {
+          "header": "Dato",
+          "cells": [
+            "**Tabla**",
+            "**Señal**",
+            "**Imagen en escala de grises**",
+            "**Imagen RGB**"
+          ]
+        },
+        {
+          "header": "Su forma natural",
+          "cells": [
+            "Una fila de `n` números, una posición por columna",
+            "Una secuencia de `T` pasos, donde el orden es parte del dato",
+            "Una grilla de alto por ancho, donde importa qué píxel está al lado de cuál",
+            "La misma grilla, con tres números en cada píxel"
+          ]
+        },
+        {
           "header": "Arquitectura",
           "cells": [
-            "MLP (densa)",
+            "MLP",
+            "CNN 1D / RNN",
             "CNN",
-            "RNN / Transformer"
-          ]
-        },
-        {
-          "header": "Qué input espera",
-          "cells": [
-            "Una fila de números de largo fijo",
-            "Una grilla: alto por ancho por color",
-            "Una secuencia de vectores"
-          ]
-        },
-        {
-          "header": "Por qué",
-          "cells": [
-            "Cada neurona se conecta con todas las entradas, y la posición dentro de la fila no significa nada para ella",
-            "La convolución necesita saber qué píxel está al lado de cuál",
-            "Cada paso es un vector y el orden entre pasos es parte del dato"
+            "CNN"
           ]
         }
       ]
@@ -94,6 +98,32 @@
       "section": "Qué se diseña de verdad",
       "quote": "**Multi-Layer Perceptron**, o perceptrón multicapa: una capa de entrada, una o más capas ocultas donde cada neurona se conecta con todas las de la capa anterior (de ahí el nombre \"densa\", o *fully connected*), y una capa de salida.",
       "notes": "Una sola frase en pantalla, veinte segundos. Leela y marcá con el dedo la parte que importa: cada neurona se conecta con todas las de la capa anterior. De acá en adelante, cuando la clase diga \"la red\", dice esto.\n\nEl nombre es histórico y viene del perceptrón de Rosenblatt; si alguien pregunta por qué se llama perceptrón habiendo capas densas de por medio, contestá eso y seguí, no abras ese frente.\n\nSi aparece la pregunta de para qué sirve hoy un MLP con las CNN y los transformers dando vueltas, la respuesta corta es que en visión el MLP es el bloque final. La CNN convierte la imagen en un vector de features y ese vector entra a una fully connected que produce la salida. El MLP no quedó obsoleto, quedó adentro."
+    },
+    {
+      "template": "process",
+      "section": "Qué se diseña de verdad",
+      "title": "Una neurona, en una línea",
+      "lead": "Una capa hace dos cosas: una combinación lineal y una no linealidad.",
+      "media": {
+        "src": "images/s1-4-1-neurona.png",
+        "alt": "Una neurona: de las entradas a la activación"
+      },
+      "design": "split-right",
+      "notes": "Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Los parámetros de una capa son m·n + m.",
+      "steps": [
+        {
+          "body": "La neurona recibe las entradas `x` y calcula la **pre-activación** `z = W·x + b`: una combinación lineal de las entradas más un sesgo."
+        },
+        {
+          "body": "Ese `z` pasa por la **activación** `a = f(z)`, y `a` es lo que la neurona entrega a la capa siguiente."
+        },
+        {
+          "body": "La no linealidad de `f` es lo que hace que apilar capas sirva. Sin ella, la composición de capas lineales colapsa a una sola matriz."
+        },
+        {
+          "body": "Hay un puñado de candidatas para `f` y casi siempre gana ReLU. Las vemos al cierre de esta sección; la activación de salida es otra historia, la determina la tarea."
+        }
+      ]
     },
     {
       "template": "process",
@@ -135,32 +165,6 @@
       ]
     },
     {
-      "template": "process",
-      "section": "Qué se diseña de verdad",
-      "title": "Una neurona, en una línea",
-      "lead": "Una capa hace dos cosas: una combinación lineal y una no linealidad.",
-      "media": {
-        "src": "images/s1-5-1-neurona.png",
-        "alt": "Las entradas se combinan en la pre-activación z y una no linealidad f produce la activación a"
-      },
-      "design": "split-right",
-      "notes": "Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Los parámetros de una capa son m·n + m.",
-      "steps": [
-        {
-          "label": "Pre-activación",
-          "body": "`z = W·x + b`. Combinación lineal de las entradas más un sesgo."
-        },
-        {
-          "label": "Activación",
-          "body": "`a = f(z)`. La no linealidad `f` hace que apilar capas sirva. Sin ella, la composición de capas lineales colapsa a una sola matriz."
-        },
-        {
-          "label": "Elección de `f`",
-          "body": "Hay un puñado de candidatas y casi siempre gana ReLU. Las vemos al cierre de esta sección. La de salida la determina la tarea."
-        }
-      ]
-    },
-    {
       "template": "concept-breakdown",
       "section": "Qué se diseña de verdad",
       "title": "Una posición por variable",
@@ -185,70 +189,21 @@
         {
           "label": "Audio",
           "body": "Espectrograma, o la forma de onda muestreada."
-        },
-        {
-          "label": "El largo no cambia",
-          "body": "La red espera siempre la misma cantidad de posiciones. Por eso las imágenes se redimensionan y el texto se trunca o se rellena."
         }
       ],
       "highlights": [
         {
-          "body": "La escala manda: con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia.",
-          "kind": "important"
+          "kind": "note",
+          "label": "El largo no cambia",
+          "body": "La red espera siempre la misma cantidad de posiciones. Por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo.",
+          "position": "top"
         },
         {
-          "body": "One-hot contra embedding: con muchas categorías posibles, one-hot da vectores enormes y casi todos ceros, y el embedding las comprime en pocas dimensiones densas que además aprenden qué categorías se parecen. Los dos puntos son el material de la sección que sigue.",
-          "kind": "takeaway"
+          "body": "**La escala.** Con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia. Es el material de la sección que sigue.",
+          "kind": "important"
         }
       ],
       "notes": "Esta diapositiva contesta la pregunta que queda colgando después de la neurona: qué es exactamente esa x. La respuesta corta, una feature por posición. MNIST funciona bien acá porque es contraintuitivo de la manera correcta: 784 posiciones suena a mucho para un dígito escrito a mano, y sin embargo es un problema chico. Si preguntan cuántos parámetros tiene la primera capa con 32 unidades, son 784 × 32 + 32 = 25.120. La tabla se recorre rápido, es un panorama; la sección que sigue desarrolla las dos primeras filas. De los tres puntos de confusión, el del largo fijo es el que más preguntas genera: un modelo entrenado con imágenes de 28 por 28 no acepta una de 32 por 32, hay que redimensionar antes."
-    },
-    {
-      "template": "value-columns",
-      "section": "Qué se diseña de verdad",
-      "title": "Las activaciones ocultas, y cómo se ven",
-      "lead": "Una activación oculta es la función no lineal `f` que se aplica después de `z = W·x + b` en las capas del medio. Su trabajo no es acotar el resultado a un rango con sentido, como en la salida, sino romper la linealidad para que apilar capas sirva.",
-      "media": {
-        "src": "images/s1-7-1-activaciones-ocultas.png",
-        "alt": "Formas de ReLU, GELU/SiLU, tanh y sigmoide"
-      },
-      "design": "split-right",
-      "highlights": [
-        {
-          "body": "La sigmoide y la tanh saturan: con `z` grande su derivada es casi cero, el gradiente que llega a las capas de abajo se apaga y la red deja de aprender. ReLU no satura del lado positivo, y esa es la razón por la que ganó.",
-          "kind": "important"
-        }
-      ],
-      "notes": "Esta es la diapositiva que faltaba: hasta acá la activación era un nombre, ahora tiene forma. Recorré el diagrama de izquierda a derecha y detenete en el codo de ReLU: son dos rectas pegadas, y con eso alcanza. La pregunta que funciona: ¿por qué una función tan tonta le gana a las suaves? No satura y es baratísima de calcular. La saturación es el concepto que se llevan, y vuelve en la sección 2: una entrada grande sin normalizar satura la neurona igual que un `z` grande.",
-      "columns": [
-        {
-          "header": "Función",
-          "cells": [
-            "ReLU",
-            "GELU / SiLU",
-            "Tanh",
-            "Sigmoide"
-          ]
-        },
-        {
-          "header": "Fórmula y rango",
-          "cells": [
-            "`max(0, z)` — [0, ∞)",
-            "suavizaciones de ReLU — (−0.3, ∞) aprox.",
-            "`(eᶻ − e⁻ᶻ) / (eᶻ + e⁻ᶻ)` — (−1, 1)",
-            "`1 / (1 + e⁻ᶻ)` — (0, 1)"
-          ]
-        },
-        {
-          "header": "Cuándo",
-          "cells": [
-            "El default de las capas ocultas",
-            "Transformers",
-            "Redes recurrentes, salidas centradas",
-            "Casi nunca en capas ocultas"
-          ]
-        }
-      ]
     },
     {
       "template": "section-agenda",
@@ -619,6 +574,26 @@
         }
       ],
       "notes": "Los dos del medio son aporte propio: ninguna de las fuentes cubre estratificación ni series de tiempo, y las dos importan para los trabajos que entregan. El de series de tiempo es el que más veces vas a ver mal resuelto, y el síntoma es un modelo que en el papel anda espectacular. Conectá con la sección 2: el identificador único es la versión extrema de este problema. Y dejá el puente hacia overfitting: la brecha train-validación solo se puede mirar si esta partición está bien hecha."
+    },
+    {
+      "template": "pros-cons",
+      "section": "Partir el dataset",
+      "title": "Qué hacer y qué no",
+      "notes": "Esta es la diapositiva que se fotografía y la que cierra la sección. Las dos columnas se leen enfrentadas, no en orden, y cada línea se desarrolla en voz alta: la diapositiva es el índice, vos sos el contenido.\n\n**Partir antes de explorar.** Es la que más se resiste, y la objeción típica es \"pero si todavía no entrené nada\". La respuesta: las decisiones que tomás mirando los datos, qué variables sacar, cómo tratar los outliers, qué imputar, también son aprendizaje. Si las tomaste mirando todo, el test ya no está limpio.\n\n**Partir por grupo.** Es la que más aparece en los trabajos que entregan. El caso que lo hace evidente: diez radiografías del mismo paciente repartidas entre train y test. El modelo no generaliza a pacientes nuevos, reconoce a ese paciente. Vale igual para varias filas del mismo cliente o de la misma sesión.\n\n**Fijar la semilla y guardar el split.** Un experimento que no se puede repetir no se puede comparar con el siguiente. Guardar los índices, no solo la semilla.\n\n**Augmentation solo en train.** Validación y test se quedan con los datos originales, porque su trabajo es representar lo que viene en producción. El preprocesamiento, en cambio, se aplica a los tres: esa es la distinción que se confunde.\n\n**Tunear contra el test.** Dala despacio porque es contraintuitiva. El modelo no entrena con validación ni con test; la diferencia sos vos, que elegís mirando validación y a lo largo de muchos experimentos vas sobreajustando tus decisiones a ese conjunto. El test atrapa eso solo si nada se eligió mirándolo, y por eso existe el tercer conjunto.\n\n**Volver a partir porque el número no cerró.** Repartir hasta que el resultado guste es elegir la partición más favorable. Es sobreajustar al test sin darse cuenta y sin que nada falle.\n\n**Confiar en el corte por defecto.** La más práctica: mostrá la firma de `train_test_split` y señalá que `stratify` es opcional y viene en `None`, que no hay parámetro de grupo, y que no mira el tiempo. La mayoría de los splits rotos que van a ver son exactamente ese default.\n\n---\n\n**Goal of this section:** Mostrar que la última capa no se elige, la determina la tarea, y que activación de salida y loss van siempre juntas. La loss aparece acá nombrada en el catálogo y se desarrolla en la sección 5. Que salgan sabiendo mapear \"qué predice el modelo\" a \"cuántas neuronas, qué activación, qué loss\", y sabiendo por qué la forma de cada activación de salida corresponde a lo que se predice.\n\n---",
+      "lead": "La sección en reglas operativas. A la izquierda lo que hay que hacer siempre; a la derecha lo que más se ve mal resuelto.",
+      "pro_label": "Qué hacer",
+      "con_label": "Qué no hacer",
+      "pros": [
+        "Partir antes de explorar",
+        "Partir por grupo, no por fila",
+        "Fijar la semilla y guardar el split",
+        "Augmentation solo en train"
+      ],
+      "cons": [
+        "Tunear contra el test",
+        "Volver a partir porque el número no cerró",
+        "Confiar en el corte por defecto"
+      ]
     },
     {
       "template": "section-agenda",
@@ -1455,6 +1430,127 @@
     },
     {
       "template": "section-agenda",
+      "section": "Capas ocultas",
+      "title": "Capas ocultas"
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Capas ocultas",
+      "title": "Cuántas capas y cuánto ancho",
+      "notes": "Esta es la diapositiva que la clase espera desde el principio y la que hay que desinflar. Recordales la primera diapositiva de la sección 1: de las seis decisiones, esta es la última en impacto, y llegaron hasta acá sin haberla necesitado.\n\nLo que se llevan no es la tabla, es el procedimiento de las dos últimas líneas. La tabla es un punto de partida para no quedarse trabado; el error de train dice si hay que agrandar y la brecha con validación dice si hay que achicar. Es un lazo, no una fórmula cerrada.\n\nSi preguntan por qué potencias de 2, la respuesta honesta es alineación de memoria en la GPU, y que la diferencia entre 60 y 64 neuronas no se va a notar en un dataset tabular. No lo vendas como si fuera profundo.\n\nEl cuello de botella es el error que más van a cometer: poner una primera capa de 8 neuronas después de un one-hot de 40 posiciones. La información se pierde ahí y ninguna capa posterior la recupera.\n\nY si alguien pregunta por el teorema de aproximación universal para justificar una sola capa muy ancha: es cierto y es inútil en la práctica, porque el teorema no dice cuántas neuronas hacen falta ni que el entrenamiento las vaya a encontrar.\n\n---",
+      "lead": "Es la única decisión de la lista que se elige libremente, y la que menos impacto tiene. Conviene resolverla rápido con un punto de partida y corregir después mirando el error.",
+      "design": "full",
+      "cards": [
+        {
+          "label": "Más ancho que la entrada",
+          "body": "La primera capa oculta no debería ser más angosta que el vector de entrada, para no crear un cuello de botella que tire información antes de empezar."
+        },
+        {
+          "label": "Potencia de 2 y decreciente",
+          "body": "128, 64, 32 hacia la salida. La potencia de 2 es alineación de memoria; lo decreciente es que la red va comprimiendo hacia la respuesta."
+        },
+        {
+          "label": "Lo que manda es la cantidad de datos",
+          "body": "La relación que importa es parámetros contra filas de entrenamiento, no parámetros contra features."
+        },
+        {
+          "label": "El procedimiento, no la fórmula",
+          "body": "Empezar chico y mirar el error de **train**: si es alto, falta capacidad y hay que agrandar; si el train está bien y la validación mal, sobra capacidad y hay que achicar o regularizar."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "position": "top",
+          "label": "Punto de partida",
+          "body": "Cientos de filas: 1 capa de 8 a 16. Miles: 1 o 2 de 32 a 64. Decenas de miles: 2 o 3 de 64 a 128."
+        },
+        {
+          "kind": "important",
+          "body": "**1 a 3 capas ocultas alcanzan para datos tabulares.** Si necesitás más profundidad que eso en una tabla, el problema casi nunca es la arquitectura."
+        }
+      ]
+    },
+    {
+      "template": "value-columns",
+      "section": "Capas ocultas",
+      "title": "Las activaciones ocultas, y cómo se ven",
+      "lead": "Una activación oculta es la función no lineal `f` que se aplica después de `z = W·x + b` en las capas del medio. Su trabajo no es acotar el resultado a un rango con sentido, como en la salida, sino romper la linealidad para que apilar capas sirva.",
+      "media": {
+        "src": "images/s8-2-1-activaciones-ocultas.png",
+        "alt": "Formas de ReLU, GELU/SiLU, tanh y sigmoide"
+      },
+      "design": "split-right",
+      "highlights": [
+        {
+          "body": "La sigmoide y la tanh saturan: con `z` grande su derivada es casi cero, el gradiente que llega a las capas de abajo se apaga y la red deja de aprender. ReLU no satura del lado positivo, y esa es la razón por la que ganó.",
+          "kind": "important"
+        }
+      ],
+      "notes": "Esta es la diapositiva que faltaba: hasta acá la activación era un nombre, ahora tiene forma. Recorré el diagrama de izquierda a derecha y detenete en el codo de ReLU: es literalmente dos rectas pegadas, y con eso alcanza. La pregunta que funciona: ¿por qué una función tan tonta le gana a las suaves? Respuesta corta, no satura y es baratísima de calcular. La saturación es el concepto que se llevan, y vuelve en la sección 2 con la normalización: una entrada grande sin normalizar satura la neurona igual que un `z` grande.\n\n---",
+      "columns": [
+        {
+          "header": "Función",
+          "cells": [
+            "ReLU",
+            "GELU / SiLU",
+            "Tanh",
+            "Sigmoide"
+          ]
+        },
+        {
+          "header": "Fórmula y rango",
+          "cells": [
+            "`max(0, z)` — [0, ∞)",
+            "suavizaciones de ReLU — (−0.3, ∞) aprox.",
+            "`(eᶻ − e⁻ᶻ) / (eᶻ + e⁻ᶻ)` — (−1, 1)",
+            "`1 / (1 + e⁻ᶻ)` — (0, 1)"
+          ]
+        },
+        {
+          "header": "Cuándo",
+          "cells": [
+            "El default de las capas ocultas",
+            "Transformers",
+            "Redes recurrentes, salidas centradas",
+            "Casi nunca en capas ocultas"
+          ]
+        }
+      ]
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Capas ocultas",
+      "title": "Cómo arrancan los pesos",
+      "notes": "Esta diapositiva es corta a propósito y cierra la sección. El mensaje operativo es el remate: no toques el default, normalizá la entrada. Todo lo demás es para que entiendan por qué el default es el que es.\n\nEl punto que más rinde es el multiplicativo, y conviene hacerlo con números en voz alta: 1.5 elevado a 10 da 58, 0.5 elevado a 10 da un milésimo. Ahí se ve que no hace falta ningún fenómeno raro para que el gradiente explote o se apague, alcanza con que cada capa desajuste un poco la escala.\n\nConectá con la sección 6: el gradiente que se desvanece y el que explota que aparecieron en la diapositiva de qué mirar durante el entrenamiento son este mismo fenómeno visto desde el backward.\n\nLo de arrancar todos en cero es la pregunta que siempre aparece, y la respuesta de la simetría es corta y satisfactoria: si arrancan iguales, se quedan iguales.\n\nNo abras BatchNorm ni LayerNorm más allá de nombrarlas. Están en la card para que sepan que existen y que atacan lo mismo, no para explicarlas.\n\n---\n\n**Goal of this section:** Diagnosticar y tratar, en ese orden. Primero definir overfitting como la brecha train-validación, dar el diagnóstico de tres casos y explicar el intercambio sesgo-varianza que justifica por qué regularizar empeora el entrenamiento a propósito. Después el tratamiento: L2 (weight decay) en detalle porque es el estándar y está en el título de la clase, L1 por contraste, dropout, y el resto del arsenal con la guía de cuál usar y los errores de aplicación.\n\n---",
+      "lead": "Los pesos empiezan en valores al azar, pero **no en cualquier azar**. La escala de esa inicialización decide si la señal sobrevive al atravesar las capas o se apaga en el camino.",
+      "cards": [
+        {
+          "label": "Por qué no todos en cero",
+          "body": "Si todas las neuronas de una capa arrancan iguales, calculan lo mismo y reciben el mismo gradiente: quedan idénticas para siempre. El azar es lo que las hace distintas."
+        },
+        {
+          "label": "El efecto es multiplicativo",
+          "body": "Si cada capa multiplica la escala por un factor `c`, tras 10 capas el efecto es `c¹⁰`. Con `c = 1.5` la señal se multiplica por 58; con `c = 0.5` se divide por 1.000."
+        },
+        {
+          "label": "He para ReLU, Glorot para el resto",
+          "body": "Las dos eligen la varianza de `W` para que `c` quede cerca de 1 al arrancar. Son el default de los frameworks, así que casi nunca hay que tocarlas."
+        },
+        {
+          "label": "Un solo problema, cuatro herramientas",
+          "body": "Normalizar la entrada, inicializar bien, normalizar entre capas (BatchNorm, LayerNorm) y recortar el gradiente atacan todos lo mismo: que la escala no se descontrole."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "important",
+          "body": "**Lo accionable es corto.** Dejá el default del framework, normalizá la entrada, y si el entrenamiento no arranca, revisá la inicialización antes de agregar capas."
+        }
+      ]
+    },
+    {
+      "template": "section-agenda",
       "section": "Overfitting",
       "title": "Overfitting"
     },
@@ -1512,8 +1608,8 @@
       "title": "Sesgo contra varianza",
       "lead": "La regularización no mejora el ajuste: lo empeora en train a cambio de que el modelo generalice mejor.",
       "media": {
-        "src": "images/s8-2-1-curvas-overfitting.png",
-        "alt": "Curvas de train y validación: el error de train baja sin parar mientras el de validación deja de bajar y vuelve a subir"
+        "src": "images/s9-2-1-curvas-overfitting.png",
+        "alt": "Curvas de train y validación al separarse"
       },
       "design": "split-right",
       "cards": [
@@ -1542,8 +1638,8 @@
       "title": "L2: penalizar los pesos grandes",
       "lead": "L2 agrega un término al objetivo que penaliza los pesos grandes.",
       "media": {
-        "src": "images/s8-3-1-objetivo-l2.png",
-        "alt": "El objetivo J igual a cost más lambda por suma de w al cuadrado: el término L2 penaliza los pesos grandes y los empuja hacia cero"
+        "src": "images/s9-3-1-objetivo-l2.png",
+        "alt": "El objetivo con el término de regularización L2"
       },
       "design": "split-left",
       "cards": [
@@ -1747,7 +1843,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "2d7d3075a315a42722c1c5ec0f35befcd41198cd5f94885443c74a6fd4c9422f",
-    "bytes": 135997
+    "sha256": "3800e00b0b935a751ee14d6760bcf65c4e39dddc8cd387a86636a28748ab51a1",
+    "bytes": 145908
   }
 }

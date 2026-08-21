@@ -1,18 +1,29 @@
-            la misma imagen de 28 x 28, tres arquitecturas
+   TABLA                              SENAL 1D  (audio, ECG)
 
-  MLP (capa densa)         CNN (convolucional)      RNN / Transformer
-  ----------------         -------------------      -----------------
+   edad  ingreso  zona                    /\      /\   /\
+   ----  -------  ----                   /  \    /  \ /  \
+    34    52000    12                   /    \  /    V
+    41    38000    07                  /      \/
 
-  [ ][ ][ ] ... [ ]          +-------------+         [v1] [v2] ... [vT]
-   1  2  3      784          |             |          t=1  t=2      t=T
-                             |   28 x 28   |
-  una fila de 784            |             |         una secuencia de
-  numeros                    +-------------+         vectores, en orden
+   -> [ ][ ][ ] ... [ ]                -> [x1][x2][x3] ... [xT]
+      una fila de n numeros               una secuencia de T pasos
+      MLP                                 CNN 1D / RNN
 
-  hay que aplanarla          la grilla, intacta      el orden es el dato
+
+   IMAGEN EN GRISES                   IMAGEN RGB
+
+   +---------------+                  +---------------+
+   |               |                  |      [*]      |   cada pixel
+   |    28 x 28    |                  |               |   guarda tres
+   |               |                  |    28 x 28    |   numeros: R G B
+   +---------------+                  +---------------+
+
+   -> una grilla alto x ancho         -> la misma grilla,
+      CNN                                3 numeros por pixel
+                                         CNN
 
 <!-- ascii-note:
-intent: mostrar que un mismo dato cambia de forma segun la arquitectura que lo recibe
-emphasize: el contraste entre la fila aplanada del MLP y la grilla intacta de la CNN
-labels: MLP fila de 784, CNN grilla 28 x 28, RNN/Transformer secuencia v1..vT
+intent: mostrar cuatro tipos de dato, la forma natural de cada uno y la arquitectura que le corresponde
+emphasize: que lo que cambia entre los cuatro es la cantidad de ejes que hace falta para no perder informacion; el pixel ampliado de RGB que guarda tres numeros en el mismo punto, no tres grillas
+labels: TABLA fila de n numeros MLP, SENAL 1D secuencia de T pasos CNN 1D o RNN, IMAGEN EN GRISES grilla alto por ancho CNN, IMAGEN RGB la misma grilla con 3 numeros por pixel CNN; cuatro paneles en dos filas, mismo lienzo y mismos margenes
 -->
