@@ -1,0 +1,24 @@
+      L(W)   el error, como funcion de los pesos
+       ^
+       |  o (1)                                             /
+       |   \    pesos al azar: el error arranca alto       /
+       |    \                                             /
+       |     o (2)                                       /
+       |      \                                         /
+       |       o (3)                                   /
+       |        \      cada paso:  W <- W - n * grad  /
+       |         o (4)                               /
+       |          \__                            __/
+       |             o__ o__ o__ o__ o__ o__ ___/
+       |                          ^
+       |                       el minimo: el error mas bajo alcanzable
+       +----------------------------------------------------------> W
+
+   un eje por cada peso de la red: el dibujo muestra uno,
+   un MLP real tiene millones
+
+<!-- ascii-note:
+intent: instalar la imagen mental del descenso por una superficie de error antes de entrar en las formulas
+emphasize: el punto de arranque alto y al azar, los pasos cada vez mas cortos cerca del fondo, y el minimo marcado
+labels: L(W) el error en el eje vertical, W los pesos en el horizontal, (1) a (4) los pasos sucesivos, n es la tasa de aprendizaje; la nota al pie aclara que el dibujo es de un solo peso
+-->

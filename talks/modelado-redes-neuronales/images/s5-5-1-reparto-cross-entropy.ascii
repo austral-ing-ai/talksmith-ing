@@ -1,0 +1,17 @@
+    3 clases, la verdadera es  gato
+
+    la red predice                    cross-entropy mira una sola casilla
+
+    gato   [########  ]  0.80   <---  L = -log(0.80) = 0.22
+    perro  [##        ]  0.15
+    zorro  [#         ]  0.05
+                         ----
+                         1.00
+
+    si a gato le hubiera dado 0.05:   L = -log(0.05) = 3.00
+
+<!-- ascii-note:
+intent: mostrar que cross-entropy ignora las clases equivocadas y solo mira la probabilidad de la correcta
+emphasize: la flecha a la casilla de gato y el contraste entre 0.22 y 3.00
+labels: tres clases gato/perro/zorro con sus probabilidades, la suma 1.00, y las dos penalizaciones
+-->

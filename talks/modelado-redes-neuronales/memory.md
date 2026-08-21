@@ -1,7 +1,7 @@
 # memory.md — modelado-redes-neuronales
 
-**Current step:** 8 (Learnings) — awaiting_presenter
-**Awaiting:** decisión de promoción del patrón `terminology` (4 recurrencias) a `config/learnings.md`, y promoción de la Talk a la biblioteca de conocimiento.
+**Current step:** 8 (Learnings) — pending
+**Awaiting:** — (pendiente de decisión aparte: el blocker de duración)
 **Topic:** Diseño y modelado de una red neuronal — entradas/salidas, matriz de confusión, overfitting y regularización L2
 **Folder:** talks/modelado-redes-neuronales/
 **Started:** 2026-08-18
@@ -379,3 +379,103 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Render: html-strict, 42 diapositivas. La primera pasada avisó que la 2.1 no entraba en la grilla editorial (cuerpo de 170 caracteres contra ~140); se le sacó el formato editorial y se acortaron las tres cards, y la segunda pasada salió limpia. Auditorías degenerate_enum, field_coverage e image_coverage en verde.
 - Files created/modified: draft.md, final.md, images/s1-2-1-formas-de-input.{svg,png}, images/s1-6-1-activaciones-ocultas.* (renombrados), output/slide-model.json, output/html/index.html, /index.html, config/feedback-backlog.md
 - Pending open questions: las dos directivas generate-image (1.1 y 6.1) siguen sin cumplir, esta sesión tampoco tiene generación de imágenes. El framing MLP y el ejemplo de MNIST no están en el corpus; si se los quiere anclar hay que sumar la exploración en la Colecta. Duración: 34 diapositivas de contenido para 90 minutos.
+
+
+## 2026-08-21 — Step 5 — ronda 21: pérdida y backpropagation
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "¿Nueva presentación o retomar una existente?" → Retomar `modelado-redes-neuronales`
+  - 2026-08-21 — "¿Qué tan fina va la sección de loss functions?" → Opción 1, por familia
+  - 2026-08-21 — "¿Qué tan fina va la sección de backpropagation?" → Comprensiva (opción 2)
+  - 2026-08-21 — "¿Propongo los recortes para volver a 90 minutos?" → sin responder, queda abierto
+- Estado al reabrir: el encabezado de memory.md decía Step 8 awaiting_presenter, arrastrado de una sesión anterior; la última entrada real era la ronda 20 (Step 5/6/7). El presentador pidió procesar feedback, así que la sesión entró por Revisión y el encabezado quedó corregido.
+- Entradas de esta ronda: 4 viñetas escritas en draft.md más 2 instrucciones dadas en chat (backpropagation y la cita de apertura), que se registraron como viñetas antes de aplicarlas.
+- What was decided:
+  (1) **Diapositiva 1.3 nueva, "Qué es un MLP"** — la definición salió del cuerpo de la 1.2 y quedó sola como cita a pantalla completa. La 1.2 se queda con el contraste de las tres arquitecturas y la declaración de alcance. Las 1.3 a 1.6 corrieron a 1.4 a 1.7.
+  (2) **Sección 5 nueva, "La función de pérdida"**, seis diapositivas: la cita de apertura, qué es una loss (loss/cost/objective y la diferenciabilidad), regresión con MSE/MAE/Huber en una sola, BCE, cross-entropy, y las especializadas en tabla. Las tres de regresión van juntas porque el punto es el contraste y se ve en un solo dibujo. El bloque archivado "Activación y loss se eligen juntas" volvió al mazo repartido entre la 5.4 y la 5.5.
+  (3) **Sección 6 nueva, "Cómo aprende la red: backpropagation"**, siete diapositivas: ciclo forward/backward, la función de coste, la regla de la cadena, el delta, la propagación hacia atrás, el paso de actualización, y batch contra época.
+  (4) **La lista de decisiones de diseño de la 1.4** perdió "El overfitting" y ganó "La función de pérdida". Para no dejar dos cards diciendo lo mismo, "La salida" dejó de mencionar la loss y "El error" pasó a ser explícitamente la medición del modelo ya entrenado.
+  (5) **Tabla de la 2.6**: el encabezado lo cambió el presentador a mano; la bajada decía "La columna dice floats, no neuronas" y pasó a "La última columna cuenta floats, no neuronas". El párrafo de faltantes que el presentador borró quedó archivado en Cut material y su contenido sobrevive en las notas del orador.
+- Reuso de la biblioteca de conocimiento: las cinco imágenes de fórmulas de `knowledge-library/backpropagation/` (función de coste, regla de la cadena, delta de salida, delta oculto, paso de actualización) se copiaron a `images/bp-*.png` y se referencian directas, sin volver a renderizarlas. La sexta imagen del tema, el diagrama forward/backward, tenía párrafos en inglés y **no** se reusó: se reemplazó por un ASCII propio en español, que además deja espacio para la mecánica de batches. Es el primer reuso cross-Talk de este repo.
+- Decisión de notación: las secciones 5 y 6 usan `y` para la predicción y `t` para el objetivo, que es lo que traen las imágenes reusadas y lo que los alumnos ya vieron en `intro-redes-neuronales`. El corpus usa `y − ŷ`. Las dos son estándar y no se pueden mezclar; queda anotado en Open questions con el costo de revertir (reescribir las fórmulas de la sección 5 y volver a dibujar las cinco imágenes).
+- Tensión resuelta: la sección 6.2 deriva sobre la L2 con el factor ½ mientras la 5.3 escribe MSE sin él. Las notas del orador de la 6.2 lo explican (una constante positiva no mueve el mínimo, el ½ está para que la derivada quede limpia) porque un alumno lo iba a notar.
+- Aporte propio marcado: la mecánica de batches (6.7) se apoya en el corpus solo para el manejo `(B,n)` y para que el batch size sea hiperparámetro; el resto, incluido el ejemplo aritmético de 10.000 filas con batch 100, es construido para la clase y está declarado en Sources.
+- Verificación numérica: −log(0,80) = 0,22 y −log(0,05) = 3,00 (logaritmo natural), las tres probabilidades del diagrama suman 1,00; Huber con d = 1 castiga 0,5, 1,5 y 9,5 para errores de 1, 2 y 10, contra 1, 4 y 100 de MSE y 1, 2 y 10 de MAE. Todos recomputados antes de escribirlos.
+- Key inputs: draft.md completo; corpus/chat.md.md (§1 loss/cost/objective y batches, §8 catálogo de outputs y detalles de implementación, §4 gradiente ralo); knowledge-library/backpropagation/index.md y sus imágenes.
+- Files created/modified: draft.md, config/feedback-backlog.md, images/bp-funcion-de-coste.png, images/bp-regla-de-la-cadena.png, images/bp-delta-salida.png, images/bp-delta-oculta.png, images/bp-paso-de-actualizacion.png
+- Verificación estructural: cero viñetas sin cerrar, cero `[open]`, find-closed-unmirrored en cero, 38 fences balanceadas, cero referencias de imagen rotas.
+- Pending open questions: **la duración es ahora el problema más serio del mazo.** 48 diapositivas de contenido contra 34 antes de esta ronda; a dos minutos por diapositiva son 96 minutos sin una sola pregunta. Hay que recortar o partir la clase en dos, y el presentador todavía no decidió. Candidatas anotadas en Open questions. Siguen abiertas la notación y/t, la atribución de la cita de la 5.1, y las dos directivas generate-image sin cumplir.
+
+## 2026-08-21 — Step 6 (Pulido) y Step 7 (Render) — ronda 21
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "¿Pulir y renderizar, o proponer recortes primero?" → "Vamos a pulir y generar el HTML"
+- Diagramas: 16 bloques ASCII en final.md. **10 se reusaron sin volver a dibujar** (sello de digest intacto). **6 se renderizaron**: los 5 nuevos más s1-2-1-formas-de-input, que la ronda 20 había dejado sin sellar y por eso volvía a entrar en cada pasada.
+- Renombre por corrimiento de secciones: 7 juegos de archivos (.svg/.png/.ascii más su companion de crítica) pasaron a su id nuevo — s1-4-1 a s1-5-1, s1-6-1 a s1-7-1, s5-1-2 a s7-1-2, s5-2-1 a s7-2-1, s5-7-1 a s7-7-1, s6-2-1 a s8-2-1, s6-3-1 a s8-3-1. Renombrar en vez de re-renderizar preserva el sello, así que los 7 entraron como "sin cambios".
+- Diagramas nuevos: penalización de MSE/MAE/Huber, penalización de BCE, reparto de cross-entropy, ciclo forward-backward, batches contra época. Tres limpios en la primera pasada; dos necesitaron una revisión (una por una etiqueta apretada, dos por encuadre que el audit de aspecto marcó). Ninguno quedó sin resolver.
+- **Desvío de contrato registrado en los 5 logs de crítica:** la revisión visual la hizo el propio diagram-illustrator leyendo el PNG de `.critique/`, sin despachar el subagente diagram-critic ciego, porque la sesión tiene instrucción explícita de no invocar subagentes salvo pedido del presentador. Vale menos que una crítica independiente y está dicho en cada log.
+- Corrección numérica detectada durante el pulido: las notas de la 5.5 decían que con 0,05 la penalización "se multiplica por catorce"; el cociente real es 3,00 / 0,22 = 13,4. Se corrigió a "por más de trece" en draft.md y se rehizo la copia a final.md antes de seguir. Es la única escritura sobre draft.md después de cerrar la Revisión, y fue para arreglar un número que yo mismo había puesto mal.
+- Imágenes reusadas de la biblioteca: las 5 de fórmulas de backpropagation entraron como refs directas a `images/bp-*.png`, sin pasar por el pipeline de ASCII.
+- Limpieza de final.md: 16 fences reescritas a refs de imagen, 16 refs .svg reescritas a .png (auditoría de extensiones en verde, cero .svg/.webp/.avif/.heic), cero `[open]` que rescatar, 58 bloques de Presenter feedback quitados (48 de diapositiva, 10 de sección/agenda).
+- Sin cumplir: las dos directivas `generate-image` (1.1 y 8.1). Esta sesión tampoco tiene generación de imágenes.
+- Render: html-strict. El modelo pasó de 42 a **58 diapositivas** (cubierta, 8 divisores de sección, contenido y conclusiones). Se reconstruyó el slide-model a partir del de la ronda 20: se insertaron la cita del MLP, las 6 de la sección de pérdida y las 7 de backpropagation, se reescribieron las cards de la 1.4 y las 7 viñetas de conclusiones, se corrigió el encabezado de la tabla de la 2.6 y se retiró de esa diapositiva el destacado de faltantes que el presentador había borrado.
+- Nota de render: las 16 SVG se inlinean como vector aunque final.md las referencie como .png; el build resuelve el hermano .svg. Las 5 imágenes de la biblioteca van embebidas como PNG en base64.
+- Auditorías: degenerate_enum, field_coverage e image_coverage en verde. La primera pasada avisó que la 1.4 no entraba en la grilla editorial (cuerpo de 126 caracteres contra ~100); se acortaron las cards de "La función de pérdida" y "El error" en el modelo y la segunda pasada salió limpia.
+- Pendiente cosmético heredado: el ícono 'remove_red_eye' no resuelve y cae a 'info'. Viene de rondas anteriores.
+- Files created/modified: final.md, draft.md (una corrección numérica), images/ (5 SVG+PNG nuevos, 7 juegos renombrados, 5 PNG de la biblioteca), images/.critique/ (5 logs), output/slide-model.json, output/html/index.html, /index.html
+- Pending open questions: la duración sigue sin resolverse y ahora el mazo renderiza 58 diapositivas. Siguen abiertas la notación y/t, la atribución de la cita de la 5.1 y las dos imágenes de ambiente.
+
+## 2026-08-21 — Step 5 (Review — ronda tardía sobre Step 8)
+- Status: complete
+- Asks log: none (bullet inequívoco, no requirió resolución)
+- What was decided: Se quitó la segunda línea de la diapositiva 3 ("Qué es un MLP"): "Es la arquitectura más simple que merece el nombre de red neuronal, y sigue siendo el bloque final de muchas CNN." La diapositiva queda como cita pura con la definición del MLP. La tercera nota del orador apuntaba a "la segunda línea"; se reescribió para no referenciar texto ausente, conservando el contenido.
+- Key inputs: pedido del presentador en chat.
+- Files created/modified: draft.md (contenido + notas + bullet [closed] en Presenter feedback de la sección 3), final.md (mismo cambio aplicado en sitio), output/slide-model.json, output/html/index.html
+- Pending open questions: none
+
+## 2026-08-21 — Step 5 (Review — segunda ronda tardía) + Step 6 (Polish)
+- Status: complete
+- Asks log: none (los cuatro bullets eran inequívocos; el respaldo documental se resolvió con búsqueda, no con pregunta)
+- What was decided: Reescritura completa de la sección 6 (backpropagation), que pasó de 7 a 10 diapositivas.
+  - **Corrección de fondo.** La frase de apertura de la vieja 6.1 decía que el backward "ajusta cada peso", y es falso. Se fijó la regla editorial de la sección en el Goal: el backward produce valores intermedios que se acumulan; `W` y `b` cambian una sola vez, al cerrar el batch. Se barrieron las siete diapositivas viejas contra esa regla (6.2 frase, bullets y ASCII; 6.3 la loss es de una fila y se deriva el promedio del batch; 6.4 los tres factores como valores intermedios; 6.5 δ como valor intermedio que no sobrevive al batch; 6.6 lo que viaja son deltas; 6.7 el paso condicionado al cierre del batch más bullet nuevo; 6.8 acumulador y vaciado explícitos).
+  - **6.1 nueva** — "Entrenar es buscar el mínimo de una función": superficie de error, arranque al azar, pasos que se acortan, mínimo marcado.
+  - **6.9 nueva** — "El ciclo completo, batch a batch": ciclo de vida entero en un diagrama, acumular arriba / aplicar abajo / volver al batch siguiente.
+  - **6.10 nueva** — "Qué mirar cuando esto se entrena": tabla síntoma-causa-perilla (5 filas) + gradiente que se desvanece, que explota, orden de las perillas y una por vez.
+- Key inputs: **Respaldo documental agregado (pedido explícito).** PyTorch *Optimizing Model Parameters* (el bucle zero_grad / backward / step y "Gradients by default add up; to prevent double-counting, we explicitly zero them at each iteration"); Keras `Model.fit` (`batch_size` = "Number of samples per gradient update", definición de época); CS231n *Optimization* (paso en dirección negativa del gradiente; el gradiente del minibatch como aproximación del completo) y *Backpropagation*; Google ML Crash Course (descenso por gradiente como búsqueda de los pesos de menor loss); Pascanu, Mikolov y Bengio 2013 (desvanecimiento, explosión y recorte de norma); Keras `Adam` (`learning_rate` 0.001, `clipnorm`, `global_clipnorm`).
+- **Hallazgo sobre las fuentes:** el presentador pidió reusar "un par de gráficos de la presentación de introducción" para la idea del mínimo. Se revisó `talks/intro-redes-neuronales` y **no existe ese gráfico**: sus imágenes del tema son fórmulas (coste L2, regla de la cadena, delta, paso de actualización) y están en inglés; la idea del valle aparece solo en prosa como la analogía de la pelota. Los cuatro diagramas de esta ronda son propios y en español.
+- Files created/modified: draft.md (sección 6 completa + 4 bullets [closed] + Open questions de duración); final.md (regenerado desde draft.md por Polish); images/ — 4 SVG+PNG nuevos (`s6-1-1-descenso-al-minimo`, `s6-2-1-ciclo-forward-backward`, `s6-8-1-batches-y-epoca`, `s6-9-1-ciclo-batch-a-batch`) con sus sidecars `.ascii` y sus companions en `.critique/`; se purgaron por `gc` los dos stems huérfanos del numerado viejo (`s6-1-1-ciclo-forward-backward`, `s6-7-1-batches-y-epoca`).
+- Nota de entorno: `cairosvg` no está instalado en el Python del sistema. Se rasterizó con un venv temporal en el scratchpad de la sesión. Si esto se repite en cada Polish, conviene un venv estable en el repo.
+- Pending open questions: (1) **Duración: 51 diapositivas para 90 minutos**, contra 48 antes de esta ronda. Es el problema más serio del mazo y la decisión es del presentador (recortar o partir en dos). (2) Estilo de render por elegir; el deck HTML publicado quedó desactualizado.
+
+## 2026-08-21 — Revisión Composer (scope=full) + fixes + Polish
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "Antes de moverte a html-strict. Que el editor revise en forma critica el contenido de la presentacion" → punch-list de 2 blockers, 6 majors, 1 minor
+  - 2026-08-21 — "¿Cómo seguimos?" (4 opciones) → **Opción 2: aplicar todo menos la duración, incluida la tesis reescrita**
+- What was decided: se aplicaron los 6 majors, el minor y el blocker de tesis. El blocker de duración queda abierto por decisión del presentador.
+  - **Tesis (blocker).** El `Claim` decía "tres lugares" mientras 1.4 enumera seis decisiones y el mazo tiene ocho secciones; pérdida y backpropagation (16 diapositivas, 31% de la clase) quedaban fuera. Ahora: cuatro lugares de decisión, backpropagation declarado mecanismo y no decisión, medir y regularizar como cierre.
+  - **L6 en la sección 6.** "Se acumula durante el batch y se aplica al cerrarlo" estaba como contenido visible en 6.2, 6.7, 6.8 y 6.9. Repartido por dueño: 6.2 enuncia, 6.7 aritmética del paso, 6.8 conteo, 6.9 ensamblado. Dos bloques a `Cut material`.
+  - **L6 en 6.10.** Las filas de overfitting y de normalización repetían 8.1, 2.3 y las notas de 6.7; pasaron a puntero seco.
+  - **Matemática contra API en 6.9.** El diagrama descompone `g += grad` por fila; en código `loss.backward()` es uno por batch y la suma es vectorizada. Aclaración agregada a las notas del orador.
+  - **Títulos.** H1 de la sección 6 (36 → `Backpropagation`) y de la 8 (28 → `Overfitting`); ocho H2 sobre 40 caracteres reescritos. Ahora el mazo entero está dentro del presupuesto.
+  - **Notas del orador.** Recortadas 6.1, 6.8, 6.9 y 6.10. Quedan 22 diapositivas sobre las 120 palabras, todas anteriores a esta ronda.
+  - **L8, "gradiente".** Se usaba en 1.7 y 2.3 antes de definirse en 6.1; se agregó la glosa en su primer uso visible.
+- **Override registrado:** la sección 6 queda en 10 diapositivas contra el ~8 de `principles.md`. Fusionar 6.4 con 6.5 rompe el presupuesto de densidad (dos imágenes de fórmula más seis bullets) y partir la sección agrega una divisoria a un mazo ya largo. El defecto cuesta menos que cualquiera de los dos remedios.
+- Files created/modified: draft.md (tesis, sección 6, títulos, notas, Cut material, Open questions, 2 bullets [closed]); final.md (regenerado); dos SVG con `<title>` actualizado (s6-1-1, s1-2-1).
+- Pending open questions: (1) **Duración, sin resolver y es el blocker.** 51 diapositivas para 90 minutos; las notas solas suman ~6.060 palabras, unos 50 minutos de narración pura sin preguntas ni transiciones ni los tres quizzes. (2) 22 diapositivas con notas sobre presupuesto, ligadas a lo mismo. (3) Render por disparar.
+
+## 2026-08-21 — Step 7 (Render, html-strict)
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "¿Qué estilo de render?" → **html-strict**
+  - 2026-08-21 — "Revisa si el mapping de slide al style es el mejor" / "Me gustaría explorar si es posible más diversidad" → auditoría de clasificación antes del FILL
+- What was decided: se re-hizo el FILL entero desde `final.md` y se corrigió el mapeo. **Diagnóstico:** el modelo anterior mandaba 22 de 58 diapositivas a `content+cards+image`; dos de ellas eran el antipatrón que el catálogo nombra explícitamente (una tabla con imagen compartida colapsada en cards, que pierde la alineación por fila). El resto no era error de clasificación sino monocultivo de la fuente: casi toda diapositiva es "lead + un diagrama + 3 o 4 cards etiquetadas", y con esa forma la regla dispara bien.
+- **Hallazgo clave del catálogo:** `design` + `media` son del *stage*, no de la plantilla, así que **cualquier** plantilla puede llevar el diagrama. La imagen nunca es motivo para elegir `content+cards+image`; el orden del discriminador pone `process` y `stat` **antes**. Eso desbloqueó la diversidad sin perder ningún diagrama.
+- Reclasificaciones: 1.2 y 1.7 y 8.1 → `value-columns` (la tabla es el contenido); 1.4 (el lead dice "en este orden"), 1.5, 6.2, 6.4, 6.9 y C.2 (checklist, learnings L3) → `process`; 7.1 → `stat` (los números son el contenido).
+- **Bug encontrado y corregido:** la 8.1 llevaba la imagen de la 8.2 duplicada (`s8-2-1-curvas-overfitting.png` en dos diapositivas seguidas). En `final.md` la 8.1 no tiene imagen. Quitada.
+- Ajustes de densidad: 1.7 pasó de 4 columnas a 3 (fórmula y rango fusionadas) para conservar el diagrama sin que se apreten las celdas.
+- Mapeo final (61 diapositivas): content+cards+image 16, concept-breakdown 12, value-columns 9, section-agenda 8, process 6, quiz 3, quote 2, stat 1, concept-columns 1, code-example 1, divider 1, closing-cta 1. **De 10 plantillas distintas a 12, y la dominante bajó de 38% a 26%.**
+- Files created/modified: output/slide-model.json (re-FILL completo + sello de frescura), output/html/index.html, index.html raíz.
+- Auditorías: `degenerate_enum` ok, `field_coverage` ok, `image_coverage` ok, render sin warnings.
+- Pending open questions: el blocker de duración sigue abierto (51 diapositivas de contenido para 90 minutos).
+

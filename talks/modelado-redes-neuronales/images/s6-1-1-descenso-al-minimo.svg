@@ -1,0 +1,61 @@
+<!-- talksmith-ascii-sha256: 37d0bb43397fcb9b078152fcadfde01729618030b6686325444a6ae585f8911a -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" font-family="Helvetica, Arial, sans-serif"  font-size="13">
+  <title>Buscar el mínimo de una función</title>
+  <desc>La loss depende solo de los pesos; entrenar es caminar por esa superficie hacia el punto más bajo.</desc>
+  <rect x="0" y="0" width="700" height="360" fill="#ffffff"/>
+  <defs>
+    <marker id="ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0 0 L10 4 L0 8 z" fill="#7A7373"/>
+    </marker>
+    <marker id="ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/>
+    </marker>
+  </defs>
+
+  <g stroke="#B9B3B3" stroke-width="1.4" fill="none" marker-end="url(#ag)">
+    <path d="M 92 300 L 92 48"/>
+    <path d="M 92 300 L 656 300"/>
+  </g>
+  <text x="34" y="46" font-size="13" font-weight="bold">L(W)</text>
+  <text x="34" y="64" font-size="11" fill="#7A7373">el error</text>
+  <text x="664" y="304" font-size="13" font-weight="bold">W</text>
+  <text x="612" y="322" font-size="11" fill="#7A7373">los pesos</text>
+
+  <path d="M 118 74 C 200 178, 268 250, 372 268 C 476 250, 560 168, 634 66"
+        stroke="#B9B3B3" stroke-width="2.2" fill="none"/>
+
+  <g fill="#ffffff" stroke="#7A7373" stroke-width="2">
+    <circle cx="120" cy="78" r="7"/>
+    <circle cx="180" cy="158" r="7"/>
+    <circle cx="240" cy="212" r="7"/>
+    <circle cx="298" cy="246" r="7"/>
+    <circle cx="342" cy="262" r="7"/>
+  </g>
+  <circle cx="372" cy="268" r="9" fill="#DA1B2E"/>
+
+  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#ag)">
+    <path d="M 130 90 L 168 145"/>
+    <path d="M 190 170 L 228 200"/>
+    <path d="M 250 222 L 286 238"/>
+  </g>
+
+  <g font-size="12" fill="#7A7373">
+    <text x="136" y="70">1</text>
+    <text x="196" y="152">2</text>
+    <text x="256" y="206">3</text>
+    <text x="312" y="240">4</text>
+  </g>
+
+  <text x="146" y="106" font-size="12.5">pesos al azar:</text>
+  <text x="146" y="122" font-size="12.5">el error arranca alto</text>
+
+  <text x="238" y="152" font-size="12.5">cada paso resta una</text>
+  <text x="238" y="168" font-size="12.5">fracción del gradiente</text>
+  <text x="238" y="188" font-size="12.5" font-family="'DejaVu Sans Mono', monospace">W = W - &#951; * g</text>
+
+  <path d="M 400 296 L 380 278" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <text x="406" y="302" font-size="13" font-weight="bold" fill="#DA1B2E">el mínimo</text>
+  <text x="406" y="318" font-size="11.5" fill="#DA1B2E">el error más bajo alcanzable</text>
+
+  <text x="92" y="344" font-size="11.5" fill="#7A7373">un eje por cada peso de la red: el dibujo muestra uno, un MLP real tiene millones</text>
+</svg>

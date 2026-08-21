@@ -1,0 +1,19 @@
+        penalizacion  -log(y)   cuando la etiqueta verdadera es  t = 1
+
+    L  |
+       |\
+       | \
+       |  \
+       |   \____
+       |        \________
+   ----+------------------+----  y  (probabilidad que dio la red)
+       0                  1
+
+   y cerca de 1   ->  penalizacion cerca de 0    acertar seguro no cuesta
+   y cerca de 0   ->  penalizacion al infinito   errar seguro cuesta todo
+
+<!-- ascii-note:
+intent: mostrar que la penalizacion de BCE explota cuando la red le da poca probabilidad a la clase correcta
+emphasize: la asintota vertical en y = 0 y que la curva toca cero en y = 1
+labels: eje horizontal y de 0 a 1 (probabilidad predicha), eje vertical penalizacion -log(y)
+-->

@@ -1,0 +1,51 @@
+<!-- talksmith-ascii-sha256: e6062b1512c233e26fbaafe99940170f7a21fdd179a27da3e8521eb4a0df71c8 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="25 22 825 292" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>Regresión: MSE, MAE y Huber</title>
+  <desc>Las tres losses de regresión miden la misma distancia y se diferencian en cuánto castigan un error grande.</desc>
+  <rect x="0" y="0" width="900" height="340" fill="#ffffff"/>
+
+  <g stroke="#B9B3B3" stroke-width="1.2" fill="none">
+    <path d="M 45 230 L 255 230 M 150 90 L 150 248"/>
+    <path d="M 325 230 L 535 230 M 430 90 L 430 248"/>
+    <path d="M 605 230 L 815 230 M 710 90 L 710 248"/>
+  </g>
+
+  <text x="150" y="54" font-size="16" text-anchor="middle" font-weight="bold" fill="#DA1B2E">MSE</text>
+  <text x="430" y="54" font-size="16" text-anchor="middle" font-weight="bold">MAE</text>
+  <text x="710" y="54" font-size="16" text-anchor="middle" font-weight="bold">Huber</text>
+
+  <text x="150" y="76" font-size="13" text-anchor="middle" fill="#7A7373">L = e al cuadrado</text>
+  <text x="430" y="76" font-size="13" text-anchor="middle" fill="#7A7373">L = valor absoluto de e</text>
+  <text x="710" y="76" font-size="13" text-anchor="middle" fill="#7A7373">cuadrática hasta d, recta después</text>
+
+  <path d="M 50 100 Q 150 360 250 100" stroke="#DA1B2E" stroke-width="2.6" fill="none"/>
+  <path d="M 330 100 L 430 230 L 530 100" stroke="#3B3535" stroke-width="2.4" fill="none"/>
+  <path d="M 610 126 L 675 208 Q 710 252 745 208 L 810 126" stroke="#3B3535" stroke-width="2.4" fill="none"/>
+
+  <g font-size="12" fill="#7A7373">
+    <text x="142" y="246" text-anchor="end">0</text>
+    <text x="422" y="246" text-anchor="end">0</text>
+    <text x="702" y="246" text-anchor="end">0</text>
+    <text x="262" y="234">e</text>
+    <text x="542" y="234">e</text>
+    <text x="822" y="234">e</text>
+  </g>
+
+  <g stroke="#D9D4D4" stroke-width="1" stroke-dasharray="4 4">
+    <line x1="675" y1="208" x2="675" y2="248"/>
+    <line x1="745" y1="208" x2="745" y2="248"/>
+  </g>
+  <text x="675" y="262" font-size="11" text-anchor="middle" fill="#7A7373">-d</text>
+  <text x="745" y="262" font-size="11" text-anchor="middle" fill="#7A7373">+d</text>
+
+  <g font-size="12" text-anchor="middle">
+    <text x="150" y="278">parábola: el error</text>
+    <text x="150" y="296">grande manda</text>
+    <text x="430" y="278">una V: cada unidad</text>
+    <text x="430" y="296">de error pesa igual</text>
+    <text x="710" y="280">parábola cerca del cero,</text>
+    <text x="710" y="298">rectas lejos</text>
+  </g>
+
+  <text x="45" y="102" font-size="11" fill="#7A7373">penalización</text>
+</svg>

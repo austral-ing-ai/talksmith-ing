@@ -1,0 +1,18 @@
+   hacia adelante: la red predice UNA fila del batch
+
+   x --> [ capa 1 ] --> [ capa 2 ] --> [ salida ] --> y
+                                                      |
+                                                      |  L(y, t)
+                                                      v
+       [ capa 1 ] <-- [ capa 2 ] <-- [ salida ] <-----+
+
+   hacia atras: cada peso recibe su parte de la culpa,
+                y esa culpa se ACUMULA como valor intermedio
+
+   W y b quedan quietos: se corrigen al cerrar el batch
+
+<!-- ascii-note:
+intent: mostrar el ciclo cerrado forward-backward de UNA fila, y que su resultado se acumula en vez de aplicarse
+emphasize: que el error nace en la comparacion de y con t, viaja hacia atras por las mismas conexiones, y que W y b quedan intactos hasta el cierre del batch
+labels: x entrada, y prediccion, t objetivo, L la loss; flechas hacia la derecha en el forward y hacia la izquierda en el backward; la linea final sobre W y b en tono de advertencia
+-->

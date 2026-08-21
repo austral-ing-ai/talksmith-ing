@@ -1,0 +1,38 @@
+<!-- talksmith-ascii-sha256: eea3ddad06033fe4b949bf7bb347bf69cf178c002cd51ed2a269ba033996d8e2 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 18 817 322" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>Clasificación binaria: BCE</title>
+  <desc>La penalización de BCE se dispara cuando la red le da poca probabilidad a la clase correcta.</desc>
+  <rect x="0" y="0" width="920" height="360" fill="#ffffff"/>
+
+  <text x="60" y="50" font-size="15" font-weight="bold">La penalización es -log(y) cuando la etiqueta verdadera es t = 1</text>
+
+  <g stroke="#B9B3B3" stroke-width="1.2" fill="none">
+    <path d="M 140 265 L 570 265 M 140 85 L 140 282"/>
+  </g>
+
+  <path d="M 161 96 L 165 107 L 169 115 L 174 123 L 182 135 L 203 158 L 224 174" stroke="#DA1B2E" stroke-width="2.8" fill="none"/>
+  <path d="M 224 174 L 266 197 L 308 213 L 350 226 L 392 236 L 434 245 L 476 252 L 518 259 L 560 265" stroke="#3B3535" stroke-width="2.4" fill="none"/>
+
+  <g stroke="#D9D4D4" stroke-width="1" stroke-dasharray="4 4">
+    <line x1="350" y1="226" x2="350" y2="272"/>
+    <line x1="560" y1="265" x2="560" y2="272"/>
+  </g>
+
+  <g font-size="12" fill="#7A7373">
+    <text x="140" y="76">penalización</text>
+    <text x="134" y="282" text-anchor="end">0</text>
+    <text x="350" y="294" text-anchor="middle">0,5</text>
+    <text x="560" y="294" text-anchor="middle">1</text>
+    <text x="350" y="316" text-anchor="middle">y, la probabilidad que la red le dio a la clase correcta</text>
+  </g>
+
+  <rect x="600" y="128" width="10" height="10" fill="#DA1B2E"/>
+  <text x="622" y="138" font-size="13" font-weight="bold">y cerca de 0</text>
+  <text x="622" y="158" font-size="12.5" fill="#7A7373">La penalización se dispara.</text>
+  <text x="622" y="176" font-size="12.5" fill="#7A7373">Errar con confianza cuesta muchísimo.</text>
+
+  <rect x="600" y="212" width="10" height="10" fill="#3B3535"/>
+  <text x="622" y="222" font-size="13" font-weight="bold">y cerca de 1</text>
+  <text x="622" y="242" font-size="12.5" fill="#7A7373">La penalización tiende a cero.</text>
+  <text x="622" y="260" font-size="12.5" fill="#7A7373">Acertar con confianza no cuesta nada.</text>
+</svg>

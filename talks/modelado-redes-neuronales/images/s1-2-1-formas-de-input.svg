@@ -1,5 +1,6 @@
+<!-- talksmith-ascii-sha256: 2d43fd658ede81ac56fa395189206d88a61849f337dd21a626c228f31e766b8b -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="54 20 820 326" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
-  <title>La forma del input la decide la arquitectura</title>
+  <title>La forma la decide la arquitectura</title>
   <desc>El mismo dato de 28 por 28 entra como una fila al MLP, como una grilla a la CNN y como una secuencia a un Transformer.</desc>
   <rect x="54" y="20" width="820" height="326" fill="#ffffff"/>
 

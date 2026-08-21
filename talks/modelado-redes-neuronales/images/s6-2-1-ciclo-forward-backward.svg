@@ -1,0 +1,54 @@
+<!-- talksmith-ascii-sha256: 13302b3454efa792d848a26f98c14f3bce7aa851ced50a365c9fc011621ce89c -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>Entrenar es un ciclo de dos movimientos</title>
+  <desc>El forward recorre una fila del batch; el backward reparte la culpa y la acumula, sin tocar los pesos.</desc>
+  <rect x="0" y="0" width="700" height="300" fill="#ffffff"/>
+  <defs>
+    <marker id="ag" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+      <path d="M0 0 L11 4.5 L0 9 z" fill="#7A7373"/>
+    </marker>
+    <marker id="ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+      <path d="M0 0 L11 4.5 L0 9 z" fill="#DA1B2E"/>
+    </marker>
+  </defs>
+
+  <text x="34" y="40" font-size="13" fill="#7A7373">hacia adelante: la red predice una fila del batch</text>
+
+  <text x="34" y="104" font-size="16" font-weight="bold">x</text>
+
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.2">
+    <rect x="84" y="73" width="110" height="50" rx="3"/>
+    <rect x="234" y="73" width="110" height="50" rx="3"/>
+    <rect x="384" y="73" width="110" height="50" rx="3"/>
+  </g>
+  <rect x="544" y="73" width="120" height="50" rx="3" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.6"/>
+
+  <g text-anchor="middle" font-size="14">
+    <text x="139" y="104">capa 1</text>
+    <text x="289" y="104">capa 2</text>
+    <text x="439" y="104">salida</text>
+    <text x="604" y="98" font-weight="bold" fill="#DA1B2E">L(y, t)</text>
+  </g>
+  <text x="604" y="144" font-size="11" text-anchor="middle" fill="#7A7373">compara y con t</text>
+
+  <g stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#ag)">
+    <path d="M 52 98 L 78 98"/>
+    <path d="M 198 98 L 230 98"/>
+    <path d="M 348 98 L 380 98"/>
+    <path d="M 498 98 L 540 98"/>
+  </g>
+  <text x="521" y="88" font-size="12" text-anchor="middle" fill="#7A7373">y</text>
+
+  <path d="M 604 164 L 604 192 L 60 192" stroke="#DA1B2E" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+  <g stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#ar)">
+    <path d="M 139 188 L 139 129"/>
+    <path d="M 289 188 L 289 129"/>
+    <path d="M 439 188 L 439 129"/>
+  </g>
+
+  <text x="34" y="222" font-size="13" fill="#DA1B2E">hacia atrás: cada peso recibe su parte de la culpa,</text>
+  <text x="34" y="240" font-size="13" fill="#DA1B2E">y esa culpa se acumula como valor intermedio</text>
+
+  <rect x="34" y="256" width="632" height="30" rx="3" fill="#F7F3F3" stroke="#B9B3B3" stroke-width="1.2"/>
+  <text x="350" y="276" font-size="13.5" font-weight="bold" text-anchor="middle">W y b quedan quietos: se corrigen recién al cerrar el batch</text>
+</svg>

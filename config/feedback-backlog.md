@@ -687,3 +687,39 @@
   feedback: "En casi todos los slides es confusdo que no se define y en algunos caso se empieza con ejemplos." / "Lo que quise decir es que en los cards veo que se empieza definiendo ejemplo y no se define. No veo consistencia."
   resolution: Se fijó una regla de card para todo el mazo y se barrieron las que no la cumplían. **La etiqueta en negrita nombra la cosa; la oración que sigue la define o la afirma; el ejemplo viene después de la definición, nunca antes.** Corregidas: 1.3 (la tercera card rompía el patrón término-definición de sus hermanas), 2.3 (la card de log abría con una lista de ejemplos), 2.5 (las cuatro abrían con el ejemplo y nunca definían el error), 4.3 (la de softmax abría con el ticket), 7.1 y 7.3 (etiquetas mezcladas entre pregunta, consecuencia y término; pasaron todas a sintagma nominal).
   tags: [card-wording, missing-definition, layout-consistency]
+- talk: modelado-redes-neuronales
+  date: 2026-08-21
+  location: Slide "2. La forma del input la decide la arquitectura"
+  feedback: "Move " **Qué es un MLP.** Multi-Layer Perceptron, o perceptrón multicapa. Una capa de entrada, una o más capas ocultas donde cada neurona se conecta con todas las de la capa anterior (de ahí el nombre "densa", o *fully connected*), y una capa de salida. Es la arquitectura más simple y sigue siendo el bloque final de muchas CNN." como un quote importante en un solo slide."
+  resolution: Diapositiva nueva 1.3 'Qué es un MLP', una sola frase a pantalla completa con la definición (capa de entrada, capas ocultas todas-con-todas, capa de salida) y el cierre de que sigue siendo el bloque final de muchas CNN. La definición salió del cuerpo de la 1.2, que se queda con el contraste de las tres arquitecturas y la declaración de alcance. Las diapositivas 1.3 a 1.6 pasaron a 1.4 a 1.7.
+  tags: [structure, emphasis]
+- talk: modelado-redes-neuronales
+  date: 2026-08-21
+  location: Slide "6. De la variable al vector: la tabla de decisiones"
+  feedback: "Cambia en la columa Floats por # de inputs (floats)"
+  resolution: El encabezado de la última columna quedó '# de inputs (floats)'. La bajada decía 'La columna dice floats, no neuronas' y con el nombre nuevo habría quedado mintiendo: pasó a 'La última columna cuenta floats, no neuronas'. El párrafo de faltantes que borraste en el borrador quedó archivado en Cut material y su contenido (imputar y sumar un flag binario) se conservó en las notas del orador, que ya respondían esa pregunta.
+  tags: [terminology]
+- talk: modelado-redes-neuronales
+  date: 2026-08-21
+  location: Agenda
+  feedback: "En el corpus se discution barstante como es el algorithmo de backprograpagion. Agreguemos una seccion sobrre esto. Es importante en el plicat como se parte en training en batches, los cuales se procesan y se ajutan por neurona despues del forwatd para atras, luego de que se proceso to ese batch, se ajusta los valores. Ese batch es distitinto del epoch"
+  resolution: Sección 6 nueva, 'Cómo aprende la red: backpropagation', con siete diapositivas: el ciclo hacia adelante y hacia atrás, la función de coste como el número que hay que derivar, la regla de la cadena en tres factores, el delta, la propagación del delta hacia atrás, el paso de actualización con la tasa de aprendizaje, y batch contra época. El algoritmo salió de knowledge-library/backpropagation, curado desde la Talk intro-redes-neuronales, y se reusaron sus cinco imágenes de fórmulas sin volver a dibujarlas (la sexta, el diagrama forward/backward, tenía párrafos en inglés y se reemplazó por un ASCII propio en español). La mecánica de batches es aporte propio: el train se parte en batches de tamaño fijo, las B filas hacen el forward con los mismos pesos, se promedia su loss, y el ajuste se aplica una sola vez cuando terminó el batch entero; una época son tantos ajustes como batches tenga el train.
+  tags: [scope, structure]
+- talk: modelado-redes-neuronales
+  date: 2026-08-21
+  location: Slide "4. Lo que hay que diseñar"
+  feedback: "Creo que "El overfitting" no es en realidad algo a modelar pero un problema en si. Cambiemos "El overfitting" por Loss Function y vamos a crear una nueva seccion que sea sobre esto."
+  resolution: La card 'El overfitting' salió de la lista de decisiones de diseño y en su lugar entró 'La función de pérdida', con la fórmula que convierte una predicción equivocada en un número. Para que no quedaran dos cards diciendo lo mismo, 'La salida' dejó de mencionar la loss (ahora es solo neuronas y activación) y 'El error' pasó a ser explícitamente la medición del modelo ya entrenado. El overfitting sigue teniendo su sección al final y las notas del orador explican por qué salió de la lista: es un problema que aparece, no algo que se diseñe.
+  tags: [structure, terminology]
+- talk: modelado-redes-neuronales
+  date: 2026-08-21
+  location: Slide "2. La capa de salida la determina la tarea"
+  feedback: "Dado que creamos un seccion sobre lost functions, tomemos cada una de las descriptas aca. Empecemos con un slide que sea lost function, cuando se utilizar, Por qué esa arquitectura (eg: 1 neurona sin activación (lineal) porque el valor puede ser cualquier número. MSE penaliza fuerte los errores grandes, MAE es más robusto a outliers, Huber es un punto medio (cuadrático cerca de cero, lineal lejos).). Y luego un slide por cada una que cubra la formula y consideraciones. Si podemos poder un ARCII chart que modele el comportamiento, agreguemosla por casa una."
+  resolution: Sección 5 nueva, 'La función de pérdida', entre Modelar la salida y Medir un clasificador, con seis diapositivas por familia como acordamos: la cita de apertura, qué es una loss (loss contra cost contra objective, y por qué tiene que ser diferenciable), regresión con MSE, MAE y Huber en una sola con el ASCII comparando las tres penalizaciones, BCE con el ASCII de -log(y), cross-entropy con el reparto de softmax, y las especializadas (Poisson, pinball, NLL gaussiana) en tabla. Las tres de regresión van juntas porque el punto es el contraste entre ellas y se ve en un solo dibujo. Cada una lleva fórmula, cuándo se usa y la consideración de implementación (doble sigmoide, softmax donde va sigmoide). El bloque archivado sobre los pares que no se rompen volvió al mazo repartido entre la 5.4 y la 5.5.
+  tags: [scope, structure]
+- talk: modelado-redes-neuronales
+  date: 2026-08-21
+  location: Section "5. La función de pérdida"
+  feedback: "Pone este quote como primer slide de la seccion de lost functions "La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos.""
+  resolution: La cita quedó como diapositiva 5.1, a pantalla completa y sin nada más. El puente a la sección lo hace la propia cita: 'maximizar sus posibilidades de éxito en un objetivo dado' es literalmente lo que la función de pérdida escribe en una fórmula, y las notas del orador lo marcan. Queda sin atribución en la diapositiva; el texto es una paráfrasis cercana a la definición de agentes racionales de Russell y Norvig, y quedó anotado en Open questions para que decidas si va citada.
+  tags: [structure, emphasis]

@@ -1,0 +1,74 @@
+<!-- talksmith-ascii-sha256: b823086601552f079fba00dbd55aebb972d2a30366e4ccb1ad92f6d9753397ab -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 430" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>El ciclo completo, batch a batch</title>
+  <desc>Dentro del batch se acumula en valores intermedios; al cerrar el batch se aplica una sola vez y se pasa al siguiente.</desc>
+  <rect x="0" y="0" width="700" height="430" fill="#ffffff"/>
+  <defs>
+    <marker id="ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <path d="M0 0 L9 3.5 L0 7 z" fill="#7A7373"/>
+    </marker>
+    <marker id="ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/>
+    </marker>
+  </defs>
+
+  <rect x="34" y="52" width="560" height="176" rx="4" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.4"/>
+  <text x="50" y="76" font-size="14" font-weight="bold">BATCH k</text>
+  <text x="124" y="76" font-size="12.5" fill="#7A7373">B filas, todas con los mismos W y b</text>
+
+  <g fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.1">
+    <rect x="110" y="94" width="76" height="22" rx="3"/><rect x="200" y="94" width="26" height="22" rx="3"/><rect x="240" y="94" width="80" height="22" rx="3"/>
+    <rect x="110" y="124" width="76" height="22" rx="3"/><rect x="200" y="124" width="26" height="22" rx="3"/><rect x="240" y="124" width="80" height="22" rx="3"/>
+    <rect x="110" y="166" width="76" height="22" rx="3"/><rect x="200" y="166" width="26" height="22" rx="3"/><rect x="240" y="166" width="80" height="22" rx="3"/>
+  </g>
+  <g text-anchor="middle" font-size="11.5" fill="#3B3535">
+    <text x="148" y="109">forward</text><text x="213" y="109">L</text><text x="280" y="109">backward</text>
+    <text x="148" y="139">forward</text><text x="213" y="139">L</text><text x="280" y="139">backward</text>
+    <text x="148" y="181">forward</text><text x="213" y="181">L</text><text x="280" y="181">backward</text>
+  </g>
+  <g font-size="12.5">
+    <text x="52" y="109">fila 1</text><text x="52" y="139">fila 2</text><text x="52" y="181">fila B</text>
+  </g>
+  <text x="66" y="160" font-size="15" fill="#7A7373">&#183; &#183; &#183;</text>
+
+  <g stroke="#7A7373" stroke-width="1.3" fill="none" marker-end="url(#ag)">
+    <path d="M 90 105 L 106 105"/><path d="M 188 105 L 196 105"/><path d="M 228 105 L 236 105"/>
+    <path d="M 90 135 L 106 135"/><path d="M 188 135 L 196 135"/><path d="M 228 135 L 236 135"/>
+    <path d="M 90 177 L 106 177"/><path d="M 188 177 L 196 177"/><path d="M 228 177 L 236 177"/>
+  </g>
+
+  <g stroke="#DA1B2E" stroke-width="1.5" fill="none" marker-end="url(#ar)">
+    <path d="M 322 105 L 356 105 L 356 118 L 390 118"/>
+    <path d="M 322 135 L 390 135"/>
+    <path d="M 322 177 L 356 177 L 356 152 L 390 152"/>
+  </g>
+
+  <rect x="396" y="98" width="170" height="74" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.7"/>
+  <text x="481" y="120" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#DA1B2E">ACUMULADOR</text>
+  <text x="481" y="141" font-size="14" font-family="'DejaVu Sans Mono', monospace" text-anchor="middle">g += grad</text>
+  <text x="481" y="160" font-size="11" text-anchor="middle" fill="#7A7373">valores intermedios</text>
+
+  <text x="314" y="212" font-size="13.5" font-weight="bold" text-anchor="middle">W y b no se tocan en ningún punto de este bloque</text>
+
+  <path d="M 314 230 L 314 266" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#ag)"/>
+  <text x="328" y="253" font-size="12.5" fill="#7A7373">terminó el batch</text>
+
+  <rect x="34" y="272" width="560" height="112" rx="4" fill="#FBF4F5" stroke="#DA1B2E" stroke-width="1.6"/>
+  <g font-size="13">
+    <text x="52" y="298">1. promediar</text>
+    <text x="52" y="322" font-weight="bold">2. aplicar</text>
+    <text x="52" y="346">3. vaciar</text>
+  </g>
+  <g font-family="'DejaVu Sans Mono', monospace" font-size="13.5">
+    <text x="164" y="298">g = g / B</text>
+    <text x="164" y="322" font-weight="bold" fill="#DA1B2E">W = W - &#951;*g</text>
+    <text x="330" y="322" font-weight="bold" fill="#DA1B2E">b = b - &#951;*g</text>
+    <text x="164" y="346">g = 0</text>
+  </g>
+  <text x="52" y="371" font-size="12.5" font-weight="bold" fill="#DA1B2E">único momento del entrenamiento en que la red cambia</text>
+
+  <path d="M 594 328 L 650 328 L 650 34 L 200 34 L 200 48" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#ag)"/>
+  <text x="424" y="26" font-size="12.5" text-anchor="middle" fill="#7A7373">batch k+1, con W y b nuevos</text>
+
+  <text x="34" y="410" font-size="12.5" fill="#7A7373">agotados todos los batches = 1 época: se baraja el train y vuelve a empezar</text>
+</svg>

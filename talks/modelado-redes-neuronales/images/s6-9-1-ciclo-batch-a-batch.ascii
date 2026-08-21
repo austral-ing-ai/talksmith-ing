@@ -1,0 +1,39 @@
+    .------------------------------------------------------------------.
+                                                                      |
+    v                                                                 |
+    +--------------------------------------------------------------+  |
+    |                                                              |  |
+    |  BATCH k        B filas, todas con los MISMOS W y b          |  |
+    |                                                              |  |
+    |   fila 1  -> forward -> L -> backward --.                    |  |
+    |   fila 2  -> forward -> L -> backward --+--> g += grad       |  |
+    |    ...                                  |                    |  |
+    |   fila B  -> forward -> L -> backward --'    ACUMULADOR      |  |
+    |                                              (valores        |  |
+    |                                               intermedios)   |  |
+    |  W y b NO se tocan en ningun punto de este bloque            |  |
+    |                                                              |  |
+    +--------------------------------------------------------------+  |
+                              |                                       |
+                      termino el batch                                |
+                              |                                       |
+                              v                                       |
+    +--------------------------------------------------------------+  |
+    |                                                              |  |
+    |  1. promediar    g <- g / B                                  |  |
+    |  2. APLICAR      W <- W - n*g       b <- b - n*g             |  |
+    |  3. vaciar       g <- 0                                      |  |
+    |                                                              |  |
+    |  unico momento del entrenamiento en que la red cambia        |  |
+    |                                                              |  |
+    +--------------------------------------------------------------+  |
+                              |                                       |
+                              '--- batch k+1, con W y b nuevos -------'
+
+    agotados todos los batches = 1 epoca -> se baraja y vuelve a empezar
+
+<!-- ascii-note:
+intent: mostrar el ciclo de vida completo de un batch, con el limite exacto entre acumular y aplicar
+emphasize: el bloque de arriba (donde W y b quedan intactos) contra el bloque de abajo (el unico donde cambian), y la flecha de retorno que cierra el ciclo hacia el batch siguiente
+labels: BATCH k, filas 1 a B, forward, L la loss, backward, g el acumulador de gradientes, n es la tasa de aprendizaje, 1 epoca cuando se agotan los batches; el bloque de arriba en tono neutro y el de abajo destacado
+-->

@@ -1,0 +1,19 @@
+      cuanto castiga cada loss un error de tamano  e = y - t
+
+     MSE   e^2               MAE   |e|             Huber  (d = 1)
+       |\           /          |\          /          |\          /
+       | \         /           | \        /           | \        /
+       |  \       /            |  \      /            |  \      /
+       |   \     /             |   \    /             |   \    /
+       |    \   /              |    \  /              |    \__/
+   ----+-----\_/-----      ----+-----\/-----      ----+------+-----
+       0      e                0      e                0     e
+
+   parabola: el error      una V: cada unidad     parabola cerca del
+   grande manda            de error pesa igual    cero, rectas lejos
+
+<!-- ascii-note:
+intent: contrastar la forma de las tres curvas de penalizacion sobre el mismo eje de error
+emphasize: que MSE es una parabola que acelera, MAE una V de pendiente constante, y Huber una parabola cerca del cero cuyas colas se vuelven rectas
+labels: eje horizontal e = y - t, eje vertical penalizacion; MSE e^2, MAE |e|, Huber con d = 1
+-->
