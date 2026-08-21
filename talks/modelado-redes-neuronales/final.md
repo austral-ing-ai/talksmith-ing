@@ -114,7 +114,7 @@ La pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 e
 
 El punto que más rinde es el que ordena la diapositiva: la forma no es una decisión de diseño, viene con el dato. Lo que uno elige es si la arquitectura la aprovecha. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden; por eso la fila aplanada le sirve y por eso la tabla es su caso natural.
 
-Dos matices que el diagrama no dice con todas las letras y conviene decir vos: en una imagen importa qué píxel está al lado de cuál, y en una señal importa el orden de los pasos. Esa vecindad es lo que un MLP no tiene forma de aprovechar, y es la razón de que existan las otras arquitecturas. El alcance de la clase se declara acá en voz alta: de ahora en adelante, MLP sobre datos tabulares.
+Dos matices que el diagrama no dice con todas las letras y conviene decir vos: en una imagen importa qué píxel está al lado de cuál, y en una señal importa el orden de los pasos. Esa vecindad es lo que un MLP no tiene forma de aprovechar, y es la razón de que existan las otras arquitecturas.
 
 Sobre el panel de RGB, que es el que más se malinterpreta: son tres números en el mismo punto, no tres grillas. El píxel ampliado del dibujo es para eso. De los tres ejes, el de color es el único que se podría reordenar sin cambiar el problema; alto y ancho no.
 
