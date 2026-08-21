@@ -47,10 +47,10 @@
       "lead": "Todo lo que entra a una red es una fila de números de largo fijo, todos del mismo tipo (float). Esa fila es el único acceso que la red tiene al problema."
     },
     {
-      "template": "value-columns",
+      "template": "content-image",
       "section": "Qué se diseña de verdad",
       "title": "El dato decide la arquitectura",
-      "lead": "Cada tipo de dato tiene una **forma natural**: cuántos ejes necesita para no perder información. Esa forma es la que decide qué arquitectura le corresponde, y no al revés.",
+      "lead": "Cada tipo de dato tiene una **forma natural**: cuántos ejes necesita para no perder información. Esa forma decide qué arquitectura le corresponde, y no al revés.",
       "media": {
         "src": "images/s1-2-1-formas-de-input.png",
         "alt": "Cuatro tipos de dato, su forma natural y la arquitectura que les corresponde"
@@ -62,36 +62,7 @@
           "body": "**El alcance de esta clase es el MLP sobre datos tabulares.** Una tabla ya viene en la forma que un MLP espera. Los otros tres se pueden aplanar en una fila, pero al aplanar se pierde la vecindad, y esa pérdida es el motivo por el que existen las otras arquitecturas."
         }
       ],
-      "notes": "Esta diapositiva fija el alcance de la clase y conviene darla despacio, porque todo lo que sigue se apoya en ella. La pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 en escala de grises, ¿cuántos números son? Respuesta, 784. El punto que más rinde: la forma no es una propiedad del dato, es un requisito de la arquitectura. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden y por eso pide la fila aplanada. Por si preguntan si el aplanado es automático: no lo es, una capa densa opera solo sobre el último eje y aplanar es una capa que uno pone, Flatten() en Keras o nn.Flatten() en PyTorch. No te metas con cómo funciona una convolución ni con attention.",
-      "columns": [
-        {
-          "header": "Dato",
-          "cells": [
-            "**Tabla**",
-            "**Señal**",
-            "**Imagen en escala de grises**",
-            "**Imagen RGB**"
-          ]
-        },
-        {
-          "header": "Su forma natural",
-          "cells": [
-            "Una fila de `n` números, una posición por columna",
-            "Una secuencia de `T` pasos, donde el orden es parte del dato",
-            "Una grilla de alto por ancho, donde importa qué píxel está al lado de cuál",
-            "La misma grilla, con tres números en cada píxel"
-          ]
-        },
-        {
-          "header": "Arquitectura",
-          "cells": [
-            "MLP",
-            "CNN 1D / RNN",
-            "CNN",
-            "CNN"
-          ]
-        }
-      ]
+      "notes": "Esta diapositiva fija el alcance de la clase y conviene darla despacio, porque todo lo que sigue se apoya en ella. Recorré los cuatro paneles en orden y en cada uno hacé la misma pregunta: ¿cuántos ejes hacen falta para no perder nada? Uno, uno, dos, dos.\n\nLa pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 en escala de grises, ¿cuántos números son? Respuesta, 784. Sirve para que dimensionen, y para que se vea que aplanar siempre se puede.\n\nEl punto que más rinde es el que ordena la diapositiva: la forma no es una decisión de diseño, viene con el dato. Lo que uno elige es si la arquitectura la aprovecha. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden; por eso la fila aplanada le sirve y por eso la tabla es su caso natural.\n\nEl matiz que el diagrama no dice con todas las letras y conviene decir vos: en una imagen importa qué píxel está al lado de cuál, y en una señal importa el orden de los pasos. Esa vecindad es lo que un MLP no tiene forma de aprovechar.\n\nSobre el panel de RGB, que es el que más se malinterpreta: son tres números en el mismo punto, no tres grillas. El píxel ampliado del dibujo es para eso. De los tres ejes, el de color es el único que se podría reordenar sin cambiar el problema; alto y ancho no.\n\nPor si alguien pregunta si el aplanado es automático: no lo es. Una capa densa opera solo sobre el último eje (Keras: \"Dense computes the dot product between the inputs and the kernel along the last axis\"; PyTorch nn.Linear: \"all but the last dimension are the same shape as the input\"). Aplanar es una capa que uno pone, `Flatten()` en Keras o `nn.Flatten()` en PyTorch.\n\nNo te metas con cómo funciona una convolución ni con attention. Alcanza con que quede claro que existen, que les corresponde otra forma de dato, y que de acá en adelante la clase modela un MLP sobre datos tabulares.\n\n---"
     },
     {
       "template": "quote",
@@ -1843,7 +1814,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "3800e00b0b935a751ee14d6760bcf65c4e39dddc8cd387a86636a28748ab51a1",
-    "bytes": 145908
+    "sha256": "2a3830dd8cda11a0c461ffb268100260bc631e4fa64e735c5ccba6d3697e3bae",
+    "bytes": 146627
   }
 }

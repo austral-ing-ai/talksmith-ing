@@ -510,3 +510,11 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - Mapeo final (65 diapositivas): content+cards+image 17, concept-breakdown 13, value-columns 9, section-agenda 9, process 6, quiz 3, quote 2, y una cada uno de pros-cons, stat, concept-columns, code-example, divider y closing-cta. **13 plantillas distintas.**
 - Pending open questions: **el blocker de duración pasó de serio a crítico.** 54 diapositivas de contenido para 90 minutos; las notas suman 6.706 palabras, ~52 minutos de narración pura sin preguntas, sin transiciones y sin los tres quizzes. Hay que recortar o partir la clase en dos.
 
+## 2026-08-21 — Fix de la diapositiva 1.2 (revision de densidad)
+- Status: complete
+- Asks log: 2026-08-21 — "Revisa el slide 4 que quedo mal." (posicion 4 del deck renderizado, contando la portada = 'El dato decide la arquitectura')
+- Diagnostico: la diapositiva llevaba **el diagrama de cuatro paneles y una tabla de 3x4 que decia lo mismo**, mas el lead y el remate de alcance. Cuatro bloques contra el presupuesto de `principles.md` (un callout, un table-or-diagram, un bloque de apoyo). Con el diseno en banda el diagrama quedaba en una franja angosta y sus etiquetas ilegibles.
+- Fix: **se retiro la tabla**, que era duplicacion dentro de la misma diapositiva, y se archivo en `Cut material`. El matiz que solo estaba ahi (en una imagen importa que pixel esta al lado de cual) paso a las notas del orador. Plantilla de `value-columns` a `content-image`, diseno `banded`, sin `facts`: el diagrama se queda con todo el ancho.
+- **El fix se hizo en la fuente, no en el modelo del render.** Es lo que manda `principles.md` en *Pipeline discipline*: una diapositiva sobrecargada es un defecto de Step 4 que aparece tarde, y arreglarlo achicando en el renderer garantiza que vuelva en el proximo render.
+- Files created/modified: draft.md (tabla retirada, lead y remate acortados, notas ampliadas, bullet [closed], entrada en Cut material), final.md, output/slide-model.json, output/html/index.html.
+

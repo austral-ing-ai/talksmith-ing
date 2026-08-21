@@ -68,7 +68,7 @@ Abrí con esto porque reordena toda la clase. La mayoría llega pensando que dis
 
 ### Content
 
-Cada tipo de dato tiene una **forma natural**: cuántos ejes necesita para no perder información. Esa forma es la que decide qué arquitectura le corresponde, y no al revés.
+Cada tipo de dato tiene una **forma natural**: cuántos ejes necesita para no perder información. Esa forma decide qué arquitectura le corresponde, y no al revés.
 
 ![Cuatro tipos de dato, su forma natural y la arquitectura que les corresponde](images/s1-2-1-formas-de-input.png)
 <!-- ascii-source:
@@ -101,14 +101,7 @@ emphasize: que lo que cambia entre los cuatro es la cantidad de ejes que hace fa
 labels: TABLA fila de n numeros MLP, SENAL 1D secuencia de T pasos CNN 1D o RNN, IMAGEN EN GRISES grilla alto por ancho CNN, IMAGEN RGB la misma grilla con 3 numeros por pixel CNN; cuatro paneles en dos filas, mismo lienzo y mismos margenes
 -->
 
-| Dato | Su forma natural | Arquitectura |
-|---|---|---|
-| **Tabla** | Una fila de `n` números, una posición por columna | MLP |
-| **Señal** | Una secuencia de `T` pasos, donde el orden es parte del dato | CNN 1D / RNN |
-| **Imagen en escala de grises** | Una grilla de alto por ancho, donde importa qué píxel está al lado de cuál | CNN |
-| **Imagen RGB** | La misma grilla, con tres números en cada píxel | CNN |
-
-**El alcance de esta clase es el MLP sobre datos tabulares.** Una tabla ya viene en la forma que un MLP espera. Los otros tres se pueden aplanar en una fila y meterlos en un MLP, pero al aplanar se pierde la vecindad, y esa pérdida es exactamente el motivo por el que existen las otras arquitecturas.
+**El alcance de esta clase es el MLP sobre datos tabulares.** Una tabla ya viene en la forma que un MLP espera. Los otros tres se pueden aplanar en una fila, pero al aplanar se pierde la vecindad, y esa pérdida es el motivo por el que existen las otras arquitecturas.
 
 ### Sources
 
@@ -122,6 +115,8 @@ Esta diapositiva fija el alcance de la clase y conviene darla despacio, porque t
 La pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 en escala de grises, ¿cuántos números son? Respuesta, 784. Sirve para que dimensionen, y para que se vea que aplanar siempre se puede.
 
 El punto que más rinde es el que ordena la diapositiva: la forma no es una decisión de diseño, viene con el dato. Lo que uno elige es si la arquitectura la aprovecha. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden; por eso la fila aplanada le sirve y por eso la tabla es su caso natural.
+
+El matiz que el diagrama no dice con todas las letras y conviene decir vos: en una imagen importa qué píxel está al lado de cuál, y en una señal importa el orden de los pasos. Esa vecindad es lo que un MLP no tiene forma de aprovechar.
 
 Sobre el panel de RGB, que es el que más se malinterpreta: son tres números en el mismo punto, no tres grillas. El píxel ampliado del dibujo es para eso. De los tres ejes, el de color es el único que se podría reordenar sin cambiar el problema; alto y ancho no.
 
@@ -1960,6 +1955,17 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 - Las citas de Keras y PyTorch sobre el aplanado (notas del orador de la 1.2) están verificadas contra la documentación oficial pero no viven en el corpus. Ingerir las dos páginas si se las quiere como fuente formal de la Talk.
 
 # Cut material
+
+## Diapositiva 1.2 "El dato decide la arquitectura" - tabla Dato / Forma / Arquitectura (recortada por revision de densidad, 2026-08-21)
+
+La diapositiva llevaba el diagrama de cuatro paneles y esta tabla a la vez, y las dos decian lo mismo. El diagrama ya muestra, para cada uno de los cuatro casos, el dato tal como es, la forma en que llega a la red y el nombre de la arquitectura. Con las dos cosas juntas la diapositiva pasaba el presupuesto de densidad y el diagrama quedaba ilegible en una franja angosta. Texto retirado:
+
+| Dato | Su forma natural | Arquitectura |
+|---|---|---|
+| **Tabla** | Una fila de `n` numeros, una posicion por columna | MLP |
+| **Senal** | Una secuencia de `T` pasos, donde el orden es parte del dato | CNN 1D / RNN |
+| **Imagen en escala de grises** | Una grilla de alto por ancho, donde importa que pixel esta al lado de cual | CNN |
+| **Imagen RGB** | La misma grilla, con tres numeros en cada pixel | CNN |
 
 ## Diapositiva 6.7 "El paso de actualización" — bullet "Una vez por batch, no una vez por fila" (recortado por revisión Composer, 2026-08-21)
 
