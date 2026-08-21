@@ -129,27 +129,13 @@
       ]
     },
     {
-      "template": "content-image",
+      "template": "image-full",
       "section": "Qué se diseña de verdad",
       "title": "Del dato a los nodos de entrada",
-      "lead": "Qué recibe el modelo en cada caso. **Solo el MLP toma una fila de nodos sueltos y los procesa todos a la vez**; los otros tres reciben la estructura entera y la recorren por partes.",
-      "highlights": [
-        {
-          "kind": "note",
-          "label": "El largo no cambia",
-          "body": "La red espera siempre la misma cantidad de entradas. Por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo."
-        },
-        {
-          "kind": "important",
-          "label": "La escala",
-          "body": "Con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia. Es el material de la sección que sigue."
-        }
-      ],
-      "notes": "Esta diapositiva es la continuación directa de la anterior, y lo que agrega es el conteo. Abrí con la corrección que trae: **aplanar no es algo que le pase al dato, es algo que pide el MLP**. Si el mismo dato va a una CNN, no se aplana nada.\n\nRecorré los cuatro paneles con la misma pregunta: ¿qué recibe la red? Solo en el primero la respuesta es \"nodos sueltos\", y son trece. En los otros tres la respuesta es una secuencia, una matriz y tres matrices: la estructura sigue ahí.\n\nEl detalle del panel de la tabla: **dos variables dan trece nodos**, no dos. El one-hot del barrio ocupa doce posiciones él solo. Es la primera vez en la clase que aparece que una variable puede ocupar más de un nodo, y es lo que la sección que sigue desarrolla.\n\nSobre RGB, que es el que más se malinterpreta: son tres matrices, una por canal, dibujadas una al lado de la otra. No son tres imágenes apiladas ni hay un tercer eje espacial. Dicho de otro modo, cada píxel guarda tres números.\n\nEl pie es el remate y conviene leerlo entero: si igual quisieras meter los tres últimos en un MLP, se pueden aplanar, y salen 300, 784 y 2.352 entradas sueltas. Ahí es donde se borra el orden y la vecindad. La pregunta que funciona: ¿cuántas entradas tendría una foto de 224 por 224 en color? 150.528. Sirve para que se vea por qué visión no usa MLP.\n\nNo te metas con cómo una CNN conserva la grilla. Alcanza con que quede dicho que no aplana, y seguir.\n\n---",
-      "design": "banded",
-      "media": {
+      "notes": "Esta diapositiva es la continuación directa de la anterior, y lo que agrega es el conteo. Abrí con la corrección que trae: **aplanar no es algo que le pase al dato, es algo que pide el MLP**. Si el mismo dato va a una CNN, no se aplana nada.\n\nRecorré los cuatro paneles con la misma pregunta: ¿qué recibe la red? Solo en el primero la respuesta es \"nodos sueltos\", y son trece. En los otros tres la respuesta es una secuencia, una matriz y tres matrices: la estructura sigue ahí.\n\nEl detalle del panel de la tabla: **dos variables dan trece nodos**, no dos. El one-hot del barrio ocupa doce posiciones él solo. Es la primera vez en la clase que aparece que una variable puede ocupar más de un nodo, y es lo que la sección que sigue desarrolla.\n\nSobre RGB, que es el que más se malinterpreta: son tres matrices, una por canal, dibujadas una al lado de la otra. No son tres imágenes apiladas ni hay un tercer eje espacial. Dicho de otro modo, cada píxel guarda tres números.\n\nEl pie es el remate y conviene leerlo entero: si igual quisieras meter los tres últimos en un MLP, se pueden aplanar, y salen 300, 784 y 2.352 entradas sueltas. Ahí es donde se borra el orden y la vecindad. La pregunta que funciona: ¿cuántas entradas tendría una foto de 224 por 224 en color? 150.528. Sirve para que se vea por qué visión no usa MLP.\n\nDos cosas que la diapositiva ya no dice y conviene decir vos. **El largo no cambia:** la red espera siempre la misma cantidad de entradas, y por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo. **La escala:** con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia. Esa segunda es el puente a la sección que sigue, así que dejala para el final.\n\nY el remate, que el pie del diagrama ya insinúa: una tabla ya viene en la forma que un MLP espera, y por eso es el caso de esta clase.\n\nNo te metas con cómo una CNN conserva la grilla. Alcanza con que quede dicho que no aplana, y seguir.\n\n---",
+      "image": {
         "src": "images/s1-6-1-nodos-de-entrada.png",
-        "alt": "Cómo cada tipo de dato se convierte en nodos de la capa de entrada"
+        "alt": "Como pasa cada tipo de dato al modelo que lo toma"
       }
     },
     {
@@ -1790,7 +1776,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "00be19e01f24b28cecaa13d6c1e04440214a48c5c105270c6b423de6531771af",
-    "bytes": 151515
+    "sha256": "1ebe959b42e6dc98187f3c80ab1d8130391540a7bd1e4d0e5256be608fb507e9",
+    "bytes": 152361
   }
 }

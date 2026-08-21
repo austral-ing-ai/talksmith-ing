@@ -210,8 +210,6 @@ Este es el mapa mental que quiero que se lleven, y además es la agenda de la cl
 
 ### Content
 
-Qué recibe el modelo en cada caso. **Solo el MLP toma una fila de nodos sueltos y los procesa todos a la vez**; los otros tres reciben la estructura entera y la recorren por partes.
-
 ![Cómo cada tipo de dato se convierte en nodos de la capa de entrada](images/s1-6-1-nodos-de-entrada.png)
 <!-- ascii-source:
    EL DATO                              EL MODELO QUE LO TOMA
@@ -269,11 +267,6 @@ emphasize: el contraste entre el MLP, que toma los 13 nodos juntos, y las tres f
 labels: cada fila lleva el nombre del dato a la izquierda, la leyenda del traspaso sobre la flecha, y el pill de arquitectura abajo a la derecha dentro del bloque del modelo (MLP, RNN / CNN 1D, CNN, CNN); la ventana o slice va en rojo con su posicion actual en linea llena y las siguientes punteadas, mas una flecha de recorrido debajo; el pie cierra con el costo de aplanar
 -->
 
-- **El largo no cambia.** La red espera siempre la misma cantidad de entradas. Por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo.
-- **La escala.** Con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia. Es el material de la sección que sigue.
-
-**Una tabla ya viene en la forma que un MLP espera.** Por eso es el caso de esta clase.
-
 ### Sources
 
 corpus/chat.md.md (§ Ejemplos completos: 12 barrios más m² dan 13 neuronas de entrada, 1 m² normalizado más 12 one-hot, arquitectura `13→32→16→1`; § El input: el largo del vector queda fijo, y una forma que borra la estructura no se recupera con ninguna arquitectura; § Escalas y normalización)
@@ -290,6 +283,10 @@ El detalle del panel de la tabla: **dos variables dan trece nodos**, no dos. El 
 Sobre RGB, que es el que más se malinterpreta: son tres matrices, una por canal, dibujadas una al lado de la otra. No son tres imágenes apiladas ni hay un tercer eje espacial. Dicho de otro modo, cada píxel guarda tres números.
 
 El pie es el remate y conviene leerlo entero: si igual quisieras meter los tres últimos en un MLP, se pueden aplanar, y salen 300, 784 y 2.352 entradas sueltas. Ahí es donde se borra el orden y la vecindad. La pregunta que funciona: ¿cuántas entradas tendría una foto de 224 por 224 en color? 150.528. Sirve para que se vea por qué visión no usa MLP.
+
+Dos cosas que la diapositiva ya no dice y conviene decir vos. **El largo no cambia:** la red espera siempre la misma cantidad de entradas, y por eso las imágenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo. **La escala:** con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia. Esa segunda es el puente a la sección que sigue, así que dejala para el final.
+
+Y el remate, que el pie del diagrama ya insinúa: una tabla ya viene en la forma que un MLP espera, y por eso es el caso de esta clase.
 
 No te metas con cómo una CNN conserva la grilla. Alcanza con que quede dicho que no aplana, y seguir.
 
@@ -2001,6 +1998,17 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 - Las citas de Keras y PyTorch sobre el aplanado (notas del orador de la 1.2) están verificadas contra la documentación oficial pero no viven en el corpus. Ingerir las dos páginas si se las quiere como fuente formal de la Talk.
 
 # Cut material
+
+## Diapositiva 1.6 Del dato a los nodos de entrada - todo el texto del cuerpo (retirado, 2026-08-21)
+
+Por pedido del presentador la diapositiva quedo con el diagrama solo. El contenido sigue disponible en las notas del orador. Texto retirado:
+
+Lead: "Que recibe el modelo en cada caso. Solo el MLP toma una fila de nodos sueltos y los procesa todos a la vez; los otros tres reciben la estructura entera y la recorren por partes."
+
+- El largo no cambia. La red espera siempre la misma cantidad de entradas. Por eso las imagenes se redimensionan y el texto se trunca o se rellena hasta un largo fijo.
+- La escala. Con una variable que va de 0 a 1.000.000 y otra de 0 a 1, la primera domina el entrenamiento por su magnitud y no por su importancia. Es el material de la seccion que sigue.
+
+Remate: "Una tabla ya viene en la forma que un MLP espera. Por eso es el caso de esta clase."
 
 ## Diapositiva 1.6 Una posicion por variable - tabla Tipo de dato / Como se convierte en input (recortada, 2026-08-21)
 
