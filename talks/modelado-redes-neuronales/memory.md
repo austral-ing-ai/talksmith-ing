@@ -599,3 +599,35 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
   - Plantilla de 2.1 corregida de `concept-breakdown` a `content+cards+image`: el catalogo exige `images == 0` para concept-breakdown, y la diapositiva ahora tiene diagrama.
 - Files created/modified: draft.md, final.md, images/s1-2-1-formas-de-input.{svg,png,ascii} (rehecho), images/s1-6-1-nodos-de-entrada.{svg,png}, images/s2-1-1-orden-de-columnas.{svg,png,ascii} (nuevo), output/slide-model.json, output/html/index.html, index.html raiz.
 
+## 2026-08-21 — Notebook de acompanamiento: tipos de dato y sus conversiones
+- Status: complete
+- Asks log (la forma final salio de seis pedidos sucesivos):
+  - "Creemos un notebook que muestre realmente una red simple pero que ejemplifique el slide 15 y los tipos de datos y sus conversiones" (slide 15 = 2.6 'La tabla de decisiones')
+  - "Para el dataset, graba un file en disco. No generamos codigo en la notebook que es confuso"
+  - "Tipo por tipo mostremos que es lo que se deberia hacer. Mostrar un arreglo con los valores de ese tipo es suficiente"
+  - "Explicamos caso por caso con una red neuronal que procesa solo un parametro y infiere el precio" / "Despues al final podemos combinar todo"
+  - "La seccion 0 Preparacion no parece necesaria" / "Usa keras simple por mas que sea algo repetitivo"
+  - "Dejemos todo en el CSV, carguemos lo que se esta buscando e imprimamos en un bloque que se vea lo que se cargo y el precio" / "En SGD sin normalizar seria bueno mostrar un grafico con la comparacion" / "El bloque que hace SGD y SGD no normalizado, partilo"
+- Entregable: `missions/clase3/tipos-de-datos.ipynb` (57 celdas, ejecutado, 3 figuras), `missions/clase3/casas.csv` (2000 filas, 22 columnas) y `missions/clase3/generar-casas.py`.
+- Forma final: diez secciones, una por fila de la tabla de decisiones. Cada una **carga del CSV su columna y su precio**, imprime el bloque cargado, muestra `valor -> floats`, y entrena una red que recibe solo esa variable. Donde hay forma incorrecta, entrena la misma red con esa forma y compara. Keras plano en cada celda, sin helpers, a pedido. La seccion 11 combina todo con el precio completo.
+- **Decision de diseno clave: el CSV trae dos clases de precio.** `precio` (completo, ruido 18.000) y diez columnas `precio_solo_*` (el aporte aislado de cada variable, ruido 4.000). Sin eso los experimentos por variable no discriminan: con el precio completo los metros cuadrados tapan a todas las demas y ningun efecto chico se distingue. El piso de los experimentos aislados es ~$3.200, y las codificaciones correctas llegan justo ahi.
+- **Decision de alcance:** el dataset es sintetico y NO es el de la mision. `mission.md` dice que encontrar las trampas de codificacion en `house-prices-extended.csv` es trabajo del alumno; un notebook que resolviera esa tabla seria la solucion servida.
+- Hallazgos al calibrar, que valen para futuras versiones:
+  - Con `Adam(0.001)` y pocas epocas las redes minimas **no llegan** a un target de ~200 partiendo de cero. Con `Adam(0.01)` y 300 epocas convergen sin escalar el target.
+  - **La normalizacion no se demuestra con una sola variable ni con Adam.** Hacen falta dos variables de escalas distintas compitiendo, y SGD: sin normalizar la red se queda exactamente en el baseline ($50.983 contra baseline $50.984), con z-score baja a $3.191. Con Adam la diferencia casi desaparece ($3.238 contra $3.098), y eso quedo escrito como matiz honesto.
+  - **El identificador unico no memoriza si entra como numero** (train ≈ test ≈ baseline: no aporta nada). Memoriza cuando entra **como categoria con embedding**: train $0, test $36.594 contra baseline $3.762. El notebook muestra los dos casos.
+- Resultado de cierre: la entrada suma 28 floats y coincide con la tabla; MAE $16.550 contra un piso de $14.362; con todo mal codificado (mismas escalas, semantica equivocada) sube 50%.
+
+## 2026-08-21 — Notebook: tipos declarados al cargar, y la seccion 2 a 10 epocas
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "Reducir tal vez en numerica con magnitud a 10 epochs para ver la convergencia lenta"
+  - 2026-08-21 — "Tal vez al cargar la matriz realizar tambien todas las conversiones de string al tipo que corresponde para no tener que hacerlo de nuevo"
+- What was decided:
+  - **`read_csv` con `dtype=` explicito**, y una markdown nueva que dice por que: media tabla de decisiones se escribe ahi. Tres declaraciones que ya son decisiones de modelado: `codigo_postal` como `category` y no como entero (pandas lo leeria `int64` sin protestar); `estado` como categoria **ordenada** con `pd.Categorical(..., ordered=True)`, porque el orden lo pone el dominio y no los datos; `barrio` y `tipo_vivienda` como `category`, que ya traen su lista de valores y su indice entero.
+  - Las secciones dejaron de reconstruir diccionarios: usan `.cat.codes`, `.cat.categories`. Para tratar el codigo postal como numero ahora hay que forzar `.astype("int64")`, y eso mismo es una senal.
+  - **Distincion que quedo escrita en el codigo:** declarar el tipo al cargar dice *que es* cada columna; los diccionarios que el modelo usa son *parametros* y siguen saliendo solo del train (seccion 11).
+  - Seccion 2 pasa a **10 epocas** para que se vea la convergencia lenta, mas una celda nueva que repite a 300 para contestar la pregunta obvia.
+- **Correccion de texto importante:** a 10 epocas la version sin normalizar no queda "pegada al baseline" sino **muy por encima** ($154.275 contra un baseline de $50.984): la red arranca cerca de cero y todavia esta subiendo hacia el rango del precio. El texto decia lo contrario y se corrigio. A 300 epocas si queda clavada en el baseline ($50.983 contra $50.984), que es el remate.
+- Files created/modified: missions/clase3/tipos-de-datos.ipynb (60 celdas, 3 figuras), y el generador del notebook en el scratchpad de la sesion.
+

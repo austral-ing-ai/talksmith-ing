@@ -101,6 +101,10 @@ emphasize: que lo que cambia entre los cuatro es la cantidad de ejes que hace fa
 labels: TABLA fila de n numeros MLP, SENAL 1D secuencia de T pasos CNN 1D o RNN, IMAGEN EN GRISES grilla alto por ancho CNN, IMAGEN RGB la misma grilla con 3 numeros por pixel CNN; cuatro paneles en dos filas, mismo lienzo y mismos margenes
 -->
 
+- **La forma viene con el dato.** Es cuántos ejes necesita para no perder información, y no se elige: una tabla es una fila, una imagen es una grilla.
+- **La arquitectura sí se elige.** Y se elige para aprovechar esa forma, no al revés.
+- **Por eso el caso de esta clase es la tabla.** Ya viene como un MLP la espera; los otros tres habría que aplanarlos, y al aplanar se pierde la vecindad.
+
 ### Sources
 
 corpus/chat.md.md (§2 El input: principio general — familias de estructura y su arquitectura natural)

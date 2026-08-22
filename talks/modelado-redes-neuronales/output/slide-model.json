@@ -47,15 +47,30 @@
       "lead": "Todo lo que entra a una red es una fila de números de largo fijo, todos del mismo tipo (float). Esa fila es el único acceso que la red tiene al problema."
     },
     {
-      "template": "image-full",
+      "template": "content-image",
       "section": "Qué se diseña de verdad",
       "title": "El dato decide la arquitectura",
       "lead": "Cada tipo de dato tiene una **forma natural**: cuántos ejes necesita para no perder información. Esa forma es la que decide qué arquitectura le corresponde, y no al revés.",
       "notes": "Esta diapositiva fija el alcance de la clase y conviene darla despacio, porque todo lo que sigue se apoya en ella. Recorré los cuatro paneles en orden y en cada uno hacé la misma pregunta: ¿cuántos ejes hacen falta para no perder nada? Uno, uno, dos, dos.\n\nLa pregunta que funciona antes de mostrarla: si les paso una foto de 28 por 28 en escala de grises, ¿cuántos números son? Respuesta, 784. Sirve para que dimensionen, y para que se vea que aplanar siempre se puede.\n\nEl punto que más rinde es el que ordena la diapositiva: la forma no es una decisión de diseño, viene con el dato. Lo que uno elige es si la arquitectura la aprovecha. Un MLP no tiene ningún mecanismo para saber que dos píxeles son vecinos, así que le da lo mismo el orden; por eso la fila aplanada le sirve y por eso la tabla es su caso natural.\n\nDos matices que el diagrama no dice con todas las letras y conviene decir vos: en una imagen importa qué píxel está al lado de cuál, y en una señal importa el orden de los pasos. Esa vecindad es lo que un MLP no tiene forma de aprovechar, y es la razón de que existan las otras arquitecturas.\n\nSobre el panel de RGB, que es el que más se malinterpreta: son tres números en el mismo punto, no tres grillas. El píxel ampliado del dibujo es para eso. De los tres ejes, el de color es el único que se podría reordenar sin cambiar el problema; alto y ancho no.\n\nPor si alguien pregunta si el aplanado es automático: no lo es. Una capa densa opera solo sobre el último eje (Keras: \"Dense computes the dot product between the inputs and the kernel along the last axis\"; PyTorch nn.Linear: \"all but the last dimension are the same shape as the input\"). Aplanar es una capa que uno pone, `Flatten()` en Keras o `nn.Flatten()` en PyTorch.\n\nNo te metas con cómo funciona una convolución ni con attention. Alcanza con que quede claro que existen, que les corresponde otra forma de dato, y que de acá en adelante la clase modela un MLP sobre datos tabulares.\n\n---",
-      "image": {
+      "media": {
         "src": "images/s1-2-1-formas-de-input.png",
         "alt": "Cuatro tipos de dato, su forma natural y la arquitectura que les corresponde"
-      }
+      },
+      "design": "split-right",
+      "facts": [
+        {
+          "label": "La forma viene con el dato",
+          "body": "Es cuántos ejes necesita para no perder información, y no se elige: una tabla es una fila, una imagen es una grilla."
+        },
+        {
+          "label": "La arquitectura sí se elige",
+          "body": "Y se elige para aprovechar esa forma, no al revés."
+        },
+        {
+          "label": "Por eso el caso de esta clase es la tabla",
+          "body": "Ya viene como un MLP la espera; los otros tres habría que aplanarlos, y al aplanar se pierde la vecindad."
+        }
+      ]
     },
     {
       "template": "quote",
@@ -90,7 +105,7 @@
       ]
     },
     {
-      "template": "process",
+      "template": "concept-breakdown",
       "section": "Qué se diseña de verdad",
       "title": "Lo que hay que diseñar",
       "lead": "Diseñar un MLP son seis decisiones, y la que todos creen que es la principal, cuántas capas ponerle, es la que menos pesa. Son las seis que recorre esta clase, en este orden.",
@@ -101,7 +116,8 @@
           "kind": "note"
         }
       ],
-      "steps": [
+      "format": "editorial",
+      "cards": [
         {
           "label": "La entrada",
           "body": "Cómo cada variable se convierte en floats. Donde se gana o se pierde el modelo."
@@ -232,7 +248,7 @@
       ]
     },
     {
-      "template": "content+cards+image",
+      "template": "value-columns",
       "section": "Modelar la entrada",
       "title": "Categóricas: one-hot contra embedding",
       "lead": "Una categoría sin orden se codifica de dos formas, y la cardinalidad decide cuál.",
@@ -241,33 +257,53 @@
         "alt": "One-hot selecciona una columna de W: como solo una posición vale 1, el producto con W toma los pesos de esa categoría"
       },
       "design": "split-right",
-      "cards": [
-        {
-          "label": "One-hot (cardinalidad baja)",
-          "body": "Una neurona por valor, todas en 0 salvo una en 1. Todas las categorías a la misma distancia. No se aprende, es interpretable, necesita pocos datos."
-        },
-        {
-          "label": "Embedding (cardinalidad alta)",
-          "body": "Una tabla de `k × d` floats entrenable. La red aprende la distancia entre categorías. Con 500 barrios, d=24 usa 24 floats donde one-hot usaría 500."
-        },
+      "highlights": [
         {
           "label": "La regla de la cardinalidad",
-          "body": "Hasta 15 valores, one-hot; de 15 a 50, cualquiera; 50 o más, embedding."
-        }
-      ],
-      "highlights": [
+          "body": "Hasta 15 valores, one-hot; de 15 a 50, cualquiera; 50 o más, embedding.",
+          "kind": "takeaway"
+        },
         {
           "body": "Un embedding equivale a un one-hot seguido de una capa lineal sin sesgo. Conceptualmente, es la primera capa de la red.",
           "kind": "takeaway"
         }
       ],
-      "notes": "El puente que engancha: así arranca un LLM. Cada token es un índice que busca su fila en una tabla de ~50.000 por 4096. El embedding de categorías y el de palabras son la misma idea. Dos ventajas no obvias: comparte estadística entre categorías parecidas y es reutilizable."
+      "notes": "El puente que engancha: así arranca un LLM. Cada token es un índice que busca su fila en una tabla de ~50.000 por 4096. El embedding de categorías y el de palabras son la misma idea. Dos ventajas no obvias: comparte estadística entre categorías parecidas y es reutilizable.",
+      "columns": [
+        {
+          "header": "",
+          "cells": [
+            "Qué es",
+            "Distancia entre categorías",
+            "Se aprende",
+            "Con 500 barrios"
+          ]
+        },
+        {
+          "header": "One-hot · cardinalidad baja",
+          "cells": [
+            "Una neurona por valor, todas en 0 salvo una en 1",
+            "Todas equidistantes — la verdad del dato",
+            "No; es interpretable y necesita pocos datos",
+            "500 floats"
+          ]
+        },
+        {
+          "header": "Embedding · cardinalidad alta",
+          "cells": [
+            "Una tabla de `k × d` floats entrenable",
+            "La red la aprende de los datos",
+            "Sí; es la primera capa de la red",
+            "24 floats con d=24"
+          ]
+        }
+      ]
     },
     {
       "template": "concept-breakdown",
       "section": "Modelar la entrada",
       "title": "Errores de codificación caros",
-      "format": "editorial",
+      "format": "grid",
       "lead": "Casi todos entran silenciosos: el modelo entrena sin dar error y falla en producción.",
       "cards": [
         {
@@ -459,18 +495,33 @@
       "notes": "Esta tabla es el resumen que se llevan. La fila que cuesta es actualiza los pesos: muchos creen que el modelo aprende algo de validación porque la métrica aparece cada epoch. No aprende nada; el que aprende sos vos, y por eso hace falta el test. La analogía: validación son los simulacros, test es el examen final. En Kaggle el test set se libera recién al cierre, exactamente por esto."
     },
     {
-      "template": "code-example",
+      "template": "concept-breakdown",
       "section": "Partir el dataset",
       "title": "Todo se aprende solo del train",
-      "language": "python",
-      "code": "# MAL: μ y σ contaminados con el test (data leakage)\nscaler.fit_transform(X_test)\n\n# BIEN: μ y σ aprendidos solo del train\nscaler.fit(X_train)\nscaler.transform(X_test)",
-      "explanation": [
-        "**Calcularlos sobre todo el dataset es data leakage.** Información del test se filtra al entrenamiento y la métrica sale optimista. Todo lo que se aprende de los datos se aprende solo del train, transformaciones incluidas.",
-        "**La transformación se aplica a los tres, sus parámetros salen de uno.** Normalizar, imputar y mapear categorías corre sobre train, validación y test por igual. Pero μ, σ, la mediana de imputación y el diccionario se calculan únicamente sobre train.",
-        "**El modelo desplegado no son solo `W` y `b`.** Son los pesos, los μ y σ de cada variable, el diccionario categoría a índice y los valores de imputación. Con solo los pesos, queda inservible.",
-        "**El bug es silencioso.** Normalizar en producción con μ=120 en vez de 95 no lanza ninguna excepción. Solo devuelve predicciones incorrectas."
-      ],
-      "notes": "Esta diapositiva venía de la sección de input y encaja mejor acá, con la partición ya explicada. Es el error número uno de producción en ML. La regla: preprocesamiento y modelo se despliegan juntos. Ojo con un matiz: es cierto que el preprocesamiento se aplica a los tres splits, pero sus parámetros salen solo de train. Si hay tiempo, data drift: no recalcular μ y σ en producción, detectar drift y reentrenar."
+      "notes": "Esta diapositiva venía de la sección de input y encaja mejor acá, con la partición ya explicada. Es el error número uno de producción en ML. La regla: preprocesamiento y modelo se despliegan juntos. Ojo con un matiz: es cierto que el preprocesamiento se aplica a los tres splits, pero sus parámetros salen solo de train. Si hay tiempo, data drift: no recalcular μ y σ en producción, detectar drift y reentrenar.",
+      "design": "split-right",
+      "media": {
+        "code": "# MAL: μ y σ contaminados con el test (data leakage)\nscaler.fit_transform(X_test)\n\n# BIEN: μ y σ aprendidos solo del train\nscaler.fit(X_train)\nscaler.transform(X_test)",
+        "language": "python"
+      },
+      "cards": [
+        {
+          "label": "Calcularlos sobre todo el dataset es data leakage",
+          "body": "Información del test se filtra al entrenamiento y la métrica sale optimista. Todo lo que se aprende de los datos se aprende solo del train, transformaciones incluidas."
+        },
+        {
+          "label": "La transformación se aplica a los tres",
+          "body": "Normalizar, imputar y mapear categorías corre sobre train, validación y test por igual. Pero μ, σ, la mediana de imputación y el diccionario se calculan únicamente sobre train."
+        },
+        {
+          "label": "El modelo desplegado no son solo `W` y `b`",
+          "body": "Son los pesos, los μ y σ de cada variable, el diccionario categoría a índice y los valores de imputación. Con solo los pesos, queda inservible."
+        },
+        {
+          "label": "El bug es silencioso",
+          "body": "Normalizar en producción con μ=120 en vez de 95 no lanza ninguna excepción. Solo devuelve predicciones incorrectas."
+        }
+      ]
     },
     {
       "template": "concept-breakdown",
@@ -505,7 +556,12 @@
           "kind": "source"
         }
       ],
-      "notes": "Los dos del medio son aporte propio: ninguna de las fuentes cubre estratificación ni series de tiempo, y las dos importan para los trabajos que entregan. El de series de tiempo es el que más veces vas a ver mal resuelto, y el síntoma es un modelo que en el papel anda espectacular. Conectá con la sección 2: el identificador único es la versión extrema de este problema. Y dejá el puente hacia overfitting: la brecha train-validación solo se puede mirar si esta partición está bien hecha."
+      "notes": "Los dos del medio son aporte propio: ninguna de las fuentes cubre estratificación ni series de tiempo, y las dos importan para los trabajos que entregan. El de series de tiempo es el que más veces vas a ver mal resuelto, y el síntoma es un modelo que en el papel anda espectacular. Conectá con la sección 2: el identificador único es la versión extrema de este problema. Y dejá el puente hacia overfitting: la brecha train-validación solo se puede mirar si esta partición está bien hecha.",
+      "design": "split-right",
+      "media": {
+        "language": "python",
+        "code": "from sklearn.model_selection import train_test_split\n\n# 70 / 20 / 10 en dos pasos, con la clase estratificada\ntrain_X, hold_X, train_y, hold_y = train_test_split(\n    X, y, test_size=0.30, random_state=42, stratify=y\n)\nval_X, test_X, val_y, test_y = train_test_split(\n    hold_X, hold_y, test_size=1/3, random_state=42, stratify=hold_y\n)"
+      }
     },
     {
       "template": "pros-cons",
@@ -1185,7 +1241,7 @@
       "title": "Medir un clasificador"
     },
     {
-      "template": "stat",
+      "template": "content+cards+image",
       "section": "Medir un clasificador",
       "title": "El 99% de accuracy que no sirve",
       "lead": "Un detector de fraude sobre 10.000 transacciones, donde 100 son fraude. La regla más tonta posible: decir siempre que no es fraude.",
@@ -1195,23 +1251,7 @@
         "src": "images/s7-1-2-desbalance-accuracy.png",
         "alt": "10.000 transacciones con 100 fraudes: accuracy 99% y cero fraudes detectados"
       },
-      "highlights": [
-        {
-          "kind": "important",
-          "label": "Accuracy la escribe la clase mayoritaria",
-          "body": "Con 9.900 legítimas sobre 10.000, acertar \"no es fraude\" siempre da 99% sin haber aprendido nada."
-        },
-        {
-          "kind": "warning",
-          "label": "No todos los errores cuestan lo mismo",
-          "body": "Un fraude no detectado y una alarma falsa no son intercambiables, y accuracy los suma como si lo fueran."
-        },
-        {
-          "kind": "note",
-          "label": "Hace falta separar los tipos de error",
-          "body": "Eso es exactamente lo que hace la matriz de confusión."
-        }
-      ],
+      "highlights": [],
       "stats": [
         {
           "value": "99%",
@@ -1221,37 +1261,60 @@
           "value": "0 / 100",
           "caption": "fraudes detectados: se escapa el 100% de lo que importa"
         }
+      ],
+      "cards": [
+        {
+          "label": "Accuracy la escribe la clase mayoritaria",
+          "body": "Con 9.900 legítimas sobre 10.000, acertar \"no es fraude\" siempre da 99% sin haber aprendido nada."
+        },
+        {
+          "label": "No todos los errores cuestan lo mismo",
+          "body": "Un fraude no detectado y una alarma falsa no son intercambiables, y accuracy los suma como si lo fueran."
+        },
+        {
+          "label": "Hace falta separar los tipos de error",
+          "body": "Eso es exactamente lo que hace la matriz de confusión."
+        }
       ]
     },
     {
-      "template": "content+cards+image",
+      "template": "matrix",
       "section": "Medir un clasificador",
       "title": "La matriz de confusión",
       "lead": "Para clasificación binaria, todos los resultados caen en una tabla de 2×2 que cruza predicción y verdad.",
-      "media": {
-        "src": "images/s7-2-1-matriz-confusion.png",
-        "alt": "La matriz de confusión 2x2: cruza lo que el modelo predijo con lo que era verdad; las dos celdas de error son FP y FN"
-      },
-      "design": "split-left",
-      "cards": [
-        {
-          "label": "TP, verdadero positivo",
-          "body": "Era positivo y el modelo lo marcó. Acierto."
-        },
-        {
-          "label": "FP, falso positivo",
-          "body": "Era negativo y el modelo lo marcó. Falsa alarma."
-        },
-        {
-          "label": "FN, falso negativo",
-          "body": "Era positivo y el modelo lo dejó pasar. Lo más caro en fraude o diagnóstico."
-        },
-        {
-          "label": "TN, verdadero negativo",
-          "body": "Era negativo y el modelo lo dejó pasar. Acierto."
-        }
+      "notes": "El centro de la sección. Dibujá la matriz mientras aparece y pedí que ubiquen el fraude en cada celda. La confusión típica es FP vs FN; anclalo con el costo: un FN médico (mandar a casa a alguien enfermo) suele ser peor que un FP. Accuracy es la diagonal sobre el total.",
+      "x_label": "LO QUE PREDIJO EL MODELO",
+      "columns": [
+        "Positivo",
+        "Negativo"
       ],
-      "notes": "El centro de la sección. Dibujá la matriz mientras aparece y pedí que ubiquen el fraude en cada celda. La confusión típica es FP vs FN; anclalo con el costo: un FN médico (mandar a casa a alguien enfermo) suele ser peor que un FP. Accuracy es la diagonal sobre el total."
+      "y_label": "LO QUE ERA VERDAD",
+      "rows": [
+        "Positivo",
+        "Negativo"
+      ],
+      "cells": [
+        {
+          "label": "TP · verdadero positivo",
+          "body": "Era positivo y el modelo lo marcó. Acierto.",
+          "tone": "good"
+        },
+        {
+          "label": "FN · falso negativo",
+          "body": "Era positivo y el modelo lo dejó pasar. Lo más caro en fraude o diagnóstico.",
+          "tone": "bad"
+        },
+        {
+          "label": "FP · falso positivo",
+          "body": "Era negativo y el modelo lo marcó. Falsa alarma.",
+          "tone": "bad"
+        },
+        {
+          "label": "TN · verdadero negativo",
+          "body": "Era negativo y el modelo lo dejó pasar. Acierto.",
+          "tone": "good"
+        }
+      ]
     },
     {
       "template": "concept-columns",
@@ -1366,12 +1429,12 @@
       "title": "Capas ocultas"
     },
     {
-      "template": "content+cards+image",
+      "template": "concept-breakdown",
       "section": "Capas ocultas",
       "title": "Cuántas capas y cuánto ancho",
       "notes": "Esta es la diapositiva que la clase espera desde el principio y la que hay que desinflar. Recordales la primera diapositiva de la sección 1: de las seis decisiones, esta es la última en impacto, y llegaron hasta acá sin haberla necesitado.\n\nLo que se llevan no es la tabla, es el procedimiento de las dos últimas líneas. La tabla es un punto de partida para no quedarse trabado; el error de train dice si hay que agrandar y la brecha con validación dice si hay que achicar. Es un lazo, no una fórmula cerrada.\n\nSi preguntan por qué potencias de 2, la respuesta honesta es alineación de memoria en la GPU, y que la diferencia entre 60 y 64 neuronas no se va a notar en un dataset tabular. No lo vendas como si fuera profundo.\n\nEl cuello de botella es el error que más van a cometer: poner una primera capa de 8 neuronas después de un one-hot de 40 posiciones. La información se pierde ahí y ninguna capa posterior la recupera.\n\nY si alguien pregunta por el teorema de aproximación universal para justificar una sola capa muy ancha: es cierto y es inútil en la práctica, porque el teorema no dice cuántas neuronas hacen falta ni que el entrenamiento las vaya a encontrar.\n\n---",
       "lead": "Es la única decisión de la lista que se elige libremente, y la que menos impacto tiene. Conviene resolverla rápido con un punto de partida y corregir después mirando el error.",
-      "design": "full",
+      "design": "split-right",
       "cards": [
         {
           "label": "Más ancho que la entrada",
@@ -1392,16 +1455,30 @@
       ],
       "highlights": [
         {
-          "kind": "note",
-          "position": "top",
-          "label": "Punto de partida",
-          "body": "Cientos de filas: 1 capa de 8 a 16. Miles: 1 o 2 de 32 a 64. Decenas de miles: 2 o 3 de 64 a 128."
-        },
-        {
           "kind": "important",
           "body": "**1 a 3 capas ocultas alcanzan para datos tabulares.** Si necesitás más profundidad que eso en una tabla, el problema casi nunca es la arquitectura."
         }
-      ]
+      ],
+      "media": {
+        "columns": [
+          {
+            "header": "Cuántos datos tenés",
+            "cells": [
+              "Cientos de filas",
+              "Miles",
+              "Decenas de miles"
+            ]
+          },
+          {
+            "header": "Punto de partida",
+            "cells": [
+              "1 capa de 8 a 16 neuronas",
+              "1 o 2 capas de 32 a 64",
+              "2 o 3 capas de 64 a 128"
+            ]
+          }
+        ]
+      }
     },
     {
       "template": "value-columns",
@@ -1595,30 +1672,46 @@
       "notes": "El tema del título, dedicale tiempo. El porqué funciona es lo importante: pesos grandes, función que oscila para tocar cada punto; pesos chicos, función suave que generaliza. Dibujá dos ajustes sobre los mismos puntos. El detalle del bias: penalizás pesos, no sesgos, porque el bias solo desplaza."
     },
     {
-      "template": "concept-breakdown",
+      "template": "value-columns",
       "section": "Overfitting",
       "title": "L1 contra L2",
-      "cards": [
-        {
-          "label": "L2 penaliza w²",
-          "body": "Reduce todos los pesos sin llevarlos a cero. Pesos parejos y chicos. Es el estándar en redes."
-        },
-        {
-          "label": "L1 penaliza |w|",
-          "body": "Lleva los pesos chicos exactamente a cero. Una solución rala que selecciona features. Más en modelos lineales (Lasso)."
-        },
-        {
-          "label": "Elastic net",
-          "body": "Combina las dos. Rara vez hace falta en una red."
-        }
-      ],
       "highlights": [
         {
           "body": "Si querés que el modelo descarte features solo, L1. Si querés que ningún peso domine, L2.",
           "kind": "takeaway"
+        },
+        {
+          "body": "Combina las dos. Rara vez hace falta en una red.",
+          "kind": "note"
         }
       ],
-      "notes": "Comparación corta. El punto geométrico si profundizan: la bola L1 tiene puntas sobre los ejes y ahí cae el óptimo (rala); la L2 es redonda, empuja parejo. Para la clase alcanza con L1 selecciona, L2 empareja."
+      "notes": "Comparación corta. El punto geométrico si profundizan: la bola L1 tiene puntas sobre los ejes y ahí cae el óptimo (rala); la L2 es redonda, empuja parejo. Para la clase alcanza con L1 selecciona, L2 empareja.",
+      "columns": [
+        {
+          "header": "",
+          "cells": [
+            "Qué le hace a los pesos",
+            "Resultado",
+            "Dónde se usa"
+          ]
+        },
+        {
+          "header": "L2 · weight decay",
+          "cells": [
+            "Reduce todos los pesos sin llevarlos a cero",
+            "Pesos parejos y chicos",
+            "El estándar en redes"
+          ]
+        },
+        {
+          "header": "L1 · lasso",
+          "cells": [
+            "Lleva los pesos chicos exactamente a cero",
+            "Una solución rala que selecciona features",
+            "Más en modelos lineales que en redes"
+          ]
+        }
+      ]
     },
     {
       "template": "concept-breakdown",
@@ -1648,7 +1741,7 @@
     {
       "template": "concept-breakdown",
       "section": "Overfitting",
-      "title": "El resto del arsenal",
+      "title": "El resto del arsenal, y cuál usar",
       "lead": "Hay más de una herramienta, y la mejor a veces no es la más sofisticada.",
       "cards": [
         {
@@ -1668,7 +1761,30 @@
           "body": "Menos capas o neuronas. Simple y directo."
         }
       ],
-      "notes": "Early stopping es el primer reflejo que quiero que se lleven: cero costo, siempre conviene. Tres matices para no aplicar mal: regularizar sin overfitting empeora ambas; dropout y BatchNorm se llevan mal; weight decay sobre embeddings castiga a las categorías raras que no aparecieron en el batch."
+      "notes": "Early stopping es el primer reflejo que quiero que se lleven: cero costo, siempre conviene. Tres matices para no aplicar mal: regularizar sin overfitting empeora ambas; dropout y BatchNorm se llevan mal; weight decay sobre embeddings castiga a las categorías raras que no aparecieron en el batch.",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "Situación",
+            "cells": [
+              "Tabular, red chica",
+              "Red profunda",
+              "Visión",
+              "Transformers"
+            ]
+          },
+          {
+            "header": "Elegir",
+            "cells": [
+              "L2 + early stopping",
+              "Dropout + L2",
+              "Data augmentation, después dropout",
+              "Dropout bajo (0.1) + weight decay"
+            ]
+          }
+        ]
+      }
     },
     {
       "template": "value-columns",
@@ -1775,7 +1891,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "46fa5ffcaa1b018e443def475a0a9238d5d05f9cbe621b24c3982644d9862149",
-    "bytes": 154244
+    "sha256": "753ab2a45313679221c4d9f2eb5c9139bf9b0f946bb625ec99a18fc9cdd0a07b",
+    "bytes": 154642
   }
 }

@@ -133,6 +133,10 @@ emphasize: que lo que cambia entre los cuatro es la cantidad de ejes que hace fa
 labels: TABLA fila de n numeros MLP, SENAL 1D secuencia de T pasos CNN 1D o RNN, IMAGEN EN GRISES grilla alto por ancho CNN, IMAGEN RGB la misma grilla con 3 numeros por pixel CNN; cuatro paneles en dos filas, mismo lienzo y mismos margenes
 -->
 
+- **La forma viene con el dato.** Es cuántos ejes necesita para no perder información, y no se elige: una tabla es una fila, una imagen es una grilla.
+- **La arquitectura sí se elige.** Y se elige para aprovechar esa forma, no al revés.
+- **Por eso el caso de esta clase es la tabla.** Ya viene como un MLP la espera; los otros tres habría que aplanarlos, y al aplanar se pierde la vecindad.
+
 ### Sources
 
 corpus/chat.md.md (§2 El input: principio general — familias de estructura y su arquitectura natural)
@@ -155,6 +159,8 @@ Por si alguien pregunta si el aplanado es automático: no lo es. Una capa densa 
 No te metas con cómo funciona una convolución ni con attention. Alcanza con que quede claro que existen, que les corresponde otra forma de dato, y que de acá en adelante la clase modela un MLP sobre datos tabulares.
 
 ### Presenter feedback
+- [closed] 2026-08-21 - Revisar que el diagrama mejor vaya a la derecha y luego el texto. / No parece el layout ser el correcto.
+  Resolution: El problema era de proporciones, no de plantilla. El diagrama tiene un viewBox de 720x570, o sea ratio 1.26, casi cuadrado, contra un lienzo de 1.78. Con `image-full` la imagen queda limitada por la altura y ocupa alrededor del 55% del ancho, dejando dos franjas vacias a los costados. El resto de los diagramas del mazo van de 2.0 a 4.0 y por eso ahi si funciona el ancho completo. La diapositiva pasa a `content-image` con diseno `split-right`: el diagrama a la derecha, donde una imagen casi cuadrada llena bien media pantalla, y a la izquierda tres lineas cortas que son la afirmacion de la diapositiva. No se recupero la tabla que estaba en Cut material: eso volveria a sobrecargarla, que fue el defecto anterior.
 - [closed] 2026-08-21 - Revisa el slide 4 que quedo mal. / El problema es el texto del alcance de la clase, deja solo el diagrama en el slide.
   Resolution: La diapositiva quedo con el diagrama solo. Llevaba tres bloques de cuerpo sobre el mismo contenido: el diagrama de cuatro paneles, una tabla de 3x4 que decia lo mismo, y el parrafo de alcance. Contra el presupuesto de densidad de principles.md (un callout, un table-or-diagram, un bloque de apoyo) sobraban dos, y el diagrama terminaba en una franja angosta con las etiquetas ilegibles. El presentador retiro el parrafo de alcance a mano; aca se retira la tabla y se archiva en Cut material. Queda titulo, lead y diagrama a pantalla completa, plantilla image-full. Lo que decia la tabla y no dice el dibujo (la vecindad en imagenes y el orden en senales) mas la declaracion de alcance pasaron a las notas del orador.
   Nota de proceso: este mismo fix se habia aplicado a las 15:25 y se perdio. draft.md volvio a escribirse a las 18:04 desde un buffer viejo del editor, con la tabla de nuevo y el lead sin acortar. Se verificaron las otras 53 diapositivas y ninguna mas quedo afectada.
