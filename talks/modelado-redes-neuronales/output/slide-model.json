@@ -423,7 +423,8 @@
       "cards": [
         {
           "label": "Train",
-          "body": "La muestra con la que se ajusta el modelo. Es la única que actualiza `W` y `b`."
+          "body": "La muestra con la que se ajusta el modelo. Es la única que actualiza `W` y `b`.",
+          "icon": "model_training"
         },
         {
           "label": "Validación",
@@ -495,32 +496,16 @@
       "notes": "Esta tabla es el resumen que se llevan. La fila que cuesta es actualiza los pesos: muchos creen que el modelo aprende algo de validación porque la métrica aparece cada epoch. No aprende nada; el que aprende sos vos, y por eso hace falta el test. La analogía: validación son los simulacros, test es el examen final. En Kaggle el test set se libera recién al cierre, exactamente por esto."
     },
     {
-      "template": "concept-breakdown",
+      "template": "code-example",
       "section": "Partir el dataset",
       "title": "Todo se aprende solo del train",
       "notes": "Esta diapositiva venía de la sección de input y encaja mejor acá, con la partición ya explicada. Es el error número uno de producción en ML. La regla: preprocesamiento y modelo se despliegan juntos. Ojo con un matiz: es cierto que el preprocesamiento se aplica a los tres splits, pero sus parámetros salen solo de train. Si hay tiempo, data drift: no recalcular μ y σ en producción, detectar drift y reentrenar.",
-      "design": "split-right",
-      "media": {
-        "code": "# MAL: μ y σ contaminados con el test (data leakage)\nscaler.fit_transform(X_test)\n\n# BIEN: μ y σ aprendidos solo del train\nscaler.fit(X_train)\nscaler.transform(X_test)",
-        "language": "python"
-      },
-      "cards": [
-        {
-          "label": "Calcularlos sobre todo el dataset es data leakage",
-          "body": "Información del test se filtra al entrenamiento y la métrica sale optimista. Todo lo que se aprende de los datos se aprende solo del train, transformaciones incluidas."
-        },
-        {
-          "label": "La transformación se aplica a los tres",
-          "body": "Normalizar, imputar y mapear categorías corre sobre train, validación y test por igual. Pero μ, σ, la mediana de imputación y el diccionario se calculan únicamente sobre train."
-        },
-        {
-          "label": "El modelo desplegado no son solo `W` y `b`",
-          "body": "Son los pesos, los μ y σ de cada variable, el diccionario categoría a índice y los valores de imputación. Con solo los pesos, queda inservible."
-        },
-        {
-          "label": "El bug es silencioso",
-          "body": "Normalizar en producción con μ=120 en vez de 95 no lanza ninguna excepción. Solo devuelve predicciones incorrectas."
-        }
+      "language": "python",
+      "code": "# MAL: μ y σ contaminados con el test (data leakage)\nscaler.fit_transform(X_test)\n\n# BIEN: μ y σ aprendidos solo del train\nscaler.fit(X_train)\nscaler.transform(X_test)",
+      "explanation": [
+        "Las estadísticas de normalización se calculan **solo** con el train, y se guardan para reaplicarlas idénticas en validación, test y producción.",
+        "**Calcularlas sobre todo el dataset es data leakage:** información del test se filtra al entrenamiento y la métrica sale optimista.",
+        "**Y el bug es silencioso.** Normalizar en producción con μ=120 en vez de 95 no lanza ninguna excepción: solo devuelve predicciones incorrectas."
       ]
     },
     {
@@ -556,12 +541,7 @@
           "kind": "source"
         }
       ],
-      "notes": "Los dos del medio son aporte propio: ninguna de las fuentes cubre estratificación ni series de tiempo, y las dos importan para los trabajos que entregan. El de series de tiempo es el que más veces vas a ver mal resuelto, y el síntoma es un modelo que en el papel anda espectacular. Conectá con la sección 2: el identificador único es la versión extrema de este problema. Y dejá el puente hacia overfitting: la brecha train-validación solo se puede mirar si esta partición está bien hecha.",
-      "design": "split-right",
-      "media": {
-        "language": "python",
-        "code": "from sklearn.model_selection import train_test_split\n\n# 70 / 20 / 10 en dos pasos, con la clase estratificada\ntrain_X, hold_X, train_y, hold_y = train_test_split(\n    X, y, test_size=0.30, random_state=42, stratify=y\n)\nval_X, test_X, val_y, test_y = train_test_split(\n    hold_X, hold_y, test_size=1/3, random_state=42, stratify=hold_y\n)"
-      }
+      "notes": "Los dos del medio son aporte propio: ninguna de las fuentes cubre estratificación ni series de tiempo, y las dos importan para los trabajos que entregan. El de series de tiempo es el que más veces vas a ver mal resuelto, y el síntoma es un modelo que en el papel anda espectacular. Conectá con la sección 2: el identificador único es la versión extrema de este problema. Y dejá el puente hacia overfitting: la brecha train-validación solo se puede mirar si esta partición está bien hecha."
     },
     {
       "template": "pros-cons",
