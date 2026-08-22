@@ -631,3 +631,15 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - **Correccion de texto importante:** a 10 epocas la version sin normalizar no queda "pegada al baseline" sino **muy por encima** ($154.275 contra un baseline de $50.984): la red arranca cerca de cero y todavia esta subiendo hacia el rango del precio. El texto decia lo contrario y se corrigio. A 300 epocas si queda clavada en el baseline ($50.983 contra $50.984), que es el remate.
 - Files created/modified: missions/clase3/tipos-de-datos.ipynb (60 celdas, 3 figuras), y el generador del notebook en el scratchpad de la sesion.
 
+## 2026-08-21 — Layout de la 1.2 y una regresion encontrada en el modelo
+- Status: complete
+- Asks log: 2026-08-21 — "Recargar el plugin" / "Slide 'El dato decide la arquitectura'" / "revisar que el diagrama mejor vaya a la derecha y luego el texto" / "No parece el layout ser el correcto"
+- **Plugin:** unica version instalada, `talksmith` 0.83.4, spec del 2026-08-12 16:51. Cache y marketplace **identicos** (`cmp` sin diferencias), repo en `32adc17`. No habia nada nuevo que cargar. Para traer una version mas nueva hace falta `/plugin update talksmith` del lado del presentador.
+- **Diagnostico del layout, que era de proporciones y no de plantilla.** Los diagramas de las diapositivas 4 y 8 del deck tienen viewBox 720x570, o sea **ratio 1.26**, casi cuadrado, contra un lienzo de **1.78**. El resto de los diagramas del mazo va de 2.0 a 4.0. Con `image-full` una imagen de 1.26 queda limitada por la altura y ocupa alrededor del 55% del ancho, dejando dos franjas vacias a los costados. **Un diagrama casi cuadrado pide ir al costado del texto, no a pantalla completa.**
+- Fix: la 1.2 paso a `content-image` con diseno `split-right` (diagrama a la derecha) y tres lineas cortas a la izquierda, escritas nuevas. No se recupero la tabla archivada en Cut material: eso volveria a sobrecargarla, que fue el defecto original.
+- **Regresion encontrada de paso, no introducida por este cambio.** El modelo del deck traia dos diapositivas alteradas fuera de mis ediciones:
+  - **'La matriz de confusion' con `template: matrix`**, una plantilla **que no existe** en el catalogo. El render la mandaba a `fallback` y la diapositiva **habia perdido su diagrama**. Restaurada a `content+cards+image` con `split-right`, sus cuatro cards (TP, FP, FN, TN) y su imagen.
+  - **'El 99% de accuracy'** tenia `cards` y `stats` a la vez bajo `content+cards+image`, que no dibuja `stats`. Se retiro el campo huerfano.
+- **Aprendizaje:** el warning `unknown template ... -> fallback` de `build_html.py` es el unico que delata una plantilla inventada, y se pierde facil si se filtra la salida del render. Conviene grepear siempre por `warning|unknown|fallback` despues de renderizar, no solo por la linea final.
+- Verificado tras el fix: 0 diapositivas en fallback, `image_coverage` ok, `degenerate_enum` ok.
+

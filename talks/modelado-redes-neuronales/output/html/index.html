@@ -1849,10 +1849,42 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <text x="250" y="254" font-size="15" font-family="'DejaVu Sans Mono', monospace">0 / 100</text>
   <text x="430" y="254" font-size="15" font-weight="bold" fill="#DA1B2E">se escapa el 100% de lo que importa</text>
 </svg></div></div></div>
-<aside class="notes"><p>Arranque con gancho: el clasificador que dice siempre no. Escribí la fórmula en el pizarrón y hacé la cuenta con ellos, 9.900 sobre 10.000. El golpe llega con el segundo número, 0 sobre 100. Los números son ilustrativos, no un dato de una fuente.</p></aside></section><section class="slide" data-kind="matrix"><div class="stage d-full">
-<div class="shead"><span class="pill">Medir un clasificador</span><h2 class="stitle">La matriz de confusión</h2><p class="lead">Para clasificación binaria, todos los resultados caen en una tabla de 2×2 que cruza predicción y verdad.</p></div><div class="cbody"><div class="cfit"><p class="big2">La matriz de confusión</p>
+<aside class="notes"><p>Arranque con gancho: el clasificador que dice siempre no. Escribí la fórmula en el pizarrón y hacé la cuenta con ellos, 9.900 sobre 10.000. El golpe llega con el segundo número, 0 sobre 100. Los números son ilustrativos, no un dato de una fuente.</p></aside></section><section class="slide" data-kind="content+cards+image"><div class="stage d-split side-right">
+<div class="shead"><span class="pill">Medir un clasificador</span><h2 class="stitle">La matriz de confusión</h2><p class="lead">Para clasificación binaria, todos los resultados caen en una tabla de 2×2 que cruza predicción y verdad.</p></div><div class="cbody"><div class="cfit"><div class="ccicards">
+<div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M448-167 228-296q-13.77-8.43-21.39-22.21Q199-332 199-348v-257q0-16 7.61-29.79Q214.23-648.57 228-657l221-131q14-8 31-8t31 8l221 131q13.78 8.43 21.39 22.21Q761-621 761-605v257q0 16-7.87 29.79Q745.25-304.43 731-296L508-167q-14.33 8-30.16 8-15.84 0-29.84-8Zm2-69v-224L260-569v219l190 114Zm60 0 191-114v-219L510-460v224ZM80-691v-129q0-24.75 17.63-42.38Q115.25-880 140-880h129v60H140v129H80ZM269-80H140q-24.75 0-42.37-17.63Q80-115.25 80-140v-129h60v129h129v60Zm422 0v-60h129v-129h60v129q0 24.75-17.62 42.37Q844.75-80 820-80H691Zm129-611v-129H691v-60h129q24.75 0 42.38 17.62Q880-844.75 880-820v129h-60ZM480-514l190-110-190-109-190 109 190 110Zm0 25Zm0-25Zm30 54Zm-60 0Z"/></svg></span><h3>TP (verdadero positivo)</h3><p>Era positivo y el modelo lo marcó. Acierto.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M308-140h344v-127q0-72-50-121.5T480-438q-72 0-122 49.5T308-267v127ZM160-80v-60h88v-127q0-71 40-129t106-84q-66-27-106-85t-40-129v-126h-88v-60h640v60h-88v126q0 71-40 129t-106 85q66 26 106 84t40 129v127h88v60H160Z"/></svg></span><h3>FN (falso negativo)</h3><p>Era positivo y el modelo lo dejó pasar. Lo más caro en fraude o diagnóstico.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480h60q0 127 84 223.5T436-143l-61-61 40-40L569-90q-22 7-44.21 8.5T480-80Zm29-272v-257h126q18.7 0 31.35 12.65Q679-583.7 679-565v169q0 18.7-12.65 31.35Q653.7-352 635-352H509Zm-227 0v-49h120v-60h-77v-39h77v-59H282v-50h126q18.7 0 31.35 12.65Q452-583.7 452-565v169q0 18.7-12.65 31.35Q426.7-352 408-352H282Zm276-49h71v-158h-71v158Zm262-79q0-128-83.5-224T525-817l60 60-40 40-154-154q22-7 44.21-8t44.79-1q82.64 0 155.32 31.5Q708-817 762.5-762.5t86 127.18Q880-562.64 880-480h-60Z"/></svg></span><h3>FP (falso positivo)</h3><p>Era negativo y el modelo lo marcó. Falsa alarma.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M206-206q-41-48-63.5-107.5T120-440q0-150 105-254.5T480-799q10 0 20.5.5T519-797l-81-81 42-42 160 160-160 160-43-43 92-92q-11-2-26-3t-23-1q-125 0-212.5 87T180-440q0 51 17 102t52 89l-43 43Zm236-4q0-21-15-43t-32.5-45Q377-321 362-346.5T347-400q0-55 39-94t94-39q55 0 94 39t39 94q0 28-15 53.5T565.5-298Q548-275 533-253t-15 43h-76Zm-2 90v-50h80v50h-80Zm314-86-42-42q30-36 49-85t19-107q0-66-27.5-125.5T670-670l44-44q58 50 92 120.5T840-440q0 67-22.5 126.5T754-206Z"/></svg></span><h3>TN (verdadero negativo)</h3><p>Era negativo y el modelo lo dejó pasar. Acierto.</p></div></div>
 </div></div>
-</div>
+<div class="smedia"><div class="imgph svg"><!-- talksmith-ascii-sha256: 97a6c0659fe3a4ec6c8987bb660d636d7230d79e719b7d166e74c1437c576e74 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>La matriz de confusión</title>
+  <desc>La tabla 2x2 cruza lo que el modelo predijo con lo que era verdad; las dos celdas de error son FP y FN.</desc>
+  <rect x="0" y="0" width="600" height="460" fill="#ffffff"/>
+
+  <text x="350" y="40" font-size="17" text-anchor="middle" font-weight="bold">REALIDAD</text>
+  <text x="270" y="70" font-size="15" text-anchor="middle">Positivo</text>
+  <text x="450" y="70" font-size="15" text-anchor="middle">Negativo</text>
+
+  <text x="60" y="200" font-size="17" text-anchor="middle" font-weight="bold" transform="rotate(-90 60 200)">PREDICHO</text>
+  <text x="150" y="185" font-size="15" text-anchor="middle" transform="rotate(-90 150 185)">Positivo</text>
+  <text x="150" y="345" font-size="15" text-anchor="middle" transform="rotate(-90 150 345)">Negativo</text>
+
+  <rect x="180" y="90" width="180" height="150" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.4"/>
+  <text x="270" y="150" font-size="30" text-anchor="middle" font-weight="bold">TP</text>
+  <text x="270" y="180" font-size="14" text-anchor="middle" fill="#7A7373">acierto</text>
+
+  <rect x="360" y="90" width="180" height="150" fill="#FBE7EA" stroke="#DA1B2E" stroke-width="1.8"/>
+  <text x="450" y="150" font-size="30" text-anchor="middle" font-weight="bold" fill="#DA1B2E">FP</text>
+  <text x="450" y="180" font-size="14" text-anchor="middle" fill="#7A7373">falsa alarma</text>
+
+  <rect x="180" y="240" width="180" height="150" fill="#FBE7EA" stroke="#DA1B2E" stroke-width="1.8"/>
+  <text x="270" y="300" font-size="30" text-anchor="middle" font-weight="bold" fill="#DA1B2E">FN</text>
+  <text x="270" y="330" font-size="14" text-anchor="middle" fill="#7A7373">se escapó</text>
+
+  <rect x="360" y="240" width="180" height="150" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.4"/>
+  <text x="450" y="300" font-size="30" text-anchor="middle" font-weight="bold">TN</text>
+  <text x="450" y="330" font-size="14" text-anchor="middle" fill="#7A7373">acierto</text>
+
+  <text x="360" y="435" font-size="15" text-anchor="middle" fill="#7A7373">las dos celdas rojas son los errores: FP molesta, FN se escapa</text>
+</svg></div></div></div>
 <aside class="notes"><p>El centro de la sección. Dibujá la matriz mientras aparece y pedí que ubiquen el fraude en cada celda. La confusión típica es FP vs FN; anclalo con el costo: un FN médico (mandar a casa a alguien enfermo) suele ser peor que un FP. Accuracy es la diagonal sobre el total.</p></aside></section><section class="slide" data-kind="concept-columns"><div class="stage d-full">
 <div class="shead"><span class="pill">Medir un clasificador</span><h2 class="stitle">Precision, recall y F1</h2><p class="lead">De las cuatro celdas salen las métricas que de verdad describen a un clasificador.</p></div><div class="cbody"><div class="cfit"><div class="conccols">
 <div class="conccol fragment fade-up">
@@ -2073,14 +2105,14 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <title>Las curvas de train y validación</title>
   <desc>El error de train baja sin parar mientras el de validación deja de bajar y vuelve a subir: ahí empieza el overfitting.</desc>
   <defs>
-    <marker id="e18-arw5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+    <marker id="e19-arw5" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
       <path d="M0,0 L8,4 L0,8 Z" fill="#3B3535"/>
     </marker>
   </defs>
   <rect x="0" y="0" width="640" height="380" fill="#ffffff"/>
 
-  <line x1="80" y1="40" x2="80" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e18-arw5)"/>
-  <line x1="80" y1="300" x2="600" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e18-arw5)"/>
+  <line x1="80" y1="40" x2="80" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e19-arw5)"/>
+  <line x1="80" y1="300" x2="600" y2="300" stroke="#3B3535" stroke-width="1.6" marker-end="url(#e19-arw5)"/>
   <text x="50" y="50" font-size="14" text-anchor="middle" fill="#7A7373">error</text>
   <text x="590" y="326" font-size="14" text-anchor="middle" fill="#7A7373">épocas</text>
 

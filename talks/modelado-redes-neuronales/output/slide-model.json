@@ -1252,16 +1252,6 @@
         "alt": "10.000 transacciones con 100 fraudes: accuracy 99% y cero fraudes detectados"
       },
       "highlights": [],
-      "stats": [
-        {
-          "value": "99%",
-          "caption": "accuracy del modelo más tonto posible: decir siempre \"no es fraude\""
-        },
-        {
-          "value": "0 / 100",
-          "caption": "fraudes detectados: se escapa el 100% de lo que importa"
-        }
-      ],
       "cards": [
         {
           "label": "Accuracy la escribe la clase mayoritaria",
@@ -1278,41 +1268,32 @@
       ]
     },
     {
-      "template": "matrix",
+      "template": "content+cards+image",
       "section": "Medir un clasificador",
       "title": "La matriz de confusión",
       "lead": "Para clasificación binaria, todos los resultados caen en una tabla de 2×2 que cruza predicción y verdad.",
       "notes": "El centro de la sección. Dibujá la matriz mientras aparece y pedí que ubiquen el fraude en cada celda. La confusión típica es FP vs FN; anclalo con el costo: un FN médico (mandar a casa a alguien enfermo) suele ser peor que un FP. Accuracy es la diagonal sobre el total.",
-      "x_label": "LO QUE PREDIJO EL MODELO",
-      "columns": [
-        "Positivo",
-        "Negativo"
-      ],
-      "y_label": "LO QUE ERA VERDAD",
-      "rows": [
-        "Positivo",
-        "Negativo"
-      ],
-      "cells": [
+      "design": "split-right",
+      "media": {
+        "src": "images/s7-2-1-matriz-confusion.png",
+        "alt": "La matriz de confusión 2×2"
+      },
+      "cards": [
         {
-          "label": "TP · verdadero positivo",
-          "body": "Era positivo y el modelo lo marcó. Acierto.",
-          "tone": "good"
+          "label": "TP (verdadero positivo)",
+          "body": "Era positivo y el modelo lo marcó. Acierto."
         },
         {
-          "label": "FN · falso negativo",
-          "body": "Era positivo y el modelo lo dejó pasar. Lo más caro en fraude o diagnóstico.",
-          "tone": "bad"
+          "label": "FN (falso negativo)",
+          "body": "Era positivo y el modelo lo dejó pasar. Lo más caro en fraude o diagnóstico."
         },
         {
-          "label": "FP · falso positivo",
-          "body": "Era negativo y el modelo lo marcó. Falsa alarma.",
-          "tone": "bad"
+          "label": "FP (falso positivo)",
+          "body": "Era negativo y el modelo lo marcó. Falsa alarma."
         },
         {
-          "label": "TN · verdadero negativo",
-          "body": "Era negativo y el modelo lo dejó pasar. Acierto.",
-          "tone": "good"
+          "label": "TN (verdadero negativo)",
+          "body": "Era negativo y el modelo lo dejó pasar. Acierto."
         }
       ]
     },
