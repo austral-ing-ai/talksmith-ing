@@ -1,6 +1,6 @@
 # memory.md — modelado-redes-neuronales
 
-**Current step:** 5 (Review) — awaiting_presenter
+**Current step:** 8 (Learnings) — iteración post-render, complete
 **Awaiting:** — (pendiente aparte y ya crítico: el blocker de duración)
 **Topic:** Diseño y modelado de una red neuronal — entradas/salidas, matriz de confusión, overfitting y regularización L2
 **Folder:** talks/modelado-redes-neuronales/
@@ -643,3 +643,390 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - **Aprendizaje:** el warning `unknown template ... -> fallback` de `build_html.py` es el unico que delata una plantilla inventada, y se pierde facil si se filtra la salida del render. Conviene grepear siempre por `warning|unknown|fallback` despues de renderizar, no solo por la linea final.
 - Verificado tras el fix: 0 diapositivas en fallback, `image_coverage` ok, `degenerate_enum` ok.
 
+## 2026-08-21 — Icono de Train, slides 19 y 20 rotas, y rename del notebook
+- Status: complete
+- Asks log:
+  - 2026-08-21 — "El icono de Train es de entrenar no de tren"
+  - 2026-08-21 — "Todo se aprende solo del train la imagen no se esta renderizando" / "El slide 19 y 20"
+  - 2026-08-21 — "renombrar tipos-de-datos a input-data-types y el csv que tambien tenga el mismo nombre"
+  - 2026-08-21 — "Generar datos no parece ser necesario, ya se genero el file y lo usamos siempre"
+- **Icono.** La card 'Train' de 'Un dataset, tres trabajos distintos' recibia el icono automatico `train`, que es una locomotora. El picker de iconos resuelve por texto y ahi la palabra es ambigua en ingles. Se fijo `icon: "model_training"` explicito en el modelo; verificado que se cacheo `model_training.outlined.svg` en lugar de `train.outlined.svg`. **Las cards aceptan `icon` explicito**, es la salida para cualquier otro caso ambiguo.
+- **Segunda tanda de la misma regresion del modelo.** Las diapositivas 19 y 20 del deck (3.3 y 3.4) tenian `media: {code, language}`, una forma **inventada**: el schema solo acepta `{src, alt}`. El resultado era una media vacia con `design: split-right`, o sea media pantalla en blanco y el codigo sin dibujarse. Es el mismo tipo de error que el `template: matrix` de la ronda anterior.
+  - 19 'Todo se aprende solo del train' -> `code-example` con `code` + `language` + tres `explanation`. El bloque MAL/BIEN es el contenido de esa diapositiva, asi que el codigo manda.
+  - 20 'Los errores que arruinan la medicion' -> `concept-breakdown` sin la media rota. Ahi los cinco errores son el contenido y el snippet es secundario.
+- **Rename:** `tipos-de-datos.ipynb` -> `input-data-types.ipynb`, `casas.csv` -> `input-data-types.csv`. Se elimino `generar-casas.py` por pedido del presentador: el CSV ya esta generado y es el que se usa siempre. La procedencia (dataset sintetico, aporte por variable, ruido 18.000 en el precio completo y 4.000 en los aislados) paso al markdown del notebook, para que no se pierda al sacar el script.
+- **Regla que conviene fijar:** despues de cada render hay que grepear la salida por `warning|unknown|fallback`, y ademas revisar que ninguna diapositiva tenga `media` sin `src`. Las dos regresiones de hoy eran invisibles en el deck salvo por un hueco en blanco.
+
+
+## 2026-08-24 — Slide 15 (2.6 La tabla de decisiones): fuera la bajada de floats, entra "¿Qué es?"
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "borrar 'La última columna cuenta floats, no neuronas: ...'" y "agregar en slide 15 en la tabla una descripción de los tipos de datos. No es claro qué es por ejemplo 'Numérica con magnitud' vs 'Numérica con cola larga'"
+- What was decided:
+  - **Se quitó el highlight `definition` de la 2.6** (el párrafo floats-no-neuronas) del modelo del deck y el párrafo equivalente de `final.md` y `draft.md`. **No se tocaron las notas del orador**, que ya traían la misma explicación como respuesta preparada por si alguien pregunta; era una redundancia entre diapositiva y notas y quedó solo en las notas.
+  - **Columna nueva `¿Qué es?`** insertada en segundo lugar (entre `Variable` y `Ejemplo`), once celdas de 3 a 5 palabras. El problema que resolvía era exactamente el par que marcó el presentador: "Numérica con magnitud" → *Número en un rango parejo* contra "Numérica con cola larga" → *Número con pocos valores enormes*. El resto sigue el mismo eje: ordinal *con orden, sin distancia*; nominal baja/alta *pocas* contra *muchas*; código *etiqueta escrita como número*; identificador *distinto en cada fila*.
+  - Las descripciones se escribieron cortas a propósito: `.chead`/`.crow` es un grid de columnas iguales (`repeat(var(--cc),1fr)`), así que pasar de 4 a 5 columnas le saca 20% de ancho a cada una. Una descripción de una línea larga habría empujado el `.cfit` a achicar toda la tabla.
+- Nota de layout: la bajada dice "la columna del medio es la única decisión" y sigue siendo cierta — con 5 columnas la del medio es literalmente `Codificación`.
+- Files created/modified: draft.md, final.md, output/slide-model.json (re-stampeado con `model_freshness.py stamp`), output/html/index.html, index.html raíz.
+- Verificado: render sin `warning|unknown|fallback`, `--cc:5` con los 5 encabezados, y 0 ocurrencias del párrafo borrado en el HTML.
+- **Falsa alarma que conviene dejar escrita.** Marqué como rotas las diapositivas 'Cuántas capas y cuánto ancho' y 'El resto del arsenal, y cuál usar' porque tienen `media` sin `src`, aplicando la regla del 2026-08-21. **No están rotas: las dos dibujan su tabla.** Ver la entrada de correccion de abajo.
+
+## 2026-08-24 — Correccion: `media` sin `src` ya no es sintoma de nada (plugin 0.84.0)
+- Status: complete
+- **La regla del 2026-08-21 quedo vencida el mismo dia que se escribio.** Decia: "revisar que ninguna diapositiva tenga `media` sin `src`". Era cierta contra el plugin **0.83.4**, donde `media` solo aceptaba `{src, alt}` y cualquier otra forma dejaba media pantalla en blanco. El plugin instalado hoy es **0.84.0**, y `_macros.j2` (mtime 2026-08-21 23:08, cinco minutos despues de aquel render) trae `smedia`, un macro **polimorfico** que despacha por forma:
+  - `{src, alt}` → imagen
+  - `{code, language?}` → panel de codigo `.codebox.mcode`
+  - `{columns:[{header,cells}]}` → grilla `.compare.mtable`
+  Y `_design()` ademas asciende `column-*`/`bleed` a `split-*` cuando la media es codigo o tabla, para no recortar algo que hay que leer.
+- **Consecuencia:** las dos diapositivas con `media: {columns: [...]}` **renderizan bien** — verificado, dos `.compare.mtable` con `--cc:2` dentro de `.smedia`, en la mitad derecha de un `split-right`. Cards a la izquierda, tabla de apoyo a la derecha, que era la intencion original del autor.
+- **Regla nueva, que reemplaza a la vieja:** despues de renderizar seguir grepeando la salida por `warning|unknown|fallback`, que sigue siendo el unico delator de una plantilla inventada. **No** chequear `media` sin `src`: hoy `{code}` y `{columns}` son formas legitimas. Lo que si es sintoma es `media` que no sea ninguna de las tres formas (ni `src`, ni `code`, ni `columns`) — ahi `build_html.py` avisa "the slide carries no media to place" y degrada el design a `full`.
+- **Aprendizaje de fondo:** una regla de diagnostico escrita contra una version del renderer caduca cuando el renderer gana una capacidad. Vale anotar la version contra la que se escribio. La del 2026-08-21 no la tenia y por eso sobrevivio a su utilidad.
+
+## 2026-08-24 — Fuera la nota de augmentation en 'Los tres, lado a lado'
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Borrar 'Augmentation solo en train. Validación y test se quedan con los datos originales. El preprocesamiento, en cambio, se aplica a los tres.'"
+- What was decided: se quitó el highlight `note` de la diapositiva **'Los tres, lado a lado'** (2.2). Era un resto: el 2026-08-21 el presentador pidió mover esa línea y 'La diferencia sutil…' a la diapositiva 'Qué hacer y qué no'; el movimiento se aplicó en `final.md`/`draft.md` pero **el modelo del deck se quedó con las dos**, así que la línea seguía apareciendo en el HTML aunque el markdown ya no la tuviera.
+- **No se tocó nada de la 2.5 'Qué hacer y qué no'**, que es donde la regla vive ahora: sigue el ítem `Augmentation solo en train` en la columna *Qué hacer* y sigue su desarrollo completo en las notas del orador (con la distinción contra preprocesamiento, que es la parte que se confunde). Tampoco se tocó la fila `Augmentation | Sí | No | No` de la tabla, que dice lo mismo en forma de dato.
+- **Resto del mismo tipo, todavía en pie:** el highlight `important` 'La diferencia sutil está entre validación y test…' sigue en el modelo de la 2.2 y tampoco está en `final.md`. Es la otra mitad de aquel pedido de mover. Queda a la espera de que el presentador decida.
+- **Patrón que conviene mirar:** cuando una edición mueve contenido entre diapositivas, hay que aplicarla en `final.md`/`draft.md` **y** en `output/slide-model.json`. El markdown y el modelo pueden divergir sin que ningún chequeo avise: `model_freshness` compara hashes de archivo completo, no contenido diapositiva por diapositiva, y un re-stamp la da por buena.
+- Files created/modified: output/slide-model.json, output/html/index.html, index.html raíz.
+- Verificado: render sin `warning|unknown|fallback`, 0 ocurrencias de la frase en el HTML.
+
+## 2026-08-24 — Fuera cross-validation de 'Los errores que arruinan la medición'
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Borrar 'Cross-validation, y cuándo paga / K-fold entrena k veces reservando una porción distinta y promedia...'"
+- What was decided: se borró la quinta card de la diapositiva **2.4 'Los errores que arruinan la medición'**, y su viñeta equivalente en `final.md` y `draft.md`. La diapositiva queda con cuatro errores.
+- **Por qué encajaba mal, más allá del pedido:** la diapositiva se llama *los errores* y su bajada dice "ninguno lanza una excepción, todos devuelven una métrica mejor que la real". Cross-validation no es un error ni infla ninguna métrica: es una técnica alternativa. Era la única card que no cumplía la promesa del título.
+- Se recortaron además las dos referencias de fuente que apuntaban sólo a esa card (`§12 Cross-validation` de roboflow y `§4 Cross-validation` de train-validation-test-sets), y con eso la segunda fuente sale entera de la línea de Sources de esa diapositiva. **El material sigue en el corpus**, sólo deja de estar citado acá.
+- Las notas del orador no se tocaron: 'los dos del medio son aporte propio' seguía apuntando a estratificación y series de tiempo, que con cuatro cards siguen siendo la 2 y la 3.
+- Files created/modified: final.md, draft.md, output/slide-model.json (re-stampeado), output/html/index.html, index.html raíz.
+- Verificado: render sin `warning|unknown|fallback`, 0 ocurrencias de 'Cross-validation' en el HTML.
+
+## 2026-08-24 — Fuera el argumento de diferenciabilidad en 'Qué es una función de pérdida'
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Borrar 'Accuracy no la tiene: es un conteo, salta de a escalones. Por eso accuracy se reporta y nunca se optimiza. Notación de acá en adelante'"
+  - 2026-08-24 — pregunta al presentador: la cita cruzaba dos bloques distintos → eligió **borrar solo la parte de accuracy y conservar la notación**.
+- **Por qué hubo que preguntar.** En `final.md` son **dos párrafos separados** ('Diferenciable o no sirve' y 'Notación de acá en adelante'), pero el modelo del deck los tenía **fusionados en un solo highlight `important`**. El texto citado empezaba a mitad del primero y terminaba al principio del segundo, así que borrar literal la selección dejaba las dos mitades rotas. Es otra divergencia markdown/modelo del mismo tipo que la del 2026-08-24 en 'Los tres, lado a lado'.
+- **Por qué la notación no se podía perder:** `y` y `t` los usan las fórmulas de 'Regresión: MSE, MAE y Huber' (`L = (y − t)²`, `L = |y − t|`), 'Clasificación binaria: BCE' (`L = −[t·log(y) + (1 − t)·log(1 − y)]`) y 'El delta' (`y − t`). Sin esa línea las fórmulas quedan con símbolos sin presentar.
+- What was decided: el párrafo 'Diferenciable o no sirve…' salió de `final.md`, `draft.md` y del modelo. El highlight quedó con **solo** la notación, y pasó de `important` a `note` porque una convención de símbolos no es el remate de la diapositiva.
+- **El punto de accuracy no se perdió**: las notas del orador lo desarrollan más largo que la diapositiva ("la razón por la que no entrenamos directamente sobre accuracy... es que accuracy no tiene derivada. Se entrena sobre un sustituto derivable y se mide con lo que importa"), y anticipan que la brecha reaparece en la sección de métricas.
+- Files created/modified: final.md, draft.md, output/slide-model.json (re-stampeado), output/html/index.html, index.html raíz.
+- Verificado: render sin `warning|unknown|fallback`; 0 ocurrencias de 'salta de a escalones' y 1 de 'Notación de acá en adelante' en el HTML.
+
+## 2026-08-24 — Todo el mazo pasa de PyTorch a Keras
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "No hablemos de PyTorch, los ejemplos estan usando Keras. Actualiza eso en todos lados"
+- **Contexto que fija la decisión:** el notebook `missions/clase3/input-data-types.ipynb` usa **Keras 3** (`import keras`, `from keras import layers`, `keras.Sequential`, `keras.optimizers`), no `tf.keras`. Las llamadas nuevas se escribieron con ese estilo.
+- Cambios en diapositivas (los cinco que se ven en pantalla):
+  - **BCE.** `BCEWithLogitsLoss` → `BinaryCrossentropy(from_logits=True)`, y el título de la card pasó de 'La sigmoide ya viene adentro' a **'La sigmoide va en un solo lado'**. No es cosmética: en PyTorch la loss con logits es la recomendada y la sigmoide efectivamente *viene* adentro; **en Keras `from_logits` es opcional y su default es `False`**, así que la afirmación original habría sido falsa. La regla que sí se sostiene en Keras es que activación y `from_logits` no van las dos.
+  - **Predecir con logits.** `torch.sigmoid(model(x))` → `keras.ops.sigmoid(model(x))`.
+  - **Cross-entropy multiclase.** `CrossEntropyLoss` → `CategoricalCrossentropy(from_logits=True)`, con la variante `SparseCategoricalCrossentropy` nombrada para etiquetas enteras.
+  - **L2.** `Adam(params, weight_decay=1e-4)` → `layers.Dense(64, kernel_regularizer=regularizers.l2(1e-4))`, que es la forma idiomática en Keras y además es la que coincide con el `J = cost + λ·Σw²` de la diapositiva.
+  - **Dropout.** `nn.Dropout(0.2)` → `layers.Dropout(0.2)`.
+- **Una card cambió de contenido, no de nombre de API.** 'El bug clásico' decía *olvidar `model.eval()` deja dropout activo en inferencia*. **Ese bug no existe en Keras:** `fit` activa dropout y `predict`/`model(x)` lo apagan solos. Traducir la frase habría sido inventar un problema. Pasó a **'En Keras no hay que acordarse'**, que dice lo mismo al revés y agrega la salida real: para MC dropout hay que pedir `model(x, training=True)`. Las notas del orador acompañan.
+- **El bucle de entrenamiento (notas de 'El ciclo completo, batch a batch').** Estaba anclado a `optimizer.zero_grad()` / `loss.backward()` / `optimizer.step()`. En Keras esas tres líneas viven adentro de `model.fit`; el anclaje pasó al bucle abierto a mano: el *gradient tape* graba (acumular), `tape.gradient(loss, model.trainable_weights)` cierra la cuenta, `optimizer.apply_gradients(...)` aplica. **Se perdió a propósito el cuarto paso**, vaciar: cada tape arranca limpio, así que el error de no vaciar es de otros frameworks y quedó dicho como tal.
+- **Fuentes tocadas.** Se borraron las dos citas a *PyTorch, Optimizing Model Parameters* (diapositivas 4.5 y 4.9): sostenían la afirmación "los gradientes se suman por defecto", que ya no se hace. En su lugar entró *Keras, Writing a training loop from scratch* <https://keras.io/guides/writing_a_training_loop_from_scratch/>, **sin cita textual** porque no se verificó contra la página. Y en la 1.2 se recortó la mitad PyTorch de la cita doble sobre el aplanado; la de Keras alcanza sola para la afirmación.
+- **Lo que NO se tocó, a propósito:**
+  - **El corpus.** `research/corpus/chat.md.md` es PyTorch de punta a punta (§8, §10 y todos los bloques de código). Es una fuente: reescribirla sería falsificarla. Donde una línea de Sources nombraba `BCEWithLogitsLoss` para describir qué trae el corpus, se reescribió en términos neutros ("la loss que recibe logits"), que sigue siendo fiel.
+  - **`# Cut material` de `final.md`** (dos líneas con `BCEWithLogitsLoss` y `torch.sigmoid`) y el log de feedback cerrado de `draft.md` (~línea 170). Son archivos históricos de decisiones pasadas. **Si alguna vez se rescata ese material, hay que traducirlo antes de volver a ponerlo en una diapositiva.**
+- Verificado: 0 ocurrencias de `PyTorch`, `torch.`, `model.eval`, `BCEWithLogits` y `CrossEntropyLoss` en el HTML renderizado.
+
+## 2026-08-24 — Dos diagramas redibujados
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Borrar del grafico 'un eje por cada peso de la red…'. Asi el grafico toma mas importancia" → corregido enseguida: **"Deja el texto en realidad, ponelo como una especie de titulo del grafico"**
+  - 2026-08-24 — "En el slide 35 en vez de usar cajas, seria bueno que se vea como una especie de nodos que representan la red neuronal"
+- **`s6-1-1-descenso-al-minimo`** (4.1 'Buscar el mínimo de una función'). La línea *'un eje por cada peso de la red: el dibujo muestra uno, un MLP real tiene millones'* estaba al pie en gris chico. Pasó **arriba, como título**: 14 px, negrita, `#3B3535` (la tinta por defecto de `diagram-style.md`), y todo el dibujo bajó 22 px con un `translate`. El `viewBox` no cambió, así que la diapositiva no se re-acomoda.
+- **`s6-2-1-ciclo-forward-backward`** (4.2 'Entrenar es un ciclo de dos movimientos'). Las tres cajas `[ capa 1 ] [ capa 2 ] [ salida ]` pasaron a **12 nodos en cuatro capas** (entrada 3, capa 1 = 4, capa 2 = 4, salida 1) unidos todos con todos por 32 aristas finas. El riel rojo del backward sube ahora a cada capa por debajo de su nodo más bajo. `viewBox` de 700×300 a **700×330** para que la red respire; sigue siendo apaisado y sigue entrando en el `split-right`.
+- **Nota sobre el ancho de la entrada:** se dibujaron 3 nodos de entrada aunque el resto del mazo insiste en que la capa de entrada no calcula nada. Es coherente: son posiciones del vector, igual que en `s1-6-1-nodos-de-entrada`. Por eso tampoco le llega flecha roja de backward — no hay pesos antes de ella.
+- **Los dos sidecars `.ascii` se actualizaron y los SVG se re-sellaron** con el `talksmith-ascii-sha256` del sidecar nuevo, así que un futuro Polish los ve al día y no los redibuja. Los bloques `ascii-source` de `final.md` y las fences ```ascii de `draft.md` quedaron en sincronía (ojo: **`final.md` escapa `>` como `&gt;`** dentro del comentario, si no cerraría el comentario HTML; `draft.md` no escapa nada).
+- **Los `.png` quedaron viejos y no importa para el HTML.** `html_style.py` resuelve un `_vector_twin`: si el modelo pide `images/x.png` y existe `images/x.svg`, **inlinea el SVG** e ignora el PNG. Por eso los 24 `media.src` del modelo apuntan a `.png` y el deck igual muestra vectores. **Sí importaría para un render `.pptx`**, que usaría los PNG viejos. Regenerarlos necesita `cairosvg`, y **no hay cairo en esta máquina** (`find_library('cairo')` da None, no hay `rsvg-convert` ni `inkscape`).
+- Verificado en el HTML: 12 `<circle>` y 32 `<line>` en el diagrama del ciclo, y el título nuevo presente en el del descenso.
+
+## 2026-08-24 — La sección 6 deja de contradecir a la sección 5 sobre la loss
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "'L = ½ Σᵢ (yᵢ − tᵢ)²' no depende realmente de la funcion de perdida elegida?"
+  - 2026-08-24 — "Slides anteriores introdujimos el concepto que dependiendo de lo que sea el resultado hay loss function que se debe elegir"
+- **La incoherencia, que era real.** La sección 5 enseña que la loss la fija la salida (lineal→MSE, sigmoide→BCE, softmax→cross-entropy) y que activación y loss no se eligen por separado. La sección 6 después deriva todo sobre `L = ½Σ(y−t)²` **sin decirlo en pantalla**: la aclaración vivía solo en las notas del orador de 4.3 y 4.5. Un alumno atento la agarra.
+- **Peor: la imagen de 4.5 mostraba el par prohibido.** `δⱼ = (yⱼ − tⱼ)·yⱼ(1−yⱼ)` es L2 con sigmoide de salida — la deducción clásica de los libros (Nielsen) y exactamente el par que la sección 5 dice que no se usa. Con el par correcto ese `y(1−y)` **no está**: se cancela.
+- **La matemática que ordena todo esto** (vale dejarla escrita porque es el remate del tema): con los tres pares correctos el delta de la capa de salida da `y − t` en los tres casos.
+  - lineal + MSE: `∂L/∂y = y−t`, `∂y/∂a = 1`
+  - sigmoide + BCE: `∂L/∂y = (y−t)/[y(1−y)]`, `∂y/∂a = y(1−y)` → se cancelan
+  - softmax + cross-entropy: idem, `δ = y − t`
+- Qué se cambió:
+  - **4.3 'El número que hay que derivar'.** La bajada pasó a decir que la loss la fija la salida y que L2 es el caso de trabajo. Highlight `note` nuevo: cambiar de loss cambia **un solo factor** de la cadena; el resto del backward es idéntico para cualquier loss diferenciable. **La fórmula L2 se queda** — es la deducción clásica y ahora está encuadrada.
+  - **4.5 'El delta'.** El párrafo sobre `y(1−y)` como derivada de la sigmoide se reemplazó por la simplificación a `y − t`, y el highlight subió de `note` a `important` porque es el remate. Notas del orador reescritas con la cuenta de la cancelación y con la explicación de por qué los libros traen la otra fórmula.
+  - **Imagen redibujada:** `images/bp-delta-salida.svg` (nuevo). Arriba la forma general `δⱼ = ∂L/∂yⱼ · ∂yⱼ/∂aⱼ` con los dos factores rotulados; abajo, en una banda, la simplificación `δⱼ = yⱼ − tⱼ` en rojo. El crédito en Sources dice ahora que la `s34` de la biblioteca se redibujó para esta Talk.
+- **Detalle de plomería que costó un render de más.** El SVG nuevo **no se usaba** aunque estuviera al lado del PNG. `html_style._vector_twin` solo cambia un `.png` por su `.svg` si puede probar que lo generó Talksmith: o existe el sidecar `.ascii`, o el SVG trae el comentario `talksmith-ascii-sha256`. Es a propósito, para no pisar un `chart.png` del presentador con un `chart.svg` ajeno que comparta nombre. Se resolvió escribiendo el sidecar `.ascii` y sellando el SVG con el sha del sidecar. **Regla: un SVG nuevo puesto a mano al lado de un PNG no se usa hasta que tenga sidecar o sello.**
+- **El `.png` viejo quedó con la fórmula contradictoria.** Para el HTML no importa (gana el SVG), pero **un render `.pptx` mostraría la fórmula vieja**. Regenerarlo necesita cairosvg, que no está instalado. Además el SVG nuevo usa `∂` (U+2202): en el navegador se ve bien, pero si algún día se pasa por cairosvg hay que verificar que no salga tofu, como advierte `diagram-style.md` para los símbolos.
+- Files created/modified: final.md, draft.md, output/slide-model.json (re-stampeado), images/bp-delta-salida.svg (nuevo), images/bp-delta-salida.ascii (nuevo), output/html/index.html, index.html raíz.
+- Verificado: render sin `warning|unknown|fallback`; los seis textos nuevos presentes en el HTML y la imagen nueva inlineada.
+
+## 2026-08-24 — La 4.3 arranca por la regla y baja al ejemplo del precio
+- Status: complete
+- Asks log (tres pasadas sobre la misma bajada, y la tercera es la que quedó):
+  - 2026-08-24 — "'L2 es el caso de trabajo, no la única loss'. Que significa?" → *caso de trabajo* era un calco de *worked example* y no se entiende en castellano.
+  - 2026-08-24 — "Tal vez mejor en vez de decir 'clásica' decir, supongamos que tenemos que obtener el precio de una casa. La función de pérdida sería..."
+  - 2026-08-24 — "Es mas claro decir, hay que derivar la funcion de perdida y este es un ejemplo."
+- **Forma final de la bajada:** *"Lo que hay que derivar es **la función de pérdida**, y cuál es la fija la tarea. Tomemos un ejemplo: si la red predice el precio de una casa, la salida es una neurona lineal y la loss es el error cuadrático."*
+- **El orden es el punto, no la redacción.** Las tres versiones decían lo mismo; la que funciona **abre por la regla general y marca el ejemplo como ejemplo**. Las dos anteriores abrían por el caso particular ("la clásica es el error cuadrático" / "supongamos una casa"), y ahí el alumno no tiene forma de saber si L2 es una elección de la clase o una propiedad del algoritmo.
+- **El ejemplo del precio no es nuevo en el mazo:** ya está en la 5.1 ('para predecir un precio la tarea pide una neurona sin activación... y sobre esa salida van MSE, MAE o Huber') y es el del notebook `input-data-types`. Sirve como cadena de consecuencias: predecimos un precio → salida lineal → error cuadrático. Nadie eligió la loss a mano. Eso quedó escrito en las notas del orador.
+- El highlight pasó a cargar la invariancia, que es el dato que la bajada ya no dice: **'El algoritmo no cambia con la loss'** más los dos contraejemplos (BCE, cross-entropy) y el hecho de que cambiaría un solo factor.
+- Files created/modified: final.md, draft.md, output/slide-model.json (re-stampeado), output/html/index.html, index.html raíz.
+
+## 2026-08-24 — 'Ojo con la escala' se borra: la 4.8 ya lo dice, y mejor
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "'Ojo con la escala…' creo que debería ir más adelante. Tal vez una sección al final de cosas a tener en cuenta. Fijate si hay muchas notas de estas repartidas en esta sección."
+- **Auditoría de la sección 6 (Backpropagation), 10 diapositivas de contenido, 12 recuadros:** 6.1 important · 6.2 note · 6.3 note + **warning** · 6.4 important · 6.5 important · 6.6 important · 6.7 ninguno · 6.8 important · 6.9 important · 6.10 note + note + important. **El 'Ojo con la escala' era el único `warning` de toda la sección**, así que no había un enjambre de advertencias: los otros once recuadros son el remate de su propia diapositiva, no salvedades sueltas.
+- **La diapositiva de cierre que el presentador imaginaba ya existe:** 6.10 'Qué mirar cuando esto se entrena', creada el 2026-08-21 por un pedido casi idéntico ("agregar un slide al final con cosas prácticas a tener en cuenta"). Y **está llena**: tabla de 3 columnas × 5 filas más tres recuadros. Meter ahí una cuarta salvedad la rompe.
+- **Por qué se borró en vez de moverse.** La 4.8 'Batch y época no son lo mismo' ya dice exactamente eso, en su card `Batch`: *"Las `B` filas hacen el forward a la vez con los mismos pesos, se promedia su loss, y ese promedio es lo que se deriva"*. Mover el recuadro habría sido duplicarlo. Además el recuadro estaba en 4.3, **cinco diapositivas antes de que se introduzca el batch**: era una referencia hacia adelante a un concepto que la audiencia todavía no tenía.
+- **Esto respeta un reparto que ya estaba decidido.** El 2026-08-21 se auditó la repetición de "se acumula durante el batch y se aplica al cerrarlo", que aparecía en cuatro diapositivas, y se repartió por dueño: **6.2 lo enuncia, 6.7 se queda con la aritmética del paso, 6.8 con el conteo, 6.9 con el ensamblado.** El 'Ojo con la escala' de 6.3 se había colado fuera de ese reparto y le pisaba el tema a 6.8.
+- **Regla que sale de acá:** antes de mover una salvedad, buscar quién es su dueño en el reparto. Si el dueño ya la dice, la salvedad de la otra diapositiva no se muda: se borra.
+- La 4.3 queda con un solo recuadro, 'El algoritmo no cambia con la loss', que es el que le corresponde.
+- Files created/modified: final.md, draft.md, output/slide-model.json (re-stampeado), output/html/index.html, index.html raíz.
+
+## 2026-08-24 — La definición de `a` entra al gráfico de la regla de la cadena
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Agregar Derivar a = Σ xᵢwᵢ + b en el grafico del slide 37 para que no se pierda."
+- **El diagnóstico era correcto.** La definición vivía **solo en el texto** del tercer bullet de 4.4 ('Es la entrada que multiplicaba a ese peso, nada más. Derivar `a = Σ xᵢwᵢ + b` respecto de uno de sus pesos deja la entrada que lo acompañaba'). El gráfico mostraba `∂aⱼ/∂wᵢⱼ` sin decir nunca qué es `a`, y ese es justo el factor que no se deduce solo.
+- **Imagen nueva:** `images/bp-regla-de-la-cadena.svg`. Arriba la cadena de cuatro fracciones igual que la original; abajo, en una banda, **`aⱼ = Σᵢ xᵢ wᵢⱼ + bⱼ` en rojo**, con la bajada 'la suma ponderada, lo que la unidad calcula antes de activar'. El rojo es el único acento de ese diagrama, que es lo que pide `diagram-style.md`.
+- Se le puso sidecar `.ascii` y sello `talksmith-ascii-sha256`, sin los cuales `_vector_twin` **no habría usado el SVG** (misma trampa que con el delta, ver la entrada de más arriba de hoy).
+- Notas del orador: se agregó un párrafo al principio que dice que la definición ya está en pantalla y que conviene señalarla **antes** de recorrer los tres factores, porque el tercero solo se entiende si se ve que `a` es una suma de productos.
+- El crédito en Sources dice ahora que la `s33` de la biblioteca se redibujó para esta Talk.
+- **Van dos imágenes de la biblioteca redibujadas hoy** (`bp-delta-salida` y `bp-regla-de-la-cadena`). Las dos siguen teniendo su `.png` viejo al lado, con el contenido anterior: irrelevante para el HTML, **incorrecto para un futuro `.pptx`**.
+- Files created/modified: images/bp-regla-de-la-cadena.svg (nuevo), images/bp-regla-de-la-cadena.ascii (nuevo), final.md, draft.md, output/slide-model.json (re-stampeado), output/html/index.html, index.html raíz.
+
+## 2026-08-24 — El gráfico de la cadena, segunda pasada: sin caja y con espaciado exacto
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Revisar el espaciado del grafico. Mismo `aj = ∑i xi wij + bj` no es necesario ponerlo en una caja, pareceria que tiene la misma importancia que el resto."
+- **Las dos observaciones eran correctas y la segunda es la de fondo.** La banda con fondo y borde le daba a la definición el mismo peso visual que a la cadena, y son cosas distintas: la cadena es el contenido de la diapositiva, la definición es apoyo. Ahora va **sin caja, debajo, más chica**, con una bajada gris de una línea. El acento rojo se sacó del todo: el diagrama no tiene foco de color, que es correcto porque no hay un elemento que compita.
+- **El espaciado estaba mal por una razón concreta y vale anotarla.** La primera versión posicionaba cada fracción con anchos de texto **estimados a ojo** en Helvetica, y las barras no coincidían con el texto. Se rehízo en **`'DejaVu Sans Mono', monospace`**, donde todo glifo avanza igual, así que numerador, denominador y barra se calculan exacto. Es además la familia que `diagram-style.md` reserva para notación tipo código.
+- **Los subíndices bajaron a letras adyacentes** (`∂wij`, `∂yj`, `∂aj`, `aj = ∑i xi wij + bj`), que es como los escribió el presentador en su pedido. La versión con subíndices Unicode reales (U+1D62, U+2C7C) se descartó: **U+2C7C no está garantizado en DejaVu Sans Mono**, y un glifo faltante rompe la grilla monoespaciada además de arriesgar tofu, justo lo que advierte `diagram-style.md`. Los únicos dos no-ASCII que quedaron son `∂` y `∑`, ambos presentes en la familia.
+- Verificado: en el SVG inlineado queda **un solo `<rect>`**, el fondo blanco.
+
+## 2026-08-24 — El gráfico de la cadena, tercera pasada: título arriba y lienzo ajustado
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "'el efecto total es el producto de tres efectos parciales' tal vez más como título. Hay mucho espacio en blanco debido al texto y este 'la suma ponderada: lo que la unidad calcula antes de activar'"
+- **Dos cambios, y el segundo es el que importa.** La línea de arriba pasó a **título**: mayúscula inicial, 14 px, negrita, `#3B3535` — el mismo tratamiento que se le dio hoy al gráfico del descenso, así que los dos diagramas de fórmula del mazo se encabezan igual.
+- **El espacio en blanco no era del layout de la diapositiva, era del lienzo del SVG.** El `viewBox` seguía en 700×230 después de haberle sacado la banda con fondo, o sea que la altura estaba dimensionada para un elemento que ya no existía. Bajó a **700×185** y las dos prosas se acortaron ('la suma ponderada: lo que la unidad calcula antes de activar' → 'la suma ponderada, antes de la activación'). Ratio 3.8, que es el de la imagen original de la biblioteca.
+- **Regla que sale de acá, y ya van dos veces hoy:** cuando se le saca un elemento a un SVG hay que **volver a ajustar el `viewBox`**. Un lienzo más alto que el contenido no se ve en el XML pero en la diapositiva aparece como una franja vacía, porque el render escala la imagen por su caja, no por su tinta.
+
+## 2026-08-24 — El gráfico de la cadena, cuarta pasada: la proporción era el problema
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "'El efecto total...' debería ser un título más arriba y tal vez con fuente más grande. Al estar muy a la izquierda hace que las formulas sean muy chicas."
+- **El diagnóstico del presentador apuntaba al síntoma correcto por la razón correcta, aunque el culpable no era el título sino la proporción del lienzo.** Con 700×185 (ratio 3.8) el render escala la imagen **por el ancho** dentro de la media de un `split-right`; el alto resultante es chico y toda la tipografía de adentro sale diminuta. El título largo pegado a la izquierda era lo que mantenía el lienzo tan ancho.
+- **Fix:** lienzo de **466×248 (ratio 1.88)**, ajustado al contenido, y todo adentro más grande — fracciones de 20 a **30 px**, definición de 17 a **22**, título centrado en **16 px negrita**. El título se acortó a *'El efecto total es el producto de tres factores'* para que entre en el ancho nuevo sin forzarlo.
+- **Este es el mismo fenómeno que la entrada del 2026-08-21 sobre la 1.2**, pero al revés. Aquella decía: un diagrama casi cuadrado (1.26) en `image-full` deja franjas a los costados. Esta dice: **una tira ancha (3.8) en `split-right` achica la tipografía**. La regla completa es una sola: **la proporción del `viewBox` tiene que parecerse a la de la caja donde va a caer.** Media de `split-right` es más o menos 16:9, así que un diagrama que va ahí conviene cerca de 1.7–1.9.
+- **Cómo verificarlo sin abrir el navegador:** `grep viewBox` sobre el SVG y dividir. Si el ratio pasa de 2.5 y el diagrama va en un `split-*`, la tipografía va a salir chica.
+
+## 2026-08-24 — Los índices se leían como parte del nombre de la variable
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Que es j en el indice? Ojo que no se esta viendo como subindices"
+- **Dos defectos y los dos eran míos.**
+  - **Los subíndices no eran subíndices.** En la pasada anterior había bajado `wᵢⱼ` a letras pegadas (`wij`) para esquivar dos trampas: los codepoints Unicode de subíndice (U+2C7C, el de la `j`, no está garantizado en DejaVu Sans Mono) y la regla de `diagram-style.md` contra `<tspan>` dentro de texto centrado. **La salida fue peor que las dos trampas juntas**: `wij` se lee como una variable llamada así, no como *el peso de i a j*. Ahora van con `<tspan>` de cuerpo menor y `dy`, o sea subíndices de verdad.
+  - **Cómo se resolvió la regla del `tspan`.** Esa regla es una advertencia de **cairosvg**, que apila las corridas en la misma x cuando el `<text>` está centrado. Se esquiva **anclando a la izquierda** y calculando la x de cada fracción a mano: en monoespaciada los anchos son exactos (avance = 0,6 em), así que centrar a mano es trivial y el `tspan` queda seguro en los dos renderizadores.
+  - **`j` no estaba definido en ninguna parte.** Ni en el gráfico ni en el texto de la diapositiva. Se sumó una línea gris al pie: *'j es la unidad; i, la entrada que llega a ella'*.
+- Lienzo final **427×258 (1,65)**. La cuarta pasada lo había dejado en 466×248; achicar el ancho al contenido real lo acerca más a la caja donde cae.
+- **Pendiente del mismo tipo, no tocado:** los otros diagramas de la sección siguen anchos para un `split-right` — `bp-delta-salida` 2,33 y `s6-2-1-ciclo-forward-backward` 2,12. El del delta además tiene fórmula adentro, así que sufre lo mismo que sufría este.
+
+## 2026-08-24 — La regla de la cadena, dibujada sobre la red; y auditoría de subíndices
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Crear otro diagrama al lado del que está, vamos a reemplazar el texto (1,2,3) de la izquierda por una visualización de una red donde veamos visualmente Wi,j etc"
+  - 2026-08-24 — "En realidad podrías poner el texto que está en 1, 2 y 3 abajo de cada uno de los componentes. Va a ser más fácil leerlo."
+  - 2026-08-24 — "Revisar en todas las imágenes el uso correcto de subíndices."
+- **La 4.4 cambió de forma.** Dejó de ser `process` con tres pasos escritos y pasó a **`image-full`** con un solo diagrama compuesto (770×365, ratio 2.11, que es lo que pide un `design: full`). Los tres bullets desaparecieron de la diapositiva y su detalle pasó entero a las notas del orador.
+- **Qué muestra el diagrama.** A la izquierda, el camino real: tres entradas → nodo de suma `Σ` → nodo de activación `f` → caja `L`, con la conexión `wᵢⱼ` **en rojo** (el peso que se deriva) y `aⱼ` / `yⱼ` rotulando las flechas intermedias. Debajo, tres corchetes numerados **③②①** de izquierda a derecha, cada uno con su frase en prosa **debajo del número**. A la derecha, la regla de la cadena con **los mismos números** sobre sus tres factores.
+- **Por qué esto es mejor que los bullets:** la fórmula deja de ser notación y pasa a describir un recorrido que se ve. Y el orden de cálculo (de derecha a izquierda) se lee solo, porque ① queda pegado a `L`.
+- **La leyenda al pie no funcionaba.** El primer intento puso las tres frases en una fila al pie del dibujo; el presentador marcó que debajo de cada componente se lee mejor, y tenía razón: obligaba a saltar del número a la leyenda y volver.
+- **Auditoría de subíndices, 22 SVGs.** Dos con índices escritos como letras pegadas: `s1-4-1-neurona` (`x1 x2 x3`) y el propio `bp-regla-de-la-cadena` de la pasada anterior. Los dos corregidos con `<tspan>` de cuerpo menor y `dy`. `s9-3-1-objetivo-l2` usa `w²` con el carácter de superíndice real, que está bien. **Chequeo reproducible:** `grep -o '>[^<]*\b[wxyaδz][ij0-9]\{1,2\}\b[^<]*<' images/*.svg` — hoy da 0.
+- **Hallazgo grande de la auditoría de proporciones.** Se leyó `theme.css`: un `d-split` es `grid-template-columns: 1fr 1fr` con `column-gap`, o sea la media queda en **media pantalla de ancho por casi todo el alto**. La caja resultante tiene proporción **≈1,28**, no apaisada. **Nueve de los dieciséis diagramas del mazo son más anchos que su caja** y por eso su tipografía sale chica:
+  `s3-1-1` 3,31 · `s1-4-1` 2,83 · `s9-3-1` 2,62 · `s7-1-2` 2,60 · `s6-8-1` 2,26 · `s2-4-1` 2,27 · `s6-2-1` 2,12 · `s7-7-1` 2,02 · `s6-1-1` 1,94.
+  Ya están al día `bp-delta-salida` (1,28) y `bp-regla-de-la-cadena` (2,11 en `full`).
+- **Regla, ahora con número:** `split-*`/`column-*` piden **≈1,3**; `full` pide **≈1,8–2,2**. Verificable sin navegador cruzando el `viewBox` con el `design` del modelo.
+
+## 2026-08-24 — La 4.4 no renderizaba la imagen: `image-full` lee `image`, no `media`
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Revisar slide 37 que no se renderiza la imagen"
+- **La causa.** Al pasar la diapositiva a `image-full` dejé la imagen en `media`, pero **`image-full.j2` emite `embed_img(s.image)`**, no la media del stage. Sin `image` el helper devuelve el marcador vacío: media diapositiva con la palabra `image` y nada más. **Ningún aviso del build**: `_REQUIRES` acepta `("image","media")` como alternativas, así que el modelo pasaba la validación mientras la plantilla miraba el campo que no estaba.
+- **Por qué `image-full` era además la plantilla equivocada.** Emite su propio `.stage` para sacar el padding, y a propósito **no dibuja la banda de highlights**. O sea que aun arreglando el campo, el recuadro 'Los tres factores son valores intermedios: ningún peso se movió todavía' se perdía en silencio.
+- **La solución, que estaba en el CSS.** `content-image` con `design: split-right` y **sin `facts`**. `theme.css` trae tres reglas hechas justo para esto: `.stage.d-split:has(.cfit:not(:has(*)))` colapsa la grilla a una columna, esconde `.cbody` y le da a `.smedia` el `grid-column: 1/-1`. Resultado: **la imagen ocupa el ancho completo igual que con `image-full`, y la banda de highlights se conserva**. El comentario de `content-image.j2` lo dice: una diapositiva que lleva sólo una imagen es un `content-image` legítimo.
+- **Regla:** para una imagen a todo el ancho **que además tenga recuadro**, `content-image` sin `facts`, no `image-full`. `image-full` es para la imagen sola.
+- **Y una trampa de verificación que casi me come.** Mi primer chequeo buscó el título con `h.find('La regla de la cadena')` y cayó en la mención del título **dentro de las notas del orador de la diapositiva anterior**, así que dio todo `False` sobre una diapositiva equivocada. **Para verificar una diapositiva en el HTML hay que partir por `<section class="slide"` y buscar `<h2 class="stitle">…</h2>`**, no el texto suelto.
+- Verificado: `data-kind="content-image"`, SVG inlineado, sin placeholder, `.cfit` vacío (imagen a todo el ancho), recuadro presente, 11 nodos y los tres rótulos en su lugar.
+
+## 2026-08-24 — La 4.4, a imagen completa de verdad
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Imagen quedó al costado. Fijate de ponerla como full"
+- **El colapso por CSS existe pero no alcanzó.** `theme.css` sí trae `.stage.d-split:has(.cfit:not(:has(*)))` — verificado en el HTML emitido, la regla viaja. Aun así la imagen no ocupaba el ancho: con la banda de highlights comiendo alto, la fila del grid queda baja y un SVG limitado por `max-height:100%` se dibuja angosto y centrado. **Depender de ese colapso es frágil; `image-full` es explícito.**
+- **Cambio:** plantilla `image-full`, campo **`image`** (que es el que la plantilla lee, no `media`), `design: full`. Emite `.iffill` de borde a borde, sin `d-split`.
+- **El recuadro no se perdió: se mudó adentro del dibujo.** `image-full` no dibuja banda de highlights a propósito, así que 'Los tres son valores intermedios… Ningún peso se movió todavía' pasó a ser el pie del SVG, separado por una línea fina, con la segunda frase en negrita. En una diapositiva cuyo cuerpo entero es la imagen, eso está mejor ahí que en una banda aparte. El párrafo equivalente salió de `final.md` y `draft.md`.
+- Lienzo de 770×365 a **770×412** (ratio 1,87) para hacerle lugar al pie, que sigue en el rango bueno para `full`.
+- Verificado: `data-kind="image-full"`, `.iffill` presente, sin `d-split`, SVG inlineado, sin placeholder y con el cierre adentro.
+
+## 2026-08-24 — `j` en el diagrama de la cadena es una unidad de SALIDA, no oculta
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "'j es la unidad' supongo que es el hidden layer?"
+- **La pregunta destapó una imprecisión del dibujo.** El rótulo decía 'j es la unidad', a secas, pero el dibujo manda `yⱼ` **directo a `L`**, y eso solo es cierto en la **capa de salida**. Para una unidad oculta la loss no depende de `yⱼ` de forma directa: depende a través de todas las unidades de la capa siguiente, y por eso el primer factor deja de ser inmediato.
+- **Por qué importaba corregirlo:** la diapositiva siguiente-siguiente, 'Propagar el delta hacia atrás', abre justamente con *'¿contra qué se compara una unidad oculta? Contra nada'* y separa capa de salida de capas ocultas. Un alumno que tomara el dibujo como general iba a chocar de frente con esa diapositiva.
+- **Fix:** el rótulo pasó a **'j es una unidad de salida; i, lo que entra a ella'**, más una segunda línea que hace de puente: **'si j fuera oculta cambia el factor 1: ver la que sigue'**. La estructura de tres factores no cambia, y decirlo así convierte la ambigüedad en un anticipo.
+- Notas del orador: se agregó la respuesta preparada para cuando alguien haga esta misma pregunta en clase, marcándola como buen puente hacia la propagación del delta.
+- **Lo que vale recordar del método:** el dibujo era correcto pero incompleto, y el hueco solo se ve cruzándolo con lo que promete otra diapositiva. Un diagrama nuevo conviene leerlo contra las dos o tres diapositivas que lo rodean, no solo contra la suya.
+
+## 2026-08-24 — El diagrama de la cadena se encuadra, y qué son las `x`
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Borrá 'j es una unidad de salida…' y 'si j fuera oculta…'. Tal vez aclarar que esto es mirando la salida. x1 y x2 es notación correcta? Porque si hay más de una capa eso serían activaciones?"
+- **El encuadre subió al encabezado.** Las dos líneas de leyenda salieron y en su lugar hay un subtítulo bajo el título: **'mirando desde una unidad de salida j'**. Dice lo mismo que las dos líneas juntas, pero antes de que el ojo entre al dibujo en vez de después.
+- **La observación sobre `x` era correcta y no estaba resuelta.** Si `j` no está en la primera capa, lo que entra no es el dato: son las salidas de la capa anterior. Muchos textos usan por eso otro símbolo (`a` con superíndice de capa), **pero en este mazo `a` ya está tomada por la suma ponderada** (`aⱼ = Σ xᵢ wᵢⱼ + bⱼ`), y `y` está tomada por la predicción. Renombrar habría roto la notación de dos secciones.
+- **Decisión:** se deja `x` y se aclara al costado, en el hueco que dejaron las líneas borradas: *'x es lo que entra a j: el dato si j está en la primera capa, si no la salida de la capa anterior'*. Es honesto, no toca la notación del resto, y contesta la pregunta en el lugar donde aparece.
+- Notas del orador: quedó la aclaración de notación y la formulación 'parado sobre una unidad', que es la que hace que la recursión del backward no suene mágica.
+- **Regla de notación para esta Talk, por si vuelve a aparecer:** `a` = suma ponderada (pre-activación), `y` = salida / predicción, `t` = objetivo, `x` = lo que entra a la unidad, `w` = peso, `b` = bias, `δ` = sensibilidad del error respecto de `a`. `i` indexa lo que entra, `j` la unidad.
+
+## 2026-08-24 — Revisión crítica del gráfico de la cadena: cuatro defectos, uno grave
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Revisá en forma crítica el gráfico si estamos confundiendo algo."
+- **(1) GRAVE — `a` significaba dos cosas opuestas en el mismo mazo.** La sección 1 (diapositiva 'La neurona' y la de activaciones ocultas) enseña `z = W·x + b` como **pre-activación** y `a` como **la salida** de la activación. La sección 6 venía usando `aⱼ` para **la suma ponderada**, o sea justo lo contrario. Un alumno que compare las dos diapositivas encuentra la misma letra en los dos extremos de la neurona.
+  - **Origen:** se heredó de las imágenes de `knowledge-library/backpropagation`, que escriben `∂yⱼ/∂aⱼ`. No lo introduje yo, pero mi diagrama nuevo lo volvió visible porque dibuja una neurona con `Σ` y `f`, igual que la 1.4.
+  - **Fix:** la sección 6 pasa a **`z`**. Costó dos archivos y nada más: el símbolo solo vivía en `bp-regla-de-la-cadena.svg` y `bp-delta-salida.svg`; **la prosa de la sección nunca escribe la letra, dice 'la suma ponderada'**. Por eso se renombró la sección 6 y no la 1, que usa `z` en tres lugares.
+  - **Notación fijada para la Talk:** `z` suma ponderada · `y` salida / predicción · `t` objetivo · `x` lo que entra a la unidad · `w` peso · `b` bias · `δ` sensibilidad del error respecto de `z` · `i` indexa lo que entra · `j` la unidad. **`a` no se usa en la sección 6.**
+- **(2) Los índices se mezclaban.** Las entradas eran `x₁ x₂ x₃` y los pesos `w₁ⱼ`, **`wᵢⱼ`**, `w₃ⱼ`: un índice genérico metido entre dos concretos, que hace preguntarse si `i` vale 2. Pasaron a **`x₁ xᵢ xₙ`** y **`w₁ⱼ wᵢⱼ wₙⱼ`**, que es la forma de siempre para señalar 'una genérica entre muchas'.
+- **(3) Se había perdido la definición que el presentador pidió explícitamente.** El 2026-08-24 pidió sumar `a = Σ xᵢwᵢ + b` "para que no se pierda"; al redibujar el gráfico con la red la saqué sin querer, y el bias no quedaba en ningún lado. Volvió como **`zⱼ = ∑ᵢ xᵢ wᵢⱼ + bⱼ`** en el panel derecho. **Lección: cuando se redibuja un diagrama desde cero hay que releer los pedidos previos sobre ese mismo diagrama.**
+- **(4) La caja del error decía solo `L`.** La loss compara contra el objetivo, y el diagrama de la 4.2 ya escribe `L(y, t)`. Pasó a **`L(yⱼ, tⱼ)`**.
+- Además el `∂wᵢⱼ` del denominador de la izquierda va ahora en rojo, igual que la conexión de la red: ata las dos mitades sin una línea de texto que lo explique, y eso reemplazó al cartel 'el peso que derivamos es el rojo de la izquierda'.
+- Verificado en el HTML: 0 ocurrencias de `∂a` en los dos diagramas, `∂z` presente, definición con bias, `L(yⱼ,tⱼ)` y los índices nuevos.
+
+## 2026-08-24 — Diapositiva nueva 4.5 'Qué vale cada factor'
+- Status: complete
+- Asks log:
+  - 2026-08-24 — el presentador pasó una captura con la notación de 3Blue1Brown (`∂C₀/∂w⁽ᴸ⁾ = ∂z⁽ᴸ⁾/∂w⁽ᴸ⁾ · ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ · ∂C₀/∂a⁽ᴸ⁾`, con `∂C₀/∂a⁽ᴸ⁾ = 2(a⁽ᴸ⁾ − y)`, `σ'(z⁽ᴸ⁾)` y `a⁽ᴸ⁻¹⁾`) y pidió "agregar luego un slide con esto, creo que sumariza el cálculo".
+- **Se agregó el contenido, NO la notación.** La captura choca de frente con la del mazo en tres puntos y copiarla habría reintroducido justo la confusión que se acababa de arreglar:
+  - **`y` significa el objetivo ahí y la predicción acá.** Es la colisión peor, y ya figuraba como pregunta abierta del mazo (el corpus usa `y − ŷ`).
+  - **`L` es el índice de capa ahí y la loss acá.**
+  - **`a` es la activación de salida ahí**, y acá la sección 6 acaba de estandarizar `z` = suma ponderada, `y` = salida.
+  - Además su `2(a − y)` sale de un coste sin el factor ½; el mazo sí lo lleva, así que acá el factor da la diferencia limpia.
+- **Contenido de la diapositiva nueva** (`## 5. Qué vale cada factor`, entre 'La regla de la cadena' y 'El delta'): los tres factores resueltos en la notación de la Talk — `∂L/∂yⱼ = yⱼ − tⱼ`, `∂yⱼ/∂zⱼ = f'(zⱼ)`, `∂zⱼ/∂wᵢⱼ = xᵢ` — con los **mismos números ①②③** del dibujo de la diapositiva anterior, y el producto de los tres en rojo como remate.
+- **Por qué hacía falta igual, más allá del pedido:** los tres valores estaban **solo en las notas del orador** desde que la 4.4 pasó a ser el dibujo de la red y perdió sus viñetas. Esta diapositiva los devuelve a la pantalla.
+- Las notas del orador traen **la tabla de traducción a 3Blue1Brown**, para cuando un alumno llegue con esa versión.
+- Nuevo diagrama `images/bp-factores-resueltos.svg` (440×368, ratio 1,20, que es lo que pide un `split-right`). **No tiene `.png`**, así que el modelo apunta directo al `.svg`: sin PNG existente, `_resolve_img` falla antes de que `_vector_twin` pueda entrar y sale el placeholder. **Regla: un diagrama nuevo sin PNG se referencia como `.svg`; el gemelo vectorial solo funciona cuando el `.png` existe.**
+- **Costo:** la sección 6 pasa de 10 a **11 diapositivas** y el mazo de 51 a 52. La duración ya era el problema más serio del mazo (102 minutos estimados contra 90), así que esto lo empeora un poco. Se avisó al presentador.
+- Renumeradas las diapositivas 5 a 10 de la sección a 6 a 11 en `final.md` y `draft.md`.
+
+## 2026-08-24 — Las barras de fracción: un bug de conteo que arrastraban los tres diagramas
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Revisar por qué quedó como una línea de división muy grande en los términos"
+- **La causa raíz, que valía la pena encontrar.** Los generadores calculaban el ancho de cada texto con `len(cadena)`, pero las cadenas llevan **entidades HTML**: `"&#8706;L"` mide 8 caracteres y dibuja **2 glifos**. El ancho salía cuatro veces más grande, y como la x se calcula `centro - ancho/2`, **las fracciones quedaban corridas a la izquierda** además de con barras que no les correspondían.
+- **Lo que se veía era el síntoma menor.** La barra ancha se notaba; el desfase de hasta 62 px entre el texto y su barra, no tanto, y estaba en los tres diagramas de fórmula.
+- **Un intento de reparación automática empeoró las cosas** antes de arreglarlas: emparejaba cada texto con la barra más cercana **en Y**, y con cuatro fracciones a la misma altura eso las asignaba al azar. Se descartó y se regeneraron los tres SVG desde cero con una función `frac()` común que cuenta glifos (`&#\d+;` = 1) y dimensiona la barra como `max(numerador, denominador) + 8`.
+- **Chequeo reproducible**, que ahora da 0 en los tres archivos: emparejar cada texto con la barra más cercana **en X** (no en Y), y exigir desfase < 1,5 px y sobrante entre 6 y 12 px sobre el **más ancho** de numerador y denominador. Ojo: exigir ese sobrante sobre *cada* línea da falsos positivos, porque un numerador angosto sobre un denominador ancho es tipografía correcta.
+- **Lección de método:** un generador que calcula posiciones a partir de longitudes de cadena tiene que medir **glifos**, no caracteres, apenas aparece una entidad, un `<tspan>` o un acento escapado. Y conviene escribir el verificador con una regla distinta a la del generador; si comparten el error, los dos mienten igual.
+
+## 2026-08-24 — Fuera la diapositiva 'El delta', y fuera la notación δ del mazo entero
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Slide 39 y 38 son lo mismo. Confirmalo. Pero si es así, nos quedamos con el 38"
+  - 2026-08-24 — al confirmarle que **no** eran duplicadas: "estoy de acuerdo el fusionar" + "borramos la notación en slide 39 que agrupaba" + "el slide 40 vas a tener que actualizarlo"
+- **La confirmación, que era el pedido real.** No eran la misma: la 4.5 resolvía los tres factores y la 4.6 le ponía **nombre** (`δ`) a la agrupación de los dos primeros y traía el argumento de eficiencia. Se solapaban en mostrar ① y ②. **Y borrar la 4.6 sin más rompía la 4.7**, que es enteramente sobre δ.
+- **Decisión del presentador: se va la diapositiva y se va la letra griega de todo el mazo.**
+- **Cómo se resolvió la recursión sin δ.** El nombre existe justamente porque la propagación hacia atrás lo necesita. En vez de inventar otro símbolo se usó **la palabra que el mazo ya usaba: la culpa**. La 4.6 pasó a llamarse 'Propagar la culpa hacia atrás' y su fórmula es `culpa(j) = ( ∑ₖ culpa(k) · wⱼₖ ) · f'(zⱼ)`.
+  - **Beneficio colateral:** la imagen vieja `bp-delta-oculta.png` escribía `δⱼ = (∑ₖ δₖ wⱼₖ)·yⱼ(1−yⱼ)`, con la derivada de la sigmoide incrustada — el mismo defecto que se había arreglado en el delta de salida. La nueva `bp-culpa-oculta.svg` usa `f'(zⱼ)` genérico y dibuja además las tres unidades `k` que le devuelven culpa a `j`.
+- **Lo que la 4.5 absorbió de la borrada:** una cuarta viñeta y una llave en el diagrama que agrupa ① y ② con el rótulo *'se calcula una vez por unidad'*, más el número que lo justifica (una capa de 512×256 tiene 131.072 pesos y se resuelve con 256 cuentas). Es el argumento de eficiencia sin el nombre.
+- **Barrido completo de δ:** además de las dos diapositivas, aparecía suelto en 'Entrenar es un ciclo de dos movimientos', en 'El ciclo completo, batch a batch' y —lejos de la sección— en la nota de normalización de la 2.3, que escribía `∂J/∂wⱼ = δ · xⱼ` **sin haber definido δ** (estaba a cuatro secciones de distancia). Los cuatro reescritos. Verificado: **0 ocurrencias de δ en el HTML**.
+- La sección 6 vuelve a **10 diapositivas** y el mazo a 51: la que se agregó hoy y la que se borró se compensan.
+- **Quedaron huérfanos** `images/bp-delta-salida.svg/.ascii/.png` y `images/bp-delta-oculta.png`. No se borraron; no los referencia nadie.
+
+## 2026-08-24 — El acumulador tiene la forma de W, y ahora se ve
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "debería explicar que `g += grad` es por elemento de W. El gráfico está bien, creo que sería bueno usar notación de índice wᵢⱼ para ser claro en eso"
+- **El defecto era real y silencioso.** El diagrama de 'El ciclo completo, batch a batch' escribía `g += grad`, `g = g/B`, `W = W − η·g` y `b = b − η·g`. Sin índices, `g` se lee como **un solo número** para toda la red, cuando en realidad hay **un casillero por peso**. Y el `b = b − η·g` usaba el mismo `g` para los pesos y para los bias, que directamente es falso: el bias tiene su propio gradiente.
+- **Fix en el diagrama:** `gᵢⱼ += ∂L/∂wᵢⱼ` en el acumulador, con la bajada *'un casillero por peso: g tiene la forma de W'*; y el bloque de aplicación pasa a `gᵢⱼ = gᵢⱼ / B`, `wᵢⱼ = wᵢⱼ − η·gᵢⱼ`, `gᵢⱼ = 0`, con *'lo mismo para cada bias'* en vez de la fórmula equivocada.
+- También se reescribió la viñeta de la diapositiva y se agregó a las notas del orador la precisión, marcada como algo que conviene decir **antes** de que un alumno lo pregunte.
+
+## 2026-08-24 — Diapositiva nueva 4.5 'Una capa más atrás'
+- Status: complete
+- Asks log:
+  - 2026-08-24 — el presentador pasó la cadena de cinco factores de 3Blue1Brown (`∂C₀/∂w⁽ᴸ⁻¹⁾ = ∂z⁽ᴸ⁻¹⁾/∂w⁽ᴸ⁻¹⁾ · ∂a⁽ᴸ⁻¹⁾/∂z⁽ᴸ⁻¹⁾ · ∂z⁽ᴸ⁾/∂a⁽ᴸ⁻¹⁾ · ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ · ∂C₀/∂a⁽ᴸ⁾`): "el 37 muestra un nivel y mostrar que el cálculo re-usa parte del cálculo anterior".
+- **Traducida a la notación del mazo, otra vez.** Ahí el nivel de capa va en un superíndice `(L)`; acá se lee en los **índices de las unidades**: `h` entra a la oculta `i`, e `i` entra a la de salida `j`. La cadena queda `∂L/∂wₕᵢ = ∂L/∂yⱼ · ∂yⱼ/∂zⱼ · ∂zⱼ/∂yᵢ · ∂yᵢ/∂zᵢ · ∂zᵢ/∂wₕᵢ`, en el **mismo orden loss-primero** que ya usa la 4.4, no en el orden peso-primero de la captura.
+- **Lo que hace que la diapositiva valga:** un recuadro rojo sobre los **dos primeros** factores, con el rótulo *'ya calculado para la unidad j'*. Son literalmente los mismos de la 4.4. Al lado, *'lo único nuevo: tres factores más'*. Eso convierte la regla de la cadena en un algoritmo: bajar una capa **estira** la cadena, no la rehace.
+- **Y explica el orden del algoritmo**, que hasta ahora se afirmaba sin justificar: de adelante hacia atrás habría que rehacer la cola por cada peso; de atrás para adelante cada capa hereda el trabajo de la siguiente. De ahí sale el nombre. Es el puente natural a 'Propagar la culpa hacia atrás'.
+- **Decisión de dibujo:** con dos capas no entran cuatro nodos (`Σ` y `f` por unidad, como en la 4.4), así que cada unidad se dibuja como **una caja con `Σ → f` adentro**. Se pierde el detalle de los dos pasos, que la 4.4 ya mostró, y se gana el poder mostrar dos capas.
+- Las notas del orador traen la traducción a 3Blue1Brown, igual que las de 'Qué vale cada factor'.
+- Nuevo `images/bp-una-capa-mas-atras.svg` (800×400, ratio 2.0, `image-full`).
+- **Costo:** sección 6 a **11 diapositivas**, mazo a 52. Sumado a que hoy ya se agregó 'Qué vale cada factor' y se borró 'El delta', el neto del día es +1. El blocker de duración sigue abierto y empeorando.
+
+## 2026-08-24 — 'Una capa más atrás' con neuronas, y tres encabezados de tabla en blanco
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "No uses cajas, sino más que sean neuronas en…" (mensaje cortado)
+  - 2026-08-24 — "Hay un término que está vacío."
+- **Las cajas pasaron a neuronas.** Cada unidad vuelve a dibujarse como **dos círculos**, la suma ponderada `Σ` y la activación `f`, igual que en la 4.4, con una **llave debajo** que los agrupa y los rotula ('unidad oculta i', 'unidad de salida j'). Así los cuatro valores intermedios quedan sobre los cables: `zᵢ`, `yᵢ`, `zⱼ`, `yⱼ`. La versión con cajas los escondía adentro. Lienzo 800×410.
+- **El 'término vacío' no estaba en ninguna fórmula.** Se auditaron los cinco diagramas con fracciones extrayendo numeradores, denominadores y separadores por fila: las seis fracciones de 'Una capa más atrás', las cuatro de 'La regla de la cadena', las tres de 'Qué vale cada factor' y la de la culpa están **completas y bien apareadas**.
+- **Lo que sí estaba vacío eran tres celdas de encabezado**, encontradas escaneando el modelo por strings en blanco: la **primera columna** de las tablas de 'Categóricas: one-hot contra embedding', 'Los tres, lado a lado' y 'L1 contra L2' tenía `header: ""`. Es la columna del factor, y dejarla sin título deja **una celda en blanco arriba a la izquierda**. Las tres pasaron a **'Criterio'**.
+- **Divergencia markdown/modelo, otra vez:** solo una de las tres tablas existe como tabla en `final.md` (la de Train/Validación/Test); las otras dos son prosa en el markdown y se volvieron `columns` recién en el FILL del deck. Por eso el arreglo va en el modelo y solo una línea cambia en el markdown.
+- **Chequeo reproducible que salió de acá:** escanear el modelo por campos string vacíos, y el HTML por `<span></span>`, `<li></li>`, `<p></p>` y `<text></text>` vacíos. Hoy da 0 en todos.
+
+## 2026-08-24 — 'Qué vale cada factor' antes de 'Una capa más atrás'
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Rotar el slide 38 con el 39."
+- Orden nuevo de la sección: **4.4 La regla de la cadena → 4.5 Qué vale cada factor → 4.6 Una capa más atrás → 4.7 Propagar la culpa**.
+- **El orden nuevo es mejor y conviene dejar dicho por qué.** 'Una capa más atrás' resalta dos factores con el rótulo *'ya calculado para la unidad j'*. Puesta **antes** de saber cuánto valen, esa promesa es abstracta; puesta **después**, el alumno puede señalar los dos números concretos (`yⱼ − tⱼ` y `f'(zⱼ)`) que acaba de ver. La secuencia queda: cuáles son los factores → cuánto vale cada uno → qué pasa una capa más atrás → cómo se propaga.
+- Se ajustó la bajada de 'Una capa más atrás', que decía *'La diapositiva anterior siguió un peso que llega directo a la unidad de salida'* y con el intercambio dejaba de ser cierto: ahora dice *'Hasta acá seguimos un peso que llega directo…'*. También sus notas del orador, que ahora nombran los dos valores concretos en vez de referirse a 'la anterior'.
+- **Al mover diapositivas hay que releer las referencias relativas.** 'La diapositiva anterior', 'la que sigue', 'como vimos recién' se rompen en silencio: ningún chequeo las mira.
+
+## 2026-08-24 — Borrada 'Propagar la culpa hacia atrás'
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Borrar slide 40." (confirmada la identidad antes de tocar: deck 40 = modelo 38 = 'Propagar la culpa hacia atrás')
+- **Se solapaba de verdad con la diapositiva nueva.** 'Una capa más atrás' ya muestra que la cadena se estira, que la cola se reusa y por qué el recorrido va de atrás para adelante. Lo que la borrada aportaba y no estaba en ningún otro lado era **una sola cosa: que una unidad oculta alimenta a VARIAS de la capa siguiente, así que su culpa es la suma** de lo que le devuelve cada una, ponderada por el peso de conexión.
+- **Ese punto se rescató**, no se perdió: una línea nueva al pie del diagrama de 'Una capa más atrás' (*'si la unidad alimenta a varias, se suma su aporte a cada una'*), un párrafo en el markdown, y en las notas del orador la analogía del jefe repartiendo culpa más la justificación del nombre del algoritmo.
+- **Divergencia que se encontró de paso, y era mía.** 'Una capa más atrás' es `image-full`, plantilla que **solo dibuja título, bajada e imagen**. Sus cuatro viñetas y el párrafo de cierre vivían en `final.md` y **nunca llegaban a la pantalla** desde que creé la diapositiva. Se movieron a `### Speaker notes`, que es donde ese material sirve, y ahora markdown y deck dicen lo mismo.
+  - **Regla:** al elegir `image-full` hay que mover a notas todo lo que no sea bajada o imagen. La plantilla no avisa: descarta el resto en silencio.
+- La sección 6 queda en **10 diapositivas** y el mazo en 51, igual que al empezar el día pese a todo lo que se movió.
+- **Huérfanos nuevos:** `images/bp-culpa-oculta.svg/.ascii` (dibujada hoy para la diapositiva que se acaba de borrar) y `images/bp-delta-oculta.png`. Sin referencias; no se borraron.
+
+## 2026-08-24 — Optimizada 'Qué mirar cuando esto se entrena' (deck 43), y auditoría de referencias entre secciones
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Revisar si slide 43 se puede optimizar"
+- **Dos defectos reales, encontrados auditando todas las referencias cruzadas del mazo:**
+  - **Puntero vencido.** La fila 'Train baja y validación sube' mandaba a la **Sección 8**, que es *Capas ocultas*. Overfitting es la **Sección 9**. Lo mismo en la card 'Objective' de la 4.1 ('los términos de regularización… aparecen en la sección 8'). Las dos corregidas.
+  - **Referencias temporales invertidas.** Las notas de esta diapositiva y las de 'La regla de la cadena' hablaban de las activaciones ocultas como algo *ya visto* ('ya lo vieron en la diapositiva de las activaciones ocultas', 'ya apareció dos veces'). Pero **Capas ocultas es la sección 8 y Backpropagation la 6**: todavía no pasó. Reescritas como anuncio hacia adelante.
+- **Optimización de densidad.** La diapositiva tenía una grilla de 3×5 **más tres bandas de highlight**, todo compitiendo por el mismo alto; el ajuste automático achicaba todo. Las dos bandas de 'el gradiente que se desvanece' y 'el que explota' **repetían lo que la columna del medio de la tabla ya dice**, así que pasaron a las notas del orador. Queda **una sola banda: 'Las perillas, en orden de impacto'**, que según las propias notas es *el mensaje principal* de la diapositiva y estaba enterrada como tercera.
+- **Lo que NO se tocó:** las filas 4 y 5 siguen siendo punteros secos a otras secciones. Fue una decisión deliberada del 2026-08-21 para que no se confundan con problemas de gradiente.
+- **Divergencia markdown/modelo, y esta vez el markdown tenía razón:** `final.md` ya decía 'Sección 9' mientras el modelo del deck decía 'Sección 8'. O sea que el deck mostraba el número equivocado aunque el outline estuviera bien.
+- **Chequeo reproducible que sale de acá:** extraer del modelo todas las apariciones de `[Ss]ecci[oó]n \d+` con su contexto y cruzarlas contra la lista real de secciones (`grep '^# ' final.md`). Verifica de una el número **y** el tiempo verbal, que es donde estaban los dos errores.
+
+## 2026-08-24 — Borrada la sección 9 completa (Overfitting)
+- Status: complete
+- Asks log:
+  - 2026-08-24 — "Borrar toda la seccion de Overfitting"
+- **Se retiraron 8 entradas del modelo:** la divisoria más siete diapositivas — el diagnóstico en dos números, sesgo contra varianza, L2, L1 contra L2, dropout, el resto del arsenal, y cuál usar según el caso.
+- **Se avisó una vez, y sigue valiendo:** *overfitting y L2 estaban en el briefing original* ("como se modela, red de confusion y overfitting y L2"). La clase deja de cubrir dos de los cuatro temas pedidos al arrancar. La decisión es del presentador y la razón es de peso: el mazo venía en ~102 minutos contra 90.
+- **Todo el texto quedó archivado verbatim en `# Cut material`**, con una nota que dice qué referencias había que reparar si se recupera.
+- **Hallazgo importante encontrado al borrar: las dos diapositivas de Conclusiones estaban etiquetadas `section: "Overfitting"`.** Un borrado por sección se las habría llevado puestas, y además **mostraban la píldora 'Overfitting' en pantalla**, que era un error viejo y visible. Pasaron a `Conclusiones`.
+- **Referencias entrantes reparadas** (todas apuntaban a una sección que ya no existe):
+  - card *Objective* de 5.1: 'aparece en la sección 9' → se quitó el puntero.
+  - fila de 6.10: el puntero `Sección 9` pasó a un remedio de verdad, **'Regularizar, o parar antes'**, para que la fila no quede sin respuesta.
+  - notas de 2.5 y 3.4: los dos 'puente hacia overfitting' se reescribieron sin nombrar la sección.
+  - notas de 8.3: cargaban el `Goal of this section` de Overfitting; se quitó.
+  - Agenda y `deck.sections`: sale la entrada 9.
+- **El mazo queda en 46 diapositivas de contenido, o sea unos 92 minutos a dos minutos por diapositiva.** El blocker de duración, que venía siendo el problema más serio desde el 2026-08-21, queda prácticamente resuelto.
+- **Huérfanas ahora:** `s9-2-1-curvas-overfitting`, `s9-3-1-objetivo-l2`, más las tres de la ronda anterior. No se borraron.

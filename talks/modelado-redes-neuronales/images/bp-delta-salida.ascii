@@ -1,0 +1,18 @@
+   Delta agrupa los dos primeros factores
+
+                dL         dy_j
+     delta_j = ------  *  ------
+                dy_j       dz_j
+               de la      de la
+                loss     activacion
+
+     con los pares que van juntos -- lineal + MSE,
+     sigmoide + BCE, softmax + cross-entropy --
+
+              delta_j  =  y_j  -  t_j
+
+<!-- ascii-note:
+intent: mostrar que delta es el producto de dos factores y que con los pares de activacion y loss que van juntos se simplifica a y menos t
+emphasize: la simplificacion final, en rojo y mas grande, es el remate
+labels: los indices van como SUBINDICES de verdad, mas chicos y bajados, nunca como letras pegadas al nombre de la variable; fuente monoespaciada en las fracciones para que alineen; sin cajas ni bandas; lienzo con proporcion cercana a 1.28, que es la de la media columna donde cae la imagen en un split-right, no una tira ancha
+-->

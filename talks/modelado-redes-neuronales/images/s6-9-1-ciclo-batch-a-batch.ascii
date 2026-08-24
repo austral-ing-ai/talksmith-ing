@@ -6,11 +6,11 @@
     |  BATCH k        B filas, todas con los MISMOS W y b          |  |
     |                                                              |  |
     |   fila 1  -> forward -> L -> backward --.                    |  |
-    |   fila 2  -> forward -> L -> backward --+--> g += grad       |  |
+    |   fila 2  -> forward -> L -> backward --+--> g_ij += dL/dw_ij |  |
     |    ...                                  |                    |  |
     |   fila B  -> forward -> L -> backward --'    ACUMULADOR      |  |
-    |                                              (valores        |  |
-    |                                               intermedios)   |  |
+    |                                              (un casillero  |  |
+    |                                               por peso)      |  |
     |  W y b NO se tocan en ningun punto de este bloque            |  |
     |                                                              |  |
     +--------------------------------------------------------------+  |
@@ -20,9 +20,9 @@
                               v                                       |
     +--------------------------------------------------------------+  |
     |                                                              |  |
-    |  1. promediar    g <- g / B                                  |  |
-    |  2. APLICAR      W <- W - n*g       b <- b - n*g             |  |
-    |  3. vaciar       g <- 0                                      |  |
+    |  1. promediar    g_ij <- g_ij / B                                  |  |
+    |  2. APLICAR      w_ij <- w_ij - n*g_ij   (idem cada bias)             |  |
+    |  3. vaciar       g_ij <- 0                                      |  |
     |                                                              |  |
     |  unico momento del entrenamiento en que la red cambia        |  |
     |                                                              |  |
@@ -35,5 +35,5 @@
 <!-- ascii-note:
 intent: mostrar el ciclo de vida completo de un batch, con el limite exacto entre acumular y aplicar
 emphasize: el bloque de arriba (donde W y b quedan intactos) contra el bloque de abajo (el unico donde cambian), y la flecha de retorno que cierra el ciclo hacia el batch siguiente
-labels: BATCH k, filas 1 a B, forward, L la loss, backward, g el acumulador de gradientes, n es la tasa de aprendizaje, 1 epoca cuando se agotan los batches; el bloque de arriba en tono neutro y el de abajo destacado
+labels: el acumulador g tiene la MISMA FORMA que W, un casillero por peso, y por eso se escribe con indices g_ij y no como un solo numero; BATCH k, filas 1 a B, forward, L la loss, backward, g el acumulador de gradientes, n es la tasa de aprendizaje, 1 epoca cuando se agotan los batches; el bloque de arriba en tono neutro y el de abajo destacado
 -->

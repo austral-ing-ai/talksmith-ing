@@ -1,10 +1,16 @@
    hacia adelante: la red predice UNA fila del batch
 
-   x --> [ capa 1 ] --> [ capa 2 ] --> [ salida ] --> y
-                                                      |
-                                                      |  L(y, t)
-                                                      v
-       [ capa 1 ] <-- [ capa 2 ] <-- [ salida ] <-----+
+        entrada     capa 1     capa 2    salida
+                      (o)        (o)
+          (o)         (o)        (o)
+   x -->  (o)         (o)        (o)       (o) --> y
+          (o)         (o)        (o)                 |
+                      (o)        (o)                 |  L(y, t)
+                                                     v
+          +<-------------------------------------------+
+          |           ^          ^         ^
+          |           |          |         |   la culpa vuelve por
+          v           |          |         |   las mismas conexiones
 
    hacia atras: cada peso recibe su parte de la culpa,
                 y esa culpa se ACUMULA como valor intermedio
@@ -12,7 +18,7 @@
    W y b quedan quietos: se corrigen al cerrar el batch
 
 <!-- ascii-note:
-intent: mostrar el ciclo cerrado forward-backward de UNA fila, y que su resultado se acumula en vez de aplicarse
-emphasize: que el error nace en la comparacion de y con t, viaja hacia atras por las mismas conexiones, y que W y b quedan intactos hasta el cierre del batch
-labels: x entrada, y prediccion, t objetivo, L la loss; flechas hacia la derecha en el forward y hacia la izquierda en el backward; la linea final sobre W y b en tono de advertencia
+intent: mostrar el ciclo cerrado forward-backward de UNA fila sobre los nodos de la red, y que su resultado se acumula en vez de aplicarse
+emphasize: que el error nace en la comparacion de y con t, viaja hacia atras por las mismas conexiones que uso el forward, y que W y b quedan intactos hasta el cierre del batch
+labels: dibujar la red como capas de nodos redondos unidos todos con todos, no como cajas; entrada, capa 1, capa 2 y salida rotuladas arriba de cada capa; x entrada, y prediccion, t objetivo, L la loss; flechas hacia la derecha en el forward y un riel rojo por debajo que sube a cada capa en el backward; la linea final sobre W y b en tono de advertencia
 -->

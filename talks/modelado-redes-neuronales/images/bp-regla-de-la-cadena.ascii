@@ -1,0 +1,22 @@
+   El efecto total es el producto de tres factores
+   mirando desde una unidad de salida j
+
+     x1 --w_1j--\                                   |     dL          dL        dy_j       dz_j
+                  \                                 |   ------  =  ------  *  ------  *  ------
+     xi ==w_ij===> ( SUM ) --z_j--> ( f ) --y_j--> [L(y_j,t_j)]     dw_ij       dy_j       dz_j       dw_ij
+                  /                                 |    (rojo)       (1)        (2)        (3)
+     xn --w_nj--/                                   |
+                                                    |   z_j = SUM_i x_i w_ij + b_j
+     |__(3)__|__(2)__|_______(1)_______|            |   la suma ponderada, antes de la activacion
+      la suma, la salida,  el error,                |   x es lo que entra a j: el dato si j esta en
+      si cambia si cambia  si cambia                |   la primera capa, si no la salida de la
+      el peso   la suma    la salida                |   capa anterior
+
+   Los tres son valores intermedios: se calculan, se multiplican
+   y se acumulan.  NINGUN PESO SE MOVIO TODAVIA.
+
+<!-- ascii-note:
+intent: hacer visible sobre la red el camino que va de un peso al error, parado en una unidad de salida, y numerar sus tres tramos igual que los tres factores de la regla de la cadena
+emphasize: la conexion w_ij en rojo, que es el peso que se deriva, y que ese mismo rojo aparece en el denominador de la formula; los numeros 1 2 3 son el puente entre las dos mitades
+labels: NOTACION DE LA TALK, respetarla: z es la suma ponderada (pre-activacion), y la salida de la unidad, t el objetivo, a NO se usa para la suma porque en la seccion 1 a es la activacion; los indices van como SUBINDICES de verdad; las entradas se rotulan x_1, x_i, x_n para que la generica sea la del medio y no se mezcle con indices concretos; la caja del error dice L(y_j, t_j) porque la loss compara contra el objetivo; cada tramo numerado lleva su rotulo en prosa DEBAJO; fuente monoespaciada en la formula; lienzo cerca de 1.9 porque la diapositiva es image-full
+-->

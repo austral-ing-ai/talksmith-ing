@@ -1,4 +1,4 @@
-<!-- talksmith-ascii-sha256: b823086601552f079fba00dbd55aebb972d2a30366e4ccb1ad92f6d9753397ab -->
+<!-- talksmith-ascii-sha256: aed4648a55040bccabd0b832a1d947c88f3e9d4368302208f3d3790677fcc813 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 430" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
   <title>El ciclo completo, batch a batch</title>
   <desc>Dentro del batch se acumula en valores intermedios; al cerrar el batch se aplica una sola vez y se pasa al siguiente.</desc>
@@ -45,8 +45,8 @@
 
   <rect x="396" y="98" width="170" height="74" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.7"/>
   <text x="481" y="120" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#DA1B2E">ACUMULADOR</text>
-  <text x="481" y="141" font-size="14" font-family="'DejaVu Sans Mono', monospace" text-anchor="middle">g += grad</text>
-  <text x="481" y="160" font-size="11" text-anchor="middle" fill="#7A7373">valores intermedios</text>
+  <text x="437" y="141" font-size="14" font-family="'DejaVu Sans Mono', monospace">g<tspan font-size="8.7" dy="4">ij</tspan><tspan font-size="14" dy="-4"> += &#8706;L/&#8706;w</tspan><tspan font-size="8.7" dy="4">ij</tspan></text>
+  <text x="481" y="160" font-size="11" text-anchor="middle" fill="#7A7373">un casillero por peso: g tiene la forma de W</text>
 
   <text x="314" y="212" font-size="13.5" font-weight="bold" text-anchor="middle">W y b no se tocan en ningún punto de este bloque</text>
 
@@ -60,10 +60,10 @@
     <text x="52" y="346">3. vaciar</text>
   </g>
   <g font-family="'DejaVu Sans Mono', monospace" font-size="13.5">
-    <text x="164" y="298">g = g / B</text>
-    <text x="164" y="322" font-weight="bold" fill="#DA1B2E">W = W - &#951;*g</text>
-    <text x="330" y="322" font-weight="bold" fill="#DA1B2E">b = b - &#951;*g</text>
-    <text x="164" y="346">g = 0</text>
+    <text x="164" y="298" font-family="'DejaVu Sans Mono', monospace" font-size="13">g<tspan font-size="8" dy="4">ij</tspan><tspan font-size="13" dy="-4"> = g</tspan><tspan font-size="8" dy="4">ij</tspan><tspan font-size="13" dy="-4"> / B</tspan></text>
+    <text x="164" y="322" font-family="'DejaVu Sans Mono', monospace" font-size="13" font-weight="bold" fill="#DA1B2E">w<tspan font-size="8" dy="4">ij</tspan><tspan font-size="13" dy="-4"> = w</tspan><tspan font-size="8" dy="4">ij</tspan><tspan font-size="13" dy="-4"> - &#951;&#183;g</tspan><tspan font-size="8" dy="4">ij</tspan></text>
+    <text x="330" y="322" font-size="12" fill="#7A7373">lo mismo para cada bias</text>
+    <text x="164" y="346" font-family="'DejaVu Sans Mono', monospace" font-size="13">g<tspan font-size="8" dy="4">ij</tspan><tspan font-size="13" dy="-4"> = 0</tspan></text>
   </g>
   <text x="52" y="371" font-size="12.5" font-weight="bold" fill="#DA1B2E">único momento del entrenamiento en que la red cambia</text>
 

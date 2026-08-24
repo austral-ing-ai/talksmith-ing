@@ -1,0 +1,35 @@
+<!-- talksmith-ascii-sha256: f23bd77a94c1dbf78619698d11edff1cf0cf807af6e1d16f42ae38dcbb150325 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 300" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>La culpa de una unidad oculta</title>
+  <desc>Una unidad oculta no tiene objetivo propio: su culpa se arma sumando las culpas de las unidades de la capa siguiente a las que alimenta, ponderadas por los pesos de conexion, y multiplicando por la derivada de su activacion.</desc>
+  <defs>
+    <marker id="ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/></marker>
+  </defs>
+  <rect x="0" y="0" width="470" height="300" fill="#ffffff"/>
+  <text x="235" y="32" font-size="14" font-weight="bold" text-anchor="middle">La culpa de una unidad oculta se hereda</text>
+  <g stroke="#B9B3B3" stroke-width="1.5" fill="none">
+    <path d="M 120 140 L 276 92"/>
+    <path d="M 120 140 L 276 140"/>
+    <path d="M 120 140 L 276 188"/>
+  </g>
+  <g stroke="#DA1B2E" stroke-width="2" fill="none" marker-end="url(#ar)">
+    <path d="M 274 92 L 131 140"/>
+    <path d="M 274 140 L 131 140"/>
+    <path d="M 274 188 L 131 140"/>
+  </g>
+  <g fill="#ffffff" stroke="#B9B3B3" stroke-width="1.6">
+    <circle cx="96" cy="140" r="24"/>
+    <circle cx="300" cy="92" r="24"/>
+    <circle cx="300" cy="140" r="24"/>
+    <circle cx="300" cy="188" r="24"/>
+  </g>
+  <text x="96" y="146" text-anchor="middle" font-size="17" font-weight="bold">j</text>
+  <text x="300" y="98" text-anchor="middle" font-size="15">k<tspan font-size="10" dy="4">1</tspan></text>
+  <text x="300" y="146" text-anchor="middle" font-size="15">k<tspan font-size="10" dy="4">2</tspan></text>
+  <text x="300" y="194" text-anchor="middle" font-size="15">k<tspan font-size="10" dy="4">3</tspan></text>
+  <text x="96" y="184" text-anchor="middle" font-size="11.5" fill="#7A7373">oculta: sin objetivo propio</text>
+  <text x="300" y="238" text-anchor="middle" font-size="11.5" fill="#7A7373">la capa siguiente, que ya tiene su culpa</text>
+  <text x="200" y="112" text-anchor="middle" font-size="12" fill="#DA1B2E" font-weight="bold">w<tspan font-size="8" dy="4">jk</tspan></text>
+  <line x1="34" y1="256" x2="436" y2="256" stroke="#E2DDDD" stroke-width="1.3"/>
+  <text x="52" y="284" font-family="'DejaVu Sans Mono', monospace" font-size="15">culpa(j) = ( &#8721;<tspan font-size="9" dy="4">k</tspan><tspan font-size="15" dy="-4"> culpa(k) &#183; w</tspan><tspan font-size="9" dy="4">jk</tspan><tspan font-size="15" dy="-4"> ) &#183; f'( z</tspan><tspan font-size="9" dy="4">j</tspan><tspan font-size="15" dy="-4"> )</tspan></text>
+</svg>

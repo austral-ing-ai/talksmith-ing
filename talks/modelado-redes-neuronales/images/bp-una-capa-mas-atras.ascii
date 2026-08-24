@@ -1,0 +1,20 @@
+   Una capa mas atras: la cadena se estira
+   el mismo procedimiento, dos unidades de distancia del error
+
+   (x_h) --w_hi--> (SUM) --z_i--> ( f ) --y_i, con w_ij--> (SUM) --z_j--> ( f ) --y_j--> [L(y_j,t_j)]
+                   |___unidad oculta i___|            |___unidad de salida j___|
+
+      dL          dL         dy_j        dz_j        dy_i        dz_i
+    ------  =   ------  *  ------  *  ------  *  ------  *  ------
+     dw_hi       dy_j        dz_j        dy_i        dz_i        dw_hi
+                +--------------------+
+                ya calculado para j    lo unico nuevo: tres factores mas
+
+   bajar una capa no rehace la cuenta: le agrega tres factores adelante.
+   si la unidad alimenta a varias, se suma su aporte a cada una.
+
+<!-- ascii-note:
+intent: mostrar que ir una capa mas atras no rehace el calculo, solo estira la cadena, y que la cola de la cadena es exactamente lo que ya se calculo para la unidad de salida
+emphasize: el recuadro sobre los factores dL/dy_j y dy_j/dz_j, que son los mismos de la diapositiva anterior; la conexion w_hi en rojo, que es el peso que se deriva ahora
+labels: NOTACION DE LA TALK: z suma ponderada, y salida, t objetivo, w_hi el peso de la entrada h a la unidad oculta i, w_ij el peso de i a la unidad de salida j; nada de delta ni letras griegas para la culpa; indices como SUBINDICES de verdad; cada unidad se dibuja como DOS NEURONAS redondas, la suma ponderada y la activacion, igual que en la diapositiva anterior, con una llave debajo que las agrupa; nunca como una caja; fuente monoespaciada en la cadena; lienzo cerca de 2.0 porque la diapositiva es image-full
+-->

@@ -1,0 +1,21 @@
+<!-- talksmith-ascii-sha256: 9a2b61ed481c8ddd2b24045ea3cdaf701a19d04a41561a0c014b343608563dc2 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 345" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>El delta de una unidad de salida</title>
+  <desc>Delta agrupa los dos primeros factores de la cadena; con los pares que van juntos se simplifica a y menos t.</desc>
+  <rect x="0" y="0" width="440" height="345" fill="#ffffff"/>
+  <text x="220" y="34" font-size="14" font-weight="bold" text-anchor="middle">Delta agrupa los dos primeros factores</text>
+  <text x="107" y="129" font-family="'DejaVu Sans Mono', monospace" font-size="22">&#948;<tspan font-size="13" dy="6">j</tspan></text>
+  <text x="158" y="129" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="22">=</text>
+  <text x="195.8" y="110" font-family="'DejaVu Sans Mono', monospace" font-size="22">&#8706;L</text>
+  <text x="191.7" y="151" font-family="'DejaVu Sans Mono', monospace" font-size="22">&#8706;y<tspan font-size="13.6" dy="6">j</tspan></text>
+  <line x1="187.7" y1="123" x2="230.3" y2="123" stroke="#3B3535" stroke-width="1.5"/>
+  <text x="260" y="129" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="22">&#183;</text>
+  <text x="293.7" y="110" font-family="'DejaVu Sans Mono', monospace" font-size="22">&#8706;y<tspan font-size="13.6" dy="6">j</tspan></text>
+  <text x="293.7" y="151" font-family="'DejaVu Sans Mono', monospace" font-size="22">&#8706;z<tspan font-size="13.6" dy="6">j</tspan></text>
+  <line x1="289.7" y1="123" x2="332.3" y2="123" stroke="#3B3535" stroke-width="1.5"/>
+  <text x="209" y="180" text-anchor="middle" font-size="11.5" fill="#7A7373">de la loss</text>
+  <text x="311" y="180" text-anchor="middle" font-size="11.5" fill="#7A7373">de la activaci&#243;n</text>
+  <text x="220" y="246" text-anchor="middle" font-size="12.5">con los pares que van juntos &#8212; lineal + MSE,</text>
+  <text x="220" y="264" text-anchor="middle" font-size="12.5">sigmoide + BCE, softmax + cross-entropy &#8212;</text>
+  <text x="136" y="316" font-family="'DejaVu Sans Mono', monospace" font-size="26" font-weight="bold" fill="#DA1B2E">&#948;<tspan font-size="15" dy="7">j</tspan><tspan font-size="26" dy="-7"> = y</tspan><tspan font-size="15" dy="7">j</tspan><tspan font-size="26" dy="-7"> &#8722; t</tspan><tspan font-size="15" dy="7">j</tspan></text>
+</svg>

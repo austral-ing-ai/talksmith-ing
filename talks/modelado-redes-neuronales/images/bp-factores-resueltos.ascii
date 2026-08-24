@@ -1,0 +1,18 @@
+   Cada factor tiene una forma cerrada
+
+     (1)    dL / dy_j    =   y_j - t_j
+     (2)   dy_j / dz_j   =   f'( z_j )
+     (3)   dz_j / dw_ij  =   x_i
+
+     (1) y (2) juntos se calculan una vez por unidad
+     y sirven para todos los pesos que llegan a ella
+     ------------------------------------------------
+     el gradiente de ese peso es el producto de los tres
+
+            ( y_j - t_j ) * f'( z_j ) * x_i
+
+<!-- ascii-note:
+intent: cerrar la regla de la cadena mostrando cuanto vale cada uno de sus tres factores, y que el gradiente de un peso es el producto de tres numeros que ya estan calculados
+emphasize: el producto final, en rojo y mas grande, es el remate
+labels: NOTACION DE LA TALK: z suma ponderada, y salida, t objetivo, x lo que entra, f la activacion; los numeros 1 2 3 son los mismos de la diapositiva anterior y hay que conservarlos; indices como SUBINDICES de verdad; fuente monoespaciada; lienzo cerca de 1.2 porque la imagen cae en media columna de un split-right
+-->

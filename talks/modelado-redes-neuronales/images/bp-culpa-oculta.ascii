@@ -1,0 +1,20 @@
+   La culpa de una unidad oculta se hereda
+
+                          --> ( k1 )
+                        /
+       ( j ) ==w_jk===> ( k2 )
+       oculta,          \
+       sin objetivo       --> ( k3 )
+       propio                 la capa siguiente,
+                              que ya tiene su culpa
+
+       las flechas rojas van de k hacia j: la culpa vuelve
+
+   ------------------------------------------------------
+   culpa(j) = ( SUM_k culpa(k) * w_jk ) * f'( z_j )
+
+<!-- ascii-note:
+intent: mostrar que una unidad oculta no tiene objetivo propio y que su culpa se arma con las culpas de la capa siguiente, ponderadas por los pesos de conexion
+emphasize: las flechas rojas que vuelven de la capa siguiente hacia j, y la formula del pie
+labels: NOTACION DE LA TALK: se dice CULPA en castellano, no delta ni la letra griega, porque el mazo saco esa notacion; z es la suma ponderada, f la activacion, w_jk el peso de j hacia la unidad k de la capa siguiente; indices como subindices de verdad; fuente monoespaciada en la formula; lienzo cerca de 1.5
+-->

@@ -1,0 +1,71 @@
+<!-- talksmith-ascii-sha256: d8e0727c12bbeca0e7d2d6c9bfdd28506201b53e9b6ec1741c3e0b695d90631f -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 422" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>Una capa m&#225;s atr&#225;s</title>
+  <desc>Dos neuronas encadenadas, cada una dibujada como su suma ponderada y su activacion; el gradiente de un peso de la capa oculta es la misma cadena con tres factores mas adelante, y los dos ultimos ya estaban calculados.</desc>
+  <defs>
+    <marker id="ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#B9B3B3"/></marker>
+    <marker id="ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/></marker>
+  </defs>
+  <rect x="0" y="0" width="800" height="422" fill="#ffffff"/>
+  <text x="400" y="32" font-size="16" font-weight="bold" text-anchor="middle">Una capa m&#225;s atr&#225;s: la cadena se estira</text>
+  <text x="400" y="52" font-size="12" text-anchor="middle" fill="#7A7373">el mismo procedimiento, dos unidades de distancia del error</text>
+  <g stroke="#B9B3B3" stroke-width="1.5" fill="none" marker-end="url(#ag)">
+    <path d="M 172 126 L 207 126"/>
+    <path d="M 260 126 L 351 126"/>
+    <path d="M 404 126 L 439 126"/>
+    <path d="M 492 126 L 557 126"/>
+  </g>
+  <path d="M 67 126 L 119 126" stroke="#DA1B2E" stroke-width="2.6" fill="none" marker-end="url(#ar)"/>
+  <g fill="#ffffff" stroke="#B9B3B3" stroke-width="1.5">
+    <circle cx="52" cy="126" r="15"/>
+    <circle cx="150" cy="126" r="22"/>
+    <circle cx="238" cy="126" r="22"/>
+    <circle cx="382" cy="126" r="22"/>
+    <circle cx="470" cy="126" r="22"/>
+  </g>
+  <rect x="566" y="104" width="86" height="44" rx="4" fill="#ffffff" stroke="#B9B3B3" stroke-width="1.5"/>
+  <text x="45" y="131" font-size="15">x<tspan font-size="10" dy="4">h</tspan></text>
+  <text x="150" y="134" text-anchor="middle" font-size="21">&#8721;</text>
+  <text x="382" y="134" text-anchor="middle" font-size="21">&#8721;</text>
+  <text x="238" y="133" text-anchor="middle" font-size="19" font-style="italic">f</text>
+  <text x="470" y="133" text-anchor="middle" font-size="19" font-style="italic">f</text>
+  <text x="609" y="132" text-anchor="middle" font-size="16" font-weight="bold">L(y<tspan font-size="10.5" dy="4">j</tspan><tspan font-size="16" dy="-4">, t</tspan><tspan font-size="10.5" dy="4">j</tspan><tspan font-size="16" dy="-4">)</tspan></text>
+  <text x="86" y="114" font-size="14" fill="#DA1B2E" font-weight="bold">w<tspan font-size="9" dy="4">hi</tspan></text>
+  <text x="186" y="114" font-size="13" fill="#7A7373">z<tspan font-size="8.5" dy="4">i</tspan></text>
+  <text x="302" y="114" font-size="13" fill="#7A7373">y<tspan font-size="8.5" dy="4">i</tspan></text>
+  <text x="418" y="114" font-size="13" fill="#7A7373">z<tspan font-size="8.5" dy="4">j</tspan></text>
+  <text x="510" y="114" font-size="13" fill="#7A7373">y<tspan font-size="8.5" dy="4">j</tspan></text>
+  <text x="296" y="156" font-size="12.5" fill="#7A7373">con w<tspan font-size="8" dy="4">ij</tspan></text>
+  <path d="M 128 160 L 128 168 L 260 168 L 260 160" stroke="#B9B3B3" stroke-width="1.2" fill="none"/>
+  <text x="194" y="186" text-anchor="middle" font-size="11.5" fill="#7A7373">unidad oculta i</text>
+  <path d="M 360 160 L 360 168 L 492 168 L 492 160" stroke="#B9B3B3" stroke-width="1.2" fill="none"/>
+  <text x="426" y="186" text-anchor="middle" font-size="11.5" fill="#7A7373">unidad de salida j</text>
+  <rect x="274" y="239" width="125" height="88" rx="4" fill="#F7F3F3" stroke="#DA1B2E" stroke-width="1.3"/>
+  <text x="218.7" y="262" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;L</text>
+  <text x="211.2" y="307" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;w<tspan font-size="12.4" dy="6">hi</tspan></text>
+  <text x="269.1" y="285" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="20">=</text>
+  <text x="291.8" y="262" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;L</text>
+  <text x="288.1" y="307" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;y<tspan font-size="12.4" dy="6">j</tspan></text>
+  <text x="336.6" y="285" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#183;</text>
+  <text x="353.6" y="262" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;y<tspan font-size="12.4" dy="6">j</tspan></text>
+  <text x="353.6" y="307" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;z<tspan font-size="12.4" dy="6">j</tspan></text>
+  <text x="402.0" y="285" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#183;</text>
+  <text x="419.0" y="262" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;z<tspan font-size="12.4" dy="6">j</tspan></text>
+  <text x="419.0" y="307" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;y<tspan font-size="12.4" dy="6">i</tspan></text>
+  <text x="467.4" y="285" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#183;</text>
+  <text x="484.4" y="262" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;y<tspan font-size="12.4" dy="6">i</tspan></text>
+  <text x="484.4" y="307" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;z<tspan font-size="12.4" dy="6">i</tspan></text>
+  <text x="532.9" y="285" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#183;</text>
+  <text x="553.6" y="262" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;z<tspan font-size="12.4" dy="6">i</tspan></text>
+  <text x="549.9" y="307" font-family="'DejaVu Sans Mono', monospace" font-size="20">&#8706;w<tspan font-size="12.4" dy="6">hi</tspan></text>
+  <line x1="207" y1="277" x2="254" y2="277" stroke="#3B3535" stroke-width="1.6"/>
+  <line x1="284" y1="277" x2="324" y2="277" stroke="#3B3535" stroke-width="1.6"/>
+  <line x1="350" y1="277" x2="389" y2="277" stroke="#3B3535" stroke-width="1.6"/>
+  <line x1="415" y1="277" x2="454" y2="277" stroke="#3B3535" stroke-width="1.6"/>
+  <line x1="480" y1="277" x2="520" y2="277" stroke="#3B3535" stroke-width="1.6"/>
+  <line x1="546" y1="277" x2="593" y2="277" stroke="#3B3535" stroke-width="1.6"/>
+  <text x="337" y="350" text-anchor="middle" font-size="12" font-weight="bold" fill="#DA1B2E">ya calculado para la unidad j</text>
+  <text x="504" y="350" text-anchor="middle" font-size="12" fill="#7A7373">lo &#250;nico nuevo: tres factores m&#225;s</text>
+  <text x="400" y="378" text-anchor="middle" font-size="13" fill="#7A7373">bajar una capa no rehace la cuenta: le agrega tres factores adelante.</text>
+  <text x="400" y="398" text-anchor="middle" font-size="13" fill="#7A7373">si la unidad alimenta a varias, se suma su aporte a cada una.</text>
+</svg>
