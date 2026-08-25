@@ -253,7 +253,7 @@
       "lead": "Una categoría sin orden se codifica de dos formas, y la cardinalidad decide cuál.",
       "media": {
         "src": "images/s2-4-1-one-hot.png",
-        "alt": "One-hot selecciona una columna de W: como solo una posición vale 1, el producto con W toma los pesos de esa categoría"
+        "alt": "Lo que entra al vector contra lo que es peso de la red: one-hot aporta k floats y embedding aporta d floats, una sola fila de la tabla"
       },
       "design": "split-right",
       "highlights": [
@@ -263,16 +263,18 @@
           "kind": "takeaway"
         },
         {
-          "body": "Un embedding equivale a un one-hot seguido de una capa lineal sin sesgo. Conceptualmente, es la primera capa de la red.",
+          "label": "La matriz nunca es la entrada",
+          "body": "Ni `W` ni la tabla de embeddings entran al vector: las dos son pesos de la red. Al vector entra `k` floats con one-hot y `d` con embedding.",
           "kind": "takeaway"
         }
       ],
-      "notes": "El puente que engancha: así arranca un LLM. Cada token es un índice que busca su fila en una tabla de ~50.000 por 4096. El embedding de categorías y el de palabras son la misma idea. Dos ventajas no obvias: comparte estadística entre categorías parecidas y es reutilizable.",
+      "notes": "La pregunta que va a aparecer: si la red toma un vector, ¿qué hace acá una matriz? La respuesta es que la tabla `k × d` no es la entrada, es un parámetro — exactamente el mismo estatus que la `W` del panel de one-hot, que también es una matriz y a nadie le hace ruido porque se lee como pesos. Lo que entra al vector es una fila, `d` floats, elegida por el índice de la categoría. Con embedding la multiplicación por el one-hot se saltea y se va directo a buscar la fila, que es la misma cuenta hecha más barata.\n\nEl puente conceptual que engancha: así arranca un LLM. Cada token es un índice que busca su fila en una tabla de unas 50.000 por 4096. El embedding de categorías tabulares y el embedding de palabras son la misma idea, una representación densa aprendida donde la geometría del espacio codifica el significado. Las dos ventajas no obvias del embedding: comparte estadística entre categorías parecidas (una categoría rara hereda de sus vecinas) y es reutilizable para clustering o búsqueda por similitud.",
       "columns": [
         {
           "header": "Criterio",
           "cells": [
-            "Qué es",
+            "Qué entra al vector",
+            "Qué es esa matriz",
             "Distancia entre categorías",
             "Se aprende",
             "Con 500 barrios"
@@ -281,7 +283,8 @@
         {
           "header": "One-hot · cardinalidad baja",
           "cells": [
-            "Una neurona por valor, todas en 0 salvo una en 1",
+            "`k` floats: uno por categoría, todos en 0 salvo uno en 1",
+            "`W`, los pesos de la primera capa — no es una entrada",
             "Todas equidistantes — la verdad del dato",
             "No; es interpretable y necesita pocos datos",
             "500 floats"
@@ -290,10 +293,11 @@
         {
           "header": "Embedding · cardinalidad alta",
           "cells": [
-            "Una tabla de `k × d` floats entrenable",
+            "`d` floats: **una fila**, la que le toca a la categoría",
+            "La tabla `k × d`, entrenable, dentro de la red — tampoco es una entrada",
             "La red la aprende de los datos",
-            "Sí; es la primera capa de la red",
-            "24 floats con d=24"
+            "Sí; la tabla **es** la primera capa",
+            "24 floats con `d = 24`"
           ]
         }
       ]
@@ -1550,7 +1554,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "cc017e0b2dec84391607ad487467ac2c11c37beb9f5874528f3737cb52a90f25",
-    "bytes": 157337
+    "sha256": "f35f42954ad05e8c451216ae2db10a9cd045a087074a9ef8e6eb817d9095448b",
+    "bytes": 158642
   }
 }
