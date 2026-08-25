@@ -415,7 +415,14 @@
           ]
         }
       ],
-      "notes": "Es la diapositiva de referencia de la sección, la que van a fotografiar. No la leas fila por fila: pediles que elijan tres variables de un dataset que conozcan y las ubiquen. Las filas que más discusión generan son las tres del medio (ordinal, código con forma de número, identificador único) y son justamente las tres que más aparecen mal resueltas en los trabajos. Dos aclaraciones para tener a mano: la fila de fecha dice \"2 por ciclo\" porque una fecha suele tener más de uno, el mes del año y el día de la semana, y ahí son 2 + 2 + 1; y si alguien pregunta por qué faltantes no está en la tabla, la respuesta es que faltar no es un tipo de variable sino algo que le puede pasar a cualquiera. Se imputa (media o mediana en las numéricas, categoría propia en las categóricas) y se suma un float más, el flag binario que dice si el dato estaba. Ese flag muchas veces predice más que la variable misma. El cierre importa: el largo del vector de entrada es una consecuencia de la tabla, no una decisión de arquitectura. Si alguien pregunta por qué la columna dice floats y no neuronas, la respuesta corta es que la entrada no calcula nada: una neurona hace `z = W·x + b` más activación, y la primera que hace eso es la primera capa oculta. Es una imprecisión frecuente en los libros y vale la pena marcarla, porque es la misma idea con la que abre la clase: la red ve un vector de floats."
+      "notes": "Es la diapositiva de referencia de la sección, la que van a fotografiar. No la leas fila por fila: pediles que elijan tres variables de un dataset que conozcan y las ubiquen. Las filas que más discusión generan son las tres del medio (ordinal, código con forma de número, identificador único) y son justamente las tres que más aparecen mal resueltas en los trabajos. Dos aclaraciones para tener a mano: la fila de fecha dice \"2 por ciclo\" porque una fecha suele tener más de uno, el mes del año y el día de la semana, y ahí son 2 + 2 + 1; y si alguien pregunta por qué faltantes no está en la tabla, la respuesta es que faltar no es un tipo de variable sino algo que le puede pasar a cualquiera. Se imputa (media o mediana en las numéricas, categoría propia en las categóricas) y se suma un float más, el flag binario que dice si el dato estaba. Ese flag muchas veces predice más que la variable misma. El cierre importa: el largo del vector de entrada es una consecuencia de la tabla, no una decisión de arquitectura. Si alguien pregunta por qué la columna dice floats y no neuronas, la respuesta corta es que la entrada no calcula nada: una neurona hace `z = W·x + b` más activación, y la primera que hace eso es la primera capa oculta. Es una imprecisión frecuente en los libros y vale la pena marcarla, porque es la misma idea con la que abre la clase: la red ve un vector de floats.",
+      "highlights": [
+        {
+          "label": "Corrido, tipo por tipo",
+          "body": "Cada fila de esta tabla esta entrenada — con su forma incorrecta al lado — en [`input-data-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/input-data-types.ipynb).",
+          "kind": "takeaway"
+        }
+      ]
     },
     {
       "template": "section-agenda",
@@ -631,6 +638,11 @@
         {
           "body": "Cuando el negocio necesita un rango y no un punto, los cuantiles (P10, P50, P90) son lo más rentable: no asumen forma y dan el intervalo directo.",
           "kind": "example"
+        },
+        {
+          "label": "Corrido, tarea por tarea",
+          "body": "Las siete familias estan entrenadas — con su forma incorrecta al lado — en [`output-layer-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/output-layer-types.ipynb).",
+          "kind": "takeaway"
         }
       ],
       "notes": "No leas toda la tabla; detenete en dos o tres filas. La de cuantiles suele ser nueva y es muy útil (stock, riesgo, capacidad). La media es la respuesta correcta a una pregunta que nadie hizo. La distribución con μ y σ conecta con estadística que ya vieron."
@@ -1597,11 +1609,32 @@
           "body": "Si no, no es una feature."
         }
       ]
+    },
+    {
+      "template": "closing-cta",
+      "section": "Conclusiones",
+      "title": "Los notebooks de la clase",
+      "lead": "Todo lo que vimos esta corrido, con los numeros a la vista, en dos notebooks que trabajan **sobre las mismas 2000 casas**. Uno recorre la entrada y el otro la salida.",
+      "items": [
+        {
+          "label": "La entrada",
+          "body": "[`input-data-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/input-data-types.ipynb) · [abrir en Colab](https://colab.research.google.com/github/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/input-data-types.ipynb) — tipo por tipo, la conversion a floats y cuantos ocupa cada uno. Cada codificacion incorrecta esta entrenada al lado de la correcta."
+        },
+        {
+          "label": "La salida",
+          "body": "[`output-layer-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/output-layer-types.ipynb) · [abrir en Colab](https://colab.research.google.com/github/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/output-layer-types.ipynb) — las mismas casas, pero el precio pasa a ser **entrada** y se predice otra cosa. Una seccion por familia de salida, con su par activacion + loss."
+        },
+        {
+          "label": "El cuerpo de la red nunca cambia",
+          "body": "Siete tareas con exactamente la misma red y la misma matriz de entrada. Lo unico que se mueve es la ultima capa. Es la tesis de la clase, corrida."
+        }
+      ],
+      "notes": "Dejá el link a mano y decilo dos veces, porque es el material que más van a usar para el trabajo práctico. Los dos notebooks abren en Colab sin instalar nada y sin bajar el dataset: leen el CSV desde una URL.\n\nEl detalle que conviene señalar en voz alta es que **son las mismas casas en los dos**. No es una coincidencia de armado: es lo que deja ver que codificar la entrada y modelar la salida son decisiones independientes. En el primero el precio es la respuesta; en el segundo es un dato más y la respuesta es otra cosa.\n\nSi preguntan por dónde empezar: el de la entrada sigue el orden de la sección 2 y el de la salida sigue el de las secciones 4 y 5, así que se pueden leer en paralelo con estas diapositivas."
     }
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "c33fd3590e3e04e90e4803e5199cba9c355898d510d64ee36965d992301a9d33",
-    "bytes": 162947
+    "sha256": "5ca6543794a47b4268cd2d8227893c3a6c17db08283a1c2ca6b0972393d8be11",
+    "bytes": 165883
   }
 }

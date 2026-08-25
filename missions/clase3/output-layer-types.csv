@@ -1,0 +1,2001 @@
+listing_id,tiene_cochera,m2,banos,ingreso_zona,estado,tipo_vivienda,barrio,codigo_postal,mes_venta,anio_alta,precio,dias_para_vender,dias_reales,visitas_semana,se_vendio,segmento,tiene_pileta,apto_credito,a_reciclar
+271195,False,102,2,113736,muy bueno,departamento,barrio_27,1017,7,1981,352432,52,52,6,1,economica,0,0,1
+916831,False,35,1,17201,excelente,duplex,barrio_15,1022,7,1950,278612,72,72,3,0,economica,0,0,1
+951972,False,162,1,31383,muy bueno,casa,barrio_45,1018,8,1971,482470,73,73,1,0,premium,1,1,1
+199237,False,45,1,59884,muy bueno,duplex,barrio_58,1012,10,1979,228560,85,85,0,1,economica,0,0,1
+538038,True,110,3,18842,muy bueno,casa,barrio_15,1012,7,2019,413319,77,77,5,0,media,0,1,0
+911684,True,109,2,129803,excelente,casa,barrio_46,1036,11,2008,537801,56,56,17,1,premium,0,1,0
+434757,False,105,2,38584,bueno,PH,barrio_15,1027,4,1960,319547,96,96,0,0,economica,1,0,0
+193715,False,78,2,52506,bueno,duplex,barrio_43,1003,10,1950,340161,87,87,0,0,economica,0,0,1
+906654,True,124,1,29317,bueno,PH,barrio_47,1038,5,1987,394973,82,82,2,1,media,0,1,0
+361650,True,40,2,61511,bueno,casa,barrio_26,1028,8,1987,291316,65,65,0,0,economica,0,1,1
+897130,True,93,2,128417,bueno,casa,barrio_44,1002,6,2002,354103,28,28,1,0,economica,0,1,0
+443758,True,75,3,32695,muy bueno,departamento,barrio_16,1029,11,1968,366700,63,63,3,1,media,1,1,0
+877856,True,71,1,144896,regular,departamento,barrio_04,1023,4,2007,265331,101,101,0,0,economica,0,1,1
+645714,True,110,3,22264,excelente,duplex,barrio_05,1036,7,1979,451500,79,79,2,0,premium,1,0,0
+972918,True,133,1,66922,bueno,departamento,barrio_26,1019,2,1973,419157,79,79,1,1,media,0,1,0
+472794,False,83,2,53707,regular,casa,barrio_54,1020,8,1979,301879,123,123,0,0,economica,1,1,0
+441415,False,122,2,15446,regular,duplex,barrio_07,1012,1,2017,379947,72,72,1,0,media,0,1,0
+168174,False,97,3,43090,bueno,casa,barrio_27,1012,5,1977,359652,83,83,1,1,media,0,0,1
+229561,False,64,2,36530,bueno,casa,barrio_42,1024,1,1989,304956,104,104,1,0,economica,0,0,1
+817153,True,86,1,18351,regular,departamento,barrio_12,1033,4,2013,377335,79,79,1,0,media,0,1,1
+461670,True,85,2,48359,bueno,departamento,barrio_43,1035,6,1951,297471,93,93,1,0,economica,0,0,1
+431631,False,71,2,40824,bueno,PH,barrio_18,1030,4,1988,351756,59,59,2,0,economica,0,0,1
+630045,False,110,2,34267,bueno,duplex,barrio_48,1024,5,2000,392761,55,55,1,0,media,1,1,1
+564903,False,103,1,34377,bueno,duplex,barrio_34,1020,2,2014,431808,52,52,5,1,media,1,0,0
+992889,False,39,1,33792,bueno,departamento,barrio_32,1013,9,1954,221287,99,99,1,0,economica,0,0,1
+834758,False,37,2,27061,bueno,duplex,barrio_10,1030,10,2001,274124,68,68,4,1,economica,0,1,0
+669735,False,110,1,40614,regular,PH,barrio_27,1012,6,2006,345497,70,70,1,0,economica,0,0,1
+109426,False,66,2,21696,regular,casa,barrio_51,1010,1,1974,303075,96,96,0,0,economica,0,0,1
+441764,False,106,1,304202,bueno,duplex,barrio_01,1034,1,2002,330678,91,91,2,0,economica,0,1,1
+681168,True,122,3,11761,muy bueno,casa,barrio_45,1023,9,1985,437715,76,76,2,1,media,1,1,0
+866665,True,51,1,22748,excelente,PH,barrio_29,1014,12,1996,360229,48,48,7,1,media,0,1,0
+394639,True,46,2,24231,excelente,duplex,barrio_43,1034,11,1977,355484,51,51,5,0,economica,1,1,1
+748466,True,154,3,185794,bueno,casa,barrio_39,1038,5,1962,521679,74,74,0,0,premium,1,0,1
+516923,False,107,2,12631,bueno,departamento,barrio_25,1012,6,2008,329313,68,68,2,1,economica,1,1,0
+459437,True,80,1,51059,bueno,departamento,barrio_18,1020,2,1965,331352,70,70,0,0,economica,0,0,1
+548986,True,62,1,44299,muy bueno,duplex,barrio_37,1019,1,1963,302006,62,62,0,0,economica,1,0,1
+420552,False,77,2,47424,muy bueno,casa,barrio_08,1028,10,2012,364049,9,9,6,1,media,0,1,0
+362249,True,53,1,97643,muy bueno,PH,barrio_35,1038,6,2016,333922,20,20,14,1,economica,0,0,0
+900251,False,126,3,96054,excelente,departamento,barrio_05,1021,6,1993,484381,65,65,6,1,premium,0,1,0
+738013,True,68,3,25317,bueno,casa,barrio_38,1031,5,1991,342398,60,60,3,1,economica,0,1,1
+193762,True,133,3,42413,muy bueno,PH,barrio_37,1023,4,1975,449696,767,77,3,1,premium,0,0,1
+480166,True,81,3,8174,muy bueno,duplex,barrio_05,1035,12,1993,338041,99,99,1,0,economica,0,0,1
+863005,True,58,2,39312,bueno,PH,barrio_45,1016,10,1993,268371,67,67,2,1,economica,1,0,1
+190430,True,80,1,19241,excelente,casa,barrio_24,1015,9,1986,425464,83,83,4,1,media,0,1,1
+217541,True,25,2,31285,regular,casa,barrio_47,1016,5,1996,227193,56,56,1,1,economica,0,0,1
+643954,True,91,1,9430,excelente,departamento,barrio_02,1039,9,1989,449224,38,38,7,1,media,0,0,0
+711519,True,89,3,50206,muy bueno,PH,barrio_10,1024,5,2012,412644,28,28,11,1,media,1,0,0
+210226,False,124,2,9346,regular,PH,barrio_29,1006,7,1997,378312,76,76,2,0,media,1,1,1
+581295,True,29,2,40889,muy bueno,casa,barrio_11,1001,2,1977,314276,85,85,3,0,economica,0,1,1
+258581,True,136,3,13613,regular,PH,barrio_19,1020,9,1996,405078,68,68,1,0,media,1,0,1
+125448,True,124,2,18403,muy bueno,departamento,barrio_39,1032,1,1966,455406,70,70,3,1,premium,1,1,1
+980934,False,139,2,91472,muy bueno,PH,barrio_08,1019,9,1965,425200,76,76,3,0,media,1,0,0
+562905,False,93,1,58124,muy bueno,duplex,barrio_40,1022,8,2008,378753,33,33,16,1,media,0,1,1
+590201,False,130,1,91068,excelente,PH,barrio_06,1031,1,1991,498652,29,29,11,1,premium,1,1,1
+428424,False,44,1,126473,regular,casa,barrio_10,1020,7,1953,286964,104,104,0,0,economica,0,0,1
+112384,True,120,2,19570,bueno,duplex,barrio_35,1036,3,1975,448498,62,62,2,1,media,0,1,1
+329297,False,68,3,120473,bueno,casa,barrio_47,1025,6,2019,358773,66,66,4,1,media,0,1,0
+726730,True,37,1,11244,regular,duplex,barrio_10,1029,1,1995,297154,80,80,2,1,economica,1,1,1
+249517,False,56,2,65965,bueno,casa,barrio_17,1031,9,2011,252896,122,122,1,0,economica,0,0,1
+597573,True,95,1,24473,bueno,PH,barrio_55,1025,7,1988,341118,81,81,1,0,economica,1,1,0
+317544,True,66,1,17253,bueno,casa,barrio_59,1002,5,1953,326206,55,55,1,0,economica,0,1,1
+502132,False,108,1,59372,bueno,casa,barrio_34,1017,11,1962,407108,90,90,3,0,media,0,0,1
+137027,False,32,2,77340,excelente,PH,barrio_26,1005,8,1956,332242,63,63,4,0,economica,0,0,1
+230462,False,25,2,75525,bueno,PH,barrio_20,1020,8,2002,235927,87,87,0,1,economica,0,1,1
+130941,True,143,2,43126,excelente,casa,barrio_36,1005,2,2003,633135,74,74,6,1,premium,1,1,0
+498444,True,127,2,40359,bueno,duplex,barrio_35,1020,7,1982,480897,75,75,2,1,premium,1,0,0
+984263,True,58,2,55353,bueno,departamento,barrio_17,1013,9,2001,278788,88,88,0,0,economica,0,0,1
+123712,True,95,1,46305,bueno,departamento,barrio_01,1000,12,1989,317204,82,82,0,0,economica,0,1,1
+761012,True,131,3,55999,bueno,departamento,barrio_09,1004,8,2002,429437,79,79,1,1,media,0,0,0
+793643,True,110,2,42753,bueno,departamento,barrio_57,1020,3,1997,466415,65,65,5,1,premium,0,1,1
+465326,False,100,1,71270,bueno,casa,barrio_25,1003,9,1982,350673,72,72,1,0,economica,1,0,1
+338099,True,133,2,9880,bueno,departamento,barrio_28,1034,1,1996,435968,60,60,2,0,media,1,1,1
+913956,False,69,2,32695,bueno,casa,barrio_28,1030,4,1972,340187,100,100,1,1,economica,0,1,1
+461441,False,96,3,12003,muy bueno,casa,barrio_46,1028,12,2003,452179,42,42,7,1,premium,0,0,0
+273626,False,94,1,45314,bueno,departamento,barrio_03,1006,10,2014,318090,40,40,5,1,economica,1,1,0
+680005,True,85,3,135069,muy bueno,PH,barrio_04,1031,11,1964,337494,88,88,0,0,economica,0,0,1
+271249,True,81,2,24853,bueno,duplex,barrio_16,1025,5,1997,358527,74,74,4,0,media,0,1,1
+844964,True,98,1,40207,excelente,departamento,barrio_29,1015,9,1957,468634,66,66,6,1,premium,0,1,1
+264980,False,96,2,66515,muy bueno,departamento,barrio_40,1000,9,1976,383632,68,68,5,0,media,0,0,0
+569931,True,58,3,6945,excelente,duplex,barrio_29,1021,3,1997,416945,93,93,13,1,media,1,1,0
+406920,True,123,1,23916,muy bueno,PH,barrio_26,1031,12,1969,438296,70,70,5,1,media,1,1,0
+665102,False,61,3,48611,regular,duplex,barrio_56,1001,12,1966,266475,91,91,0,0,economica,0,0,1
+112796,False,87,3,3577,bueno,duplex,barrio_09,1002,2,1977,312107,56,56,2,0,economica,0,1,1
+410517,False,85,3,16623,bueno,duplex,barrio_34,1015,10,1958,368289,91,91,0,0,media,0,0,1
+459698,True,108,1,87613,muy bueno,duplex,barrio_32,1020,6,1994,448822,53,53,2,1,media,0,1,0
+735484,False,25,2,81016,muy bueno,departamento,barrio_28,1018,9,1959,235421,69,69,2,1,economica,1,0,1
+891377,True,126,2,48994,bueno,departamento,barrio_48,1017,7,1973,431034,76,76,4,0,media,1,1,1
+886609,True,71,2,73553,excelente,departamento,barrio_16,1010,3,1972,419119,53,53,3,1,media,0,0,0
+426159,False,138,3,43135,regular,casa,barrio_57,1002,2,2018,513381,100,100,4,1,premium,1,0,0
+843398,False,78,1,56631,muy bueno,PH,barrio_19,1001,7,2020,323853,46,46,11,0,economica,0,1,0
+356529,True,93,2,28211,muy bueno,PH,barrio_32,1003,11,1955,343553,83,83,1,1,economica,0,0,0
+202140,True,162,3,39841,regular,duplex,barrio_31,1027,10,1961,470820,96,96,0,0,premium,1,0,1
+499401,True,85,3,21897,muy bueno,casa,barrio_50,1031,4,2001,427524,5,5,3,1,media,0,1,1
+749637,False,138,2,99786,muy bueno,departamento,barrio_26,1017,11,1971,460764,62,62,3,0,premium,1,0,1
+978875,False,96,3,122669,regular,casa,barrio_17,1003,5,1995,344579,102,102,0,0,economica,0,1,0
+485280,True,110,2,109527,bueno,duplex,barrio_01,1016,7,2015,375880,106,106,2,0,media,0,1,1
+837691,True,97,2,26200,bueno,departamento,barrio_21,1039,4,1961,388435,103,103,0,0,media,1,0,1
+116916,False,125,2,16932,muy bueno,casa,barrio_49,1009,7,2018,435076,74,74,5,0,media,0,0,0
+945153,False,71,1,100869,regular,PH,barrio_00,1019,7,1953,264552,99,99,0,0,economica,0,0,1
+395077,True,61,1,56113,excelente,duplex,barrio_53,1021,9,1966,356783,434,43,2,1,media,0,0,0
+146760,False,73,3,47234,excelente,duplex,barrio_32,1013,6,1986,436635,41,41,2,1,media,0,0,0
+946563,False,98,1,21875,bueno,casa,barrio_08,1017,7,2012,327195,39,39,6,0,economica,0,0,1
+609171,True,87,2,51048,bueno,departamento,barrio_18,1018,8,1989,378487,78,78,2,1,media,1,0,1
+775359,False,120,2,15242,muy bueno,casa,barrio_33,1018,6,1959,412424,64,64,1,1,media,1,0,1
+498127,False,141,2,60310,muy bueno,departamento,barrio_18,1028,7,1967,450631,67,67,4,1,premium,1,0,0
+112213,True,61,2,109438,bueno,PH,barrio_06,1023,2,2004,341560,59,59,1,0,economica,0,1,1
+540367,False,69,3,133898,bueno,departamento,barrio_39,1002,11,1989,342602,76,76,2,1,economica,0,1,1
+997246,False,45,3,64012,regular,casa,barrio_40,1000,2,1950,257610,117,117,0,0,economica,0,0,1
+368850,True,166,3,12021,excelente,PH,barrio_07,1016,11,1985,570163,54,54,4,1,premium,1,1,0
+778702,True,106,2,42526,bueno,casa,barrio_16,1036,10,1978,367603,76,76,2,1,media,1,1,0
+160431,False,112,3,201138,excelente,casa,barrio_14,1001,12,1950,504564,46,46,5,1,premium,0,1,1
+952820,True,48,2,18126,bueno,casa,barrio_39,1002,1,1967,292378,95,95,1,0,economica,1,0,1
+699001,True,95,2,34636,excelente,casa,barrio_43,1027,3,2016,521540,21,21,13,1,premium,0,1,0
+444289,True,113,3,112512,regular,departamento,barrio_43,1018,1,1999,431303,80,80,4,0,media,1,0,0
+274828,False,86,3,59499,regular,duplex,barrio_56,1009,6,1955,328828,92,92,0,0,economica,0,0,1
+642890,False,133,1,264111,excelente,duplex,barrio_46,1008,11,1951,551303,64,64,2,0,premium,1,1,1
+159396,False,176,3,20205,excelente,casa,barrio_19,1026,10,1974,599168,107,107,8,1,premium,0,1,1
+731319,False,62,3,16452,bueno,casa,barrio_06,1020,9,1983,301377,82,82,0,1,economica,1,1,0
+380218,True,59,3,96693,bueno,departamento,barrio_36,1025,11,1982,324750,85,85,0,1,economica,0,1,1
+130715,True,64,3,13951,bueno,PH,barrio_54,1011,1,1999,275250,80,80,0,0,economica,0,1,0
+257425,False,151,3,31026,bueno,PH,barrio_58,1021,10,1962,428501,119,119,0,0,media,1,0,1
+782494,True,131,1,34458,bueno,duplex,barrio_13,1034,4,1953,431949,86,86,0,0,media,0,0,1
+466271,False,90,1,83182,excelente,departamento,barrio_14,1012,9,1997,413161,34,34,7,0,media,1,1,0
+788717,True,96,1,59362,bueno,casa,barrio_02,1015,10,2013,386502,866,87,4,1,media,0,1,0
+101524,True,66,1,52347,muy bueno,casa,barrio_08,1006,9,1961,292072,87,87,0,0,economica,0,1,1
+128794,False,126,1,26319,regular,casa,barrio_33,1025,6,1975,356447,154,154,0,0,media,0,0,1
+190622,True,82,2,95990,regular,casa,barrio_32,1001,8,1994,351657,103,103,1,0,economica,0,1,1
+549809,True,86,1,909508,muy bueno,duplex,barrio_22,1009,6,1961,418757,41,41,1,0,media,0,0,0
+761011,True,116,1,63135,bueno,departamento,barrio_18,1028,8,2011,380516,44,44,5,1,media,0,1,0
+428988,True,88,2,39330,muy bueno,duplex,barrio_49,1000,6,1966,360809,103,103,2,1,media,1,1,0
+767273,True,87,3,12858,regular,PH,barrio_27,1039,5,1987,307059,105,105,0,1,economica,0,0,1
+665911,False,95,1,21808,excelente,PH,barrio_48,1016,3,1974,443512,46,46,4,1,media,1,1,0
+227191,True,123,2,30608,muy bueno,departamento,barrio_57,1015,5,1997,525484,41,41,10,1,premium,1,1,0
+255487,False,153,2,23678,excelente,duplex,barrio_19,1021,9,1964,527785,912,91,0,1,premium,1,0,0
+208565,False,115,3,35851,regular,casa,barrio_12,1025,11,1956,374071,77,77,1,0,media,1,0,1
+802267,True,123,1,150605,bueno,casa,barrio_57,1018,2,1986,494661,40,40,2,1,premium,1,1,1
+970767,True,88,3,98492,bueno,departamento,barrio_38,1035,3,2011,339643,81,81,0,0,economica,1,1,0
+437236,False,70,1,31982,bueno,departamento,barrio_17,1038,7,1994,262053,80,80,0,0,economica,0,1,0
+134579,False,118,1,13813,bueno,PH,barrio_37,1008,9,2003,315566,74,74,2,0,economica,0,0,1
+627046,False,101,1,105862,regular,PH,barrio_30,1028,3,1980,415073,74,74,4,0,media,0,0,1
+180175,True,45,3,34918,bueno,PH,barrio_54,1012,4,1959,252141,105,105,0,0,economica,1,0,1
+968522,False,84,1,9125,bueno,departamento,barrio_15,1039,1,1980,261706,100,100,2,1,economica,1,1,1
+887838,False,92,3,64212,bueno,departamento,barrio_59,1010,1,2020,399276,50,50,8,1,media,0,0,0
+773852,False,77,3,82500,bueno,duplex,barrio_56,1011,2,2005,337920,82,82,2,0,economica,1,0,0
+616181,True,147,3,5215,bueno,casa,barrio_10,1028,9,1999,495922,1,1,3,1,premium,1,1,1
+119179,False,112,1,18776,muy bueno,PH,barrio_09,1031,11,1971,390689,81,81,2,0,media,0,0,1
+437947,True,143,1,33244,bueno,PH,barrio_31,1005,6,1992,428341,72,72,2,0,media,0,1,0
+572283,False,104,1,65356,bueno,duplex,barrio_02,1022,3,1994,400388,42,42,3,1,media,1,1,1
+487064,True,98,3,24038,bueno,PH,barrio_17,1013,12,1996,367949,75,75,3,0,media,0,0,0
+304138,False,62,1,18663,muy bueno,departamento,barrio_26,1024,4,2013,295984,37,37,10,1,economica,0,0,1
+989949,True,95,2,64974,bueno,departamento,barrio_58,1022,2,1998,347013,86,86,2,0,economica,0,1,0
+719598,False,95,2,24968,muy bueno,departamento,barrio_59,1039,2,1965,367460,54,54,2,1,media,1,0,1
+715715,True,47,3,56030,excelente,departamento,barrio_09,1037,5,1965,330116,74,74,2,0,economica,0,0,0
+246399,True,76,2,14925,bueno,casa,barrio_53,1026,9,1994,294890,64,64,2,0,economica,0,0,0
+938138,False,84,2,12310,excelente,PH,barrio_05,1027,5,2011,363348,48,48,5,1,media,1,1,0
+865769,False,109,3,66451,muy bueno,casa,barrio_44,1035,6,2017,421914,76,76,11,1,media,0,1,0
+879501,True,111,3,44445,regular,PH,barrio_50,1007,5,1993,392209,93,93,0,0,media,0,0,1
+440708,False,75,2,75960,bueno,duplex,barrio_53,1029,12,1987,319946,105,105,0,0,economica,1,1,1
+549383,True,111,2,23716,muy bueno,duplex,barrio_13,1030,9,2007,476512,39,39,9,1,premium,1,1,0
+374338,False,89,2,19224,excelente,casa,barrio_53,1005,8,2019,476148,22,22,14,0,premium,0,1,0
+172429,False,25,3,107858,bueno,duplex,barrio_06,1035,6,1951,208724,89,89,1,0,economica,0,0,1
+477913,False,78,2,10739,regular,casa,barrio_31,1027,7,1972,284574,119,119,1,0,economica,1,1,0
+397366,False,133,2,98831,muy bueno,departamento,barrio_28,1013,11,1973,429192,64,64,2,1,media,1,1,1
+260643,True,36,3,104444,regular,casa,barrio_18,1019,8,1990,261058,50,50,2,0,economica,0,0,1
+659032,True,99,3,72263,muy bueno,casa,barrio_01,1019,10,1970,385198,88,88,1,0,media,0,1,1
+380975,False,150,2,20947,bueno,casa,barrio_46,1036,1,1972,446612,81,81,0,0,media,0,1,1
+968699,True,68,1,18897,muy bueno,casa,barrio_20,1038,11,1951,338906,162,162,0,0,economica,0,1,1
+823243,True,95,1,30698,excelente,duplex,barrio_39,1032,12,1950,454567,96,96,1,0,premium,0,0,1
+259459,False,49,2,12887,muy bueno,casa,barrio_24,1026,9,1981,293192,48,48,3,1,economica,0,1,0
+549330,True,152,3,16825,muy bueno,departamento,barrio_22,1004,12,2020,534292,29,29,16,1,premium,1,1,1
+950513,True,92,3,60827,muy bueno,PH,barrio_53,1036,7,1970,399892,61,61,3,0,media,0,0,1
+611889,False,97,3,61052,muy bueno,duplex,barrio_05,1005,4,1967,386380,85,85,0,0,media,1,0,0
+136408,True,142,1,15683,excelente,duplex,barrio_44,1006,8,1968,557588,68,68,6,0,premium,0,0,1
+917218,True,118,2,62374,regular,casa,barrio_44,1002,8,2019,415826,111,111,2,0,media,0,1,0
+311831,True,64,3,52232,muy bueno,duplex,barrio_22,1037,2,1997,392723,31,31,11,1,media,0,0,0
+131982,True,72,3,121529,bueno,PH,barrio_15,1019,3,1996,313804,77,77,0,0,economica,1,0,1
+108961,False,112,1,57257,excelente,casa,barrio_00,1009,4,1963,482065,1,1,6,0,premium,0,0,0
+743244,False,73,3,84699,muy bueno,departamento,barrio_56,1003,7,2014,358268,50,50,7,1,media,1,1,0
+433868,False,25,1,53192,bueno,duplex,barrio_56,1016,2,1963,222084,75,75,0,0,economica,0,1,1
+290054,True,93,1,79534,bueno,departamento,barrio_14,1028,10,2018,388536,52,52,8,1,media,0,1,0
+108669,True,43,3,12969,bueno,casa,barrio_01,1039,2,2017,257082,46,46,1,0,economica,0,1,1
+839215,True,152,3,32945,muy bueno,duplex,barrio_07,1022,12,1990,479934,65,65,2,1,premium,0,1,1
+879590,False,101,3,35200,bueno,duplex,barrio_04,1024,9,2011,309857,54,54,1,1,economica,1,1,0
+208481,False,63,2,29882,regular,duplex,barrio_49,1033,5,2020,312170,47,47,1,1,economica,0,1,0
+263481,True,71,2,51798,excelente,duplex,barrio_53,1036,5,1991,400193,92,92,5,1,media,0,1,0
+268311,False,29,2,60325,muy bueno,duplex,barrio_09,1011,9,2004,229834,41,41,2,0,economica,1,1,0
+192345,False,57,2,49702,bueno,departamento,barrio_44,1039,2,1991,270625,66,66,4,1,economica,0,0,0
+378589,True,131,2,31522,bueno,casa,barrio_10,1020,9,1987,485211,125,125,2,1,premium,0,0,1
+662765,False,173,1,20159,excelente,PH,barrio_22,1037,7,1973,573233,73,73,10,0,premium,0,1,1
+658325,False,120,3,87356,muy bueno,casa,barrio_35,1004,3,1996,456706,9,9,8,0,premium,0,1,1
+167674,True,92,2,48040,muy bueno,departamento,barrio_43,1003,11,1968,371765,67,67,1,1,media,1,1,1
+764890,True,80,2,16076,bueno,PH,barrio_52,1035,8,1963,262149,109,109,0,0,economica,0,0,1
+771836,False,62,3,31103,bueno,duplex,barrio_02,1026,2,1969,320506,109,109,0,1,economica,1,0,1
+475300,False,167,2,9003,regular,departamento,barrio_11,1007,8,1950,449209,99,99,0,0,media,0,0,1
+599956,False,88,2,37358,muy bueno,departamento,barrio_16,1035,5,2016,326301,41,41,6,1,economica,1,0,0
+125354,False,169,1,30986,regular,PH,barrio_18,1004,10,1968,448046,101,101,1,0,media,0,0,1
+796773,False,144,1,22935,regular,casa,barrio_59,1027,6,2006,469512,86,86,1,1,premium,1,1,1
+965920,True,34,2,129015,muy bueno,PH,barrio_46,1008,12,1980,285364,51,51,6,0,economica,1,0,1
+817808,True,72,2,14401,excelente,PH,barrio_19,1002,12,1974,389937,55,55,1,1,media,1,1,1
+762838,True,72,3,63903,muy bueno,PH,barrio_58,1032,1,1966,306452,69,69,0,0,economica,0,0,1
+843930,False,92,3,208849,bueno,departamento,barrio_29,1033,5,2008,367465,58,58,2,0,media,1,1,0
+672106,False,93,3,85975,bueno,duplex,barrio_30,1004,3,1986,462310,56,56,8,1,premium,1,1,0
+414145,False,200,2,35411,bueno,departamento,barrio_26,1003,6,1981,558727,77,77,1,0,premium,1,0,1
+976980,True,57,1,14658,bueno,PH,barrio_08,1024,2,1996,245016,65,65,0,1,economica,0,0,1
+179698,True,103,3,12214,bueno,departamento,barrio_56,1001,7,2006,329796,69,69,1,1,economica,0,1,0
+105609,False,117,3,26128,bueno,casa,barrio_00,1029,2,1996,435355,100,100,0,1,media,0,1,0
+858392,True,95,2,20961,muy bueno,PH,barrio_10,1036,8,1983,405657,57,57,2,1,media,1,1,1
+723005,True,99,3,20422,excelente,casa,barrio_13,1030,6,2013,537819,35,35,32,1,premium,1,1,0
+308483,False,58,3,27972,excelente,duplex,barrio_16,1009,12,2013,427932,34,34,15,1,media,1,1,0
+115354,False,99,2,33463,regular,PH,barrio_07,1007,11,2018,347171,79,79,1,0,economica,0,1,0
+493936,False,113,1,53539,bueno,departamento,barrio_01,1027,8,1956,338551,102,102,1,0,economica,1,0,1
+303861,True,106,1,13491,bueno,departamento,barrio_40,1002,6,2013,376220,55,55,11,1,media,1,0,0
+904132,True,115,3,21041,bueno,PH,barrio_58,1021,9,1963,375469,100,100,0,0,media,1,0,1
+751196,True,144,2,31961,bueno,departamento,barrio_07,1017,9,1994,454126,89,89,2,0,premium,1,1,1
+670218,True,128,1,31058,bueno,departamento,barrio_17,1029,2,1996,386952,92,92,1,0,media,0,1,1
+813446,True,97,1,157809,muy bueno,departamento,barrio_30,1008,5,1964,471681,53,53,5,0,premium,1,0,1
+547082,True,54,3,43730,bueno,departamento,barrio_55,1030,12,1950,260811,102,102,0,0,economica,0,0,1
+881392,False,74,1,9988,excelente,duplex,barrio_41,1027,4,2016,436678,10,10,21,1,media,0,1,0
+345326,True,87,1,50744,regular,casa,barrio_45,1009,1,2013,368348,116,116,3,0,media,0,1,1
+949401,True,104,2,56192,regular,duplex,barrio_34,1014,11,1962,370733,105,105,0,0,media,1,0,1
+581758,True,78,2,32856,bueno,departamento,barrio_25,1002,12,1992,312032,80,80,1,0,economica,0,1,1
+473099,False,62,3,13757,regular,PH,barrio_11,1017,8,1960,259961,76,76,0,0,economica,0,0,1
+426930,True,53,3,148219,bueno,casa,barrio_51,1010,8,1990,317822,96,96,3,0,economica,0,1,1
+450960,True,37,2,15430,excelente,departamento,barrio_48,1004,5,1972,376718,52,52,10,1,media,0,1,0
+129874,True,87,1,61612,bueno,duplex,barrio_01,1022,5,2003,334488,63,63,1,1,economica,1,0,1
+985926,True,44,3,42618,bueno,departamento,barrio_42,1022,11,1990,267665,82,82,1,0,economica,0,0,0
+752444,False,60,2,58727,muy bueno,casa,barrio_05,1003,11,1985,317952,91,91,0,0,economica,0,1,1
+374449,True,81,3,142271,bueno,PH,barrio_44,1007,6,1998,391108,73,73,2,0,media,1,0,1
+740814,True,48,2,56915,muy bueno,casa,barrio_49,1003,4,1983,325957,60,60,2,0,economica,1,1,0
+401176,False,108,1,23227,bueno,departamento,barrio_07,1027,3,1950,373347,102,102,0,0,media,0,0,1
+782945,True,121,3,87974,muy bueno,departamento,barrio_26,1013,1,1992,482200,54,54,6,0,premium,1,0,0
+449047,False,76,1,21919,regular,PH,barrio_07,1002,6,2005,259830,84,84,1,0,economica,0,1,1
+585852,True,80,3,41392,bueno,PH,barrio_34,1007,7,1984,345958,87,87,4,0,economica,0,0,1
+308958,False,114,3,12907,muy bueno,PH,barrio_55,1039,9,1962,360476,56,56,1,0,media,0,0,1
+426747,True,70,1,15889,excelente,duplex,barrio_04,1010,10,1950,315544,87,87,1,0,economica,1,1,0
+292702,True,68,3,37840,bueno,casa,barrio_23,1027,5,1971,352818,97,97,0,0,economica,0,0,1
+867413,True,137,1,48750,muy bueno,departamento,barrio_58,1018,3,2004,446056,647,65,0,1,media,1,1,1
+123910,False,126,2,9303,regular,casa,barrio_18,1007,11,1972,403777,790,79,0,1,media,0,1,1
+733127,True,116,2,54059,bueno,casa,barrio_07,1012,10,2017,402970,13,13,1,1,media,1,0,1
+826466,False,127,2,18854,regular,casa,barrio_29,1000,7,1973,376124,105,105,1,0,media,1,0,1
+930313,False,26,2,101088,muy bueno,PH,barrio_30,1029,1,1980,320031,60,60,14,1,economica,0,1,1
+897673,True,142,2,27404,bueno,duplex,barrio_39,1013,6,2003,469171,33,33,1,1,premium,1,1,1
+609865,True,109,2,14781,muy bueno,duplex,barrio_18,1019,8,1993,416531,65,65,3,1,media,0,1,0
+619072,True,130,3,38586,regular,PH,barrio_57,1006,11,1952,421419,89,89,1,0,media,1,0,1
+114929,False,109,1,17449,excelente,duplex,barrio_31,1032,7,1955,434778,70,70,0,0,media,1,1,0
+208780,False,97,3,100223,muy bueno,casa,barrio_17,1008,6,1963,401258,61,61,0,0,media,0,0,0
+146371,True,85,1,36331,regular,duplex,barrio_57,1022,5,2011,392642,58,58,5,0,media,1,1,0
+790195,True,108,1,32166,regular,duplex,barrio_55,1034,5,1951,343540,145,145,0,0,economica,1,0,0
+975722,False,84,3,58305,regular,casa,barrio_29,1028,1,1955,331559,123,123,0,0,economica,0,0,1
+164550,True,125,1,16253,excelente,departamento,barrio_01,1024,2,2005,445759,60,60,3,0,media,1,1,0
+342415,True,39,3,12948,bueno,duplex,barrio_35,1035,10,1994,320264,82,82,2,1,economica,0,0,1
+127931,True,76,1,50346,bueno,departamento,barrio_33,1007,5,2019,270301,69,69,2,1,economica,0,0,0
+995909,True,167,1,15067,bueno,duplex,barrio_08,1038,11,1965,462382,120,120,3,0,premium,1,0,1
+278484,False,73,3,15063,muy bueno,duplex,barrio_38,1022,5,1996,321223,74,74,1,0,economica,0,0,1
+362167,False,87,1,70927,bueno,departamento,barrio_50,1016,12,1959,320295,93,93,0,0,economica,0,1,1
+155215,True,64,3,55274,bueno,casa,barrio_06,1010,3,1991,306666,64,64,3,1,economica,0,1,0
+418204,True,107,2,13319,excelente,departamento,barrio_43,1029,3,1957,469079,65,65,3,0,premium,0,0,1
+722056,False,69,3,22130,bueno,casa,barrio_08,1039,8,2014,297956,40,40,2,1,economica,0,1,0
+546369,True,89,3,17624,muy bueno,departamento,barrio_44,1027,10,1979,362972,76,76,2,1,media,0,0,1
+987218,True,125,1,150400,regular,PH,barrio_25,1001,2,1968,390390,95,95,0,0,media,0,0,1
+629728,True,71,1,74967,bueno,departamento,barrio_00,1018,7,2019,342187,60,60,2,1,economica,1,1,1
+984534,False,123,2,25934,excelente,casa,barrio_57,1029,3,1954,544983,48,48,4,0,premium,1,1,1
+762582,False,124,3,57581,muy bueno,departamento,barrio_09,1015,9,2006,427952,73,73,4,1,media,1,0,0
+359854,False,132,1,12272,muy bueno,PH,barrio_35,1030,7,1986,471082,58,58,6,1,premium,0,1,1
+864339,True,100,1,21203,bueno,casa,barrio_10,1028,8,1998,354928,112,112,8,1,economica,0,0,1
+324863,False,208,2,39493,bueno,casa,barrio_55,1002,4,1968,541128,117,117,0,0,premium,1,0,1
+625500,True,132,1,52145,bueno,duplex,barrio_44,1022,4,2012,415218,32,32,6,0,media,1,1,0
+778184,False,106,1,33592,bueno,casa,barrio_48,1006,8,1982,331692,68,68,2,0,economica,0,1,0
+987471,True,64,1,44285,bueno,departamento,barrio_25,1019,5,1979,287687,84,84,0,0,economica,0,0,1
+639831,True,92,3,38664,bueno,casa,barrio_28,1015,9,1982,404477,62,62,1,0,media,1,0,0
+680290,True,145,3,31861,bueno,casa,barrio_38,1032,2,1971,458162,143,143,0,0,premium,1,0,1
+643895,True,155,1,28655,bueno,departamento,barrio_47,1034,4,1972,435815,84,84,0,1,media,1,1,1
+356275,True,147,2,25822,bueno,PH,barrio_50,1018,2,1959,444671,84,84,0,0,media,1,1,0
+504974,False,122,2,43720,regular,casa,barrio_01,1021,2,1984,398517,79,79,0,0,media,0,0,1
+481001,False,51,2,50446,excelente,casa,barrio_39,1025,4,1983,427000,48,48,11,1,media,0,1,0
+758410,False,112,3,42561,muy bueno,casa,barrio_06,1026,6,1976,420657,30,30,2,0,media,1,1,0
+775746,True,52,2,14145,regular,PH,barrio_17,1025,2,2019,251923,79,79,0,0,economica,0,0,1
+879548,True,43,3,16332,muy bueno,duplex,barrio_49,1031,2,1958,330521,86,86,2,0,economica,0,1,1
+806747,True,103,1,49966,muy bueno,casa,barrio_15,1039,11,2014,372869,91,91,5,1,media,1,1,1
+530478,True,113,1,117870,bueno,departamento,barrio_47,1033,7,2011,387537,63,63,3,1,media,0,0,0
+610871,True,127,2,41025,bueno,departamento,barrio_27,1005,9,1951,381957,80,80,1,0,media,1,0,0
+760789,False,112,3,26125,regular,departamento,barrio_13,1019,9,1999,392111,74,74,2,0,media,0,0,0
+168708,False,114,2,43455,regular,casa,barrio_20,1018,2,1964,420272,113,113,0,0,media,0,1,1
+194715,True,61,2,14626,muy bueno,casa,barrio_31,1020,8,1952,328955,102,102,2,1,economica,1,0,1
+977790,False,91,1,103482,excelente,PH,barrio_45,1021,11,2011,463412,54,54,12,1,premium,0,1,0
+788534,False,42,2,42162,regular,departamento,barrio_36,1028,6,1958,215244,99,99,0,0,economica,0,0,1
+785658,True,25,3,21257,muy bueno,departamento,barrio_55,1016,11,1971,245754,76,76,2,1,economica,0,0,0
+802646,False,121,2,31779,regular,departamento,barrio_52,1010,12,1956,294740,134,134,1,0,economica,0,1,1
+860535,True,69,1,23822,muy bueno,duplex,barrio_45,1018,7,1960,332918,45,45,4,0,economica,0,1,1
+546752,True,126,3,103708,muy bueno,PH,barrio_36,1034,2,1954,426270,99,99,0,0,media,1,0,1
+191267,False,134,3,30891,bueno,departamento,barrio_17,1012,8,2009,394500,80,80,2,0,media,1,1,1
+601910,False,73,2,41122,regular,casa,barrio_24,1000,11,1954,253613,141,141,0,0,economica,0,0,1
+799439,True,116,2,57468,muy bueno,duplex,barrio_07,1039,7,2003,454520,50,50,4,0,premium,1,1,0
+225881,True,72,2,20078,excelente,duplex,barrio_22,1007,10,1961,438951,65,65,5,1,media,1,1,1
+919274,False,30,3,42403,bueno,casa,barrio_55,1024,7,2014,234950,103,103,0,0,economica,0,1,1
+777121,True,99,2,45231,bueno,duplex,barrio_25,1032,6,2010,383136,74,74,0,0,media,0,1,0
+866745,False,79,1,10475,regular,PH,barrio_06,1010,12,1994,266037,86,86,2,0,economica,0,1,1
+550489,False,80,1,44452,muy bueno,casa,barrio_39,1013,2,2008,368698,50,50,7,1,media,1,1,0
+595688,True,164,3,35010,muy bueno,duplex,barrio_57,1011,6,1971,551409,39,39,4,1,premium,1,0,1
+867481,False,42,3,40295,muy bueno,casa,barrio_52,1005,2,2005,312916,68,68,3,1,economica,1,1,1
+259093,False,108,3,37366,muy bueno,casa,barrio_16,1006,8,1965,437525,68,68,4,1,media,1,0,1
+886819,False,60,1,44682,excelente,casa,barrio_27,1007,12,1993,396475,53,53,5,1,media,0,1,0
+983923,True,127,1,105860,muy bueno,departamento,barrio_31,1018,12,2015,444126,57,57,7,1,media,1,0,0
+376719,True,105,2,14135,bueno,PH,barrio_14,1021,3,2001,418353,55,55,3,1,media,0,0,0
+791664,True,108,1,27620,muy bueno,departamento,barrio_16,1000,9,1969,374566,65,65,1,1,media,0,1,0
+421485,False,62,2,61901,bueno,casa,barrio_14,1033,11,2002,315614,108,108,2,1,economica,0,1,0
+405492,False,68,2,53356,bueno,casa,barrio_59,1027,11,2012,318295,36,36,1,0,economica,0,1,1
+477364,False,127,1,52445,excelente,duplex,barrio_44,1002,7,2013,500043,18,18,12,1,premium,0,1,0
+800528,False,157,1,328687,muy bueno,duplex,barrio_50,1033,3,2002,538086,57,57,4,1,premium,0,1,0
+266776,True,112,2,59356,excelente,duplex,barrio_48,1001,6,2001,531773,52,52,13,1,premium,0,0,0
+965691,True,64,3,89747,bueno,casa,barrio_57,1022,10,2005,379469,53,53,8,1,media,0,1,0
+529838,False,107,2,28406,bueno,duplex,barrio_06,1018,8,2002,386541,95,95,4,0,media,1,1,0
+181236,True,180,1,16410,bueno,PH,barrio_52,1020,5,1959,451855,120,120,0,0,premium,1,0,1
+733564,False,99,1,28241,regular,PH,barrio_03,1038,3,2007,340081,82,82,4,1,economica,0,1,1
+925950,True,146,2,64188,bueno,casa,barrio_28,1037,8,1962,457714,104,104,1,0,premium,1,0,0
+139863,True,69,1,50285,bueno,duplex,barrio_35,1011,6,1989,338692,105,105,1,1,economica,0,0,0
+405837,False,94,3,50141,regular,departamento,barrio_21,1023,6,1974,332513,112,112,1,0,economica,1,0,1
+678123,True,117,3,30593,excelente,casa,barrio_08,1038,12,1965,537967,7,7,1,0,premium,0,1,1
+586991,True,109,1,26929,regular,casa,barrio_11,1029,1,1970,385610,141,141,1,0,media,1,0,1
+232980,False,68,3,31449,bueno,departamento,barrio_49,1035,3,1956,281994,91,91,0,0,economica,0,0,1
+450573,False,67,1,64834,muy bueno,casa,barrio_19,1017,12,1981,345322,71,71,5,0,economica,1,0,0
+299434,False,130,2,71153,regular,departamento,barrio_18,1011,12,1979,425552,95,95,0,0,media,1,0,1
+950038,False,137,3,16236,excelente,departamento,barrio_55,1020,4,1978,544137,58,58,5,0,premium,0,1,0
+705180,False,148,1,66828,muy bueno,duplex,barrio_08,1032,12,1956,424544,57,57,1,1,media,1,0,1
+706418,True,158,1,21578,regular,casa,barrio_54,1037,3,1993,437260,47,47,0,0,media,1,0,0
+125291,True,100,1,52846,muy bueno,PH,barrio_55,1027,1,1962,399697,76,76,0,0,media,0,0,1
+751310,False,84,3,31146,muy bueno,duplex,barrio_35,1028,4,2010,447516,47,47,14,1,media,0,1,0
+705143,True,142,1,127087,muy bueno,duplex,barrio_09,1020,7,1951,463793,105,105,0,0,premium,1,1,1
+599742,False,120,2,25992,muy bueno,duplex,barrio_09,1012,1,1953,368930,95,95,0,0,media,0,1,0
+598863,False,61,2,41894,muy bueno,casa,barrio_17,1016,3,1971,292815,44,44,1,0,economica,1,0,1
+215843,True,59,3,58999,muy bueno,duplex,barrio_34,1019,10,1978,348236,19,19,5,0,economica,1,0,1
+956142,True,112,3,18049,bueno,duplex,barrio_09,1032,8,2018,363613,70,70,5,0,media,0,1,0
+353598,False,89,3,34259,muy bueno,departamento,barrio_27,1022,8,1987,355330,60,60,3,0,economica,1,0,1
+158894,True,94,3,29341,excelente,departamento,barrio_06,1031,12,1976,460657,61,61,3,0,premium,0,1,1
+686716,True,133,2,24075,muy bueno,PH,barrio_32,1001,3,2009,457883,67,67,3,0,premium,1,1,1
+744066,False,122,2,25546,muy bueno,departamento,barrio_01,1030,11,1967,394016,89,89,2,0,media,0,0,1
+725236,True,142,1,88399,bueno,departamento,barrio_42,1020,5,2013,467348,77,77,1,1,premium,1,1,0
+145150,True,27,3,22497,muy bueno,duplex,barrio_03,1039,12,1978,289760,60,60,2,1,economica,0,0,1
+102525,False,104,2,57132,excelente,duplex,barrio_11,1018,10,1972,512203,60,60,6,0,premium,0,0,0
+626270,False,119,2,46708,bueno,departamento,barrio_10,1019,3,1971,438638,76,76,2,1,media,0,1,1
+168828,True,42,1,11878,bueno,duplex,barrio_49,1005,3,1950,256952,95,95,0,0,economica,0,0,1
+522162,False,72,1,55014,bueno,departamento,barrio_03,1032,7,1997,287214,57,57,6,1,economica,0,0,0
+729052,False,66,2,11722,bueno,duplex,barrio_25,1028,7,1990,287631,95,95,1,1,economica,0,1,1
+732219,True,96,2,60022,muy bueno,PH,barrio_35,1034,3,1995,405650,39,39,6,1,media,1,0,0
+365405,True,152,2,24203,regular,departamento,barrio_30,1003,4,1996,513766,70,70,3,1,premium,1,0,0
+215531,False,166,1,36559,bueno,casa,barrio_40,1008,11,1951,454454,80,80,0,0,premium,1,0,1
+914912,True,66,1,12895,muy bueno,PH,barrio_48,1035,10,2012,332953,38,38,13,1,economica,0,1,0
+150138,False,113,3,40051,muy bueno,departamento,barrio_23,1001,3,1986,422025,70,70,3,1,media,0,1,0
+674085,False,115,2,76234,muy bueno,casa,barrio_49,1020,9,1999,411655,1,1,4,1,media,0,1,0
+804757,True,109,2,19042,muy bueno,casa,barrio_19,1016,2,1952,433227,47,47,3,1,media,1,1,1
+765721,False,109,1,22343,muy bueno,duplex,barrio_59,1037,6,2004,402154,13,13,14,1,media,1,1,1
+510392,True,106,2,52245,muy bueno,casa,barrio_30,1034,1,1998,501724,1,1,18,1,premium,1,0,0
+355570,False,154,2,53300,muy bueno,duplex,barrio_44,1035,8,1976,435569,52,52,1,1,media,1,0,0
+294627,True,134,2,5180,bueno,duplex,barrio_52,1011,3,2016,394509,93,93,2,0,media,0,1,0
+666121,False,58,3,182103,muy bueno,casa,barrio_47,1023,3,1996,384968,49,49,3,1,media,0,0,1
+670459,True,123,3,55428,regular,PH,barrio_51,1028,3,2014,433870,73,73,0,0,media,0,1,1
+410853,False,126,1,63420,bueno,PH,barrio_32,1038,3,2008,392260,83,83,2,1,media,0,1,0
+688618,False,106,2,32376,bueno,departamento,barrio_02,1000,1,1964,348784,85,85,0,1,economica,1,0,1
+431530,True,135,3,8231,excelente,PH,barrio_29,1039,7,2020,531201,28,28,17,1,premium,1,1,0
+105023,True,102,2,62304,muy bueno,departamento,barrio_10,1014,11,2002,435067,51,51,6,0,media,0,1,0
+541963,False,102,1,23106,regular,departamento,barrio_53,1005,4,1963,338361,111,111,1,0,economica,0,0,1
+135855,False,99,1,56114,muy bueno,departamento,barrio_14,1024,10,2006,338640,37,37,7,1,economica,1,1,0
+201715,True,25,3,30484,bueno,duplex,barrio_13,1031,7,1980,277022,58,58,2,0,economica,1,0,0
+304308,True,92,3,43933,muy bueno,PH,barrio_14,1005,4,2011,413530,28,28,8,1,media,0,1,0
+706326,False,72,1,19536,muy bueno,departamento,barrio_38,1001,1,1962,282272,79,79,0,0,economica,1,0,0
+646627,True,53,2,72512,muy bueno,duplex,barrio_34,1035,10,1968,309004,59,59,1,0,economica,0,1,0
+652367,False,145,2,14035,muy bueno,duplex,barrio_56,1037,1,1974,423584,85,85,2,0,media,1,1,0
+141961,True,113,1,218919,bueno,duplex,barrio_24,1006,6,1982,408832,118,118,1,0,media,0,0,1
+186004,True,94,2,217588,bueno,PH,barrio_16,1036,1,1994,387393,56,56,5,1,media,0,0,1
+223228,False,75,3,134076,excelente,departamento,barrio_02,1036,10,1965,424499,55,55,1,0,media,0,1,0
+656652,True,105,1,100749,muy bueno,duplex,barrio_00,1039,12,2000,413649,33,33,6,1,media,0,1,0
+505039,False,130,1,33940,bueno,departamento,barrio_22,1008,4,1951,401695,819,82,0,1,media,1,0,1
+238321,False,66,2,92340,bueno,departamento,barrio_55,1023,4,1973,296536,92,92,0,0,economica,0,1,0
+926793,True,95,1,33626,regular,departamento,barrio_31,1039,7,1996,351238,87,87,1,0,economica,0,1,1
+560300,True,125,3,10480,regular,duplex,barrio_53,1036,7,1968,367820,125,125,0,0,media,0,1,1
+912493,True,27,2,120881,bueno,PH,barrio_06,1024,5,1980,260414,74,74,1,0,economica,0,1,1
+412726,False,93,1,89595,bueno,departamento,barrio_05,1007,5,1993,304073,85,85,0,0,economica,0,1,1
+243322,False,80,2,35416,excelente,departamento,barrio_50,1003,3,1967,438441,54,54,7,0,media,1,1,0
+842123,False,90,3,13628,bueno,departamento,barrio_06,1010,4,2018,330715,55,55,3,1,economica,0,0,0
+186806,True,77,2,22721,bueno,PH,barrio_03,1002,8,2010,324217,55,55,2,1,economica,0,1,0
+329974,True,100,2,8460,regular,departamento,barrio_24,1007,9,2018,335134,82,82,0,0,economica,0,1,0
+317841,True,162,1,77348,bueno,PH,barrio_55,1002,10,1985,431288,92,92,0,0,media,0,1,1
+374866,False,84,1,10070,muy bueno,departamento,barrio_41,1030,7,1974,346146,63,63,4,1,economica,0,0,1
+179758,True,105,1,45682,bueno,departamento,barrio_05,1023,10,2020,317379,79,79,2,0,economica,1,1,1
+407563,True,165,1,18491,muy bueno,duplex,barrio_50,1020,8,2001,508303,44,44,8,1,premium,0,1,1
+360652,True,76,1,11599,muy bueno,departamento,barrio_50,1032,5,2006,345494,41,41,3,1,economica,0,1,0
+891306,True,159,2,43945,regular,casa,barrio_48,1016,5,1962,503093,134,134,0,0,premium,1,0,1
+226031,False,95,1,27805,muy bueno,departamento,barrio_54,1016,7,2011,298173,49,49,9,1,economica,0,1,1
+394000,False,157,2,71008,excelente,PH,barrio_14,1008,4,1987,572183,58,58,12,1,premium,1,1,0
+119702,False,121,3,13173,bueno,casa,barrio_58,1017,10,2004,353064,89,89,3,0,economica,0,1,1
+553443,True,106,3,19814,regular,departamento,barrio_19,1006,3,2008,371843,82,82,1,1,media,0,1,1
+578504,False,93,2,5377,excelente,casa,barrio_48,1023,1,1957,480882,70,70,0,0,premium,0,0,0
+453759,True,73,1,6327,excelente,PH,barrio_34,1039,6,1957,363019,77,77,2,1,media,1,1,0
+575762,False,98,2,153055,bueno,PH,barrio_46,1021,1,1954,363400,107,107,0,0,media,1,0,1
+917265,False,126,3,192313,muy bueno,duplex,barrio_37,1011,3,1995,443518,76,76,1,0,media,0,1,1
+926002,True,95,2,39112,bueno,departamento,barrio_38,1027,5,2014,369825,75,75,3,0,media,0,0,0
+948172,False,84,3,18787,muy bueno,duplex,barrio_36,1032,1,1952,345669,102,102,0,0,economica,1,1,1
+127536,True,86,3,28602,bueno,casa,barrio_46,1018,3,1959,399111,59,59,0,0,media,1,0,1
+224296,True,130,1,73047,regular,duplex,barrio_44,1010,7,1984,389449,98,98,0,0,media,0,0,0
+803582,True,138,1,24064,muy bueno,PH,barrio_08,1028,5,1977,464651,69,69,0,1,premium,0,0,1
+504105,True,72,1,43919,excelente,duplex,barrio_49,1007,11,1957,372873,70,70,4,0,media,0,0,0
+379158,False,72,1,35947,muy bueno,duplex,barrio_32,1039,2,1993,298169,48,48,5,0,economica,0,1,0
+942085,False,108,1,23039,bueno,PH,barrio_19,1012,9,2014,341968,43,43,2,1,economica,0,1,1
+667243,False,148,2,23838,regular,departamento,barrio_30,1014,8,1965,468130,74,74,0,1,premium,0,0,1
+975758,False,135,2,45920,excelente,PH,barrio_58,1029,8,1950,455681,66,66,0,0,premium,0,1,0
+498649,False,51,2,16622,excelente,duplex,barrio_51,1000,9,1965,315555,41,41,7,1,economica,0,0,1
+921585,True,86,3,52124,bueno,duplex,barrio_50,1008,1,1963,347420,87,87,3,0,economica,1,1,1
+925596,True,62,3,24903,muy bueno,duplex,barrio_27,1005,10,1983,366201,99,99,2,0,media,0,0,1
+947158,True,86,3,40211,bueno,casa,barrio_47,1015,4,1957,392810,132,132,1,1,media,1,0,0
+356630,False,151,3,109883,bueno,PH,barrio_23,1022,8,1975,461643,77,77,3,0,premium,0,1,1
+337377,False,45,2,31744,regular,casa,barrio_41,1007,4,1958,245879,114,114,1,0,economica,1,0,0
+781408,False,38,3,75799,regular,PH,barrio_38,1013,5,1998,231032,91,91,0,0,economica,1,0,1
+265625,True,66,2,8659,bueno,duplex,barrio_14,1030,9,1983,276642,68,68,0,1,economica,1,1,1
+853275,True,105,1,24927,muy bueno,casa,barrio_15,1037,12,1955,350355,95,95,2,0,economica,1,0,1
+773361,False,117,1,37129,regular,PH,barrio_03,1000,11,1953,346767,107,107,0,0,economica,1,0,1
+399773,True,110,1,169171,bueno,duplex,barrio_08,1025,9,1984,393938,74,74,1,1,media,0,0,1
+631288,False,136,3,7571,bueno,duplex,barrio_26,1001,7,1992,434388,86,86,3,1,media,0,0,1
+208369,True,33,1,33625,bueno,departamento,barrio_28,1020,7,1962,232790,79,79,0,0,economica,0,0,1
+521694,True,137,3,116466,bueno,casa,barrio_09,1035,12,1972,433711,97,97,0,0,media,0,0,0
+179517,False,84,3,19380,muy bueno,duplex,barrio_25,1031,3,1993,410666,115,115,5,1,media,1,0,0
+242606,False,121,2,30630,bueno,duplex,barrio_36,1009,12,1983,394271,85,85,3,0,media,0,0,1
+828540,False,49,3,47353,muy bueno,PH,barrio_13,1010,8,1958,292696,78,78,6,0,economica,1,0,1
+118529,True,95,3,42092,excelente,duplex,barrio_20,1031,8,1977,445713,60,60,4,0,media,1,1,0
+892466,True,103,3,127086,bueno,casa,barrio_22,1032,8,1964,443593,95,95,4,0,media,1,0,1
+462503,False,135,2,51989,excelente,PH,barrio_30,1011,10,2015,559927,7,7,54,1,premium,1,1,1
+291593,False,40,1,105053,excelente,casa,barrio_21,1000,9,2007,315515,39,39,7,1,economica,0,1,0
+729734,True,96,1,27228,muy bueno,duplex,barrio_44,1017,2,1972,373788,55,55,1,1,media,1,0,0
+871662,False,57,3,20082,muy bueno,PH,barrio_19,1024,10,1966,280523,77,77,2,0,economica,1,0,1
+441855,True,113,3,30316,muy bueno,duplex,barrio_26,1017,9,1959,417165,56,56,5,0,media,0,1,0
+597636,True,122,2,14367,muy bueno,PH,barrio_22,1037,11,2002,449364,46,46,18,1,media,1,1,0
+129542,False,140,1,53466,muy bueno,casa,barrio_10,1032,12,2015,488117,69,69,11,1,premium,0,1,0
+510175,False,76,3,26670,regular,casa,barrio_41,1031,12,1969,327511,107,107,1,0,economica,0,0,1
+311278,True,127,1,21217,excelente,departamento,barrio_14,1000,1,1995,499420,37,37,13,0,premium,0,1,0
+411609,True,143,2,54118,muy bueno,PH,barrio_17,1034,8,1966,398868,87,87,0,1,media,0,0,1
+824381,False,37,2,14545,muy bueno,casa,barrio_47,1030,12,2015,291003,34,34,7,1,economica,1,1,0
+866590,False,116,1,67265,bueno,duplex,barrio_56,1015,12,1971,386702,108,108,0,0,media,0,0,1
+377313,False,129,1,24769,regular,casa,barrio_40,1023,7,1956,397104,45,45,1,0,media,1,1,1
+685069,True,86,1,91792,bueno,departamento,barrio_54,1032,11,2012,322052,68,68,2,0,economica,1,1,0
+748007,False,53,3,26524,bueno,casa,barrio_51,1036,11,2017,287702,1,1,8,1,economica,0,1,0
+771703,False,128,3,60206,bueno,departamento,barrio_28,1022,1,1978,425671,71,71,2,1,media,0,0,1
+834982,True,53,2,41926,bueno,departamento,barrio_46,1001,11,2014,303588,60,60,12,1,economica,0,0,0
+428083,True,89,2,65849,bueno,casa,barrio_19,1024,8,1967,317519,114,114,1,1,economica,0,1,1
+813920,False,94,2,39654,bueno,PH,barrio_27,1027,7,1969,376450,76,76,1,0,media,1,1,0
+933541,False,120,2,9598,bueno,duplex,barrio_32,1002,3,1988,382021,55,55,1,0,media,0,1,0
+181053,False,73,2,81392,excelente,duplex,barrio_57,1032,12,1992,467653,1,1,16,1,premium,0,0,1
+366041,False,71,2,33855,bueno,departamento,barrio_50,1008,4,1977,305184,77,77,0,0,economica,0,1,1
+229952,False,98,2,68296,bueno,duplex,barrio_29,1035,6,2006,379430,109,109,3,1,media,0,1,0
+638013,True,130,2,63082,bueno,duplex,barrio_39,1022,4,2006,483431,70,70,2,1,premium,1,1,0
+251706,True,175,2,19562,bueno,duplex,barrio_12,1012,12,1958,508463,86,86,0,0,premium,0,0,1
+387144,False,42,3,17469,bueno,departamento,barrio_48,1002,6,2020,296791,54,54,6,1,economica,0,1,0
+202925,True,106,1,61346,muy bueno,duplex,barrio_33,1000,2,1961,333867,57,57,1,0,economica,0,1,1
+751716,True,57,1,28493,excelente,PH,barrio_31,1029,1,1987,364688,51,51,4,1,media,1,0,1
+298350,False,131,2,76814,bueno,casa,barrio_45,1015,12,1980,445240,84,84,3,0,media,1,1,1
+441869,True,62,1,31490,muy bueno,departamento,barrio_37,1033,3,1982,307216,75,75,0,0,economica,1,0,1
+219215,False,71,1,82350,regular,PH,barrio_04,1009,10,1959,200492,138,138,0,0,economica,0,0,1
+378114,True,74,3,50952,bueno,casa,barrio_17,1036,1,1974,315948,107,107,0,0,economica,0,0,1
+104037,True,92,2,45724,bueno,departamento,barrio_10,1037,11,1952,336539,87,87,1,0,economica,0,0,1
+470793,True,106,2,26924,regular,duplex,barrio_44,1004,8,2019,359274,61,61,1,1,media,1,1,1
+647463,False,112,3,43737,muy bueno,casa,barrio_02,1025,3,1960,456092,97,97,2,0,premium,1,1,1
+454408,False,95,1,94304,muy bueno,departamento,barrio_12,1037,11,1984,368967,70,70,3,1,media,0,1,1
+729263,True,48,2,34774,muy bueno,casa,barrio_35,1012,4,1965,360659,332,33,4,1,media,0,1,1
+936232,True,120,1,55544,bueno,PH,barrio_41,1002,12,1962,385307,74,74,1,0,media,1,0,0
+115656,True,93,2,37688,muy bueno,casa,barrio_30,1035,8,1977,432426,82,82,15,1,media,0,0,1
+157661,False,136,1,40122,bueno,duplex,barrio_51,1018,6,2018,446526,48,48,3,1,media,1,1,1
+620095,False,70,3,144167,regular,casa,barrio_55,1001,1,1983,323048,147,147,1,0,economica,0,0,0
+778209,False,39,1,94976,regular,duplex,barrio_07,1033,4,2018,207844,69,69,1,0,economica,0,1,1
+940913,True,94,1,38697,muy bueno,duplex,barrio_57,1027,1,2008,424758,60,60,17,1,media,1,1,0
+485878,False,140,1,43112,excelente,duplex,barrio_36,1002,11,1980,538305,62,62,1,1,premium,0,0,0
+217041,True,101,1,20713,regular,duplex,barrio_38,1010,2,2013,359649,95,95,2,1,media,0,1,0
+978082,True,88,1,31622,muy bueno,casa,barrio_05,1000,2,1974,310278,130,130,0,0,economica,0,0,1
+271615,True,65,1,46514,muy bueno,duplex,barrio_37,1038,2,1985,331902,68,68,1,1,economica,0,0,0
+330575,True,157,3,71718,muy bueno,PH,barrio_43,1000,12,1998,495313,52,52,5,1,premium,1,1,0
+241271,True,59,3,66130,bueno,duplex,barrio_34,1031,12,1991,331932,61,61,4,0,economica,0,1,0
+809690,False,70,3,14952,muy bueno,duplex,barrio_05,1020,9,2008,319722,75,75,2,0,economica,0,1,0
+658937,True,115,3,79347,muy bueno,PH,barrio_31,1023,1,1961,430749,68,68,1,1,media,0,0,0
+218335,False,30,3,33826,excelente,departamento,barrio_56,1032,7,1985,310434,58,58,5,1,economica,1,1,0
+844139,False,140,2,16488,regular,casa,barrio_43,1035,12,1997,432976,68,68,1,0,media,0,1,1
+406719,False,117,2,105779,excelente,casa,barrio_08,1005,2,1973,497439,94,94,4,1,premium,0,1,0
+766009,True,126,2,117081,regular,departamento,barrio_57,1000,10,2011,395521,46,46,2,1,media,1,0,0
+967501,False,115,1,44846,muy bueno,duplex,barrio_57,1004,1,1971,458313,42,42,6,0,premium,0,0,0
+483072,True,89,2,64025,regular,PH,barrio_10,1027,10,1971,308544,69,69,1,0,economica,1,1,1
+962743,True,58,3,67101,bueno,departamento,barrio_48,1022,7,1973,304055,73,73,2,1,economica,0,0,1
+163542,True,90,1,110926,regular,casa,barrio_24,1003,11,1998,350012,103,103,0,0,economica,0,0,1
+371993,False,61,3,65020,bueno,PH,barrio_35,1009,5,1958,325673,78,78,1,1,economica,0,0,1
+480798,False,112,3,12555,bueno,PH,barrio_26,1021,10,1960,328978,80,80,1,0,economica,0,1,1
+384834,False,123,2,181289,bueno,duplex,barrio_46,1029,11,2005,448222,56,56,4,1,media,1,1,0
+970591,False,147,2,85180,bueno,PH,barrio_59,1013,4,1964,477069,84,84,2,0,premium,1,0,1
+460645,True,108,1,24158,bueno,PH,barrio_47,1037,8,1957,328532,81,81,0,1,economica,0,0,1
+308615,False,127,1,15935,muy bueno,duplex,barrio_55,1039,6,1968,425663,95,95,2,0,media,1,1,0
+465053,False,85,1,54385,excelente,departamento,barrio_56,1030,6,1978,432100,65,65,2,0,media,0,1,0
+843564,True,78,3,29068,muy bueno,duplex,barrio_05,1018,10,1952,339369,106,106,0,0,economica,0,0,1
+107491,False,112,2,47287,regular,departamento,barrio_15,1035,3,2009,340791,93,93,0,0,economica,0,1,1
+371618,False,81,1,65823,bueno,casa,barrio_43,1029,2,1958,326041,99,99,0,0,economica,0,1,1
+673839,True,104,2,23083,excelente,departamento,barrio_35,1020,6,1978,523210,57,57,10,1,premium,0,1,0
+900534,True,58,3,14870,regular,casa,barrio_03,1017,10,1964,314491,94,94,0,0,economica,0,1,1
+874198,True,64,1,49447,bueno,casa,barrio_05,1033,2,1970,304930,95,95,1,0,economica,0,0,1
+505889,False,117,1,23701,excelente,duplex,barrio_31,1022,5,1953,444967,59,59,1,0,media,0,0,1
+984114,True,126,3,40818,excelente,duplex,barrio_36,1007,9,2017,494167,19,19,9,0,premium,0,1,0
+673659,True,61,3,12399,bueno,casa,barrio_10,1039,6,2016,339000,13,13,3,1,economica,0,1,1
+103155,False,118,2,29681,muy bueno,duplex,barrio_10,1002,8,1958,434165,52,52,2,0,media,0,0,1
+759855,False,76,3,64342,bueno,casa,barrio_07,1027,7,1964,338878,93,93,0,0,economica,1,0,0
+674106,False,96,2,58968,muy bueno,departamento,barrio_33,1026,10,2012,322911,56,56,3,0,economica,1,1,0
+600974,False,145,2,19328,regular,PH,barrio_00,1023,11,1979,426823,94,94,1,0,media,0,0,1
+688141,True,123,1,14262,regular,departamento,barrio_34,1002,6,1954,375312,99,99,2,1,media,1,1,1
+806098,True,123,3,36776,muy bueno,PH,barrio_28,1019,6,1959,427251,82,82,0,1,media,0,0,1
+239413,False,162,3,56887,bueno,duplex,barrio_27,1035,4,1979,507258,92,92,1,0,premium,1,0,1
+761674,True,70,1,50219,muy bueno,casa,barrio_40,1009,6,1989,366726,48,48,3,1,media,0,1,0
+414476,False,60,3,24107,bueno,casa,barrio_31,1027,11,1994,262331,59,59,3,0,economica,0,0,1
+312177,False,70,3,46086,excelente,duplex,barrio_43,1034,7,1960,398150,73,73,1,0,media,0,1,1
+192242,False,86,1,120799,muy bueno,PH,barrio_45,1038,9,1976,352366,66,66,3,1,economica,0,1,0
+781685,False,25,1,42792,bueno,PH,barrio_55,1020,6,1968,181922,77,77,1,0,economica,0,0,1
+367071,False,88,2,9833,muy bueno,departamento,barrio_47,1012,9,1987,335100,57,57,6,1,economica,0,1,0
+775923,False,76,2,42726,bueno,departamento,barrio_31,1027,9,1972,298572,90,90,1,0,economica,1,0,0
+205721,True,122,2,186310,bueno,PH,barrio_29,1019,7,1964,407068,76,76,0,0,media,1,0,0
+891385,True,107,2,12966,bueno,PH,barrio_14,1025,12,2007,365052,60,60,7,1,media,0,1,0
+751304,True,74,3,37189,excelente,casa,barrio_35,1029,11,1990,453123,1,1,19,0,premium,1,1,0
+855991,False,116,2,30301,muy bueno,PH,barrio_08,1028,2,1983,434052,81,81,5,0,media,0,0,0
+550200,True,120,1,39211,excelente,PH,barrio_55,1009,3,1959,511743,89,89,0,0,premium,0,0,0
+251744,True,68,1,42421,excelente,casa,barrio_50,1030,12,1955,463209,62,62,1,0,premium,1,0,1
+326001,False,78,3,90398,excelente,departamento,barrio_07,1021,5,2006,405447,47,47,7,1,media,0,1,0
+641338,True,25,3,38864,bueno,duplex,barrio_47,1037,4,2018,236690,13,13,3,0,economica,1,1,0
+161034,False,57,2,100892,excelente,PH,barrio_07,1026,10,1991,359207,37,37,7,0,media,0,1,1
+198367,True,69,1,33053,muy bueno,casa,barrio_43,1035,8,1952,314587,73,73,4,0,economica,0,0,1
+108876,True,98,1,27444,bueno,casa,barrio_05,1039,2,1984,337494,65,65,1,0,economica,1,1,1
+435461,True,62,1,21262,muy bueno,PH,barrio_29,1039,2,1969,314268,77,77,2,1,economica,1,0,1
+405269,True,77,1,8487,bueno,departamento,barrio_39,1029,10,1953,314031,98,98,1,0,economica,0,0,1
+576082,False,52,2,45280,bueno,duplex,barrio_43,1023,10,1960,263916,68,68,0,0,economica,1,0,1
+656329,False,101,1,187813,bueno,PH,barrio_25,1004,5,1985,334423,73,73,2,0,economica,0,1,1
+475689,False,110,1,52396,regular,duplex,barrio_55,1015,11,1980,352227,108,108,1,0,economica,0,0,1
+213162,False,109,1,62906,bueno,casa,barrio_46,1019,2,1990,425413,115,115,1,1,media,1,0,1
+687218,False,95,3,26097,excelente,departamento,barrio_12,1031,11,1999,458330,36,36,4,1,premium,1,1,0
+514307,False,41,2,29868,muy bueno,casa,barrio_40,1023,1,1968,305764,71,71,10,0,economica,1,0,1
+707737,True,73,1,79835,bueno,PH,barrio_43,1017,8,1970,285041,101,101,0,0,economica,0,1,1
+138368,True,81,3,181127,bueno,casa,barrio_20,1005,11,1998,387933,29,29,6,1,media,0,0,1
+435005,False,81,2,119415,bueno,departamento,barrio_44,1028,8,1963,323539,82,82,1,0,economica,1,0,0
+394722,False,98,1,69161,bueno,departamento,barrio_53,1017,10,1955,343312,97,97,0,0,economica,0,1,1
+812158,True,145,3,37351,muy bueno,casa,barrio_49,1001,5,2010,507468,36,36,6,1,premium,1,1,0
+957190,True,123,3,42949,bueno,casa,barrio_45,1011,4,1964,457718,115,115,0,0,premium,0,0,1
+808890,True,60,2,19875,muy bueno,PH,barrio_38,1035,4,1958,267838,90,90,2,0,economica,1,0,0
+445419,True,119,1,11401,muy bueno,duplex,barrio_16,1004,2,2002,452650,18,18,7,1,premium,1,1,0
+544583,False,117,1,14744,muy bueno,casa,barrio_47,1016,4,1987,425987,75,75,4,0,media,1,0,1
+951455,True,67,2,37792,excelente,departamento,barrio_21,1020,3,1960,372245,70,70,1,1,media,0,1,1
+777246,False,125,3,28750,bueno,casa,barrio_31,1003,10,2010,433346,109,109,2,0,media,0,1,0
+575557,False,89,3,11209,excelente,duplex,barrio_18,1006,3,1967,449691,39,39,9,1,media,1,0,1
+398389,True,46,3,35247,muy bueno,departamento,barrio_18,1037,2,1997,320233,43,43,8,1,economica,0,1,0
+367922,False,111,3,28149,muy bueno,duplex,barrio_09,1023,9,1996,368333,77,77,4,1,media,0,1,0
+733563,False,103,2,14210,muy bueno,casa,barrio_57,1008,7,2008,439620,56,56,17,1,media,1,1,0
+332184,True,87,2,27007,muy bueno,casa,barrio_08,1006,3,2001,426240,72,72,9,1,media,0,1,1
+752678,True,94,3,28092,excelente,PH,barrio_05,1017,9,1999,458729,44,44,4,0,premium,0,1,0
+420452,False,70,3,22174,bueno,PH,barrio_56,1028,3,1953,289637,106,106,0,1,economica,1,0,0
+778524,True,116,2,76217,muy bueno,duplex,barrio_33,1029,10,2016,427259,38,38,4,0,media,0,1,0
+862085,True,93,1,7924,muy bueno,duplex,barrio_26,1007,1,1958,374651,77,77,1,0,media,1,0,1
+644935,True,101,3,7416,bueno,duplex,barrio_44,1029,8,1968,352956,61,61,2,0,economica,0,0,1
+580178,True,107,1,36411,excelente,PH,barrio_22,1035,8,1981,477980,42,42,13,0,premium,1,1,1
+672702,False,55,2,39218,bueno,departamento,barrio_07,1009,5,1970,295372,87,87,1,0,economica,0,0,1
+812076,True,64,2,50180,muy bueno,departamento,barrio_43,1001,9,1992,348556,51,51,4,1,economica,0,1,0
+880515,False,25,3,23596,regular,casa,barrio_10,1038,5,1953,232454,122,122,0,0,economica,1,0,1
+744036,True,115,1,17425,bueno,departamento,barrio_33,1020,8,1982,347493,90,90,0,0,economica,0,1,1
+543832,False,53,2,36104,muy bueno,departamento,barrio_56,1031,3,1974,282717,69,69,2,1,economica,0,0,1
+822218,True,100,2,25508,bueno,casa,barrio_56,1012,7,1995,367192,120,120,1,1,media,0,0,0
+304727,False,108,1,125600,bueno,casa,barrio_21,1011,10,1986,318063,70,70,1,0,economica,1,1,1
+358752,False,116,1,28018,bueno,PH,barrio_46,1009,12,2003,383705,55,55,5,1,media,1,0,1
+185180,True,53,2,34803,bueno,departamento,barrio_36,1008,5,1961,308224,99,99,0,0,economica,0,1,1
+590104,False,93,3,263112,muy bueno,duplex,barrio_28,1018,6,2017,420285,32,32,11,1,media,0,1,0
+281708,True,153,2,31076,excelente,departamento,barrio_08,1004,6,1977,574059,62,62,5,1,premium,1,1,0
+465380,False,155,3,56666,regular,duplex,barrio_22,1033,11,1974,465946,77,77,1,0,premium,1,0,1
+321313,False,130,3,60904,muy bueno,PH,barrio_39,1020,12,1988,459565,51,51,8,0,premium,0,0,1
+499872,True,107,3,65194,bueno,casa,barrio_59,1036,8,1961,373530,120,120,1,1,media,1,0,1
+403760,True,60,3,45779,muy bueno,casa,barrio_00,1020,10,2007,375023,19,19,4,1,media,0,1,1
+355964,True,120,3,42407,bueno,PH,barrio_43,1012,2,1968,382286,57,57,0,0,media,0,0,1
+452716,False,89,3,39351,bueno,PH,barrio_50,1020,10,2015,354291,77,77,4,1,economica,0,0,0
+307441,False,115,1,22907,bueno,departamento,barrio_57,1006,10,1960,372478,87,87,1,0,media,0,0,1
+311540,True,73,3,47118,muy bueno,PH,barrio_25,1032,9,2011,322629,51,51,8,1,economica,0,1,0
+175799,True,89,1,184042,bueno,duplex,barrio_07,1028,8,1977,278537,48,48,0,1,economica,0,0,1
+130450,True,101,3,95659,bueno,departamento,barrio_16,1005,11,1993,401078,69,69,2,0,media,0,0,0
+899179,False,104,2,46311,muy bueno,casa,barrio_51,1023,8,2011,446367,35,35,11,0,media,1,1,0
+831054,True,112,3,72017,muy bueno,departamento,barrio_52,1021,11,1959,392320,97,97,1,0,media,0,0,1
+340269,True,75,2,18118,bueno,duplex,barrio_38,1008,3,1974,323414,76,76,0,0,economica,0,0,1
+300103,False,48,2,29484,muy bueno,duplex,barrio_07,1004,8,2017,288283,61,61,5,1,economica,0,1,0
+577290,True,152,2,77519,excelente,duplex,barrio_07,1030,6,1960,577793,82,82,2,1,premium,0,1,0
+392853,False,182,2,119340,bueno,duplex,barrio_28,1010,11,1957,504484,62,62,0,0,premium,1,1,1
+185191,True,111,2,19600,muy bueno,casa,barrio_35,1020,11,1987,450618,71,71,9,0,premium,1,0,1
+885690,True,49,2,24665,bueno,departamento,barrio_01,1009,11,1951,214569,118,118,0,0,economica,0,0,1
+385450,False,68,2,207960,muy bueno,casa,barrio_41,1026,3,2020,399719,45,45,7,1,media,1,1,0
+747385,True,113,2,39223,bueno,casa,barrio_32,1001,6,2014,407645,60,60,3,0,media,1,0,0
+489075,True,142,1,156168,muy bueno,duplex,barrio_00,1014,1,1963,469237,69,69,1,0,premium,1,0,1
+981623,False,53,2,42851,bueno,duplex,barrio_05,1021,12,1962,237608,117,117,0,0,economica,1,0,1
+321457,False,91,1,44221,bueno,casa,barrio_27,1017,4,2005,355475,10,10,6,1,economica,0,1,1
+450593,False,102,1,28442,excelente,PH,barrio_43,1024,8,1986,427847,47,47,9,1,media,1,1,0
+756574,True,125,2,77191,bueno,PH,barrio_49,1007,6,2008,426167,66,66,2,0,media,0,1,0
+615168,True,83,1,107605,excelente,casa,barrio_25,1017,11,2018,464167,95,95,17,1,premium,0,1,0
+718917,True,40,2,15867,excelente,duplex,barrio_17,1030,10,1978,339475,641,64,1,1,economica,0,1,0
+311034,False,117,3,27393,excelente,duplex,barrio_58,1013,10,1968,503223,104,104,3,0,premium,1,0,1
+263410,False,134,3,75513,bueno,PH,barrio_27,1006,8,1993,431912,569,57,3,0,media,0,1,1
+360420,True,92,1,32740,muy bueno,PH,barrio_18,1033,2,1995,391214,53,53,6,1,media,0,0,1
+927413,False,109,2,24472,regular,departamento,barrio_26,1031,12,1980,354464,90,90,0,0,economica,0,1,1
+243477,True,78,2,81441,bueno,duplex,barrio_00,1027,1,1971,369946,70,70,0,0,media,0,0,0
+872493,False,65,3,87795,excelente,departamento,barrio_18,1031,6,1968,412734,53,53,3,1,media,1,1,1
+428963,True,131,2,25344,muy bueno,duplex,barrio_30,1031,5,1987,521479,60,60,8,1,premium,0,0,0
+344983,True,109,3,43040,bueno,casa,barrio_55,1029,5,1980,425510,86,86,0,0,media,1,0,1
+245459,False,112,3,13811,bueno,casa,barrio_44,1020,12,1982,408250,32,32,2,0,media,0,1,1
+910626,False,148,1,17741,muy bueno,duplex,barrio_46,1000,3,1956,480520,68,68,0,0,premium,0,1,1
+509037,True,58,2,40108,muy bueno,departamento,barrio_32,1023,7,2012,314885,50,50,9,1,economica,0,1,1
+963390,True,76,2,37240,bueno,departamento,barrio_06,1010,3,2000,311740,65,65,3,0,economica,0,1,1
+370450,False,101,2,16756,excelente,duplex,barrio_23,1030,11,2015,473973,35,35,11,1,premium,0,1,0
+515532,True,75,2,20480,bueno,casa,barrio_59,1018,9,2008,370769,6,6,6,0,media,0,1,0
+273845,False,122,1,15490,bueno,PH,barrio_02,1036,5,1993,416359,48,48,2,1,media,0,0,1
+798351,False,88,2,52263,muy bueno,departamento,barrio_52,1023,1,1971,326891,91,91,0,0,economica,1,1,1
+561951,True,60,3,7524,excelente,casa,barrio_41,1022,2,1996,422903,25,25,8,1,media,0,1,0
+976933,True,97,1,16167,bueno,duplex,barrio_17,1036,3,1990,278285,38,38,2,0,economica,0,1,0
+100817,True,101,2,8182,bueno,casa,barrio_46,1019,5,2015,417366,75,75,4,0,media,0,1,1
+815761,False,128,3,50778,regular,casa,barrio_50,1015,11,1966,434595,111,111,0,0,media,1,0,1
+457339,True,109,2,8585,excelente,PH,barrio_02,1014,2,1951,507162,56,56,3,0,premium,1,0,1
+776337,False,111,3,37249,bueno,duplex,barrio_06,1035,7,1959,358155,65,65,1,0,media,0,0,1
+877890,True,106,2,134810,bueno,casa,barrio_39,1030,5,1962,464085,115,115,1,0,premium,1,0,1
+372956,False,88,1,138517,excelente,PH,barrio_59,1006,1,1997,485962,39,39,19,1,premium,0,1,0
+102669,True,70,3,8564,regular,PH,barrio_01,1019,8,1960,262107,147,147,0,0,economica,0,0,1
+200864,True,105,1,46107,muy bueno,duplex,barrio_39,1014,9,1959,389761,76,76,1,0,media,1,0,1
+741783,False,83,1,16462,bueno,casa,barrio_08,1025,12,1978,346606,94,94,3,0,economica,1,1,1
+281907,False,154,1,13982,muy bueno,duplex,barrio_39,1002,7,2005,486662,40,40,6,1,premium,0,0,0
+232788,True,142,3,33164,bueno,PH,barrio_37,1028,4,1980,431699,101,101,1,0,media,1,0,1
+666503,True,117,3,97016,bueno,duplex,barrio_05,1029,11,1969,400495,117,117,1,0,media,0,0,1
+318166,False,108,1,58673,bueno,departamento,barrio_40,1009,3,1970,367348,83,83,0,1,media,0,0,1
+285330,True,92,2,20494,muy bueno,duplex,barrio_53,1006,9,2008,362606,47,47,3,1,media,0,0,1
+868605,True,51,2,63833,muy bueno,PH,barrio_51,1025,12,1980,336644,54,54,3,1,economica,0,1,0
+727740,True,87,1,6033,regular,casa,barrio_01,1010,1,1976,284305,98,98,0,0,economica,1,0,1
+924815,True,99,3,19883,bueno,duplex,barrio_14,1037,12,2004,435676,84,84,2,0,media,0,0,1
+547775,False,103,3,18786,excelente,duplex,barrio_14,1031,3,1976,502820,83,83,5,1,premium,1,1,0
+903058,False,111,2,38664,regular,departamento,barrio_27,1038,6,1975,384167,94,94,0,0,media,1,0,1
+191575,True,127,2,30876,bueno,PH,barrio_08,1021,4,2003,426112,67,67,4,0,media,0,1,1
+478101,False,71,3,32429,muy bueno,departamento,barrio_51,1037,2,1973,319404,63,63,4,1,economica,0,1,1
+917603,True,71,2,31578,bueno,PH,barrio_46,1000,9,1986,300618,63,63,3,1,economica,1,0,1
+354331,False,146,2,36972,bueno,duplex,barrio_48,1011,6,1997,456850,81,81,3,1,premium,0,1,1
+198087,True,122,2,55944,bueno,duplex,barrio_11,1000,7,1964,414916,40,40,1,1,media,1,1,1
+115800,True,81,2,40924,bueno,casa,barrio_00,1027,6,1959,346034,67,67,0,0,economica,1,1,0
+903994,False,91,2,28927,bueno,duplex,barrio_54,1020,9,2010,322491,54,54,2,1,economica,0,0,0
+590249,True,91,1,50081,muy bueno,departamento,barrio_17,1011,12,1971,305498,69,69,2,1,economica,0,0,1
+918418,True,96,2,70326,muy bueno,PH,barrio_39,1012,7,1974,390835,56,56,5,1,media,0,0,0
+333686,True,112,2,23276,regular,duplex,barrio_54,1025,2,1991,390628,83,83,0,0,media,0,0,1
+661892,False,184,1,34630,muy bueno,departamento,barrio_02,1007,4,1957,500264,67,67,1,1,premium,0,0,1
+749939,True,102,2,91998,bueno,departamento,barrio_00,1020,6,1953,373572,98,98,2,0,media,1,0,1
+542268,False,118,2,15030,muy bueno,departamento,barrio_00,1024,2,1979,432170,64,64,4,1,media,0,0,1
+181221,False,36,2,153854,bueno,duplex,barrio_09,1009,3,2018,266042,52,52,0,1,economica,1,1,0
+175597,False,78,3,12440,muy bueno,departamento,barrio_03,1009,3,1990,355262,48,48,11,0,economica,0,0,1
+750500,True,138,2,27549,bueno,departamento,barrio_49,1014,12,1991,417480,80,80,4,1,media,0,0,0
+825472,False,109,2,16981,bueno,departamento,barrio_36,1023,5,1993,355631,69,69,1,1,media,1,1,0
+734445,True,25,1,209053,bueno,casa,barrio_58,1010,11,2011,236113,48,48,0,0,economica,0,1,1
+802204,False,119,3,24278,regular,departamento,barrio_48,1015,7,2009,411399,75,75,4,1,media,0,0,1
+536028,False,162,1,24327,bueno,casa,barrio_57,1021,7,1951,493989,72,72,0,0,premium,1,0,1
+543983,True,25,2,26995,muy bueno,casa,barrio_14,1007,12,1988,300987,76,76,6,1,economica,0,1,0
+951022,False,148,1,39202,muy bueno,PH,barrio_17,1022,9,1988,414418,71,71,2,0,media,0,1,0
+258263,True,25,3,27924,regular,casa,barrio_50,1005,3,1965,257833,125,125,0,0,economica,0,0,1
+754456,True,128,2,32653,excelente,PH,barrio_14,1005,4,2019,536090,16,16,26,1,premium,1,1,0
+503698,True,95,1,2157,muy bueno,duplex,barrio_03,1009,8,1968,383604,60,60,5,1,media,0,0,1
+960801,False,25,1,38015,excelente,PH,barrio_40,1011,1,2009,323701,25,25,24,1,economica,0,1,1
+985417,False,111,3,36837,muy bueno,departamento,barrio_48,1001,2,1957,420665,68,68,1,0,media,1,0,1
+129690,False,135,2,83354,muy bueno,casa,barrio_58,1038,1,1992,451281,247,25,1,0,premium,0,1,1
+227269,True,108,1,103492,bueno,duplex,barrio_55,1012,9,2002,382035,90,90,2,0,media,0,1,1
+449287,False,115,3,31252,muy bueno,duplex,barrio_07,1032,6,1985,447038,63,63,2,1,media,1,0,1
+294792,False,81,1,69772,excelente,PH,barrio_46,1036,1,1957,385524,41,41,3,1,media,1,0,0
+734484,False,30,2,15044,regular,casa,barrio_50,1032,9,1958,192501,100,100,2,0,economica,0,0,1
+215499,True,119,1,67096,bueno,casa,barrio_41,1033,8,1993,429284,106,106,6,0,media,0,1,0
+908318,True,156,1,22972,regular,departamento,barrio_49,1004,9,2011,446820,68,68,1,1,media,0,1,1
+788472,False,135,1,14076,excelente,casa,barrio_50,1014,2,1992,546486,2,2,6,1,premium,0,1,0
+240564,True,25,1,31305,bueno,duplex,barrio_26,1029,11,1957,242671,70,70,0,0,economica,1,1,1
+132801,True,42,3,111344,muy bueno,casa,barrio_02,1023,3,2005,371170,92,92,5,1,media,0,1,0
+482441,True,65,2,41974,muy bueno,departamento,barrio_27,1000,7,1982,324196,61,61,5,0,economica,0,1,1
+446743,True,39,3,120233,excelente,duplex,barrio_12,1022,7,1955,348724,80,80,4,0,economica,0,1,1
+499055,True,97,1,19951,bueno,duplex,barrio_06,1032,3,1976,357578,62,62,2,0,media,1,0,1
+513031,True,109,3,83976,muy bueno,casa,barrio_07,1033,5,1964,447924,48,48,0,0,media,1,1,1
+655697,False,45,1,21553,excelente,departamento,barrio_41,1015,1,2020,419161,30,30,27,1,media,0,0,0
+712964,False,122,1,43489,regular,PH,barrio_30,1009,6,2014,428309,51,51,1,1,media,0,0,1
+612336,True,116,1,43189,muy bueno,PH,barrio_32,1012,9,1957,366952,90,90,1,0,media,0,0,1
+449227,True,76,3,61648,bueno,duplex,barrio_44,1011,4,1990,336817,71,71,2,0,economica,0,1,1
+760133,False,89,3,44382,muy bueno,duplex,barrio_32,1013,7,1950,343575,93,93,1,0,economica,0,1,1
+246362,True,27,3,20104,bueno,duplex,barrio_37,1012,12,1982,219510,92,92,2,0,economica,0,0,1
+989162,False,83,3,73442,bueno,casa,barrio_05,1018,3,1961,321814,131,131,0,0,economica,0,1,0
+225092,False,95,1,145121,regular,casa,barrio_51,1001,4,2003,371287,101,101,2,0,media,0,0,1
+398373,True,101,3,22764,regular,PH,barrio_26,1011,2,1955,344221,87,87,0,0,economica,0,0,1
+769920,True,108,2,8365,regular,casa,barrio_09,1012,7,2014,331547,19,19,1,0,economica,1,1,0
+404944,True,104,2,54147,muy bueno,departamento,barrio_48,1006,3,1966,430962,74,74,1,1,media,0,0,0
+425832,False,86,2,27863,bueno,casa,barrio_44,1035,11,1968,348267,126,126,1,0,economica,1,0,1
+838671,True,105,2,32700,bueno,duplex,barrio_03,1027,4,2012,451311,40,40,7,1,premium,0,1,1
+343303,False,130,1,56667,muy bueno,casa,barrio_11,1036,8,2014,466740,1,1,13,1,premium,0,1,0
+261213,False,92,1,25207,muy bueno,casa,barrio_00,1022,3,1956,378241,79,79,0,0,media,0,0,1
+426646,False,106,2,29288,bueno,casa,barrio_16,1004,4,1957,379745,117,117,2,0,media,0,1,1
+496658,False,88,2,33520,excelente,casa,barrio_05,1036,3,2010,390522,108,108,3,1,media,0,0,0
+622774,True,72,3,117689,bueno,PH,barrio_42,1018,7,2019,349741,77,77,1,0,economica,1,1,1
+989021,True,113,2,37200,muy bueno,departamento,barrio_31,1027,1,1984,445276,70,70,2,0,media,1,0,0
+659321,False,76,1,13514,regular,duplex,barrio_58,1015,1,1961,271861,101,101,0,0,economica,0,0,1
+407806,True,109,2,13951,muy bueno,departamento,barrio_44,1019,7,1960,412648,77,77,3,0,media,0,0,1
+955722,True,96,2,40594,excelente,PH,barrio_36,1019,7,1968,461916,61,61,5,1,premium,0,1,1
+441650,True,84,3,14713,muy bueno,PH,barrio_30,1011,4,1998,411902,21,21,19,1,media,0,1,0
+276693,True,84,2,10406,muy bueno,PH,barrio_03,1022,6,1956,346709,88,88,2,0,economica,1,0,1
+878436,False,77,2,60381,muy bueno,duplex,barrio_04,1029,5,1995,346817,116,116,0,0,economica,0,1,0
+133260,True,37,3,62793,bueno,casa,barrio_36,1000,10,2007,271068,102,102,2,0,economica,0,0,1
+920601,False,108,2,27051,muy bueno,PH,barrio_00,1005,6,1960,410806,64,64,2,1,media,0,1,0
+985503,False,103,3,45932,muy bueno,duplex,barrio_02,1033,11,2019,424351,52,52,16,1,media,0,1,0
+582880,True,125,3,42214,excelente,duplex,barrio_13,1022,3,2020,583869,33,33,39,1,premium,1,1,0
+492395,False,76,3,58802,bueno,PH,barrio_53,1038,3,1971,312079,96,96,0,0,economica,1,0,1
+779833,True,161,3,58912,regular,PH,barrio_27,1024,5,1957,440579,120,120,0,0,media,1,0,1
+409090,True,82,2,4516,muy bueno,duplex,barrio_42,1026,1,1973,347754,90,90,1,1,economica,0,1,0
+830280,True,64,1,29959,regular,PH,barrio_24,1035,9,1968,216424,112,112,0,0,economica,0,1,1
+496751,True,60,2,54958,bueno,duplex,barrio_10,1026,5,1969,333395,94,94,1,0,economica,0,0,1
+512541,True,34,1,26151,bueno,casa,barrio_22,1013,5,2015,295390,58,58,2,1,economica,0,1,0
+620414,True,149,2,37383,muy bueno,departamento,barrio_05,1021,7,1960,421616,86,86,0,0,media,1,0,1
+476659,True,143,3,66208,bueno,casa,barrio_46,1009,1,1972,510312,80,80,1,0,premium,1,0,0
+741215,True,116,2,38744,bueno,casa,barrio_11,1013,5,2005,452182,43,43,2,0,premium,1,1,1
+761059,False,64,1,121338,regular,departamento,barrio_22,1027,12,1954,283541,87,87,1,0,economica,0,0,1
+981465,True,158,1,89464,excelente,casa,barrio_58,1005,8,1954,528764,129,129,0,0,premium,1,1,1
+330465,False,83,3,33029,muy bueno,departamento,barrio_35,1026,7,1971,364718,64,64,6,1,media,0,0,1
+394066,False,86,3,30994,regular,departamento,barrio_27,1023,7,2018,326824,79,79,3,1,economica,0,1,0
+640227,False,145,2,3714,regular,PH,barrio_32,1012,6,2009,367315,86,86,0,0,media,0,1,1
+907020,False,118,3,27967,muy bueno,duplex,barrio_47,1001,12,2015,473750,73,73,6,0,premium,0,0,1
+397075,False,172,3,12300,bueno,duplex,barrio_15,1028,12,2011,509481,79,79,0,0,premium,1,1,1
+678368,False,104,2,43347,muy bueno,departamento,barrio_38,1032,5,1958,338286,89,89,1,0,economica,0,0,1
+554560,False,81,1,41040,bueno,departamento,barrio_52,1029,12,1978,282188,93,93,1,0,economica,1,1,1
+739313,False,74,3,63366,excelente,duplex,barrio_34,1016,1,1987,449275,55,55,8,0,media,0,0,1
+316933,True,30,2,111006,bueno,casa,barrio_26,1026,4,1961,262708,90,90,0,0,economica,0,0,1
+742116,False,85,3,35560,muy bueno,PH,barrio_08,1016,4,2020,368381,34,34,5,1,media,1,1,0
+223533,False,135,3,225107,regular,departamento,barrio_14,1014,9,1992,416455,84,84,1,0,media,0,1,1
+169868,True,116,2,43738,excelente,casa,barrio_56,1013,8,2010,510129,42,42,5,1,premium,0,1,1
+372245,True,96,2,12731,excelente,PH,barrio_32,1008,6,1968,472043,89,89,1,0,premium,1,1,1
+911067,False,60,1,23164,muy bueno,departamento,barrio_18,1038,4,2000,354599,51,51,9,1,economica,1,1,0
+808504,False,103,3,26952,bueno,casa,barrio_25,1026,7,1957,304408,96,96,0,0,economica,0,0,1
+536732,True,130,1,58320,bueno,PH,barrio_34,1006,4,1951,404167,91,91,0,0,media,0,0,1
+244600,True,110,2,17021,muy bueno,casa,barrio_32,1034,6,1995,414827,66,66,3,1,media,1,0,1
+380342,True,101,2,28613,muy bueno,PH,barrio_41,1006,5,1954,400556,74,74,3,0,media,0,0,1
+150088,False,67,1,31926,bueno,casa,barrio_15,1023,11,1969,233161,61,61,1,0,economica,1,1,1
+203786,False,125,2,25375,bueno,departamento,barrio_38,1006,9,2006,378544,76,76,3,0,media,0,1,1
+776239,False,25,3,69503,bueno,duplex,barrio_26,1014,3,1985,250721,59,59,2,1,economica,0,1,0
+297858,True,108,1,60661,muy bueno,casa,barrio_56,1026,12,1976,404555,41,41,0,1,media,0,0,0
+270597,True,185,1,92342,muy bueno,duplex,barrio_09,1039,8,1970,511183,91,91,3,0,premium,0,1,1
+408839,False,42,1,27866,muy bueno,PH,barrio_08,1039,5,1997,259673,59,59,5,1,economica,0,0,1
+721158,False,87,1,95037,muy bueno,duplex,barrio_27,1035,7,2017,348539,11,11,8,1,economica,0,1,0
+792707,True,95,1,12195,bueno,casa,barrio_30,1009,3,2002,409635,39,39,4,1,media,0,1,0
+490614,True,79,2,11960,bueno,PH,barrio_41,1003,1,1975,323656,88,88,2,0,economica,1,1,1
+728289,True,131,3,13752,regular,duplex,barrio_24,1036,6,1979,398693,122,122,0,0,media,1,0,1
+153270,False,112,3,36584,muy bueno,duplex,barrio_54,1036,10,1957,375898,102,102,0,0,media,0,0,1
+396902,False,100,3,95026,bueno,casa,barrio_28,1011,5,1960,375869,90,90,0,1,media,1,0,1
+520545,True,123,3,22433,bueno,duplex,barrio_07,1000,5,1969,409527,77,77,0,0,media,0,0,1
+390769,False,96,2,24801,bueno,casa,barrio_07,1025,12,1977,352811,55,55,1,0,economica,1,1,1
+180114,False,206,3,30552,bueno,PH,barrio_58,1003,12,2020,524720,72,72,2,0,premium,0,1,1
+470469,False,100,1,57427,muy bueno,departamento,barrio_08,1001,6,2011,355897,49,49,2,1,media,0,1,0
+748535,True,102,3,24783,bueno,PH,barrio_56,1037,1,1958,318269,108,108,0,0,economica,0,0,1
+479294,True,35,1,23701,regular,PH,barrio_16,1019,9,1973,217237,106,106,1,0,economica,0,0,1
+237698,False,76,3,12378,muy bueno,casa,barrio_05,1004,9,1953,332353,93,93,1,0,economica,0,0,1
+830703,False,135,1,22986,bueno,PH,barrio_18,1026,11,1954,399555,70,70,0,0,media,0,1,1
+462170,False,48,1,93150,bueno,duplex,barrio_36,1014,12,1976,250387,77,77,0,1,economica,0,0,1
+141337,False,25,2,39056,bueno,departamento,barrio_25,1021,8,2018,212523,63,63,1,1,economica,0,1,1
+535278,True,96,3,20093,muy bueno,departamento,barrio_47,1035,2,1963,373929,73,73,1,1,media,1,0,1
+871854,True,143,1,97628,bueno,duplex,barrio_36,1009,3,1998,461161,63,63,4,0,premium,1,1,1
+981695,True,96,1,22739,muy bueno,casa,barrio_24,1025,9,1977,363219,79,79,3,0,media,1,0,1
+817240,False,83,2,113093,excelente,departamento,barrio_38,1033,8,1988,398380,57,57,3,1,media,0,0,0
+633486,True,30,3,111623,muy bueno,PH,barrio_58,1016,6,2011,267824,53,53,4,0,economica,0,0,0
+924830,False,111,3,37980,bueno,departamento,barrio_24,1038,5,2008,386906,73,73,2,0,media,1,1,0
+862896,False,118,2,10951,muy bueno,duplex,barrio_09,1017,9,2008,383723,55,55,4,0,media,0,1,1
+964053,False,33,2,226749,bueno,departamento,barrio_24,1018,6,1979,249746,88,88,3,0,economica,1,0,1
+797659,False,135,2,49505,bueno,duplex,barrio_50,1035,2,1953,432222,98,98,1,0,media,0,0,1
+168931,False,122,3,28026,bueno,casa,barrio_13,1025,12,2019,444324,13,13,6,1,media,0,1,0
+120688,True,135,1,78034,bueno,PH,barrio_56,1034,5,2020,400128,55,55,2,0,media,1,1,0
+315485,False,115,1,63694,regular,PH,barrio_35,1031,4,2010,386900,81,81,3,1,media,1,1,0
+605411,True,118,1,103647,bueno,casa,barrio_36,1028,1,1983,414434,49,49,3,0,media,0,1,0
+155720,True,113,1,21378,regular,casa,barrio_19,1009,6,1969,393408,41,41,0,0,media,0,0,1
+168493,False,125,2,46853,bueno,PH,barrio_55,1015,12,1962,390563,78,78,2,0,media,1,1,1
+974131,False,31,3,14063,muy bueno,PH,barrio_02,1034,2,1976,251802,61,61,5,1,economica,0,1,1
+247994,True,42,2,61887,excelente,PH,barrio_17,1024,3,1973,311225,67,67,1,0,economica,0,0,0
+517898,True,69,2,35655,regular,casa,barrio_25,1011,3,1969,285948,107,107,1,0,economica,0,0,1
+910000,True,90,1,45470,muy bueno,PH,barrio_28,1013,2,2017,389006,54,54,14,1,media,0,0,0
+130598,False,109,2,32303,bueno,duplex,barrio_28,1031,8,1996,385374,23,23,1,1,media,0,1,0
+368896,False,106,1,29709,regular,casa,barrio_08,1007,4,1965,347999,116,116,0,0,economica,0,0,1
+463089,True,134,3,18132,bueno,departamento,barrio_13,1004,10,1995,445302,67,67,2,1,media,0,1,1
+270187,False,135,2,68346,regular,departamento,barrio_05,1030,5,2000,374490,96,96,0,1,media,1,1,0
+870255,False,64,2,119583,bueno,duplex,barrio_34,1011,8,1987,282232,62,62,0,1,economica,0,0,1
+532742,False,103,3,23264,bueno,departamento,barrio_21,1030,2,2017,386892,66,66,8,1,media,1,1,0
+323535,True,65,1,56547,bueno,departamento,barrio_33,1021,4,2018,245289,61,61,5,1,economica,0,1,0
+451441,False,88,2,51315,bueno,PH,barrio_35,1039,5,1980,333278,62,62,6,0,economica,0,1,1
+276874,True,106,2,36552,regular,casa,barrio_42,1020,1,1983,367280,147,147,1,0,media,1,0,1
+820044,True,25,1,10708,bueno,duplex,barrio_32,1034,6,1965,187301,128,128,0,0,economica,0,0,1
+852139,True,179,1,12819,regular,duplex,barrio_38,1034,6,2005,464837,88,88,0,0,premium,1,1,0
+235535,True,115,1,19442,bueno,PH,barrio_35,1008,5,2016,434127,69,69,6,1,media,0,1,0
+471235,False,74,1,6560,bueno,PH,barrio_39,1039,7,1996,275636,62,62,1,1,economica,0,1,1
+700529,True,162,3,112019,bueno,PH,barrio_36,1029,10,1964,498884,112,112,0,0,premium,0,0,1
+417809,True,83,1,48735,bueno,duplex,barrio_18,1004,10,1986,370787,70,70,6,1,media,0,1,1
+693922,True,100,1,35455,regular,duplex,barrio_14,1000,1,2006,306910,755,75,1,0,economica,0,1,0
+570583,True,78,3,6297,excelente,departamento,barrio_47,1010,8,1952,394272,68,68,2,0,media,0,0,0
+207393,False,153,2,8441,regular,departamento,barrio_20,1000,11,1991,397636,107,107,0,0,media,1,0,1
+701551,True,91,3,36248,regular,PH,barrio_32,1014,11,1996,311062,103,103,2,0,economica,0,0,0
+261918,True,100,3,175675,regular,casa,barrio_11,1039,4,1988,414728,65,65,0,1,media,1,1,1
+649136,False,137,1,20766,excelente,duplex,barrio_25,1019,10,1995,470333,64,64,6,1,premium,1,0,0
+373232,True,115,2,72478,muy bueno,duplex,barrio_31,1000,10,2013,419852,49,49,5,1,media,1,1,0
+172100,False,93,1,24738,muy bueno,PH,barrio_37,1019,5,1958,313189,81,81,1,0,economica,0,1,1
+363414,False,134,2,37956,excelente,departamento,barrio_31,1008,11,1990,505226,57,57,7,1,premium,0,1,0
+389757,False,184,3,95966,regular,departamento,barrio_21,1034,8,2006,486975,91,91,0,0,premium,1,1,1
+631711,False,106,3,27536,excelente,departamento,barrio_57,1003,10,2008,525934,23,23,27,1,premium,1,1,0
+663350,True,99,3,20909,bueno,PH,barrio_30,1030,9,1983,396885,52,52,3,1,media,0,1,1
+939526,False,101,1,112922,muy bueno,duplex,barrio_48,1017,10,2020,428797,42,42,15,1,media,0,1,0
+645519,False,141,1,37663,bueno,PH,barrio_44,1000,12,1973,414281,86,86,1,1,media,0,0,1
+321882,True,74,2,86939,bueno,duplex,barrio_33,1026,11,1981,328328,58,58,0,0,economica,0,1,1
+815891,False,85,1,20990,excelente,duplex,barrio_53,1018,6,2008,430501,54,54,5,0,media,0,1,0
+684964,True,41,2,111898,regular,PH,barrio_07,1030,7,1981,257644,94,94,2,0,economica,1,0,1
+710989,False,54,3,45202,excelente,departamento,barrio_55,1024,8,1974,342929,56,56,4,1,economica,0,1,0
+672763,False,77,1,51422,bueno,PH,barrio_51,1031,11,1989,326822,67,67,1,0,economica,0,0,1
+509809,True,93,3,40348,muy bueno,departamento,barrio_30,1018,5,1994,439844,33,33,14,1,media,1,0,1
+106475,False,157,3,24237,excelente,PH,barrio_44,1000,4,2018,585620,25,25,14,1,premium,0,1,0
+249934,False,114,3,36267,regular,duplex,barrio_31,1005,9,1993,392424,112,112,0,0,media,1,1,0
+105437,False,63,1,25487,excelente,departamento,barrio_16,1018,12,1963,382447,55,55,6,1,media,0,0,0
+725795,True,70,1,78248,muy bueno,PH,barrio_47,1015,11,1953,335426,78,78,1,1,economica,0,0,0
+719402,False,143,1,30870,muy bueno,casa,barrio_14,1031,2,2018,481598,21,21,10,1,premium,1,1,0
+615430,False,134,1,10969,regular,PH,barrio_18,1016,12,1980,380433,833,83,2,0,media,1,1,1
+447780,True,96,1,9475,bueno,departamento,barrio_31,1034,10,1964,298346,93,93,1,0,economica,1,1,1
+147636,False,80,2,9124,muy bueno,departamento,barrio_50,1007,2,1965,344096,67,67,2,1,economica,0,0,0
+980195,False,134,1,59538,bueno,PH,barrio_23,1015,1,1957,396998,104,104,1,0,media,0,0,1
+210561,False,60,1,14455,bueno,casa,barrio_29,1030,3,1964,286890,85,85,0,0,economica,0,0,1
+152992,False,109,3,46169,bueno,PH,barrio_02,1004,12,2005,404077,37,37,3,1,media,0,0,0
+783184,True,175,3,40508,excelente,PH,barrio_06,1012,10,1996,579921,21,21,7,0,premium,1,1,0
+776142,False,102,3,34483,regular,departamento,barrio_03,1030,7,1992,374540,78,78,1,0,media,0,0,1
+864185,False,68,1,51571,muy bueno,casa,barrio_04,1023,8,1950,242774,97,97,0,0,economica,0,1,1
+326683,True,109,2,41219,excelente,departamento,barrio_52,1031,5,1997,466404,63,63,5,1,premium,0,1,0
+789948,True,79,2,4156,regular,casa,barrio_50,1020,11,2018,325722,72,72,1,1,economica,0,1,0
+344562,True,46,1,28032,bueno,departamento,barrio_49,1034,2,2015,247638,59,59,4,1,economica,0,0,0
+335506,False,120,3,51026,muy bueno,PH,barrio_03,1035,4,1978,434142,68,68,7,0,media,0,1,1
+656529,True,134,2,134892,regular,casa,barrio_04,1038,3,1992,417411,83,83,0,0,media,0,0,1
+874931,False,84,3,139968,muy bueno,PH,barrio_16,1004,11,1971,344729,52,52,1,0,economica,1,1,1
+280291,False,82,1,12204,muy bueno,casa,barrio_33,1023,7,2013,348591,25,25,9,1,economica,0,1,0
+729507,False,61,2,27453,muy bueno,duplex,barrio_20,1004,9,2015,329740,56,56,4,1,economica,0,1,1
+792561,True,90,1,10375,bueno,PH,barrio_29,1009,12,1965,304591,95,95,0,0,economica,0,1,1
+231354,False,75,3,122505,muy bueno,departamento,barrio_10,1012,3,1984,377951,52,52,8,1,media,0,1,1
+155733,True,60,2,81657,muy bueno,PH,barrio_43,1025,12,1966,341967,45,45,1,0,economica,0,0,1
+525673,False,161,1,48073,bueno,casa,barrio_18,1017,2,1993,509123,14,14,0,0,premium,0,0,1
+884510,True,111,1,41476,muy bueno,casa,barrio_03,1034,10,1970,422282,35,35,4,0,media,1,0,1
+769503,False,115,2,109590,excelente,duplex,barrio_44,1011,9,1999,511722,35,35,18,1,premium,0,0,0
+720199,True,126,1,95708,muy bueno,duplex,barrio_54,1024,10,2019,436841,43,43,6,1,media,1,1,1
+633247,True,122,1,91714,bueno,casa,barrio_00,1030,2,2011,448410,65,65,3,0,media,1,1,0
+328784,False,81,3,52331,bueno,departamento,barrio_26,1039,12,1962,349125,83,83,0,0,economica,0,0,1
+892751,True,105,3,27464,regular,casa,barrio_49,1009,10,1959,355662,141,141,0,0,media,1,0,1
+335944,False,86,2,67084,bueno,departamento,barrio_42,1029,2,2007,296885,70,70,2,0,economica,0,1,0
+655729,False,110,3,69761,regular,departamento,barrio_51,1003,7,1955,399439,101,101,0,0,media,0,0,1
+316958,True,107,2,31179,excelente,departamento,barrio_24,1021,10,1978,461156,64,64,4,0,premium,0,0,0
+673476,True,82,1,27419,bueno,PH,barrio_22,1016,6,2020,346208,26,26,15,1,economica,1,0,0
+657105,False,48,3,89918,muy bueno,casa,barrio_42,1038,5,1981,319212,87,87,2,0,economica,1,1,1
+142279,False,100,1,137488,bueno,duplex,barrio_09,1030,4,1950,358024,111,111,0,0,media,1,0,1
+338218,False,88,3,19940,bueno,PH,barrio_14,1037,7,2019,332015,50,50,7,1,economica,0,1,0
+368863,True,29,2,29416,bueno,duplex,barrio_36,1034,12,2000,225824,99,99,2,1,economica,1,1,1
+464682,False,113,1,48086,bueno,casa,barrio_40,1016,8,1973,401322,57,57,0,0,media,1,0,1
+544276,True,129,1,53599,muy bueno,PH,barrio_07,1029,9,1993,429264,86,86,1,0,media,0,0,0
+546532,False,183,3,23911,excelente,duplex,barrio_30,1001,10,1993,660024,17,17,18,1,premium,0,1,1
+370023,False,81,3,163868,excelente,casa,barrio_21,1022,10,1989,456104,22,22,5,1,premium,0,0,0
+622238,False,76,2,50903,bueno,duplex,barrio_30,1001,5,2018,373072,40,40,11,0,media,1,1,0
+683339,True,56,1,55554,muy bueno,departamento,barrio_57,1028,10,2005,333328,284,28,16,1,economica,0,1,0
+423857,True,102,3,148317,regular,duplex,barrio_04,1038,4,1968,365464,117,117,0,0,media,1,0,1
+777769,True,102,3,25355,excelente,departamento,barrio_59,1027,8,2020,499885,22,22,25,1,premium,1,1,0
+239719,True,67,2,33835,bueno,duplex,barrio_26,1033,4,2018,338993,64,64,7,1,economica,0,0,0
+196390,True,89,2,13324,bueno,casa,barrio_46,1009,12,1953,360648,67,67,1,0,media,0,0,1
+905336,False,26,3,31638,bueno,departamento,barrio_25,1039,9,1971,184969,93,93,1,1,economica,0,0,1
+142110,True,127,2,11035,regular,departamento,barrio_18,1022,8,1993,382681,82,82,2,0,media,1,1,1
+625387,True,68,1,66057,bueno,casa,barrio_46,1026,6,2012,363426,98,98,10,1,media,0,0,0
+451602,False,94,1,50818,excelente,departamento,barrio_41,1030,7,2000,472982,39,39,9,0,premium,0,1,0
+359123,True,45,2,29096,muy bueno,departamento,barrio_08,1025,10,1990,282990,70,70,2,0,economica,1,1,0
+167198,True,75,3,33512,excelente,casa,barrio_42,1012,4,1971,390232,11,11,1,1,media,0,1,1
+836722,False,85,3,66781,regular,PH,barrio_45,1024,10,1956,261853,100,100,0,0,economica,1,0,1
+227470,True,95,2,14638,muy bueno,PH,barrio_23,1026,4,2013,369146,40,40,6,1,media,1,1,1
+128274,True,112,1,42759,bueno,duplex,barrio_55,1034,2,1987,334466,84,84,1,0,economica,0,1,0
+584668,False,145,2,63552,bueno,PH,barrio_38,1019,9,1982,415241,85,85,1,0,media,1,1,1
+975664,True,121,1,8727,bueno,casa,barrio_20,1020,9,2019,392469,59,59,2,1,media,0,0,0
+376590,True,129,2,62815,bueno,casa,barrio_00,1020,5,1961,454153,146,146,0,0,premium,1,0,1
+194008,True,146,2,9516,muy bueno,departamento,barrio_40,1004,8,1968,483110,62,62,5,0,premium,0,0,1
+984332,True,115,3,33055,bueno,departamento,barrio_12,1003,9,2010,410814,66,66,1,0,media,0,0,1
+287050,False,94,3,14318,bueno,casa,barrio_45,1000,10,1970,321217,76,76,1,0,economica,0,0,1
+261004,True,130,3,114119,muy bueno,duplex,barrio_31,1026,12,2016,447192,58,58,7,1,media,0,1,0
+158023,True,133,1,14390,regular,PH,barrio_28,1016,11,2010,387231,73,73,1,1,media,0,0,1
+560041,True,118,3,9700,excelente,PH,barrio_09,1034,6,1957,466037,82,82,1,0,premium,1,0,1
+916031,False,44,1,40404,bueno,casa,barrio_42,1028,3,1982,280609,124,124,0,0,economica,1,0,0
+123422,True,66,2,26083,muy bueno,duplex,barrio_09,1005,2,2003,337526,97,97,5,0,economica,0,1,0
+457645,False,85,3,10898,muy bueno,casa,barrio_25,1004,7,1984,375300,82,82,1,0,media,0,1,0
+149456,True,122,3,55307,muy bueno,departamento,barrio_50,1014,8,1965,431021,73,73,5,0,media,1,1,1
+451549,False,94,2,7382,muy bueno,departamento,barrio_55,1036,9,1953,334681,81,81,2,0,economica,0,0,1
+581767,True,135,1,15851,excelente,duplex,barrio_59,1001,1,1950,549613,58,58,3,0,premium,1,1,1
+437804,True,141,2,22921,muy bueno,departamento,barrio_57,1007,9,1962,482959,65,65,2,1,premium,1,0,0
+321423,True,137,3,68994,bueno,casa,barrio_33,1001,10,1968,435256,132,132,0,0,media,0,1,1
+542688,True,137,2,102373,regular,departamento,barrio_12,1016,9,1971,404196,101,101,0,0,media,0,0,1
+599535,False,59,2,87748,muy bueno,departamento,barrio_50,1039,7,2010,301722,50,50,7,1,economica,0,1,0
+904678,False,112,2,32125,regular,casa,barrio_48,1027,1,1986,383540,100,100,0,0,media,1,0,1
+662995,False,74,2,5209,bueno,casa,barrio_59,1019,6,1960,338370,116,116,2,0,economica,0,0,0
+873123,True,37,1,49646,regular,casa,barrio_39,1005,8,1955,228989,110,110,0,0,economica,0,1,1
+350324,False,85,3,117766,bueno,departamento,barrio_08,1014,7,1959,323605,94,94,0,0,economica,1,1,1
+875303,True,141,1,97444,bueno,departamento,barrio_30,1020,7,1972,519812,65,65,0,1,premium,0,1,1
+605296,False,111,3,52594,muy bueno,departamento,barrio_26,1010,7,2002,397666,33,33,9,1,media,1,1,1
+449110,False,166,1,14022,muy bueno,PH,barrio_50,1028,7,1953,504041,83,83,4,0,premium,1,0,1
+257936,False,101,2,23855,muy bueno,casa,barrio_23,1039,4,1978,421082,1,1,0,0,media,1,1,0
+825381,False,181,2,170596,bueno,duplex,barrio_19,1008,8,1981,550694,54,54,3,1,premium,1,0,1
+461242,False,101,2,11691,bueno,duplex,barrio_04,1010,4,1960,283034,123,123,0,0,economica,1,1,1
+517760,False,96,2,14497,muy bueno,casa,barrio_50,1005,6,1954,408298,93,93,1,0,media,0,0,0
+261659,True,50,3,77191,bueno,departamento,barrio_45,1029,5,1966,276220,79,79,2,0,economica,0,0,1
+641637,False,134,1,25721,muy bueno,casa,barrio_02,1018,9,1960,459211,46,46,1,0,premium,1,0,1
+176876,True,77,3,14109,bueno,departamento,barrio_26,1011,11,2006,312648,68,68,4,0,economica,0,1,0
+711784,True,72,3,123300,excelente,departamento,barrio_28,1008,8,2015,461572,31,31,17,1,premium,1,1,0
+815181,False,140,3,52515,regular,casa,barrio_28,1002,2,1994,469921,155,155,0,0,premium,1,0,1
+313195,True,136,1,26757,muy bueno,casa,barrio_55,1019,9,2003,453272,64,64,4,0,premium,0,1,0
+647264,False,135,1,14521,muy bueno,departamento,barrio_09,1027,4,2004,423739,66,66,5,1,media,0,1,1
+689970,True,82,2,186825,bueno,PH,barrio_18,1009,1,2012,344012,74,74,8,1,economica,0,0,1
+812297,True,93,1,35612,muy bueno,departamento,barrio_10,1000,3,1956,384903,72,72,4,0,media,1,0,1
+204246,False,93,3,111064,regular,duplex,barrio_14,1018,12,2020,396816,53,53,1,1,media,1,1,0
+952548,True,122,3,74229,muy bueno,departamento,barrio_54,1027,6,1982,455554,73,73,4,0,premium,0,1,0
+879317,False,149,2,23939,muy bueno,duplex,barrio_56,1013,3,1988,486733,66,66,2,1,premium,1,0,1
+739524,False,108,3,24092,regular,casa,barrio_02,1010,2,2006,413352,34,34,2,0,media,0,1,0
+117756,False,164,1,115503,regular,PH,barrio_37,1006,8,1985,372398,99,99,0,0,media,0,0,0
+772499,True,126,3,117010,muy bueno,duplex,barrio_13,1029,10,1968,494162,48,48,3,0,premium,1,0,1
+458770,False,87,1,8091,bueno,casa,barrio_11,1034,5,1951,310642,113,113,0,0,economica,0,0,1
+713971,True,124,3,56377,excelente,duplex,barrio_17,1030,2,1962,535325,81,81,1,0,premium,0,0,0
+371285,True,155,2,32959,muy bueno,departamento,barrio_11,1020,5,1955,525735,72,72,2,0,premium,1,0,1
+777333,True,165,2,15888,muy bueno,departamento,barrio_29,1028,8,1977,506014,62,62,3,1,premium,1,1,0
+579187,True,137,1,44775,bueno,PH,barrio_59,1015,2,2005,481584,60,60,0,0,premium,0,1,1
+151924,True,96,2,12337,muy bueno,PH,barrio_35,1000,4,1973,377940,61,61,7,0,media,1,0,0
+675705,True,87,3,25005,excelente,casa,barrio_43,1014,1,1992,478543,17,17,8,1,premium,0,1,0
+449840,True,115,3,19172,regular,duplex,barrio_29,1028,6,1963,417614,85,85,0,1,media,0,0,1
+451206,False,154,2,24347,bueno,PH,barrio_00,1025,3,1991,445899,83,83,3,0,media,1,0,0
+203978,True,110,1,34297,bueno,duplex,barrio_05,1039,3,2017,359524,69,69,0,1,media,0,0,1
+578561,True,111,2,16116,bueno,departamento,barrio_16,1039,2,1972,399019,74,74,0,0,media,0,0,1
+872456,True,97,3,127841,muy bueno,PH,barrio_14,1009,9,1984,404818,68,68,2,1,media,0,0,0
+154166,True,84,1,53886,bueno,departamento,barrio_50,1000,6,2018,323687,58,58,7,0,economica,0,0,0
+284350,False,89,3,152611,muy bueno,duplex,barrio_50,1010,12,1993,398920,30,30,1,0,media,1,0,0
+238943,False,100,3,31950,bueno,duplex,barrio_51,1035,5,1978,373949,79,79,1,0,media,0,1,1
+337386,False,155,3,23411,regular,duplex,barrio_38,1032,3,1958,463064,135,135,0,0,premium,1,0,1
+492154,False,87,2,148261,bueno,PH,barrio_33,1003,3,2016,341925,79,79,3,1,economica,1,1,0
+595885,True,97,1,22869,excelente,duplex,barrio_38,1006,12,1993,455659,69,69,1,0,premium,0,0,0
+742866,False,65,1,31488,muy bueno,departamento,barrio_24,1022,8,1954,292031,77,77,1,0,economica,1,0,1
+141082,True,120,3,64604,bueno,departamento,barrio_40,1026,4,1989,421971,70,70,5,0,media,1,0,1
+521458,True,143,2,13492,muy bueno,duplex,barrio_47,1039,8,2018,469398,37,37,12,1,premium,1,1,0
+861121,True,152,1,64154,regular,casa,barrio_45,1030,7,2016,462065,60,60,3,1,premium,0,1,0
+408994,True,102,3,57912,bueno,PH,barrio_36,1008,2,1963,363383,107,107,1,0,media,0,0,1
+654839,False,115,1,100254,bueno,casa,barrio_03,1001,9,1979,413596,116,116,1,0,media,1,0,1
+110398,True,90,3,74016,excelente,PH,barrio_43,1025,2,2020,506935,52,52,15,1,premium,0,1,0
+626091,True,113,2,102743,muy bueno,departamento,barrio_21,1022,3,2005,426873,70,70,6,0,media,1,1,0
+266227,True,106,2,33245,muy bueno,departamento,barrio_44,1036,9,1989,396998,58,58,0,1,media,0,1,1
+416382,False,97,1,18213,regular,departamento,barrio_32,1023,6,1971,304814,108,108,0,0,economica,1,0,1
+769053,False,100,1,196416,bueno,departamento,barrio_52,1020,3,2004,336951,89,89,2,0,economica,0,1,1
+662891,False,111,3,10707,muy bueno,departamento,barrio_20,1012,1,1991,383346,61,61,8,1,media,0,1,0
+391343,False,85,2,11600,bueno,departamento,barrio_55,1003,8,1987,288885,85,85,1,0,economica,0,1,0
+917288,False,87,3,57074,excelente,PH,barrio_50,1035,9,2015,419447,38,38,19,1,media,0,1,0
+822819,True,155,3,133251,muy bueno,duplex,barrio_19,1033,3,1976,531470,72,72,0,0,premium,1,0,0
+824043,True,190,1,42262,bueno,PH,barrio_28,1006,5,1994,514828,59,59,3,1,premium,0,0,0
+625203,True,53,2,80777,muy bueno,PH,barrio_31,1028,5,1953,305234,82,82,0,0,economica,0,0,1
+688996,True,51,3,7357,excelente,duplex,barrio_46,1014,11,2000,424677,45,45,15,1,media,0,1,0
+704329,False,61,2,24352,bueno,duplex,barrio_41,1017,10,1988,293770,69,69,3,0,economica,0,0,0
+171441,True,91,2,8110,muy bueno,casa,barrio_51,1033,4,2012,421253,53,53,6,1,media,1,0,1
+164000,True,126,2,67801,excelente,PH,barrio_22,1033,7,1973,539449,52,52,11,1,premium,1,1,1
+225477,False,116,3,10532,bueno,casa,barrio_30,1007,12,2015,460990,31,31,14,1,premium,1,0,0
+795969,True,101,3,13066,excelente,casa,barrio_25,1012,5,1990,478931,79,79,5,0,premium,0,0,0
+164126,True,114,3,54788,regular,duplex,barrio_54,1032,2,1964,385269,126,126,1,0,media,0,0,1
+761699,True,71,2,84920,muy bueno,casa,barrio_18,1036,4,1961,388370,33,33,3,0,media,1,0,1
+101540,False,86,2,31979,muy bueno,duplex,barrio_35,1003,8,1963,403784,88,88,1,0,media,0,1,0
+424606,True,94,2,57305,muy bueno,duplex,barrio_07,1033,12,1971,401789,67,67,3,0,media,0,1,1
+580242,True,40,1,55839,bueno,duplex,barrio_51,1019,4,1989,288778,40,40,1,0,economica,0,0,1
+589093,True,54,3,30566,muy bueno,PH,barrio_23,1023,1,2011,344209,41,41,5,1,economica,0,0,0
+826713,False,56,1,15127,bueno,duplex,barrio_20,1003,3,2020,275270,41,41,2,0,economica,0,1,0
+335097,True,122,3,57063,bueno,casa,barrio_34,1027,5,1998,468395,68,68,0,0,premium,1,1,1
+843297,True,104,2,59307,bueno,duplex,barrio_29,1027,2,1984,444486,74,74,2,0,media,0,1,1
+547479,False,116,3,74252,muy bueno,casa,barrio_50,1026,1,1993,436626,46,46,8,1,media,1,1,1
+265939,False,31,3,46614,bueno,departamento,barrio_31,1031,8,1973,234918,94,94,1,0,economica,1,0,1
+641619,True,43,2,14260,bueno,casa,barrio_31,1037,10,1967,227641,103,103,2,0,economica,0,0,1
+259673,True,118,2,63087,excelente,departamento,barrio_06,1033,3,1988,516450,51,51,5,1,premium,0,1,0
+245597,True,25,2,36275,bueno,PH,barrio_01,1029,7,2008,253243,85,85,0,0,economica,0,1,0
+590080,False,138,2,24682,bueno,departamento,barrio_23,1039,7,1954,398544,99,99,1,0,media,1,0,1
+112102,True,31,1,28690,bueno,duplex,barrio_59,1026,9,1957,222014,42,42,2,0,economica,0,0,1
+518150,False,125,1,20906,bueno,PH,barrio_55,1026,12,1962,331294,94,94,0,0,economica,0,1,1
+775659,False,64,3,73945,muy bueno,PH,barrio_37,1021,11,1964,278757,61,61,1,0,economica,0,0,1
+305997,False,132,3,11679,bueno,duplex,barrio_37,1030,4,1960,412235,105,105,0,0,media,0,0,1
+348599,True,207,1,16403,regular,departamento,barrio_23,1002,12,1959,499062,110,110,0,0,premium,0,0,1
+584124,False,25,1,27917,excelente,departamento,barrio_10,1020,1,1951,304687,62,62,3,1,economica,0,0,1
+877076,False,119,2,132059,muy bueno,duplex,barrio_00,1017,12,1974,463178,90,90,2,0,premium,0,1,1
+904886,False,32,3,84409,muy bueno,PH,barrio_20,1036,2,2001,298566,60,60,4,0,economica,0,1,0
+310824,True,110,3,9772,excelente,PH,barrio_18,1002,2,1961,527681,51,51,3,0,premium,0,0,1
+911044,False,88,3,107053,excelente,departamento,barrio_11,1025,2,1973,465058,52,52,3,1,premium,0,1,1
+982799,False,100,1,106888,bueno,casa,barrio_15,1007,2,2019,376945,553,55,2,0,media,0,0,0
+275498,False,63,1,14197,muy bueno,casa,barrio_01,1035,6,1961,283910,88,88,2,0,economica,1,1,1
+447525,False,122,2,4831,muy bueno,casa,barrio_36,1034,8,2020,388598,71,71,11,1,media,1,0,0
+385891,True,44,1,34277,bueno,casa,barrio_55,1009,9,1986,250341,68,68,2,0,economica,0,1,0
+459199,True,138,2,89138,bueno,PH,barrio_41,1034,1,2001,445763,71,71,2,0,media,0,1,1
+635942,False,81,2,129704,regular,casa,barrio_26,1019,4,1972,324325,115,115,1,0,economica,1,0,1
+718856,False,46,3,18094,muy bueno,PH,barrio_25,1038,2,1973,308379,66,66,0,1,economica,0,0,1
+597906,False,151,1,147500,muy bueno,duplex,barrio_18,1029,2,1977,526360,77,77,0,0,premium,1,0,1
+138569,True,93,3,6110,muy bueno,duplex,barrio_08,1001,9,1959,358877,89,89,1,0,media,1,0,1
+247564,True,162,3,27053,bueno,departamento,barrio_35,1008,8,1972,529171,76,76,3,0,premium,0,1,0
+277346,False,138,3,26010,bueno,casa,barrio_33,1016,3,2013,425284,53,53,0,0,media,1,0,1
+786629,False,67,3,91297,bueno,duplex,barrio_00,1008,4,1950,357632,82,82,1,0,media,1,0,0
+323286,True,92,3,102605,bueno,casa,barrio_24,1005,12,1990,382831,67,67,1,0,media,1,1,1
+184354,True,99,1,77915,excelente,PH,barrio_16,1039,7,1998,433366,43,43,15,1,media,0,0,0
+346611,False,148,2,12327,excelente,PH,barrio_10,1034,3,1960,529483,42,42,5,1,premium,0,1,1
+744389,True,110,2,72410,excelente,casa,barrio_42,1017,12,1957,501279,92,92,1,0,premium,0,1,0
+459629,True,101,3,54570,excelente,PH,barrio_31,1008,3,1989,471624,44,44,2,0,premium,1,1,1
+144500,True,88,1,9538,excelente,casa,barrio_38,1007,4,1965,401887,69,69,1,0,media,0,0,1
+970188,True,93,2,6949,bueno,casa,barrio_42,1036,9,2019,306190,67,67,4,1,economica,0,1,0
+826025,True,141,1,83316,regular,duplex,barrio_58,1013,7,1963,409176,162,162,0,0,media,0,0,1
+916342,False,95,1,31443,regular,duplex,barrio_48,1000,1,1959,317492,73,73,1,0,economica,0,0,1
+397904,False,81,3,12989,bueno,departamento,barrio_37,1015,10,1973,296699,101,101,1,0,economica,0,0,0
+283037,False,75,1,30744,bueno,duplex,barrio_52,1018,3,1973,304008,1062,106,1,0,economica,0,1,1
+666365,False,76,3,48593,bueno,duplex,barrio_28,1024,9,1961,328040,94,94,1,0,economica,0,1,1
+941451,True,46,3,33987,excelente,duplex,barrio_59,1013,5,1997,417775,37,37,10,1,media,0,1,1
+291489,True,69,3,10492,bueno,casa,barrio_45,1036,10,1974,317227,96,96,2,0,economica,0,1,0
+481339,True,147,1,164135,excelente,departamento,barrio_39,1025,11,1987,606873,45,45,10,1,premium,0,1,0
+887086,True,88,1,81095,muy bueno,PH,barrio_54,1039,10,1967,310488,928,93,1,1,economica,0,0,1
+204176,False,120,2,27770,muy bueno,duplex,barrio_30,1014,12,1956,482189,47,47,2,1,premium,1,0,0
+989864,True,25,2,28679,muy bueno,duplex,barrio_43,1026,7,1954,257532,97,97,0,1,economica,0,0,1
+153013,False,115,3,48416,bueno,departamento,barrio_17,1014,1,1953,336659,107,107,0,0,economica,1,1,1
+366431,True,89,2,14710,muy bueno,casa,barrio_57,1027,7,2011,411020,31,31,19,1,media,0,0,1
+561794,True,78,1,47011,bueno,duplex,barrio_37,1029,6,1968,308247,78,78,2,0,economica,0,0,1
+867104,True,101,3,12524,excelente,departamento,barrio_46,1012,9,1971,462777,49,49,10,1,premium,1,0,1
+870745,True,78,3,34323,bueno,departamento,barrio_27,1037,3,1991,332613,77,77,0,0,economica,0,0,1
+494871,False,25,2,14259,bueno,duplex,barrio_52,1034,9,1956,148090,107,107,0,0,economica,0,1,1
+566271,False,127,3,14847,muy bueno,PH,barrio_04,1035,6,1992,359769,78,78,2,0,media,0,1,0
+573074,True,104,3,135480,muy bueno,departamento,barrio_06,1008,9,1987,432657,57,57,3,0,media,1,0,1
+402437,False,84,2,38078,bueno,casa,barrio_30,1028,6,2006,424475,35,35,13,1,media,1,1,1
+626992,False,61,1,42870,muy bueno,departamento,barrio_43,1004,5,1958,293915,67,67,2,0,economica,1,0,1
+164567,True,44,2,7266,bueno,duplex,barrio_48,1004,3,1951,258523,71,71,1,0,economica,0,0,0
+741588,True,103,2,22525,muy bueno,departamento,barrio_26,1038,10,2004,412158,47,47,12,1,media,0,1,0
+717343,True,151,3,52521,bueno,PH,barrio_38,1006,1,1976,437564,109,109,1,0,media,1,0,1
+217720,True,102,3,42417,bueno,departamento,barrio_33,1034,3,1954,343314,120,120,0,0,economica,0,0,1
+843931,False,47,2,6482,bueno,duplex,barrio_57,1017,6,1989,306290,51,51,2,1,economica,0,0,0
+796244,True,103,2,42861,bueno,duplex,barrio_39,1012,2,1982,384983,97,97,2,1,media,1,1,1
+919133,True,93,2,48691,bueno,PH,barrio_25,1002,12,2017,367103,68,68,0,1,media,1,1,0
+217549,False,125,2,101418,bueno,duplex,barrio_58,1027,5,2017,443784,71,71,2,0,media,1,1,1
+490663,True,116,2,21500,bueno,PH,barrio_06,1028,3,1988,415663,81,81,0,0,media,1,0,1
+130531,False,25,2,6041,bueno,departamento,barrio_59,1018,4,1961,271478,83,83,1,0,economica,0,0,1
+809292,True,114,2,16360,bueno,PH,barrio_09,1032,3,2003,356735,83,83,1,1,media,0,1,0
+251201,True,60,3,15098,regular,duplex,barrio_17,1012,8,1964,268977,111,111,0,0,economica,0,0,1
+417253,True,45,1,65471,muy bueno,duplex,barrio_49,1022,6,2009,293310,25,25,5,1,economica,0,1,0
+650852,True,88,1,4132,excelente,casa,barrio_44,1011,3,1992,455767,6,6,6,1,premium,0,0,0
+366441,True,109,3,25370,bueno,PH,barrio_58,1023,11,1975,326298,99,99,1,0,economica,0,1,1
+822435,False,38,3,113622,excelente,casa,barrio_44,1005,8,2019,398857,27,27,19,1,media,0,1,0
+557166,False,120,2,36526,regular,PH,barrio_38,1019,5,1986,325579,94,94,2,0,economica,1,0,1
+242157,False,122,2,74388,regular,PH,barrio_20,1021,7,1977,330713,97,97,0,0,economica,0,0,1
+609373,True,97,2,9765,muy bueno,departamento,barrio_00,1022,8,1963,366355,75,75,1,1,media,1,1,1
+596118,False,65,2,10081,muy bueno,duplex,barrio_07,1017,2,1996,288254,65,65,1,1,economica,0,0,0
+410755,True,61,1,114668,muy bueno,duplex,barrio_17,1025,10,1969,283768,71,71,2,0,economica,0,0,0
+894678,False,131,2,39378,regular,casa,barrio_02,1020,4,1960,445555,138,138,0,0,media,1,0,1
+286247,False,42,1,39443,muy bueno,casa,barrio_30,1011,1,1958,316355,98,98,7,1,economica,1,0,1
+248723,False,132,1,14846,bueno,casa,barrio_46,1008,7,1995,412941,75,75,2,1,media,0,1,1
+510239,True,89,2,39365,bueno,duplex,barrio_57,1025,11,2015,433977,67,67,5,1,media,1,1,1
+364750,False,92,3,14520,bueno,PH,barrio_29,1037,9,1967,361058,97,97,1,0,media,0,1,1
+971260,False,35,1,93854,excelente,PH,barrio_52,1030,4,1965,288240,90,90,4,0,economica,1,0,1
+216970,True,90,3,321986,regular,duplex,barrio_59,1025,5,1993,407854,93,93,1,0,media,0,0,1
+121976,False,116,2,53485,muy bueno,duplex,barrio_51,1036,8,1960,408740,79,79,3,0,media,0,0,1
+393760,True,48,3,21852,muy bueno,casa,barrio_27,1035,3,1956,300061,90,90,2,1,economica,0,0,1
+107820,True,112,2,4784,muy bueno,casa,barrio_19,1020,10,1995,457524,28,28,2,1,premium,0,1,0
+856855,False,98,3,9437,muy bueno,departamento,barrio_58,1004,4,1987,374114,78,78,1,0,media,1,1,1
+680351,False,72,2,125981,excelente,departamento,barrio_14,1025,3,1952,416283,595,59,3,0,media,0,1,0
+106844,True,125,3,15941,bueno,PH,barrio_24,1024,2,1966,386529,86,86,0,0,media,0,1,1
+627847,True,25,2,26993,regular,casa,barrio_04,1011,9,1964,152887,167,167,0,0,economica,0,0,1
+751540,True,107,2,61344,muy bueno,departamento,barrio_47,1033,1,1998,415720,58,58,5,0,media,1,1,0
+290044,True,152,2,118875,bueno,casa,barrio_38,1034,10,1997,456517,127,127,1,0,premium,0,1,0
+550708,True,145,3,30956,regular,casa,barrio_05,1013,12,2003,430076,95,95,0,0,media,0,0,0
+845958,True,109,3,26272,bueno,casa,barrio_13,1019,2,1957,416920,47,47,3,0,media,0,0,1
+791780,False,84,1,38457,bueno,casa,barrio_33,1007,2,2010,288050,68,68,2,0,economica,0,0,0
+586552,True,73,3,21980,regular,PH,barrio_32,1007,12,1964,276233,112,112,0,0,economica,0,0,1
+478486,True,84,3,22947,regular,departamento,barrio_48,1010,2,2020,350891,68,68,2,0,economica,0,1,1
+206464,True,114,3,50489,excelente,departamento,barrio_15,1014,5,2011,512759,56,56,4,1,premium,0,1,0
+768056,True,67,2,42118,bueno,departamento,barrio_55,1010,11,1982,254975,84,84,0,0,economica,1,1,1
+835584,True,122,2,199842,excelente,PH,barrio_26,1006,2,2005,498252,36,36,11,1,premium,1,1,0
+331400,True,170,3,51590,excelente,duplex,barrio_49,1017,8,1997,637871,29,29,2,0,premium,1,1,0
+832741,True,93,2,91210,regular,PH,barrio_14,1024,5,2004,326058,80,80,1,1,economica,0,1,1
+553543,True,48,2,15413,muy bueno,PH,barrio_02,1013,6,1951,281244,71,71,3,0,economica,0,0,1
+741931,False,48,2,55278,muy bueno,PH,barrio_03,1021,12,1955,288560,58,58,2,1,economica,0,0,1
+452104,False,122,2,20366,muy bueno,PH,barrio_22,1010,8,2014,427641,28,28,16,1,media,1,1,0
+923150,True,93,1,49830,regular,casa,barrio_57,1028,4,2005,391019,61,61,2,1,media,0,1,1
+840443,True,126,1,62995,bueno,duplex,barrio_02,1025,12,1993,441080,62,62,0,1,media,1,1,0
+948553,True,76,1,37794,regular,casa,barrio_22,1038,7,1972,344117,140,140,1,0,economica,1,1,1
+604470,True,124,2,249163,muy bueno,departamento,barrio_06,1002,2,1979,471228,69,69,0,0,premium,0,1,0
+900757,False,89,2,113821,excelente,PH,barrio_55,1034,5,1977,408518,59,59,0,0,media,0,1,0
+958944,False,69,2,93134,muy bueno,departamento,barrio_40,1013,3,1980,359005,46,46,7,1,media,0,1,1
+332354,True,81,3,66932,muy bueno,casa,barrio_45,1002,8,1994,426541,33,33,5,1,media,1,1,0
+156275,True,53,1,148849,excelente,duplex,barrio_42,1027,11,2003,392890,45,45,4,0,media,0,0,1
+268972,True,165,2,11504,muy bueno,casa,barrio_39,1006,1,1977,557816,43,43,4,1,premium,1,0,1
+916026,True,92,1,108687,regular,casa,barrio_46,1007,10,2009,359381,114,114,1,0,media,1,1,1
+750049,False,118,1,16432,excelente,duplex,barrio_00,1039,11,1956,499592,61,61,3,0,premium,0,1,0
+433245,True,76,2,23122,bueno,PH,barrio_51,1008,12,2007,353944,76,76,1,0,economica,0,1,0
+884098,True,58,1,56904,regular,casa,barrio_44,1021,8,1998,268483,86,86,0,0,economica,1,1,1
+276419,True,87,1,97399,bueno,duplex,barrio_44,1008,4,1986,362601,77,77,1,0,media,0,0,0
+347250,True,134,3,14431,excelente,duplex,barrio_23,1004,2,1976,536972,61,61,1,1,premium,0,1,1
+358021,True,77,3,24100,bueno,casa,barrio_48,1000,12,1976,339469,75,75,0,0,economica,0,1,1
+561973,True,65,1,39263,bueno,departamento,barrio_22,1000,5,1975,302042,78,78,4,0,economica,1,0,1
+890829,True,100,1,31285,bueno,departamento,barrio_02,1018,5,2017,403742,40,40,3,1,media,1,1,0
+318165,True,112,1,71914,regular,casa,barrio_54,1017,9,1951,367796,60,60,0,0,media,0,0,1
+192235,False,152,2,567356,regular,casa,barrio_14,1001,9,1995,464981,67,67,0,0,premium,1,0,1
+634136,True,107,3,50790,muy bueno,casa,barrio_06,1013,10,2020,469493,47,47,7,1,premium,1,1,1
+749783,True,118,1,20168,excelente,casa,barrio_37,1010,11,1988,477850,81,81,4,0,premium,1,0,0
+233865,False,120,1,12872,regular,departamento,barrio_14,1022,11,1995,382255,86,86,0,0,media,0,1,0
+272182,True,55,2,27995,bueno,departamento,barrio_51,1039,3,1992,332758,67,67,1,0,economica,0,0,1
+509171,False,61,3,17117,bueno,casa,barrio_26,1027,3,1985,333943,104,104,1,0,economica,1,1,0
+270177,False,57,2,52788,regular,departamento,barrio_00,1036,3,1994,261160,89,89,3,0,economica,1,0,1
+977121,True,48,3,52136,muy bueno,casa,barrio_57,1007,8,2014,379839,38,38,22,1,media,1,0,0
+931369,True,123,2,25071,muy bueno,duplex,barrio_30,1008,7,2000,518268,50,50,16,1,premium,1,0,1
+185427,False,105,1,177720,muy bueno,casa,barrio_15,1030,11,2010,384606,68,68,7,0,media,1,0,0
+856033,True,98,2,20164,bueno,duplex,barrio_40,1012,11,1989,360411,58,58,2,1,media,1,0,1
+319852,True,25,3,33006,muy bueno,PH,barrio_31,1033,10,2004,271106,66,66,6,1,economica,1,1,0
+416211,False,167,2,60556,regular,duplex,barrio_01,1018,1,2012,478440,96,96,2,0,premium,1,1,0
+154144,True,64,1,74135,bueno,PH,barrio_45,1008,9,1965,304273,87,87,0,1,economica,0,0,1
+288210,False,167,1,100918,excelente,departamento,barrio_24,1033,11,2011,584566,50,50,8,1,premium,1,1,0
+583595,False,44,2,51164,muy bueno,PH,barrio_41,1022,12,1998,264238,19,19,6,1,economica,0,1,0
+946509,False,67,2,84181,excelente,departamento,barrio_53,1032,5,1981,414969,51,51,4,0,media,1,0,1
+530997,False,25,2,21331,excelente,casa,barrio_36,1018,10,2004,380948,10,10,9,0,media,0,1,0
+332953,False,108,2,75695,muy bueno,departamento,barrio_40,1005,5,1961,427303,66,66,3,0,media,0,0,1
+646859,True,56,2,74891,excelente,departamento,barrio_15,1027,2,1999,389187,53,53,0,0,media,0,1,0
+736142,False,57,2,121821,bueno,casa,barrio_14,1004,5,1990,327062,26,26,4,0,economica,1,0,1
+946491,False,47,1,9559,regular,casa,barrio_24,1026,4,2013,253537,53,53,1,0,economica,0,0,1
+841538,False,122,2,17575,regular,duplex,barrio_51,1016,11,1994,391899,67,67,1,0,media,0,0,1
+774499,False,120,2,70159,regular,PH,barrio_31,1031,3,1987,378552,124,124,0,0,media,1,0,1
+398843,False,158,3,4354,regular,departamento,barrio_20,1034,2,1987,406101,103,103,0,0,media,1,1,1
+203259,True,71,3,53831,bueno,duplex,barrio_46,1016,7,1989,372668,61,61,2,1,media,1,1,0
+966350,False,103,2,84782,muy bueno,casa,barrio_51,1035,7,2013,426096,29,29,6,1,media,0,0,1
+971795,True,50,1,22900,muy bueno,departamento,barrio_54,1004,7,2005,242973,48,48,6,0,economica,0,1,1
+309549,True,83,1,25741,muy bueno,duplex,barrio_17,1004,2,1956,351497,60,60,0,0,economica,1,0,1
+452187,True,77,1,15378,regular,PH,barrio_42,1039,6,1987,249338,96,96,0,0,economica,0,0,1
+194817,False,111,1,23927,muy bueno,departamento,barrio_35,1022,12,1970,428478,53,53,0,0,media,0,0,1
+493665,False,131,3,24488,bueno,departamento,barrio_26,1018,2,1961,430263,87,87,2,0,media,1,0,0
+411165,True,130,1,21030,regular,casa,barrio_23,1006,10,2011,393815,32,32,3,0,media,1,0,0
+307401,True,66,1,20128,bueno,casa,barrio_06,1011,2,2010,355819,42,42,2,0,media,1,0,0
+665642,True,130,2,29237,bueno,casa,barrio_16,1027,3,2016,448789,62,62,2,1,media,0,1,0
+276406,True,93,1,28956,bueno,duplex,barrio_32,1032,11,1977,330010,98,98,0,0,economica,0,1,0
+523351,True,84,3,162642,muy bueno,PH,barrio_53,1036,4,1980,358638,74,74,1,0,media,0,1,0
+632493,False,70,3,26493,muy bueno,departamento,barrio_51,1016,7,2005,340125,40,40,6,1,economica,0,1,0
+513307,True,75,3,47826,muy bueno,duplex,barrio_11,1018,5,1963,394618,84,84,1,0,media,1,0,1
+945066,True,156,2,22891,regular,casa,barrio_40,1006,8,1953,477550,82,82,1,0,premium,0,0,1
+266834,True,106,2,22659,muy bueno,casa,barrio_05,1003,5,1979,433179,1066,107,0,0,media,0,1,1
+771111,True,101,2,9288,muy bueno,departamento,barrio_40,1017,6,1994,397231,49,49,5,0,media,0,1,0
+507721,False,86,1,10331,bueno,duplex,barrio_20,1023,10,1982,314289,56,56,2,0,economica,0,0,0
+119882,True,181,2,13827,muy bueno,PH,barrio_26,1004,7,1964,522235,65,65,2,1,premium,1,0,0
+209642,True,141,3,42064,bueno,duplex,barrio_43,1016,7,1986,471361,83,83,2,0,premium,1,0,1
+673940,False,70,1,85900,bueno,casa,barrio_25,1025,10,2016,311683,84,84,2,1,economica,1,1,0
+227688,True,85,1,8696,regular,duplex,barrio_48,1032,6,1969,335525,91,91,1,0,economica,0,0,1
+877141,False,88,2,23406,bueno,casa,barrio_32,1037,10,1978,301265,132,132,2,0,economica,0,0,1
+453804,False,100,2,12167,regular,casa,barrio_59,1013,9,1972,344423,117,117,0,0,economica,0,0,1
+931122,False,70,3,29395,bueno,PH,barrio_38,1015,11,1970,277253,92,92,3,0,economica,1,0,1
+353257,False,110,3,85872,regular,casa,barrio_17,1034,6,1996,371008,123,123,0,0,media,1,0,1
+662960,True,146,3,25400,excelente,duplex,barrio_46,1027,7,1976,612034,86,86,4,0,premium,1,1,0
+106403,True,49,2,34961,bueno,duplex,barrio_24,1010,2,1994,257808,117,117,1,0,economica,0,1,0
+796379,True,56,3,116330,bueno,PH,barrio_32,1027,2,1951,269912,89,89,0,0,economica,0,0,1
+673215,True,78,1,52382,bueno,departamento,barrio_08,1006,2,1997,304398,65,65,3,0,economica,0,1,1
+342933,True,80,2,19770,excelente,casa,barrio_07,1017,8,1957,413011,115,115,0,0,media,0,1,0
+763483,True,165,1,41239,muy bueno,PH,barrio_34,1012,4,1976,496763,49,49,4,1,premium,1,1,1
+186889,True,130,3,18731,excelente,PH,barrio_11,1039,4,2011,564696,17,17,16,1,premium,1,1,1
+204425,True,128,2,50837,bueno,duplex,barrio_59,1001,8,1973,431800,65,65,4,0,media,1,0,1
+385266,False,86,2,54845,regular,PH,barrio_51,1034,5,1999,301520,80,80,2,0,economica,1,1,1
+101405,True,85,1,12164,muy bueno,casa,barrio_42,1011,2,1974,326700,74,74,1,0,economica,1,0,1
+611452,True,44,3,41778,bueno,casa,barrio_44,1001,7,2014,282379,42,42,3,0,economica,0,1,1
+133090,True,122,2,33055,muy bueno,duplex,barrio_35,1026,7,2017,483037,22,22,18,1,premium,1,1,0
+772749,False,112,3,56148,excelente,casa,barrio_03,1027,2,2014,551244,4,4,24,1,premium,0,1,0
+569088,True,140,2,70621,bueno,duplex,barrio_23,1005,4,1978,473040,76,76,0,0,premium,0,1,1
+597171,False,88,1,53208,excelente,casa,barrio_29,1001,3,1972,464205,123,123,4,1,premium,0,1,0
+911349,True,90,2,28494,muy bueno,PH,barrio_54,1004,9,1993,358515,68,68,5,0,media,0,0,0
+754380,True,101,2,76624,bueno,duplex,barrio_13,1016,3,2007,394053,68,68,3,0,media,1,0,0
+493488,False,126,1,18062,bueno,departamento,barrio_29,1005,1,1987,397197,67,67,3,1,media,0,1,1
+695958,True,44,1,12627,regular,casa,barrio_20,1028,4,2002,259528,81,81,1,0,economica,1,1,1
+785939,True,121,3,2818,muy bueno,duplex,barrio_08,1003,6,2012,447152,37,37,10,0,media,0,1,0
+184409,True,94,2,34334,regular,casa,barrio_06,1031,10,2003,367336,3,3,1,0,media,0,0,0
+896649,True,58,2,18822,bueno,PH,barrio_21,1034,1,1976,249753,78,78,0,1,economica,1,1,1
+401950,True,25,2,49921,muy bueno,duplex,barrio_04,1028,11,1967,236477,66,66,1,0,economica,1,1,0
+379073,True,90,3,7503,regular,PH,barrio_04,1037,4,1980,292992,96,96,0,0,economica,0,0,1
+568709,True,146,1,21639,regular,casa,barrio_21,1037,5,1990,400170,65,65,1,0,media,0,0,1
+179988,False,154,2,52903,muy bueno,duplex,barrio_12,1001,1,2009,488828,73,73,4,0,premium,0,1,0
+834185,True,107,1,15933,regular,casa,barrio_33,1013,4,1971,343164,110,110,0,0,economica,0,1,1
+485473,True,164,1,50383,bueno,PH,barrio_01,1030,6,1961,438078,119,119,0,0,media,0,0,1
+274472,False,93,1,23257,bueno,PH,barrio_18,1013,8,1972,345568,77,77,1,1,economica,0,1,0
+731716,True,128,2,35375,bueno,departamento,barrio_27,1029,10,1992,459522,76,76,1,0,premium,1,0,1
+818817,False,79,2,58462,bueno,departamento,barrio_57,1030,7,1966,381496,68,68,2,1,media,0,0,1
+891546,True,77,2,77827,muy bueno,casa,barrio_38,1039,2,1978,344577,93,93,2,0,economica,0,1,1
+235479,False,71,3,39105,excelente,duplex,barrio_52,1013,5,1968,417774,94,94,0,0,media,0,0,0
+683827,False,25,2,18935,regular,casa,barrio_20,1013,9,2019,183627,59,59,2,0,economica,0,1,0
+530446,True,140,2,25174,excelente,departamento,barrio_26,1000,8,1986,536040,52,52,2,0,premium,1,0,0
+215317,False,73,3,60450,muy bueno,PH,barrio_25,1011,8,2001,291523,63,63,4,1,economica,0,1,0
+412996,False,67,2,16043,muy bueno,PH,barrio_53,1011,7,1986,294286,58,58,0,1,economica,0,1,0
+424976,False,54,3,31494,muy bueno,PH,barrio_57,1018,7,1950,334559,52,52,4,0,economica,0,1,1
+697911,True,88,1,26670,muy bueno,PH,barrio_57,1016,12,1968,362943,39,39,5,1,media,0,0,1
+658998,True,157,3,33433,muy bueno,PH,barrio_45,1034,8,2009,473246,47,47,10,0,premium,1,1,1
+666078,True,168,3,16197,bueno,duplex,barrio_30,1030,8,1986,565048,61,61,4,1,premium,0,1,0
+739235,False,37,2,8254,bueno,departamento,barrio_32,1029,5,1999,189295,71,71,1,0,economica,0,0,0
+531329,True,83,1,55083,bueno,duplex,barrio_58,1000,6,2004,275516,76,76,1,1,economica,0,0,0
+893320,True,59,2,78535,regular,duplex,barrio_17,1018,9,1989,278303,114,114,0,0,economica,0,0,1
+191505,False,130,3,8658,muy bueno,duplex,barrio_20,1029,11,1991,457685,74,74,3,1,premium,1,0,0
+803718,True,105,2,48783,regular,duplex,barrio_53,1009,10,1966,342846,136,136,0,0,economica,0,0,1
+355379,False,73,1,86383,bueno,duplex,barrio_23,1016,8,1967,278636,111,111,0,0,economica,0,0,0
+665939,True,98,1,58497,regular,casa,barrio_14,1029,10,1960,355859,72,72,0,0,media,1,0,1
+719768,False,78,2,26021,bueno,duplex,barrio_33,1031,1,1971,295885,127,127,0,1,economica,0,1,1
+707156,True,151,3,17072,muy bueno,PH,barrio_19,1034,4,1994,498040,54,54,3,1,premium,1,1,0
+483906,True,114,2,38746,muy bueno,departamento,barrio_53,1017,3,2015,442151,58,58,2,1,media,0,1,1
+327347,True,118,3,44277,bueno,PH,barrio_54,1015,8,1981,395565,88,88,1,0,media,0,0,1
+985631,True,25,3,39208,regular,departamento,barrio_18,1015,10,1992,247640,79,79,3,1,economica,1,0,1
+919418,True,93,1,31442,bueno,PH,barrio_31,1026,2,2011,343803,48,48,4,1,economica,1,1,0
+786682,True,168,1,15274,bueno,duplex,barrio_59,1016,3,1998,492162,56,56,3,1,premium,1,0,1
+490632,False,141,3,50927,muy bueno,casa,barrio_44,1016,6,1968,473466,25,25,0,0,premium,1,0,1
+461612,True,30,2,52928,muy bueno,departamento,barrio_12,1006,12,1969,277130,77,77,1,0,economica,1,0,1
+373423,True,84,3,42645,bueno,duplex,barrio_35,1019,1,1995,408064,95,95,4,1,media,0,0,1
+203251,True,53,3,39688,bueno,departamento,barrio_37,1009,11,1970,270536,93,93,0,0,economica,0,1,1
+528507,True,155,2,139163,excelente,duplex,barrio_39,1020,3,1967,621309,67,67,8,0,premium,1,1,1
+269504,False,104,1,22037,muy bueno,casa,barrio_01,1035,4,1992,352120,49,49,0,1,economica,0,1,0
+284593,True,68,3,101230,bueno,PH,barrio_17,1031,8,1995,286006,76,76,0,0,economica,0,1,1
+802819,False,96,2,20187,bueno,duplex,barrio_51,1019,9,1967,363712,94,94,2,1,media,1,1,1
+124836,False,25,1,88182,regular,duplex,barrio_14,1039,11,1953,201470,103,103,0,0,economica,0,0,1
+136771,False,57,2,97411,excelente,casa,barrio_17,1039,1,2004,383509,106,106,5,0,media,1,1,1
+840170,False,96,1,28726,bueno,duplex,barrio_19,1017,1,1977,363047,76,76,0,1,media,0,0,1
+996669,True,125,1,137142,bueno,departamento,barrio_10,1030,6,1994,423858,67,67,0,1,media,1,1,1
+727609,False,27,2,52851,excelente,departamento,barrio_09,1013,7,1962,306444,75,75,1,0,economica,0,1,1
+150130,False,82,2,18001,muy bueno,departamento,barrio_20,1035,4,1972,301377,75,75,2,0,economica,0,0,0
+767694,False,130,2,26921,regular,PH,barrio_52,1014,8,1993,332720,100,100,0,0,economica,1,0,0
+653195,True,44,3,89878,regular,PH,barrio_00,1010,4,1958,243228,104,104,0,0,economica,0,0,1
+304679,True,103,2,75997,regular,departamento,barrio_16,1005,12,1972,384708,97,97,4,0,media,0,0,1
+728301,False,97,3,15577,muy bueno,casa,barrio_03,1033,3,2001,427563,19,19,10,1,media,1,1,0
+717269,True,155,3,32487,regular,duplex,barrio_33,1011,8,2004,440214,106,106,0,0,media,0,1,0
+803988,False,87,3,42737,excelente,casa,barrio_15,1032,7,1975,451246,89,89,2,0,premium,1,0,0
+724055,True,89,1,24195,excelente,casa,barrio_47,1003,2,1958,465649,83,83,4,0,premium,0,1,1
+466213,True,125,3,239483,bueno,PH,barrio_35,1020,8,1951,441683,102,102,0,0,media,1,0,1
+815938,True,49,1,43780,muy bueno,departamento,barrio_47,1017,2,1989,310661,70,70,3,1,economica,0,1,1
+844737,True,87,2,34563,bueno,PH,barrio_38,1017,7,1999,321219,79,79,3,0,economica,0,0,1
+943724,True,79,2,94153,regular,duplex,barrio_26,1006,8,1992,325842,90,90,1,0,economica,0,1,1
+605357,False,90,1,27115,muy bueno,casa,barrio_51,1002,1,1978,374107,40,40,4,0,media,0,0,0
+810937,False,125,1,81303,regular,departamento,barrio_28,1013,3,1951,390607,118,118,0,0,media,1,0,1
+813958,False,114,3,9565,regular,PH,barrio_56,1018,4,1966,370264,101,101,0,0,media,0,0,1
+334321,False,69,3,25263,bueno,duplex,barrio_59,1031,12,1952,296523,113,113,1,0,economica,0,0,1
+434387,False,100,1,84057,regular,PH,barrio_35,1018,3,1982,367608,87,87,0,0,media,1,1,1
+788050,True,147,2,127537,bueno,departamento,barrio_40,1009,12,1971,474779,76,76,2,0,premium,1,1,1
+945721,False,66,1,19562,muy bueno,PH,barrio_15,1010,7,1955,206503,101,101,2,1,economica,0,0,1
+462656,False,100,3,17821,muy bueno,duplex,barrio_48,1024,12,1993,389049,11,11,8,1,media,0,1,1
+913712,False,88,3,57180,muy bueno,departamento,barrio_40,1017,10,1976,382071,50,50,0,1,media,1,1,0
+882630,True,93,3,22061,muy bueno,duplex,barrio_54,1036,4,2018,374243,64,64,11,1,media,0,1,1
+505385,False,38,2,29294,bueno,duplex,barrio_16,1017,7,1979,237908,80,80,1,1,economica,0,1,1
+101673,True,144,1,73213,muy bueno,departamento,barrio_47,1022,9,1956,430891,78,78,0,0,media,1,0,1
+964117,True,68,1,23499,bueno,casa,barrio_28,1002,1,2000,338831,27,27,1,0,economica,0,1,1
+435292,False,131,1,7538,bueno,duplex,barrio_11,1007,8,1999,394511,58,58,5,1,media,0,0,0
+700078,False,73,3,12825,excelente,casa,barrio_10,1034,6,2015,420696,84,84,22,1,media,0,1,0
+346416,True,73,1,36606,bueno,departamento,barrio_33,1013,1,1999,302945,85,85,2,0,economica,0,1,0
+853470,True,137,3,8178,regular,casa,barrio_19,1016,11,1975,433727,111,111,1,0,media,1,0,1
+417649,False,130,3,28632,bueno,PH,barrio_06,1023,4,1997,398937,63,63,3,1,media,1,1,0
+757459,True,102,1,11924,bueno,departamento,barrio_25,1002,11,2006,350735,68,68,2,1,economica,0,0,1
+483634,True,122,3,134854,bueno,PH,barrio_39,1020,3,1986,431252,47,47,3,0,media,1,1,0
+976612,False,85,3,205277,bueno,duplex,barrio_19,1013,7,2006,373994,73,73,5,1,media,1,1,0
+617548,False,95,2,15575,excelente,duplex,barrio_57,1005,5,2018,555754,37,37,25,1,premium,1,1,0
+792730,True,72,2,44596,bueno,duplex,barrio_46,1016,11,2003,329152,28,28,1,0,economica,0,1,1
+531303,True,127,1,16843,bueno,casa,barrio_30,1017,12,1985,479836,35,35,5,1,premium,1,0,1
+319127,True,71,2,28355,bueno,departamento,barrio_56,1007,10,1984,283805,79,79,0,0,economica,0,0,1
+381454,True,147,3,153703,muy bueno,casa,barrio_25,1021,11,2009,509731,27,27,5,1,premium,1,1,0
+370661,False,84,2,25000,bueno,duplex,barrio_08,1029,10,2011,333301,64,64,0,1,economica,0,1,0
+931933,False,96,1,28888,regular,PH,barrio_02,1010,4,1968,330528,69,69,1,1,economica,1,0,0
+804940,True,122,2,17085,bueno,departamento,barrio_56,1038,12,1950,377878,1029,103,0,0,media,1,0,1
+268236,True,96,3,90849,muy bueno,PH,barrio_57,1024,7,2007,386219,38,38,14,0,media,1,1,0
+742775,True,85,1,2669,muy bueno,PH,barrio_44,1030,5,1966,379609,70,70,1,0,media,0,1,1
+214558,True,94,3,25483,muy bueno,departamento,barrio_06,1002,3,2020,371350,28,28,12,1,media,0,1,0
+463149,True,126,1,35007,muy bueno,departamento,barrio_17,1030,9,1952,384835,88,88,0,0,media,1,0,0
+807927,True,72,1,21400,bueno,casa,barrio_02,1013,4,2014,361056,92,92,5,0,media,0,1,0
+437013,False,91,2,72463,regular,departamento,barrio_03,1028,8,1998,366430,63,63,1,0,media,0,0,1
+835192,True,95,2,94999,regular,departamento,barrio_14,1032,1,1971,336443,97,97,0,0,economica,0,0,1
+468406,False,125,3,11735,regular,duplex,barrio_34,1010,8,1952,345431,80,80,0,0,economica,0,0,1
+898935,True,92,1,193840,bueno,duplex,barrio_03,1010,8,2010,375772,68,68,4,1,media,0,1,0
+421552,False,158,1,11631,bueno,duplex,barrio_59,1002,7,1958,452312,68,68,0,0,premium,0,0,1
+525780,False,90,2,101814,bueno,casa,barrio_27,1024,8,1956,345932,105,105,1,1,economica,0,0,1
+580335,True,87,3,40940,muy bueno,duplex,barrio_15,1030,12,2006,357399,72,72,2,1,media,0,1,0
+759361,True,89,3,24271,bueno,departamento,barrio_30,1016,11,1998,415082,57,57,6,1,media,0,1,1
+523236,False,49,2,26174,muy bueno,departamento,barrio_47,1006,6,1959,298996,73,73,1,0,economica,0,1,1
+232859,True,59,3,35355,muy bueno,duplex,barrio_18,1012,11,1974,361740,66,66,4,0,media,1,1,0
+452949,True,76,3,42905,bueno,duplex,barrio_02,1016,12,1997,335453,36,36,5,1,economica,0,0,1
+311387,True,135,3,17394,bueno,casa,barrio_03,1036,2,1996,462072,98,98,1,0,premium,0,1,0
+177690,False,94,3,30117,muy bueno,departamento,barrio_51,1004,5,1975,385647,61,61,2,0,media,0,0,1
+924131,True,78,2,19603,muy bueno,PH,barrio_06,1013,9,1979,328425,57,57,4,0,economica,0,1,1
+709488,True,138,3,13739,bueno,PH,barrio_38,1025,7,1955,391439,104,104,0,0,media,1,1,1
+287936,True,149,1,18886,bueno,departamento,barrio_23,1009,2,1950,410849,93,93,1,0,media,0,0,1
+265615,False,139,2,14473,muy bueno,PH,barrio_46,1035,6,2018,471019,37,37,10,1,premium,0,1,0
+513855,True,65,3,25949,muy bueno,duplex,barrio_03,1036,5,1966,392486,84,84,3,0,media,1,0,0
+621769,False,78,1,51327,regular,casa,barrio_53,1015,9,2015,300013,88,88,1,0,economica,0,1,1
+189799,False,158,2,39997,bueno,PH,barrio_41,1029,7,1953,486350,72,72,1,0,premium,1,0,1
+809685,True,103,3,176218,excelente,PH,barrio_26,1030,2,2020,561967,29,29,13,1,premium,0,1,0
+523415,True,86,1,6196,regular,duplex,barrio_12,1027,1,1980,335218,1094,109,0,0,economica,0,0,1
+846123,False,120,3,52864,excelente,departamento,barrio_58,1007,4,2007,505669,43,43,5,1,premium,0,1,0
+111180,False,130,2,36503,bueno,casa,barrio_18,1001,2,2009,472502,26,26,5,0,premium,1,1,0
+866580,True,75,3,69740,bueno,PH,barrio_29,1013,11,1974,349065,93,93,2,1,economica,1,1,0
+921483,True,103,2,64420,bueno,PH,barrio_23,1005,4,2002,386980,78,78,1,1,media,1,1,1
+605968,True,127,1,31825,regular,departamento,barrio_13,1011,8,1973,404147,89,89,0,0,media,0,0,1
+364164,True,54,3,41694,excelente,duplex,barrio_24,1025,2,2006,452495,82,82,12,1,premium,0,1,0
+618213,True,95,1,20025,bueno,duplex,barrio_09,1023,6,2018,324235,77,77,0,1,economica,0,0,1
+946000,True,56,1,59334,excelente,casa,barrio_00,1008,12,2007,433588,58,58,8,1,media,0,1,1
+719610,True,61,3,8078,bueno,duplex,barrio_17,1000,8,2001,240585,131,131,3,1,economica,0,1,0
+419605,False,75,3,67607,excelente,casa,barrio_06,1009,4,1976,465673,50,50,0,1,premium,1,1,0
+651448,False,112,1,35648,excelente,departamento,barrio_24,1018,9,1957,466623,70,70,3,0,premium,0,0,1
+658539,False,84,2,24596,muy bueno,casa,barrio_51,1031,7,1985,353122,67,67,3,1,economica,0,0,0
+932508,False,72,1,30151,bueno,departamento,barrio_09,1014,3,1959,295807,105,105,0,0,economica,1,0,1
+453774,False,97,1,31973,muy bueno,duplex,barrio_00,1011,12,1986,377302,48,48,4,1,media,0,1,1
+138874,True,55,3,102523,bueno,departamento,barrio_06,1022,12,2011,305027,58,58,5,1,economica,0,0,0
+389666,False,110,1,482528,excelente,PH,barrio_30,1002,7,1958,522598,69,69,12,1,premium,1,1,0
+515642,True,135,2,96365,bueno,casa,barrio_16,1009,1,2013,479350,72,72,2,1,premium,1,1,1
+953133,True,92,3,23103,bueno,PH,barrio_29,1001,5,1992,371934,64,64,3,1,media,0,0,0
+109252,False,88,3,60104,regular,departamento,barrio_01,1021,7,1953,297369,129,129,0,0,economica,1,0,1
+670736,False,108,2,62234,muy bueno,PH,barrio_19,1017,12,2001,386597,53,53,3,1,media,0,1,0
+543368,True,25,3,17324,excelente,duplex,barrio_24,1023,9,1950,333347,80,80,3,0,economica,0,0,0
+290697,False,114,2,13245,regular,PH,barrio_25,1024,3,1993,338683,100,100,2,0,economica,0,1,1
+551942,True,204,1,34523,muy bueno,casa,barrio_33,1015,7,1986,545851,37,37,2,0,premium,1,1,1
+341447,True,91,1,69298,excelente,departamento,barrio_46,1034,3,2002,441354,31,31,19,1,media,1,1,0
+356322,True,91,3,10002,regular,casa,barrio_28,1036,6,1976,371137,152,152,0,0,media,0,0,1
+688958,True,121,3,20400,regular,departamento,barrio_50,1004,7,1958,438749,112,112,1,0,media,1,0,1
+825455,False,153,2,57418,muy bueno,casa,barrio_31,1036,7,1977,436564,62,62,3,1,media,0,1,1
+139656,True,129,3,37548,muy bueno,PH,barrio_15,1007,6,2004,427870,59,59,5,0,media,0,1,1
+595100,True,25,3,112760,regular,departamento,barrio_13,1009,6,2017,302459,62,62,1,0,economica,0,1,1
+466180,False,115,2,11742,muy bueno,casa,barrio_19,1021,10,1964,386445,68,68,2,1,media,0,1,1
+356099,True,185,1,238406,bueno,casa,barrio_35,1001,7,1974,566100,633,63,3,0,premium,1,1,0
+233927,True,117,3,10611,excelente,duplex,barrio_14,1014,1,2012,498030,52,52,12,1,premium,0,1,0
+701715,True,55,3,7163,excelente,duplex,barrio_54,1007,9,1972,357018,31,31,1,1,media,0,1,0
+362690,True,105,1,34644,muy bueno,duplex,barrio_28,1019,8,1967,414333,84,84,3,1,media,1,0,1
+231556,True,50,3,14653,bueno,casa,barrio_51,1032,9,2009,288990,47,47,2,1,economica,0,1,1
+849218,False,138,1,35207,bueno,departamento,barrio_40,1036,9,1984,404403,70,70,6,0,media,0,1,0
+775490,False,62,3,34236,bueno,duplex,barrio_20,1008,3,1991,305830,57,57,3,0,economica,0,0,1
+799014,True,98,2,31051,regular,PH,barrio_13,1021,12,1984,347730,94,94,0,0,economica,1,1,1
+510105,True,65,3,18510,muy bueno,casa,barrio_44,1018,12,1992,367766,98,98,2,0,media,1,1,0
+240361,True,76,3,51335,regular,casa,barrio_19,1016,2,1969,334074,137,137,0,0,economica,0,0,1
+867963,False,147,2,28173,bueno,departamento,barrio_14,1025,3,2001,460187,58,58,4,0,premium,1,1,1
+795713,True,99,1,87810,regular,duplex,barrio_55,1039,3,1975,319833,122,122,0,0,economica,0,1,0
+536546,True,75,3,31436,bueno,casa,barrio_28,1016,12,1987,362464,86,86,3,0,media,1,1,1
+765686,False,55,2,16786,bueno,duplex,barrio_02,1002,12,1963,273002,51,51,1,0,economica,0,0,1
+997199,False,29,2,9413,muy bueno,PH,barrio_29,1036,4,1950,197143,73,73,0,1,economica,0,1,1
+738121,True,51,1,31644,muy bueno,duplex,barrio_27,1037,8,1990,268409,61,61,7,0,economica,0,0,1
+891775,True,99,1,13156,regular,duplex,barrio_51,1012,3,1959,339115,111,111,2,0,economica,0,0,1
+497167,True,129,2,12333,excelente,departamento,barrio_42,1020,1,2014,518623,48,48,12,1,premium,0,1,0
+319971,False,75,2,55380,excelente,duplex,barrio_11,1034,3,2018,429526,28,28,31,1,media,0,1,0
+608155,True,150,2,8759,bueno,casa,barrio_09,1020,1,1972,493271,145,145,0,0,premium,1,0,0
+459775,True,70,2,112393,muy bueno,departamento,barrio_36,1019,11,1970,328303,79,79,2,0,economica,0,0,0
+911562,False,87,3,41265,bueno,casa,barrio_02,1036,10,1986,337275,1,1,2,0,economica,1,0,1
+899459,True,57,3,35064,bueno,casa,barrio_19,1033,3,1964,329723,90,90,2,0,economica,0,0,1
+847017,True,130,2,15870,bueno,casa,barrio_08,1020,7,2011,437014,60,60,2,0,media,0,1,0
+201398,False,168,3,66936,regular,casa,barrio_01,1006,3,1957,459224,72,72,0,0,premium,1,1,1
+985088,True,33,2,36231,excelente,casa,barrio_55,1017,7,1982,339433,63,63,1,0,economica,0,1,1
+916614,False,83,2,20976,excelente,departamento,barrio_05,1027,11,1963,391758,86,86,0,1,media,1,0,0
+421442,False,139,2,42611,muy bueno,casa,barrio_00,1010,11,2009,466572,15,15,9,1,premium,1,1,0
+416471,True,44,3,9450,muy bueno,casa,barrio_55,1021,10,1960,281248,95,95,3,0,economica,0,1,0
+902258,False,115,1,9816,muy bueno,duplex,barrio_11,1026,3,1981,436524,40,40,7,1,media,1,0,0
+643644,False,138,2,14822,excelente,casa,barrio_48,1003,3,2009,556650,15,15,13,1,premium,1,1,1
+954255,False,98,1,48032,bueno,casa,barrio_01,1022,2,1981,293365,134,134,0,0,economica,0,0,1
+780353,False,114,2,36221,regular,casa,barrio_09,1029,2,1963,367589,104,104,0,0,media,0,0,1
+759852,True,157,3,84051,muy bueno,casa,barrio_06,1008,8,1961,536921,97,97,4,0,premium,0,1,1
+414579,True,163,2,17396,bueno,PH,barrio_42,1021,8,1992,451757,62,62,0,0,premium,0,1,0
+833571,False,93,1,57511,bueno,duplex,barrio_37,1028,11,1958,304835,136,136,0,0,economica,0,1,1
+128955,True,76,3,33153,regular,PH,barrio_28,1001,2,1975,332425,102,102,0,0,economica,0,0,1
+671792,True,63,3,17078,muy bueno,PH,barrio_14,1025,4,1993,345293,54,54,8,0,economica,1,1,0
+128616,True,129,2,49427,bueno,casa,barrio_05,1010,9,1976,355281,115,115,0,0,economica,1,0,0
+237738,True,47,1,34447,bueno,duplex,barrio_34,1015,9,2008,282485,32,32,3,0,economica,0,1,1
+924381,False,86,2,21954,regular,casa,barrio_13,1025,6,1998,359445,109,109,1,1,media,0,1,0
+742580,False,99,3,37556,bueno,PH,barrio_35,1000,2,1959,374175,76,76,1,1,media,0,0,1
+416338,False,77,2,32741,excelente,departamento,barrio_41,1000,6,2008,381211,26,26,20,1,media,0,1,0
+362012,True,105,1,32114,bueno,duplex,barrio_50,1017,3,2014,403324,51,51,2,1,media,0,1,1
+337681,True,185,1,26106,muy bueno,departamento,barrio_29,1037,7,1964,533454,67,67,3,1,premium,1,0,1
+489016,False,91,3,12785,muy bueno,PH,barrio_00,1000,11,1975,317486,69,69,3,0,economica,0,1,1
+976162,True,80,2,38554,bueno,departamento,barrio_16,1031,3,1978,323393,78,78,2,0,economica,0,1,1
+721477,False,131,3,19107,muy bueno,PH,barrio_51,1002,2,1980,473882,69,69,6,0,premium,1,1,1
+404381,False,103,2,16054,muy bueno,duplex,barrio_31,1019,9,1982,364748,69,69,1,0,media,1,0,0
+498249,True,145,1,29955,muy bueno,PH,barrio_37,1017,1,2013,421212,62,62,7,1,media,1,1,0
+556173,True,101,2,65331,regular,departamento,barrio_27,1018,12,1996,341304,84,84,0,0,economica,0,1,1
+190218,False,86,3,42129,regular,departamento,barrio_09,1003,10,2013,299789,101,101,1,0,economica,0,1,0
+100680,True,33,2,23744,excelente,PH,barrio_53,1030,5,1974,333346,46,46,4,0,economica,0,0,1
+218405,False,38,2,22992,muy bueno,departamento,barrio_46,1011,5,1987,258671,57,57,5,1,economica,1,0,1
+331093,False,31,2,60394,excelente,casa,barrio_59,1030,5,1957,399275,100,100,4,1,media,0,0,1
+710007,True,108,2,5338,excelente,departamento,barrio_51,1026,5,1969,484017,50,50,8,1,premium,0,0,1
+318168,False,47,1,68727,regular,casa,barrio_17,1022,11,1991,221915,168,168,0,0,economica,0,1,0
+380629,True,139,1,8109,muy bueno,casa,barrio_15,1012,10,1962,444715,117,117,0,1,media,1,1,1
+992663,True,96,1,11704,bueno,departamento,barrio_14,1026,3,2018,361634,594,59,6,1,media,0,1,0
+147547,False,86,3,24067,muy bueno,duplex,barrio_55,1039,3,1969,343464,79,79,1,0,economica,0,1,0
+785027,False,65,2,206096,regular,duplex,barrio_33,1036,7,1961,234082,112,112,1,0,economica,0,0,1
+716768,False,117,3,138959,bueno,departamento,barrio_27,1036,8,2005,398966,61,61,2,1,media,1,0,1
+301982,False,67,1,63907,muy bueno,departamento,barrio_58,1008,9,1956,293100,92,92,1,0,economica,1,1,0
+189325,True,61,1,48302,muy bueno,casa,barrio_36,1023,4,1973,340087,114,114,1,0,economica,0,0,1
+556614,True,137,3,8186,muy bueno,duplex,barrio_54,1015,6,1964,457687,85,85,0,0,premium,0,1,1
+455928,True,107,3,41168,bueno,casa,barrio_59,1038,2,1999,478907,36,36,4,1,premium,0,0,0
+885005,True,87,2,23403,bueno,duplex,barrio_04,1038,6,2009,321387,105,105,0,0,economica,0,1,1
+305624,True,117,1,18895,excelente,duplex,barrio_21,1034,9,1963,445780,87,87,0,1,media,0,0,0
+627537,True,95,3,41103,bueno,PH,barrio_44,1006,4,1979,348205,86,86,2,0,economica,1,1,1
+132551,False,108,1,24912,bueno,departamento,barrio_48,1012,4,1983,348412,71,71,2,1,economica,1,0,0
+824687,True,66,2,72798,muy bueno,duplex,barrio_08,1028,6,1999,366144,52,52,3,1,media,1,0,0
+809072,False,167,2,7717,bueno,PH,barrio_19,1029,11,1974,462849,74,74,1,0,premium,1,0,1
+919690,False,75,3,38561,muy bueno,PH,barrio_32,1014,8,1987,298917,56,56,3,0,economica,1,1,1
+280817,False,149,1,17975,bueno,duplex,barrio_47,1005,12,1985,438415,45,45,2,0,media,0,0,1
+644692,True,88,1,26168,muy bueno,duplex,barrio_06,1005,1,1950,376664,86,86,0,0,media,1,0,0
+845408,False,123,1,46337,excelente,casa,barrio_36,1027,11,1990,542225,50,50,6,0,premium,0,1,0
+149698,False,121,1,14856,excelente,duplex,barrio_17,1018,1,1990,481380,53,53,4,0,premium,0,1,0
+518869,True,135,2,41414,muy bueno,duplex,barrio_12,1019,4,2020,465437,1,1,14,1,premium,1,1,0
+720929,True,66,3,30642,bueno,casa,barrio_30,1032,6,1986,391873,17,17,3,0,media,0,0,1
+764764,True,133,1,21408,muy bueno,departamento,barrio_24,1000,3,2013,407514,63,63,4,1,media,1,1,0
+240841,False,160,2,24923,muy bueno,duplex,barrio_38,1030,12,1974,491446,71,71,1,0,premium,0,0,0
+482615,False,86,1,32092,muy bueno,casa,barrio_19,1010,11,1999,341848,68,68,6,1,economica,0,1,0
+957835,True,96,1,19648,muy bueno,departamento,barrio_49,1037,7,2014,370882,38,38,9,1,media,0,1,1
+652809,False,77,3,36522,muy bueno,PH,barrio_04,1038,6,1960,295588,116,116,0,0,economica,0,0,0
+997274,True,83,1,29070,muy bueno,PH,barrio_51,1020,10,1990,341114,49,49,6,1,economica,0,1,0
+640823,True,155,2,22270,muy bueno,duplex,barrio_01,1012,9,2015,449487,63,63,1,1,media,1,1,0
+674091,False,60,3,129557,bueno,casa,barrio_44,1009,6,1989,323296,148,148,1,1,economica,0,0,1
+922622,False,62,3,50625,bueno,departamento,barrio_20,1007,10,2013,284697,74,74,2,0,economica,1,0,1
+540697,False,151,1,26738,muy bueno,duplex,barrio_23,1039,3,1979,484920,65,65,1,1,premium,0,1,1
+415500,True,117,2,40810,regular,PH,barrio_01,1007,4,2012,370288,86,86,3,0,media,0,1,1
+184389,True,169,3,15971,excelente,casa,barrio_42,1017,1,1994,622839,48,48,7,0,premium,1,1,1
+499250,True,79,2,25606,muy bueno,departamento,barrio_09,1019,2,1984,331241,77,77,3,0,economica,1,1,0
+690665,True,99,1,28112,regular,departamento,barrio_39,1027,3,1965,356521,96,96,0,0,media,1,0,1
+697330,True,72,1,13394,muy bueno,PH,barrio_43,1033,8,1962,332905,71,71,1,0,economica,0,1,0
+477836,False,100,3,49508,muy bueno,departamento,barrio_50,1022,11,1970,406522,76,76,3,0,media,0,0,1
+670978,False,33,3,24234,muy bueno,PH,barrio_42,1030,8,2003,206430,56,56,4,1,economica,0,1,1
+104619,True,119,1,27327,bueno,departamento,barrio_18,1022,6,1983,395481,83,83,6,0,media,0,0,1
+453735,True,106,1,23041,excelente,PH,barrio_44,1017,4,1977,459240,58,58,9,0,premium,1,0,1
+647233,True,93,1,387423,bueno,casa,barrio_49,1006,2,1983,391398,136,136,5,1,media,0,0,1
+178658,True,81,1,21374,muy bueno,PH,barrio_19,1008,8,1974,335023,72,72,2,1,economica,0,0,0
+740809,False,64,3,6940,regular,duplex,barrio_07,1017,2,2007,245567,101,101,2,0,economica,0,1,0
+693193,True,120,3,10098,muy bueno,casa,barrio_53,1001,10,1977,443640,53,53,0,0,media,0,0,0
+873707,False,54,1,66665,muy bueno,departamento,barrio_08,1012,5,1983,295498,59,59,6,1,economica,0,1,0
+773746,True,113,3,105785,muy bueno,PH,barrio_35,1018,5,1989,480471,55,55,6,1,premium,1,1,0
+398484,True,168,3,21048,bueno,PH,barrio_14,1018,1,1995,490724,77,77,1,0,premium,0,1,1
+370259,False,147,2,101029,muy bueno,PH,barrio_07,1032,3,1973,454277,74,74,0,0,premium,1,1,0
+580161,True,42,3,65727,muy bueno,PH,barrio_46,1038,1,1955,335447,57,57,0,1,economica,1,0,1
+733837,True,76,1,31208,bueno,PH,barrio_08,1029,9,1998,276855,53,53,2,0,economica,0,0,1
+126857,False,110,3,29485,excelente,PH,barrio_40,1003,6,1989,529262,27,27,14,1,premium,0,1,0
+611334,True,93,1,41969,muy bueno,casa,barrio_41,1016,10,1995,387665,1,1,11,1,media,0,1,0
+132200,True,46,3,73274,excelente,duplex,barrio_03,1029,7,1988,402398,42,42,11,1,media,0,1,1
+768956,True,108,2,49903,excelente,departamento,barrio_10,1023,12,1986,533126,48,48,8,1,premium,1,0,0
+497143,True,95,1,21132,excelente,casa,barrio_47,1018,10,2017,484805,352,35,20,0,premium,1,1,1
+328588,True,162,3,31591,muy bueno,departamento,barrio_30,1017,2,1953,559817,45,45,8,1,premium,1,0,1
+191700,True,86,3,177196,muy bueno,departamento,barrio_07,1016,2,1956,382359,85,85,3,1,media,0,0,0
+386944,False,136,2,44399,bueno,casa,barrio_59,1023,11,2016,435537,43,43,8,1,media,1,0,1
+326857,False,51,1,72799,bueno,duplex,barrio_15,1007,4,2012,249109,110,110,2,1,economica,0,1,0
+443919,True,59,1,55933,muy bueno,casa,barrio_00,1020,10,1979,346561,20,20,2,1,economica,0,0,0
+314094,True,120,3,45192,bueno,departamento,barrio_55,1008,8,1988,378598,84,84,0,0,media,0,1,0
+662488,True,133,1,39615,excelente,departamento,barrio_00,1027,9,1981,530427,62,62,5,1,premium,0,0,0
+372972,True,61,3,74452,regular,duplex,barrio_33,1034,4,2020,298362,95,95,0,0,economica,0,1,0
+978117,True,96,2,64532,bueno,PH,barrio_59,1020,4,1982,380826,82,82,3,1,media,0,0,1
+486750,False,47,3,44852,bueno,duplex,barrio_34,1015,7,2003,325855,64,64,2,1,economica,0,1,0
+122648,True,89,3,20848,bueno,casa,barrio_35,1037,1,1975,373500,81,81,3,0,media,0,0,1
+541001,True,124,3,49437,regular,duplex,barrio_23,1026,4,1977,444576,118,118,0,0,media,0,0,1
+758701,False,80,1,34420,bueno,duplex,barrio_07,1017,7,1997,303259,60,60,1,0,economica,0,1,1
+403750,False,86,3,28379,muy bueno,departamento,barrio_34,1001,3,1978,374195,63,63,5,1,media,1,0,1
+341967,True,55,1,309595,bueno,PH,barrio_53,1000,4,1950,264385,87,87,2,0,economica,0,0,1
+562069,True,72,3,10602,regular,casa,barrio_05,1008,12,1962,286545,135,135,0,0,economica,0,0,1
+528418,False,157,1,78183,regular,duplex,barrio_52,1009,4,2012,428217,100,100,0,0,media,0,0,0
+538763,True,98,3,18212,bueno,duplex,barrio_24,1028,11,1976,353932,77,77,1,0,economica,0,1,1
+463128,False,60,1,40334,bueno,departamento,barrio_32,1020,12,1957,259236,99,99,1,0,economica,0,0,1
+894118,False,84,2,283472,muy bueno,PH,barrio_09,1039,9,2016,325183,49,49,2,1,economica,0,1,0
+889148,True,39,2,16816,muy bueno,departamento,barrio_37,1021,2,2020,282583,50,50,4,0,economica,0,1,0
+443823,True,60,3,20351,bueno,casa,barrio_10,1036,3,1985,353149,60,60,3,0,economica,1,0,1
+349136,True,143,1,35810,muy bueno,PH,barrio_16,1022,12,1994,472013,41,41,6,0,premium,1,1,1
+610269,True,90,1,18439,bueno,PH,barrio_43,1014,1,2003,342074,69,69,3,0,economica,0,0,0
+662281,True,161,2,73662,bueno,duplex,barrio_03,1028,7,1954,496752,65,65,0,0,premium,1,0,1
+214504,False,92,1,23680,excelente,duplex,barrio_26,1017,8,1971,438814,67,67,7,1,media,1,0,0
+937008,False,94,3,61280,bueno,departamento,barrio_35,1010,11,1989,360043,54,54,2,0,media,0,1,0
+182671,False,117,1,12540,excelente,duplex,barrio_07,1018,11,1989,492952,43,43,5,1,premium,0,1,0
+713759,False,25,3,8557,bueno,PH,barrio_17,1026,4,1973,180819,88,88,3,0,economica,0,0,1
+796478,False,102,2,30237,bueno,PH,barrio_20,1015,7,1950,316237,113,113,0,0,economica,1,0,1
+514929,True,93,3,10355,bueno,PH,barrio_39,1028,8,2017,368369,561,56,3,1,media,0,1,0
+574823,True,147,1,122347,bueno,duplex,barrio_58,1039,12,1993,450538,83,83,0,0,premium,1,0,1
+629293,False,129,1,10680,excelente,PH,barrio_50,1016,7,2003,496106,41,41,14,1,premium,1,1,1
+555557,False,55,2,15833,regular,casa,barrio_11,1011,2,1981,311944,25,25,0,0,economica,0,1,0
+367754,True,138,1,50559,excelente,casa,barrio_01,1016,12,1985,508998,63,63,2,0,premium,1,1,0
+454109,False,86,1,22718,excelente,departamento,barrio_03,1033,7,1981,430166,51,51,7,1,media,0,1,0
+771771,True,63,1,10778,muy bueno,PH,barrio_35,1007,3,1980,361582,57,57,6,0,media,0,0,1
+384773,True,102,3,185716,bueno,PH,barrio_09,1038,3,1997,376691,85,85,0,1,media,1,1,1
+644525,False,88,3,16296,bueno,departamento,barrio_13,1016,3,2020,364167,46,46,13,1,media,0,1,0
+110035,True,149,1,31039,bueno,PH,barrio_50,1033,9,2005,440501,72,72,0,0,media,1,0,1
+829974,True,107,1,30719,muy bueno,duplex,barrio_52,1031,12,1997,364951,38,38,2,0,media,1,1,1
+530644,False,102,2,64103,bueno,departamento,barrio_50,1031,6,1950,353844,84,84,0,0,economica,1,0,1
+955865,False,127,2,52569,excelente,departamento,barrio_15,1036,2,1986,463386,60,60,4,0,premium,1,0,0
+375835,True,133,3,18743,muy bueno,PH,barrio_37,1007,11,2017,427108,48,48,5,1,media,0,1,0
+832106,False,122,1,27983,bueno,departamento,barrio_36,1023,8,1978,380435,89,89,0,0,media,1,1,0
+987981,True,145,2,30287,muy bueno,duplex,barrio_11,1003,7,1989,500020,49,49,3,1,premium,0,0,1
+136948,False,116,1,66116,bueno,duplex,barrio_33,1011,1,1973,341859,60,60,1,0,economica,0,0,1
+142177,True,101,1,14262,excelente,PH,barrio_31,1001,12,1963,403611,54,54,1,1,media,0,0,0
+112255,False,138,3,182497,bueno,departamento,barrio_23,1027,1,2000,445525,59,59,3,1,media,1,0,0
+988387,False,92,2,19784,excelente,PH,barrio_45,1024,8,1972,390121,51,51,4,1,media,0,1,0
+217042,True,96,2,36062,muy bueno,casa,barrio_40,1029,8,1991,439587,47,47,5,1,media,0,1,0
+741846,True,155,1,14357,excelente,departamento,barrio_31,1007,7,1992,543869,50,50,3,1,premium,1,1,1
+223427,True,152,2,12855,bueno,casa,barrio_43,1013,7,2010,509605,97,97,2,1,premium,0,0,0
+516835,False,95,2,18042,muy bueno,casa,barrio_45,1027,5,2016,418926,80,80,8,1,media,1,1,0
+697188,False,79,3,16707,bueno,casa,barrio_34,1033,7,1989,342757,65,65,2,0,economica,0,0,1
+272784,False,146,2,26071,muy bueno,PH,barrio_16,1035,5,1953,432059,50,50,1,0,media,1,0,1
+746389,False,123,1,16595,regular,casa,barrio_45,1002,6,1991,396282,108,108,1,0,media,1,1,0
+576811,True,106,3,63351,bueno,PH,barrio_43,1016,9,2012,375699,66,66,4,0,media,1,1,1
+251882,False,84,1,19411,bueno,departamento,barrio_59,1000,9,1983,309438,68,68,3,1,economica,1,0,1
+356236,True,107,3,17764,bueno,departamento,barrio_08,1032,2,1990,419959,84,84,0,1,media,1,1,0
+119730,False,94,2,26519,bueno,duplex,barrio_25,1004,12,2004,368852,53,53,1,1,media,0,0,0
+594115,True,72,3,80360,muy bueno,PH,barrio_55,1032,2,1981,363209,97,97,1,1,media,1,0,1
+266463,False,100,2,43127,bueno,PH,barrio_30,1006,4,1979,380206,45,45,6,1,media,0,1,1
+240352,True,104,2,33532,muy bueno,PH,barrio_56,1000,5,1984,370124,74,74,1,1,media,0,0,1
+286002,True,82,2,11540,regular,casa,barrio_00,1035,4,2010,325684,25,25,1,0,economica,1,1,1
+284126,True,127,1,14557,muy bueno,casa,barrio_02,1017,5,1984,485364,29,29,4,1,premium,1,1,1
+275334,False,140,1,13060,muy bueno,PH,barrio_47,1016,4,1973,451763,84,84,0,1,premium,1,1,1
+356315,True,129,3,103309,bueno,duplex,barrio_21,1025,6,1992,421096,79,79,0,0,media,0,0,1
+682407,True,85,3,55517,muy bueno,casa,barrio_31,1010,10,1999,387351,88,88,1,0,media,0,1,0
+552828,True,121,3,18228,excelente,casa,barrio_25,1027,10,2014,479629,47,47,10,1,premium,1,1,1
+453731,True,98,1,23121,muy bueno,duplex,barrio_24,1017,5,2013,387672,51,51,3,0,media,0,1,1
+314775,False,52,2,18765,bueno,duplex,barrio_56,1010,4,2005,277457,94,94,4,0,economica,0,0,1
+572442,False,119,2,17878,bueno,casa,barrio_05,1015,9,2004,367939,76,76,0,0,media,1,0,0
+524964,False,100,3,52483,muy bueno,departamento,barrio_46,1000,1,1981,409935,46,46,6,0,media,0,1,0
+678367,False,186,2,28853,bueno,PH,barrio_53,1012,6,1974,459693,76,76,2,1,premium,0,0,1
+224419,True,146,3,191939,muy bueno,casa,barrio_39,1023,3,1989,537161,73,73,8,1,premium,1,0,0
+843111,True,120,3,98744,bueno,departamento,barrio_23,1005,8,2000,408658,74,74,1,0,media,1,1,0
+606628,False,104,2,103527,muy bueno,departamento,barrio_09,1004,1,1986,368921,65,65,2,1,media,0,0,1
+437105,False,101,2,62136,regular,PH,barrio_40,1026,10,1964,330514,89,89,0,1,economica,1,0,1
+368974,True,60,2,25897,regular,departamento,barrio_28,1017,4,1951,305098,105,105,0,1,economica,0,0,0
+497061,False,34,3,58585,excelente,departamento,barrio_08,1005,7,1954,345626,67,67,1,1,economica,0,0,1
+574390,True,64,2,27472,excelente,departamento,barrio_21,1029,7,1980,378073,55,55,3,1,media,0,1,0
+772077,True,93,1,133816,excelente,duplex,barrio_57,1031,6,2006,509577,13,13,25,1,premium,0,1,0
+985939,True,25,2,50183,excelente,casa,barrio_15,1001,6,2006,314136,28,28,3,0,economica,0,1,0
+443798,False,76,2,44797,bueno,casa,barrio_10,1008,4,2007,398426,81,81,6,1,media,0,0,1
+576514,False,86,3,40201,bueno,casa,barrio_40,1014,10,2000,404982,88,88,0,0,media,1,0,0
+908958,True,87,3,146124,regular,duplex,barrio_11,1029,7,1951,373441,103,103,0,1,media,1,0,1
+657617,False,72,1,11533,bueno,duplex,barrio_55,1002,3,2012,299950,63,63,2,0,economica,0,1,0
+440659,False,83,2,158044,bueno,PH,barrio_51,1032,4,2017,323906,54,54,5,1,economica,1,1,0
+687463,True,155,1,31291,excelente,casa,barrio_59,1012,6,2010,600932,4,4,23,1,premium,1,1,0
+895146,False,118,2,11791,regular,duplex,barrio_54,1005,11,1981,342516,80,80,0,0,economica,0,0,0
+921649,True,75,3,19895,regular,departamento,barrio_14,1034,12,1965,307551,97,97,1,0,economica,0,0,1
+272515,True,93,3,9695,bueno,duplex,barrio_12,1003,5,2014,396048,51,51,1,0,media,1,1,0
+140905,True,94,1,61263,bueno,departamento,barrio_20,1005,5,1963,333602,91,91,0,0,economica,0,1,0
+819682,True,68,1,15825,bueno,duplex,barrio_28,1037,2,2005,286617,68,68,4,0,economica,0,1,0
+857131,True,68,3,41562,muy bueno,duplex,barrio_52,1020,7,2018,339731,77,77,2,0,economica,0,1,1
+837870,True,130,2,89983,bueno,casa,barrio_44,1018,3,2013,476416,17,17,4,0,premium,1,1,0
+549125,True,80,2,21213,muy bueno,PH,barrio_38,1027,10,1986,335646,73,73,3,1,economica,0,1,0
+355266,False,57,3,29305,excelente,departamento,barrio_52,1025,7,2009,367177,54,54,3,1,media,0,1,0
+811780,False,93,3,12801,muy bueno,departamento,barrio_38,1024,3,2008,345602,62,62,2,0,economica,1,1,0
+817027,True,99,3,26617,muy bueno,departamento,barrio_22,1000,11,2019,434449,30,30,18,0,media,0,1,0
+913591,True,26,3,284708,bueno,PH,barrio_24,1022,10,1975,237172,74,74,1,0,economica,0,0,1
+952666,True,94,3,67667,bueno,departamento,barrio_31,1011,4,1994,332395,71,71,1,1,economica,0,1,1
+482366,False,125,3,29384,bueno,PH,barrio_05,1032,2,2008,390755,82,82,0,0,media,1,1,0
+706793,False,111,3,22262,excelente,PH,barrio_44,1020,4,1966,479141,71,71,2,1,premium,0,0,1
+670146,True,173,2,35098,muy bueno,duplex,barrio_39,1004,5,1966,548828,28,28,1,1,premium,1,0,1
+443856,False,139,1,40297,bueno,duplex,barrio_43,1035,5,1977,431648,88,88,1,0,media,1,0,1
+379300,False,146,3,25971,bueno,casa,barrio_32,1011,10,1975,435721,128,128,1,1,media,1,1,1
+892611,False,193,3,55495,muy bueno,duplex,barrio_46,1010,12,2003,568300,39,39,11,1,premium,1,0,1
+492747,True,122,1,16937,muy bueno,casa,barrio_56,1037,9,2016,402461,64,64,5,1,media,1,1,0
+857051,True,101,2,16870,muy bueno,PH,barrio_34,1031,11,1961,380756,60,60,6,0,media,0,1,1
+780364,False,129,2,48833,excelente,departamento,barrio_26,1034,2,1973,506192,50,50,5,1,premium,0,0,0
+818265,True,75,2,14258,muy bueno,PH,barrio_06,1026,2,2016,336348,27,27,6,1,economica,1,1,1
+833541,True,99,3,65070,muy bueno,PH,barrio_46,1036,11,1992,410034,25,25,9,1,media,0,0,1
+605251,True,72,2,35903,bueno,duplex,barrio_54,1004,8,1964,299691,114,114,0,0,economica,0,0,1
+331353,True,109,3,8414,regular,departamento,barrio_41,1023,3,1992,373242,78,78,0,0,media,1,1,1
+344464,False,72,3,39640,excelente,duplex,barrio_51,1011,10,2012,405623,18,18,17,1,media,0,1,0
+665614,False,71,3,9432,muy bueno,departamento,barrio_51,1015,3,1976,376281,54,54,6,1,media,0,1,1
+280841,True,109,2,63240,bueno,casa,barrio_47,1009,10,1984,383165,35,35,0,0,media,0,1,1
+886244,False,90,1,29763,muy bueno,departamento,barrio_30,1008,11,1993,398654,31,31,19,1,media,0,1,1
+196653,True,28,3,159670,regular,PH,barrio_05,1017,6,2009,218753,89,89,0,0,economica,0,1,1
+238668,False,44,1,85567,muy bueno,PH,barrio_00,1036,8,1990,234086,57,57,2,0,economica,0,1,1
+927494,True,55,1,15544,bueno,duplex,barrio_12,1025,9,2018,291155,67,67,6,0,economica,0,1,0
+470363,False,64,1,7211,muy bueno,casa,barrio_25,1013,11,2003,308811,65,65,5,0,economica,1,1,0
+706370,False,110,1,19849,bueno,departamento,barrio_44,1017,8,1979,341763,78,78,0,1,economica,0,1,1
+221406,False,103,3,13670,bueno,duplex,barrio_27,1021,4,1984,396396,105,105,0,0,media,1,1,1
+608327,False,132,2,156465,regular,departamento,barrio_01,1009,3,1999,397354,94,94,0,0,media,1,1,0
+294269,True,121,1,36017,muy bueno,casa,barrio_12,1020,5,1955,467044,82,82,0,0,premium,1,0,1
+502444,False,133,1,76629,bueno,duplex,barrio_58,1027,1,1966,406249,120,120,2,0,media,0,1,1
+816108,False,116,1,28911,regular,departamento,barrio_59,1009,9,1966,365574,100,100,1,0,media,0,0,1
+539365,True,102,3,31454,muy bueno,duplex,barrio_22,1023,5,2006,473150,16,16,6,1,premium,1,0,0
+677959,False,133,3,35380,bueno,duplex,barrio_48,1028,9,2008,434963,53,53,6,0,media,1,1,0
+259303,True,127,1,88012,bueno,duplex,barrio_43,1020,1,2008,443797,89,89,0,0,media,1,1,1
+165502,True,108,1,46597,bueno,PH,barrio_55,1011,4,1957,359996,107,107,0,0,media,1,0,1
+171731,False,139,2,15586,excelente,duplex,barrio_53,1022,5,1970,518438,67,67,2,0,premium,0,1,0
+822317,True,25,3,132988,bueno,duplex,barrio_37,1031,2,1972,240561,97,97,0,0,economica,1,1,1
+682922,True,85,1,28731,bueno,departamento,barrio_23,1008,10,1951,341329,98,98,1,0,economica,0,0,1
+154643,True,84,3,25225,bueno,casa,barrio_37,1022,8,1968,312644,107,107,0,0,economica,1,0,1
+440902,False,135,1,3776,bueno,departamento,barrio_19,1027,11,1980,383286,81,81,1,0,media,1,0,1
+888777,False,150,1,60326,bueno,PH,barrio_20,1012,10,2012,451332,67,67,4,0,premium,0,0,0
+354101,True,44,2,39372,regular,PH,barrio_36,1015,1,1962,242027,110,110,0,1,economica,0,0,1
+691506,False,144,1,39338,bueno,casa,barrio_34,1035,11,2011,412663,35,35,5,1,media,1,1,0
+341295,False,54,1,26311,bueno,PH,barrio_34,1014,1,2008,252752,62,62,4,1,economica,1,1,1
+660622,False,55,1,22921,excelente,casa,barrio_23,1023,11,1961,351753,154,154,2,1,economica,0,0,1
+412321,False,87,1,27020,regular,PH,barrio_24,1005,9,1968,253923,85,85,1,0,economica,0,0,1
+948011,False,84,3,52603,bueno,PH,barrio_00,1037,10,1982,328912,80,80,2,1,economica,0,1,1
+740829,True,40,1,60554,excelente,PH,barrio_36,1023,6,2017,360924,26,26,16,1,media,0,1,0
+581161,True,118,1,30187,excelente,departamento,barrio_34,1030,2,2005,553634,41,41,14,1,premium,0,1,0
+256617,False,119,1,77587,muy bueno,departamento,barrio_56,1024,2,2018,443781,50,50,2,1,media,0,1,0
+478321,True,132,1,34092,bueno,PH,barrio_30,1014,2,1972,467010,70,70,1,1,premium,0,0,1
+131512,True,80,2,24261,bueno,PH,barrio_28,1013,10,2014,336171,70,70,5,1,economica,0,1,0
+246537,True,94,3,42563,bueno,duplex,barrio_04,1028,7,2017,372753,90,90,0,0,media,0,0,0
+763202,True,94,1,12240,regular,departamento,barrio_11,1034,3,1992,306301,87,87,2,0,economica,0,1,1
+453450,False,154,3,43747,bueno,departamento,barrio_20,1005,2,1960,487598,85,85,0,0,premium,0,0,1
+834679,True,25,2,10575,muy bueno,departamento,barrio_22,1033,1,1968,273150,65,65,3,0,economica,1,1,1
+594913,False,62,1,15960,bueno,PH,barrio_21,1033,4,1959,217913,100,100,1,0,economica,0,0,1
+908864,False,95,3,7223,muy bueno,casa,barrio_23,1004,9,2007,369482,85,85,5,0,media,1,1,1
+154497,True,57,1,31568,bueno,departamento,barrio_46,1004,11,1972,299615,68,68,3,0,economica,0,1,0
+505166,True,86,2,131624,bueno,casa,barrio_07,1027,8,1999,348491,53,53,0,0,economica,1,1,0
+244742,True,91,2,33069,muy bueno,PH,barrio_19,1033,12,1968,365256,76,76,0,0,media,1,0,0
+484239,True,72,2,60771,excelente,duplex,barrio_09,1015,5,2019,415726,43,43,11,1,media,1,1,0
+808478,True,97,1,238435,bueno,duplex,barrio_18,1025,4,2004,412893,64,64,5,1,media,1,0,0
+456157,False,117,1,50174,muy bueno,departamento,barrio_41,1039,9,1976,357248,63,63,5,0,media,1,0,1
+887874,True,87,3,19689,bueno,casa,barrio_02,1012,2,1983,340413,19,19,1,0,economica,1,1,0
+776453,True,79,3,21981,regular,casa,barrio_20,1009,11,1954,322086,143,143,0,0,economica,0,0,1
+346949,True,89,1,36335,muy bueno,casa,barrio_01,1039,10,1959,322288,89,89,2,0,economica,0,0,1
+138840,True,95,2,21888,bueno,duplex,barrio_57,1011,1,2020,426639,38,38,7,1,media,0,1,1
+335881,True,34,3,23238,bueno,duplex,barrio_43,1018,3,2007,294270,39,39,2,0,economica,0,0,1
+722143,False,111,1,79874,bueno,PH,barrio_14,1017,8,2009,346239,62,62,3,1,economica,1,1,1
+673258,True,79,2,82531,bueno,casa,barrio_11,1020,9,1995,377514,1,1,1,0,media,0,0,1
+215149,True,139,3,9725,regular,casa,barrio_05,1010,3,1965,392906,141,141,0,0,media,1,1,1
+853794,False,116,3,18873,bueno,duplex,barrio_28,1027,9,1957,370431,61,61,2,0,media,1,1,0
+720455,False,136,2,25054,excelente,departamento,barrio_45,1027,6,2001,477358,37,37,10,1,premium,1,1,0
+579029,False,60,3,58646,muy bueno,casa,barrio_35,1008,9,1973,373714,54,54,3,0,media,0,1,1
+567117,True,82,2,90623,bueno,casa,barrio_52,1019,6,1950,328577,152,152,0,0,economica,0,0,1
+522146,False,52,1,315393,regular,departamento,barrio_20,1002,6,1951,269881,114,114,0,0,economica,0,0,1
+955342,True,70,3,25021,muy bueno,PH,barrio_16,1008,5,1989,363181,57,57,4,1,media,0,1,0
+507019,False,139,1,26041,regular,duplex,barrio_28,1039,2,2009,428745,66,66,3,0,media,1,0,0
+403580,True,147,1,58154,bueno,departamento,barrio_12,1020,3,1975,443927,89,89,0,0,media,0,1,1
+527086,False,55,2,21041,muy bueno,PH,barrio_58,1024,3,2020,280140,58,58,8,1,economica,0,1,1
+958049,False,79,3,32443,bueno,casa,barrio_11,1035,10,1977,337682,61,61,2,0,economica,1,0,1
+510624,False,92,3,26055,bueno,casa,barrio_28,1028,6,2002,394029,60,60,2,1,media,0,0,1
+874441,True,115,3,4459,regular,casa,barrio_31,1031,5,1967,361833,63,63,1,0,media,0,0,0
+649024,False,33,2,40078,regular,duplex,barrio_03,1028,11,1993,268604,86,86,2,0,economica,0,1,1
+425294,False,39,2,31386,bueno,PH,barrio_28,1019,11,1969,204837,59,59,0,1,economica,1,0,1
+995661,True,112,2,100407,excelente,duplex,barrio_27,1025,3,2005,546176,53,53,11,1,premium,0,1,0
+325196,True,27,1,36475,bueno,casa,barrio_15,1011,5,1982,215770,94,94,1,0,economica,0,0,0
+682178,True,79,2,13309,muy bueno,casa,barrio_07,1035,5,1952,315506,156,156,2,0,economica,1,1,1
+682014,True,101,1,29541,muy bueno,duplex,barrio_02,1007,11,1967,407429,51,51,3,1,media,0,1,1
+421630,False,110,1,6817,regular,casa,barrio_00,1035,9,1975,323719,92,92,2,0,economica,0,0,1
+730600,True,90,3,13784,bueno,casa,barrio_28,1035,7,1983,371447,131,131,2,0,media,1,0,1
+761094,False,82,3,60379,bueno,PH,barrio_05,1005,3,1969,296262,118,118,0,0,economica,0,1,1
+453248,False,125,1,29796,muy bueno,PH,barrio_57,1028,5,1990,453029,33,33,6,1,premium,1,1,0
+767837,False,105,1,75963,bueno,casa,barrio_14,1039,1,2018,399435,63,63,7,1,media,0,1,1
+534398,False,72,1,7529,muy bueno,departamento,barrio_39,1022,9,2000,302081,46,46,11,1,economica,0,1,0
+485250,False,96,1,29912,excelente,PH,barrio_40,1013,12,1972,460756,52,52,5,1,premium,1,1,0
+187486,True,108,3,24825,muy bueno,departamento,barrio_29,1035,10,1998,423008,48,48,5,1,media,0,1,0
+360572,True,155,3,78017,excelente,departamento,barrio_53,1020,4,2018,621841,42,42,11,1,premium,1,1,0
+764402,False,123,3,62206,muy bueno,casa,barrio_06,1004,6,1967,465710,26,26,0,1,premium,0,0,1
+370675,False,138,2,60706,excelente,departamento,barrio_14,1009,12,1966,543201,57,57,2,1,premium,1,0,1
+276673,True,74,1,124633,muy bueno,duplex,barrio_15,1027,6,1952,327702,102,102,1,0,economica,0,0,1
+998184,False,77,1,27052,muy bueno,PH,barrio_08,1018,11,2009,293168,45,45,13,1,economica,0,1,1
+610691,False,87,3,105669,muy bueno,duplex,barrio_17,1008,7,2009,343569,31,31,3,1,economica,1,1,0
+623782,True,90,3,15751,excelente,casa,barrio_18,1031,6,1979,489699,75,75,10,1,premium,1,1,1
+184477,False,60,2,15295,bueno,casa,barrio_45,1004,8,2011,285153,71,71,3,0,economica,0,0,0
+396516,False,139,2,66317,muy bueno,PH,barrio_18,1008,3,1996,504967,40,40,5,1,premium,0,1,0
+202245,True,126,3,10897,bueno,casa,barrio_52,1018,6,2019,433915,71,71,0,0,media,0,1,0
+150689,True,84,3,57424,excelente,PH,barrio_46,1001,4,2015,482074,8,8,20,1,premium,0,1,0
+296867,True,117,1,39381,bueno,duplex,barrio_54,1015,10,2018,409528,48,48,2,1,media,0,0,0
+142410,False,103,2,85604,muy bueno,departamento,barrio_06,1036,8,1977,349623,61,61,0,0,economica,0,0,1
+317778,True,120,1,34629,muy bueno,PH,barrio_59,1037,5,1995,436729,59,59,2,0,media,1,0,0
+845287,False,48,2,37981,excelente,PH,barrio_36,1034,10,1961,358462,60,60,1,0,media,0,0,0
+638971,False,90,2,54579,bueno,casa,barrio_58,1012,6,2013,382938,97,97,2,0,media,0,1,0
+554661,False,93,1,21373,muy bueno,duplex,barrio_21,1002,12,1972,328521,68,68,1,0,economica,0,0,0
+988252,True,117,1,20641,muy bueno,casa,barrio_57,1032,8,1981,456514,55,55,8,1,premium,1,0,1
+740628,True,73,2,53079,excelente,duplex,barrio_35,1014,11,1992,478905,33,33,15,0,premium,0,1,0
+962442,True,25,2,35475,excelente,PH,barrio_04,1029,12,2005,299598,73,73,1,1,economica,0,1,0
+127320,True,57,3,26217,muy bueno,casa,barrio_24,1004,4,2001,349098,47,47,5,0,economica,0,1,0
+474071,True,93,1,33988,muy bueno,PH,barrio_08,1026,4,2017,386241,28,28,13,1,media,0,1,0
+596959,True,97,1,130047,bueno,casa,barrio_56,1023,11,2000,381521,33,33,2,0,media,0,1,0
+498631,True,154,3,25478,excelente,PH,barrio_18,1036,3,2006,590336,24,24,21,1,premium,1,1,0
+723280,False,115,3,24894,bueno,duplex,barrio_13,1004,10,1990,441498,43,43,3,1,media,0,1,1
+679969,True,98,3,9265,muy bueno,duplex,barrio_33,1016,3,1979,384548,86,86,0,0,media,0,0,1
+145649,True,94,3,35106,muy bueno,duplex,barrio_25,1039,11,2014,415931,47,47,2,1,media,1,1,0
+826460,False,134,3,61421,bueno,departamento,barrio_05,1015,9,1976,384794,110,110,0,0,media,0,0,1
+504183,True,74,2,70895,bueno,PH,barrio_48,1026,7,1994,354704,47,47,3,0,economica,0,0,1
+648358,False,90,3,39600,bueno,departamento,barrio_50,1006,6,1970,347316,84,84,2,1,economica,1,1,1
+818294,False,57,2,78016,excelente,duplex,barrio_44,1029,8,1984,354107,29,29,9,0,economica,1,1,0
+127813,True,145,3,65185,bueno,departamento,barrio_37,1011,5,1976,413246,91,91,0,0,media,0,1,0
+840226,False,109,2,88465,regular,duplex,barrio_24,1022,5,1968,368947,113,113,0,0,media,0,0,1
+788119,False,70,2,79813,muy bueno,departamento,barrio_32,1035,3,2008,319359,44,44,4,0,economica,0,1,0
+272454,False,91,3,127514,bueno,PH,barrio_31,1026,2,2004,335162,74,74,5,0,economica,1,0,0
+190475,True,113,2,31706,excelente,casa,barrio_09,1018,11,1999,515244,114,114,5,1,premium,1,0,0
+207301,True,86,1,12561,bueno,PH,barrio_04,1007,9,1955,245391,110,110,0,1,economica,0,0,1
+668236,True,76,3,61758,bueno,casa,barrio_15,1013,6,1967,354323,120,120,0,0,economica,0,1,1
+987658,False,72,2,67808,regular,casa,barrio_27,1033,10,1965,287534,130,130,0,1,economica,0,0,1
+594265,True,107,3,127516,bueno,departamento,barrio_09,1008,8,2000,361717,80,80,1,0,media,1,1,0
+718635,True,82,2,101218,bueno,departamento,barrio_06,1026,8,2013,326147,58,58,3,1,economica,0,1,1
+643090,True,79,3,172194,muy bueno,PH,barrio_51,1019,2,1976,419582,38,38,0,0,media,0,0,0
+319679,True,48,2,59628,bueno,departamento,barrio_22,1012,7,1973,283176,73,73,5,0,economica,0,0,1
+223808,True,98,3,43610,bueno,casa,barrio_35,1028,2,1989,425308,63,63,2,1,media,1,1,0
+379495,True,89,3,11992,bueno,departamento,barrio_31,1014,9,2020,346672,59,59,1,0,economica,0,1,0
+472158,False,84,1,46466,bueno,departamento,barrio_44,1011,1,1976,305449,81,81,1,0,economica,0,1,1
+798203,True,102,3,23342,excelente,PH,barrio_44,1021,7,1969,468035,53,53,2,1,premium,0,1,0
+514106,True,121,3,43011,bueno,PH,barrio_17,1030,5,1987,431876,88,88,0,0,media,1,0,0
+121473,True,120,2,37934,excelente,casa,barrio_50,1034,2,2015,550230,52,52,12,1,premium,1,1,1
+531388,True,114,3,52965,bueno,PH,barrio_22,1025,6,2001,431605,40,40,4,1,media,0,1,1
+995516,False,87,3,33595,regular,PH,barrio_50,1026,3,1986,322311,101,101,0,0,economica,1,1,1
+721688,True,75,2,76728,bueno,duplex,barrio_24,1031,3,2001,348455,52,52,1,1,economica,0,1,0
+679391,False,58,2,4111,regular,PH,barrio_06,1010,11,1951,185500,98,98,0,0,economica,0,0,1
+525962,False,74,3,42277,muy bueno,duplex,barrio_45,1010,5,2003,369130,86,86,14,0,media,1,0,1
+480389,False,96,1,95034,bueno,casa,barrio_01,1019,5,1956,342176,142,142,0,0,economica,0,0,1
+987028,False,67,2,162111,bueno,PH,barrio_46,1025,1,1977,343818,74,74,1,0,economica,0,0,1
+419205,True,98,3,65223,muy bueno,casa,barrio_02,1025,4,1974,457355,41,41,5,0,premium,1,0,1
+489031,False,61,3,139791,muy bueno,casa,barrio_12,1006,5,1999,361381,41,41,7,1,media,0,1,0
+366229,True,37,1,41571,excelente,duplex,barrio_36,1031,9,1967,337794,64,64,3,0,economica,0,0,0
+609641,False,124,1,36399,excelente,departamento,barrio_56,1014,2,1966,481587,66,66,1,0,premium,0,0,1
+661809,True,78,2,55466,muy bueno,PH,barrio_24,1035,12,2012,353404,53,53,5,1,economica,1,1,0
+457031,True,66,3,36223,muy bueno,PH,barrio_07,1028,2,1983,351307,70,70,1,0,economica,0,1,0
+858228,True,57,2,19421,muy bueno,PH,barrio_13,1039,8,2002,315357,40,40,13,1,economica,0,1,0
+112425,False,110,1,24048,bueno,casa,barrio_53,1025,1,1991,373119,36,36,0,0,media,1,0,0
+368997,False,143,1,14917,muy bueno,casa,barrio_43,1021,10,1994,451201,41,41,5,1,premium,1,1,1
+999892,True,81,2,55420,regular,casa,barrio_06,1007,9,1998,338163,114,114,0,1,economica,0,0,0
+454880,True,87,2,36648,muy bueno,duplex,barrio_23,1015,11,1997,399763,36,36,2,0,media,0,0,0
+489287,True,133,1,27222,excelente,casa,barrio_15,1034,12,2014,489346,39,39,7,1,premium,1,0,0
+942876,False,32,2,23078,regular,PH,barrio_10,1015,11,2005,231699,61,61,0,1,economica,0,1,1
+836031,True,164,2,54396,muy bueno,departamento,barrio_50,1002,8,1971,514494,70,70,2,0,premium,0,1,0
+947925,True,181,1,67803,excelente,casa,barrio_37,1009,11,1962,608063,65,65,1,0,premium,0,0,1
+645153,False,25,1,14700,bueno,departamento,barrio_10,1023,2,2010,232705,59,59,4,1,economica,0,1,0
+729984,False,92,2,12963,bueno,casa,barrio_39,1025,8,1976,340999,89,89,0,0,economica,0,1,1
+808133,False,70,3,77933,excelente,casa,barrio_24,1039,12,1972,416714,26,26,5,0,media,0,0,0
+874510,False,86,3,12087,excelente,casa,barrio_03,1037,5,1957,466740,79,79,2,1,premium,0,1,0
+842834,False,80,2,56274,regular,duplex,barrio_26,1021,12,1989,295495,69,69,1,0,economica,0,0,1
+455427,True,123,1,132393,bueno,PH,barrio_11,1022,7,1986,373014,59,59,3,0,media,0,0,1
+397568,True,91,3,132639,muy bueno,duplex,barrio_14,1032,6,2008,429539,53,53,8,0,media,1,1,1
+158471,False,63,3,65532,bueno,departamento,barrio_52,1001,4,2003,281173,84,84,1,0,economica,0,0,0
+828298,True,89,1,64026,bueno,casa,barrio_42,1023,2,2001,325880,103,103,1,0,economica,1,1,1
+716323,False,113,2,220031,regular,PH,barrio_08,1018,11,1988,400746,88,88,2,0,media,0,1,1
+564297,True,54,1,5611,bueno,duplex,barrio_51,1031,9,2011,291630,43,43,3,0,economica,0,1,0
+887660,True,37,3,25048,muy bueno,PH,barrio_34,1032,5,2019,309609,30,30,11,1,economica,0,1,0
+638946,True,165,3,71596,muy bueno,casa,barrio_52,1026,12,2007,564483,58,58,1,1,premium,1,1,0
+523225,False,73,1,27727,muy bueno,departamento,barrio_44,1026,3,1974,298804,71,71,3,1,economica,0,0,0
+699910,False,90,3,97912,muy bueno,duplex,barrio_20,1027,10,1969,404221,88,88,2,0,media,1,0,1
+899511,True,81,2,35190,bueno,PH,barrio_32,1023,6,1950,308681,124,124,1,0,economica,0,1,1
+735471,True,114,2,40352,bueno,duplex,barrio_31,1009,8,2020,412843,106,106,0,0,media,0,1,0
+694150,True,157,1,29151,regular,PH,barrio_43,1011,1,2002,420669,68,68,2,0,media,1,0,1
+976011,True,115,3,23909,bueno,casa,barrio_14,1029,8,2016,449090,60,60,3,1,media,1,1,0
+511441,True,42,2,23443,bueno,duplex,barrio_19,1024,9,2005,264440,46,46,3,0,economica,0,1,0
+122235,False,47,3,45113,bueno,duplex,barrio_14,1009,12,1980,314197,62,62,0,1,economica,0,1,1
+894447,True,81,1,19543,regular,PH,barrio_17,1035,5,1960,259823,110,110,0,0,economica,0,0,1
+280763,True,86,2,77852,bueno,duplex,barrio_09,1039,1,1953,330393,90,90,1,0,economica,0,0,1
+653619,True,35,1,61242,muy bueno,casa,barrio_02,1025,1,2006,309189,11,11,10,1,economica,0,1,0
+728807,True,124,3,87512,muy bueno,duplex,barrio_56,1009,2,1971,471158,75,75,1,0,premium,1,0,1
+349576,True,57,2,14719,excelente,casa,barrio_04,1037,4,1976,345201,46,46,2,1,economica,1,1,0
+147966,False,147,3,9325,muy bueno,duplex,barrio_53,1009,10,2009,448798,68,68,4,1,media,0,1,1
+976041,False,159,1,36194,muy bueno,casa,barrio_00,1017,3,1984,500061,32,32,5,0,premium,0,1,0
+742579,False,86,3,369180,regular,PH,barrio_46,1034,2,2017,355709,99,99,4,1,media,1,1,0
+739305,True,110,1,100004,muy bueno,duplex,barrio_19,1020,1,1988,456896,58,58,0,1,premium,0,0,1
+711644,False,52,2,23305,regular,casa,barrio_31,1009,5,2009,273643,87,87,1,0,economica,0,0,1
+769728,False,117,1,51001,bueno,casa,barrio_16,1003,8,1958,424906,53,53,0,0,media,1,0,1
+568682,False,78,1,64995,bueno,duplex,barrio_29,1014,4,1978,325825,108,108,1,1,economica,0,0,1
+307207,False,57,2,12152,bueno,casa,barrio_27,1026,6,1963,278225,120,120,1,0,economica,0,0,1
+338140,True,85,1,108630,bueno,PH,barrio_31,1028,3,1954,328773,105,105,0,0,economica,0,0,1
+481797,False,79,2,31763,muy bueno,duplex,barrio_23,1008,10,2020,374498,22,22,7,1,media,1,1,0
+588481,False,84,3,33774,muy bueno,PH,barrio_32,1006,1,1986,329739,71,71,2,0,economica,0,1,0
+962368,False,128,1,37013,muy bueno,departamento,barrio_49,1028,3,1975,412682,62,62,1,1,media,0,1,0
+189017,False,68,3,90729,muy bueno,departamento,barrio_26,1006,7,1976,344255,71,71,3,0,economica,0,1,1
+408369,False,156,1,19848,bueno,PH,barrio_21,1002,11,1967,391476,102,102,1,0,media,1,1,1
+537751,True,49,1,9269,regular,PH,barrio_07,1019,5,1958,231264,112,112,0,0,economica,0,1,1
+620581,False,152,2,47022,muy bueno,PH,barrio_21,1022,1,2014,447564,28,28,3,1,media,1,1,0
+170542,False,59,2,7080,bueno,casa,barrio_07,1009,7,1957,257825,67,67,1,0,economica,0,0,1
+764006,False,95,2,28542,bueno,PH,barrio_10,1008,4,1977,361469,79,79,5,0,media,0,0,1
+139800,False,78,1,93854,bueno,PH,barrio_57,1009,4,1960,345975,86,86,2,0,economica,1,1,0
+802501,True,83,2,57715,excelente,PH,barrio_05,1013,12,2016,416144,62,62,11,0,media,1,1,0
+749701,True,123,1,83607,muy bueno,casa,barrio_28,1000,12,1964,428257,23,23,1,1,media,0,1,1
+122669,True,147,1,59652,bueno,PH,barrio_50,1000,4,1977,399695,81,81,2,0,media,0,1,1
+378448,False,137,3,249763,muy bueno,PH,barrio_57,1014,8,2003,507483,48,48,13,1,premium,1,1,1
+790076,False,81,1,22684,bueno,casa,barrio_08,1000,7,1990,290606,23,23,4,0,economica,1,1,1
+204540,False,101,2,49936,bueno,duplex,barrio_09,1012,12,1977,291949,93,93,2,0,economica,0,0,0
+304880,False,68,2,25578,bueno,PH,barrio_22,1023,12,1990,317293,63,63,1,1,economica,1,0,1
+627598,False,60,1,78076,bueno,departamento,barrio_33,1001,5,1981,248898,87,87,1,0,economica,0,0,1
+285554,True,55,3,34570,muy bueno,PH,barrio_57,1024,1,1970,325438,32,32,2,0,economica,0,0,1
+637512,False,80,2,143642,regular,PH,barrio_12,1024,1,1992,295552,84,84,2,0,economica,0,0,0
+311231,False,104,3,23750,muy bueno,PH,barrio_09,1022,1,1975,337153,74,74,3,0,economica,0,0,0
+993215,False,28,2,111938,bueno,departamento,barrio_15,1025,10,2018,234908,70,70,3,0,economica,0,1,1
+745702,False,93,3,58367,muy bueno,duplex,barrio_52,1032,9,1982,362538,75,75,1,0,media,0,0,1
+563446,False,148,3,35385,muy bueno,duplex,barrio_01,1002,10,2003,492094,60,60,2,0,premium,1,1,0
+415346,True,134,1,56047,muy bueno,casa,barrio_22,1006,2,1966,520353,628,63,4,1,premium,1,1,1
+101015,False,75,3,44757,muy bueno,PH,barrio_07,1012,1,1995,308091,65,65,1,0,economica,0,0,0
+130968,True,46,3,48280,excelente,casa,barrio_09,1027,3,1989,375719,52,52,2,0,media,0,1,0
+656319,True,111,2,30776,bueno,departamento,barrio_55,1034,8,2002,342058,72,72,0,1,economica,0,1,1
+300784,True,25,1,20717,muy bueno,duplex,barrio_00,1036,1,1982,236689,62,62,2,0,economica,0,1,0
+418795,True,134,2,27776,muy bueno,casa,barrio_19,1023,8,2001,440028,1,1,6,1,media,1,1,0
+402288,True,88,3,9447,bueno,departamento,barrio_54,1016,11,1954,306426,102,102,1,0,economica,0,0,1
+981245,False,159,2,71222,bueno,casa,barrio_36,1016,2,1999,502098,74,74,2,0,premium,1,1,1
+983642,True,35,1,13519,bueno,PH,barrio_04,1002,9,2003,168262,90,90,0,0,economica,0,1,0
+734300,True,127,2,30512,bueno,departamento,barrio_27,1018,7,1985,424841,80,80,0,0,media,0,0,1
+285855,True,91,3,60988,bueno,PH,barrio_58,1020,12,1952,328990,86,86,1,1,economica,1,1,0
+413122,True,83,1,71077,bueno,duplex,barrio_24,1008,3,1990,347401,47,47,2,0,economica,0,0,1
+285128,False,47,2,8780,muy bueno,PH,barrio_31,1030,3,2005,278129,60,60,2,1,economica,0,1,1
+393571,True,116,1,33743,bueno,PH,barrio_31,1032,1,1982,377767,85,85,3,0,media,0,0,1
+640986,True,119,3,52459,muy bueno,casa,barrio_39,1012,9,1956,455875,78,78,2,1,premium,0,0,0
+913528,False,157,3,37859,bueno,casa,barrio_11,1036,11,1978,458732,59,59,1,0,premium,0,0,1
+390883,False,130,3,106432,muy bueno,duplex,barrio_50,1004,1,2020,532441,58,58,10,1,premium,0,1,0
+943769,False,74,2,18818,regular,duplex,barrio_59,1036,6,1969,299633,108,108,3,1,economica,0,0,1
+745801,False,60,1,7050,bueno,PH,barrio_08,1030,9,1987,244012,80,80,4,0,economica,0,0,0
+970776,True,47,2,69443,regular,departamento,barrio_49,1008,10,1975,239458,95,95,1,0,economica,0,0,1
+587838,False,147,3,23631,muy bueno,casa,barrio_49,1026,12,2000,502731,1,1,2,0,premium,1,1,0
+327232,True,68,1,8894,bueno,duplex,barrio_44,1012,9,1980,264106,90,90,1,0,economica,0,0,1
+617336,True,147,1,31990,excelente,duplex,barrio_22,1031,12,1977,550812,62,62,12,1,premium,0,0,0
+915557,True,113,3,97192,bueno,casa,barrio_28,1006,12,1991,477010,95,95,2,1,premium,1,1,1
+830617,False,107,2,13219,muy bueno,PH,barrio_50,1009,12,1990,382376,45,45,4,1,media,0,1,1
+688498,True,84,1,235342,bueno,PH,barrio_09,1012,6,1985,303712,94,94,1,0,economica,0,0,0
+257350,True,118,1,18577,muy bueno,departamento,barrio_49,1007,5,1968,400419,75,75,0,0,media,0,0,1
+473955,True,94,2,38933,bueno,duplex,barrio_55,1013,6,1957,322146,128,128,0,0,economica,1,1,1
+439568,False,82,2,13694,bueno,casa,barrio_40,1024,12,1999,324526,34,34,3,0,economica,0,1,1
+731682,True,119,3,37545,bueno,departamento,barrio_20,1025,4,1974,399090,89,89,1,0,media,0,0,1
+254154,True,90,3,32630,regular,casa,barrio_33,1022,10,1993,322036,122,122,1,0,economica,1,1,0
+862239,True,67,2,11030,regular,PH,barrio_03,1007,8,1976,323349,90,90,1,0,economica,0,0,1
+885248,False,116,2,348245,excelente,PH,barrio_55,1008,1,2010,476504,32,32,9,0,premium,0,1,0
+337873,True,93,3,24434,bueno,duplex,barrio_20,1036,6,2000,352420,79,79,2,0,economica,1,0,1
+465948,False,112,3,24451,regular,PH,barrio_03,1010,3,1978,388941,94,94,1,0,media,0,0,1
+490647,True,79,1,78844,excelente,casa,barrio_47,1004,9,1973,418493,58,58,3,0,media,1,0,1
+363999,True,53,3,155035,regular,departamento,barrio_39,1018,6,2003,366953,83,83,0,0,media,0,1,1
+247369,True,156,3,89424,bueno,casa,barrio_37,1000,5,1950,449231,103,103,0,0,media,0,0,1
+443611,True,149,1,13892,muy bueno,PH,barrio_03,1013,1,1954,473931,88,88,4,1,premium,1,0,1
+539822,True,126,3,43093,excelente,PH,barrio_45,1034,2,1955,510280,567,57,3,0,premium,1,1,0
+416241,True,81,1,8062,muy bueno,duplex,barrio_38,1010,10,1974,293391,66,66,2,0,economica,0,0,1
+353308,False,84,2,74710,bueno,departamento,barrio_47,1028,11,1985,333158,76,76,2,0,economica,0,1,0
+746996,True,143,2,9817,excelente,departamento,barrio_49,1019,4,1970,532361,65,65,6,1,premium,0,1,0
+210989,True,83,3,19100,regular,casa,barrio_12,1014,10,1963,364847,65,65,0,0,media,1,0,1
+752712,True,73,3,36223,excelente,departamento,barrio_12,1026,7,1972,404722,50,50,3,1,media,0,1,1
+812177,True,161,2,51845,muy bueno,departamento,barrio_55,1023,5,1985,500647,63,63,1,1,premium,1,1,1
+518303,True,93,2,29474,excelente,duplex,barrio_31,1012,6,1971,443118,64,64,3,0,media,0,1,0
+729882,True,157,3,122427,bueno,duplex,barrio_26,1008,9,1990,524505,52,52,0,1,premium,0,1,1
+793943,True,46,3,64770,regular,casa,barrio_17,1036,11,1977,246202,99,99,0,0,economica,1,0,1
+536109,True,113,3,60826,muy bueno,departamento,barrio_38,1006,6,2016,383960,58,58,4,1,media,1,0,0
+278690,False,167,3,13582,bueno,PH,barrio_45,1038,5,2020,500618,51,51,5,1,premium,1,0,0
+397791,False,96,3,141421,bueno,departamento,barrio_00,1018,10,1996,368148,70,70,2,1,media,1,0,1
+374085,False,86,3,19102,excelente,casa,barrio_33,1039,7,1989,413226,55,55,5,1,media,0,1,0
+918914,True,54,3,145806,muy bueno,duplex,barrio_59,1014,5,1952,345658,83,83,4,0,economica,0,0,1
+966817,False,133,1,183094,bueno,PH,barrio_16,1022,6,1994,414369,73,73,1,0,media,0,1,0
+847090,True,68,2,54728,bueno,PH,barrio_16,1024,7,1977,317304,70,70,4,0,economica,1,0,1
+696093,True,92,1,82918,regular,departamento,barrio_52,1013,2,1970,291621,119,119,0,0,economica,0,0,1
+860594,False,52,2,3083,bueno,duplex,barrio_03,1008,1,2006,295043,73,73,3,0,economica,0,0,0
+821461,True,149,2,31070,regular,casa,barrio_23,1020,8,1952,445028,132,132,0,0,media,1,0,1
+204145,True,135,1,87705,muy bueno,departamento,barrio_27,1026,3,1968,471412,63,63,1,0,premium,1,0,1
+339628,False,94,3,76085,muy bueno,duplex,barrio_47,1010,7,2004,377707,60,60,7,1,media,0,0,1
+825227,False,55,3,13687,bueno,duplex,barrio_07,1030,10,2015,309991,47,47,2,1,economica,1,1,1
+528706,True,149,2,28711,bueno,departamento,barrio_26,1025,3,1986,438646,76,76,3,0,media,0,0,1
+993794,True,82,3,4774,muy bueno,PH,barrio_09,1006,5,1987,318996,82,82,2,1,economica,0,0,1
+397333,True,56,1,50534,muy bueno,casa,barrio_47,1037,12,2018,350856,52,52,4,1,economica,0,1,0
+306402,False,33,2,8049,excelente,casa,barrio_37,1001,1,1956,289594,84,84,3,0,economica,1,0,1
+308954,True,72,1,89714,bueno,departamento,barrio_29,1026,10,1984,325637,72,72,3,1,economica,1,0,1
+455724,True,44,1,93543,muy bueno,duplex,barrio_23,1017,3,1967,296626,89,89,0,1,economica,0,0,1
+440745,True,73,1,24847,bueno,PH,barrio_09,1026,11,1983,253108,83,83,1,1,economica,0,1,1
+730180,False,121,2,55106,bueno,departamento,barrio_55,1030,5,2014,386584,72,72,7,0,media,1,1,1
+236550,False,82,2,30526,excelente,departamento,barrio_38,1027,1,1992,405400,61,61,3,1,media,0,1,1
+446073,True,107,3,44070,bueno,casa,barrio_19,1026,9,2020,390087,42,42,1,1,media,1,1,0
+275242,False,70,2,14504,bueno,departamento,barrio_24,1033,2,1985,291781,79,79,0,0,economica,0,1,0
+202974,True,97,3,59754,bueno,casa,barrio_43,1028,5,2011,427543,29,29,0,0,media,0,1,1
+737229,False,162,2,9770,bueno,casa,barrio_43,1032,7,1962,474804,59,59,3,0,premium,0,1,1
+746852,True,83,1,8401,bueno,PH,barrio_27,1016,9,1972,301712,59,59,0,0,economica,0,0,1
+417928,True,108,1,32940,muy bueno,casa,barrio_18,1008,6,1969,451915,85,85,4,0,premium,0,0,1
+840586,True,40,1,30669,bueno,casa,barrio_39,1009,11,2004,288285,114,114,1,1,economica,0,1,0
+528993,False,148,2,45154,bueno,PH,barrio_39,1024,6,1986,423779,83,83,4,0,media,1,0,1
+812054,False,78,2,21599,excelente,departamento,barrio_35,1021,5,1965,422219,38,38,7,0,media,0,1,0
+492567,False,132,3,164153,bueno,departamento,barrio_04,1003,5,1962,358988,117,117,1,0,media,1,1,0
+153944,True,91,1,41294,excelente,casa,barrio_28,1008,10,1977,462453,95,95,6,1,premium,1,1,0
+840184,True,116,1,43753,bueno,casa,barrio_36,1038,8,1960,412805,82,82,1,0,media,0,0,1
+483299,True,118,3,42522,muy bueno,departamento,barrio_57,1029,2,1999,521070,42,42,6,1,premium,1,1,0
+957611,True,79,1,81010,bueno,PH,barrio_31,1030,10,2010,327115,48,48,2,0,economica,1,1,1
+750807,True,133,2,57573,muy bueno,departamento,barrio_20,1007,5,2018,440786,50,50,7,1,media,0,1,0
+243268,False,68,1,51721,regular,PH,barrio_33,1002,5,1966,245290,102,102,1,0,economica,0,0,1
+414317,False,122,2,65433,excelente,PH,barrio_10,1011,2,1981,518833,45,45,8,1,premium,0,1,0
+893461,False,81,3,8436,bueno,departamento,barrio_05,1034,12,1985,234727,85,85,0,0,economica,1,0,1
+211290,True,107,1,8695,muy bueno,departamento,barrio_40,1020,1,1985,395657,55,55,7,1,media,0,1,1
+245345,True,79,2,34172,bueno,departamento,barrio_59,1031,12,1982,328635,73,73,1,0,economica,0,1,1
+729442,True,97,2,31004,regular,casa,barrio_50,1019,1,1965,389189,800,80,0,0,media,1,0,1
+569162,True,57,3,57748,bueno,PH,barrio_35,1019,7,1957,320607,68,68,2,0,economica,0,0,1
+301726,False,104,3,36902,bueno,PH,barrio_02,1024,2,1978,379386,50,50,4,0,media,1,1,1
+291391,False,97,1,57843,bueno,departamento,barrio_59,1038,6,1956,368506,81,81,0,0,media,1,0,1
+419670,True,76,2,13407,muy bueno,departamento,barrio_26,1017,11,1954,340030,70,70,2,1,economica,0,0,1
+131190,True,93,3,36005,bueno,departamento,barrio_17,1023,8,1987,323609,83,83,1,0,economica,1,1,0
+498914,False,100,1,12421,regular,PH,barrio_53,1036,7,2010,288128,84,84,1,0,economica,1,0,1
+894833,True,73,3,49488,regular,duplex,barrio_44,1014,2,1988,361415,87,87,0,0,media,0,0,1
+132089,True,90,1,8082,bueno,casa,barrio_44,1033,12,1951,303024,63,63,0,1,economica,0,0,1
+969202,False,60,2,47985,bueno,departamento,barrio_16,1021,5,2009,273353,56,56,4,1,economica,0,0,0
+621738,False,177,3,11213,muy bueno,casa,barrio_59,1035,7,1998,516427,75,75,4,1,premium,0,0,0
+396246,True,132,2,26720,bueno,departamento,barrio_27,1018,11,1971,410130,83,83,1,0,media,1,0,1
+827806,False,105,3,74306,excelente,casa,barrio_31,1025,8,1969,488190,64,64,3,0,premium,1,0,0
+536964,False,136,2,43560,bueno,departamento,barrio_45,1012,9,2013,458099,65,65,5,1,premium,1,1,0
+388495,True,26,1,9735,regular,departamento,barrio_39,1025,3,1983,207110,80,80,1,1,economica,0,1,1
+934650,True,25,3,21207,excelente,departamento,barrio_10,1013,6,1960,374087,57,57,3,1,media,0,0,0
+740425,False,81,2,10926,bueno,departamento,barrio_18,1024,7,1969,298723,75,75,2,0,economica,1,0,1
+873047,False,47,1,9360,bueno,duplex,barrio_21,1031,3,1968,222892,85,85,1,0,economica,0,0,1
+272836,True,87,1,39900,excelente,duplex,barrio_56,1017,5,1978,415975,65,65,3,0,media,0,1,0
+696313,True,102,2,56854,excelente,casa,barrio_42,1017,10,1974,459880,45,45,2,1,premium,0,1,0
+616488,False,127,2,51662,muy bueno,departamento,barrio_21,1012,12,1988,385003,70,70,3,1,media,1,1,1
+335928,True,55,3,58812,regular,duplex,barrio_44,1029,10,1972,297659,115,115,0,0,economica,0,0,1
+110579,True,109,1,35971,muy bueno,PH,barrio_44,1023,12,1995,379826,24,24,7,1,media,0,1,1
+474528,True,96,2,29181,excelente,casa,barrio_23,1020,12,1984,485841,91,91,5,1,premium,1,1,0
+262860,True,107,3,15391,excelente,PH,barrio_24,1001,3,2016,465995,6,6,7,1,premium,0,0,0
+723616,False,77,3,25538,regular,casa,barrio_53,1004,11,2008,356732,70,70,1,0,media,0,0,0
+330229,False,143,3,12619,bueno,casa,barrio_33,1000,8,1973,403963,124,124,1,1,media,0,0,1
+940772,True,91,1,18469,bueno,PH,barrio_08,1034,11,1952,298096,91,91,0,0,economica,0,1,1
+921751,False,157,1,38993,regular,PH,barrio_43,1034,8,1991,370250,67,67,1,0,media,1,1,0
+101947,True,67,2,33049,muy bueno,duplex,barrio_35,1002,2,1974,399497,404,40,9,1,media,1,0,1
+399269,True,121,2,421587,bueno,departamento,barrio_30,1001,7,2014,450201,43,43,11,1,premium,1,1,1
+970586,True,93,1,12374,bueno,duplex,barrio_43,1031,10,1978,340049,47,47,2,0,economica,1,0,1
+764397,False,84,1,32857,regular,departamento,barrio_54,1020,2,1970,261886,111,111,0,0,economica,1,0,1
+539809,False,117,1,11626,bueno,PH,barrio_19,1012,7,1974,321832,82,82,3,0,economica,0,1,1
+137110,False,85,2,26629,bueno,casa,barrio_25,1024,8,2011,344424,32,32,3,1,economica,0,0,0
+305554,True,25,3,27511,bueno,casa,barrio_11,1009,6,1957,287362,70,70,1,0,economica,0,1,1
+443218,True,25,1,71389,regular,duplex,barrio_38,1007,10,2017,211227,68,68,2,1,economica,0,1,0
+381080,True,140,1,25343,excelente,duplex,barrio_24,1014,2,1966,523692,83,83,5,0,premium,0,1,0
+547710,False,138,1,31162,regular,duplex,barrio_20,1035,5,2010,389353,94,94,2,0,media,0,0,1
+183790,True,161,3,25739,bueno,departamento,barrio_41,1030,12,1988,522422,67,67,1,0,premium,1,0,1
+410309,False,94,3,11839,bueno,casa,barrio_24,1007,7,1990,346470,69,69,1,0,economica,1,0,1
+906934,False,50,2,21554,regular,duplex,barrio_27,1022,3,1964,229216,83,83,2,0,economica,1,0,1
+996772,True,80,1,26754,bueno,PH,barrio_26,1035,2,2001,340198,79,79,2,1,economica,0,0,0
+388937,True,95,1,38525,regular,casa,barrio_15,1038,8,1996,341126,61,61,1,0,economica,1,0,0
+692322,True,60,3,56792,regular,duplex,barrio_07,1030,12,1984,310215,130,130,0,0,economica,0,0,1
+818870,False,153,2,30101,bueno,duplex,barrio_49,1005,1,1982,480883,80,80,1,1,premium,1,0,0
+701402,False,173,1,29681,muy bueno,departamento,barrio_05,1009,2,1992,474137,70,70,1,0,premium,1,0,0
+840676,True,112,3,9167,regular,duplex,barrio_19,1008,5,1983,377977,87,87,0,1,media,0,0,1
+131765,False,95,2,55926,bueno,duplex,barrio_40,1006,3,2019,398255,37,37,4,1,media,0,1,1
+683110,True,50,2,20812,muy bueno,PH,barrio_07,1007,2,1952,273854,70,70,0,1,economica,0,0,0
+668075,True,149,2,66019,bueno,PH,barrio_39,1012,4,1967,443193,82,82,1,0,media,0,1,1
+616134,False,98,1,104105,bueno,departamento,barrio_43,1022,8,2010,381209,56,56,3,1,media,1,0,1
+991430,False,85,3,31247,regular,duplex,barrio_39,1015,10,2006,334496,35,35,2,0,economica,0,1,0
+903552,True,112,3,16016,bueno,duplex,barrio_18,1016,4,1974,435152,70,70,2,0,media,0,1,1
+784724,False,75,1,35834,bueno,duplex,barrio_01,1009,9,1985,280470,57,57,1,0,economica,1,1,0
+535873,False,100,3,48000,excelente,PH,barrio_53,1006,10,1951,417079,64,64,1,1,media,0,0,0
+727339,False,45,1,28214,excelente,casa,barrio_19,1039,1,1962,375847,38,38,3,0,media,0,1,0
+652297,False,133,2,23127,excelente,departamento,barrio_48,1023,11,2017,575788,23,23,27,1,premium,0,1,0
+913430,True,91,3,57001,bueno,departamento,barrio_11,1009,3,1995,407129,77,77,2,1,media,0,0,1
+387358,True,136,1,54072,regular,duplex,barrio_09,1032,9,1952,401598,125,125,0,0,media,1,0,1
+844034,False,88,3,27528,bueno,PH,barrio_46,1033,10,2006,360904,575,57,5,0,media,1,1,1
+398033,True,90,1,9670,bueno,PH,barrio_56,1038,11,1978,335842,66,66,0,0,economica,1,0,1
+483902,True,53,3,52318,regular,casa,barrio_51,1006,5,1990,314301,66,66,0,0,economica,0,0,0
+749621,True,122,2,19656,regular,duplex,barrio_45,1025,8,2010,392077,80,80,2,0,media,0,1,0
+248582,True,64,1,43108,bueno,departamento,barrio_14,1039,1,2009,289379,52,52,3,1,economica,0,0,0
+103156,True,78,3,40984,bueno,casa,barrio_54,1032,6,1959,337346,127,127,1,0,economica,0,1,1
+917437,True,95,1,8013,bueno,duplex,barrio_40,1009,12,1975,352326,52,52,4,0,economica,0,0,1
+365866,True,99,3,38749,muy bueno,casa,barrio_10,1035,2,1969,464088,57,57,5,1,premium,1,0,0
+861607,True,35,3,54810,bueno,casa,barrio_07,1016,2,2014,289450,55,55,2,1,economica,1,1,1
+857206,False,87,1,60459,excelente,casa,barrio_52,1019,9,2005,421865,63,63,3,1,media,0,1,0
+476067,False,123,2,39890,bueno,departamento,barrio_16,1022,7,1996,413150,65,65,2,0,media,0,0,1
+914116,True,82,2,7467,bueno,casa,barrio_45,1030,6,1954,378174,88,88,0,0,media,1,0,1
+907575,True,87,2,100878,bueno,duplex,barrio_08,1004,3,2007,396095,66,66,3,1,media,0,1,0
+652851,True,101,2,50454,bueno,PH,barrio_16,1021,3,1989,389432,66,66,1,1,media,0,1,1
+167588,False,91,1,13868,bueno,departamento,barrio_17,1032,9,1969,279889,98,98,0,1,economica,1,0,1
+210600,False,59,2,19337,bueno,casa,barrio_16,1021,5,1981,299190,82,82,1,0,economica,0,1,1
+517939,False,94,1,43695,muy bueno,departamento,barrio_40,1010,10,1981,366250,56,56,6,1,media,0,1,0
+903742,False,130,3,62557,bueno,casa,barrio_54,1002,6,1971,449941,82,82,0,0,premium,0,0,1
+156476,True,58,3,24579,bueno,duplex,barrio_54,1021,5,2014,280251,84,84,5,0,economica,0,0,0
+196356,True,82,1,70292,excelente,departamento,barrio_44,1028,3,2015,430811,31,31,11,1,media,0,1,0
+996313,True,47,3,8654,regular,departamento,barrio_12,1021,8,1953,215037,106,106,0,0,economica,1,0,1
+247221,True,128,3,15773,muy bueno,casa,barrio_57,1039,4,2016,522642,34,34,21,0,premium,0,1,1
+312479,True,92,1,6964,bueno,casa,barrio_32,1024,11,1978,330806,144,144,1,0,economica,0,0,0
+986020,False,65,3,17713,bueno,casa,barrio_32,1020,5,2006,321266,36,36,1,0,economica,0,1,1
+634995,True,98,3,121353,bueno,casa,barrio_42,1002,10,2005,374712,99,99,1,0,media,0,1,0
+924394,False,53,1,188385,regular,PH,barrio_46,1022,6,1992,250023,56,56,1,0,economica,1,1,1
+714275,True,59,2,43812,muy bueno,duplex,barrio_57,1006,5,2002,367982,41,41,9,1,media,0,1,0
+622183,True,44,3,21791,bueno,duplex,barrio_34,1028,6,1998,339564,95,95,3,0,economica,1,1,0
+172288,False,58,2,30415,bueno,departamento,barrio_36,1006,6,2010,293205,68,68,3,1,economica,1,1,1
+995398,True,143,1,53033,bueno,duplex,barrio_44,1036,6,1980,413291,81,81,0,0,media,0,0,1
+518835,True,69,2,10401,excelente,PH,barrio_15,1012,11,2002,378866,47,47,4,0,media,0,1,0
+909257,True,111,2,22971,muy bueno,casa,barrio_18,1017,9,2019,484754,39,39,14,1,premium,0,1,0
+257090,False,66,3,114452,excelente,casa,barrio_37,1005,1,2017,437178,41,41,3,1,media,0,1,0
+248328,True,122,2,15732,muy bueno,PH,barrio_03,1008,1,1960,425396,59,59,2,0,media,1,0,1
+183303,False,59,2,19946,muy bueno,departamento,barrio_19,1036,1,1985,299544,62,62,4,0,economica,1,1,0
+921305,False,96,3,36701,bueno,casa,barrio_43,1011,9,1986,342682,80,80,3,0,economica,1,1,1
+115212,False,97,2,45548,excelente,duplex,barrio_58,1020,3,1994,458381,44,44,3,0,premium,0,0,0
+943499,True,176,3,22026,bueno,PH,barrio_31,1039,5,1995,499742,70,70,0,0,premium,1,1,0
+656777,False,117,3,38622,bueno,PH,barrio_23,1024,10,2010,382308,50,50,2,0,media,1,1,0
+144135,True,74,3,59063,muy bueno,duplex,barrio_26,1001,2,1987,401950,68,68,4,1,media,0,1,1
+793397,False,119,1,174410,bueno,duplex,barrio_41,1014,2,1999,424171,74,74,2,1,media,0,1,1
+638921,True,170,3,32827,regular,duplex,barrio_32,1015,1,2013,514654,92,92,3,0,premium,0,1,1
+272744,True,38,3,35135,bueno,departamento,barrio_01,1011,4,1957,217426,113,113,0,0,economica,0,0,1
+282683,True,66,1,123249,bueno,duplex,barrio_32,1009,2,1995,282678,84,84,1,1,economica,0,1,0
+539276,False,87,2,23404,muy bueno,PH,barrio_24,1020,8,1976,336011,77,77,1,1,economica,0,0,1
+800959,False,80,2,12588,bueno,PH,barrio_42,1015,9,2014,286136,72,72,3,1,economica,0,0,0
+336044,True,83,2,44365,muy bueno,duplex,barrio_52,1011,3,1989,360248,79,79,1,0,media,1,1,1
+872184,True,49,3,85900,bueno,casa,barrio_57,1016,7,1992,336828,432,43,1,0,economica,1,0,0
+269598,False,144,3,48477,muy bueno,departamento,barrio_36,1013,4,2003,512125,69,69,6,1,premium,0,1,0
+866262,False,45,1,33604,regular,casa,barrio_21,1009,1,1967,240958,99,99,0,0,economica,0,0,1
+273102,False,88,2,11399,excelente,departamento,barrio_26,1018,6,1988,479686,42,42,4,1,premium,1,1,0
+445096,True,132,3,34659,bueno,departamento,barrio_10,1037,9,2004,445214,60,60,7,0,media,0,1,1
+813118,False,94,2,97394,bueno,duplex,barrio_56,1020,3,2005,387057,77,77,1,1,media,0,1,1
+845170,False,61,3,13531,bueno,duplex,barrio_50,1023,10,1966,290328,65,65,1,1,economica,1,0,1
+936625,True,48,2,29858,bueno,departamento,barrio_51,1039,12,2009,320486,66,66,2,1,economica,1,0,0
+989601,True,87,3,26636,bueno,departamento,barrio_19,1024,1,1961,354323,982,98,1,0,economica,0,0,1
+187340,True,69,3,20782,muy bueno,PH,barrio_19,1008,2,1968,323343,67,67,2,0,economica,0,0,0
+431767,True,102,1,44282,excelente,duplex,barrio_51,1015,4,2010,520540,53,53,5,1,premium,1,1,0
+547688,False,46,3,51774,muy bueno,duplex,barrio_32,1019,11,1993,242314,74,74,5,1,economica,0,0,1
+152636,True,123,1,51342,bueno,casa,barrio_42,1018,2,1988,377515,47,47,2,0,media,0,0,0
+844489,True,99,3,16623,bueno,casa,barrio_29,1005,6,1989,403894,126,126,1,0,media,0,1,1
+581818,True,102,3,9732,muy bueno,PH,barrio_26,1004,7,2018,404840,48,48,6,1,media,1,1,0
+821871,False,145,1,44798,muy bueno,departamento,barrio_37,1013,2,1966,464072,86,86,1,1,premium,1,1,1
+865379,False,80,1,24228,bueno,casa,barrio_48,1036,1,1971,344928,126,126,2,0,economica,1,0,0
+231499,True,70,2,158047,excelente,casa,barrio_20,1028,2,1984,454126,62,62,3,0,premium,0,1,0
+595331,False,76,1,163998,bueno,departamento,barrio_48,1033,1,2010,349682,56,56,6,0,economica,0,1,1
+538156,True,88,2,178537,muy bueno,departamento,barrio_14,1006,7,1988,406344,54,54,4,1,media,0,1,0
+331136,False,92,1,17118,excelente,PH,barrio_24,1016,12,2001,400644,57,57,10,0,media,1,1,0
+607820,False,66,1,57268,muy bueno,casa,barrio_54,1023,5,2008,325381,70,70,4,1,economica,0,1,0
+234128,True,25,2,72894,bueno,PH,barrio_57,1017,4,2013,253160,43,43,12,0,economica,0,1,0
+742212,False,75,3,66615,muy bueno,PH,barrio_55,1016,3,1982,311993,63,63,2,1,economica,0,1,1
+775117,True,108,1,27350,regular,departamento,barrio_18,1014,12,1982,389307,86,86,1,0,media,1,1,1
+130295,False,100,1,101046,muy bueno,casa,barrio_50,1002,12,1955,401108,75,75,0,0,media,0,0,1
+233326,True,137,1,36329,bueno,PH,barrio_56,1034,8,1955,331439,79,79,1,0,economica,1,0,0
+269717,False,163,1,40235,muy bueno,PH,barrio_58,1037,6,1984,421501,54,54,4,0,media,1,0,1
+817701,True,122,1,10612,excelente,departamento,barrio_01,1003,2,2003,506414,58,58,5,1,premium,0,1,0
+226914,True,143,1,60828,bueno,departamento,barrio_44,1016,12,2009,439141,49,49,4,0,media,1,0,0
+863992,True,122,2,29486,bueno,PH,barrio_59,1020,1,1979,431018,74,74,1,0,media,1,0,1
+976070,False,155,1,52671,muy bueno,departamento,barrio_45,1031,2,1990,500212,57,57,3,1,premium,0,1,0
+279028,True,160,3,43831,bueno,departamento,barrio_13,1039,9,2007,509188,60,60,7,1,premium,1,1,0
+939267,False,128,2,41972,bueno,departamento,barrio_45,1016,3,1972,394484,80,80,3,0,media,0,1,1
+840121,True,120,3,35011,regular,departamento,barrio_06,1029,2,1961,387381,112,112,0,0,media,0,0,1
+695965,False,88,2,68137,bueno,PH,barrio_28,1037,8,2015,295151,48,48,3,0,economica,0,1,0
+976916,True,94,2,30973,muy bueno,departamento,barrio_37,1033,1,1988,387279,74,74,0,0,media,1,0,0
+942670,False,83,2,11337,muy bueno,departamento,barrio_27,1011,4,1961,337353,74,74,3,1,economica,0,0,1
+644659,False,117,3,57249,bueno,PH,barrio_41,1032,8,1967,384254,75,75,0,1,media,0,0,1
+820535,True,70,1,19011,bueno,departamento,barrio_14,1016,3,1973,311878,830,83,2,0,economica,0,0,1
+531145,True,88,3,12589,bueno,casa,barrio_36,1000,10,1964,318243,61,61,1,1,economica,0,0,1
+195003,False,25,1,16030,bueno,duplex,barrio_38,1030,2,1981,212600,96,96,0,0,economica,0,1,1
+718955,True,155,1,45555,muy bueno,casa,barrio_38,1033,8,2007,519538,92,92,5,1,premium,1,1,0
+791095,True,87,3,33617,bueno,PH,barrio_17,1013,1,2002,336061,89,89,1,0,economica,1,1,1
+356792,True,111,3,6594,bueno,departamento,barrio_18,1018,9,2015,420098,63,63,6,0,media,0,0,0
+250239,False,146,1,26718,excelente,casa,barrio_15,1014,10,2009,519381,26,26,10,1,premium,1,1,0
+296784,False,106,2,92539,bueno,casa,barrio_27,1004,10,1972,385091,41,41,1,0,media,0,1,1
+762800,False,146,2,25310,muy bueno,duplex,barrio_35,1039,4,1954,497402,50,50,3,1,premium,1,0,0
+985903,False,52,1,31813,regular,departamento,barrio_21,1000,3,1960,214583,116,116,0,0,economica,1,0,1
+282847,True,179,2,83650,bueno,departamento,barrio_24,1022,12,2006,481863,74,74,1,0,premium,0,1,0
+739672,True,133,3,68624,regular,PH,barrio_17,1000,9,1974,393290,116,116,0,0,media,0,0,1
+858304,True,102,2,82240,muy bueno,casa,barrio_13,1027,3,2001,468380,11,11,6,1,premium,1,1,0
+843627,True,145,2,3952,muy bueno,PH,barrio_39,1036,1,1982,474843,71,71,2,1,premium,0,1,1
+523753,True,54,3,145338,bueno,departamento,barrio_48,1025,5,2013,327004,50,50,2,1,economica,0,1,1
+969322,False,85,1,60423,bueno,PH,barrio_17,1024,8,1986,246040,99,99,0,0,economica,1,0,1
+771970,True,146,2,260194,bueno,casa,barrio_51,1033,5,2013,504237,145,145,1,0,premium,1,1,0
+361776,True,30,1,19422,muy bueno,duplex,barrio_34,1038,10,1967,270875,72,72,0,0,economica,0,1,1
+120431,True,115,3,8859,muy bueno,casa,barrio_10,1034,7,2005,443346,60,60,14,1,media,0,1,0
+198851,True,114,1,36526,muy bueno,PH,barrio_21,1009,12,1987,386173,65,65,1,0,media,1,0,0
+530630,True,164,3,29135,excelente,PH,barrio_00,1022,11,1963,594651,43,43,2,0,premium,1,1,1
+524939,True,40,2,61263,bueno,departamento,barrio_02,1032,6,1966,264069,77,77,0,0,economica,0,0,1
+433738,True,151,1,85814,muy bueno,casa,barrio_20,1011,11,1972,463097,41,41,0,0,premium,0,0,0

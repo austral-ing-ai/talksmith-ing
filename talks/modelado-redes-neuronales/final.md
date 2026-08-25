@@ -493,6 +493,8 @@ La sección entera cabe en una tabla. Cada fila es un tipo de variable que te va
 
 <!-- format: editorial -->
 
+**Corrido, tipo por tipo.** Cada fila de esta tabla está entrenada — con su forma incorrecta al lado, para ver cuánto cuesta — en [`input-data-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/input-data-types.ipynb).
+
 ### Sources
 
 corpus/chat.md.md (§3 Codificación de variables; §4 One-hot vs. embedding)
@@ -702,6 +704,8 @@ Casi cualquier tarea entra en esta tabla. Elegida la fila, la salida queda deter
 | Distribución (μ, σ) | 2 | μ lineal, σ softplus | NLL gaussiana |
 
 Un caso que conviene remarcar: cuando el negocio necesita un rango y no un punto, los cuantiles (P10, P50, P90) son la opción más rentable. No asumen forma de la distribución y dan directamente el intervalo que el negocio quiere.
+
+**Corrido, tarea por tarea.** Las siete familias están entrenadas — cada una con su forma incorrecta al lado — en [`output-layer-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/output-layer-types.ipynb), sobre las mismas casas del notebook de la entrada.
 
 ### Sources
 
@@ -1899,6 +1903,30 @@ corpus/chat.md.md (§12 Checklist operativo)
 ### Speaker notes
 
 Cierre accionable. Este checklist es directamente aplicable al TP o al dataset con el que trabajen. Sugiero dejarlo como material de la clase. Si hay práctica a continuación, este es el puente: que apliquen el checklist a un dataset real antes de escribir una sola línea de la red.
+
+---
+
+## 3. Los notebooks de la clase
+
+### Content
+
+Todo lo que vimos está corrido, con los números a la vista, en dos notebooks que trabajan **sobre las mismas 2000 casas**. Uno recorre la entrada y el otro la salida, y esa división es la misma de esta clase.
+
+- **La entrada — [`input-data-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/input-data-types.ipynb)** ([abrir en Colab](https://colab.research.google.com/github/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/input-data-types.ipynb)). Tipo por tipo, la conversión a floats y cuántos ocupa cada uno: booleana, numérica, cola larga, ordinal, one-hot, embedding, cíclica, fecha e identificador. Cada codificación incorrecta está entrenada al lado de la correcta, para ver cuánto cuesta.
+- **La salida — [`output-layer-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/output-layer-types.ipynb)** ([abrir en Colab](https://colab.research.google.com/github/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/output-layer-types.ipynb)). Las mismas casas, pero el precio pasa a ser **entrada** y se predice otra cosa: días hasta vender, visitas, si se vendió, segmento, atributos. Una sección por familia de salida, con su par activación + loss y la forma incorrecta entrenada al lado.
+- **El cuerpo de la red nunca cambia.** En el notebook de la salida son siete tareas con exactamente la misma red y la misma matriz de entrada. Lo único que se mueve es la última capa. Es la tesis de la clase, corrida.
+
+### Sources
+
+missions/clase3/ (material de la materia)
+
+### Speaker notes
+
+Dejá el link a mano y decilo dos veces, porque es el material que más van a usar para el trabajo práctico. Los dos notebooks abren en Colab sin instalar nada y sin bajar el dataset: leen el CSV desde una URL.
+
+El detalle que conviene señalar en voz alta es que **son las mismas casas en los dos**. No es una coincidencia de armado: es lo que deja ver que codificar la entrada y modelar la salida son decisiones independientes. En el primero el precio es la respuesta; en el segundo es un dato más y la respuesta es otra cosa.
+
+Si preguntan por dónde empezar: el de la entrada sigue el orden de la sección 2 y el de la salida sigue el de las secciones 4 y 5, así que se pueden leer en paralelo con estas diapositivas.
 
 ---
 
