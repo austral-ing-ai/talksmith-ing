@@ -723,3 +723,15 @@
   feedback: "Pone este quote como primer slide de la seccion de lost functions "La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos.""
   resolution: La cita quedó como diapositiva 5.1, a pantalla completa y sin nada más. El puente a la sección lo hace la propia cita: 'maximizar sus posibilidades de éxito en un objetivo dado' es literalmente lo que la función de pérdida escribe en una fórmula, y las notas del orador lo marcan. Queda sin atribución en la diapositiva; el texto es una paráfrasis cercana a la definición de agentes racionales de Russell y Norvig, y quedó anotado en Open questions para que decidas si va citada.
   tags: [structure, emphasis]
+- talk: modelado-redes-neuronales
+  date: 2026-08-25
+  location: Slide "2.1 Qué significa que el dato sea tabular" (diagrama del orden de columnas)
+  feedback: "Borrar el texto \"en una imagen, en cambio, mover un píxel sí cambia el dato\" y el separador. Es redundante"
+  resolution: Se retiraron del diagrama el separador horizontal y las dos líneas de contraste con la imagen. El punto ya lo dice el cuerpo de la diapositiva ("En una imagen sí se la quitaría, porque ahí la posición del píxel es parte del dato") y otra vez las notas del orador, así que el diagrama lo repetía por tercera vez. El diagrama ahora cierra en "es el mismo dato" más las dos líneas de la posición de la columna, que es su único argumento. Se ajustó el alto del lienzo de 400 a 342 para que no quede aire muerto abajo, se borró el matiz "el contraste final con la imagen va en tono secundario" del ascii-note, y se regeneraron el SVG y los dos PNG.
+  tags: [redundancy, diagram]
+- talk: modelado-redes-neuronales
+  date: 2026-08-25
+  location: Slide "2.4 Categóricas: one-hot contra embedding"
+  feedback: "Slide 13 es confuso. A que se refiere que el embedding es una matrix si lo que la red toma son solo vectores ?"
+  resolution: Contradicción real con la tesis de la clase. El bullet abría con "una tabla de k × d floats entrenable", que se lee como input, y el dato que la desarma ("un embedding de dimensión 24 usa 24 floats") quedaba al final. Lo que faltaba decir es que la tabla k × d es un parámetro, con el mismo estatus que la W del panel de one-hot, y que lo que entra al vector es una fila de d floats elegida por el índice de la categoría. El bullet ahora abre por ahí; el párrafo de cierre arranca con "las dos matrices tienen el mismo estatus"; y el diagrama se rehízo en dos filas con la regla de color rojo = entra al vector, gris = peso de la red, así que la respuesta está en el color y no depende del texto. La pregunta quedó anticipada en las notas del orador.
+  tags: [clarity, diagram, consistency]

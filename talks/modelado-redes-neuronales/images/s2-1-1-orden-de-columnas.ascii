@@ -25,11 +25,8 @@
    la posicion de la columna no significa nada,
    mientras cada una conserve su nombre
 
-   en una imagen, en cambio, mover un pixel
-   si cambia el dato
-
 <!-- ascii-note:
 intent: mostrar con el caso de house pricing que en datos tabulares el orden de las columnas no lleva informacion
-emphasize: las dos columnas que se intercambian entre la primera tabla y la segunda, y que las dos tablas dicen exactamente lo mismo; el contraste final con la imagen va en tono secundario
+emphasize: las dos columnas que se intercambian entre la primera tabla y la segunda, y que las dos tablas dicen exactamente lo mismo
 labels: la tabla de casas con m2, barrio, ambientes y precio; la leyenda de intercambio entre las dos tablas; el remate de que es el mismo dato; formato vertical, pensado para ir en una columna al costado de la diapositiva
 -->

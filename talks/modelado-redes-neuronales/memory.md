@@ -1030,3 +1030,23 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
   - Agenda y `deck.sections`: sale la entrada 9.
 - **El mazo queda en 46 diapositivas de contenido, o sea unos 92 minutos a dos minutos por diapositiva.** El blocker de duración, que venía siendo el problema más serio desde el 2026-08-21, queda prácticamente resuelto.
 - **Huérfanas ahora:** `s9-2-1-curvas-overfitting`, `s9-3-1-objetivo-l2`, más las tres de la ronda anterior. No se borraron.
+
+## 2026-08-25 — Diapositiva 2.1: se quitó el contraste con la imagen del diagrama
+- Status: complete
+- Asks log:
+  - 2026-08-25 — "Borrar el texto 'en una imagen, en cambio, mover un píxel sí cambia el dato' y el separador. Es redundante"
+- **Era la tercera vez que se decía lo mismo en la misma diapositiva.** El cuerpo ya cierra con "En una imagen sí se la quitaría, porque ahí la posición del píxel es parte del dato", y las notas del orador lo repiten. El diagrama lo decía una vez más, abajo de todo y separado por una regla horizontal, o sea con el peso visual de un remate.
+- **Qué se tocó:** el separador (`<path>` a y=344) y las dos líneas de texto salieron del SVG; el lienzo bajó de 380×400 a 380×342 para que no quedara aire muerto; se regeneraron `images/s2-1-1-orden-de-columnas.png` (1200×1080) y su copia de crítica. Se sincronizó el `ascii-source` en `final.md` **y** en `draft.md`, el `.ascii` de `images/`, y el hash `talksmith-ascii-sha256` del SVG. Del `ascii-note` salió el matiz "el contraste final con la imagen va en tono secundario", que ya no aplica.
+- **Pendiente para el presentador:** el deck HTML de `output/html/index.html` lleva las imágenes embebidas en base64, así que sigue mostrando la versión vieja hasta que se vuelva a renderizar.
+
+## 2026-08-25 — Diapositiva 2.4: el embedding no es la matriz, es una fila
+- Status: complete
+- Asks log:
+  - 2026-08-25 — "Slide 13 es confuso. A que se refiere que el embedding es una matrix si lo que la red toma son solo vectores?" → opción 1 (reordenar el bullet y ampliar el diagrama)
+- **La contradicción era real y la diapositiva se la buscaba sola.** El bullet abría con "una tabla de `k × d` floats entrenable", que se lee como input, y recién cerraba con el dato que la desarma ("un embedding de dimensión 24 usa 24 floats"). Contra la tesis de la clase — la red ve una fila de números — el arranque del bullet suena a que entra una matriz.
+- **El punto que faltaba decir:** la tabla `k × d` es un **parámetro**, con el mismo estatus que la `W` del panel de one-hot; lo que entra al vector es **una fila**, `d` floats, elegida por el índice de la categoría.
+- **Bullet reordenado:** ahora abre con "aporta al vector `d` floats, no `k`" y después explica de dónde salen. El párrafo de cierre arranca con "las dos matrices tienen el mismo estatus" antes de la equivalencia con la capa lineal sin sesgo, que ya estaba.
+- **Diagrama rehecho en dos filas** (`s2-4-1-one-hot`, 680×372, antes 680×300, solo one-hot). Idea de diseño: **el rojo marca lo que entra al vector y el gris lo que es peso**, así que la respuesta a la pregunta está en el color, sin texto. Fila 1 one-hot, las cuatro celdas en rojo y `W` en gris; fila 2 embedding, las tres celdas de la fila en rojo y la tabla `k × d` en gris con su primera fila marcada y una flecha hacia las celdas. Remate al costado: "en los dos casos la matriz es un peso de la red, no una entrada".
+- **Notas del orador:** la pregunta quedó anticipada con su respuesta, más el matiz de que con embedding la multiplicación por el one-hot se saltea y se busca la fila directo — la misma cuenta, más barata.
+- **Sincronizado:** `final.md`, `draft.md`, `images/s2-4-1-one-hot.ascii`, el SVG con su hash, y los dos PNG (1200×656). El alt de la imagen pasó de "One-hot selecciona una columna de W" a "Lo que entra al vector contra lo que es peso de la red".
+- **Pendiente para el presentador:** `output/html/index.html` y `output/slide-model.json` siguen con la versión vieja de esta diapositiva y de la 2.1 hasta que se vuelva a renderizar.

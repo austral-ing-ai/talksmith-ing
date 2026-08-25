@@ -337,13 +337,10 @@ Esa propiedad es la que hace que un MLP encaje. Una capa densa conecta cada neur
 
    la posicion de la columna no significa nada,
    mientras cada una conserve su nombre
-
-   en una imagen, en cambio, mover un pixel
-   si cambia el dato
 -->
 <!-- ascii-note:
 intent: mostrar con el caso de house pricing que en datos tabulares el orden de las columnas no lleva informacion
-emphasize: las dos columnas que se intercambian entre la primera tabla y la segunda, y que las dos tablas dicen exactamente lo mismo; el contraste final con la imagen va en tono secundario
+emphasize: las dos columnas que se intercambian entre la primera tabla y la segunda, y que las dos tablas dicen exactamente lo mismo
 labels: la tabla de casas con m2, barrio, ambientes y precio; la leyenda de intercambio entre las dos tablas; el remate de que es el mismo dato; formato vertical, pensado para ir en una columna al costado de la diapositiva
 -->
 
@@ -415,29 +412,39 @@ El "por qué" formal es el número de condición de la Hessiana, pero para la cl
 
 Una categoría sin orden se codifica de dos formas, y la cardinalidad decide cuál.
 
-![One-hot selecciona una columna de W](images/s2-4-1-one-hot.png)
+![Lo que entra al vector contra lo que es peso de la red](images/s2-4-1-one-hot.png)
 <!-- ascii-source:
-one-hot "Depto":  [0, 1, 0, 0]   un float por valor, todas equidistantes
-                      |
-        W · x  selecciona la columna de W  --&gt;  cada categoría, sus propios pesos
+ONE-HOT   k = 4 categorías
+   [ 0 ][ 1 ][ 0 ][ 0 ]   x   W  (matriz de pesos, k × h)
+    Casa Depto  PH  Local
+   entran al vector: k floats, uno por categoría
+
+EMBEDDING   d = 3
+   [ .31 ][ -.08 ][ .74 ]   es la fila "Depto" de la tabla (k × d)
+   entran al vector: d floats, y d no depende de k
+
+en los dos casos la matriz es un peso de la red, no una entrada;
+lo que entra al vector son solo los floats resaltados
 -->
 <!-- ascii-note:
-intent: mostrar que one-hot con W selecciona una columna de pesos
-emphasize: el 1 activa una sola columna de W
-labels: one-hot vector, W matriz de pesos
+intent: separar lo que entra al vector de lo que es peso de la red, y mostrar que el embedding aporta d floats (una fila) y no la tabla entera
+emphasize: los floats que entran al vector, resaltados en rojo en las dos filas; las dos matrices quedan en gris porque son pesos
+labels: ONE-HOT con las cuatro celdas y los nombres de categoria; matriz W; EMBEDDING con las tres celdas de la fila; tabla k x d con su primera fila marcada; remate al pie
 -->
 
 - **One-hot** (cardinalidad baja): un float por valor, todas en 0 salvo una en 1. Todas las categorías quedan a la misma distancia, que es la verdad del dato. No se aprende, es interpretable, necesita pocos datos.
-- **Embedding** (cardinalidad alta): una tabla de `k × d` floats entrenable. La red aprende la distancia entre categorías desde los datos. Con 500 barrios, un embedding de dimensión 24 usa 24 floats donde one-hot usaría 500.
+- **Embedding** (cardinalidad alta): aporta al vector `d` floats, no `k`. Esos `d` floats son **una fila** de una tabla entrenable de `k × d` que vive dentro de la red, como cualquier peso: la categoría es el índice, la fila es lo que entra. Con 500 barrios y `d = 24`, el vector recibe 24 floats donde one-hot le pondría 500, y la red aprende la distancia entre categorías desde los datos.
 - **La regla de la cardinalidad:** hasta 15 valores, one-hot; de 15 a 50, cualquiera; 50 o más, embedding.
 
-Un embedding es matemáticamente equivalente a un one-hot seguido de una capa lineal sin sesgo. Conceptualmente, la tabla de embeddings es la primera capa de la red.
+Las dos matrices tienen el mismo estatus: son pesos de la red, no entradas. De hecho un embedding es matemáticamente equivalente a un one-hot seguido de una capa lineal sin sesgo — la tabla de embeddings **es** la primera capa. Lo único que cambia es de qué largo es el tramo del vector que aporta la columna: `k` con one-hot, `d` con embedding.
 
 ### Sources
 
 corpus/chat.md.md (§4 One-hot vs. embedding; §7 Con 500 barrios)
 
 ### Speaker notes
+
+La pregunta que va a aparecer: si la red toma un vector, ¿qué hace acá una matriz? La respuesta es que la tabla `k × d` no es la entrada, es un parámetro — exactamente el mismo estatus que la `W` del panel de one-hot, que también es una matriz y a nadie le hace ruido porque se lee como pesos. Lo que entra al vector es una fila, `d` floats, elegida por el índice de la categoría. Con embedding la multiplicación por el one-hot se saltea y se va directo a buscar la fila, que es la misma cuenta hecha más barata.
 
 El puente conceptual que engancha: así arranca un LLM. Cada token es un índice que busca su fila en una tabla de unas 50.000 por 4096. El embedding de categorías tabulares y el embedding de palabras son la misma idea, una representación densa aprendida donde la geometría del espacio codifica el significado. Las dos ventajas no obvias del embedding: comparte estadística entre categorías parecidas (una categoría rara hereda de sus vecinas) y es reutilizable para clustering o búsqueda por similitud.
 

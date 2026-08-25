@@ -1,9 +1,17 @@
-one-hot "Depto":  [0, 1, 0, 0]   un float por valor, todas equidistantes
-                      |
-        W · x  selecciona la columna de W  -->  cada categoría, sus propios pesos
+ONE-HOT   k = 4 categorías
+   [ 0 ][ 1 ][ 0 ][ 0 ]   x   W  (matriz de pesos, k × h)
+    Casa Depto  PH  Local
+   entran al vector: k floats, uno por categoría
+
+EMBEDDING   d = 3
+   [ .31 ][ -.08 ][ .74 ]   es la fila "Depto" de la tabla (k × d)
+   entran al vector: d floats, y d no depende de k
+
+en los dos casos la matriz es un peso de la red, no una entrada;
+lo que entra al vector son solo los floats resaltados
 
 <!-- ascii-note:
-intent: mostrar que one-hot con W selecciona una columna de pesos
-emphasize: el 1 activa una sola columna de W
-labels: one-hot vector, W matriz de pesos
+intent: separar lo que entra al vector de lo que es peso de la red, y mostrar que el embedding aporta d floats (una fila) y no la tabla entera
+emphasize: los floats que entran al vector, resaltados en rojo en las dos filas; las dos matrices quedan en gris porque son pesos
+labels: ONE-HOT con las cuatro celdas y los nombres de categoria; matriz W; EMBEDDING con las tres celdas de la fila; tabla k × d con su primera fila marcada; remate al pie
 -->
