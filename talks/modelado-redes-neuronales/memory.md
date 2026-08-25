@@ -1050,3 +1050,49 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - **Notas del orador:** la pregunta quedó anticipada con su respuesta, más el matiz de que con embedding la multiplicación por el one-hot se saltea y se busca la fila directo — la misma cuenta, más barata.
 - **Sincronizado:** `final.md`, `draft.md`, `images/s2-4-1-one-hot.ascii`, el SVG con su hash, y los dos PNG (1200×656). El alt de la imagen pasó de "One-hot selecciona una columna de W" a "Lo que entra al vector contra lo que es peso de la red".
 - **Pendiente para el presentador:** `output/html/index.html` y `output/slide-model.json` siguen con la versión vieja de esta diapositiva y de la 2.1 hasta que se vuelva a renderizar.
+
+## 2026-08-25 — Step 7 (Render) — html-strict, re-render
+- Status: complete
+- Asks log:
+  - 2026-08-25 — "regenerar el html-strict"
+- **FILL dirigido, no un re-fill del mazo entero.** Solo cambiaron dos diapositivas, así que se actualizaron esas dos en `output/slide-model.json` y se volvió a sellar contra `final.md`. Un re-fill completo habría vuelto a clasificar 47 diapositivas de contenido que el presentador ya revisó, con riesgo de churn y sin ganancia. Por lo mismo se salteó el paso 1.6 (classify-review): ninguna clasificación cambió.
+- **Lo que se corrigió en el modelo, que el markdown no cubría:** la tabla de la 2.4 tenía en pantalla la fila "Qué es → Una tabla de `k × d` floats entrenable", que era **la fuente literal de la confusión** y vivía solo en el modelo del deck, no en `final.md`. La tabla pasó de 4 filas a 5, encabezada por **"Qué entra al vector"** (`k` floats contra `d` floats, una fila) y seguida de **"Qué es esa matriz"** (`W` y la tabla `k × d`, las dos pesos de la red). El segundo takeaway pasó a ser "La matriz nunca es la entrada". Las notas se levantaron verbatim de `final.md`, que antes estaban condensadas.
+- **Audits en verde:** `degenerate_enum` ok, `field_coverage` ok, `image_coverage` ok, `template_diversity` sin `fallback` (11 plantillas sobre 47 diapositivas de contenido; el `[no-alternative]` de 47/47 es previo y viene de que el modelo se escribió sin trazas `_choice`).
+- **Render:** 57 diapositivas → `output/html/index.html`, más la portada del directorio raíz. Los dos diagramas entran **inlineados como SVG vectorial**, no como PNG: el renderer resuelve la referencia `.png` a su compañero `.svg`. Verificado que las cadenas viejas ("cada categoría selecciona su propia columna de pesos en W", "mover un píxel") ya no están y las nuevas sí.
+- **Ruido conocido, no bloqueante:** tres iconos (`remove_red_eye`, `check_circle_outline`, `signal_wifi_statusbar_connected_no_internet_4`) no resuelven contra el catálogo de Material Symbols y caen a `info`. Es previo a este render.
+
+## 2026-08-25 — Atribuciones con link
+- Status: complete
+- Asks log:
+  - 2026-08-25 — "Revisar que todas las notas como 'Fuente: Roboflow…' tengan link"
+- **Barrido del mazo entero**, no solo del ejemplo citado: `final.md`, `draft.md` y `output/slide-model.json`, buscando atribuciones por palabra clave (Fuente, Adaptado, Basado en, et al, años entre paréntesis) y por nombre de fuente conocida (Roboflow, Keras, Stanford, CS231n, arXiv, Google, Russell, Norvig, Bishop, Goodfellow, Medium…).
+- **Resultado: una sola atribución llegaba a pantalla**, la de la 3.4, y estaba sin link. Ahora lleva los dos títulos enlazados.
+- **La atribución vivía solo en el modelo del deck, no en `final.md`** — la había escrito el FILL de un render anterior. Un re-fill completo la habría perdido. Se agregó el párrafo `Fuente:` al final del Content de la 3.4 en `final.md` **y** en `draft.md`, así queda en la fuente y sobrevive cualquier render.
+- **Las dos citas se verificaron contra las capturas de `research/web/`, no de memoria**, y aparecieron tres correcciones:
+  - **Autor faltante.** El artículo de Roboflow es de **Jacob Solawetz**, dato que estaba en el registro del corpus y no en la cita.
+  - **Título desactualizado.** La página se llama hoy *"Train, Validation, Test Split Explained (with Ratios)"*; la cita usaba el título viejo. Con link, el título tiene que coincidir con lo que se abre.
+  - **Medium devuelve 403 y puede tener muro de pago.** Se enlazó el **original del propio autor** (`tarangshah.com`, HTTPS, 200, sin muro), que el registro del corpus ya tenía anotado. Para una clase donde los alumnos hacen clic, importa.
+- **Los dos links verificados con una petición real:** Roboflow 200, tarangshah.com 200.
+- **Hallazgo abierto:** hay **5 diapositivas más** cuyo bloque `### Sources` tiene URLs externas (Google ML Crash Course, CS231n ×3, Keras ×4, el paper de Pascanu/Mikolov/Bengio en arXiv) y que **no muestran ninguna atribución en pantalla**. No se tocaron: agregarlas es contenido nuevo, no el pedido. Decisión del presentador.
+
+## 2026-08-25 — Diapositiva 5.7 nueva: Los términos de regularización
+- Status: complete
+- Asks log:
+  - 2026-08-25 — "Agregar al final de funcion de perdida un slide con esta definicion [términos de regularización, L1/L2/Elastic Net/Dropout]"
+- **Dónde encaja, y por qué encaja bien.** La 5.2 define `objective` como "el cost más los términos de regularización, cuando las hay" y hasta hoy esa era una promesa sin cobrar: la sección que la respondía era la 9, borrada el 2026-08-24 por presupuesto de tiempo. La 5.7 cierra ese hilo dentro de la misma sección. Se le agregó el puntero explícito a la card `Objective` de la 5.2, en `final.md` y en el modelo.
+- **Plantilla `content+cards+image`**, `split-right`: lead con la definición, cuatro cards (L2, L1, Elastic Net, Dropout) y el diagrama al costado. Se descartó `value-columns` porque Dropout no tiene fórmula, así que las cuatro filas no se leen a través de factores compartidos — son atributos heterogéneos, que el catálogo manda a cards. El `_choice` quedó registrado con los candidatos y el motivo de cada descarte; es el único slide del mazo que lleva traza.
+- **Diagrama nuevo `s5-7-1-objetivo-regularizacion`** (680×296): `J = cost + λ · R(w)` con las dos llaves anotadas, en la gramática visual del `s9-3-1-objetivo-l2` que quedó huérfano al borrar la sección 9, pero en **forma general** en vez de específica de L2, que es lo que la diapositiva necesita. El acento rojo va en el término de penalización, que es lo que la diapositiva agrega.
+- **Bug de inserción, encontrado y corregido.** El ancla que usé para insertar cayó en el **penúltimo** párrafo de las notas de la 5.6, no en el último, así que dos párrafos de "Las especializadas" (el de cuantiles y el de ranking/supervivencia) quedaron colgados dentro de la 5.7. Se devolvieron a su diapositiva. **Lección: al insertar una diapositiva al final de una sección, anclar en el separador `---` o en el encabezado siguiente, nunca en un párrafo de prosa.**
+- **Duración — el blocker vuelve a moverse en la dirección equivocada.** El mazo pasa de 47 a **48 diapositivas de contenido**, o sea ~96 minutos a dos minutos por diapositiva, contra un presupuesto de 90. El 2026-08-24 se había bajado a ~92 borrando la sección 9 entera, y esta diapositiva **restituye parte de ese material** (L2, L1, dropout) en forma condensada: una diapositiva donde antes había siete. Es un buen canje, pero el excedente vuelve a existir y es decisión del presentador.
+- Audits en verde; render 58 diapositivas.
+
+## 2026-08-25 — Diapositiva 5.4 (BCE): lead partido y una card retirada
+- Status: complete
+- Asks log:
+  - 2026-08-25 — "Partir 'Salida de una neurona con sigmoide… Siempre queda un solo término vivo.' y poner parte de este texto como desc con el resto"
+  - 2026-08-25 — "Borra 'La sigmoide va en un solo lado'. Y todo el texto que tiene."
+- **Otra vez el mismo patrón: el texto vivía en el modelo del deck, no en `final.md`.** El `lead` cargaba tres cosas en un párrafo — el setup, la fórmula y cómo se lee la fórmula — porque el FILL de un render anterior concatenó lo que en `final.md` eran tres bloques separados.
+- **El corte se eligió por consistencia con las hermanas de sección, no a ojo.** La 5.5 (cross-entropy) lleva setup más fórmula corta en el lead y el detalle en las cards; la 5.3 (MSE/MAE/Huber) pone las fórmulas en las cards. La 5.4 era la única con las tres cosas juntas. Ahora el lead queda en setup más fórmula y "Con `t = 1` sobrevive el primero…" pasó a ser la primera card, **Siempre queda un solo término vivo**, con la frase de por qué (`t` vale 0 o 1, el otro término se multiplica por cero) que antes solo estaba en las notas.
+- **Card retirada:** "La sigmoide va en un solo lado", entera y con su texto. Archivada verbatim en `# Cut material` con nota de qué queda colgando.
+- **Dos referencias quedan sin apoyo visible y no se tocaron** (es contenido, decisión del presentador): la card que sigue, "Con logits crudos hay que convertir al predecir", da por explicado qué es un logit crudo, y eso lo explicaba la card retirada; y el párrafo de notas sobre el error de la doble sigmoide se quedó sin anclaje en pantalla.
+- La 5.4 queda en 3 cards. Audits en verde; render 58 diapositivas.

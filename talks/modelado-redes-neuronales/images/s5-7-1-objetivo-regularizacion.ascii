@@ -1,0 +1,15 @@
+   J   =   cost   +   λ · R(w)
+          \______/    \_________/
+          el ajuste   la penalización
+          a los datos por complejidad
+
+   λ decide cuánto pesa la penalización
+
+sin el segundo término el optimizador solo minimiza el error de train,
+y pesos gigantes memorizan ruido en vez del patrón
+
+<!-- ascii-note:
+intent: descomponer el objetivo en el término de ajuste y el término de regularización, y mostrar que lambda decide el balance entre los dos
+emphasize: el término lambda por R(w), que es lo que la diapositiva agrega; el resto queda en gris
+labels: J objetivo, cost ajuste a los datos, lambda por R(w) penalización por complejidad, remate al pie
+-->

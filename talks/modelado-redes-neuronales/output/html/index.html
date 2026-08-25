@@ -1306,7 +1306,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-80q-83 0-141.5-58.5T280-280v-360q-33 0-56.5-23.5T200-720v-80q0-33 23.5-56.5T280-880h400q33 0 56.5 23.5T760-800v80q0 33-23.5 56.5T680-640v360q0 83-58.5 141.5T480-80ZM260-700h440v-120H260v120Zm319 519.17q41-40.84 41-99.17v-20H480v-60h140v-100H480v-60h140v-120H340v360q0 58.33 40.76 99.17 40.77 40.83 99 40.83Q538-140 579-180.83ZM260-700v-120 120Z"/></svg></span><h3>Achicar validación y test</h3><p>Dejar 90% en train deja la métrica tan ruidosa que el peor modelo puede parecer mejor. Piso: unos cientos por conjunto.</p></div>
 </div>
 </div></div>
-<div class="highlights hl-source"><div class="highlight source"><p>Fuente: Roboflow, Train, Validation, Test Split for Machine Learning (2026); Tarang Shah, About Train, Validation and Test Sets (2017). Estratificación y partición temporal son aporte del docente.</p></div></div></div>
+<div class="highlights hl-source"><div class="highlight source"><p>Fuente: Jacob Solawetz (Roboflow), <a class="mdlink" href="https://blog.roboflow.com/train-test-split/" target="_blank" rel="noopener">Train, Validation, Test Split Explained (with Ratios)</a> (2026); Tarang Shah, <a class="mdlink" href="https://tarangshah.com/blog/2017-12-03/train-validation-and-test-sets/" target="_blank" rel="noopener">About Train, Validation and Test Sets in Machine Learning</a> (2017). Estratificación y partición temporal son aporte del docente.</p></div></div></div>
 <aside class="notes"><p>Los dos del medio son aporte propio: ninguna de las fuentes cubre estratificación ni series de tiempo, y las dos importan para los trabajos que entregan. El de series de tiempo es el que más veces vas a ver mal resuelto, y el síntoma es un modelo que en el papel anda espectacular. Conectá con la sección 2: el identificador único es la versión extrema de este problema. Y dejá el puente hacia overfitting: la brecha train-validación solo se puede mirar si esta partición está bien hecha.</p></aside></section><section class="slide" data-kind="pros-cons"><div class="stage d-full">
 <div class="shead"><span class="pill">Partir el dataset</span><h2 class="stitle">Qué hacer y qué no</h2><p class="lead">La sección en reglas operativas. A la izquierda lo que hay que hacer siempre; a la derecha lo que más se ve mal resuelto.</p></div><div class="cbody"><div class="cfit"><div class="proscons">
 <div class="pccol pc-pro"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m346-60-76-130-151-31 17-147-96-112 96-111-17-147 151-31 76-131 134 62 134-62 77 131 150 31-17 147 96 111-96 112 17 147-150 31-77 130-134-62-134 62Zm27-79 107-45 110 45 67-100 117-30-12-119 81-92-81-94 12-119-117-28-69-100-108 45-110-45-67 100-117 28 12 119-81 94 81 92-12 121 117 28 70 100Zm107-341Zm-43 133 227-225-45-41-182 180-95-99-46 45 141 140Z"/></svg></span><h3>Qué hacer</h3><p>Partir antes de explorar · Partir por grupo, no por fila · Fijar la semilla y guardar el split · Augmentation solo en train</p></div>
@@ -1412,7 +1412,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <div class="shead"><span class="pill">La función de pérdida</span><h2 class="stitle">Qué es una función de pérdida</h2><p class="lead">Una <b>función de pérdida</b> es la fórmula que convierte una predicción equivocada en un número. Es el único número que la red intenta bajar, y de él sale el gradiente que corrige cada peso.</p></div><div class="cbody"><div class="cfit"><div class="highlights hl-top"><div class="highlight definition"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M560-574v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-610q-38 0-73 9.5T560-574Zm0 220v-49q33-13.5 67.5-20.25T700-430q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-390q-38 0-73 9t-67 27Zm0-110v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-500q-38 0-73 9.5T560-464ZM248-300q53.57 0 104.28 12.5Q403-275 452-250v-427q-45-30-97.62-46.5Q301.76-740 248-740q-38 0-74.5 9.5T100-707v434q31-14 70.5-20.5T248-300Zm264 50q50-25 98-37.5T712-300q38 0 78.5 6t69.5 16v-429q-34-17-71.82-25-37.82-8-76.18-8-54 0-104.5 16.5T512-677v427Zm-30 90q-51-38-111-58.5T248-239q-36.54 0-71.77 9T106-208q-23.1 11-44.55-3Q40-225 40-251v-463q0-15 7-27.5T68-761q42-20 87.39-29.5 45.4-9.5 92.61-9.5 63 0 122.5 17T482-731q51-35 109.5-52T712-800q46.87 0 91.93 9.5Q849-781 891-761q14 7 21.5 19.5T920-714v463q0 27.89-22.5 42.45Q875-194 853-208q-34-14-69.23-22.5Q748.54-239 712-239q-63 0-121 21t-109 58ZM276-489Z"/></svg></span><p>La loss no se elige libre: viene con la salida. Para predecir un precio la tarea pide una neurona sin activación, porque el valor puede ser cualquier número real, y sobre esa salida van MSE, MAE o Huber. Cambiar la activación de salida obliga a cambiar la loss, y al revés.</p></div></div><div class="cards">
 <div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M459-490ZM98-530q-9-23-13.5-46T80-625q0-91 61-153t149-62q57 0 106 26.5t84 77.5q36-51 84.5-77.5T670-840q88 0 149 62t61 153q0 5-.5 9.5t-.5 9.5q-14-13-28.5-23.5T819-648q-8-58-48.5-95T670-780q-51 0-95 31.5T505-661h-50q-26-55-70-87t-95-32q-64 0-107 44.5T140-625q0 25.24 6 48.12T165-530H98Zm382 409-99-91q-47-43-83-77t-63-61h84q30 29 70 65.5t91 84.5q23.28-19.95 43.14-38.48Q543-257 561-274q11 11 22.5 19t24.5 16q-7 7-14 13.5T579-212l-99 91Zm218.5-177.68q-8.5-8.67-8.5-21.5 0-12.82 8.68-21.32 8.67-8.5 21.5-8.5 12.82 0 21.32 8.68 8.5 8.67 8.5 21.5 0 12.82-8.68 21.32-8.67 8.5-21.5 8.5-12.82 0-21.32-8.68ZM690-410v-180h60v180h-60Zm-640 0v-60h174l72-107q5-7 11-10t14-3q8 0 14 3.5t11 10.5l70 106h76q-1 7.59-1.5 14.79-.5 7.21-.5 15.26t.5 15Q491-418 492-410h-92q-8 0-14-3.5t-11-9.5l-55-83-55 83q-5 6-11 9.5t-14 3.5H50Z"/></svg></span><h3>Loss</h3><p>El error de un solo ejemplo. Es lo que mide la fórmula que elegimos acá.</p></div>
 <div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M577-623q-14-34-40-53t-62-19q-31 0-55 10.5T379-654l-42-42q21-24 48.5-38t58.5-18v-88h60v87q42 5 76.5 30.5T635-649l-58 26ZM806-56 614-248q-22 21-50.5 31T504-205v85h-60v-86q-57-8-95-45.5T295-343l60-21q14 51 45.5 76t79.5 25q26 0 50.5-6.5T570-292L57-805l43-43L849-99l-43 43Z"/></svg></span><h3>Cost</h3><p>El promedio del loss sobre un batch o sobre el dataset. Es el número que el entrenamiento reporta.</p></div>
-<div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M220-520 80-600v-160l140-80 140 80v160l-140 80Zm0-69 80-46v-90l-80-46-80 46v90l80 46Zm430 71v-70l150 88v280L560-80 320-220v-280l150-87v69l-90 53v211l180 104 180-104v-211l-90-53Zm-120 98v-460h351l-73 110 73 110H590v240h-60Zm30 86ZM220-680Z"/></svg></span><h3>Objective</h3><p>El cost más los términos de regularización. Es lo que el optimizador minimiza de verdad.</p></div>
+<div class="ccard fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M220-520 80-600v-160l140-80 140 80v160l-140 80Zm0-69 80-46v-90l-80-46-80 46v90l80 46Zm430 71v-70l150 88v280L560-80 320-220v-280l150-87v69l-90 53v211l180 104 180-104v-211l-90-53Zm-120 98v-460h351l-73 110 73 110H590v240h-60Zm30 86ZM220-680Z"/></svg></span><h3>Objective</h3><p>El cost más los términos de regularización, cuando las hay. Es lo que el optimizador minimiza de verdad, y cierra la sección en la diapositiva 5.7.</p></div>
 </div>
 </div></div>
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p><b>Notación de acá en adelante:</b> <code>y</code> es lo que la red predijo y <code>t</code> el valor verdadero que viene con el dato.</p></div></div></div>
@@ -1471,8 +1471,8 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <text x="45" y="102" font-size="11" fill="#7A7373">penalización</text>
 </svg></div></div></div>
 <aside class="notes"><p>El número que cierra la discusión, y conviene escribirlo en el pizarrón: con un error de 1, 2 y 10, MSE castiga 1, 4 y 100; MAE castiga 1, 2 y 10; Huber con <code>d = 1</code> castiga 0,5, 1,5 y 9,5. Ese salto de 100 contra 10 es exactamente por qué una propiedad mal cargada arrastra el entrenamiento entero con MSE.</p><p>Huber con <code>d = 1</code> vale <code>½e²</code> mientras <code>|e| ≤ 1</code> y <code>|e| − ½</code> después. Si alguien pregunta por el medio que aparece en la parte cuadrática y no en MSE, la respuesta es que está para que las dos ramas peguen sin salto en <code>|e| = d</code>, y vuelve en la sección que sigue con otro motivo.</p><p>La pregunta que funciona para elegir: ¿esa propiedad de 20 millones es un dato real o alguien puso un cero de más? Si es real, MSE. Si es carga sucia, MAE o Huber. La elección de loss es una afirmación sobre los datos, no una preferencia.</p><p>Aviso práctico para el trabajo: si el target no está normalizado, MSE sobre precios en pesos da números gigantes y el entrenamiento arranca inestable. Normalizar el target y desescalar al predecir es la costumbre.</p></aside></section><section class="slide" data-kind="content+cards+image"><div class="stage d-split side-right">
-<div class="shead"><span class="pill">La función de pérdida</span><h2 class="stitle">Clasificación binaria: BCE</h2><p class="lead">Salida de una neurona con sigmoide, o sea una probabilidad entre 0 y 1. La <b>binary cross-entropy</b> castiga según cuánta probabilidad le dio la red a la respuesta correcta: <code>L = −[ t · log(y) + (1 − t) · log(1 − y) ]</code>. Con <code>t = 1</code> sobrevive el primer término y la penalización es <code>−log(y)</code>; con <code>t = 0</code> sobrevive el segundo. Siempre queda un solo término vivo.</p></div><div class="cbody"><div class="cfit"><div class="ccicards">
-<div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M453-280h60v-240h-60v240Zm50.5-323.2q9.5-9.2 9.5-22.8 0-14.45-9.48-24.22-9.48-9.78-23.5-9.78t-23.52 9.78Q447-640.45 447-626q0 13.6 9.48 22.8 9.48 9.2 23.5 9.2t23.52-9.2ZM480.27-80q-82.74 0-155.5-31.5Q252-143 197.5-197.5t-86-127.34Q80-397.68 80-480.5t31.5-155.66Q143-709 197.5-763t127.34-85.5Q397.68-880 480.5-880t155.66 31.5Q709-817 763-763t85.5 127Q880-563 880-480.27q0 82.74-31.5 155.5Q817-252 763-197.68q-54 54.31-127 86Q563-80 480.27-80Zm.23-60Q622-140 721-239.5t99-241Q820-622 721.19-721T480-820q-141 0-240.5 98.81T140-480q0 141 99.5 240.5t241 99.5Zm-.5-340Z"/></svg></span><h3>La confianza equivocada es lo caro</h3><p>Decir 0,5 y errar cuesta poco; decir 0,01 y errar cuesta muchísimo. Es lo que empuja a la red a calibrar y no solo a acertar el lado.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M40-80v-60h81v-337q0-26 23-53t64-47q37-18 80.5-28t88.5-10q45 0 89.5 10.5T548-575q39 20 61.5 46t22.5 52v113h-60v-115q-2.18-9.38-19.09-21.69T513-524q-31-15-66-23t-70-8q-35 0-70.5 8T240-524q-23 11-39.91 23.83Q183.18-487.33 181-478v338h398q-3-6-5-12t-4-13l-35-139h382l-35 139q-2 7-4 13t-5 12h47v60H40Zm639-60h95q17.5 0 31.25-11T824-179l16-65H612l16 64q5 18 19.06 29 14.05 11 31.94 11ZM376.53-656q-46.47 0-79-32.53t-32.53-79Q265-814 297.53-847t79-33Q423-880 456-847t33 79.47q0 46.47-33 79T376.53-656ZM414-730.93q15-14.93 15-37T414.07-805q-14.93-15-37-15T340-805.07q-15 14.93-15 37T339.93-731q14.93 15 37 15T414-730.93ZM377-140Zm349 0ZM377-768Z"/></svg></span><h3>La sigmoide va en un solo lado</h3><p><code>BinaryCrossentropy(from_logits=True)</code> aplica la sigmoide adentro, por estabilidad numérica, y entonces la última capa va sin activación. Poner las dos cosas la aplica dos veces y el modelo entrena mal.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M448-167 228-296q-13.77-8.43-21.39-22.21Q199-332 199-348v-257q0-16 7.61-29.79Q214.23-648.57 228-657l221-131q14-8 31-8t31 8l221 131q13.78 8.43 21.39 22.21Q761-621 761-605v257q0 16-7.87 29.79Q745.25-304.43 731-296L508-167q-14.33 8-30.16 8-15.84 0-29.84-8Zm2-69v-224L260-569v219l190 114Zm60 0 191-114v-219L510-460v224ZM80-691v-129q0-24.75 17.63-42.38Q115.25-880 140-880h129v60H140v129H80ZM269-80H140q-24.75 0-42.37-17.63Q80-115.25 80-140v-129h60v129h129v60Zm422 0v-60h129v-129h60v129q0 24.75-17.62 42.37Q844.75-80 820-80H691Zm129-611v-129H691v-60h129q24.75 0 42.38 17.62Q880-844.75 880-820v129h-60ZM480-514l190-110-190-109-190 109 190 110Zm0 25Zm0-25Zm30 54Zm-60 0Z"/></svg></span><h3>Con logits crudos hay que convertir al predecir</h3><p><code>prob = keras.ops.sigmoid(model(x))</code>. Un logit de 2,3 no es una probabilidad.</p></div></div></div></div>
+<div class="shead"><span class="pill">La función de pérdida</span><h2 class="stitle">Clasificación binaria: BCE</h2><p class="lead">Salida de una neurona con sigmoide, o sea una probabilidad entre 0 y 1. La <b>binary cross-entropy</b> castiga según cuánta probabilidad le dio la red a la respuesta correcta: <code>L = −[ t · log(y) + (1 − t) · log(1 − y) ]</code>.</p></div><div class="cbody"><div class="cfit"><div class="ccicards">
+<div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M40-80v-60h81v-337q0-26 23-53t64-47q37-18 80.5-28t88.5-10q45 0 89.5 10.5T548-575q39 20 61.5 46t22.5 52v113h-60v-115q-2.18-9.38-19.09-21.69T513-524q-31-15-66-23t-70-8q-35 0-70.5 8T240-524q-23 11-39.91 23.83Q183.18-487.33 181-478v338h398q-3-6-5-12t-4-13l-35-139h382l-35 139q-2 7-4 13t-5 12h47v60H40Zm639-60h95q17.5 0 31.25-11T824-179l16-65H612l16 64q5 18 19.06 29 14.05 11 31.94 11ZM376.53-656q-46.47 0-79-32.53t-32.53-79Q265-814 297.53-847t79-33Q423-880 456-847t33 79.47q0 46.47-33 79T376.53-656ZM414-730.93q15-14.93 15-37T414.07-805q-14.93-15-37-15T340-805.07q-15 14.93-15 37T339.93-731q14.93 15 37 15T414-730.93ZM377-140Zm349 0ZM377-768Z"/></svg></span><h3>Siempre queda un solo término vivo</h3><p>Con <code>t = 1</code> sobrevive el primer término y la penalización es <code>−log(y)</code>; con <code>t = 0</code> sobrevive el segundo y es <code>−log(1 − y)</code>. <code>t</code> vale 0 o 1, así que el otro se multiplica por cero y desaparece.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M453-280h60v-240h-60v240Zm50.5-323.2q9.5-9.2 9.5-22.8 0-14.45-9.48-24.22-9.48-9.78-23.5-9.78t-23.52 9.78Q447-640.45 447-626q0 13.6 9.48 22.8 9.48 9.2 23.5 9.2t23.52-9.2ZM480.27-80q-82.74 0-155.5-31.5Q252-143 197.5-197.5t-86-127.34Q80-397.68 80-480.5t31.5-155.66Q143-709 197.5-763t127.34-85.5Q397.68-880 480.5-880t155.66 31.5Q709-817 763-763t85.5 127Q880-563 880-480.27q0 82.74-31.5 155.5Q817-252 763-197.68q-54 54.31-127 86Q563-80 480.27-80Zm.23-60Q622-140 721-239.5t99-241Q820-622 721.19-721T480-820q-141 0-240.5 98.81T140-480q0 141 99.5 240.5t241 99.5Zm-.5-340Z"/></svg></span><h3>La confianza equivocada es lo caro</h3><p>Decir 0,5 y errar cuesta poco; decir 0,01 y errar cuesta muchísimo. Es lo que empuja a la red a calibrar y no solo a acertar el lado.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M448-167 228-296q-13.77-8.43-21.39-22.21Q199-332 199-348v-257q0-16 7.61-29.79Q214.23-648.57 228-657l221-131q14-8 31-8t31 8l221 131q13.78 8.43 21.39 22.21Q761-621 761-605v257q0 16-7.87 29.79Q745.25-304.43 731-296L508-167q-14.33 8-30.16 8-15.84 0-29.84-8Zm2-69v-224L260-569v219l190 114Zm60 0 191-114v-219L510-460v224ZM80-691v-129q0-24.75 17.63-42.38Q115.25-880 140-880h129v60H140v129H80ZM269-80H140q-24.75 0-42.37-17.63Q80-115.25 80-140v-129h60v129h129v60Zm422 0v-60h129v-129h60v129q0 24.75-17.62 42.37Q844.75-80 820-80H691Zm129-611v-129H691v-60h129q24.75 0 42.38 17.62Q880-844.75 880-820v129h-60ZM480-514l190-110-190-109-190 109 190 110Zm0 25Zm0-25Zm30 54Zm-60 0Z"/></svg></span><h3>Con logits crudos hay que convertir al predecir</h3><p><code>prob = keras.ops.sigmoid(model(x))</code>. Un logit de 2,3 no es una probabilidad.</p></div></div></div></div>
 <div class="smedia"><div class="imgph svg"><!-- talksmith-ascii-sha256: eea3ddad06033fe4b949bf7bb347bf69cf178c002cd51ed2a269ba033996d8e2 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="40 18 817 322" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
   <title>Clasificación binaria: BCE</title>
@@ -1567,7 +1567,37 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <div class="crow"><span>Un conteo (demanda, visitas)</span><span>1 neurona, softplus o exp</span><span>Poisson NLL</span><span>Lineal con MSE predice conteos negativos y asume varianza constante, cuando en un conteo a mayor media hay mayor varianza</span></div><div class="crow"><span>Un rango (P10, P50, P90)</span><span>k neuronas lineales</span><span>Pinball</span><span>Un valor puntual no responde la pregunta cuando la decisión depende del peor escenario</span></div><div class="crow"><span>Una distribución (μ, σ)</span><span>2 neuronas, μ lineal y σ softplus</span><span>NLL gaussiana</span><span>Predecir la media sola tira a la basura cuánta incertidumbre hay</span></div></div>
 </div></div>
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p><b>Los cuantiles son los más rentables de los tres.</b> No asumen forma de la distribución, dan directamente el intervalo que el negocio pide y se implementan en pocas líneas con pinball loss. El detalle que muerde: hay que forzar que los cuantiles no se crucen.</p></div></div></div>
-<aside class="notes"><p>Es una diapositiva de referencia y se pasa rápido, dos minutos. El objetivo no es que las aprendan sino que las reconozcan cuando el problema no entra en las tres familias anteriores.</p><p>La fila de conteos es la que más rinde porque el error es invisible: el modelo entrena, converge, y predice menos tres unidades de demanda. Nadie mira las predicciones negativas hasta que alguien las mira.</p><p>La de cuantiles es la que más van a usar en la práctica, sobre todo en stock, riesgo y capacidad. La frase que la vende: la media es la respuesta correcta a una pregunta que muchas veces nadie hizo.</p><p>Si alguien pregunta por ranking, supervivencia o embeddings, la respuesta corta es que existen, que siguen la misma lógica de que la tarea determina el par salida-loss, y que quedan fuera del alcance de esta clase.</p></aside></section><section class="slide" id="sec-5" data-kind="section-agenda"><div class="stage"><div class="secag">
+<aside class="notes"><p>Es una diapositiva de referencia y se pasa rápido, dos minutos. El objetivo no es que las aprendan sino que las reconozcan cuando el problema no entra en las tres familias anteriores.</p><p>La fila de conteos es la que más rinde porque el error es invisible: el modelo entrena, converge, y predice menos tres unidades de demanda. Nadie mira las predicciones negativas hasta que alguien las mira.</p><p>La de cuantiles es la que más van a usar en la práctica, sobre todo en stock, riesgo y capacidad. La frase que la vende: la media es la respuesta correcta a una pregunta que muchas veces nadie hizo.</p><p>Si alguien pregunta por ranking, supervivencia o embeddings, la respuesta corta es que existen, que siguen la misma lógica de que la tarea determina el par salida-loss, y que quedan fuera del alcance de esta clase.</p></aside></section><section class="slide" data-kind="content+cards+image"><div class="stage d-split side-right">
+<div class="shead"><span class="pill">La función de pérdida</span><h2 class="stitle">Los términos de regularización</h2><p class="lead">Un término de regularización es una penalización que se le suma a la función de costo para castigar modelos demasiado complejos. Es la tercera pieza que faltaba: el <code>objective</code> de la diapositiva 5.2.</p></div><div class="cbody"><div class="cfit"><div class="ccicards">
+<div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M217-180h526l-63-440H280l-63 440Zm263-500q25.5 0 42.75-17.25T540-740q0-25.5-17.25-42.75T480-800q-25.5 0-42.75 17.25T420-740q0 25.5 17.25 42.75T480-680Zm104 0h96q23.11 0 40.05 14.5Q737-651 740-628l62 440q4 27-13.62 47.5Q770.75-120 743-120H217q-27.75 0-45.37-20.5Q154-161 158-188l62-440q3-23 19.95-37.5Q256.89-680 280-680h96q-8-14-12-28.57-4-14.56-4-31.43 0-50 35-85t85-35q50 0 85 35t35 85q0 17-4 31.5T584-680ZM217-180h526-526Z"/></svg></span><h3>L2 — Ridge, o <i>weight decay</i></h3><p>Suma <code>λ Σ w²</code>. Achica todos los pesos y ninguno llega a cero. Es el default y el que conviene probar primero.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m141-518-60-6q5-46 20-90t40-82l51 33q-19 34-32 70.5T141-518Zm55 317q-32-31-56.5-69T101-353l58-19q13 37 33 69t47 59l-43 43Zm102-568-33-51q40-25 82.5-39.5T438-880l6 60q-41 5-75.5 17.5T298-769ZM488-82q-38 0-74-6t-68-17l22-58q27 10 59 15t61 6v60Zm232-635q-29-29-62-50.5T587-802l21-57q47 16 85.5 41.5T763-760l-43 43Zm93 600L682-248v130h-60v-232h232v60H724l131 131-42 42Zm6-367q-1-29-5.5-59T797-600l58-18q12 32 18 65.5t6 68.5h-60Z"/></svg></span><h3>L1 — Lasso</h3><p>Suma <code>λ Σ |w|</code>. Empuja pesos a exactamente cero, así que además de regularizar hace selección de variables (<i>sparsity</i>).</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M141-510h137q-7-48-28-90.5T198-674q-23 35-39 76t-18 88Zm541 0h137q-2-47-18-88t-39-76q-34 34-53.5 75T682-510ZM198-287q34-34 53.5-74.5T278-450H141q2 47 18 87.5t39 75.5Zm564 0q23-35 39-75.5t18-87.5H682q7 48 26.5 88.5T762-287ZM339-510h111v-309q-62 7-115.5 32T238-720q41 41 67 95t34 115Zm171 0h111q8-61 34.5-115t67.5-95q-43-42-97-67t-116-32v309Zm-60 369v-309H339q-8 61-34 114.5T238-241q43 42 94 67.5T450-141Zm60 0q67-7 118.5-32.5T723-241q-41-41-67.5-94.5T621-450H510v309Zm-30-334Zm0 395q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg></span><h3>Elastic Net</h3><p>Combina L1 y L2. Un poco de cada uno, para cuando ni la selección dura de L1 ni el achique parejo de L2 alcanzan solos.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M453-280h60v-240h-60v240Zm50.5-323.2q9.5-9.2 9.5-22.8 0-14.45-9.48-24.22-9.48-9.78-23.5-9.78t-23.52 9.78Q447-640.45 447-626q0 13.6 9.48 22.8 9.48 9.2 23.5 9.2t23.52-9.2ZM480.27-80q-82.74 0-155.5-31.5Q252-143 197.5-197.5t-86-127.34Q80-397.68 80-480.5t31.5-155.66Q143-709 197.5-763t127.34-85.5Q397.68-880 480.5-880t155.66 31.5Q709-817 763-763t85.5 127Q880-563 880-480.27q0 82.74-31.5 155.5Q817-252 763-197.68q-54 54.31-127 86Q563-80 480.27-80Zm.23-60Q622-140 721-239.5t99-241Q820-622 721.19-721T480-820q-141 0-240.5 98.81T140-480q0 141 99.5 240.5t241 99.5Zm-.5-340Z"/></svg></span><h3>Dropout</h3><p>No es un término de la fórmula, pero cumple la misma función: apaga neuronas al azar durante el entrenamiento para que la red no dependa de ninguna en particular.</p></div></div></div></div>
+<div class="smedia"><div class="imgph svg"><!-- talksmith-ascii-sha256: fa3207feb6960457dd0c372fcd8125981b00caf82c6308148cbf5762dc9e2165 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 296" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>El objetivo se parte en ajuste más penalización</title>
+  <desc>El optimizador no minimiza el error a secas: minimiza el error más un término que castiga la complejidad, y lambda decide cuánto pesa ese término.</desc>
+  <rect x="0" y="0" width="680" height="296" fill="#ffffff"/>
+
+  <g font-family="'DejaVu Sans Mono', monospace" font-size="34">
+    <text x="90" y="96">J</text>
+    <text x="145" y="96">=</text>
+    <text x="205" y="96">cost</text>
+    <text x="330" y="96">+</text>
+    <text x="390" y="96" fill="#DA1B2E">λ · R(w)</text>
+  </g>
+
+  <path d="M195,116 Q255,142 315,116" fill="none" stroke="#B9B3B3" stroke-width="1.6"/>
+  <text x="255" y="172" font-size="16" text-anchor="middle" fill="#7A7373">el ajuste</text>
+  <text x="255" y="192" font-size="16" text-anchor="middle" fill="#7A7373">a los datos</text>
+
+  <path d="M385,116 Q475,142 565,116" fill="none" stroke="#DA1B2E" stroke-width="1.6"/>
+  <text x="475" y="172" font-size="16" text-anchor="middle" fill="#DA1B2E">la penalización</text>
+  <text x="475" y="192" font-size="16" text-anchor="middle" fill="#DA1B2E">por complejidad</text>
+  <text x="475" y="216" font-size="14" text-anchor="middle" fill="#7A7373">λ decide cuánto pesa</text>
+
+  <line x1="90" y1="244" x2="590" y2="244" stroke="#E2DDDD" stroke-width="1.2"/>
+  <text x="90" y="266" font-size="14" fill="#7A7373">sin el segundo término el optimizador solo minimiza el error de train,</text>
+  <text x="90" y="284" font-size="14" fill="#7A7373">y pesos gigantes memorizan ruido en vez del patrón</text>
+</svg></div></div></div>
+<aside class="notes"><p>Esta diapositiva cierra el vocabulario que abrió la 5.2: ahí quedó dicho que el <code>objective</code> es el cost más los términos de regularización, y recién acá se ve cuáles son. Si alguien tomó nota de aquello, esta es la respuesta.</p><p>El orden de la explicación importa más que las fórmulas: primero el problema (minimizar solo el error de train premia memorizar), después el mecanismo (un costo extra por complejidad), y recién ahí los nombres. Al revés no se entiende por qué existen.</p><p>Sobre <code>λ</code>: es el hiperparámetro que decide el balance, típicamente entre 1e-5 y 1e-2. En Keras se declara por capa, <code>layers.Dense(64, kernel_regularizer=regularizers.l2(1e-4))</code>. Un <code>λ</code> demasiado grande hace underfitting, y ese es el error de aplicación más común.</p><p>Dropout es el que más preguntas trae porque no entra en la fórmula. La respuesta corta es que regulariza de otra manera, rompiendo la coadaptación entre neuronas, y que solo actúa en entrenamiento: en inferencia está apagado.</p><p>Si preguntan cómo se sabe que hace falta regularizar, la respuesta es la brecha entre train y validación, y ahí conviene ser honesto en que el diagnóstico de overfitting no lo cubrimos en esta clase por tiempo.</p></aside></section><section class="slide" id="sec-5" data-kind="section-agenda"><div class="stage"><div class="secag">
 <div class="secaglist">
 <a class="secagrow " href="#sec-0"><span class="secagn">01</span><span>Qué se diseña de verdad</span></a>
 <a class="secagrow " href="#sec-1"><span class="secagn">02</span><span>Modelar la entrada</span></a>
@@ -1588,10 +1618,10 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>La loss depende solo de los pesos; entrenar es caminar por esa superficie hacia el punto más bajo.</desc>
   <rect x="0" y="0" width="700" height="360" fill="#ffffff"/>
   <defs>
-    <marker id="e11-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e12-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#7A7373"/>
     </marker>
-    <marker id="e11-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e12-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/>
     </marker>
   </defs>
@@ -1599,7 +1629,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <text x="34" y="26" font-size="14" font-weight="bold" fill="#3B3535">Un eje por cada peso de la red: el dibujo muestra uno, un MLP real tiene millones</text>
 
   <g transform="translate(0,22)">
-  <g stroke="#B9B3B3" stroke-width="1.4" fill="none" marker-end="url(#e11-ag)">
+  <g stroke="#B9B3B3" stroke-width="1.4" fill="none" marker-end="url(#e12-ag)">
     <path d="M 92 300 L 92 48"/>
     <path d="M 92 300 L 656 300"/>
   </g>
@@ -1620,7 +1650,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <circle cx="372" cy="268" r="9" fill="#DA1B2E"/>
 
-  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e11-ag)">
+  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e12-ag)">
     <path d="M 130 90 L 168 145"/>
     <path d="M 190 170 L 228 200"/>
     <path d="M 250 222 L 286 238"/>
@@ -1640,7 +1670,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <text x="238" y="168" font-size="12.5">fracción del gradiente</text>
   <text x="238" y="188" font-size="12.5" font-family="'DejaVu Sans Mono', monospace">W = W - &#951; * g</text>
 
-  <path d="M 400 296 L 380 278" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e11-ar)"/>
+  <path d="M 400 296 L 380 278" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e12-ar)"/>
   <text x="406" y="302" font-size="13" font-weight="bold" fill="#DA1B2E">el mínimo</text>
   <text x="406" y="318" font-size="11.5" fill="#DA1B2E">el error más bajo alcanzable</text>
   </g>
@@ -1658,10 +1688,10 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>El forward recorre una fila del batch por los nodos de la red; el backward reparte la culpa por las mismas conexiones y la acumula, sin tocar los pesos.</desc>
   <rect x="0" y="0" width="700" height="330" fill="#ffffff"/>
   <defs>
-    <marker id="e12-ag" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+    <marker id="e13-ag" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
       <path d="M0 0 L11 4.5 L0 9 z" fill="#7A7373"/>
     </marker>
-    <marker id="e12-ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+    <marker id="e13-ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
       <path d="M0 0 L11 4.5 L0 9 z" fill="#DA1B2E"/>
     </marker>
   </defs>
@@ -1726,7 +1756,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
 
   <text x="36" y="136" font-size="16" font-weight="bold">x</text>
-  <g stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e12-ag)">
+  <g stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e13-ag)">
     <path d="M 52 130 L 95 130"/>
     <path d="M 486 130 L 550 130"/>
   </g>
@@ -1736,8 +1766,8 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <rect x="556" y="107" width="120" height="46" rx="3" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.6"/>
   <text x="616" y="136" font-size="14" font-weight="bold" text-anchor="middle" fill="#DA1B2E">L(y, t)</text>
 
-  <path d="M 616 155 L 616 228 L 62 228" stroke="#DA1B2E" stroke-width="2" fill="none" marker-end="url(#e12-ar)"/>
-  <g stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e12-ar)">
+  <path d="M 616 155 L 616 228 L 62 228" stroke="#DA1B2E" stroke-width="2" fill="none" marker-end="url(#e13-ar)"/>
+  <g stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#e13-ar)">
     <path d="M 235 224 L 235 200"/>
     <path d="M 360 224 L 360 200"/>
     <path d="M 470 224 L 470 149"/>
@@ -1760,19 +1790,19 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <title>La regla de la cadena sobre la red</title>
   <desc>Parado en una unidad de salida j: el camino de un peso al error, con los tres tramos numerados, y la regla de la cadena con sus factores numerados igual.</desc>
   <defs>
-    <marker id="e13-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#B9B3B3"/></marker>
-    <marker id="e13-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/></marker>
+    <marker id="e14-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#B9B3B3"/></marker>
+    <marker id="e14-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/></marker>
   </defs>
   <rect x="0" y="0" width="770" height="412" fill="#ffffff"/>
   <text x="385" y="32" font-size="16" font-weight="bold" text-anchor="middle">El efecto total es el producto de tres factores</text>
   <text x="385" y="52" font-size="12" text-anchor="middle" fill="#7A7373">mirando desde una unidad de salida j</text>
-  <g stroke="#B9B3B3" stroke-width="1.5" fill="none" marker-end="url(#e13-ag)">
+  <g stroke="#B9B3B3" stroke-width="1.5" fill="none" marker-end="url(#e14-ag)">
     <path d="M 85 119 L 180 161"/>
     <path d="M 85 231 L 180 189"/>
     <path d="M 234 175 L 277 175"/>
     <path d="M 334 175 L 373 175"/>
   </g>
-  <path d="M 86 175 L 177 175" stroke="#DA1B2E" stroke-width="2.6" fill="none" marker-end="url(#e13-ar)"/>
+  <path d="M 86 175 L 177 175" stroke="#DA1B2E" stroke-width="2.6" fill="none" marker-end="url(#e14-ar)"/>
   <g fill="#ffffff" stroke="#B9B3B3" stroke-width="1.5">
     <circle cx="70" cy="112" r="16"/>
     <circle cx="70" cy="175" r="16"/>
@@ -1882,19 +1912,19 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <title>Una capa m&#225;s atr&#225;s</title>
   <desc>Dos neuronas encadenadas, cada una dibujada como su suma ponderada y su activacion; el gradiente de un peso de la capa oculta es la misma cadena con tres factores mas adelante, y los dos ultimos ya estaban calculados.</desc>
   <defs>
-    <marker id="e15-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#B9B3B3"/></marker>
-    <marker id="e15-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/></marker>
+    <marker id="e16-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#B9B3B3"/></marker>
+    <marker id="e16-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/></marker>
   </defs>
   <rect x="0" y="0" width="800" height="422" fill="#ffffff"/>
   <text x="400" y="32" font-size="16" font-weight="bold" text-anchor="middle">Una capa m&#225;s atr&#225;s: la cadena se estira</text>
   <text x="400" y="52" font-size="12" text-anchor="middle" fill="#7A7373">el mismo procedimiento, dos unidades de distancia del error</text>
-  <g stroke="#B9B3B3" stroke-width="1.5" fill="none" marker-end="url(#e15-ag)">
+  <g stroke="#B9B3B3" stroke-width="1.5" fill="none" marker-end="url(#e16-ag)">
     <path d="M 172 126 L 207 126"/>
     <path d="M 260 126 L 351 126"/>
     <path d="M 404 126 L 439 126"/>
     <path d="M 492 126 L 557 126"/>
   </g>
-  <path d="M 67 126 L 119 126" stroke="#DA1B2E" stroke-width="2.6" fill="none" marker-end="url(#e15-ar)"/>
+  <path d="M 67 126 L 119 126" stroke="#DA1B2E" stroke-width="2.6" fill="none" marker-end="url(#e16-ar)"/>
   <g fill="#ffffff" stroke="#B9B3B3" stroke-width="1.5">
     <circle cx="52" cy="126" r="15"/>
     <circle cx="150" cy="126" r="22"/>
@@ -1961,7 +1991,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>El train se parte en batches de tamaño fijo y cada batch produce exactamente un ajuste de los pesos.</desc>
   <rect x="0" y="0" width="700" height="310" fill="#ffffff"/>
   <defs>
-    <marker id="e16-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e17-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#7A7373"/>
     </marker>
   </defs>
@@ -1982,7 +2012,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="482" y="88" font-size="18" text-anchor="middle" fill="#7A7373">&#183; &#183; &#183;</text>
 
-  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e16-ag)">
+  <g stroke="#7A7373" stroke-width="1.6" fill="none" marker-end="url(#e17-ag)">
     <path d="M 90 104 L 90 130"/>
     <path d="M 222 104 L 222 130"/>
     <path d="M 354 104 L 354 130"/>
@@ -2031,10 +2061,10 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   <desc>Dentro del batch se acumula en valores intermedios; al cerrar el batch se aplica una sola vez y se pasa al siguiente.</desc>
   <rect x="0" y="0" width="700" height="430" fill="#ffffff"/>
   <defs>
-    <marker id="e17-ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+    <marker id="e18-ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
       <path d="M0 0 L9 3.5 L0 7 z" fill="#7A7373"/>
     </marker>
-    <marker id="e17-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <marker id="e18-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0 0 L10 4 L0 8 z" fill="#DA1B2E"/>
     </marker>
   </defs>
@@ -2058,13 +2088,13 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="66" y="160" font-size="15" fill="#7A7373">&#183; &#183; &#183;</text>
 
-  <g stroke="#7A7373" stroke-width="1.3" fill="none" marker-end="url(#e17-ag)">
+  <g stroke="#7A7373" stroke-width="1.3" fill="none" marker-end="url(#e18-ag)">
     <path d="M 90 105 L 106 105"/><path d="M 188 105 L 196 105"/><path d="M 228 105 L 236 105"/>
     <path d="M 90 135 L 106 135"/><path d="M 188 135 L 196 135"/><path d="M 228 135 L 236 135"/>
     <path d="M 90 177 L 106 177"/><path d="M 188 177 L 196 177"/><path d="M 228 177 L 236 177"/>
   </g>
 
-  <g stroke="#DA1B2E" stroke-width="1.5" fill="none" marker-end="url(#e17-ar)">
+  <g stroke="#DA1B2E" stroke-width="1.5" fill="none" marker-end="url(#e18-ar)">
     <path d="M 322 105 L 356 105 L 356 118 L 390 118"/>
     <path d="M 322 135 L 390 135"/>
     <path d="M 322 177 L 356 177 L 356 152 L 390 152"/>
@@ -2077,7 +2107,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 
   <text x="314" y="212" font-size="13.5" font-weight="bold" text-anchor="middle">W y b no se tocan en ningún punto de este bloque</text>
 
-  <path d="M 314 230 L 314 266" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e17-ag)"/>
+  <path d="M 314 230 L 314 266" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e18-ag)"/>
   <text x="328" y="253" font-size="12.5" fill="#7A7373">terminó el batch</text>
 
   <rect x="34" y="272" width="560" height="112" rx="4" fill="#FBF4F5" stroke="#DA1B2E" stroke-width="1.6"/>
@@ -2094,7 +2124,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   </g>
   <text x="52" y="371" font-size="12.5" font-weight="bold" fill="#DA1B2E">único momento del entrenamiento en que la red cambia</text>
 
-  <path d="M 594 328 L 650 328 L 650 34 L 200 34 L 200 48" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e17-ag)"/>
+  <path d="M 594 328 L 650 328 L 650 34 L 200 34 L 200 48" stroke="#7A7373" stroke-width="1.8" fill="none" marker-end="url(#e18-ag)"/>
   <text x="424" y="26" font-size="12.5" text-anchor="middle" fill="#7A7373">batch k+1, con W y b nuevos</text>
 
   <text x="34" y="410" font-size="12.5" fill="#7A7373">agotados todos los batches = 1 época: se baraja el train y vuelve a empezar</text>

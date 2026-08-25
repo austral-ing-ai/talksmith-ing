@@ -1,0 +1,27 @@
+<!-- talksmith-ascii-sha256: fa3207feb6960457dd0c372fcd8125981b00caf82c6308148cbf5762dc9e2165 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 296" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>El objetivo se parte en ajuste más penalización</title>
+  <desc>El optimizador no minimiza el error a secas: minimiza el error más un término que castiga la complejidad, y lambda decide cuánto pesa ese término.</desc>
+  <rect x="0" y="0" width="680" height="296" fill="#ffffff"/>
+
+  <g font-family="'DejaVu Sans Mono', monospace" font-size="34">
+    <text x="90" y="96">J</text>
+    <text x="145" y="96">=</text>
+    <text x="205" y="96">cost</text>
+    <text x="330" y="96">+</text>
+    <text x="390" y="96" fill="#DA1B2E">λ · R(w)</text>
+  </g>
+
+  <path d="M195,116 Q255,142 315,116" fill="none" stroke="#B9B3B3" stroke-width="1.6"/>
+  <text x="255" y="172" font-size="16" text-anchor="middle" fill="#7A7373">el ajuste</text>
+  <text x="255" y="192" font-size="16" text-anchor="middle" fill="#7A7373">a los datos</text>
+
+  <path d="M385,116 Q475,142 565,116" fill="none" stroke="#DA1B2E" stroke-width="1.6"/>
+  <text x="475" y="172" font-size="16" text-anchor="middle" fill="#DA1B2E">la penalización</text>
+  <text x="475" y="192" font-size="16" text-anchor="middle" fill="#DA1B2E">por complejidad</text>
+  <text x="475" y="216" font-size="14" text-anchor="middle" fill="#7A7373">λ decide cuánto pesa</text>
+
+  <line x1="90" y1="244" x2="590" y2="244" stroke="#E2DDDD" stroke-width="1.2"/>
+  <text x="90" y="266" font-size="14" fill="#7A7373">sin el segundo término el optimizador solo minimiza el error de train,</text>
+  <text x="90" y="284" font-size="14" fill="#7A7373">y pesos gigantes memorizan ruido en vez del patrón</text>
+</svg>

@@ -771,6 +771,8 @@ val_X, test_X, val_y, test_y = train_test_split(
 
 `random_state` fijo hace la partición reproducible, que es lo que permite comparar dos modelos sobre exactamente los mismos datos.
 
+Fuente: Jacob Solawetz (Roboflow), [Train, Validation, Test Split Explained (with Ratios)](https://blog.roboflow.com/train-test-split/) (2026); Tarang Shah, [About Train, Validation and Test Sets in Machine Learning](https://tarangshah.com/blog/2017-12-03/train-validation-and-test-sets/) (2017). Estratificación y partición temporal son aporte del docente.
+
 ### Sources
 
 corpus/train-test-split-roboflow.web.md (§8 Errores típicos; §9 Cómo se hace en Python); conocimiento del área (estratificación y partición temporal, no cubiertas por las fuentes)
@@ -993,7 +995,7 @@ Una **función de pérdida** es la fórmula que convierte una predicción equivo
 
 - **Loss.** El error de un solo ejemplo. Es lo que mide la fórmula que elegimos acá.
 - **Cost.** El promedio del loss sobre un batch o sobre el dataset. Es el número que el entrenamiento reporta.
-- **Objective.** El cost más los términos de regularización, cuando las hay. Es lo que el optimizador minimiza de verdad.
+- **Objective.** El cost más los términos de regularización, cuando las hay. Es lo que el optimizador minimiza de verdad, y cierra la sección en la diapositiva 5.7.
 
 La loss no se elige libre: viene con la salida. Para predecir un precio la tarea pide una neurona sin activación, porque el valor puede ser cualquier número real, y sobre esa salida van MSE, MAE o Huber. Cambiar la activación de salida obliga a cambiar la loss, y al revés.
 
@@ -1074,8 +1076,6 @@ Salida de una neurona con sigmoide, o sea una probabilidad entre 0 y 1. La **bin
 
 `L = −[ t · log(y) + (1 − t) · log(1 − y) ]`
 
-Con `t = 1` sobrevive el primer término y la penalización es `−log(y)`; con `t = 0` sobrevive el segundo y es `−log(1 − y)`. Siempre queda un solo término vivo.
-
 ```ascii
         penalizacion  -log(y)   cuando la etiqueta verdadera es  t = 1
 
@@ -1097,8 +1097,8 @@ emphasize: la asintota vertical en y = 0 y que la curva toca cero en y = 1
 labels: eje horizontal y de 0 a 1 (probabilidad predicha), eje vertical penalizacion -log(y)
 -->
 
+- **Siempre queda un solo término vivo.** Con `t = 1` sobrevive el primer término y la penalización es `−log(y)`; con `t = 0` sobrevive el segundo y es `−log(1 − y)`. `t` vale 0 o 1, así que el otro se multiplica por cero y desaparece.
 - **La confianza equivocada es lo caro.** Decir 0,5 y errar cuesta poco; decir 0,01 y errar cuesta muchísimo. Es lo que empuja a la red a calibrar y no solo a acertar el lado.
-- **La sigmoide va en un solo lado.** `BinaryCrossentropy(from_logits=True)` aplica la sigmoide adentro, por estabilidad numérica, y entonces la última capa va sin activación. Poner las dos cosas la aplica dos veces y el modelo entrena mal.
 - **Con logits crudos hay que convertir al predecir.** `prob = keras.ops.sigmoid(model(x))`. Un logit de 2,3 no es una probabilidad.
 
 ### Sources
@@ -1197,6 +1197,54 @@ La fila de conteos es la que más rinde porque el error es invisible: el modelo 
 La de cuantiles es la que más van a usar en la práctica, sobre todo en stock, riesgo y capacidad. La frase que la vende: la media es la respuesta correcta a una pregunta que muchas veces nadie hizo.
 
 Si alguien pregunta por ranking, supervivencia o embeddings, la respuesta corta es que existen, que siguen la misma lógica de que la tarea determina el par salida-loss, y que quedan fuera del alcance de esta clase.
+
+---
+
+## 7. Los términos de regularización
+
+### Content
+
+Un **término de regularización** es una penalización que se le suma a la función de costo para castigar modelos demasiado complejos. Es la tercera pieza que faltaba: el `objective` de la diapositiva 5.2.
+
+```ascii
+   J   =   cost   +   λ · R(w)
+          \______/    \_________/
+          el ajuste   la penalización
+          a los datos por complejidad
+
+   λ decide cuánto pesa la penalización
+
+sin el segundo término el optimizador solo minimiza el error de train,
+y pesos gigantes memorizan ruido en vez del patrón
+```
+<!-- ascii-note:
+intent: descomponer el objetivo en el término de ajuste y el término de regularización, y mostrar que lambda decide el balance entre los dos
+emphasize: el término lambda por R(w), que es lo que la diapositiva agrega; el resto queda en gris
+labels: J objetivo, cost ajuste a los datos, lambda por R(w) penalización por complejidad, remate al pie
+-->
+
+Sin regularización el optimizador solo busca minimizar el error en train, y el camino más corto para eso pueden ser pesos gigantes que memorizan ruido en vez de aprender el patrón. El término extra lo obliga a balancear ajustar bien los datos contra mantener el modelo simple.
+
+- **L2** — Ridge, o *weight decay*: suma `λ Σ w²`. Achica todos los pesos y ninguno llega a cero. Es el default y el que conviene probar primero.
+- **L1** — Lasso: suma `λ Σ |w|`. Empuja pesos a exactamente cero, así que además de regularizar hace selección de variables (*sparsity*).
+- **Elastic Net** — combina L1 y L2. Un poco de cada uno, para cuando ni la selección dura de L1 ni el achique parejo de L2 alcanzan solos.
+- **Dropout** — no es un término de la fórmula, pero cumple la misma función: apaga neuronas al azar durante el entrenamiento para que la red no dependa de ninguna en particular.
+
+### Sources
+
+corpus/chat.md.md (§10 Regularización: qué problema resuelve; L2 weight decay); pedido del docente (2026-08-25)
+
+### Speaker notes
+
+Esta diapositiva cierra el vocabulario que abrió la 5.2: ahí quedó dicho que el `objective` es el cost más los términos de regularización, y recién acá se ve cuáles son. Si alguien tomó nota de aquello, esta es la respuesta.
+
+El orden de la explicación importa más que las fórmulas: primero el problema (minimizar solo el error de train premia memorizar), después el mecanismo (un costo extra por complejidad), y recién ahí los nombres. Al revés no se entiende por qué existen.
+
+Sobre `λ`: es el hiperparámetro que decide el balance, típicamente entre 1e-5 y 1e-2. En Keras se declara por capa, `layers.Dense(64, kernel_regularizer=regularizers.l2(1e-4))`. Un `λ` demasiado grande hace underfitting, y ese es el error de aplicación más común.
+
+Dropout es el que más preguntas trae porque no entra en la fórmula. La respuesta corta es que regulariza de otra manera, rompiendo la coadaptación entre neuronas, y que solo actúa en entrenamiento: en inferencia está apagado.
+
+Si preguntan cómo se sabe que hace falta regularizar, la respuesta es la brecha entre train y validación, y ahí conviene ser honesto en que el diagnóstico de overfitting no lo cubrimos en esta clase por tiempo.
 
 ### Presenter feedback
 
@@ -2127,6 +2175,12 @@ Cierre accionable. Este checklist es directamente aplicable al TP o al dataset c
 - La cita de Keras sobre el aplanado (notas del orador de la 1.2) está verificada contra la documentación oficial pero no vive en el corpus. Ingerir esa página si se la quiere como fuente formal de la Talk.
 
 # Cut material
+
+## Card "La sigmoide va en un solo lado" de la 5.4 (retirada por pedido del presentador, 2026-08-25)
+
+Card de la diapositiva "Clasificación binaria: BCE". Se retira entera, con su texto. Al sacarla queda sin apoyo en pantalla la card que le sigue ("Con logits crudos hay que convertir al predecir"), que da por explicado qué es un logit crudo, y el párrafo de las notas del orador sobre el error de la doble sigmoide, que ya no tiene anclaje visible. Texto retirado, verbatim:
+
+- **La sigmoide va en un solo lado.** `BinaryCrossentropy(from_logits=True)` aplica la sigmoide adentro, por estabilidad numérica, y entonces la última capa va sin activación. Poner las dos cosas la aplica dos veces y el modelo entrena mal.
 
 ## Seccion 9 Overfitting completa (retirada por pedido del presentador, 2026-08-24)
 

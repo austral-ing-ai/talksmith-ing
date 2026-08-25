@@ -541,7 +541,7 @@
       ],
       "highlights": [
         {
-          "body": "Fuente: Roboflow, Train, Validation, Test Split for Machine Learning (2026); Tarang Shah, About Train, Validation and Test Sets (2017). Estratificación y partición temporal son aporte del docente.",
+          "body": "Fuente: Jacob Solawetz (Roboflow), [Train, Validation, Test Split Explained (with Ratios)](https://blog.roboflow.com/train-test-split/) (2026); Tarang Shah, [About Train, Validation and Test Sets in Machine Learning](https://tarangshah.com/blog/2017-12-03/train-validation-and-test-sets/) (2017). Estratificación y partición temporal son aporte del docente.",
           "kind": "source"
         }
       ],
@@ -724,7 +724,7 @@
         },
         {
           "label": "Objective",
-          "body": "El cost más los términos de regularización. Es lo que el optimizador minimiza de verdad."
+          "body": "El cost más los términos de regularización, cuando las hay. Es lo que el optimizador minimiza de verdad, y cierra la sección en la diapositiva 5.7."
         }
       ],
       "highlights": [
@@ -770,7 +770,7 @@
       "template": "content+cards+image",
       "section": "La función de pérdida",
       "title": "Clasificación binaria: BCE",
-      "lead": "Salida de una neurona con sigmoide, o sea una probabilidad entre 0 y 1. La **binary cross-entropy** castiga según cuánta probabilidad le dio la red a la respuesta correcta: `L = −[ t · log(y) + (1 − t) · log(1 − y) ]`. Con `t = 1` sobrevive el primer término y la penalización es `−log(y)`; con `t = 0` sobrevive el segundo. Siempre queda un solo término vivo.",
+      "lead": "Salida de una neurona con sigmoide, o sea una probabilidad entre 0 y 1. La **binary cross-entropy** castiga según cuánta probabilidad le dio la red a la respuesta correcta: `L = −[ t · log(y) + (1 − t) · log(1 − y) ]`.",
       "media": {
         "src": "images/s5-4-1-penalizacion-bce.png",
         "alt": "La penalización de BCE se dispara al errar con confianza"
@@ -778,12 +778,12 @@
       "design": "split-right",
       "cards": [
         {
-          "label": "La confianza equivocada es lo caro",
-          "body": "Decir 0,5 y errar cuesta poco; decir 0,01 y errar cuesta muchísimo. Es lo que empuja a la red a calibrar y no solo a acertar el lado."
+          "label": "Siempre queda un solo término vivo",
+          "body": "Con `t = 1` sobrevive el primer término y la penalización es `−log(y)`; con `t = 0` sobrevive el segundo y es `−log(1 − y)`. `t` vale 0 o 1, así que el otro se multiplica por cero y desaparece."
         },
         {
-          "label": "La sigmoide va en un solo lado",
-          "body": "`BinaryCrossentropy(from_logits=True)` aplica la sigmoide adentro, por estabilidad numérica, y entonces la última capa va sin activación. Poner las dos cosas la aplica dos veces y el modelo entrena mal."
+          "label": "La confianza equivocada es lo caro",
+          "body": "Decir 0,5 y errar cuesta poco; decir 0,01 y errar cuesta muchísimo. Es lo que empuja a la red a calibrar y no solo a acertar el lado."
         },
         {
           "label": "Con logits crudos hay que convertir al predecir",
@@ -864,6 +864,53 @@
         }
       ],
       "notes": "Es una diapositiva de referencia y se pasa rápido, dos minutos. El objetivo no es que las aprendan sino que las reconozcan cuando el problema no entra en las tres familias anteriores.\n\nLa fila de conteos es la que más rinde porque el error es invisible: el modelo entrena, converge, y predice menos tres unidades de demanda. Nadie mira las predicciones negativas hasta que alguien las mira.\n\nLa de cuantiles es la que más van a usar en la práctica, sobre todo en stock, riesgo y capacidad. La frase que la vende: la media es la respuesta correcta a una pregunta que muchas veces nadie hizo.\n\nSi alguien pregunta por ranking, supervivencia o embeddings, la respuesta corta es que existen, que siguen la misma lógica de que la tarea determina el par salida-loss, y que quedan fuera del alcance de esta clase."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "La función de pérdida",
+      "title": "Los términos de regularización",
+      "lead": "Un término de regularización es una penalización que se le suma a la función de costo para castigar modelos demasiado complejos. Es la tercera pieza que faltaba: el `objective` de la diapositiva 5.2.",
+      "cards": [
+        {
+          "label": "L2 — Ridge, o *weight decay*",
+          "body": "Suma `λ Σ w²`. Achica todos los pesos y ninguno llega a cero. Es el default y el que conviene probar primero."
+        },
+        {
+          "label": "L1 — Lasso",
+          "body": "Suma `λ Σ |w|`. Empuja pesos a exactamente cero, así que además de regularizar hace selección de variables (*sparsity*)."
+        },
+        {
+          "label": "Elastic Net",
+          "body": "Combina L1 y L2. Un poco de cada uno, para cuando ni la selección dura de L1 ni el achique parejo de L2 alcanzan solos."
+        },
+        {
+          "label": "Dropout",
+          "body": "No es un término de la fórmula, pero cumple la misma función: apaga neuronas al azar durante el entrenamiento para que la red no dependa de ninguna en particular."
+        }
+      ],
+      "media": {
+        "src": "images/s5-7-1-objetivo-regularizacion.png",
+        "alt": "El objetivo se parte en dos: el ajuste a los datos más λ por la penalización por complejidad"
+      },
+      "design": "split-right",
+      "notes": "Esta diapositiva cierra el vocabulario que abrió la 5.2: ahí quedó dicho que el `objective` es el cost más los términos de regularización, y recién acá se ve cuáles son. Si alguien tomó nota de aquello, esta es la respuesta.\n\nEl orden de la explicación importa más que las fórmulas: primero el problema (minimizar solo el error de train premia memorizar), después el mecanismo (un costo extra por complejidad), y recién ahí los nombres. Al revés no se entiende por qué existen.\n\nSobre `λ`: es el hiperparámetro que decide el balance, típicamente entre 1e-5 y 1e-2. En Keras se declara por capa, `layers.Dense(64, kernel_regularizer=regularizers.l2(1e-4))`. Un `λ` demasiado grande hace underfitting, y ese es el error de aplicación más común.\n\nDropout es el que más preguntas trae porque no entra en la fórmula. La respuesta corta es que regulariza de otra manera, rompiendo la coadaptación entre neuronas, y que solo actúa en entrenamiento: en inferencia está apagado.\n\nSi preguntan cómo se sabe que hace falta regularizar, la respuesta es la brecha entre train y validación, y ahí conviene ser honesto en que el diagnóstico de overfitting no lo cubrimos en esta clase por tiempo.",
+      "_choice": {
+        "signals": [
+          "cuatro conceptos con etiqueta (L2, L1, Elastic Net, Dropout)",
+          "una sola imagen compartida, la descomposición del objetivo",
+          "lead con la definición"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "value-columns"
+        ],
+        "pick": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "hay una imagen compartida que sostiene el lead; el catálogo manda content+cards+image y prohíbe disolver las cards para conservar la imagen",
+          "value-columns": "las cuatro no se leen a través de factores compartidos — Dropout no tiene fórmula — así que son atributos heterogéneos por fila, no columnas paralelas"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -1554,7 +1601,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "f35f42954ad05e8c451216ae2db10a9cd045a087074a9ef8e6eb817d9095448b",
-    "bytes": 158642
+    "sha256": "c33fd3590e3e04e90e4803e5199cba9c355898d510d64ee36965d992301a9d33",
+    "bytes": 162947
   }
 }
