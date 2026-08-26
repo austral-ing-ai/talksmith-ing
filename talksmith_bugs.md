@@ -24,7 +24,10 @@
   context: sesión de Claude Code sobre este working directory, cualquier paso, corriendo en la
     extensión de VSCode. settings.json declara "enabledPlugins": {"talksmith@talksmith": true};
     known_marketplaces.json registra talksmith con installLocation y autoUpdate true; el clon
-    está sano, limpio y al día (0.88.0). Nada mal configurado del lado del usuario
+    está sano, limpio y al día. Nada mal configurado del lado del usuario.
+    Reverificado a lo largo de una sesión entera y de cuatro actualizaciones del plugin
+    (0.87.0 → 0.88.0 → 0.89.0 → 0.89.1 → 0.89.2): el import no expandió ni una sola vez, y
+    ninguna de las actualizaciones lo tocó ni podía tocarlo — no es del plugin
   expected: CLAUDE.md paso 1 dice que el @-import deja orchestrator.md en contexto — el
     encabezado "Talksmith — Presenter Agent (orchestrator spec)" debería verse en el bloque
     claudeMd, sin ninguna lectura adicional
@@ -51,6 +54,6 @@
     (b) que el CLAUDE.md nombre la ruta canónica del marketplace, para no tener que buscarla
     con find en cada arranque. Del lado del usuario no hay nada que hacer: abrir el mismo
     directorio en el CLI de Claude Code debería expandir el import solo
-  seen: 6
+  seen: 7
   status: open
-  plugin_version: 0.87.0; reverificado en 0.88.0 — persiste
+  plugin_version: visto en 0.87.0; reverificado en 0.88.0, 0.89.0, 0.89.1 y 0.89.2 — persiste

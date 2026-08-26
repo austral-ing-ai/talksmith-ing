@@ -1326,4 +1326,4 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - El render vuelve a imprimir `[html] coverage: ok — 1118 source lines present in the model`.
 - **Probado también en negativo, que es lo que importaba:** con una copia del modelo amputada a mano (notas cortadas y una card recortada en "Cómo arrancan los pesos"), el render las detecta y lista archivo y línea — 4 de notas, 1 de cuerpo — y renderiza igual. El modelo real se restauró y quedó en verde.
 - El fix además distingue por tipo de falla: un archivo ilegible es condición del mazo y se saltea en silencio; una firma que derivó es defecto del plugin y sale con una línea distinta. Era exactamente el modo de falla que lo había tapado dos releases.
-
+=
