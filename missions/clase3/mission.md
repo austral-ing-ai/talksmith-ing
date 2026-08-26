@@ -49,7 +49,7 @@ Sumen las columnas no numéricas al modelo. `State` y `District` no tienen la mi
 
 ### 4. Que no memorice
 
-Hagan overfitear al modelo a propósito y después arréglenlo: L2, dropout, early stopping — lo que decidan.
+Hagan overfitear al modelo a propósito y después arréglenlo: L2 y  dropout — lo que decidan.
 
 **Criterio de éxito:** el gráfico de pérdida de entrenamiento contra validación muestra el problema, y el gráfico del modelo corregido muestra la diferencia.
 
