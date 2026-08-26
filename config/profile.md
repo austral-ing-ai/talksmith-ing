@@ -11,7 +11,7 @@ Inteligencia Artificial Generativa  (AI Gen)— materia optativa de grado de Ing
 ## Presenter
 
 Paulo Veiga, docente, Universidad Austral
-Claudio Riguetti, docente, Universidad Austral
+Claudio Righetti, docente, Universidad Austral
 Marco Sorondo, docente, Universidad Austral
 
 ## How my presentations are consumed

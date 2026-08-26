@@ -3,7 +3,7 @@ presentation: "Inteligencia Artificial Generativa (AI Gen), Universidad Austral"
 class: "Clase 2: Agentes de código y la misión Corta"
 research: research/corpus/
 description: Slides are grouped into Sections. Each Section contains one or more Slides.
-presenter: Paulo Veiga, Claudio Riguetti y Marco Sánchez Sorondo
+presenter: Paulo Veiga, Claudio Righetti y Marco Sánchez Sorondo
 audience: Estudiantes universitarios de Ingeniería de Software con una base técnica fuerte. Saben programar; no se explica qué es una terminal, un repo ni un deploy.
 duration: 90 min
 date: Agosto 2026

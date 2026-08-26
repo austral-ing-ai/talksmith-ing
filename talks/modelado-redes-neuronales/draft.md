@@ -3,7 +3,7 @@ presentation: Inteligencia Artificial Generativa (AI Gen)
 class: "Modelado de un Multi-Layer Perceptron (MLP)"
 research: research/corpus/
 description: Slides are grouped into Sections. Each Section contains one or more Slides.
-presenter: Paulo Veiga, Claudio Riguetti, Marco Sorondo (Universidad Austral)
+presenter: Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)
 audience: Estudiantes de grado de Ingeniería de Software con base técnica fuerte
 duration: 90 min
 date: 2026-08-19

@@ -3,7 +3,7 @@ presentation: "Inteligencia Artificial Generativa  (AI Gen)- Universidad Austral
 class: "Clase 1: Bienvenidos/Introduccion"
 research: research/corpus/
 description: Slides are grouped into Sections. Each Section contains one or more Slides.
-presenter: "Paulo Veiga, Claudio Riguetti y Marco Sorondo — docentes, Universidad Austral"
+presenter: "Paulo Veiga, Claudio Righetti y Marco Sorondo — docentes, Universidad Austral"
 audience: "Estudiantes universitarios de Ingeniería de Software con una base técnica fuerte."
 duration: "90 minutos"
 date: "2026-08"
@@ -165,9 +165,9 @@ Marco Sanchez Sorondo
 
 Email: msanchezSorondo@austral.edu.ar
 
-![Foto de Claudio Riguetti](images/docente-claudio-riguetti.png)
+![Foto de Claudio Righetti](images/docente-claudio-righetti.png)
 
-Claudio Riguetti
+Claudio Righetti
 
 Docente
 

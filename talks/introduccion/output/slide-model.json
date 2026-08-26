@@ -4,7 +4,7 @@
     "lang": "es",
     "institution": "Universidad Austral",
     "class": "Clase 1: Bienvenidos / Introducción",
-    "presenter": "Paulo Veiga, Claudio Riguetti y Marco Sorondo",
+    "presenter": "Paulo Veiga, Claudio Righetti y Marco Sorondo",
     "date": "Agosto de 2026",
     "logo": null,
     "sections": [
@@ -105,10 +105,10 @@
         },
         {
           "image": {
-            "src": "images/docente-claudio-riguetti.png",
-            "alt": "Foto de Claudio Riguetti"
+            "src": "images/docente-claudio-righetti.png",
+            "alt": "Foto de Claudio Righetti"
           },
-          "label": "Claudio Riguetti",
+          "label": "Claudio Righetti",
           "body": "Docente"
         }
       ],
