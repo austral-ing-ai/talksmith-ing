@@ -47,7 +47,7 @@ atractivo = (
     - 1.05
 )
 
-# --- 1 y 6 y 7 · Regresión, cuantiles y distribución --------------------------
+# --- 1 y 6 y 7 · Regresión, percentiles y distribución --------------------------
 # Días hasta vender. Continuo, asimétrico a la derecha y **heterocedástico**: a
 # el tipo de vivienda manda sobre cuánta: sigma va de 5 días en un departamento
 # a 30 en una casa. Un solo número no responde "¿cuánto tardo
@@ -79,7 +79,7 @@ p_vendio = 1.0 / (1.0 + np.exp(-(2.4 * atractivo + 0.35)))
 se_vendio = (RNG.random(N) < p_vendio).astype(int)
 
 # --- 4 · Multiclase excluyente ------------------------------------------------
-# Segmento comercial: una casa cae en uno solo. Cortes por cuantil del precio,
+# Segmento comercial: una casa cae en uno solo. Cortes por percentil del precio,
 # así las tres clases quedan pobladas.
 q1, q2 = np.quantile(precio_k, [0.40, 0.80])
 segmento = np.where(precio_k < q1, "economica",

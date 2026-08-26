@@ -506,24 +506,27 @@ md("""
 > Mirá el F1 por etiqueta: softmax se queda con una sola y abandona las otras dos, porque es lo único que su forma le permite. **No es que aprenda peor — es que no puede representar la respuesta.**
 """)
 
-# ============================================================ 6 cuantiles
+# ============================================================ 6 percentiles
 md("""
-## 6 · Un rango → **k neuronas lineales** · pinball
+## 6 · Un rango → **una neurona por percentil** · pinball
 
-La pregunta del negocio no siempre es "¿cuánto tarda?". Muchas veces es **"¿cuánto tardo en el peor caso, para prometerle una fecha al cliente?"**. Eso no lo responde un promedio: lo responde un **cuantil**.
+La pregunta del negocio no siempre es "¿cuánto tarda?". Muchas veces es **"¿cuánto tardo en el peor caso, para prometerle una fecha al cliente?"**. Eso no lo responde un promedio: lo responde un **percentil**.
 
-La salida son **k neuronas lineales**, una por cuantil pedido — P10, P50, P90 — y la loss es **pinball**, que castiga asimétrico: para el P90, quedarse corto cuesta nueve veces más que pasarse; para el P10, al revés.
+La salida es **una neurona lineal por cada percentil que se pida**. Acá pedimos tres — P10, P50, P90 — así que la última capa tiene **3 neuronas**; con P50 y P95 solos serían 2. Ese número lo pone quien modela, a diferencia de las clases o los tags, donde lo pone el problema.
+
+La loss es **pinball**, que castiga asimétrico: para el P90, quedarse corto cuesta nueve veces más que pasarse; para el P10, al revés.
 
 **Cómo se mide.** Un P90 bien calibrado deja **el 90% de los casos reales por debajo**. La métrica es esa cobertura, no el error.
 """)
 
 code("""
-CUANTILES = [0.10, 0.50, 0.90]
+PERCENTILES = [10, 50, 90]        # los que el negocio pide, en porcentaje
 
 def pinball(y_real, y_pred):
     y_real = keras.ops.reshape(y_real, (-1, 1))
     e = y_real - y_pred
-    q = keras.ops.convert_to_tensor(np.array(CUANTILES, dtype="float32"))
+    # pinball trabaja con la fraccion, no con el porcentaje
+    q = keras.ops.convert_to_tensor(np.array(PERCENTILES, dtype="float32") / 100.0)
     return keras.ops.mean(keras.ops.maximum(q * e, (q - 1.0) * e))
 
 # La forma INCORRECTA: predecir el promedio y usarlo como si respondiera la
@@ -538,8 +541,8 @@ cob_q = [float((y_limpio[i_te] <= pred_q[:, k]).mean()) for k in range(3)]
 
 print("                                   se pidio    se obtuvo")
 print(f"1 neurona + MSE, como si fuera P90    90.0%       {cob_media:5.1%}")
-for k, q in enumerate(CUANTILES):
-    print(f"3 neuronas + pinball, P{int(q*100):02}            {q:5.1%}       {cob_q[k]:5.1%}")
+for k, pc in enumerate(PERCENTILES):
+    print(f"3 neuronas + pinball, P{pc:02}            {pc/100:5.1%}       {cob_q[k]:5.1%}")
 
 comparar("Cuanto tardo en el peor caso: error de calibracion del P90",
          [("1 neurona + MSE", h_media, abs(cob_media - 0.90)),
@@ -555,7 +558,7 @@ md("""
 """)
 
 code("""
-# Los tres cuantiles de veinte casas del test, ordenadas por su mediana predicha.
+# Los tres percentiles de veinte casas del test, ordenadas por su mediana predicha.
 orden = np.argsort(pred_q[:, 1])[::max(1, len(i_te) // 20)][:20]
 fig, ax = plt.subplots(figsize=(11, 4))
 xs = np.arange(len(orden))
@@ -578,7 +581,7 @@ print("una regresion comun devuelve un solo numero y no tiene donde poner esa di
 md("""
 ## 7 · Una distribución → **2 neuronas** · NLL gaussiana
 
-El paso final: en vez de un punto o unos cuantiles, que la red devuelva **la distribución entera**. Dos neuronas — una para la media `μ`, otra para el desvío `σ` — y la loss es la **log-verosimilitud negativa** de una gaussiana.
+El paso final: en vez de un punto o unos percentiles, que la red devuelva **la distribución entera**. Dos neuronas — una para la media `μ`, otra para el desvío `σ` — y la loss es la **log-verosimilitud negativa** de una gaussiana.
 
 `μ` sale lineal, porque puede ser cualquier número. `σ` sale con **softplus**, porque un desvío negativo no existe.
 
@@ -673,9 +676,13 @@ pd.DataFrame([
     ["Si o no",           "1", "sigmoide",          "binary cross-entropy", "se vendio"],
     ["Una clase entre N", "N", "softmax",           "cross-entropy",        "segmento comercial"],
     ["Varias etiquetas",  "N", "sigmoide",          "binary cross-entropy", "pileta / credito / reciclar"],
-    ["Un rango",          "k", "ninguna (lineal)",  "pinball",              "P10 / P50 / P90 de dias"],
+    ["Un rango",          "3", "ninguna (lineal)",  "pinball",              "P10 / P50 / P90 de dias"],
     ["Una distribucion",  "2", "lineal y softplus", "NLL gaussiana",        "mu y sigma de dias"],
 ], columns=["La tarea", "Neuronas", "Activacion de salida", "Loss", "En este notebook"])
+""")
+
+md("""
+> **Sobre la columna "Neuronas":** `1` y `2` son fijos, `N` lo pone el problema — cuántas clases hay, cuántos tags — y el `3` de la fila del rango lo pone **quien modela**: son tantas neuronas como percentiles se pidan. Es la única fila donde el número es una decisión y no un dato.
 """)
 
 md("""
@@ -686,7 +693,7 @@ md("""
 3. **La activación de salida y la loss vienen en par.** Sigmoide con BCE, softmax con cross-entropy, softplus con Poisson. Romper el par no tira un error: da un modelo que anda peor, o que devuelve números que no significan lo que uno cree.
 4. **Ninguna de las formas incorrectas falló.** Las siete entrenaron, convergieron y devolvieron un número. Softmax sobre etiquetas no excluyentes es el caso más claro: no es que aprenda mal, es que **no puede representar la respuesta**, y el único síntoma visible es que las tres salidas suman 1,00.
 5. **El valor de una loss solo se compara consigo mismo.** MSE contra Poisson, o MSE contra pinball, son escalas distintas: sirven para ver si *esa* red mejora, nunca para decidir cuál de las dos es mejor. Para eso hay que medir las dos con una misma métrica, que es lo que hace el panel derecho de cada comparativa.
-6. **Un promedio que acierta en promedio puede mentir en cada caso.** Le pasa al P90 sacado de una media y al intervalo con `σ` constante: el total cierra y cada fila está mal. Cuantiles y distribución existen para eso.
+6. **Un promedio que acierta en promedio puede mentir en cada caso.** Le pasa al P90 sacado de una media y al intervalo con `σ` constante: el total cierra y cada fila está mal. Percentiles y distribución existen para eso.
 7. **Elegir la loss es afirmar algo sobre los datos.** Huber le gana a MSE en los días porque hay fichas mal cargadas. Si esos valores extremos fueran reales, la conclusión se daría vuelta.
 """)
 

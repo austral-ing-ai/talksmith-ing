@@ -1113,3 +1113,35 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - **Links en el mazo, en tres lugares:** diapositiva nueva **9.3 "Los notebooks de la clase"** (`closing-cta`, con GitHub y Colab para cada uno), más una referencia en contexto en la **2.6** (tabla de decisiones → notebook de entrada) y en la **4.1** (catálogo de salidas → notebook de salida). Los links de GitHub se verificaron con petición real: el repo es público y el notebook de entrada devuelve 200.
 - **Pendiente del presentador:** `output-layer-types.ipynb` **todavía no está pusheado**, así que su link va a dar 404 hasta el próximo push. El de entrada ya funciona.
 - **Duración:** el mazo pasa a 49 diapositivas de contenido, ~98 minutos contra 90.
+
+## 2026-08-26 — "Percentiles" en vez de "cuantiles", y el `k` de la 4.1
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "No usemos Cuantiles (P10/50/90) sino hablemos de percentiles"
+  - 2026-08-26 — "¿Por qué el slide 23 dice k salidas si en realidad se están modelando 3? Confirmar esto"
+- **Renombre completo**, no solo donde saltaba a la vista: 7 en `final.md`, 7 en `draft.md`, 6 en el modelo del deck, 2 en el generador del dataset y 9 en el notebook. Se dejó `np.quantile` sin tocar: es la API de numpy, no vocabulario de la clase. También se dejó **pinball** como nombre de la loss, en vez de "quantile loss", que habría reintroducido el término por la puerta de atrás.
+- **El `k` era una inconsistencia real, y confirmada.** La fila decía "Percentiles (P10, P50, P90)" y en la columna Neuronas ponía `k`. Pero la fila **ya eligió cuáles son**: son tres, así que el número es 3. Ahora dice **"3, uno por percentil"**.
+- **La distinción que hace que valga la pena arreglarlo, y que quedó en las notas del orador:** en esa tabla `N` aparece donde el número **lo pone el problema** (cuántas clases hay, cuántos tags), y en la fila del rango **lo pone quien modela** — con P50 y P95 solos serían 2. Es la única fila donde el número es una decisión y no un dato, y escribir `k` ahí tapaba justamente eso.
+- Mismo arreglo en el notebook: el título de la sección 6 pasó de "k neuronas lineales" a "una neurona por percentil", la tabla final dice 3, y se agregó una nota al pie que explica qué es fijo, qué lo pone el problema y qué lo pone quien modela.
+- Deck re-renderizado, audits en verde. Notebook re-ejecutado, 40 celdas, sin errores.
+
+## 2026-08-26 — Diapositiva 5.7 nueva: Percentiles, la pinball loss
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "Creemos un slide con Pinball loss, similar a los anteriores, después del 32. Lo importante acá es mostrar cómo en realidad se entrena con un valor y la función de pérdida es lo que define el resto"
+- **El ángulo que pidió el presentador es el mejor de la sección y conviene registrarlo:** la loss no *mide* el error, lo **define**. Hasta la 5.6 la sección se podía leer como "elegimos la fórmula que mejor mide la distancia". Acá se ve que la fórmula además elige **qué estadístico** va a terminar aprendiendo el modelo. El dataset trae un número por fila y ninguna columna dice cuál es el P90; el P90 aparece porque la loss empuja ahí.
+- **La correspondencia loss-estadístico es el contenido:** el minimizador de MSE es el promedio, el de MAE la mediana, el de pinball con `q` el percentil `q`. Y el corolario que ordena: **MAE es pinball con `q = 0,5`** — no son dos losses, es una familia con un parámetro. Eso además explica hacia atrás por qué MAE es robusta y MSE no, que ya se había visto en la 5.3.
+- **Diagrama `s5-7-1-pinball`** (900×400), en la gramática visual del `s5-3-1-penalizacion-regresion`: dos paneles con la misma V, simétrica a la izquierda (q=0,5) y con pendiente 0,1 contra 0,9 a la derecha (q=0,9). El remate al pie es la tesis: el dato de entrenamiento es el mismo número en los dos casos.
+- **Se pisó la trampa del manual de estilo y se corrigió:** los `<tspan>` en línea dentro de un `<text text-anchor="middle">` salieron desplazados en el render, exactamente como advierte `diagram-style.md`. Se reemplazaron por líneas propias ("el mínimo cae en la" / "MEDIANA" en dos renglones), que además lee mejor.
+- **Renumeración:** la de regularización pasó de 5.7 a 5.8, y se actualizó el puntero de la card `Objective` de la 5.2, que la nombraba por número.
+- La diapositiva quedó **en la posición 33**, justo después de la 32 como se pidió. Audits en verde; deck en 60 diapositivas, 49 de contenido, ~98 minutos.
+
+## 2026-08-26 — "Los términos de regularización" se muda a la sección 6
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "Mover 'Los términos de regularización', ¿realmente tiene sentido al final de backpropagation?" → sí, pero no al final del todo: entra como 6.10, **antes** del checklist
+- **El argumento que decide, y conviene tenerlo escrito:** un término de regularización **se define** en la función de costo pero **actúa** en el paso de actualización. En la sección 5, antes de que existan el gradiente y el paso, "penalizar pesos grandes" es una afirmación que el alumno no puede cobrar. Después de la 6.7 sí: el gradiente de `λΣw²` es `2λw`, o sea que el paso le resta a cada peso una fracción de sí mismo — que es literalmente el *decay* de weight decay.
+- **La ubicación exacta importa y no es "al final".** Se puso **antes** de "Qué mirar cuando esto se entrena", no después, por dos razones. Esa diapositiva es el clímax de la sección, la que las notas describen como la que los alumnos van a fotografiar, y ponerle algo detrás la debilita. Y su fila **"train baja y validación sube → Regularizar, o parar antes"** era **el único renglón del checklist cuya acción no se explicaba en la sección**: ahora apunta a la diapositiva inmediatamente anterior.
+- **La diapositiva se reescribió, no se mudó y ya.** Mudarla sin tocarla habría desperdiciado el motivo de la mudanza. El lead ahora dice por qué está ahí, y las cards de L2 y L1 pasaron de describir el efecto a mostrar el mecanismo: `2λw` contra `λ·signo(w)`, y por qué el segundo llega a clavar pesos en cero y el primero no. Dropout quedó explícitamente marcado como el que **no** toca el gradiente.
+- **Renumeración y punteros:** sección 5 queda en 7 diapositivas (cierra con la pinball), sección 6 pasa a 11. El diagrama se renombró de `s5-7-1-objetivo-regularizacion` a `s6-10-1-...`. El puntero de la card `Objective` de la 5.2 dejó de nombrar un número de diapositiva — ahora dice "la sección 6 muestra cuáles son, una vez que el gradiente esté sobre la mesa", que sobrevive a la próxima renumeración.
+- **Chequeo de referencias cruzadas corrido sobre todo el mazo:** 16 menciones a secciones, todas apuntan a una sección que existe. Ninguna quedó apuntando a la 9, que está borrada.

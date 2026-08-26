@@ -1,0 +1,40 @@
+<!-- talksmith-ascii-sha256: ace9869a0b033a6e490feb154b283362dbd24b50f472118deb5d3ee37bdc3344 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+  <title>La asimetría de la pinball es lo que corre el mínimo</title>
+  <desc>Con el mismo dato de entrenamiento, una loss simétrica lleva el modelo a la mediana y una asimétrica lo lleva al percentil pedido.</desc>
+  <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
+
+  <text x="450" y="34" font-size="14" text-anchor="middle" fill="#7A7373">la misma columna de datos, dos losses, dos respuestas distintas</text>
+
+  <g stroke="#B9B3B3" stroke-width="1.2" fill="none">
+    <path d="M 90 250 L 390 250 M 240 96 L 240 268"/>
+    <path d="M 510 250 L 810 250 M 660 96 L 660 268"/>
+  </g>
+
+  <text x="240" y="70" font-size="16" text-anchor="middle" font-weight="bold">q = 0,5</text>
+  <text x="240" y="90" font-size="12.5" text-anchor="middle" fill="#7A7373">es exactamente MAE</text>
+  <text x="660" y="70" font-size="16" text-anchor="middle" font-weight="bold" fill="#DA1B2E">q = 0,9</text>
+  <text x="660" y="90" font-size="12.5" text-anchor="middle" fill="#7A7373">pinball</text>
+
+  <path d="M 100 110 L 240 250 L 380 110" stroke="#3B3535" stroke-width="2.4" fill="none"/>
+  <path d="M 520 234 L 660 250 L 800 108" stroke="#DA1B2E" stroke-width="2.6" fill="none"/>
+
+  <g font-size="12" fill="#9A9393">
+    <text x="232" y="266" text-anchor="end">0</text>
+    <text x="652" y="266" text-anchor="end">0</text>
+    <text x="398" y="254">e = t - y</text>
+    <text x="818" y="254">e = t - y</text>
+  </g>
+
+  <text x="240" y="292" font-size="13" text-anchor="middle" fill="#7A7373">castiga igual de los dos lados</text>
+  <text x="240" y="312" font-size="13.5" text-anchor="middle">el mínimo cae en la</text>
+  <text x="240" y="332" font-size="15" text-anchor="middle" font-weight="bold">MEDIANA</text>
+
+  <text x="560" y="292" font-size="12.5" text-anchor="middle" fill="#7A7373">pasarse: 0,1</text>
+  <text x="762" y="292" font-size="12.5" text-anchor="middle" fill="#DA1B2E">quedarse corto: 0,9</text>
+  <text x="660" y="312" font-size="13.5" text-anchor="middle">el mínimo cae en el</text>
+  <text x="660" y="332" font-size="15" text-anchor="middle" font-weight="bold" fill="#DA1B2E">P90</text>
+
+  <line x1="90" y1="360" x2="810" y2="360" stroke="#E2DDDD" stroke-width="1.2"/>
+  <text x="450" y="384" font-size="13.5" text-anchor="middle">el dato de entrenamiento es el mismo número en los dos casos: lo único que cambia es la loss</text>
+</svg>

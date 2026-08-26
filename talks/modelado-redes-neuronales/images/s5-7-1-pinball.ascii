@@ -1,0 +1,22 @@
+      la misma columna de datos, dos losses, dos respuestas distintas
+
+        q = 0,5   (MAE)                    q = 0,9   (pinball)
+          |\        /|                       |                 /
+          | \      / |                       |                /
+          |  \    /  |                       |               /
+          |   \  /   |                       |___           /
+      ----+----\/----+----              ----+----\_________/----
+          0     e                            0        e
+
+      castiga igual de los dos lados       pasarse cuesta 0,1
+      el minimo cae en la MEDIANA          quedarse corto cuesta 0,9
+                                           el minimo cae en el P90
+
+   el dato de entrenamiento es el mismo numero en los dos casos:
+   lo unico que cambia es la loss, y con ella el estadistico que la red aprende
+
+<!-- ascii-note:
+intent: mostrar que la asimetria de la pinball es lo que corre el minimo de la mediana al P90, con el mismo dato de entrenamiento
+emphasize: la pendiente despareja del panel derecho, 0,9 de un lado contra 0,1 del otro
+labels: eje horizontal e = t - y en los dos paneles, eje vertical la penalizacion; q = 0,5 a la izquierda y q = 0,9 a la derecha; remate al pie
+-->

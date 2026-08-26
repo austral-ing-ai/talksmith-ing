@@ -593,7 +593,7 @@
             "Una de N clases",
             "Varias de N (tags)",
             "Conteo (demanda)",
-            "Cuantiles (P10/50/90)",
+            "Percentiles (P10/50/90)",
             "Distribución (μ, σ)"
           ]
         },
@@ -605,7 +605,7 @@
             "N",
             "N",
             "1",
-            "k",
+            "3, uno por percentil",
             "2"
           ]
         },
@@ -636,7 +636,7 @@
       ],
       "highlights": [
         {
-          "body": "Cuando el negocio necesita un rango y no un punto, los cuantiles (P10, P50, P90) son lo más rentable: no asumen forma y dan el intervalo directo.",
+          "body": "Cuando el negocio necesita un rango y no un punto, los percentiles (P10, P50, P90) son lo más rentable: no asumen forma y dan el intervalo directo.",
           "kind": "example"
         },
         {
@@ -645,7 +645,7 @@
           "kind": "takeaway"
         }
       ],
-      "notes": "No leas toda la tabla; detenete en dos o tres filas. La de cuantiles suele ser nueva y es muy útil (stock, riesgo, capacidad). La media es la respuesta correcta a una pregunta que nadie hizo. La distribución con μ y σ conecta con estadística que ya vieron."
+      "notes": "No leas toda la tabla; detenete en dos o tres filas. La de percentiles suele ser nueva y es muy útil (stock, riesgo, capacidad). La media es la respuesta correcta a una pregunta que nadie hizo. La distribución con μ y σ conecta con estadística que ya vieron.\n\nSi alguien pregunta por que la fila de percentiles dice 3 y no N: porque la fila ya eligio cuales son. N y k aparecen donde el numero lo pone el problema — cuantas clases hay, cuantos tags —; aca lo pone quien modela, y son tantas neuronas como percentiles pida el negocio. Con P50 y P95 solos serian 2."
     },
     {
       "template": "concept-breakdown",
@@ -736,7 +736,7 @@
         },
         {
           "label": "Objective",
-          "body": "El cost más los términos de regularización, cuando las hay. Es lo que el optimizador minimiza de verdad, y cierra la sección en la diapositiva 5.7."
+          "body": "El cost más los términos de regularización, cuando las hay. Es lo que el optimizador minimiza de verdad, y la sección 6 muestra cuáles son, una vez que el gradiente esté sobre la mesa."
         }
       ],
       "highlights": [
@@ -871,46 +871,46 @@
       ],
       "highlights": [
         {
-          "body": "**Los cuantiles son los más rentables de los tres.** No asumen forma de la distribución, dan directamente el intervalo que el negocio pide y se implementan en pocas líneas con pinball loss. El detalle que muerde: hay que forzar que los cuantiles no se crucen.",
+          "body": "**Los percentiles son los más rentables de los tres.** No asumen forma de la distribución, dan directamente el intervalo que el negocio pide y se implementan en pocas líneas con pinball loss. El detalle que muerde: hay que forzar que los percentiles no se crucen.",
           "kind": "takeaway"
         }
       ],
-      "notes": "Es una diapositiva de referencia y se pasa rápido, dos minutos. El objetivo no es que las aprendan sino que las reconozcan cuando el problema no entra en las tres familias anteriores.\n\nLa fila de conteos es la que más rinde porque el error es invisible: el modelo entrena, converge, y predice menos tres unidades de demanda. Nadie mira las predicciones negativas hasta que alguien las mira.\n\nLa de cuantiles es la que más van a usar en la práctica, sobre todo en stock, riesgo y capacidad. La frase que la vende: la media es la respuesta correcta a una pregunta que muchas veces nadie hizo.\n\nSi alguien pregunta por ranking, supervivencia o embeddings, la respuesta corta es que existen, que siguen la misma lógica de que la tarea determina el par salida-loss, y que quedan fuera del alcance de esta clase."
+      "notes": "Es una diapositiva de referencia y se pasa rápido, dos minutos. El objetivo no es que las aprendan sino que las reconozcan cuando el problema no entra en las tres familias anteriores.\n\nLa fila de conteos es la que más rinde porque el error es invisible: el modelo entrena, converge, y predice menos tres unidades de demanda. Nadie mira las predicciones negativas hasta que alguien las mira.\n\nLa de percentiles es la que más van a usar en la práctica, sobre todo en stock, riesgo y capacidad. La frase que la vende: la media es la respuesta correcta a una pregunta que muchas veces nadie hizo.\n\nSi alguien pregunta por ranking, supervivencia o embeddings, la respuesta corta es que existen, que siguen la misma lógica de que la tarea determina el par salida-loss, y que quedan fuera del alcance de esta clase."
     },
     {
       "template": "content+cards+image",
       "section": "La función de pérdida",
-      "title": "Los términos de regularización",
-      "lead": "Un término de regularización es una penalización que se le suma a la función de costo para castigar modelos demasiado complejos. Es la tercera pieza que faltaba: el `objective` de la diapositiva 5.2.",
+      "title": "Percentiles: la pinball loss",
+      "lead": "Ninguna columna del dataset dice cuál es el P90. Cada ejemplo trae **un solo número**, el valor que efectivamente pasó. Lo que decide si la red aprende el promedio, la mediana o el P90 **es la loss, y nada más**: `L = max( q · (t − y), (q − 1) · (t − y) )`.",
       "cards": [
         {
-          "label": "L2 — Ridge, o *weight decay*",
-          "body": "Suma `λ Σ w²`. Achica todos los pesos y ninguno llega a cero. Es el default y el que conviene probar primero."
+          "label": "Cada loss tiene su estadístico",
+          "body": "El valor que minimiza MSE es **el promedio**; el que minimiza MAE es **la mediana**; el que minimiza pinball con `q` es **el percentil `q`**. Es una propiedad de la fórmula, no una intención de quien entrena."
         },
         {
-          "label": "L1 — Lasso",
-          "body": "Suma `λ Σ |w|`. Empuja pesos a exactamente cero, así que además de regularizar hace selección de variables (*sparsity*)."
+          "label": "La asimetría es todo el mecanismo",
+          "body": "Con `q = 0,9`, quedarse corto cuesta nueve veces más que pasarse. A la red le conviene subir la predicción hasta que solo el 10% de los casos le queden por encima — que es, por definición, el P90."
         },
         {
-          "label": "Elastic Net",
-          "body": "Combina L1 y L2. Un poco de cada uno, para cuando ni la selección dura de L1 ni el achique parejo de L2 alcanzan solos."
+          "label": "MAE es pinball con `q = 0,5`",
+          "body": "Los dos lados pesan igual y el mínimo cae en la mediana. No son dos losses distintas: MAE es el caso simétrico de la familia."
         },
         {
-          "label": "Dropout",
-          "body": "No es un término de la fórmula, pero cumple la misma función: apaga neuronas al azar durante el entrenamiento para que la red no dependa de ninguna en particular."
+          "label": "Una neurona por percentil pedido",
+          "body": "Con P10, P50 y P90 la última capa tiene tres neuronas lineales, cada una entrenada con su propio `q` contra el mismo objetivo."
         }
       ],
       "media": {
-        "src": "images/s5-7-1-objetivo-regularizacion.png",
-        "alt": "El objetivo se parte en dos: el ajuste a los datos más λ por la penalización por complejidad"
+        "src": "images/s5-7-1-pinball.png",
+        "alt": "Con q = 0,5 la penalización es simétrica y el mínimo cae en la mediana; con q = 0,9 es nueve veces más cara de un lado y el mínimo cae en el P90"
       },
       "design": "split-right",
-      "notes": "Esta diapositiva cierra el vocabulario que abrió la 5.2: ahí quedó dicho que el `objective` es el cost más los términos de regularización, y recién acá se ve cuáles son. Si alguien tomó nota de aquello, esta es la respuesta.\n\nEl orden de la explicación importa más que las fórmulas: primero el problema (minimizar solo el error de train premia memorizar), después el mecanismo (un costo extra por complejidad), y recién ahí los nombres. Al revés no se entiende por qué existen.\n\nSobre `λ`: es el hiperparámetro que decide el balance, típicamente entre 1e-5 y 1e-2. En Keras se declara por capa, `layers.Dense(64, kernel_regularizer=regularizers.l2(1e-4))`. Un `λ` demasiado grande hace underfitting, y ese es el error de aplicación más común.\n\nDropout es el que más preguntas trae porque no entra en la fórmula. La respuesta corta es que regulariza de otra manera, rompiendo la coadaptación entre neuronas, y que solo actúa en entrenamiento: en inferencia está apagado.\n\nSi preguntan cómo se sabe que hace falta regularizar, la respuesta es la brecha entre train y validación, y ahí conviene ser honesto en que el diagnóstico de overfitting no lo cubrimos en esta clase por tiempo.",
+      "notes": "Esta es la diapositiva que más rinde de la sección si se da despacio, porque cierra una idea que viene abierta desde la 5.2: **la loss no mide el error, lo define.** Hasta acá se podía leer como \"elegimos la fórmula que mejor mide la distancia\". Acá se ve que la fórmula también elige qué es lo que el modelo va a terminar aprendiendo.\n\nLa pregunta que conviene hacer antes de mostrar el diagrama: *\"si el dataset no tiene una columna con el P90, ¿de dónde lo saca la red?\"*. Dejala respirar. La respuesta desarma la intuición de que el modelo aprende lo que está en los datos: los datos traen un número por fila, y el P90 aparece porque la loss lo empuja ahí.\n\nEl número que conviene escribir en el pizarrón: con `q = 0,9`, si la predicción está por debajo del valor real el castigo es `0,9 · error`; si está por encima, `0,1 · error`. Mientras más del 10% de los casos queden por encima de la predicción, subirla sigue conviniendo. El equilibrio es exactamente el P90.\n\nQue MAE sea pinball con `q = 0,5` sorprende y ordena: no hay que memorizar dos fórmulas, hay una familia con un parámetro. Y explica de paso por qué MAE es robusta a outliers y MSE no — la pendiente constante es lo que las separa, y eso ya se vio en la 5.3.\n\nSi preguntan por qué no entrenar tres redes separadas, una por percentil: se puede, y da lo mismo. Se hacen en una sola por comodidad y porque comparten el cuerpo de la red. El detalle que muerde en producción es que nada garantiza que los percentiles no se crucen — que el P90 predicho quede por debajo del P50 — y eso hay que forzarlo aparte.",
       "_choice": {
         "signals": [
-          "cuatro conceptos con etiqueta (L2, L1, Elastic Net, Dropout)",
-          "una sola imagen compartida, la descomposición del objetivo",
-          "lead con la definición"
+          "cuatro conceptos con etiqueta",
+          "una imagen compartida que sostiene el lead",
+          "lead con la definición y la fórmula"
         ],
         "candidates": [
           "content+cards+image",
@@ -919,8 +919,8 @@
         ],
         "pick": "content+cards+image",
         "rejected": {
-          "concept-breakdown": "hay una imagen compartida que sostiene el lead; el catálogo manda content+cards+image y prohíbe disolver las cards para conservar la imagen",
-          "value-columns": "las cuatro no se leen a través de factores compartidos — Dropout no tiene fórmula — así que son atributos heterogéneos por fila, no columnas paralelas"
+          "concept-breakdown": "hay una imagen compartida; el catálogo manda content+cards+image y prohíbe disolver las cards para conservarla",
+          "value-columns": "las cuatro cards no se leen a través de factores compartidos — son afirmaciones distintas sobre la misma loss"
         }
       }
     },
@@ -1184,6 +1184,53 @@
           "body": "El batch size no cambia solo la velocidad, cambia el resultado. Mueve cuántos ajustes entran en cada vuelta y cuánto ruido arrastra cada uno."
         }
       ]
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Backpropagation",
+      "title": "Los términos de regularización",
+      "lead": "Un término de regularización es una penalización que se le suma a la función de costo para castigar modelos demasiado complejos. Va acá, y no en la sección de la pérdida, porque recién ahora se puede decir **qué hace**: entra al gradiente como cualquier otra parte del objetivo, así que en **cada paso de actualización** empuja los pesos hacia cero, además de hacia el mínimo del error.",
+      "cards": [
+        {
+          "label": "L2 — Ridge, o *weight decay*",
+          "body": "Suma `λ Σ w²`. Su gradiente es `2λw`, así que el paso de la 6.7 le resta a cada peso una fracción de sí mismo: eso es literalmente el *decay* del nombre. Achica todos y ninguno llega a cero. Es el default."
+        },
+        {
+          "label": "L1 — Lasso",
+          "body": "Suma `λ Σ |w|`. Su gradiente es `λ·signo(w)`, un empujón del mismo tamaño sin importar cuán chico sea el peso — por eso llega a clavarlos en cero, y de ahí la selección de variables (*sparsity*)."
+        },
+        {
+          "label": "Elastic Net",
+          "body": "Combina L1 y L2. Un poco de cada uno, para cuando ni la selección dura de L1 ni el achique parejo de L2 alcanzan solos."
+        },
+        {
+          "label": "Dropout",
+          "body": "No es un término de la fórmula ni toca el gradiente: apaga neuronas al azar en cada forward del entrenamiento, así la red no puede depender de ninguna en particular. Solo actúa entrenando; en inferencia está apagado."
+        }
+      ],
+      "media": {
+        "src": "images/s6-10-1-objetivo-regularizacion.png",
+        "alt": "El objetivo se parte en dos: el ajuste a los datos más λ por la penalización por complejidad"
+      },
+      "design": "split-right",
+      "notes": "Esta diapositiva está acá y no en la sección de la pérdida por una razón que conviene decirles: un término de regularización **se define** en la función de costo pero **actúa** en el paso de actualización. Hasta la 6.7 no había con qué explicarlo; ahora sí, y la frase que lo cierra es que el gradiente del término es un empujón hacia cero que se aplica en cada paso, al mismo tiempo que el empujón hacia menos error.\n\nCierra además el vocabulario que abrió la 5.2, donde quedó dicho que el `objective` es el cost más los términos de regularización. Si alguien tomó nota de aquello, esta es la respuesta.\n\nEl orden de la explicación importa más que las fórmulas: primero el problema (minimizar solo el error de train premia memorizar), después el mecanismo (un costo extra por complejidad), y recién ahí los nombres. Al revés no se entiende por qué existen.\n\nSobre `λ`: es el hiperparámetro que decide el balance, típicamente entre 1e-5 y 1e-2. En Keras se declara por capa, `layers.Dense(64, kernel_regularizer=regularizers.l2(1e-4))`. Un `λ` demasiado grande hace underfitting, y ese es el error de aplicación más común. Encaja con el orden de perillas de la diapositiva que sigue: `λ` es una perilla más, y no la primera.\n\nDropout es el que más preguntas trae porque no entra en la fórmula. La respuesta corta es que regulariza de otra manera, rompiendo la coadaptación entre neuronas, y que solo actúa en entrenamiento: en inferencia está apagado.\n\nSi preguntan cómo se sabe que hace falta regularizar, la respuesta es la brecha entre train y validación — y es exactamente la fila que van a ver en la diapositiva siguiente, \"train baja y validación sube\". Conviene anunciarlo así, porque es el único renglón de ese checklist cuya acción no se explica en la sección. Ahora sí. Y sé honesto en que el diagnóstico completo de overfitting no lo cubrimos por tiempo.",
+      "_choice": {
+        "signals": [
+          "cuatro conceptos con etiqueta (L2, L1, Elastic Net, Dropout)",
+          "una sola imagen compartida, la descomposición del objetivo",
+          "lead con la definición"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "value-columns"
+        ],
+        "pick": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "hay una imagen compartida que sostiene el lead; el catálogo manda content+cards+image y prohíbe disolver las cards para conservar la imagen",
+          "value-columns": "las cuatro no se leen a través de factores compartidos — Dropout no tiene fórmula — así que son atributos heterogéneos por fila, no columnas paralelas"
+        }
+      }
     },
     {
       "template": "value-columns",
@@ -1634,7 +1681,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "5ca6543794a47b4268cd2d8227893c3a6c17db08283a1c2ca6b0972393d8be11",
-    "bytes": 165883
+    "sha256": "8643af90e2f4ced97475a95d3c789bf9371cc66bcfcebd3ca45f1b84515f977a",
+    "bytes": 171515
   }
 }
