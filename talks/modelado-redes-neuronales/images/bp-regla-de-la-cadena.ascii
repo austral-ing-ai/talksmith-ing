@@ -6,11 +6,11 @@
      xi ==w_ij===> ( SUM ) --z_j--> ( f ) --y_j--> [L(y_j,t_j)]     dw_ij       dy_j       dz_j       dw_ij
                   /                                 |    (rojo)       (1)        (2)        (3)
      xn --w_nj--/                                   |
-                                                    |   z_j = SUM_i x_i w_ij + b_j
-     |__(3)__|__(2)__|_______(1)_______|            |   la suma ponderada, antes de la activacion
-      la suma, la salida,  el error,                |   x es lo que entra a j: el dato si j esta en
-      si cambia si cambia  si cambia                |   la primera capa, si no la salida de la
-      el peso   la suma    la salida                |   capa anterior
+                                                    |
+     |__(3)__|__(2)__|_______(1)_______|            |   x es lo que entra a j: el dato si j esta en
+      la suma, la salida,  el error,                |   la primera capa, si no la salida de la
+      si cambia si cambia  si cambia                |   capa anterior
+      el peso   la suma    la salida                |
 
    Los tres son valores intermedios: se calculan, se multiplican
    y se acumulan.  NINGUN PESO SE MOVIO TODAVIA.

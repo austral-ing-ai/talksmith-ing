@@ -1145,3 +1145,139 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - **La diapositiva se reescribió, no se mudó y ya.** Mudarla sin tocarla habría desperdiciado el motivo de la mudanza. El lead ahora dice por qué está ahí, y las cards de L2 y L1 pasaron de describir el efecto a mostrar el mecanismo: `2λw` contra `λ·signo(w)`, y por qué el segundo llega a clavar pesos en cero y el primero no. Dropout quedó explícitamente marcado como el que **no** toca el gradiente.
 - **Renumeración y punteros:** sección 5 queda en 7 diapositivas (cierra con la pinball), sección 6 pasa a 11. El diagrama se renombró de `s5-7-1-objetivo-regularizacion` a `s6-10-1-...`. El puntero de la card `Objective` de la 5.2 dejó de nombrar un número de diapositiva — ahora dice "la sección 6 muestra cuáles son, una vez que el gradiente esté sobre la mesa", que sobrevive a la próxima renumeración.
 - **Chequeo de referencias cruzadas corrido sobre todo el mazo:** 16 menciones a secciones, todas apuntan a una sección que existe. Ninguna quedó apuntando a la 9, que está borrada.
+
+## 2026-08-26 — La 6.10 pasa a llamarse "La función objetivo"
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "¿Es `J` la función objetivo en esta presentación?" → sí, pero la letra solo aparecía dentro de dos diagramas, nunca en el cuerpo del texto
+  - 2026-08-26 — "'Los términos de regularización' tal vez sea mejor llamarla función objetivo y repensar el slide un poco" → opción 1 (título + lead, cards intactas); título `La función objetivo` por recomendación, sin elección explícita del presentador
+- **El diagrama ya iba adelante del título.** Los rótulos de `s6-10-1-objetivo-regularizacion` dicen "J objetivo" desde que se dibujó; el lead ya arrancaba hablando del objetivo. El único que nombraba las partes en vez de la cosa era el título. No hubo que redibujar nada.
+- **El agujero de notación que cerró de paso.** `J` aparecía en el mazo **solo** dentro de dos dibujos — la 6.10 y la 9.3, y la 9.3 está en `# Cut material` desde el 2026-08-24, así que era uno solo. La 5.2 define `objective` en palabras y sin símbolo, y la sección 6 entera usa `L` para la loss: el alumno veía un `J` que nadie había presentado. Ahora el lead lo introduce en prosa donde primero aparece.
+- **Lead reescrito, no retocado.** Pasó de definir *un término de regularización* a definir *la función objetivo*: `J` con nombre y símbolo, sus dos términos (el `cost` que ya vieron en la sección 5, más la penalización que es lo que la diapositiva agrega), y recién después el argumento de por qué vive acá y no en la sección 5 — que se conservó entero, porque es el motivo de la mudanza del 2026-08-26 por la mañana.
+- **Las cuatro cards quedaron.** Se descartó reordenarlas según la anatomía de `J` (`cost` / `λ·R(w)` / `λ` / el resto) porque habría comprimido el contraste `2λw` contra `λ·signo(w)` entre L2 y L1, que es exactamente lo que se ganó al traer la diapositiva a la sección 6. También se descartó partirla en dos: el mazo ya está en ~98 minutos contra 90.
+- **Dropout es ahora la excepción explícita.** Bajo el título viejo era una card que se salía del molde; bajo el nuevo es *el que queda afuera de `J`*, y así se llama. Se le agregó que regulariza rompiendo la coadaptación, no penalizando pesos. Es la card que más preguntas trae y ahora la respuesta está en pantalla.
+- **Conector nuevo antes de las cards**, para que se lean como catálogo de `R(w)` y no como lista suelta: "Las tres primeras opciones de abajo son formas distintas de escribir `R(w)`; la cuarta regulariza sin entrar en la fórmula."
+- **Notas del orador:** el párrafo que cerraba el hilo de la 5.2 ahora dice que `J` aparece acá con símbolo por primera vez y que conviene escribirlo en el pizarrón, porque la sección 6 venía usando `L` y son cosas distintas. Se sumó la precisión honesta de que **sin regularización `J` es exactamente el cost** — el segundo término no siempre está, y el lead no lo dice para no cargarlo.
+- **Sincronizado en los tres lados** (`final.md`, `draft.md`, `output/slide-model.json`) y el modelo re-estampado contra `final.md` antes de renderizar; el guard de frescura rechazó el primer render, como corresponde.
+- Audits en verde (field_coverage, degenerate_enum, image_coverage, template_diversity). Deck re-renderizado, 60 diapositivas, 49 de contenido. Duración sin cambios: la diapositiva no se partió.
+- **Pendiente ofrecido y no aplicado:** la card `Objective` de la 5.2 sigue definiendo el término sin símbolo. Nombrar `J` ahí la convierte en referencia hacia adelante, pero es contenido de otra diapositiva — decisión del presentador.
+
+## 2026-08-26 — Terminología de loss en inglés, la Σ desambiguada, y la 6.2 nueva
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "Revisemos que usamos loss function en vez de función de pérdida en todos lados. Estamos cambiando y mezclando" → barrido; opción elegida: **todo en inglés**
+  - 2026-08-26 — "Discutamos el slide 37. ¿Estamos hablando de la cost function o loss function? A simple vista, es la cost function" → es la loss; el problema era que la aclaración no se proyectaba
+  - 2026-08-26 — "¿Rescato el párrafo de 'qué es un modelo desplegado' de la 3.3?" → **"No lo devuelvas."** Decisión del presentador, no un olvido: no volver a proponerlo
+  - 2026-08-26 — "Agregar un slide que introduzca después de 'Buscar el mínimo de una función' qué es backpropagation, cuándo se inventó"
+  - 2026-08-26 — "El título 'Qué es una loss function' no parece correcto, se describen múltiples funciones"
+
+### Terminología: inglés para loss, cost y objective
+- **El barrido dio 13 apariciones en español contra 28 en inglés**, y mostró que ya había una convención tácita: español para el nombre formal (título de sección, definición) e inglés para la palabra de trabajo. El presentador la resolvió al revés de lo que yo recomendaba: **todo en inglés**. Se aplicó con `loss function` como nombre formal y `loss` como término corto.
+- Sección 5 pasó de `La función de pérdida` a **`La loss function`** — cambia en las 8 diapositivas de la sección, en la agenda y en `deck.sections`.
+- **Se eliminó el tercer nombre, `coste`**, que solo vivía en un archivo heredado de la Talk `intro-redes-neuronales`: `bp-funcion-de-coste.png` con alt "La función de coste L2" → `bp-loss-l2.png` / "La loss L2".
+- **No se tocaron los otros sentidos** de las palabras: "traducción con pérdida" (lossy), "el costo del error" (costo de negocio, sección 7), "cero costo" (early stopping). Un reemplazo ciego los habría roto.
+- Verificado en el render: 21 apariciones de `loss function`, cero de la forma en español.
+
+### La Σ de "El número que hay que derivar" — un defecto de proyección, no de contenido
+- **El presentador leyó `L = ½ Σᵢ (yᵢ − tᵢ)²` como una cost function, y tenía razón en que así se ve.** Una `Σ` con el índice suelto es exactamente como se escribe una suma sobre ejemplos.
+- **Lo que desambigua estaba escrito y no llegaba a pantalla.** `final.md` traía "La suma recorre todas las unidades de salida" como párrafo suelto; el modelo del deck no lo tenía en ningún campo, así que el renderer nunca lo dibujó. La frase existía desde el 2026-08-21 y nadie la vio proyectada.
+- **Arreglo:** pasó de párrafo suelto a card, y se reforzó para matar el malentendido de raíz: la Σ recorre las unidades de salida **de un ejemplo**, no las filas del batch; esto es la loss de una fila, y el `cost` es su promedio al cerrar el batch. Va primero entre las cards, porque leer la fórmula viene antes que discutir sus propiedades.
+- Nota del orador nueva con la respuesta lista, y con el reconocimiento de que la pregunta es razonable.
+
+### Contenido que no llega a pantalla — el hallazgo de fondo, y una corrección de método
+- `final.md` es la fuente; el renderer dibuja **solo** lo que un paso intermedio volcó a `slide-model.json`. Lo que ese paso no vuelca, existe en el archivo y no en la clase, y **nada avisa**.
+- **Mi primera medición estuvo mal y conviene que quede escrito.** Un barrido por coincidencia literal dio 37 sentencias "perdidas". Al verificar un caso a mano se cayó el método: en "Categóricas: one-hot contra embedding" el FILL había convertido dos bullets de prosa en una tabla comparativa — texto completamente distinto, contenido intacto. La coincidencia literal cuenta toda reescritura como pérdida.
+- Segundo barrido por cobertura de vocabulario: 33 candidatas, y a mano la mayoría también resultaron reescrituras. **Las pérdidas reales son pocas.** Confirmadas: la Σ de la 6.4 (arreglada), el párrafo de "qué es un modelo desplegado" de la 3.3 (**el presentador decidió no devolverlo**) y la nota de los enteros como índice de embedding en la 2.2 (sin decidir).
+- Defecto de herramienta registrado en `talksmith_bugs.md`: `block_coverage` y `notes_coverage` exigen un `.pptx` y **no corren nunca en un mazo HTML**, que es justo la ruta que usa este repo.
+
+### Diapositiva 6.2 nueva: "Qué es backpropagation, y de dónde salió"
+- **El hueco que llena:** la 6.1 cierra con "Backpropagation es cómo se calcula esa brújula" y la 6.3 ya entra en la mecánica del ciclo. Nadie decía qué es el algoritmo, por qué hubo que inventarlo, ni cuándo.
+- **El argumento que la sostiene no es histórico sino de costo:** tantear cuesta una corrida de la red por peso — un millón de corridas para dar un paso. Backprop lo hace en una ida y una vuelta. Esa es la razón por la que el algoritmo existe, y es la que ordena la diapositiva.
+- **Template `timeline`**, el único del catálogo que el mazo no usaba, contra 15 `content+cards+image` y 10 `concept-breakdown`. El catálogo lo manda: `date_labels` hace timeline, no process. Cuatro hitos: 1970 Linnainmaa (diferenciación automática en modo reverso, ni siquiera en redes), 1974 Werbos (tesis doctoral, pasa inadvertida tras *Perceptrons*), 1986 Rumelhart-Hinton-Williams en Nature (no lo inventan: muestran que funciona), y hoy (autograd / gradient tape adentro de `model.fit`).
+- **Sin diagrama, a propósito.** La timeline ya es la figura.
+- **Engancha con la clase 1 de la materia**, cuya línea de tiempo ya ubica 1986 como "backpropagation revoluciona el aprendizaje". Esta diapositiva es el zoom de ese renglón y las notas lo dicen.
+- **Honestidad en las notas sobre el Nobel:** Hinton lo recibió en 2024 por aportes fundacionales al aprendizaje con redes, pero el comité citó sobre todo las máquinas de Boltzmann, no backpropagation. Las notas piden explícitamente no decirlo como "ganó el Nobel por esto".
+- **Renumeración:** sección 6 pasa de 11 a 12 diapositivas; las viejas 6.2–6.11 son ahora 6.3–6.12. Se renombraron 4 diagramas (12 archivos) de atrás hacia adelante para evitar colisiones, y se actualizaron las referencias cruzadas a la 6.7 (ahora 6.8). **No se tocaron** los números dentro de `# Cut material` ni de los `Resolution:` del log: son registros históricos fechados.
+- **Fuentes fuera del corpus, y dicho en el bloque Sources:** la historia la aportan el agente y la clase 1. El paper de Nature va citado con link.
+
+### La 5.2 se llama ahora "Loss, cost y objective"
+- El presentador marcó que "Qué es una loss function" prometía una definición y la diapositiva entrega tres distinciones. Es cierto: sus propias notas la describen como "la diapositiva de vocabulario de la sección". El título ahora nombra lo que hay.
+- El lead se ajustó para que el giro sea explícito: define la loss function y remata en que alrededor de ese número hay **tres** que se usan como sinónimos y no lo son.
+
+- Audits en verde (field_coverage, degenerate_enum, image_coverage). Deck re-renderizado, **61 diapositivas**, 50 de contenido.
+- **Duración: el blocker empeora otra vez.** ~100 minutos contra un presupuesto de 90. Sin decidir.
+
+## 2026-08-26 — La Σ contra el ejemplo de una sola neurona (6.4)
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "Revisemos 'El número que hay que derivar'. El ejemplo habla del precio de una casa, así que la salida es una sola neurona"
+- **El presentador encontró que mi arreglo anterior tapaba el problema en vez de resolverlo.** Yo había aclarado que la `Σ` recorre las unidades de salida, y es cierto en general — pero el ejemplo de la propia diapositiva es el precio de una casa, o sea **una** neurona lineal. Con una sola salida la suma tiene un término y la `Σ` no suma nada. La fórmula y su ejemplo no cerraban entre sí, y la aclaración nueva lo hacía más visible, no menos.
+- **Se resolvió diciéndolo, no escondiéndolo.** La card ahora dice las tres cosas en orden: la suma es sobre unidades de salida y no sobre filas del batch; **acá hay una sola neurona, así que queda `L = ½(y − t)²`**; y la `Σ` está por el caso general (N clases, N salidas), que es la notación con la que trabaja el resto de la sección.
+- **Por qué no se sacó la `Σ` de la fórmula**, que era la otra salida posible: a partir de la regla de la cadena la sección entera trabaja con `yⱼ` y `tⱼ`, subíndice de unidad de salida — "Qué vale cada factor" dice literalmente `yⱼ − tⱼ`. Sin la `Σ` puesta desde el principio ese subíndice aparecería de la nada. Además la imagen es reusada de `knowledge-library/backpropagation` y sacarle la Σ obligaba a redibujarla. **Decisión revisable:** si el presentador prefiere la forma escalar en pantalla, hay que redibujar la imagen y reintroducir el subíndice más adelante.
+- **Y no se cambió el ejemplo**, que era la tercera opción: el precio de la casa viene de la sección 5 y del notebook, y romper ese hilo cuesta más de lo que arregla.
+- Nota del orador nueva: decir en voz alta que la `Σ` tiene un solo término apenas aparece la fórmula, porque la lectura por defecto del alumno es "sobre los ejemplos" — que es exactamente el malentendido que hay que evitar.
+- Deck re-renderizado, 61 diapositivas.
+
+## 2026-08-26 — Ronda de cuatro cambios en la sección 6, y el video de 3Blue1Brown
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "Borrar del chart del slide 39 'zj = ∑i xi wij + bj' y el texto 'la suma ponderada, antes de la activación'. Ya está explicado ahí"
+  - 2026-08-26 — "Renombrar 'El paso de actualización' a 'tasa de aprendizaje η'"
+  - 2026-08-26 — "En 'El ciclo completo, batch a batch', borrar todo el texto que está a la izquierda"
+  - 2026-08-26 — "Add change_rule.web as a single slide with reference to <youtube t=333s>. Add it after La regla de la cadena"
+
+### El diagrama de la regla de la cadena pierde la definición de `z`
+- Se borraron del SVG la fórmula `z_j = Σᵢ xᵢ wᵢⱼ + bⱼ` y su leyenda, y se subieron las dos líneas de nota que quedaban debajo para no dejar hueco. El `.ascii` se sincronizó.
+- **Hallazgo del renderer que conviene tener escrito:** el modelo y `final.md` referencian `bp-regla-de-la-cadena.png`, pero el PNG es la imagen vieja de la biblioteca de conocimiento — la fórmula pelada en notación `a`. Lo que se proyecta es el `.svg` hermano, porque `_embed()` llama a `_vector_twin()` y prefiere el vectorial. **Editar el PNG no habría hecho nada.** Vale para cualquier `bp-*`: el `.png` puede estar obsoleto y no notarse.
+- **Nota del orador reescrita porque quedaba colgada:** decía "la definición de `a` está ahora en el propio gráfico, abajo y en rojo" — apuntaba a lo borrado, y encima usaba `a`, notación que este diagrama nunca tuvo. Ahora explica el tercer factor sin depender de la fórmula escrita y manda señalar el nodo de la suma.
+- **Deriva al revés, detectada de paso:** las notas de esa diapositiva en el modelo tienen cuatro párrafos que **no están en `final.md`**. Hasta ahora el problema conocido era contenido de `final.md` que no llega al modelo; acá es el modelo el que tiene contenido que la fuente no. Sin resolver.
+
+### "El paso de actualización" → "La tasa de aprendizaje η"
+- Se actualizó también la referencia cruzada en las notas de la 6.1 ("es de la diapositiva de la tasa de aprendizaje"). El alt de la imagen quedó como estaba: describe el dibujo, que sigue siendo el paso de actualización.
+
+### "El ciclo completo, batch a batch" se queda sin columna de texto
+- **El presentador tenía razón en que sobraba:** los cuatro pasos transcribían el diagrama renglón por renglón — el forward fila por fila con los mismos `W` y `b`, el `g_ij += dL/dw_ij`, el "W y b NO se tocan", los tres pasos del cierre y el retorno al batch `k+1`. Todo eso ya está dibujado.
+- **La diapositiva cambió de plantilla, no solo de contenido:** `process` exige `steps`, así que sin ellos pasó a `image-full` con `design: full`. El diagrama toma el lienzo entero, que es lo que necesitaba: tiene texto chico dentro de dos bloques y a media pantalla no se lee de atrás.
+- **Lo único que el dibujo no decía subió al lead:** que el batch size cambia el resultado y no solo la velocidad. Los cuatro pasos quedaron archivados verbatim en `# Cut material`.
+
+### Diapositiva 6.6 nueva: "La misma cadena, en movimiento"
+- El presentador aportó `images/change_rule.webm` (67 s, 4,7 MB, captura del capítulo 4 de 3Blue1Brown) más el link con `t=333s`. **El renderer soporta video nativo**: `_embed_video` acepta clip local, URL de video o link de YouTube, y acá inlinea el webm como data-URI. El deck pasó a 6,8 MB.
+- **Título verificado por oEmbed, no de memoria:** *Backpropagation calculus | Deep Learning Chapter 4*, de 3Blue1Brown. El primer intento por HTTP devolvió 429 y no se dio por bueno.
+- **Lo que justifica la diapositiva** es que el dibujo estático muestra el camino y el video muestra el empujón viajando por él: la derivada deja de ser fórmula y pasa a ser "si empujo esto tanto, cuánto se mueve aquello". Cada barra que se desplaza es uno de los tres factores.
+- **La tabla de traducción de notación sube a pantalla.** Ya existía en las notas del orador de "Qué vale cada factor" (`C₀`=`L`, `a⁽ᴸ⁾`=`y`, su `y`=`t`, el `⁽ᴸ⁾` es capa, el 2 en vez del ½), pero enterrada donde el alumno no la ve. Es la advertencia más rentable de la sección: sin ella, quien mire el capítulo en casa va a creer que una de las dos notaciones está mal.
+- **Atribución en pantalla con link**, siguiendo la práctica fijada el 2026-08-24, y en el bloque Sources. El clip es CC de un tercero.
+- Las notas avisan que el clip es captura de pantalla y que en los últimos segundos asoma la barra del reproductor.
+- **Renumeración:** sección 6 pasa a 13 diapositivas. Se renombraron 3 diagramas y se movieron las referencias cruzadas a la tasa de aprendizaje (6.8 → 6.9). Es la **segunda** renumeración de la sección en el día.
+- Audits en verde. Deck en **62 diapositivas**.
+- **Duración: ~104 minutos contra 90.** El blocker sigue creciendo y sigue sin decidirse.
+
+## 2026-08-26 — Plugin actualizado, notas del orador restauradas, y el lead de la 6.12 acortado
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "Revisá si los bugs que reportaste están corregidos. Los scripts cambiaron" → sí, los dos
+  - 2026-08-26 — "¿Restauro las 42 líneas de notas?" → **opción 1, sí**
+  - 2026-08-26 — "El lead de la función objetivo es demasiado largo para un subtítulo"
+
+### El fix del plugin (`61b7781`) y qué destapó
+- `block_coverage` y `notes_coverage` pasaron a aceptar `final_pptx` **opcional** más un `--source`; `build_html.py` corre una pasada de cobertura advertida en cada render; y apareció una auditoría nueva, `text_coverage.py`. Más completo que lo sugerido.
+- **Corrección de una afirmación mía anterior:** dije que el clon del plugin tenía 4 commits sin publicar. Era un artefacto del ref local `origin/main` desactualizado — el remoto coincide con `HEAD`. No había divergencia.
+- **Primera corrida:** 153 de 1074 líneas (14%) ausentes del modelo — 111 de cuerpo, 42 de notas.
+
+### Las notas del orador: el hallazgo real, y ya restaurado
+- **Por qué las notas son distintas del cuerpo:** el cuerpo se reestructura (una lista de prosa se vuelve tabla y el texto cambia entero sin perder nada), pero las notas no compiten por espacio en pantalla, así que no hay razón para comprimirlas. Cuando el modelo tiene menos texto que `final.md`, es pérdida.
+- **Caso que lo probó, verificado a mano — "Precision, recall y F1".** La nota de `final.md` plantea *"si preguntan por qué media armónica y no promedio"* y la contesta: *"La armónica no lo permite, porque tiende al más chico de los dos."* **El modelo conservaba la pregunta y había perdido la respuesta.** También se habían caído el truco mnemotécnico (precisión mira la columna, recall mira la fila) y la advertencia de no reportar F1 solo.
+- **La fusión se hizo en las dos direcciones, no pisando.** Antes de restaurar se midió la deriva inversa: **6 párrafos existían solo en el modelo**, en 4 diapositivas ("Un catálogo…" con el argumento del `k` contra 3, las 3 de "La regla de la cadena", y la del acumulador con forma de `W` en "El ciclo completo"). Un `final.md → modelo` a secas los habría borrado. Se conservaron y **se devolvieron a `final.md` y `draft.md`**, así que los dos archivos convergen y `final.md` vuelve a ser fuente de verdad.
+- **Un párrafo se descartó a propósito:** el modelo tenía el `**Goal of this section:**` de la sección 4 metido dentro de las notas de "Qué hacer y qué no", que es de la sección 3. Es metadato de sección duplicado y mal ubicado, no contenido del orador.
+- Se corrigieron de paso los acentos del párrafo del `k`, que estaba escrito sin ninguno.
+- **Resultado: 27 diapositivas fusionadas, notes-drops de 42 a 0.** `audit_notes_coverage: 0 notes-drop(s)`.
+
+### Falsos positivos de las auditorías nuevas, medidos
+- **Las 2 "slides sin contraparte" son un defecto del audit, no del mazo:** ambas son plantilla `quote`, y el esquema **no le da campo `title` a `quote`**. Como el emparejamiento es por título, ninguna diapositiva `quote` puede emparejar nunca. Afecta a `block_coverage`, `notes_coverage` y `text_coverage`. Registrado con fix sugerido.
+- **13 de los drops de cuerpo son `# Thesis` y `# Agenda`**, bloques meta de `final.md` que no son diapositivas.
+- Quedan 96 candidatas de cuerpo, y la verificación a mano indica que la mayoría son reescrituras legítimas del FILL. **Sin triar — decisión pendiente del presentador.**
+
+### El lead de "La función objetivo", acortado
+- Tenía cinco oraciones y funcionaba como párrafo, no como subtítulo. Quedó en una: *"Lo que el optimizador minimiza no es la loss: es la **función objetivo** `J`, que suma dos términos — el `cost`, que ya conocen, más una penalización por complejidad."*
+- **Lo que salió no se tiró:** el mecanismo (el término entra al gradiente como cualquier otra parte de `J`, y por eso empuja los pesos hacia cero en cada paso) bajó a un `highlights` de tipo `important`, que es donde pega más fuerte. Ahí también quedó el argumento de por qué la diapositiva vive en la sección 6.
+- **Lección para el resto del mazo:** un lead de más de dos oraciones no es un lead. Vale revisarlo en las demás.
+- Audits en verde. Deck en 62 diapositivas.

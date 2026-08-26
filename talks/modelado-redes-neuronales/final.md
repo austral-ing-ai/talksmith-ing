@@ -13,7 +13,7 @@ date: 2026-08-19
 
 **Claim:** En un MLP, casi nada de lo que decide el resultado es la arquitectura. Se decide antes, en cuatro lugares: cómo se codifica la entrada, cómo se parte el dataset, qué forma tiene la salida y qué fórmula mide el error. Backpropagation es el mecanismo que convierte ese error en pesos corregidos, y no es una decisión de diseño sino la condición para que las cuatro anteriores importen. Lo que separa un modelo que entrena de uno que sirve es lo último: medirlo sin engañarse y frenar el overfitting.
 
-**Why it matters:** Una red no ve un cliente, una imagen ni un contrato: ve una fila de números. Si la información que importa quedó mal codificada, ninguna cantidad de capas la recupera, y la mayoría de los errores de producción en ML nacen en la frontera entre el dato crudo y el modelo. En el medio está la partición del dataset, que no cambia el modelo pero decide si la métrica dice la verdad: medir con los mismos datos con los que se entrenó es tomar examen con las respuestas a la vista. La salida y la función de pérdida vienen juntas y las determina la tarea, no el gusto de quien entrena. Abrir backpropagation importa porque es donde se entiende qué se ajusta y cuándo, y de ahí salen las perillas que uno toca cuando el entrenamiento no anda. Del otro lado, un modelo con 99% de accuracy puede ser inútil y uno que ajusta perfecto en entrenamiento puede fallar en cada caso nuevo. Codificar bien, partir bien, modelar bien la salida y su pérdida, saber medir y saber regularizar cubre el 80% de las decisiones reales.
+**Why it matters:** Una red no ve un cliente, una imagen ni un contrato: ve una fila de números. Si la información que importa quedó mal codificada, ninguna cantidad de capas la recupera, y la mayoría de los errores de producción en ML nacen en la frontera entre el dato crudo y el modelo. En el medio está la partición del dataset, que no cambia el modelo pero decide si la métrica dice la verdad: medir con los mismos datos con los que se entrenó es tomar examen con las respuestas a la vista. La salida y la loss function vienen juntas y las determina la tarea, no el gusto de quien entrena. Abrir backpropagation importa porque es donde se entiende qué se ajusta y cuándo, y de ahí salen las perillas que uno toca cuando el entrenamiento no anda. Del otro lado, un modelo con 99% de accuracy puede ser inútil y uno que ajusta perfecto en entrenamiento puede fallar en cada caso nuevo. Codificar bien, partir bien, modelar bien la salida y su loss, saber medir y saber regularizar cubre el 80% de las decisiones reales.
 
 ---
 
@@ -27,7 +27,7 @@ date: 2026-08-19
 - 2. Modelar la entrada
 - 3. Partir el dataset
 - 4. Modelar la salida
-- 5. La función de pérdida
+- 5. La loss function
 - 6. Backpropagation
 - 7. Medir un clasificador
 - 8. Capas ocultas
@@ -191,7 +191,7 @@ Diseñar un MLP son seis decisiones, y la que todos creen que es la principal, c
 - **La entrada.** Cómo cada variable del problema se convierte en floats. Es donde se gana o se pierde el modelo, y donde más tiempo vamos a estar.
 - **El dataset.** Cómo se parte antes de entrenar, en train, validación y test. Sin esto ninguna métrica posterior es honesta.
 - **La salida.** Cuántas neuronas y qué activación lleva la última capa. No se elige: la determina la tarea. Predecir un precio pide una neurona sin activación; clasificar en N clases, N neuronas con softmax.
-- **La función de pérdida.** La fórmula que convierte una predicción equivocada en un número, el único que la red intenta bajar. Viene junto con la salida: la salida lineal de un precio pide MSE, MAE o Huber; el softmax de N clases pide cross-entropy.
+- **La loss function.** La fórmula que convierte una predicción equivocada en un número, el único que la red intenta bajar. Viene junto con la salida: la salida lineal de un precio pide MSE, MAE o Huber; el softmax de N clases pide cross-entropy.
 - **El error.** Cómo se mide que el modelo sirve, una vez entrenado. Resumir su desempeño en un solo número es una decisión de diseño, y ningún número sirve para todos los casos.
 - **# Capas & # Neuronas.** Cuántas capas ocultas y cuántas neuronas por capa. Es lo único de la lista que se elige libremente, y lo que menos impacto tiene.
 
@@ -715,6 +715,8 @@ corpus/chat.md.md (§8 Catálogo completo de outputs; predecir una distribución
 
 No leas toda la tabla; usala como referencia y detenete en dos o tres filas. La de percentiles suele ser nueva para los alumnos y es muy útil en la práctica (stock, riesgo, capacidad, donde importa el peor escenario). La media es la respuesta correcta a una pregunta que muchas veces nadie hizo. La distribución con μ y σ conecta con estadística que ya vieron.
 
+Si alguien pregunta por qué la fila de percentiles dice 3 y no `N`: porque la fila ya eligió cuáles son. `N` y `k` aparecen donde el número lo pone el problema — cuántas clases hay, cuántos tags —; acá lo pone quien modela, y son tantas neuronas como percentiles pida el negocio. Con P50 y P95 solos serían 2.
+
 ---
 
 ## 2. La capa de salida la determina la tarea
@@ -783,7 +785,7 @@ Es el complemento visual de la diapositiva anterior y se da rápido, dos minutos
 
 ---
 
-# 5. La función de pérdida
+# 5. La loss function
 
 **Goal of this section:** Dar el segundo componente del par que la tarea determina. La sección anterior dejó cuántas neuronas y qué activación; esta deja qué número minimiza la red y por qué ese y no otro. Que salgan sabiendo elegir la loss para las tres familias que van a usar (regresión, binaria, multiclase), sabiendo leer su fórmula y la consecuencia de la forma de cada una, y con las especializadas ubicadas como referencia.
 
@@ -805,17 +807,17 @@ Cita aportada por el presentador. Sin fuente atribuida todavía (ver Open questi
 
 Abrí la sección con esta diapositiva y dejala en pantalla mientras la leés entera. Es una definición de la materia, no de la clase, así que vale bajar un cambio de ritmo acá.
 
-El puente a la sección es la última parte de la primera oración: **un objetivo dado**. Todo lo que sigue es la respuesta a la pregunta de dónde sale ese objetivo y cómo se escribe en una fórmula. La función de pérdida es, literalmente, el objetivo dado.
+El puente a la sección es la última parte de la primera oración: **un objetivo dado**. Todo lo que sigue es la respuesta a la pregunta de dónde sale ese objetivo y cómo se escribe en una fórmula. La loss function es, literalmente, el objetivo dado.
 
 La segunda oración sirve para bajar la mística: nada de lo que van a ver en esta clase se parece a construir una mente. Es una fórmula, una derivada y un paso de actualización, repetidos muchas veces.
 
 ---
 
-## 2. Qué es una función de pérdida
+## 2. Loss, cost y objective
 
 ### Content
 
-Una **función de pérdida** es la fórmula que convierte una predicción equivocada en un número. Es el único número que la red intenta bajar, y de él sale el gradiente que corrige cada peso.
+Una **loss function** es la fórmula que convierte una predicción equivocada en un número — el único que la red intenta bajar, y del que sale el gradiente que corrige cada peso. Pero alrededor de ese número hay **tres** que se usan como sinónimos y no lo son.
 
 - **Loss.** El error de un solo ejemplo. Es lo que mide la fórmula que elegimos acá.
 - **Cost.** El promedio del loss sobre un batch o sobre el dataset. Es el número que el entrenamiento reporta.
@@ -1135,17 +1137,54 @@ La pregunta de apertura que funciona: si les doy la red y el dataset, ¿de qué 
 
 Dos honestidades, dichas al pasar y sin desarrollarlas: el dibujo tiene un eje y la red tiene millones, y la superficie real no es un valle limpio sino algo con mesetas y mínimos locales, así que el algoritmo llega a uno bueno, no al mejor. Si preguntan si entonces importa dónde se arranca: sí, y por eso la inicialización es una decisión.
 
-No gastes acá la analogía de la pelota bajando por el valle: es de la diapositiva del paso de actualización, donde η le da sentido al largo del paso.
+No gastes acá la analogía de la pelota bajando por el valle: es de la diapositiva de la tasa de aprendizaje, donde η le da sentido al largo del paso.
 
 ---
 
-## 2. Entrenar es un ciclo de dos movimientos
+## 2. Qué es backpropagation, y de dónde salió
+
+### Content
+
+**Backpropagation es el algoritmo que consigue la brújula.** Dado el error al final de la red, calcula de cuánto es culpable **cada uno** de los pesos, todos en una sola pasada hacia atrás.
+
+La alternativa ingenua sería tantear: mover un peso, volver a correr la red entera, ver cuánto cambió el error, y repetir. Una corrida completa **por cada peso**, millones de corridas para dar **un solo** paso de entrenamiento. Backprop consigue lo mismo en **una ida y una vuelta**, y eso es lo que vuelve entrenable una red grande.
+
+- **1970 — Linnainmaa.** La técnica aparece, y no en redes neuronales: es *diferenciación automática en modo reverso*, publicada en una tesis de maestría sobre propagación de errores de redondeo.
+- **1974 — Werbos.** Paul Werbos la aplica a redes neuronales en su tesis doctoral en Harvard. Pasa casi inadvertida: desde *Perceptrons* (1969) y el problema del XOR, las redes estaban en desgracia.
+- **1986 — Rumelhart, Hinton y Williams.** *"Learning representations by back-propagating errors"*, en Nature. No lo inventan: muestran que **funciona**, y que las capas ocultas aprenden representaciones útiles por su cuenta. Ahí arranca todo lo demás.
+- **Hoy.** Nadie lo programa a mano. Lo que en los frameworks se llama *autograd* o *gradient tape* es este mismo algoritmo, automatizado, y es literalmente lo que corre adentro de `model.fit`.
+
+### Sources
+
+Rumelhart, Hinton & Williams (1986), *Learning representations by back-propagating errors*, Nature 323, 533-536 <https://www.nature.com/articles/323533a0>
+Werbos (1974), *Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences*, tesis doctoral, Harvard
+Linnainmaa (1970), *The representation of the cumulative rounding error of an algorithm as a Taylor expansion of the local rounding errors*, tesis de maestría, Universidad de Helsinki
+talks/introduccion (clase 1 de la materia) - la línea de tiempo de la IA ya ubica 1986 y el invierno posterior a *Perceptrons*
+No figura en el corpus de esta Talk: la historia la aportan el agente y la clase 1
+
+### Speaker notes
+
+Es la diapositiva de contexto de la sección y se da rápido, dos minutos. Lo que tiene que quedar es una sola idea: backpropagation **no** es "cómo aprende la red" — eso es el descenso por gradiente de la diapositiva anterior. Backprop es cómo se **calcula el gradiente**, y nada más. Los dos se confunden todo el tiempo, y separarlos acá evita media hora de confusión después.
+
+El argumento del costo es el que justifica que el algoritmo exista, y conviene hacerlo con números en voz alta: si tantear cuesta una corrida por peso, una red de un millón de pesos necesita un millón de corridas para dar **un** paso. Backprop lo hace en dos. Ese factor es la diferencia entre entrenable y no entrenable, y es exactamente la economía que se ve en detalle en "Qué vale cada factor".
+
+Sobre las fechas, el punto interesante no es quién fue primero: es que la técnica existió **dieciséis años** antes de que a alguien le importara. Hacía falta que alguien mostrara que funcionaba en un problema real. Es la historia de casi toda la IA moderna, donde la idea suele estar mucho antes que la demostración.
+
+Enganche con la clase 1: la línea de tiempo de la materia ya ubica 1986 como el año en que "backpropagation revoluciona el aprendizaje". Esta diapositiva es el zoom de ese renglón, y conviene referirla explícitamente.
+
+Un dato que despierta a la clase: Hinton recibió el Nobel de Física en 2024 por sus aportes fundacionales al aprendizaje con redes neuronales. El comité citó sobre todo las máquinas de Boltzmann y no backpropagation, así que no lo digas como "ganó el Nobel por esto" — pero es el mismo Hinton y la misma línea de trabajo.
+
+Si preguntan por qué se llama "hacia atrás", la respuesta corta es que la única información que existe está al final, en la comparación de la predicción con el objetivo, y hay que repartirla hacia el principio. Es exactamente lo que dibuja la diapositiva siguiente.
+
+---
+
+## 3. Entrenar es un ciclo de dos movimientos
 
 ### Content
 
 **Hacia adelante** la red calcula su predicción, una fila por vez. **Hacia atrás** reparte el error y deja anotado, en **valores intermedios**, cuánto contribuyó cada peso a equivocarse. Los pesos no se mueven todavía: se corrigen recién cuando terminó el batch entero, y ahí se pasa al batch siguiente.
 
-![El ciclo hacia adelante y hacia atrás de una fila del batch](images/s6-2-1-ciclo-forward-backward.png)
+![El ciclo hacia adelante y hacia atrás de una fila del batch](images/s6-3-1-ciclo-forward-backward.png)
 <!-- ascii-source:
    hacia adelante: la red predice UNA fila del batch
 
@@ -1192,29 +1231,32 @@ Si alguien pregunta por qué el forward y el backward usan las mismas conexiones
 
 ---
 
-## 3. El número que hay que derivar
+## 4. El número que hay que derivar
 
 ### Content
 
-Lo que hay que derivar es **la función de pérdida**, y cuál es la fija la tarea. Tomemos un ejemplo: si la red predice el precio de una casa, la salida es una neurona lineal y la loss es el error cuadrático.
+Lo que hay que derivar es **la loss function**, y cuál es la fija la tarea. Tomemos un ejemplo: si la red predice el precio de una casa, la salida es una neurona lineal y la loss es el error cuadrático.
 
-![La función de coste L2](images/bp-funcion-de-coste.png)
+![La loss L2](images/bp-loss-l2.png)
 
+- **Qué recorre la `Σ`.** `y` es lo que la red predijo y `t` el objetivo. La suma es sobre las **unidades de salida de un ejemplo**, no sobre las filas del batch. Y acá la salida es **una sola neurona**, así que tiene un único término: `L = ½(y − t)²`. La `Σ` está por el caso general — N clases, N salidas — que es la notación con la que trabaja el resto de la sección.
 - **Al cuadrado.** Los errores por exceso y por defecto dejan de cancelarse, y los grandes pesan más que los chicos. Es la misma propiedad que separaba MSE de MAE en la sección anterior.
 - **El factor ½.** No mueve el mínimo. Está para que la derivada quede limpia: el 2 del exponente baja al derivar y se cancela contra él.
 - **Diferenciable.** Es lo que permite calcular el gradiente y saber en qué dirección mover cada peso. Sin esta propiedad no hay algoritmo.
-
-`y` es lo que la red predijo y `t` el objetivo. La suma recorre todas las unidades de salida.
 
 **El algoritmo no cambia con la loss.** Un sí o no llevaría BCE y una multiclase cross-entropy, y eso cambiaría **un solo factor** de todo lo que sigue. El resto del backward es idéntico para cualquier loss diferenciable.
 
 ### Sources
 
-knowledge-library/backpropagation/index.md (aportado por la Talk intro-redes-neuronales) — imagen `s32`, la función de coste L2 y sus tres decisiones de diseño
+knowledge-library/backpropagation/index.md (aportado por la Talk intro-redes-neuronales) — imagen `s32`, la loss L2 y sus tres decisiones de diseño
 
 ### Speaker notes
 
 Aclará el ½ apenas aparece, porque en la sección anterior MSE se escribió sin él y alguien lo va a notar. La respuesta: multiplicar la loss por una constante positiva no cambia dónde está el mínimo, solo escala el gradiente, y el ½ se elige para que la derivada quede sin coeficientes. En la práctica los frameworks promedian sobre el batch y el ½ no aparece.
+
+Decí en voz alta que en este ejemplo la `Σ` tiene **un solo término**, apenas aparece la fórmula. El alumno ve una suma y busca sobre qué se suma; si no se lo aclarás, la lectura por defecto es "sobre los ejemplos", que es el error que hay que evitar. La fórmula lleva la `Σ` igual porque a partir de la regla de la cadena la sección trabaja con `yⱼ` y `tⱼ`, subíndice de unidad de salida, y conviene que la notación ya esté puesta.
+
+Si alguien pregunta si esto es la loss o el `cost` — y es una pregunta razonable, porque una `Σ` con el índice suelto es exactamente como se escribe una suma sobre ejemplos — la respuesta es: es la **loss**, de un ejemplo. La suma es sobre las unidades de salida de esa fila. El `cost` es su promedio sobre el batch y aparece cuando se cierra el batch, más adelante en la sección.
 
 Esta es la única diapositiva de la sección donde conviene detenerse en la fórmula misma. Las que siguen son derivaciones de esta.
 
@@ -1224,7 +1266,7 @@ Si preguntan por qué se deriva sobre L2 si después van a usar cross-entropy, l
 
 ---
 
-## 4. La regla de la cadena
+## 5. La regla de la cadena
 
 ### Content
 
@@ -1244,9 +1286,53 @@ Recorré los tres factores de derecha a izquierda en la fórmula, que es el orde
 
 El segundo factor es el que va a importar en la sección 8: es la derivada de la activación. Si esa derivada se aplana, el producto entero se va a cero y el peso deja de aprender. Es la razón por la que ReLU le ganó a la sigmoide en las capas ocultas. Dejalo anunciado, todavía no vieron esa sección, y cuando lleguemos conviene volver a esta diapositiva.
 
+Sobre la notación, por si alguien la marca: las `x` del dibujo son *lo que entra a la unidad*. Si `j` está en la primera capa son el dato; si hay capas antes, son las salidas de esas capas. Muchos textos les ponen otro nombre por eso, pero acá `a` ya está tomada por la suma ponderada, así que se dejó `x` con la aclaración al costado.
+
+El dibujo está hecho **parado sobre una unidad de salida**, y eso conviene decirlo con esas palabras: elegís una unidad, elegís uno de sus pesos, y seguís el camino hasta el error. Su `y` toca la loss directo porque es de salida. Para una unidad oculta los tres factores son los mismos, pero el primero deja de ser directo, porque la loss depende de esa unidad a través de todas las de la capa siguiente. Eso es exactamente la diapositiva de propagar el delta hacia atrás, así que la pregunta es un buen puente si aparece.
+
+El tercer factor, la derivada de la suma respecto de un peso, solo se entiende si tienen presente que `z` es una suma de productos: derivar `z` respecto de `wᵢⱼ` deja la `xᵢ` que lo acompañaba, y nada más. La fórmula de `z` no está escrita en el dibujo a propósito — ya se ve en el camino, donde las entradas llegan al nodo de la suma y sale `zⱼ` — así que decilo en voz alta señalando ese nodo.
+
 ---
 
-## 5. Qué vale cada factor
+## 6. La misma cadena, en movimiento
+
+### Content
+
+El dibujo anterior muestra el camino; este video muestra el **empujón viajando por él**. Se mueve `w` un poquito y se ve el efecto bajar por la cadena — a la suma, a la activación, al error — que es exactamente lo que calcula la fórmula de tres factores.
+
+![La regla de la cadena animada: un empujón en el peso se propaga hasta el error](images/change_rule.webm)
+
+- **Lo que agrega sobre el dibujo.** La derivada deja de ser una fórmula y pasa a ser una pregunta física: si empujo esto tanto, ¿cuánto se mueve aquello? Cada barra que se desplaza es uno de los tres factores.
+- **La notación es otra, y hay que avisarlo antes.** Él escribe `C₀` donde nosotros escribimos `L`, y `a⁽ᴸ⁾` donde nosotros escribimos `y`. Su `y` es el objetivo, que para nosotros es `t`. El superíndice `⁽ᴸ⁾` es el número de capa, no la loss.
+- **Y un 2 en vez del ½.** Su coste no lleva el factor ½, así que al derivar le queda un 2 adelante. La cuenta es la misma.
+- **Termina donde estamos.** El último cuadro es la regla de la cadena encuadrada, con los mismos tres factores y en el mismo orden.
+
+Fuente: 3Blue1Brown, [*Backpropagation calculus · Deep Learning Chapter 4*](https://www.youtube.com/watch?v=tIeHLnjs5U8&t=333s)
+
+### Sources
+
+3Blue1Brown (Grant Sanderson), *Backpropagation calculus | Deep Learning Chapter 4* <https://www.youtube.com/watch?v=tIeHLnjs5U8&t=333s> — clip aportado por el presentador como `images/change_rule.webm` (67 s, recorte del capítulo)
+La tabla de traducción de notación ya existía en las notas del orador de "Qué vale cada factor" de esta misma Talk; acá sube a pantalla, que es donde hace falta
+
+### Speaker notes
+
+Dos minutos, y va **después** del dibujo y no antes: el dibujo instala la estructura y el video le pone movimiento. Al revés es lindo y no se entiende.
+
+Avisá la notación **antes** de darle play, no después. Es la advertencia más rentable de la sección: si un alumno mira el capítulo entero en casa sin ella, va a ver que `y` es el objetivo allá y la predicción acá, y va a concluir que uno de los dos está mal. Ninguno lo está.
+
+La traducción completa, para tener a mano: su `C₀` es nuestra `L`; su `a⁽ᴸ⁾` es nuestra `y`; su `z⁽ᴸ⁾` es nuestra `z`; su `y` es nuestra `t`. El superíndice `⁽ᴸ⁾` es índice de capa. Y el 2 que aparece al derivar es porque su coste no lleva el ½ que sí lleva el nuestro.
+
+El momento que hay que señalar con la mano es cuando se mueve la barra de `w` y las de abajo responden con distinta amplitud: esa diferencia de amplitud **es** la derivada. Si sale bien, es la diapositiva que hace que la sección entera cierre.
+
+El clip es una captura de pantalla y en los últimos segundos asoma la barra del reproductor de YouTube. Si molesta, pausá antes de que termine.
+
+Recomendá el capítulo completo como material de la clase: dura diez minutos y es la mejor explicación visual del tema que hay dando vueltas.
+
+Si el tiempo aprieta, es de las primeras que se saltean — no agrega contenido nuevo, agrega intuición. Pero si la das, dala entera: cortar el video a la mitad es peor que no ponerlo.
+
+---
+
+## 7. Qué vale cada factor
 
 ### Content
 
@@ -1277,7 +1363,7 @@ El remate es la última línea: tres números que ya están calculados. Nada de 
 
 ---
 
-## 6. Una capa más atrás
+## 8. Una capa más atrás
 
 ### Content
 
@@ -1314,7 +1400,7 @@ Si alguien trae la versión de 3Blue1Brown de esta misma fórmula, que la escrib
 
 ---
 
-## 7. El paso de actualización
+## 9. La tasa de aprendizaje η
 
 ### Content
 
@@ -1340,13 +1426,13 @@ Si preguntan por Adam, la respuesta corta: escala el paso por parámetro y absor
 
 ---
 
-## 8. Batch y época no son lo mismo
+## 10. Batch y época no son lo mismo
 
 ### Content
 
 Los pesos no se ajustan ejemplo por ejemplo ni una sola vez por dataset. El train se parte en **batches** de tamaño fijo, y cada batch produce **un** ajuste.
 
-![Cien batches, un ajuste cada uno, una época](images/s6-8-1-batches-y-epoca.png)
+![Cien batches, un ajuste cada uno, una época](images/s6-10-1-batches-y-epoca.png)
 <!-- ascii-source:
    train: 10.000 filas,  batch = 100  ->  100 batches
 
@@ -1391,13 +1477,13 @@ Dato que conecta con la sección 2, por si hay tiempo: en una tabla de embedding
 
 ---
 
-## 9. El ciclo completo, batch a batch
+## 11. El ciclo completo, batch a batch
 
 ### Content
 
-Todo junto, y con el reloj a la vista: **dentro del batch se acumula, al cerrar el batch se aplica.**
+Todo junto, y con el reloj a la vista: **dentro del batch se acumula, al cerrar el batch se aplica.** Por eso el batch size no cambia solo la velocidad — cambia cuántos ajustes entran en cada vuelta y cuánto ruido arrastra cada uno.
 
-![El ciclo completo: acumular dentro del batch, aplicar al cerrarlo](images/s6-9-1-ciclo-batch-a-batch.png)
+![El ciclo completo: acumular dentro del batch, aplicar al cerrarlo](images/s6-11-1-ciclo-batch-a-batch.png)
 <!-- ascii-source:
     .------------------------------------------------------------------.
                                                                       |
@@ -1439,12 +1525,7 @@ emphasize: el bloque de arriba (donde W y b quedan intactos) contra el bloque de
 labels: BATCH k, filas 1 a B, forward, L la loss, backward, g el acumulador de gradientes, n es la tasa de aprendizaje, 1 epoca cuando se agotan los batches; el bloque de arriba en tono neutro y el de abajo destacado
 -->
 
-- **El forward es individual.** Cada fila del batch atraviesa la red por su cuenta y produce su propia predicción y su propia loss. Las `B` filas ven exactamente los mismos `W` y `b`.
-- **El backward acumula, no aplica.** Calcula la culpa de cada unidad y, con ella, el gradiente de cada peso. Cada uno se **suma a su propio casillero** del acumulador: `gᵢⱼ += ∂L/∂wᵢⱼ`. El acumulador tiene la misma forma que `W`, un número por peso. La red no cambió.
-- **Al cerrar el batch, el ajuste.** Se promedia el acumulador, se restan `η · g` de `W` y de `b`, y se vacía el acumulador. Un batch, un ajuste.
-- **Y se pasa al siguiente.** El batch `k+1` arranca con la red ya corregida. Cuando se agotan los batches terminó una época, se baraja el train y vuelve a empezar.
 
-**Por qué importa.** Porque explica algo que no se deduce de las fórmulas: el batch size no cambia solo la velocidad, cambia el resultado. Mueve cuántos ajustes entran en cada vuelta y cuánto ruido arrastra cada uno.
 
 ### Sources
 
@@ -1463,15 +1544,17 @@ Una precisión que un alumno que programó va a marcar, y conviene decirla vos p
 
 Sobre barajar entre épocas: se hace para que los batches no sean siempre los mismos grupos de filas.
 
+Una precisión que conviene decir vos primero, porque en el dibujo `g` parece un solo número: **el acumulador tiene la misma forma que `W`**. Hay un casillero por peso, y lo que se suma ahí es el gradiente de ese peso en particular, `gᵢⱼ += ∂L/∂wᵢⱼ`. Lo mismo para cada bias, en su propio casillero. Promediar, aplicar y vaciar son las tres operaciones hechas casillero por casillero, no sobre un escalar.
+
 ---
 
-## 10. Los términos de regularización
+## 12. La función objetivo
 
 ### Content
 
-Un **término de regularización** es una penalización que se le suma a la función de costo para castigar modelos demasiado complejos. Es el `objective` que quedó nombrado en la 5.2 — y va acá, y no allá, porque recién ahora se puede decir **qué hace**: el término entra al gradiente como cualquier otra parte del objetivo, así que en **cada paso de actualización** empuja los pesos hacia cero, además de hacia el mínimo del error.
+Lo que el optimizador minimiza no es la loss: es la **función objetivo** `J`, que suma dos términos — el `cost`, que ya conocen, más una penalización por complejidad.
 
-![El objetivo se parte en ajuste más penalización](images/s6-10-1-objetivo-regularizacion.png)
+![El objetivo se parte en ajuste más penalización](images/s6-12-1-objetivo-regularizacion.png)
 <!-- ascii-source:
    J   =   cost   +   λ · R(w)
           \______/    \_________/
@@ -1489,12 +1572,14 @@ emphasize: el término lambda por R(w), que es lo que la diapositiva agrega; el 
 labels: J objetivo, cost ajuste a los datos, lambda por R(w) penalización por complejidad, remate al pie
 -->
 
-Sin regularización el optimizador solo busca minimizar el error en train, y el camino más corto para eso pueden ser pesos gigantes que memorizan ruido en vez de aprender el patrón. El término extra lo obliga a balancear ajustar bien los datos contra mantener el modelo simple.
+Sin regularización el optimizador solo busca minimizar el error en train, y el camino más corto para eso pueden ser pesos gigantes que memorizan ruido en vez de aprender el patrón. El término extra lo obliga a balancear ajustar bien los datos contra mantener el modelo simple. Las tres primeras opciones de abajo son formas distintas de escribir `R(w)`; la cuarta regulariza sin entrar en la fórmula.
 
-- **L2** — Ridge, o *weight decay*: suma `λ Σ w²`. Su gradiente es `2λw`, así que el paso de la diapositiva 7 le resta a cada peso una fracción de sí mismo: eso es literalmente el *decay* del nombre. Achica todos y ninguno llega a cero. Es el default.
+- **L2** — Ridge, o *weight decay*: suma `λ Σ w²`. Su gradiente es `2λw`, así que el paso de la diapositiva 9 le resta a cada peso una fracción de sí mismo: eso es literalmente el *decay* del nombre. Achica todos y ninguno llega a cero. Es el default.
 - **L1** — Lasso: suma `λ Σ |w|`. Su gradiente es `λ·signo(w)`, un empujón del mismo tamaño sin importar cuán chico sea el peso — por eso llega a clavarlos en cero, y de ahí la selección de variables (*sparsity*).
 - **Elastic Net** — combina L1 y L2. Un poco de cada uno, para cuando ni la selección dura de L1 ni el achique parejo de L2 alcanzan solos.
-- **Dropout** — no es un término de la fórmula ni toca el gradiente: apaga neuronas al azar en cada forward del entrenamiento, así la red no puede depender de ninguna en particular. Solo actúa entrenando; en inferencia está apagado.
+- **Dropout — el que queda afuera de `J`** — no suma ningún término a la fórmula ni toca el gradiente: apaga neuronas al azar en cada forward del entrenamiento, así la red no puede depender de ninguna en particular. Regulariza rompiendo la coadaptación entre neuronas, no penalizando pesos. Solo actúa entrenando; en inferencia está apagado.
+
+**El término entra al gradiente como cualquier otra parte de `J`.** Por eso en **cada paso de actualización** empuja los pesos hacia cero, además de hacia el mínimo del error — y por eso la diapositiva va acá y no en la sección de la loss: hasta que el gradiente y el paso no estuvieron sobre la mesa, no había con qué explicarlo.
 
 ### Sources
 
@@ -1502,9 +1587,9 @@ corpus/chat.md.md (§10 Regularización: qué problema resuelve; L2 weight decay
 
 ### Speaker notes
 
-Esta diapositiva está acá y no en la sección de la pérdida por una razón que conviene decirles: un término de regularización **se define** en la función de costo pero **actúa** en el paso de actualización. Hasta la 6.7 no había con qué explicarlo; ahora sí, y la frase que lo cierra es que el gradiente del término es un empujón hacia cero que se aplica en cada paso, al mismo tiempo que el empujón hacia menos error.
+Esta diapositiva está acá y no en la sección de la loss por una razón que conviene decirles: un término de regularización **se define** en el cost pero **actúa** en el paso de actualización. Hasta la 6.9 no había con qué explicarlo; ahora sí, y la frase que lo cierra es que el gradiente del término es un empujón hacia cero que se aplica en cada paso, al mismo tiempo que el empujón hacia menos error.
 
-Cierra además el vocabulario que abrió la 5.2, donde quedó dicho que el `objective` es el cost más los términos de regularización. Si alguien tomó nota de aquello, esta es la respuesta.
+Cierra además el vocabulario que abrió la 5.2, donde quedó dicho que el `objective` es el cost más los términos de regularización. Acá aparece por primera vez con símbolo, `J`, y conviene escribirlo en el pizarrón: hasta ahora en la sección 6 vieron `L`, que es otra cosa. Una precisión por si la preguntan: cuando no hay regularización, `J` es exactamente el cost — el segundo término no siempre está.
 
 El orden de la explicación importa más que las fórmulas: primero el problema (minimizar solo el error de train premia memorizar), después el mecanismo (un costo extra por complejidad), y recién ahí los nombres. Al revés no se entiende por qué existen.
 
@@ -1516,7 +1601,7 @@ Si preguntan cómo se sabe que hace falta regularizar, la respuesta es la brecha
 
 ---
 
-## 11. Qué mirar cuando esto se entrena
+## 13. Qué mirar cuando esto se entrena
 
 ### Content
 
@@ -1577,7 +1662,7 @@ Accuracy  =  ------------------------
 
 Un detector de fraude sobre 10.000 transacciones, donde 100 son fraude y 9.900 legítimas. La regla más tonta posible: decir siempre "no es fraude".
 
-![99% de accuracy sobre clases desbalanceadas](images/s7-1-2-desbalance-accuracy.png)
+![Dos números enfrentados: 99% de accuracy en gris contra 0% de fraudes detectados en rojo, sobre una barra donde los 100 fraudes son una astilla del 1%](images/s7-1-2-desbalance-accuracy.png)
 <!-- ascii-source:
   10.000 transacciones
   +-------------------------------------------------+---+
@@ -1934,7 +2019,7 @@ corpus/chat.md.md (§1, §8, §9, §10, §13); knowledge-library/backpropagation
 
 ### Speaker notes
 
-Recapitulá siguiendo el recorrido del dato: se codificó (entrada), se partió (dataset), salió (salida), se le puso número al error (pérdida), se corrigieron los pesos (backpropagation), lo medimos (clasificador) y lo cuidamos (regularización). Siete ideas, una por sección troncal. Dejá espacio para preguntas antes del checklist.
+Recapitulá siguiendo el recorrido del dato: se codificó (entrada), se partió (dataset), salió (salida), se le puso número al error (loss), se corrigieron los pesos (backpropagation), lo medimos (clasificador) y lo cuidamos (regularización). Siete ideas, una por sección troncal. Dejá espacio para preguntas antes del checklist.
 
 ---
 
@@ -2006,6 +2091,18 @@ Si preguntan por dónde empezar: el de la entrada sigue el orden de la sección 
 - La cita de Keras sobre el aplanado (notas del orador de la 1.2) está verificada contra la documentación oficial pero no vive en el corpus. Ingerir esa página si se la quiere como fuente formal de la Talk.
 
 # Cut material
+
+## Diapositiva 6.11 "El ciclo completo, batch a batch" — los cuatro pasos de la izquierda (retirados por pedido del presentador, 2026-08-26)
+
+La columna de texto transcribía el diagrama: el dibujo ya dice fila por fila el forward con los mismos `W` y `b`, el `g_ij += dL/dw_ij` del acumulador, el "W y b NO se tocan", los tres pasos del cierre (promediar, aplicar, vaciar) y el retorno al batch `k+1` con la época al pie. Al sacarlos, la diapositiva pasó de `process` a `image-full` y el diagrama toma el lienzo entero, que es lo que necesita: tiene texto chico adentro de dos bloques y a media pantalla no se lee de atrás. Lo único que el dibujo no decía — que el batch size cambia el resultado y no solo la velocidad — subió al lead. Texto retirado:
+
+- **El forward es individual.** Cada fila del batch atraviesa la red por su cuenta y produce su propia predicción y su propia loss. Las `B` filas ven exactamente los mismos `W` y `b`.
+- **El backward acumula, no aplica.** Calcula la culpa de cada unidad y, con ella, el gradiente de cada peso. Cada uno se **suma a su propio casillero** del acumulador: `gᵢⱼ += ∂L/∂wᵢⱼ`. El acumulador tiene la misma forma que `W`, un número por peso. La red no cambió.
+- **Al cerrar el batch, el ajuste.** Se promedia el acumulador, se restan `η · g` de `W` y de `b`, y se vacía el acumulador. Un batch, un ajuste.
+- **Y se pasa al siguiente.** El batch `k+1` arranca con la red ya corregida. Cuando se agotan los batches terminó una época, se baraja el train y vuelve a empezar.
+
+
+**Por qué importa.** Porque explica algo que no se deduce de las fórmulas: el batch size no cambia solo la velocidad, cambia el resultado. Mueve cuántos ajustes entran en cada vuelta y cuánto ruido arrastra cada uno.
 
 ## Card "La sigmoide va en un solo lado" de la 5.4 (retirada por pedido del presentador, 2026-08-25)
 

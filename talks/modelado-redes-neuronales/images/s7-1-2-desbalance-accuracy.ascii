@@ -1,15 +1,24 @@
   10.000 transacciones
-  +-------------------------------------------------+---+
-  |             9.900 legitimas                     |100|
-  +-------------------------------------------------+---+
-                                                      ^
-                            el modelo dice "no es fraude" a todo
+  +-------------------------------------------------+#+
+  |             9.900 legitimas                     |#|
+  +-------------------------------------------------+#+
+                                                     |
+                                        100 fraudes . el 1%
 
-    aciertos           9.900 / 10.000  =  accuracy 99%
-    fraudes detectados     0 / 100     =  se escapa el 100% de lo que importa
+  [ la regla mas tonta posible: decir "no es fraude" a todo ]
+
+  +---------------------------+   +---------------------------+
+  |                           |   |                           |
+  |           99%             |   |            0%             |
+  |         accuracy          |   |    fraudes detectados     |
+  |      9.900 de 10.000      |   |         0 de 100          |
+  |                           |   |                           |
+  +---------------------------+   +---------------------------+
+
+  el 99% lo escribe la clase mayoritaria; la que importa se pierde entera
 
 <!-- ascii-note:
-intent: mostrar que el 99% de accuracy sale de la clase mayoritaria y que la clase que importa se pierde entera
-emphasize: el contraste entre la barra enorme de legitimas y el bloque chico de fraudes; los dos numeros de abajo
-labels: 9.900 legitimas, 100 fraudes, accuracy 99%, fraudes detectados 0
+intent: que la diapositiva se lea de un vistazo desde el fondo del aula por el contraste de dos numeros gigantes, 99% contra 0%, y que la barra solo prepare ese remate
+emphasize: el panel del 0%, en rojo y con borde rojo, es el foco unico; el 99% queda en gris neutro; la astilla roja del 1% en la barra es el mismo rojo y cuenta la misma historia
+labels: JERARQUIA TIPOGRAFICA, es el punto del dibujo: los dos numerales van enormes (cerca de 76px) y todo lo demas chico; "9.900 legitimas" va DENTRO de la barra, chico y en gris, porque es la parte aburrida; el rotulo de los 100 fraudes cuelga de una linea guia bajo la astilla; la regla del modelo va en una banda gris tenue de ancho completo; el remate al pie en gris
 -->

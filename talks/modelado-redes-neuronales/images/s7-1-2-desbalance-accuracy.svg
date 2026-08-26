@@ -1,23 +1,27 @@
-<!-- talksmith-ascii-sha256: da911c453237877dadb6ed796c13526a022ca95b2afc15a3d1ee87dc1b21fd7f -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 300" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
-  <title>El 99% de accuracy que no sirve</title>
-  <desc>Con 100 fraudes en 10.000 transacciones, decir siempre que no hay fraude da 99% de accuracy y cero detecciones.</desc>
-  <rect x="0" y="0" width="780" height="300" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 500" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="15">
+  <rect x="0" y="0" width="780" height="500" fill="#ffffff"/>
 
-  <text x="40" y="52" font-size="16" fill="#7A7373">10.000 transacciones</text>
+  <text x="40" y="34" font-size="15" fill="#7A7373">10.000 transacciones</text>
 
-  <rect x="40" y="72" width="693" height="52" fill="#F2EFEF" stroke="#B9B3B3" stroke-width="1.4"/>
-  <rect x="733" y="72" width="7" height="52" fill="#DA1B2E"/>
-  <text x="386" y="105" font-size="17" text-anchor="middle">9.900 legítimas</text>
+  <rect x="40" y="52" width="693" height="52" fill="#EFEDED" stroke="#D5D0D0" stroke-width="1"/>
+  <rect x="733" y="52" width="7" height="52" fill="#DA1B2E"/>
+  <text x="386" y="84" text-anchor="middle" font-size="16" fill="#8A8383">9.900 legítimas</text>
 
-  <path d="M 736 128 L 736 148" stroke="#DA1B2E" stroke-width="1.5" fill="none"/>
-  <text x="740" y="168" font-size="14" text-anchor="end" font-weight="bold" fill="#DA1B2E">100 fraudes (1%)</text>
+  <path d="M736 104 L736 128" stroke="#DA1B2E" stroke-width="1.5"/>
+  <text x="740" y="147" text-anchor="end" font-size="15" font-weight="bold" fill="#DA1B2E">100 fraudes · el 1%</text>
 
-  <text x="40" y="220" font-size="15">aciertos</text>
-  <text x="250" y="220" font-size="15" font-family="'DejaVu Sans Mono', monospace">9.900 / 10.000</text>
-  <text x="430" y="220" font-size="15" font-weight="bold">accuracy 99%</text>
+  <rect x="40" y="172" width="700" height="42" fill="#F7F5F5"/>
+  <text x="390" y="199" text-anchor="middle" font-size="17" fill="#3B3535">la regla más tonta posible: decir “no es fraude” a todo</text>
 
-  <text x="40" y="254" font-size="15">fraudes detectados</text>
-  <text x="250" y="254" font-size="15" font-family="'DejaVu Sans Mono', monospace">0 / 100</text>
-  <text x="430" y="254" font-size="15" font-weight="bold" fill="#DA1B2E">se escapa el 100% de lo que importa</text>
+  <rect x="40" y="252" width="336" height="182" fill="#F2F0F0" stroke="#D5D0D0" stroke-width="1"/>
+  <text x="208" y="342" text-anchor="middle" font-size="76" font-weight="bold" fill="#3B3535">99%</text>
+  <text x="208" y="381" text-anchor="middle" font-size="21" fill="#3B3535">accuracy</text>
+  <text x="208" y="410" text-anchor="middle" font-size="15" fill="#8A8383">9.900 de 10.000</text>
+
+  <rect x="404" y="252" width="336" height="182" fill="#FBEAEC" stroke="#DA1B2E" stroke-width="1.5"/>
+  <text x="572" y="342" text-anchor="middle" font-size="76" font-weight="bold" fill="#DA1B2E">0%</text>
+  <text x="572" y="381" text-anchor="middle" font-size="21" font-weight="bold" fill="#DA1B2E">fraudes detectados</text>
+  <text x="572" y="410" text-anchor="middle" font-size="15" fill="#8A8383">0 de 100</text>
+
+  <text x="390" y="474" text-anchor="middle" font-size="16" fill="#7A7373">el 99% lo escribe la clase mayoritaria; la que importa se pierde entera</text>
 </svg>

@@ -12,7 +12,7 @@
       "Modelar la entrada",
       "Partir el dataset",
       "Modelar la salida",
-      "La función de pérdida",
+      "La loss function",
       "Backpropagation",
       "Medir un clasificador",
       "Capas ocultas"
@@ -42,7 +42,7 @@
           "body": "La red solo ve floats y no puede detectar que una posición era un código y otra una cantidad. Nadie recibe una excepción: el modelo entrena, converge y se equivoca."
         }
       ],
-      "notes": "Abrí con esto porque reordena toda la clase. La mayoría llega pensando que diseñar una red es elegir capas. Planteales la pregunta: ¿qué ve realmente la red cuando le pasás un cliente? La respuesta (un vector de números) es el hilo de las próximas dos secciones. Anclá la idea de traducción con pérdida: es la que justifica dedicarle 20 minutos a la entrada.",
+      "notes": "Abrí con esto porque reordena toda la clase. La mayoría llega pensando que diseñar una red es elegir capas. Planteales la pregunta: ¿qué ve realmente la red cuando le pasás un cliente? La respuesta (un vector de números) es el hilo de las próximas dos secciones. Anclá la idea de \"traducción con pérdida\": es la que justifica por qué le vamos a dedicar 20 minutos a la entrada.",
       "lead": "Todo lo que entra a una red es una fila de números de largo fijo, todos del mismo tipo (float). Esa fila es el único acceso que la red tiene al problema."
     },
     {
@@ -87,7 +87,7 @@
         "alt": "Una neurona: de las entradas a la activación"
       },
       "design": "split-right",
-      "notes": "Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Los parámetros de una capa son m·n + m.",
+      "notes": "Refresco rápido, la audiencia tiene base técnica. El punto que no puede faltar: por qué la no linealidad. Preguntales qué pasa si sacás la ReLU de una red de 5 capas. Respuesta: te queda una regresión lineal disfrazada. Si preguntan cuántos parámetros tiene una capa: `m·n + m`, con n entradas y m neuronas. No lo desarrolles, no hace falta en el resto de la clase.",
       "steps": [
         {
           "body": "La neurona recibe las entradas `x` y calcula la **pre-activación** `z = W·x + b`: una combinación lineal de las entradas más un sesgo."
@@ -130,7 +130,7 @@
           "body": "Cuántas neuronas y qué activación lleva la última capa. No se elige: la determina la tarea."
         },
         {
-          "label": "La función de pérdida",
+          "label": "La loss function",
           "body": "La fórmula que convierte una predicción equivocada en un número. Viene junto con la salida."
         },
         {
@@ -213,7 +213,7 @@
           "kind": "important"
         }
       ],
-      "notes": "La herramienta más transferible de la clase. Ejemplo en vivo: tirales edad, código postal y nivel educativo y que apliquen la pregunta en voz alta. El código postal es la trampa: parece número, la resta no significa nada."
+      "notes": "Esta pregunta es la herramienta más transferible de la clase. Si se llevan una sola cosa de la sección, que sea esta. Ejemplo en vivo: tirales tres variables de un dataset que conozcan (edad, código postal, nivel educativo) y que apliquen la pregunta en voz alta. El código postal es la trampa clásica: parece número, la resta no significa nada."
     },
     {
       "template": "concept-breakdown",
@@ -238,7 +238,7 @@
           "body": "Normalizar no le quita peso a una variable; la importancia la aprenden los pesos. Solo la pone en condiciones de ser evaluada."
         }
       ],
-      "notes": "El porqué formal es el número de condición de la Hessiana, pero alcanza con las curvas de nivel: parejas dan círculos y el gradiente apunta al mínimo; dispares dan elipses y apunta a la pared. Efecto secundario: entradas grandes saturan sigmoide o tanh. Árboles y boosting no necesitan normalización.",
+      "notes": "El \"por qué\" formal es el número de condición de la Hessiana, pero para la clase alcanza con la imagen de las curvas de nivel: escalas parejas dan círculos y el gradiente apunta al mínimo; escalas dispares dan elipses alargadas y el gradiente apunta a la pared. Efecto secundario importante: con sigmoide o tanh una entrada grande satura la neurona (derivada casi cero) y deja de aprender. Aclará que árboles y gradient boosting no necesitan normalización; es una particularidad de los métodos basados en gradiente.",
       "highlights": [
         {
           "body": "Por qué no es opcional: el gradiente respecto a un peso es proporcional al valor de la entrada que lo acompaña, pero el learning rate es uno solo para toda la red. Con una variable en ~200 y otra en 0 o 1, los gradientes están a escala 200 a 1 y el entrenamiento zigzaguea.",
@@ -326,7 +326,7 @@
           "body": "Un hueco tapado con un valor que la red no distingue de un dato real. Imputar media o mediana más un flag binario."
         }
       ],
-      "notes": "Sección de no lo hagas. Estos cuatro son los que más vas a ver en trabajos y en producción. El de códigos y el de IDs únicos son los favoritos. El ID memoriza el train, da accuracy perfecto y se derrumba con datos nuevos: puente natural a overfitting."
+      "notes": "Sección de \"no lo hagas\". Estos cuatro son los que más veces vas a ver en trabajos de alumnos y en producción. El de los códigos y el de los IDs únicos son los favoritos. Contá el caso del ID: el modelo memoriza el dataset de train, da accuracy perfecto y se derrumba con datos nuevos. Es un puente natural hacia el sobreajuste."
     },
     {
       "template": "value-columns",
@@ -454,7 +454,7 @@
           "body": "Se abre una sola vez, con el modelo ya terminado. Es la lectura más cercana al desempeño en producción."
         }
       ],
-      "notes": "Arranca por el porqué, no por los porcentajes: medir con los datos de entrenamiento es como tomar examen con las respuestas a la vista. Los 70/20/10 están en el diagrama y son criterio práctico de la industria, no un resultado empírico; decilo así si preguntan. Con datasets de decenas de miles de ejemplos, 80/10/10 también funciona. Con 200 ejemplos totales, un 10% de test son 20 casos y cualquier métrica sobre 20 casos es ruido; ahí conviene cross-validation."
+      "notes": "Arranca por el porqué, no por los porcentajes: medir con los datos de entrenamiento es como tomar examen con las respuestas a la vista. Los números 70/20/10 están en el diagrama y son criterio práctico de la industria (Roboflow los recomienda como default), no un resultado empírico; decilo así si alguien pregunta de dónde salen. Con datasets muy grandes, de decenas de miles de ejemplos, 80/10/10 también funciona, porque ese 10% sigue siendo mucha muestra. El punto que más se olvida es el piso absoluto: con 200 ejemplos totales, un 10% de test son 20 casos y cualquier métrica sobre 20 casos es ruido. Ahí conviene cross-validation, que aparece en la 3.4."
     },
     {
       "template": "value-columns",
@@ -508,13 +508,13 @@
           "kind": "important"
         }
       ],
-      "notes": "Esta tabla es el resumen que se llevan. La fila que cuesta es actualiza los pesos: muchos creen que el modelo aprende algo de validación porque la métrica aparece cada epoch. No aprende nada; el que aprende sos vos, y por eso hace falta el test. La analogía: validación son los simulacros, test es el examen final. En Kaggle el test set se libera recién al cierre, exactamente por esto."
+      "notes": "Esta tabla es el resumen que se llevan de la sección. La fila que cuesta es \"actualiza los pesos\": muchos creen que el modelo aprende algo de validación porque la métrica aparece en pantalla cada epoch. No aprende nada; el que aprende sos vos, y por eso hace falta el test. La analogía que funciona: validación son los simulacros que hacés para estudiar, test es el examen final; si te dan el examen final de simulacro, deja de medir. Menciona que en Kaggle el test set se libera recién al cierre de la competencia, exactamente por esto."
     },
     {
       "template": "code-example",
       "section": "Partir el dataset",
       "title": "Todo se aprende solo del train",
-      "notes": "Esta diapositiva venía de la sección de input y encaja mejor acá, con la partición ya explicada. Es el error número uno de producción en ML. La regla: preprocesamiento y modelo se despliegan juntos. Ojo con un matiz: es cierto que el preprocesamiento se aplica a los tres splits, pero sus parámetros salen solo de train. Si hay tiempo, data drift: no recalcular μ y σ en producción, detectar drift y reentrenar.",
+      "notes": "Esta diapositiva venía de la sección de input y encaja mejor acá, con la partición ya explicada. Es el error número uno de producción en ML según la fuente: que la normalización o el diccionario de categorías queden fuera del artefacto. La regla para llevarse: el preprocesamiento y el modelo se despliegan juntos; quien consume el modelo no debería tener que saber que la normalización existe. Ojo con un matiz que la fuente de Roboflow no cubre: ellos dicen \"el preprocesamiento se aplica a los tres splits\" y es cierto, pero no advierten que los parámetros salen solo de train. Si hay tiempo, mencioná data drift: la solución no es recalcular μ y σ en producción, es detectar el drift y reentrenar.",
       "language": "python",
       "code": "# MAL: μ y σ contaminados con el test (data leakage)\nscaler.fit_transform(X_test)\n\n# BIEN: μ y σ aprendidos solo del train\nscaler.fit(X_train)\nscaler.transform(X_test)",
       "explanation": [
@@ -552,13 +552,13 @@
           "kind": "source"
         }
       ],
-      "notes": "Los dos del medio son aporte propio: ninguna de las fuentes cubre estratificación ni series de tiempo, y las dos importan para los trabajos que entregan. El de series de tiempo es el que más veces vas a ver mal resuelto, y el síntoma es un modelo que en el papel anda espectacular. Conectá con la sección 2: el identificador único es la versión extrema de este problema. Y dejá el puente hacia overfitting: la brecha train-validación solo se puede mirar si esta partición está bien hecha."
+      "notes": "Los dos del medio son aporte propio: ninguna de las dos fuentes cubre estratificación ni series de tiempo, y las dos importan para los trabajos que entregan. El de series de tiempo es el que más veces vas a ver mal resuelto, y el síntoma es un modelo que en el papel anda espectacular. Conectá con la sección 2: el identificador único es la versión extrema de este problema, memorizar en vez de aprender. Y dejá el puente abierto hacia overfitting: la brecha entre train y validación, que es el diagnóstico de la sección 6, solo se puede mirar si esta partición está bien hecha."
     },
     {
       "template": "pros-cons",
       "section": "Partir el dataset",
       "title": "Qué hacer y qué no",
-      "notes": "Esta es la diapositiva que se fotografía y la que cierra la sección. Las dos columnas se leen enfrentadas, no en orden, y cada línea se desarrolla en voz alta: la diapositiva es el índice, vos sos el contenido.\n\n**Partir antes de explorar.** Es la que más se resiste, y la objeción típica es \"pero si todavía no entrené nada\". La respuesta: las decisiones que tomás mirando los datos, qué variables sacar, cómo tratar los outliers, qué imputar, también son aprendizaje. Si las tomaste mirando todo, el test ya no está limpio.\n\n**Partir por grupo.** Es la que más aparece en los trabajos que entregan. El caso que lo hace evidente: diez radiografías del mismo paciente repartidas entre train y test. El modelo no generaliza a pacientes nuevos, reconoce a ese paciente. Vale igual para varias filas del mismo cliente o de la misma sesión.\n\n**Fijar la semilla y guardar el split.** Un experimento que no se puede repetir no se puede comparar con el siguiente. Guardar los índices, no solo la semilla.\n\n**Augmentation solo en train.** Validación y test se quedan con los datos originales, porque su trabajo es representar lo que viene en producción. El preprocesamiento, en cambio, se aplica a los tres: esa es la distinción que se confunde.\n\n**Tunear contra el test.** Dala despacio porque es contraintuitiva. El modelo no entrena con validación ni con test; la diferencia sos vos, que elegís mirando validación y a lo largo de muchos experimentos vas sobreajustando tus decisiones a ese conjunto. El test atrapa eso solo si nada se eligió mirándolo, y por eso existe el tercer conjunto.\n\n**Volver a partir porque el número no cerró.** Repartir hasta que el resultado guste es elegir la partición más favorable. Es sobreajustar al test sin darse cuenta y sin que nada falle.\n\n**Confiar en el corte por defecto.** La más práctica: mostrá la firma de `train_test_split` y señalá que `stratify` es opcional y viene en `None`, que no hay parámetro de grupo, y que no mira el tiempo. La mayoría de los splits rotos que van a ver son exactamente ese default.\n\n---\n\n**Goal of this section:** Mostrar que la última capa no se elige, la determina la tarea, y que activación de salida y loss van siempre juntas. La loss aparece acá nombrada en el catálogo y se desarrolla en la sección 5. Que salgan sabiendo mapear \"qué predice el modelo\" a \"cuántas neuronas, qué activación, qué loss\", y sabiendo por qué la forma de cada activación de salida corresponde a lo que se predice.\n\n---",
+      "notes": "Esta es la diapositiva que se fotografía y la que cierra la sección. Las dos columnas se leen enfrentadas, no en orden, y cada línea se desarrolla en voz alta: la diapositiva es el índice, vos sos el contenido.\n\n**Partir antes de explorar.** Es la que más se resiste, y la objeción típica es \"pero si todavía no entrené nada\". La respuesta: las decisiones que tomás mirando los datos, qué variables sacar, cómo tratar los outliers, qué imputar, también son aprendizaje. Si las tomaste mirando todo, el test ya no está limpio.\n\n**Partir por grupo.** Es la que más aparece en los trabajos que entregan. El caso que lo hace evidente: diez radiografías del mismo paciente repartidas entre train y test. El modelo no generaliza a pacientes nuevos, reconoce a ese paciente. Vale igual para varias filas del mismo cliente o de la misma sesión.\n\n**Fijar la semilla y guardar el split.** Un experimento que no se puede repetir no se puede comparar con el siguiente. Guardar los índices, no solo la semilla.\n\n**Augmentation solo en train.** Validación y test se quedan con los datos originales, porque su trabajo es representar lo que viene en producción. El preprocesamiento, en cambio, se aplica a los tres: esa es la distinción que se confunde.\n\n**Tunear contra el test.** Dala despacio porque es contraintuitiva. El modelo no entrena con validación ni con test; la diferencia sos vos, que elegís mirando validación y a lo largo de muchos experimentos vas sobreajustando tus decisiones a ese conjunto. El test atrapa eso solo si nada se eligió mirándolo, y por eso existe el tercer conjunto.\n\n**Volver a partir porque el número no cerró.** Repartir hasta que el resultado guste es elegir la partición más favorable. Es sobreajustar al test sin darse cuenta y sin que nada falle.\n\n**Confiar en el corte por defecto.** La más práctica: mostrá la firma de `train_test_split` y señalá que `stratify` es opcional y viene en `None`, que no hay parámetro de grupo, y que no mira el tiempo. La mayoría de los splits rotos que van a ver son exactamente ese default.",
       "lead": "La sección en reglas operativas. A la izquierda lo que hay que hacer siempre; a la derecha lo que más se ve mal resuelto.",
       "pro_label": "Qué hacer",
       "con_label": "Qué no hacer",
@@ -645,7 +645,7 @@
           "kind": "takeaway"
         }
       ],
-      "notes": "No leas toda la tabla; detenete en dos o tres filas. La de percentiles suele ser nueva y es muy útil (stock, riesgo, capacidad). La media es la respuesta correcta a una pregunta que nadie hizo. La distribución con μ y σ conecta con estadística que ya vieron.\n\nSi alguien pregunta por que la fila de percentiles dice 3 y no N: porque la fila ya eligio cuales son. N y k aparecen donde el numero lo pone el problema — cuantas clases hay, cuantos tags —; aca lo pone quien modela, y son tantas neuronas como percentiles pida el negocio. Con P50 y P95 solos serian 2."
+      "notes": "No leas toda la tabla; usala como referencia y detenete en dos o tres filas. La de percentiles suele ser nueva para los alumnos y es muy útil en la práctica (stock, riesgo, capacidad, donde importa el peor escenario). La media es la respuesta correcta a una pregunta que muchas veces nadie hizo. La distribución con μ y σ conecta con estadística que ya vieron.\n\nSi alguien pregunta por qué la fila de percentiles dice 3 y no `N`: porque la fila ya eligió cuáles son. `N` y `k` aparecen donde el número lo pone el problema — cuántas clases hay, cuántos tags —; acá lo pone quien modela, y son tantas neuronas como percentiles pida el negocio. Con P50 y P95 solos serían 2."
     },
     {
       "template": "concept-breakdown",
@@ -677,7 +677,7 @@
           "kind": "note"
         }
       ],
-      "notes": "Recorré las cuatro filas como representaciones: recta para lineal, curva acotada para sigmoide, competencia entre clases para softmax y curva positiva para softplus. ¿Qué activación para unidades vendidas? Softplus o exp; lineal con MSE permitiría predicciones negativas."
+      "notes": "Contrastá con las capas ocultas: ahí la activación casi no importa (ReLU y listo). En la salida, cada opción corresponde a un rango y a una interpretación. Quedate en la fórmula y el rango; las formas las dibuja la diapositiva que sigue, no las adelantes. Preguntá por casos: ¿qué activación para predecir la cantidad de unidades vendidas? Softplus o exp, porque un conteo no puede ser negativo. La salida lineal con MSE para conteos permite predicciones negativas, un error clásico."
     },
     {
       "template": "content+cards+image",
@@ -689,7 +689,7 @@
         "alt": "Formas de las cuatro activaciones de salida"
       },
       "design": "split-right",
-      "notes": "Es el complemento visual de la diapositiva anterior y se da rápido, dos minutos. El punto que la justifica: la forma explica el uso. La sigmoide tiene techo en 1, por eso es una probabilidad; softplus tiene piso en 0 y no tiene techo, por eso sirve para conteos; la lineal no tiene ninguno de los dos, por eso sirve para un precio. Y softmax no es una curva: si alguien la dibuja como curva, no la entendió.",
+      "notes": "Es el complemento visual de la diapositiva anterior y se da rápido, dos minutos. El punto que justifica la diapositiva: la forma explica el uso. La sigmoide tiene techo en 1, por eso es una probabilidad. Softplus tiene piso en 0 y no tiene techo, por eso sirve para conteos. La lineal no tiene ni piso ni techo, por eso sirve para un precio. Y softmax no es una curva: si alguien la dibuja como curva, no la entendió. Cerrá con la pregunta de la diapositiva anterior si no la hiciste: ¿cuál para unidades vendidas?",
       "cards": [
         {
           "label": "Lineal",
@@ -711,20 +711,20 @@
     },
     {
       "template": "section-agenda",
-      "section": "La función de pérdida",
-      "title": "La función de pérdida"
+      "section": "La loss function",
+      "title": "La loss function"
     },
     {
       "template": "quote",
-      "section": "La función de pérdida",
+      "section": "La loss function",
       "quote": "La IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. Resolver problemas complejos con matemáticas a gran escala, en lugar de crear humanos sintéticos.",
-      "notes": "Abrí la sección con esta diapositiva y dejala en pantalla mientras la leés entera. Es una definición de la materia, no de la clase, así que vale bajar un cambio de ritmo acá.\n\nEl puente a la sección es la última parte de la primera oración: **un objetivo dado**. Todo lo que sigue es la respuesta a la pregunta de dónde sale ese objetivo y cómo se escribe en una fórmula. La función de pérdida es, literalmente, el objetivo dado.\n\nLa segunda oración sirve para bajar la mística: nada de lo que van a ver en esta clase se parece a construir una mente. Es una fórmula, una derivada y un paso de actualización, repetidos muchas veces."
+      "notes": "Abrí la sección con esta diapositiva y dejala en pantalla mientras la leés entera. Es una definición de la materia, no de la clase, así que vale bajar un cambio de ritmo acá.\n\nEl puente a la sección es la última parte de la primera oración: **un objetivo dado**. Todo lo que sigue es la respuesta a la pregunta de dónde sale ese objetivo y cómo se escribe en una fórmula. La loss function es, literalmente, el objetivo dado.\n\nLa segunda oración sirve para bajar la mística: nada de lo que van a ver en esta clase se parece a construir una mente. Es una fórmula, una derivada y un paso de actualización, repetidos muchas veces."
     },
     {
       "template": "concept-breakdown",
-      "section": "La función de pérdida",
-      "title": "Qué es una función de pérdida",
-      "lead": "Una **función de pérdida** es la fórmula que convierte una predicción equivocada en un número. Es el único número que la red intenta bajar, y de él sale el gradiente que corrige cada peso.",
+      "section": "La loss function",
+      "title": "Loss, cost y objective",
+      "lead": "Una **loss function** es la fórmula que convierte una predicción equivocada en un número — el único que la red intenta bajar, y del que sale el gradiente que corrige cada peso. Pero alrededor de ese número hay **tres** que se usan como sinónimos y no lo son.",
       "cards": [
         {
           "label": "Loss",
@@ -754,7 +754,7 @@
     },
     {
       "template": "content+cards+image",
-      "section": "La función de pérdida",
+      "section": "La loss function",
       "title": "Regresión: MSE, MAE y Huber",
       "lead": "Salida de una neurona con activación lineal. Las tres losses miden lo mismo, la distancia entre `y` y `t`, y se diferencian en cuánto castigan un error grande.",
       "media": {
@@ -780,7 +780,7 @@
     },
     {
       "template": "content+cards+image",
-      "section": "La función de pérdida",
+      "section": "La loss function",
       "title": "Clasificación binaria: BCE",
       "lead": "Salida de una neurona con sigmoide, o sea una probabilidad entre 0 y 1. La **binary cross-entropy** castiga según cuánta probabilidad le dio la red a la respuesta correcta: `L = −[ t · log(y) + (1 − t) · log(1 − y) ]`.",
       "media": {
@@ -806,7 +806,7 @@
     },
     {
       "template": "content+cards+image",
-      "section": "La función de pérdida",
+      "section": "La loss function",
       "title": "Clasificación multiclase: cross-entropy",
       "lead": "Salida de N neuronas con softmax, o sea un vector de probabilidades que suma 1. La **cross-entropy** mira una sola casilla de ese vector, la de la clase verdadera, y castiga `−log` de esa probabilidad: `L = −log(y_c)`, donde `c` es la clase correcta.",
       "media": {
@@ -832,7 +832,7 @@
     },
     {
       "template": "value-columns",
-      "section": "La función de pérdida",
+      "section": "La loss function",
       "title": "Las especializadas, para tener ubicadas",
       "lead": "Tres casos donde la loss de siempre da resultados malos de una forma que no se nota. Alcanza con reconocer cuándo buscarlas.",
       "columns": [
@@ -879,7 +879,7 @@
     },
     {
       "template": "content+cards+image",
-      "section": "La función de pérdida",
+      "section": "La loss function",
       "title": "Percentiles: la pinball loss",
       "lead": "Ninguna columna del dataset dice cuál es el P90. Cada ejemplo trae **un solo número**, el valor que efectivamente pasó. Lo que decide si la red aprende el promedio, la mediana o el P90 **es la loss, y nada más**: `L = max( q · (t − y), (q − 1) · (t − y) )`.",
       "cards": [
@@ -905,7 +905,7 @@
         "alt": "Con q = 0,5 la penalización es simétrica y el mínimo cae en la mediana; con q = 0,9 es nueve veces más cara de un lado y el mínimo cae en el P90"
       },
       "design": "split-right",
-      "notes": "Esta es la diapositiva que más rinde de la sección si se da despacio, porque cierra una idea que viene abierta desde la 5.2: **la loss no mide el error, lo define.** Hasta acá se podía leer como \"elegimos la fórmula que mejor mide la distancia\". Acá se ve que la fórmula también elige qué es lo que el modelo va a terminar aprendiendo.\n\nLa pregunta que conviene hacer antes de mostrar el diagrama: *\"si el dataset no tiene una columna con el P90, ¿de dónde lo saca la red?\"*. Dejala respirar. La respuesta desarma la intuición de que el modelo aprende lo que está en los datos: los datos traen un número por fila, y el P90 aparece porque la loss lo empuja ahí.\n\nEl número que conviene escribir en el pizarrón: con `q = 0,9`, si la predicción está por debajo del valor real el castigo es `0,9 · error`; si está por encima, `0,1 · error`. Mientras más del 10% de los casos queden por encima de la predicción, subirla sigue conviniendo. El equilibrio es exactamente el P90.\n\nQue MAE sea pinball con `q = 0,5` sorprende y ordena: no hay que memorizar dos fórmulas, hay una familia con un parámetro. Y explica de paso por qué MAE es robusta a outliers y MSE no — la pendiente constante es lo que las separa, y eso ya se vio en la 5.3.\n\nSi preguntan por qué no entrenar tres redes separadas, una por percentil: se puede, y da lo mismo. Se hacen en una sola por comodidad y porque comparten el cuerpo de la red. El detalle que muerde en producción es que nada garantiza que los percentiles no se crucen — que el P90 predicho quede por debajo del P50 — y eso hay que forzarlo aparte.",
+      "notes": "Esta es la diapositiva que más rinde de la sección si se da despacio, porque cierra una idea que viene abierta desde la 5.2: **la loss no mide el error, lo define.** Hasta acá se podía leer como \"elegimos la fórmula que mejor mide la distancia\". Acá se ve que la fórmula también elige qué es lo que el modelo va a terminar aprendiendo.\n\nLa pregunta que conviene hacer antes de mostrar el diagrama: *\"si el dataset no tiene una columna con el P90, ¿de dónde lo saca la red?\"*. Dejala respirar. La respuesta desarma la intuición de que el modelo aprende lo que está en los datos: los datos traen un número por fila, y el P90 aparece porque la loss lo empuja ahí.\n\nEl número que conviene escribir en el pizarrón: con `q = 0,9`, si la predicción está por debajo del valor real el castigo es `0,9 · error`; si está por encima, `0,1 · error`. Mientras más del 10% de los casos queden por encima de la predicción, subirla sigue conviniendo. El equilibrio es exactamente el P90.\n\nQue MAE sea pinball con `q = 0,5` sorprende y ordena: no hay que memorizar dos fórmulas, hay una familia con un parámetro. Y explica de paso por qué MAE es robusta a outliers y MSE no — la pendiente constante es lo que las separa, y eso ya se vio en la 5.3.\n\nSi preguntan por qué no entrenar tres redes separadas, una por percentil: se puede, y da lo mismo. Se hacen en una sola por comodidad y porque comparten el cuerpo de la red. El detalle que muerde en producción es que nada garantiza que los percentiles no se crucen — que el P90 predicho quede por debajo del P50 — y eso hay que forzarlo aparte.\n\n# 6. Backpropagation\n\n**Goal of this section:** Abrir la caja del entrenamiento. Hasta acá el modelo estaba diseñado y la loss elegida, pero nadie dijo cómo se corrigen los pesos. La sección abre con la idea que ordena todo, entrenar es buscar el mínimo de una función, recorre el algoritmo (ciclo hacia adelante y hacia atrás, regla de la cadena, delta, propagación y paso de actualización) y cierra con la mecánica que más se confunde en la práctica: el forward va fila por fila, el backward solo acumula valores intermedios, y `W` y `b` se tocan una única vez, al cerrar el batch. **Regla editorial de la sección:** ninguna diapositiva puede dar a entender que el backward corrige pesos; lo que el backward produce son valores intermedios que se acumulan.",
       "_choice": {
         "signals": [
           "cuatro conceptos con etiqueta",
@@ -933,7 +933,7 @@
       "template": "content+cards+image",
       "section": "Backpropagation",
       "title": "Buscar el mínimo de una función",
-      "notes": "Esta diapositiva es la que hay que dar bien para que las cinco siguientes no sean cinco fórmulas sueltas. Todo el resto de la sección son detalles de este dibujo, y conviene decirlo así al abrir y al cerrar.\n\nLa pregunta de apertura que funciona: si les doy la red y el dataset, ¿de qué depende el error? De los pesos, y de nada más. Ese es el salto conceptual, porque hasta acá venían pensando la loss como función de la predicción.\n\nDos honestidades, dichas al pasar y sin desarrollarlas: el dibujo tiene un eje y la red tiene millones, y la superficie real no es un valle limpio sino algo con mesetas y mínimos locales, así que el algoritmo llega a uno bueno, no al mejor. Si preguntan si entonces importa dónde se arranca: sí, y por eso la inicialización es una decisión.\n\nNo gastes acá la analogía de la pelota bajando por el valle: es de la diapositiva del paso de actualización, donde η le da sentido al largo del paso.\n\n---",
+      "notes": "Esta diapositiva es la que hay que dar bien para que las cinco siguientes no sean cinco fórmulas sueltas. Todo el resto de la sección son detalles de este dibujo, y conviene decirlo así al abrir y al cerrar.\n\nLa pregunta de apertura que funciona: si les doy la red y el dataset, ¿de qué depende el error? De los pesos, y de nada más. Ese es el salto conceptual, porque hasta acá venían pensando la loss como función de la predicción.\n\nDos honestidades, dichas al pasar y sin desarrollarlas: el dibujo tiene un eje y la red tiene millones, y la superficie real no es un valle limpio sino algo con mesetas y mínimos locales, así que el algoritmo llega a uno bueno, no al mejor. Si preguntan si entonces importa dónde se arranca: sí, y por eso la inicialización es una decisión.\n\nNo gastes acá la analogía de la pelota bajando por el valle: es de la diapositiva de la tasa de aprendizaje, donde η le da sentido al largo del paso.\n\n---",
       "lead": "Antes del algoritmo, la idea que lo ordena todo. Fijado el dataset, la loss depende **solo de los pesos**: cambiar un peso cambia el error. Eso dibuja una superficie, y entrenar es caminar por ella hacia abajo.",
       "media": {
         "src": "images/s6-1-1-descenso-al-minimo.png",
@@ -966,13 +966,56 @@
       ]
     },
     {
+      "template": "timeline",
+      "section": "Backpropagation",
+      "title": "Qué es backpropagation, y de dónde salió",
+      "lead": "Backpropagation es el algoritmo que consigue la brújula: dado el error al final de la red, calcula de cuánto es culpable **cada uno** de los pesos, todos en una sola pasada hacia atrás. Tantear peso por peso costaría una corrida completa de la red **por cada peso** — millones para dar un solo paso. Backprop lo hace en **una ida y una vuelta**, y eso es lo que vuelve entrenable una red grande.",
+      "milestones": [
+        {
+          "label": "1970 — Linnainmaa",
+          "body": "La técnica aparece, y no en redes neuronales: es *diferenciación automática en modo reverso*, publicada en una tesis de maestría sobre propagación de errores de redondeo."
+        },
+        {
+          "label": "1974 — Werbos",
+          "body": "Paul Werbos la aplica a redes neuronales en su tesis doctoral en Harvard. Pasa casi inadvertida: desde *Perceptrons* (1969) y el problema del XOR, las redes estaban en desgracia."
+        },
+        {
+          "label": "1986 — Rumelhart, Hinton y Williams",
+          "body": "*\"Learning representations by back-propagating errors\"*, en Nature. No lo inventan: muestran que **funciona**, y que las capas ocultas aprenden representaciones útiles por su cuenta. Ahí arranca todo lo demás."
+        },
+        {
+          "label": "Hoy",
+          "body": "Nadie lo programa a mano. Lo que en los frameworks se llama *autograd* o *gradient tape* es este mismo algoritmo, automatizado, y es literalmente lo que corre adentro de `model.fit`."
+        }
+      ],
+      "notes": "Es la diapositiva de contexto de la sección y se da rápido, dos minutos. Lo que tiene que quedar es una sola idea: backpropagation **no** es \"cómo aprende la red\" — eso es el descenso por gradiente de la diapositiva anterior. Backprop es cómo se **calcula el gradiente**, y nada más. Los dos se confunden todo el tiempo, y separarlos acá evita media hora de confusión después.\n\nEl argumento del costo es el que justifica que el algoritmo exista, y conviene hacerlo con números en voz alta: si tantear cuesta una corrida por peso, una red de un millón de pesos necesita un millón de corridas para dar **un** paso. Backprop lo hace en dos. Ese factor es la diferencia entre entrenable y no entrenable, y es exactamente la economía que se ve en detalle en \"Qué vale cada factor\".\n\nSobre las fechas, el punto interesante no es quién fue primero: es que la técnica existió **dieciséis años** antes de que a alguien le importara. Hacía falta que alguien mostrara que funcionaba en un problema real. Es la historia de casi toda la IA moderna, donde la idea suele estar mucho antes que la demostración.\n\nEnganche con la clase 1: la línea de tiempo de la materia ya ubica 1986 como el año en que \"backpropagation revoluciona el aprendizaje\". Esta diapositiva es el zoom de ese renglón, y conviene referirla explícitamente.\n\nUn dato que despierta a la clase: Hinton recibió el Nobel de Física en 2024 por sus aportes fundacionales al aprendizaje con redes neuronales. El comité citó sobre todo las máquinas de Boltzmann y no backpropagation, así que no lo digas como \"ganó el Nobel por esto\" — pero es el mismo Hinton y la misma línea de trabajo.\n\nSi preguntan por qué se llama \"hacia atrás\", la respuesta corta es que la única información que existe está al final, en la comparación de la predicción con el objetivo, y hay que repartirla hacia el principio. Es exactamente lo que dibuja la diapositiva siguiente.",
+      "_choice": {
+        "signals": [
+          "date_labels=4 (1970, 1974, 1986, hoy)",
+          "is_ordered=true",
+          "labeled_items=4",
+          "n_images=0"
+        ],
+        "candidates": [
+          "timeline",
+          "process",
+          "concept-breakdown"
+        ],
+        "pick": "timeline",
+        "rejected": {
+          "process": "`date_labels` hace de esto una timeline, no un process: los hitos son fechas, no pasos de un procedimiento que alguien ejecuta",
+          "concept-breakdown": "disuelve el orden cronológico, y la distancia entre 1970 y 1986 es justamente el contenido de la diapositiva"
+        }
+      }
+    },
+    {
       "template": "process",
       "section": "Backpropagation",
       "title": "Entrenar es un ciclo de dos movimientos",
       "notes": "Esta sección repite material que ya vieron en la clase de introducción, así que el tono es de repaso rápido, no de primera exposición. Preguntá al abrir quién se acuerda de qué hace el backward; según la respuesta, acelerá o frená.\n\nEl punto que ordena todo lo que sigue: la red no tiene ninguna forma de saber cuál era el valor correcto de un peso. Lo único que tiene es un número final que le dice cuánto se equivocó, y el algoritmo entero existe para repartir ese número hacia atrás.\n\nSi alguien pregunta por qué el forward y el backward usan las mismas conexiones, la respuesta corta es que el backward recorre la misma cadena de operaciones al revés, aplicando derivadas en lugar de multiplicaciones.\n\n---",
       "lead": "**Hacia adelante** la red calcula su predicción, una fila por vez. **Hacia atrás** reparte el error y deja anotado, en **valores intermedios**, cuánto contribuyó cada peso a equivocarse. Los pesos no se mueven todavía.",
       "media": {
-        "src": "images/s6-2-1-ciclo-forward-backward.png",
+        "src": "images/s6-3-1-ciclo-forward-backward.png",
         "alt": "El ciclo hacia adelante y hacia atrás de una fila del batch"
       },
       "design": "split-right",
@@ -1002,14 +1045,18 @@
       "template": "content+cards+image",
       "section": "Backpropagation",
       "title": "El número que hay que derivar",
-      "notes": "Aclará el ½ apenas aparece, porque en la sección anterior MSE se escribió sin él y alguien lo va a notar. La respuesta: multiplicar la loss por una constante positiva no cambia dónde está el mínimo, solo escala el gradiente, y el ½ se elige para que la derivada quede sin coeficientes. En la práctica los frameworks promedian sobre el batch y el ½ no aparece.\n\nEsta es la única diapositiva de la sección donde conviene detenerse en la fórmula misma. Las que siguen son derivaciones de esta.\n\nEl ejemplo del precio no es decorativo: es el mismo de la sección anterior y el del notebook, así que no hay que presentar nada nuevo. Decilo como una cadena de consecuencias, que es como se lee la tabla de la 5.1: predecimos un precio, entonces la salida es una neurona lineal, entonces la loss es el error cuadrático. Nadie eligió la loss a mano.\n\nSi preguntan por qué se deriva sobre L2 si después van a usar cross-entropy, la respuesta es que el algoritmo no cambia: lo único que cambia es el primer factor de la cadena. La estructura del backward es la misma para cualquier loss diferenciable.\n\n---",
-      "lead": "Lo que hay que derivar es **la función de pérdida**, y cuál es la fija la tarea. Tomemos un ejemplo: si la red predice el precio de una casa, la salida es una neurona lineal y la loss es el error cuadrático.",
+      "notes": "Aclará el ½ apenas aparece, porque en la sección anterior MSE se escribió sin él y alguien lo va a notar. La respuesta: multiplicar la loss por una constante positiva no cambia dónde está el mínimo, solo escala el gradiente, y el ½ se elige para que la derivada quede sin coeficientes. En la práctica los frameworks promedian sobre el batch y el ½ no aparece.\n\nDecí en voz alta que en este ejemplo la `Σ` tiene **un solo término**, apenas aparece la fórmula. El alumno ve una suma y busca sobre qué se suma; si no se lo aclarás, la lectura por defecto es \"sobre los ejemplos\", que es el error que hay que evitar. La fórmula lleva la `Σ` igual porque a partir de la regla de la cadena la sección trabaja con `yⱼ` y `tⱼ`, subíndice de unidad de salida, y conviene que la notación ya esté puesta.\n\nSi alguien pregunta si esto es la loss o el `cost` — y es una pregunta razonable, porque una `Σ` con el índice suelto es exactamente como se escribe una suma sobre ejemplos — la respuesta es: es la **loss**, de un ejemplo. La suma es sobre las unidades de salida de esa fila. El `cost` es su promedio sobre el batch y aparece cuando se cierra el batch, más adelante en la sección.\n\nEsta es la única diapositiva de la sección donde conviene detenerse en la fórmula misma. Las que siguen son derivaciones de esta.\n\nEl ejemplo del precio no es decorativo: es el mismo de la sección anterior y el del notebook, así que no hay que presentar nada nuevo. Decilo como una cadena de consecuencias, que es como se lee la tabla de la 5.1: predecimos un precio, entonces la salida es una neurona lineal, entonces la loss es el error cuadrático. Nadie eligió la loss a mano.\n\nSi preguntan por qué se deriva sobre L2 si después van a usar cross-entropy, la respuesta es que el algoritmo no cambia: lo único que cambia es el primer factor de la cadena. La estructura del backward es la misma para cualquier loss diferenciable.\n\n---",
+      "lead": "Lo que hay que derivar es **la loss function**, y cuál es la fija la tarea. Tomemos un ejemplo: si la red predice el precio de una casa, la salida es una neurona lineal y la loss es el error cuadrático.",
       "media": {
-        "src": "images/bp-funcion-de-coste.png",
-        "alt": "La función de coste L2"
+        "src": "images/bp-loss-l2.png",
+        "alt": "La loss L2"
       },
       "design": "split-right",
       "cards": [
+        {
+          "label": "Qué recorre la `Σ`",
+          "body": "`y` es la predicción y `t` el objetivo. La suma es sobre las **unidades de salida de un ejemplo**, no sobre las filas del batch. Y acá la salida es **una sola neurona**, así que tiene un único término: `L = ½(y − t)²`. La `Σ` está por el caso general — N clases, N salidas — que es la notación con la que trabaja el resto de la sección."
+        },
         {
           "label": "Al cuadrado",
           "body": "Los errores por exceso y por defecto dejan de cancelarse, y los grandes pesan más que los chicos. Es lo que separaba MSE de MAE."
@@ -1034,12 +1081,65 @@
       "template": "image-full",
       "section": "Backpropagation",
       "title": "La regla de la cadena",
-      "notes": "Sobre la notación, por si alguien la marca: las `x` del dibujo son *lo que entra a la unidad*. Si `j` está en la primera capa son el dato; si hay capas antes, son las salidas de esas capas. Muchos textos les ponen otro nombre por eso, pero acá `a` ya está tomada por la suma ponderada, así que se dejó `x` con la aclaración al costado.\n\nEl dibujo está hecho **parado sobre una unidad de salida**, y eso conviene decirlo con esas palabras: elegís una unidad, elegís uno de sus pesos, y seguís el camino hasta el error. Su `y` toca la loss directo porque es de salida. Para una unidad oculta los tres factores son los mismos, pero el primero deja de ser directo, porque la loss depende de esa unidad a través de todas las de la capa siguiente. Eso es exactamente la diapositiva de propagar el delta hacia atrás, así que la pregunta es un buen puente si aparece.\n\nLos tres factores ya no están escritos como viñetas: están numerados sobre el dibujo, y ese es el recorrido que hay que hacer con la mano. Recorrelos **de derecha a izquierda**, que es el orden en el que se calculan.\n\nEl detalle de cada uno, para decirlo en voz alta: el ① sale directo de la loss, es la diferencia entre predicción y objetivo. El ② es la derivada de la activación evaluada en ese punto. El ③ es la entrada que multiplicaba a ese peso, nada más: derivar la suma ponderada respecto de uno de sus pesos deja la `x` que lo acompañaba. Ese tercero sorprende por lo simple y conviene mostrarlo primero, para bajar la ansiedad.\n\nLa definición de `a` está ahora en el propio gráfico, abajo y en rojo. Señalala antes de recorrer los factores: el tercero, la derivada de la suma respecto de un peso, solo se entiende si se ve que `a` es una suma de productos. Derivar esa suma respecto de `w` deja la `x` que lo acompañaba y nada más.\n\nLa metáfora que funciona: el peso influye en el error a través de una cadena de tres eslabones, y la regla de la cadena dice que el efecto total es el producto de los tres efectos parciales.\n\nRecorré los tres factores de derecha a izquierda en la fórmula, que es el orden en el que se calculan. El tercero es el más fácil y conviene mostrarlo primero para bajar la ansiedad: es literalmente la entrada.\n\nEl segundo factor es el que importa para la sección 1 de esta clase: es la derivada de la activación. Si esa derivada se aplana, el producto entero se va a cero y el peso deja de aprender. Es la razón por la que ReLU le ganó a la sigmoide en capas ocultas, y ya lo vieron en la diapositiva de las activaciones ocultas.\n\n---",
+      "notes": "La metáfora que funciona: el peso influye en el error a través de una cadena de tres eslabones, y la regla de la cadena dice que el efecto total es el producto de los tres efectos parciales.\n\nRecorré los tres factores de derecha a izquierda en la fórmula, que es el orden en el que se calculan. El tercero es el más fácil y conviene mostrarlo primero para bajar la ansiedad: es literalmente la entrada.\n\nEl segundo factor es el que va a importar en la sección 8: es la derivada de la activación. Si esa derivada se aplana, el producto entero se va a cero y el peso deja de aprender. Es la razón por la que ReLU le ganó a la sigmoide en las capas ocultas. Dejalo anunciado, todavía no vieron esa sección, y cuando lleguemos conviene volver a esta diapositiva.\n\nSobre la notación, por si alguien la marca: las `x` del dibujo son *lo que entra a la unidad*. Si `j` está en la primera capa son el dato; si hay capas antes, son las salidas de esas capas. Muchos textos les ponen otro nombre por eso, pero acá `a` ya está tomada por la suma ponderada, así que se dejó `x` con la aclaración al costado.\n\nEl dibujo está hecho **parado sobre una unidad de salida**, y eso conviene decirlo con esas palabras: elegís una unidad, elegís uno de sus pesos, y seguís el camino hasta el error. Su `y` toca la loss directo porque es de salida. Para una unidad oculta los tres factores son los mismos, pero el primero deja de ser directo, porque la loss depende de esa unidad a través de todas las de la capa siguiente. Eso es exactamente la diapositiva de propagar el delta hacia atrás, así que la pregunta es un buen puente si aparece.\n\nEl tercer factor, la derivada de la suma respecto de un peso, solo se entiende si tienen presente que `z` es una suma de productos: derivar `z` respecto de `wᵢⱼ` deja la `xᵢ` que lo acompañaba, y nada más. La fórmula de `z` no está escrita en el dibujo a propósito — ya se ve en el camino, donde las entradas llegan al nodo de la suma y sale `zⱼ` — así que decilo en voz alta señalando ese nodo.",
       "lead": "La pregunta es concreta: **¿cuánto cambia el error si movemos un peso en particular?** El peso no toca el error directo: lo hace a través de la suma ponderada, y esta a través de la activación.",
       "design": "full",
       "image": {
         "src": "images/bp-regla-de-la-cadena.png",
         "alt": "El camino de un peso al error sobre la red, y la regla de la cadena con sus tres factores numerados igual"
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Backpropagation",
+      "title": "La misma cadena, en movimiento",
+      "lead": "El dibujo anterior muestra el camino; este video muestra el **empujón viajando por él**. Se mueve `w` un poquito y se ve el efecto bajar por la cadena — a la suma, a la activación, al error — que es exactamente lo que calcula la fórmula de tres factores.",
+      "media": {
+        "src": "images/change_rule.webm",
+        "alt": "La regla de la cadena animada: un empujón en el peso se propaga hasta el error"
+      },
+      "design": "split-right",
+      "facts": [
+        {
+          "label": "Lo que agrega sobre el dibujo",
+          "body": "La derivada deja de ser una fórmula y pasa a ser una pregunta física: si empujo esto tanto, ¿cuánto se mueve aquello? Cada barra que se desplaza es uno de los tres factores."
+        },
+        {
+          "label": "La notación es otra, y hay que avisarlo antes",
+          "body": "Él escribe `C₀` donde nosotros escribimos `L`, y `a⁽ᴸ⁾` donde nosotros escribimos `y`. Su `y` es el objetivo, que para nosotros es `t`. El superíndice `⁽ᴸ⁾` es el número de capa, no la loss."
+        },
+        {
+          "label": "Y un 2 en vez del ½",
+          "body": "Su coste no lleva el factor ½, así que al derivar le queda un 2 adelante. La cuenta es la misma."
+        },
+        {
+          "label": "Termina donde estamos",
+          "body": "El último cuadro es la regla de la cadena encuadrada, con los mismos tres factores y en el mismo orden."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "body": "Fuente: 3Blue1Brown, [*Backpropagation calculus · Deep Learning Chapter 4*](https://www.youtube.com/watch?v=tIeHLnjs5U8&t=333s)"
+        }
+      ],
+      "notes": "Dos minutos, y va **después** del dibujo y no antes: el dibujo instala la estructura y el video le pone movimiento. Al revés es lindo y no se entiende.\n\nAvisá la notación **antes** de darle play, no después. Es la advertencia más rentable de la sección: si un alumno mira el capítulo entero en casa sin ella, va a ver que `y` es el objetivo allá y la predicción acá, y va a concluir que uno de los dos está mal. Ninguno lo está.\n\nLa traducción completa, para tener a mano: su `C₀` es nuestra `L`; su `a⁽ᴸ⁾` es nuestra `y`; su `z⁽ᴸ⁾` es nuestra `z`; su `y` es nuestra `t`. El superíndice `⁽ᴸ⁾` es índice de capa. Y el 2 que aparece al derivar es porque su coste no lleva el ½ que sí lleva el nuestro.\n\nEl momento que hay que señalar con la mano es cuando se mueve la barra de `w` y las de abajo responden con distinta amplitud: esa diferencia de amplitud **es** la derivada. Si sale bien, es la diapositiva que hace que la sección entera cierre.\n\nEl clip es una captura de pantalla y en los últimos segundos asoma la barra del reproductor de YouTube. Si molesta, pausá antes de que termine.\n\nRecomendá el capítulo completo como material de la clase: dura diez minutos y es la mejor explicación visual del tema que hay dando vueltas.\n\nSi el tiempo aprieta, es de las primeras que se saltean — no agrega contenido nuevo, agrega intuición. Pero si la das, dala entera: cortar el video a la mitad es peor que no ponerlo.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (un clip de video)",
+          "labeled_items=4",
+          "is_ordered=false"
+        ],
+        "candidates": [
+          "content-image",
+          "content+cards+image",
+          "image-full"
+        ],
+        "pick": "content-image",
+        "rejected": {
+          "content+cards+image": "los cuatro ítems son observaciones sobre el clip, no conceptos con vida propia: `facts` es la forma, no `cards`",
+          "image-full": "el aviso de notación tiene que estar en pantalla al mismo tiempo que el video, y image-full no admite texto más allá del lead"
+        }
       }
     },
     {
@@ -1076,7 +1176,7 @@
           "body": "**El gradiente de un peso es un producto de tres números que ya tenés.** Ninguno obliga a recorrer la red de nuevo, y esa es toda la eficiencia de backpropagation."
         }
       ],
-      "notes": "Cerrá la cuenta despacio y con los mismos números que la anterior: ①②③ son los mismos tramos del dibujo de la red.\n\nRecorré de abajo hacia arriba, de menor a mayor dificultad. El ③ es literalmente la entrada. El ② es la derivada de la activación, y es el gancho para volver a las activaciones ocultas: con una sigmoide saturada ese factor es casi cero y el peso deja de aprender. El ① es el único que depende de qué loss elegiste.\n\nSi alguien trae la versión de 3Blue1Brown, que usa `C₀`, `a⁽ᴸ⁾` y `y` para el objetivo: acá `L` es la loss y no el índice de capa, `y` es la predicción y `t` el objetivo, y lo que allá es `a` acá es `y`. La cuenta es la misma; el `2` que aparece allá es porque su coste no lleva el factor ½.\n\nEl remate es la última línea: tres números que ya están calculados.\n\nInsistí en que agrupar ① y ② no agrega ningún concepto nuevo: es la misma cadena, calculada una sola vez por unidad en vez de una vez por peso. Si preguntan por qué vale la pena, el número lo contesta: una capa de 512 por 256 tiene 131.072 pesos y se resuelve con 256 cuentas. Esa economía es lo que hace viable entrenar millones de parámetros, y es también lo que la diapositiva siguiente propaga hacia atrás."
+      "notes": "Esta es la diapositiva que cierra la cuenta y conviene darla despacio, con los mismos números que la anterior: ①②③ son los mismos tramos del dibujo de la red.\n\nRecorré de abajo hacia arriba, que es el orden de menor a mayor dificultad. El ③ es literalmente la entrada, y ahí baja la ansiedad. El ② es la derivada de la activación, y es el gancho para volver a la sección de activaciones ocultas: si `f` es una sigmoide saturada, ese factor es casi cero y el peso deja de aprender. El ① es el único que depende de qué loss elegiste, y por eso la diapositiva del número que hay que derivar decía que cambiar de loss cambia un solo factor.\n\nSi alguien trae la versión de los videos de 3Blue1Brown, que usa `C₀`, `a⁽ᴸ⁾` y `y` para el objetivo, aclará la traducción: acá `L` es la loss y no el índice de capa, `y` es la predicción y `t` el objetivo, y lo que allá se llama `a` acá se llama `y`. La cuenta es la misma; el `2` que aparece allá es porque su coste no lleva el factor ½.\n\nEl remate es la última línea: tres números que ya están calculados. Nada de esto obliga a recorrer la red otra vez, y eso es exactamente lo que hace viable entrenar millones de parámetros."
     },
     {
       "template": "image-full",
@@ -1088,12 +1188,12 @@
         "src": "images/bp-una-capa-mas-atras.svg",
         "alt": "La cadena para un peso de la capa oculta: tres factores nuevos adelante de los dos que ya estaban"
       },
-      "notes": "Los cuatro puntos están en el dibujo; estos son para decirlos en voz alta. **La cadena se estira, no se rehace:** bajar una capa agrega tres factores adelante de los que ya tenías, y la cola es idéntica. **Los tres nuevos son los mismos de siempre:** el peso que conecta las dos unidades, la derivada de la activación de la oculta, y la entrada. **Por eso el orden es de atrás para adelante:** empezando por la primera capa habría que recorrer toda la red por cada peso.\n\nEsta es la diapositiva que convierte la regla de la cadena en un algoritmo. Dala con la mano sobre el dibujo.\n\nEmpezá por la pregunta y esperá: si un peso está dos unidades más atrás, ¿hay que empezar la cuenta de cero? Mucha gente asume que sí, y ahí es donde el algoritmo parece caro.\n\nDespués mostrá el recuadro: esos dos factores son exactamente los que la diapositiva anterior acaba de resolver para la unidad de salida: `yⱼ − tⱼ` y `f'(zⱼ)`. Lo único nuevo son tres factores adelante: el peso que conecta las dos unidades, la derivada de la activación de la oculta, y la entrada.\n\nEl remate es el orden. De adelante hacia atrás tendrías que rehacer la cola por cada peso; de atrás para adelante, cada capa hereda el trabajo de la siguiente. De ahí sale el nombre del algoritmo, y es el puente directo a propagar la culpa.\n\nSi alguien trae la versión de 3Blue1Brown, con `C₀`, `a⁽ᴸ⁾` y superíndices de capa: es la misma cadena. Acá el nivel se lee en los índices de las unidades (`h` entra a `i`, `i` entra a `j`) en vez de en un superíndice.\n\nDos cosas que hay que decir acá porque ya no tienen diapositiva propia. **Una:** la unidad oculta suele alimentar a varias de la capa siguiente, no a una sola; entonces su culpa es la **suma** de lo que le devuelve cada una, ponderada por el peso de conexión. La imagen que funciona es la del jefe repartiendo culpa: la unidad no sabe qué tenía que hacer, pero las que alimenta sí saben cuánto se equivocaron, y le pasan su parte en proporción a cuánto la escucharon. **Dos:** el mismo cálculo se repite capa por capa hasta la primera, y de ahí sale el nombre del algoritmo, el error se propaga hacia atrás. Y lo que viaja hacia atrás son culpas, no pesos corregidos: `W` y `b` siguen intactos durante todo el recorrido."
+      "notes": "**Los cuatro puntos del dibujo, para decirlos en voz alta:**\n\n- **La cadena se estira, no se rehace.** Bajar una capa agrega tres factores adelante de los que ya tenías. La cola de la cadena es idéntica.\n- **Los tres nuevos son los mismos de siempre.** El peso que conecta las dos unidades (`∂zⱼ/∂yᵢ = wᵢⱼ`), la derivada de la activación de la unidad oculta (`f'(zᵢ)`) y la entrada que multiplicaba al peso (`xₕ`). No aparece ninguna idea nueva.\n- **Por eso el orden es de atrás para adelante.** Si empezaras por la primera capa tendrías que recorrer toda la red por cada peso. Empezando por la salida, cada capa reusa lo que la siguiente ya dejó calculado.\n\n- **Y si alimenta a varias, se suman.** Una unidad oculta casi nunca alimenta a una sola de la capa siguiente. Su culpa es la **suma** de lo que le devuelve cada una, ponderada por el peso que las conecta.\n\n**Esa reutilización es backpropagation.** El mismo cálculo se repite capa por capa hasta la primera, y de ahí sale el nombre: el error se propaga hacia atrás. Lo que viaja son culpas, no pesos corregidos — `W` y `b` siguen intactos durante todo el recorrido.\n\nEsta es la diapositiva que convierte la regla de la cadena en un algoritmo, y conviene darla con la mano sobre el dibujo.\n\nEmpezá por la pregunta y esperá la respuesta: si un peso está dos unidades más atrás, ¿hay que empezar la cuenta de cero? Mucha gente asume que sí, y ahí es donde el algoritmo parece caro.\n\nDespués mostrá el recuadro: esos dos factores son exactamente los mismos que en la diapositiva anterior, ya calculados para la unidad de salida. Lo único que se agrega son tres factores adelante, y los tres son cosas que ya saben leer.\n\nEl remate es el orden. Si recorrieras la red de adelante hacia atrás tendrías que rehacer la cola por cada peso; yendo de atrás para adelante, cada capa hereda el trabajo de la siguiente. Eso es literalmente de dónde sale el nombre del algoritmo, y es el puente directo a la diapositiva de propagar la culpa.\n\nSi alguien trae la versión de 3Blue1Brown de esta misma fórmula, que la escribe con `C₀`, `a⁽ᴸ⁾` y superíndices de capa: es la misma cadena. Acá el nivel de capa se lee en los índices de las unidades (`h` entra a `i`, `i` entra a `j`) en vez de en un superíndice."
     },
     {
       "template": "content+cards+image",
       "section": "Backpropagation",
-      "title": "El paso de actualización",
+      "title": "La tasa de aprendizaje η",
       "notes": "La imagen que funciona en clase es la pelota bajando por un valle, con `η` como el tamaño del paso: pasos chicos tardan una eternidad, pasos grandes saltan de una ladera a la otra sin bajar nunca.\n\nConectá con la sección 2 de esta clase: el gradiente respecto de un peso es proporcional al valor de la entrada, y el learning rate es uno solo para toda la red. Si una variable va de 0 a 1.000.000 y otra de 0 a 1, sus gradientes viven en escalas distintas y un solo `η` no le sirve a las dos. Ese es el argumento formal de por qué se normaliza el input, y ahora tienen la fórmula delante.\n\nSi preguntan por Adam, la respuesta corta: escala el paso por parámetro y absorbe parte del problema, pero no arregla la saturación ni una inicialización rota.\n\n---",
       "lead": "Cerrado el batch y promediados los gradientes acumulados, corregir un peso es restarle una fracción de su gradiente. Cuánta es esa fracción lo fija la **tasa de aprendizaje `η`**, uno de los hiperparámetros más sensibles.",
       "media": {
@@ -1123,7 +1223,7 @@
       "notes": "Esta diapositiva es el pedido explícito de la clase y la confusión más frecuente del tema, así que no la apures. La pregunta de apertura que la ordena: si el dataset tiene 10.000 filas y entrenamos 10 épocas, ¿cuántas veces se tocaron los pesos? Casi siempre contestan 10, o 10.000. Con batch de 100 son 1.000.\n\nLos tres números que conviene dejar en el pizarrón: filas del train, tamaño del batch, ajustes por época. El tercero sale de dividir los dos primeros.\n\nSi preguntan por qué no ajustar fila por fila, la respuesta tiene dos mitades: el gradiente de una sola fila es ruidoso y el promedio del batch lo estabiliza, y procesar 100 filas a la vez aprovecha la GPU mucho mejor que 100 pasadas sueltas.\n\nDato que conecta con la sección 2, por si hay tiempo: en una tabla de embeddings el gradiente es ralo, solo se actualizan las filas de las categorías que aparecieron en el batch. Un barrio que aparece tres veces en todo el train recibe tres actualizaciones y queda casi como se inicializó.\n\n---",
       "lead": "Los pesos no se ajustan ejemplo por ejemplo ni una sola vez por dataset. El train se parte en **batches** de tamaño fijo, y cada batch produce **un** ajuste.",
       "media": {
-        "src": "images/s6-8-1-batches-y-epoca.png",
+        "src": "images/s6-10-1-batches-y-epoca.png",
         "alt": "Cien batches, un ajuste cada uno, una época"
       },
       "design": "split-right",
@@ -1149,51 +1249,43 @@
       ]
     },
     {
-      "template": "process",
+      "template": "image-full",
       "section": "Backpropagation",
       "title": "El ciclo completo, batch a batch",
-      "notes": "Es la diapositiva de síntesis de la sección: si el tiempo aprieta, esta se da igual y se recortan las fórmulas del medio. Dala señalando con la mano el límite entre los dos bloques: arriba no pasa nada en la red, abajo pasa todo. \"Acumular arriba, aplicar abajo\", repetido hasta que sea aburrido.\n\nEn Keras las tres líneas del bloque de abajo están adentro de `model.fit` y no se ven. Para el que ya programó, donde la diapositiva hace clic es en el bucle abierto a mano: se abre un *gradient tape* que va grabando las operaciones del forward, eso es acumular; `tape.gradient(loss, model.trainable_weights)` cierra la cuenta y devuelve el gradiente; `optimizer.apply_gradients(...)` lo aplica. No hay un cuarto paso de vaciar, porque cada tape arranca limpio y se descarta al cerrar el batch: eso que acá sale gratis, en otros frameworks hay que hacerlo a mano, y olvidarse degrada el entrenamiento sin tirar ningún error.\n\nUna precisión que un alumno que programó va a marcar, y conviene decirla vos primero: el desglose fila por fila del dibujo es la descomposición matemática, no el código. el gradiente se calcula **una vez por batch** y la suma sobre las `B` filas ocurre vectorizada adentro. El resultado es idéntico, porque el gradiente del batch es el promedio de los gradientes por fila; el dibujo abre esa cuenta para que se vea de dónde sale.\n\nSobre barajar entre épocas: se hace para que los batches no sean siempre los mismos grupos de filas.\n\n---\n\nUna precisión que conviene decir vos primero, porque en el dibujo `g` parece un solo número: **el acumulador tiene la misma forma que `W`**. Hay un casillero por peso, y lo que se suma ahí es el gradiente de ese peso en particular, `gᵢⱼ += ∂L/∂wᵢⱼ`. Lo mismo para cada bias, en su propio casillero. Promediar, aplicar y vaciar son las tres operaciones hechas casillero por casillero, no sobre un escalar.",
-      "lead": "Todo junto, y con el reloj a la vista: **dentro del batch se acumula, al cerrar el batch se aplica.**",
-      "media": {
-        "src": "images/s6-9-1-ciclo-batch-a-batch.png",
+      "notes": "Es la diapositiva de síntesis de la sección: si el tiempo aprieta, esta se da igual y se recortan las fórmulas del medio. Dala señalando con la mano el límite entre los dos bloques: arriba no pasa nada en la red, abajo pasa todo. \"Acumular arriba, aplicar abajo\", repetido hasta que sea aburrido.\n\nEn Keras las tres líneas del bloque de abajo están adentro de `model.fit` y no se ven. Para el que ya programó, donde la diapositiva hace clic es en el bucle abierto a mano: se abre un *gradient tape* que va grabando las operaciones del forward, eso es acumular; `tape.gradient(loss, model.trainable_weights)` cierra la cuenta y devuelve el gradiente; `optimizer.apply_gradients(...)` lo aplica. No hay un cuarto paso de vaciar, porque cada tape arranca limpio y se descarta al cerrar el batch: eso que acá sale gratis, en otros frameworks hay que hacerlo a mano, y olvidarse degrada el entrenamiento sin tirar ningún error.\n\nUna precisión que un alumno que programó va a marcar, y conviene decirla vos primero: el desglose fila por fila del dibujo es la descomposición matemática, no el código. el gradiente se calcula **una vez por batch** y la suma sobre las `B` filas ocurre vectorizada adentro. El resultado es idéntico, porque el gradiente del batch es el promedio de los gradientes por fila; el dibujo abre esa cuenta para que se vea de dónde sale.\n\nSobre barajar entre épocas: se hace para que los batches no sean siempre los mismos grupos de filas.\n\nUna precisión que conviene decir vos primero, porque en el dibujo `g` parece un solo número: **el acumulador tiene la misma forma que `W`**. Hay un casillero por peso, y lo que se suma ahí es el gradiente de ese peso en particular, `gᵢⱼ += ∂L/∂wᵢⱼ`. Lo mismo para cada bias, en su propio casillero. Promediar, aplicar y vaciar son las tres operaciones hechas casillero por casillero, no sobre un escalar.",
+      "lead": "Todo junto, y con el reloj a la vista: **dentro del batch se acumula, al cerrar el batch se aplica.** Por eso el batch size no cambia solo la velocidad — cambia cuántos ajustes entran en cada vuelta y cuánto ruido arrastra cada uno.",
+      "design": "full",
+      "image": {
+        "src": "images/s6-11-1-ciclo-batch-a-batch.png",
         "alt": "El ciclo completo: acumular dentro del batch, aplicar al cerrarlo"
       },
-      "design": "split-right",
-      "steps": [
-        {
-          "label": "El forward es individual",
-          "body": "Cada fila atraviesa la red por su cuenta y produce su propia predicción y su propia loss. Las `B` filas ven exactamente los mismos `W` y `b`."
-        },
-        {
-          "label": "El backward acumula, no aplica",
-          "body": "Calcula la culpa de cada unidad y el gradiente de cada peso, y **suma cada uno a su propio casillero**: `gᵢⱼ += ∂L/∂wᵢⱼ`. El acumulador tiene la misma forma que `W`. La red no cambió."
-        },
-        {
-          "label": "Al cerrar el batch, el ajuste",
-          "body": "Se promedia el acumulador, se restan `η · g` de `W` y de `b`, y se vacía el acumulador. Un batch, un ajuste."
-        },
-        {
-          "label": "Y se pasa al siguiente",
-          "body": "El batch `k+1` arranca con la red ya corregida. Cuando se agotan los batches terminó una época, se baraja el train y vuelve a empezar."
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true (los pasos se retiraron: el diagrama los dice)",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image",
+          "process"
+        ],
+        "pick": "image-full",
+        "rejected": {
+          "content-image": "sin `facts` y con el lead como único texto, el catálogo manda image-full: la columna de texto vacía es exactamente la forma que esa entrada prohíbe",
+          "process": "ya no hay `steps` — eran la transcripción del diagrama y el presentador los retiró"
         }
-      ],
-      "highlights": [
-        {
-          "kind": "important",
-          "label": "Por qué importa",
-          "body": "El batch size no cambia solo la velocidad, cambia el resultado. Mueve cuántos ajustes entran en cada vuelta y cuánto ruido arrastra cada uno."
-        }
-      ]
+      }
     },
     {
       "template": "content+cards+image",
       "section": "Backpropagation",
-      "title": "Los términos de regularización",
-      "lead": "Un término de regularización es una penalización que se le suma a la función de costo para castigar modelos demasiado complejos. Va acá, y no en la sección de la pérdida, porque recién ahora se puede decir **qué hace**: entra al gradiente como cualquier otra parte del objetivo, así que en **cada paso de actualización** empuja los pesos hacia cero, además de hacia el mínimo del error.",
+      "title": "La función objetivo",
+      "lead": "Lo que el optimizador minimiza no es la loss: es la **función objetivo** `J`, que suma dos términos — el `cost`, que ya conocen, más una penalización por complejidad.",
       "cards": [
         {
           "label": "L2 — Ridge, o *weight decay*",
-          "body": "Suma `λ Σ w²`. Su gradiente es `2λw`, así que el paso de la 6.7 le resta a cada peso una fracción de sí mismo: eso es literalmente el *decay* del nombre. Achica todos y ninguno llega a cero. Es el default."
+          "body": "Suma `λ Σ w²`. Su gradiente es `2λw`, así que el paso de la 6.9 le resta a cada peso una fracción de sí mismo: eso es literalmente el *decay* del nombre. Achica todos y ninguno llega a cero. Es el default."
         },
         {
           "label": "L1 — Lasso",
@@ -1204,21 +1296,21 @@
           "body": "Combina L1 y L2. Un poco de cada uno, para cuando ni la selección dura de L1 ni el achique parejo de L2 alcanzan solos."
         },
         {
-          "label": "Dropout",
-          "body": "No es un término de la fórmula ni toca el gradiente: apaga neuronas al azar en cada forward del entrenamiento, así la red no puede depender de ninguna en particular. Solo actúa entrenando; en inferencia está apagado."
+          "label": "Dropout — el que queda afuera de `J`",
+          "body": "No suma ningún término a la fórmula ni toca el gradiente: apaga neuronas al azar en cada forward del entrenamiento, así la red no puede depender de ninguna en particular. Regulariza rompiendo la coadaptación entre neuronas, no penalizando pesos. Solo actúa entrenando; en inferencia está apagado."
         }
       ],
       "media": {
-        "src": "images/s6-10-1-objetivo-regularizacion.png",
+        "src": "images/s6-12-1-objetivo-regularizacion.png",
         "alt": "El objetivo se parte en dos: el ajuste a los datos más λ por la penalización por complejidad"
       },
       "design": "split-right",
-      "notes": "Esta diapositiva está acá y no en la sección de la pérdida por una razón que conviene decirles: un término de regularización **se define** en la función de costo pero **actúa** en el paso de actualización. Hasta la 6.7 no había con qué explicarlo; ahora sí, y la frase que lo cierra es que el gradiente del término es un empujón hacia cero que se aplica en cada paso, al mismo tiempo que el empujón hacia menos error.\n\nCierra además el vocabulario que abrió la 5.2, donde quedó dicho que el `objective` es el cost más los términos de regularización. Si alguien tomó nota de aquello, esta es la respuesta.\n\nEl orden de la explicación importa más que las fórmulas: primero el problema (minimizar solo el error de train premia memorizar), después el mecanismo (un costo extra por complejidad), y recién ahí los nombres. Al revés no se entiende por qué existen.\n\nSobre `λ`: es el hiperparámetro que decide el balance, típicamente entre 1e-5 y 1e-2. En Keras se declara por capa, `layers.Dense(64, kernel_regularizer=regularizers.l2(1e-4))`. Un `λ` demasiado grande hace underfitting, y ese es el error de aplicación más común. Encaja con el orden de perillas de la diapositiva que sigue: `λ` es una perilla más, y no la primera.\n\nDropout es el que más preguntas trae porque no entra en la fórmula. La respuesta corta es que regulariza de otra manera, rompiendo la coadaptación entre neuronas, y que solo actúa en entrenamiento: en inferencia está apagado.\n\nSi preguntan cómo se sabe que hace falta regularizar, la respuesta es la brecha entre train y validación — y es exactamente la fila que van a ver en la diapositiva siguiente, \"train baja y validación sube\". Conviene anunciarlo así, porque es el único renglón de ese checklist cuya acción no se explica en la sección. Ahora sí. Y sé honesto en que el diagnóstico completo de overfitting no lo cubrimos por tiempo.",
+      "notes": "Esta diapositiva está acá y no en la sección de la loss por una razón que conviene decirles: un término de regularización **se define** en el cost pero **actúa** en el paso de actualización. Hasta la 6.9 no había con qué explicarlo; ahora sí, y la frase que lo cierra es que el gradiente del término es un empujón hacia cero que se aplica en cada paso, al mismo tiempo que el empujón hacia menos error.\n\nCierra además el vocabulario que abrió la 5.2, donde quedó dicho que el `objective` es el cost más los términos de regularización. Acá aparece por primera vez con símbolo, `J`, y conviene escribirlo en el pizarrón: hasta ahora en la sección 6 vieron `L`, que es otra cosa. Una precisión por si la preguntan: cuando no hay regularización, `J` es exactamente el cost — el segundo término no siempre está.\n\nEl orden de la explicación importa más que las fórmulas: primero el problema (minimizar solo el error de train premia memorizar), después el mecanismo (un costo extra por complejidad), y recién ahí los nombres. Al revés no se entiende por qué existen.\n\nSobre `λ`: es el hiperparámetro que decide el balance, típicamente entre 1e-5 y 1e-2. En Keras se declara por capa, `layers.Dense(64, kernel_regularizer=regularizers.l2(1e-4))`. Un `λ` demasiado grande hace underfitting, y ese es el error de aplicación más común. Encaja con el orden de perillas de la diapositiva que sigue: `λ` es una perilla más, y no la primera.\n\nDropout es el que más preguntas trae porque no entra en la fórmula. La respuesta corta es que regulariza de otra manera, rompiendo la coadaptación entre neuronas, y que solo actúa en entrenamiento: en inferencia está apagado.\n\nSi preguntan cómo se sabe que hace falta regularizar, la respuesta es la brecha entre train y validación — y es exactamente la fila que van a ver en la diapositiva siguiente, \"train baja y validación sube\". Conviene anunciarlo así, porque es el único renglón de ese checklist cuya acción no se explica en la sección. Ahora sí. Y sé honesto en que el diagnóstico completo de overfitting no lo cubrimos por tiempo.",
       "_choice": {
         "signals": [
           "cuatro conceptos con etiqueta (L2, L1, Elastic Net, Dropout)",
           "una sola imagen compartida, la descomposición del objetivo",
-          "lead con la definición"
+          "lead con la definición de la función objetivo y sus dos términos"
         ],
         "candidates": [
           "content+cards+image",
@@ -1230,13 +1322,19 @@
           "concept-breakdown": "hay una imagen compartida que sostiene el lead; el catálogo manda content+cards+image y prohíbe disolver las cards para conservar la imagen",
           "value-columns": "las cuatro no se leen a través de factores compartidos — Dropout no tiene fórmula — así que son atributos heterogéneos por fila, no columnas paralelas"
         }
-      }
+      },
+      "highlights": [
+        {
+          "kind": "important",
+          "body": "**El término entra al gradiente como cualquier otra parte de `J`.** Por eso en **cada paso de actualización** empuja los pesos hacia cero, además de hacia el mínimo del error — y por eso la diapositiva va acá y no en la sección de la loss: hasta que el gradiente y el paso no estuvieron sobre la mesa, no había con qué explicarlo."
+        }
+      ]
     },
     {
       "template": "value-columns",
       "section": "Backpropagation",
       "title": "Qué mirar cuando esto se entrena",
-      "notes": "Esta es la diapositiva que los alumnos van a fotografiar, y la que más rinde en la práctica de laboratorio. Dala como checklist, no como teoría.\n\nEl orden de las perillas es el mensaje principal y es contraintuitivo: el reflejo de todo el mundo es agregar capas, y es lo último de la lista. `η` es la primera y la que más mueve la aguja. Conectá con la diapositiva 4 de la sección 1, donde ya dijimos que la cantidad de capas es lo que menos pesa; esta lo confirma desde el otro lado.\n\nLas dos filas de `NaN` y de loss estancada son las que van a ver de verdad en la práctica. Si tenés tiempo, provocá una en vivo subiendo `η` a 10 y mostrá el `NaN`.\n\nEl gradiente que se desvanece es el segundo factor de la regla de la cadena, multiplicado capa tras capa: aquel factor chiquito, elevado a la cantidad de capas. Decilo explícito. Y dejalo anunciado hacia adelante: las activaciones ocultas son la sección 8, y ahí se cierra el círculo con por qué ReLU desplazó a la sigmoide.\n\nLas dos bandas que antes explicaban el gradiente que se desvanece y el que explota se sacaron de la diapositiva porque la tabla ya los nombra en la columna del medio. Decilos vos: **el que se desvanece** es que cada capa hacia atrás multiplica por la derivada de su activación, y si es chica el producto se achica capa tras capa hasta que las primeras dejan de recibir señal. **El que explota** es el simétrico: el producto crece y el paso se dispara; se ataca recortando la norma del gradiente antes de aplicarlo.\n\n**Goal of this section:** El modelo ya está diseñado y entrenado; ahora, ¿anda? La sección va en cadena y trabaja sobre dos clases de punta a punta: accuracy engaña, la matriz de confusión separa los cuatro tipos de resultado, de ahí salen precisión, recall y F1, con eso ya definido tres quiz obligan a elegir cuál duele en tres casos reales, y el umbral cierra mostrando que la elección es una perilla y no un destino. El caso multiclase queda como una nota al final. Nota: este tema no está en el corpus; el contenido viene del conocimiento del área (ver Open questions).\n\n---",
+      "notes": "**Los dos modos de falla del gradiente, para decirlos en voz alta** (salieron de la diapositiva porque la tabla ya los nombra):\n\n- **El gradiente que se desvanece.** Cada capa hacia atrás multiplica por la derivada de su activación. Si esa derivada es chica, el producto se achica capa tras capa y las primeras dejan de recibir señal. Es el argumento formal de por qué ReLU desplazó a la sigmoide en capas ocultas.\n\nEsta es la diapositiva que los alumnos van a fotografiar, y la que más rinde en la práctica de laboratorio. Dala como checklist, no como teoría.\n\nEl orden de las perillas es el mensaje principal y es contraintuitivo: el reflejo de todo el mundo es agregar capas, y es lo último de la lista. `η` es la primera y la que más mueve la aguja. Conectá con la diapositiva 5 de la sección 1, donde ya dijimos que la cantidad de capas es lo que menos pesa; esta lo confirma desde el otro lado.\n\nLas dos filas de `NaN` y de loss estancada son las que van a ver de verdad en la práctica. Si tenés tiempo, provocá una en vivo subiendo `η` a 10 y mostrá el `NaN`.\n\nEl gradiente que se desvanece es el segundo factor de la regla de la cadena, multiplicado capa tras capa: aquel factor chiquito, elevado a la cantidad de capas. Decilo explícito. Y dejalo anunciado hacia adelante: las activaciones ocultas son la sección 8, y ahí se cierra el círculo con por qué ReLU desplazó a la sigmoide.\n\nLas dos bandas que antes explicaban el gradiente que se desvanece y el que explota se sacaron de la diapositiva porque la tabla ya los nombra en la columna del medio. Decilos vos: **el que se desvanece** es que cada capa hacia atrás multiplica por la derivada de su activación, y si es chica el producto se achica capa tras capa hasta que las primeras dejan de recibir señal. **El que explota** es el simétrico: el producto crece y el paso se dispara; se ataca recortando la norma del gradiente antes de aplicarlo.\n\n# 7. Medir un clasificador\n\n**Goal of this section:** El modelo ya está diseñado y entrenado; ahora, ¿anda? La sección va en cadena y trabaja sobre dos clases de punta a punta: accuracy engaña, la matriz de confusión separa los cuatro tipos de resultado, de ahí salen precisión, recall y F1, con eso ya definido tres quiz obligan a elegir cuál duele en tres casos reales, y el umbral cierra mostrando que la elección es una perilla y no un destino. El caso multiclase queda como una nota al final. Nota: este tema no está en el corpus; el contenido viene del conocimiento del área (ver Open questions).",
       "lead": "En la práctica nadie mira las fórmulas: se mira la curva de loss y se toca alguna perilla. Este es el mapa de síntoma, causa y qué tocar.",
       "columns": [
         {
@@ -1288,11 +1386,11 @@
       "section": "Medir un clasificador",
       "title": "El 99% de accuracy que no sirve",
       "lead": "Un detector de fraude sobre 10.000 transacciones, donde 100 son fraude. La regla más tonta posible: decir siempre que no es fraude.",
-      "notes": "Arranque con gancho: el clasificador que dice siempre no. Escribí la fórmula en el pizarrón y hacé la cuenta con ellos, 9.900 sobre 10.000. El golpe llega con el segundo número, 0 sobre 100. Los números son ilustrativos, no un dato de una fuente.",
+      "notes": "Arranque con gancho concreto: el clasificador que dice siempre \"no\". Es la mejor forma de que se les caiga la ficha de que accuracy sola no alcanza. Escribí la fórmula en el pizarrón antes de mostrar el diagrama y hacé la cuenta con ellos: 9.900 sobre 10.000. El golpe llega cuando pasás al segundo número, 0 sobre 100. Los números son ilustrativos, no un dato de una fuente; dejalo claro si alguien pregunta. Este es el puente desde la salida (sección 4, clasificación con sigmoide) hacia cómo se evalúa esa clasificación.",
       "design": "split-right",
       "media": {
         "src": "images/s7-1-2-desbalance-accuracy.png",
-        "alt": "10.000 transacciones con 100 fraudes: accuracy 99% y cero fraudes detectados"
+        "alt": "Dos números enfrentados: 99% de accuracy en gris contra 0% de fraudes detectados en rojo, sobre una barra donde los 100 fraudes son una astilla del 1%"
       },
       "highlights": [],
       "cards": [
@@ -1315,7 +1413,7 @@
       "section": "Medir un clasificador",
       "title": "La matriz de confusión",
       "lead": "Para clasificación binaria, todos los resultados caen en una tabla de 2×2 que cruza predicción y verdad.",
-      "notes": "El centro de la sección. Dibujá la matriz mientras aparece y pedí que ubiquen el fraude en cada celda. La confusión típica es FP vs FN; anclalo con el costo: un FN médico (mandar a casa a alguien enfermo) suele ser peor que un FP. Accuracy es la diagonal sobre el total.",
+      "notes": "El centro de la sección. Dibujá la matriz en el pizarrón mientras aparece en la diapositiva y pedí que ubiquen el ejemplo del fraude en cada celda. La confusión típica del alumno es FP vs FN; anclalo con el costo: en un test médico, un FN (mandar a casa a alguien enfermo) suele ser mucho peor que un FP (un estudio de más). Que se lleven que la matriz es la foto completa y accuracy es solo la diagonal sobre el total.",
       "design": "split-right",
       "media": {
         "src": "images/s7-2-1-matriz-confusion.png",
@@ -1345,7 +1443,7 @@
       "section": "Medir un clasificador",
       "title": "Precision, recall y F1",
       "lead": "De las cuatro celdas salen las métricas que de verdad describen a un clasificador.",
-      "notes": "Insistí en la intuición antes que en la fórmula. Precision: cuando dice que sí, ¿le creo? Recall: de todos los que eran, ¿cuántos encontró? Si preguntan por qué media armónica y no promedio: el promedio deja que un 1.0 tape un 0.0, y un clasificador que marca todo tiene recall 1.0 con precision pésima. Hacé la cuenta de 0.9 y 0.5 en el pizarrón. Si dan tiempo, accuracy = (TP+TN)/total cierra el círculo con la primera diapositiva de la sección.",
+      "notes": "Insistí en la intuición antes que en la fórmula. Precision responde \"cuando dice que sí, ¿le creo?\"; recall responde \"de todos los que eran, ¿cuántos encontró?\". El truco mnemotécnico: precisión mira la columna de predichos positivos, recall mira la fila de reales positivos. Si preguntan por qué media armónica y no promedio: el promedio deja que un 1.0 tape un 0.0, y un clasificador que marca todo tiene recall 1.0 con precision pésima. La armónica no lo permite, porque tiende al más chico de los dos. Hacé la cuenta de 0.9 y 0.5 en el pizarrón, son diez segundos y se entiende de una. F1 es útil pero peligroso si se reporta solo; siempre conviene mirar las dos. Si dan tiempo, escribí accuracy = (TP+TN)/total: es la misma fórmula de la 5.1, ahora con los cuatro términos ya definidos, y cierra el círculo de la sección.",
       "columns": [
         {
           "label": "Precisión",
@@ -1402,7 +1500,7 @@
       "correct": 2,
       "answer": "Recall. El error caro es el falso negativo, no detectar a quien sí estaba enfermo.",
       "explanation": "Priorizar recall significa que el test marca ante la duda, a costa de mandar a estudios a gente sana.",
-      "notes": "El espejo del anterior, y el contraste es el punto: mismo modelo, misma matemática, decisión opuesta. Lo que cambió no es técnico, es cuánto cuesta cada error. Acá conviene decir en voz alta que la métrica la elige el negocio, no el modelo."
+      "notes": "El espejo del anterior, y el contraste es el punto: mismo modelo, misma matemática, decisión opuesta. Lo que cambió no es técnico, es cuánto cuesta cada error. Acá es donde conviene decir en voz alta que la métrica la elige el negocio, no el modelo."
     },
     {
       "template": "quiz",
@@ -1417,7 +1515,7 @@
       "correct": 3,
       "answer": "F1. Los dos errores cuestan parecido, así que optimizar una sola métrica deja la otra libre.",
       "explanation": "F1 es el número que las mantiene atadas, y por eso este es el caso donde sirve como número único.",
-      "notes": "El que cierra la secuencia y el que justifica F1. Los dos anteriores tenían un error claramente más caro; este no, y ahí es donde una sola métrica deja de alcanzar. Un cuarto caso para tirar en voz alta si sobra tiempo, sin diapositiva: una alerta de fraude donde el equipo revisa pocas alertas pero cada fraude no detectado cuesta caro. No tiene respuesta única y funciona mejor como discusión abierta."
+      "notes": "El que cierra la secuencia y el que justifica F1. Los dos anteriores tenían un error claramente más caro; este no, y ahí es donde una sola métrica deja de alcanzar. Un cuarto caso para tirar en voz alta si sobra tiempo, sin diapositiva: una alerta de fraude donde el equipo puede revisar pocas alertas pero cada fraude no detectado cuesta caro. No tiene respuesta única, depende de la capacidad de revisión y del costo del fraude, y por eso funciona mejor como discusión abierta que como quiz."
     },
     {
       "template": "content+cards+image",
@@ -1434,7 +1532,7 @@
           "body": "Muestra ese intercambio para todos los umbrales de una vez, y sirve para comparar dos modelos sin fijar ninguno."
         }
       ],
-      "notes": "El umbral es lo que más cuesta que entiendan y lo más útil en la práctica. Recorré el diagrama con el dedo, de izquierda a derecha, y que ellos digan qué pasa con cada métrica antes de que lo leas. Un modelo de fraude con recall bajo en 0.5 pasa a recall alto bajando a 0.2, a costa de más falsas alarmas. La línea de N×N va al pasar, conecta con el softmax de la sección 4.",
+      "notes": "El umbral es lo que más cuesta que entiendan y lo más útil en la práctica. Recorré el diagrama con el dedo, de izquierda a derecha, y que ellos digan qué pasa con cada métrica antes de que lo leas. Ejemplo para anclar: un modelo de fraude con recall bajo en 0.5 pasa a recall alto bajando el umbral a 0.2, a costa de más falsas alarmas que el equipo antifraude tendrá que revisar. Ahí se ve que es una decisión de operación y no de modelado. La nota del final va al pasar, en diez segundos: toda la sección es binaria a propósito, y con más clases la idea no cambia. Si alguien pregunta, el ejemplo concreto es un clasificador de diez dígitos que confunde el 4 con el 9 y nunca el 4 con el 0; eso se ve en la celda de la matriz y jamás en la accuracy. No lo desarrolles salvo que lo pidan. Si el tiempo aprieta, esta diapositiva se puede dar solo con el diagrama.",
       "design": "split-right",
       "media": {
         "src": "images/s7-7-1-umbral.png",
@@ -1620,7 +1718,7 @@
           "body": "Primero se diagnostica el overfitting (brecha train-validación), después se trata: L2 de base, dropout en redes profundas, early stopping casi siempre."
         }
       ],
-      "notes": "Recapitulá siguiendo el recorrido del dato: se codificó (entrada), se partió (dataset), salió (salida), se le puso número al error (pérdida), se corrigieron los pesos (backpropagation), lo medimos (clasificador) y lo cuidamos (regularización). Siete ideas, una por sección troncal. Dejá espacio para preguntas antes del checklist."
+      "notes": "Recapitulá siguiendo el recorrido del dato: se codificó (entrada), se partió (dataset), salió (salida), se le puso número al error (loss), se corrigieron los pesos (backpropagation), lo medimos (clasificador) y lo cuidamos (regularización). Siete ideas, una por sección troncal. Dejá espacio para preguntas antes del checklist."
     },
     {
       "template": "process",
@@ -1633,7 +1731,7 @@
           "kind": "note"
         }
       ],
-      "notes": "Cierre accionable, directamente aplicable al TP. Sugiero dejarlo como material de la clase. Si hay práctica a continuación, que apliquen el checklist a un dataset real antes de escribir una línea de la red.",
+      "notes": "Cierre accionable. Este checklist es directamente aplicable al TP o al dataset con el que trabajen. Sugiero dejarlo como material de la clase. Si hay práctica a continuación, este es el puente: que apliquen el checklist a un dataset real antes de escribir una sola línea de la red.",
       "steps": [
         {
           "label": "¿Es número, categoría, ciclo, fecha o texto?",
@@ -1681,7 +1779,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "8643af90e2f4ced97475a95d3c789bf9371cc66bcfcebd3ca45f1b84515f977a",
-    "bytes": 171515
+    "sha256": "dedc3051333ddfda9163dcbccb3d87a7153aa297fbcfcdc6b8d2f722c6e6f156",
+    "bytes": 183492
   }
 }
