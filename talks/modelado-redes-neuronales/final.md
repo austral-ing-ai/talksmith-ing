@@ -1147,12 +1147,10 @@ No gastes acá la analogía de la pelota bajando por el valle: es de la diaposit
 
 **Backpropagation es el algoritmo que consigue la brújula.** Dado el error al final de la red, calcula de cuánto es culpable **cada uno** de los pesos, todos en una sola pasada hacia atrás.
 
-La alternativa ingenua sería tantear: mover un peso, volver a correr la red entera, ver cuánto cambió el error, y repetir. Una corrida completa **por cada peso**, millones de corridas para dar **un solo** paso de entrenamiento. Backprop consigue lo mismo en **una ida y una vuelta**, y eso es lo que vuelve entrenable una red grande.
-
-- **1970 — Linnainmaa.** La técnica aparece, y no en redes neuronales: es *diferenciación automática en modo reverso*, publicada en una tesis de maestría sobre propagación de errores de redondeo.
-- **1974 — Werbos.** Paul Werbos la aplica a redes neuronales en su tesis doctoral en Harvard. Pasa casi inadvertida: desde *Perceptrons* (1969) y el problema del XOR, las redes estaban en desgracia.
-- **1986 — Rumelhart, Hinton y Williams.** *"Learning representations by back-propagating errors"*, en Nature. No lo inventan: muestran que **funciona**, y que las capas ocultas aprenden representaciones útiles por su cuenta. Ahí arranca todo lo demás.
-- **Hoy.** Nadie lo programa a mano. Lo que en los frameworks se llama *autograd* o *gradient tape* es este mismo algoritmo, automatizado, y es literalmente lo que corre adentro de `model.fit`.
+- **La alternativa ingenua sería tantear.** Mover un peso, volver a correr la red entera, ver cuánto cambió el error, y repetir. Una corrida completa **por cada peso**, millones de corridas para dar **un solo** paso de entrenamiento.
+- **Backprop consigue lo mismo en una ida y una vuelta.** Ese factor es la diferencia entre entrenable y no entrenable, y es lo que hace posible entrenar una red grande.
+- **1986 — Rumelhart, Hinton y Williams.** *"Learning representations by back-propagating errors"*, en Nature. No lo inventan — la técnica ya existía: muestran que **funciona**, y que las capas ocultas aprenden representaciones útiles por su cuenta. Ahí arranca todo lo demás.
+- **Hoy nadie lo programa a mano.** Lo que en los frameworks se llama *autograd* o *gradient tape* es este mismo algoritmo, automatizado, y es literalmente lo que corre adentro de `model.fit`.
 
 ### Sources
 
@@ -1168,7 +1166,7 @@ Es la diapositiva de contexto de la sección y se da rápido, dos minutos. Lo qu
 
 El argumento del costo es el que justifica que el algoritmo exista, y conviene hacerlo con números en voz alta: si tantear cuesta una corrida por peso, una red de un millón de pesos necesita un millón de corridas para dar **un** paso. Backprop lo hace en dos. Ese factor es la diferencia entre entrenable y no entrenable, y es exactamente la economía que se ve en detalle en "Qué vale cada factor".
 
-Sobre las fechas, el punto interesante no es quién fue primero: es que la técnica existió **dieciséis años** antes de que a alguien le importara. Hacía falta que alguien mostrara que funcionaba en un problema real. Es la historia de casi toda la IA moderna, donde la idea suele estar mucho antes que la demostración.
+En pantalla quedó una sola fecha, 1986, y es a propósito. El resto de la historia va en voz alta si hay clima para contarla: la técnica ya existía desde **1970**, cuando Linnainmaa la publica como *diferenciación automática en modo reverso* en una tesis sobre errores de redondeo, y **Werbos** la aplica a redes neuronales en 1974 sin que nadie le diera bola, porque desde *Perceptrons* (1969) y el problema del XOR las redes estaban en desgracia. El punto interesante no es quién fue primero: es que la técnica existió **dieciséis años** antes de que a alguien le importara, y que hacía falta que alguien mostrara que funcionaba en un problema real. Es la historia de casi toda la IA moderna, donde la idea suele estar mucho antes que la demostración.
 
 Enganche con la clase 1: la línea de tiempo de la materia ya ubica 1986 como el año en que "backpropagation revoluciona el aprendizaje". Esta diapositiva es el zoom de ese renglón, y conviene referirla explícitamente.
 
@@ -2091,6 +2089,13 @@ Si preguntan por dónde empezar: el de la entrada sigue el orden de la sección 
 - La cita de Keras sobre el aplanado (notas del orador de la 1.2) está verificada contra la documentación oficial pero no vive en el corpus. Ingerir esa página si se la quiere como fuente formal de la Talk.
 
 # Cut material
+
+## Diapositiva 6.2 "Qué es backpropagation, y de dónde salió" — la línea de tiempo (retirada por pedido del presentador, 2026-08-26)
+
+La diapositiva era una `timeline` de cuatro hitos y pasó a cards, con **1986 como única fecha en pantalla**. Los dos hitos previos salieron del cuerpo y bajaron a las notas del orador, que ahora los cuenta en voz alta con el argumento de los dieciséis años. Las citas de Werbos y Linnainmaa se conservan en `Sources` justamente porque el orador los menciona. Texto retirado:
+
+- **1970 — Linnainmaa.** La técnica aparece, y no en redes neuronales: es *diferenciación automática en modo reverso*, publicada en una tesis de maestría sobre propagación de errores de redondeo.
+- **1974 — Werbos.** Paul Werbos la aplica a redes neuronales en su tesis doctoral en Harvard. Pasa casi inadvertida: desde *Perceptrons* (1969) y el problema del XOR, las redes estaban en desgracia.
 
 ## Diapositiva 6.11 "El ciclo completo, batch a batch" — los cuatro pasos de la izquierda (retirados por pedido del presentador, 2026-08-26)
 

@@ -1,7 +1,7 @@
 # memory.md — modelado-redes-neuronales
 
-**Current step:** 8 (Learnings) — iteración post-render, complete
-**Awaiting:** — (pendiente aparte y ya crítico: el blocker de duración)
+**Current step:** 7 (Render) — complete; próximo pendiente: el blocker de duración
+**Awaiting:** — (pendiente y ya crítico: el blocker de duración, ~104 min contra 90)
 **Topic:** Diseño y modelado de una red neuronal — entradas/salidas, matriz de confusión, overfitting y regularización L2
 **Folder:** talks/modelado-redes-neuronales/
 **Started:** 2026-08-18
@@ -1281,3 +1281,49 @@ quiero crear una nueva presentacion que va a cubrir aspectos del diseno y input,
 - **Lo que salió no se tiró:** el mecanismo (el término entra al gradiente como cualquier otra parte de `J`, y por eso empuja los pesos hacia cero en cada paso) bajó a un `highlights` de tipo `important`, que es donde pega más fuerte. Ahí también quedó el argumento de por qué la diapositiva vive en la sección 6.
 - **Lección para el resto del mazo:** un lead de más de dos oraciones no es un lead. Vale revisarlo en las demás.
 - Audits en verde. Deck en 62 diapositivas.
+
+## 2026-08-26 — Retomada la sesión: plugin a 0.89.0, cobertura de texto a cero
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "¿Qué atacamos primero: las 7 líneas perdidas, la duración, o las dos?" → **las 7 líneas primero**
+
+### Lo que destapó la actualización a 0.88.0
+- Las auditorías se recalibraron contra este mismo mazo. Las **96 candidatas de cuerpo sin triar** de la ronda anterior colapsaron a **13**, y de esas 13, **6 son falsos positivos** de tabla y **7 son pérdidas reales**. El triaje pendiente del presentador ya está hecho, y es corto.
+- Las 7 reales, todas cláusulas de cierre que el FILL cortó al descomponer bullets en tarjetas: final.md:372, :374, :561, :611, :1150, :1575, :1978. La más grave es la 1978 — **la palabra "Kaiming" no aparece en ninguna parte del modelo**.
+- Los dos defectos de audit que quedaban vivos son nuevos y están registrados (BUG-04, blockquote de `quote` contado como callout; BUG-05, filas de tabla row-major contra modelo column-major). Los dos anteriores se cerraron: verificados como corregidos en 0.88.0.
+
+### Las 7 líneas: 5 restauradas, 2 eran reescritura legítima
+- **Restauradas al modelo** (`final.md` no se tocó: ya las tenía, el modelo era el que las había perdido):
+  - *"El entero no entra a la red, entra al lookup."* — el párrafo entero de floats contra enteros faltaba en "La pregunta que decide la codificación". Volvió como segundo `highlights`.
+  - *"Por eso no alcanza con partir en dos"* — el argumento del split de dos vías faltaba en "Los tres, lado a lado". Volvió al `highlights` existente.
+  - *"El número se ve espectacular y no se sostiene."* — el remate de la card de serie de tiempo en "Los errores que arruinan la medición".
+  - **`Kaiming` y `Xavier` no estaban en ninguna parte del modelo.** Es la pérdida más cara de las siete: son los nombres con los que el alumno los va a encontrar en PyTorch y en Keras. La card de "Cómo arrancan los pesos" ahora dice los cuatro nombres y el mapeo a tanh.
+  - Dos celdas de ejemplo truncadas en "La tabla de decisiones" (*"mes de venta"*, *"descripción"*) — las destapó la auditoría nueva, que ahora lee las tablas celda por celda.
+- **Dos no eran pérdida:** el tanteo peso por peso de backprop y la línea de que la cuarta opción regulariza sin entrar en la fórmula ya estaban dichas con otras palabras. Se reescribieron igual con las palabras de `final.md`, porque la versión de la fuente es mejor y de paso deja la auditoría en cero.
+- `text_coverage: ok — 1121 source lines, all present`. Cobertura de bloques y de notas, también en verde.
+- Deck re-renderizado, 62 diapositivas.
+
+### El plugin llegó a 0.89.0 y cerró los dos defectos de auditoría del día
+- `quote` ya no reporta su blockquote como callout perdido, y las tablas se auditan celda por celda en vez de por ventana de palabras sobre la fila. Los dos verificados sobre este mazo y borrados del log.
+- **Pero el render trae una regresión nueva:** la pasada de cobertura que corre dentro de `build_html.py` está rota (`reconcile_source() missing 1 required positional argument: 'index'`) y el `except` la degrada a warning. Las auditorías a mano funcionan; la red de seguridad automática del render, no. Registrada como BUG-06.
+
+## 2026-08-26 — Slide 36: la línea de tiempo de backprop pasa a cards
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "Slide 36. Borrar el timeline, mencionar solo '1986 — Rumelhart, Hinton y Williams' y convertirlo a cards"
+
+### Qué cambió
+- La diapositiva era la **única `timeline` del mazo** y ahora es `concept-breakdown` de cuatro cards: el costo del tanteo, la ida y vuelta, 1986, y el autograd de hoy. El párrafo de prosa sobre el tanteo se disolvió en las dos primeras cards, así que no quedó texto suelto arriba.
+- **1970 (Linnainmaa) y 1974 (Werbos) salieron de pantalla y bajaron a las notas del orador**, con el argumento de los dieciséis años intacto y ahora explícito sobre por qué en pantalla hay una sola fecha. Las dos citas se conservan en `Sources` justamente porque el orador los nombra. El texto retirado quedó verbatim en `# Cut material`.
+- `_choice` re-registrado: con una sola fecha ya no hay cronología que mostrar, así que `timeline` deja de aplicar por contenido y no solo por gusto.
+- **Efecto de composición que conviene tener presente:** el mazo pierde su única timeline y las plantillas de cards suben a **51% de las diapositivas de contenido** (26 de 51). El audit de diversidad lo marca. Es consecuencia del pedido, no un descuido, pero si aparecen más conversiones a cards conviene mirarlo.
+- Los tres audits de cobertura en verde. Deck re-renderizado, 62 diapositivas.
+
+## 2026-08-26 — BUG-06 verificado y cerrado (plugin 0.89.1)
+- Status: complete
+- Asks log:
+  - 2026-08-26 — "Revisá BUG-06 si está corregido" → sí, y probado en las dos direcciones
+- El render vuelve a imprimir `[html] coverage: ok — 1118 source lines present in the model`.
+- **Probado también en negativo, que es lo que importaba:** con una copia del modelo amputada a mano (notas cortadas y una card recortada en "Cómo arrancan los pesos"), el render las detecta y lista archivo y línea — 4 de notas, 1 de cuerpo — y renderiza igual. El modelo real se restauró y quedó en verde.
+- El fix además distingue por tipo de falla: un archivo ilegible es condición del mazo y se saltea en silencio; una firma que derivó es defecto del plugin y sale con una línea distinta. Era exactamente el modo de falla que lo había tapado dos releases.
+

@@ -209,8 +209,12 @@
       ],
       "highlights": [
         {
-          "body": "Poner un número real en el tensor afirma dos cosas: que las diferencias son comparables y que la magnitud escala el efecto, porque el aporte a `z = W·x + b` es el peso por el valor. Con 85 m² se cumple; con barrio 14 es falso.",
+          "body": "**Poner un número real en el vector es afirmar algo.** Cada float le promete a la red que las diferencias son comparables y que la magnitud escala el efecto, porque el aporte a `z = W·x + b` es el peso por el valor. Con 85 m² y 60 m² la promesa se cumple; con barrio 14 y barrio 7 es falsa, y ahí es donde hay que cambiar de codificación.",
           "kind": "important"
+        },
+        {
+          "kind": "takeaway",
+          "body": "Todo termina en floats, nunca en enteros. Los enteros aparecen en un solo lugar: como índice para buscar una fila en una tabla de embeddings. **El entero no entra a la red, entra al lookup.**"
         }
       ],
       "notes": "Esta pregunta es la herramienta más transferible de la clase. Si se llevan una sola cosa de la sección, que sea esta. Ejemplo en vivo: tirales tres variables de un dataset que conozcan (edad, código postal, nivel educativo) y que apliquen la pregunta en voz alta. El código postal es la trampa clásica: parece número, la resta no significa nada."
@@ -377,9 +381,9 @@
             "Barrio (500 valores)",
             "Código postal",
             "DNI, CUIT",
-            "Hora del día, mes",
+            "Hora del día, mes de venta",
             "Fecha de alta",
-            "Reseña"
+            "Reseña, descripción"
           ]
         },
         {
@@ -504,7 +508,7 @@
       ],
       "highlights": [
         {
-          "body": "La diferencia sutil está entre validación y test. El modelo no entrena con ninguno; la diferencia sos vos, que tomás decisiones mirando validación y vas sobreajustando tus elecciones a ese conjunto.",
+          "body": "La diferencia sutil está entre validación y test. El modelo no entrena con ninguno; la diferencia sos vos, que tomás decisiones mirando validación y vas sobreajustando tus elecciones a ese conjunto. **Por eso no alcanza con partir en dos:** el split de dos vías sirve solo si no tomás ninguna decisión iterativa, que no describe a ningún proyecto real.",
           "kind": "important"
         }
       ],
@@ -539,7 +543,7 @@
         },
         {
           "label": "Partir al azar una serie de tiempo",
-          "body": "El azar pone futuro en train y pasado en test: el modelo predice enero mirando marzo. Se corta por fecha."
+          "body": "El azar pone futuro en train y pasado en test: el modelo predice enero mirando marzo. El número se ve espectacular y no se sostiene. Se corta por fecha."
         },
         {
           "label": "Achicar validación y test",
@@ -966,47 +970,48 @@
       ]
     },
     {
-      "template": "timeline",
+      "template": "concept-breakdown",
       "section": "Backpropagation",
       "title": "Qué es backpropagation, y de dónde salió",
-      "lead": "Backpropagation es el algoritmo que consigue la brújula: dado el error al final de la red, calcula de cuánto es culpable **cada uno** de los pesos, todos en una sola pasada hacia atrás. Tantear peso por peso costaría una corrida completa de la red **por cada peso** — millones para dar un solo paso. Backprop lo hace en **una ida y una vuelta**, y eso es lo que vuelve entrenable una red grande.",
-      "milestones": [
-        {
-          "label": "1970 — Linnainmaa",
-          "body": "La técnica aparece, y no en redes neuronales: es *diferenciación automática en modo reverso*, publicada en una tesis de maestría sobre propagación de errores de redondeo."
-        },
-        {
-          "label": "1974 — Werbos",
-          "body": "Paul Werbos la aplica a redes neuronales en su tesis doctoral en Harvard. Pasa casi inadvertida: desde *Perceptrons* (1969) y el problema del XOR, las redes estaban en desgracia."
-        },
-        {
-          "label": "1986 — Rumelhart, Hinton y Williams",
-          "body": "*\"Learning representations by back-propagating errors\"*, en Nature. No lo inventan: muestran que **funciona**, y que las capas ocultas aprenden representaciones útiles por su cuenta. Ahí arranca todo lo demás."
-        },
-        {
-          "label": "Hoy",
-          "body": "Nadie lo programa a mano. Lo que en los frameworks se llama *autograd* o *gradient tape* es este mismo algoritmo, automatizado, y es literalmente lo que corre adentro de `model.fit`."
-        }
-      ],
-      "notes": "Es la diapositiva de contexto de la sección y se da rápido, dos minutos. Lo que tiene que quedar es una sola idea: backpropagation **no** es \"cómo aprende la red\" — eso es el descenso por gradiente de la diapositiva anterior. Backprop es cómo se **calcula el gradiente**, y nada más. Los dos se confunden todo el tiempo, y separarlos acá evita media hora de confusión después.\n\nEl argumento del costo es el que justifica que el algoritmo exista, y conviene hacerlo con números en voz alta: si tantear cuesta una corrida por peso, una red de un millón de pesos necesita un millón de corridas para dar **un** paso. Backprop lo hace en dos. Ese factor es la diferencia entre entrenable y no entrenable, y es exactamente la economía que se ve en detalle en \"Qué vale cada factor\".\n\nSobre las fechas, el punto interesante no es quién fue primero: es que la técnica existió **dieciséis años** antes de que a alguien le importara. Hacía falta que alguien mostrara que funcionaba en un problema real. Es la historia de casi toda la IA moderna, donde la idea suele estar mucho antes que la demostración.\n\nEnganche con la clase 1: la línea de tiempo de la materia ya ubica 1986 como el año en que \"backpropagation revoluciona el aprendizaje\". Esta diapositiva es el zoom de ese renglón, y conviene referirla explícitamente.\n\nUn dato que despierta a la clase: Hinton recibió el Nobel de Física en 2024 por sus aportes fundacionales al aprendizaje con redes neuronales. El comité citó sobre todo las máquinas de Boltzmann y no backpropagation, así que no lo digas como \"ganó el Nobel por esto\" — pero es el mismo Hinton y la misma línea de trabajo.\n\nSi preguntan por qué se llama \"hacia atrás\", la respuesta corta es que la única información que existe está al final, en la comparación de la predicción con el objetivo, y hay que repartirla hacia el principio. Es exactamente lo que dibuja la diapositiva siguiente.",
+      "lead": "Backpropagation es el algoritmo que consigue la brújula: dado el error al final de la red, calcula de cuánto es culpable **cada uno** de los pesos, todos en una sola pasada hacia atrás.",
+      "notes": "Es la diapositiva de contexto de la sección y se da rápido, dos minutos. Lo que tiene que quedar es una sola idea: backpropagation **no** es \"cómo aprende la red\" — eso es el descenso por gradiente de la diapositiva anterior. Backprop es cómo se **calcula el gradiente**, y nada más. Los dos se confunden todo el tiempo, y separarlos acá evita media hora de confusión después.\n\nEl argumento del costo es el que justifica que el algoritmo exista, y conviene hacerlo con números en voz alta: si tantear cuesta una corrida por peso, una red de un millón de pesos necesita un millón de corridas para dar **un** paso. Backprop lo hace en dos. Ese factor es la diferencia entre entrenable y no entrenable, y es exactamente la economía que se ve en detalle en \"Qué vale cada factor\".\n\nEn pantalla quedó una sola fecha, 1986, y es a propósito. El resto de la historia va en voz alta si hay clima para contarla: la técnica ya existía desde **1970**, cuando Linnainmaa la publica como *diferenciación automática en modo reverso* en una tesis sobre errores de redondeo, y **Werbos** la aplica a redes neuronales en 1974 sin que nadie le diera bola, porque desde *Perceptrons* (1969) y el problema del XOR las redes estaban en desgracia. El punto interesante no es quién fue primero: es que la técnica existió **dieciséis años** antes de que a alguien le importara, y que hacía falta que alguien mostrara que funcionaba en un problema real. Es la historia de casi toda la IA moderna, donde la idea suele estar mucho antes que la demostración.\n\nEnganche con la clase 1: la línea de tiempo de la materia ya ubica 1986 como el año en que \"backpropagation revoluciona el aprendizaje\". Esta diapositiva es el zoom de ese renglón, y conviene referirla explícitamente.\n\nUn dato que despierta a la clase: Hinton recibió el Nobel de Física en 2024 por sus aportes fundacionales al aprendizaje con redes neuronales. El comité citó sobre todo las máquinas de Boltzmann y no backpropagation, así que no lo digas como \"ganó el Nobel por esto\" — pero es el mismo Hinton y la misma línea de trabajo.\n\nSi preguntan por qué se llama \"hacia atrás\", la respuesta corta es que la única información que existe está al final, en la comparación de la predicción con el objetivo, y hay que repartirla hacia el principio. Es exactamente lo que dibuja la diapositiva siguiente.",
       "_choice": {
         "signals": [
-          "date_labels=4 (1970, 1974, 1986, hoy)",
-          "is_ordered=true",
           "labeled_items=4",
+          "date_labels=1 (1986) — una sola fecha, ya no una serie",
+          "is_ordered=false",
           "n_images=0"
         ],
         "candidates": [
+          "concept-breakdown",
           "timeline",
-          "process",
-          "concept-breakdown"
+          "process"
         ],
-        "pick": "timeline",
+        "pick": "concept-breakdown",
         "rejected": {
-          "process": "`date_labels` hace de esto una timeline, no un process: los hitos son fechas, no pasos de un procedimiento que alguien ejecuta",
-          "concept-breakdown": "disuelve el orden cronológico, y la distancia entre 1970 y 1986 es justamente el contenido de la diapositiva"
+          "timeline": "era la plantilla anterior y dejó de aplicar: el presentador retiró 1970 y 1974, y con una sola fecha no hay cronología que mostrar — los cuatro ítems ya no son hitos en el tiempo sino conceptos paralelos",
+          "process": "no son pasos que alguien ejecute en orden; el costo del tanteo y la fecha de la publicación no se suceden"
+        },
+        "_note": "re-clasificada por pedido del presentador, 2026-08-26 (borrar el timeline, dejar solo 1986, pasar a cards)"
+      },
+      "cards": [
+        {
+          "label": "La alternativa ingenua sería tantear",
+          "body": "Mover un peso, volver a correr la red entera, ver cuánto cambió el error, y repetir. Una corrida completa **por cada peso**, millones de corridas para dar **un solo** paso de entrenamiento."
+        },
+        {
+          "label": "Backprop consigue lo mismo en una ida y una vuelta",
+          "body": "Ese factor es la diferencia entre entrenable y no entrenable, y es lo que hace posible entrenar una red grande."
+        },
+        {
+          "label": "1986 — Rumelhart, Hinton y Williams",
+          "body": "*\"Learning representations by back-propagating errors\"*, en Nature. No lo inventan — la técnica ya existía: muestran que **funciona**, y que las capas ocultas aprenden representaciones útiles por su cuenta. Ahí arranca todo lo demás."
+        },
+        {
+          "label": "Hoy nadie lo programa a mano",
+          "body": "Lo que en los frameworks se llama *autograd* o *gradient tape* es este mismo algoritmo, automatizado, y es literalmente lo que corre adentro de `model.fit`."
         }
-      }
+      ]
     },
     {
       "template": "process",
@@ -1281,7 +1286,7 @@
       "template": "content+cards+image",
       "section": "Backpropagation",
       "title": "La función objetivo",
-      "lead": "Lo que el optimizador minimiza no es la loss: es la **función objetivo** `J`, que suma dos términos — el `cost`, que ya conocen, más una penalización por complejidad.",
+      "lead": "Lo que el optimizador minimiza no es la loss: es la **función objetivo** `J`, que suma dos términos — el `cost`, que ya conocen, más una penalización por complejidad. Las tres primeras son formas distintas de escribir `R(w)`; la cuarta regulariza sin entrar en la fórmula.",
       "cards": [
         {
           "label": "L2 — Ridge, o *weight decay*",
@@ -1666,7 +1671,7 @@
         },
         {
           "label": "He para ReLU, Glorot para el resto",
-          "body": "Las dos eligen la varianza de `W` para que `c` quede cerca de 1 al arrancar. Son el default de los frameworks, así que casi nunca hay que tocarlas."
+          "body": "Las dos eligen la varianza de `W` para que `c` quede cerca de 1 al arrancar. **He** (o **Kaiming**) está pensada para ReLU; **Glorot** (o **Xavier**), para activaciones simétricas como tanh. Son el default de los frameworks, así que casi nunca hay que tocarlas."
         },
         {
           "label": "Un solo problema, cuatro herramientas",
@@ -1779,7 +1784,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "dedc3051333ddfda9163dcbccb3d87a7153aa297fbcfcdc6b8d2f722c6e6f156",
-    "bytes": 183492
+    "sha256": "776be7f2b3e57fd42a57a782b9259eb5249bc41e9954671c655b6e57547dc4a6",
+    "bytes": 184551
   }
 }
