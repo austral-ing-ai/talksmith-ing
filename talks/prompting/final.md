@@ -214,9 +214,11 @@ La definición primero y la tabla después: la ventana es memoria de trabajo, no
 
 ## 4. ¿Cuánto es 1 millón de tokens?
 
-<!-- aside: right ![Gandalf, de El Señor de los Anillos](images/slide-08-1.jpg) -->
+<!-- design: column-right -->
 
 ### Content
+
+![Gandalf, de El Señor de los Anillos](images/slide-08-1.jpg)
 
 - **"Claude Code tiene ahora una ventana de contexto de 1 millón de tokens por defecto. Un millón de tokens es mucho: la trilogía de El Señor de los Anillos más El Hobbit tienen unas 576.000 palabras, lo que equivale a ~750.000 tokens. Las cuatro obras caben en un único prompt... y aún sobra espacio."**
 
@@ -1506,41 +1508,13 @@ El ejemplo pasó de un caso clínico a un stack trace, y el cambio de dominio ha
 
 ## 9. Tree of Thought (ToT)
 
-<!-- aside: right ![Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino](images/slide-33-1.png) -->
+<!-- design: split-right -->
 
 ### Content
 
 **ToT extiende CoT explorando varios caminos de razonamiento en paralelo, como las ramas de un árbol de decisión. El modelo evalúa cada rama y elige la más prometedora.**
 
-<!-- ascii-render: force -->
-![Tree of Thought: generar ramas, evaluarlas, podar las malas y expandir solo la mejor hasta la solución](images/s5-9-1-arbol-ramificar-podar.png)
-<!-- ascii-source:
-                        [ problema ]
-                             |
-              +--------------+--------------+        1. GENERAR
-              |              |              |           ramas
-              v              v              v
-          [ rama A ]     [ rama B ]     [ rama C ]
-           score 8         score 5        score 2      2. EVALUAR
-              |              |              X             cada rama
-              |              |           podada
-       +------+------+       X
-       |             |    podada                       3. EXPANDIR
-       v             v                                    la mejor
-   [ A.1 ]        [ A.2 ]
-   score 9        score 4
-       |             X
-       |          podada
-       v
-   [ solucion ]                                       4. SELECCIONAR
-
-  CoT es este arbol con una sola rama y sin vuelta atras.
--->
-<!-- ascii-note:
-intent: mostrar que lo propio de ToT no es "razonar mas" sino RAMIFICAR y PODAR: generar varias continuaciones, puntuarlas, descartar las malas y expandir solo la mejor; y que CoT es el caso degenerado de un solo camino sin backtracking
-emphasize: las ramas podadas marcadas con X frente al camino que sobrevive hasta la solucion; los cuatro pasos numerados de la derecha alineados con los niveles del arbol; la linea de cierre que contrasta con CoT
-labels: "problema", "rama A/B/C", "score 8/5/2", "podada", "A.1", "A.2", "solucion", y los pasos GENERAR / EVALUAR / EXPANDIR / SELECCIONAR
--->
+![Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino](images/slide-33-1.png)
 
 **Limitaciones**
 
@@ -1552,15 +1526,32 @@ labels: "problema", "rama A/B/C", "score 8/5/2", "podada", "A.1", "A.2", "soluci
 ### Sources
 
 - `AIG4B-Clase-3-Prompting.md.md` (slide 33)
+
+### Speaker notes
+
+El diagrama de la slide es el único diagrama conceptual real del deck original, así que aprovechalo: rama, balanza, documento validado. Generar, evaluar, elegir.
+
+---
+
+## 10. ToT: ramificar y podar
+
+### Content
+
+**Lo propio de ToT no es razonar más, sino ramificar y podar: generar varias continuaciones, puntuarlas, descartar las malas y expandir solo la mejor.**
+
+![Tree of Thought: generar ramas, evaluarlas, podar las malas y expandir solo la mejor hasta la solución](images/s5-9-1-arbol-ramificar-podar.png)
+
+### Sources
+
+- `AIG4B-Clase-3-Prompting.md.md` (slide 33)
 - `tree-of-thoughts-yao.web.md` — Yao et al. (2023), NeurIPS 2023. ToT generaliza CoT: la unidad de decisión deja de ser el token y pasa a ser el *thought*, una unidad coherente de texto. Habilita autoevaluación, lookahead y backtracking. Game of 24 con GPT-4: CoT 4% → ToT 74%.
 
 ### Speaker notes
 
-El diagrama de la slide es el único diagrama conceptual real del deck original, así que aprovechalo: rama, balanza, documento validado. Generar, evaluar, elegir. El aporte teórico del paper vale la pena decirlo porque reordena todo lo anterior: la generación autoregresiva decide token por token y de izquierda a derecha, sin manera de volver atrás, y si el primer paso fue malo el resto está condenado. ToT cambia la unidad de decisión: en vez de tokens, pensamientos completos, y con eso aparecen dos operaciones que CoT no tiene, mirar hacia adelante y retroceder. Recordá el número de la slide de CoT: 4% a 74% en Game of 24, mismo modelo. La analogía médica del deck original se reemplazó por el ejemplo de refactor de la slide siguiente.
+El aporte teórico del papervale la pena decirlo porque reordena todo lo anterior: la generación autoregresiva decide token por token y de izquierda a derecha, sin manera de volver atrás, y si el primer paso fue malo el resto está condenado. ToT cambia la unidad de decisión: en vez de tokens, pensamientos completos, y con eso aparecen dos operaciones que CoT no tiene, mirar hacia adelante y retroceder. Recordá el número de la slide de CoT: 4% a 74% en Game of 24, mismo modelo. La analogía médica del deck original se reemplazó por el ejemplo de refactor de la slide siguiente.
 
----
 
-## 10. Tree of Thought: ejemplo
+## 11. Tree of Thought: ejemplo
 
 ### Content
 
@@ -1595,7 +1586,7 @@ Este ejemplo funciona porque las tres ramas son defendibles, y eso es justo el t
 
 ---
 
-## 11. ReAct: razonar y actuar
+## 12. ReAct: razonar y actuar
 
 <!-- slide nueva: ReAct esta procesado en el corpus y no aparecia en ninguna slide -->
 
@@ -1660,7 +1651,7 @@ Las dos afirmaciones del paper que sostenían la lámina van habladas: las **tra
 
 ---
 
-## 12. Prompt chaining
+## 13. Prompt chaining
 
 ### Content
 
@@ -1709,7 +1700,7 @@ El texto de esta slide venía cortado a mitad de palabra en el deck original y n
 
 ---
 
-## 13. Prompt chaining: ejemplo
+## 14. Prompt chaining: ejemplo
 
 ### Content
 
@@ -1748,7 +1739,7 @@ Input:  todo lo anterior
 La tercera ventaja es la que suele sorprender, y merece medio minuto: encadenar es más barato aunque haya más llamadas. La razón es que el paso 1 corre con un modelo chico sobre doscientos tokens, y el modelo caro solo se invoca en el paso 4 y con el contexto ya filtrado. Un prompt monolítico manda todo al modelo caro siempre. Es el mismo argumento del cascading, aplicado a las etapas en vez de a los modelos. La contra real es la de la primera fila de la derecha: cuatro llamadas secuenciales son cuatro latencias sumadas, y en un flujo interactivo eso se nota. Si el sistema es asincrónico, no importa.
 
 ---
-## 14. Técnicas avanzadas: pros y contras
+## 15. Técnicas avanzadas: pros y contras
 
 ### Content
 
@@ -1772,7 +1763,7 @@ Tabla de referencia, para consultar más que para leer. Si hay que decir una sol
 
 ---
 
-## 15. ¿Por qué funcionan?
+## 16. ¿Por qué funcionan?
 
 ### Content
 
@@ -1798,7 +1789,7 @@ Esta es la slide de la tesis y merece el tiempo que haga falta. Todo lo que vier
 
 ---
 
-## 16. ¿Por qué tardan más?
+## 17. ¿Por qué tardan más?
 
 ### Content
 
@@ -1825,7 +1816,7 @@ Esta slide es el contrapeso de las anteriores y por eso va acá, justo después 
 
 ---
 
-## 17. Prompts sin verificación
+## 18. Prompts sin verificación
 
 ### Content
 
@@ -1854,7 +1845,7 @@ Acá empieza el bloque de disciplina de producción y es donde esta audiencia ti
 
 ---
 
-## 18. DSPy: optimización automática
+## 19. DSPy: optimización automática
 
 ### Content
 
@@ -1883,7 +1874,7 @@ El eslogan del framework dice todo: programá, no promptees. Y el punto que más
 
 ---
 
-## 19. Versionado de prompts
+## 20. Versionado de prompts
 
 ### Content
 
@@ -1912,7 +1903,7 @@ La primera opción es la que hay que defender: Git. Un prompt en un archivo vers
 
 ---
 
-## 20. Datos y testing sistemático
+## 21. Datos y testing sistemático
 
 ### Content
 
@@ -1941,7 +1932,7 @@ La cuarta viñeta de la izquierda es la que más se viola y la que más caro sal
 
 ---
 
-## 21. Agenda
+## 22. Agenda
 
 ### Content
 
@@ -1965,7 +1956,7 @@ Cierre de la sección más larga. Recapitulá con la tesis: todas las técnicas 
 
 ---
 
-## 22. Versionado de prompts
+## 23. Versionado de prompts
 
 <!-- DUPLICADO verbatim de la slide 5.19, residuo de edicion -->
 <!-- en el pptx original quedo despues de la slide de cierre. Se conserva por decision del presentador. -->
@@ -1997,7 +1988,7 @@ Repetición de la slide 5.19. Si se conserva en la entrega, saltearla o usarla c
 
 ---
 
-## 23. Self-consistency: ejemplo
+## 24. Self-consistency: ejemplo
 
 <!-- DUPLICADO de la slide 5.5. Se conserva por decision del presentador. -->
 
@@ -2035,7 +2026,7 @@ Repetición de la slide 5.5. Las notas de fondo están ahí.
 
 ---
 
-## 24. Extended thinking (Anthropic)
+## 25. Extended thinking (Anthropic)
 
 <!-- DUPLICADO de la slide 5.7. Se conserva por decision del presentador. -->
 
@@ -2057,7 +2048,7 @@ Repetición de la slide 5.7. Las notas de fondo, y la desambiguación entre las 
 
 ---
 
-## 25. Extended thinking: ejemplo
+## 26. Extended thinking: ejemplo
 
 <!-- DUPLICADO de la slide 5.8. Se conserva por decision del presentador. -->
 
@@ -2093,7 +2084,7 @@ Repetición de la slide 5.8. Las notas de fondo están ahí.
 
 ---
 
-## 26. Tree of Thought (ToT)
+## 27. Tree of Thought (ToT)
 
 <!-- DUPLICADO de la slide 5.9. Se conserva por decision del presentador. -->
 
@@ -2123,7 +2114,7 @@ Repetición de la slide 5.9. Las notas de fondo están ahí.
 
 ---
 
-## 27. Tree of Thought: ejemplo
+## 28. Tree of Thought: ejemplo
 
 <!-- DUPLICADO de la slide 5.10. Se conserva por decision del presentador. -->
 
@@ -2430,6 +2421,12 @@ Dejá claro el encuadre antes que nada: esto es tarea, no actividad de clase. Su
 Tres frases y ninguna es un resumen de la agenda. Son la tesis desplegada. La primera es el mecanismo y explica todo lo demás: si el modelo completa, entonces el trabajo del ingeniero es darle un patrón fácil de completar y hacerlo escribir antes de concluir. La segunda es la economía: no hay técnica gratis, y elegir de más es tan error como elegir de menos. La tercera es la disciplina, y es la que más rápido pueden aplicar el lunes. Cerrá con una pregunta abierta si te queda tiempo: cuál de las seis técnicas de la sección cinco usarían para el trabajo práctico que están cursando, y por qué. La respuesta correcta casi siempre es la más barata que alcanza.
 
 ---
+
+<!-- deck-omit: images/slide-01-1.png -->  <!-- el logo lo resuelve la portada sintetizada -->
+<!-- deck-omit: images/slide-19-2.png -->
+<!-- deck-omit: images/slide-27-1.png -->
+<!-- deck-omit: images/slide-27-2.png -->  <!-- las cuatro donas estan dibujadas sobre cifras retiradas por no tener fuente -->
+<!-- deck-omit-text: Última modificación: agosto 2026 -->
 
 # Open questions
 

@@ -157,3 +157,23 @@
     edita el render nunca se actualiza
   suggested-fix (hipótesis, no verificada): que `scan` enumere por presencia de `ascii-source`
     y no por ausencia de render, marcando el estado (renderizado / pendiente / huérfano)
+
+- id: BUG-20260828-07
+  date: 2026-08-28
+  talk: talks/prompting
+  step: 7 (Render) — html-strict
+  where: skills/md-to-deck — emparejador de iconos por concepto (icon_fetch.py / catalogo Material Symbols)
+  what: el renderizador propone nombres de icono que despues no puede resolver contra su propio
+    catalogo, y cae a 'info'. En este render fueron tres: generating_tokens, report_problem,
+    remove_red_eye. Los tres son nombres validos de Material Icons en su grafia vieja; los
+    equivalentes vigentes en Material Symbols son token, warning y visibility
+  context: deck de 72 laminas, estilo html-strict. Los nombres NO estan en slide-model.json ni
+    en el codigo del skill — los deriva el emparejador en tiempo de render, asi que no hay forma
+    de corregirlos desde el modelo
+  expected: que el emparejador solo proponga nombres que su catalogo resuelve, o que traduzca
+    la grafia vieja de Material Icons a Material Symbols
+  actual: propone, falla y degrada a 'info' — tres conceptos distintos quedan con el mismo icono
+    generico, que es peor que no tener icono
+  suggested-fix (hipotesis, no verificada): tabla de alias de grafia vieja -> vigente
+    (generating_tokens->token, report_problem->warning, remove_red_eye->visibility) en _ICON_ALIAS;
+    o validar cada candidato contra el catalogo antes de emitirlo y reintentar con el siguiente

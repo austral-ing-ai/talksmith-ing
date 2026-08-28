@@ -250,9 +250,11 @@ La definición primero y la tabla después: la ventana es memoria de trabajo, no
 
 ## 4. ¿Cuánto es 1 millón de tokens?
 
-<!-- aside: right ![Gandalf, de El Señor de los Anillos](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-08-1.jpg) -->
+<!-- design: column-right -->
 
 ### Content
+
+![Gandalf, de El Señor de los Anillos](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-08-1.jpg)
 
 - **"Claude Code tiene ahora una ventana de contexto de 1 millón de tokens por defecto. Un millón de tokens es mucho: la trilogía de El Señor de los Anillos más El Hobbit tienen unas 576.000 palabras, lo que equivale a ~750.000 tokens. Las cuatro obras caben en un único prompt... y aún sobra espacio."**
 
@@ -274,7 +276,7 @@ Esta es la slide del "ah, mirá". Sirve para que la cifra deje de ser abstracta:
   Resolution: título corregido a "¿Cuánto es 1 millón de tokens?" (31 caracteres, dentro del presupuesto).
 - [open] 2026-08-28 — "La segunda columna reemplazó '~800K tokens = años de historial clínico' por un repositorio de software, pero sin cifra: el corpus no tiene una medición. ¿Medimos el repo del trabajo práctico con un tokenizador y ponemos el número real?"
 - [closed] 2026-08-28 — "La imagen de Gandalf va a la derecha, como decoración lateral, no como imagen inline dentro del cuerpo."
-  Resolution: la referencia inline pasó a un hint `<!-- aside: right ... -->` bajo el encabezado de la slide. El `.jpg` es vertical (1440x2160), así que la columna lateral le sienta mejor que el flujo del contenido.
+  Resolution: la imagen pasó a columna lateral derecha con un hint `<!-- design: column-right -->` bajo el encabezado de la slide. El `.jpg` es vertical (1440x2160), así que la franja lateral le sienta mejor que el flujo del contenido.
 
 ---
 
@@ -1720,11 +1722,42 @@ El ejemplo pasó de un caso clínico a un stack trace, y el cambio de dominio ha
 
 ## 9. Tree of Thought (ToT)
 
-<!-- aside: right ![Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-33-1.png) -->
+<!-- design: split-right -->
 
 ### Content
 
 **ToT extiende CoT explorando varios caminos de razonamiento en paralelo, como las ramas de un árbol de decisión. El modelo evalúa cada rama y elige la más prometedora.**
+
+![Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-33-1.png)
+
+**Limitaciones**
+
+- Cuesta bastante más que CoT lineal.
+- Es más complejo de implementar.
+- Sirve cuando el problema admite varias soluciones posibles.
+- No justifica el overhead en tareas simples.
+
+### Sources
+
+- `AIG4B-Clase-3-Prompting.md.md` (slide 33)
+
+### Speaker notes
+
+El diagrama de la slide es el único diagrama conceptual real del deck original, así que aprovechalo: rama, balanza, documento validado. Generar, evaluar, elegir.
+
+### Presenter feedback
+
+- [closed] 2026-08-28 — "'Analogía médica: ToT es similar al diagnóstico diferencial clínico'."
+  Resolution: la analogía clínica se retiró y su lugar lo ocupa el ejemplo de estrategias de refactor de la slide siguiente, que cumple la misma función pedagógica en el dominio de la audiencia.
+- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma. El árbol de ToT es el caso más claro, porque ramificación y poda son su punto entero."
+  Resolution: se agregó un diagrama ASCII del árbol con scores y ramas podadas, que muestra el mecanismo que la línea "Generar → Evaluar → Seleccionar" solo nombraba, y que cierra contrastando con CoT como el caso de una sola rama. Esa línea de tres pasos se retiró del cuerpo porque el árbol la dice mejor. La imagen del corpus (`slide-33-1.png`, los tres círculos) no se borró: la lámina se partió en dos, y esa imagen se queda en la primera —el planteo conceptual— mientras el árbol dibujado ocupa la segunda, donde se muestra el mecanismo. Una lámina tiene un solo lugar para media, así que convivir era imposible.
+---
+
+## 10. ToT: ramificar y podar
+
+### Content
+
+**Lo propio de ToT no es razonar más, sino ramificar y podar: generar varias continuaciones, puntuarlas, descartar las malas y expandir solo la mejor.**
 
 <!-- ascii-render: force -->
 ```ascii
@@ -1755,13 +1788,6 @@ emphasize: las ramas podadas marcadas con X frente al camino que sobrevive hasta
 labels: "problema", "rama A/B/C", "score 8/5/2", "podada", "A.1", "A.2", "solucion", y los pasos GENERAR / EVALUAR / EXPANDIR / SELECCIONAR
 -->
 
-**Limitaciones**
-
-- Cuesta bastante más que CoT lineal.
-- Es más complejo de implementar.
-- Sirve cuando el problema admite varias soluciones posibles.
-- No justifica el overhead en tareas simples.
-
 ### Sources
 
 - `AIG4B-Clase-3-Prompting.md.md` (slide 33)
@@ -1769,18 +1795,12 @@ labels: "problema", "rama A/B/C", "score 8/5/2", "podada", "A.1", "A.2", "soluci
 
 ### Speaker notes
 
-El diagrama de la slide es el único diagrama conceptual real del deck original, así que aprovechalo: rama, balanza, documento validado. Generar, evaluar, elegir. El aporte teórico del paper vale la pena decirlo porque reordena todo lo anterior: la generación autoregresiva decide token por token y de izquierda a derecha, sin manera de volver atrás, y si el primer paso fue malo el resto está condenado. ToT cambia la unidad de decisión: en vez de tokens, pensamientos completos, y con eso aparecen dos operaciones que CoT no tiene, mirar hacia adelante y retroceder. Recordá el número de la slide de CoT: 4% a 74% en Game of 24, mismo modelo. La analogía médica del deck original se reemplazó por el ejemplo de refactor de la slide siguiente.
+El aporte teórico del papervale la pena decirlo porque reordena todo lo anterior: la generación autoregresiva decide token por token y de izquierda a derecha, sin manera de volver atrás, y si el primer paso fue malo el resto está condenado. ToT cambia la unidad de decisión: en vez de tokens, pensamientos completos, y con eso aparecen dos operaciones que CoT no tiene, mirar hacia adelante y retroceder. Recordá el número de la slide de CoT: 4% a 74% en Game of 24, mismo modelo. La analogía médica del deck original se reemplazó por el ejemplo de refactor de la slide siguiente.
 
 ### Presenter feedback
 
-- [closed] 2026-08-28 — "'Analogía médica: ToT es similar al diagnóstico diferencial clínico'."
-  Resolution: la analogía clínica se retiró y su lugar lo ocupa el ejemplo de estrategias de refactor de la slide siguiente, que cumple la misma función pedagógica en el dominio de la audiencia.
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma. El árbol de ToT es el caso más claro, porque ramificación y poda son su punto entero."
-  Resolution: se agregó un diagrama ASCII del árbol con scores y ramas podadas, que muestra el mecanismo que la línea "Generar → Evaluar → Seleccionar" solo nombraba, y que cierra contrastando con CoT como el caso de una sola rama. Esa línea de tres pasos se retiró del cuerpo porque el árbol la dice mejor. La imagen del corpus (`slide-33-1.png`, los tres círculos) no se borró: pasó a `<!-- aside: right -->`, que es el rol que le corresponde, ya que sus rótulos son texto de PowerPoint y el gráfico en sí no es legible como diagrama.
 
----
-
-## 10. Tree of Thought: ejemplo
+## 11. Tree of Thought: ejemplo
 
 ### Content
 
@@ -1820,7 +1840,7 @@ Este ejemplo funciona porque las tres ramas son defendibles, y eso es justo el t
 
 ---
 
-## 11. ReAct: razonar y actuar
+## 12. ReAct: razonar y actuar
 
 <!-- slide nueva: ReAct esta procesado en el corpus y no aparecia en ninguna slide -->
 
@@ -1890,7 +1910,7 @@ Las dos afirmaciones del paper que sostenían la lámina van habladas: las **tra
 
 ---
 
-## 12. Prompt chaining
+## 13. Prompt chaining
 
 ### Content
 
@@ -1945,7 +1965,7 @@ El texto de esta slide venía cortado a mitad de palabra en el deck original y n
 
 ---
 
-## 13. Prompt chaining: ejemplo
+## 14. Prompt chaining: ejemplo
 
 ### Content
 
@@ -1989,7 +2009,7 @@ La tercera ventaja es la que suele sorprender, y merece medio minuto: encadenar 
   Resolution: el pipeline pasó a triage de tickets con runbooks e incidentes previos.
 
 ---
-## 14. Técnicas avanzadas: pros y contras
+## 15. Técnicas avanzadas: pros y contras
 
 ### Content
 
@@ -2018,7 +2038,7 @@ Tabla de referencia, para consultar más que para leer. Si hay que decir una sol
 
 ---
 
-## 15. ¿Por qué funcionan?
+## 16. ¿Por qué funcionan?
 
 ### Content
 
@@ -2049,7 +2069,7 @@ Esta es la slide de la tesis y merece el tiempo que haga falta. Todo lo que vier
 
 ---
 
-## 16. ¿Por qué tardan más?
+## 17. ¿Por qué tardan más?
 
 ### Content
 
@@ -2078,7 +2098,7 @@ Esta slide es el contrapeso de las anteriores y por eso va acá, justo después 
 
 ---
 
-## 17. Prompts sin verificación
+## 18. Prompts sin verificación
 
 ### Content
 
@@ -2112,7 +2132,7 @@ Acá empieza el bloque de disciplina de producción y es donde esta audiencia ti
 
 ---
 
-## 18. DSPy: optimización automática
+## 19. DSPy: optimización automática
 
 ### Content
 
@@ -2146,7 +2166,7 @@ El eslogan del framework dice todo: programá, no promptees. Y el punto que más
 
 ---
 
-## 19. Versionado de prompts
+## 20. Versionado de prompts
 
 ### Content
 
@@ -2180,7 +2200,7 @@ La primera opción es la que hay que defender: Git. Un prompt en un archivo vers
 
 ---
 
-## 20. Datos y testing sistemático
+## 21. Datos y testing sistemático
 
 ### Content
 
@@ -2214,7 +2234,7 @@ La cuarta viñeta de la izquierda es la que más se viola y la que más caro sal
 
 ---
 
-## 21. Agenda
+## 22. Agenda
 
 ### Content
 
@@ -2240,7 +2260,7 @@ Cierre de la sección más larga. Recapitulá con la tesis: todas las técnicas 
 
 ---
 
-## 22. Versionado de prompts
+## 23. Versionado de prompts
 
 <!-- DUPLICADO verbatim de la slide 5.19, residuo de edicion -->
 <!-- en el pptx original quedo despues de la slide de cierre. Se conserva por decision del presentador. -->
@@ -2276,7 +2296,7 @@ Repetición de la slide 5.19. Si se conserva en la entrega, saltearla o usarla c
 
 ---
 
-## 23. Self-consistency: ejemplo
+## 24. Self-consistency: ejemplo
 
 <!-- DUPLICADO de la slide 5.5. Se conserva por decision del presentador. -->
 
@@ -2318,7 +2338,7 @@ Repetición de la slide 5.5. Las notas de fondo están ahí.
 
 ---
 
-## 24. Extended thinking (Anthropic)
+## 25. Extended thinking (Anthropic)
 
 <!-- DUPLICADO de la slide 5.7. Se conserva por decision del presentador. -->
 
@@ -2344,7 +2364,7 @@ Repetición de la slide 5.7. Las notas de fondo, y la desambiguación entre las 
 
 ---
 
-## 25. Extended thinking: ejemplo
+## 26. Extended thinking: ejemplo
 
 <!-- DUPLICADO de la slide 5.8. Se conserva por decision del presentador. -->
 
@@ -2384,7 +2404,7 @@ Repetición de la slide 5.8. Las notas de fondo están ahí.
 
 ---
 
-## 26. Tree of Thought (ToT)
+## 27. Tree of Thought (ToT)
 
 <!-- DUPLICADO de la slide 5.9. Se conserva por decision del presentador. -->
 
@@ -2418,7 +2438,7 @@ Repetición de la slide 5.9. Las notas de fondo están ahí.
 
 ---
 
-## 27. Tree of Thought: ejemplo
+## 28. Tree of Thought: ejemplo
 
 <!-- DUPLICADO de la slide 5.10. Se conserva por decision del presentador. -->
 

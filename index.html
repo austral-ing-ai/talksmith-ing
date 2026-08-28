@@ -40,6 +40,19 @@
 .reveal .backgrounds{background:var(--page)}
 .reveal .slides{text-align:left}
 .reveal .slides>section{height:100%;padding:0;container-type:inline-size}
+/* PDF export (`?print-pdf`). Reveal's print stylesheet forces `.slides` to `height:auto`, so a
+   slide box that asks for `height:100%` collapses onto its own content: the stage loses the 720px
+   canvas every `cqw` and the fit pass measure against, the body is laid out at its natural height
+   and runs past the printed page — which is the sliver of a clipped row that shows up along the
+   bottom of the exported pages. Pin the printed slide to the deck's canvas instead; `overflow`
+   keeps a full-bleed slide from bleeding into the next page. Reveal sets the same width inline a
+   moment later, but it must be right *before* that, because Reveal measures each slide's
+   scrollHeight to decide how many pages it spans. Descendant, not child: the print view moves
+   every slide into a `.pdf-page` wrapper, so `.slides>section` stops matching — which is also
+   why `container-type` has to be restated here, or every `cqw` in the deck resolves against the
+   wrong box. */
+.reveal-print .reveal .slides section{width:1280px;height:720px;overflow:hidden;container-type:inline-size}
+.reveal-print .reveal .slides section.slide{background:var(--slide)}
 .reveal .slides>section.slide{background:var(--slide)}
 .reveal ::selection{background:var(--pill)}
 .reveal .progress{color:var(--red)}
@@ -710,6 +723,10 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
   text-transform:uppercase;padding:2px 8px;border-radius:999px;
   background:var(--pill);color:var(--chip-ink)}
 .tsindex .deck.draft{border-style:dashed}
+/* …and a deck whose source moved on since it was rendered is worse than a moving target: it
+   looks finished and is wrong. The accent is spent here rather than on the card frame, so the
+   badge reads at a glance without turning the whole wall red. */
+.tsindex .badge.stale{background:var(--red);color:#fff}
 
 .tsindex .foot{margin:38px 0 0;color:var(--fm);font-size:12px;font-family:var(--mono)}
 </style>
@@ -723,10 +740,34 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
   </header>
   <ul class="decks">
     <li>
+      <a class="deck" href="talks/prompting/output/html/index.html">
+        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
+<p class="dsub">Trabajar con LLMs: prompts, costos y producción</p>        <p class="dmeta">
+<span>79 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-08-28</span>
+        </p>
+      </a>
+    </li>
+    <li>
       <a class="deck" href="talks/modelado-redes-neuronales/output/html/index.html">
         <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Modelado de un Multi-Layer Perceptron (MLP)</p>        <p class="dmeta">
-<span>62 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-26</span>
+<span>62 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Riguetti, Marco Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-26</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a class="deck" href="talks/cowork-intro/output/html/index.html">
+        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
+<p class="dsub">Universidad Austral</p><p class="dsub">Clase 2: Agentes de código y la misión Corta</p>        <p class="dmeta">
+<span>33 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-26</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a class="deck" href="talks/introduccion/output/html/index.html">
+        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
+<p class="dsub">Universidad Austral</p><p class="dsub">Clase 1: Bienvenidos / Introducción</p>        <p class="dmeta">
+<span>61 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-26</span>
         </p>
       </a>
     </li>
@@ -735,22 +776,6 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
         <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Introducción a las Redes Neuronales Artificiales (ANN)</p>        <p class="dmeta">
 <span>50 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Marcos Sanchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-19</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="deck" href="talks/introduccion/output/html/index.html">
-        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
-<p class="dsub">Universidad Austral</p><p class="dsub">Clase 1: Bienvenidos / Introducción</p>        <p class="dmeta">
-<span>61 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-12</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="deck" href="talks/cowork-intro/output/html/index.html">
-        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
-<p class="dsub">Universidad Austral</p><p class="dsub">Clase 2: Agentes de código y la misión Corta</p>        <p class="dmeta">
-<span>33 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-12</span>
         </p>
       </a>
     </li>
