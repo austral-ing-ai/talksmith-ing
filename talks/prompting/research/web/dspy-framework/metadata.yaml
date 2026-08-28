@@ -1,0 +1,9 @@
+url: "https://dspy.ai"
+fetched_at: "2026-08-14T16:56:54Z"
+title: "DSPy"
+http_status: 200
+byte_size: 124827
+assets:
+  - { src: "static/img/logos/databricks-wordmark.svg", absolute: "https://dspy.ai/static/img/logos/databricks-wordmark.svg", saved_as: "databricks-wordmark.svg", alt: "Databricks" }
+  - { src: "static/img/logos/shopify-wordmark.svg", absolute: "https://dspy.ai/static/img/logos/shopify-wordmark.svg", saved_as: "shopify-wordmark.svg", alt: "Shopify" }
+  - { src: "static/img/logos/dropbox-wordmark.svg", absolute: "https://dspy.ai/static/img/logos/dropbox-wordmark.svg", skipped: "fetch-failed: URLError" }

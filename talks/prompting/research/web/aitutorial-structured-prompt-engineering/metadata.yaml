@@ -1,0 +1,8 @@
+url: "https://aitutorial.dev/prompting/structured-prompt-engineering"
+fetched_at: "2026-08-14T16:56:18Z"
+title: "Structured Prompt Engineering - AI Tutorial"
+http_status: 200
+byte_size: 490367
+assets:
+  - { src: "https://mintcdn.com/digibee-1a4db0d2/qVB-_urhSn1RCBv0/logo/logo-light-full.svg?fit=max&auto=format&n=qVB-_urhSn1RCBv0&q=85&s=720536383dc8eb2a95e11611fc7839b4", absolute: "https://mintcdn.com/digibee-1a4db0d2/qVB-_urhSn1RCBv0/logo/logo-light-full.svg?fit=max&auto=format&n=qVB-_urhSn1RCBv0&q=85&s=720536383dc8eb2a95e11611fc7839b4", saved_as: "logo-light-full.svg", alt: "light logo" }
+  - { src: "https://mintcdn.com/digibee-1a4db0d2/qVB-_urhSn1RCBv0/logo/logo-dark-full.svg?fit=max&auto=format&n=qVB-_urhSn1RCBv0&q=85&s=dde82d875ffc50b174137cb594049e8e", absolute: "https://mintcdn.com/digibee-1a4db0d2/qVB-_urhSn1RCBv0/logo/logo-dark-full.svg?fit=max&auto=format&n=qVB-_urhSn1RCBv0&q=85&s=dde82d875ffc50b174137cb594049e8e", saved_as: "logo-dark-full.svg", alt: "dark logo" }

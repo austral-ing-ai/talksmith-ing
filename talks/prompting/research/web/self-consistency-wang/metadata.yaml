@@ -1,0 +1,10 @@
+url: "https://arxiv.org/abs/2203.11171"
+fetched_at: "2026-08-14T16:56:07Z"
+title: "[2203.11171] Self-Consistency Improves Chain of Thought Reasoning in Language Models"
+http_status: 200
+byte_size: 42282
+assets:
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "archive" }
+  - { src: "https://arxiv.org/icons/licenses/by-4.0.png", absolute: "https://arxiv.org/icons/licenses/by-4.0.png", saved_as: "by-4.0.png", alt: "license icon" }
+  - { src: "/static/browse/0.3.4/images/icons/social/bibsonomy.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/bibsonomy.png", saved_as: "bibsonomy.png", alt: "BibSonomy" }
+  - { src: "/static/browse/0.3.4/images/icons/social/reddit.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/reddit.png", saved_as: "reddit.png", alt: "Reddit" }
