@@ -75,8 +75,6 @@ La clase abre por la máquina: qué entra en la ventana de contexto, qué cuesta
 - **Paulo Veiga, Claudio Righetti y Marco Sorondo (Universidad Austral)**
 - **Última modificación: agosto 2026**
 
-![Logo de la Universidad Austral](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-01-1.png)
-
 ### Sources
 
 - `AIG4B-Clase-3-Prompting.md.md` (slide 1)
@@ -89,40 +87,7 @@ Portada. Presentate y presentá a los otros dos docentes. Encuadre de una frase 
 
 ---
 
-## 2. Agenda
-
-### Content
-
-**Estamos acá: apertura**
-
-- **Fundamentos** Ventana de contexto, tokens, alucinaciones y modelo mental del completado
-- **Modelos y costos** Tarifas, árbol de decisión, prompt caching y model cascading
-- **Prompts estructurados** Seis componentes, etiquetas XML y salidas JSON validables
-- **In-context learning** Zero-shot, few-shot y many-shot sobre tareas de software
-- **Técnicas avanzadas** CoT, self-consistency, thinking, ToT, ReAct y prompt chaining
-- **LLMs en ingeniería** Ciclo de vida, casos de uso, riesgos y mitigaciones
-- **Resumen y práctica** Módulos de aitutorial.dev como trabajo domiciliario
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 4)
-
-### Speaker notes
-
-El mapa de la clase. Vale la pena decir en voz alta el arco, porque las siete secciones no son siete temas sueltos: las dos primeras explican la máquina y su precio, las tres del medio son el oficio de escribir prompts, y las dos últimas bajan todo a un equipo de software real. Anunciá también que esta misma agenda reaparece entre secciones marcando dónde estamos, para que nadie se pierda en dos horas y media.
-
-### Presenter feedback
-
----
-# 1. Fundamentos
-
-**Goal of this section:** Dejar instalado un modelo mental correcto de qué es un LLM por dentro: una ventana de contexto finita que se factura por token y un motor de completado que inventa cuando se queda sin patrón.
-
-**Presenter feedback:**
-
----
-
-## 1. ¿Qué es un prompt?
+## 2. ¿Qué es un prompt?
 
 ### Content
 
@@ -149,7 +114,7 @@ Arranque suave, pero conviene no darlo por sabido. El punto que sí hay que deja
 
 ---
 
-## 2. ¿Qué se guarda en un prompt?
+## 3. ¿Qué se guarda en un prompt?
 
 ### Content
 
@@ -200,7 +165,7 @@ Recorré el contenedor banda por banda, porque las definiciones ya no están en 
 
 ---
 
-## 3. Ventana de contexto
+## 4. Ventana de contexto
 
 ### Content
 
@@ -248,7 +213,7 @@ La definición primero y la tabla después: la ventana es memoria de trabajo, no
 
 ---
 
-## 4. ¿Cuánto es 1 millón de tokens?
+## 5. ¿Cuánto es 1 millón de tokens?
 
 <!-- design: column-right -->
 
@@ -280,7 +245,7 @@ Esta es la slide del "ah, mirá". Sirve para que la cifra deje de ser abstracta:
 
 ---
 
-## 5. Economía de tokens
+## 6. Economía de tokens
 
 ### Content
 
@@ -309,7 +274,7 @@ Momento de abrir gpt-tokenizer.dev en vivo y pegar una línea de código. El efe
 
 ---
 
-## 6. La fórmula del costo
+## 7. La fórmula del costo
 
 ### Content
 
@@ -339,7 +304,7 @@ Esta es la slide que explica por qué la factura de un chatbot crece sin que cre
 
 ---
 
-## 7. Limitaciones de los LLM
+## 8. Limitaciones de los LLM
 
 ### Content
 
@@ -359,7 +324,7 @@ Tres fallas de familia, no tres bugs. Ninguna se arregla con un modelo mejor, to
 
 ---
 
-## 8. ¿Por qué alucina un modelo?
+## 9. ¿Por qué alucina un modelo?
 
 ### Content
 
@@ -385,7 +350,7 @@ Cuatro causas y ninguna es un defecto de implementación: son consecuencias dire
 
 ---
 
-## 9. Alucinaciones: casos reales
+## 10. Alucinaciones: casos reales
 
 ### Content
 
@@ -408,7 +373,7 @@ Los dos primeros casos son judiciales y están documentados: sirven para instala
 
 ---
 
-## 10. Mitigar alucinaciones: el prompt
+## 11. Mitigar alucinaciones: el prompt
 
 ### Content
 
@@ -436,7 +401,7 @@ Cinco palancas ordenadas de la más barata a la más cara. Grounding es una lín
 
 ---
 
-## 11. Mitigar alucinaciones: el proceso
+## 12. Mitigar alucinaciones: el proceso
 
 ### Content
 
@@ -461,7 +426,7 @@ Acá la clase les habla en su idioma y conviene decirlo de frente: las cuatro pr
 
 ---
 
-## 12. Modelo mental: motores de completado
+## 13. Modelo mental: motores de completado
 
 ### Content
 
@@ -494,40 +459,7 @@ Esta slide es el ensayo de la tesis, y por eso vale la pena bajar la velocidad. 
 
 ---
 
-## 13. Agenda
-
-### Content
-
-**Estamos acá: cerramos Fundamentos**
-
-- ✅ **Fundamentos** Ventana de contexto, tokens, alucinaciones y modelo mental del completado
-- 👉 **Modelos y costos** Tarifas, árbol de decisión, prompt caching y model cascading
-- **Prompts estructurados** Seis componentes, etiquetas XML y salidas JSON validables
-- **In-context learning** Zero-shot, few-shot y many-shot sobre tareas de software
-- **Técnicas avanzadas** CoT, self-consistency, thinking, ToT, ReAct y prompt chaining
-- **LLMs en ingeniería** Ciclo de vida, casos de uso, riesgos y mitigaciones
-- **Resumen y práctica** Módulos de aitutorial.dev como trabajo domiciliario
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 16)
-
-### Speaker notes
-
-Corte y respiro. Recapitulá en dos frases: la ventana es finita y se factura por token, y el modelo completa en vez de razonar, por eso alucina. Lo que sigue le pone precio a esas dos cosas.
-
-### Presenter feedback
-
----
-# 2. Modelos y costos
-
-**Goal of this section:** Convertir la elección de modelo en una decisión con números: qué cobra cada uno, cuánto ahorra el caching y cuándo conviene encadenar un modelo barato con uno caro.
-
-**Presenter feedback:**
-
----
-
-## 1. Tarifas: familia Claude
+## 14. Tarifas: familia Claude
 
 ### Content
 
@@ -563,7 +495,7 @@ Tres cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la en
 
 ---
 
-## 2. El paisaje de modelos
+## 15. El paisaje de modelos
 
 ### Content
 
@@ -599,7 +531,7 @@ La tabla es referencia, no material para leer en voz alta. Lo que hay que decir 
 
 ---
 
-## 3. Elegir modelo: árbol de decisión
+## 16. Elegir modelo: árbol de decisión
 
 ### Content
 
@@ -651,7 +583,7 @@ El árbol vale más por el orden de las preguntas que por los nombres que devuel
 
 ---
 
-## 4. Prompt caching
+## 17. Prompt caching
 
 ### Content
 
@@ -705,7 +637,7 @@ El caching es la única optimización de esta clase que baja el costo sin tocar 
 
 ---
 
-## 5. Prompt caching: los números
+## 18. Prompt caching: los números
 
 ### Content
 
@@ -737,7 +669,7 @@ Esta slide corrige un error del deck original, y vale la pena decirlo en voz alt
 
 ---
 
-## 6. Prompt caching: implementación
+## 19. Prompt caching: implementación
 
 ### Content
 
@@ -793,7 +725,7 @@ Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y 
 
 ---
 
-## 7. Model cascading
+## 20. Model cascading
 
 ### Content
 
@@ -846,7 +778,7 @@ La idea es de una línea y la trampa está en el rombo del medio. Todo el ahorro
 
 ---
 
-## 8. Cascading: cuándo sí y cuándo no
+## 21. Cascading: cuándo sí y cuándo no
 
 ### Content
 
@@ -884,40 +816,7 @@ La fila que decide es la última de la tabla. El cascading no es una configuraci
 
 ---
 
-## 9. Agenda
-
-### Content
-
-**Estamos acá: cerramos Modelos y costos**
-
-- ✅ **Fundamentos** Ventana de contexto, tokens, alucinaciones y modelo mental del completado
-- ✅ **Modelos y costos** Tarifas, árbol de decisión, prompt caching y model cascading
-- 👉 **Prompts estructurados** Seis componentes, etiquetas XML y salidas JSON validables
-- **In-context learning** Zero-shot, few-shot y many-shot sobre tareas de software
-- **Técnicas avanzadas** CoT, self-consistency, thinking, ToT, ReAct y prompt chaining
-- **LLMs en ingeniería** Ciclo de vida, casos de uso, riesgos y mitigaciones
-- **Resumen y práctica** Módulos de aitutorial.dev como trabajo domiciliario
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 49)
-
-### Speaker notes
-
-Cierre de la parte cara de la clase. Resumen en una frase: el modelo se elige por tarea y no por prestigio, el caching es ahorro sin costo de calidad y la cascada es ahorro con costo de complejidad. A partir de acá el tema deja de ser el precio y pasa a ser el oficio.
-
-### Presenter feedback
-
----
-# 3. Prompts estructurados
-
-**Goal of this section:** Pasar del prompt escrito a mano al prompt con anatomía: seis componentes, delimitadores explícitos y un contrato de salida que el código pueda validar.
-
-**Presenter feedback:**
-
----
-
-## 1. Los 6 componentes
+## 22. Los 6 componentes
 
 ### Content
 
@@ -972,7 +871,7 @@ Seis componentes y el orden importa. Las definiciones ya no están en la lámina
 
 ---
 
-## 2. Un prompt completo
+## 23. Un prompt completo
 
 ### Content
 
@@ -1025,7 +924,7 @@ Leé el prompt en voz alta, bloque por bloque, y hacé notar dos cosas. La prime
 
 ---
 
-## 3. Salidas estructuradas: JSON Schema
+## 24. Salidas estructuradas: JSON Schema
 
 ### Content
 
@@ -1072,7 +971,7 @@ La distinción entre los dos enfoques es la que hay que dejar clara, porque se c
 
 ---
 
-## 4. XML: estructura semántica
+## 25. XML: estructura semántica
 
 ### Content
 
@@ -1106,9 +1005,6 @@ Despues de actualizar a la 3.2, el login con SSO devuelve 500 en staging.
 
 - 💡 Las etiquetas suman tokens, y ese overhead se compensa con menos reintentos y menos errores de parseo. Si el prompt es estable, el caching lo absorbe.
 
-![Gráfico de dona sin etiqueta](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-19-1.png)
-![Gráfico de dona sin etiqueta](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-19-2.png)
-
 ### Sources
 
 - `AIG4B-Clase-3-Prompting.md.md` (slide 19)
@@ -1126,7 +1022,7 @@ El argumento de por qué funcionan las etiquetas es el mismo de la slide del mot
 
 ---
 
-## 5. Optimización por modelo
+## 26. Optimización por modelo
 
 ### Content
 
@@ -1154,40 +1050,7 @@ Esta slide nombra familias y no versiones, y es a propósito: el deck original d
 
 ---
 
-## 6. Agenda
-
-### Content
-
-**Estamos acá: cerramos Prompts estructurados**
-
-- ✅ **Fundamentos** Ventana de contexto, tokens, alucinaciones y modelo mental del completado
-- ✅ **Modelos y costos** Tarifas, árbol de decisión, prompt caching y model cascading
-- ✅ **Prompts estructurados** Seis componentes, etiquetas XML y salidas JSON validables
-- 👉 **In-context learning** Zero-shot, few-shot y many-shot sobre tareas de software
-- **Técnicas avanzadas** CoT, self-consistency, thinking, ToT, ReAct y prompt chaining
-- **LLMs en ingeniería** Ciclo de vida, casos de uso, riesgos y mitigaciones
-- **Resumen y práctica** Módulos de aitutorial.dev como trabajo domiciliario
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 21)
-
-### Speaker notes
-
-Cierre de la anatomía del prompt. Lo que sigue agrega la pieza que faltaba: los ejemplos. Anunciá el puente: hasta acá se le dijo al modelo qué hacer; ahora se le va a mostrar.
-
-### Presenter feedback
-
----
-# 4. In-context learning
-
-**Goal of this section:** Mostrar que los ejemplos dentro del prompt cambian el comportamiento del modelo sin tocar sus pesos, y dar el criterio para elegir cuántos poner.
-
-**Presenter feedback:**
-
----
-
-## 1. In-context learning (ICL)
+## 27. In-context learning (ICL)
 
 ### Content
 
@@ -1235,7 +1098,7 @@ La frase que hay que dejar clavada es "sin modificar los pesos", y el diagrama l
 
 ---
 
-## 2. Zero-shot vs. few-shot
+## 28. Zero-shot vs. few-shot
 
 <!-- slide nueva: el deck original define zero-shot y nunca lo ejemplifica -->
 
@@ -1263,7 +1126,7 @@ Slide nueva, y llena un agujero real del deck original: definía zero-shot y nun
 
 ---
 
-## 3. Few-shot learning
+## 29. Few-shot learning
 
 ### Content
 
@@ -1300,7 +1163,7 @@ La práctica que más rinde y menos se aplica es la tercera. Casi todo el mundo 
 
 ---
 
-## 4. Many-shot learning
+## 30. Many-shot learning
 
 ### Content
 
@@ -1351,40 +1214,7 @@ El punto fuerte de esta slide es la cuarta línea, porque describe un bucle de m
 
 ---
 
-## 5. Agenda
-
-### Content
-
-**Estamos acá: cerramos In-context learning**
-
-- ✅ **Fundamentos** Ventana de contexto, tokens, alucinaciones y modelo mental del completado
-- ✅ **Modelos y costos** Tarifas, árbol de decisión, prompt caching y model cascading
-- ✅ **Prompts estructurados** Seis componentes, etiquetas XML y salidas JSON validables
-- ✅ **In-context learning** Zero-shot, few-shot y many-shot sobre tareas de software
-- 👉 **Técnicas avanzadas** CoT, self-consistency, thinking, ToT, ReAct y prompt chaining
-- **LLMs en ingeniería** Ciclo de vida, casos de uso, riesgos y mitigaciones
-- **Resumen y práctica** Módulos de aitutorial.dev como trabajo domiciliario
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 25)
-
-### Speaker notes
-
-Punto de quiebre de la clase. Hasta acá se trabajó sobre lo que entra al prompt. Lo que sigue trabaja sobre lo que el modelo escribe antes de contestar, que es la sección más larga y la que contiene la tesis. Si hay que hacer un corte de descanso, este es el lugar.
-
-### Presenter feedback
-
----
-# 5. Técnicas avanzadas
-
-**Goal of this section:** Recorrer las técnicas que hacen escribir al modelo antes de responder, medir lo que cuestan y explicar por qué funcionan, que es la tesis de la clase.
-
-**Presenter feedback:**
-
----
-
-## 1. Técnicas avanzadas: resumen
+## 31. Técnicas avanzadas: resumen
 
 ### Content
 
@@ -1409,7 +1239,7 @@ Mapa de la sección. Seis técnicas y una sola idea de fondo, que se explica rec
 
 ---
 
-## 2. Chain of Thought (CoT)
+## 32. Chain of Thought (CoT)
 
 ### Content
 
@@ -1420,11 +1250,7 @@ Mapa de la sección. Seis técnicas y una sola idea de fondo, que se explica rec
 
 **Lo que se midió**
 
-![Gráfico de dona](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-27-1.png)
-
 - **74%** Tree of Thought en Game of 24, contra **4%** del mismo modelo con CoT lineal (Yao et al., 2023).
-
-![Gráfico de dona](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-27-2.png)
 
 - **+17,9%** Self-consistency en GSM8K, y **+11,0%** en SVAMP, ambas mejoras **sobre el baseline de CoT** (Wang et al., 2022).
 
@@ -1449,7 +1275,7 @@ Esta slide cambió respecto del deck original y conviene contar por qué, porque
 
 ---
 
-## 3. CoT en acción: ejemplo
+## 33. CoT en acción: ejemplo
 
 ### Content
 
@@ -1480,7 +1306,7 @@ El ejemplo es trivial a propósito y hay que decirlo, porque la pregunta obvia e
 
 ---
 
-## 4. Self-consistency: votación
+## 34. Self-consistency: votación
 
 ### Content
 
@@ -1542,7 +1368,7 @@ Antes del diagrama, el número que sostiene la decisión y que ya no está en la
 
 ---
 
-## 5. Self-consistency: ejemplo
+## 35. Self-consistency: ejemplo
 
 ### Content
 
@@ -1591,7 +1417,7 @@ Lo interesante del ejemplo es la corrida 3, y conviene señalarla. No es una alu
 
 ---
 
-## 6. Razonamiento: cuánto piensa el modelo
+## 36. Razonamiento: cuánto piensa el modelo
 
 ### Content
 
@@ -1643,7 +1469,7 @@ Slide importada de otra clase y ubicada acá a propósito: abre el bloque de raz
 
 ---
 
-## 7. Extended thinking (Anthropic)
+## 37. Extended thinking (Anthropic)
 
 ### Content
 
@@ -1671,7 +1497,7 @@ Acá hay que cerrar la desambiguación que abriste en la slide anterior, porque 
 
 ---
 
-## 8. Extended thinking: ejemplo
+## 38. Extended thinking: ejemplo
 
 ### Content
 
@@ -1720,46 +1546,12 @@ El ejemplo pasó de un caso clínico a un stack trace, y el cambio de dominio ha
 
 ---
 
-## 9. Tree of Thought (ToT)
-
-<!-- design: split-right -->
+## 39. Tree of Thought (ToT)
 
 ### Content
 
 **ToT extiende CoT explorando varios caminos de razonamiento en paralelo, como las ramas de un árbol de decisión. El modelo evalúa cada rama y elige la más prometedora.**
 
-![Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-33-1.png)
-
-**Limitaciones**
-
-- Cuesta bastante más que CoT lineal.
-- Es más complejo de implementar.
-- Sirve cuando el problema admite varias soluciones posibles.
-- No justifica el overhead en tareas simples.
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 33)
-
-### Speaker notes
-
-El diagrama de la slide es el único diagrama conceptual real del deck original, así que aprovechalo: rama, balanza, documento validado. Generar, evaluar, elegir.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "'Analogía médica: ToT es similar al diagnóstico diferencial clínico'."
-  Resolution: la analogía clínica se retiró y su lugar lo ocupa el ejemplo de estrategias de refactor de la slide siguiente, que cumple la misma función pedagógica en el dominio de la audiencia.
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma. El árbol de ToT es el caso más claro, porque ramificación y poda son su punto entero."
-  Resolution: se agregó un diagrama ASCII del árbol con scores y ramas podadas, que muestra el mecanismo que la línea "Generar → Evaluar → Seleccionar" solo nombraba, y que cierra contrastando con CoT como el caso de una sola rama. Esa línea de tres pasos se retiró del cuerpo porque el árbol la dice mejor. La imagen del corpus (`slide-33-1.png`, los tres círculos) no se borró: la lámina se partió en dos, y esa imagen se queda en la primera —el planteo conceptual— mientras el árbol dibujado ocupa la segunda, donde se muestra el mecanismo. Una lámina tiene un solo lugar para media, así que convivir era imposible.
----
-
-## 10. ToT: ramificar y podar
-
-### Content
-
-**Lo propio de ToT no es razonar más, sino ramificar y podar: generar varias continuaciones, puntuarlas, descartar las malas y expandir solo la mejor.**
-
-<!-- ascii-render: force -->
 ```ascii
                         [ problema ]
                              |
@@ -1782,11 +1574,13 @@ El diagrama de la slide es el único diagrama conceptual real del deck original,
 
   CoT es este arbol con una sola rama y sin vuelta atras.
 ```
-<!-- ascii-note:
-intent: mostrar que lo propio de ToT no es "razonar mas" sino RAMIFICAR y PODAR: generar varias continuaciones, puntuarlas, descartar las malas y expandir solo la mejor; y que CoT es el caso degenerado de un solo camino sin backtracking
-emphasize: las ramas podadas marcadas con X frente al camino que sobrevive hasta la solucion; los cuatro pasos numerados de la derecha alineados con los niveles del arbol; la linea de cierre que contrasta con CoT
-labels: "problema", "rama A/B/C", "score 8/5/2", "podada", "A.1", "A.2", "solucion", y los pasos GENERAR / EVALUAR / EXPANDIR / SELECCIONAR
--->
+
+**Limitaciones**
+
+- Cuesta bastante más que CoT lineal.
+- Es más complejo de implementar.
+- Sirve cuando el problema admite varias soluciones posibles.
+- No justifica el overhead en tareas simples.
 
 ### Sources
 
@@ -1795,12 +1589,11 @@ labels: "problema", "rama A/B/C", "score 8/5/2", "podada", "A.1", "A.2", "soluci
 
 ### Speaker notes
 
-El aporte teórico del papervale la pena decirlo porque reordena todo lo anterior: la generación autoregresiva decide token por token y de izquierda a derecha, sin manera de volver atrás, y si el primer paso fue malo el resto está condenado. ToT cambia la unidad de decisión: en vez de tokens, pensamientos completos, y con eso aparecen dos operaciones que CoT no tiene, mirar hacia adelante y retroceder. Recordá el número de la slide de CoT: 4% a 74% en Game of 24, mismo modelo. La analogía médica del deck original se reemplazó por el ejemplo de refactor de la slide siguiente.
+El árbol de la lámina es el punto entero de la técnica, así que caminalo: se generan varias ramas, cada una recibe un score, las malas se podan y solo la mejor se expande. Marcá que CoT es este mismo árbol con una sola rama y sin vuelta atrás. El aporte teórico del paper vale la pena decirlo porque reordena todo lo anterior: la generación autoregresiva decide token por token y de izquierda a derecha, sin manera de volver atrás, y si el primer paso fue malo el resto está condenado. ToT cambia la unidad de decisión: en vez de tokens, pensamientos completos, y con eso aparecen dos operaciones que CoT no tiene, mirar hacia adelante y retroceder. Recordá el número de la slide de CoT: 4% a 74% en Game of 24, mismo modelo. La analogía médica del deck original se reemplazó por el ejemplo de refactor de la slide siguiente.
 
-### Presenter feedback
+---
 
-
-## 11. Tree of Thought: ejemplo
+## 40. Tree of Thought: ejemplo
 
 ### Content
 
@@ -1840,7 +1633,7 @@ Este ejemplo funciona porque las tres ramas son defendibles, y eso es justo el t
 
 ---
 
-## 12. ReAct: razonar y actuar
+## 41. ReAct: razonar y actuar
 
 <!-- slide nueva: ReAct esta procesado en el corpus y no aparecia en ninguna slide -->
 
@@ -1910,7 +1703,7 @@ Las dos afirmaciones del paper que sostenían la lámina van habladas: las **tra
 
 ---
 
-## 13. Prompt chaining
+## 42. Prompt chaining
 
 ### Content
 
@@ -1965,7 +1758,7 @@ El texto de esta slide venía cortado a mitad de palabra en el deck original y n
 
 ---
 
-## 14. Prompt chaining: ejemplo
+## 43. Prompt chaining: ejemplo
 
 ### Content
 
@@ -2009,7 +1802,7 @@ La tercera ventaja es la que suele sorprender, y merece medio minuto: encadenar 
   Resolution: el pipeline pasó a triage de tickets con runbooks e incidentes previos.
 
 ---
-## 15. Técnicas avanzadas: pros y contras
+## 44. Técnicas avanzadas: pros y contras
 
 ### Content
 
@@ -2038,7 +1831,7 @@ Tabla de referencia, para consultar más que para leer. Si hay que decir una sol
 
 ---
 
-## 16. ¿Por qué funcionan?
+## 45. ¿Por qué funcionan?
 
 ### Content
 
@@ -2069,7 +1862,7 @@ Esta es la slide de la tesis y merece el tiempo que haga falta. Todo lo que vier
 
 ---
 
-## 17. ¿Por qué tardan más?
+## 46. ¿Por qué tardan más?
 
 ### Content
 
@@ -2098,7 +1891,7 @@ Esta slide es el contrapeso de las anteriores y por eso va acá, justo después 
 
 ---
 
-## 18. Prompts sin verificación
+## 47. Prompts sin verificación
 
 ### Content
 
@@ -2132,7 +1925,7 @@ Acá empieza el bloque de disciplina de producción y es donde esta audiencia ti
 
 ---
 
-## 19. DSPy: optimización automática
+## 48. DSPy: optimización automática
 
 ### Content
 
@@ -2166,7 +1959,7 @@ El eslogan del framework dice todo: programá, no promptees. Y el punto que más
 
 ---
 
-## 20. Versionado de prompts
+## 49. Versionado de prompts
 
 ### Content
 
@@ -2200,7 +1993,7 @@ La primera opción es la que hay que defender: Git. Un prompt en un archivo vers
 
 ---
 
-## 21. Datos y testing sistemático
+## 50. Datos y testing sistemático
 
 ### Content
 
@@ -2234,33 +2027,7 @@ La cuarta viñeta de la izquierda es la que más se viola y la que más caro sal
 
 ---
 
-## 22. Agenda
-
-### Content
-
-**Estamos acá: cerramos Técnicas avanzadas**
-
-- ✅ **Fundamentos** Ventana de contexto, tokens, alucinaciones y modelo mental del completado
-- ✅ **Modelos y costos** Tarifas, árbol de decisión, prompt caching y model cascading
-- ✅ **Prompts estructurados** Seis componentes, etiquetas XML y salidas JSON validables
-- ✅ **In-context learning** Zero-shot, few-shot y many-shot sobre tareas de software
-- ✅ **Técnicas avanzadas** CoT, self-consistency, thinking, ToT, ReAct y prompt chaining
-- 👉 **LLMs en ingeniería** Ciclo de vida, casos de uso, riesgos y mitigaciones
-- **Resumen y práctica** Módulos de aitutorial.dev como trabajo domiciliario
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 44)
-
-### Speaker notes
-
-Cierre de la sección más larga. Recapitulá con la tesis: todas las técnicas hacen escribir al modelo antes de responder, porque escribir es el cómputo, y todas se pagan en tokens y en latencia. Lo que sigue baja todo eso a un equipo de software real.
-
-### Presenter feedback
-
----
-
-## 23. Versionado de prompts
+## 51. Versionado de prompts
 
 <!-- DUPLICADO verbatim de la slide 5.19, residuo de edicion -->
 <!-- en el pptx original quedo despues de la slide de cierre. Se conserva por decision del presentador. -->
@@ -2296,7 +2063,7 @@ Repetición de la slide 5.19. Si se conserva en la entrega, saltearla o usarla c
 
 ---
 
-## 24. Self-consistency: ejemplo
+## 52. Self-consistency: ejemplo
 
 <!-- DUPLICADO de la slide 5.5. Se conserva por decision del presentador. -->
 
@@ -2338,7 +2105,7 @@ Repetición de la slide 5.5. Las notas de fondo están ahí.
 
 ---
 
-## 25. Extended thinking (Anthropic)
+## 53. Extended thinking (Anthropic)
 
 <!-- DUPLICADO de la slide 5.7. Se conserva por decision del presentador. -->
 
@@ -2364,7 +2131,7 @@ Repetición de la slide 5.7. Las notas de fondo, y la desambiguación entre las 
 
 ---
 
-## 26. Extended thinking: ejemplo
+## 54. Extended thinking: ejemplo
 
 <!-- DUPLICADO de la slide 5.8. Se conserva por decision del presentador. -->
 
@@ -2404,7 +2171,7 @@ Repetición de la slide 5.8. Las notas de fondo están ahí.
 
 ---
 
-## 27. Tree of Thought (ToT)
+## 55. Tree of Thought (ToT)
 
 <!-- DUPLICADO de la slide 5.9. Se conserva por decision del presentador. -->
 
@@ -2412,7 +2179,6 @@ Repetición de la slide 5.8. Las notas de fondo están ahí.
 
 **ToT extiende CoT explorando varios caminos de razonamiento en paralelo, como las ramas de un árbol de decisión. El modelo evalúa cada rama y elige la más prometedora.**
 
-![Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-62-1.png)
 
 - **Generar ramas** → **Evaluar ramas** → **Seleccionar camino**
 
@@ -2438,7 +2204,7 @@ Repetición de la slide 5.9. Las notas de fondo están ahí.
 
 ---
 
-## 28. Tree of Thought: ejemplo
+## 56. Tree of Thought: ejemplo
 
 <!-- DUPLICADO de la slide 5.10. Se conserva por decision del presentador. -->
 
@@ -2714,40 +2480,7 @@ Esta slide estaba al final de la sección de fundamentos, cortando el hilo entre
 
 ---
 
-## 8. Agenda
-
-### Content
-
-**Estamos acá: cerramos LLMs en ingeniería**
-
-- ✅ **Fundamentos** Ventana de contexto, tokens, alucinaciones y modelo mental del completado
-- ✅ **Modelos y costos** Tarifas, árbol de decisión, prompt caching y model cascading
-- ✅ **Prompts estructurados** Seis componentes, etiquetas XML y salidas JSON validables
-- ✅ **In-context learning** Zero-shot, few-shot y many-shot sobre tareas de software
-- ✅ **Técnicas avanzadas** CoT, self-consistency, thinking, ToT, ReAct y prompt chaining
-- ✅ **LLMs en ingeniería** Ciclo de vida, casos de uso, riesgos y mitigaciones
-- 👉 **Resumen y práctica** Módulos de aitutorial.dev como trabajo domiciliario
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 56)
-
-### Speaker notes
-
-Última transición. Queda el cierre y la consigna de práctica. Si vas corto de tiempo, este es el punto donde conviene saltar directo a las conclusiones y dejar la slide de práctica para el final, que se explica en dos minutos.
-
-### Presenter feedback
-
----
-# 7. Resumen y práctica
-
-**Goal of this section:** Cerrar con lo que hay que retener y dejar los cuatro módulos de práctica como trabajo domiciliario.
-
-**Presenter feedback:**
-
----
-
-## 1. ¡A practicar!
+## 8. ¡A practicar!
 
 ### Content
 

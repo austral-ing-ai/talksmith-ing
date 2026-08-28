@@ -19,78 +19,10 @@
   },
   "slides": [
     {
-      "template": "concept-breakdown",
-      "section": "Portada",
-      "title": "Agenda",
-      "lead": "Estamos acá: apertura",
-      "format": "editorial",
-      "cards": [
-        {
-          "label": "Fundamentos",
-          "body": "Ventana de contexto, tokens, alucinaciones y modelo mental",
-          "icon": "foundation"
-        },
-        {
-          "label": "Modelos y costos",
-          "body": "Tarifas, árbol de decisión, prompt caching y model cascading",
-          "icon": "payments"
-        },
-        {
-          "label": "Prompts estructurados",
-          "body": "Seis componentes, etiquetas XML y salidas JSON validables",
-          "icon": "data_object"
-        },
-        {
-          "label": "In-context learning",
-          "body": "Zero-shot, few-shot y many-shot sobre tareas de software",
-          "icon": "school"
-        },
-        {
-          "label": "Técnicas avanzadas",
-          "body": "CoT, self-consistency, thinking, ToT, ReAct y prompt chaining",
-          "icon": "psychology"
-        },
-        {
-          "label": "LLMs en ingeniería",
-          "body": "Ciclo de vida, casos de uso, riesgos y mitigaciones",
-          "icon": "engineering"
-        },
-        {
-          "label": "Resumen y práctica",
-          "body": "Módulos de aitutorial.dev como trabajo domiciliario",
-          "icon": "assignment"
-        }
-      ],
-      "notes": "Portada. Presentate y presentá a los otros dos docentes. Encuadre de una frase antes de arrancar: esta clase no es un catálogo de trucos de prompting, es la clase donde se entiende qué hace el modelo por dentro cuando lo promptean, y por qué cada mejora de calidad tiene un precio en tokens y en latencia. Avisá acá que la clase dura dos horas y media y que los módulos de práctica de aitutorial.dev quedan como trabajo domiciliario.\n\nEl mapa de la clase. Vale la pena decir en voz alta el arco, porque las siete secciones no son siete temas sueltos: las dos primeras explican la máquina y su precio, las tres del medio son el oficio de escribir prompts, y las dos últimas bajan todo a un equipo de software real. Anunciá también que esta misma agenda reaparece entre secciones marcando dónde estamos, para que nadie se pierda en dos horas y media.",
-      "_choice": {
-        "signals": [
-          "is_divider=false (H2, not H1)",
-          "labeled_items=7",
-          "is_ordered=false (no ordinals on the labels)",
-          "date_labels=false",
-          "n_images=0",
-          "has_table=false",
-          "big_metrics=false"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "section-agenda",
-          "process",
-          "content-text"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "section-agenda": "its Match is an H1-only numbered section header whose roadmap is derived from `deck.sections`; this is an authored H2 whose seven one-line descriptions are content the template has no field for — emitting it would drop them",
-          "process": "the seven items carry a label each and no ordinal/step marker, and `is_ordered=false`; the catalog sends an unordered labeled set to `concept-breakdown`",
-          "content-text": "never fall to a plainer template — this is a labeled set of seven parallel concepts, and `content-text` matches only prose with no enumeration"
-        }
-      }
-    },
-    {
       "template": "section-agenda",
       "section": "Fundamentos",
       "title": "Fundamentos",
-      "notes": "Abre el bloque conceptual: qué es un prompt, qué entra en la ventana, cómo se cuentan los tokens y por qué el modelo alucina.",
+      "notes": "Portada. Presentate y presentá a los otros dos docentes. Encuadre de una frase antes de arrancar: esta clase no es un catálogo de trucos de prompting, es la clase donde se entiende qué hace el modelo por dentro cuando lo promptean, y por qué cada mejora de calidad tiene un precio en tokens y en latencia. Avisá acá que la clase dura dos horas y media y que los módulos de práctica de aitutorial.dev quedan como trabajo domiciliario.\n\nEl mapa de la clase. Vale la pena decir en voz alta el arco, porque las siete secciones no son siete temas sueltos: las dos primeras explican la máquina y su precio, las tres del medio son el oficio de escribir prompts, y las dos últimas bajan todo a un equipo de software real. Anunciá también que esta misma agenda reaparece entre secciones marcando dónde estamos, para que nadie se pierda en dos horas y media.\n\nAbre el bloque conceptual: qué es un prompt, qué entra en la ventana, cómo se cuentan los tokens y por qué el modelo alucina.",
       "_choice": {
         "signals": [
           "encabezado H1 que nombra una sección de deck.sections"
@@ -711,78 +643,10 @@
       }
     },
     {
-      "template": "concept-breakdown",
-      "section": "Fundamentos",
-      "title": "Agenda",
-      "lead": "Estamos acá: cerramos Fundamentos",
-      "format": "editorial",
-      "cards": [
-        {
-          "label": "Fundamentos",
-          "body": "Ventana de contexto, tokens, alucinaciones y modelo mental",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Modelos y costos",
-          "body": "Tarifas, árbol de decisión, prompt caching y model cascading",
-          "icon": "arrow_forward"
-        },
-        {
-          "label": "Prompts estructurados",
-          "body": "Seis componentes, etiquetas XML y salidas JSON validables",
-          "icon": "data_object"
-        },
-        {
-          "label": "In-context learning",
-          "body": "Zero-shot, few-shot y many-shot sobre tareas de software",
-          "icon": "school"
-        },
-        {
-          "label": "Técnicas avanzadas",
-          "body": "CoT, self-consistency, thinking, ToT, ReAct y prompt chaining",
-          "icon": "psychology"
-        },
-        {
-          "label": "LLMs en ingeniería",
-          "body": "Ciclo de vida, casos de uso, riesgos y mitigaciones",
-          "icon": "engineering"
-        },
-        {
-          "label": "Resumen y práctica",
-          "body": "Módulos de aitutorial.dev como trabajo domiciliario",
-          "icon": "assignment"
-        }
-      ],
-      "notes": "Corte y respiro. Recapitulá en dos frases: la ventana es finita y se factura por token, y el modelo completa en vez de razonar, por eso alucina. Lo que sigue le pone precio a esas dos cosas.",
-      "_choice": {
-        "signals": [
-          "is_divider=false (H2, not H1)",
-          "labeled_items=7",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "has_table=false",
-          "two status emoji on the first two labels marking done / you-are-here"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "section-agenda",
-          "process",
-          "content-text"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "section-agenda": "its Match is an H1-only numbered section header with the roadmap derived from `deck.sections`; this is an authored H2 carrying a one-line description per section that the template has no field for — the done/current markers are kept as per-card icons instead",
-          "process": "no ordinal or step marker on any label and `is_ordered=false`; the seven sections are a labeled set, not a procedure",
-          "content-text": "a seven-item labeled enumeration is not the last-resort prose shape"
-        }
-      }
-    },
-    {
       "template": "section-agenda",
       "section": "Modelos y costos",
       "title": "Modelos y costos",
-      "notes": "Le pone precio a lo anterior: tarifas por familia, cuándo conviene cada modelo, caching y cascading.",
+      "notes": "Corte y respiro. Recapitulá en dos frases: la ventana es finita y se factura por token, y el modelo completa en vez de razonar, por eso alucina. Lo que sigue le pone precio a esas dos cosas.\n\nLe pone precio a lo anterior: tarifas por familia, cuándo conviene cada modelo, caching y cascading.",
       "_choice": {
         "signals": [
           "encabezado H1 que nombra una sección de deck.sections"
@@ -1284,76 +1148,10 @@
       }
     },
     {
-      "template": "concept-breakdown",
-      "section": "Modelos y costos",
-      "title": "Agenda",
-      "lead": "**Estamos acá: cerramos Modelos y costos**",
-      "format": "editorial",
-      "cards": [
-        {
-          "label": "Fundamentos",
-          "body": "Ventana de contexto, tokens, alucinaciones y modelo mental",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Modelos y costos",
-          "body": "Tarifas, árbol de decisión, prompt caching y model cascading",
-          "icon": "task_alt"
-        },
-        {
-          "label": "Prompts estructurados",
-          "body": "Seis componentes, etiquetas XML y salidas JSON validables",
-          "icon": "arrow_forward"
-        },
-        {
-          "label": "In-context learning",
-          "body": "Zero-shot, few-shot y many-shot sobre tareas de software",
-          "icon": "school"
-        },
-        {
-          "label": "Técnicas avanzadas",
-          "body": "CoT, self-consistency, thinking, ToT, ReAct y prompt chaining",
-          "icon": "psychology"
-        },
-        {
-          "label": "LLMs en ingeniería",
-          "body": "Ciclo de vida, casos de uso, riesgos y mitigaciones",
-          "icon": "engineering"
-        },
-        {
-          "label": "Resumen y práctica",
-          "body": "Módulos de aitutorial.dev como trabajo domiciliario",
-          "icon": "assignment"
-        }
-      ],
-      "notes": "Cierre de la parte cara de la clase. Resumen en una frase: el modelo se elige por tarea y no por prestigio, el caching es ahorro sin costo de calidad y la cascada es ahorro con costo de complejidad. A partir de acá el tema deja de ser el precio y pasa a ser el oficio.",
-      "_choice": {
-        "signals": [
-          "labeled_items=7",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "has_code=false",
-          "has_table=false",
-          "is_divider=false"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "section-agenda",
-          "process"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "section-agenda": "its Match is an H1-only section header with 'no body prose, no images', and its roadmap is derived from deck.sections — this is an H2 slide whose seven items each carry their own description, which the derived roadmap would drop",
-          "process": "the labels are section names, not ordinals (`Paso N`/`1.`), and no stepwise flow is asserted; is_ordered=false keeps an unordered labeled set in concept-breakdown"
-        }
-      }
-    },
-    {
       "template": "section-agenda",
       "section": "Prompts estructurados",
       "title": "Prompts estructurados",
-      "notes": "De escribir un prompt a componerlo: seis partes, etiquetas XML y salidas JSON que se validan solas.",
+      "notes": "Cierre de la parte cara de la clase. Resumen en una frase: el modelo se elige por tarea y no por prestigio, el caching es ahorro sin costo de calidad y la cascada es ahorro con costo de complejidad. A partir de acá el tema deja de ser el precio y pasa a ser el oficio.\n\nDe escribir un prompt a componerlo: seis partes, etiquetas XML y salidas JSON que se validan solas.",
       "_choice": {
         "signals": [
           "encabezado H1 que nombra una sección de deck.sections"
@@ -1504,11 +1302,6 @@
       "lead": "**Los LLM se entrenaron con enormes cantidades de HTML y XML de la web. Las etiquetas crean fronteras semánticas explícitas entre secciones y bajan la ambigüedad.**",
       "language": "xml",
       "code": "<tarea>Clasificar issues de GitHub</tarea>\n<instruccion>\nDevolve UNA sola palabra: bug, feature o pregunta.\nPara cada <entrada>, produci la <salida> correspondiente.\n</instruccion>\n<ejemplos>\n  <ejemplo>\n    <entrada>Al exportar a CSV con mas de 10.000 filas, el proceso corta en la 8.192.</entrada>\n    <salida>bug</salida>\n  </ejemplo>\n  <ejemplo>\n    <entrada>Estaria bueno poder filtrar el listado por fecha de creacion.</entrada>\n    <salida>feature</salida>\n  </ejemplo>\n  <ejemplo>\n    <entrada>¿El endpoint /v2/orders soporta paginacion por cursor?</entrada>\n    <salida>pregunta</salida>\n  </ejemplo>\n</ejemplos>\n<entrada>\nDespues de actualizar a la 3.2, el login con SSO devuelve 500 en staging.\n</entrada>",
-      "design": "split-right",
-      "media": {
-        "src": "images/slide-19-1.png",
-        "alt": "Gráfico de dona sin etiqueta"
-      },
       "highlights": [
         {
           "body": "Las etiquetas suman tokens, y ese overhead se compensa con menos reintentos y menos errores de parseo. Si el prompt es estable, el caching lo absorbe.",
@@ -1518,21 +1311,15 @@
       "notes": "El argumento de por qué funcionan las etiquetas es el mismo de la slide del motor de completado: el modelo vio millones de documentos con esta forma, así que una etiqueta de apertura es un patrón fortísimo. La segunda razón es más práctica: sin delimitadores, el modelo no sabe dónde termina la instrucción y dónde empieza el dato, y ese es el agujero por donde entra una inyección de prompt. Sobre las dos donas: el deck original les ponía 40% y 60% de reducción de alucinaciones, y esa cifra no tiene respaldo. La fuente la atribuye a \"lo que reportan los equipos\", sin estudio. Así que la afirmación queda cualitativa y las donas están marcadas para rehacer o retirar en el polish.",
       "_choice": {
         "signals": [
-          "has_code=true",
-          "n_images=2",
-          "labeled_items=0",
-          "has_table=false",
-          "image_only=false"
+          "conjunto de conceptos etiquetados sobre estructura semántica"
         ],
         "candidates": [
-          "code-example",
-          "content-image",
-          "image-grid"
+          "concept-breakdown",
+          "content+cards+image"
         ],
         "picked": "code-example",
         "rejected": {
-          "content-image": "`has_code → code-example` fires before the image rules and the 23-line XML prompt is what the audience reads; content-image would have no slot for the fence",
-          "image-grid": "requires n_images ≥ 4 with variety as the message; there are two unlabeled donut charts supporting a code slide"
+          "content+cards+image": "su imagen era una dona sin rótulo, dibujada sobre una cifra retirada por no tener fuente; se eliminó y la lámina ya no tiene visual"
         }
       }
     },
@@ -1584,76 +1371,10 @@
       }
     },
     {
-      "template": "concept-breakdown",
-      "section": "Prompts estructurados",
-      "title": "Agenda",
-      "lead": "**Estamos acá: cerramos Prompts estructurados**",
-      "format": "editorial",
-      "cards": [
-        {
-          "label": "Fundamentos",
-          "body": "Ventana de contexto, tokens, alucinaciones y modelo mental",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Modelos y costos",
-          "body": "Tarifas, árbol de decisión, prompt caching y model cascading",
-          "icon": "task_alt"
-        },
-        {
-          "label": "Prompts estructurados",
-          "body": "Seis componentes, etiquetas XML y salidas JSON validables",
-          "icon": "done_all"
-        },
-        {
-          "label": "In-context learning",
-          "body": "Zero-shot, few-shot y many-shot sobre tareas de software",
-          "icon": "arrow_forward"
-        },
-        {
-          "label": "Técnicas avanzadas",
-          "body": "CoT, self-consistency, thinking, ToT, ReAct y prompt chaining",
-          "icon": "psychology"
-        },
-        {
-          "label": "LLMs en ingeniería",
-          "body": "Ciclo de vida, casos de uso, riesgos y mitigaciones",
-          "icon": "engineering"
-        },
-        {
-          "label": "Resumen y práctica",
-          "body": "Módulos de aitutorial.dev como trabajo domiciliario",
-          "icon": "assignment"
-        }
-      ],
-      "notes": "Cierre de la anatomía del prompt. Lo que sigue agrega la pieza que faltaba: los ejemplos. Anunciá el puente: hasta acá se le dijo al modelo qué hacer; ahora se le va a mostrar.",
-      "_choice": {
-        "signals": [
-          "labeled_items=7",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "has_code=false",
-          "has_table=false",
-          "is_divider=false"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "section-agenda",
-          "process"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "section-agenda": "its Match is an H1-only section header with 'no body prose, no images', and its roadmap is derived from deck.sections — this is an H2 slide whose seven items each carry their own description, which the derived roadmap would drop",
-          "process": "the labels are section names, not ordinals (`Paso N`/`1.`), and no stepwise flow is asserted; is_ordered=false keeps an unordered labeled set in concept-breakdown"
-        }
-      }
-    },
-    {
       "template": "section-agenda",
       "section": "In-context learning",
       "title": "In-context learning",
-      "notes": "Enseñar con ejemplos dentro del prompt: zero, few y many-shot sobre tareas de software.",
+      "notes": "Cierre de la anatomía del prompt. Lo que sigue agrega la pieza que faltaba: los ejemplos. Anunciá el puente: hasta acá se le dijo al modelo qué hacer; ahora se le va a mostrar.\n\nEnseñar con ejemplos dentro del prompt: zero, few y many-shot sobre tareas de software.",
       "_choice": {
         "signals": [
           "encabezado H1 que nombra una sección de deck.sections"
@@ -1858,68 +1579,10 @@
       }
     },
     {
-      "template": "concept-breakdown",
-      "section": "In-context learning",
-      "title": "Agenda",
-      "lead": "Estamos acá: cerramos In-context learning",
-      "format": "editorial",
-      "cards": [
-        {
-          "label": "Fundamentos",
-          "body": "Ventana de contexto, tokens, alucinaciones y modelo mental",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Modelos y costos",
-          "body": "Tarifas, árbol de decisión, prompt caching y model cascading",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Prompts estructurados",
-          "body": "Seis componentes, etiquetas XML y salidas JSON validables",
-          "icon": "check_circle"
-        },
-        {
-          "label": "In-context learning",
-          "body": "Zero-shot, few-shot y many-shot sobre tareas de software",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Técnicas avanzadas",
-          "body": "CoT, self-consistency, thinking, ToT, ReAct y prompt chaining",
-          "icon": "arrow_forward"
-        },
-        {
-          "label": "LLMs en ingeniería",
-          "body": "Ciclo de vida, casos de uso, riesgos y mitigaciones",
-          "icon": "engineering"
-        },
-        {
-          "label": "Resumen y práctica",
-          "body": "Módulos de aitutorial.dev como trabajo domiciliario",
-          "icon": "assignment"
-        }
-      ],
-      "notes": "Punto de quiebre de la clase. Hasta acá se trabajó sobre lo que entra al prompt. Lo que sigue trabaja sobre lo que el modelo escribe antes de contestar, que es la sección más larga y la que contiene la tesis. Si hay que hacer un corte de descanso, este es el lugar.",
-      "_choice": {
-        "signals": [
-          "7 conceptos etiquetados con bajada propia"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "section-agenda"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "section-agenda": "su Match es solo H1 y no tiene campo para la bajada de cada sección: emitirla descartaría las siete descripciones"
-        }
-      }
-    },
-    {
       "template": "section-agenda",
       "section": "Técnicas avanzadas",
       "title": "Técnicas avanzadas",
-      "notes": "La sección más larga y donde vive la tesis: todo lo que hace el modelo antes de contestar.",
+      "notes": "Punto de quiebre de la clase. Hasta acá se trabajó sobre lo que entra al prompt. Lo que sigue trabaja sobre lo que el modelo escribe antes de contestar, que es la sección más larga y la que contiene la tesis. Si hay que hacer un corte de descanso, este es el lugar.\n\nLa sección más larga y donde vive la tesis: todo lo que hace el modelo antes de contestar.",
       "_choice": {
         "signals": [
           "encabezado H1 que nombra una sección de deck.sections"
@@ -2373,8 +2036,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-33-1.png",
-        "alt": "Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino"
+        "src": "images/s5-9-1-arbol-ramificar-podar.png",
+        "alt": "Tree of Thought: generar ramas, evaluarlas, podar las malas y expandir solo la mejor hasta la solución"
       },
       "highlights": [
         {
@@ -2383,50 +2046,18 @@
           "position": "top"
         }
       ],
-      "notes": "El diagrama de la slide es el único diagrama conceptual real del deck original, así que aprovechalo: rama, balanza, documento validado. Generar, evaluar, elegir.",
+      "notes": "El árbol de la lámina es el punto entero de la técnica, así que caminalo: se generan varias ramas, cada una recibe un score, las malas se podan y solo la mejor se expande. Marcá que CoT es este mismo árbol con una sola rama y sin vuelta atrás. El aporte teórico del paper vale la pena decirlo porque reordena todo lo anterior: la generación autoregresiva decide token por token y de izquierda a derecha, sin manera de volver atrás, y si el primer paso fue malo el resto está condenado. ToT cambia la unidad de decisión: en vez de tokens, pensamientos completos, y con eso aparecen dos operaciones que CoT no tiene, mirar hacia adelante y retroceder. Recordá el número de la slide de CoT: 4% a 74% en Game of 24, mismo modelo. La analogía médica del deck original se reemplazó por el ejemplo de refactor de la slide siguiente.",
       "_choice": {
         "signals": [
-          "n_images=1 (the force-rendered branch/prune diagram)",
-          "labeled_items=0 (4 plain limitation lines)",
-          "has_code=false",
-          "image_only=false (there is body text beside the diagram)"
+          "una afirmación conceptual, un diagrama que muestra el mecanismo y una lista de límites"
         ],
         "candidates": [
           "content-image",
-          "process",
-          "image-full",
           "concept-breakdown"
         ],
         "picked": "content-image",
         "rejected": {
-          "process": "the four lines are limitations, not an ordered or countable set the presenter walks through; content-image's fact column is the catalog's home for 'a few short facts beside a diagram'",
-          "image-full": "image_only requires no enumeration and no prose beyond one framing line; this slide carries a definition and four facts",
-          "concept-breakdown": "requires images == 0 and labeled items; neither holds"
-        }
-      }
-    },
-    {
-      "template": "content-image",
-      "section": "Técnicas avanzadas",
-      "title": "ToT: ramificar y podar",
-      "lead": "**Lo propio de ToT no es razonar más, sino ramificar y podar: generar varias continuaciones, puntuarlas, descartar las malas y expandir solo la mejor.**",
-      "design": "split-right",
-      "media": {
-        "src": "images/s5-9-1-arbol-ramificar-podar.png",
-        "alt": "Tree of Thought: generar ramas, evaluarlas, podar las malas y expandir solo la mejor hasta la solución"
-      },
-      "notes": "El aporte teórico del papervale la pena decirlo porque reordena todo lo anterior: la generación autoregresiva decide token por token y de izquierda a derecha, sin manera de volver atrás, y si el primer paso fue malo el resto está condenado. ToT cambia la unidad de decisión: en vez de tokens, pensamientos completos, y con eso aparecen dos operaciones que CoT no tiene, mirar hacia adelante y retroceder. Recordá el número de la slide de CoT: 4% a 74% en Game of 24, mismo modelo. La analogía médica del deck original se reemplazó por el ejemplo de refactor de la slide siguiente.",
-      "_choice": {
-        "signals": [
-          "una afirmación conceptual apoyada en un diagrama que muestra el mecanismo"
-        ],
-        "candidates": [
-          "content-image",
-          "figures"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "figures": "hay un solo visual, no un conjunto de figuras con métrica y rótulo propios"
+          "concept-breakdown": "las limitaciones son bullets paralelos sin etiqueta, no un conjunto de conceptos rotulados; y descartaría el diagrama, que es el punto de la lámina"
         }
       }
     },
@@ -3025,70 +2656,6 @@
       }
     },
     {
-      "template": "concept-breakdown",
-      "section": "Técnicas avanzadas",
-      "title": "Agenda",
-      "lead": "**Estamos acá: cerramos Técnicas avanzadas**",
-      "cards": [
-        {
-          "label": "Fundamentos",
-          "body": "Ventana de contexto, tokens, alucinaciones y modelo mental",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Modelos y costos",
-          "body": "Tarifas, árbol de decisión, prompt caching y model cascading",
-          "icon": "task_alt"
-        },
-        {
-          "label": "Prompts estructurados",
-          "body": "Seis componentes, etiquetas XML y salidas JSON validables",
-          "icon": "verified"
-        },
-        {
-          "label": "In-context learning",
-          "body": "Zero-shot, few-shot y many-shot sobre tareas de software",
-          "icon": "done_all"
-        },
-        {
-          "label": "Técnicas avanzadas",
-          "body": "CoT, self-consistency, thinking, ToT, ReAct y prompt chaining",
-          "icon": "fact_check"
-        },
-        {
-          "label": "LLMs en ingeniería",
-          "body": "Ciclo de vida, casos de uso, riesgos y mitigaciones",
-          "icon": "arrow_forward"
-        },
-        {
-          "label": "Resumen y práctica",
-          "body": "Módulos de aitutorial.dev como trabajo domiciliario",
-          "icon": "schedule"
-        }
-      ],
-      "notes": "Cierre de la sección más larga. Recapitulá con la tesis: todas las técnicas hacen escribir al modelo antes de responder, porque escribir es el cómputo, y todas se pagan en tokens y en latencia. Lo que sigue baja todo eso a un equipo de software real.",
-      "_choice": {
-        "signals": [
-          "is_divider=false (H2, not H1)",
-          "labeled_items=7",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "body_len=short"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "section-agenda",
-          "process"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "section-agenda": "its Match is an H1-only section header with **no body prose**; this is an H2 recap whose seven items each carry their own descriptor, and the roadmap template would drop every one of them",
-          "process": "the labels are section names, not ordinals or a stepwise flow — this is a done/pending checklist, and numbering it would assert an order the audience is meant to follow"
-        }
-      }
-    },
-    {
       "template": "concept-columns",
       "section": "Técnicas avanzadas",
       "title": "Versionado de prompts",
@@ -3114,7 +2681,7 @@
           ]
         }
       ],
-      "notes": "Repetición de la slide 5.19. Si se conserva en la entrega, saltearla o usarla como recordatorio de una línea. Las notas de fondo están en 5.19.",
+      "notes": "Cierre de la sección más larga. Recapitulá con la tesis: todas las técnicas hacen escribir al modelo antes de responder, porque escribir es el cómputo, y todas se pagan en tokens y en latencia. Lo que sigue baja todo eso a un equipo de software real.\n\nRepetición de la slide 5.19. Si se conserva en la entrega, saltearla o usarla como recordatorio de una línea. Las notas de fondo están en 5.19.",
       "_choice": {
         "signals": [
           "two_groups=true",
@@ -3245,11 +2812,6 @@
       "section": "Técnicas avanzadas",
       "title": "Tree of Thought (ToT)",
       "lead": "**ToT extiende CoT explorando varios caminos de razonamiento en paralelo, como las ramas de un árbol de decisión. El modelo evalúa cada rama y elige la más prometedora.**",
-      "design": "split-right",
-      "media": {
-        "src": "images/slide-62-1.png",
-        "alt": "Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino"
-      },
       "facts": [
         {
           "body": "**Generar ramas** → **Evaluar ramas** → **Seleccionar camino**"
@@ -3739,68 +3301,10 @@
       }
     },
     {
-      "template": "concept-breakdown",
-      "section": "LLMs en ingeniería",
-      "title": "Agenda",
-      "lead": "Estamos acá: cerramos LLMs en ingeniería",
-      "format": "editorial",
-      "cards": [
-        {
-          "label": "Fundamentos",
-          "body": "Ventana de contexto, tokens, alucinaciones y modelo mental",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Modelos y costos",
-          "body": "Tarifas, árbol de decisión, prompt caching y model cascading",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Prompts estructurados",
-          "body": "Seis componentes, etiquetas XML y salidas JSON validables",
-          "icon": "check_circle"
-        },
-        {
-          "label": "In-context learning",
-          "body": "Zero-shot, few-shot y many-shot sobre tareas de software",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Técnicas avanzadas",
-          "body": "CoT, self-consistency, thinking, ToT, ReAct y prompt chaining",
-          "icon": "check_circle"
-        },
-        {
-          "label": "LLMs en ingeniería",
-          "body": "Ciclo de vida, casos de uso, riesgos y mitigaciones",
-          "icon": "check_circle"
-        },
-        {
-          "label": "Resumen y práctica",
-          "body": "Módulos de aitutorial.dev como trabajo domiciliario",
-          "icon": "arrow_forward"
-        }
-      ],
-      "notes": "Última transición. Queda el cierre y la consigna de práctica. Si vas corto de tiempo, este es el punto donde conviene saltar directo a las conclusiones y dejar la slide de práctica para el final, que se explica en dos minutos.",
-      "_choice": {
-        "signals": [
-          "7 conceptos etiquetados con bajada propia"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "section-agenda"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "section-agenda": "su Match es solo H1 y no tiene campo para la bajada de cada sección: emitirla descartaría las siete descripciones"
-        }
-      }
-    },
-    {
       "template": "section-agenda",
       "section": "Resumen y práctica",
       "title": "Resumen y práctica",
-      "notes": "Cierre y trabajo domiciliario.",
+      "notes": "Última transición. Queda el cierre y la consigna de práctica. Si vas corto de tiempo, este es el punto donde conviene saltar directo a las conclusiones y dejar la slide de práctica para el final, que se explica en dos minutos.\n\nCierre y trabajo domiciliario.",
       "_choice": {
         "signals": [
           "encabezado H1 que nombra una sección de deck.sections"
@@ -3916,7 +3420,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "956f6546f7f424676d83637973d2f0d86dd662f269b453987338da88e721ceb5",
-    "bytes": 154194
+    "sha256": "88625fcf8b082fca04ae3a017d40dab0c5121955baf9a61a4aba683b08f5f52a",
+    "bytes": 144811
   }
 }
