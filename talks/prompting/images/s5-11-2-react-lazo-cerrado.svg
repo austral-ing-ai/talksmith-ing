@@ -1,0 +1,50 @@
+<!-- talksmith-ascii-sha256: 97d7d0cff28ba167b77c47082cdc793e3ac4b110d253cf61ea06dbdec200496b -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="32 16 866 438" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+<title>ReAct: razonar y actuar</title>
+<desc>El modelo alterna razonamiento y acciones sobre fuentes externas: cada observación del mundo vuelve al razonamiento y corrige el plan antes del paso siguiente.</desc>
+<defs>
+<marker id="ag" viewBox="0 0 10 8" refX="10" refY="4" markerWidth="10" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M0,0 L10,4 L0,8 Z" fill="#6B6363"/>
+</marker>
+<marker id="ar" viewBox="0 0 11 9" refX="11" refY="4.5" markerWidth="11" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M0,0 L11,4.5 L0,9 Z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="32" y="16" width="866" height="438" fill="#ffffff"/>
+
+<rect x="60" y="126" width="150" height="60" rx="4" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.8"/>
+<text x="135" y="151" text-anchor="middle" font-size="15" font-weight="bold">THOUGHT</text>
+<text x="135" y="171" text-anchor="middle" fill="#6B6363">razonar</text>
+
+<rect x="270" y="126" width="150" height="60" rx="4" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.8"/>
+<text x="345" y="151" text-anchor="middle" font-size="15" font-weight="bold">ACT</text>
+<text x="345" y="171" text-anchor="middle" fill="#6B6363">actuar</text>
+
+<rect x="480" y="126" width="170" height="60" rx="4" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.8"/>
+<text x="565" y="151" text-anchor="middle" font-size="15" font-weight="bold">OBSERVATION</text>
+<text x="565" y="171" text-anchor="middle" fill="#6B6363">lo que devolvió</text>
+
+<path d="M210,156 H270" fill="none" stroke="#6B6363" stroke-width="1.8" marker-end="url(#ag)"/>
+<path d="M420,156 H480" fill="none" stroke="#6B6363" stroke-width="1.8" marker-end="url(#ag)"/>
+
+<path d="M565,126 V66 H135 V126" fill="none" stroke="#DA1B2E" stroke-width="2.6" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="350" y="54" text-anchor="middle" fill="#DA1B2E" font-weight="bold">cierra el lazo: la observación corrige el plan</text>
+
+<rect x="255" y="256" width="180" height="74" rx="4" fill="#ffffff" stroke="#6B6363" stroke-width="1.8" stroke-dasharray="6 4"/>
+<text x="345" y="288" text-anchor="middle" font-size="15" font-weight="bold">MUNDO</text>
+<text x="345" y="310" text-anchor="middle" fill="#6B6363">repo, API, búsqueda</text>
+<text x="345" y="350" text-anchor="middle" font-size="12" fill="#6B6363">fuera del modelo</text>
+
+<path d="M345,186 V256" fill="none" stroke="#6B6363" stroke-width="1.8" marker-end="url(#ag)"/>
+<text x="355" y="226" font-size="12" fill="#6B6363">acción</text>
+<path d="M435,293 H565 V186" fill="none" stroke="#6B6363" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#ag)"/>
+<text x="575" y="226" font-size="12" fill="#6B6363">resultado</text>
+
+<path d="M650,156 H730" fill="none" stroke="#6B6363" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ag)"/>
+<rect x="730" y="128" width="140" height="56" rx="28" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
+<text x="800" y="163" text-anchor="middle" font-size="17" font-weight="bold">FINISH</text>
+<text x="800" y="206" text-anchor="middle" font-size="12" fill="#6B6363">sale del lazo</text>
+
+<text x="60" y="396" font-size="16" font-weight="bold">El plan se corrige con lo que el mundo devolvió, no con lo que el modelo recordaba.</text>
+<text x="60" y="422" font-size="14" fill="#6B6363">CoT razona una vez y contesta. ReAct cierra el lazo contra el mundo.</text>
+</svg>

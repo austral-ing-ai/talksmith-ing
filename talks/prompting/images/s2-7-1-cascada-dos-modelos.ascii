@@ -1,0 +1,28 @@
+  Request entra
+       |
+       v
+  +---------------------------+
+  |  Modelo barato            |
+  |  (Haiku 4.5)              |
+  |  intenta resolver         |
+  +---------------------------+
+       |
+       v
+  ¿confianza suficiente?
+       |
+       +-- SI --> retornar respuesta      (costo minimo, latencia baja)
+       |
+       +-- NO --> +---------------------------+
+                  |  Modelo caro             |
+                  |  (Opus 4.8)              |
+                  |  resuelve                |
+                  +---------------------------+
+                            |
+                            v
+                     retornar respuesta      (solo cuando hace falta)
+
+<!-- ascii-note:
+intent: mostrar el flujo de dos etapas del model cascading, con el gate de confianza como el punto de decision que define si el ahorro existe
+emphasize: el rombo de decision "¿confianza suficiente?" y las dos ramas con su costo asociado; la rama SI es la que produce el ahorro
+labels: "Modelo barato (Haiku 4.5)", "¿confianza suficiente?", "Modelo caro (Opus 4.8)", costo minimo / solo cuando hace falta
+-->

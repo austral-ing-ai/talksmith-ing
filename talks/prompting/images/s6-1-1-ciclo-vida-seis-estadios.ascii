@@ -1,0 +1,20 @@
+     +----------+     +----------+     +----------------+     +----------+
+     |  ISSUE   | --> |  DISENO  | --> | IMPLEMENTACION | --> |  REVIEW  |
+     |  triage  |     |  ADRs    |     | codigo, tests  |     |   diff   |
+     +----------+     +----------+     +----------------+     +----------+
+          ^                                                        |
+          |                                                        v
+          |           +-------------+                        +----------+
+          +---------- | INCIDENTE   | <--------------------- |  DEPLOY  |
+                      | logs        |                        | release  |
+                      | post-mortem |                        |  notes   |
+                      +-------------+                        +----------+
+
+  El post-mortem vuelve como issue: el ciclo se cierra, no termina.
+  Hay un LLM util en los seis estadios, no solo en "escribir codigo".
+
+<!-- ascii-note:
+intent: mostrar el ciclo de vida de un cambio como un lazo cerrado de seis estadios, y que el aporte del LLM esta repartido en los seis y no concentrado en la implementacion, que es donde la intuicion lo pone
+emphasize: la flecha de retorno de INCIDENTE a ISSUE, que es lo que convierte la secuencia en ciclo; la caja IMPLEMENTACION como uno mas entre seis y no como el centro
+labels: "ISSUE / triage", "DISENO / ADRs", "IMPLEMENTACION / codigo, tests", "REVIEW / diff", "DEPLOY / release notes", "INCIDENTE / logs, post-mortem", y las dos lineas de cierre
+-->

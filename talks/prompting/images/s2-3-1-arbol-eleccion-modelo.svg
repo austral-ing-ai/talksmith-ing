@@ -1,0 +1,75 @@
+<!-- talksmith-ascii-sha256: fd23dc115d565195d574488cfb2096e9a0b9d38e21b9e9bca2723a524c7dcb15 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 996 609" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="14">
+<title>Elegir modelo: árbol de decisión</title>
+<desc>El árbol vale más por el orden de las preguntas que por los nombres de modelo que devuelve.</desc>
+<defs>
+<marker id="ar" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 z" fill="#DA1B2E"/></marker>
+<marker id="ag" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 z" fill="#9A9292"/></marker>
+</defs>
+<rect width="996" height="609" fill="#ffffff"/>
+<g transform="translate(28,28)">
+
+<text y="12" font-size="17" font-weight="700">Cuatro preguntas en orden. La primera que dé “sí” define el modelo.</text>
+
+<line x1="185" y1="118" x2="185" y2="168" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="185" y1="220" x2="185" y2="270" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="185" y1="322" x2="185" y2="372" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="185" y1="424" x2="185" y2="474" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ar)"/>
+<text x="195" y="147" font-size="11.5" font-weight="700" fill="#6B6363">NO</text>
+<text x="195" y="249" font-size="11.5" font-weight="700" fill="#6B6363">NO</text>
+<text x="195" y="351" font-size="11.5" font-weight="700" fill="#6B6363">NO</text>
+<text x="195" y="453" font-size="11.5" font-weight="700" fill="#6B6363">NO</text>
+
+<line x1="370" y1="83" x2="450" y2="83" stroke="#9A9292" stroke-width="1.6" marker-end="url(#ag)"/>
+<line x1="370" y1="194" x2="450" y2="194" stroke="#9A9292" stroke-width="1.6" marker-end="url(#ag)"/>
+<line x1="370" y1="296" x2="450" y2="296" stroke="#9A9292" stroke-width="1.6" marker-end="url(#ag)"/>
+<line x1="370" y1="398" x2="450" y2="398" stroke="#9A9292" stroke-width="1.6" marker-end="url(#ag)"/>
+<text x="410" y="75" font-size="11.5" font-weight="700" text-anchor="middle" fill="#6B6363">SÍ</text>
+<text x="410" y="186" font-size="11.5" font-weight="700" text-anchor="middle" fill="#6B6363">SÍ</text>
+<text x="410" y="288" font-size="11.5" font-weight="700" text-anchor="middle" fill="#6B6363">SÍ</text>
+<text x="410" y="390" font-size="11.5" font-weight="700" text-anchor="middle" fill="#6B6363">SÍ</text>
+
+<rect x="0" y="48" width="370" height="70" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.8"/>
+<circle cx="24" cy="83" r="11" fill="#DA1B2E"/>
+<text x="24" y="87" font-size="12.5" font-weight="700" text-anchor="middle" fill="#ffffff">1</text>
+<text x="46" y="77" font-size="15" font-weight="700">¿La tarea es simple?</text>
+<text x="46" y="98" font-size="12" fill="#6B6363">(clasificar, extraer, rotular)</text>
+
+<rect x="0" y="168" width="370" height="52" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.8"/>
+<circle cx="24" cy="194" r="11" fill="#DA1B2E"/>
+<text x="24" y="198" font-size="12.5" font-weight="700" text-anchor="middle" fill="#ffffff">2</text>
+<text x="46" y="199" font-size="15" font-weight="700">¿Necesita más de 1M de contexto?</text>
+
+<rect x="0" y="270" width="370" height="52" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.8"/>
+<circle cx="24" cy="296" r="11" fill="#DA1B2E"/>
+<text x="24" y="300" font-size="12.5" font-weight="700" text-anchor="middle" fill="#ffffff">3</text>
+<text x="46" y="301" font-size="15" font-weight="700">¿Necesita JSON garantizado por la API?</text>
+
+<rect x="0" y="372" width="370" height="52" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.8"/>
+<circle cx="24" cy="398" r="11" fill="#DA1B2E"/>
+<text x="24" y="402" font-size="12.5" font-weight="700" text-anchor="middle" fill="#ffffff">4</text>
+<text x="46" y="403" font-size="15" font-weight="700">¿El costo es crítico por volumen?</text>
+
+<rect x="0" y="474" width="370" height="44" rx="4" fill="#F4F2F2" stroke="#B9B1B1" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="185" y="494" font-size="10.5" font-weight="700" text-anchor="middle" fill="#9A9292">POR DEFECTO</text>
+<text x="185" y="510" font-size="13" text-anchor="middle">el mejor modelo para la calidad que se necesita</text>
+
+<rect x="450" y="53" width="490" height="60" rx="4" fill="#F4F2F2" stroke="#CFC9C9" stroke-width="1.2"/>
+<text x="466" y="79" font-size="14.5" font-weight="700">modelo chico y barato</text>
+<text x="466" y="99" font-size="12" font-family="'DejaVu Sans Mono', monospace" fill="#6B6363">Haiku 4.5 / GPT-4o Mini / Gemini Flash</text>
+
+<rect x="450" y="164" width="490" height="60" rx="4" fill="#F4F2F2" stroke="#CFC9C9" stroke-width="1.2"/>
+<text x="466" y="190" font-size="14.5" font-weight="700">el de ventana más grande disponible</text>
+<text x="466" y="210" font-size="12" fill="#6B6363">(hoy: Gemini Pro, 2M)</text>
+
+<rect x="450" y="274" width="490" height="44" rx="4" fill="#F4F2F2" stroke="#CFC9C9" stroke-width="1.2"/>
+<text x="466" y="301" font-size="14.5" font-weight="700">modelo con structured outputs</text>
+
+<rect x="450" y="368" width="490" height="60" rx="4" fill="#F4F2F2" stroke="#CFC9C9" stroke-width="1.2"/>
+<text x="466" y="394" font-size="14.5" font-weight="700">model cascading</text>
+<text x="466" y="414" font-size="12" fill="#6B6363">(barato primero, caro si hace falta)</text>
+
+<text y="550" font-size="12.5" font-style="italic" fill="#6B6363">El orden importa: el costo se pregunta último, recién cuando ya sabemos si la calidad alcanza.</text>
+
+</g>
+</svg>

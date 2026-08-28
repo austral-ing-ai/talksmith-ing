@@ -1,0 +1,82 @@
+<!-- talksmith-ascii-sha256: 27b5db8425aa7a798b833ff008101fa6ac621d6dc0ef7633c66ca451123f230e -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 528 380" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>Tree of Thought (ToT)</title>
+<desc>ToT ramifica el razonamiento en varias ramas, puntua cada una, poda las peores y expande solo la mejor hasta llegar a la solucion.</desc>
+<defs>
+<marker id="ahG" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 Z" fill="#B8B2B2"/></marker>
+<marker id="ahR" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="528" height="380" fill="#ffffff"/>
+
+<g fill="none" stroke="#B8B2B2" stroke-width="1.6">
+<path d="M194,58 L194,80"/>
+<path d="M72,80 L316,80"/>
+<path d="M194,80 L194,104" marker-end="url(#ahG)"/>
+<path d="M316,80 L316,104" marker-end="url(#ahG)"/>
+<path d="M72,196 L156,196"/>
+<path d="M156,196 L156,206" marker-end="url(#ahG)"/>
+<path d="M194,146 L194,156"/>
+<path d="M316,146 L316,156"/>
+<path d="M156,248 L156,262"/>
+</g>
+
+<g fill="none" stroke="#DA1B2E" stroke-width="1.6">
+<path d="M194,58 L194,80 L72,80"/>
+<path d="M72,80 L72,104" marker-end="url(#ahR)"/>
+<path d="M72,146 L72,206" marker-end="url(#ahR)"/>
+<path d="M72,248 L72,290" marker-end="url(#ahR)"/>
+</g>
+
+<g stroke="#A9A2A2" stroke-width="2.2" stroke-linecap="round" fill="none">
+<path d="M187,157 L201,171 M201,157 L187,171"/>
+<path d="M309,157 L323,171 M323,157 L309,171"/>
+<path d="M149,263 L163,277 M163,263 L149,277"/>
+</g>
+
+<rect x="138" y="24" width="112" height="34" rx="3" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="194" y="46" text-anchor="middle" font-weight="bold">problema</text>
+
+<rect x="24" y="104" width="96" height="42" rx="3" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="72" y="124" text-anchor="middle" font-weight="bold">rama A</text>
+<text x="72" y="139" text-anchor="middle" font-size="11.5" fill="#DA1B2E">score 8</text>
+
+<rect x="146" y="104" width="96" height="42" rx="3" fill="#FAFAFA" stroke="#DCD8D8" stroke-width="1.6"/>
+<text x="194" y="124" text-anchor="middle" font-weight="bold" fill="#A9A2A2">rama B</text>
+<text x="194" y="139" text-anchor="middle" font-size="11.5" fill="#A9A2A2">score 5</text>
+
+<rect x="268" y="104" width="96" height="42" rx="3" fill="#FAFAFA" stroke="#DCD8D8" stroke-width="1.6"/>
+<text x="316" y="124" text-anchor="middle" font-weight="bold" fill="#A9A2A2">rama C</text>
+<text x="316" y="139" text-anchor="middle" font-size="11.5" fill="#A9A2A2">score 2</text>
+
+<text x="194" y="186" text-anchor="middle" font-size="11.5" fill="#A9A2A2">podada</text>
+<text x="316" y="186" text-anchor="middle" font-size="11.5" fill="#A9A2A2">podada</text>
+
+<rect x="40" y="206" width="64" height="42" rx="3" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="72" y="226" text-anchor="middle" font-weight="bold">A.1</text>
+<text x="72" y="241" text-anchor="middle" font-size="11.5" fill="#DA1B2E">score 9</text>
+
+<rect x="124" y="206" width="64" height="42" rx="3" fill="#FAFAFA" stroke="#DCD8D8" stroke-width="1.6"/>
+<text x="156" y="226" text-anchor="middle" font-weight="bold" fill="#A9A2A2">A.2</text>
+<text x="156" y="241" text-anchor="middle" font-size="11.5" fill="#A9A2A2">score 4</text>
+
+<text x="156" y="292" text-anchor="middle" font-size="11.5" fill="#A9A2A2">podada</text>
+
+<rect x="24" y="290" width="96" height="38" rx="3" fill="#FDECEE" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="72" y="314" text-anchor="middle" font-weight="bold" font-size="14" fill="#DA1B2E">solución</text>
+
+<path d="M382,100 L382,330" stroke="#E4E0E0" stroke-width="1.6" fill="none"/>
+
+<text x="398" y="122" font-weight="bold" font-size="12.5">1. GENERAR</text>
+<text x="398" y="139" font-size="11.5" fill="#8A8282">varias ramas</text>
+
+<text x="398" y="176" font-weight="bold" font-size="12.5">2. EVALUAR</text>
+<text x="398" y="193" font-size="11.5" fill="#8A8282">cada rama</text>
+
+<text x="398" y="224" font-weight="bold" font-size="12.5">3. EXPANDIR</text>
+<text x="398" y="241" font-size="11.5" fill="#8A8282">solo la mejor</text>
+
+<text x="398" y="306" font-weight="bold" font-size="12.5">4. SELECCIONAR</text>
+<text x="398" y="323" font-size="11.5" fill="#8A8282">la solución</text>
+
+<text x="24" y="356" font-size="12" fill="#6E6666">CoT es este árbol con una sola rama y sin vuelta atrás.</text>
+</svg>

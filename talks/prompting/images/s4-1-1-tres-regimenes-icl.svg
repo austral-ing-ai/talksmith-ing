@@ -1,0 +1,81 @@
+<!-- talksmith-ascii-sha256: d3a267a67693964016e6f9915452546aec8a18b6e83ca55006cdcbd964a57f81 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 503" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#3B3535">
+<title>In-context learning (ICL)</title>
+<desc>Los tres regimenes de in-context learning son el mismo prompt con distinta cantidad de ejemplos entre la instruccion y el caso nuevo; los pesos del modelo no cambian.</desc>
+<rect x="0" y="0" width="760" height="503" fill="#ffffff"/>
+<text x="24" y="36" font-size="16" font-weight="bold">Lo que viaja dentro del prompt, en cada régimen</text>
+<text x="132" y="74" text-anchor="middle" font-size="13" font-weight="bold" letter-spacing="0.6">ZERO-SHOT</text>
+<text x="132" y="92" text-anchor="middle" font-size="10.5" fill="#6E6666">sin ejemplos</text>
+<rect x="24" y="106" width="216" height="212" rx="4" fill="#ffffff" stroke="#E0DCDC"/>
+<rect x="36" y="120" width="192" height="30" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="132" y="139" text-anchor="middle" font-size="12">instrucción</text>
+<rect x="36" y="164" width="192" height="98" rx="3" fill="none" stroke="#D8D4D4" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="132" y="217" text-anchor="middle" font-size="10.5" fill="#9A9494">ningún ejemplo</text>
+<rect x="36" y="276" width="192" height="30" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="132" y="295" text-anchor="middle" font-size="12">caso nuevo</text>
+<text x="380" y="74" text-anchor="middle" font-size="13" font-weight="bold" letter-spacing="0.6">FEW-SHOT</text>
+<text x="380" y="92" text-anchor="middle" font-size="10.5" fill="#6E6666">2 a 10 ejemplos</text>
+<rect x="272" y="106" width="216" height="212" rx="4" fill="#ffffff" stroke="#E0DCDC"/>
+<rect x="284" y="120" width="192" height="30" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="380" y="139" text-anchor="middle" font-size="12">instrucción</text>
+<rect x="284" y="164" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="305" y="177.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="334" y="164" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="355" y="177.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="384" y="164" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="405" y="177.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="284" y="276" width="192" height="30" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="380" y="295" text-anchor="middle" font-size="12">caso nuevo</text>
+<text x="628" y="74" text-anchor="middle" font-size="13" font-weight="bold" letter-spacing="0.6">MANY-SHOT</text>
+<text x="628" y="92" text-anchor="middle" font-size="10.5" fill="#6E6666">decenas o cientos</text>
+<rect x="520" y="106" width="216" height="212" rx="4" fill="#ffffff" stroke="#E0DCDC"/>
+<rect x="532" y="120" width="192" height="30" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="628" y="139" text-anchor="middle" font-size="12">instrucción</text>
+<rect x="532" y="164" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="553" y="177.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="582" y="164" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="603" y="177.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="632" y="164" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="653" y="177.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="682" y="164" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="703" y="177.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="532" y="190" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="553" y="203.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="582" y="190" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="603" y="203.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="632" y="190" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="653" y="203.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="682" y="190" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="703" y="203.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="532" y="216" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="553" y="229.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="582" y="216" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="603" y="229.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="632" y="216" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="653" y="229.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="682" y="216" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="703" y="229.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="532" y="242" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="553" y="255.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<rect x="582" y="242" width="42" height="20" rx="2" fill="#FBEAEC" stroke="#DA1B2E"/>
+<text x="603" y="255.4" text-anchor="middle" font-size="9.5" fill="#DA1B2E">ej</text>
+<text x="653" y="255" text-anchor="middle" font-size="13" fill="#DA1B2E">...</text>
+<rect x="532" y="276" width="192" height="30" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="628" y="295" text-anchor="middle" font-size="12">caso nuevo</text>
+<line x1="132" y1="326" x2="132" y2="452" stroke="#E8E5E5" stroke-dasharray="3 4"/>
+<line x1="380" y1="326" x2="380" y2="452" stroke="#E8E5E5" stroke-dasharray="3 4"/>
+<line x1="628" y1="326" x2="628" y2="452" stroke="#E8E5E5" stroke-dasharray="3 4"/>
+<text x="118" y="369.5" text-anchor="end" font-size="10" fill="#6E6666">tokens por llamada</text>
+<path d="M132,366 C 300,364 420,356 628,346" fill="none" stroke="#3B3535" stroke-width="1.6" stroke-linecap="round"/>
+<circle cx="628" cy="346" r="2.4" fill="#3B3535"/>
+<text x="642" y="350" font-size="10.5">suben</text>
+<text x="118" y="407.5" text-anchor="end" font-size="10" fill="#6E6666">precisión</text>
+<path d="M132,404 C 200,386 262,384 380,383 C 480,382.4 540,382 628,382" fill="none" stroke="#3B3535" stroke-width="1.6" stroke-linecap="round"/>
+<circle cx="628" cy="382" r="2.4" fill="#3B3535"/>
+<text x="642" y="386" font-size="10.5">sube y satura</text>
+<text x="118" y="445.5" text-anchor="end" font-size="10" fill="#6E6666">costo</text>
+<path d="M132,442 L628,420" fill="none" stroke="#3B3535" stroke-width="1.6" stroke-linecap="round"/>
+<circle cx="628" cy="420" r="2.4" fill="#3B3535"/>
+<text x="642" y="424" font-size="10.5">sube siempre</text>
+<text x="24" y="476" font-size="12">Los pesos del modelo no cambian en ningún punto de la progresión.</text>
+</svg>

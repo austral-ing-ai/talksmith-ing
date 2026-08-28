@@ -1,0 +1,42 @@
+<!-- talksmith-ascii-sha256: ed22159f1b6728fc023263a9469b83401765f290cec07755f653bce93a85c51d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 398" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>¿Qué se guarda en un prompt?</title>
+<desc>Recorré el contenedor banda por banda: system prompt, historial, datos inyectados y respuestas previas comparten una ventana de contexto finita.</desc>
+<defs>
+<marker id="rojo" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto">
+<path d="M0 0 L10 5 L0 10 Z" fill="#DA1B2E"/>
+</marker>
+<marker id="rojoS" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
+<path d="M0 0 L7 3.5 L0 7 Z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect width="680" height="398" fill="#ffffff"/>
+
+<rect x="24" y="24" width="632" height="292" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="44" y="53" font-size="15" font-weight="bold" letter-spacing="1.2">VENTANA DE CONTEXTO</text>
+<text x="636" y="53" font-size="12" fill="#DA1B2E" text-anchor="end">límite duro</text>
+
+<rect x="44" y="72" width="592" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="62" y="99" font-size="13" font-weight="bold">SYSTEM PROMPT</text>
+<text x="240" y="99" font-size="12" fill="#6B6464">instrucciones base, fijas entre turnos</text>
+
+<rect x="44" y="124" width="592" height="58" fill="#FBEDEE" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="62" y="148" font-size="13" font-weight="bold" fill="#DA1B2E">HISTORIAL</text>
+<text x="240" y="148" font-size="12" fill="#6B6464">todos los turnos previos</text>
+<text x="240" y="169" font-size="12" fill="#DA1B2E">crece en cada mensaje</text>
+<line x1="378" y1="165" x2="418" y2="165" stroke="#DA1B2E" stroke-width="1.5" marker-end="url(#rojoS)"/>
+
+<rect x="44" y="190" width="592" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="62" y="217" font-size="13" font-weight="bold">DATOS INYECTADOS</text>
+<text x="240" y="217" font-size="12" fill="#6B6464">archivos, búsquedas, APIs</text>
+
+<rect x="44" y="242" width="592" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="62" y="269" font-size="13" font-weight="bold">RESPUESTAS</text>
+<text x="240" y="269" font-size="12" fill="#6B6464">las salidas previas del modelo</text>
+
+<text x="340" y="306" font-size="13" fill="#6B6464" text-anchor="middle">todo compite por la atención, al mismo tiempo</text>
+
+<line x1="340" y1="316" x2="340" y2="344" stroke="#DA1B2E" stroke-width="2" marker-end="url(#rojo)"/>
+<text x="328" y="336" font-size="12" fill="#6B6464" text-anchor="end">se llena</text>
+<text x="340" y="370" font-size="14" fill="#3B3535" text-anchor="middle">se pierde el acceso a lo más viejo</text>
+</svg>

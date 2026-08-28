@@ -15,11 +15,6 @@ date: 2026-09-02
 
 **Why it matters:** Cada punto de calidad se paga en tokens, en latencia y en dinero, así que la habilidad central de la clase es emparejar la técnica y el modelo con la dificultad real de la tarea.
 
-**Presenter feedback:**
-
-- [closed] 2026-08-14 — "Restaurado 1:1 desde `AIG4B-Clase-3-Prompting.pptx`. La tesis no estaba explícita en el deck original: falta escribirla."
-  Resolution: tesis escrita a partir del argumento de la slide 38 del deck original ("El LLM no 'piensa': predice tokens", corpus §Raw excerpts [38]), con el trade-off calidad/costo como *why it matters*. Los objetivos de las ocho secciones se derivaron de ella.
-
 ---
 
 # Agenda
@@ -50,18 +45,11 @@ La clase abre por la máquina: qué entra en la ventana de contexto, qué cuesta
 <!-- **6** Foundational Models en Medicina — Aplicaciones reales, recorrido del paciente, research biomédica y marco ético OMS -->
 <!-- **7** Resumen y Práctica — Módulos interactivos de aitutorial.dev + sistema de triage con LLM -->
 
-**Presenter feedback:**
-
-- [closed] 2026-08-28 — "Las siete agendas in-deck declaran un orden distinto al de entrega, prometen TOON y un sistema de triage que el deck no da."
-  Resolution: las siete agendas repetidas (0.4, 1.13, 2.8, 3.6, 4.5, 5.21, 6.7) se alinearon al orden real de entrega, se les quitaron los ordinales escritos (L3), se sacaron las promesas de TOON y del sistema de triage, y cada una marca en negrita la sección en curso para que la repetición sirva de navegación.
-
 ---
 
 # 0. Portada
 
 **Goal of this section:** Abrir la clase: portada, encuadre y el mapa de las siete secciones.
-
-**Presenter feedback:**
 
 ---
 
@@ -75,7 +63,7 @@ La clase abre por la máquina: qué entra en la ventana de contexto, qué cuesta
 - **Paulo Veiga, Claudio Righetti y Marco Sorondo (Universidad Austral)**
 - **Última modificación: agosto 2026**
 
-![Logo de la Universidad Austral](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-01-1.png)
+![Logo de la Universidad Austral](images/slide-01-1.png)
 
 ### Sources
 
@@ -84,8 +72,6 @@ La clase abre por la máquina: qué entra en la ventana de contexto, qué cuesta
 ### Speaker notes
 
 Portada. Presentate y presentá a los otros dos docentes. Encuadre de una frase antes de arrancar: esta clase no es un catálogo de trucos de prompting, es la clase donde se entiende qué hace el modelo por dentro cuando lo promptean, y por qué cada mejora de calidad tiene un precio en tokens y en latencia. Avisá acá que la clase dura dos horas y media y que los módulos de práctica de aitutorial.dev quedan como trabajo domiciliario.
-
-### Presenter feedback
 
 ---
 
@@ -111,14 +97,10 @@ Portada. Presentate y presentá a los otros dos docentes. Encuadre de una frase 
 
 El mapa de la clase. Vale la pena decir en voz alta el arco, porque las siete secciones no son siete temas sueltos: las dos primeras explican la máquina y su precio, las tres del medio son el oficio de escribir prompts, y las dos últimas bajan todo a un equipo de software real. Anunciá también que esta misma agenda reaparece entre secciones marcando dónde estamos, para que nadie se pierda en dos horas y media.
 
-### Presenter feedback
-
 ---
 # 1. Fundamentos
 
 **Goal of this section:** Dejar instalado un modelo mental correcto de qué es un LLM por dentro: una ventana de contexto finita que se factura por token y un motor de completado que inventa cuando se queda sin patrón.
-
-**Presenter feedback:**
 
 ---
 
@@ -142,11 +124,6 @@ El mapa de la clase. Vale la pena decir en voz alta el arco, porque las siete se
 
 Arranque suave, pero conviene no darlo por sabido. El punto que sí hay que dejar clavado es el tercero: la calidad del prompt no es cortesía, es la única palanca de control que queda una vez elegido el modelo. La analogía del ticket funciona mejor que la de la receta para esta audiencia: todos escribieron alguna vez un issue de dos líneas y recibieron una implementación que no era la que querían. El prompt tiene el mismo problema y la misma solución.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Todo ejemplo médico o clínico pasa a ser de sistemas o ingeniería de software."
-  Resolution: la analogía del chef se reemplazó por la del ticket con condiciones de aceptación, y "proporcionas" pasó a registro impersonal.
-
 ---
 
 ## 2. ¿Qué se guarda en un prompt?
@@ -155,7 +132,8 @@ Arranque suave, pero conviene no darlo por sabido. El punto que sí hay que deja
 
 **Todo lo que el modelo ve en un turno vive en la ventana de contexto, y todo compite por su atención al mismo tiempo.**
 
-```ascii
+![La ventana de contexto como contenedor finito: system prompt, historial, datos inyectados y respuestas compiten adentro del mismo límite duro](images/s1-2-1-ventana-contexto-contenedor.png)
+<!-- ascii-source:
   +===================== VENTANA DE CONTEXTO =====================+
   |                                                 (limite duro) |
   |   +--------------------------------------------------------+  |
@@ -174,7 +152,7 @@ Arranque suave, pero conviene no darlo por sabido. El punto que sí hay que deja
                               |
                     se llena  v
               se pierde el acceso a lo mas viejo
-```
+-->
 <!-- ascii-note:
 intent: mostrar la ventana de contexto como un contenedor finito con cuatro tipos de contenido apilados adentro, y su borde como limite duro que se desborda
 emphasize: el marco exterior como limite duro; la banda HISTORIAL, unica que crece sola en cada turno; la flecha de desborde al pie
@@ -191,13 +169,6 @@ labels: "VENTANA DE CONTEXTO (limite duro)", "SYSTEM PROMPT", "HISTORIAL", "DATO
 
 Recorré el contenedor banda por banda, porque las definiciones ya no están en la lámina. **System prompt**: las instrucciones base que fijan el comportamiento general del modelo, fijas entre turnos. **Historial**: toda la conversación previa; cada mensaje nuevo se concatena y ocupa lugar de forma acumulativa. **Datos inyectados**: archivos, resultados de búsqueda, respuestas de APIs externas. **Respuestas del modelo**: sus propias salidas previas, que también ocupan lugar. Cuatro cosas entran en la ventana y solo una la escribe el usuario en ese momento. Es la slide donde conviene romper la ilusión de que "el chat se acuerda": no se acuerda, la aplicación le reenvía todo el historial en cada turno. De ahí salen dos consecuencias que se cobran más adelante en la clase. La primera es de plata: el historial se paga entero, otra vez, en cada mensaje (la slide de la fórmula del costo lo cuantifica). La segunda es de calidad: el modelo reparte atención sobre todo lo que entra, así que meter más contexto puede empeorar la respuesta en lugar de mejorarla. Si el grupo pregunta por qué, adelantá el sesgo de recencia de la slide de limitaciones: el modelo mira más el principio y el final del prompt que el medio.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Etiqueta y definición desapareadas al reconstruir desde el pptx: los tres bullets bajo System prompt no lo definen y la definición aparece tercera."
-  Resolution: se reemparejó cada componente con su definición (L8) y las tres advertencias de la columna "Lo que hay que saber" bajaron a una sola línea de cierre más las notas del orador.
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma."
-  Resolution: los cuatro componentes pasaron de lista de tarjetas a un diagrama ASCII de contenedor, que muestra lo que la lista no puede: el límite duro de la ventana, que el historial es la única banda que crece sola, y el desborde cuando se llena. Las definiciones desplazadas bajaron a las notas del orador (L2: el diagrama va en la lámina que ya introduce el tema).
-
 ---
 
 ## 3. Ventana de contexto
@@ -209,7 +180,8 @@ Recorré el contenedor banda por banda, porque las definiciones ya no están en 
 
 **Tamaños en 2026**
 
-```ascii
+![Escala relativa de la ventana de contexto por modelo, de 200K a 10M tokens](images/s1-3-1-escala-ventanas-modelos.png)
+<!-- ascii-source:
   Escala relativa de la ventana de contexto   (1M = 10 unidades)
 
   Haiku 4.5          200K   ##
@@ -220,7 +192,7 @@ Recorré el contenedor banda por banda, porque las definiciones ya no están en 
   Llama 4            10M    ##################################### ->
 
   Anthropic: verificado (2026-06-24)  |  resto: sin verificar
-```
+-->
 <!-- ascii-note:
 intent: comparar por magnitud, de un vistazo, lo que una tabla de cifras no transmite; la barra de 10M se corta al borde porque a escala real no entra en el lienzo
 emphasize: el salto de 200K a 1M, y que 1M es hoy la meseta comun de casi todos los modelos; la barra truncada de Llama 4 con su flecha de continuidad
@@ -238,19 +210,11 @@ labels: nombre del modelo a la izquierda, cifra de ventana en el medio, barra pr
 
 La definición primero y la tabla después: la ventana es memoria de trabajo, no memoria a largo plazo. La analogía útil acá es la RAM contra el disco. Nada de lo que está en la ventana persiste entre sesiones, y nada de lo que quedó afuera existe para el modelo. Sobre la tabla: la fila de Anthropic está verificada contra el catálogo vigente de la API; las tres filas de otros proveedores vienen del deck original y no las pude verificar, así que decilas como orden de magnitud y no como dato preciso. El punto pedagógico está en otro lado: un millón de tokens ya dejó de ser una restricción práctica para casi todo trabajo de software, y que el cuello de botella se mudó del tamaño de la ventana al costo de llenarla.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Etiquetas y cifras desapareadas; el catálogo de modelos se contradice con las slides 2.1, 2.2 y 3.5."
-  Resolution: se emparejó cada modelo con su ventana en una tabla, se unificó la familia Anthropic contra el catálogo vigente de la API y se integró el fragmento suelto "historial, respuestas," dentro de la definición.
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma."
-  Resolution: la tabla de tamaños pasó a barras proporcionales. Los mismos datos, con la comparación de magnitud que una columna de cifras no da: el salto de 200K a 1M y la meseta de 1M donde se junta casi todo el mercado. La distinción entre lo verificado y lo no verificado quedó en el pie del diagrama.
-- [open] 2026-08-28 — "Las ventanas de GPT-5.4 (1M), Gemini 3 Pro (2M) y Llama 4 (10M) vienen del deck original y no hay fuente en el corpus que las respalde. ¿Se verifican contra la documentación de cada proveedor antes de la clase, o se presentan como orden de magnitud?"
-
 ---
 
 ## 4. ¿Cuánto es 1 millón de tokens?
 
-<!-- aside: right ![Gandalf, de El Señor de los Anillos](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-08-1.jpg) -->
+<!-- aside: right ![Gandalf, de El Señor de los Anillos](images/slide-08-1.jpg) -->
 
 ### Content
 
@@ -267,14 +231,6 @@ La definición primero y la tabla después: la ventana es memoria de trabajo, no
 ### Speaker notes
 
 Esta es la slide del "ah, mirá". Sirve para que la cifra deje de ser abstracta: 576.000 palabras de Tolkien son unos 750.000 tokens, y todavía sobran 250.000. La segunda columna es la traducción al mundo de ellos, y conviene decirla con honestidad: no tengo una medición del repo, tengo un orden de magnitud. Si querés hacerlo vivo, pediles que estimen cuántos tokens tiene el repositorio del trabajo práctico y después lo miden con el tokenizador en la slide siguiente. Aviso de derechos, por si el material se republica: el fotograma de Gandalf es de la película y el deck original no lo acredita.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Título con 'Tolkien' intercalado, sin tilde en 'Cuánto' y con espacio antes del signo de cierre."
-  Resolution: título corregido a "¿Cuánto es 1 millón de tokens?" (31 caracteres, dentro del presupuesto).
-- [open] 2026-08-28 — "La segunda columna reemplazó '~800K tokens = años de historial clínico' por un repositorio de software, pero sin cifra: el corpus no tiene una medición. ¿Medimos el repo del trabajo práctico con un tokenizador y ponemos el número real?"
-- [closed] 2026-08-28 — "La imagen de Gandalf va a la derecha, como decoración lateral, no como imagen inline dentro del cuerpo."
-  Resolution: la referencia inline pasó a un hint `<!-- aside: right ... -->` bajo el encabezado de la slide. El `.jpg` es vertical (1440x2160), así que la columna lateral le sienta mejor que el flujo del contenido.
 
 ---
 
@@ -299,11 +255,6 @@ Esta es la slide del "ah, mirá". Sirve para que la cifra deje de ser abstracta:
 ### Speaker notes
 
 Momento de abrir gpt-tokenizer.dev en vivo y pegar una línea de código. El efecto es inmediato: un identificador en camelCase se parte en cuatro o cinco tokens, y un bloque de JSON con indentación se come muchísimos más de los que cualquiera estimaría a ojo. Ese es el punto: la intuición de "una palabra, un token" está mal, y está mal justo en la dirección que más importa, porque el código y el JSON tokenizan peor que la prosa. El costo de $0,014 parece nada, y lo es hasta que se multiplica por diez mil llamadas diarias. Guardá esa multiplicación para la slide siguiente, que es donde el número empieza a doler.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "El ejemplo dice 'Ingeniería Biomédica' y el costo se calcula sobre GPT-4o, un modelo que el resto del deck ya no usa."
-  Resolution: el ejemplo pasó a "Ingeniería de Software" sin afirmar una cuenta de tokens que el corpus no tiene, y el costo se recalculó con la tarifa verificada de Claude Sonnet 4.6, con la derivación anotada en Sources.
 
 ---
 
@@ -330,11 +281,6 @@ Momento de abrir gpt-tokenizer.dev en vivo y pegar una línea de código. El efe
 
 Esta es la slide que explica por qué la factura de un chatbot crece sin que crezca el uso. La fórmula tiene dos términos y el interesante es el primero: los tokens de entrada de un turno incluyen todo lo anterior. Un chat de veinte turnos paga el turno uno veinte veces. Señalá la tabla de izquierda a derecha una fila por vez y dejá que la tercera columna hable sola. Acá conviene sembrar dos cosas que se cobran después en la clase: prompt caching existe justo para atacar este crecimiento, y las técnicas avanzadas de la sección cinco compran calidad gastando tokens de salida, que son los caros. Si alguien pregunta por qué la salida cuesta cinco veces más que la entrada, la respuesta corta es que se genera token por token y no se paraleliza como la lectura del prompt.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "La fórmula aparece dos veces seguidas, una en bullet y otra en negrita."
-  Resolution: se dejó una sola vez, como afirmación de apertura de la slide (L5), y los ejemplos de la tabla pasaron a dominio de software.
-
 ---
 
 ## 7. Limitaciones de los LLM
@@ -352,8 +298,6 @@ Esta es la slide que explica por qué la factura de un chatbot crece sin que cre
 ### Speaker notes
 
 Tres fallas de familia, no tres bugs. Ninguna se arregla con un modelo mejor, todas se administran con diseño del sistema alrededor del modelo. La de no-determinismo suele ser la que más molesta a esta audiencia, porque rompe la intuición de función pura: mismo input, distinto output. Y ojo con el atajo de "pongo temperature 0 y listo": baja la variabilidad, no la elimina, y en tareas creativas la degrada. El sesgo de recencia es el que menos se conoce y el más accionable: si el prompt tiene cincuenta mil tokens de contexto y la pregunta está en el medio, la respuesta empeora. Instrucción arriba, pregunta abajo. Las tres se retoman en la sección de técnicas avanzadas, así que dejalas planteadas y seguí.
-
-### Presenter feedback
 
 ---
 
@@ -376,11 +320,6 @@ Tres fallas de familia, no tres bugs. Ninguna se arregla con un modelo mejor, to
 
 Cuatro causas y ninguna es un defecto de implementación: son consecuencias directas de cómo funciona un motor de completado. La tercera es la que hay que subrayar, porque es la que hace peligrosa a la alucinación en un equipo de software: el modelo no tiene un canal separado para decir "no sé". La probabilidad del token siguiente es alta tanto cuando recita algo que vio mil veces como cuando arma algo verosímil de la nada, y el texto sale con el mismo tono en ambos casos. La cuarta explica por qué la alucinación aparece justo en el peor momento: cuanto más raro el pedido, menos patrón hay y más inventa. Sembrá acá el vínculo con la tesis: si el modelo es un completador, el trabajo del ingeniero es acorralarlo con contexto y con verificación.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Ocho bloques en una sola slide, con las cuatro causas y los cuatro casos intercalados y desapareados."
-  Resolution: la slide 13 se partió en dos (agrega, no borra). Esta queda con las cuatro causas reemparejadas con su definición (L8); los cuatro casos documentados pasaron a la slide siguiente.
-
 ---
 
 ## 9. Alucinaciones: casos reales
@@ -399,10 +338,6 @@ Cuatro causas y ninguna es un defecto de implementación: son consecuencias dire
 ### Speaker notes
 
 Los dos primeros casos son judiciales y están documentados: sirven para instalar que la alucinación ya tiene costo legal, no solo costo técnico. El de Air Canada es el más útil porque la defensa de la empresa fue que el chatbot era una entidad separada, y el tribunal la rechazó: el que despliega el modelo responde por lo que el modelo dice. El cuarto caso es el que le toca a esta audiencia de cerca, y conviene preguntarles si les pasó. La respuesta suele ser que sí. El detalle que hace la diferencia es que el código alucinado compila mal y se detecta rápido, pero una dependencia alucinada que alguien registra con ese nombre en el repositorio público es un vector de ataque real. Ahí engancha la sección de riesgos de la última parte de la clase.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "El cuarto caso (APIs y paquetes inexistentes) reemplaza al de Med-PaLM en diagnóstico, que era del dominio médico. Es un fenómeno conocido, pero no hay en el corpus una fuente citable con nombre y fecha como sí la tienen Air Canada y el caso de los abogados. ¿Agregamos una referencia concreta al corpus, o se cuenta como observación de oficio?"
 
 ---
 
@@ -427,11 +362,6 @@ Los dos primeros casos son judiciales y están documentados: sirven para instala
 
 Cinco palancas ordenadas de la más barata a la más cara. Grounding es una línea de texto en el system prompt y ya cambia el comportamiento. RAG es infraestructura: alguien tiene que indexar, recuperar y decidir qué entra. Temperature 0 es gratis pero no es gratis en todas las tareas, así que aclará el alcance: extracción y clasificación sí, generación de texto no. Self-consistency se ve en detalle en la sección cinco, acá solo nombrala. Y la quinta es la que ningún equipo puede saltear: mientras la tasa de alucinación del sistema no esté medida, la revisión humana no es una etapa opcional del proceso, es la única garantía que hay.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Nueve pares etiqueta-definición intercalados y una slide muy por encima del presupuesto de densidad."
-  Resolution: la slide 14 se partió en dos (agrega, no borra), reemparejando cada estrategia con su definición (L8). Esta queda con las cinco palancas del prompt; las cuatro de proceso pasaron a la slide siguiente. "Dominio clínico" pasó a "dominio" y "el clínico valida" a "alguien del equipo valida".
-
 ---
 
 ## 11. Mitigar alucinaciones: el proceso
@@ -454,8 +384,6 @@ Cinco palancas ordenadas de la más barata a la más cara. Grounding es una lín
 ### Speaker notes
 
 Acá la clase les habla en su idioma y conviene decirlo de frente: las cuatro prácticas de esta slide son CI/CD aplicado a un artefacto que casi nadie versiona ni testea. El dataset de evaluación es el fixture, las métricas son los asserts, el regression testing es el pipeline y el red teaming es el fuzzing. La pregunta que suele aparecer es de dónde salen los 50 a 100 casos. Respuesta honesta: de producción, mirando lo que el sistema ya respondió mal, y anotando a mano. No hay atajo. La regla de oro del cierre es la frase para llevarse, y se retoma en la sección cinco con la slide de prompts sin verificación.
-
-### Presenter feedback
 
 ---
 
@@ -485,11 +413,6 @@ Acá la clase les habla en su idioma y conviene decirlo de frente: las cuatro pr
 
 Esta slide es el ensayo de la tesis, y por eso vale la pena bajar la velocidad. Si el modelo completa patrones, entonces un prompt bien escrito es un patrón fácil de completar, y uno mal escrito es un patrón ambiguo. El ejemplo de la derecha lo muestra en cuatro líneas: el mismo pedido, escrito como plantilla, deja de tener grados de libertad. Es el mismo mecanismo que explica por qué funcionan las etiquetas XML de la sección tres y los ejemplos few-shot de la sección cuatro. Anticipá que en la sección cinco esto mismo va a explicar por qué chain of thought mejora la precisión: escribir los pasos es generar el patrón que hace más probable el token correcto al final.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Fortaleza, Prompt vago, Debilidad y Prompt estructurado quedaron intercalados; leídas en orden las etiquetas no dicen nada."
-  Resolution: se separaron en dos grupos con forma gramatical homogénea (L8): "Cómo es el modelo" y "Qué hacer con eso".
-
 ---
 
 ## 13. Agenda
@@ -514,14 +437,10 @@ Esta slide es el ensayo de la tesis, y por eso vale la pena bajar la velocidad. 
 
 Corte y respiro. Recapitulá en dos frases: la ventana es finita y se factura por token, y el modelo completa en vez de razonar, por eso alucina. Lo que sigue le pone precio a esas dos cosas.
 
-### Presenter feedback
-
 ---
 # 2. Modelos y costos
 
 **Goal of this section:** Convertir la elección de modelo en una decisión con números: qué cobra cada uno, cuánto ahorra el caching y cuándo conviene encadenar un modelo barato con uno caro.
-
-**Presenter feedback:**
 
 ---
 
@@ -540,7 +459,7 @@ Corte y respiro. Recapitulá en dos frases: la ventana es finita y se factura po
 
 - **Modificadores de tarifa** Cache hit: 10% del precio de entrada · Batch: 50% de la tarifa · Fast Mode (Opus 5 y Opus 4.8): $10 / $50 · Búsqueda web: $10 por cada 1.000 búsquedas · Ejecución de código: 50 h gratis por día, después $0,05/hora.
 
-![Selector de modelo y de effort en la interfaz de Claude](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-11-1.jpg)
+![Selector de modelo y de effort en la interfaz de Claude](images/slide-11-1.jpg)
 
 - **El effort también se paga** El nivel de effort determina cuántos tokens de *thinking* genera el modelo, y esos tokens se facturan a tarifa de salida aunque no vuelvan en la respuesta. Opus 4.8 expone cinco niveles (`low`, `medium`, `high`, `xhigh`, `max`) y el default es `high`: una llamada sin configurar effort ya viene gastando de más.
 
@@ -553,11 +472,6 @@ Corte y respiro. Recapitulá en dos frases: la ventana es finita y se factura po
 ### Speaker notes
 
 Tres cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la entrada en toda la familia, así que la variable que hay que vigilar es cuánto habla el modelo, no cuánto se le manda. La segunda: entre Haiku 4.5 y Fable 5 hay un factor diez de precio, y esa distancia es la que hace que valga la pena la cascada de la próxima slide. La tercera es la que nadie mira, y es el effort. Los tokens de razonamiento se facturan como salida aunque el usuario nunca los vea, y el default es `high`. Un equipo que nunca tocó ese parámetro está pagando razonamiento de sobra en cada clasificación trivial. Mostrales la captura: el selector está a la vista en la interfaz, no escondido en la API. Si preguntan por Fable 5, aclará que la captura lo muestra como no disponible en ese momento y que la tabla sí le pone precio: son dos estados del mismo producto en fechas distintas.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "El catálogo de modelos se contradice entre slides, 'Fable 5' figura con precio y como no disponible en la misma slide, y la frase del effort queda cortada en una coma."
-  Resolution: la tabla se unificó contra el catálogo vigente de la API de Claude, con generación y ventana declaradas por fila; los modificadores de tarifa pasaron a una sola línea; la frase del effort se completó con la lista real de cinco niveles y el default verificado (`high`), y la contradicción de la captura pasó a las notas del orador.
 
 ---
 
@@ -589,12 +503,6 @@ Tres cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la en
 
 La tabla es referencia, no material para leer en voz alta. Lo que hay que decir son los dos ejes que la ordenan: precio por token y tamaño de ventana, y que no correlacionan. Gemini 1.5 Pro tiene la ventana más grande de la tabla y es más barato que Opus. La segunda cosa que hay que decir, y con todas las letras, es que esta tabla envejece en meses: las filas de Anthropic están verificadas contra el catálogo vigente, las otras cuatro son de generación 2024 y siguen acá porque el deck original las traía. Convertí eso en enseñanza en vez de taparlo: la habilidad que se llevan no es memorizar precios, es saber qué columnas mirar cuando salga el modelo del mes que viene.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "La tabla mezcla generaciones incompatibles bajo el rótulo 'precios a marzo 2026' y le da 200K a Sonnet 4.6 cuando la slide 1.3 le da 1M."
-  Resolution: se declaró generación y ventana por fila, se corrigió Sonnet 4.6 a 1M contra el catálogo verificado, se agregó Opus 4.8 y se marcó explícitamente qué filas están verificadas y cuáles no. El árbol de decisión que estaba intercalado en el medio de la tabla pasó a su propia slide.
-- [open] 2026-08-28 — "Las cuatro filas de OpenAI, Google y Meta no se pueden verificar contra el corpus y son de generación 2024. ¿Se actualizan contra la documentación de cada proveedor antes de la clase, o se presentan declaradas como históricas?"
-
 ---
 
 ## 3. Elegir modelo: árbol de decisión
@@ -603,30 +511,31 @@ La tabla es referencia, no material para leer en voz alta. Lo que hay que decir 
 
 **Cuatro preguntas en orden. La primera que dé "sí" define el modelo.**
 
-```ascii
+![Árbol de decisión para elegir modelo: dificultad, contexto, formato y recién al final costo](images/s2-3-1-arbol-eleccion-modelo.png)
+<!-- ascii-source:
   ¿La tarea es simple?
   (clasificar, extraer, rotular)
        |
-       +-- SI --> modelo chico y barato
+       +-- SI --&gt; modelo chico y barato
        |            Haiku 4.5 / GPT-4o Mini / Gemini Flash
        NO
        |
   ¿Necesita mas de 1M de contexto?
        |
-       +-- SI --> el de ventana mas grande disponible
+       +-- SI --&gt; el de ventana mas grande disponible
        |            (hoy: Gemini Pro, 2M)
        NO
        |
   ¿Necesita JSON garantizado por la API?
        |
-       +-- SI --> modelo con structured outputs
+       +-- SI --&gt; modelo con structured outputs
        |
-       NO --> el mejor modelo para la calidad que se necesita
+       NO --&gt; el mejor modelo para la calidad que se necesita
        |
   ¿El costo es critico por volumen?
        |
-       +-- SI --> model cascading (barato primero, caro si hace falta)
-```
+       +-- SI --&gt; model cascading (barato primero, caro si hace falta)
+-->
 <!-- ascii-note:
 intent: mostrar la eleccion de modelo como una cascada de cuatro preguntas en orden fijo, donde la primera que da "si" corta la decision; el orden de las preguntas es el contenido, no los nombres de modelo que devuelve
 emphasize: la columna de decisiones encadenadas y las salidas de cada rama SI; que la pregunta de costo va ultima, despues de resolver dificultad, contexto y formato
@@ -642,11 +551,6 @@ labels: "¿La tarea es simple?", "¿Necesita mas de 1M de contexto?", "¿Necesit
 
 El árbol vale más por el orden de las preguntas que por los nombres que devuelve. Primero la dificultad de la tarea, porque es la que más plata mueve: si clasificar tickets se puede hacer con un modelo chico, cualquier discusión sobre caching es secundaria. Segundo el contexto, que es una restricción dura y no negociable. Tercero el formato de salida, que en la práctica decide quién queda en carrera cuando el output alimenta código. Y recién al final el costo, porque optimizar costo antes de saber si la calidad alcanza es optimizar lo que no importa. Decí también por qué el árbol nombra familias y no versiones: los nombres cambian cada seis meses, las preguntas no.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "El árbol de decisión estaba intercalado en el medio de la tabla comparativa y recomendaba modelos de otra generación."
-  Resolution: se extrajo a su propia slide como diagrama ASCII (agrega, no borra) y las recomendaciones pasaron a nombrar familias de modelo en vez de versiones puntuales.
-
 ---
 
 ## 4. Prompt caching
@@ -657,10 +561,11 @@ El árbol vale más por el orden de las preguntas que por los nombres que devuel
 
 **La solución:** marcar las partes reutilizables del prompt. El proveedor guarda esos tokens y los cobra al 10% en los requests siguientes.
 
-```ascii
+![Prompt caching por prefijo: el prefijo estático se cobra al 10% y el sufijo dinámico a precio lleno](images/s2-4-1-caching-prefijo-sufijo.png)
+<!-- ascii-source:
   UN REQUEST  =  PREFIJO ESTATICO  +  SUFIJO DINAMICO
 
-  |<----------- se cachea: 10% del precio ----------->|<-- precio lleno -->|
+  |<----------- se cachea: 10% del precio -----------&gt;|<-- precio lleno --&gt;|
   +---------------------------------------------------+--------------------+
   | system prompt | guia de estilo | ADRs | base cod.  | el diff del user   |
   +---------------------------------------------------+--------------------+
@@ -674,7 +579,7 @@ El árbol vale más por el orden de las preguntas que por los nombres que devuel
 
   !!  un byte distinto en CUALQUIER punto del prefijo  ->  hit rate 0
       y no hay ningun error: solo una factura mas alta
-```
+-->
 <!-- ascii-note:
 intent: mostrar que el caching hace match por PREFIJO, no por contenido: la frontera entre lo estatico y lo dinamico es lo que decide si hay hit, y por eso el orden dentro del prompt es load-bearing
 emphasize: la linea divisoria entre prefijo y sufijo con la marca [ cache_control ]; la desproporcion 50.000 contra 100 tokens; la advertencia final del fallo silencioso
@@ -693,13 +598,6 @@ labels: "PREFIJO ESTATICO", "SUFIJO DINAMICO", "se cachea: 10% del precio", "pre
 ### Speaker notes
 
 El caching es la única optimización de esta clase que baja el costo sin tocar la calidad, así que conviene darle peso. Las tres prácticas que antes estaban como bullets ahora las dibuja el diagrama, así que decilas mientras lo señalás: **cachear lo estático** (base de conocimiento, system prompt, documentación de arquitectura, guía de estilo), **no cachear el input del usuario** porque cambia en cada request y rompe el prefijo, y **poner primero lo cacheable**, que es la consecuencia directa de que el match sea por prefijo. El mecanismo es un match por prefijo, y de ahí sale todo lo demás: si el system prompt lleva un `datetime.now()` adentro, el prefijo cambia en cada llamada y el hit rate es cero sin que nadie se entere, porque no hay error, solo una factura más alta. Por eso la cuarta práctica no es cosmética. Un equipo de software tiene el caso perfecto: la guía de estilo, los ADRs y el fragmento de la base de código que el asistente necesita son idénticos en cada consulta, y el pedido del usuario son doscientos tokens. Ese es el reparto que el caching premia. La slide siguiente pone los números.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "El ahorro se declara de tres formas distintas (50-90% en el título, 70-90% en el cuerpo, 70% en el ejemplo) y ninguna coincide con la aritmética."
-  Resolution: se dejó un solo enunciado, derivado del mecanismo (un hit cuesta 10% de la entrada, así que el techo sobre la porción cacheada es 90%), y el ahorro total del caso trabajado se recalculó en la slide siguiente. "Protocolos clínicos" y los casos de uso biomédicos pasaron a base de código, ADRs y guía de estilo.
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma."
-  Resolution: tres de las cuatro buenas prácticas pasaron a un diagrama ASCII del match por prefijo, que muestra lo que la lista no podía: dónde cae la frontera entre lo estático y lo dinámico, la desproporción de 50.000 contra 100 tokens, y que un byte distinto en el prefijo anula el hit sin producir ningún error. La prosa desplazada bajó a las notas del orador.
 
 ---
 
@@ -727,11 +625,6 @@ El caching es la única optimización de esta clase que baja el costo sin tocar 
 ### Speaker notes
 
 Esta slide corrige un error del deck original, y vale la pena decirlo en voz alta porque enseña algo: el deck declaraba $450 de costo con caching y un ahorro del 70%, y la cuenta no cerraba. Rehecha da $423 y 72%. La diferencia es chica en plata y grande en método: una cifra que nadie recalculó sobrevivió a todas las revisiones porque sonaba razonable. Es el mismo problema que van a tener con las salidas de un LLM. Sobre la fila de hits: los 5.100 tokens equivalentes salen de 50.000 cacheados al 10% más los 100 dinámicos a precio completo. La advertencia del final es honesta y conviene no saltearla, porque en un workload de pocas llamadas por prefijo la escritura del caché se puede comer el ahorro.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "La aritmética del caching no cierra: 10.000 consultas con 80% de hit rate dan ≈$421, no los $450 declarados."
-  Resolution: se recalculó paso a paso ($423,00 con la escritura de caché excluida, ahorro de $1.080,00 = 72%), la derivación quedó anotada en Sources y el cálculo pasó a su propia slide (agrega, no borra).
 
 ---
 
@@ -784,11 +677,6 @@ response = client.messages.create(
 
 Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y lo que no la dibuja el programador, poniendo `cache_control` en el bloque correcto. Señalá el orden. Lo estático arriba, lo dinámico abajo, siempre, porque el match es por prefijo. Si alguien pone el diff arriba del system prompt, el caché no sirve para nada y no hay ningún error que lo avise. El ejemplo pasó de un system prompt de guías clínicas a la guía de estilo y los ADRs del repo, que es el caso real de un asistente de revisión de código: cincuenta mil tokens de convenciones que no cambian, cien tokens de diff que cambian siempre.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "El ejemplo de código usa un system prompt de medicina interna con guías clínicas y datos de paciente."
-  Resolution: el ejemplo pasó a un revisor de código senior con la guía de estilo y los ADRs del repo como parte estática y el diff como parte dinámica.
-
 ---
 
 ## 7. Model cascading
@@ -797,7 +685,8 @@ Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y 
 
 **Intentar primero con el modelo barato. Si la confianza es baja, escalar al caro. El ahorro depende de que el gating de confianza sea confiable.**
 
-```ascii
+![Model cascading: el modelo barato intenta primero y el gate de confianza decide si escala al caro](images/s2-7-1-cascada-dos-modelos.png)
+<!-- ascii-source:
   Request entra
        |
        v
@@ -810,9 +699,9 @@ Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y 
        v
   ¿confianza suficiente?
        |
-       +-- SI --> retornar respuesta      (costo minimo, latencia baja)
+       +-- SI --&gt; retornar respuesta      (costo minimo, latencia baja)
        |
-       +-- NO --> +---------------------------+
+       +-- NO --&gt; +---------------------------+
                   |  Modelo caro             |
                   |  (Opus 4.8)              |
                   |  resuelve                |
@@ -820,7 +709,7 @@ Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y 
                             |
                             v
                      retornar respuesta      (solo cuando hace falta)
-```
+-->
 
 <!-- ascii-note:
 intent: mostrar el flujo de dos etapas del model cascading, con el gate de confianza como el punto de decision que define si el ahorro existe
@@ -836,11 +725,6 @@ labels: "Modelo barato (Haiku 4.5)", "¿confianza suficiente?", "Modelo caro (Op
 ### Speaker notes
 
 La idea es de una línea y la trampa está en el rombo del medio. Todo el ahorro del cascading depende de que el sistema sepa cuándo la respuesta barata no alcanza, y esa señal casi nunca viene servida. Algunos proveedores devuelven log-probabilities y sirven; con otros hay que armar el gate a mano, por ejemplo pidiéndole al modelo chico que declare su confianza, con el problema obvio de que un modelo mal calibrado declara alta confianza sobre cosas que inventó. Preguntales cómo lo resolverían. Suele salir la idea de una segunda llamada de verificación, y ahí conviene señalar que esa llamada también cuesta y puede comerse el ahorro. La slide siguiente da los criterios para decidir si vale la pena.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Slide muy por encima del presupuesto de densidad, con la estrategia, el flujo, los criterios de uso y la tabla comparativa todo junto y desapareado."
-  Resolution: se partió en dos (agrega, no borra). Esta queda con la estrategia y el flujo, ahora como diagrama ASCII; los criterios y la tabla comparativa pasaron a la slide siguiente.
 
 ---
 
@@ -875,11 +759,6 @@ La idea es de una línea y la trampa está en el rombo del medio. Todo el ahorro
 
 La fila que decide es la última de la tabla. El cascading no es una configuración, es un componente más del sistema: hay que rutear, monitorear el porcentaje de escalados y detectar cuándo el gate se desalinea. Un equipo chico que procesa cien consultas por día está pagando esa complejidad para ahorrar unos dólares. Un equipo que procesa cien mil, no. Si querés cerrar con una regla práctica: medí primero cuánto cuesta hacer todo con el modelo bueno a effort bajo. Muchas veces eso alcanza y no hace falta cascada, porque un modelo nuevo a effort bajo suele rendir como el anterior a effort alto, y un solo modelo mantiene un solo namespace de caché.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Criterios de uso y contraindicaciones intercalados con el flujo, en pares desapareados; 'no se puede sacrificar precisión clínica'."
-  Resolution: se reemparejaron los seis criterios en dos grupos con forma gramatical homogénea (L8) y el criterio clínico pasó a "piso de calidad" genérico.
-
 ---
 
 ## 9. Agenda
@@ -904,14 +783,10 @@ La fila que decide es la última de la tabla. El cascading no es una configuraci
 
 Cierre de la parte cara de la clase. Resumen en una frase: el modelo se elige por tarea y no por prestigio, el caching es ahorro sin costo de calidad y la cascada es ahorro con costo de complejidad. A partir de acá el tema deja de ser el precio y pasa a ser el oficio.
 
-### Presenter feedback
-
 ---
 # 3. Prompts estructurados
 
 **Goal of this section:** Pasar del prompt escrito a mano al prompt con anatomía: seis componentes, delimitadores explícitos y un contrato de salida que el código pueda validar.
-
-**Presenter feedback:**
 
 ---
 
@@ -921,7 +796,8 @@ Cierre de la parte cara de la clase. Resumen en una frase: el modelo se elige po
 
 **La diferencia entre un prototipo que a veces anda y un sistema de producción suele estar en la estructura del prompt, no en la redacción.**
 
-```ascii
+![Anatomía de un prompt de producción: seis bandas apiladas y la curva de atención alta-baja-alta](images/s3-1-1-anatomia-prompt-seis-partes.png)
+<!-- ascii-source:
   ANATOMIA DE UN PROMPT DE PRODUCCION
 
   atencion
@@ -945,7 +821,7 @@ Cierre de la parte cara de la clase. Resumen en una frase: el modelo se elige po
 
   El orden no es cosmetico: el modelo lee mejor el principio y el final
   que el medio, por eso el rol va arriba y el input abajo.
-```
+-->
 <!-- ascii-note:
 intent: mostrar el prompt como un bloque compuesto de seis partes apiladas en un orden que importa, y ligar ese orden al sesgo de recencia (el modelo atiende mejor el principio y el final que el medio)
 emphasize: la pila de seis bandas numeradas como una sola unidad; los marcadores ALTA / BAJA / ALTA de la izquierda, que son el argumento de por que ese orden y no otro
@@ -960,13 +836,6 @@ labels: "ROL / PERSONA", "CONTEXTO", "INSTRUCCIONES", "RESTRICCIONES", "EJEMPLOS
 ### Speaker notes
 
 Seis componentes y el orden importa. Las definiciones ya no están en la lámina, así que van habladas mientras señalás cada banda. **Rol**: fija el nivel de expertise y los patrones de comportamiento. **Contexto**: la información de fondo que la tarea necesita, el servicio, las convenciones del equipo. **Instrucciones**: qué hacer, paso a paso, y cuanto más específicas mejor. **Restricciones**: los límites y el formato de salida. **Ejemplos**: casos resueltos que demuestran el comportamiento esperado. **Input**: los datos concretos de esta llamada. Rol y contexto van arriba porque condicionan todo lo que sigue, y porque el modelo presta más atención al principio del prompt. El input va último por la misma razón invertida: es lo que tiene que estar fresco cuando empieza a generar. La discusión que suele aparecer es si hace falta todo esto para pedir un resumen. No, y conviene decirlo: los seis componentes son la anatomía de un prompt de producción, el que corre diez mil veces por día y tiene que dar el mismo formato siempre. Para una consulta única en el chat, alcanza con instrucciones e input. El ejemplo de la slide siguiente muestra los seis armados.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Slide sin título, con el título como primera línea del cuerpo, ordinales escritos dentro del texto, etiquetas desapareadas y muy por encima del presupuesto de densidad."
-  Resolution: "Los 6 componentes" pasó a H2 y se retiró del cuerpo (L5); los ordinales 1 a 6 salieron del texto porque los dibuja la plantilla (L3); cada componente quedó emparejado con su definición (L8) y el prompt completo pasó a su propia slide (agrega, no borra).
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma."
-  Resolution: los seis componentes pasaron de lista a un diagrama ASCII de bloque apilado, que muestra dos cosas que la lista no podía: que el prompt es una sola unidad compuesta, y por qué ese orden y no otro (el eje de atención alta-baja-alta liga la posición de cada componente al sesgo de recencia de la slide 1.7). Las definiciones bajaron a las notas del orador. Los ordinales vuelven a aparecer, pero dentro del dibujo, donde son la estructura y no una lista que la plantilla tenga que numerar.
 
 ---
 
@@ -1016,11 +885,6 @@ dentro de una query SQL con un f-string.
 
 Leé el prompt en voz alta, bloque por bloque, y hacé notar dos cosas. La primera: el bloque de restricciones es el que más trabajo hace, y es el que la gente saltea. "Comentá solo lo que aparece en el diff" es lo que impide que el modelo se ponga a opinar sobre archivos que no se tocaron. La segunda: el ejemplo few-shot no muestra solo la respuesta, muestra el formato exacto, y por eso el modelo lo copia. Buen momento para una pregunta al grupo: qué pasa si sacamos el bloque 5. Respuesta: el JSON sale, pero con claves distintas cada vez, y el código que lo parsea empieza a romperse. Aclará que este prompt es propio: la fuente que lo promete lo perdió en la extracción.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "El prompt completo está escrito sobre un caso de medicina interna con guías clínicas, diagnósticos diferenciales y datos de paciente."
-  Resolution: el prompt se reescribió sobre la tarea de revisar un pull request, conservando los seis bloques y la forma del original.
-
 ---
 
 ## 3. Salidas estructuradas: JSON Schema
@@ -1063,11 +927,6 @@ Leé el prompt en voz alta, bloque por bloque, y hacé notar dos cosas. La prime
 
 La distinción entre los dos enfoques es la que hay que dejar clara, porque se confunde todo el tiempo. Pedir el formato en el prompt es una sugerencia: el modelo casi siempre obedece y ese casi es el problema, porque el uno por ciento que falla aparece en producción a las tres de la mañana. La funcionalidad de salidas estructuradas de la API es una garantía a nivel de decodificación, no una instrucción. Si el output alimenta código, se usa la segunda. El esquema de la slide es el del revisor de código de la slide anterior, así que se ve el circuito completo: el prompt pide, el esquema define, el código valida. Y una advertencia útil: un esquema muy estricto sobre una tarea ambigua no arregla la ambigüedad, la esconde en un campo con un valor plausible.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Hay una línea entera en inglés ('Schema enforcement reduces parsing errors...'), el esquema es de output clínico y las etiquetas de beneficio están desapareadas de sus definiciones."
-  Resolution: se tradujo la línea al español, el esquema pasó a severidad / archivo / línea / problema / fix, y los beneficios se reemparejaron con su definición (L8). También se corrigió "Conectable with sistemas clínicos".
-
 ---
 
 ## 4. XML: estructura semántica
@@ -1104,8 +963,8 @@ Despues de actualizar a la 3.2, el login con SSO devuelve 500 en staging.
 
 - 💡 Las etiquetas suman tokens, y ese overhead se compensa con menos reintentos y menos errores de parseo. Si el prompt es estable, el caching lo absorbe.
 
-![Gráfico de dona sin etiqueta](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-19-1.png)
-![Gráfico de dona sin etiqueta](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-19-2.png)
+![Gráfico de dona sin etiqueta](images/slide-19-1.png)
+![Gráfico de dona sin etiqueta](images/slide-19-2.png)
 
 ### Sources
 
@@ -1115,12 +974,6 @@ Despues de actualizar a la 3.2, el login con SSO devuelve 500 en staging.
 ### Speaker notes
 
 El argumento de por qué funcionan las etiquetas es el mismo de la slide del motor de completado: el modelo vio millones de documentos con esta forma, así que una etiqueta de apertura es un patrón fortísimo. La segunda razón es más práctica: sin delimitadores, el modelo no sabe dónde termina la instrucción y dónde empieza el dato, y ese es el agujero por donde entra una inyección de prompt. Sobre las dos donas: el deck original les ponía 40% y 60% de reducción de alucinaciones, y esa cifra no tiene respaldo. La fuente la atribuye a "lo que reportan los equipos", sin estudio. Así que la afirmación queda cualitativa y las donas están marcadas para rehacer o retirar en el polish.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Slide sin título, con el título como primera línea del cuerpo, el ejemplo XML íntegro en inglés y dos cifras de reducción de alucinaciones (40% / 60%) sin fuente."
-  Resolution: "XML: estructura semántica" pasó a H2 y se retiró del cuerpo (L5); el ejemplo se tradujo al español y pasó a clasificar issues de GitHub; las dos cifras se retiraron y la afirmación quedó cualitativa, que es lo único que la fuente sostiene.
-- [open] 2026-08-28 — "Las dos donas (`slide-19-1.png` y `slide-19-2.png`) estaban dibujadas sobre el 40% y el 60% que se retiraron, así que ya no representan ningún dato. ¿Se retiran de la slide o se reemplazan por otro visual en el Polish?"
 
 ---
 
@@ -1144,11 +997,6 @@ El argumento de por qué funcionan las etiquetas es el mismo de la slide del mot
 ### Speaker notes
 
 Esta slide nombra familias y no versiones, y es a propósito: el deck original decía GPT-4 y Gemini 1.5 Pro, que ya eran de dos generaciones atrás cuando se dictó. Las tendencias por familia duran más que las versiones. El punto operativo es el del cierre y vale una anécdota si tenés alguna: migrar de proveedor rompe prompts que llevaban meses estables, porque cada familia responde distinto a las mismas instrucciones. Por eso el eval set de la sección cinco no es opcional. Es lo único que permite cambiar de modelo sin volar a ciegas.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Nombra GPT-4 y Gemini 1.5 Pro, dos generaciones atrás de lo que usa el resto del deck."
-  Resolution: la tabla pasó a nombrar familias en vez de versiones puntuales y se agregó el matiz que la propia fuente declara sobre la ubicación de la consulta en Gemini.
 
 ---
 
@@ -1174,14 +1022,10 @@ Esta slide nombra familias y no versiones, y es a propósito: el deck original d
 
 Cierre de la anatomía del prompt. Lo que sigue agrega la pieza que faltaba: los ejemplos. Anunciá el puente: hasta acá se le dijo al modelo qué hacer; ahora se le va a mostrar.
 
-### Presenter feedback
-
 ---
 # 4. In-context learning
 
 **Goal of this section:** Mostrar que los ejemplos dentro del prompt cambian el comportamiento del modelo sin tocar sus pesos, y dar el criterio para elegir cuántos poner.
-
-**Presenter feedback:**
 
 ---
 
@@ -1191,7 +1035,8 @@ Cierre de la anatomía del prompt. Lo que sigue agrega la pieza que faltaba: los
 
 **Capacidad del modelo de aprender un patrón a partir de ejemplos puestos en el prompt, sin modificar sus pesos. No se re-entrena: reconoce el patrón en los ejemplos y lo aplica al caso nuevo.**
 
-```ascii
+![Zero-shot, few-shot y many-shot como el mismo prompt con distinta cantidad de ejemplos intercalados](images/s4-1-1-tres-regimenes-icl.png)
+<!-- ascii-source:
   Lo que viaja dentro del prompt, en cada regimen
 
   ZERO-SHOT            FEW-SHOT                  MANY-SHOT
@@ -1203,12 +1048,12 @@ Cierre de la anatomía del prompt. Lo que sigue agrega la pieza que faltaba: los
                                                  [ ej ][ ej ]  ...
   [ caso nuevo  ]      [ caso nuevo  ]           [ caso nuevo  ]
 
-  tokens por llamada  ----------------------------------------->  suben
-  precision           ----------------------------------------->  sube y satura
-  costo               ----------------------------------------->  sube siempre
+  tokens por llamada  -----------------------------------------&gt;  suben
+  precision           -----------------------------------------&gt;  sube y satura
+  costo               -----------------------------------------&gt;  sube siempre
 
   Los pesos del modelo no cambian en ningun punto de la progresion.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que los tres regimenes de in-context learning son el MISMO prompt con distinta cantidad de ejemplos intercalados entre la instruccion y el caso nuevo, y que la progresion tiene un costo monotono contra una precision que satura
 emphasize: las tres columnas como variaciones de una misma estructura; el bloque de ejemplos que crece de vacio a saturado; el contraste entre "precision sube y satura" y "costo sube siempre"
@@ -1223,13 +1068,6 @@ labels: "ZERO-SHOT", "FEW-SHOT", "MANY-SHOT", "instruccion", "ej", "caso nuevo",
 ### Speaker notes
 
 La frase que hay que dejar clavada es "sin modificar los pesos", y el diagrama la sostiene: las tres columnas son el mismo prompt, con más o menos ejemplos metidos entre la instrucción y el caso. Las definiciones van habladas. **Zero-shot**: solo la instrucción, sin ejemplos, todo depende del conocimiento preentrenado. **Few-shot**: entre 2 y 10 casos resueltos antes del caso a resolver, y es el régimen más usado en producción. **Many-shot**: decenas o cientos de ejemplos, para tareas complejas o con mucha variabilidad. Señalá los tres ejes del pie, porque ahí está la decisión: la precisión satura y el costo no. Para esta audiencia el contraste natural es con fine-tuning: fine-tuning cambia el artefacto y cuesta una corrida de entrenamiento, in-context learning cambia el prompt y cuesta tokens. Eso reordena la intuición de cuándo conviene cada cosa. El dato histórico ayuda: la capacidad se documentó en el paper de GPT-3 en 2020, y lo llamativo entonces fue que nadie la había programado, apareció al escalar. Un matiz de honestidad, por si alguien va a la fuente: el término "in-context learning" y la taxonomía de zero, one y few-shot están en el cuerpo del paper, no en el abstract.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "'tareas complecias' por 'complejas'."
-  Resolution: corregido, junto con el resto de las sustituciones automáticas del pptx.
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma."
-  Resolution: los tres regímenes pasaron de lista a un diagrama ASCII de progresión, que muestra lo que la lista no podía: que los tres son el mismo prompt con distinta cantidad de ejemplos intercalados, y que la precisión satura mientras el costo sigue subiendo. Las definiciones bajaron a las notas del orador.
 
 ---
 
@@ -1256,8 +1094,6 @@ La frase que hay que dejar clavada es "sin modificar los pesos", y el diagrama l
 ### Speaker notes
 
 Slide nueva, y llena un agujero real del deck original: definía zero-shot y nunca lo mostraba. El contraste sobre el mismo input es lo que hace el trabajo. En zero-shot el modelo responde bien en el sentido humano y mal en el sentido operativo: la respuesta es correcta y no se puede parsear, porque inventó su propia escala. Con dos ejemplos, la escala deja de ser suya. Ese es el punto de la línea de cierre y conviene decirlo despacio, porque contradice la intuición de que los ejemplos "enseñan el concepto". No enseñan el concepto: fijan el formato y ubican las fronteras entre categorías. Si el grupo pregunta cuántos ejemplos, la respuesta viene en la slide siguiente.
-
-### Presenter feedback
 
 ---
 
@@ -1293,8 +1129,6 @@ Clasifica el sentimiento como POSITIVO, NEGATIVO o NEUTRO.
 ### Speaker notes
 
 La práctica que más rinde y menos se aplica es la tercera. Casi todo el mundo pone tres ejemplos fáciles, y el modelo aprende a resolver lo fácil, que ya resolvía solo. Los ejemplos tienen que cubrir los casos borde: el comentario ambiguo, el que mezcla dos categorías, el que está en otro idioma. Esa es la fuente que lo dice, no una opinión. La cuarta práctica parece cosmética y no lo es: si el formato varía entre ejemplos, el modelo tiene dos patrones para elegir y elige por turno. Y la quinta tiene una razón de plata que ya vieron: cada ejemplo viaja en cada request, así que veinte ejemplos son veinte veces ese costo, multiplicado por el volumen.
-
-### Presenter feedback
 
 ---
 
@@ -1342,11 +1176,6 @@ Tres clientes ya cachearon la respuesta vacia.
 
 El punto fuerte de esta slide es la cuarta línea, porque describe un bucle de mejora que ningún equipo asocia con machine learning: cada vez que el sistema clasifica mal, ese caso se agrega al prompt como ejemplo, y el sistema mejora sin tocar el modelo. Es la forma más barata de aprendizaje continuo que existe, y el costo es lineal en tokens. El caso resuelto del final es el que el deck original dejaba abierto con signos de pregunta: fijate que la respuesta correcta no sale del texto del issue sino de la consecuencia, que es un contrato de API roto propagándose a tres clientes. Si querés hacerlo participativo, tapá la respuesta y pediles que voten CRITICO, ALTO o BAJO antes de mostrarla. Suele haber desacuerdo, y ese desacuerdo es el argumento de por qué hacen falta ejemplos con la frontera explicitada.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "La slide se titula Many-Shot pero su ejemplo dice 'Few-Shot en Triage Clínico', y el caso termina en '→ ???' sin respuesta ni notas."
-  Resolution: el ejemplo pasó a triage de issues de GitHub, el rótulo interno se corrigió y el caso quedó resuelto con la respuesta y su justificación.
-
 ---
 
 ## 5. Agenda
@@ -1371,14 +1200,10 @@ El punto fuerte de esta slide es la cuarta línea, porque describe un bucle de m
 
 Punto de quiebre de la clase. Hasta acá se trabajó sobre lo que entra al prompt. Lo que sigue trabaja sobre lo que el modelo escribe antes de contestar, que es la sección más larga y la que contiene la tesis. Si hay que hacer un corte de descanso, este es el lugar.
 
-### Presenter feedback
-
 ---
 # 5. Técnicas avanzadas
 
 **Goal of this section:** Recorrer las técnicas que hacen escribir al modelo antes de responder, medir lo que cuestan y explicar por qué funcionan, que es la tesis de la clase.
-
-**Presenter feedback:**
 
 ---
 
@@ -1403,8 +1228,6 @@ Punto de quiebre de la clase. Hasta acá se trabajó sobre lo que entra al promp
 
 Mapa de la sección. Seis técnicas y una sola idea de fondo, que se explica recién al final: todas hacen que el modelo escriba más antes de responder. Anticipá ese cierre acá, porque le da sentido al recorrido y evita que se lea como una lista de recetas sueltas. Ordená las seis por lo que agregan: CoT agrega pasos, self-consistency agrega muestras, extended thinking agrega presupuesto de razonamiento, ToT agrega ramas, ReAct agrega acciones sobre el mundo, y prompt chaining agrega llamadas. Cada una compra calidad con un recurso distinto, y todas se pagan.
 
-### Presenter feedback
-
 ---
 
 ## 2. Chain of Thought (CoT)
@@ -1418,11 +1241,11 @@ Mapa de la sección. Seis técnicas y una sola idea de fondo, que se explica rec
 
 **Lo que se midió**
 
-![Gráfico de dona](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-27-1.png)
+![Gráfico de dona](images/slide-27-1.png)
 
 - **74%** Tree of Thought en Game of 24, contra **4%** del mismo modelo con CoT lineal (Yao et al., 2023).
 
-![Gráfico de dona](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-27-2.png)
+![Gráfico de dona](images/slide-27-2.png)
 
 - **+17,9%** Self-consistency en GSM8K, y **+11,0%** en SVAMP, ambas mejoras **sobre el baseline de CoT** (Wang et al., 2022).
 
@@ -1438,12 +1261,6 @@ Mapa de la sección. Seis técnicas y una sola idea de fondo, que se explica rec
 ### Speaker notes
 
 Esta slide cambió respecto del deck original y conviene contar por qué, porque enseña método. El deck afirmaba 70% de mejora en precisión y 35% menos errores en código, y esas dos cifras no salen de ninguna fuente: son plausibles, suenan bien y no existen. Las que están ahora sí tienen paper. Al leerlas, marcá la trampa: son mejoras **sobre CoT**, no accuracy absoluta. Decir "self-consistency alcanza 17,9% en GSM8K" es leer mal el abstract, y es el error más común con esas cifras. El salto de 4% a 74% del Game of 24 es el número más impresionante de toda la clase y vale detenerse: mismo modelo, mismo problema, solo cambia la estrategia de inferencia. La última línea conecta con la sección anterior y sirve de puente.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Slide sin título, con el título como primera línea del cuerpo, y dos cifras ('70% mejora en precisión', '35% menos errores') sin ninguna fuente en el corpus."
-  Resolution: "Chain of Thought (CoT)" pasó a H2 y se retiró del cuerpo (L5). Las dos cifras sin respaldo se reemplazaron por las de ToT (4% → 74%, Yao et al. 2023) y self-consistency (+17,9% GSM8K, +11,0% SVAMP, Wang et al. 2022), aclarando que son mejoras relativas al baseline de CoT.
-- [open] 2026-08-28 — "Las dos donas (`slide-27-1.png` al 70% y `slide-27-2.png` al 35%) estaban dibujadas sobre las cifras retiradas y no representan los nuevos valores (74% y +17,9%). ¿Se re-renderizan con los porcentajes correctos en el Polish, o se reemplazan por un gráfico de barras que muestre el par 4% → 74%?"
 
 ---
 
@@ -1471,11 +1288,6 @@ Esta slide cambió respecto del deck original y conviene contar por qué, porque
 
 El ejemplo es trivial a propósito y hay que decirlo, porque la pregunta obvia es por qué molestarse con una cuenta de una línea. La respuesta está en la fila de abajo: las dos respuestas son iguales, lo que cambia es que una se puede auditar. Cuando el modelo se equivoca sin CoT, queda un número mal y ninguna pista. Con CoT, el error está en el paso 2 y se ve. Trasladalo al terreno de ellos con un ejemplo hablado: un modelo que dice "este diff no introduce bugs" es inútil; uno que enumera lo que revisó y por qué descartó cada riesgo es revisable. La contra que hay que nombrar es la latencia, y se cuantifica dos slides más adelante.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "'En diagnóstico médico: CoT produce patrones de razonamiento clínico más auditables'."
-  Resolution: el cierre pasó a revisión de código y análisis de incidentes.
-
 ---
 
 ## 4. Self-consistency: votación
@@ -1485,7 +1297,8 @@ El ejemplo es trivial a propósito y hay que decirlo, porque la pregunta obvia e
 **El problema:** una sola respuesta puede estar mal por no-determinismo o por ambigüedad del prompt.
 **La solución:** generar varias respuestas independientes y votar entre ellas.
 
-```ascii
+![Self-consistency: cinco caminos de razonamiento independientes que convergen en una votación por frecuencia](images/s5-4-1-self-consistency-votacion.png)
+<!-- ascii-source:
                         UN MISMO PROMPT
                                |
           +----------+---------+---------+----------+
@@ -1508,7 +1321,7 @@ El ejemplo es trivial a propósito y hay que decirlo, porque la pregunta obvia e
                   "A"  --  4 de 5  --  confianza 80%
 
   Los caminos correctos convergen; los equivocados divergen entre si.
-```
+-->
 <!-- ascii-note:
 intent: mostrar self-consistency como un fan-out y un fan-in sobre el MISMO prompt: se muestrean varios caminos de razonamiento independientes y se agrega el resultado por frecuencia, no por calidad individual
 emphasize: la simetria abanico-que-abre / abanico-que-cierra; el camino 3 disidente ("B"), que es lo que el metodo detecta y una sola llamada esconde; la caja de VOTACION como punto de convergencia
@@ -1530,13 +1343,6 @@ labels: "UN MISMO PROMPT", "camino 1..5", "muestreo independiente, con temperatu
 ### Speaker notes
 
 Antes del diagrama, el número que sostiene la decisión y que ya no está en la lámina: cinco llamadas cuestan cinco veces, la precisión mejora de forma medible, y CoT más self-consistency combinados dan ganancias adicionales (Wang et al., 2022). Precisión terminológica que vale la pena hacer, porque ordena la cabeza: self-consistency no es un prompt distinto, es una forma distinta de muestrear y agregar las salidas del mismo prompt. El paper habla de marginalizar sobre los caminos de razonamiento; "votación por mayoría" es cómo lo explicamos, y funciona como explicación. La intuición que lo sostiene es elegante: un problema difícil admite varios caminos correctos que convergen a la misma respuesta, y los caminos equivocados divergen entre sí. Si tres de cinco muestras coinciden, esa coincidencia es señal. La cuarta viñeta es la más importante para producción y suele saltearse: hay tareas donde cinco muestras dan cinco respuestas distintas, y ahí la votación no agrega nada más que costo.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "'¿Çuándo usarlo?' con cedilla, y 'decisiones médicas, financieras o legales'."
-  Resolution: corregido el tipeo y los ejemplos de alto riesgo pasaron a deploys, migraciones de datos y facturación.
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma."
-  Resolution: se agregó un diagrama ASCII de fan-out y fan-in, que muestra el mecanismo que la prosa nombraba sin dibujar: un mismo prompt muestreado por caminos independientes que convergen en una votación, con un camino disidente visible. El bullet del costo bajó a las notas del orador para no exceder el presupuesto de densidad.
 
 ---
 
@@ -1581,11 +1387,6 @@ NO. Si tax fuera un monto unitario, el cambio seria correcto.
 ### Speaker notes
 
 Lo interesante del ejemplo es la corrida 3, y conviene señalarla. No es una alucinación: es una lectura distinta y coherente del mismo diff, bajo un supuesto distinto sobre qué representa `tax`. Eso es lo que self-consistency detecta y lo que una sola llamada esconde. La confianza del 67% no es una probabilidad calibrada, es la proporción de votos, y conviene decirlo para que nadie la reporte como si fuera otra cosa. El uso práctico en un equipo: cuando la votación no es unánime, el sistema no decide, escala a una persona. Ese es el valor real, más que el voto en sí.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "El ejemplo es un caso clínico de apendicitis con tres corridas de diagnóstico diferencial."
-  Resolution: pasó a evaluar si un diff introduce un bug, con las tres corridas conservando la estructura del original y la discrepancia de la tercera como punto pedagógico.
 
 ---
 
@@ -1634,11 +1435,6 @@ labels: "RESPUESTA DIRECTA (sin pensar)", "THINKING (pensar)", "DEEP THINKING (p
 
 Slide importada de otra clase y ubicada acá a propósito: abre el bloque de razonamiento y le da el marco a las cinco técnicas que siguen. El trabajo principal es desambiguar, porque la clase usa la palabra "thinking" para dos cosas. Decilo explícito: extended thinking es el mecanismo, el modelo escribe un bloque de razonamiento antes de la respuesta; thinking y deep thinking son los nombres comerciales de la perilla que gradúa cuánto escribe. Los niveles de effort de la API que vieron en la slide de tarifas son la misma perilla con otro rótulo. La parte de costo ya la vieron ahí, así que no la repitas: acá el foco es la regla de emparejar modo con dificultad. Un dato para no quedar mal: no atribuyas un modo o un default a un modelo puntual, porque los nombres y los valores por defecto cambian seguido entre proveedores.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Importado de otra Talk: el encuadre es de negocio y esta audiencia es de Ingeniería de Software. Revisar el registro."
-  Resolution: se normalizó el voseo ("pensala", "emparejá", "pagás") y el encuadre de negocio ("trade-off de negocio", "tirar plata") al registro impersonal del resto del deck; el bullet de effort y costo se retiró porque ya vive en la slide 2.1 (L6); se agregó la reconciliación explícita entre *extended thinking* como mecanismo y *thinking* / *deep thinking* como modos de interfaz; y las Sources se re-anclaron al corpus de esta Talk, porque `parametros-llm.md.md` no existe acá. La slide se movió para abrir el bloque de razonamiento, delante de Extended thinking.
-
 ---
 
 ## 7. Extended thinking (Anthropic)
@@ -1661,11 +1457,6 @@ Slide importada de otra clase y ubicada acá a propósito: abre el bloque de raz
 ### Speaker notes
 
 Acá hay que cerrar la desambiguación que abriste en la slide anterior, porque el deck original usaba el mismo nombre para dos cosas y confundía. Poner `<thinking>` en el prompt es una técnica de prompting: se le pide al modelo que escriba su razonamiento dentro de etiquetas, y es chain of thought con delimitadores. El extended thinking nativo de la API es otra cosa: el proveedor corre el razonamiento antes de generar la respuesta, lo factura como tokens de salida y lo devuelve en un bloque aparte. La técnica de prompt funciona en cualquier modelo; el mecanismo nativo depende del proveedor. El ejemplo de la columna del medio pasó de análisis de contratos a análisis de incidentes, que es el caso que ellos van a tener.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Esta slide y la vecina de Razonamiento presentan dos cosas distintas con el mismo nombre, sin reconciliar."
-  Resolution: se explicitó la distinción entre las etiquetas `<thinking>` del prompt y el extended thinking nativo de la API, con un enlace cruzado a la slide anterior. "Revisión clínica" pasó a trazabilidad genérica y el ejemplo de análisis de contratos a análisis de incidentes.
 
 ---
 
@@ -1711,23 +1502,19 @@ Responde en JSON con: causa_probable, evidencia, fix, riesgo_del_fix
 
 El ejemplo pasó de un caso clínico a un stack trace, y el cambio de dominio hace visible algo que en el original se perdía: los cuatro pasos del bloque `<thinking>` no son decoración, son la estructura del análisis. El paso 3 es el que un modelo sin CoT se saltea siempre, y es el que importa: por qué el 3% y por qué solo en producción. Sin ese paso, la respuesta va a ser "agregá un chequeo de null", que es tapar el síntoma. Es un buen momento para preguntarle al grupo qué hipótesis se les ocurre para ese 3%. Suelen salir dos buenas: una condición de carrera y datos viejos que solo existen en la base de producción. Cualquiera de las dos deja claro por qué el chequeo de null no es el arreglo.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "El ejemplo es un caso clínico (paciente de 45 años, dolor abdominal) y hay un 'Responde en JSON with' sin traducir."
-  Resolution: el ejemplo pasó al análisis de un stack trace de producción y se corrigió la sustitución automática "with" por "con".
-
 ---
 
 ## 9. Tree of Thought (ToT)
 
-<!-- aside: right ![Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-33-1.png) -->
+<!-- aside: right ![Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino](images/slide-33-1.png) -->
 
 ### Content
 
 **ToT extiende CoT explorando varios caminos de razonamiento en paralelo, como las ramas de un árbol de decisión. El modelo evalúa cada rama y elige la más prometedora.**
 
 <!-- ascii-render: force -->
-```ascii
+![Tree of Thought: generar ramas, evaluarlas, podar las malas y expandir solo la mejor hasta la solución](images/s5-9-1-arbol-ramificar-podar.png)
+<!-- ascii-source:
                         [ problema ]
                              |
               +--------------+--------------+        1. GENERAR
@@ -1748,7 +1535,7 @@ El ejemplo pasó de un caso clínico a un stack trace, y el cambio de dominio ha
    [ solucion ]                                       4. SELECCIONAR
 
   CoT es este arbol con una sola rama y sin vuelta atras.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que lo propio de ToT no es "razonar mas" sino RAMIFICAR y PODAR: generar varias continuaciones, puntuarlas, descartar las malas y expandir solo la mejor; y que CoT es el caso degenerado de un solo camino sin backtracking
 emphasize: las ramas podadas marcadas con X frente al camino que sobrevive hasta la solucion; los cuatro pasos numerados de la derecha alineados con los niveles del arbol; la linea de cierre que contrasta con CoT
@@ -1770,13 +1557,6 @@ labels: "problema", "rama A/B/C", "score 8/5/2", "podada", "A.1", "A.2", "soluci
 ### Speaker notes
 
 El diagrama de la slide es el único diagrama conceptual real del deck original, así que aprovechalo: rama, balanza, documento validado. Generar, evaluar, elegir. El aporte teórico del paper vale la pena decirlo porque reordena todo lo anterior: la generación autoregresiva decide token por token y de izquierda a derecha, sin manera de volver atrás, y si el primer paso fue malo el resto está condenado. ToT cambia la unidad de decisión: en vez de tokens, pensamientos completos, y con eso aparecen dos operaciones que CoT no tiene, mirar hacia adelante y retroceder. Recordá el número de la slide de CoT: 4% a 74% en Game of 24, mismo modelo. La analogía médica del deck original se reemplazó por el ejemplo de refactor de la slide siguiente.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "'Analogía médica: ToT es similar al diagnóstico diferencial clínico'."
-  Resolution: la analogía clínica se retiró y su lugar lo ocupa el ejemplo de estrategias de refactor de la slide siguiente, que cumple la misma función pedagógica en el dominio de la audiencia.
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma. El árbol de ToT es el caso más claro, porque ramificación y poda son su punto entero."
-  Resolution: se agregó un diagrama ASCII del árbol con scores y ramas podadas, que muestra el mecanismo que la línea "Generar → Evaluar → Seleccionar" solo nombraba, y que cierra contrastando con CoT como el caso de una sola rama. Esa línea de tres pasos se retiró del cuerpo porque el árbol la dice mejor. La imagen del corpus (`slide-33-1.png`, los tres círculos) no se borró: pasó a `<!-- aside: right -->`, que es el rol que le corresponde, ya que sus rótulos son texto de PowerPoint y el gráfico en sí no es legible como diagrama.
 
 ---
 
@@ -1813,11 +1593,6 @@ Hay que agregarle IVA por jurisdiccion sin romper la facturacion actual.
 
 Este ejemplo funciona porque las tres ramas son defendibles, y eso es justo el tipo de problema donde ToT rinde. Un problema con una sola respuesta correcta no necesita ramas. La rama B es la trampa útil: es la respuesta que da un modelo sin evaluación de ramas, porque es la más limpia en abstracto, y es la peor decisión concreta porque no hay tests que sostengan la reescritura. El criterio que hace ganar a la rama A no es la elegancia, es el riesgo acotado. Si querés hacerlo participativo, mostrá las tres ramas sin la selección y pediles que elijan. La discusión que se arma es el trabajo que hace ToT.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "El ejemplo es un caso clínico con TEP, Score Wells y angioTC."
-  Resolution: pasó a tres estrategias de refactor sobre un módulo sin tests, conservando la estructura de tres ramas con evidencia a favor y en contra.
-
 ---
 
 ## 11. ReAct: razonar y actuar
@@ -1842,12 +1617,13 @@ Thought 3: Ya tengo lo que necesita el fix. Agrego el parametro con default.
 Act 3:     finish("Agregar jurisdiccion como parametro opcional con default 'AR'")
 ```
 
-```ascii
+![ReAct como lazo cerrado: thought, act y observation contra el mundo, con la observación volviendo al razonamiento](images/s5-11-2-react-lazo-cerrado.png)
+<!-- ascii-source:
         +--------------------------------------------------+
         |                                                  |
         v                                                  |
    +----------+      +----------+      +---------------+   |
-   | THOUGHT  | ---> |   ACT    | ---> | OBSERVATION   | --+
+   | THOUGHT  | ---&gt; |   ACT    | ---&gt; | OBSERVATION   | --+
    | razonar  |      | actuar   |      | lo que volvio |
    +----------+      +----------+      +---------------+
                           |                    ^
@@ -1864,7 +1640,7 @@ Act 3:     finish("Agregar jurisdiccion como parametro opcional con default 'AR'
                   ... el lazo se repite hasta FINISH
 
   CoT razona una vez y contesta. ReAct cierra el lazo contra el mundo.
-```
+-->
 <!-- ascii-note:
 intent: mostrar ReAct como un LAZO CERRADO contra una fuente externa, no como una secuencia lineal: cada observacion del mundo real vuelve al razonamiento y corrige el plan antes del paso siguiente
 emphasize: la flecha de retorno que cierra el ciclo de Observation a Thought; la caja MUNDO como lo que esta fuera del modelo; la salida FINISH que rompe el lazo
@@ -1882,12 +1658,6 @@ labels: "THOUGHT / razonar", "ACT / actuar", "OBSERVATION / lo que volvio", "MUN
 
 Las dos afirmaciones del paper que sostenían la lámina van habladas: las **trazas de razonamiento** ayudan al modelo a armar, seguir y corregir un plan, y a manejar excepciones; las **acciones** lo conectan con fuentes externas (bases de conocimiento, herramientas, el repositorio), así que deja de depender solo de su memoria. Slide nueva, y la agregué porque ReAct estaba procesado en el corpus y no aparecía en ninguna parte, siendo la técnica más pertinente para esta audiencia de todas las de la sección. Es la que explica qué hace un asistente de código por dentro. El punto teórico es el entrelazado: no razonar primero y actuar después, sino alternar, de modo que cada observación del mundo real condiciona el razonamiento siguiente. Y hay una afirmación del paper que conviene decir en voz alta porque es una crítica a CoT desde adentro de la literatura: ReAct supera la alucinación y la propagación de errores que CoT tiene, porque va a buscar el dato en lugar de recordarlo. Ahí engancha con toda la sección de alucinaciones del principio. Aclará que la traza del ejemplo es propia: la del paper no está en la captura.
 
-### Presenter feedback
-
-- [open] 2026-08-28 — "Slide agregada. ReAct entra al deck como el puente entre prompt chaining y agentes. ¿Se mantiene acá, después de ToT, o conviene moverla al final de la sección, pegada a prompt chaining, que es la que insinúa el tema de agentes?"
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma."
-  Resolution: se agregó un diagrama ASCII del lazo pensar → actuar → observar → repetir, que muestra lo que la traza lineal no puede: que el ciclo se cierra contra el mundo y que cada observación corrige el plan. Los dos bullets con las afirmaciones del paper bajaron a las notas del orador; la traza de ejemplo queda como la instancia concreta del lazo y sigue marcada `documentation-only`.
-
 ---
 
 ## 12. Prompt chaining
@@ -1898,12 +1668,13 @@ Las dos afirmaciones del paper que sostenían la lámina van habladas: las **tra
 
 **Ejemplo: pipeline de triage de tickets**
 
-```ascii
+![Prompt chaining: cuatro etapas encadenadas donde la salida de cada paso es la entrada de la siguiente](images/s5-12-1-cadena-cuatro-etapas.png)
+<!-- ascii-source:
   [ ticket ]
       |
       v
   +---------------+  urgencia     +---------------+  detalles
-  | 1 CLASIFICAR  | ------------> | 2 EXTRAER     | -----------+
+  | 1 CLASIFICAR  | ------------&gt; | 2 EXTRAER     | -----------+
   |   urgencia    | alta/med/baja |   detalles    |            |
   +---------------+               +---------------+            |
     modelo chico                    modelo chico               |
@@ -1919,7 +1690,7 @@ Las dos afirmaciones del paper que sostenían la lámina van habladas: las **tra
 
   La salida de cada paso ES la entrada del siguiente.
   El modelo caro entra solo en el paso 4, con el contexto ya filtrado.
-```
+-->
 <!-- ascii-note:
 intent: mostrar el encadenamiento como una tuberia de etapas donde la salida de cada una es la entrada de la siguiente, y hacer visible por que sale mas barato: los pasos baratos filtran antes de que intervenga el modelo caro
 emphasize: las flechas etiquetadas entre etapas (urgencia, detalles, runbooks, contexto), que son el dato concreto que viaja; la anotacion de que modelo usa cada paso, con el caro solo al final
@@ -1935,13 +1706,6 @@ labels: "ticket", "1 CLASIFICAR urgencia", "2 EXTRAER detalles", "3 BUSCAR (RAG)
 ### Speaker notes
 
 El texto de esta slide venía cortado a mitad de palabra en el deck original y no se pudo reponer verbatim, porque el material fuente está igual de cortado. Lo que decía la frase se deduce de la propia slide de ejemplo: varias llamadas en vez de una incrementan latencia y costo total de orquestación, a cambio de que cada paso sea simple y evaluable por separado. Decilo así. El otro punto es el de la línea de cierre y es el más importante de la slide: un pipeline de cinco pasos con lógica de control escrita por el programador ya es, en lo esencial, un agente con el bucle fijo. La diferencia con un agente de verdad es quién decide el próximo paso, y eso es lo que agrega ReAct, que acaban de ver.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Texto truncado: 'se ejecutan varias llamadas en vez de una lo cual incre'. Además el ejemplo es un pipeline médico de triage con extracción de detalles clínicos."
-  Resolution: la frase truncada se cerró con el trade-off que la propia slide de ejemplo declara, y quedó anotado en Sources que no se pudo reponer verbatim porque el corpus la preserva igual de truncada. El pipeline pasó a triage de tickets, que el original ya insinuaba con "Ticket / consulta recibida". Los cinco pasos se reemparejaron con su etiqueta (L8) y el bloque "Qué se gana", que repetía la columna de ventajas de la slide siguiente, se unificó allá (L6): la slide quedó dentro del presupuesto de densidad.
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma. Prompt chaining es literalmente un pipeline."
-  Resolution: la lista de cinco pasos pasó a un diagrama ASCII de tubería, que muestra dos cosas que la lista no podía: qué dato concreto viaja entre etapa y etapa, y que el modelo caro interviene solo en el último paso, ya con el contexto filtrado. Eso último es el argumento de costo que la slide 5.13 afirma y que hasta ahora nada dibujaba.
 
 ---
 
@@ -1983,11 +1747,6 @@ Input:  todo lo anterior
 
 La tercera ventaja es la que suele sorprender, y merece medio minuto: encadenar es más barato aunque haya más llamadas. La razón es que el paso 1 corre con un modelo chico sobre doscientos tokens, y el modelo caro solo se invoca en el paso 4 y con el contexto ya filtrado. Un prompt monolítico manda todo al modelo caro siempre. Es el mismo argumento del cascading, aplicado a las etapas en vez de a los modelos. La contra real es la de la primera fila de la derecha: cuatro llamadas secuenciales son cuatro latencias sumadas, y en un flujo interactivo eso se nota. Si el sistema es asincrónico, no importa.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "'Ejemplo: Pipeline Clínico', con extracción de síntomas y búsqueda de protocolos clínicos."
-  Resolution: el pipeline pasó a triage de tickets con runbooks e incidentes previos.
-
 ---
 ## 14. Técnicas avanzadas: pros y contras
 
@@ -2010,11 +1769,6 @@ La tercera ventaja es la que suele sorprender, y merece medio minuto: encadenar 
 ### Speaker notes
 
 Tabla de referencia, para consultar más que para leer. Si hay que decir una sola cosa, que sea el patrón de la columna de la derecha: todas las contras son la misma contra escrita de seis maneras, que es más tokens o más llamadas. Ninguna técnica de esta sección compra calidad gratis. Y una lectura transversal útil: las tres primeras filas mejoran cómo piensa el modelo, las tres últimas cambian la arquitectura del sistema alrededor. Las primeras son un cambio de prompt, las segundas son un cambio de diseño, con todo lo que eso implica para el equipo que lo mantiene.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Las tres últimas técnicas tienen los pros y los contras intercalados y en orden invertido respecto de las dos primeras."
-  Resolution: se unificó todo en una sola tabla de tres columnas con las seis técnicas, y se agregó la fila de ReAct. "Solo en modelos Claude" pasó a "el mecanismo nativo depende del proveedor", que es lo correcto hoy.
 
 ---
 
@@ -2042,11 +1796,6 @@ Tabla de referencia, para consultar más que para leer. Si hay que decir una sol
 
 Esta es la slide de la tesis y merece el tiempo que haga falta. Todo lo que vieron en la sección se explica desde acá: si el modelo genera token por token y cada token se condiciona solo con lo anterior, entonces escribir los pasos no es documentar el razonamiento, es hacerlo. Los tokens intermedios son cómputo en sentido estricto: son estados que el modelo puede leer para producir el siguiente. Por eso pedirle que piense paso a paso funciona, y por eso pedirle que "sea más cuidadoso" no funciona. La analogía del papel es la que engancha, y tiene un matiz que conviene decir: el papel no agrega inteligencia, agrega memoria de trabajo. Si te queda tiempo, cerrá volviendo a la slide del motor de completado del principio, porque es la misma idea vista dos horas antes.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Los tres argumentos y sus títulos quedaron desapareados al reconstruir desde el pptx."
-  Resolution: se reemparejaron los tres argumentos con su desarrollo (L8) y la analogía del papel bajó a línea de cierre.
-
 ---
 
 ## 16. ¿Por qué tardan más?
@@ -2073,8 +1822,6 @@ Esta es la slide de la tesis y merece el tiempo que haga falta. Todo lo que vier
 ### Speaker notes
 
 Esta slide es el contrapeso de las anteriores y por eso va acá, justo después de la que explica por qué funcionan. La regla del cierre es la que se llevan escrita. Un detalle que conviene marcar porque cambia decisiones de producto: la latencia de self-consistency es N veces solo si las llamadas van en serie, y no tienen por qué. Cinco muestras en paralelo cuestan cinco veces en plata y una vez en tiempo. Es de las pocas veces en que se puede comprar calidad sin pagar latencia. La última fila es distinta de las otras cinco y hay que decirlo: el testing no le agrega latencia al usuario, se la agrega al equipo, y ese es un costo que se paga una vez por iteración y no una vez por request.
-
-### Presenter feedback
 
 ---
 
@@ -2105,11 +1852,6 @@ Esta slide es el contrapeso de las anteriores y por eso va acá, justo después 
 
 Acá empieza el bloque de disciplina de producción y es donde esta audiencia tiene ventaja sobre casi cualquier otra: las cuatro cosas de la derecha ya las hacen con código. La columna izquierda describe cómo se trabaja hoy con prompts en la mayoría de los equipos, y suena a cómo se trabajaba con software antes de los tests automatizados. La segunda viñeta es la que más duele en la práctica y conviene contarla como caso: alguien mejora el prompt para un ticket que se clasificó mal, lo sube, y tres semanas después nadie entiende por qué bajó la precisión en una categoría que nadie tocó. Sin eval set, ese diagnóstico no existe.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Las tres fallas y las cuatro necesidades quedaron intercaladas en pares desapareados."
-  Resolution: se separaron en dos grupos con forma gramatical homogénea (L8) y "sensibilidad clínica" pasó a "una métrica propia del dominio".
-
 ---
 
 ## 18. DSPy: optimización automática
@@ -2138,11 +1880,6 @@ Acá empieza el bloque de disciplina de producción y es donde esta audiencia ti
 ### Speaker notes
 
 El eslogan del framework dice todo: programá, no promptees. Y el punto que más le sirve a esta audiencia es el de los módulos: en DSPy, pasar de completado directo a chain of thought y de ahí a ReAct es cambiar una línea, sobre la misma signature. Es decir, todas las técnicas que vieron en esta sección quedan reificadas como un parámetro intercambiable. La analogía con backpropagation ayuda, pero aclará el alcance para que nadie se la lleve mal: no ajusta pesos, ajusta el texto de las instrucciones y la selección de ejemplos, evaluando candidatos contra una métrica. Sigue siendo prompting, con búsqueda automática en vez de intuición. La tabla del final es la venta, y la fila que a ellos les va a importar es la tercera: cuando cambia el modelo, el prompt optimizado se recompila en vez de reescribirse.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Slide sin título, con el título como primera línea del cuerpo, y los cuatro pasos desapareados de su descripción."
-  Resolution: "DSPy: optimización automática" pasó a H2 y se retiró del cuerpo (L5); los cuatro pasos se reemparejaron con su descripción y se les quitaron los ordinales escritos (L3, L8); se agregó la fuente primaria del framework.
 
 ---
 
@@ -2173,11 +1910,6 @@ El eslogan del framework dice todo: programá, no promptees. Y el punto que más
 
 La primera opción es la que hay que defender: Git. Un prompt en un archivo versionado, con el diff visible en el pull request, resuelve el noventa por ciento del problema y no agrega ninguna dependencia. Las plataformas se justifican cuando hace falta trazar la llamada en producción, que es un problema distinto del de versionar el texto. Lo que sí hay que decir en contra de una práctica muy común: el prompt embebido como string dentro del código de la aplicación. Ahí el diff es ilegible, nadie lo revisa en el pull request y la primera vez que hay que hacer rollback aparece mezclado con quince cambios de otra cosa. La trazabilidad de la primera viñeta engancha con la sección de riesgos del final, cuando alguien pregunte quién responde si el sistema se equivoca.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "'Crítico para auditorías clínicas y regulatorias', y las herramientas quedaron intercaladas con las razones para versionar."
-  Resolution: se separaron en dos grupos, razones y herramientas, con forma gramatical homogénea (L8), y la referencia clínica pasó a auditoría genérica de una decisión.
-
 ---
 
 ## 20. Datos y testing sistemático
@@ -2207,11 +1939,6 @@ La primera opción es la que hay que defender: Git. Un prompt en un archivo vers
 
 La cuarta viñeta de la izquierda es la que más se viola y la que más caro sale. Iterar el prompt mirando el test set es sobreajustar a mano: el número sube, la calidad real no, y nadie se entera hasta producción. Es el mismo error que en machine learning clásico, y acá es más fácil de cometer porque el eval set es chico y se mira todo el tiempo. Del pipeline, el requisito de los cinco minutos parece un detalle y no lo es: un eval que tarda media hora se corre una vez por semana, y un eval que tarda dos minutos se corre en cada cambio. La frecuencia de la iteración depende de ese número. Cerrá con la regla de oro, que rima con la de la sección de alucinaciones.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Ordinales 01 a 04 escritos dentro del contenido, pasos desapareados de su descripción, y 'anotadas por médicos para aplicaciones clínicas'."
-  Resolution: se quitaron los ordinales porque los dibuja la plantilla (L3), se reemparejó cada paso con su descripción (L8) y "médicos" pasó a "quien conoce el dominio". Las métricas clínicas se reemplazaron por la nota genérica de que cada dominio agrega las suyas.
-
 ---
 
 ## 21. Agenda
@@ -2235,8 +1962,6 @@ La cuarta viñeta de la izquierda es la que más se viola y la que más caro sal
 ### Speaker notes
 
 Cierre de la sección más larga. Recapitulá con la tesis: todas las técnicas hacen escribir al modelo antes de responder, porque escribir es el cómputo, y todas se pagan en tokens y en latencia. Lo que sigue baja todo eso a un equipo de software real.
-
-### Presenter feedback
 
 ---
 
@@ -2269,10 +1994,6 @@ Cierre de la sección más larga. Recapitulá con la tesis: todas las técnicas 
 ### Speaker notes
 
 Repetición de la slide 5.19. Si se conserva en la entrega, saltearla o usarla como recordatorio de una línea. Las notas de fondo están en 5.19.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado verbatim de la slide 5.19, residuo de edición del pptx (quedó después de la slide de cierre). Se conserva por la restricción de no borrar. ¿Se entrega, se saltea en vivo, o se retira del deck final?"
 
 ---
 
@@ -2312,10 +2033,6 @@ Pregunta: ¿este diff introduce un bug?
 
 Repetición de la slide 5.5. Las notas de fondo están ahí.
 
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado de la slide 5.5, residuo de edición del pptx. El ejemplo clínico se reemplazó por el mismo caso de software que la primaria, para que las dos versiones no se contradigan. ¿Se entrega o se retira?"
-
 ---
 
 ## 24. Extended thinking (Anthropic)
@@ -2337,10 +2054,6 @@ Repetición de la slide 5.5. Las notas de fondo están ahí.
 ### Speaker notes
 
 Repetición de la slide 5.7. Las notas de fondo, y la desambiguación entre las etiquetas del prompt y el mecanismo nativo, están ahí.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado de la slide 5.7, residuo de edición del pptx. ¿Se entrega o se retira?"
 
 ---
 
@@ -2378,10 +2091,6 @@ Responde en JSON con: causa_probable, evidencia, fix, riesgo_del_fix
 
 Repetición de la slide 5.8. Las notas de fondo están ahí.
 
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado de la slide 5.8, residuo de edición del pptx. El caso clínico se reemplazó por el mismo stack trace que la primaria. ¿Se entrega o se retira?"
-
 ---
 
 ## 26. Tree of Thought (ToT)
@@ -2392,7 +2101,7 @@ Repetición de la slide 5.8. Las notas de fondo están ahí.
 
 **ToT extiende CoT explorando varios caminos de razonamiento en paralelo, como las ramas de un árbol de decisión. El modelo evalúa cada rama y elige la más prometedora.**
 
-![Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-62-1.png)
+![Diagrama de tres pasos: generar ramas, evaluar ramas, seleccionar camino](images/slide-62-1.png)
 
 - **Generar ramas** → **Evaluar ramas** → **Seleccionar camino**
 
@@ -2411,10 +2120,6 @@ Repetición de la slide 5.8. Las notas de fondo están ahí.
 ### Speaker notes
 
 Repetición de la slide 5.9. Las notas de fondo están ahí.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado de la slide 5.9, residuo de edición del pptx. ¿Se entrega o se retira?"
 
 ---
 
@@ -2451,16 +2156,10 @@ Hay que agregarle IVA por jurisdiccion sin romper la facturacion actual.
 
 Repetición de la slide 5.10. Las notas de fondo están ahí.
 
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado de la slide 5.10, residuo de edición del pptx. El caso clínico se reemplazó por el mismo ejemplo de refactor que la primaria. ¿Se entrega o se retira?"
-
 ---
 # 6. LLMs en ingeniería
 
 **Goal of this section:** Situar todo lo anterior en el ciclo de vida real de un producto de software, con los riesgos que trae y las mitigaciones que un equipo ya sabe practicar.
-
-**Presenter feedback:**
 
 ---
 
@@ -2470,9 +2169,10 @@ Repetición de la slide 5.10. Las notas de fondo están ahí.
 
 **El mismo recorrido que hace un cambio desde que alguien lo pide hasta que llega a producción, con lo que un LLM aporta en cada estadio.**
 
-```ascii
+![Ciclo de vida de un cambio en seis estadios, cerrado por el post-mortem que vuelve como issue](images/s6-1-1-ciclo-vida-seis-estadios.png)
+<!-- ascii-source:
      +----------+     +----------+     +----------------+     +----------+
-     |  ISSUE   | --> |  DISENO  | --> | IMPLEMENTACION | --> |  REVIEW  |
+     |  ISSUE   | --&gt; |  DISENO  | --&gt; | IMPLEMENTACION | --&gt; |  REVIEW  |
      |  triage  |     |  ADRs    |     | codigo, tests  |     |   diff   |
      +----------+     +----------+     +----------------+     +----------+
           ^                                                        |
@@ -2485,7 +2185,7 @@ Repetición de la slide 5.10. Las notas de fondo están ahí.
 
   El post-mortem vuelve como issue: el ciclo se cierra, no termina.
   Hay un LLM util en los seis estadios, no solo en "escribir codigo".
-```
+-->
 <!-- ascii-note:
 intent: mostrar el ciclo de vida de un cambio como un lazo cerrado de seis estadios, y que el aporte del LLM esta repartido en los seis y no concentrado en la implementacion, que es donde la intuicion lo pone
 emphasize: la flecha de retorno de INCIDENTE a ISSUE, que es lo que convierte la secuencia en ciclo; la caja IMPLEMENTACION como uno mas entre seis y no como el centro
@@ -2509,14 +2209,6 @@ labels: "ISSUE / triage", "DISENO / ADRs", "IMPLEMENTACION / codigo, tests", "RE
 ### Speaker notes
 
 Esta slide reordena toda la clase en el eje que a ellos les resulta natural: el flujo de trabajo. La columna "hacia dónde va" salió de la lámina y va hablada, estadio por estadio: en **issue**, priorización con el contexto del roadmap y de la deuda técnica; en **diseño**, exploración de alternativas con costo y riesgo estimados; en **implementación**, agentes que abren un pull request completo a partir del issue; en **review**, revisión con el contexto histórico del módulo y de sus incidentes; en **deploy**, estimación de riesgo del despliegue a partir del diff; y en **incidente**, diagnóstico asistido mientras el incidente sigue abierto. Marcalas como especulación, que es lo que son. Vale la pena decir de entrada que las seis etapas no son igual de maduras, y que la columna del medio es lo que ya se usa hoy en equipos reales, no una promesa. La fila de review es la que más pega, porque es donde el LLM aporta y donde más rápido se ve el límite: encuentra el bug obvio y no entiende por qué ese módulo está escrito así. La fila de incidente es la que más entusiasma y la más peligrosa, porque un post-mortem con una causa raíz inventada es peor que no tener post-mortem. Aviso de honestidad: la versión original de esta slide traía cifras del dominio médico, y no las traduje a números de software porque no tengo fuente. Lo que queda es cualitativo a propósito.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Reconvertir la sección médica completa al dominio de software, conservando la forma argumental de cada slide; título por encima del presupuesto; bloque de fuentes con hipervínculos anidados."
-  Resolution: "Recorrido del Paciente: Oportunidades con Foundational Models" pasó a "Ciclo de vida: dónde entra el LLM" (34 caracteres) y las cinco etapas clínicas se reemplazaron por las seis del ciclo de vida de un cambio de software. El bloque de fuentes anidado se desanidó y bajó a Sources como procedencia de la versión médica (L7).
-- [closed] 2026-08-28 — "El deck casi no tiene diagramas: agregar diagrama donde el concepto tenga forma."
-  Resolution: se agregó un diagrama ASCII del ciclo cerrado de seis estadios. Muestra lo que seis filas de tabla no pueden: que el post-mortem vuelve como issue y el recorrido es un lazo, no una lista. Para dejarlo dentro del presupuesto de densidad, la columna "Hacia dónde va" bajó a las notas del orador; la tabla conserva "Qué hace hoy", que es la parte verificable.
-- [open] 2026-08-28 — "Las cifras de la versión médica (81% de informes de rayos X con MedGemma, 98,7% de extracción de medicación, 80,7% de reducción con ChatGLM2-6B, 2.164 pacientes, 244 participantes) se retiraron porque no hay equivalentes de software en el corpus y no correspondía inventarlos. ¿Se busca evidencia citable de adopción de LLMs en ingeniería (DORA, encuestas de Stack Overflow, estudios de productividad) para reponer números?"
 
 ---
 
@@ -2545,11 +2237,6 @@ Esta slide reordena toda la clase en el eje que a ellos les resulta natural: el 
 
 Esta es la slide donde más gente se sorprende, porque el uso famoso de los LLM es generar código y el uso que más tiempo ahorra en un equipo real es leerlo. La primera fila tiene el mejor argumento: la diferencia entre buscar por texto y buscar por intención. `grep` encuentra el nombre; el modelo encuentra el lugar donde se toma la decisión, aunque la variable se llame distinto. La cuarta es la que menos se piensa y la que más valor tiene en un equipo con rotación: la respuesta a "por qué está hecho así" vive repartida entre commits, tickets y una conversación de Slack de 2023. La advertencia del cierre no es retórica: una explicación fluida de un código que hace otra cosa es la alucinación más difícil de detectar, porque suena a documentación.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Reconvertir al dominio de software; título por encima del presupuesto; bloque de fuentes con ocho hipervínculos anidados."
-  Resolution: "Research Biomédica: Oportunidades con Foundational Models" pasó a "Explorar y entender código" (26 caracteres) y los cuatro cuadrantes se reemplazaron por búsqueda semántica, sistemas legados, síntesis de documentación y arqueología de decisiones. El bloque de fuentes se desanidó y bajó a Sources (L7).
-
 ---
 
 ## 3. Casos de uso hoy
@@ -2571,10 +2258,6 @@ Esta es la slide donde más gente se sorprende, porque el uso famoso de los LLM 
 ### Speaker notes
 
 Slide corta y a propósito. Lo que hay que sostener es la advertencia del final, porque es la bisagra con las dos slides de riesgos que siguen. La columna de generación de tests merece una aclaración que suele hacer ruido: un test generado por el modelo a partir del código verifica que el código hace lo que hace, no que hace lo correcto. Es útil como red contra regresiones y no sirve como especificación. Si alguien pregunta por números de adopción o de productividad, decí la verdad: la versión original de esta slide tenía cifras de estudios clínicos y no las reemplacé por cifras de software inventadas. Quedó marcado como pendiente buscar evidencia citable.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "La versión original tenía cifras por categoría (50% menos tiempo en notas, 80,7% de reducción, 197 clínicos, 2.164 pacientes). Se retiraron al cambiar de dominio y no se reemplazaron por cifras de software, porque el corpus no tiene ninguna. ¿Se incorpora una fuente de adopción o productividad al corpus?"
 
 ---
 
@@ -2604,11 +2287,6 @@ Slide corta y a propósito. Lo que hay que sostener es la advertencia del final,
 
 Ocho ítems, y conviene ordenar el énfasis en lugar de leerlos todos. De las oportunidades, la cuarta es la que más rápido se nota en un equipo real y la que menos se nombra en las presentaciones. De los riesgos, los dos primeros son técnicos y se atacan con herramientas, y los dos últimos son organizacionales y no. La dependencia excesiva es el que hay que dejar instalado porque es lento y silencioso: no rompe nada el primer mes, y a los seis meses hay un equipo que aprueba pull requests sin leerlos. El de licencias suele generar debate y no tiene respuesta cerrada todavía; si sale, decí que está sin resolver en vez de improvisar una.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Reconvertir la sección médica al dominio de software; las etiquetas y sus definiciones quedaron desapareadas al reconstruir desde el pptx."
-  Resolution: las cuatro oportunidades y los cuatro riesgos del marco de la OMS se reemplazaron por sus equivalentes de software (alucinación de APIs, código inseguro, dependencia excesiva, licencias) y cada etiqueta quedó emparejada con su definición (L8).
-
 ---
 
 ## 5. Mitigaciones que funcionan
@@ -2631,11 +2309,6 @@ Ocho ítems, y conviene ordenar el énfasis en lugar de leerlos todos. De las op
 
 La primera es la única no negociable y conviene decirlo con esas palabras. Todo lo demás es gradiente; la revisión humana es un piso. La segunda tiene un matiz que a ellos les va a sonar: aceptar código generado sin tests no es más rápido, es tomar deuda a una tasa que no está declarada, porque el costo aparece cuando alguien tiene que modificar código que nadie entiende y nadie escribió. La tercera es la de mejor relación entre esfuerzo y resultado, y suele estar ya instalada en el pipeline: no hay que comprar nada, hay que dejar de saltearla. La cuarta cierra el círculo con toda la clase, porque es prompt caching más grounding aplicado al caso de ellos.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Slide muy por encima del presupuesto de densidad, con ordinales 01 a 04 escritos, mitigaciones y reflexiones intercaladas, y etiquetas totalmente desapareadas (aparecía '01 / Escasez de evidencia / La brecha de uso es real / Human-in-the-loop')."
-  Resolution: se partió en dos (agrega, no borra). Esta queda con las cinco mitigaciones reemparejadas y reconvertidas al dominio de software; las reflexiones abiertas pasaron a la slide siguiente. Se quitaron los ordinales escritos (L3).
-
 ---
 
 ## 6. Para pensar
@@ -2655,11 +2328,6 @@ La primera es la única no negociable y conviene decirlo con esas palabras. Todo
 ### Speaker notes
 
 Slide de discusión, no de contenido. Si hay tiempo, la tercera viñeta es la mejor pregunta para abrir al grupo, y suele generar debate real: quién firma. La respuesta correcta es la misma de siempre en software, quien mergea, y hacerles llegar solos a esa conclusión vale más que decirla. La primera viñeta es un ejercicio de honestidad intelectual que esta clase se debe: la mayoría de las cifras de productividad que circulan no resistirían una revisión metodológica, incluidas varias que estaban en la versión original de estas slides. La segunda es la que más les va a servir en la práctica, porque explica por qué dos personas con la misma herramienta obtienen resultados tan distintos, y por qué esta clase existe.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Etiquetas y textos completamente desapareados en la columna 'Para Reflexionar'; cifras sin fuente (94,9% de precisión del LLM, <34,5% de uso por el público general)."
-  Resolution: las reflexiones se reemparejaron con su desarrollo (L8) y se reconvirtieron al dominio de software. Las dos cifras sin fuente se retiraron y la afirmación de la brecha de uso quedó cualitativa. El marco de seis principios de la OMS se conservó como referencia de gobernanza, declarado como tal.
 
 ---
 
@@ -2686,12 +2354,6 @@ Slide de discusión, no de contenido. Si hay tiempo, la tercera viñeta es la me
 
 Esta slide estaba al final de la sección de fundamentos, cortando el hilo entre ventana de contexto y economía de tokens con una tanda de benchmarks médicos. Acá funciona mejor, porque cierra la sección de aplicación con la pregunta correcta: qué significa de verdad que un modelo saque un puntaje. Las cifras médicas del original se retiraron y no las reemplacé por equivalentes de software inventadas. La tercera viñeta es la que más le sirve a esta audiencia y la que menos se dice: los benchmarks públicos llevan años indexados en la web, así que parte del puntaje puede ser recuerdo. La cuarta cierra el círculo con la sección cinco y es el mensaje que se llevan: el único benchmark que decide algo es el eval set propio.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Slide de benchmarks médicos parqueada al final de Fundamentos, cortando el hilo de ventana de contexto y tokens; etiquetas que no coinciden con el texto (el bloque 'GPT-4o / o3' lleva como rótulo 'GPT-4 en USMLE (5-shot)'); título por encima del presupuesto."
-  Resolution: la slide se movió a la sección de LLMs en ingeniería, donde cierra el bloque de aplicación, y se reconvirtió: en vez de listar puntajes clínicos, ahora explica qué mide y qué no mide un benchmark, con la contaminación de datos como advertencia. Título acortado a "Benchmarks: qué miden" (21 caracteres).
-- [open] 2026-08-28 — "Las cuatro cifras de la versión médica (86,5% Med-PaLM 2 en MedQA, 81,4% GPT-4 en USMLE, 62% Claude 3 Opus en diagnóstico radiológico, 65% 'Gemini Mosaic') se retiraron: son de otro dominio y dos de ellas ya venían sin respaldo verificable en el corpus. ¿Se agrega al corpus un benchmark de software (SWE-bench, HumanEval) para poder mostrar cifras propias del dominio?"
-
 ---
 
 ## 8. Agenda
@@ -2716,14 +2378,10 @@ Esta slide estaba al final de la sección de fundamentos, cortando el hilo entre
 
 Última transición. Queda el cierre y la consigna de práctica. Si vas corto de tiempo, este es el punto donde conviene saltar directo a las conclusiones y dejar la slide de práctica para el final, que se explica en dos minutos.
 
-### Presenter feedback
-
 ---
 # 7. Resumen y práctica
 
 **Goal of this section:** Cerrar con lo que hay que retener y dejar los cuatro módulos de práctica como trabajo domiciliario.
-
-**Presenter feedback:**
 
 ---
 
@@ -2750,12 +2408,6 @@ Esta slide estaba al final de la sección de fundamentos, cortando el hilo entre
 
 Dejá claro el encuadre antes que nada: esto es tarea, no actividad de clase. Sumados al deck no entran en las dos horas y media. Recomendá el orden: primero fundamentos, último el de optimización y testing, que es el que más se apoya en los otros tres. Si vas a evaluar algo de esto, decilo acá. Y un aviso de honestidad: la agenda del deck original prometía además un "sistema de triage con LLM" como práctica, que nunca existió. La promesa se sacó de las siete agendas. Si querés reponerlo como trabajo práctico, el ejemplo de triage de issues de la sección cuatro y el pipeline de tickets de la sección cinco ya dejan la consigna casi armada.
 
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Declarar en la slide que los módulos de práctica ('45-60 minutos') son trabajo domiciliario: sumados al deck no entran en 2:30."
-  Resolution: la slide abre declarando que los cuatro módulos son trabajo domiciliario y que no entran en la cursada. Los enlaces, que en el pptx aparecían duplicados como texto plano más URL entre paréntesis, quedaron como enlaces limpios.
-- [open] 2026-08-28 — "La agenda del deck original prometía un 'sistema de triage con LLM' como práctica que la slide 57 nunca entregó. La promesa se retiró de las siete agendas. ¿Se arma ese trabajo práctico a partir del ejemplo de triage de issues (4.4) y del pipeline de tickets (5.13), o queda fuera del alcance de la clase?"
-
 ---
 
 # Conclusions
@@ -2777,11 +2429,6 @@ Dejá claro el encuadre antes que nada: esto es tarea, no actividad de clase. Su
 
 Tres frases y ninguna es un resumen de la agenda. Son la tesis desplegada. La primera es el mecanismo y explica todo lo demás: si el modelo completa, entonces el trabajo del ingeniero es darle un patrón fácil de completar y hacerlo escribir antes de concluir. La segunda es la economía: no hay técnica gratis, y elegir de más es tan error como elegir de menos. La tercera es la disciplina, y es la que más rápido pueden aplicar el lunes. Cerrá con una pregunta abierta si te queda tiempo: cuál de las seis técnicas de la sección cinco usarían para el trabajo práctico que están cursando, y por qué. La respuesta correcta casi siempre es la más barata que alcanza.
 
-### Presenter feedback
-
-- [closed] 2026-08-14 — "El deck original no tiene slide de cierre; hay que escribirla."
-  Resolution: se escribieron tres takeaways derivados de la tesis (mecanismo, economía, disciplina), cada uno con las fuentes primarias que lo sostienen.
-
 ---
 
 # Open questions
@@ -2798,6 +2445,23 @@ Tres frases y ninguna es un resumen de la agenda. Son la tesis desplegada. La pr
 - **Trabajo práctico de triage con LLM (7.1)** — La agenda original lo prometía y nunca existió. Falta decidir si se arma.
 - **Orden de las secciones** — El deck se entrega con "Modelos y costos" en segundo lugar (tokens → precio de los tokens). Las agendas del pptx original lo ponían quinto, después de las técnicas. Se alinearon las siete agendas al orden de entrega actual, sin reordenar secciones.
 - Ver `research/corpus/AIG4B-Clase-3-Prompting.md.md` → *Inconsistencies / open questions* para el resto de los problemas detectados en el material original.
+- Slide "3. Ventana de contexto" — "Las ventanas de GPT-5.4 (1M), Gemini 3 Pro (2M) y Llama 4 (10M) vienen del deck original y no hay fuente en el corpus que las respalde. ¿Se verifican contra la documentación de cada proveedor antes de la clase, o se presentan como orden de magnitud?"
+- Slide "4. ¿Cuánto es 1 millón de tokens?" — "La segunda columna reemplazó '~800K tokens = años de historial clínico' por un repositorio de software, pero sin cifra: el corpus no tiene una medición. ¿Medimos el repo del trabajo práctico con un tokenizador y ponemos el número real?"
+- Slide "9. Alucinaciones: casos reales" — "El cuarto caso (APIs y paquetes inexistentes) reemplaza al de Med-PaLM en diagnóstico, que era del dominio médico. Es un fenómeno conocido, pero no hay en el corpus una fuente citable con nombre y fecha como sí la tienen Air Canada y el caso de los abogados. ¿Agregamos una referencia concreta al corpus, o se cuenta como observación de oficio?"
+- Slide "2. El paisaje de modelos" — "Las cuatro filas de OpenAI, Google y Meta no se pueden verificar contra el corpus y son de generación 2024. ¿Se actualizan contra la documentación de cada proveedor antes de la clase, o se presentan declaradas como históricas?"
+- Slide "4. XML: estructura semántica" — "Las dos donas (`slide-19-1.png` y `slide-19-2.png`) estaban dibujadas sobre el 40% y el 60% que se retiraron, así que ya no representan ningún dato. ¿Se retiran de la slide o se reemplazan por otro visual en el Polish?"
+- Slide "2. Chain of Thought (CoT)" — "Las dos donas (`slide-27-1.png` al 70% y `slide-27-2.png` al 35%) estaban dibujadas sobre las cifras retiradas y no representan los nuevos valores (74% y +17,9%). ¿Se re-renderizan con los porcentajes correctos en el Polish, o se reemplazan por un gráfico de barras que muestre el par 4% → 74%?"
+- Slide "11. ReAct: razonar y actuar" — "Slide agregada. ReAct entra al deck como el puente entre prompt chaining y agentes. ¿Se mantiene acá, después de ToT, o conviene moverla al final de la sección, pegada a prompt chaining, que es la que insinúa el tema de agentes?"
+- Slide "22. Versionado de prompts" — "Duplicado verbatim de la slide 5.19, residuo de edición del pptx (quedó después de la slide de cierre). Se conserva por la restricción de no borrar. ¿Se entrega, se saltea en vivo, o se retira del deck final?"
+- Slide "23. Self-consistency: ejemplo" — "Duplicado de la slide 5.5, residuo de edición del pptx. El ejemplo clínico se reemplazó por el mismo caso de software que la primaria, para que las dos versiones no se contradigan. ¿Se entrega o se retira?"
+- Slide "24. Extended thinking (Anthropic)" — "Duplicado de la slide 5.7, residuo de edición del pptx. ¿Se entrega o se retira?"
+- Slide "25. Extended thinking: ejemplo" — "Duplicado de la slide 5.8, residuo de edición del pptx. El caso clínico se reemplazó por el mismo stack trace que la primaria. ¿Se entrega o se retira?"
+- Slide "26. Tree of Thought (ToT)" — "Duplicado de la slide 5.9, residuo de edición del pptx. ¿Se entrega o se retira?"
+- Slide "27. Tree of Thought: ejemplo" — "Duplicado de la slide 5.10, residuo de edición del pptx. El caso clínico se reemplazó por el mismo ejemplo de refactor que la primaria. ¿Se entrega o se retira?"
+- Slide "1. Ciclo de vida: dónde entra el LLM" — "Las cifras de la versión médica (81% de informes de rayos X con MedGemma, 98,7% de extracción de medicación, 80,7% de reducción con ChatGLM2-6B, 2.164 pacientes, 244 participantes) se retiraron porque no hay equivalentes de software en el corpus y no correspondía inventarlos. ¿Se busca evidencia citable de adopción de LLMs en ingeniería (DORA, encuestas de Stack Overflow, estudios de productividad) para reponer números?"
+- Slide "3. Casos de uso hoy" — "La versión original tenía cifras por categoría (50% menos tiempo en notas, 80,7% de reducción, 197 clínicos, 2.164 pacientes). Se retiraron al cambiar de dominio y no se reemplazaron por cifras de software, porque el corpus no tiene ninguna. ¿Se incorpora una fuente de adopción o productividad al corpus?"
+- Slide "7. Benchmarks: qué miden" — "Las cuatro cifras de la versión médica (86,5% Med-PaLM 2 en MedQA, 81,4% GPT-4 en USMLE, 62% Claude 3 Opus en diagnóstico radiológico, 65% 'Gemini Mosaic') se retiraron: son de otro dominio y dos de ellas ya venían sin respaldo verificable en el corpus. ¿Se agrega al corpus un benchmark de software (SWE-bench, HumanEval) para poder mostrar cifras propias del dominio?"
+- Slide "1. ¡A practicar!" — "La agenda del deck original prometía un 'sistema de triage con LLM' como práctica que la slide 57 nunca entregó. La promesa se retiró de las siete agendas. ¿Se arma ese trabajo práctico a partir del ejemplo de triage de issues (4.4) y del pipeline de tickets (5.13), o queda fuera del alcance de la clase?"
 
 # Cut material
 

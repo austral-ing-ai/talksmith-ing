@@ -1,0 +1,28 @@
+  ¿La tarea es simple?
+  (clasificar, extraer, rotular)
+       |
+       +-- SI --> modelo chico y barato
+       |            Haiku 4.5 / GPT-4o Mini / Gemini Flash
+       NO
+       |
+  ¿Necesita mas de 1M de contexto?
+       |
+       +-- SI --> el de ventana mas grande disponible
+       |            (hoy: Gemini Pro, 2M)
+       NO
+       |
+  ¿Necesita JSON garantizado por la API?
+       |
+       +-- SI --> modelo con structured outputs
+       |
+       NO --> el mejor modelo para la calidad que se necesita
+       |
+  ¿El costo es critico por volumen?
+       |
+       +-- SI --> model cascading (barato primero, caro si hace falta)
+
+<!-- ascii-note:
+intent: mostrar la eleccion de modelo como una cascada de cuatro preguntas en orden fijo, donde la primera que da "si" corta la decision; el orden de las preguntas es el contenido, no los nombres de modelo que devuelve
+emphasize: la columna de decisiones encadenadas y las salidas de cada rama SI; que la pregunta de costo va ultima, despues de resolver dificultad, contexto y formato
+labels: "¿La tarea es simple?", "¿Necesita mas de 1M de contexto?", "¿Necesita JSON garantizado por la API?", "¿El costo es critico por volumen?", y las salidas de cada rama
+-->

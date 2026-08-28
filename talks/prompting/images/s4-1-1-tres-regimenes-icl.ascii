@@ -1,0 +1,22 @@
+  Lo que viaja dentro del prompt, en cada regimen
+
+  ZERO-SHOT            FEW-SHOT                  MANY-SHOT
+  sin ejemplos         2 a 10 ejemplos           decenas o cientos
+
+  [ instruccion ]      [ instruccion ]           [ instruccion ]
+                       [ ej ][ ej ]              [ ej ][ ej ][ ej ][ ej ]
+                       [ ej ]                    [ ej ][ ej ][ ej ][ ej ]
+                                                 [ ej ][ ej ]  ...
+  [ caso nuevo  ]      [ caso nuevo  ]           [ caso nuevo  ]
+
+  tokens por llamada  ----------------------------------------->  suben
+  precision           ----------------------------------------->  sube y satura
+  costo               ----------------------------------------->  sube siempre
+
+  Los pesos del modelo no cambian en ningun punto de la progresion.
+
+<!-- ascii-note:
+intent: mostrar que los tres regimenes de in-context learning son el MISMO prompt con distinta cantidad de ejemplos intercalados entre la instruccion y el caso nuevo, y que la progresion tiene un costo monotono contra una precision que satura
+emphasize: las tres columnas como variaciones de una misma estructura; el bloque de ejemplos que crece de vacio a saturado; el contraste entre "precision sube y satura" y "costo sube siempre"
+labels: "ZERO-SHOT", "FEW-SHOT", "MANY-SHOT", "instruccion", "ej", "caso nuevo", ejes tokens / precision / costo, y la linea de cierre sobre los pesos
+-->

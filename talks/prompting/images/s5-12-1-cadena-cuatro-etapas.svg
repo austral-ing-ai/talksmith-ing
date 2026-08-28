@@ -1,0 +1,51 @@
+<!-- talksmith-ascii-sha256: 45b7c7913f724a923aca0f3efd3cc36c4773499dad3299606cc11ea2005e4891 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="12.5">
+<title>Prompt chaining</title>
+<desc>Pipeline de triage de tickets en cuatro etapas encadenadas: la salida de cada paso es la entrada del siguiente, y el modelo caro entra recien en el paso 4 con el contexto ya filtrado.</desc>
+<defs>
+<marker id="ag" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#9C9595"/></marker>
+</defs>
+<rect x="0" y="0" width="800" height="470" fill="#ffffff"/>
+
+<rect x="120" y="40" width="120" height="34" rx="17" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="180" y="62" text-anchor="middle" font-size="13.5" fill="#7A7373">ticket</text>
+<line x1="180" y1="74" x2="180" y2="104" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
+
+<rect x="40" y="104" width="280" height="80" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="180" y="137" text-anchor="middle" font-size="16" font-weight="bold">1 &#183; Clasificar</text>
+<text x="180" y="161" text-anchor="middle" font-size="13" fill="#7A7373">urgencia del ticket</text>
+<text x="42" y="201" font-size="12" fill="#7A7373">modelo chico</text>
+
+<line x1="320" y1="144" x2="480" y2="144" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
+<text x="400" y="135" text-anchor="middle" fill="#7A7373">urgencia</text>
+<text x="400" y="163" text-anchor="middle" font-size="11.5" fill="#9C9595">alta / media / baja</text>
+
+<rect x="480" y="104" width="280" height="80" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="620" y="137" text-anchor="middle" font-size="16" font-weight="bold">2 &#183; Extraer</text>
+<text x="620" y="161" text-anchor="middle" font-size="13" fill="#7A7373">detalles del caso</text>
+<text x="482" y="201" font-size="12" fill="#7A7373">modelo chico</text>
+
+<line x1="620" y1="184" x2="620" y2="268" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
+<text x="632" y="230" fill="#7A7373">detalles</text>
+
+<rect x="480" y="268" width="280" height="80" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="620" y="301" text-anchor="middle" font-size="16" font-weight="bold">3 &#183; Buscar</text>
+<text x="620" y="325" text-anchor="middle" font-size="13" fill="#7A7373">runbooks (RAG)</text>
+<text x="482" y="365" font-size="12" fill="#7A7373">sin modelo</text>
+
+<line x1="480" y1="308" x2="320" y2="308" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
+<text x="400" y="299" text-anchor="middle" fill="#7A7373">runbooks</text>
+<text x="400" y="327" text-anchor="middle" font-size="11.5" fill="#9C9595">+ contexto</text>
+
+<rect x="40" y="268" width="280" height="80" rx="3" fill="#FDEEF0" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="180" y="301" text-anchor="middle" font-size="16" font-weight="bold">4 &#183; Redactar</text>
+<text x="180" y="325" text-anchor="middle" font-size="13" fill="#7A7373">respuesta</text>
+<text x="42" y="365" font-size="12" font-weight="bold" fill="#DA1B2E">modelo caro</text>
+
+<line x1="180" y1="348" x2="180" y2="392" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
+<rect x="80" y="392" width="200" height="38" rx="19" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="180" y="416" text-anchor="middle" font-size="13.5">respuesta estructurada</text>
+
+<text x="400" y="402" fill="#7A7373">La salida de cada paso es la entrada del siguiente.</text>
+<text x="400" y="422" fill="#7A7373">El modelo caro entra &#250;ltimo, con el contexto ya filtrado.</text>
+</svg>

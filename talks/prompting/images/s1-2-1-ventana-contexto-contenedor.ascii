@@ -1,0 +1,24 @@
+  +===================== VENTANA DE CONTEXTO =====================+
+  |                                                 (limite duro) |
+  |   +--------------------------------------------------------+  |
+  |   | SYSTEM PROMPT      instrucciones base, fijas            |  |
+  |   +--------------------------------------------------------+  |
+  |   | HISTORIAL          todos los turnos previos             |  |
+  |   |                    crece en cada mensaje  >>>>          |  |
+  |   +--------------------------------------------------------+  |
+  |   | DATOS INYECTADOS   archivos, busquedas, APIs            |  |
+  |   +--------------------------------------------------------+  |
+  |   | RESPUESTAS         las salidas previas del modelo       |  |
+  |   +--------------------------------------------------------+  |
+  |                                                               |
+  |        todo compite por la atencion, al mismo tiempo          |
+  +===============================================================+
+                              |
+                    se llena  v
+              se pierde el acceso a lo mas viejo
+
+<!-- ascii-note:
+intent: mostrar la ventana de contexto como un contenedor finito con cuatro tipos de contenido apilados adentro, y su borde como limite duro que se desborda
+emphasize: el marco exterior como limite duro; la banda HISTORIAL, unica que crece sola en cada turno; la flecha de desborde al pie
+labels: "VENTANA DE CONTEXTO (limite duro)", "SYSTEM PROMPT", "HISTORIAL", "DATOS INYECTADOS", "RESPUESTAS", "todo compite por la atencion, al mismo tiempo", "se pierde el acceso a lo mas viejo"
+-->

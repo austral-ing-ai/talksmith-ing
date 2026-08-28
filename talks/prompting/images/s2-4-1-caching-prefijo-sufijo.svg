@@ -1,0 +1,57 @@
+<!-- talksmith-ascii-sha256: 6e1e839c33fbe73ae77880dd64a623d6047ad880ed0132518549c7c2a4f21018 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 480" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="15">
+<title>Prompt caching</title>
+<desc>El caching hace match por prefijo: la frontera entre la parte estática del request y el input dinámico del usuario es lo que decide si hay hit.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+<path d="M0,0 L10,4 L0,8 Z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="1040" height="480" fill="#ffffff"/>
+
+<text x="28" y="47" font-size="24" font-weight="bold">Un request = prefijo estático + sufijo dinámico</text>
+
+<text x="450" y="86" text-anchor="middle" font-size="15">se cachea: 10% del precio de entrada</text>
+<text x="942" y="86" text-anchor="middle" font-size="15">precio lleno</text>
+
+<path d="M28,106 L28,98 L866,98 L866,106" fill="none" stroke="#8A8080" stroke-width="1.4"/>
+<path d="M878,106 L878,98 L1012,98 L1012,106" fill="none" stroke="#8A8080" stroke-width="1.4"/>
+
+<rect x="28" y="118" width="844" height="58" fill="#F2F0F0" stroke="#8A8080" stroke-width="1.5"/>
+<rect x="872" y="118" width="140" height="58" fill="#ffffff" stroke="#8A8080" stroke-width="1.5"/>
+<path d="M268,118 L268,176 M498,118 L498,176 M628,118 L628,176" stroke="#B8B0B0" stroke-width="1.2"/>
+
+<text x="148" y="152" text-anchor="middle">system prompt</text>
+<text x="383" y="152" text-anchor="middle">guía de estilo</text>
+<text x="563" y="152" text-anchor="middle">ADRs</text>
+<text x="750" y="152" text-anchor="middle">base de código</text>
+<text x="942" y="143" text-anchor="middle" font-size="13">el pedido</text>
+<text x="942" y="161" text-anchor="middle" font-size="13">del usuario</text>
+
+<path d="M872,104 L872,184" stroke="#DA1B2E" stroke-width="3.5"/>
+
+<text x="450" y="200" text-anchor="middle" font-size="14">50.000 tokens, idénticos en cada llamada</text>
+<text x="1012" y="200" text-anchor="end" font-size="13">100 tokens, cambian</text>
+
+<path d="M872,184 L845,216" fill="none" stroke="#DA1B2E" stroke-width="1.6"/>
+<rect x="690" y="216" width="170" height="32" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="775" y="237" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="14" fill="#DA1B2E">cache_control</text>
+<text x="674" y="237" text-anchor="end" font-size="15">marca el corte</text>
+
+<text x="28" y="300">Request 1</text>
+<rect x="140" y="282" width="92" height="24" fill="#EDEAEA" stroke="#3B3535" stroke-width="1.2"/>
+<text x="186" y="299" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="14" font-weight="bold">MISS</text>
+<path d="M248,294 L290,294" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="304" y="300">se procesa entero y se guarda el prefijo</text>
+
+<text x="28" y="336">Request 2+</text>
+<rect x="140" y="318" width="92" height="24" fill="#EDEAEA" stroke="#3B3535" stroke-width="1.2"/>
+<text x="186" y="335" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="14" font-weight="bold">HIT</text>
+<path d="M248,330 L290,330" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="304" y="336">se reutiliza el prefijo y se cobra al 10%</text>
+
+<rect x="28" y="372" width="984" height="80" fill="#F7F5F5"/>
+<rect x="28" y="372" width="5" height="80" fill="#DA1B2E"/>
+<text x="58" y="406" font-size="16" font-weight="bold">Un byte distinto en cualquier punto del prefijo: hit rate 0</text>
+<text x="58" y="432" font-size="14">No hay ningún error, solo una factura más alta.</text>
+</svg>

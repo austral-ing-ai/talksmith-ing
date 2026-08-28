@@ -1,0 +1,50 @@
+<!-- talksmith-ascii-sha256: f094f98a83257e070d57f1542f74756687ac708e49ba9bd1b305ac764c73d250 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842 381" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+<title>Ciclo de vida: dónde entra el LLM</title>
+<desc>El recorrido de un cambio como un lazo cerrado de seis estadios, con el aporte del LLM repartido en los seis y no concentrado en la implementación.</desc>
+<defs>
+<marker id="ag" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#9C9595"/></marker>
+<marker id="ar" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4.5 L0,9 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="842" height="381" fill="#ffffff"/>
+
+<g stroke="#9C9595" stroke-width="1.6" fill="none">
+<path d="M205,72 L239,72" marker-end="url(#ag)"/>
+<path d="M404,72 L438,72" marker-end="url(#ag)"/>
+<path d="M603,72 L637,72" marker-end="url(#ag)"/>
+<path d="M719.5,104 L719.5,210" marker-end="url(#ag)"/>
+<path d="M637,242 L404,242" marker-end="url(#ag)"/>
+</g>
+
+<g stroke="#DA1B2E" stroke-width="2.2" fill="none" stroke-linejoin="round">
+<path d="M239,242 L122.5,242 L122.5,104" marker-end="url(#ar)"/>
+</g>
+<text x="158" y="265" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#DA1B2E">vuelve como issue</text>
+
+<rect x="40" y="40" width="165" height="64" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="122.5" y="70" text-anchor="middle" font-size="14" font-weight="bold" letter-spacing="1">ISSUE</text>
+<text x="122.5" y="89" text-anchor="middle" font-size="11.5" fill="#7A7373">triage</text>
+
+<rect x="239" y="40" width="165" height="64" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="321.5" y="70" text-anchor="middle" font-size="14" font-weight="bold" letter-spacing="1">DISEÑO</text>
+<text x="321.5" y="89" text-anchor="middle" font-size="11.5" fill="#7A7373">ADRs</text>
+
+<rect x="438" y="40" width="165" height="64" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="520.5" y="70" text-anchor="middle" font-size="14" font-weight="bold" letter-spacing="1">IMPLEMENTACIÓN</text>
+<text x="520.5" y="89" text-anchor="middle" font-size="11.5" fill="#7A7373">código, tests</text>
+
+<rect x="637" y="40" width="165" height="64" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="719.5" y="70" text-anchor="middle" font-size="14" font-weight="bold" letter-spacing="1">REVIEW</text>
+<text x="719.5" y="89" text-anchor="middle" font-size="11.5" fill="#7A7373">diff</text>
+
+<rect x="637" y="210" width="165" height="64" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="719.5" y="240" text-anchor="middle" font-size="14" font-weight="bold" letter-spacing="1">DEPLOY</text>
+<text x="719.5" y="259" text-anchor="middle" font-size="11.5" fill="#7A7373">release notes</text>
+
+<rect x="239" y="210" width="165" height="64" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="321.5" y="240" text-anchor="middle" font-size="14" font-weight="bold" letter-spacing="1">INCIDENTE</text>
+<text x="321.5" y="259" text-anchor="middle" font-size="11.5" fill="#7A7373">logs, post-mortem</text>
+
+<text x="421" y="316" text-anchor="middle" font-size="13" fill="#7A7373">El post-mortem vuelve como issue: el ciclo se cierra, no termina.</text>
+<text x="421" y="338" text-anchor="middle" font-size="13" fill="#7A7373">Hay un LLM útil en los seis estadios, no solo en “escribir código”.</text>
+</svg>

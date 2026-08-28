@@ -1,0 +1,28 @@
+                        UN MISMO PROMPT
+                               |
+          +----------+---------+---------+----------+
+          |          |         |         |          |
+          v          v         v         v          v
+       camino 1   camino 2  camino 3  camino 4   camino 5
+       (muestreo independiente, con temperatura > 0)
+          |          |         |         |          |
+          v          v         v         v          v
+         "A"        "A"       "B"       "A"        "A"
+          |          |         |         |          |
+          +----------+----+----+---------+----------+
+                          |
+                          v
+                  +-----------------+
+                  |    VOTACION     |
+                  +-----------------+
+                          |
+                          v
+                  "A"  --  4 de 5  --  confianza 80%
+
+  Los caminos correctos convergen; los equivocados divergen entre si.
+
+<!-- ascii-note:
+intent: mostrar self-consistency como un fan-out y un fan-in sobre el MISMO prompt: se muestrean varios caminos de razonamiento independientes y se agrega el resultado por frecuencia, no por calidad individual
+emphasize: la simetria abanico-que-abre / abanico-que-cierra; el camino 3 disidente ("B"), que es lo que el metodo detecta y una sola llamada esconde; la caja de VOTACION como punto de convergencia
+labels: "UN MISMO PROMPT", "camino 1..5", "muestreo independiente, con temperatura > 0", las salidas "A"/"B", "VOTACION", "4 de 5 -- confianza 80%", y la linea de cierre sobre convergencia
+-->

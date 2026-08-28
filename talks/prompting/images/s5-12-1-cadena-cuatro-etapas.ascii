@@ -1,0 +1,26 @@
+  [ ticket ]
+      |
+      v
+  +---------------+  urgencia     +---------------+  detalles
+  | 1 CLASIFICAR  | ------------> | 2 EXTRAER     | -----------+
+  |   urgencia    | alta/med/baja |   detalles    |            |
+  +---------------+               +---------------+            |
+    modelo chico                    modelo chico               |
+                                                               v
+  +---------------+  runbooks     +---------------+            |
+  | 4 REDACTAR    | <------------ | 3 BUSCAR      | <----------+
+  |   respuesta   |  + contexto   |   (RAG)       |
+  +---------------+               +---------------+
+    modelo caro                     sin modelo
+      |
+      v
+  [ respuesta estructurada ]
+
+  La salida de cada paso ES la entrada del siguiente.
+  El modelo caro entra solo en el paso 4, con el contexto ya filtrado.
+
+<!-- ascii-note:
+intent: mostrar el encadenamiento como una tuberia de etapas donde la salida de cada una es la entrada de la siguiente, y hacer visible por que sale mas barato: los pasos baratos filtran antes de que intervenga el modelo caro
+emphasize: las flechas etiquetadas entre etapas (urgencia, detalles, runbooks, contexto), que son el dato concreto que viaja; la anotacion de que modelo usa cada paso, con el caro solo al final
+labels: "ticket", "1 CLASIFICAR urgencia", "2 EXTRAER detalles", "3 BUSCAR (RAG)", "4 REDACTAR respuesta", "modelo chico / sin modelo / modelo caro", "respuesta estructurada"
+-->

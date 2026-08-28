@@ -1,0 +1,27 @@
+        +--------------------------------------------------+
+        |                                                  |
+        v                                                  |
+   +----------+      +----------+      +---------------+   |
+   | THOUGHT  | ---> |   ACT    | ---> | OBSERVATION   | --+
+   | razonar  |      | actuar   |      | lo que volvio |
+   +----------+      +----------+      +---------------+
+                          |                    ^
+                          v                    |
+                   +--------------+            |
+                   |    MUNDO     |------------+
+                   | repo, API,   |
+                   | busqueda     |
+                   +--------------+
+
+   El plan se corrige con lo que el mundo devolvio,
+   no con lo que el modelo recordaba.
+
+                  ... el lazo se repite hasta FINISH
+
+  CoT razona una vez y contesta. ReAct cierra el lazo contra el mundo.
+
+<!-- ascii-note:
+intent: mostrar ReAct como un LAZO CERRADO contra una fuente externa, no como una secuencia lineal: cada observacion del mundo real vuelve al razonamiento y corrige el plan antes del paso siguiente
+emphasize: la flecha de retorno que cierra el ciclo de Observation a Thought; la caja MUNDO como lo que esta fuera del modelo; la salida FINISH que rompe el lazo
+labels: "THOUGHT / razonar", "ACT / actuar", "OBSERVATION / lo que volvio", "MUNDO: repo, API, busqueda", "el lazo se repite hasta FINISH", y la linea de cierre que contrasta con CoT
+-->

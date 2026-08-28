@@ -1,0 +1,49 @@
+<!-- talksmith-ascii-sha256: bc989cba05047243ee348307dff89dab4f94c4778159ae8d2fedd0e6acd1b762 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 355" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Ventana de contexto</title>
+<desc>La definición primero y la tabla después: la ventana es memoria de trabajo, no memoria a largo plazo.</desc>
+<rect x="0" y="0" width="680" height="355" fill="#ffffff"/>
+
+<text x="24" y="38" font-size="17" font-weight="700">Escala relativa de la ventana de contexto</text>
+<text x="24" y="58" font-size="12" fill="#7A7070">Barra proporcional al tamaño de la ventana · 1M = 10 unidades</text>
+
+<line x1="418" y1="84" x2="418" y2="294" stroke="#EBE7E7" stroke-width="1"/>
+<line x1="588" y1="84" x2="588" y2="294" stroke="#EBE7E7" stroke-width="1"/>
+<text x="418" y="76" font-size="9.5" fill="#A79E9E" text-anchor="middle">1M</text>
+<text x="588" y="76" font-size="9.5" fill="#A79E9E" text-anchor="middle">2M</text>
+<line x1="248" y1="84" x2="248" y2="294" stroke="#C9C2C2" stroke-width="1"/>
+<line x1="620" y1="84" x2="620" y2="294" stroke="#C9C2C2" stroke-width="1" stroke-dasharray="4 3"/>
+
+<rect x="248" y="91" width="34" height="18" fill="#E3DEDE" stroke="#B8B0B0" stroke-width="1"/>
+<text x="24" y="105" font-size="13">Haiku 4.5</text>
+<text x="230" y="105" font-size="12" text-anchor="end" font-family="'DejaVu Sans Mono', monospace">200K</text>
+<text x="292" y="105" font-size="10" fill="#7A7070">una quinta parte de 1M</text>
+
+<rect x="248" y="127" width="170" height="18" fill="#E3DEDE" stroke="#B8B0B0" stroke-width="1"/>
+<text x="24" y="141" font-size="13">Opus 5 / Opus 4.8</text>
+<text x="230" y="141" font-size="12" text-anchor="end" font-family="'DejaVu Sans Mono', monospace">1M</text>
+
+<rect x="248" y="163" width="170" height="18" fill="#E3DEDE" stroke="#B8B0B0" stroke-width="1"/>
+<text x="24" y="177" font-size="13">Sonnet 5 / 4.6</text>
+<text x="230" y="177" font-size="12" text-anchor="end" font-family="'DejaVu Sans Mono', monospace">1M</text>
+
+<rect x="248" y="199" width="170" height="18" fill="#E3DEDE" stroke="#B8B0B0" stroke-width="1"/>
+<text x="24" y="213" font-size="13">GPT-5.4</text>
+<text x="230" y="213" font-size="12" text-anchor="end" font-family="'DejaVu Sans Mono', monospace">1M</text>
+
+<path d="M 425 127 H 431 V 217 H 425" fill="none" stroke="#9A9292" stroke-width="1.2"/>
+<text x="439" y="176" font-size="11" fill="#6B6363">meseta común en 2026</text>
+
+<rect x="248" y="235" width="340" height="18" fill="#E3DEDE" stroke="#B8B0B0" stroke-width="1"/>
+<text x="24" y="249" font-size="13">Gemini 3 Pro</text>
+<text x="230" y="249" font-size="12" text-anchor="end" font-family="'DejaVu Sans Mono', monospace">2M</text>
+
+<path d="M 248 271 H 598 L 610 275.5 L 598 280 L 610 284.5 L 598 289 H 248 Z" fill="#DA1B2E"/>
+<line x1="626" y1="280" x2="646" y2="280" stroke="#DA1B2E" stroke-width="3"/>
+<path d="M 644 273.5 L 656 280 L 644 286.5 Z" fill="#DA1B2E"/>
+<text x="24" y="285" font-size="13" font-weight="600" fill="#DA1B2E">Llama 4</text>
+<text x="230" y="285" font-size="12" text-anchor="end" fill="#DA1B2E" font-family="'DejaVu Sans Mono', monospace">10M</text>
+<text x="656" y="307" font-size="10" fill="#7A7070" text-anchor="end">sigue hasta 10M — fuera de escala</text>
+
+<text x="24" y="326" font-size="11" fill="#7A7070">Anthropic: verificado (2026-06-24)  ·  resto: sin verificar</text>
+</svg>

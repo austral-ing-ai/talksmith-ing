@@ -1,0 +1,72 @@
+<!-- talksmith-ascii-sha256: 84c62ff736fd3d563d82f6b191b6c08e078c5c38df4a8295d5b143e20cb73150 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 566" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+<title>Self-consistency: votación</title>
+<desc>Un mismo prompt se muestrea en cinco caminos de razonamiento independientes; cuatro devuelven A y uno devuelve B, y la votación por mayoría agrega el resultado.</desc>
+<defs>
+<marker id="ag" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#9C9595"/></marker>
+<marker id="ar" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="800" height="566" fill="#ffffff"/>
+
+<rect x="240" y="50" width="320" height="58" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="400" y="74" text-anchor="middle" font-size="17" font-weight="bold" letter-spacing="1.2">UN MISMO PROMPT</text>
+<text x="400" y="93" text-anchor="middle" font-size="12" fill="#7A7373">muestreo independiente, temperatura &gt; 0</text>
+
+<g stroke="#9C9595" stroke-width="1.6" fill="none">
+<path d="M400,108 L400,132"/>
+<path d="M110,132 L690,132"/>
+<path d="M110,132 L110,162" marker-end="url(#ag)"/>
+<path d="M255,132 L255,162" marker-end="url(#ag)"/>
+<path d="M545,132 L545,162" marker-end="url(#ag)"/>
+<path d="M690,132 L690,162" marker-end="url(#ag)"/>
+<path d="M110,206 L110,240" marker-end="url(#ag)"/>
+<path d="M255,206 L255,240" marker-end="url(#ag)"/>
+<path d="M545,206 L545,240" marker-end="url(#ag)"/>
+<path d="M690,206 L690,240" marker-end="url(#ag)"/>
+<path d="M110,280 L110,310"/>
+<path d="M255,280 L255,310"/>
+<path d="M545,280 L545,310"/>
+<path d="M690,280 L690,310"/>
+<path d="M110,310 L690,310"/>
+<path d="M400,310 L400,336" marker-end="url(#ag)"/>
+<path d="M400,392 L400,424" marker-end="url(#ag)"/>
+</g>
+
+<g stroke="#DA1B2E" stroke-width="1.8" fill="none">
+<path d="M400,132 L400,162" marker-end="url(#ar)"/>
+<path d="M400,206 L400,240" marker-end="url(#ar)"/>
+<path d="M400,280 L400,310"/>
+</g>
+
+<rect x="50" y="162" width="120" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="110" y="189" text-anchor="middle" font-size="15">camino 1</text>
+<rect x="195" y="162" width="120" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="255" y="189" text-anchor="middle" font-size="15">camino 2</text>
+<rect x="340" y="162" width="120" height="44" fill="#FDEEF0" stroke="#DA1B2E" stroke-width="2"/>
+<text x="400" y="189" text-anchor="middle" font-size="15" font-weight="bold" fill="#DA1B2E">camino 3</text>
+<rect x="485" y="162" width="120" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="545" y="189" text-anchor="middle" font-size="15">camino 4</text>
+<rect x="630" y="162" width="120" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="690" y="189" text-anchor="middle" font-size="15">camino 5</text>
+
+<rect x="82" y="240" width="56" height="40" rx="8" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="110" y="267" text-anchor="middle" font-size="19" font-weight="bold">A</text>
+<rect x="227" y="240" width="56" height="40" rx="8" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="255" y="267" text-anchor="middle" font-size="19" font-weight="bold">A</text>
+<rect x="372" y="240" width="56" height="40" rx="8" fill="#DA1B2E" stroke="#DA1B2E" stroke-width="1.8"/>
+<text x="400" y="267" text-anchor="middle" font-size="19" font-weight="bold" fill="#ffffff">B</text>
+<rect x="517" y="240" width="56" height="40" rx="8" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="545" y="267" text-anchor="middle" font-size="19" font-weight="bold">A</text>
+<rect x="662" y="240" width="56" height="40" rx="8" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="690" y="267" text-anchor="middle" font-size="19" font-weight="bold">A</text>
+
+<rect x="270" y="336" width="260" height="56" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="400" y="360" text-anchor="middle" font-size="17" font-weight="bold" letter-spacing="1.5">VOTACIÓN</text>
+<text x="400" y="378" text-anchor="middle" font-size="11" fill="#7A7373">agregación por frecuencia</text>
+
+<rect x="250" y="424" width="300" height="56" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.6"/>
+<text x="400" y="450" text-anchor="middle" font-size="20" font-weight="bold">A</text>
+<text x="400" y="469" text-anchor="middle" font-size="13" fill="#7A7373">4 de 5 · confianza 80%</text>
+
+<text x="400" y="512" text-anchor="middle" font-size="13" fill="#7A7373">Los caminos de razonamiento correctos convergen; los equivocados divergen entre sí.</text>
+</svg>

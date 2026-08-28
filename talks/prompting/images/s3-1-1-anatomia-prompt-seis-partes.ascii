@@ -1,0 +1,29 @@
+  ANATOMIA DE UN PROMPT DE PRODUCCION
+
+  atencion
+  del modelo
+            +--------------------------------------------------+
+    ALTA >  | 1  ROL / PERSONA     quien es el modelo           |
+            +--------------------------------------------------+
+            | 2  CONTEXTO          que necesita saber           |
+            +--------------------------------------------------+
+    BAJA >  | 3  INSTRUCCIONES     que tiene que hacer, paso    |
+            |                      a paso                       |
+            +--------------------------------------------------+
+            | 4  RESTRICCIONES     que NO debe hacer, y en que  |
+            |                      formato responde             |
+            +--------------------------------------------------+
+            | 5  EJEMPLOS          como se ve una respuesta     |
+            |    (few-shot)        correcta -- 3 a 5 alcanzan   |
+            +--------------------------------------------------+
+    ALTA >  | 6  INPUT             el dato de ESTA llamada      |
+            +--------------------------------------------------+
+
+  El orden no es cosmetico: el modelo lee mejor el principio y el final
+  que el medio, por eso el rol va arriba y el input abajo.
+
+<!-- ascii-note:
+intent: mostrar el prompt como un bloque compuesto de seis partes apiladas en un orden que importa, y ligar ese orden al sesgo de recencia (el modelo atiende mejor el principio y el final que el medio)
+emphasize: la pila de seis bandas numeradas como una sola unidad; los marcadores ALTA / BAJA / ALTA de la izquierda, que son el argumento de por que ese orden y no otro
+labels: "ROL / PERSONA", "CONTEXTO", "INSTRUCCIONES", "RESTRICCIONES", "EJEMPLOS (few-shot)", "INPUT", eje de atencion ALTA / BAJA / ALTA, y la linea de cierre sobre el orden
+-->

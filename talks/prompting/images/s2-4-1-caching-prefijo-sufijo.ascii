@@ -1,0 +1,22 @@
+  UN REQUEST  =  PREFIJO ESTATICO  +  SUFIJO DINAMICO
+
+  |<----------- se cachea: 10% del precio ----------->|<-- precio lleno -->|
+  +---------------------------------------------------+--------------------+
+  | system prompt | guia de estilo | ADRs | base cod.  | el diff del user   |
+  +---------------------------------------------------+--------------------+
+   50.000 tokens, identicos en cada llamada             100 tokens, cambian
+                                                     ^
+                                                     |
+                                    [ cache_control ] marca el corte
+
+  Request 1    MISS  ->  se procesa entero y se guarda el prefijo
+  Request 2+   HIT   ->  se reutiliza el prefijo y se cobra al 10%
+
+  !!  un byte distinto en CUALQUIER punto del prefijo  ->  hit rate 0
+      y no hay ningun error: solo una factura mas alta
+
+<!-- ascii-note:
+intent: mostrar que el caching hace match por PREFIJO, no por contenido: la frontera entre lo estatico y lo dinamico es lo que decide si hay hit, y por eso el orden dentro del prompt es load-bearing
+emphasize: la linea divisoria entre prefijo y sufijo con la marca [ cache_control ]; la desproporcion 50.000 contra 100 tokens; la advertencia final del fallo silencioso
+labels: "PREFIJO ESTATICO", "SUFIJO DINAMICO", "se cachea: 10% del precio", "precio lleno", "cache_control", "MISS", "HIT", "hit rate 0"
+-->

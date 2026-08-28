@@ -1,0 +1,16 @@
+  Escala relativa de la ventana de contexto   (1M = 10 unidades)
+
+  Haiku 4.5          200K   ##
+  Opus 5 / Opus 4.8  1M     ##########
+  Sonnet 5 / 4.6     1M     ##########
+  GPT-5.4            1M     ##########
+  Gemini 3 Pro       2M     ####################
+  Llama 4            10M    ##################################### ->
+
+  Anthropic: verificado (2026-06-24)  |  resto: sin verificar
+
+<!-- ascii-note:
+intent: comparar por magnitud, de un vistazo, lo que una tabla de cifras no transmite; la barra de 10M se corta al borde porque a escala real no entra en el lienzo
+emphasize: el salto de 200K a 1M, y que 1M es hoy la meseta comun de casi todos los modelos; la barra truncada de Llama 4 con su flecha de continuidad
+labels: nombre del modelo a la izquierda, cifra de ventana en el medio, barra proporcional a la derecha, y el pie que separa lo verificado de lo no verificado
+-->
