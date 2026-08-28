@@ -1,11 +1,11 @@
 ---
 presentation: Inteligencia Artificial Generativa (AI Gen)
-class: "Ingeniería de prompts y técnicas avanzadas"
+class: "Trabajar con LLMs: prompts, costos y producción"
 research: research/corpus/
 description: Slides are grouped into Sections. Each Section contains one or more Slides.
 presenter: Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)
 audience: Estudiantes de grado de Ingeniería de Software con base técnica fuerte
-duration: 90 min
+duration: 150 min (clase de 2:30 h)
 date: 2026-09-02
 ---
 
@@ -72,16 +72,16 @@ Reconstruido desde la slide de agenda del deck original.
 
 ---
 
-## 1. Inteligencia Artificial Generativa Aplicada en Biomedicina
+## 1. Trabajar con LLMs: prompts, costos y producción
 
 <!-- slide 1 del pptx original -->
 
 ### Content
 
-**Clase 3: Ingeniería de Prompts y Técnicas Avanzadas**
+**Inteligencia Artificial Generativa (AI Gen) — Clase 5**
 
-- **Autor: Paulo Veiga/Marcos Sanchez Sorondo**
-- **Última Modificación: Marzo, 2026**
+- **Paulo Veiga, Claudio Righetti, Marco Sorondo — Universidad Austral**
+- **Última modificación: agosto 2026**
 
 ![](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-01-1.png)
 
