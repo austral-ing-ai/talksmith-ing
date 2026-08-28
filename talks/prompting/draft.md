@@ -2182,6 +2182,8 @@ Repetición de la slide 5.8. Las notas de fondo están ahí.
 
 - **Generar ramas** → **Evaluar ramas** → **Seleccionar camino**
 
+![Tree of Thought: generar ramas, evaluarlas, podar las malas y expandir solo la mejor hasta la solución](images/s5-9-1-arbol-ramificar-podar.png)
+
 **Limitaciones**
 
 - Cuesta bastante más que CoT lineal.

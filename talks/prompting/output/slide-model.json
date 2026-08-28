@@ -2853,7 +2853,12 @@
           "concept-breakdown": "requires `images == 0`; keeping it would drop the shared diagram, and its items are unlabeled anyway",
           "image-full": "`image_only` is false — the slide leads with a paragraph and carries six further lines of body, well past the single short framing line that template allows"
         }
-      }
+      },
+      "media": {
+        "src": "images/s5-9-1-arbol-ramificar-podar.png",
+        "alt": "Tree of Thought: generar ramas, evaluarlas, podar las malas y expandir solo la mejor hasta la solución"
+      },
+      "design": "split-right"
     },
     {
       "template": "content+cards+image",
@@ -3420,7 +3425,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "88625fcf8b082fca04ae3a017d40dab0c5121955baf9a61a4aba683b08f5f52a",
-    "bytes": 144811
+    "sha256": "06724265e15abe0b074eb707c348208177cb65f7d09cdba70bc8aadf223e5947",
+    "bytes": 144960
   }
 }
