@@ -177,3 +177,25 @@
   suggested-fix (hipotesis, no verificada): tabla de alias de grafia vieja -> vigente
     (generating_tokens->token, report_problem->warning, remove_red_eye->visibility) en _ICON_ALIAS;
     o validar cada candidato contra el catalogo antes de emitirlo y reintentar con el siguiente
+
+- id: BUG-20260828-08
+  date: 2026-08-28
+  talk: talks/prompting
+  step: 7 (Render) — html-strict
+  where: skills/md-to-deck/html_style.py — _cover_logo(), resolucion del logo institucional
+  what: cuando el render se invoca con `--talk .` parado dentro de la carpeta de la Talk, la
+    resolucion no encuentra la raiz del repo y cae al `placeholder-logo.png` que trae el plugin,
+    en silencio. El deck sale con un logo de relleno en vez del institucional y nada lo avisa:
+    ni un warning en stderr ni una nota en el reporte
+  context: mismo deck renderizado dos veces. Desde `talks/prompting/` con `--talk .` embebe el
+    placeholder (6197 bytes, md5 c5e2cab5dff5); desde la raiz con `--talk talks/prompting` embebe
+    config/logo.png (8121 bytes, md5 6e1c6fb172ac). El orden documentado es frontmatter `logo:`
+    -> images/logo|cover-logo de la Talk -> config/logo.* del repo
+  expected: que la raiz del repo se resuelva igual con cualquiera de las dos invocaciones, o que
+    caer al placeholder emita un aviso visible
+  actual: degrada en silencio; solo se detecta comparando el md5 del base64 embebido contra el
+    de otras Talks
+  workaround: invocar siempre desde la raiz del working directory con la ruta completa de la Talk
+  suggested-fix (hipotesis, no verificada): resolver la raiz subiendo hasta encontrar `config/` o
+    `talks/` en vez de depender del cwd; y emitir un warning cuando el logo resuelto sea el
+    placeholder del plugin, que nunca es lo que un repo de materia quiere entregar

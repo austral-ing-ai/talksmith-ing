@@ -1964,6 +1964,48 @@
     {
       "template": "concept-breakdown",
       "section": "Técnicas avanzadas",
+      "title": "Del prompt al entrenamiento",
+      "lead": "**Lo que Chain of Thought conseguía pidiéndoselo al modelo, los modelos de razonamiento lo traen de fábrica. Es el mismo mecanismo, movido del prompt al entrenamiento.**",
+      "cards": [
+        {
+          "label": "El mecanismo no cambió",
+          "body": "Wei et al. mostraron que generar una cadena de pasos intermedios mejora mucho el desempeño en tareas complejas. CoT lo conseguía escribiendo \"pensemos paso a paso\" en el prompt. Un modelo de razonamiento produce esa cadena por su cuenta, antes de contestar."
+        },
+        {
+          "label": "Por eso algunas técnicas se vuelven redundantes",
+          "body": "Pedirle explícitamente que razone paso a paso agrega poco cuando ya lo hace nativamente. Y varios proveedores deshabilitan temperatura y top-p en esos modelos: la generación del bloque de razonamiento la controlan ellos, no vos."
+        },
+        {
+          "label": "El costo es invisible",
+          "body": "Esos tokens de pensamiento se facturan a tarifa de salida y no vuelven en la respuesta. La factura sube sin que aparezca una sola línea de texto en pantalla."
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Es la tesis de la clase otra vez",
+          "body": "Los pasos escritos son el cómputo. Lo que cambió es quién los pide: antes lo hacía tu prompt, ahora lo hace el entrenamiento. Por eso el trabajo se corre de \"escribir mejores instrucciones\" a \"elegir cuánto conviene que piense\".",
+          "kind": "takeaway",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Esta es la lámina conceptual que le da sentido a todo el bloque, y conviene decirla despacio. Volvé a la tesis: el modelo no tiene un motor de razonamiento aparte, completa tokens de izquierda a derecha, y lo que llamamos razonar es que escriba los pasos intermedios antes de la respuesta. Chain of Thought descubrió eso y lo explotó desde el prompt. Lo que pasó después es que ese mismo comportamiento se movió adentro del modelo. La consecuencia práctica es incómoda y vale decirla: parte de lo que enseñamos en la sección anterior pierde filo contra un modelo de razonamiento, porque ya lo hace solo. La evidencia lateral más linda de esto es que varios proveedores deshabilitan temperatura y top-p en esos modelos: si te sacan las perillas de generación, es porque esa parte la manejan ellos. Y el cierre es el costo: pagás tokens que no ves. Un alumno que mide su factura por lo que aparece en pantalla se lleva una sorpresa. Conectá con la lámina anterior: por eso effort es la perilla que importa, y por eso el default `high` es caro.",
+      "_choice": {
+        "signals": [
+          "tres conceptos etiquetados en paralelo que explican un mismo mecanismo"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "son tres conceptos rotulados, no prosa corrida: el invariante manda tarjetas"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Técnicas avanzadas",
       "title": "Extended thinking (Anthropic)",
       "lead": "**El modelo produce un bloque de razonamiento antes de la respuesta. En el prompt eso se pide con etiquetas `<thinking>`; en la API moderna el proveedor lo corre de forma nativa y lo devuelve como bloque separado.**",
       "cards": [
@@ -3469,7 +3511,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "fa12af6423c0094310b2acb2f489024f7053a09bcf4704f2caf515865ef536af",
-    "bytes": 147665
+    "sha256": "cd1b87a9b6971314cca9f82f096e10c110a9461abb772dcee8abd22c0571292c",
+    "bytes": 150917
   }
 }
