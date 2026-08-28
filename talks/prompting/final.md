@@ -1285,7 +1285,64 @@ Slide importada de otra clase y ubicada acá a propósito: abre el bloque de raz
 
 ---
 
-## 37. Extended thinking (Anthropic)
+## 37. Effort: cómo se configura
+
+<!-- ascii-render: documentation-only -->
+
+### Content
+
+**La perilla de razonamiento no vive solo en la interfaz: es un parámetro de la API, con cinco niveles y un default que ya gasta de más.**
+
+```python
+response = client.messages.create(
+    model="claude-opus-5",
+    max_tokens=16000,
+    thinking={"type": "adaptive"},      # el modelo decide cuanto razonar
+    output_config={"effort": "low"},    # low | medium | high | xhigh | max
+    messages=[{"role": "user", "content": "Clasifica este issue..."}],
+)
+```
+
+- **`effort` va dentro de `output_config`** No es un parámetro de primer nivel, y es el error más común al configurarlo. El default es `high`: una llamada que nunca lo tocó viene pagando razonamiento de sobra en cada tarea trivial.
+- **Los tokens de razonamiento se facturan como salida** Aunque no vuelvan en la respuesta y el usuario nunca los vea. Es la parte de la factura que nadie mira.
+- **`budget_tokens` quedó obsoleto** Era el techo fijo de tokens de pensamiento. En los modelos actuales devuelve error 400; lo reemplazó el razonamiento adaptativo, donde el modelo decide cuánto pensar y `effort` fija la profundidad.
+
+- 🎯 **Cómo elegir el nivel.** `low` para subagentes y tareas simples; `high` para trabajo sensible a la calidad; `xhigh` es el mejor punto para código y tareas agénticas; `max` solo cuando la corrección importa más que el costo. Medí sobre pedidos reales antes de subir un default, y ajustá por ruta, no globalmente.
+
+### Sources
+
+- Catálogo vigente de la API de Claude (corte 2026-06-24): niveles `low`/`medium`/`high`/`xhigh`/`max`, default `high`, `effort` anidado en `output_config`, y `budget_tokens` removido en los modelos actuales.
+
+### Speaker notes
+
+Esta es la lámina que cierra el bloque de razonamiento del lado de la implementación, y la que más plata les puede ahorrar. Tres cosas. La primera es dónde va el parámetro: adentro de `output_config`, no arriba de todo — es el error que todos cometen la primera vez y falla en silencio si lo ponen mal. La segunda es el default: `high`. O sea que un equipo que nunca configuró effort está pagando razonamiento profundo para clasificar tickets. La tercera es la que conecta con la sección de costos: esos tokens de pensamiento se facturan a tarifa de salida aunque nadie los vea. Si preguntan por `budget_tokens`, que es lo que van a encontrar en tutoriales viejos, explicá que era un techo fijo de tokens y que hoy devuelve error: el modelo decide adaptativamente cuánto pensar y uno gradúa la profundidad con effort. Cerrá con la regla práctica: medir antes de subir el default, y ajustar por ruta en vez de globalmente.
+
+---
+
+## 38. Del prompt al entrenamiento
+
+### Content
+
+**Lo que Chain of Thought conseguía pidiéndoselo al modelo, los modelos de razonamiento lo traen de fábrica. Es el mismo mecanismo, movido del prompt al entrenamiento.**
+
+- **El mecanismo no cambió** Wei et al. mostraron que generar una cadena de pasos intermedios mejora mucho el desempeño en tareas complejas. CoT lo conseguía escribiendo "pensemos paso a paso" en el prompt. Un modelo de razonamiento produce esa cadena por su cuenta, antes de contestar.
+- **Por eso algunas técnicas se vuelven redundantes** Pedirle explícitamente que razone paso a paso agrega poco cuando ya lo hace nativamente. Y varios proveedores deshabilitan temperatura y top-p en esos modelos: la generación del bloque de razonamiento la controlan ellos, no vos.
+- **El costo es invisible** Esos tokens de pensamiento se facturan a tarifa de salida y no vuelven en la respuesta. La factura sube sin que aparezca una sola línea de texto en pantalla.
+
+- 🎯 **Es la tesis de la clase otra vez.** Los pasos escritos son el cómputo. Lo que cambió es quién los pide: antes lo hacía tu prompt, ahora lo hace el entrenamiento. Por eso el trabajo se corre de "escribir mejores instrucciones" a "elegir cuánto conviene que piense".
+
+### Sources
+
+- `chain-of-thought-wei.web.md` — Wei et al. (2022). Generar una cadena de pasos intermedios mejora significativamente el desempeño en razonamiento aritmético, de sentido común y simbólico; la capacidad emerge en modelos suficientemente grandes.
+- Catálogo vigente de la API de Claude (corte 2026-06-24) — los tokens de razonamiento se facturan como salida aunque no se muestren; en los modelos de razonamiento actuales los parámetros de sampling fueron removidos.
+
+### Speaker notes
+
+Esta es la lámina conceptual que le da sentido a todo el bloque, y conviene decirla despacio. Volvé a la tesis: el modelo no tiene un motor de razonamiento aparte, completa tokens de izquierda a derecha, y lo que llamamos razonar es que escriba los pasos intermedios antes de la respuesta. Chain of Thought descubrió eso y lo explotó desde el prompt. Lo que pasó después es que ese mismo comportamiento se movió adentro del modelo. La consecuencia práctica es incómoda y vale decirla: parte de lo que enseñamos en la sección anterior pierde filo contra un modelo de razonamiento, porque ya lo hace solo. La evidencia lateral más linda de esto es que varios proveedores deshabilitan temperatura y top-p en esos modelos: si te sacan las perillas de generación, es porque esa parte la manejan ellos. Y el cierre es el costo: pagás tokens que no ves. Un alumno que mide su factura por lo que aparece en pantalla se lleva una sorpresa. Conectá con la lámina anterior: por eso effort es la perilla que importa, y por eso el default `high` es caro.
+
+---
+
+## 39. Extended thinking (Anthropic)
 
 ### Content
 
@@ -1308,7 +1365,7 @@ Acá hay que cerrar la desambiguación que abriste en la slide anterior, porque 
 
 ---
 
-## 38. Extended thinking: ejemplo
+## 40. Extended thinking: ejemplo
 
 ### Content
 
@@ -1352,7 +1409,7 @@ El ejemplo pasó de un caso clínico a un stack trace, y el cambio de dominio ha
 
 ---
 
-## 39. Tree of Thought (ToT)
+## 41. Tree of Thought (ToT)
 
 ### Content
 
@@ -1378,7 +1435,7 @@ El árbol de la lámina es el punto entero de la técnica, así que caminalo: se
 
 ---
 
-## 40. Tree of Thought: ejemplo
+## 42. Tree of Thought: ejemplo
 
 ### Content
 
@@ -1413,7 +1470,7 @@ Este ejemplo funciona porque las tres ramas son defendibles, y eso es justo el t
 
 ---
 
-## 41. ReAct: razonar y actuar
+## 43. ReAct: razonar y actuar
 
 <!-- slide nueva: ReAct esta procesado en el corpus y no aparecia en ninguna slide -->
 
@@ -1478,7 +1535,7 @@ Las dos afirmaciones del paper que sostenían la lámina van habladas: las **tra
 
 ---
 
-## 42. Prompt chaining
+## 44. Prompt chaining
 
 ### Content
 
@@ -1527,7 +1584,7 @@ El texto de esta slide venía cortado a mitad de palabra en el deck original y n
 
 ---
 
-## 43. Prompt chaining: ejemplo
+## 45. Prompt chaining: ejemplo
 
 ### Content
 
@@ -1566,7 +1623,7 @@ Input:  todo lo anterior
 La tercera ventaja es la que suele sorprender, y merece medio minuto: encadenar es más barato aunque haya más llamadas. La razón es que el paso 1 corre con un modelo chico sobre doscientos tokens, y el modelo caro solo se invoca en el paso 4 y con el contexto ya filtrado. Un prompt monolítico manda todo al modelo caro siempre. Es el mismo argumento del cascading, aplicado a las etapas en vez de a los modelos. La contra real es la de la primera fila de la derecha: cuatro llamadas secuenciales son cuatro latencias sumadas, y en un flujo interactivo eso se nota. Si el sistema es asincrónico, no importa.
 
 ---
-## 44. Técnicas avanzadas: pros y contras
+## 46. Técnicas avanzadas: pros y contras
 
 ### Content
 
@@ -1590,7 +1647,7 @@ Tabla de referencia, para consultar más que para leer. Si hay que decir una sol
 
 ---
 
-## 45. ¿Por qué funcionan?
+## 47. ¿Por qué funcionan?
 
 ### Content
 
@@ -1616,7 +1673,7 @@ Esta es la slide de la tesis y merece el tiempo que haga falta. Todo lo que vier
 
 ---
 
-## 46. ¿Por qué tardan más?
+## 48. ¿Por qué tardan más?
 
 ### Content
 
@@ -1643,7 +1700,7 @@ Esta slide es el contrapeso de las anteriores y por eso va acá, justo después 
 
 ---
 
-## 47. Prompts sin verificación
+## 49. Prompts sin verificación
 
 ### Content
 
@@ -1672,7 +1729,7 @@ Acá empieza el bloque de disciplina de producción y es donde esta audiencia ti
 
 ---
 
-## 48. DSPy: optimización automática
+## 50. DSPy: optimización automática
 
 ### Content
 
@@ -1701,7 +1758,7 @@ El eslogan del framework dice todo: programá, no promptees. Y el punto que más
 
 ---
 
-## 49. Versionado de prompts
+## 51. Versionado de prompts
 
 ### Content
 
@@ -1730,7 +1787,7 @@ La primera opción es la que hay que defender: Git. Un prompt en un archivo vers
 
 ---
 
-## 50. Datos y testing sistemático
+## 52. Datos y testing sistemático
 
 ### Content
 
@@ -1759,7 +1816,7 @@ La cuarta viñeta de la izquierda es la que más se viola y la que más caro sal
 
 ---
 
-## 51. Versionado de prompts
+## 53. Versionado de prompts
 
 <!-- DUPLICADO verbatim de la slide 5.19, residuo de edicion -->
 <!-- en el pptx original quedo despues de la slide de cierre. Se conserva por decision del presentador. -->
@@ -1791,7 +1848,7 @@ Repetición de la slide 5.19. Si se conserva en la entrega, saltearla o usarla c
 
 ---
 
-## 52. Self-consistency: ejemplo
+## 54. Self-consistency: ejemplo
 
 <!-- DUPLICADO de la slide 5.5. Se conserva por decision del presentador. -->
 
@@ -1829,7 +1886,7 @@ Repetición de la slide 5.5. Las notas de fondo están ahí.
 
 ---
 
-## 53. Extended thinking (Anthropic)
+## 55. Extended thinking (Anthropic)
 
 <!-- DUPLICADO de la slide 5.7. Se conserva por decision del presentador. -->
 
@@ -1851,7 +1908,7 @@ Repetición de la slide 5.7. Las notas de fondo, y la desambiguación entre las 
 
 ---
 
-## 54. Extended thinking: ejemplo
+## 56. Extended thinking: ejemplo
 
 <!-- DUPLICADO de la slide 5.8. Se conserva por decision del presentador. -->
 
@@ -1887,7 +1944,7 @@ Repetición de la slide 5.8. Las notas de fondo están ahí.
 
 ---
 
-## 55. Tree of Thought (ToT)
+## 57. Tree of Thought (ToT)
 
 <!-- DUPLICADO de la slide 5.9. Se conserva por decision del presentador. -->
 
@@ -1918,7 +1975,7 @@ Repetición de la slide 5.9. Las notas de fondo están ahí.
 
 ---
 
-## 56. Tree of Thought: ejemplo
+## 58. Tree of Thought: ejemplo
 
 <!-- DUPLICADO de la slide 5.10. Se conserva por decision del presentador. -->
 
@@ -2230,6 +2287,8 @@ Tres frases y ninguna es un resumen de la agenda. Son la tesis desplegada. La pr
 - Slide "3. Casos de uso hoy" — "La versión original tenía cifras por categoría (50% menos tiempo en notas, 80,7% de reducción, 197 clínicos, 2.164 pacientes). Se retiraron al cambiar de dominio y no se reemplazaron por cifras de software, porque el corpus no tiene ninguna. ¿Se incorpora una fuente de adopción o productividad al corpus?"
 - Slide "7. Benchmarks: qué miden" — "Las cuatro cifras de la versión médica (86,5% Med-PaLM 2 en MedQA, 81,4% GPT-4 en USMLE, 62% Claude 3 Opus en diagnóstico radiológico, 65% 'Gemini Mosaic') se retiraron: son de otro dominio y dos de ellas ya venían sin respaldo verificable en el corpus. ¿Se agrega al corpus un benchmark de software (SWE-bench, HumanEval) para poder mostrar cifras propias del dominio?"
 - Slide "1. ¡A practicar!" — "La agenda del deck original prometía un 'sistema de triage con LLM' como práctica que la slide 57 nunca entregó. La promesa se retiró de las siete agendas. ¿Se arma ese trabajo práctico a partir del ejemplo de triage de issues (4.4) y del pipeline de tickets (5.13), o queda fuera del alcance de la clase?"
+
+- **Del prompt al entrenamiento** — La afirmación de que el comportamiento se movió al entrenamiento está apoyada de forma indirecta: Wei et al. sostiene el mecanismo y el catálogo de la API el costo y las perillas removidas, pero no hay registro en el corpus sobre el post-entrenamiento por refuerzo de los modelos de razonamiento. ¿Se ingesta una fuente, o la lámina se queda donde la evidencia llega?
 
 # Cut material
 

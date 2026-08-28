@@ -1918,6 +1918,50 @@
       }
     },
     {
+      "template": "code-example",
+      "section": "Técnicas avanzadas",
+      "title": "Effort: cómo se configura",
+      "lead": "**La perilla de razonamiento no vive solo en la interfaz: es un parámetro de la API, con cinco niveles y un default que ya gasta de más.**",
+      "code": "response = client.messages.create(\n    model=\"claude-opus-5\",\n    max_tokens=16000,\n    thinking={\"type\": \"adaptive\"},      # el modelo decide cuanto razonar\n    output_config={\"effort\": \"low\"},    # low | medium | high | xhigh | max\n    messages=[{\"role\": \"user\", \"content\": \"Clasifica este issue...\"}],\n)",
+      "language": "python",
+      "explanation": [
+        {
+          "label": "`effort` va dentro de `output_config`",
+          "body": "No es un parámetro de primer nivel, y es el error más común al configurarlo. El default es `high`: una llamada que nunca lo tocó viene pagando razonamiento de sobra en cada tarea trivial."
+        },
+        {
+          "label": "Los tokens de razonamiento se facturan como salida",
+          "body": "Aunque no vuelvan en la respuesta y el usuario nunca los vea. Es la parte de la factura que nadie mira."
+        },
+        {
+          "label": "`budget_tokens` quedó obsoleto",
+          "body": "Era el techo fijo de tokens de pensamiento. En los modelos actuales devuelve error 400; lo reemplazó el razonamiento adaptativo, donde el modelo decide cuánto pensar y `effort` fija la profundidad."
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Cómo elegir el nivel",
+          "body": "`low` para subagentes y tareas simples; `high` para trabajo sensible a la calidad; `xhigh` es el mejor punto para código y tareas agénticas; `max` solo cuando la corrección importa más que el costo. Medí sobre pedidos reales antes de subir un default, y ajustá por ruta, no globalmente.",
+          "kind": "takeaway",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Esta es la lámina que cierra el bloque de razonamiento del lado de la implementación, y la que más plata les puede ahorrar. Tres cosas. La primera es dónde va el parámetro: adentro de `output_config`, no arriba de todo — es el error que todos cometen la primera vez y falla en silencio si lo ponen mal. La segunda es el default: `high`. O sea que un equipo que nunca configuró effort está pagando razonamiento profundo para clasificar tickets. La tercera es la que conecta con la sección de costos: esos tokens de pensamiento se facturan a tarifa de salida aunque nadie los vea. Si preguntan por `budget_tokens`, que es lo que van a encontrar en tutoriales viejos, explicá que era un techo fijo de tokens y que hoy devuelve error: el modelo decide adaptativamente cuánto pensar y uno gradúa la profundidad con effort. Cerrá con la regla práctica: medir antes de subir el default, y ajustar por ruta en vez de globalmente.",
+      "_choice": {
+        "signals": [
+          "un bloque de código que es el contenido principal, con tres puntos que lo explican"
+        ],
+        "candidates": [
+          "code-example",
+          "content+cards+image"
+        ],
+        "picked": "code-example",
+        "rejected": {
+          "content+cards+image": "el código no es un artefacto de apoyo al costado: es lo que la lámina enseña — dónde va el parámetro y cómo se escribe"
+        }
+      }
+    },
+    {
       "template": "concept-breakdown",
       "section": "Técnicas avanzadas",
       "title": "Extended thinking (Anthropic)",
@@ -3425,7 +3469,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "06724265e15abe0b074eb707c348208177cb65f7d09cdba70bc8aadf223e5947",
-    "bytes": 144960
+    "sha256": "fa12af6423c0094310b2acb2f489024f7053a09bcf4704f2caf515865ef536af",
+    "bytes": 147665
   }
 }
