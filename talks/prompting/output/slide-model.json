@@ -771,13 +771,15 @@
         {
           "header": "Modelo",
           "cells": [
-            "Claude Opus 4.8 (Anthropic)",
-            "Claude Sonnet 4.6 (Anthropic)",
+            "Claude Fable 5 (Anthropic)",
+            "Claude Opus 5 (Anthropic)",
+            "Claude Sonnet 5 (Anthropic)",
             "Claude Haiku 4.5 (Anthropic)",
-            "GPT-4o (OpenAI)",
-            "GPT-4o Mini (OpenAI)",
-            "Gemini 1.5 Pro (Google)",
-            "Gemini 2.0 Flash (Google)",
+            "GPT-5.6 Sol (OpenAI)",
+            "GPT-5.6 Luna (OpenAI)",
+            "Gemini 3.1 Pro (Google)",
+            "DeepSeek V4 Pro",
+            "DeepSeek V4 Flash",
             "Llama 3.3 70B (Meta)"
           ]
         },
@@ -786,11 +788,13 @@
           "cells": [
             "2026",
             "2026",
+            "2026",
             "2025",
-            "2024",
-            "2024",
-            "2024",
-            "2024",
+            "2026",
+            "2026",
+            "2026",
+            "2026",
+            "2026",
             "2024"
           ]
         },
@@ -799,10 +803,12 @@
           "cells": [
             "1M",
             "1M",
+            "1M",
             "200K",
-            "128K",
-            "128K",
-            "2M",
+            "1,05M",
+            "1,05M",
+            "—",
+            "1M",
             "1M",
             "128K"
           ]
@@ -810,37 +816,44 @@
         {
           "header": "Entrada / salida ($/MTok)",
           "cells": [
+            "$10,00 / $50,00",
             "$5,00 / $25,00",
-            "$3,00 / $15,00",
+            "$2,00 / $10,00",
             "$1,00 / $5,00",
-            "$2,50 / $10,00",
-            "$0,15 / $0,60",
-            "$1,25 / $5,00",
-            "$0,075 / $0,30",
+            "$4,00 / $20,00",
+            "$0,20 / $1,20",
+            "$2,00 / $12,00",
+            "$0,66 / $1,98",
+            "$0,22 / $0,66",
             "Self-hosted ≈$0,03 / $0,10"
           ]
         },
         {
           "header": "Mejor para",
           "cells": [
+            "Razonamiento de frontera, agentes de horizonte largo",
             "Razonamiento difícil, trabajo agéntico largo",
             "Documentos largos, análisis matizado",
             "Clasificación y extracción de alto volumen",
-            "Salida estructurada, JSON",
+            "Alternativa de frontera",
             "Tareas simples, alto volumen",
-            "Contexto masivo, multimodal",
-            "Presupuesto ajustado, alta velocidad",
+            "Multimodal",
+            "Razonamiento a costo bajo",
+            "Volumen a costo mínimo",
             "Requisitos on-premise"
           ]
         }
       ],
+      "design": "full",
       "highlights": [
         {
-          "body": "Las filas de Anthropic están verificadas al 2026-06-24. Las demás vienen del deck original con precios declarados a marzo de 2026 y corresponden a modelos de generación 2024.",
-          "kind": "important"
+          "label": "Qué está verificado y contra qué",
+          "body": "Anthropic, contra el catálogo de la API (corte 2026-06-24). DeepSeek, contra su documentación oficial, consultada el 2026-08-28: esos precios son de horario **off-peak** y **se duplican en hora pico** (01-04 y 06-10 UTC, lunes a viernes). OpenAI y Google salen de agregadores de precios, no de la fuente: tomalos como orden de magnitud. La ventana de Gemini no se pudo verificar. Llama es una estimación de self-hosted.",
+          "kind": "important",
+          "position": "bottom"
         }
       ],
-      "notes": "La tabla es referencia, no material para leer en voz alta. Lo que hay que decir son los dos ejes que la ordenan: precio por token y tamaño de ventana, y que no correlacionan. Gemini 1.5 Pro tiene la ventana más grande de la tabla y es más barato que Opus. La segunda cosa que hay que decir, y con todas las letras, es que esta tabla envejece en meses: las filas de Anthropic están verificadas contra el catálogo vigente, las otras cuatro son de generación 2024 y siguen acá porque el deck original las traía. Convertí eso en enseñanza en vez de taparlo: la habilidad que se llevan no es memorizar precios, es saber qué columnas mirar cuando salga el modelo del mes que viene.",
+      "notes": "La tabla es referencia, no material para leer en voz alta. Lo que hay que decir son los dos ejes que la ordenan: precio por token y tamaño de ventana, y que no correlacionan. Entre Fable 5 y DeepSeek V4 Flash hay un factor cuarenta y cinco de precio de entrada, con la misma ventana de un millón. La segunda cosa, y con todas las letras: esta tabla envejece en meses. Las filas de Anthropic están verificadas contra el catálogo de la API y las de DeepSeek contra su documentación oficial; las de OpenAI y Google salen de agregadores, así que valen como orden de magnitud y no como precio. Decilo, no lo tapes: la habilidad que se llevan no es memorizar precios, es saber qué columnas mirar cuando salga el modelo del mes que viene. Y señalá lo de DeepSeek, que es lo más raro de la tabla: cobra distinto según la hora del día, y en hora pico el precio se duplica. Un pipeline batch que corre de madrugada paga la mitad que el mismo pipeline a las nueve de la mañana.",
       "_choice": {
         "signals": [
           "has_table=true",
@@ -3511,7 +3524,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "cd1b87a9b6971314cca9f82f096e10c110a9461abb772dcee8abd22c0571292c",
-    "bytes": 150917
+    "sha256": "8384c161e81a05d99976ecc7c35d19daed6c383f2fc844c41a1f94325a95d346",
+    "bytes": 151982
   }
 }

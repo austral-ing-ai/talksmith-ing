@@ -425,25 +425,29 @@ Tres cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la en
 
 | Modelo | Generación | Ventana | Entrada / salida ($/MTok) | Mejor para |
 |---|---|---|---|---|
-| Claude Opus 4.8 (Anthropic) | 2026 | 1M | $5,00 / $25,00 | Razonamiento difícil, trabajo agéntico largo |
-| Claude Sonnet 4.6 (Anthropic) | 2026 | 1M | $3,00 / $15,00 | Documentos largos, análisis matizado |
+| Claude Fable 5 (Anthropic) | 2026 | 1M | $10,00 / $50,00 | Razonamiento de frontera, agentes de horizonte largo |
+| Claude Opus 5 (Anthropic) | 2026 | 1M | $5,00 / $25,00 | Razonamiento difícil, trabajo agéntico largo |
+| Claude Sonnet 5 (Anthropic) | 2026 | 1M | $2,00 / $10,00 | Documentos largos, análisis matizado |
 | Claude Haiku 4.5 (Anthropic) | 2025 | 200K | $1,00 / $5,00 | Clasificación y extracción de alto volumen |
-| GPT-4o (OpenAI) | 2024 | 128K | $2,50 / $10,00 | Salida estructurada, JSON |
-| GPT-4o Mini (OpenAI) | 2024 | 128K | $0,15 / $0,60 | Tareas simples, alto volumen |
-| Gemini 1.5 Pro (Google) | 2024 | 2M | $1,25 / $5,00 | Contexto masivo, multimodal |
-| Gemini 2.0 Flash (Google) | 2024 | 1M | $0,075 / $0,30 | Presupuesto ajustado, alta velocidad |
+| GPT-5.6 Sol (OpenAI) | 2026 | 1,05M | $4,00 / $20,00 | Alternativa de frontera |
+| GPT-5.6 Luna (OpenAI) | 2026 | 1,05M | $0,20 / $1,20 | Tareas simples, alto volumen |
+| Gemini 3.1 Pro (Google) | 2026 | — | $2,00 / $12,00 | Multimodal |
+| DeepSeek V4 Pro | 2026 | 1M | $0,66 / $1,98 | Razonamiento a costo bajo |
+| DeepSeek V4 Flash | 2026 | 1M | $0,22 / $0,66 | Volumen a costo mínimo |
 | Llama 3.3 70B (Meta) | 2024 | 128K | Self-hosted ≈$0,03 / $0,10 | Requisitos on-premise |
 
-- ⚠️ Las filas de Anthropic están verificadas al 2026-06-24. Las demás vienen del deck original con precios declarados a marzo de 2026 y corresponden a modelos de generación 2024.
+- ⚠️ **Qué está verificado y contra qué.** Anthropic, contra el catálogo de la API (corte 2026-06-24). DeepSeek, contra su documentación oficial, consultada el 2026-08-28: esos precios son de horario **off-peak** y **se duplican en hora pico** (01-04 y 06-10 UTC, lunes a viernes). OpenAI y Google salen de agregadores de precios, no de la fuente: tomalos como orden de magnitud. La ventana de Gemini no se pudo verificar. Llama es una estimación de self-hosted.
 
 ### Sources
 
 - `AIG4B-Clase-3-Prompting.md.md` (slide 45)
-- Filas de Anthropic verificadas contra el catálogo vigente de la API de Claude (corte 2026-06-24).
+- Filas de Anthropic: catálogo vigente de la API de Claude (corte 2026-06-24).
+- Filas de DeepSeek: documentación oficial de precios de DeepSeek, consultada el 2026-08-28. Modelos V4 Pro y V4 Flash, ventana de 1M y salida máxima de 384K; tarifa off-peak, que se duplica en hora pico.
+- Filas de OpenAI y Google: agregadores de precios consultados el 2026-08-28, no documentación del proveedor. Sin verificar contra la fuente.
 
 ### Speaker notes
 
-La tabla es referencia, no material para leer en voz alta. Lo que hay que decir son los dos ejes que la ordenan: precio por token y tamaño de ventana, y que no correlacionan. Gemini 1.5 Pro tiene la ventana más grande de la tabla y es más barato que Opus. La segunda cosa que hay que decir, y con todas las letras, es que esta tabla envejece en meses: las filas de Anthropic están verificadas contra el catálogo vigente, las otras cuatro son de generación 2024 y siguen acá porque el deck original las traía. Convertí eso en enseñanza en vez de taparlo: la habilidad que se llevan no es memorizar precios, es saber qué columnas mirar cuando salga el modelo del mes que viene.
+La tabla es referencia, no material para leer en voz alta. Lo que hay que decir son los dos ejes que la ordenan: precio por token y tamaño de ventana, y que no correlacionan. Entre Fable 5 y DeepSeek V4 Flash hay un factor cuarenta y cinco de precio de entrada, con la misma ventana de un millón. La segunda cosa, y con todas las letras: esta tabla envejece en meses. Las filas de Anthropic están verificadas contra el catálogo de la API y las de DeepSeek contra su documentación oficial; las de OpenAI y Google salen de agregadores, así que valen como orden de magnitud y no como precio. Decilo, no lo tapes: la habilidad que se llevan no es memorizar precios, es saber qué columnas mirar cuando salga el modelo del mes que viene. Y señalá lo de DeepSeek, que es lo más raro de la tabla: cobra distinto según la hora del día, y en hora pico el precio se duplica. Un pipeline batch que corre de madrugada paga la mitad que el mismo pipeline a las nueve de la mañana.
 
 ---
 
