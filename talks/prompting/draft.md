@@ -213,7 +213,9 @@ La definición primero y la tabla después: la ventana es memoria de trabajo, no
 
 ---
 
-## 5. ¿Cuánto es 1 millón de tokens?
+## 5. ¿Cuánto es 1 millón de ~~Tolkien~~ tokens?
+
+<!-- El tachado de "Tolkien" es deliberado: es el chiste de la lamina. NO corregir como errata. -->
 
 <!-- design: column-right -->
 
@@ -237,6 +239,8 @@ Esta es la slide del "ah, mirá". Sirve para que la cifra deje de ser abstracta:
 
 ### Presenter feedback
 
+- [closed] 2026-08-29 — "El titulo tiene que ser '¿Cuánto es 1 millón de ~~Tolkien~~ tokens?', con Tolkien tachado. Es un chiste, no una errata."
+  Resolution: repuesto con `~~` y marcado con un comentario HTML sobre el titulo. Una pasada anterior lo habia borrado leyendolo como errata heredada del pptx (corpus, inconsistencia 28); esa lectura era incorrecta. El tachado se renderiza como `<del>` y no consume ancho visible.
 - [closed] 2026-08-28 — "Título con 'Tolkien' intercalado, sin tilde en 'Cuánto' y con espacio antes del signo de cierre."
   Resolution: título corregido a "¿Cuánto es 1 millón de tokens?" (31 caracteres, dentro del presupuesto).
 - [open] 2026-08-28 — "La segunda columna reemplazó '~800K tokens = años de historial clínico' por un repositorio de software, pero sin cifra: el corpus no tiene una medición. ¿Medimos el repo del trabajo práctico con un tokenizador y ponemos el número real?"
@@ -304,7 +308,30 @@ Esta es la slide que explica por qué la factura de un chatbot crece sin que cre
 
 ---
 
-## 8. Limitaciones de los LLM
+## 8. Tokenomics: el costo real
+
+### Content
+
+**En agosto de 2026 la Linux Foundation creó la Tokenomics Foundation, con 30 empresas fundadoras, para estandarizar cómo se mide el costo y el retorno de la IA. Su punto de partida es incómodo: el token es la parte visible de la cuenta, no la cuenta.**
+
+- **El token es la unidad, no el total** Buena parte del costo no está en los tokens: cómputo, almacenamiento, base de datos, caché y el trabajo de los ingenieros. Pero el token es la unidad atómica consistente que atraviesa todos esos costos, y por eso sirve para contarlos.
+- **Falta un lenguaje común** El problema que declaran es que no hay forma compartida de conectar gasto con valor. Cada proveedor cobra distinto, y esa fragmentación vuelve incomparable el costo total de propiedad entre organizaciones.
+- **Se mide por llamada, no por token** Uno de los entregables del plan es un método estándar de *costo de servir*: la cuenta completa expresada como costo por llamada, para que el número corresponda al trabajo realmente hecho y no a una unidad interna del proveedor.
+
+- 🎯 **Por qué importa para esta clase.** Goldman Sachs proyecta que el consumo de tokens se multiplique por 24 hacia 2030. Todo lo que vamos a ver después — caching, cascading, effort — son palancas sobre la parte visible de esa cuenta. La discusión que se está abriendo es cómo medir la parte que no se ve.
+
+### Sources
+
+- `research/web/tokenomics-foundation-linux/` — Linux Foundation, comunicado del 4 de agosto de 2026, capturado el 2026-08-28. Fundación lanzada con 30 miembros fundadores (entre ellos Accenture, IBM, JPMorganChase, Oracle, SAP, ServiceNow, Broadcom, Lenovo). Aportan verbatim: que el token es "una unidad atómica consistente de uso" mientras el costo real abarca cómputo, almacenamiento, base de datos, caché y trabajo humano; el objetivo de expresar el costo de servir "por llamada en vez de por token"; y la proyección de Goldman Sachs de 24x en consumo de tokens hacia 2030.
+- Nota: la captura todavía no tiene registro en `research/corpus/` — falta la pasada del librarian sobre la carpeta nueva.
+
+### Speaker notes
+
+Esta lámina existe para que la fórmula de la lámina anterior no se lea como si fuera toda la verdad. Acaban de calcular costo por token, y acá aparece una fundación de la Linux Foundation, con treinta empresas grandes adentro, diciendo que ese número es la punta del iceberg. Es material fresco: se lanzó el 4 de agosto de este año, o sea hace tres semanas. Dos cosas para decir en voz alta. La primera es la buena noticia para la clase: aunque el token no sea todo el costo, es la unidad que atraviesa todos los demás, y por eso sirve para contar. La segunda es la incómoda: hoy no hay forma estándar de comparar el costo total entre proveedores, y por eso el ejercicio de la tabla de tarifas que van a ver en la sección siguiente es necesariamente parcial. Si alguien pregunta por qué les importa a ellos como ingenieros: porque el entregable que están proponiendo es medir costo por llamada en vez de por token, que es exactamente la unidad con la que uno razona cuando diseña un sistema. Y el número de Goldman Sachs, veinticuatro veces más consumo hacia 2030, es el que explica por qué esto se volvió urgente ahora.
+
+---
+
+## 9. Limitaciones de los LLM
 
 ### Content
 
@@ -324,7 +351,7 @@ Tres fallas de familia, no tres bugs. Ninguna se arregla con un modelo mejor, to
 
 ---
 
-## 9. ¿Por qué alucina un modelo?
+## 10. ¿Por qué alucina un modelo?
 
 ### Content
 
@@ -350,7 +377,7 @@ Cuatro causas y ninguna es un defecto de implementación: son consecuencias dire
 
 ---
 
-## 10. Alucinaciones: casos reales
+## 11. Alucinaciones: casos reales
 
 ### Content
 
@@ -373,7 +400,7 @@ Los dos primeros casos son judiciales y están documentados: sirven para instala
 
 ---
 
-## 11. Mitigar alucinaciones: el prompt
+## 12. Mitigar alucinaciones: el prompt
 
 ### Content
 
@@ -401,7 +428,7 @@ Cinco palancas ordenadas de la más barata a la más cara. Grounding es una lín
 
 ---
 
-## 12. Mitigar alucinaciones: el proceso
+## 13. Mitigar alucinaciones: el proceso
 
 ### Content
 
@@ -426,7 +453,7 @@ Acá la clase les habla en su idioma y conviene decirlo de frente: las cuatro pr
 
 ---
 
-## 13. Modelo mental: motores de completado
+## 14. Modelo mental: motores de completado
 
 ### Content
 
@@ -459,7 +486,7 @@ Esta slide es el ensayo de la tesis, y por eso vale la pena bajar la velocidad. 
 
 ---
 
-## 14. Tarifas: familia Claude
+## 15. Tarifas: familia Claude
 
 ### Content
 
@@ -495,7 +522,7 @@ Tres cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la en
 
 ---
 
-## 15. El paisaje de modelos
+## 16. El paisaje de modelos
 
 ### Content
 
@@ -535,7 +562,7 @@ La tabla es referencia, no material para leer en voz alta. Lo que hay que decir 
 
 ---
 
-## 16. Elegir modelo: árbol de decisión
+## 17. Elegir modelo: árbol de decisión
 
 ### Content
 
@@ -587,7 +614,7 @@ El árbol vale más por el orden de las preguntas que por los nombres que devuel
 
 ---
 
-## 17. Prompt caching
+## 18. Prompt caching
 
 ### Content
 
@@ -641,7 +668,7 @@ El caching es la única optimización de esta clase que baja el costo sin tocar 
 
 ---
 
-## 18. Prompt caching: los números
+## 19. Prompt caching: los números
 
 ### Content
 
@@ -673,7 +700,7 @@ Esta slide corrige un error del deck original, y vale la pena decirlo en voz alt
 
 ---
 
-## 19. Prompt caching: implementación
+## 20. Prompt caching: implementación
 
 ### Content
 
@@ -729,7 +756,7 @@ Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y 
 
 ---
 
-## 20. Model cascading
+## 21. Model cascading
 
 ### Content
 
@@ -782,7 +809,7 @@ La idea es de una línea y la trampa está en el rombo del medio. Todo el ahorro
 
 ---
 
-## 21. Cascading: cuándo sí y cuándo no
+## 22. Cascading: cuándo sí y cuándo no
 
 ### Content
 
@@ -820,7 +847,7 @@ La fila que decide es la última de la tabla. El cascading no es una configuraci
 
 ---
 
-## 22. Los 6 componentes
+## 23. Los 6 componentes
 
 ### Content
 
@@ -875,7 +902,7 @@ Seis componentes y el orden importa. Las definiciones ya no están en la lámina
 
 ---
 
-## 23. Un prompt completo
+## 24. Un prompt completo
 
 ### Content
 
@@ -928,7 +955,7 @@ Leé el prompt en voz alta, bloque por bloque, y hacé notar dos cosas. La prime
 
 ---
 
-## 24. Salidas estructuradas: JSON Schema
+## 25. Salidas estructuradas: JSON Schema
 
 ### Content
 
@@ -975,7 +1002,7 @@ La distinción entre los dos enfoques es la que hay que dejar clara, porque se c
 
 ---
 
-## 25. XML: estructura semántica
+## 26. XML: estructura semántica
 
 ### Content
 
@@ -1026,7 +1053,7 @@ El argumento de por qué funcionan las etiquetas es el mismo de la slide del mot
 
 ---
 
-## 26. Optimización por modelo
+## 27. Optimización por modelo
 
 ### Content
 
@@ -1054,7 +1081,7 @@ Esta slide nombra familias y no versiones, y es a propósito: el deck original d
 
 ---
 
-## 27. In-context learning (ICL)
+## 28. In-context learning (ICL)
 
 ### Content
 
@@ -1102,7 +1129,7 @@ La frase que hay que dejar clavada es "sin modificar los pesos", y el diagrama l
 
 ---
 
-## 28. Zero-shot vs. few-shot
+## 29. Zero-shot vs. few-shot
 
 <!-- slide nueva: el deck original define zero-shot y nunca lo ejemplifica -->
 
@@ -1130,7 +1157,7 @@ Slide nueva, y llena un agujero real del deck original: definía zero-shot y nun
 
 ---
 
-## 29. Few-shot learning
+## 30. Few-shot learning
 
 ### Content
 
@@ -1167,7 +1194,7 @@ La práctica que más rinde y menos se aplica es la tercera. Casi todo el mundo 
 
 ---
 
-## 30. Many-shot learning
+## 31. Many-shot learning
 
 ### Content
 
@@ -1218,7 +1245,7 @@ El punto fuerte de esta slide es la cuarta línea, porque describe un bucle de m
 
 ---
 
-## 31. Técnicas avanzadas: resumen
+## 32. Técnicas avanzadas: resumen
 
 ### Content
 
@@ -1243,7 +1270,7 @@ Mapa de la sección. Seis técnicas y una sola idea de fondo, que se explica rec
 
 ---
 
-## 32. Chain of Thought (CoT)
+## 33. Chain of Thought (CoT)
 
 ### Content
 
@@ -1279,7 +1306,7 @@ Esta slide cambió respecto del deck original y conviene contar por qué, porque
 
 ---
 
-## 33. CoT en acción: ejemplo
+## 34. CoT en acción: ejemplo
 
 ### Content
 
@@ -1310,7 +1337,7 @@ El ejemplo es trivial a propósito y hay que decirlo, porque la pregunta obvia e
 
 ---
 
-## 34. Self-consistency: votación
+## 35. Self-consistency: votación
 
 ### Content
 
@@ -1372,7 +1399,7 @@ Antes del diagrama, el número que sostiene la decisión y que ya no está en la
 
 ---
 
-## 35. Self-consistency: ejemplo
+## 36. Self-consistency: ejemplo
 
 ### Content
 
@@ -1421,7 +1448,7 @@ Lo interesante del ejemplo es la corrida 3, y conviene señalarla. No es una alu
 
 ---
 
-## 36. Razonamiento: cuánto piensa el modelo
+## 37. Razonamiento: cuánto piensa el modelo
 
 ### Content
 
@@ -1473,7 +1500,7 @@ Slide importada de otra clase y ubicada acá a propósito: abre el bloque de raz
 
 ---
 
-## 37. Effort: cómo se configura
+## 38. Effort: cómo se configura
 
 <!-- ascii-render: documentation-only -->
 
@@ -1507,7 +1534,7 @@ Esta es la lámina que cierra el bloque de razonamiento del lado de la implement
 
 ---
 
-## 38. Del prompt al entrenamiento
+## 39. Del prompt al entrenamiento
 
 ### Content
 
@@ -1534,7 +1561,7 @@ Esta es la lámina conceptual que le da sentido a todo el bloque, y conviene dec
 
 ---
 
-## 39. Extended thinking (Anthropic)
+## 40. Extended thinking (Anthropic)
 
 ### Content
 
@@ -1562,7 +1589,7 @@ Acá hay que cerrar la desambiguación que abriste en la slide anterior, porque 
 
 ---
 
-## 40. Extended thinking: ejemplo
+## 41. Extended thinking: ejemplo
 
 ### Content
 
@@ -1611,7 +1638,7 @@ El ejemplo pasó de un caso clínico a un stack trace, y el cambio de dominio ha
 
 ---
 
-## 41. Tree of Thought (ToT)
+## 42. Tree of Thought (ToT)
 
 ### Content
 
@@ -1658,7 +1685,7 @@ El árbol de la lámina es el punto entero de la técnica, así que caminalo: se
 
 ---
 
-## 42. Tree of Thought: ejemplo
+## 43. Tree of Thought: ejemplo
 
 ### Content
 
@@ -1698,7 +1725,7 @@ Este ejemplo funciona porque las tres ramas son defendibles, y eso es justo el t
 
 ---
 
-## 43. ReAct: razonar y actuar
+## 44. ReAct: razonar y actuar
 
 <!-- slide nueva: ReAct esta procesado en el corpus y no aparecia en ninguna slide -->
 
@@ -1768,7 +1795,7 @@ Las dos afirmaciones del paper que sostenían la lámina van habladas: las **tra
 
 ---
 
-## 44. Prompt chaining
+## 45. Prompt chaining
 
 ### Content
 
@@ -1823,7 +1850,7 @@ El texto de esta slide venía cortado a mitad de palabra en el deck original y n
 
 ---
 
-## 45. Prompt chaining: ejemplo
+## 46. Prompt chaining: ejemplo
 
 ### Content
 
@@ -1867,7 +1894,7 @@ La tercera ventaja es la que suele sorprender, y merece medio minuto: encadenar 
   Resolution: el pipeline pasó a triage de tickets con runbooks e incidentes previos.
 
 ---
-## 46. Técnicas avanzadas: pros y contras
+## 47. Técnicas avanzadas: pros y contras
 
 ### Content
 
@@ -1896,7 +1923,7 @@ Tabla de referencia, para consultar más que para leer. Si hay que decir una sol
 
 ---
 
-## 47. ¿Por qué funcionan?
+## 48. ¿Por qué funcionan?
 
 ### Content
 
@@ -1927,7 +1954,7 @@ Esta es la slide de la tesis y merece el tiempo que haga falta. Todo lo que vier
 
 ---
 
-## 48. ¿Por qué tardan más?
+## 49. ¿Por qué tardan más?
 
 ### Content
 
@@ -1956,7 +1983,7 @@ Esta slide es el contrapeso de las anteriores y por eso va acá, justo después 
 
 ---
 
-## 49. Prompts sin verificación
+## 50. Prompts sin verificación
 
 ### Content
 
@@ -1990,7 +2017,7 @@ Acá empieza el bloque de disciplina de producción y es donde esta audiencia ti
 
 ---
 
-## 50. DSPy: optimización automática
+## 51. DSPy: optimización automática
 
 ### Content
 
@@ -2024,7 +2051,7 @@ El eslogan del framework dice todo: programá, no promptees. Y el punto que más
 
 ---
 
-## 51. Versionado de prompts
+## 52. Versionado de prompts
 
 ### Content
 
@@ -2058,7 +2085,7 @@ La primera opción es la que hay que defender: Git. Un prompt en un archivo vers
 
 ---
 
-## 52. Datos y testing sistemático
+## 53. Datos y testing sistemático
 
 ### Content
 
@@ -2092,7 +2119,7 @@ La cuarta viñeta de la izquierda es la que más se viola y la que más caro sal
 
 ---
 
-## 53. Versionado de prompts
+## 54. Versionado de prompts
 
 <!-- DUPLICADO verbatim de la slide 5.19, residuo de edicion -->
 <!-- en el pptx original quedo despues de la slide de cierre. Se conserva por decision del presentador. -->
@@ -2128,7 +2155,7 @@ Repetición de la slide 5.19. Si se conserva en la entrega, saltearla o usarla c
 
 ---
 
-## 54. Self-consistency: ejemplo
+## 55. Self-consistency: ejemplo
 
 <!-- DUPLICADO de la slide 5.5. Se conserva por decision del presentador. -->
 
@@ -2170,7 +2197,7 @@ Repetición de la slide 5.5. Las notas de fondo están ahí.
 
 ---
 
-## 55. Extended thinking (Anthropic)
+## 56. Extended thinking (Anthropic)
 
 <!-- DUPLICADO de la slide 5.7. Se conserva por decision del presentador. -->
 
@@ -2196,7 +2223,7 @@ Repetición de la slide 5.7. Las notas de fondo, y la desambiguación entre las 
 
 ---
 
-## 56. Extended thinking: ejemplo
+## 57. Extended thinking: ejemplo
 
 <!-- DUPLICADO de la slide 5.8. Se conserva por decision del presentador. -->
 
@@ -2236,7 +2263,7 @@ Repetición de la slide 5.8. Las notas de fondo están ahí.
 
 ---
 
-## 57. Tree of Thought (ToT)
+## 58. Tree of Thought (ToT)
 
 <!-- DUPLICADO de la slide 5.9. Se conserva por decision del presentador. -->
 
@@ -2271,7 +2298,7 @@ Repetición de la slide 5.9. Las notas de fondo están ahí.
 
 ---
 
-## 58. Tree of Thought: ejemplo
+## 59. Tree of Thought: ejemplo
 
 <!-- DUPLICADO de la slide 5.10. Se conserva por decision del presentador. -->
 

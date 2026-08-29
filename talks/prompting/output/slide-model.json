@@ -174,7 +174,7 @@
     {
       "template": "content+cards+image",
       "section": "Fundamentos",
-      "title": "¿Cuánto es 1 millón de tokens?",
+      "title": "¿Cuánto es 1 millón de ~~Tolkien~~ tokens?",
       "cards": [
         {
           "label": "~750K tokens",
@@ -332,6 +332,48 @@
         "rejected": {
           "concept-breakdown": "card-per-row is only for a table whose columns are heterogeneous attributes of the row key with nothing reading across; here every row reads across the `Turno` factor, and collapsing it would join the three values into one `·` body and lose the alignment that is the slide",
           "process": "the three rows are a table of an escalating cost, not named steps of a procedure — and the `has_table` rule outranks the enumeration rules; the ordering is already carried by the `Turno` factor column"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Fundamentos",
+      "title": "Tokenomics: el costo real",
+      "lead": "**En agosto de 2026 la Linux Foundation creó la Tokenomics Foundation, con 30 empresas fundadoras, para estandarizar cómo se mide el costo y el retorno de la IA. Su punto de partida es incómodo: el token es la parte visible de la cuenta, no la cuenta.**",
+      "cards": [
+        {
+          "label": "El token es la unidad, no el total",
+          "body": "Buena parte del costo no está en los tokens: cómputo, almacenamiento, base de datos, caché y el trabajo de los ingenieros. Pero el token es la unidad atómica consistente que atraviesa todos esos costos, y por eso sirve para contarlos."
+        },
+        {
+          "label": "Falta un lenguaje común",
+          "body": "El problema que declaran es que no hay forma compartida de conectar gasto con valor. Cada proveedor cobra distinto, y esa fragmentación vuelve incomparable el costo total de propiedad entre organizaciones."
+        },
+        {
+          "label": "Se mide por llamada, no por token",
+          "body": "Uno de los entregables del plan es un método estándar de *costo de servir*: la cuenta completa expresada como costo por llamada, para que el número corresponda al trabajo realmente hecho y no a una unidad interna del proveedor."
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Por qué importa para esta clase",
+          "body": "Goldman Sachs proyecta que el consumo de tokens se multiplique por 24 hacia 2030. Todo lo que vamos a ver después — caching, cascading, effort — son palancas sobre la parte visible de esa cuenta. La discusión que se está abriendo es cómo medir la parte que no se ve.",
+          "kind": "takeaway",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Esta lámina existe para que la fórmula de la lámina anterior no se lea como si fuera toda la verdad. Acaban de calcular costo por token, y acá aparece una fundación de la Linux Foundation, con treinta empresas grandes adentro, diciendo que ese número es la punta del iceberg. Es material fresco: se lanzó el 4 de agosto de este año, o sea hace tres semanas. Dos cosas para decir en voz alta. La primera es la buena noticia para la clase: aunque el token no sea todo el costo, es la unidad que atraviesa todos los demás, y por eso sirve para contar. La segunda es la incómoda: hoy no hay forma estándar de comparar el costo total entre proveedores, y por eso el ejercicio de la tabla de tarifas que van a ver en la sección siguiente es necesariamente parcial. Si alguien pregunta por qué les importa a ellos como ingenieros: porque el entregable que están proponiendo es medir costo por llamada en vez de por token, que es exactamente la unidad con la que uno razona cuando diseña un sistema. Y el número de Goldman Sachs, veinticuatro veces más consumo hacia 2030, es el que explica por qué esto se volvió urgente ahora.",
+      "_choice": {
+        "signals": [
+          "tres conceptos etiquetados en paralelo que descomponen una misma idea"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "son tres conceptos rotulados, no prosa corrida; el invariante manda tarjetas"
         }
       }
     },
@@ -3524,7 +3566,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "8384c161e81a05d99976ecc7c35d19daed6c383f2fc844c41a1f94325a95d346",
-    "bytes": 151982
+    "sha256": "1b9119b58bcb77ca05a7f0d21031e0953bbeeb538f5faadc7b5492fd577faf7e",
+    "bytes": 155301
   }
 }

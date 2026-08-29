@@ -120,3 +120,10 @@ Importada desde `talksmith-aig4b/talks/clase-03-prompting`, donde había sido re
 - Files created/modified: `final.md` (limpieza de entrega), 9 imágenes nuevas en `images/`, `memory.md`. **`draft.md` no se tocó** — sigue congelado como fuente de verdad del contenido, con su registro de feedback completo.
 - Pending open questions: los mismos 17, ahora todos visibles en `# Open questions` de `final.md`. Los que bloquean una entrega tranquila: las cifras de proveedores no-Anthropic (ventanas en 1.3, precios en 2.2) siguen sin verificar; las 4 donas (`slide-19-1/2.png`, `slide-27-1/2.png`) están consolidadas en `images/` pero **siguen dibujadas sobre cifras retiradas**, así que falta decidir si se re-renderizan o se sacan; y el bloque duplicado 5.22-5.27 sigue sin resolución.
 - Nota de herramienta: la slide 5.6 referencia `images/s4-1-1-tres-niveles-razonamiento.png`, que tiene su `<!-- ascii-source: -->` pero **no tiene `.svg` ni `.ascii` sidecar** en `images/` — vino ya renderizada como PNG desde la Talk de origen. La referencia resuelve y la entrega no corre riesgo, pero ese diagrama no se puede re-renderizar desde su fuente si hiciera falta.
+
+## 2026-08-29 — Decisión editorial: el tachado de "Tolkien"
+- Status: complete
+- What was decided: el título de la lámina de la ventana de contexto es **"¿Cuánto es 1 millón de ~~Tolkien~~ tokens?"**, con "Tolkien" tachado. **Es un chiste deliberado del presentador, no una errata.**
+- Historia: el registro del corpus lo catalogó como inconsistencia 28 ("Tolkien intercalado en la pregunta") y una pasada del editor lo borró como errata heredada del pptx. Esa lectura era incorrecta y se perdió el chiste.
+- Protección: se marcó con un comentario HTML sobre el título en `draft.md` y con un bullet `[closed]` en el feedback de esa lámina. **Ninguna pasada futura debe "corregirlo".**
+- Técnico: los campos `title` pasan por el resolvedor de markup inline del renderizador (`~~` → `<del>`); solo quedan crudos los campos donde los bytes son el contenido (`code`, `notes`, `src`, `alt`, `icon`…). El título queda en 42 caracteres contra un presupuesto de 40, pero las cuatro tildes no ocupan ancho en pantalla.
