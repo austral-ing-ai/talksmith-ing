@@ -87,7 +87,15 @@ Portada. Presentate y presentá a los otros dos docentes. Encuadre de una frase 
 
 ---
 
-## 2. ¿Qué es un prompt?
+# 1. Fundamentos
+
+**Goal of this section:** Dejar instalado un modelo mental correcto de qué es un LLM por dentro: una ventana de contexto finita que se factura por token y un motor de completado que inventa cuando se queda sin patrón.
+
+**Presenter feedback:**
+
+---
+
+## 1. ¿Qué es un prompt?
 
 ### Content
 
@@ -114,7 +122,7 @@ Arranque suave, pero conviene no darlo por sabido. El punto que sí hay que deja
 
 ---
 
-## 3. ¿Qué se guarda en un prompt?
+## 2. ¿Qué se guarda en un prompt?
 
 ### Content
 
@@ -165,7 +173,7 @@ Recorré el contenedor banda por banda, porque las definiciones ya no están en 
 
 ---
 
-## 4. Ventana de contexto
+## 3. Ventana de contexto
 
 ### Content
 
@@ -213,7 +221,7 @@ La definición primero y la tabla después: la ventana es memoria de trabajo, no
 
 ---
 
-## 5. ¿Cuánto es 1 millón de ~~Tolkien~~ tokens?
+## 4. ¿Cuánto es 1 millón de ~~Tolkien~~ tokens?
 
 <!-- El tachado de "Tolkien" es deliberado: es el chiste de la lamina. NO corregir como errata. -->
 
@@ -249,7 +257,7 @@ Esta es la slide del "ah, mirá". Sirve para que la cifra deje de ser abstracta:
 
 ---
 
-## 6. Economía de tokens
+## 5. Economía de tokens
 
 ### Content
 
@@ -278,7 +286,7 @@ Momento de abrir gpt-tokenizer.dev en vivo y pegar una línea de código. El efe
 
 ---
 
-## 7. La fórmula del costo
+## 6. La fórmula del costo
 
 ### Content
 
@@ -308,7 +316,7 @@ Esta es la slide que explica por qué la factura de un chatbot crece sin que cre
 
 ---
 
-## 8. Tokenomics: el costo real
+## 7. Tokenomics: el costo real
 
 ### Content
 
@@ -331,7 +339,7 @@ Esta lámina existe para que la fórmula de la lámina anterior no se lea como s
 
 ---
 
-## 9. Limitaciones de los LLM
+## 8. Limitaciones de los LLM
 
 ### Content
 
@@ -351,7 +359,7 @@ Tres fallas de familia, no tres bugs. Ninguna se arregla con un modelo mejor, to
 
 ---
 
-## 10. ¿Por qué alucina un modelo?
+## 9. ¿Por qué alucina un modelo?
 
 ### Content
 
@@ -377,7 +385,7 @@ Cuatro causas y ninguna es un defecto de implementación: son consecuencias dire
 
 ---
 
-## 11. Alucinaciones: casos reales
+## 10. Alucinaciones: casos reales
 
 ### Content
 
@@ -400,7 +408,7 @@ Los dos primeros casos son judiciales y están documentados: sirven para instala
 
 ---
 
-## 12. Mitigar alucinaciones: el prompt
+## 11. Mitigar alucinaciones: el prompt
 
 ### Content
 
@@ -428,7 +436,7 @@ Cinco palancas ordenadas de la más barata a la más cara. Grounding es una lín
 
 ---
 
-## 13. Mitigar alucinaciones: el proceso
+## 12. Mitigar alucinaciones: el proceso
 
 ### Content
 
@@ -453,7 +461,7 @@ Acá la clase les habla en su idioma y conviene decirlo de frente: las cuatro pr
 
 ---
 
-## 14. Modelo mental: motores de completado
+## 13. Modelo mental: motores de completado
 
 ### Content
 
@@ -486,7 +494,15 @@ Esta slide es el ensayo de la tesis, y por eso vale la pena bajar la velocidad. 
 
 ---
 
-## 15. Tarifas: familia Claude
+# 2. Modelos y costos
+
+**Goal of this section:** Convertir la elección de modelo en una decisión con números: qué cobra cada uno, cuánto ahorra el caching y cuándo conviene encadenar un modelo barato con uno caro.
+
+**Presenter feedback:**
+
+---
+
+## 1. Tarifas: familia Claude
 
 ### Content
 
@@ -503,8 +519,6 @@ Esta slide es el ensayo de la tesis, y por eso vale la pena bajar la velocidad. 
 
 ![Selector de modelo y de effort en la interfaz de Claude](research/corpus/AIG4B-Clase-3-Prompting.md/images/slide-11-1.jpg)
 
-- **El effort también se paga** El nivel de effort determina cuántos tokens de *thinking* genera el modelo, y esos tokens se facturan a tarifa de salida aunque no vuelvan en la respuesta. Opus 4.8 expone cinco niveles (`low`, `medium`, `high`, `xhigh`, `max`) y el default es `high`: una llamada sin configurar effort ya viene gastando de más.
-
 ### Sources
 
 - `AIG4B-Clase-3-Prompting.md.md` (slide 11) — tarifario y captura del selector de modelo.
@@ -513,7 +527,7 @@ Esta slide es el ensayo de la tesis, y por eso vale la pena bajar la velocidad. 
 
 ### Speaker notes
 
-Tres cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la entrada en toda la familia, así que la variable que hay que vigilar es cuánto habla el modelo, no cuánto se le manda. La segunda: entre Haiku 4.5 y Fable 5 hay un factor diez de precio, y esa distancia es la que hace que valga la pena la cascada de la próxima slide. La tercera es la que nadie mira, y es el effort. Los tokens de razonamiento se facturan como salida aunque el usuario nunca los vea, y el default es `high`. Un equipo que nunca tocó ese parámetro está pagando razonamiento de sobra en cada clasificación trivial. Mostrales la captura: el selector está a la vista en la interfaz, no escondido en la API. Si preguntan por Fable 5, aclará que la captura lo muestra como no disponible en ese momento y que la tabla sí le pone precio: son dos estados del mismo producto en fechas distintas.
+Dos cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la entrada en toda la familia, así que la variable que hay que vigilar es cuánto habla el modelo, no cuánto se le manda. La segunda: entre Haiku 4.5 y Fable 5 hay un factor diez de precio, y esa distancia es la que hace que valga la pena la cascada que viene después. Mostrales la captura: el selector de modelo y de esfuerzo está a la vista en la interfaz, no escondido en la API — el esfuerzo lo trabajamos en detalle en la sección de técnicas avanzadas. Si preguntan por Fable 5, aclará que la captura lo muestra como no disponible en ese momento y que la tabla sí le pone precio: son dos estados del mismo producto en fechas distintas.
 
 ### Presenter feedback
 
@@ -522,47 +536,7 @@ Tres cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la en
 
 ---
 
-## 16. El paisaje de modelos
-
-### Content
-
-**No existe un modelo universal. La elección depende de la tarea, del volumen, del contexto necesario y del presupuesto, y elegir mal multiplica el costo o degrada la calidad.**
-
-| Modelo | Generación | Ventana | Entrada / salida ($/MTok) | Mejor para |
-|---|---|---|---|---|
-| Claude Fable 5 (Anthropic) | 2026 | 1M | $10,00 / $50,00 | Razonamiento de frontera, agentes de horizonte largo |
-| Claude Opus 5 (Anthropic) | 2026 | 1M | $5,00 / $25,00 | Razonamiento difícil, trabajo agéntico largo |
-| Claude Sonnet 5 (Anthropic) | 2026 | 1M | $2,00 / $10,00 | Documentos largos, análisis matizado |
-| Claude Haiku 4.5 (Anthropic) | 2025 | 200K | $1,00 / $5,00 | Clasificación y extracción de alto volumen |
-| GPT-5.6 Sol (OpenAI) | 2026 | 1,05M | $4,00 / $20,00 | Alternativa de frontera |
-| GPT-5.6 Luna (OpenAI) | 2026 | 1,05M | $0,20 / $1,20 | Tareas simples, alto volumen |
-| Gemini 3.1 Pro (Google) | 2026 | — | $2,00 / $12,00 | Multimodal |
-| DeepSeek V4 Pro | 2026 | 1M | $0,66 / $1,98 | Razonamiento a costo bajo |
-| DeepSeek V4 Flash | 2026 | 1M | $0,22 / $0,66 | Volumen a costo mínimo |
-| Llama 3.3 70B (Meta) | 2024 | 128K | Self-hosted ≈$0,03 / $0,10 | Requisitos on-premise |
-
-- ⚠️ **Qué está verificado y contra qué.** Anthropic, contra el catálogo de la API (corte 2026-06-24). DeepSeek, contra su documentación oficial, consultada el 2026-08-28: esos precios son de horario **off-peak** y **se duplican en hora pico** (01-04 y 06-10 UTC, lunes a viernes). OpenAI y Google salen de agregadores de precios, no de la fuente: tomalos como orden de magnitud. La ventana de Gemini no se pudo verificar. Llama es una estimación de self-hosted.
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 45)
-- Filas de Anthropic: catálogo vigente de la API de Claude (corte 2026-06-24).
-- Filas de DeepSeek: documentación oficial de precios de DeepSeek, consultada el 2026-08-28. Modelos V4 Pro y V4 Flash, ventana de 1M y salida máxima de 384K; tarifa off-peak, que se duplica en hora pico.
-- Filas de OpenAI y Google: agregadores de precios consultados el 2026-08-28, no documentación del proveedor. Sin verificar contra la fuente.
-
-### Speaker notes
-
-La tabla es referencia, no material para leer en voz alta. Lo que hay que decir son los dos ejes que la ordenan: precio por token y tamaño de ventana, y que no correlacionan. Entre Fable 5 y DeepSeek V4 Flash hay un factor cuarenta y cinco de precio de entrada, con la misma ventana de un millón. La segunda cosa, y con todas las letras: esta tabla envejece en meses. Las filas de Anthropic están verificadas contra el catálogo de la API y las de DeepSeek contra su documentación oficial; las de OpenAI y Google salen de agregadores, así que valen como orden de magnitud y no como precio. Decilo, no lo tapes: la habilidad que se llevan no es memorizar precios, es saber qué columnas mirar cuando salga el modelo del mes que viene. Y señalá lo de DeepSeek, que es lo más raro de la tabla: cobra distinto según la hora del día, y en hora pico el precio se duplica. Un pipeline batch que corre de madrugada paga la mitad que el mismo pipeline a las nueve de la mañana.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "La tabla mezcla generaciones incompatibles bajo el rótulo 'precios a marzo 2026' y le da 200K a Sonnet 4.6 cuando la slide 1.3 le da 1M."
-  Resolution: se declaró generación y ventana por fila, se corrigió Sonnet 4.6 a 1M contra el catálogo verificado, se agregó Opus 4.8 y se marcó explícitamente qué filas están verificadas y cuáles no. El árbol de decisión que estaba intercalado en el medio de la tabla pasó a su propia slide.
-- [open] 2026-08-28 — "Las cuatro filas de OpenAI, Google y Meta no se pueden verificar contra el corpus y son de generación 2024. ¿Se actualizan contra la documentación de cada proveedor antes de la clase, o se presentan declaradas como históricas?"
-
----
-
-## 17. Elegir modelo: árbol de decisión
+## 2. Elegir modelo: árbol de decisión
 
 ### Content
 
@@ -614,7 +588,7 @@ El árbol vale más por el orden de las preguntas que por los nombres que devuel
 
 ---
 
-## 18. Prompt caching
+## 3. Prompt caching
 
 ### Content
 
@@ -668,7 +642,7 @@ El caching es la única optimización de esta clase que baja el costo sin tocar 
 
 ---
 
-## 19. Prompt caching: los números
+## 4. Prompt caching: los números
 
 ### Content
 
@@ -700,7 +674,7 @@ Esta slide corrige un error del deck original, y vale la pena decirlo en voz alt
 
 ---
 
-## 20. Prompt caching: implementación
+## 5. Prompt caching: implementación
 
 ### Content
 
@@ -756,7 +730,7 @@ Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y 
 
 ---
 
-## 21. Model cascading
+## 6. Model cascading
 
 ### Content
 
@@ -809,7 +783,7 @@ La idea es de una línea y la trampa está en el rombo del medio. Todo el ahorro
 
 ---
 
-## 22. Cascading: cuándo sí y cuándo no
+## 7. Cascading: cuándo sí y cuándo no
 
 ### Content
 
@@ -824,13 +798,6 @@ La idea es de una línea y la trampa está en el rombo del medio. Todo el ahorro
 - **Latencia baja requerida** Cada escalón agrega una llamada más.
 - **Confianza difícil de medir** Sin señal confiable, el routing falla en silencio.
 - **Bajo volumen** La complejidad de mantener el routing no se paga.
-
-| Factor | Modelo único | Cascading |
-|---|---|---|
-| Precisión | Estable, predecible | Depende de la calidad del routing |
-| Latencia | Menor (una llamada) | Mayor (el fallback agrega llamadas) |
-| Costo | Mayor por llamada | Menor en promedio si hay muchos aciertos baratos |
-| Complejidad | Menor | Mayor (routing, monitoreo, métricas) |
 
 ### Sources
 
@@ -847,7 +814,15 @@ La fila que decide es la última de la tabla. El cascading no es una configuraci
 
 ---
 
-## 23. Los 6 componentes
+# 3. Prompts estructurados
+
+**Goal of this section:** Pasar del prompt escrito a mano al prompt con anatomía: seis componentes, delimitadores explícitos y un contrato de salida que el código pueda validar.
+
+**Presenter feedback:**
+
+---
+
+## 1. Los 6 componentes
 
 ### Content
 
@@ -902,7 +877,7 @@ Seis componentes y el orden importa. Las definiciones ya no están en la lámina
 
 ---
 
-## 24. Un prompt completo
+## 2. Un prompt completo
 
 ### Content
 
@@ -955,7 +930,7 @@ Leé el prompt en voz alta, bloque por bloque, y hacé notar dos cosas. La prime
 
 ---
 
-## 25. Salidas estructuradas: JSON Schema
+## 3. Salidas estructuradas: JSON Schema
 
 ### Content
 
@@ -1002,7 +977,7 @@ La distinción entre los dos enfoques es la que hay que dejar clara, porque se c
 
 ---
 
-## 26. XML: estructura semántica
+## 4. XML: estructura semántica
 
 ### Content
 
@@ -1053,35 +1028,15 @@ El argumento de por qué funcionan las etiquetas es el mismo de la slide del mot
 
 ---
 
-## 27. Optimización por modelo
+# 4. In-context learning
 
-### Content
+**Goal of this section:** Mostrar que los ejemplos dentro del prompt cambian el comportamiento del modelo sin tocar sus pesos, y dar el criterio para elegir cuántos poner.
 
-**Cada familia de modelos tiene su propia personalidad. Un prompt óptimo para una puede no serlo para otra.**
-
-| Familia GPT (OpenAI) | Familia Claude (Anthropic) | Familia Gemini (Google) |
-|---|---|---|
-| Fuerte en salidas estructuradas y en cumplir esquemas JSON. Conviene darle roles explícitos y esquemas bien definidos. | Fuerte en razonamiento y contexto largo. Conviene darle bloques de pensamiento explícitos y etiquetas XML. | Fuerte en ventanas enormes y en multimodal. Muchos equipos ponen la consulta al final del contexto; conviene validarlo por tarea. |
-
-- 🎯 **Probar y evaluar el prompt en cada modelo antes de llevarlo a producción. Un cambio de proveedor no es un cambio de configuración.**
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 20)
-- `aitutorial-structured-prompt-engineering.web.md` — las tres personalidades por familia, incluido el matiz de la propia fuente sobre Gemini ("many teams place the query at the end; validate per task").
-
-### Speaker notes
-
-Esta slide nombra familias y no versiones, y es a propósito: el deck original decía GPT-4 y Gemini 1.5 Pro, que ya eran de dos generaciones atrás cuando se dictó. Las tendencias por familia duran más que las versiones. El punto operativo es el del cierre y vale una anécdota si tenés alguna: migrar de proveedor rompe prompts que llevaban meses estables, porque cada familia responde distinto a las mismas instrucciones. Por eso el eval set de la sección cinco no es opcional. Es lo único que permite cambiar de modelo sin volar a ciegas.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "Nombra GPT-4 y Gemini 1.5 Pro, dos generaciones atrás de lo que usa el resto del deck."
-  Resolution: la tabla pasó a nombrar familias en vez de versiones puntuales y se agregó el matiz que la propia fuente declara sobre la ubicación de la consulta en Gemini.
+**Presenter feedback:**
 
 ---
 
-## 28. In-context learning (ICL)
+## 1. In-context learning (ICL)
 
 ### Content
 
@@ -1129,7 +1084,7 @@ La frase que hay que dejar clavada es "sin modificar los pesos", y el diagrama l
 
 ---
 
-## 29. Zero-shot vs. few-shot
+## 2. Zero-shot vs. few-shot
 
 <!-- slide nueva: el deck original define zero-shot y nunca lo ejemplifica -->
 
@@ -1157,7 +1112,7 @@ Slide nueva, y llena un agujero real del deck original: definía zero-shot y nun
 
 ---
 
-## 30. Few-shot learning
+## 3. Few-shot learning
 
 ### Content
 
@@ -1194,7 +1149,7 @@ La práctica que más rinde y menos se aplica es la tercera. Casi todo el mundo 
 
 ---
 
-## 31. Many-shot learning
+## 4. Many-shot learning
 
 ### Content
 
@@ -1245,7 +1200,15 @@ El punto fuerte de esta slide es la cuarta línea, porque describe un bucle de m
 
 ---
 
-## 32. Técnicas avanzadas: resumen
+# 5. Técnicas avanzadas
+
+**Goal of this section:** Recorrer las técnicas que hacen escribir al modelo antes de responder, medir lo que cuestan y explicar por qué funcionan, que es la tesis de la clase.
+
+**Presenter feedback:**
+
+---
+
+## 1. Técnicas avanzadas: resumen
 
 ### Content
 
@@ -1270,7 +1233,7 @@ Mapa de la sección. Seis técnicas y una sola idea de fondo, que se explica rec
 
 ---
 
-## 33. Chain of Thought (CoT)
+## 2. Chain of Thought (CoT)
 
 ### Content
 
@@ -1306,7 +1269,7 @@ Esta slide cambió respecto del deck original y conviene contar por qué, porque
 
 ---
 
-## 34. CoT en acción: ejemplo
+## 3. CoT en acción: ejemplo
 
 ### Content
 
@@ -1337,7 +1300,7 @@ El ejemplo es trivial a propósito y hay que decirlo, porque la pregunta obvia e
 
 ---
 
-## 35. Self-consistency: votación
+## 4. Self-consistency: votación
 
 ### Content
 
@@ -1399,7 +1362,7 @@ Antes del diagrama, el número que sostiene la decisión y que ya no está en la
 
 ---
 
-## 36. Self-consistency: ejemplo
+## 5. Self-consistency: ejemplo
 
 ### Content
 
@@ -1448,7 +1411,7 @@ Lo interesante del ejemplo es la corrida 3, y conviene señalarla. No es una alu
 
 ---
 
-## 37. Razonamiento: cuánto piensa el modelo
+## 6. Razonamiento: cuánto piensa el modelo
 
 ### Content
 
@@ -1500,7 +1463,7 @@ Slide importada de otra clase y ubicada acá a propósito: abre el bloque de raz
 
 ---
 
-## 38. Effort: cómo se configura
+## 7. Effort: cómo se configura
 
 <!-- ascii-render: documentation-only -->
 
@@ -1534,7 +1497,7 @@ Esta es la lámina que cierra el bloque de razonamiento del lado de la implement
 
 ---
 
-## 39. Del prompt al entrenamiento
+## 8. Del prompt al entrenamiento
 
 ### Content
 
@@ -1561,7 +1524,7 @@ Esta es la lámina conceptual que le da sentido a todo el bloque, y conviene dec
 
 ---
 
-## 40. Extended thinking (Anthropic)
+## 9. Extended thinking (Anthropic)
 
 ### Content
 
@@ -1589,7 +1552,7 @@ Acá hay que cerrar la desambiguación que abriste en la slide anterior, porque 
 
 ---
 
-## 41. Extended thinking: ejemplo
+## 10. Extended thinking: ejemplo
 
 ### Content
 
@@ -1638,7 +1601,7 @@ El ejemplo pasó de un caso clínico a un stack trace, y el cambio de dominio ha
 
 ---
 
-## 42. Tree of Thought (ToT)
+## 11. Tree of Thought (ToT)
 
 ### Content
 
@@ -1685,7 +1648,7 @@ El árbol de la lámina es el punto entero de la técnica, así que caminalo: se
 
 ---
 
-## 43. Tree of Thought: ejemplo
+## 12. Tree of Thought: ejemplo
 
 ### Content
 
@@ -1725,7 +1688,7 @@ Este ejemplo funciona porque las tres ramas son defendibles, y eso es justo el t
 
 ---
 
-## 44. ReAct: razonar y actuar
+## 13. ReAct: razonar y actuar
 
 <!-- slide nueva: ReAct esta procesado en el corpus y no aparecia en ninguna slide -->
 
@@ -1795,7 +1758,7 @@ Las dos afirmaciones del paper que sostenían la lámina van habladas: las **tra
 
 ---
 
-## 45. Prompt chaining
+## 14. Prompt chaining
 
 ### Content
 
@@ -1850,7 +1813,7 @@ El texto de esta slide venía cortado a mitad de palabra en el deck original y n
 
 ---
 
-## 46. Prompt chaining: ejemplo
+## 15. Prompt chaining: ejemplo
 
 ### Content
 
@@ -1894,7 +1857,7 @@ La tercera ventaja es la que suele sorprender, y merece medio minuto: encadenar 
   Resolution: el pipeline pasó a triage de tickets con runbooks e incidentes previos.
 
 ---
-## 47. Técnicas avanzadas: pros y contras
+## 16. Técnicas avanzadas: pros y contras
 
 ### Content
 
@@ -1923,7 +1886,7 @@ Tabla de referencia, para consultar más que para leer. Si hay que decir una sol
 
 ---
 
-## 48. ¿Por qué funcionan?
+## 17. ¿Por qué funcionan?
 
 ### Content
 
@@ -1954,7 +1917,7 @@ Esta es la slide de la tesis y merece el tiempo que haga falta. Todo lo que vier
 
 ---
 
-## 49. ¿Por qué tardan más?
+## 18. ¿Por qué tardan más?
 
 ### Content
 
@@ -1983,7 +1946,7 @@ Esta slide es el contrapeso de las anteriores y por eso va acá, justo después 
 
 ---
 
-## 50. Prompts sin verificación
+## 19. Prompts sin verificación
 
 ### Content
 
@@ -2017,7 +1980,7 @@ Acá empieza el bloque de disciplina de producción y es donde esta audiencia ti
 
 ---
 
-## 51. DSPy: optimización automática
+## 20. DSPy: optimización automática
 
 ### Content
 
@@ -2051,41 +2014,7 @@ El eslogan del framework dice todo: programá, no promptees. Y el punto que más
 
 ---
 
-## 52. Versionado de prompts
-
-### Content
-
-**Un prompt es código. Merece el mismo rigor: control de versiones, historial de cambios y rollback ante una regresión.**
-
-**Por qué versionar**
-
-- **Trazabilidad** Saber qué prompt exacto generó qué output en producción. Crítico cuando hay que auditar una decisión.
-- **Rollback seguro** Si una versión nueva degrada las métricas, se vuelve a la anterior en segundos.
-- **A/B testing** Comparar dos versiones con tráfico real antes de hacer el cambio definitivo.
-
-**Herramientas**
-
-- **Git** Prompts en archivos `.txt` o `.md` versionados junto al código. Simple y suficiente para equipos chicos.
-- **LangSmith (LangChain)** Observabilidad: traza cada llamada, versiona prompts y compara métricas entre versiones.
-- **PromptLayer** Logging y versionado con dashboard de métricas. Integración directa con OpenAI y Anthropic.
-- **Weights & Biases** Ya conocido en ML tradicional, ahora con soporte para experimentos de prompts y evaluación de LLMs.
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 42)
-
-### Speaker notes
-
-La primera opción es la que hay que defender: Git. Un prompt en un archivo versionado, con el diff visible en el pull request, resuelve el noventa por ciento del problema y no agrega ninguna dependencia. Las plataformas se justifican cuando hace falta trazar la llamada en producción, que es un problema distinto del de versionar el texto. Lo que sí hay que decir en contra de una práctica muy común: el prompt embebido como string dentro del código de la aplicación. Ahí el diff es ilegible, nadie lo revisa en el pull request y la primera vez que hay que hacer rollback aparece mezclado con quince cambios de otra cosa. La trazabilidad de la primera viñeta engancha con la sección de riesgos del final, cuando alguien pregunte quién responde si el sistema se equivoca.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "'Crítico para auditorías clínicas y regulatorias', y las herramientas quedaron intercaladas con las razones para versionar."
-  Resolution: se separaron en dos grupos, razones y herramientas, con forma gramatical homogénea (L8), y la referencia clínica pasó a auditoría genérica de una decisión.
-
----
-
-## 53. Datos y testing sistemático
+## 21. Datos y testing sistemático
 
 ### Content
 
@@ -2119,223 +2048,6 @@ La cuarta viñeta de la izquierda es la que más se viola y la que más caro sal
 
 ---
 
-## 54. Versionado de prompts
-
-<!-- DUPLICADO verbatim de la slide 5.19, residuo de edicion -->
-<!-- en el pptx original quedo despues de la slide de cierre. Se conserva por decision del presentador. -->
-
-### Content
-
-**Un prompt es código. Merece el mismo rigor: control de versiones, historial de cambios y rollback ante una regresión.**
-
-**Por qué versionar**
-
-- **Trazabilidad** Saber qué prompt exacto generó qué output en producción.
-- **Rollback seguro** Si una versión nueva degrada las métricas, se vuelve a la anterior en segundos.
-- **A/B testing** Comparar dos versiones con tráfico real antes del cambio definitivo.
-
-**Herramientas**
-
-- **Git** Prompts versionados junto al código. Simple y suficiente para equipos chicos.
-- **LangSmith (LangChain)** Observabilidad: traza cada llamada y compara métricas entre versiones.
-- **PromptLayer** Logging y versionado con dashboard de métricas.
-- **Weights & Biases** Experimentos de prompts y evaluación de LLMs.
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 58) — duplicado verbatim de la slide 42 (corpus, inconsistencia 13).
-
-### Speaker notes
-
-Repetición de la slide 5.19. Si se conserva en la entrega, saltearla o usarla como recordatorio de una línea. Las notas de fondo están en 5.19.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado verbatim de la slide 5.19, residuo de edición del pptx (quedó después de la slide de cierre). Se conserva por la restricción de no borrar. ¿Se entrega, se saltea en vivo, o se retira del deck final?"
-
----
-
-## 55. Self-consistency: ejemplo
-
-<!-- DUPLICADO de la slide 5.5. Se conserva por decision del presentador. -->
-
-### Content
-
-**Tres corridas independientes del mismo prompt sobre el mismo diff, y una votación.**
-
-<!-- ascii-render: documentation-only -->
-```
-# CASO
-Diff en billing/invoice.py:
--   total = subtotal + tax
-+   total = subtotal + tax * quantity
-
-Pregunta: ¿este diff introduce un bug?
-
-# RUN 1 -> SI. tax ya viene calculado sobre el subtotal completo.
-# RUN 2 -> SI. Mismo razonamiento: doble conteo de la cantidad.
-# RUN 3 -> NO. Si tax fuera un monto unitario, el cambio seria correcto.
-
-# RESULTADO (votacion)
--> SI, introduce un bug   (2 de 3 votos)
--> Confianza: 67%
-```
-
-- **Costo** Tres a cinco llamadas al modelo, es decir tres a cinco veces el precio y la latencia.
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 59) — duplicado de la slide 30 (corpus, inconsistencia 13).
-
-### Speaker notes
-
-Repetición de la slide 5.5. Las notas de fondo están ahí.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado de la slide 5.5, residuo de edición del pptx. El ejemplo clínico se reemplazó por el mismo caso de software que la primaria, para que las dos versiones no se contradigan. ¿Se entrega o se retira?"
-
----
-
-## 56. Extended thinking (Anthropic)
-
-<!-- DUPLICADO de la slide 5.7. Se conserva por decision del presentador. -->
-
-### Content
-
-**El modelo produce un bloque de razonamiento antes de la respuesta. En el prompt eso se pide con etiquetas `<thinking>`; en la API moderna el proveedor lo corre de forma nativa.**
-
-| Debugging | Calidad | Trazabilidad |
-|---|---|---|
-| Muestra dónde falló el razonamiento, paso a paso. | Obliga al modelo a pensar antes de responder. | Habilita un rastro de auditoría para decisiones críticas. |
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 60) — duplicado de la slide 31 (corpus, inconsistencia 13).
-
-### Speaker notes
-
-Repetición de la slide 5.7. Las notas de fondo, y la desambiguación entre las etiquetas del prompt y el mecanismo nativo, están ahí.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado de la slide 5.7, residuo de edición del pptx. ¿Se entrega o se retira?"
-
----
-
-## 57. Extended thinking: ejemplo
-
-<!-- DUPLICADO de la slide 5.8. Se conserva por decision del presentador. -->
-
-### Content
-
-**Prompt con `<thinking>` sobre un stack trace**
-
-<!-- ascii-render: documentation-only -->
-```
-<traza>
-java.lang.NullPointerException: Cannot invoke "Order.getTotal()" because "order" is null
-  at billing.InvoiceService.render(InvoiceService.java:118)
-Contexto: aparece solo en produccion, ~3% de las requests a /v2/invoices/{id}
-</traza>
-
-<thinking>
-1. Que objeto es null y en que frame se origina
-2. Que caminos pueden dejar ese objeto en null
-3. Por que solo el 3% de las requests y solo en produccion
-4. Que arreglo ataca la causa y no el sintoma
-</thinking>
-
-Responde en JSON con: causa_probable, evidencia, fix, riesgo_del_fix
-```
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 61) — duplicado de la slide 32 (corpus, inconsistencia 13).
-
-### Speaker notes
-
-Repetición de la slide 5.8. Las notas de fondo están ahí.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado de la slide 5.8, residuo de edición del pptx. El caso clínico se reemplazó por el mismo stack trace que la primaria. ¿Se entrega o se retira?"
-
----
-
-## 58. Tree of Thought (ToT)
-
-<!-- DUPLICADO de la slide 5.9. Se conserva por decision del presentador. -->
-
-### Content
-
-**ToT extiende CoT explorando varios caminos de razonamiento en paralelo, como las ramas de un árbol de decisión. El modelo evalúa cada rama y elige la más prometedora.**
-
-
-- **Generar ramas** → **Evaluar ramas** → **Seleccionar camino**
-
-![Tree of Thought: generar ramas, evaluarlas, podar las malas y expandir solo la mejor hasta la solución](images/s5-9-1-arbol-ramificar-podar.png)
-
-**Limitaciones**
-
-- Cuesta bastante más que CoT lineal.
-- Es más complejo de implementar.
-- Sirve cuando el problema admite varias soluciones posibles.
-- No justifica el overhead en tareas simples.
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 62) — duplicado de la slide 33 (corpus, inconsistencia 13). La imagen `slide-62-1.png` es el mismo archivo que `slide-33-1.png` (mismo MD5).
-- `tree-of-thoughts-yao.web.md` — Yao et al. (2023).
-
-### Speaker notes
-
-Repetición de la slide 5.9. Las notas de fondo están ahí.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado de la slide 5.9, residuo de edición del pptx. ¿Se entrega o se retira?"
-
----
-
-## 59. Tree of Thought: ejemplo
-
-<!-- DUPLICADO de la slide 5.10. Se conserva por decision del presentador. -->
-
-### Content
-
-**Tres estrategias de refactor, evaluadas antes de elegir.**
-
-<!-- ascii-render: documentation-only -->
-```
-# CASO
-El modulo billing/invoice.py tiene 1.400 lineas, 38 metodos y ningun test.
-Hay que agregarle IVA por jurisdiccion sin romper la facturacion actual.
-
-# INSTRUCCION (Tree of Thought)
-1. Genera 3 estrategias de refactor posibles
-2. Evalua evidencia a favor y en contra de cada una
-3. Elegi la mas prometedora y justifica
-```
-
-- **Rama A: extraer la logica de impuestos a un modulo nuevo** Aisla el cambio y permite testear lo nuevo. **Rama seleccionada.**
-- **Rama B: reescribir el modulo entero con tests** Lo más limpio a largo plazo, y sin tests previos no hay red.
-- **Rama C: agregar el IVA in situ con condicionales** Lo más rápido, y suma complejidad a un módulo que ya no la tolera. Descartada.
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 63) — duplicado de la slide 34 (corpus, inconsistencia 13).
-- `tree-of-thoughts-yao.web.md` — Yao et al. (2023).
-
-### Speaker notes
-
-Repetición de la slide 5.10. Las notas de fondo están ahí.
-
-### Presenter feedback
-
-- [open] 2026-08-28 — "Duplicado de la slide 5.10, residuo de edición del pptx. El caso clínico se reemplazó por el mismo ejemplo de refactor que la primaria. ¿Se entrega o se retira?"
-
----
 # 6. LLMs en ingeniería
 
 **Goal of this section:** Situar todo lo anterior en el ciclo de vida real de un producto de software, con los riesgos que trae y las mitigaciones que un equipo ya sabe practicar.
@@ -2458,7 +2170,30 @@ Slide corta y a propósito. Lo que hay que sostener es la advertencia del final,
 
 ---
 
-## 4. Oportunidades vs. riesgos
+## 4. Seguridad: el caso Glasswing
+
+### Content
+
+**En abril de 2026 un modelo de frontera sin publicar encontró miles de vulnerabilidades críticas —de forma autónoma, sin dirección humana— en todos los sistemas operativos y navegadores importantes. Doce empresas formaron Project Glasswing para poner esa capacidad del lado de la defensa.**
+
+- **OpenBSD: veintisiete años escondida** En uno de los sistemas más endurecidos que existen, el que se usa para correr firewalls e infraestructura crítica. La falla permitía tirar abajo cualquier máquina de forma remota con solo conectarse a ella.
+- **FFmpeg: el test que no alcanzó** Vulnerabilidad de dieciséis años, en una línea de código que las herramientas de testing automático habían recorrido **cinco millones de veces** sin detectar nunca el problema.
+- **Linux: encadenar para escalar** El modelo encontró varias vulnerabilidades del kernel y las combinó solo, hasta pasar de usuario común a control total de la máquina.
+
+- 🎯 **Por qué el pipeline se vuelve urgente.** Si un modelo encuentra en semanas lo que sobrevivió décadas de revisión humana y millones de tests, entonces la revisión y los tests que tenés hoy dejaron de ser suficientes. Y la capacidad no es exclusiva de los defensores: el mismo modelo que encuentra la falla para parcharla sabe escribir el exploit.
+
+### Sources
+
+- `research/web/anthropic-glasswing/` — Anthropic, Project Glasswing, 7 de abril de 2026, capturado el 2026-09-01. Socios fundadores: AWS, Anthropic, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, Linux Foundation, Microsoft, NVIDIA y Palo Alto Networks. Aportan verbatim los tres casos (OpenBSD 27 años, FFmpeg 16 años con cinco millones de ejecuciones de test, cadena de escalada en el kernel de Linux), que las tres fallas ya fueron parcheadas, y que el modelo las encontró "enteramente de forma autónoma, sin dirección humana". En el benchmark CyberGym el modelo marca 83,1% contra 66,6% del siguiente mejor.
+- Nota: la captura todavía no tiene registro en `research/corpus/` — falta la pasada del librarian.
+
+### Speaker notes
+
+Esta lámina es la cara incómoda de todo lo que vimos hoy, y va acá a propósito: recién les mostré los casos de uso lindos, y esto es el reverso. El dato que más impacta no es el número de vulnerabilidades, es la antigüedad: veintisiete años en OpenBSD, que es el sistema que la industria pone de ejemplo cuando habla de código endurecido. Y el de FFmpeg es el que les va a doler como ingenieros: la línea estaba cubierta, los tests la recorrieron cinco millones de veces, y el problema no se veía. No es que faltaba cobertura; es que el tipo de error no era detectable con esas herramientas. De ahí sale la conclusión práctica, y conviene decirla sin dramatismo: el pipeline de revisión y testing que hoy consideran suficiente fue construido contra un atacante humano. La simetría es lo último y lo más importante: la misma capacidad que encuentra la falla para parcharla sirve para escribir el exploit. Por eso el proyecto existe y por eso hay doce empresas grandes adentro. Si alguien pregunta si esto es marketing, señalá el detalle verificable: las tres fallas están parcheadas y reportadas a los mantenedores.
+
+---
+
+## 5. Oportunidades vs. riesgos
 
 ### Content
 
@@ -2491,7 +2226,7 @@ Ocho ítems, y conviene ordenar el énfasis en lugar de leerlos todos. De las op
 
 ---
 
-## 5. Mitigaciones que funcionan
+## 6. Mitigaciones que funcionan
 
 ### Content
 
@@ -2518,7 +2253,7 @@ La primera es la única no negociable y conviene decirlo con esas palabras. Todo
 
 ---
 
-## 6. Para pensar
+## 7. Para pensar
 
 ### Content
 
@@ -2543,7 +2278,7 @@ Slide de discusión, no de contenido. Si hay tiempo, la tercera viñeta es la me
 
 ---
 
-## 7. Benchmarks: qué miden
+## 8. Benchmarks: qué miden
 
 <!-- ventana de contexto y tokens. Movida aca y reconvertida del dominio medico al de software. -->
 
@@ -2574,7 +2309,15 @@ Esta slide estaba al final de la sección de fundamentos, cortando el hilo entre
 
 ---
 
-## 8. ¡A practicar!
+# 7. Resumen y práctica
+
+**Goal of this section:** Cerrar con lo que hay que retener y dejar los cuatro módulos de práctica como trabajo domiciliario.
+
+**Presenter feedback:**
+
+---
+
+## 1. ¡A practicar!
 
 ### Content
 

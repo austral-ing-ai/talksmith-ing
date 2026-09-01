@@ -774,11 +774,6 @@
           "label": "Modificadores de tarifa",
           "body": "Cache hit: 10% del precio de entrada · Batch: 50% de la tarifa · Fast Mode (Opus 5 y Opus 4.8): $10 / $50 · Búsqueda web: $10 por cada 1.000 búsquedas · Ejecución de código: 50 h gratis por día, después $0,05/hora.",
           "kind": "note"
-        },
-        {
-          "label": "El effort también se paga",
-          "body": "El nivel de effort determina cuántos tokens de *thinking* genera el modelo, y esos tokens se facturan a tarifa de salida aunque no vuelvan en la respuesta. Opus 4.8 expone cinco niveles (`low`, `medium`, `high`, `xhigh`, `max`) y el default es `high`: una llamada sin configurar effort ya viene gastando de más.",
-          "kind": "important"
         }
       ],
       "notes": "Tres cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la entrada en toda la familia, así que la variable que hay que vigilar es cuánto habla el modelo, no cuánto se le manda. La segunda: entre Haiku 4.5 y Fable 5 hay un factor diez de precio, y esa distancia es la que hace que valga la pena la cascada de la próxima slide. La tercera es la que nadie mira, y es el effort. Los tokens de razonamiento se facturan como salida aunque el usuario nunca los vea, y el default es `high`. Un equipo que nunca tocó ese parámetro está pagando razonamiento de sobra en cada clasificación trivial. Mostrales la captura: el selector está a la vista en la interfaz, no escondido en la API. Si preguntan por Fable 5, aclará que la captura lo muestra como no disponible en ese momento y que la tabla sí le pone precio: son dos estados del mismo producto en fechas distintas.",
@@ -801,119 +796,6 @@
         "rejected": {
           "content+cards+image": "the catalog's most-common-miss check: the six rows read across shared factors (Generación · Ventana · Entrada · Salida), so flattening them into cards would concatenate each row into one body and lose the column alignment that is the slide — value-columns carries the shared image itself",
           "concept-breakdown": "requires images == 0, and its card-per-row form applies only when the columns are heterogeneous attributes with nothing reading across; here every column is a shared factor"
-        }
-      }
-    },
-    {
-      "template": "value-columns",
-      "section": "Modelos y costos",
-      "title": "El paisaje de modelos",
-      "lead": "**No existe un modelo universal. La elección depende de la tarea, del volumen, del contexto necesario y del presupuesto, y elegir mal multiplica el costo o degrada la calidad.**",
-      "columns": [
-        {
-          "header": "Modelo",
-          "cells": [
-            "Claude Fable 5 (Anthropic)",
-            "Claude Opus 5 (Anthropic)",
-            "Claude Sonnet 5 (Anthropic)",
-            "Claude Haiku 4.5 (Anthropic)",
-            "GPT-5.6 Sol (OpenAI)",
-            "GPT-5.6 Luna (OpenAI)",
-            "Gemini 3.1 Pro (Google)",
-            "DeepSeek V4 Pro",
-            "DeepSeek V4 Flash",
-            "Llama 3.3 70B (Meta)"
-          ]
-        },
-        {
-          "header": "Generación",
-          "cells": [
-            "2026",
-            "2026",
-            "2026",
-            "2025",
-            "2026",
-            "2026",
-            "2026",
-            "2026",
-            "2026",
-            "2024"
-          ]
-        },
-        {
-          "header": "Ventana",
-          "cells": [
-            "1M",
-            "1M",
-            "1M",
-            "200K",
-            "1,05M",
-            "1,05M",
-            "—",
-            "1M",
-            "1M",
-            "128K"
-          ]
-        },
-        {
-          "header": "Entrada / salida ($/MTok)",
-          "cells": [
-            "$10,00 / $50,00",
-            "$5,00 / $25,00",
-            "$2,00 / $10,00",
-            "$1,00 / $5,00",
-            "$4,00 / $20,00",
-            "$0,20 / $1,20",
-            "$2,00 / $12,00",
-            "$0,66 / $1,98",
-            "$0,22 / $0,66",
-            "Self-hosted ≈$0,03 / $0,10"
-          ]
-        },
-        {
-          "header": "Mejor para",
-          "cells": [
-            "Razonamiento de frontera, agentes de horizonte largo",
-            "Razonamiento difícil, trabajo agéntico largo",
-            "Documentos largos, análisis matizado",
-            "Clasificación y extracción de alto volumen",
-            "Alternativa de frontera",
-            "Tareas simples, alto volumen",
-            "Multimodal",
-            "Razonamiento a costo bajo",
-            "Volumen a costo mínimo",
-            "Requisitos on-premise"
-          ]
-        }
-      ],
-      "design": "full",
-      "highlights": [
-        {
-          "label": "Qué está verificado y contra qué",
-          "body": "Anthropic, contra el catálogo de la API (corte 2026-06-24). DeepSeek, contra su documentación oficial, consultada el 2026-08-28: esos precios son de horario **off-peak** y **se duplican en hora pico** (01-04 y 06-10 UTC, lunes a viernes). OpenAI y Google salen de agregadores de precios, no de la fuente: tomalos como orden de magnitud. La ventana de Gemini no se pudo verificar. Llama es una estimación de self-hosted.",
-          "kind": "important",
-          "position": "bottom"
-        }
-      ],
-      "notes": "La tabla es referencia, no material para leer en voz alta. Lo que hay que decir son los dos ejes que la ordenan: precio por token y tamaño de ventana, y que no correlacionan. Entre Fable 5 y DeepSeek V4 Flash hay un factor cuarenta y cinco de precio de entrada, con la misma ventana de un millón. La segunda cosa, y con todas las letras: esta tabla envejece en meses. Las filas de Anthropic están verificadas contra el catálogo de la API y las de DeepSeek contra su documentación oficial; las de OpenAI y Google salen de agregadores, así que valen como orden de magnitud y no como precio. Decilo, no lo tapes: la habilidad que se llevan no es memorizar precios, es saber qué columnas mirar cuando salga el modelo del mes que viene. Y señalá lo de DeepSeek, que es lo más raro de la tabla: cobra distinto según la hora del día, y en hora pico el precio se duplica. Un pipeline batch que corre de madrugada paga la mitad que el mismo pipeline a las nueve de la mañana.",
-      "_choice": {
-        "signals": [
-          "has_table=true",
-          "n_images=0",
-          "labeled_items=0",
-          "two_groups=false",
-          "one_claim=false",
-          "is_ordered=false"
-        ],
-        "candidates": [
-          "value-columns",
-          "concept-breakdown",
-          "content-text"
-        ],
-        "picked": "value-columns",
-        "rejected": {
-          "concept-breakdown": "the four columns are shared factors read across each model row (a transposed compare table), not heterogeneous attributes — card-per-row would collapse each row into one ·-joined body and drop the alignment",
-          "content-text": "last resort for prose only; the body is an aligned table, and the catalog forbids falling to a plainer template when a richer one fits"
         }
       }
     },
@@ -1148,38 +1030,6 @@
         "**Confianza difícil de medir** Sin señal confiable, el routing falla en silencio.",
         "**Bajo volumen** La complejidad de mantener el routing no se paga."
       ],
-      "design": "split-right",
-      "media": {
-        "columns": [
-          {
-            "header": "Factor",
-            "cells": [
-              "Precisión",
-              "Latencia",
-              "Costo",
-              "Complejidad"
-            ]
-          },
-          {
-            "header": "Modelo único",
-            "cells": [
-              "Estable, predecible",
-              "Menor (una llamada)",
-              "Mayor por llamada",
-              "Menor"
-            ]
-          },
-          {
-            "header": "Cascading",
-            "cells": [
-              "Depende de la calidad del routing",
-              "Mayor (el fallback agrega llamadas)",
-              "Menor en promedio si hay muchos aciertos baratos",
-              "Mayor (routing, monitoreo, métricas)"
-            ]
-          }
-        ]
-      },
       "notes": "La fila que decide es la última de la tabla. El cascading no es una configuración, es un componente más del sistema: hay que rutear, monitorear el porcentaje de escalados y detectar cuándo el gate se desalinea. Un equipo chico que procesa cien consultas por día está pagando esa complejidad para ahorrar unos dólares. Un equipo que procesa cien mil, no. Si querés cerrar con una regla práctica: medí primero cuánto cuesta hacer todo con el modelo bueno a effort bajo. Muchas veces eso alcanza y no hace falta cascada, porque un modelo nuevo a effort bajo suele rendir como el anterior a effort alto, y un solo modelo mantiene un solo namespace de caché.",
       "_choice": {
         "signals": [
@@ -1375,53 +1225,6 @@
         "picked": "code-example",
         "rejected": {
           "content+cards+image": "su imagen era una dona sin rótulo, dibujada sobre una cifra retirada por no tener fuente; se eliminó y la lámina ya no tiene visual"
-        }
-      }
-    },
-    {
-      "template": "concept-columns",
-      "section": "Prompts estructurados",
-      "title": "Optimización por modelo",
-      "lead": "**Cada familia de modelos tiene su propia personalidad. Un prompt óptimo para una puede no serlo para otra.**",
-      "columns": [
-        {
-          "label": "Familia GPT (OpenAI)",
-          "body": "Fuerte en salidas estructuradas y en cumplir esquemas JSON. Conviene darle roles explícitos y esquemas bien definidos."
-        },
-        {
-          "label": "Familia Claude (Anthropic)",
-          "body": "Fuerte en razonamiento y contexto largo. Conviene darle bloques de pensamiento explícitos y etiquetas XML."
-        },
-        {
-          "label": "Familia Gemini (Google)",
-          "body": "Fuerte en ventanas enormes y en multimodal. Muchos equipos ponen la consulta al final del contexto; conviene validarlo por tarea."
-        }
-      ],
-      "highlights": [
-        {
-          "body": "**Probar y evaluar el prompt en cada modelo antes de llevarlo a producción. Un cambio de proveedor no es un cambio de configuración.**",
-          "kind": "takeaway"
-        }
-      ],
-      "notes": "Esta slide nombra familias y no versiones, y es a propósito: el deck original decía GPT-4 y Gemini 1.5 Pro, que ya eran de dos generaciones atrás cuando se dictó. Las tendencias por familia duran más que las versiones. El punto operativo es el del cierre y vale una anécdota si tenés alguna: migrar de proveedor rompe prompts que llevaban meses estables, porque cada familia responde distinto a las mismas instrucciones. Por eso el eval set de la sección cinco no es opcional. Es lo único que permite cambiar de modelo sin volar a ciegas.",
-      "_choice": {
-        "signals": [
-          "has_table=true",
-          "n_images=0",
-          "labeled_items=3",
-          "two_groups=false",
-          "is_ordered=false",
-          "big_metrics=false"
-        ],
-        "candidates": [
-          "concept-columns",
-          "value-columns",
-          "concept-breakdown"
-        ],
-        "picked": "concept-columns",
-        "rejected": {
-          "value-columns": "the table has a single row and no shared factor column — reading across says nothing; each column is a self-contained explanation of its own family, which is the catalog's explicit discriminator for concept-columns",
-          "concept-breakdown": "its cards hold a label plus one short body and nothing more; these are definition columns whose paragraphs explain a term, and the table headers are the terms themselves"
         }
       }
     },
@@ -2695,54 +2498,6 @@
     {
       "template": "concept-columns",
       "section": "Técnicas avanzadas",
-      "title": "Versionado de prompts",
-      "lead": "**Un prompt es código. Merece el mismo rigor: control de versiones, historial de cambios y rollback ante una regresión.**",
-      "columns": [
-        {
-          "label": "Por qué versionar",
-          "body": "",
-          "text": [
-            "**Trazabilidad** Saber qué prompt exacto generó qué output en producción. Crítico cuando hay que auditar una decisión.",
-            "**Rollback seguro** Si una versión nueva degrada las métricas, se vuelve a la anterior en segundos.",
-            "**A/B testing** Comparar dos versiones con tráfico real antes de hacer el cambio definitivo."
-          ]
-        },
-        {
-          "label": "Herramientas",
-          "body": "",
-          "text": [
-            "**Git** Prompts en archivos `.txt` o `.md` versionados junto al código. Simple y suficiente para equipos chicos.",
-            "**LangSmith (LangChain)** Observabilidad: traza cada llamada, versiona prompts y compara métricas entre versiones.",
-            "**PromptLayer** Logging y versionado con dashboard de métricas. Integración directa con OpenAI y Anthropic.",
-            "**Weights & Biases** Ya conocido en ML tradicional, ahora con soporte para experimentos de prompts y evaluación de LLMs."
-          ]
-        }
-      ],
-      "notes": "La primera opción es la que hay que defender: Git. Un prompt en un archivo versionado, con el diff visible en el pull request, resuelve el noventa por ciento del problema y no agrega ninguna dependencia. Las plataformas se justifican cuando hace falta trazar la llamada en producción, que es un problema distinto del de versionar el texto. Lo que sí hay que decir en contra de una práctica muy común: el prompt embebido como string dentro del código de la aplicación. Ahí el diff es ilegible, nadie lo revisa en el pull request y la primera vez que hay que hacer rollback aparece mezclado con quince cambios de otra cosa. La trazabilidad de la primera viñeta engancha con la sección de riesgos del final, cuando alguien pregunte quién responde si el sistema se equivoca.",
-      "_choice": {
-        "signals": [
-          "two_groups=true",
-          "polarity=false",
-          "labeled_items=7",
-          "n_images=0",
-          "has_table=false",
-          "is_ordered=false"
-        ],
-        "candidates": [
-          "concept-columns",
-          "concept-breakdown",
-          "value-columns"
-        ],
-        "picked": "concept-columns",
-        "rejected": {
-          "concept-breakdown": "seven flat cards drop the two block headings (`Por qué versionar` / `Herramientas`), which carry the slide's structure",
-          "value-columns": "the columns are not parallel values over a shared factor — reasons against tools, 3 items against 4; nothing reads across a row"
-        }
-      }
-    },
-    {
-      "template": "concept-columns",
-      "section": "Técnicas avanzadas",
       "title": "Datos y testing sistemático",
       "columns": [
         {
@@ -2793,261 +2548,6 @@
           "concept-breakdown": "seven flat cards drop the two block headings (`Construir el eval set` / `El pipeline`), which are the slide's structure",
           "value-columns": "4 items against 3 with no shared factor — reading across a row says nothing, which is the catalog's exact test for sending the shape here",
           "process": "the items carry a label each, so they are not the unlabeled enumeration `process` numbers; and neither group is a sequence the audience follows in order"
-        }
-      }
-    },
-    {
-      "template": "concept-columns",
-      "section": "Técnicas avanzadas",
-      "title": "Versionado de prompts",
-      "lead": "**Un prompt es código. Merece el mismo rigor: control de versiones, historial de cambios y rollback ante una regresión.**",
-      "columns": [
-        {
-          "label": "Por qué versionar",
-          "body": "",
-          "text": [
-            "**Trazabilidad** Saber qué prompt exacto generó qué output en producción.",
-            "**Rollback seguro** Si una versión nueva degrada las métricas, se vuelve a la anterior en segundos.",
-            "**A/B testing** Comparar dos versiones con tráfico real antes del cambio definitivo."
-          ]
-        },
-        {
-          "label": "Herramientas",
-          "body": "",
-          "text": [
-            "**Git** Prompts versionados junto al código. Simple y suficiente para equipos chicos.",
-            "**LangSmith (LangChain)** Observabilidad: traza cada llamada y compara métricas entre versiones.",
-            "**PromptLayer** Logging y versionado con dashboard de métricas.",
-            "**Weights & Biases** Experimentos de prompts y evaluación de LLMs."
-          ]
-        }
-      ],
-      "notes": "Cierre de la sección más larga. Recapitulá con la tesis: todas las técnicas hacen escribir al modelo antes de responder, porque escribir es el cómputo, y todas se pagan en tokens y en latencia. Lo que sigue baja todo eso a un equipo de software real.\n\nRepetición de la slide 5.19. Si se conserva en la entrega, saltearla o usarla como recordatorio de una línea. Las notas de fondo están en 5.19.",
-      "_choice": {
-        "signals": [
-          "two_groups=true",
-          "polarity=false",
-          "labeled_items=7",
-          "n_images=0",
-          "has_table=false",
-          "is_ordered=false"
-        ],
-        "candidates": [
-          "concept-columns",
-          "concept-breakdown",
-          "value-columns"
-        ],
-        "picked": "concept-columns",
-        "rejected": {
-          "concept-breakdown": "seven flat cards drop the two block headings (`Por qué versionar` / `Herramientas`), which carry the slide's structure",
-          "value-columns": "reasons against tools is not a set of parallel values over a shared factor — 3 cells against 4, and nothing reads across a row"
-        }
-      }
-    },
-    {
-      "template": "code-example",
-      "section": "Técnicas avanzadas",
-      "title": "Self-consistency: ejemplo",
-      "language": "text",
-      "code": "# CASO\nDiff en billing/invoice.py:\n-   total = subtotal + tax\n+   total = subtotal + tax * quantity\n\nPregunta: ¿este diff introduce un bug?\n\n# RUN 1 -> SI. tax ya viene calculado sobre el subtotal completo.\n# RUN 2 -> SI. Mismo razonamiento: doble conteo de la cantidad.\n# RUN 3 -> NO. Si tax fuera un monto unitario, el cambio seria correcto.\n\n# RESULTADO (votacion)\n-> SI, introduce un bug   (2 de 3 votos)\n-> Confianza: 67%\n",
-      "explanation": [
-        "**Tres corridas independientes del mismo prompt sobre el mismo diff, y una votación.**",
-        "**Costo** Tres a cinco llamadas al modelo, es decir tres a cinco veces el precio y la latencia."
-      ],
-      "notes": "Repetición de la slide 5.5. Las notas de fondo están ahí.",
-      "_choice": {
-        "signals": [
-          "has_code=true",
-          "labeled_items=1",
-          "n_images=0",
-          "has_table=false"
-        ],
-        "candidates": [
-          "code-example",
-          "single-point",
-          "content-text"
-        ],
-        "picked": "code-example",
-        "rejected": {
-          "single-point": "`has_code` is decided before any enumeration rule — code dominates; the fenced run-and-vote trace is the slide, and the one `Costo` item is its explanation column, not the slide's substance",
-          "content-text": "the body is a fenced block meant to be read, not prose — `content-text` is the last resort for a slide with no code, no image and no enumeration"
-        }
-      }
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Técnicas avanzadas",
-      "title": "Extended thinking (Anthropic)",
-      "lead": "**El modelo produce un bloque de razonamiento antes de la respuesta. En el prompt eso se pide con etiquetas `<thinking>`; en la API moderna el proveedor lo corre de forma nativa.**",
-      "format": "row",
-      "cards": [
-        {
-          "label": "Debugging",
-          "body": "Muestra dónde falló el razonamiento, paso a paso.",
-          "icon": "bug_report"
-        },
-        {
-          "label": "Calidad",
-          "body": "Obliga al modelo a pensar antes de responder.",
-          "icon": "verified"
-        },
-        {
-          "label": "Trazabilidad",
-          "body": "Habilita un rastro de auditoría para decisiones críticas.",
-          "icon": "history"
-        }
-      ],
-      "notes": "Repetición de la slide 5.7. Las notas de fondo, y la desambiguación entre las etiquetas del prompt y el mecanismo nativo, están ahí.",
-      "_choice": {
-        "signals": [
-          "has_table=true",
-          "labeled_items=3",
-          "two_groups=false",
-          "polarity=false",
-          "n_images=0",
-          "is_ordered=false",
-          "body_len=short (≤60 chars)"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "value-columns",
-          "concept-columns"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "value-columns": "the three headers are heterogeneous benefits of one mechanism over a single body row — there is no shared factor to read across, so this is a labeled set written sideways, not a compare grid",
-          "concept-columns": "its Match explicitly excludes 'label + a single line per item, with no sub-structure', which is exactly this table"
-        },
-        "format_note": "lead + 3 items, every body ≤ 80 chars → `format: row`"
-      }
-    },
-    {
-      "template": "code-example",
-      "section": "Técnicas avanzadas",
-      "title": "Extended thinking: ejemplo",
-      "language": "text",
-      "code": "<traza>\njava.lang.NullPointerException: Cannot invoke \"Order.getTotal()\" because \"order\" is null\n  at billing.InvoiceService.render(InvoiceService.java:118)\nContexto: aparece solo en produccion, ~3% de las requests a /v2/invoices/{id}\n</traza>\n\n<thinking>\n1. Que objeto es null y en que frame se origina\n2. Que caminos pueden dejar ese objeto en null\n3. Por que solo el 3% de las requests y solo en produccion\n4. Que arreglo ataca la causa y no el sintoma\n</thinking>\n\nResponde en JSON con: causa_probable, evidencia, fix, riesgo_del_fix\n",
-      "explanation": [
-        "**Prompt con `<thinking>` sobre un stack trace**"
-      ],
-      "notes": "Repetición de la slide 5.8. Las notas de fondo están ahí.",
-      "_choice": {
-        "signals": [
-          "has_code=true",
-          "labeled_items=0",
-          "n_images=0",
-          "has_table=false"
-        ],
-        "candidates": [
-          "code-example",
-          "content-text"
-        ],
-        "picked": "code-example",
-        "rejected": {
-          "content-text": "`has_code` is decided before anything else — the fenced prompt is the slide, and `content-text` is the last resort for a slide that carries only prose"
-        }
-      }
-    },
-    {
-      "template": "content-image",
-      "section": "Técnicas avanzadas",
-      "title": "Tree of Thought (ToT)",
-      "lead": "**ToT extiende CoT explorando varios caminos de razonamiento en paralelo, como las ramas de un árbol de decisión. El modelo evalúa cada rama y elige la más prometedora.**",
-      "facts": [
-        {
-          "body": "**Generar ramas** → **Evaluar ramas** → **Seleccionar camino**"
-        },
-        {
-          "body": "**Limitaciones**"
-        },
-        {
-          "body": "Cuesta bastante más que CoT lineal."
-        },
-        {
-          "body": "Es más complejo de implementar."
-        },
-        {
-          "body": "Sirve cuando el problema admite varias soluciones posibles."
-        },
-        {
-          "body": "No justifica el overhead en tareas simples."
-        }
-      ],
-      "notes": "Repetición de la slide 5.9. Las notas de fondo están ahí.",
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "image_only=false",
-          "labeled_items=0 (the four Limitaciones lines carry no labels)",
-          "has_code=false",
-          "is_ordered=false"
-        ],
-        "candidates": [
-          "content-image",
-          "content+cards+image",
-          "concept-breakdown",
-          "image-full"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "content+cards+image": "there is no card set to keep — the four `Limitaciones` lines are unlabeled, so `labeled_items ≥ 2` never fires",
-          "concept-breakdown": "requires `images == 0`; keeping it would drop the shared diagram, and its items are unlabeled anyway",
-          "image-full": "`image_only` is false — the slide leads with a paragraph and carries six further lines of body, well past the single short framing line that template allows"
-        }
-      },
-      "media": {
-        "src": "images/s5-9-1-arbol-ramificar-podar.png",
-        "alt": "Tree of Thought: generar ramas, evaluarlas, podar las malas y expandir solo la mejor hasta la solución"
-      },
-      "design": "split-right"
-    },
-    {
-      "template": "content+cards+image",
-      "section": "Técnicas avanzadas",
-      "title": "Tree of Thought: ejemplo",
-      "lead": "**Tres estrategias de refactor, evaluadas antes de elegir.**",
-      "design": "split-left",
-      "media": {
-        "code": "# CASO\nEl modulo billing/invoice.py tiene 1.400 lineas, 38 metodos y ningun test.\nHay que agregarle IVA por jurisdiccion sin romper la facturacion actual.\n\n# INSTRUCCION (Tree of Thought)\n1. Genera 3 estrategias de refactor posibles\n2. Evalua evidencia a favor y en contra de cada una\n3. Elegi la mas prometedora y justifica\n",
-        "language": "text"
-      },
-      "cards": [
-        {
-          "label": "Rama A: extraer la logica de impuestos a un modulo nuevo",
-          "body": "Aisla el cambio y permite testear lo nuevo. **Rama seleccionada.**",
-          "icon": "call_split"
-        },
-        {
-          "label": "Rama B: reescribir el modulo entero con tests",
-          "body": "Lo más limpio a largo plazo, y sin tests previos no hay red.",
-          "icon": "restart_alt"
-        },
-        {
-          "label": "Rama C: agregar el IVA in situ con condicionales",
-          "body": "Lo más rápido, y suma complejidad a un módulo que ya no la tolera. Descartada.",
-          "icon": "bolt"
-        }
-      ],
-      "notes": "Repetición de la slide 5.10. Las notas de fondo están ahí.",
-      "_choice": {
-        "signals": [
-          "has_code=true",
-          "labeled_items=3",
-          "n_images=0",
-          "is_ordered=false",
-          "has_table=false"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "code-example",
-          "concept-breakdown",
-          "process"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "code-example": "it would flatten the three evaluated branches into explanation paragraphs and lose the card set the slide is about; the catalog's `media: {code}` shape exists precisely so a card set beside a fence keeps both halves — 'Content is never dropped'",
-          "concept-breakdown": "it has no slot for the supporting fence, so keeping it would strand the CASO / INSTRUCCION block",
-          "process": "`Rama A/B/C` are parallel alternatives weighed against each other, not an ordered sequence — order carries no meaning and rendered ordinals would contradict the letters"
         }
       }
     },
@@ -3244,6 +2744,48 @@
         "rejected": {
           "value-columns": "there is a single body row, so nothing reads across a shared factor — the columns are four unrelated categories, not parallel values over one factor",
           "concept-columns": "each category is a term plus one short paragraph with no free text, no feature list and no Ejemplos line — the catalog routes that shape to concept-breakdown cards"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "LLMs en ingeniería",
+      "title": "Seguridad: el caso Glasswing",
+      "lead": "**En abril de 2026 un modelo de frontera sin publicar encontró miles de vulnerabilidades críticas —de forma autónoma, sin dirección humana— en todos los sistemas operativos y navegadores importantes. Doce empresas formaron Project Glasswing para poner esa capacidad del lado de la defensa.**",
+      "cards": [
+        {
+          "label": "OpenBSD: veintisiete años escondida",
+          "body": "En uno de los sistemas más endurecidos que existen, el que se usa para correr firewalls e infraestructura crítica. La falla permitía tirar abajo cualquier máquina de forma remota con solo conectarse a ella."
+        },
+        {
+          "label": "FFmpeg: el test que no alcanzó",
+          "body": "Vulnerabilidad de dieciséis años, en una línea de código que las herramientas de testing automático habían recorrido **cinco millones de veces** sin detectar nunca el problema."
+        },
+        {
+          "label": "Linux: encadenar para escalar",
+          "body": "El modelo encontró varias vulnerabilidades del kernel y las combinó solo, hasta pasar de usuario común a control total de la máquina."
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Por qué el pipeline se vuelve urgente",
+          "body": "Si un modelo encuentra en semanas lo que sobrevivió décadas de revisión humana y millones de tests, entonces la revisión y los tests que tenés hoy dejaron de ser suficientes. Y la capacidad no es exclusiva de los defensores: el mismo modelo que encuentra la falla para parcharla sabe escribir el exploit.",
+          "kind": "important",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Esta lámina es la cara incómoda de todo lo que vimos hoy, y va acá a propósito: recién les mostré los casos de uso lindos, y esto es el reverso. El dato que más impacta no es el número de vulnerabilidades, es la antigüedad: veintisiete años en OpenBSD, que es el sistema que la industria pone de ejemplo cuando habla de código endurecido. Y el de FFmpeg es el que les va a doler como ingenieros: la línea estaba cubierta, los tests la recorrieron cinco millones de veces, y el problema no se veía. No es que faltaba cobertura; es que el tipo de error no era detectable con esas herramientas. De ahí sale la conclusión práctica, y conviene decirla sin dramatismo: el pipeline de revisión y testing que hoy consideran suficiente fue construido contra un atacante humano. La simetría es lo último y lo más importante: la misma capacidad que encuentra la falla para parcharla sirve para escribir el exploit. Por eso el proyecto existe y por eso hay doce empresas grandes adentro. Si alguien pregunta si esto es marketing, señalá el detalle verificable: las tres fallas están parcheadas y reportadas a los mantenedores.",
+      "_choice": {
+        "signals": [
+          "tres casos concretos y paralelos, cada uno con su rótulo"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "son tres casos rotulados, no prosa corrida; el invariante manda tarjetas"
         }
       }
     },
@@ -3566,7 +3108,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "1b9119b58bcb77ca05a7f0d21031e0953bbeeb538f5faadc7b5492fd577faf7e",
-    "bytes": 155301
+    "sha256": "acb338996908df005a62e0914c1bb570d95bc4fb68de9f288011bc060894b477",
+    "bytes": 145422
   }
 }
