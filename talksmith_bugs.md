@@ -10,8 +10,9 @@
 ## Entries
 
 <!-- Talksmith appends entries below this line, newest at the bottom. -->
-
 - id: BUG-20260826-01
+  status: ABIERTO (verificado 2026-09-01, plugin 0.97.0) — `${CLAUDE_PLUGIN_ROOT}` sigue vacio en
+    este runtime y los comandos /plugin siguen sin existir. Es del entorno, no de una version del plugin.
   date: 2026-08-26
   talk: -
   step: 0 (arranque de sesión)
@@ -54,93 +55,20 @@
     (b) que el CLAUDE.md nombre la ruta canónica del marketplace, para no tener que buscarla
     con find en cada arranque. Del lado del usuario no hay nada que hacer: abrir el mismo
     directorio en el CLI de Claude Code debería expandir el import solo
-  seen: 7
-  status: open
-  plugin_version: visto en 0.87.0; reverificado en 0.88.0, 0.89.0, 0.89.1 y 0.89.2 — persiste
-
-- id: BUG-20260828-01
-  date: 2026-08-28
-  talk: talks/prompting
-  step: 6 (Polish) — preparación
-  where: skills/polish-ascii/polish_ascii.py — subcomando `scan`, heurístico legacy de detección
-  what: el heurístico marca como diagrama ASCII renderizable cualquier fence que contenga
-    `->`, `|` o `+--`. En un deck sobre prompting eso barre los fences de código común:
-    prompts de ejemplo, Python, JSON y XML. 14 de 16 bloques detectados eran falsos positivos.
-    Sin intervención, Step 6 los habría rasterizado a SVG, destruyendo código legible
-  context: draft.md de 74 slides con abundante código de ejemplo. Detectado por el rol editor
-    durante la preparación de Polish, antes de correr el paso
-  expected: que `scan` distinga un diagrama de caja de un fence de código
-  actual: 16 detecciones, 2 legítimas
-  workaround: se antepuso `<!-- ascii-render: documentation-only -->` a cada fence sin tag
-  suggested-fix (hipótesis, no verificada): tratar un fence sin lenguaje declarado como
-    documentation-only por defecto; o exigir al menos dos clases distintas de glifo de caja
-    más un ratio alfabético bajo antes de aceptar el bloque como renderizable
-
-- id: BUG-20260828-02
-  date: 2026-08-28
-  talk: talks/prompting
-  step: 3 (Corpus) — consumido en Step 4
-  where: research/corpus/AIG4B-Clase-3-Prompting.md.md — sección Inconsistencies, ítem #18
-  what: el registro del librarian afirma que "Fable 5 no corresponde a ningún modelo Anthropic
-    conocido" y lo lista como dato a corregir. Fable 5 sí existe (claude-fable-5), y la tarifa
-    que declaraba el deck era correcta. Un editor que actúe sobre esa nota borra un dato bueno
-  context: el librarian catalogó 36 inconsistencias del PPTX original; ésta es falsa
-  expected: que una afirmación de "modelo inexistente" se verifique antes de escribirse
-  actual: afirmación categórica sin verificar, heredada por el draft
-  suggested-fix (hipótesis, no verificada): que el librarian valide nombres de modelo Claude
-    contra la skill `claude-api` antes de declararlos desconocidos, o que rebaje el ítem a
-    pregunta abierta en vez de aserción
-
-- id: BUG-20260828-03
-  date: 2026-08-28
-  talk: talks/prompting
-  step: 4 (Draft)
-  where: research/corpus/AIG4B-Clase-3-Prompting.md.md — sección `Raw / preserved excerpts`,
-    ítems [11] y [35]
-  what: la sección se rotula como preservación verbatim del original, y el spec del rol editor
-    manda reponer desde ahí el texto que el PPTX dejó truncado. Pero [11] y [35] están
-    truncados igual que el draft: no hay versión completa que reponer. La promesa del rótulo
-    no se cumple, y el editor queda sin salida prescrita
-  context: dos slides con frases cortadas a mitad ("...lo cual incre", "...de medium a high,")
-  expected: que `Raw / preserved excerpts` contenga el párrafo completo, o declare que no lo hay
-  actual: contiene el mismo fragmento truncado, sin marca de que lo está
-  suggested-fix (hipótesis, no verificada): rotular esos excerpts como
-    "(truncado en el original, sin versión completa disponible)" para que el editor sepa que
-    tiene que cerrar la frase con criterio propio en vez de buscar una fuente que no existe
-
-- id: BUG-20260828-04
-  date: 2026-08-28
-  talk: talks/prompting
-  step: 5 (Review) / 8 (Learnings)
-  where: skills/feedback-cycle — subcomando `find-closed-unmirrored`
-  what: no distingue los bullets de feedback que escribió el presentador de los cierres que
-    autoró el editor como registro de sus propios cambios. Reporta los 52 como pendientes de
-    espejar al backlog cross-Talk, cuando la mayoría son bitácora interna de la Talk y no
-    corresponden al backlog
-  context: pase de edición masivo que cerró 52 bullets, casi todos autogenerados
-  expected: que solo los bullets de origen presentador cuenten para el mirror
-  actual: los cuenta todos
-  suggested-fix (hipótesis, no verificada): marcar el autor del bullet al crearlo
-    (presentador vs. editor) y filtrar por eso en `find-closed-unmirrored`
-
-- id: BUG-20260828-05
-  date: 2026-08-28
-  talk: talks/prompting
-  step: 6 (Polish) — paso 1, rasterizado
-  where: skills/ascii-to-svg — dependencia `cairosvg` no declarada ni verificada
-  what: el primer render falló al rasterizar el SVG a PNG porque `cairosvg` no estaba
-    instalado en el intérprete activo. Sin PNG entregable no hay build de PPTX, así que el
-    paso se corta a mitad y deja SVGs sueltos sin su contraparte
-  context: 12 diagramas a renderizar; libcairo de Homebrew ya estaba presente, faltaba solo
-    el binding de Python. El intérprete activo resultó ser el venv de missions/clase3
-  expected: que la skill verifique sus dependencias antes de empezar, o que declare el
-    requisito de forma que el fallo sea legible desde el primer intento
-  actual: falla en el momento de rasterizar, después de generar el SVG
-  workaround: se instaló cairosvg 2.9.0 en el intérprete activo y se reintentó
-  suggested-fix (hipótesis, no verificada): chequeo de dependencias al inicio de la skill,
-    con mensaje accionable; o degradar a "SVG sin PNG" avisando en el reporte en vez de cortar
+  seen: 8
+  plugin_version: visto en 0.87.0; reverificado en 0.88.0 → 0.89.2 y en 0.97.0 — persiste
+    (el status vive una sola vez, en el encabezado de la entrada)
 
 - id: BUG-20260828-06
+  status: PARCIAL — cerrada la mitad que importaba, en 0.98.0. `scan` ahora devuelve una lista
+    `rendered` con los bloques que una pasada anterior ya renderizo (el eco `<!-- ascii-source: -->`),
+    con `image_ref`, `svg_present`, `stamped` y el payload recuperado, y los reporta en la salida
+    humana. Corrido sobre este mismo Talk enumera los 12 y marca justo el que motivo esta entrada:
+    `s4-1-1-tres-niveles-razonamiento` — importado con su PNG y sin SVG en images/.
+    Sigue ABIERTO el resto del "expected": no decide por sello si corresponde re-renderizar, y a
+    proposito. El rewrite borra el `ascii-note` de final.md y el sello se tomo sobre payload + nota,
+    asi que un digest recalculado marcaria como cambiado todo diagrama que alguna vez tuvo nota.
+    Presencia y sellado es lo que el archivo puede afirmar; re-renderizar es decision del rol.
   date: 2026-08-28
   talk: talks/prompting
   step: 6 (Polish) — paso 1, inventario
@@ -157,45 +85,3 @@
     edita el render nunca se actualiza
   suggested-fix (hipótesis, no verificada): que `scan` enumere por presencia de `ascii-source`
     y no por ausencia de render, marcando el estado (renderizado / pendiente / huérfano)
-
-- id: BUG-20260828-07
-  date: 2026-08-28
-  talk: talks/prompting
-  step: 7 (Render) — html-strict
-  where: skills/md-to-deck — emparejador de iconos por concepto (icon_fetch.py / catalogo Material Symbols)
-  what: el renderizador propone nombres de icono que despues no puede resolver contra su propio
-    catalogo, y cae a 'info'. En este render fueron tres: generating_tokens, report_problem,
-    remove_red_eye. Los tres son nombres validos de Material Icons en su grafia vieja; los
-    equivalentes vigentes en Material Symbols son token, warning y visibility
-  context: deck de 72 laminas, estilo html-strict. Los nombres NO estan en slide-model.json ni
-    en el codigo del skill — los deriva el emparejador en tiempo de render, asi que no hay forma
-    de corregirlos desde el modelo
-  expected: que el emparejador solo proponga nombres que su catalogo resuelve, o que traduzca
-    la grafia vieja de Material Icons a Material Symbols
-  actual: propone, falla y degrada a 'info' — tres conceptos distintos quedan con el mismo icono
-    generico, que es peor que no tener icono
-  suggested-fix (hipotesis, no verificada): tabla de alias de grafia vieja -> vigente
-    (generating_tokens->token, report_problem->warning, remove_red_eye->visibility) en _ICON_ALIAS;
-    o validar cada candidato contra el catalogo antes de emitirlo y reintentar con el siguiente
-
-- id: BUG-20260828-08
-  date: 2026-08-28
-  talk: talks/prompting
-  step: 7 (Render) — html-strict
-  where: skills/md-to-deck/html_style.py — _cover_logo(), resolucion del logo institucional
-  what: cuando el render se invoca con `--talk .` parado dentro de la carpeta de la Talk, la
-    resolucion no encuentra la raiz del repo y cae al `placeholder-logo.png` que trae el plugin,
-    en silencio. El deck sale con un logo de relleno en vez del institucional y nada lo avisa:
-    ni un warning en stderr ni una nota en el reporte
-  context: mismo deck renderizado dos veces. Desde `talks/prompting/` con `--talk .` embebe el
-    placeholder (6197 bytes, md5 c5e2cab5dff5); desde la raiz con `--talk talks/prompting` embebe
-    config/logo.png (8121 bytes, md5 6e1c6fb172ac). El orden documentado es frontmatter `logo:`
-    -> images/logo|cover-logo de la Talk -> config/logo.* del repo
-  expected: que la raiz del repo se resuelva igual con cualquiera de las dos invocaciones, o que
-    caer al placeholder emita un aviso visible
-  actual: degrada en silencio; solo se detecta comparando el md5 del base64 embebido contra el
-    de otras Talks
-  workaround: invocar siempre desde la raiz del working directory con la ruta completa de la Talk
-  suggested-fix (hipotesis, no verificada): resolver la raiz subiendo hasta encontrar `config/` o
-    `talks/` en vez de depender del cwd; y emitir un warning cuando el logo resuelto sea el
-    placeholder del plugin, que nunca es lo que un repo de materia quiere entregar

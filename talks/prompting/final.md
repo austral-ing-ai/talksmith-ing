@@ -77,7 +77,6 @@ Portada. Presentate y presentá a los otros dos docentes. Encuadre de una frase 
 
 **Goal of this section:** Dejar instalado un modelo mental correcto de qué es un LLM por dentro: una ventana de contexto finita que se factura por token y un motor de completado que inventa cuando se queda sin patrón.
 
-
 ---
 
 ## 1. ¿Qué es un prompt?
@@ -212,7 +211,39 @@ Esta es la slide del "ah, mirá". Sirve para que la cifra deje de ser abstracta:
 
 ---
 
-## 5. Economía de tokens
+## 5. Cómo se tokeniza
+
+<!-- design: split-left -->
+
+### Content
+
+**Antes de llegar al modelo, todo texto se parte en piezas de un vocabulario fijo. Ese vocabulario es lo que decide cuántos tokens cuesta una frase, y cada familia de modelos tiene el suyo.**
+
+| Encoding de `tiktoken` (OpenAI) | Vocabulario | Modelos que lo usan |
+|---|---|---|
+| `r50k_base` (gpt2) | 50.257 | GPT-2 y los primeros GPT-3 |
+| `p50k_base` | 50.281 | Codex, text-davinci-002/003 |
+| `cl100k_base` | 100.257 | GPT-3.5-turbo, GPT-4, embeddings v2/v3 |
+| `o200k_base` | 199.999 | GPT-4o y la serie o |
+| `o200k_harmony` | 201.087 | variante del anterior, formato *harmony* |
+
+- **BPE, el algoritmo** Arranca de caracteres sueltos y fusiona los pares más frecuentes hasta llenar el vocabulario. Por eso lo común es un token y lo raro se parte en pedazos.
+- **Vocabulario creciente** De cincuenta mil entradas a doscientas mil. Uno más grande corta menos: el mismo texto rinde menos tokens.
+- **Los conteos no son comparables** Entre familias el número cambia, así que una estimación no se traslada. Para Claude el conteo se le pide a la API con `count_tokens`: estimarlo con `tiktoken` da un costo equivocado.
+
+### Sources
+
+- Vocabularios verificados contra el código fuente de `tiktoken` (`tiktoken_ext/openai_public.py`, consultado el 2026-09-01): `r50k_base` 50.257, `p50k_base` 50.281, `cl100k_base` 100.257, `o200k_base` 199.999, `o200k_harmony` 201.087. **El archivo no mapea encodings a modelos**: esa columna viene de la documentación de OpenAI y de fuentes secundarias, no del código.
+- Catálogo vigente de la API de Claude: el conteo de tokens para modelos Claude se hace con el endpoint `count_tokens`, no con tokenizadores de otros proveedores.
+- `gpt-tokenizer.web.md` — el playground interactivo, para verlo en vivo.
+
+### Speaker notes
+
+Esta lámina responde la pregunta que quedó abierta en la anterior: si un millón de tokens es toda la obra de Tolkien, ¿quién decide dónde se corta? La respuesta es BPE, y la intuición vale más que el algoritmo: se empieza con caracteres sueltos y se fusionan los pares que más aparecen, hasta llenar un vocabulario de tamaño fijo. Por eso las palabras comunes son un token y las raras se parten en pedazos. La tabla no la leas fila por fila; usala para mostrar una sola cosa, que es la columna del medio: el vocabulario se cuadruplicó en pocos años. Y de ahí sale la consecuencia práctica: un vocabulario más grande corta menos, así que el mismo texto da menos tokens en un modelo nuevo que en uno viejo. Los conteos no son comparables entre familias. El cierre es el que más les va a servir y el error que más se ve: estimar el costo de un prompt de Claude con tiktoken. Son tokenizadores distintos y el número no sirve; para Claude hay un endpoint que lo cuenta. Si querés hacerlo vivo, abrí el playground y pegá una línea de código: un identificador en camelCase se parte en tres o cuatro tokens, y eso explica por qué el código consume más de lo que uno cree.
+
+---
+
+## 6. Economía de tokens
 
 ### Content
 
@@ -236,20 +267,19 @@ Momento de abrir gpt-tokenizer.dev en vivo y pegar una línea de código. El efe
 
 ---
 
-## 6. La fórmula del costo
+## 7. La fórmula del costo
 
 ### Content
 
 **Costo total = (tokens de entrada × precio de entrada) + (tokens de salida × precio de salida)**
 
-- Cada mensaje de un chat largo se paga por dos conceptos, y el primero crece solo.
-- Para que el modelo mantenga el contexto, la aplicación le reenvía toda la conversación previa en cada turno. Ese reenvío es la bola de nieve.
+| Turno | Lo que escribe el usuario | Lo que la app le manda al modelo |
+| --- | --- | --- |
+| Mensaje 1 | "Hola, escribime una función..." | Solo el mensaje 1. |
+| Mensaje 2 | "Ahora cambiale esto..." | Mensaje 1 + respuesta 1 + mensaje 2. |
+| Mensaje 3 | "Y agregale esto otro..." | Mensaje 1 + resp. 1 + mensaje 2 + resp. 2 + mensaje 3. |
 
-| Turno | Lo que escribe el usuario | Lo que la app le manda al modelo | Lo que se cobra |
-|---|---|---|---|
-| Mensaje 1 | "Hola, escribime una función..." | Solo el mensaje 1. | Barato. |
-| Mensaje 2 | "Ahora cambiale esto..." | Mensaje 1 + respuesta 1 + mensaje 2. | Un poco más caro. |
-| Mensaje 3 | "Y agregale esto otro..." | Mensaje 1 + resp. 1 + mensaje 2 + resp. 2 + mensaje 3. | Más caro que el anterior. |
+- 💡 **¿Por qué explota el consumo?** Para que el modelo mantenga el contexto, la aplicación le reenvía toda la conversación previa en cada turno. El modelo no recuerda nada entre llamadas: cada turno vuelve a leer todo desde cero, y eso es lo que se cobra.
 
 ### Sources
 
@@ -261,7 +291,117 @@ Esta es la slide que explica por qué la factura de un chatbot crece sin que cre
 
 ---
 
-## 7. Tokenomics: el costo real
+## 8. Cómo funciona el caching
+
+### Content
+
+**El proveedor no guarda respuestas: guarda el estado ya calculado de un prefijo de tokens. De ahí sale la regla única que gobierna todo — coincidencia por prefijo — y también la facilidad con la que se rompe.**
+
+- **Coincide por prefijo, no por contenido** No es "¿ya vi este texto antes?". El proveedor guarda el cómputo de los primeros N tokens del pedido; si esos N coinciden byte a byte con los de la llamada anterior, se reutilizan en vez de recalcularse.
+- **Un byte distinto invalida todo lo que sigue** Y el orden del pedido es fijo: primero las herramientas, después el system prompt, después los mensajes. Por eso lo estable va adelante y lo que cambia en cada llamada va al final.
+- **Hay un mínimo, y falla en silencio** Un prefijo por debajo del mínimo del modelo no se cachea: sin error, sin aviso. Un prompt corto puede estar marcado para cachear y no cachear nunca.
+- **Se verifica en la respuesta** El contador de tokens leídos del caché dice si funcionó. Si da cero en llamadas repetidas, hay un invalidador escondido: una fecha en el system prompt, un JSON sin ordenar, una lista de herramientas que cambia de orden.
+
+- 🎯 **Por qué encaja acá.** La bola de nieve de la lámina anterior es un prefijo que crece: cada turno agrega al final y deja intacto lo de antes. El caso ideal para el caching.
+
+### Sources
+
+- Catálogo vigente de la API de Claude (corte 2026-06-24): el caching es coincidencia por prefijo; cualquier cambio de byte en el prefijo invalida lo que sigue; el orden de armado es herramientas → system → mensajes; el prefijo mínimo cacheable depende del modelo y por debajo de ese umbral no cachea sin emitir error; el contador de tokens leídos del caché es la forma de verificarlo.
+
+### Speaker notes
+
+Esta lámina existe para que el caching no se lea como magia cuando lleguen a la sección de costos. La idea que tienen que llevarse es una sola: no se cachean respuestas, se cachea el cómputo de un prefijo. Y de ahí sale todo lo demás por deducción, así que en vez de enumerar reglas, deducilas en voz alta con ellos. Si lo que se guarda es el prefijo, entonces lo estable tiene que ir adelante — obvio. Si un byte cambia, todo lo que viene después se recalcula — también obvio. Los dos puntos que más les van a servir en la práctica son los dos últimos, porque fallan en silencio. Un prompt corto marcado para cachear puede no cachear nunca, y nadie te avisa. Y el invalidador clásico es meter la fecha y hora en el system prompt: cambia en cada llamada, está al principio, y tira abajo el caché entero. Por eso se verifica mirando el contador de tokens leídos del caché en la respuesta: si da cero en llamadas repetidas, hay un invalidador escondido. Cerrá conectando con la lámina anterior: la conversación que crece es un prefijo que crece, y por eso es el caso ideal.
+
+---
+
+## 9. Del chat al caché programático
+### Content
+
+**En un chat el prefijo crece solo: cada turno agrega al final y deja intacto todo lo anterior. En una aplicación no hay esa suerte — el pedido lo armás vos, y sos vos quien decide dónde corta la frontera entre lo que se reutiliza y lo que cambia.**
+
+![Prompt caching por prefijo: el prefijo estático se cobra al 10% y el sufijo dinámico a precio lleno](images/s2-4-1-caching-prefijo-sufijo.png)
+<!-- ascii-source:
+  UN REQUEST  =  PREFIJO ESTATICO  +  SUFIJO DINAMICO
+
+  |<----------- se cachea: 10% del precio -----------&gt;|<-- precio lleno --&gt;|
+  +---------------------------------------------------+--------------------+
+  | system prompt | guia de estilo | ADRs | base cod.  | el diff del user   |
+  +---------------------------------------------------+--------------------+
+   50.000 tokens, identicos en cada llamada             100 tokens, cambian
+                                                     ^
+                                                     |
+                                    [ cache_control ] marca el corte
+
+  Request 1    MISS  ->  se procesa entero y se guarda el prefijo
+  Request 2+   HIT   ->  se reutiliza el prefijo y se cobra al 10%
+
+  !!  un byte distinto en CUALQUIER punto del prefijo  ->  hit rate 0
+      y no hay ningun error: solo una factura mas alta
+-->
+<!-- ascii-note:
+intent: mostrar que el caching hace match por PREFIJO, no por contenido: la frontera entre lo estatico y lo dinamico es lo que decide si hay hit, y por eso el orden dentro del prompt es load-bearing
+emphasize: la linea divisoria entre prefijo y sufijo con la marca [ cache_control ]; la desproporcion 50.000 contra 100 tokens; la advertencia final del fallo silencioso
+labels: "PREFIJO ESTATICO", "SUFIJO DINAMICO", "se cachea: 10% del precio", "precio lleno", "cache_control", "MISS", "HIT", "hit rate 0"
+-->
+
+- **Monitorear el hit rate** Si `cache_read_input_tokens` da cero, algo está invalidando el prefijo en silencio.
+
+**El caso típico de un equipo de software:** la guía de estilo, las decisiones de arquitectura ya documentadas —los *ADR*— y el fragmento de base de código que el asistente necesita son idénticos en cada consulta; el pedido del usuario son doscientos tokens. Ese reparto es el que el caching premia, y `cache_control` es la marca que dice dónde termina uno y empieza el otro.
+
+### Sources
+
+- `AIG4B-Clase-3-Prompting.md.md` (slide 46)
+- Precio del cache hit (10% de la entrada) verificado contra el catálogo vigente de la API de Claude.
+
+### Speaker notes
+
+Esta es la lámina que cierra el puente, y conviene abrirla con una pregunta: cuando chatean con un asistente, ¿quién marca el corte? Nadie: el prefijo crece solo porque cada turno se agrega al final, y el proveedor lo aprovecha sin que ellos hagan nada. En una aplicación propia eso no pasa, porque el pedido lo arman ellos en cada llamada, y por eso hay que marcar el corte a mano. Ahí entra `cache_control`. Caminá el diagrama señalando las tres decisiones que se deducen del match por prefijo: cachear lo estático — base de conocimiento, system prompt, documentación de arquitectura, guía de estilo—, no cachear el input del usuario porque rompe el prefijo, y poner primero lo cacheable. La advertencia del pie es la que más les va a servir: si el system prompt lleva un `datetime.now()` adentro, el prefijo cambia en cada llamada y el hit rate es cero sin que nadie se entere, porque no hay error, solo una factura más alta. El caso del equipo de software es el ideal y vale decirlo: cincuenta mil tokens idénticos contra doscientos que cambian. Los números del ahorro los ven en la sección de costos; acá el foco es el mecanismo y quién marca el corte.
+
+---
+
+## 10. Prompt caching: implementación
+
+### Content
+
+**El caching se activa marcando las partes estáticas del prompt con un bloque `cache_control`.**
+
+<!-- ascii-render: documentation-only -->
+```python
+import anthropic
+client = anthropic.Anthropic()
+
+# ESTATICO -- se cachea (50K tokens)
+system_prompt = """Sos un revisor de codigo senior.
+Guia de estilo, ADRs y convenciones: [... 50K ...]"""
+
+response = client.messages.create(
+    model="claude-sonnet-5",
+    system=[{"type": "text", "text": system_prompt,
+             "cache_control": {"type": "ephemeral"}}],
+    # DINAMICO -- cambia en cada request
+    messages=[{"role": "user",
+               "content": "Revisa este diff: [... 100 ...]"}])
+
+# Request 1     cache MISS  ->  se procesa y se guarda
+# Request 2+    cache HIT   ->  se cobra al 10%
+```
+
+- **Parte estática (cacheable)** System prompt, guía de estilo, decisiones de arquitectura, base de conocimiento. Se marca con `cache_control`.
+- **Parte dinámica (no cacheable)** El diff, el ticket, la consulta puntual. Cambia en cada request, así que va después del corte.
+- **Hit de caché** Si el prefijo ya fue procesado, el proveedor lo reutiliza en vez de recalcularlo.
+
+### Sources
+
+- `AIG4B-Clase-3-Prompting.md.md` (slide 47)
+- Derivación del ejemplo: 50.000 tokens a $3/MTok = $0,15 sin caché; con hit, 10% = $0,015.
+
+### Speaker notes
+
+Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y lo que no la dibuja el programador, poniendo `cache_control` en el bloque correcto. Señalá el orden. Lo estático arriba, lo dinámico abajo, siempre, porque el match es por prefijo. Si alguien pone el diff arriba del system prompt, el caché no sirve para nada y no hay ningún error que lo avise. El ejemplo pasó de un system prompt de guías clínicas a la guía de estilo y los ADRs del repo, que es el caso real de un asistente de revisión de código: cincuenta mil tokens de convenciones que no cambian, cien tokens de diff que cambian siempre.
+
+---
+
+## 11. Tokenomics: el costo real
 
 ### Content
 
@@ -284,7 +424,30 @@ Esta lámina existe para que la fórmula de la lámina anterior no se lea como s
 
 ---
 
-## 8. Limitaciones de los LLM
+## 12. Tokenomics: qué están construyendo
+
+### Content
+
+**La práctica se ordena alrededor de dos preguntas: qué cuesta realmente la IA, y cuánto vale la inteligencia que devuelve. El plan de trabajo son entregables concretos, no un manifiesto.**
+
+- **Definiciones** Publicar qué es tokenomics y definir el valor y la densidad de un token, separando entrada, salida, razonamiento y caché. Sin vocabulario común no hay comparación posible.
+- **Costo de servir** Un método estándar para medir la cuenta completa, expresada como **costo por llamada** en vez de costo por token, para que el número corresponda al trabajo hecho.
+- **Medición de valor** Un marco que relacione el gasto con resultados, empezando por la proporción de trabajo que se completa sin intervención humana, medida contra lo que ese proceso cuesta hoy.
+- **Telemetría de costo** Llevar el reporte de costos de IA a FOCUS, la especificación abierta de datos de facturación, para poder normalizar cifras entre proveedores.
+
+- 🎯 **Lo más cercano a esta clase.** Uno de sus proyectos, *Big-T*, clasifica la complejidad de costo de una carga de trabajo **antes** de decidir a qué modelo enrutarla. Es exactamente la decisión que vamos a ver en la sección de costos, pero convertida en método.
+
+### Sources
+
+- `research/web/tokenomics-foundation-linux/` — Linux Foundation, comunicado del 4 de agosto de 2026. Aportan verbatim las dos preguntas que la práctica busca responder ("qué cuesta realmente la IA y cuál es el valor de la inteligencia"), los entregables del plan (definiciones incluyendo valor y densidad de token por entrada/salida/razonamiento/caché; modelo de referencia del costo completo; costo de servir expresado por llamada; marco de medición de valor a partir de la proporción de trabajo sin intervención humana; educación y certificación), el proyecto Big-T para clasificar complejidad de costo antes del ruteo entre modelos, y la telemetría de costos sobre la especificación FOCUS.
+
+### Speaker notes
+
+La lámina anterior planteó el problema; ésta muestra que hay un plan y no solo un diagnóstico, que es lo que la vuelve creíble. Las dos preguntas de arriba vale leerlas tal cual, porque son sorprendentemente honestas para un comunicado: qué cuesta realmente esto, y cuánto vale lo que devuelve. La segunda es la difícil y todavía nadie la sabe responder. De los cuatro entregables, el que más les va a servir como ingenieros es el segundo: pasar de costo por token a costo por llamada. El token es una unidad interna del proveedor; la llamada es la unidad con la que uno diseña un sistema, y por eso el cambio de unidad no es cosmético. El de medición de valor tiene una definición operativa linda y conviene señalarla: empiezan por la proporción de trabajo que se completa sin que intervenga una persona, contra lo que ese proceso cuesta hoy. Es medible, no es retórica. Y cerrá con Big-T, que es el puente directo a la sección que viene: clasificar la complejidad de costo de una carga antes de elegir modelo es exactamente el árbol de decisión y la cascada que van a ver, pero como método formal en vez de criterio de cada equipo.
+
+---
+
+## 13. Limitaciones de los LLM
 
 ### Content
 
@@ -302,7 +465,7 @@ Tres fallas de familia, no tres bugs. Ninguna se arregla con un modelo mejor, to
 
 ---
 
-## 9. ¿Por qué alucina un modelo?
+## 14. ¿Por qué alucina un modelo?
 
 ### Content
 
@@ -323,7 +486,7 @@ Cuatro causas y ninguna es un defecto de implementación: son consecuencias dire
 
 ---
 
-## 10. Alucinaciones: casos reales
+## 15. Alucinaciones: casos reales
 
 ### Content
 
@@ -342,7 +505,7 @@ Los dos primeros casos son judiciales y están documentados: sirven para instala
 
 ---
 
-## 11. Mitigar alucinaciones: el prompt
+## 16. Mitigar alucinaciones: el prompt
 
 ### Content
 
@@ -365,7 +528,7 @@ Cinco palancas ordenadas de la más barata a la más cara. Grounding es una lín
 
 ---
 
-## 12. Mitigar alucinaciones: el proceso
+## 17. Mitigar alucinaciones: el proceso
 
 ### Content
 
@@ -388,7 +551,7 @@ Acá la clase les habla en su idioma y conviene decirlo de frente: las cuatro pr
 
 ---
 
-## 13. Modelo mental: motores de completado
+## 18. Modelo mental: motores de completado
 
 ### Content
 
@@ -419,7 +582,6 @@ Esta slide es el ensayo de la tesis, y por eso vale la pena bajar la velocidad. 
 # 2. Modelos y costos
 
 **Goal of this section:** Convertir la elección de modelo en una decisión con números: qué cobra cada uno, cuánto ahorra el caching y cuándo conviene encadenar un modelo barato con uno caro.
-
 
 ---
 
@@ -500,55 +662,7 @@ El árbol vale más por el orden de las preguntas que por los nombres que devuel
 
 ---
 
-## 3. Prompt caching
-
-### Content
-
-**El problema:** la misma base de conocimiento de 50K tokens viaja en cada request. Sin caching, 10.000 consultas × 50.100 tokens = 501M tokens de entrada, es decir **$1.503** a $3/MTok.
-
-**La solución:** marcar las partes reutilizables del prompt. El proveedor guarda esos tokens y los cobra al 10% en los requests siguientes.
-
-![Prompt caching por prefijo: el prefijo estático se cobra al 10% y el sufijo dinámico a precio lleno](images/s2-4-1-caching-prefijo-sufijo.png)
-<!-- ascii-source:
-  UN REQUEST  =  PREFIJO ESTATICO  +  SUFIJO DINAMICO
-
-  |<----------- se cachea: 10% del precio -----------&gt;|<-- precio lleno --&gt;|
-  +---------------------------------------------------+--------------------+
-  | system prompt | guia de estilo | ADRs | base cod.  | el diff del user   |
-  +---------------------------------------------------+--------------------+
-   50.000 tokens, identicos en cada llamada             100 tokens, cambian
-                                                     ^
-                                                     |
-                                    [ cache_control ] marca el corte
-
-  Request 1    MISS  ->  se procesa entero y se guarda el prefijo
-  Request 2+   HIT   ->  se reutiliza el prefijo y se cobra al 10%
-
-  !!  un byte distinto en CUALQUIER punto del prefijo  ->  hit rate 0
-      y no hay ningun error: solo una factura mas alta
--->
-<!-- ascii-note:
-intent: mostrar que el caching hace match por PREFIJO, no por contenido: la frontera entre lo estatico y lo dinamico es lo que decide si hay hit, y por eso el orden dentro del prompt es load-bearing
-emphasize: la linea divisoria entre prefijo y sufijo con la marca [ cache_control ]; la desproporcion 50.000 contra 100 tokens; la advertencia final del fallo silencioso
-labels: "PREFIJO ESTATICO", "SUFIJO DINAMICO", "se cachea: 10% del precio", "precio lleno", "cache_control", "MISS", "HIT", "hit rate 0"
--->
-
-- **Monitorear el hit rate** Si `cache_read_input_tokens` da cero, algo está invalidando el prefijo en silencio.
-
-- 💡 Un hit vale el 10% del precio de entrada. El techo del ahorro es 90% sobre la porción cacheada.
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 46)
-- Precio del cache hit (10% de la entrada) verificado contra el catálogo vigente de la API de Claude.
-
-### Speaker notes
-
-El caching es la única optimización de esta clase que baja el costo sin tocar la calidad, así que conviene darle peso. Las tres prácticas que antes estaban como bullets ahora las dibuja el diagrama, así que decilas mientras lo señalás: **cachear lo estático** (base de conocimiento, system prompt, documentación de arquitectura, guía de estilo), **no cachear el input del usuario** porque cambia en cada request y rompe el prefijo, y **poner primero lo cacheable**, que es la consecuencia directa de que el match sea por prefijo. El mecanismo es un match por prefijo, y de ahí sale todo lo demás: si el system prompt lleva un `datetime.now()` adentro, el prefijo cambia en cada llamada y el hit rate es cero sin que nadie se entere, porque no hay error, solo una factura más alta. Por eso la cuarta práctica no es cosmética. Un equipo de software tiene el caso perfecto: la guía de estilo, los ADRs y el fragmento de la base de código que el asistente necesita son idénticos en cada consulta, y el pedido del usuario son doscientos tokens. Ese es el reparto que el caching premia. La slide siguiente pone los números.
-
----
-
-## 4. Prompt caching: los números
+## 3. Prompt caching: los números
 
 ### Content
 
@@ -575,58 +689,7 @@ Esta slide corrige un error del deck original, y vale la pena decirlo en voz alt
 
 ---
 
-## 5. Prompt caching: implementación
-
-### Content
-
-**El caching se activa marcando las partes estáticas del prompt con un bloque `cache_control`.**
-
-<!-- ascii-render: documentation-only -->
-```
-import anthropic
-client = anthropic.Anthropic()
-
-# Parte ESTATICA -- se cachea (50K tokens)
-system_prompt = """
-Sos un revisor de codigo senior de este equipo.
-Guia de estilo, ADRs y convenciones del repo: [... 50K tokens ...]
-"""
-
-response = client.messages.create(
-    model="claude-sonnet-4-6",
-    system=[{
-        "type": "text",
-        "text": system_prompt,
-        "cache_control": {"type": "ephemeral"}
-    }],
-    messages=[{
-        "role": "user",
-        # Parte DINAMICA -- cambia por request
-        "content": "Revisa este diff: [... 100 tokens ...]"
-    }]
-)
-
-# Request 1:    cache MISS -> $0,15 (50K tokens)
-# Request 2:    cache HIT  -> $0,015
-# Request 1000: cache HIT  -> $0,015
-```
-
-- **Parte estática (cacheable)** System prompt, guía de estilo, ADRs, base de conocimiento. Se marca con `cache_control`.
-- **Parte dinámica (no cacheable)** El diff, el ticket, la consulta puntual. Cambia en cada request.
-- **Hit de caché** Si el prefijo ya fue procesado, el proveedor lo reutiliza y cobra el 10%.
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 47)
-- Derivación del ejemplo: 50.000 tokens a $3/MTok = $0,15 sin caché; con hit, 10% = $0,015.
-
-### Speaker notes
-
-Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y lo que no la dibuja el programador, poniendo `cache_control` en el bloque correcto. Señalá el orden. Lo estático arriba, lo dinámico abajo, siempre, porque el match es por prefijo. Si alguien pone el diff arriba del system prompt, el caché no sirve para nada y no hay ningún error que lo avise. El ejemplo pasó de un system prompt de guías clínicas a la guía de estilo y los ADRs del repo, que es el caso real de un asistente de revisión de código: cincuenta mil tokens de convenciones que no cambian, cien tokens de diff que cambian siempre.
-
----
-
-## 6. Model cascading
+## 4. Model cascading
 
 ### Content
 
@@ -675,7 +738,7 @@ La idea es de una línea y la trampa está en el rombo del medio. Todo el ahorro
 
 ---
 
-## 7. Cascading: cuándo sí y cuándo no
+## 5. Cascading: cuándo sí y cuándo no
 
 ### Content
 
@@ -704,7 +767,6 @@ La fila que decide es la última de la tabla. El cascading no es una configuraci
 # 3. Prompts estructurados
 
 **Goal of this section:** Pasar del prompt escrito a mano al prompt con anatomía: seis componentes, delimitadores explícitos y un contrato de salida que el código pueda validar.
-
 
 ---
 
@@ -827,8 +889,6 @@ Leé el prompt en voz alta, bloque por bloque, y hacé notar dos cosas. La prime
 }
 ```
 
-**Qué gana el sistema**
-
 - ✅ **Validación automática** La salida se verifica con el esquema, sin leerla a mano.
 - ✅ **Menos errores de parseo** Menos fallos en el pipeline y menos reintentos.
 - ✅ **Integración directa** El JSON entra al issue tracker o al bot de review sin traducción intermedia.
@@ -849,9 +909,11 @@ La distinción entre los dos enfoques es la que hay que dejar clara, porque se c
 
 ## 4. XML: estructura semántica
 
+<!-- design: split-right -->
+
 ### Content
 
-**Los LLM se entrenaron con enormes cantidades de HTML y XML de la web. Las etiquetas crean fronteras semánticas explícitas entre secciones y bajan la ambigüedad.**
+**Las etiquetas marcan dónde empieza y termina cada parte del prompt. El modelo no tiene que inferir la estructura: se la das dibujada.**
 
 <!-- ascii-render: documentation-only -->
 ```
@@ -879,7 +941,10 @@ Despues de actualizar a la 3.2, el login con SSO devuelve 500 en staging.
 </entrada>
 ```
 
-- 💡 Las etiquetas suman tokens, y ese overhead se compensa con menos reintentos y menos errores de parseo. Si el prompt es estable, el caching lo absorbe.
+- **Fronteras explícitas** Tarea, instrucciones, ejemplos y entrada quedan separados sin ambigüedad. Nada se confunde con nada.
+- **Formato que ya conocen** Los LLM se entrenaron con enormes cantidades de HTML y XML de la web, así que la notación les resulta familiar.
+- **La salida también se delimita** Pedir la respuesta dentro de una etiqueta vuelve trivial el parseo y evita que el modelo mezcle explicación con resultado.
+- **El overhead se paga solo** Las etiquetas suman tokens, pero se compensan con menos reintentos y menos errores de parseo. Si el prompt es estable, el caching lo absorbe.
 
 ### Sources
 
@@ -895,7 +960,6 @@ El argumento de por qué funcionan las etiquetas es el mismo de la slide del mot
 # 4. In-context learning
 
 **Goal of this section:** Mostrar que los ejemplos dentro del prompt cambian el comportamiento del modelo sin tocar sus pesos, y dar el criterio para elegir cuántos poner.
-
 
 ---
 
@@ -1051,7 +1115,6 @@ El punto fuerte de esta slide es la cuarta línea, porque describe un bucle de m
 # 5. Técnicas avanzadas
 
 **Goal of this section:** Recorrer las técnicas que hacen escribir al modelo antes de responder, medir lo que cuestan y explicar por qué funcionan, que es la tesis de la clase.
-
 
 ---
 
@@ -1787,7 +1850,6 @@ La cuarta viñeta de la izquierda es la que más se viola y la que más caro sal
 
 **Goal of this section:** Situar todo lo anterior en el ciclo de vida real de un producto de software, con los riesgos que trae y las mitigaciones que un equipo ya sabe practicar.
 
-
 ---
 
 ## 1. Ciclo de vida: dónde entra el LLM
@@ -2009,7 +2071,6 @@ Esta slide estaba al final de la sección de fundamentos, cortando el hilo entre
 # 7. Resumen y práctica
 
 **Goal of this section:** Cerrar con lo que hay que retener y dejar los cuatro módulos de práctica como trabajo domiciliario.
-
 
 ---
 

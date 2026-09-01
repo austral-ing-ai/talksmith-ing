@@ -224,6 +224,75 @@
       }
     },
     {
+      "template": "content+cards+image",
+      "section": "Fundamentos",
+      "title": "Cómo se tokeniza",
+      "lead": "**Antes de llegar al modelo, todo texto se parte en piezas de un vocabulario fijo. Ese vocabulario es lo que decide cuántos tokens cuesta una frase, y cada familia de modelos tiene el suyo.**",
+      "design": "split-left",
+      "notes": "Esta lámina responde la pregunta que quedó abierta en la anterior: si un millón de tokens es toda la obra de Tolkien, ¿quién decide dónde se corta? La respuesta es BPE, y la intuición vale más que el algoritmo: se empieza con caracteres sueltos y se fusionan los pares que más aparecen, hasta llenar un vocabulario de tamaño fijo. Por eso las palabras comunes son un token y las raras se parten en pedazos. La tabla no la leas fila por fila; usala para mostrar una sola cosa, que es la columna del medio: el vocabulario se cuadruplicó en pocos años. Y de ahí sale la consecuencia práctica: un vocabulario más grande corta menos, así que el mismo texto da menos tokens en un modelo nuevo que en uno viejo. Los conteos no son comparables entre familias. El cierre es el que más les va a servir y el error que más se ve: estimar el costo de un prompt de Claude con tiktoken. Son tokenizadores distintos y el número no sirve; para Claude hay un endpoint que lo cuenta. Si querés hacerlo vivo, abrí el playground y pegá una línea de código: un identificador en camelCase se parte en tres o cuatro tokens, y eso explica por qué el código consume más de lo que uno cree.",
+      "_choice": {
+        "signals": [
+          "una tabla de consulta que se lee primero y tres conceptos que la interpretan"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "la tabla no es el contenido de la lámina sino su apoyo: lo que se enseña son las tres consecuencias, así que la tabla va al costado y las tarjetas llevan el peso"
+        }
+      },
+      "cards": [
+        {
+          "label": "BPE, el algoritmo",
+          "body": "Arranca de caracteres sueltos y fusiona los pares más frecuentes hasta llenar el vocabulario. Por eso lo común es un token y lo raro se parte en pedazos."
+        },
+        {
+          "label": "Vocabulario creciente",
+          "body": "De cincuenta mil entradas a doscientas mil. Uno más grande corta menos: el mismo texto rinde menos tokens."
+        },
+        {
+          "label": "Los conteos no son comparables",
+          "body": "Entre familias el número cambia, así que una estimación no se traslada. Para Claude el conteo se le pide a la API con `count_tokens`: estimarlo con `tiktoken` da un costo equivocado."
+        }
+      ],
+      "media": {
+        "columns": [
+          {
+            "header": "Encoding de `tiktoken` (OpenAI)",
+            "cells": [
+              "`r50k_base` (gpt2)",
+              "`p50k_base`",
+              "`cl100k_base`",
+              "`o200k_base`",
+              "`o200k_harmony`"
+            ]
+          },
+          {
+            "header": "Vocabulario",
+            "cells": [
+              "50.257",
+              "50.281",
+              "100.257",
+              "199.999",
+              "201.087"
+            ]
+          },
+          {
+            "header": "Modelos que lo usan",
+            "cells": [
+              "GPT-2 y los primeros GPT-3",
+              "Codex, text-davinci-002/003",
+              "GPT-3.5-turbo, GPT-4, embeddings v2/v3",
+              "GPT-4o y la serie o",
+              "variante del anterior, formato *harmony*"
+            ]
+          }
+        ]
+      }
+    },
+    {
       "template": "process",
       "section": "Fundamentos",
       "title": "Economía de tokens",
@@ -291,26 +360,14 @@
             "Mensaje 1 + respuesta 1 + mensaje 2.",
             "Mensaje 1 + resp. 1 + mensaje 2 + resp. 2 + mensaje 3."
           ]
-        },
-        {
-          "header": "Lo que se cobra",
-          "cells": [
-            "Barato.",
-            "Un poco más caro.",
-            "Más caro que el anterior."
-          ]
         }
       ],
       "highlights": [
         {
-          "body": "Cada mensaje de un chat largo se paga por dos conceptos, y el primero crece solo.",
-          "kind": "definition",
-          "position": "top"
-        },
-        {
-          "body": "Para que el modelo mantenga el contexto, la aplicación le reenvía toda la conversación previa en cada turno. Ese reenvío es la bola de nieve.",
-          "kind": "important",
-          "position": "top"
+          "label": "¿Por qué explota el consumo?",
+          "body": "Para que el modelo mantenga el contexto, la aplicación le reenvía toda la conversación previa en cada turno. El modelo no recuerda nada entre llamadas: cada turno vuelve a leer todo desde cero, y eso es lo que se cobra.",
+          "kind": "note",
+          "position": "bottom"
         }
       ],
       "notes": "Esta es la slide que explica por qué la factura de un chatbot crece sin que crezca el uso. La fórmula tiene dos términos y el interesante es el primero: los tokens de entrada de un turno incluyen todo lo anterior. Un chat de veinte turnos paga el turno uno veinte veces. Señalá la tabla de izquierda a derecha una fila por vez y dejá que la tercera columna hable sola. Acá conviene sembrar dos cosas que se cobran después en la clase: prompt caching existe justo para atacar este crecimiento, y las técnicas avanzadas de la sección cinco compran calidad gastando tokens de salida, que son los caros. Si alguien pregunta por qué la salida cuesta cinco veces más que la entrada, la respuesta corta es que se genera token por token y no se paraleliza como la lectura del prompt.",
@@ -334,6 +391,138 @@
           "process": "the three rows are a table of an escalating cost, not named steps of a procedure — and the `has_table` rule outranks the enumeration rules; the ordering is already carried by the `Turno` factor column"
         }
       }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Fundamentos",
+      "title": "Cómo funciona el caching",
+      "lead": "**El proveedor no guarda respuestas: guarda el estado ya calculado de un prefijo de tokens. De ahí sale la regla única que gobierna todo — coincidencia por prefijo — y también la facilidad con la que se rompe.**",
+      "cards": [
+        {
+          "label": "Coincide por prefijo, no por contenido",
+          "body": "No es \"¿ya vi este texto antes?\". El proveedor guarda el cómputo de los primeros N tokens del pedido; si esos N coinciden byte a byte con los de la llamada anterior, se reutilizan en vez de recalcularse."
+        },
+        {
+          "label": "Un byte distinto invalida todo lo que sigue",
+          "body": "Y el orden del pedido es fijo: primero las herramientas, después el system prompt, después los mensajes. Por eso lo estable va adelante y lo que cambia en cada llamada va al final."
+        },
+        {
+          "label": "Hay un mínimo, y falla en silencio",
+          "body": "Un prefijo por debajo del mínimo del modelo no se cachea: sin error, sin aviso. Un prompt corto puede estar marcado para cachear y no cachear nunca."
+        },
+        {
+          "label": "Se verifica en la respuesta",
+          "body": "El contador de tokens leídos del caché dice si funcionó. Si da cero en llamadas repetidas, hay un invalidador escondido: una fecha en el system prompt, un JSON sin ordenar, una lista de herramientas que cambia de orden."
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Por qué encaja acá",
+          "body": "La bola de nieve de la lámina anterior es un prefijo que crece: cada turno agrega al final y deja intacto lo de antes. El caso ideal para el caching.",
+          "kind": "takeaway",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Esta lámina existe para que el caching no se lea como magia cuando lleguen a la sección de costos. La idea que tienen que llevarse es una sola: no se cachean respuestas, se cachea el cómputo de un prefijo. Y de ahí sale todo lo demás por deducción, así que en vez de enumerar reglas, deducilas en voz alta con ellos. Si lo que se guarda es el prefijo, entonces lo estable tiene que ir adelante — obvio. Si un byte cambia, todo lo que viene después se recalcula — también obvio. Los dos puntos que más les van a servir en la práctica son los dos últimos, porque fallan en silencio. Un prompt corto marcado para cachear puede no cachear nunca, y nadie te avisa. Y el invalidador clásico es meter la fecha y hora en el system prompt: cambia en cada llamada, está al principio, y tira abajo el caché entero. Por eso se verifica mirando el contador de tokens leídos del caché en la respuesta: si da cero en llamadas repetidas, hay un invalidador escondido. Cerrá conectando con la lámina anterior: la conversación que crece es un prefijo que crece, y por eso es el caso ideal.",
+      "_choice": {
+        "signals": [
+          "cuatro propiedades etiquetadas del mismo mecanismo"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "no son pasos en secuencia temporal, son propiedades de una misma regla"
+        }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Fundamentos",
+      "title": "Del chat al caché programático",
+      "media": {
+        "src": "images/s2-4-1-caching-prefijo-sufijo.png",
+        "alt": "Prompt caching por prefijo: el prefijo estático se cobra al 10% y el sufijo dinámico a precio lleno"
+      },
+      "design": "split-right",
+      "highlights": [
+        {
+          "label": "El caso típico de un equipo de software",
+          "body": "la guía de estilo, las decisiones de arquitectura ya documentadas —los *ADR*— y el fragmento de base de código que el asistente necesita son idénticos en cada consulta; el pedido del usuario son doscientos tokens. Ese reparto es el que el caching premia, y `cache_control` es la marca que dice dónde termina uno y empieza el otro.",
+          "kind": "note",
+          "position": "top"
+        },
+        {
+          "label": "Monitorear el hit rate",
+          "body": "Si `cache_read_input_tokens` da cero, algo está invalidando el prefijo en silencio.",
+          "kind": "important",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Esta es la lámina que cierra el puente, y conviene abrirla con una pregunta: cuando chatean con un asistente, ¿quién marca el corte? Nadie: el prefijo crece solo porque cada turno se agrega al final, y el proveedor lo aprovecha sin que ellos hagan nada. En una aplicación propia eso no pasa, porque el pedido lo arman ellos en cada llamada, y por eso hay que marcar el corte a mano. Ahí entra `cache_control`. Caminá el diagrama señalando las tres decisiones que se deducen del match por prefijo: cachear lo estático — base de conocimiento, system prompt, documentación de arquitectura, guía de estilo—, no cachear el input del usuario porque rompe el prefijo, y poner primero lo cacheable. La advertencia del pie es la que más les va a servir: si el system prompt lleva un `datetime.now()` adentro, el prefijo cambia en cada llamada y el hit rate es cero sin que nadie se entere, porque no hay error, solo una factura más alta. El caso del equipo de software es el ideal y vale decirlo: cincuenta mil tokens idénticos contra doscientos que cambian. Los números del ahorro los ven en la sección de costos; acá el foco es el mecanismo y quién marca el corte.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "n_images=1",
+          "is_ordered=false",
+          "date_labels=false",
+          "has_table=false",
+          "has_code=false",
+          "two_groups=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "hard rule — it requires images == 0; keeping it would mean dropping the shared prefix/suffix diagram",
+          "content-image": "dissolving the three labeled concepts into `facts` costs them their per-concept icons; the catalog names this hybrid as the default for a labeled set plus one shared image"
+        }
+      },
+      "lead": "**En un chat el prefijo crece solo: cada turno agrega al final y deja intacto todo lo anterior. En una aplicación no hay esa suerte — el pedido lo armás vos, y sos vos quien decide dónde corta la frontera entre lo que se reutiliza y lo que cambia.**"
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Fundamentos",
+      "title": "Prompt caching: implementación",
+      "lead": "**El caching se activa marcando las partes estáticas del prompt con un bloque `cache_control`.**",
+      "notes": "Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y lo que no la dibuja el programador, poniendo `cache_control` en el bloque correcto. Señalá el orden. Lo estático arriba, lo dinámico abajo, siempre, porque el match es por prefijo. Si alguien pone el diff arriba del system prompt, el caché no sirve para nada y no hay ningún error que lo avise. El ejemplo pasó de un system prompt de guías clínicas a la guía de estilo y los ADRs del repo, que es el caso real de un asistente de revisión de código: cincuenta mil tokens de convenciones que no cambian, cien tokens de diff que cambian siempre.",
+      "_choice": {
+        "signals": [
+          "tres conceptos etiquetados más un ejemplo de código que los ilustra"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "code-example"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "code-example": "su campo `explanation` es una lista de strings, así que las tres etiquetas se imprimen como párrafos planos en vez de tarjetas"
+        }
+      },
+      "cards": [
+        {
+          "label": "Parte estática (cacheable)",
+          "body": "System prompt, guía de estilo, decisiones de arquitectura, base de conocimiento. Se marca con `cache_control`."
+        },
+        {
+          "label": "Parte dinámica (no cacheable)",
+          "body": "El diff, el ticket, la consulta puntual. Cambia en cada request, así que va después del corte."
+        },
+        {
+          "label": "Hit de caché",
+          "body": "Si el prefijo ya fue procesado, el proveedor lo reutiliza en vez de recalcularlo."
+        }
+      ],
+      "media": {
+        "code": "import anthropic\nclient = anthropic.Anthropic()\n\n# ESTATICO -- se cachea (50K tokens)\nsystem_prompt = \"\"\"Sos un revisor de codigo senior.\nGuia de estilo, ADRs y convenciones: [... 50K ...]\"\"\"\n\nresponse = client.messages.create(\n    model=\"claude-sonnet-5\",\n    system=[{\"type\": \"text\", \"text\": system_prompt,\n             \"cache_control\": {\"type\": \"ephemeral\"}}],\n    # DINAMICO -- cambia en cada request\n    messages=[{\"role\": \"user\",\n               \"content\": \"Revisa este diff: [... 100 ...]\"}])\n\n# Request 1     cache MISS  ->  se procesa y se guarda\n# Request 2+    cache HIT   ->  se cobra al 10%",
+        "language": "python"
+      },
+      "design": "split-right"
     },
     {
       "template": "concept-breakdown",
@@ -374,6 +563,52 @@
         "picked": "concept-breakdown",
         "rejected": {
           "content-text": "son tres conceptos rotulados, no prosa corrida; el invariante manda tarjetas"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Fundamentos",
+      "title": "Tokenomics: qué están construyendo",
+      "lead": "**La práctica se ordena alrededor de dos preguntas: qué cuesta realmente la IA, y cuánto vale la inteligencia que devuelve. El plan de trabajo son entregables concretos, no un manifiesto.**",
+      "cards": [
+        {
+          "label": "Definiciones",
+          "body": "Publicar qué es tokenomics y definir el valor y la densidad de un token, separando entrada, salida, razonamiento y caché. Sin vocabulario común no hay comparación posible."
+        },
+        {
+          "label": "Costo de servir",
+          "body": "Un método estándar para medir la cuenta completa, expresada como **costo por llamada** en vez de costo por token, para que el número corresponda al trabajo hecho."
+        },
+        {
+          "label": "Medición de valor",
+          "body": "Un marco que relacione el gasto con resultados, empezando por la proporción de trabajo que se completa sin intervención humana, medida contra lo que ese proceso cuesta hoy."
+        },
+        {
+          "label": "Telemetría de costo",
+          "body": "Llevar el reporte de costos de IA a FOCUS, la especificación abierta de datos de facturación, para poder normalizar cifras entre proveedores."
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Lo más cercano a esta clase",
+          "body": "Uno de sus proyectos, *Big-T*, clasifica la complejidad de costo de una carga de trabajo **antes** de decidir a qué modelo enrutarla. Es exactamente la decisión que vamos a ver en la sección de costos, pero convertida en método.",
+          "kind": "takeaway",
+          "position": "bottom"
+        }
+      ],
+      "notes": "La lámina anterior planteó el problema; ésta muestra que hay un plan y no solo un diagnóstico, que es lo que la vuelve creíble. Las dos preguntas de arriba vale leerlas tal cual, porque son sorprendentemente honestas para un comunicado: qué cuesta realmente esto, y cuánto vale lo que devuelve. La segunda es la difícil y todavía nadie la sabe responder. De los cuatro entregables, el que más les va a servir como ingenieros es el segundo: pasar de costo por token a costo por llamada. El token es una unidad interna del proveedor; la llamada es la unidad con la que uno diseña un sistema, y por eso el cambio de unidad no es cosmético. El de medición de valor tiene una definición operativa linda y conviene señalarla: empiezan por la proporción de trabajo que se completa sin que intervenga una persona, contra lo que ese proceso cuesta hoy. Es medible, no es retórica. Y cerrá con Big-T, que es el puente directo a la sección que viene: clasificar la complejidad de costo de una carga antes de elegir modelo es exactamente el árbol de decisión y la cascada que van a ver, pero como método formal en vez de criterio de cada equipo.",
+      "_choice": {
+        "signals": [
+          "cuatro entregables etiquetados en paralelo"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "son líneas de trabajo simultáneas, no pasos en secuencia"
         }
       }
     },
@@ -831,61 +1066,6 @@
       }
     },
     {
-      "template": "content+cards+image",
-      "section": "Modelos y costos",
-      "title": "Prompt caching",
-      "cards": [
-        {
-          "label": "El problema",
-          "body": "La misma base de conocimiento de 50K tokens viaja en cada request. Sin caching, 10.000 consultas × 50.100 tokens = 501M tokens de entrada, es decir **$1.503** a $3/MTok.",
-          "icon": "warning"
-        },
-        {
-          "label": "La solución",
-          "body": "Marcar las partes reutilizables del prompt. El proveedor guarda esos tokens y los cobra al 10% en los requests siguientes.",
-          "icon": "bookmark"
-        },
-        {
-          "label": "Monitorear el hit rate",
-          "body": "Si `cache_read_input_tokens` da cero, algo está invalidando el prefijo en silencio.",
-          "icon": "monitoring"
-        }
-      ],
-      "media": {
-        "src": "images/s2-4-1-caching-prefijo-sufijo.png",
-        "alt": "Prompt caching por prefijo: el prefijo estático se cobra al 10% y el sufijo dinámico a precio lleno"
-      },
-      "design": "split-right",
-      "highlights": [
-        {
-          "body": "Un hit vale el 10% del precio de entrada. El techo del ahorro es 90% sobre la porción cacheada.",
-          "kind": "takeaway"
-        }
-      ],
-      "notes": "El caching es la única optimización de esta clase que baja el costo sin tocar la calidad, así que conviene darle peso. Las tres prácticas que antes estaban como bullets ahora las dibuja el diagrama, así que decilas mientras lo señalás: **cachear lo estático** (base de conocimiento, system prompt, documentación de arquitectura, guía de estilo), **no cachear el input del usuario** porque cambia en cada request y rompe el prefijo, y **poner primero lo cacheable**, que es la consecuencia directa de que el match sea por prefijo. El mecanismo es un match por prefijo, y de ahí sale todo lo demás: si el system prompt lleva un `datetime.now()` adentro, el prefijo cambia en cada llamada y el hit rate es cero sin que nadie se entere, porque no hay error, solo una factura más alta. Por eso la cuarta práctica no es cosmética. Un equipo de software tiene el caso perfecto: la guía de estilo, los ADRs y el fragmento de la base de código que el asistente necesita son idénticos en cada consulta, y el pedido del usuario son doscientos tokens. Ese es el reparto que el caching premia. La slide siguiente pone los números.",
-      "_choice": {
-        "signals": [
-          "labeled_items=3",
-          "n_images=1",
-          "is_ordered=false",
-          "date_labels=false",
-          "has_table=false",
-          "has_code=false",
-          "two_groups=false"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "concept-breakdown",
-          "content-image"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "concept-breakdown": "hard rule — it requires images == 0; keeping it would mean dropping the shared prefix/suffix diagram",
-          "content-image": "dissolving the three labeled concepts into `facts` costs them their per-concept icons; the catalog names this hybrid as the default for a labeled set plus one shared image"
-        }
-      }
-    },
-    {
       "template": "value-columns",
       "section": "Modelos y costos",
       "title": "Prompt caching: los números",
@@ -948,39 +1128,6 @@
         "rejected": {
           "stat": "the figures are cells of an aligned table, not standalone metrics — stat cards would drop the `Cuenta` column that shows how each figure is derived, which is the point of the slide",
           "concept-breakdown": "the rows read across a shared factor pair (Cuenta · Costo), so card-per-row would lose the alignment; the catalog reserves card-per-row for heterogeneous attributes"
-        }
-      }
-    },
-    {
-      "template": "code-example",
-      "section": "Modelos y costos",
-      "title": "Prompt caching: implementación",
-      "lead": "**El caching se activa marcando las partes estáticas del prompt con un bloque `cache_control`.**",
-      "language": "python",
-      "code": "import anthropic\nclient = anthropic.Anthropic()\n\n# Parte ESTATICA -- se cachea (50K tokens)\nsystem_prompt = \"\"\"\nSos un revisor de codigo senior de este equipo.\nGuia de estilo, ADRs y convenciones del repo: [... 50K tokens ...]\n\"\"\"\n\nresponse = client.messages.create(\n    model=\"claude-sonnet-4-6\",\n    system=[{\n        \"type\": \"text\",\n        \"text\": system_prompt,\n        \"cache_control\": {\"type\": \"ephemeral\"}\n    }],\n    messages=[{\n        \"role\": \"user\",\n        # Parte DINAMICA -- cambia por request\n        \"content\": \"Revisa este diff: [... 100 tokens ...]\"\n    }]\n)\n\n# Request 1:    cache MISS -> $0,15 (50K tokens)\n# Request 2:    cache HIT  -> $0,015\n# Request 1000: cache HIT  -> $0,015",
-      "explanation": [
-        "**Parte estática (cacheable):** System prompt, guía de estilo, ADRs, base de conocimiento. Se marca con `cache_control`.",
-        "**Parte dinámica (no cacheable):** El diff, el ticket, la consulta puntual. Cambia en cada request.",
-        "**Hit de caché:** Si el prefijo ya fue procesado, el proveedor lo reutiliza y cobra el 10%."
-      ],
-      "notes": "Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y lo que no la dibuja el programador, poniendo `cache_control` en el bloque correcto. Señalá el orden. Lo estático arriba, lo dinámico abajo, siempre, porque el match es por prefijo. Si alguien pone el diff arriba del system prompt, el caché no sirve para nada y no hay ningún error que lo avise. El ejemplo pasó de un system prompt de guías clínicas a la guía de estilo y los ADRs del repo, que es el caso real de un asistente de revisión de código: cincuenta mil tokens de convenciones que no cambian, cien tokens de diff que cambian siempre.",
-      "_choice": {
-        "signals": [
-          "has_code=true",
-          "labeled_items=3",
-          "n_images=0",
-          "has_table=false",
-          "is_ordered=false"
-        ],
-        "candidates": [
-          "code-example",
-          "content+cards+image",
-          "concept-breakdown"
-        ],
-        "picked": "code-example",
-        "rejected": {
-          "content+cards+image": "the walk puts `has_code → code-example` before anything else — the 27-line fence is the slide's primary content, not a supporting example beside a card set; the three lines are exactly the 2–3-sentence explanation column code-example's Format prescribes",
-          "concept-breakdown": "code dominates the body, and a labeled set is only the fallback home once no richer positively-detected signal fires; here `has_code` does"
         }
       }
     },
@@ -1107,7 +1254,7 @@
       "section": "Prompts estructurados",
       "title": "Un prompt completo",
       "lead": "**Los seis componentes armados, sobre una tarea real: revisar un pull request.**",
-      "language": "text",
+      "language": "markdown",
       "code": "# [1] ROL / PERSONA\nSos un revisor de codigo senior, con experiencia en sistemas de alta disponibilidad.\n\n# [2] CONTEXTO\nEstas revisando un pull request sobre el servicio de facturacion.\nLas convenciones del equipo estan en CONTRIBUTING.md y en la guia de estilo del lenguaje.\n\n# [3] INSTRUCCIONES\n1. Lee el diff completo antes de comentar.\n2. Lista los problemas mas graves (maximo 3).\n3. Para cada uno, indica archivo y linea.\n4. Propone un fix concreto.\n\n# [4] RESTRICCIONES\n- No reescribas el modulo entero: solo el fragmento afectado.\n- Comenta unicamente lo que aparece en el diff.\n- Formato de salida: JSON con las claves severidad, archivo, linea, problema, fix.\n\n# [5] EJEMPLOS (Few-shot)\nDiff: se agrega open(path) sin with ni close() en billing/export.py, linea 42.\n-> {\"severidad\": \"alta\", \"archivo\": \"billing/export.py\", \"linea\": 42,\n    \"problema\": \"El descriptor no se cierra si la escritura lanza excepcion.\",\n    \"fix\": \"Usar with open(path) as f: en lugar de open(path).\"}\n\n# [6] INPUT\nDiff: en billing/invoice.py, linea 118, se concatena input del usuario\ndentro de una query SQL con un f-string.",
       "notes": "Leé el prompt en voz alta, bloque por bloque, y hacé notar dos cosas. La primera: el bloque de restricciones es el que más trabajo hace, y es el que la gente saltea. \"Comentá solo lo que aparece en el diff\" es lo que impide que el modelo se ponga a opinar sobre archivos que no se tocaron. La segunda: el ejemplo few-shot no muestra solo la respuesta, muestra el formato exacto, y por eso el modelo lo copia. Buen momento para una pregunta al grupo: qué pasa si sacamos el bloque 5. Respuesta: el JSON sale, pero con claves distintas cada vez, y el código que lo parsea empieza a romperse. Aclará que este prompt es propio: la fuente que lo promete lo perdió en la extracción.",
       "_choice": {
@@ -1171,11 +1318,6 @@
         {
           "body": "[Ver ejemplo interactivo en aitutorial.dev →](https://aitutorial.dev/prompting/structured-prompt-engineering)",
           "kind": "source"
-        },
-        {
-          "body": "**Qué gana el sistema**",
-          "kind": "note",
-          "position": "bottom"
         }
       ],
       "notes": "La distinción entre los dos enfoques es la que hay que dejar clara, porque se confunde todo el tiempo. Pedir el formato en el prompt es una sugerencia: el modelo casi siempre obedece y ese casi es el problema, porque el uno por ciento que falla aparece en producción a las tres de la mañana. La funcionalidad de salidas estructuradas de la API es una garantía a nivel de decodificación, no una instrucción. Si el output alimenta código, se usa la segunda. El esquema de la slide es el del revisor de código de la slide anterior, así que se ve el circuito completo: el prompt pide, el esquema define, el código valida. Y una advertencia útil: un esquema muy estricto sobre una tarea ambigua no arregla la ambigüedad, la esconde en un campo con un valor plausible.",
@@ -1201,32 +1343,47 @@
       }
     },
     {
-      "template": "code-example",
+      "template": "content+cards+image",
       "section": "Prompts estructurados",
       "title": "XML: estructura semántica",
-      "lead": "**Los LLM se entrenaron con enormes cantidades de HTML y XML de la web. Las etiquetas crean fronteras semánticas explícitas entre secciones y bajan la ambigüedad.**",
-      "language": "xml",
-      "code": "<tarea>Clasificar issues de GitHub</tarea>\n<instruccion>\nDevolve UNA sola palabra: bug, feature o pregunta.\nPara cada <entrada>, produci la <salida> correspondiente.\n</instruccion>\n<ejemplos>\n  <ejemplo>\n    <entrada>Al exportar a CSV con mas de 10.000 filas, el proceso corta en la 8.192.</entrada>\n    <salida>bug</salida>\n  </ejemplo>\n  <ejemplo>\n    <entrada>Estaria bueno poder filtrar el listado por fecha de creacion.</entrada>\n    <salida>feature</salida>\n  </ejemplo>\n  <ejemplo>\n    <entrada>¿El endpoint /v2/orders soporta paginacion por cursor?</entrada>\n    <salida>pregunta</salida>\n  </ejemplo>\n</ejemplos>\n<entrada>\nDespues de actualizar a la 3.2, el login con SSO devuelve 500 en staging.\n</entrada>",
-      "highlights": [
-        {
-          "body": "Las etiquetas suman tokens, y ese overhead se compensa con menos reintentos y menos errores de parseo. Si el prompt es estable, el caching lo absorbe.",
-          "kind": "note"
-        }
-      ],
+      "lead": "**Las etiquetas marcan dónde empieza y termina cada parte del prompt. El modelo no tiene que inferir la estructura: se la das dibujada.**",
       "notes": "El argumento de por qué funcionan las etiquetas es el mismo de la slide del motor de completado: el modelo vio millones de documentos con esta forma, así que una etiqueta de apertura es un patrón fortísimo. La segunda razón es más práctica: sin delimitadores, el modelo no sabe dónde termina la instrucción y dónde empieza el dato, y ese es el agujero por donde entra una inyección de prompt. Sobre las dos donas: el deck original les ponía 40% y 60% de reducción de alucinaciones, y esa cifra no tiene respaldo. La fuente la atribuye a \"lo que reportan los equipos\", sin estudio. Así que la afirmación queda cualitativa y las donas están marcadas para rehacer o retirar en el polish.",
       "_choice": {
         "signals": [
-          "conjunto de conceptos etiquetados sobre estructura semántica"
+          "cuatro propiedades etiquetadas de la técnica más el prompt que las muestra"
         ],
         "candidates": [
-          "concept-breakdown",
-          "content+cards+image"
+          "content+cards+image",
+          "code-example"
         ],
-        "picked": "code-example",
+        "picked": "content+cards+image",
         "rejected": {
-          "content+cards+image": "su imagen era una dona sin rótulo, dibujada sobre una cifra retirada por no tener fuente; se eliminó y la lámina ya no tiene visual"
+          "code-example": "sin `explanation` el panel de código ocupaba todo el ancho y la lámina no explicaba nada; las cuatro propiedades son el contenido y el prompt es el ejemplo"
         }
-      }
+      },
+      "media": {
+        "code": "<tarea>Clasificar issues de GitHub</tarea>\n<instruccion>\nDevolve UNA sola palabra: bug, feature o pregunta.\nPara cada <entrada>, produci la <salida> correspondiente.\n</instruccion>\n<ejemplos>\n  <ejemplo>\n    <entrada>Al exportar a CSV con mas de 10.000 filas, el proceso corta en la 8.192.</entrada>\n    <salida>bug</salida>\n  </ejemplo>\n  <ejemplo>\n    <entrada>Estaria bueno poder filtrar el listado por fecha de creacion.</entrada>\n    <salida>feature</salida>\n  </ejemplo>\n  <ejemplo>\n    <entrada>¿El endpoint /v2/orders soporta paginacion por cursor?</entrada>\n    <salida>pregunta</salida>\n  </ejemplo>\n</ejemplos>\n<entrada>\nDespues de actualizar a la 3.2, el login con SSO devuelve 500 en staging.\n</entrada>",
+        "language": "xml"
+      },
+      "design": "split-right",
+      "cards": [
+        {
+          "label": "Fronteras explícitas",
+          "body": "Tarea, instrucciones, ejemplos y entrada quedan separados sin ambigüedad. Nada se confunde con nada."
+        },
+        {
+          "label": "Formato que ya conocen",
+          "body": "Los LLM se entrenaron con enormes cantidades de HTML y XML de la web, así que la notación les resulta familiar."
+        },
+        {
+          "label": "La salida también se delimita",
+          "body": "Pedir la respuesta dentro de una etiqueta vuelve trivial el parseo y evita que el modelo mezcle explicación con resultado."
+        },
+        {
+          "label": "El overhead se paga solo",
+          "body": "Las etiquetas suman tokens, pero se compensan con menos reintentos y menos errores de parseo. Si el prompt es estable, el caching lo absorbe."
+        }
+      ]
     },
     {
       "template": "section-agenda",
@@ -1406,7 +1563,7 @@
       "design": "split-right",
       "media": {
         "code": "# INSTRUCCION\nClasifica la severidad del issue como CRITICO, ALTO o BAJO.\n\n# EJEMPLOS\nIssue: en produccion, todos los checkouts fallan con 500 desde el deploy de las 14:20.\n-> CRITICO (caida total de una ruta que genera ingresos)\n\nIssue: el export a CSV corta en la fila 8.192 con datasets grandes.\n-> ALTO (perdida silenciosa de datos, hay workaround manual)\n\nIssue: el tooltip del boton Guardar aparece en ingles en la version en espanol.\n-> BAJO (cosmetico, no bloquea)\n\n# INPUT\nIssue: /v2/orders devuelve 200 con body vacio cuando el token expiro, en lugar de 401.\nTres clientes ya cachearon la respuesta vacia.\n\n-> ALTO (contrato de API roto, y el error se propaga silencioso a los consumidores)",
-        "language": "text"
+        "language": "markdown"
       },
       "highlights": [
         {
@@ -1693,7 +1850,7 @@
       "design": "split-right",
       "media": {
         "code": "# CASO\nDiff en billing/invoice.py:\n-   total = subtotal + tax\n+   total = subtotal + tax * quantity\n\nPregunta: ¿este diff introduce un bug?\n\n# RUN 1\nSI. tax ya viene calculado sobre el subtotal completo.\nMultiplicarlo por quantity lo cobra de mas.\n\n# RUN 2\nSI. Mismo razonamiento: doble conteo de la cantidad.\n\n# RUN 3\nNO. Si tax fuera un monto unitario, el cambio seria correcto.\n\n# RESULTADO (votacion)\n-> SI, introduce un bug   (2 de 3 votos)\n-> Confianza: 67%",
-        "language": "text"
+        "language": "markdown"
       },
       "notes": "Lo interesante del ejemplo es la corrida 3, y conviene señalarla. No es una alucinación: es una lectura distinta y coherente del mismo diff, bajo un supuesto distinto sobre qué representa `tax`. Eso es lo que self-consistency detecta y lo que una sola llamada esconde. La confianza del 67% no es una probabilidad calibrada, es la proporción de votos, y conviene decirlo para que nadie la reporte como si fuera otra cosa. El uso práctico en un equipo: cuando la votación no es unánime, el sistema no decide, escala a una persona. Ese es el valor real, más que el voto en sí.",
       "_choice": {
@@ -2027,7 +2184,7 @@
       "design": "split-right",
       "media": {
         "code": "# CASO\nEl modulo billing/invoice.py tiene 1.400 lineas, 38 metodos y ningun test.\nHay que agregarle IVA por jurisdiccion sin romper la facturacion actual.\n\n# INSTRUCCION (Tree of Thought)\n1. Genera 3 estrategias de refactor posibles\n2. Evalua evidencia a favor y en contra de cada una\n3. Elegi la mas prometedora y justifica",
-        "language": "text"
+        "language": "markdown"
       },
       "highlights": [
         {
@@ -2160,7 +2317,7 @@
       "design": "split-right",
       "media": {
         "code": "# PASO 1 -- Clasificar urgencia\nInput:  ticket del usuario\n-> Output: ALTA / MEDIA / BAJA\n\n# PASO 2 -- Extraer detalles\nInput:  ticket + clasificacion\n-> Output: componente afectado, version, pasos para reproducir\n\n# PASO 3 -- Buscar en la base de conocimiento (RAG)\nInput:  detalles extraidos\n-> Output: incidentes previos parecidos, runbooks aplicables\n\n# PASO 4 -- Generar respuesta\nInput:  todo lo anterior\n-> Output: respuesta estructurada para el equipo de guardia",
-        "language": "text"
+        "language": "markdown"
       },
       "notes": "La tercera ventaja es la que suele sorprender, y merece medio minuto: encadenar es más barato aunque haya más llamadas. La razón es que el paso 1 corre con un modelo chico sobre doscientos tokens, y el modelo caro solo se invoca en el paso 4 y con el contexto ya filtrado. Un prompt monolítico manda todo al modelo caro siempre. Es el mismo argumento del cascading, aplicado a las etapas en vez de a los modelos. La contra real es la de la primera fila de la derecha: cuatro llamadas secuenciales son cuatro latencias sumadas, y en un flujo interactivo eso se nota. Si el sistema es asincrónico, no importa.",
       "_choice": {
@@ -3108,7 +3265,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "acb338996908df005a62e0914c1bb570d95bc4fb68de9f288011bc060894b477",
-    "bytes": 145422
+    "sha256": "26644e4f7f6be5d921fbe8493ef88c0ae1f409efb5a2fddb000fd7462afbf7ed",
+    "bytes": 155170
   }
 }
