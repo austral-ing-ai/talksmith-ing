@@ -4,7 +4,7 @@
           |          |         |         |          |
           v          v         v         v          v
        camino 1   camino 2  camino 3  camino 4   camino 5
-       (muestreo independiente, con temperatura > 0)
+       (cada camino se genera por separado)
           |          |         |         |          |
           v          v         v         v          v
          "A"        "A"       "B"       "A"        "A"
@@ -23,6 +23,6 @@
 
 <!-- ascii-note:
 intent: mostrar self-consistency como un fan-out y un fan-in sobre el MISMO prompt: se muestrean varios caminos de razonamiento independientes y se agrega el resultado por frecuencia, no por calidad individual
-emphasize: la simetria abanico-que-abre / abanico-que-cierra; el camino 3 disidente ("B"), que es lo que el metodo detecta y una sola llamada esconde; la caja de VOTACION como punto de convergencia
-labels: "UN MISMO PROMPT", "camino 1..5", "muestreo independiente, con temperatura > 0", las salidas "A"/"B", "VOTACION", "4 de 5 -- confianza 80%", y la linea de cierre sobre convergencia
+emphasize: el hilo GANADOR es lo que va destacado en color: los cuatro caminos que dicen "A", la caja de VOTACION y el resultado final. El camino 3 disidente ("B") va en gris apagado, como outlier. Regla del deck: el color marca lo que hay que mirar, nunca el caso perdido
+labels: "UN MISMO PROMPT", "camino 1..5", "cada camino se genera por separado", las salidas "A"/"B", "VOTACION", "4 de 5 -- confianza 80%", y la linea de cierre sobre convergencia
 -->

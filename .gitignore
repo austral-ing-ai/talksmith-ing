@@ -15,3 +15,4 @@ talks/*/images/.critique/
 **/_to_delete/
 .icons/
 .claude/settings.local.json
+talks/*/images/.critique/

@@ -1,29 +1,32 @@
                 LO QUE PASA EN UNA PETICION
 
-   +----------+     +----------------------+
-   |  prompt  | --> | el modelo evalua la  |
-   +----------+     | dificultad y decide  |
-                    +----------------------+
-                       |                |
-        tarea simple   |                |  tarea de varios pasos
-        no piensa      |                v
-                       |     +------------------------+
-                       |     | BLOQUE DE THINKING     |
-                       |     | tipo propio, aparte    |
-                       |     | del texto              |
-                       |     | display: summarized    |
-                       |     |          u omitted     |
-                       |     +------------------------+
-                       |                |
-                       v                v
+   +----------+     +--------------------------------+
+   |  prompt  | --> | el modelo evalua la dificultad |
+   +----------+     | y decide, en esta misma        |
+                    | peticion                       |
+                    +--------------------------------+
+                        |                        |
+          tarea simple  |                        |  tarea de varios pasos
+                        v                        v
+            +----------------------+  +------------------------+
+            | SIN BLOQUE           |  | BLOQUE DE THINKING     |
+            | la respuesta vuelve  |  | tipo propio, aparte    |
+            | directo, sin pasos   |  | del texto              |
+            | intermedios          |  | display: summarized    |
+            |                      |  |          u omitted     |
+            +----------------------+  +------------------------+
+                        |                        |
+                        +------------+-----------+
+                                     v
               +------------------------------------+
               |       TEXTO DE LA RESPUESTA        |
+              |       lo unico que ve el usuario   |
               +------------------------------------+
 
    max_tokens es el techo duro de TODA la salida: thinking + texto
 
 <!-- ascii-note:
 intent: mostrar que el thinking es una rama condicional decidida por el modelo dentro de una misma peticion, y que el bloque de razonamiento es una salida separada del texto
-emphasize: la bifurcacion (tarea simple no genera bloque), el bloque de thinking como caja aparte, y la linea de max_tokens que abarca las dos salidas
-labels: prompt, evaluacion, BLOQUE DE THINKING, TEXTO DE LA RESPUESTA, max_tokens
+emphasize: las dos ramas como cajas de PESO VISUAL EQUIVALENTE, lado a lado y a la misma altura, que convergen en el texto de la respuesta. La rama simple no puede ser una caida vertical vacia. El bloque de thinking se destaca en color; max_tokens se rotula UNA sola vez, como techo que abarca las dos salidas
+labels: prompt, evaluacion, "SIN BLOQUE", "BLOQUE DE THINKING", "TEXTO DE LA RESPUESTA", max_tokens
 -->

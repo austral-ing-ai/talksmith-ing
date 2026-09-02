@@ -127,3 +127,31 @@
   suggested-fix (hipotesis, no verificada): que el rol escriba a disco por item apenas cada render
     vuelve, en vez de acumular y reportar al final; y que antes de escribir un destino verifique si
     ya existe con sello valido, para no pisar el trabajo de un dispatch previo
+
+- id: BUG-20260902-01
+  status: ABIERTO (detectado 2026-09-02, plugin 0.98.1)
+  date: 2026-09-02
+  talk: talks/prompting
+  step: 7 (render html-strict)
+  where: skills/md-to-deck/html_style.py — regla `.cbcode{font-size:1.85cqw}` y la funcion
+    `fitCode`; tambien `.smedia>.mcode .cbcode{font-size:1.85cqw}`
+  what: el tamano de la tipografia de un panel de codigo esta topeado por la hoja de estilos y
+    no hay forma soportada de subirlo. `fitCode` documenta explicitamente "Only ever shrinks:
+    it resets to the stylesheet's size first, so a re-fit after a resize can grow back to it
+    but never past it". El efecto es que una lamina de codigo corto, o una a la que se le
+    quitaron el `lead` y las bandas de `highlights`, deja mucho aire vertical sin usar y el
+    codigo se sigue proyectando chico. En un aula grande eso es la diferencia entre un ejemplo
+    legible y uno que no se lee desde el fondo.
+  repro: 1) tomar una lamina `code-example` con pocas lineas de codigo (p. ej. "Zero-shot vs.
+    few-shot" de este Talk, dos paneles de 28 caracteres de ancho y ~26 lineas);
+    2) quitarle `lead` y `highlights` para liberar alto; 3) `build_html.py --talk <talk>`;
+    4) abrir el deck: el panel conserva `font-size:1.85cqw` y el espacio liberado queda vacio.
+  context: `build_html.py --help` no expone ninguna opcion de CSS extra, y SKILL.md no
+    documenta ningun hook de estilo por deck (`style:` solo elige entre pptx-* y html-strict).
+    Las hojas de `templates/html/styles/*.css` definen paleta, no tamanos de codigo. Editar el
+    plugin instalado no es opcion: se pisa en la proxima actualizacion.
+  suggested-fix: hacer que `fitCode` pueda CRECER hasta un techo mayor cuando sobra alto, en
+    vez de tratar el valor de la hoja como maximo absoluto — es decir, una busqueda bidireccional
+    acotada por un `--cb-fs-max` (p. ej. 2.6cqw) en lugar de solo hacia abajo. Alternativa mas
+    barata: exponer una variable CSS por lamina (`code_scale` en el modelo, mapeada a
+    `--cb-fs`) para que el autor pueda subir el tamano donde sabe que el codigo es corto.

@@ -344,8 +344,7 @@ emphasize: las dos columnas contrastadas, la izquierda que no crece y la derecha
 labels: "LO QUE EL USUARIO ESCRIBE (siempre parecido)", "LO QUE LA APP LE MANDA AL MODELO (crece en cada turno)", "turno 1..4", "M = mensaje del usuario", "R = respuesta del modelo", "ya se pago 3 veces", "lo nuevo"
 -->
 
-
-- 💡 **¿Por qué no explota el consumo?** Para que el modelo mantenga el contexto, la aplicación le reenvía toda la conversación previa en cada turno: el modelo no recuerda nada entre llamadas, así que cada turno vuelve a leer todo desde cero. Con esa aritmética un chat largo debería costar una fortuna. No la cuesta, y la razón es lo que viene.
+- 💡 **¿Por qué no explota el consumo?** El modelo no recuerda nada entre llamadas: cada turno reenvía todo y lo vuelve a leer desde cero. Debería costar una fortuna. No la cuesta.
 
 ### Sources
 
@@ -532,7 +531,7 @@ Esta lámina existe para que lo anterior no se lea como una preocupación nuestr
 
 | Alucinaciones | No-determinismo | Sesgo de recencia |
 |---|---|---|
-| El modelo predice texto plausible y no verifica hechos. Mitigación: restringirlo al contexto dado más revisión humana. | El mismo prompt produce respuestas distintas con temperature > 0. Temperature 0 da la mínima variabilidad; 2.0 la máxima. En producción: temperature baja más varias iteraciones. | El modelo presta más atención al principio y al final del prompt que al medio. Estrategia: instrucciones críticas al inicio, la consulta concreta al final. |
+| El modelo predice texto plausible y no verifica hechos. Mitigación: restringirlo al contexto dado más revisión humana. | El mismo prompt puede dar respuestas distintas. En producción se compensa corriendo varias veces y comparando, no con un parámetro. | El modelo presta más atención al principio y al final del prompt que al medio. Estrategia: instrucciones críticas al inicio, la consulta concreta al final. |
 
 ### Sources
 
@@ -605,7 +604,6 @@ Cuatro casos y un orden deliberado: primero el costo legal de desplegar, despué
 
 - **Grounding en contexto** Instruir al modelo a responder solo con el contexto provisto, y a decir que no sabe cuando ese contexto no alcanza.
 - **RAG (retrieval-augmented generation)** Recuperar e inyectar solo la información verificada y relevante para esa consulta, en vez de confiar en la memoria del modelo.
-- **Temperature = 0** Minimizar la aleatoriedad en tareas de extracción y clasificación, donde la creatividad es un defecto.
 - **Self-consistency** Generar varias respuestas independientes y quedarse con la más frecuente.
 - **Revisión humana en el loop** El output es siempre un borrador. Alguien del equipo lo valida antes de que llegue a producción.
 
@@ -616,7 +614,7 @@ Cuatro casos y un orden deliberado: primero el costo legal de desplegar, despué
 
 ### Speaker notes
 
-Cinco palancas ordenadas de la más barata a la más cara. Grounding es una línea de texto en el system prompt y ya cambia el comportamiento. RAG es infraestructura: alguien tiene que indexar, recuperar y decidir qué entra. Temperature 0 es gratis pero no es gratis en todas las tareas, así que aclará el alcance: extracción y clasificación sí, generación de texto no. Self-consistency se ve en detalle en la sección cinco, acá solo nombrala. Y la quinta es la que ningún equipo puede saltear: mientras la tasa de alucinación del sistema no esté medida, la revisión humana no es una etapa opcional del proceso, es la única garantía que hay.
+Cuatro palancas ordenadas de la más barata a la más cara. Grounding es una línea de texto en el system prompt y ya cambia el comportamiento. RAG es infraestructura: alguien tiene que indexar, recuperar y decidir qué entra. Self-consistency se ve en detalle en la sección cinco, acá solo nombrala. Y la quinta es la que ningún equipo puede saltear: mientras la tasa de alucinación del sistema no esté medida, la revisión humana no es una etapa opcional del proceso, es la única garantía que hay.
 
 ### Presenter feedback
 
@@ -725,11 +723,9 @@ Dos cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la ent
 
 ---
 
-## 2. Elegir modelo: árbol de decisión
+## 2. Elegir modelo: la primera pregunta que dé "sí" decide
 
 ### Content
-
-**Cuatro preguntas en orden. La primera que dé "sí" define el modelo.**
 
 ```ascii
   ¿La tarea es simple?
@@ -745,30 +741,27 @@ Dos cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la ent
        |            (hoy: Gemini Pro, 2M)
        NO
        |
-  ¿Necesita JSON garantizado por la API?
-       |
-       +-- SI --> modelo con structured outputs
-       |
-       NO --> el mejor modelo para la calidad que se necesita
-       |
   ¿El costo es critico por volumen?
        |
        +-- SI --> model cascading (barato primero, caro si hace falta)
+       |
+       NO --> el mejor modelo para la calidad que se necesita
 ```
 <!-- ascii-note:
-intent: mostrar la eleccion de modelo como una cascada de cuatro preguntas en orden fijo, donde la primera que da "si" corta la decision; el orden de las preguntas es el contenido, no los nombres de modelo que devuelve
-emphasize: la columna de decisiones encadenadas y las salidas de cada rama SI; que la pregunta de costo va ultima, despues de resolver dificultad, contexto y formato
-labels: "¿La tarea es simple?", "¿Necesita mas de 1M de contexto?", "¿Necesita JSON garantizado por la API?", "¿El costo es critico por volumen?", y las salidas de cada rama
+intent: mostrar la eleccion de modelo como una cascada de tres preguntas en orden fijo, donde la primera que da "si" corta la decision; el orden de las preguntas es el contenido, no los nombres de modelo que devuelve
+emphasize: la columna de decisiones encadenadas y las salidas de cada rama SI; que la pregunta de costo va ultima, despues de resolver dificultad y contexto
+labels: "¿La tarea es simple?", "¿Necesita mas de 1M de contexto?", "¿El costo es critico por volumen?", y las salidas de cada rama
 -->
 
 ### Sources
 
 - `AIG4B-Clase-3-Prompting.md.md` (slide 45)
 - Nombres de modelo actualizados: el árbol original recomendaba GPT-3.5 y Gemini 1.5 Pro, dos generaciones atrás del resto del deck.
+- [Structured outputs — Claude Docs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) (GA en toda la generación actual, hasta Haiku 4.5): por eso el árbol ya no pregunta por el formato de salida.
 
 ### Speaker notes
 
-El árbol vale más por el orden de las preguntas que por los nombres que devuelve. Primero la dificultad de la tarea, porque es la que más plata mueve: si clasificar tickets se puede hacer con un modelo chico, cualquier discusión sobre caching es secundaria. Segundo el contexto, que es una restricción dura y no negociable. Tercero el formato de salida, que en la práctica decide quién queda en carrera cuando el output alimenta código. Y recién al final el costo, porque optimizar costo antes de saber si la calidad alcanza es optimizar lo que no importa. Decí también por qué el árbol nombra familias y no versiones: los nombres cambian cada seis meses, las preguntas no.
+El árbol vale más por el orden de las preguntas que por los nombres que devuelve. Primero la dificultad de la tarea, porque es la que más plata mueve: si clasificar tickets se puede hacer con un modelo chico, cualquier discusión sobre caching es secundaria. Segundo el contexto, que es una restricción dura y no negociable. Y tercero el costo, porque optimizar costo antes de saber si la calidad alcanza es optimizar lo que no importa. Decí también por qué el árbol nombra familias y no versiones: los nombres cambian cada seis meses, las preguntas no. El árbol no pregunta por el formato de salida a propósito: structured outputs es GA en toda la generación actual, incluido Haiku 4.5, así que pedir JSON garantizado ya no descarta a nadie ni obliga a subir de modelo.
 
 ### Presenter feedback
 
@@ -777,39 +770,7 @@ El árbol vale más por el orden de las preguntas que por los nombres que devuel
 
 ---
 
-## 3. Prompt caching: los números
-
-### Content
-
-**El mismo workload de 10.000 consultas, con 80% de hit rate.**
-
-| Escenario | Cuenta | Costo |
-|---|---|---|
-| Sin caching | 10.000 × 50.100 tokens = 501M | **$1.503,00** |
-| Misses (20%) | 2.000 × 50.100 tokens = 100,2M | $300,60 |
-| Hits (80%) | 8.000 × (50.000 × 0,10 + 100) = 40,8M equivalentes | $122,40 |
-| **Con caching** | | **$423,00** |
-
-- 🎯 **Ahorro: $1.080,00 sobre $1.503,00, un 72%.**
-- ⚠️ La cuenta ignora el costo de escritura del caché, que se cobra por encima de la tarifa de entrada la primera vez. Con 10.000 consultas sobre el mismo prefijo, ese costo se diluye.
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 46)
-- Derivaciones, a $3/MTok (Claude Sonnet 4.6): sin caching = 501.000.000 / 1.000.000 × $3 = $1.503,00 · misses = 100.200.000 / 1.000.000 × $3 = $300,60 · hits = 8.000 × 5.100 tokens equivalentes = 40.800.000, × $3/MTok = $122,40 · total = $423,00 · ahorro = $1.503,00 − $423,00 = $1.080,00 = 71,9% de $1.503,00.
-
-### Speaker notes
-
-Esta slide corrige un error del deck original, y vale la pena decirlo en voz alta porque enseña algo: el deck declaraba $450 de costo con caching y un ahorro del 70%, y la cuenta no cerraba. Rehecha da $423 y 72%. La diferencia es chica en plata y grande en método: una cifra que nadie recalculó sobrevivió a todas las revisiones porque sonaba razonable. Es el mismo problema que van a tener con las salidas de un LLM. Sobre la fila de hits: los 5.100 tokens equivalentes salen de 50.000 cacheados al 10% más los 100 dinámicos a precio completo. La advertencia del final es honesta y conviene no saltearla, porque en un workload de pocas llamadas por prefijo la escritura del caché se puede comer el ahorro.
-
-### Presenter feedback
-
-- [closed] 2026-08-28 — "La aritmética del caching no cierra: 10.000 consultas con 80% de hit rate dan ≈$421, no los $450 declarados."
-  Resolution: se recalculó paso a paso ($423,00 con la escritura de caché excluida, ahorro de $1.080,00 = 72%), la derivación quedó anotada en Sources y el cálculo pasó a su propia slide (agrega, no borra).
-
----
-
-## 4. Model cascading
+## 3. Model cascading
 
 ### Content
 
@@ -828,22 +789,29 @@ Esta slide corrige un error del deck original, y vale la pena decirlo en voz alt
        v
   ¿confianza suficiente?
        |
-       +-- SI --> retornar respuesta      (costo minimo, latencia baja)
+       +--- SI ---> retornar respuesta          UNA llamada
+       |            costo minimo, latencia baja  <- el caso frecuente
        |
-       +-- NO --> +---------------------------+
-                  |  Modelo caro             |
-                  |  (Opus 4.8)              |
-                  |  resuelve                |
-                  +---------------------------+
-                            |
-                            v
-                     retornar respuesta      (solo cuando hace falta)
+       NO
+       |
+       v
+  +---------------------------+
+  |  Modelo caro              |
+  |  (Opus 4.8)               |
+  |  resuelve                 |
+  +---------------------------+
+       |
+       v
+       retornar respuesta                       DOS llamadas
+       solo cuando hace falta                    <- la excepcion
+
+  El ahorro sale de que la rama corta sea la mayoritaria.
 ```
 
 <!-- ascii-note:
 intent: mostrar el flujo de dos etapas del model cascading, con el gate de confianza como el punto de decision que define si el ahorro existe
-emphasize: el rombo de decision "¿confianza suficiente?" y las dos ramas con su costo asociado; la rama SI es la que produce el ahorro
-labels: "Modelo barato (Haiku 4.5)", "¿confianza suficiente?", "Modelo caro (Opus 4.8)", costo minimo / solo cuando hace falta
+emphasize: la asimetria de las dos ramas. SI es una salida lateral CORTA (una llamada, el caso frecuente) y NO continua hacia ABAJO por el camino largo (dos llamadas, la excepcion). El camino barato tiene que verse mas corto que el caro, no al reves; las dos cajas "retornar respuesta" no deben quedar a la misma altura
+labels: "Modelo barato (Haiku 4.5)", "¿confianza suficiente?", "Modelo caro (Opus 4.8)", "UNA llamada / el caso frecuente", "DOS llamadas / la excepcion", y la linea de cierre sobre la rama mayoritaria
 -->
 
 ### Sources
@@ -860,6 +828,60 @@ La idea es de una línea y la trampa está en el rombo del medio. Todo el ahorro
 - [closed] 2026-08-28 — "Slide muy por encima del presupuesto de densidad, con la estrategia, el flujo, los criterios de uso y la tabla comparativa todo junto y desapareado."
   Resolution: se partió en dos (agrega, no borra). Esta queda con la estrategia y el flujo, ahora como diagrama ASCII; los criterios y la tabla comparativa pasaron a la slide siguiente.
 
+---
+
+## 4. Cascading: el gate en código
+
+### Content
+
+<!-- ascii-render: documentation-only -->
+```python
+# el gate del cascading es UN CAMPO del esquema de salida:
+# structured outputs garantiza que llegue, y con el tipo correcto
+
+from typing import Literal
+from anthropic import Anthropic
+from pydantic import BaseModel, Field
+
+client = Anthropic()
+BARATO, CARO = "claude-haiku-4-5-20251001", "claude-opus-5"
+
+class Triage(BaseModel):
+    categoria: Literal["facturacion", "acceso", "bug", "feature"]
+    confianza: float = Field(ge=0, le=1, description=(
+        "Probabilidad de que un revisor humano experto elija esa "
+        "misma categoria. 1,0 el ticket lo dice explicitamente; "
+        "0,7 hay senales claras pero falta contexto; 0,4 encaja "
+        "en dos categorias; 0,0 no alcanza para decidir."))
+
+PROMPT = ("Clasifica el ticket. No infles la confianza para parecer "
+          "util: un 0,4 honesto vale mas que un 0,9 optimista, porque "
+          "debajo del umbral el ticket se reenvia a un modelo caro.")
+
+def clasificar(ticket: str) -> tuple[str, str]:
+    msg = [{"role": "user", "content": f"{PROMPT}\n\nTicket: {ticket}"}]
+
+    r = client.messages.parse(model=BARATO, max_tokens=256,
+                              messages=msg, output_format=Triage)
+    if r.parsed_output.confianza >= 0.85:
+        return r.parsed_output.categoria, BARATO      # UNA llamada
+
+    # rama larga: la del barato ya se pago igual
+    r = client.messages.parse(model=CARO, max_tokens=512,
+                              messages=msg, output_format=Triage)
+    return r.parsed_output.categoria, CARO            # DOS llamadas
+```
+
+
+### Sources
+
+- Forma del request verificada contra [Structured outputs — Claude Docs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs): `client.messages.parse()` acepta `output_format` con un modelo Pydantic y expone el resultado en `parsed_output`.
+- Misma fuente, sección de esquemas: `description` y `enum` son soportados y llegan al modelo; las restricciones numéricas (`minimum`/`maximum`, o `ge`/`le` de Pydantic) **no** lo son, pero el SDK las traslada al texto de la `description` y valida la respuesta contra el esquema original.
+- Punto de equilibrio derivado de la tabla de tarifas de esta misma sección: Haiku 4.5 a $1,00 / $5,00 por MTok y Opus 5 a $5,00 / $25,00 por MTok, factor 5 tanto en entrada como en salida. `1 + 5p = 5` da `p = 0,8`.
+
+### Speaker notes
+
+Veinte líneas, y la que importa es la del `if`. La lámina anterior deja el rombo dibujado sin decir cómo se implementa, y acá se ve: el gate es un campo más del esquema de salida, y structured outputs garantiza que ese campo llegue. Señalá que sin eso el gate se vuelve frágil, porque hay que leer texto libre y manejar el caso en que el modelo no declare nada. Después pegales el número del final, que suele sorprender: aun escalando ocho de cada diez veces la cascada empata con llamar directo al modelo caro, y cualquier tasa menor es ahorro. Eso invierte la intuición de que el cascading sirve solo si el modelo chico acierta casi siempre. La trampa real no es la tasa de escalamiento sino la calibración: un Haiku que se declara seguro sobre lo que inventó no escala nunca, y el ahorro se paga en errores que nadie mide. Si preguntan por la segunda llamada de verificación que suele salir en la discusión de la lámina anterior, mostrales que ahí ya hay dos llamadas y que el cálculo del final es el que dice si conviene. Aprovechá para mostrar dónde se define "confianza": no en la frase del prompt sino en la `description` del campo, que viaja dentro del esquema y el modelo la lee. Ahí está el ancla que hace que el número signifique algo, porque fija contra qué se compara: la probabilidad de que un revisor humano experto elija la misma categoría. Sin ese ancla, "confianza" es lo que el modelo quiera que sea. El detalle de `ge`/`le` vale un minuto: no son soportados por structured outputs, pero el SDK no los descarta, los pasa al texto de la description y valida la respuesta contra el esquema original, así que el rango se sigue cumpliendo del lado de tu código.
 ---
 
 ## 5. Cascading: cuándo sí y cuándo no
@@ -1122,7 +1144,12 @@ El argumento de por qué funcionan las etiquetas es el mismo de la slide del mot
 
 ### Content
 
-**Capacidad del modelo de aprender un patrón a partir de ejemplos puestos en el prompt, sin modificar sus pesos. No se re-entrena: reconoce el patrón en los ejemplos y lo aplica al caso nuevo.**
+**Aprender el patrón desde el prompt, sin tocar los pesos.**
+
+- **El patrón viaja en el pedido** Los ejemplos van dentro del prompt, no en un entrenamiento previo sobre esa tarea.
+- **No se re-entrena** Los pesos del modelo quedan exactamente iguales antes y después de la llamada.
+- **Reconoce y extiende** Infiere la regla que comparten los ejemplos y la aplica al caso nuevo, en la misma llamada.
+- **No persiste** El aprendizaje muere con la respuesta. El request siguiente vuelve a mandar los ejemplos, y a pagarlos.
 
 ```ascii
   Lo que viaja dentro del prompt, en cada regimen
@@ -1136,16 +1163,23 @@ El argumento de por qué funcionan las etiquetas es el mismo de la slide del mot
                                                  [ ej ][ ej ]  ...
   [ caso nuevo  ]      [ caso nuevo  ]           [ caso nuevo  ]
 
-  tokens por llamada  ----------------------------------------->  suben
-  precision           ----------------------------------------->  sube y satura
-  costo               ----------------------------------------->  sube siempre
+  ---------------------------------------------------------------------
+
+  COMO CAMBIA CADA MAGNITUD AL MOVERSE A LA DERECHA
+
+  tokens por llamada    bajo  ->  medio  ->  ALTO     sube siempre
+  costo                 bajo  ->  medio  ->  ALTO     sube siempre
+  precision             bajo  ->  ALTA   ->  ALTA     SATURA
+                                   ^
+                        el salto grande esta entre zero-shot y few-shot;
+                        de few-shot a many-shot casi no se mueve
 
   Los pesos del modelo no cambian en ningun punto de la progresion.
 ```
 <!-- ascii-note:
 intent: mostrar que los tres regimenes de in-context learning son el MISMO prompt con distinta cantidad de ejemplos intercalados entre la instruccion y el caso nuevo, y que la progresion tiene un costo monotono contra una precision que satura
-emphasize: las tres columnas como variaciones de una misma estructura; el bloque de ejemplos que crece de vacio a saturado; el contraste entre "precision sube y satura" y "costo sube siempre"
-labels: "ZERO-SHOT", "FEW-SHOT", "MANY-SHOT", "instruccion", "ej", "caso nuevo", ejes tokens / precision / costo, y la linea de cierre sobre los pesos
+emphasize: las tres columnas como variaciones de una misma estructura y el bloque de ejemplos que crece de vacio a saturado. La parte de abajo NO es un grafico: son tres filas de progresion discreta (bajo / medio / alto) sin ejes ni curvas. Lo que tiene que saltar a la vista es que la fila de precision se queda plana en el segundo escalon mientras las otras dos siguen subiendo
+labels: "ZERO-SHOT", "FEW-SHOT", "MANY-SHOT", "instruccion", "ej", "caso nuevo", las tres filas tokens / costo / precision con sus escalones, "SATURA", y la linea de cierre sobre los pesos
 -->
 
 ### Sources
@@ -1172,14 +1206,69 @@ La frase que hay que dejar clavada es "sin modificar los pesos", y el diagrama l
 
 ### Content
 
-**Mismo modelo, misma tarea, mismo input. Lo único que cambia es si hay ejemplos.**
 
-| Zero-shot | Few-shot |
-|---|---|
-| `Clasifica la severidad de este issue.`<br><br>`Issue: el export a CSV corta en la fila 8.192.`<br><br>→ `"Parece un problema de tamaño de buffer. Severidad media-alta, dependiendo del uso."` | `Clasifica la severidad como CRITICO, ALTO o BAJO.`<br><br>`Issue: caen todos los checkouts en produccion. -> CRITICO`<br>`Issue: el tooltip esta en ingles. -> BAJO`<br><br>`Issue: el export a CSV corta en la fila 8.192.`<br><br>→ `ALTO` |
-| Formato libre, vocabulario propio, imposible de parsear. | Una etiqueta del conjunto pedido. El código la consume directo. |
+<!-- ascii-render: documentation-only -->
+```python
+# ---- ZERO-SHOT ----
+# sin ejemplos: el modelo
+# elige formato y escala
 
-- 💡 Los ejemplos no le enseñan al modelo qué es la severidad. Le enseñan qué forma tiene la respuesta y dónde están los cortes entre categorías.
+PROMPT = """
+Clasifica la severidad de
+este issue.
+
+Issue: el export a CSV
+corta en la fila 8.192.
+"""
+
+r = client.messages.create(
+    model=M, max_tokens=256,
+    messages=[
+      {"role": "user",
+       "content": PROMPT}])
+
+# >>> "Parece un problema de
+#      tamano de buffer.
+#      Severidad media-alta,
+#      segun el uso."
+#
+# formato libre e
+# impredecible: no se
+# puede parsear
+```
+
+<!-- ascii-render: documentation-only -->
+```python
+# ---- FEW-SHOT ----
+# dos ejemplos antes del
+# caso real fijan la escala
+
+PROMPT = """
+Clasifica la severidad como
+CRITICO, ALTO o BAJO.
+
+Issue: caen los checkouts.
+-> CRITICO
+Issue: tooltip en ingles.
+-> BAJO
+
+Issue: el export a CSV
+corta en la fila 8.192.
+"""
+
+r = client.messages.create(
+    model=M, max_tokens=256,
+    messages=[
+      {"role": "user",
+       "content": PROMPT}])
+
+# >>> "ALTO"
+#
+# una etiqueta del conjunto
+# pedido: el codigo la
+# consume directo
+```
+
 
 ### Sources
 
@@ -1194,76 +1283,45 @@ Slide nueva, y llena un agujero real del deck original: definía zero-shot y nun
 
 ---
 
-## 3. Few-shot learning
+## 3. Many-shot learning
 
 ### Content
-
-**Buenas prácticas**
-
-- Incluir entre 2 y 10 ejemplos en el prompt.
-- Estructura: instrucción, ejemplo 1, ejemplo 2, ..., caso nuevo.
-- Ejemplos representativos: casos claros de cada categoría más los casos borde.
-- Formato idéntico en todos los ejemplos.
-- Tres a cinco suelen alcanzar. Calidad antes que cantidad.
-
-**Ejemplo: clasificar el sentimiento de un comentario**
-
-<!-- ascii-render: documentation-only -->
-```
-Clasifica el sentimiento como POSITIVO, NEGATIVO o NEUTRO.
-
-"La bateria dura muchisimo"        -> POSITIVO
-"Se trabo a los dos dias"          -> NEGATIVO
-"El dispositivo llego el martes"   -> NEUTRO
-```
-
-### Sources
-
-- `AIG4B-Clase-3-Prompting.md.md` (slide 23)
-- `aitutorial-structured-prompt-engineering.web.md` — "3-5 examples usually enough"; más ejemplos son más tokens y más costo; los ejemplos deberían cubrir casos borde y no solo los obvios.
-- `few-shot-learners-brown.web.md` — Brown et al. (2020).
-
-### Speaker notes
-
-La práctica que más rinde y menos se aplica es la tercera. Casi todo el mundo pone tres ejemplos fáciles, y el modelo aprende a resolver lo fácil, que ya resolvía solo. Los ejemplos tienen que cubrir los casos borde: el comentario ambiguo, el que mezcla dos categorías, el que está en otro idioma. Esa es la fuente que lo dice, no una opinión. La cuarta práctica parece cosmética y no lo es: si el formato varía entre ejemplos, el modelo tiene dos patrones para elegir y elige por turno. Y la quinta tiene una razón de plata que ya vieron: cada ejemplo viaja en cada request, así que veinte ejemplos son veinte veces ese costo, multiplicado por el volumen.
-
-### Presenter feedback
-
----
-
-## 4. Many-shot learning
-
-### Content
-
-**Cuándo pasar a many-shot**
 
 - Decenas o cientos de ejemplos, aprovechando las ventanas de contexto grandes.
 - Cuando few-shot no captura la variabilidad del problema.
 - Cuando hay muchas categorías, o categorías con fronteras finas.
 - En producción: agregar ejemplos al prompt a medida que aparecen los errores. Es mejorar el sistema sin re-entrenar nada.
 
-**Ejemplo: triage de issues de GitHub**
-
 <!-- ascii-render: documentation-only -->
-```
-# INSTRUCCION
-Clasifica la severidad del issue como CRITICO, ALTO o BAJO.
+```python
+# many-shot: los ejemplos crecen, la llamada no cambia
 
-# EJEMPLOS
-Issue: en produccion, todos los checkouts fallan con 500 desde el deploy de las 14:20.
--> CRITICO (caida total de una ruta que genera ingresos)
+EJEMPLOS = [
+    ("en produccion, todos los checkouts fallan con 500 "
+     "desde el deploy de las 14:20.",
+     "CRITICO"),   # caida total de una ruta que genera ingresos
+    ("el export a CSV corta en la fila 8.192 con datasets grandes.",
+     "ALTO"),      # perdida silenciosa de datos, hay workaround
+    ("el tooltip del boton Guardar aparece en ingles.",
+     "BAJO"),      # cosmetico, no bloquea
+    # ... y asi hasta decenas o cientos
+]
 
-Issue: el export a CSV corta en la fila 8.192 con datasets grandes.
--> ALTO (perdida silenciosa de datos, hay workaround manual)
+ISSUE = ("/v2/orders devuelve 200 con body vacio cuando el token "
+         "expiro, en lugar de 401. Tres clientes ya cachearon "
+         "la respuesta vacia.")
 
-Issue: el tooltip del boton Guardar aparece en ingles en la version en espanol.
--> BAJO (cosmetico, no bloquea)
+prompt = "Clasifica la severidad del issue como CRITICO, ALTO o BAJO.\n\n"
+for texto, etiqueta in EJEMPLOS:
+    prompt += f"Issue: {texto}\n-> {etiqueta}\n\n"
+prompt += f"Issue: {ISSUE}\n->"
 
-# INPUT
-Issue: /v2/orders devuelve 200 con body vacio cuando el token expiro, en lugar de 401.
-Tres clientes ya cachearon la respuesta vacia.
+r = client.messages.create(model=M, max_tokens=64,
+                           messages=[{"role": "user", "content": prompt}])
 
--> ALTO (contrato de API roto, y el error se propaga silencioso a los consumidores)
+# >>> "ALTO"   contrato de API roto: el error se propaga silencioso
+#
+# cada ejemplo de EJEMPLOS viaja en CADA llamada, y se paga en cada una
 ```
 
 ### Sources
@@ -1304,7 +1362,6 @@ El punto fuerte de esta slide es la cuarta línea, porque describe un bucle de m
 - **Tree of Thought (ToT)** Ramas exploradas en paralelo, con poda de las peores.
 - **Prompt chaining** Una secuencia de prompts simples encadenados.
 
-- 🎯 **Cada una compra calidad con un recurso distinto.** CoT agrega pasos, self-consistency agrega muestras, ToT agrega ramas y el encadenamiento agrega llamadas. Todas se pagan.
 
 ### Sources
 
@@ -1327,28 +1384,40 @@ Mapa de la sección. Cuatro técnicas y una sola idea de fondo, que se explica r
 **Mostrarle al modelo el razonamiento paso a paso, no solo el resultado. Es pensar en voz alta.**
 
 ```ascii
-  SIN CoT
-  +-----------+                                        +------------+
-  | pregunta  | -------------------------------------> | respuesta  |
-  +-----------+           un solo salto                +------------+
-                    nada escrito entre medio
+        SIN CoT                       CON CoT
 
-  CON CoT
-  +-----------+    +--------+    +--------+    +--------+    +------------+
-  | pregunta  | -> | paso 1 | -> | paso 2 | -> | paso 3 | -> | respuesta  |
-  +-----------+    +--------+    +--------+    +--------+    +------------+
-                       |             |             |
-                       +-------------+-------------+
-                         cada paso escrito entra al contexto
-                         y condiciona la prediccion del siguiente
+   +-------------+               +-------------+
+   |  pregunta   |               |  pregunta   |
+   +-------------+               +-------------+
+          |                             |
+          |                             v
+          |                      +-------------+
+          |                      |   paso 1    |
+          |                      +-------------+
+          |                             |
+          |   un solo salto             v
+          |   nada escrito       +-------------+
+          |   entre medio        |   paso 2    |
+          |                      +-------------+
+          |                             |
+          |                             v
+          |                      +-------------+
+          |                      |   paso 3    |
+          |                      +-------------+
+          |                             |
+          v                             v
+   +-------------+               +-------------+
+   |  respuesta  |               |  respuesta  |
+   +-------------+               +-------------+
 
-  Los tokens intermedios no son la explicacion de la respuesta:
-  son el calculo que la produce.
+                        cada paso escrito entra al contexto
+                        y condiciona la prediccion del siguiente
+
 ```
 <!-- ascii-note:
-intent: mostrar que CoT no agrega una explicacion al final sino pasos escritos EN EL MEDIO, y que cada paso escrito entra al contexto y condiciona el siguiente; contrastar con el salto unico de la version sin CoT
-emphasize: el contraste entre la flecha larga sin nada en el medio y la cadena de pasos; la llave que muestra que cada paso realimenta el contexto; la linea de cierre que es la tesis de la clase
-labels: "SIN CoT", "CON CoT", "pregunta", "paso 1/2/3", "respuesta", "un solo salto", "cada paso escrito entra al contexto", y la linea de cierre sobre los tokens intermedios
+intent: mostrar que CoT no agrega una explicacion al final sino pasos escritos EN EL MEDIO, y que cada paso escrito entra al contexto y condiciona el siguiente. ORIENTACION VERTICAL: dos columnas lado a lado, cada una fluyendo de arriba hacia abajo, para que las dos rutas se comparen a la misma altura
+emphasize: el contraste de ALTURA entre las dos columnas: a la izquierda una flecha larga que baja sin nada en el medio, a la derecha la misma distancia poblada de pasos. Las cajas "pregunta" arriba y "respuesta" abajo tienen que quedar alineadas entre columnas, para que se vea que el recorrido es el mismo y lo que cambia es lo que pasa en el medio
+labels: "SIN CoT", "CON CoT", "pregunta", "paso 1/2/3", "respuesta", "un solo salto / nada escrito entre medio", y "cada paso escrito entra al contexto y condiciona la prediccion del siguiente"
 -->
 
 - **Instrucción directa** Pedirle que razone antes de responder, en el propio prompt.
@@ -1356,7 +1425,6 @@ labels: "SIN CoT", "CON CoT", "pregunta", "paso 1/2/3", "respuesta", "un solo sa
 
 - 🔗 CoT e in-context learning son la misma familia: few-shot CoT es ICL donde los ejemplos incluyen el razonamiento. ICL enseña qué responder; CoT enseña cómo razonar.
 
-- 💡 Con thinking disponible, la instrucción general ("pensar a fondo") rinde más que un plan paso a paso escrito a mano. El CoT manual queda como *fallback* para cuando el thinking está apagado.
 
 ### Sources
 
@@ -1424,8 +1492,6 @@ El ejemplo es trivial a propósito y hay que decirlo, porque la pregunta obvia e
 
 ### Content
 
-**Una sola respuesta puede estar mal por no-determinismo o por ambigüedad del prompt. Self-consistency genera varias respuestas independientes y vota entre ellas.**
-
 ```ascii
                         UN MISMO PROMPT
                                |
@@ -1433,7 +1499,7 @@ El ejemplo es trivial a propósito y hay que decirlo, porque la pregunta obvia e
           |          |         |         |          |
           v          v         v         v          v
        camino 1   camino 2  camino 3  camino 4   camino 5
-       (muestreo independiente, con temperatura > 0)
+       (cada camino se genera por separado)
           |          |         |         |          |
           v          v         v         v          v
          "A"        "A"       "B"       "A"        "A"
@@ -1452,11 +1518,9 @@ El ejemplo es trivial a propósito y hay que decirlo, porque la pregunta obvia e
 ```
 <!-- ascii-note:
 intent: mostrar self-consistency como un fan-out y un fan-in sobre el MISMO prompt: se muestrean varios caminos de razonamiento independientes y se agrega el resultado por frecuencia, no por calidad individual
-emphasize: la simetria abanico-que-abre / abanico-que-cierra; el camino 3 disidente ("B"), que es lo que el metodo detecta y una sola llamada esconde; la caja de VOTACION como punto de convergencia
-labels: "UN MISMO PROMPT", "camino 1..5", "muestreo independiente, con temperatura > 0", las salidas "A"/"B", "VOTACION", "4 de 5 -- confianza 80%", y la linea de cierre sobre convergencia
+emphasize: el hilo GANADOR es lo que va destacado en color: los cuatro caminos que dicen "A", la caja de VOTACION y el resultado final. El camino 3 disidente ("B") va en gris apagado, como outlier. Regla del deck: el color marca lo que hay que mirar, nunca el caso perdido
+labels: "UN MISMO PROMPT", "camino 1..5", "cada camino se genera por separado", las salidas "A"/"B", "VOTACION", "4 de 5 -- confianza 80%", y la linea de cierre sobre convergencia
 -->
-
-**Cuándo usarlo**
 
 - **Alto riesgo** Un deploy, una migración de datos, un cambio en facturación.
 - **Razonamiento complejo** Varias cadenas de pensamiento pueden divergir.
@@ -1485,34 +1549,35 @@ Antes del diagrama, el número que sostiene la decisión y que ya no está en la
 
 ### Content
 
-**Tres corridas independientes del mismo prompt sobre el mismo diff, y una votación.**
+**Cinco corridas independientes del mismo prompt sobre el mismo diff, y una votación.**
 
 <!-- ascii-render: documentation-only -->
-```
+```text
 # CASO
-Diff en billing/invoice.py:
--   total = subtotal + tax
-+   total = subtotal + tax * quantity
+Diff en orders/pagination.py
 
-Pregunta: ¿este diff introduce un bug?
+-   return items[offset : offset + limit]
++   return items[offset : offset + limit + 1]
 
-# RUN 1
-SI. tax ya viene calculado sobre el subtotal completo.
-Multiplicarlo por quantity lo cobra de mas.
+Pregunta: con limit=20, ¿se solapan dos paginas consecutivas?
 
-# RUN 2
-SI. Mismo razonamiento: doble conteo de la cantidad.
+# CINCO CORRIDAS INDEPENDIENTES DEL MISMO PROMPT
 
-# RUN 3
-NO. Si tax fuera un monto unitario, el cambio seria correcto.
+run 1  -> SI   devuelve 21; la pagina 2 arranca en offset=20
+run 2  -> SI   el ultimo item se repite al principio de la siguiente
+run 3  -> NO   "el slice no cambia el largo"    <- error de razonamiento
+run 4  -> SI   21 por pagina, el indice 20 sale dos veces
+run 5  -> SI   el +1 pisa el primer item de la pagina siguiente
 
-# RESULTADO (votacion)
--> SI, introduce un bug   (2 de 3 votos)
--> Confianza: 67%
+# VOTACION
+-> SI, se solapan        4 de 5 votos        confianza 80%
+
+Ninguna corrida sabe que las otras existen. La equivocada no se
+repite; las correctas convergen, y ademas por el mismo motivo.
 ```
 
 - **Cuándo usarlo** Cambios donde el error sale caro y el razonamiento admite más de un camino.
-- **Costo** Tres a cinco llamadas al modelo, es decir tres a cinco veces el precio y la latencia.
+- **Costo** Cinco llamadas al modelo: cinco veces el precio, y la latencia de la más lenta si se lanzan en paralelo.
 
 ### Sources
 
@@ -1622,8 +1687,6 @@ Este ejemplo funciona porque las tres ramas son defendibles, y eso es justo el t
 ### Content
 
 **Dividir una tarea compleja en una secuencia de prompts simples, donde el output de cada paso alimenta al siguiente. Cada paso es más preciso porque se enfoca en una sola sub-tarea.**
-
-**Ejemplo: pipeline de triage de tickets**
 
 ```ascii
   [ ticket ]
@@ -1886,32 +1949,35 @@ Esta lámina existe porque la clase venía usando la misma palabra para cuatro c
 ```ascii
                 LO QUE PASA EN UNA PETICION
 
-   +----------+     +----------------------+
-   |  prompt  | --> | el modelo evalua la  |
-   +----------+     | dificultad y decide  |
-                    +----------------------+
-                       |                |
-        tarea simple   |                |  tarea de varios pasos
-        no piensa      |                v
-                       |     +------------------------+
-                       |     | BLOQUE DE THINKING     |
-                       |     | tipo propio, aparte    |
-                       |     | del texto              |
-                       |     | display: summarized    |
-                       |     |          u omitted     |
-                       |     +------------------------+
-                       |                |
-                       v                v
+   +----------+     +--------------------------------+
+   |  prompt  | --> | el modelo evalua la dificultad |
+   +----------+     | y decide, en esta misma        |
+                    | peticion                       |
+                    +--------------------------------+
+                        |                        |
+          tarea simple  |                        |  tarea de varios pasos
+                        v                        v
+            +----------------------+  +------------------------+
+            | SIN BLOQUE           |  | BLOQUE DE THINKING     |
+            | la respuesta vuelve  |  | tipo propio, aparte    |
+            | directo, sin pasos   |  | del texto              |
+            | intermedios          |  | display: summarized    |
+            |                      |  |          u omitted     |
+            +----------------------+  +------------------------+
+                        |                        |
+                        +------------+-----------+
+                                     v
               +------------------------------------+
               |       TEXTO DE LA RESPUESTA        |
+              |       lo unico que ve el usuario   |
               +------------------------------------+
 
    max_tokens es el techo duro de TODA la salida: thinking + texto
 ```
 <!-- ascii-note:
 intent: mostrar que el thinking es una rama condicional decidida por el modelo dentro de una misma peticion, y que el bloque de razonamiento es una salida separada del texto
-emphasize: la bifurcacion (tarea simple no genera bloque), el bloque de thinking como caja aparte, y la linea de max_tokens que abarca las dos salidas
-labels: prompt, evaluacion, BLOQUE DE THINKING, TEXTO DE LA RESPUESTA, max_tokens
+emphasize: las dos ramas como cajas de PESO VISUAL EQUIVALENTE, lado a lado y a la misma altura, que convergen en el texto de la respuesta. La rama simple no puede ser una caida vertical vacia. El bloque de thinking se destaca en color; max_tokens se rotula UNA sola vez, como techo que abarca las dos salidas
+labels: prompt, evaluacion, "SIN BLOQUE", "BLOQUE DE THINKING", "TEXTO DE LA RESPUESTA", max_tokens
 -->
 
 ### Sources
@@ -2299,25 +2365,34 @@ Lámina de cierre de la sección, y sirve para dejar una idea de forma más que 
 **El mismo recorrido que hace un cambio desde que alguien lo pide hasta que llega a producción, con lo que un LLM aporta en cada estadio.**
 
 ```ascii
-     +----------+     +----------+     +----------------+     +----------+
-     |  ISSUE   | --> |  DISENO  | --> | IMPLEMENTACION | --> |  REVIEW  |
-     |  triage  |     |  ADRs    |     | codigo, tests  |     |   diff   |
-     +----------+     +----------+     +----------------+     +----------+
-          ^                                                        |
-          |                                                        v
-          |           +-------------+                        +----------+
-          +---------- | INCIDENTE   | <--------------------- |  DEPLOY  |
-                      | logs        |                        | release  |
-                      | post-mortem |                        |  notes   |
-                      +-------------+                        +----------+
+  DONDE ENTRA EL LLM EN CADA ESTADIO
+
+  +-------------------+    +-------------------+    +-------------------+    +-------------------+
+  |  ISSUE            |--> |  DISENO           |--> |  IMPLEMENTACION   |--> |  REVIEW           |
+  |  triage           |    |  ADRs             |    |  codigo, tests    |    |  diff             |
+  |...................|    |...................|    |...................|    |...................|
+  | clasifica, agrupa |    | contrasta alter-  |    | escribe el test   |    | resume el diff y  |
+  | duplicados y pide |    | nativas y redacta |    | antes que la      |    | marca lo que hay  |
+  | lo que falta      |    | el ADR            |    | implementacion    |    | que mirar a mano  |
+  +-------------------+    +-------------------+    +-------------------+    +-------------------+
+        ^                                                                            |
+        |                                                                            v
+  +-------------------+                                                  +-------------------+
+  |  INCIDENTE        |                                                  |  DEPLOY           |
+  |  logs, post-mortem| <----------------------------------------------- |  release notes    |
+  |...................|                                                  |...................|
+  | correlaciona logs |                                                  | redacta las notas |
+  | y propone la      |                                                  | de version desde  |
+  | hipotesis         |                                                  | los commits       |
+  +-------------------+                                                  +-------------------+
 
   El post-mortem vuelve como issue: el ciclo se cierra, no termina.
   Hay un LLM util en los seis estadios, no solo en "escribir codigo".
 ```
 <!-- ascii-note:
-intent: mostrar el ciclo de vida de un cambio como un lazo cerrado de seis estadios, y que el aporte del LLM esta repartido en los seis y no concentrado en la implementacion, que es donde la intuicion lo pone
-emphasize: la flecha de retorno de INCIDENTE a ISSUE, que es lo que convierte la secuencia en ciclo; la caja IMPLEMENTACION como uno mas entre seis y no como el centro
-labels: "ISSUE / triage", "DISENO / ADRs", "IMPLEMENTACION / codigo, tests", "REVIEW / diff", "DEPLOY / release notes", "INCIDENTE / logs, post-mortem", y las dos lineas de cierre
+intent: mostrar el ciclo de vida de un cambio como un lazo cerrado de seis estadios y, DENTRO de cada estadio, la tarea concreta que hace el LLM ahi. El aporte esta repartido en los seis y no concentrado en la implementacion, que es donde la intuicion lo pone
+emphasize: cada caja tiene dos registros separados por una linea: arriba el estadio, abajo la tarea del LLM en ese estadio. Ese segundo registro es el contenido de la lamina y tiene que leerse en los seis. Ademas, la flecha de retorno de INCIDENTE a ISSUE, que convierte la secuencia en ciclo; IMPLEMENTACION es uno mas entre seis, no el centro
+labels: los seis estadios con su tarea de LLM debajo -- ISSUE (clasifica y deduplica), DISENO (contrasta alternativas y redacta el ADR), IMPLEMENTACION (escribe el test antes que la implementacion), REVIEW (resume el diff), DEPLOY (redacta las notas de version), INCIDENTE (correlaciona logs y propone la hipotesis) -- y las dos lineas de cierre
 -->
 
 | Etapa | Qué hace hoy |
@@ -2586,7 +2661,7 @@ Dejá claro el encuadre antes que nada: esto es tarea, no actividad de clase. Su
 
 # Conclusions
 
-## 1. Key takeaways
+## 2. Key takeaways
 
 ### Content
 
@@ -2626,7 +2701,6 @@ Tres frases y ninguna es un resumen de la agenda. Son la tesis desplegada. La pr
 - **Sin registro en el corpus para las seis capturas nuevas (6.1 a 6.12)** — `anthropic-docs-effort`, `anthropic-docs-adaptive-thinking`, `anthropic-docs-extended-thinking`, `deepseek-r1-nature`, `deepseek-r1-arxiv` e `inference-time-scaling` viven en `research/web/` y las Sources de la sección 6 las citan por esa ruta. Falta correr el librarian para que existan como registros en `research/corpus/` y re-anclar las citas.
 - **Largo de la sección 6** — pasó de 8 a 12 láminas al separar mecanismo, entrenamiento, configuración y costo. Falta decidir si entra en el tiempo de la clase; el candidato natural a fusión es 6.3 con 6.4 (la historia del refuerzo y el diseño de la recompensa), que se separaron porque el argumento del verificador le habla directo a esta audiencia.
 - **Nombre de la sección 6** — se sigue llamando "Effort y thinking", que ya no cubre lo que hay adentro (mecanismo, entrenamiento por refuerzo, configuración, costo y la técnica de prompt). Falta decidir el nombre nuevo.
-- **PNG obsoleto de 6.1 (`images/s4-1-1-tres-niveles-razonamiento.png`)** — dibuja la progresión de tres escalones que se retiró. El ASCII de 6.1 se reescribió como bloque ```ascii``` para que Polish lo vuelva a renderizar; el PNG viejo queda sin referencia.
 - **Registro de las notas del orador** — las notas de la sección 6 quedaron en tuteo neutro por pedido explícito; las de las otras ocho secciones usan voseo ("Cerrá", "Decilo", "pagás"). Falta decidir si se normaliza el deck entero o si la sección 6 vuelve al voseo.
 - **"10 o 30 segundos" de thinking nativo (6.12)** — la cifra viene de `AIG4B-Clase-3-Prompting.md.md` (slide 39), donde describía el extended thinking de presupuesto fijo. Ninguna de las capturas de la documentación da números de latencia, y el razonamiento adaptativo puede saltear el thinking por completo. Falta verificar o retirar.
 - **Retrocompatibilidad del vocabulario "Thinking" / "Deep Thinking" (6.1)** — la lámina afirma que son nombres de producto de las apps de chat y que no figuran en la documentación de la plataforma. Lo segundo está verificado contra las tres capturas; lo primero viene de la lámina importada de `talksmith-mim`, sin fuente propia en este corpus.
@@ -2637,7 +2711,6 @@ Tres frases y ninguna es un resumen de la agenda. Son la tesis desplegada. La pr
 
 *(Ninguna slide fue retirada. Lo que sigue son fragmentos de contenido que salieron de la sección 6 en la reescritura del 2026-09-01, con su motivo. Todo lo demás que la revisión pedía cortar se recontextualizó, se partió en dos slides o se marcó con un `[open]`.)*
 
-- **Sección 6, lámina "Del prompt al entrenamiento"** — "Y varios proveedores deshabilitan temperatura y top-p en esos modelos: la generación del bloque de razonamiento la controlan ellos, no vos." Motivo: ninguna de las capturas de la documentación oficial sostiene la afirmación; la fuente que la respaldaba ("Catálogo vigente de la API de Claude, corte 2026-06-24") no tiene registro en `research/corpus/`. Se puede reponer si se ingesta una fuente que la verifique.
 - **Sección 6, lámina de effort** — "El default es `high`: una llamada que nunca lo tocó viene pagando razonamiento de sobra en cada tarea trivial." y "el default `high` es caro". Motivo: la documentación recomienda `high` como punto de partida y bajarlo cuando los evals muestren que la calidad aguanta, así que presentar el default como derroche contradice la fuente. El hecho verificable que reemplaza al juicio quedó en la lámina: `high` equivale a no setear el parámetro.
 - **Sección 6, lámina de effort** — "`xhigh` es el mejor punto para código y tareas agénticas" como afirmación general. Motivo: es una recomendación por modelo, no global. Bajó a las notas del orador, calificada (Opus 4.7 y 4.8 arrancan en `xhigh`; Opus 5 y Fable 5.1 arrancan en `high`).
 - **Sección 6, lámina "Extended thinking (Anthropic)"** — la tabla de tres columnas Debugging / Calidad / Trazabilidad. Motivo: duplicaba las tres razones de la lámina del ejemplo. El contenido sobrevive reescrito en 6.9 (Debugging / Estructura / Portabilidad); la lámina de origen quedó dedicada al mecanismo.

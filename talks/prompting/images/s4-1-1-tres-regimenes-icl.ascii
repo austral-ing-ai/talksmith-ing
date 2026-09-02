@@ -9,14 +9,21 @@
                                                  [ ej ][ ej ]  ...
   [ caso nuevo  ]      [ caso nuevo  ]           [ caso nuevo  ]
 
-  tokens por llamada  ----------------------------------------->  suben
-  precision           ----------------------------------------->  sube y satura
-  costo               ----------------------------------------->  sube siempre
+  ---------------------------------------------------------------------
+
+  COMO CAMBIA CADA MAGNITUD AL MOVERSE A LA DERECHA
+
+  tokens por llamada    bajo  ->  medio  ->  ALTO     sube siempre
+  costo                 bajo  ->  medio  ->  ALTO     sube siempre
+  precision             bajo  ->  ALTA   ->  ALTA     SATURA
+                                   ^
+                        el salto grande esta entre zero-shot y few-shot;
+                        de few-shot a many-shot casi no se mueve
 
   Los pesos del modelo no cambian en ningun punto de la progresion.
 
 <!-- ascii-note:
 intent: mostrar que los tres regimenes de in-context learning son el MISMO prompt con distinta cantidad de ejemplos intercalados entre la instruccion y el caso nuevo, y que la progresion tiene un costo monotono contra una precision que satura
-emphasize: las tres columnas como variaciones de una misma estructura; el bloque de ejemplos que crece de vacio a saturado; el contraste entre "precision sube y satura" y "costo sube siempre"
-labels: "ZERO-SHOT", "FEW-SHOT", "MANY-SHOT", "instruccion", "ej", "caso nuevo", ejes tokens / precision / costo, y la linea de cierre sobre los pesos
+emphasize: las tres columnas como variaciones de una misma estructura y el bloque de ejemplos que crece de vacio a saturado. La parte de abajo NO es un grafico: son tres filas de progresion discreta (bajo / medio / alto) sin ejes ni curvas. Lo que tiene que saltar a la vista es que la fila de precision se queda plana en el segundo escalon mientras las otras dos siguen subiendo
+labels: "ZERO-SHOT", "FEW-SHOT", "MANY-SHOT", "instruccion", "ej", "caso nuevo", las tres filas tokens / costo / precision con sus escalones, "SATURA", y la linea de cierre sobre los pesos
 -->

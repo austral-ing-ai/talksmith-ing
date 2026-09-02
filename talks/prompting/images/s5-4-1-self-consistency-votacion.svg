@@ -1,72 +1,70 @@
-<!-- talksmith-ascii-sha256: 84c62ff736fd3d563d82f6b191b6c08e078c5c38df4a8295d5b143e20cb73150 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 566" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+<!-- talksmith-ascii-sha256: dcaccdc86c4ec36b82d595b70758b4a11cfe5f665f4f0e63819057a3b3abb53d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 652 498" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
 <title>Self-consistency: votación</title>
-<desc>Un mismo prompt se muestrea en cinco caminos de razonamiento independientes; cuatro devuelven A y uno devuelve B, y la votación por mayoría agrega el resultado.</desc>
+<desc>Self-consistency muestrea varios caminos de razonamiento sobre un mismo prompt y agrega las respuestas por votación mayoritaria.</desc>
 <defs>
-<marker id="ag" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#9C9595"/></marker>
-<marker id="ar" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#DA1B2E"/></marker>
+<marker id="ahA" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#DA1B2E"/></marker>
+<marker id="ahM" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#C4BEBE"/></marker>
 </defs>
-<rect x="0" y="0" width="800" height="566" fill="#ffffff"/>
+<rect x="0" y="0" width="652" height="498" fill="#ffffff"/>
 
-<rect x="240" y="50" width="320" height="58" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="400" y="74" text-anchor="middle" font-size="17" font-weight="bold" letter-spacing="1.2">UN MISMO PROMPT</text>
-<text x="400" y="93" text-anchor="middle" font-size="12" fill="#7A7373">muestreo independiente, temperatura &gt; 0</text>
+<rect x="206" y="28" width="240" height="42" rx="4" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
+<text x="326" y="55" text-anchor="middle" font-size="16" font-weight="bold">UN MISMO PROMPT</text>
 
-<g stroke="#9C9595" stroke-width="1.6" fill="none">
-<path d="M400,108 L400,132"/>
-<path d="M110,132 L690,132"/>
-<path d="M110,132 L110,162" marker-end="url(#ag)"/>
-<path d="M255,132 L255,162" marker-end="url(#ag)"/>
-<path d="M545,132 L545,162" marker-end="url(#ag)"/>
-<path d="M690,132 L690,162" marker-end="url(#ag)"/>
-<path d="M110,206 L110,240" marker-end="url(#ag)"/>
-<path d="M255,206 L255,240" marker-end="url(#ag)"/>
-<path d="M545,206 L545,240" marker-end="url(#ag)"/>
-<path d="M690,206 L690,240" marker-end="url(#ag)"/>
-<path d="M110,280 L110,310"/>
-<path d="M255,280 L255,310"/>
-<path d="M545,280 L545,310"/>
-<path d="M690,280 L690,310"/>
-<path d="M110,310 L690,310"/>
-<path d="M400,310 L400,336" marker-end="url(#ag)"/>
-<path d="M400,392 L400,424" marker-end="url(#ag)"/>
-</g>
+<text x="624" y="95" text-anchor="end" font-size="12" fill="#8A8484">cada camino se genera por separado</text>
 
-<g stroke="#DA1B2E" stroke-width="1.8" fill="none">
-<path d="M400,132 L400,162" marker-end="url(#ar)"/>
-<path d="M400,206 L400,240" marker-end="url(#ar)"/>
-<path d="M400,280 L400,310"/>
-</g>
+<path d="M326,70 L326,110" stroke="#6B6565" stroke-width="1.6" fill="none"/>
+<path d="M78,110 L574,110" stroke="#6B6565" stroke-width="1.6" fill="none"/>
 
-<rect x="50" y="162" width="120" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="110" y="189" text-anchor="middle" font-size="15">camino 1</text>
-<rect x="195" y="162" width="120" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="255" y="189" text-anchor="middle" font-size="15">camino 2</text>
-<rect x="340" y="162" width="120" height="44" fill="#FDEEF0" stroke="#DA1B2E" stroke-width="2"/>
-<text x="400" y="189" text-anchor="middle" font-size="15" font-weight="bold" fill="#DA1B2E">camino 3</text>
-<rect x="485" y="162" width="120" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="545" y="189" text-anchor="middle" font-size="15">camino 4</text>
-<rect x="630" y="162" width="120" height="44" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="690" y="189" text-anchor="middle" font-size="15">camino 5</text>
+<path d="M78,110 L78,142" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#ahA)"/>
+<path d="M202,110 L202,142" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#ahA)"/>
+<path d="M326,110 L326,142" stroke="#C4BEBE" stroke-width="1.4" fill="none" marker-end="url(#ahM)"/>
+<path d="M450,110 L450,142" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#ahA)"/>
+<path d="M574,110 L574,142" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#ahA)"/>
 
-<rect x="82" y="240" width="56" height="40" rx="8" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="110" y="267" text-anchor="middle" font-size="19" font-weight="bold">A</text>
-<rect x="227" y="240" width="56" height="40" rx="8" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="255" y="267" text-anchor="middle" font-size="19" font-weight="bold">A</text>
-<rect x="372" y="240" width="56" height="40" rx="8" fill="#DA1B2E" stroke="#DA1B2E" stroke-width="1.8"/>
-<text x="400" y="267" text-anchor="middle" font-size="19" font-weight="bold" fill="#ffffff">B</text>
-<rect x="517" y="240" width="56" height="40" rx="8" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="545" y="267" text-anchor="middle" font-size="19" font-weight="bold">A</text>
-<rect x="662" y="240" width="56" height="40" rx="8" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="690" y="267" text-anchor="middle" font-size="19" font-weight="bold">A</text>
+<rect x="28" y="142" width="100" height="42" rx="4" fill="#FDECEE" stroke="#DA1B2E" stroke-width="1.8"/>
+<text x="78" y="168" text-anchor="middle" font-size="14">camino 1</text>
+<rect x="152" y="142" width="100" height="42" rx="4" fill="#FDECEE" stroke="#DA1B2E" stroke-width="1.8"/>
+<text x="202" y="168" text-anchor="middle" font-size="14">camino 2</text>
+<rect x="276" y="142" width="100" height="42" rx="4" fill="#FCFBFB" stroke="#C4BEBE" stroke-width="1.4"/>
+<text x="326" y="168" text-anchor="middle" font-size="14" fill="#9A9494">camino 3</text>
+<rect x="400" y="142" width="100" height="42" rx="4" fill="#FDECEE" stroke="#DA1B2E" stroke-width="1.8"/>
+<text x="450" y="168" text-anchor="middle" font-size="14">camino 4</text>
+<rect x="524" y="142" width="100" height="42" rx="4" fill="#FDECEE" stroke="#DA1B2E" stroke-width="1.8"/>
+<text x="574" y="168" text-anchor="middle" font-size="14">camino 5</text>
 
-<rect x="270" y="336" width="260" height="56" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="400" y="360" text-anchor="middle" font-size="17" font-weight="bold" letter-spacing="1.5">VOTACIÓN</text>
-<text x="400" y="378" text-anchor="middle" font-size="11" fill="#7A7373">agregación por frecuencia</text>
+<path d="M78,184 L78,216" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#ahA)"/>
+<path d="M202,184 L202,216" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#ahA)"/>
+<path d="M326,184 L326,216" stroke="#C4BEBE" stroke-width="1.4" fill="none" marker-end="url(#ahM)"/>
+<path d="M450,184 L450,216" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#ahA)"/>
+<path d="M574,184 L574,216" stroke="#DA1B2E" stroke-width="1.8" fill="none" marker-end="url(#ahA)"/>
 
-<rect x="250" y="424" width="300" height="56" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.6"/>
-<text x="400" y="450" text-anchor="middle" font-size="20" font-weight="bold">A</text>
-<text x="400" y="469" text-anchor="middle" font-size="13" fill="#7A7373">4 de 5 · confianza 80%</text>
+<rect x="43" y="216" width="70" height="40" rx="20" fill="#FDECEE" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="78" y="243" text-anchor="middle" font-size="19" font-weight="bold" fill="#DA1B2E">“A”</text>
+<rect x="167" y="216" width="70" height="40" rx="20" fill="#FDECEE" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="202" y="243" text-anchor="middle" font-size="19" font-weight="bold" fill="#DA1B2E">“A”</text>
+<rect x="291" y="216" width="70" height="40" rx="20" fill="#FCFBFB" stroke="#C4BEBE" stroke-width="1.4"/>
+<text x="326" y="243" text-anchor="middle" font-size="19" fill="#9A9494">“B”</text>
+<rect x="415" y="216" width="70" height="40" rx="20" fill="#FDECEE" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="450" y="243" text-anchor="middle" font-size="19" font-weight="bold" fill="#DA1B2E">“A”</text>
+<rect x="539" y="216" width="70" height="40" rx="20" fill="#FDECEE" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="574" y="243" text-anchor="middle" font-size="19" font-weight="bold" fill="#DA1B2E">“A”</text>
 
-<text x="400" y="512" text-anchor="middle" font-size="13" fill="#7A7373">Los caminos de razonamiento correctos convergen; los equivocados divergen entre sí.</text>
+<path d="M78,256 L78,284" stroke="#DA1B2E" stroke-width="1.8" fill="none"/>
+<path d="M202,256 L202,284" stroke="#DA1B2E" stroke-width="1.8" fill="none"/>
+<path d="M326,256 L326,284" stroke="#C4BEBE" stroke-width="1.4" fill="none"/>
+<path d="M450,256 L450,284" stroke="#DA1B2E" stroke-width="1.8" fill="none"/>
+<path d="M574,256 L574,284" stroke="#DA1B2E" stroke-width="1.8" fill="none"/>
+<path d="M78,284 L574,284" stroke="#DA1B2E" stroke-width="2" fill="none"/>
+<path d="M326,284 L326,312" stroke="#DA1B2E" stroke-width="2" fill="none" marker-end="url(#ahA)"/>
+
+<rect x="216" y="312" width="220" height="46" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="326" y="342" text-anchor="middle" font-size="18" font-weight="bold" fill="#DA1B2E">VOTACIÓN</text>
+
+<path d="M326,358 L326,390" stroke="#DA1B2E" stroke-width="2" fill="none" marker-end="url(#ahA)"/>
+
+<rect x="166" y="390" width="320" height="46" rx="4" fill="#FDECEE" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="326" y="419" text-anchor="middle" font-size="17" font-weight="bold" fill="#DA1B2E">“A” · 4 de 5 · confianza 80%</text>
+
+<text x="326" y="466" text-anchor="middle" font-size="13" fill="#6B6565">Los caminos correctos convergen; los equivocados divergen entre sí.</text>
 </svg>

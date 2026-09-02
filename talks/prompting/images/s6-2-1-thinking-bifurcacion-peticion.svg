@@ -1,56 +1,50 @@
-<!-- talksmith-ascii-sha256: bd7b48e3a4dee3d80beaf1db993bba456bc3ef3cd34f99a239564d1d3d0eb80f -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="96 1 876 620" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+<!-- talksmith-ascii-sha256: 3fe4e733568c444ed0b1001db6f767cbfa89c9a9631e6e4811af5896fa6132fa -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 668 510" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3B3535">
 <title>Thinking: el mecanismo</title>
-<desc>El modelo evalúa cada petición y decide solo si escribe un bloque de razonamiento antes del texto: una tarea simple vuelve sin bloque, y max_tokens es el techo de las dos salidas juntas.</desc>
+<desc>Esta es la lámina del mecanismo, y la palabra que hay que fijar es “adaptativo”: el modelo decide petición por petición si escribe un bloque de razonamiento.</desc>
 <defs>
-<marker id="ag" viewBox="0 0 10 8" refX="10" refY="4" markerWidth="10" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-<path d="M0,0 L10,4 L0,8 Z" fill="#6B6363"/>
-</marker>
-<marker id="at" viewBox="0 0 9 7" refX="9" refY="3.5" markerWidth="9" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
-<path d="M0,0 L9,3.5 L0,7 Z" fill="#9C9595"/>
-</marker>
+<marker id="ag" markerWidth="9" markerHeight="9" refX="8.2" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0.7 L8.4 4.5 L0 8.3 Z" fill="#8A8080"/></marker>
+<marker id="ar" markerWidth="9" markerHeight="9" refX="8.2" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0.7 L8.4 4.5 L0 8.3 Z" fill="#DA1B2E"/></marker>
 </defs>
-<rect x="96" y="1" width="876" height="620" fill="#ffffff"/>
+<rect x="0" y="0" width="668" height="510" fill="#ffffff"/>
 
-<text x="120" y="36" font-size="11.5" fill="#9C9595" letter-spacing="1.7">LO QUE PASA EN UNA PETICIÓN</text>
+<text x="334" y="36" text-anchor="middle" font-size="15.5" font-weight="bold">Lo que pasa en una petición</text>
 
-<rect x="330" y="58" width="140" height="38" rx="19" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.5"/>
-<text x="400" y="82" text-anchor="middle" font-size="13.5" fill="#6B6363">prompt</text>
-<path d="M400,96 V126" fill="none" stroke="#6B6363" stroke-width="1.8" marker-end="url(#ag)"/>
+<rect x="268" y="54" width="132" height="38" rx="6" fill="#F5F3F3" stroke="#B9B2B2" stroke-width="1.6"/>
+<text x="334" y="78" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="13">prompt</text>
+<path d="M334 92 V110" stroke="#8A8080" stroke-width="1.6" fill="none" marker-end="url(#ag)"/>
 
-<rect x="220" y="126" width="360" height="66" rx="4" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.8"/>
-<text x="400" y="154" text-anchor="middle" font-size="15" font-weight="bold">el modelo evalúa la dificultad</text>
-<text x="400" y="176" text-anchor="middle" font-size="13" fill="#6B6363">y decide, en esta misma petición</text>
+<rect x="104" y="110" width="460" height="52" rx="6" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.8"/>
+<text x="334" y="132" text-anchor="middle" font-size="13">el modelo evalúa la dificultad de esta petición</text>
+<text x="334" y="152" text-anchor="middle" font-size="13">y decide, ahí mismo, si piensa y cuánto</text>
 
-<path d="M400,192 V216" fill="none" stroke="#6B6363" stroke-width="1.8"/>
-<path d="M400,216 H160 V496" fill="none" stroke="#9C9595" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#at)"/>
-<path d="M400,216 H640 V266" fill="none" stroke="#6B6363" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#ag)"/>
+<rect x="24" y="216" width="620" height="258" rx="10" fill="none" stroke="#B9B2B2" stroke-width="1.4" stroke-dasharray="7 5"/>
 
-<text x="172" y="240" font-size="12.5" fill="#7A7373">tarea simple — no piensa</text>
-<text x="172" y="332" font-size="11.5" fill="#9C9595">esta petición vuelve sin</text>
-<text x="172" y="349" font-size="11.5" fill="#9C9595">bloque de razonamiento</text>
+<path d="M334 162 V190 H181 V232" stroke="#8A8080" stroke-width="1.6" fill="none" marker-end="url(#ag)"/>
+<path d="M334 162 V190 H487 V232" stroke="#DA1B2E" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+<text x="258" y="184" text-anchor="middle" font-size="11.5" fill="#8A8080">tarea simple</text>
+<text x="410" y="184" text-anchor="middle" font-size="11.5" fill="#DA1B2E">tarea de varios pasos</text>
 
-<text x="628" y="240" text-anchor="end" font-size="12.5" fill="#7A7373">tarea de varios pasos</text>
+<rect x="40" y="232" width="282" height="114" rx="6" fill="#F5F3F3" stroke="#B9B2B2" stroke-width="1.8"/>
+<text x="181" y="262" text-anchor="middle" font-size="14" font-weight="bold">SIN BLOQUE</text>
+<text x="181" y="286" text-anchor="middle">la respuesta vuelve directo,</text>
+<text x="181" y="304" text-anchor="middle">sin pasos intermedios</text>
+<text x="181" y="328" text-anchor="middle" font-size="11.5" fill="#8A8080">el modelo decidió no pensar</text>
 
-<rect x="440" y="266" width="400" height="142" rx="4" fill="#FDEEF0" stroke="#DA1B2E" stroke-width="2.5"/>
-<text x="640" y="298" text-anchor="middle" font-size="16" font-weight="bold" fill="#DA1B2E">BLOQUE DE THINKING</text>
-<text x="640" y="322" text-anchor="middle" font-size="13.5">tipo propio, aparte del texto</text>
-<path d="M470,338 H810" fill="none" stroke="#E5C3C8" stroke-width="1"/>
-<text x="474" y="364" font-family="'DejaVu Sans Mono', monospace" font-size="12.5">display: summarized</text>
-<text x="650" y="364" font-size="11.5" fill="#7A7373">vuelve resumido</text>
-<text x="474" y="390" font-family="'DejaVu Sans Mono', monospace" font-size="12.5">display: omitted</text>
-<text x="650" y="390" font-size="11.5" fill="#7A7373">no vuelve</text>
+<rect x="346" y="232" width="282" height="114" rx="6" fill="#FCEFF1" stroke="#DA1B2E" stroke-width="1.8"/>
+<text x="487" y="262" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">BLOQUE DE THINKING</text>
+<text x="487" y="286" text-anchor="middle">tipo propio, aparte del texto</text>
+<text x="487" y="304" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="11">display: summarized u omitted</text>
+<text x="487" y="328" text-anchor="middle" font-size="11.5" fill="#8A8080">puede volver resumido o vacío</text>
 
-<path d="M640,408 V496" fill="none" stroke="#6B6363" stroke-width="1.8" marker-end="url(#ag)"/>
+<path d="M181 346 V376 H334" stroke="#8A8080" stroke-width="1.6" fill="none"/>
+<path d="M487 346 V376 H334" stroke="#8A8080" stroke-width="1.6" fill="none"/>
+<path d="M334 376 V398" stroke="#8A8080" stroke-width="1.6" fill="none" marker-end="url(#ag)"/>
 
-<rect x="120" y="496" width="720" height="66" rx="4" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.8"/>
-<text x="480" y="524" text-anchor="middle" font-size="16" font-weight="bold">TEXTO DE LA RESPUESTA</text>
-<text x="480" y="546" text-anchor="middle" font-size="13" fill="#6B6363">lo único que ve el usuario</text>
+<rect x="164" y="398" width="340" height="58" rx="6" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.8"/>
+<text x="334" y="422" text-anchor="middle" font-size="14" font-weight="bold">TEXTO DE LA RESPUESTA</text>
+<text x="334" y="442" text-anchor="middle" font-size="11.5" fill="#8A8080">lo único que ve el usuario</text>
 
-<path d="M852,266 H866 V400" fill="none" stroke="#7A7373" stroke-width="1.4"/>
-<path d="M866,432 V562 H852" fill="none" stroke="#7A7373" stroke-width="1.4"/>
-<text x="874" y="420" font-family="'DejaVu Sans Mono', monospace" font-size="12.5">max_tokens</text>
-
-<text x="120" y="592" font-family="'DejaVu Sans Mono', monospace" font-size="12.5">max_tokens</text>
-<text x="200" y="592" font-size="13" fill="#6B6363">es el techo duro de toda la salida: thinking + texto</text>
+<rect x="190" y="462" width="290" height="24" rx="12" fill="#FFFFFF" stroke="#B9B2B2" stroke-width="1.4"/>
+<text x="207" y="478" xml:space="preserve"><tspan font-family="'DejaVu Sans Mono', monospace" font-size="12">max_tokens</tspan><tspan font-family="Helvetica, Arial, sans-serif" font-size="12"> — techo duro de toda la salida</tspan></text>
 </svg>

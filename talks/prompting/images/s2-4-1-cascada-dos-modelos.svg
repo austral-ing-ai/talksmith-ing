@@ -1,47 +1,57 @@
-<!-- talksmith-ascii-sha256: 4a651140324726d669e768af1e511d8e98004864ac765d3db3e7249c7285f30e -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 564" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="12.5">
-<title>Model cascading</title>
-<desc>La idea es de una linea y la trampa esta en el rombo del medio: el gate de confianza decide si el ahorro existe.</desc>
-<defs>
-<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 z" fill="#6B6B6B"/></marker>
-<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 z" fill="#DA1B2E"/></marker>
-</defs>
-<rect x="0" y="0" width="820" height="564" fill="#ffffff"/>
+<!-- talksmith-ascii-sha256: 500ee9dc88a58f6cc2372991d026699de5f51fc6f71cf8c0ed106925f86efc31 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 620 557" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+  <title>Model cascading</title>
+  <desc>La idea es de una linea y la trampa esta en el rombo del medio: todo el ahorro depende de que el sistema sepa cuando la respuesta barata no alcanza.</desc>
 
-<text x="410" y="50" text-anchor="middle" font-size="13" fill="#6B6B6B">Llega el request</text>
-<line x1="410" y1="62" x2="410" y2="88" stroke="#6B6B6B" stroke-width="1.6" marker-end="url(#ah)"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 8" refX="9.4" refY="4" markerWidth="10" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0 0 L10 4 L0 8 Z" fill="#3B3535"/>
+    </marker>
+    <marker id="ahr" viewBox="0 0 10 8" refX="10" refY="4" markerWidth="10" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0 0 L10 4 L0 8 Z" fill="#DA1B2E"/>
+    </marker>
+  </defs>
 
-<rect x="265" y="88" width="290" height="68" rx="3" fill="#F7F6F6" stroke="#9A9A9A" stroke-width="1.6"/>
-<text x="410" y="112" text-anchor="middle" font-size="16" font-weight="bold">Modelo barato</text>
-<text x="410" y="131" text-anchor="middle" font-size="13" font-family="'DejaVu Sans Mono', monospace" fill="#6B6B6B">Haiku 4.5</text>
-<text x="410" y="148" text-anchor="middle" fill="#6B6B6B">intenta resolver</text>
+  <rect x="10" y="0" width="620" height="557" fill="#ffffff"/>
 
-<line x1="410" y1="156" x2="410" y2="184" stroke="#6B6B6B" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text x="160" y="41" text-anchor="middle" font-size="14">Entra el pedido</text>
+  <line x1="160" y1="53" x2="160" y2="77" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
 
-<path d="M410,184 L560,240 L410,296 L260,240 z" fill="#FDF2F3" stroke="#DA1B2E" stroke-width="2.2" stroke-linejoin="round"/>
-<text x="410" y="235" text-anchor="middle" font-size="15" font-weight="bold">&#191;confianza</text>
-<text x="410" y="255" text-anchor="middle" font-size="15" font-weight="bold">suficiente?</text>
+  <rect x="40" y="77" width="240" height="80" rx="4" fill="#F4F2F2" stroke="#C9C2C2" stroke-width="1.4"/>
+  <text x="160" y="103" text-anchor="middle" font-size="16" font-weight="bold">Modelo barato</text>
+  <text x="160" y="123" text-anchor="middle" font-size="13" font-family="'DejaVu Sans Mono', monospace">Haiku 4.5</text>
+  <text x="160" y="143" text-anchor="middle" font-size="13" fill="#6E6666">intenta resolver</text>
 
-<path d="M260,240 H185 V346" fill="none" stroke="#6B6B6B" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ah)"/>
-<text x="222" y="231" text-anchor="middle" font-size="14" font-weight="bold" fill="#6B6B6B">NO</text>
+  <line x1="160" y1="157" x2="160" y2="191" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
 
-<path d="M560,240 H635 V330" fill="none" stroke="#DA1B2E" stroke-width="2.2" stroke-linejoin="round"/>
-<text x="598" y="231" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">S&#205;</text>
-<text x="635" y="356" text-anchor="middle" fill="#DA1B2E">sin segunda llamada</text>
-<path d="M635,374 V452" fill="none" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#ahr)"/>
+  <path d="M160 191 L278 237 L160 283 L42 237 Z" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+  <text x="160" y="232" text-anchor="middle" font-size="15" font-weight="bold">¿confianza</text>
+  <text x="160" y="250" text-anchor="middle" font-size="15" font-weight="bold">suficiente?</text>
 
-<rect x="40" y="346" width="290" height="68" rx="3" fill="#F7F6F6" stroke="#9A9A9A" stroke-width="1.6"/>
-<text x="185" y="370" text-anchor="middle" font-size="16" font-weight="bold">Modelo caro</text>
-<text x="185" y="389" text-anchor="middle" font-size="13" font-family="'DejaVu Sans Mono', monospace" fill="#6B6B6B">Opus 4.8</text>
-<text x="185" y="406" text-anchor="middle" fill="#6B6B6B">resuelve</text>
+  <line x1="278" y1="237" x2="340" y2="237" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ahr)"/>
+  <text x="309" y="227" text-anchor="middle" font-size="13" font-weight="bold" fill="#DA1B2E">sí</text>
 
-<line x1="185" y1="414" x2="185" y2="452" stroke="#6B6B6B" stroke-width="1.6" marker-end="url(#ah)"/>
+  <rect x="340" y="195" width="260" height="84" rx="4" fill="#FCEEF0" stroke="#DA1B2E" stroke-width="1.4"/>
+  <text x="470" y="221" text-anchor="middle" font-size="15" font-weight="bold">retornar respuesta</text>
+  <text x="470" y="241" text-anchor="middle" font-size="14">UNA llamada</text>
+  <text x="470" y="261" text-anchor="middle" font-size="13" fill="#DA1B2E">el caso frecuente</text>
 
-<rect x="40" y="452" width="290" height="72" rx="3" fill="#ffffff" stroke="#9A9A9A" stroke-width="1.6"/>
-<text x="185" y="482" text-anchor="middle" font-size="16" font-weight="bold">retornar respuesta</text>
-<text x="185" y="504" text-anchor="middle" fill="#6B6B6B">solo cuando hace falta</text>
+  <line x1="160" y1="283" x2="160" y2="329" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text x="174" y="310" font-size="13" font-weight="bold">no</text>
 
-<rect x="490" y="452" width="290" height="72" rx="3" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.2"/>
-<text x="635" y="482" text-anchor="middle" font-size="16" font-weight="bold">retornar respuesta</text>
-<text x="635" y="504" text-anchor="middle" fill="#DA1B2E">costo m&#237;nimo, latencia baja</text>
+  <rect x="40" y="329" width="240" height="80" rx="4" fill="#F4F2F2" stroke="#C9C2C2" stroke-width="1.4"/>
+  <text x="160" y="355" text-anchor="middle" font-size="16" font-weight="bold">Modelo caro</text>
+  <text x="160" y="375" text-anchor="middle" font-size="13" font-family="'DejaVu Sans Mono', monospace">Opus 4.8</text>
+  <text x="160" y="395" text-anchor="middle" font-size="13" fill="#6E6666">resuelve</text>
+
+  <line x1="160" y1="409" x2="160" y2="443" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+
+  <rect x="40" y="443" width="240" height="84" rx="4" fill="#F4F2F2" stroke="#C9C2C2" stroke-width="1.4"/>
+  <text x="160" y="469" text-anchor="middle" font-size="15" font-weight="bold">retornar respuesta</text>
+  <text x="160" y="489" text-anchor="middle" font-size="14">DOS llamadas</text>
+  <text x="160" y="509" text-anchor="middle" font-size="13" fill="#6E6666">la excepción</text>
+
+  <rect x="340" y="462" width="3" height="44" fill="#DA1B2E"/>
+  <text x="356" y="478" font-size="14">El ahorro sale de que la rama</text>
+  <text x="356" y="497" font-size="14">corta sea la mayoritaria.</text>
 </svg>

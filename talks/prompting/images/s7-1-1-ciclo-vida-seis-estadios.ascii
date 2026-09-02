@@ -1,20 +1,29 @@
-     +----------+     +----------+     +----------------+     +----------+
-     |  ISSUE   | --> |  DISENO  | --> | IMPLEMENTACION | --> |  REVIEW  |
-     |  triage  |     |  ADRs    |     | codigo, tests  |     |   diff   |
-     +----------+     +----------+     +----------------+     +----------+
-          ^                                                        |
-          |                                                        v
-          |           +-------------+                        +----------+
-          +---------- | INCIDENTE   | <--------------------- |  DEPLOY  |
-                      | logs        |                        | release  |
-                      | post-mortem |                        |  notes   |
-                      +-------------+                        +----------+
+  DONDE ENTRA EL LLM EN CADA ESTADIO
+
+  +-------------------+    +-------------------+    +-------------------+    +-------------------+
+  |  ISSUE            |--> |  DISENO           |--> |  IMPLEMENTACION   |--> |  REVIEW           |
+  |  triage           |    |  ADRs             |    |  codigo, tests    |    |  diff             |
+  |...................|    |...................|    |...................|    |...................|
+  | clasifica, agrupa |    | contrasta alter-  |    | escribe el test   |    | resume el diff y  |
+  | duplicados y pide |    | nativas y redacta |    | antes que la      |    | marca lo que hay  |
+  | lo que falta      |    | el ADR            |    | implementacion    |    | que mirar a mano  |
+  +-------------------+    +-------------------+    +-------------------+    +-------------------+
+        ^                                                                            |
+        |                                                                            v
+  +-------------------+                                                  +-------------------+
+  |  INCIDENTE        |                                                  |  DEPLOY           |
+  |  logs, post-mortem| <----------------------------------------------- |  release notes    |
+  |...................|                                                  |...................|
+  | correlaciona logs |                                                  | redacta las notas |
+  | y propone la      |                                                  | de version desde  |
+  | hipotesis         |                                                  | los commits       |
+  +-------------------+                                                  +-------------------+
 
   El post-mortem vuelve como issue: el ciclo se cierra, no termina.
   Hay un LLM util en los seis estadios, no solo en "escribir codigo".
 
 <!-- ascii-note:
-intent: mostrar el ciclo de vida de un cambio como un lazo cerrado de seis estadios, y que el aporte del LLM esta repartido en los seis y no concentrado en la implementacion, que es donde la intuicion lo pone
-emphasize: la flecha de retorno de INCIDENTE a ISSUE, que es lo que convierte la secuencia en ciclo; la caja IMPLEMENTACION como uno mas entre seis y no como el centro
-labels: "ISSUE / triage", "DISENO / ADRs", "IMPLEMENTACION / codigo, tests", "REVIEW / diff", "DEPLOY / release notes", "INCIDENTE / logs, post-mortem", y las dos lineas de cierre
+intent: mostrar el ciclo de vida de un cambio como un lazo cerrado de seis estadios y, DENTRO de cada estadio, la tarea concreta que hace el LLM ahi. El aporte esta repartido en los seis y no concentrado en la implementacion, que es donde la intuicion lo pone
+emphasize: cada caja tiene dos registros separados por una linea: arriba el estadio, abajo la tarea del LLM en ese estadio. Ese segundo registro es el contenido de la lamina y tiene que leerse en los seis. Ademas, la flecha de retorno de INCIDENTE a ISSUE, que convierte la secuencia en ciclo; IMPLEMENTACION es uno mas entre seis, no el centro
+labels: los seis estadios con su tarea de LLM debajo -- ISSUE (clasifica y deduplica), DISENO (contrasta alternativas y redacta el ADR), IMPLEMENTACION (escribe el test antes que la implementacion), REVIEW (resume el diff), DEPLOY (redacta las notas de version), INCIDENTE (correlaciona logs y propone la hipotesis) -- y las dos lineas de cierre
 -->

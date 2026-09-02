@@ -10,19 +10,26 @@
        v
   ¿confianza suficiente?
        |
-       +-- SI --> retornar respuesta      (costo minimo, latencia baja)
+       +--- SI ---> retornar respuesta          UNA llamada
+       |            costo minimo, latencia baja  <- el caso frecuente
        |
-       +-- NO --> +---------------------------+
-                  |  Modelo caro             |
-                  |  (Opus 4.8)              |
-                  |  resuelve                |
-                  +---------------------------+
-                            |
-                            v
-                     retornar respuesta      (solo cuando hace falta)
+       NO
+       |
+       v
+  +---------------------------+
+  |  Modelo caro              |
+  |  (Opus 4.8)               |
+  |  resuelve                 |
+  +---------------------------+
+       |
+       v
+       retornar respuesta                       DOS llamadas
+       solo cuando hace falta                    <- la excepcion
+
+  El ahorro sale de que la rama corta sea la mayoritaria.
 
 <!-- ascii-note:
 intent: mostrar el flujo de dos etapas del model cascading, con el gate de confianza como el punto de decision que define si el ahorro existe
-emphasize: el rombo de decision "¿confianza suficiente?" y las dos ramas con su costo asociado; la rama SI es la que produce el ahorro
-labels: "Modelo barato (Haiku 4.5)", "¿confianza suficiente?", "Modelo caro (Opus 4.8)", costo minimo / solo cuando hace falta
+emphasize: la asimetria de las dos ramas. SI es una salida lateral CORTA (una llamada, el caso frecuente) y NO continua hacia ABAJO por el camino largo (dos llamadas, la excepcion). El camino barato tiene que verse mas corto que el caro, no al reves; las dos cajas "retornar respuesta" no deben quedar a la misma altura
+labels: "Modelo barato (Haiku 4.5)", "¿confianza suficiente?", "Modelo caro (Opus 4.8)", "UNA llamada / el caso frecuente", "DOS llamadas / la excepcion", y la linea de cierre sobre la rama mayoritaria
 -->

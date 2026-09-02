@@ -329,65 +329,35 @@
       }
     },
     {
-      "template": "value-columns",
+      "template": "content-image",
       "section": "Fundamentos",
       "title": "La fórmula del costo",
-      "lead": "Costo total = (tokens de entrada × precio de entrada) + (tokens de salida × precio de salida)",
-      "columns": [
-        {
-          "header": "Turno",
-          "cells": [
-            "Mensaje 1",
-            "Mensaje 2",
-            "Mensaje 3"
-          ]
-        },
-        {
-          "header": "Lo que escribe el usuario",
-          "cells": [
-            "\"Hola, escribime una función...\"",
-            "\"Ahora cambiale esto...\"",
-            "\"Y agregale esto otro...\""
-          ]
-        },
-        {
-          "header": "Lo que la app le manda al modelo",
-          "cells": [
-            "Solo el mensaje 1.",
-            "Mensaje 1 + respuesta 1 + mensaje 2.",
-            "Mensaje 1 + resp. 1 + mensaje 2 + resp. 2 + mensaje 3."
-          ]
-        }
-      ],
-      "highlights": [
-        {
-          "label": "¿Por qué no explota el consumo?",
-          "body": "Para que el modelo mantenga el contexto, la aplicación le reenvía toda la conversación previa en cada turno: el modelo no recuerda nada entre llamadas, así que cada turno vuelve a leer todo desde cero. Con esa aritmética un chat largo debería costar una fortuna. No la cuesta, y la razón es lo que viene.",
-          "kind": "note",
-          "position": "bottom"
-        }
-      ],
+      "lead": "**Costo total = (tokens de entrada × precio de entrada) + (tokens de salida × precio de salida)**",
       "notes": "Esta es la slide que explica por qué la factura de un chatbot crece sin que crezca el uso. La fórmula tiene dos términos y el interesante es el primero: los tokens de entrada de un turno incluyen todo lo anterior. Un chat de veinte turnos paga el turno uno veinte veces. Señalá la tabla de izquierda a derecha una fila por vez y dejá que la tercera columna hable sola. Acá conviene sembrar dos cosas que se cobran después en la clase: prompt caching existe justo para atacar este crecimiento, y las técnicas avanzadas de la sección cinco compran calidad gastando tokens de salida, que son los caros. Si alguien pregunta por qué la salida cuesta cinco veces más que la entrada, la respuesta corta es que se genera token por token y no se paraleliza como la lectura del prompt.",
       "_choice": {
         "signals": [
-          "has_table=true (4 headers × 3 rows)",
-          "two_groups=false",
-          "polarity=false",
-          "n_images=0",
-          "labeled_items=0 outside the table",
-          "rows read across the shared `Turno` factor"
+          "una fórmula, una pregunta abierta y un diagrama que la responde visualmente"
         ],
         "candidates": [
-          "value-columns",
-          "concept-breakdown",
-          "process"
+          "content-image",
+          "value-columns"
         ],
-        "picked": "value-columns",
+        "picked": "content-image",
         "rejected": {
-          "concept-breakdown": "card-per-row is only for a table whose columns are heterogeneous attributes of the row key with nothing reading across; here every row reads across the `Turno` factor, and collapsing it would join the three values into one `·` body and lose the alignment that is the slide",
-          "process": "the three rows are a table of an escalating cost, not named steps of a procedure — and the `has_table` rule outranks the enumeration rules; the ordering is already carried by the `Turno` factor column"
+          "value-columns": "la tabla que tenía enumeraba el fenómeno turno por turno; el diagrama lo muestra de un vistazo y deja lugar a la pregunta"
         }
-      }
+      },
+      "design": "split-right",
+      "media": {
+        "src": "images/s1-7-1-costo-crece-reenvio.svg",
+        "alt": "Lo que el usuario escribe no crece; lo que la app le manda al modelo sí, porque reenvía toda la conversación anterior"
+      },
+      "facts": [
+        {
+          "label": "¿Por qué no explota el consumo?",
+          "body": "El modelo no recuerda nada entre llamadas: cada turno reenvía todo y lo vuelve a leer desde cero. Debería costar una fortuna. No la cuesta."
+        }
+      ]
     },
     {
       "template": "concept-breakdown",
@@ -597,9 +567,9 @@
         },
         {
           "label": "No-determinismo",
-          "body": "El mismo prompt produce respuestas distintas con temperature > 0. Temperature 0 da la mínima variabilidad; 2.0 la máxima.",
+          "body": "El mismo prompt puede dar respuestas distintas.",
           "text_label": "En producción:",
-          "text": "Temperature baja más varias iteraciones."
+          "text": "En producción se compensa corriendo varias veces y comparando, no con un parámetro."
         },
         {
           "label": "Sesgo de recencia",
@@ -747,11 +717,6 @@
           "icon": "manage_search"
         },
         {
-          "label": "Temperature = 0",
-          "body": "Minimizar la aleatoriedad en tareas de extracción y clasificación, donde la creatividad es un defecto.",
-          "icon": "thermostat"
-        },
-        {
           "label": "Self-consistency",
           "body": "Generar varias respuestas independientes y quedarse con la más frecuente.",
           "icon": "how_to_vote"
@@ -762,7 +727,7 @@
           "icon": "supervisor_account"
         }
       ],
-      "notes": "Cinco palancas ordenadas de la más barata a la más cara. Grounding es una línea de texto en el system prompt y ya cambia el comportamiento. RAG es infraestructura: alguien tiene que indexar, recuperar y decidir qué entra. Temperature 0 es gratis pero no es gratis en todas las tareas, así que aclará el alcance: extracción y clasificación sí, generación de texto no. Self-consistency se ve en detalle en la sección cinco, acá solo nombrala. Y la quinta es la que ningún equipo puede saltear: mientras la tasa de alucinación del sistema no esté medida, la revisión humana no es una etapa opcional del proceso, es la única garantía que hay.",
+      "notes": "Cuatro palancas ordenadas de la más barata a la más cara. Grounding es una línea de texto en el system prompt y ya cambia el comportamiento. RAG es infraestructura: alguien tiene que indexar, recuperar y decidir qué entra. Self-consistency se ve en detalle en la sección cinco, acá solo nombrala. Y la quinta es la que ningún equipo puede saltear: mientras la tasa de alucinación del sistema no esté medida, la revisión humana no es una etapa opcional del proceso, es la única garantía que hay.",
       "_choice": {
         "signals": [
           "labeled_items=5",
@@ -1009,13 +974,12 @@
     {
       "template": "image-full",
       "section": "Modelos y costos",
-      "title": "Elegir modelo: árbol de decisión",
-      "lead": "**Cuatro preguntas en orden. La primera que dé \"sí\" define el modelo.**",
+      "title": "Elegir modelo: la primera pregunta que dé \"sí\" decide",
       "image": {
         "src": "images/s2-2-1-arbol-eleccion-modelo.svg",
-        "alt": "Árbol de decisión para elegir modelo: dificultad, contexto, formato y recién al final costo"
+        "alt": "Árbol de decisión para elegir modelo: dificultad de la tarea, contexto y recién al final costo"
       },
-      "notes": "El árbol vale más por el orden de las preguntas que por los nombres que devuelve. Primero la dificultad de la tarea, porque es la que más plata mueve: si clasificar tickets se puede hacer con un modelo chico, cualquier discusión sobre caching es secundaria. Segundo el contexto, que es una restricción dura y no negociable. Tercero el formato de salida, que en la práctica decide quién queda en carrera cuando el output alimenta código. Y recién al final el costo, porque optimizar costo antes de saber si la calidad alcanza es optimizar lo que no importa. Decí también por qué el árbol nombra familias y no versiones: los nombres cambian cada seis meses, las preguntas no.",
+      "notes": "El árbol vale más por el orden de las preguntas que por los nombres que devuelve. Primero la dificultad de la tarea, porque es la que más plata mueve: si clasificar tickets se puede hacer con un modelo chico, cualquier discusión sobre caching es secundaria. Segundo el contexto, que es una restricción dura y no negociable. Y tercero el costo, porque optimizar costo antes de saber si la calidad alcanza es optimizar lo que no importa. Decí también por qué el árbol nombra familias y no versiones: los nombres cambian cada seis meses, las preguntas no. El árbol no pregunta por el formato de salida a propósito: structured outputs es GA en toda la generación actual, incluido Haiku 4.5, así que pedir JSON garantizado ya no descarta a nadie ni obliga a subir de modelo.",
       "_choice": {
         "signals": [
           "n_images=1",
@@ -1034,72 +998,6 @@
         "rejected": {
           "content-image": "its prose is required and must lead — here the whole body is one short framing line, which is exactly the `lead` image-full grants; a one-line text column would take half the canvas from a diagram that has to be read",
           "process": "the four ordered questions live inside the rendered diagram, not as body steps; the slide body carries no numbered or `Paso N` items"
-        }
-      }
-    },
-    {
-      "template": "value-columns",
-      "section": "Modelos y costos",
-      "title": "Prompt caching: los números",
-      "lead": "**El mismo workload de 10.000 consultas, con 80% de hit rate.**",
-      "columns": [
-        {
-          "header": "Escenario",
-          "cells": [
-            "Sin caching",
-            "Misses (20%)",
-            "Hits (80%)",
-            "**Con caching**"
-          ]
-        },
-        {
-          "header": "Cuenta",
-          "cells": [
-            "10.000 × 50.100 tokens = 501M",
-            "2.000 × 50.100 tokens = 100,2M",
-            "8.000 × (50.000 × 0,10 + 100) = 40,8M equivalentes",
-            ""
-          ]
-        },
-        {
-          "header": "Costo",
-          "cells": [
-            "**$1.503,00**",
-            "$300,60",
-            "$122,40",
-            "**$423,00**"
-          ]
-        }
-      ],
-      "highlights": [
-        {
-          "body": "**Ahorro: $1.080,00 sobre $1.503,00, un 72%.**",
-          "kind": "takeaway"
-        },
-        {
-          "body": "La cuenta ignora el costo de escritura del caché, que se cobra por encima de la tarifa de entrada la primera vez. Con 10.000 consultas sobre el mismo prefijo, ese costo se diluye.",
-          "kind": "important"
-        }
-      ],
-      "notes": "Esta slide corrige un error del deck original, y vale la pena decirlo en voz alta porque enseña algo: el deck declaraba $450 de costo con caching y un ahorro del 70%, y la cuenta no cerraba. Rehecha da $423 y 72%. La diferencia es chica en plata y grande en método: una cifra que nadie recalculó sobrevivió a todas las revisiones porque sonaba razonable. Es el mismo problema que van a tener con las salidas de un LLM. Sobre la fila de hits: los 5.100 tokens equivalentes salen de 50.000 cacheados al 10% más los 100 dinámicos a precio completo. La advertencia del final es honesta y conviene no saltearla, porque en un workload de pocas llamadas por prefijo la escritura del caché se puede comer el ahorro.",
-      "_choice": {
-        "signals": [
-          "has_table=true",
-          "big_metrics=true",
-          "n_images=0",
-          "labeled_items=0",
-          "one_metric=false",
-          "two_groups=false"
-        ],
-        "candidates": [
-          "value-columns",
-          "stat",
-          "concept-breakdown"
-        ],
-        "picked": "value-columns",
-        "rejected": {
-          "stat": "the figures are cells of an aligned table, not standalone metrics — stat cards would drop the `Cuenta` column that shows how each figure is derived, which is the point of the slide",
-          "concept-breakdown": "the rows read across a shared factor pair (Cuenta · Costo), so card-per-row would lose the alignment; the catalog reserves card-per-row for heterogeneous attributes"
         }
       }
     },
@@ -1130,6 +1028,29 @@
         "rejected": {
           "content-image": "it requires prose that leads with supporting facts; the body here is one framing statement and the detail is in `### Speaker notes` — the shape image-full exists for",
           "process": "the two-stage flow is drawn inside the diagram; the body carries no ordered step items of its own"
+        }
+      }
+    },
+    {
+      "template": "code-example",
+      "section": "Modelos y costos",
+      "title": "Cascading: el gate en código",
+      "code": "# el gate del cascading es UN CAMPO del esquema de salida:\n# structured outputs garantiza que llegue, y con el tipo correcto\n\nfrom typing import Literal\nfrom anthropic import Anthropic\nfrom pydantic import BaseModel, Field\n\nclient = Anthropic()\nBARATO, CARO = \"claude-haiku-4-5-20251001\", \"claude-opus-5\"\n\nclass Triage(BaseModel):\n    categoria: Literal[\"facturacion\", \"acceso\", \"bug\", \"feature\"]\n    confianza: float = Field(ge=0, le=1, description=(\n        \"Probabilidad de que un revisor humano experto elija esa \"\n        \"misma categoria. 1,0 el ticket lo dice explicitamente; \"\n        \"0,7 hay senales claras pero falta contexto; 0,4 encaja \"\n        \"en dos categorias; 0,0 no alcanza para decidir.\"))\n\nPROMPT = (\"Clasifica el ticket. No infles la confianza para parecer \"\n          \"util: un 0,4 honesto vale mas que un 0,9 optimista, porque \"\n          \"debajo del umbral el ticket se reenvia a un modelo caro.\")\n\ndef clasificar(ticket: str) -> tuple[str, str]:\n    msg = [{\"role\": \"user\", \"content\": f\"{PROMPT}\\n\\nTicket: {ticket}\"}]\n\n    r = client.messages.parse(model=BARATO, max_tokens=256,\n                              messages=msg, output_format=Triage)\n    if r.parsed_output.confianza >= 0.85:\n        return r.parsed_output.categoria, BARATO      # UNA llamada\n\n    # rama larga: la del barato ya se pago igual\n    r = client.messages.parse(model=CARO, max_tokens=512,\n                              messages=msg, output_format=Triage)\n    return r.parsed_output.categoria, CARO            # DOS llamadas",
+      "language": "python",
+      "notes": "Veinte líneas, y la que importa es la del `if`. La lámina anterior deja el rombo dibujado sin decir cómo se implementa, y acá se ve: el gate es un campo más del esquema de salida, y structured outputs garantiza que ese campo llegue. Señalá que sin eso el gate se vuelve frágil, porque hay que leer texto libre y manejar el caso en que el modelo no declare nada. Después pegales el número del final, que suele sorprender: aun escalando ocho de cada diez veces la cascada empata con llamar directo al modelo caro, y cualquier tasa menor es ahorro. Eso invierte la intuición de que el cascading sirve solo si el modelo chico acierta casi siempre. La trampa real no es la tasa de escalamiento sino la calibración: un Haiku que se declara seguro sobre lo que inventó no escala nunca, y el ahorro se paga en errores que nadie mide. Si preguntan por la segunda llamada de verificación que suele salir en la discusión de la lámina anterior, mostrales que ahí ya hay dos llamadas y que el cálculo del final es el que dice si conviene. Aprovechá para mostrar dónde se define \"confianza\": no en la frase del prompt sino en la `description` del campo, que viaja dentro del esquema y el modelo la lee. Ahí está el ancla que hace que el número signifique algo, porque fija contra qué se compara: la probabilidad de que un revisor humano experto elija la misma categoría. Sin ese ancla, \"confianza\" es lo que el modelo quiera que sea. El detalle de `ge`/`le` vale un minuto: no son soportados por structured outputs, pero el SDK no los descarta, los pasa al texto de la description y valida la respuesta contra el esquema original, así que el rango se sigue cumpliendo del lado de tu código.",
+      "_choice": {
+        "signals": [
+          "has_code=true",
+          "n_images=0",
+          "labeled_items=3"
+        ],
+        "candidates": [
+          "code-example",
+          "content-image"
+        ],
+        "picked": "code-example",
+        "rejected": {
+          "content-image": "no hay imagen; el panel de codigo es el contenido de la lamina"
         }
       }
     },
@@ -1368,8 +1289,8 @@
       "template": "content-image",
       "section": "In-context learning",
       "title": "In-context learning (ICL)",
-      "lead": "**Capacidad del modelo de aprender un patrón a partir de ejemplos puestos en el prompt, sin modificar sus pesos. No se re-entrena: reconoce el patrón en los ejemplos y lo aplica al caso nuevo.**",
-      "design": "banded",
+      "lead": "**Aprender el patrón desde el prompt, sin tocar los pesos.**",
+      "design": "split-left",
       "media": {
         "src": "images/s4-1-1-tres-regimenes-icl.svg",
         "alt": "Zero-shot, few-shot y many-shot como el mismo prompt con distinta cantidad de ejemplos intercalados"
@@ -1378,134 +1299,69 @@
       "_choice": {
         "signals": [
           "n_images=1",
-          "labeled_items=0",
-          "has_code=false",
-          "image_only=false (the framing prose runs two sentences, ~190 chars)",
-          "one_claim=false (well past ~16 words)"
+          "labeled_items=4",
+          "has_code=false"
         ],
         "candidates": [
           "content-image",
-          "image-full",
-          "statement"
+          "concept-breakdown"
         ],
         "picked": "content-image",
         "rejected": {
-          "image-full": "image_only allows at most one short framing line (≤ ~120 chars); this lead is two sentences, which the catalog calls prose that leads → content-image",
-          "statement": "statement is full-bleed, capped at ~16 words and carries no image; this claim is far longer and the diagram is the slide's evidence"
+          "concept-breakdown": "los cuatro items acompañan a una imagen que carga la mitad del argumento; sin ella el diagrama de los tres regimenes quedaria sin lugar"
         }
-      }
-    },
-    {
-      "template": "value-columns",
-      "section": "In-context learning",
-      "title": "Zero-shot vs. few-shot",
-      "lead": "**Mismo modelo, misma tarea, mismo input. Lo único que cambia es si hay ejemplos.**",
-      "columns": [
+      },
+      "facts": [
         {
-          "header": "Zero-shot",
-          "cells": [
-            "`Clasifica la severidad de este issue.`<br><br>`Issue: el export a CSV corta en la fila 8.192.`<br><br>→ `\"Parece un problema de tamaño de buffer. Severidad media-alta, dependiendo del uso.\"`",
-            "Formato libre, vocabulario propio, imposible de parsear."
-          ]
+          "label": "El patrón viaja en el pedido",
+          "body": "Los ejemplos van dentro del prompt, no en un entrenamiento previo sobre esa tarea."
         },
         {
-          "header": "Few-shot",
-          "cells": [
-            "`Clasifica la severidad como CRITICO, ALTO o BAJO.`<br><br>`Issue: caen todos los checkouts en produccion. -> CRITICO`<br>`Issue: el tooltip esta en ingles. -> BAJO`<br><br>`Issue: el export a CSV corta en la fila 8.192.`<br><br>→ `ALTO`",
-            "Una etiqueta del conjunto pedido. El código la consume directo."
-          ]
-        }
-      ],
-      "highlights": [
+          "label": "No se re-entrena",
+          "body": "Los pesos del modelo quedan exactamente iguales antes y después de la llamada."
+        },
         {
-          "body": "Los ejemplos no le enseñan al modelo qué es la severidad. Le enseñan qué forma tiene la respuesta y dónde están los cortes entre categorías.",
-          "kind": "takeaway",
-          "position": "bottom"
+          "label": "Reconoce y extiende",
+          "body": "Infiere la regla que comparten los ejemplos y la aplica al caso nuevo, en la misma llamada."
+        },
+        {
+          "label": "No persiste",
+          "body": "El aprendizaje muere con la respuesta. El request siguiente vuelve a mandar los ejemplos, y a pagarlos."
         }
-      ],
+      ]
+    },
+    {
+      "template": "code-example",
+      "section": "In-context learning",
+      "title": "Zero-shot vs. few-shot",
+      "code": "# ---- ZERO-SHOT ----\n# sin ejemplos: el modelo\n# elige formato y escala\n\nPROMPT = \"\"\"\nClasifica la severidad de\neste issue.\n\nIssue: el export a CSV\ncorta en la fila 8.192.\n\"\"\"\n\nr = client.messages.create(\n    model=M, max_tokens=256,\n    messages=[\n      {\"role\": \"user\",\n       \"content\": PROMPT}])\n\n# >>> \"Parece un problema de\n#      tamano de buffer.\n#      Severidad media-alta,\n#      segun el uso.\"\n#\n# formato libre e\n# impredecible: no se\n# puede parsear",
+      "language": "python",
       "notes": "Slide nueva, y llena un agujero real del deck original: definía zero-shot y nunca lo mostraba. El contraste sobre el mismo input es lo que hace el trabajo. En zero-shot el modelo responde bien en el sentido humano y mal en el sentido operativo: la respuesta es correcta y no se puede parsear, porque inventó su propia escala. Con dos ejemplos, la escala deja de ser suya. Ese es el punto de la línea de cierre y conviene decirlo despacio, porque contradice la intuición de que los ejemplos \"enseñan el concepto\". No enseñan el concepto: fijan el formato y ubican las fronteras entre categorías. Si el grupo pregunta cuántos ejemplos, la respuesta viene en la slide siguiente.",
       "_choice": {
         "signals": [
-          "has_table=true (2 value columns × 2 rows)",
-          "two_groups=true",
-          "polarity=false",
+          "has_code=true (dos bloques)",
           "n_images=0",
           "labeled_items=0"
         ],
         "candidates": [
-          "value-columns",
-          "pros-cons",
-          "concept-columns",
-          "concept-breakdown"
+          "code-example",
+          "value-columns"
         ],
-        "picked": "value-columns",
+        "picked": "code-example",
         "rejected": {
-          "pros-cons": "fires only on two_groups + polarity; zero-shot vs few-shot is a neutral A-vs-B on the same input, not an upside/downside pair",
-          "concept-columns": "its columns share no row structure; here row 1 is the same prompt+output in both regimes and row 2 the same verdict about each — reading across is the point",
-          "concept-breakdown": "card-per-row would join the two regimes into one body and lose the column alignment that is the slide"
+          "value-columns": "la version en tabla apilaba prompt y respuesta con <br> dentro de cada celda y quedaba ilegible; los dos regimenes se leen como dos paneles de codigo, uno en `code` y otro en `media`"
         }
-      }
-    },
-    {
-      "template": "process",
-      "section": "In-context learning",
-      "title": "Few-shot learning",
-      "lead": "**Buenas prácticas**",
-      "steps": [
-        {
-          "body": "Incluir entre 2 y 10 ejemplos en el prompt."
-        },
-        {
-          "body": "Estructura: instrucción, ejemplo 1, ejemplo 2, ..., caso nuevo."
-        },
-        {
-          "body": "Ejemplos representativos: casos claros de cada categoría más los casos borde."
-        },
-        {
-          "body": "Formato idéntico en todos los ejemplos."
-        },
-        {
-          "body": "Tres a cinco suelen alcanzar. Calidad antes que cantidad."
-        }
-      ],
+      },
       "design": "split-right",
       "media": {
-        "code": "Clasifica el sentimiento como POSITIVO, NEGATIVO o NEUTRO.\n\n\"La bateria dura muchisimo\"        -> POSITIVO\n\"Se trabo a los dos dias\"          -> NEGATIVO\n\"El dispositivo llego el martes\"   -> NEUTRO",
-        "language": "text"
-      },
-      "highlights": [
-        {
-          "label": "Ejemplo",
-          "body": "Clasificar el sentimiento de un comentario",
-          "kind": "example",
-          "position": "top"
-        }
-      ],
-      "notes": "La práctica que más rinde y menos se aplica es la tercera. Casi todo el mundo pone tres ejemplos fáciles, y el modelo aprende a resolver lo fácil, que ya resolvía solo. Los ejemplos tienen que cubrir los casos borde: el comentario ambiguo, el que mezcla dos categorías, el que está en otro idioma. Esa es la fuente que lo dice, no una opinión. La cuarta práctica parece cosmética y no lo es: si el formato varía entre ejemplos, el modelo tiene dos patrones para elegir y elige por turno. Y la quinta tiene una razón de plata que ya vieron: cada ejemplo viaja en cada request, así que veinte ejemplos son veinte veces ese costo, multiplicado por el volumen.",
-      "_choice": {
-        "signals": [
-          "has_code=true (one fenced example)",
-          "labeled_items=0 (5 plain lines)",
-          "n_images=0",
-          "is_ordered=false"
-        ],
-        "candidates": [
-          "process",
-          "code-example",
-          "content-text"
-        ],
-        "picked": "process",
-        "rejected": {
-          "code-example": "its Match requires the fence to be the primary content; here it is captioned 'Ejemplo:' and illustrates the practice list, and the schema's media:{code} exists precisely so the list keeps its structure instead of collapsing into an explanation column",
-          "content-text": "a 3–8 line unlabeled enumeration is a process numbered list per the catalog, not prose; content-text is the last resort for a slide with no enumeration at all"
-        }
+        "code": "# ---- FEW-SHOT ----\n# dos ejemplos antes del\n# caso real fijan la escala\n\nPROMPT = \"\"\"\nClasifica la severidad como\nCRITICO, ALTO o BAJO.\n\nIssue: caen los checkouts.\n-> CRITICO\nIssue: tooltip en ingles.\n-> BAJO\n\nIssue: el export a CSV\ncorta en la fila 8.192.\n\"\"\"\n\nr = client.messages.create(\n    model=M, max_tokens=256,\n    messages=[\n      {\"role\": \"user\",\n       \"content\": PROMPT}])\n\n# >>> \"ALTO\"\n#\n# una etiqueta del conjunto\n# pedido: el codigo la\n# consume directo",
+        "language": "python"
       }
     },
     {
       "template": "process",
       "section": "In-context learning",
       "title": "Many-shot learning",
-      "lead": "**Cuándo pasar a many-shot**",
       "steps": [
         {
           "body": "Decenas o cientos de ejemplos, aprovechando las ventanas de contexto grandes."
@@ -1522,17 +1378,9 @@
       ],
       "design": "split-right",
       "media": {
-        "code": "# INSTRUCCION\nClasifica la severidad del issue como CRITICO, ALTO o BAJO.\n\n# EJEMPLOS\nIssue: en produccion, todos los checkouts fallan con 500 desde el deploy de las 14:20.\n-> CRITICO (caida total de una ruta que genera ingresos)\n\nIssue: el export a CSV corta en la fila 8.192 con datasets grandes.\n-> ALTO (perdida silenciosa de datos, hay workaround manual)\n\nIssue: el tooltip del boton Guardar aparece en ingles en la version en espanol.\n-> BAJO (cosmetico, no bloquea)\n\n# INPUT\nIssue: /v2/orders devuelve 200 con body vacio cuando el token expiro, en lugar de 401.\nTres clientes ya cachearon la respuesta vacia.\n\n-> ALTO (contrato de API roto, y el error se propaga silencioso a los consumidores)",
-        "language": "markdown"
+        "code": "# many-shot: los ejemplos crecen, la llamada no cambia\n\nEJEMPLOS = [\n    (\"en produccion, todos los checkouts fallan con 500 \"\n     \"desde el deploy de las 14:20.\",\n     \"CRITICO\"),   # caida total de una ruta que genera ingresos\n    (\"el export a CSV corta en la fila 8.192 con datasets grandes.\",\n     \"ALTO\"),      # perdida silenciosa de datos, hay workaround\n    (\"el tooltip del boton Guardar aparece en ingles.\",\n     \"BAJO\"),      # cosmetico, no bloquea\n    # ... y asi hasta decenas o cientos\n]\n\nISSUE = (\"/v2/orders devuelve 200 con body vacio cuando el token \"\n         \"expiro, en lugar de 401. Tres clientes ya cachearon \"\n         \"la respuesta vacia.\")\n\nprompt = \"Clasifica la severidad del issue como CRITICO, ALTO o BAJO.\\n\\n\"\nfor texto, etiqueta in EJEMPLOS:\n    prompt += f\"Issue: {texto}\\n-> {etiqueta}\\n\\n\"\nprompt += f\"Issue: {ISSUE}\\n->\"\n\nr = client.messages.create(model=M, max_tokens=64,\n                           messages=[{\"role\": \"user\", \"content\": prompt}])\n\n# >>> \"ALTO\"   contrato de API roto: el error se propaga silencioso\n#\n# cada ejemplo de EJEMPLOS viaja en CADA llamada, y se paga en cada una",
+        "language": "python"
       },
-      "highlights": [
-        {
-          "label": "Ejemplo",
-          "body": "Triage de issues de GitHub",
-          "kind": "example",
-          "position": "top"
-        }
-      ],
       "notes": "El punto fuerte de esta slide es la cuarta línea, porque describe un bucle de mejora que ningún equipo asocia con machine learning: cada vez que el sistema clasifica mal, ese caso se agrega al prompt como ejemplo, y el sistema mejora sin tocar el modelo. Es la forma más barata de aprendizaje continuo que existe, y el costo es lineal en tokens. El caso resuelto del final es el que el deck original dejaba abierto con signos de pregunta: fijate que la respuesta correcta no sale del texto del issue sino de la consecuencia, que es un contrato de API roto propagándose a tres clientes. Si querés hacerlo participativo, tapá la respuesta y pediles que voten CRITICO, ALTO o BAJO antes de mostrarla. Suele haber desacuerdo, y ese desacuerdo es el argumento de por qué hacen falta ejemplos con la frontera explicitada.",
       "_choice": {
         "signals": [
@@ -1600,12 +1448,6 @@
           "icon": "link"
         }
       ],
-      "highlights": [
-        {
-          "body": "**Cada una compra calidad con un recurso distinto.** CoT agrega pasos, self-consistency agrega muestras, ToT agrega ramas y el encadenamiento agrega llamadas. Todas se pagan.",
-          "kind": "takeaway"
-        }
-      ],
       "_choice": {
         "signals": [
           "labeled_items=4",
@@ -1656,10 +1498,6 @@
         {
           "body": "CoT e in-context learning son la misma familia: few-shot CoT es ICL donde los ejemplos incluyen el razonamiento. ICL enseña qué responder; CoT enseña cómo razonar.",
           "kind": "note"
-        },
-        {
-          "body": "Con thinking disponible, la instrucción general (\"pensar a fondo\") rinde más que un plan paso a paso escrito a mano. El CoT manual queda como *fallback* para cuando el thinking está apagado.",
-          "kind": "takeaway"
         }
       ],
       "_choice": {
@@ -1738,7 +1576,6 @@
       "template": "content+cards+image",
       "section": "Prompting avanzado",
       "title": "Self-consistency: votación",
-      "lead": "**Cuándo usarlo**",
       "cards": [
         {
           "label": "Alto riesgo",
@@ -1798,7 +1635,7 @@
       "template": "content-image",
       "section": "Prompting avanzado",
       "title": "Self-consistency: ejemplo",
-      "lead": "**Tres corridas independientes del mismo prompt sobre el mismo diff, y una votación.**",
+      "lead": "**Cinco corridas independientes del mismo prompt sobre el mismo diff, y una votación.**",
       "facts": [
         {
           "label": "Cuándo usarlo",
@@ -1806,13 +1643,13 @@
         },
         {
           "label": "Costo",
-          "body": "Tres a cinco llamadas al modelo, es decir tres a cinco veces el precio y la latencia."
+          "body": "Cinco llamadas al modelo: cinco veces el precio, y la latencia de la más lenta si se lanzan en paralelo."
         }
       ],
       "design": "split-right",
       "media": {
-        "code": "# CASO\nDiff en billing/invoice.py:\n-   total = subtotal + tax\n+   total = subtotal + tax * quantity\n\nPregunta: ¿este diff introduce un bug?\n\n# RUN 1\nSI. tax ya viene calculado sobre el subtotal completo.\nMultiplicarlo por quantity lo cobra de mas.\n\n# RUN 2\nSI. Mismo razonamiento: doble conteo de la cantidad.\n\n# RUN 3\nNO. Si tax fuera un monto unitario, el cambio seria correcto.\n\n# RESULTADO (votacion)\n-> SI, introduce un bug   (2 de 3 votos)\n-> Confianza: 67%",
-        "language": "markdown"
+        "code": "# CASO\nDiff en orders/pagination.py\n\n-   return items[offset : offset + limit]\n+   return items[offset : offset + limit + 1]\n\nPregunta: con limit=20, ¿se solapan dos paginas consecutivas?\n\n# CINCO CORRIDAS INDEPENDIENTES DEL MISMO PROMPT\n\nrun 1  -> SI   devuelve 21; la pagina 2 arranca en offset=20\nrun 2  -> SI   el ultimo item se repite al principio de la siguiente\nrun 3  -> NO   \"el slice no cambia el largo\"    <- error de razonamiento\nrun 4  -> SI   21 por pagina, el indice 20 sale dos veces\nrun 5  -> SI   el +1 pisa el primer item de la pagina siguiente\n\n# VOTACION\n-> SI, se solapan        4 de 5 votos        confianza 80%\n\nNinguna corrida sabe que las otras existen. La equivocada no se\nrepite; las correctas convergen, y ademas por el mismo motivo.",
+        "language": "text"
       },
       "_choice": {
         "signals": [
@@ -1958,12 +1795,6 @@
         "alt": "Pipeline de cuatro etapas encadenadas — clasificar, extraer, buscar y redactar — donde la salida de cada paso es la entrada del siguiente y el modelo caro entra solo al final"
       },
       "highlights": [
-        {
-          "label": "Ejemplo",
-          "body": "Pipeline de triage de tickets",
-          "kind": "example",
-          "position": "top"
-        },
         {
           "body": "**Prompt chaining convierte tareas imposibles en secuencias manejables. Es la base de los agentes de IA modernos.**",
           "kind": "takeaway"
@@ -3566,7 +3397,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "04acc88362dc290b523852159be93a91dba061057859c4f53d8c14b342111c07",
-    "bytes": 180611
+    "sha256": "c62957461898e43af7761dbbad44e026e27c4c4721a5531480563133eea7f744",
+    "bytes": 184159
   }
 }
