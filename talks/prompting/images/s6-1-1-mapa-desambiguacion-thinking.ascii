@@ -1,0 +1,25 @@
+        LA MISMA PALABRA EN CUATRO LUGARES DISTINTOS
+
+  +-------------------------------+  +-------------------------------+
+  | MECANISMO            [API]    |  | PARAMETRO effort     [API]    |
+  | thinking: {"adaptive"}        |  | output_config.effort          |
+  | el modelo escribe un bloque   |<-| gradua cuanto gasta el modelo |
+  | de razonamiento y decide      |  | al responder; es la perilla   |
+  | por peticion si piensa        |  | de profundidad del thinking   |
+  +-------------------------------+  +-------------------------------+
+
+  +-------------------------------+  +-------------------------------+
+  | MODOS DE INTERFAZ  [producto] |  | ETIQUETAS <thinking> [prompt] |
+  | "Thinking" / "Deep Thinking"  |  | se escriben en el prompt      |
+  | nombres de las apps de chat   |  | tecnica de prompting          |
+  | NO son vocabulario de la API  |  | sirve en cualquier modelo     |
+  +-------------------------------+  +-------------------------------+
+
+  COMUN A LOS CUATRO: el modelo escribe pasos intermedios antes de
+  responder. Esos pasos son el computo.
+
+<!-- ascii-note:
+intent: mapa de desambiguacion; cuatro cuadrantes etiquetados por donde vive cada cosa (API, producto, prompt), con una flecha del parametro effort al mecanismo porque es la perilla que lo gradua
+emphasize: la etiqueta de origen de cada cuadrante ([API] / [producto] / [prompt]); el cuadrante "MODOS DE INTERFAZ" debe verse como el ajeno al resto; la linea de cierre comun a los cuatro
+labels: MECANISMO, PARAMETRO effort, MODOS DE INTERFAZ, ETIQUETAS <thinking>
+-->

@@ -1,0 +1,24 @@
+      DEEPSEEK-R1-ZERO DURANTE EL ENTRENAMIENTO POR REFUERZO
+      (AIME 2024, pass@1 promedio)
+
+  100% |
+       |                                          86,7%  <- con
+   80% |                              77,9%  <-*  self-consistency
+       |                        _____/               (cons@16)
+   60% |                  _____/
+       |             ____/
+   40% |        ____/
+       |    ___/
+   20% |___/  15,6%
+       |
+    0% +--------------------------------------------------->
+        inicio                                 pasos de RL
+
+  EN PARALELO: el largo promedio de la respuesta CRECE solo.
+  Nadie le pide al modelo que escriba mas. Le conviene, y lo hace.
+
+<!-- ascii-note:
+intent: mostrar las dos curvas del paper a la vez -- la precision sube durante el entrenamiento por refuerzo, y el largo de la respuesta crece por su cuenta como efecto emergente
+emphasize: los tres numeros (15,6% inicio / 77,9% final / 86,7% con self-consistency) y la linea de cierre sobre el largo de respuesta creciendo sin que nadie lo pida
+labels: eje Y precision AIME 2024 pass@1, eje X pasos de entrenamiento por refuerzo
+-->

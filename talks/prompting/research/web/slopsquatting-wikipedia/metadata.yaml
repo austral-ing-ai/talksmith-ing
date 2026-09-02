@@ -1,0 +1,10 @@
+url: "https://en.wikipedia.org/wiki/Slopsquatting"
+fetched_at: "2026-09-02T00:02:58Z"
+title: "Slopsquatting - Wikipedia"
+http_status: 200
+byte_size: 94038
+assets:
+  - { src: "/static/images/icons/enwiki-25.svg", absolute: "https://en.wikipedia.org/static/images/icons/enwiki-25.svg", saved_as: "enwiki-25.svg", alt: "" }
+  - { src: "/static/images/mobile/copyright/wikipedia-wordmark-en-25.svg", absolute: "https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-en-25.svg", saved_as: "wikipedia-wordmark-en-25.svg", alt: "Wikipedia" }
+  - { src: "/static/images/mobile/copyright/wikipedia-tagline-en-25.svg", absolute: "https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-tagline-en-25.svg", saved_as: "wikipedia-tagline-en-25.svg", alt: "The Free Encyclopedia" }
+  - { src: "//upload.wikimedia.org/wikipedia/commons/thumb/8/86/Slopsquatting_flowchart.svg/250px-Slopsquatting_flowchart.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", absolute: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Slopsquatting_flowchart.svg/250px-Slopsquatting_flowchart.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", saved_as: "250px-Slopsquatting_flowchart.svg.png", alt: "" }

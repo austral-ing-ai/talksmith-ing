@@ -771,3 +771,45 @@
   feedback: "Mover \"Los términos de regularización\", realmente tiene sentido al final de backpropagation?"
   resolution: Sí, y el argumento es que un término de regularización se define en la función de costo pero actúa en el paso de actualización - antes de la 6.7 no hay con qué explicarlo. Pero no al final del todo: entra como 6.10, antes del checklist "Qué mirar cuando esto se entrena", porque esa diapositiva es el clímax de la sección y porque su fila "train baja y validación sube - Regularizar, o parar antes" era el único renglón cuya acción no se explicaba en la sección. La diapositiva se reescribió para aprovechar la mudanza: L2 y L1 pasaron de describir el efecto a mostrar el mecanismo (2λw contra λ·signo(w), y por qué el segundo clava pesos en cero), y dropout quedó marcado como el que no toca el gradiente. El puntero de la card Objective de la 5.2 dejó de nombrar un número de diapositiva para sobrevivir la próxima renumeración.
   tags: [structure, ordering]
+- talk: prompting
+  date: 2026-09-01
+  location: Slide "1. Cuatro palabras, cuatro cosas"
+  feedback: "La sección mezcla cuatro cosas distintas que comparten vocabulario, sin distinguirlas."
+  resolution: la lámina dejó de ser la progresión de tres modos de interfaz y pasó a ser el mapa de desambiguación de la sección. Los tres escalones "respuesta directa / thinking / deep thinking" quedaron reducidos a uno de los cuatro cuadrantes, marcado como vocabulario de producto y no de API. El ASCII se rehízo entero; el PNG anterior (`images/s4-1-1-tres-niveles-razonamiento.png`) queda obsoleto y se vuelve a renderizar en Polish.
+  tags: [terminology, slide-rewrite, ascii-diagram, structure]
+- talk: prompting
+  date: 2026-09-01
+  location: Slide "6. Effort: un parámetro de la petición"
+  feedback: "El effort es un parámetro de la petición, no algo del entrenamiento. Y `xhigh` como mejor punto para código está afirmado de más: la disponibilidad y la recomendación varían por modelo."
+  resolution: el lead pasó a decir explícitamente que es un parámetro de la petición y que el intercambio ocurre dentro de un mismo modelo. La tabla de niveles se copió de la documentación con su columna de disponibilidad, sin simplificar. La recomendación de `xhigh` para código bajó a las notas del orador y quedó calificada por modelo (Opus 4.7 y 4.8 arrancan en `xhigh`; Opus 5 y Fable 5.1 arrancan en `high`). El bullet que afirmaba que el default `high` "viene pagando razonamiento de sobra en cada tarea trivial" se retiró: la documentación recomienda `high` como punto de partida y bajarlo cuando los evals lo permitan (ver Cut material).
+  tags: [factual-correction, external-source, terminology, tabular]
+- talk: prompting
+  date: 2026-09-01
+  location: Slide "9. Etiquetas `<thinking>` en el prompt"
+  feedback: "La lámina de Extended thinking mezclaba el mecanismo nativo con las etiquetas del prompt."
+  resolution: la lámina anterior ("Extended thinking (Anthropic)") se quedó con el mecanismo y pasó a llamarse "Thinking: el mecanismo" (6.2). Esta se quedó con la técnica de prompt, se retituló "Etiquetas `<thinking>` en el prompt" y absorbió las tres razones de por qué sirve, reescritas para la técnica de prompt. La tabla de tres columnas del original (Debugging / Calidad / Trazabilidad) se retiró por duplicación (ver Cut material).
+  tags: [slide-split, terminology, scope]
+- talk: prompting
+  date: 2026-09-01
+  location: Slide "10. Las seis técnicas: pros y contras"
+  feedback: "Tres láminas se titulan 'Técnicas avanzadas: …' dentro de una sección que ya no se llama así."
+  resolution: el título pasó a "Las seis técnicas: pros y contras". De las tres láminas de recapitulación, esta era la única que llevaba literalmente el prefijo "Técnicas avanzadas:"; las otras dos ya se titulaban "¿Por qué funcionan?" y "¿Por qué tardan más?" y no contradicen el nombre de la sección, así que se dejaron. La fila "Extended thinking" pasó a "Thinking nativo" para alinearse con el vocabulario que fija la lámina 6.1.
+  tags: [slide-title, consistency, terminology]
+- talk: prompting
+  date: 2026-08-28
+  location: Slide "5. Del prompt al entrenamiento"
+  feedback: "La afirmación de que el comportamiento se movió al entrenamiento está apoyada de forma indirecta: el corpus tiene a Wei et al. para el mecanismo, y el catálogo de la API para el costo y las perillas removidas, pero no hay un registro sobre el post-entrenamiento por refuerzo de los modelos de razonamiento. ¿Ingestamos una fuente para eso, o la lámina se queda en el nivel de afirmación que la evidencia actual sostiene?"
+  resolution: se ingestó DeepSeek-R1 (Nature 2025, DOI 10.1038/s41586-025-09422-z, más el arXiv 2501.12948) y se le dedicaron dos láminas nuevas, 6.3 y 6.4. La afirmación del post-entrenamiento por refuerzo queda apoyada de forma directa. Además se re-ancló la mitad de tiempo de ejecución al system prompt especializado que la API inyecta cuando el thinking está activo, documentado en la captura de Steering thinking. Se retiró la afirmación sobre temperatura y top-p deshabilitados, que ninguna de las capturas sostiene (ver Cut material).
+  tags: [add-source, external-source, sources, new-slides]
+- talk: prompting
+  date: 2026-09-01
+  location: Section "5. Prompting avanzado"
+  feedback: "tal vez mejor poner todo en el subtítulo reducido. Queda más en mini-bloques. Revisar todos los slides de esa sección con lo mismo."
+  resolution: criterio de mini-bloques aplicado a las láminas de la sección cuyos ítems eran párrafos, sin tocar la estructura de la sección ni los cuatro diagramas. En 5.4 (self-consistency) el par 'El problema / La solución' se fundió en el encabezado y 'Cuándo usarlo' quedó en cuatro bloques cortos. Además: 5.1 pasó de dos tablas (una con las celdas vacías) a cuatro ítems etiquetados con recuadro de cierre; 5.6 convirtió 'Limitaciones' de viñetas sueltas a bloques etiquetados; 5.3, 5.7 y 5.12 cortaron los ítems a una línea; 5.3 y 5.7 ganaron encabezado de síntesis. La prosa sacada bajó a `### Speaker notes`.
+  tags: [density, slide-rewrite, speaker-notes, consistency]
+- talk: prompting
+  date: 2026-09-01
+  location: Section "6. Effort y thinking"
+  feedback: "La sección 6 tiene demasiado texto. Está bien agregar láminas si hace falta."
+  resolution: la sección pasó de 9 a 13 láminas, sin borrar contenido. Cuatro particiones: 'Thinking: el mecanismo' soltó la deprecación de `budget_tokens` a la nueva 6.3; 'Effort: un parámetro de la petición' soltó la tabla de niveles a la nueva 6.8; 'Pedirle al modelo que piense' soltó las tres frases verbatim a la nueva 6.10; y 'Qué cuesta el thinking' soltó la facturación y el caché a la nueva 6.13. En las nueve láminas preexistentes los ítems de dos y tres oraciones se cortaron a etiqueta más una línea, y la prosa que sacaron bajó a `### Speaker notes`. Los tres diagramas ASCII, sus `ascii-note` y el bloque de código quedaron intactos byte por byte. La lámina 'Etiquetas `<thinking>` en el prompt' no se repuso.
+  tags: [density, slide-split, structure, speaker-notes]

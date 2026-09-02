@@ -85,3 +85,45 @@
     edita el render nunca se actualiza
   suggested-fix (hipótesis, no verificada): que `scan` enumere por presencia de `ascii-source`
     y no por ausencia de render, marcando el estado (renderizado / pendiente / huérfano)
+
+- id: BUG-20260901-12
+  date: 2026-09-01
+  talk: talks/prompting
+  step: 6 (Polish) — paso 1, cierre
+  where: skills/polish-ascii/polish_ascii.py — subcomando `cleanup`
+  what: dos problemas en el mismo subcomando.
+    (a) **Descarta el `alt` del plan anotado.** El plan lleva el texto de accesibilidad que el rol
+    autorizo —"Mapa de desambiguacion: las cuatro cosas distintas que se llaman thinking y donde
+    vive cada una"— y `cleanup` lo ignora, generando el alt desde el slug del archivo
+    ("Mapa desambiguacion thinking"): sin acentos, sin contenido, inutil para un lector de pantalla.
+    Es una perdida de accesibilidad silenciosa.
+    (b) **Sale con codigo 3 y un error falso.** Reporto
+    `error: stale plan — s8-1-1 line 2328 no longer opens an ASCII fence` habiendo reescrito
+    correctamente los 15 bloques, s8-1-1 incluido. Un exit no-cero sobre una operacion que si
+    funciono es peligroso en un pipeline que encadena pasos
+  context: re-corrida de Polish sobre un deck de 67 laminas con 15 diagramas, despues de rehacer
+    una seccion entera. Verificado a mano: los 15 fences quedaron reescritos y todas las refs resuelven
+  expected: que el alt del plan se respete, y que el exit code refleje el resultado real
+  suggested-fix (hipotesis, no verificada): (a) usar `alt` del plan cuando esta presente y caer al
+    slug solo si falta; (b) revisar la deteccion de "stale": parece comparar contra numeros de linea
+    calculados antes de la reescritura de los bloques anteriores, que ya corrieron las lineas
+
+- id: BUG-20260901-13
+  date: 2026-09-01
+  talk: talks/prompting
+  step: 6 (Polish) — paso 1
+  where: agents/diagram-illustrator.md — coordinacion del rol
+  what: el rol cierra su turno antes de terminar, de forma reproducible. Ocurrio **dos veces en la
+    misma Talk**, en el mismo punto: extrae los sidecars, prepara los argumentos, anuncia que los
+    renders "estan corriendo en paralelo" y termina el turno. En la primera pasada quedaron 12
+    sidecars y 0 SVG; en la segunda, 4 SVG dibujados pero sin sellar ni referenciar.
+    Al reintentar, ademas, su reescritura piso el trabajo de un agente de render que ya habia
+    terminado y validado el mismo archivo: el patron "dispatch en background + reintento" no tiene
+    proteccion contra doble escritura del mismo destino
+  context: los renders tardan entre 6 y 8 minutos cada uno; el rol cierra antes de que reporten
+  expected: que el rol espere a sus renders y complete sellado, inyeccion de refs y reporte
+  actual: hay que retomarlo por mensaje una o dos veces; los pasos deterministas (annotate, stamp,
+    cleanup) terminan corriendose desde el orquestador
+  suggested-fix (hipotesis, no verificada): que el rol escriba a disco por item apenas cada render
+    vuelve, en vez de acumular y reportar al final; y que antes de escribir un destino verifique si
+    ya existe con sello valido, para no pisar el trabajo de un dispatch previo

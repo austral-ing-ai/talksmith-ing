@@ -1,0 +1,23 @@
+  SIN CoT
+  +-----------+                                        +------------+
+  | pregunta  | -------------------------------------> | respuesta  |
+  +-----------+           un solo salto                +------------+
+                    nada escrito entre medio
+
+  CON CoT
+  +-----------+    +--------+    +--------+    +--------+    +------------+
+  | pregunta  | -> | paso 1 | -> | paso 2 | -> | paso 3 | -> | respuesta  |
+  +-----------+    +--------+    +--------+    +--------+    +------------+
+                       |             |             |
+                       +-------------+-------------+
+                         cada paso escrito entra al contexto
+                         y condiciona la prediccion del siguiente
+
+  Los tokens intermedios no son la explicacion de la respuesta:
+  son el calculo que la produce.
+
+<!-- ascii-note:
+intent: mostrar que CoT no agrega una explicacion al final sino pasos escritos EN EL MEDIO, y que cada paso escrito entra al contexto y condiciona el siguiente; contrastar con el salto unico de la version sin CoT
+emphasize: el contraste entre la flecha larga sin nada en el medio y la cadena de pasos; la llave que muestra que cada paso realimenta el contexto; la linea de cierre que es la tesis de la clase
+labels: "SIN CoT", "CON CoT", "pregunta", "paso 1/2/3", "respuesta", "un solo salto", "cada paso escrito entra al contexto", y la linea de cierre sobre los tokens intermedios
+-->

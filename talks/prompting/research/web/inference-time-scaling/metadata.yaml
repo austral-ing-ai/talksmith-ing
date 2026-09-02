@@ -1,0 +1,32 @@
+url: "https://arxiv.org/html/2504.00294"
+fetched_at: "2026-09-01T23:03:16Z"
+title: "Inference-Time Scaling for Complex Tasks:Where We Stand and What Lies Ahead"
+http_status: 200
+byte_size: 256104
+assets:
+  - { src: "/static/base/1.0.1/images/icons/smileybones-small.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/icons/smileybones-small.svg", saved_as: "smileybones-small.svg", alt: "" }
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "arXiv logo" }
+  - { src: "2504.00294v1/figures/GitHub-Mark-ea2971cee799.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/GitHub-Mark-ea2971cee799.png", saved_as: "GitHub-Mark-ea2971cee799.png", alt: "[Uncaptioned image]" }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption" }
+  - { src: "2504.00294v1/figures/agg_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/agg_legend.png", saved_as: "agg_legend.png", alt: "Refer to caption" }
+  - { src: "2504.00294v1/figures/accuracy_tokens_legend_2lines.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/accuracy_tokens_legend_2lines.png", saved_as: "accuracy_tokens_legend_2lines.png", alt: "Refer to caption" }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/accuracy_tokens_legend_2lines.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/accuracy_tokens_legend_2lines.png", saved_as: "accuracy_tokens_legend_2lines.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/agg_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/agg_legend.png", saved_as: "agg_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/agg_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/agg_legend.png", saved_as: "agg_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/agg_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/agg_legend.png", saved_as: "agg_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/agg_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/agg_legend.png", saved_as: "agg_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/agg_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/agg_legend.png", saved_as: "agg_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/2-maze_nav.png", absolute: "https://arxiv.org/html/2504.00294v1/2-maze_nav.png", saved_as: "2-maze_nav.png", alt: "Refer to caption" }
+  - { src: "2504.00294v1/figures/model_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/model_legend.png", saved_as: "model_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/figures/agg_legend.png", absolute: "https://arxiv.org/html/2504.00294v1/figures/agg_legend.png", saved_as: "agg_legend.png", alt: "Refer to caption", deduped: True }
+  - { src: "2504.00294v1/1_spatial_map.png", absolute: "https://arxiv.org/html/2504.00294v1/1_spatial_map.png", saved_as: "1_spatial_map.png", alt: "Refer to caption" }

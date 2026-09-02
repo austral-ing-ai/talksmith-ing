@@ -1,0 +1,53 @@
+<!-- talksmith-ascii-sha256: b3f18dae2d0d7ae2ebe09dc6351fa619361d17b23d1b1ec8d2913c3c6810a48d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 408" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+<title>Chain of Thought (CoT)</title>
+<desc>Sin CoT la pregunta salta directo a la respuesta sin nada escrito en el medio; con CoT los pasos intermedios se encadenan y cada paso escrito entra al contexto y condiciona la prediccion del siguiente.</desc>
+<defs>
+<marker id="ag" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#9C9595"/></marker>
+<marker id="ar" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="800" height="408" fill="#ffffff"/>
+
+<text x="24" y="35" font-size="15" font-weight="bold" letter-spacing="1.2">SIN CoT</text>
+
+<rect x="80" y="56" width="110" height="46" rx="3" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="135" y="84" text-anchor="middle" font-size="14">pregunta</text>
+
+<line x1="190" y1="79" x2="602" y2="79" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
+<text x="396" y="70" text-anchor="middle" font-size="12.5">un solo salto</text>
+<text x="396" y="98" text-anchor="middle" font-size="12.5" fill="#7A7373">nada escrito entre medio</text>
+
+<rect x="602" y="56" width="118" height="46" rx="3" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="661" y="84" text-anchor="middle" font-size="14">respuesta</text>
+
+<text x="24" y="155" font-size="15" font-weight="bold" letter-spacing="1.2">CON CoT</text>
+
+<rect x="80" y="176" width="110" height="46" rx="3" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="135" y="204" text-anchor="middle" font-size="14">pregunta</text>
+<line x1="190" y1="199" x2="224" y2="199" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
+
+<rect x="224" y="176" width="92" height="46" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="270" y="204" text-anchor="middle" font-size="14">paso 1</text>
+<line x1="316" y1="199" x2="350" y2="199" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
+
+<rect x="350" y="176" width="92" height="46" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="396" y="204" text-anchor="middle" font-size="14">paso 2</text>
+<line x1="442" y1="199" x2="476" y2="199" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
+
+<rect x="476" y="176" width="92" height="46" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="522" y="204" text-anchor="middle" font-size="14">paso 3</text>
+<line x1="568" y1="199" x2="602" y2="199" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
+
+<rect x="602" y="176" width="118" height="46" rx="3" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.5"/>
+<text x="661" y="204" text-anchor="middle" font-size="14">respuesta</text>
+
+<path d="M270,222 Q333,296 396,222" fill="none" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M396,222 Q459,296 522,222" fill="none" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M522,222 Q591,296 661,222" fill="none" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#ar)"/>
+
+<text x="400" y="288" text-anchor="middle" font-size="13">cada paso escrito entra al contexto y condiciona la predicci&#243;n del siguiente</text>
+
+<path d="M24,326 L776,326" stroke="#D8D4D4" stroke-width="1.2"/>
+<text x="24" y="356" font-size="14.5">Los tokens intermedios no son la explicaci&#243;n de la respuesta:</text>
+<text x="24" y="379" font-size="14.5" font-weight="bold">son el c&#225;lculo que la produce.</text>
+</svg>

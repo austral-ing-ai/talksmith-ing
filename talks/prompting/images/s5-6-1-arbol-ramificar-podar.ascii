@@ -18,9 +18,3 @@
    [ solucion ]                                       4. SELECCIONAR
 
   CoT es este arbol con una sola rama y sin vuelta atras.
-
-<!-- ascii-note:
-intent: mostrar que lo propio de ToT no es "razonar mas" sino RAMIFICAR y PODAR: generar varias continuaciones, puntuarlas, descartar las malas y expandir solo la mejor; y que CoT es el caso degenerado de un solo camino sin backtracking
-emphasize: las ramas podadas marcadas con X frente al camino que sobrevive hasta la solucion; los cuatro pasos numerados de la derecha alineados con los niveles del arbol; la linea de cierre que contrasta con CoT
-labels: "problema", "rama A/B/C", "score 8/5/2", "podada", "A.1", "A.2", "solucion", y los pasos GENERAR / EVALUAR / EXPANDIR / SELECCIONAR
--->

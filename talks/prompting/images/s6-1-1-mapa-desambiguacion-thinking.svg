@@ -1,0 +1,64 @@
+<!-- talksmith-ascii-sha256: 1a9a26107d1df6591569737456dc4eef04e6b6d7ee6961d89d58347d8bfa0887 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 436" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3B3535">
+<title>Cuatro palabras, cuatro cosas</title>
+<desc>La misma palabra nombra cuatro cosas distintas: el mecanismo, el parámetro de la petición, los modos de la interfaz y las etiquetas del prompt.</desc>
+<defs>
+<marker id="ah" viewBox="0 0 10 8" refX="10" refY="4" markerWidth="10" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M0 0 L10 4 L0 8 Z" fill="#7A7373"/>
+</marker>
+</defs>
+<rect width="900" height="436" fill="#ffffff"/>
+
+<text x="28" y="37" font-size="11" font-weight="bold" letter-spacing="1.4" fill="#9C9595">LA MISMA PALABRA EN CUATRO LUGARES DISTINTOS</text>
+
+<rect x="28" y="62" width="362" height="132" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<rect x="324" y="77" width="46" height="18" rx="9" fill="#FDEEF0"/>
+<text x="347" y="90" font-size="10" font-weight="bold" fill="#DA1B2E" text-anchor="middle">API</text>
+<text x="48" y="89" font-size="13" font-weight="bold" letter-spacing="0.8">MECANISMO</text>
+<line x1="48" y1="102" x2="370" y2="102" stroke="#D8D4D4" stroke-width="1"/>
+<text x="48" y="124" font-size="12" font-family="'DejaVu Sans Mono', monospace" fill="#3B3535">thinking: {"adaptive"}</text>
+<text x="48" y="146" fill="#6B6363">el modelo escribe un bloque de razonamiento</text>
+<text x="48" y="164" fill="#6B6363">y decide en cada petición si piensa</text>
+
+<rect x="510" y="62" width="362" height="132" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<rect x="806" y="77" width="46" height="18" rx="9" fill="#FDEEF0"/>
+<text x="829" y="90" font-size="10" font-weight="bold" fill="#DA1B2E" text-anchor="middle">API</text>
+<text x="530" y="89" font-size="13" font-weight="bold" letter-spacing="0.8">PARÁMETRO</text>
+<text x="630" y="89" font-size="13" font-weight="bold" font-family="'DejaVu Sans Mono', monospace">effort</text>
+<line x1="530" y1="102" x2="852" y2="102" stroke="#D8D4D4" stroke-width="1"/>
+<text x="530" y="124" font-size="12" font-family="'DejaVu Sans Mono', monospace" fill="#3B3535">output_config.effort</text>
+<text x="530" y="146" fill="#6B6363">gradúa cuánto gasta el modelo al responder</text>
+<text x="530" y="164" fill="#6B6363">es la perilla de profundidad del thinking</text>
+
+<text x="450" y="122" font-size="10" fill="#7A7373" text-anchor="middle">gradúa la profundidad</text>
+<line x1="510" y1="132" x2="390" y2="132" stroke="#7A7373" stroke-width="1.6" marker-end="url(#ah)"/>
+
+<rect x="28" y="214" width="362" height="132" fill="#EDEBEB"/>
+<g stroke="#B8B2B2" stroke-width="1.2" stroke-linecap="butt">
+<line x1="28" y1="214" x2="390" y2="214" stroke-dasharray="6 3.889"/>
+<line x1="28" y1="346" x2="390" y2="346" stroke-dasharray="6 3.889"/>
+<line x1="28" y1="214" x2="28" y2="346" stroke-dasharray="6 3.692"/>
+<line x1="390" y1="214" x2="390" y2="346" stroke-dasharray="6 3.692"/>
+</g>
+<rect x="308" y="229" width="62" height="18" rx="9" fill="#E2DFDF"/>
+<text x="339" y="242" font-size="10" font-weight="bold" fill="#5C5555" text-anchor="middle">producto</text>
+<text x="48" y="241" font-size="13" font-weight="bold" letter-spacing="0.8" fill="#5C5555">MODOS DE INTERFAZ</text>
+<line x1="48" y1="254" x2="370" y2="254" stroke="#CFCACA" stroke-width="1"/>
+<text x="48" y="276" fill="#6B6363">“Thinking” · “Deep Thinking”</text>
+<text x="48" y="294" fill="#6B6363">nombres de producto de las apps de chat</text>
+<text x="48" y="318" font-weight="bold" fill="#3B3535">NO son vocabulario de la API</text>
+
+<rect x="510" y="214" width="362" height="132" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<rect x="801" y="229" width="51" height="18" rx="9" fill="#E2DFDF"/>
+<text x="826" y="242" font-size="10" font-weight="bold" fill="#5C5555" text-anchor="middle">prompt</text>
+<text x="530" y="241" font-size="13" font-weight="bold" letter-spacing="0.8">ETIQUETAS</text>
+<text x="626" y="241" font-size="13" font-weight="bold" font-family="'DejaVu Sans Mono', monospace">&lt;thinking&gt;</text>
+<line x1="530" y1="254" x2="852" y2="254" stroke="#D8D4D4" stroke-width="1"/>
+<text x="530" y="276" font-size="12" font-family="'DejaVu Sans Mono', monospace" fill="#3B3535">&lt;thinking&gt; … &lt;/thinking&gt;</text>
+<text x="530" y="294" fill="#6B6363">se escriben en el prompt · técnica de prompting</text>
+<text x="530" y="318" fill="#6B6363">sirve en cualquier modelo, sin tocar un parámetro</text>
+
+<line x1="28" y1="378" x2="872" y2="378" stroke="#D8D4D4" stroke-width="1"/>
+<text x="28" y="404" font-size="11" font-weight="bold" letter-spacing="1" fill="#6B6363">COMÚN A LOS CUATRO</text>
+<text x="200" y="404" font-size="12.5">el modelo escribe pasos intermedios antes de responder. Esos pasos son el cómputo.</text>
+</svg>

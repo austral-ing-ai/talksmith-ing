@@ -1,0 +1,9 @@
+url: "https://arxiv.org/abs/2501.12948"
+fetched_at: "2026-09-01T23:03:14Z"
+title: "[2501.12948] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning"
+http_status: 200
+byte_size: 75710
+assets:
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "archive" }
+  - { src: "/static/browse/0.3.4/images/icons/social/bibsonomy.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/bibsonomy.png", saved_as: "bibsonomy.png", alt: "BibSonomy" }
+  - { src: "/static/browse/0.3.4/images/icons/social/reddit.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/reddit.png", saved_as: "reddit.png", alt: "Reddit" }
