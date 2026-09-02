@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Tests de la mision de prompting: el juego de la vida de Conway.
 
-El script del alumno tiene que llamarse `vida.py` y estar en el mismo
-directorio desde donde se corren estos tests:
+Uso:
 
-    python3 test_vida.py
+    python3 test_vida.py [ruta/a/vida.py]
+
+Sin argumento, busca `vida.py` en el mismo directorio que este test. El
+script del alumno tiene que respetar la interfaz estandar del contrato,
+que es lo que estos tests invocan.
 
 Contrato que verifica (el mismo que esta en mission.md):
 - Uso: python3 vida.py <archivo_estado_inicial> <generaciones>
@@ -22,7 +25,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-SCRIPT = Path(__file__).resolve().parent / "vida.py"
+if len(sys.argv) > 1 and not sys.argv[1].startswith("-"):
+    SCRIPT = Path(sys.argv.pop(1)).resolve()
+else:
+    SCRIPT = Path(__file__).resolve().parent / "vida.py"
 
 
 def correr(estado: str, generaciones: int) -> str:
@@ -107,6 +113,6 @@ class TestVida(unittest.TestCase):
 
 if __name__ == "__main__":
     if not SCRIPT.exists():
-        print(f"No encuentro {SCRIPT}. Copien su script como 'vida.py' junto a este test.")
+        print(f"No encuentro {SCRIPT}. Pasen la ruta: python3 test_vida.py ruta/a/vida.py")
         sys.exit(2)
     unittest.main(verbosity=2)

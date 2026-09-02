@@ -73,7 +73,7 @@ El contrato exacto (su prompt tiene que transmitirlo completo):
 - El script imprime por stdout la grilla resultante tras N generaciones, en el mismo formato.
 - Con `generaciones = 0` imprime el estado inicial tal cual.
 
-La cátedra provee los tests: `tests/test_vida.py` (9 casos: osciladores, naturalezas muertas, el glider, nacimiento, muerte por soledad, bordes y generación cero). Se corren con el script al lado: `python3 test_vida.py`.
+La cátedra provee los tests: `tests/test_vida.py` (9 casos: osciladores, naturalezas muertas, el glider, nacimiento, muerte por soledad, bordes y generación cero). Reciben la ruta del script y ejecutan los tests contra su interfaz estándar: `python3 test_vida.py ruta/a/vida.py` (sin argumento buscan `vida.py` al lado). Por eso el contrato de arriba no es negociable: es la interfaz que los tests invocan.
 
 Las reglas:
 
@@ -101,7 +101,11 @@ Documenten, para **todos** los intentos del ejercicio 2 (los quemados también):
 
 ## La entrega
 
-- **Los logs del chat** (`.md`): el de la conversación ganadora y los de los intentos quemados, con su usage. Son la evidencia que respalda el informe del ejercicio 3.
-- **El script** `vida.py` resultante.
+Se entrega **pusheando al repo de GitHub del grupo**, con la forma de trabajo de la clase 2 (CLAUDE.md, SPEC.md e historia de commits limpia). El repo tiene que contener:
+
+- **El código de la interfaz** del ejercicio 1.
+- **Un log de chat de prueba por cada uno de los 4 modelos** (`.md`): prueban que cada modelo es usable desde la interfaz y que las conversaciones se guardan con su usage.
+- **Los logs del chat con el que crearon el script de Conway**: el de la conversación ganadora y los de los intentos quemados. Son la evidencia que respalda el informe del ejercicio 3.
+- **El script `vida.py`** resultante.
+- **El script de testing de la cátedra** (`test_vida.py`), tal cual se entregó, corriendo en verde contra su `vida.py`.
 - **El informe** del ejercicio 3.
-- El código de la interfaz del ejercicio 1, en un repo con la forma de trabajo de la clase 2: CLAUDE.md, SPEC.md e historia de commits limpia.
