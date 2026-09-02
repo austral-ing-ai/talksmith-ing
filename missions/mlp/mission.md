@@ -10,7 +10,7 @@ Las explicaciones van en **celdas de markdown**, no en comentarios de código. U
 
 ## Descarga
 
-**[`house-prices-extended.csv`](https://austral-ing-ai.github.io/talksmith-ing/missions/clase3/house-prices-extended.csv)** — 1460 casas, 19 columnas de entrada y el precio.
+**[`house-prices-extended.csv`](https://austral-ing-ai.github.io/talksmith-ing/missions/mlp/house-prices-extended.csv)** — 1460 casas, 19 columnas de entrada y el precio.
 
 Es el dataset de la clase ampliado: las 10 columnas numéricas que ya usamos, más columnas nuevas que **no** son enteros. La columna `AboveMedianPrice` ya no está.
 

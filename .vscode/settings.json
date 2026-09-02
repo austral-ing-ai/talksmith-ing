@@ -2,5 +2,5 @@
   // El único intérprete de este repo con las dependencias del notebook de la
   // clase 3. Ojo: hay otro Python 3.11.15 en ~/.local/bin que NO las tiene, así
   // que en el selector de kernel conviene mirar la ruta y no la versión.
-  "python.defaultInterpreterPath": "${workspaceFolder}/missions/clase3/.venv/bin/python"
+  "python.defaultInterpreterPath": "${workspaceFolder}/missions/mlp/.venv/bin/python"
 }

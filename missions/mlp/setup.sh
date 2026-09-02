@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Arma el entorno para el notebook de la clase 3 y para la misión.
 #
-#   cd missions/clase3 && ./setup.sh
+#   cd missions/mlp && ./setup.sh
 #
 # Qué hace:
 #   1. Crea el entorno virtual .venv si no existe.
 #   2. Instala las dependencias de requirements.txt.
-#   3. Registra el kernel de Jupyter con un nombre propio, clase3-venv.
+#   3. Registra el kernel de Jupyter con un nombre propio, mlp-venv.
 #   4. Verifica que los imports del notebook funcionen.
 #
 # Es idempotente: correrlo dos veces no rompe nada.
@@ -15,8 +15,8 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 VENV=".venv"
-KERNEL_NAME="clase3-venv"
-KERNEL_LABEL="Python (clase3 .venv)"
+KERNEL_NAME="mlp-venv"
+KERNEL_LABEL="Python (mlp .venv)"
 
 # --- 1. el intérprete base --------------------------------------------------
 # Se necesita Python 3.10 o superior. El de macOS (/usr/bin/python3, 3.9) no sirve

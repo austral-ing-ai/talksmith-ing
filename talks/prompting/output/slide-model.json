@@ -578,7 +578,7 @@
           "text": "Instrucciones críticas al inicio, la consulta concreta al final."
         }
       ],
-      "notes": "Tres fallas de familia, no tres bugs. Ninguna se arregla con un modelo mejor, todas se administran con diseño del sistema alrededor del modelo. La de no-determinismo suele ser la que más molesta a esta audiencia, porque rompe la intuición de función pura: mismo input, distinto output. Y ojo con el atajo de \"pongo temperature 0 y listo\": baja la variabilidad, no la elimina, y en tareas creativas la degrada. El sesgo de recencia es el que menos se conoce y el más accionable: si el prompt tiene cincuenta mil tokens de contexto y la pregunta está en el medio, la respuesta empeora. Instrucción arriba, pregunta abajo. Las tres se retoman en la sección de técnicas avanzadas, así que dejalas planteadas y seguí.",
+      "notes": "Tres fallas de familia, no tres bugs. Ninguna se arregla con un modelo mejor, todas se administran con diseño del sistema alrededor del modelo. La de no-determinismo suele ser la que más molesta a esta audiencia, porque rompe la intuición de función pura: mismo input, distinto output. Y si alguien propone el atajo de bajar la aleatoriedad con un parámetro, aclarale que en la generación actual de modelos esas perillas ya no existen: en producción la variabilidad se compensa corriendo varias veces y comparando. El sesgo de recencia es el que menos se conoce y el más accionable: si el prompt tiene cincuenta mil tokens de contexto y la pregunta está en el medio, la respuesta empeora. Instrucción arriba, pregunta abajo. Las tres se retoman en la sección de técnicas avanzadas, así que dejalas planteadas y seguí.",
       "_choice": {
         "signals": [
           "has_table=true (3 headers, 1 body row)",
@@ -1818,7 +1818,7 @@
           "process": "the four stages exist inside the diagram, not as body items — inventing steps from the picture would duplicate what the media already shows"
         }
       },
-      "notes": "El texto de esta slide venía cortado a mitad de palabra en el deck original y no se pudo reponer verbatim, porque el material fuente está igual de cortado. Lo que decía la frase se deduce de la propia slide de ejemplo: varias llamadas en vez de una incrementan latencia y costo total de orquestación, a cambio de que cada paso sea simple y evaluable por separado. Decilo así. El otro punto es el de la línea de cierre y es el más importante de la slide: un pipeline de cinco pasos con lógica de control escrita por el programador ya es, en lo esencial, un agente con el bucle fijo. La diferencia con un agente de verdad es quién decide el próximo paso, y eso es lo que agrega ReAct, que acaban de ver."
+      "notes": "El texto de esta slide venía cortado a mitad de palabra en el deck original y no se pudo reponer verbatim, porque el material fuente está igual de cortado. Lo que decía la frase se deduce de la propia slide de ejemplo: varias llamadas en vez de una incrementan latencia y costo total de orquestación, a cambio de que cada paso sea simple y evaluable por separado. Decilo así. El otro punto es el de la línea de cierre y es el más importante de la slide: un pipeline de cinco pasos con lógica de control escrita por el programador ya es, en lo esencial, un agente con el bucle fijo. La diferencia con un agente de verdad es quién decide el próximo paso: en un pipeline lo decide el código, y en un agente lo decide el modelo en cada vuelta."
     },
     {
       "template": "content-image",
@@ -2060,67 +2060,6 @@
     {
       "template": "content+cards+image",
       "section": "Effort y thinking",
-      "title": "Cuatro palabras, cuatro cosas",
-      "lead": "**La palabra \"thinking\" aparece en cuatro lugares de esta clase. En cada uno significa algo distinto, y confundirlos es lo que hace incomprensible la documentación.**",
-      "cards": [
-        {
-          "label": "El mecanismo",
-          "body": "El modelo escribe un bloque de razonamiento antes de la respuesta y decide en cada petición si piensa.",
-          "icon": "psychology"
-        },
-        {
-          "label": "El parámetro `effort`",
-          "body": "Viaja en `output_config` y gradúa cuántos tokens gasta el modelo al responder.",
-          "icon": "tune"
-        },
-        {
-          "label": "Los modos de la interfaz",
-          "body": "\"Thinking\" y \"Deep Thinking\" son nombres de producto, ajenos al vocabulario de la API.",
-          "icon": "chat_bubble"
-        },
-        {
-          "label": "Las etiquetas `<thinking>`",
-          "body": "Una técnica de prompting que funciona en cualquier modelo, sin tocar un solo parámetro.",
-          "icon": "code"
-        }
-      ],
-      "design": "split-right",
-      "media": {
-        "src": "images/s6-1-1-mapa-desambiguacion-thinking.svg",
-        "alt": "Mapa de desambiguación en cuatro cuadrantes: el mecanismo y el parámetro effort viven en la API, los modos Thinking son nombres de producto y las etiquetas <thinking> viven en el prompt"
-      },
-      "highlights": [
-        {
-          "body": "**Los cuatro descansan sobre el mismo hecho.** El modelo escribe pasos intermedios antes de responder, y esos pasos son el cómputo.",
-          "kind": "takeaway"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "labeled_items=4",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=1",
-          "has_code=false",
-          "has_table=false",
-          "two_groups=false"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "concept-breakdown",
-          "content-image"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "concept-breakdown": "requires images == 0; the shared disambiguation map would have to be dropped to keep it",
-          "content-image": "dissolves the four labeled meanings into `facts`, losing the per-concept card and icon the catalog reserves for a labeled set of >=2"
-        }
-      },
-      "notes": "Esta lámina existe porque la clase venía usando la misma palabra para cuatro cosas y el bloque entero se volvía incomprensible. Dedícale tiempo. El orden importa: primero el mecanismo, que es lo que el modelo hace; después el parámetro, que es lo que configuras en la petición; tercero los modos de la interfaz, que son nombres comerciales y conviene decir en voz alta que no aparecen en la documentación de la API; y último las etiquetas del prompt, que son la técnica más vieja de las cuatro y la única que funciona en cualquier modelo. Tres precisiones que la lámina ya no carga y conviene decir. El mecanismo, en los modelos actuales de Anthropic, es adaptativo: el modelo decide por petición si piensa y también cuánto. El parámetro no es una perilla suelta: donde hay razonamiento adaptativo, la documentación lo señala como la forma recomendada de controlar la profundidad del thinking. Y de los modos de interfaz, lo que importa es que ni \"Thinking\" ni \"Deep Thinking\" figuran en la documentación de la plataforma. Lo que separa a los cuatro es quién pide los pasos intermedios y quién los paga. Si alguien pregunta por qué la interfaz usa nombres distintos de la API, la respuesta honesta es que son capas de producto distintas y que los nombres comerciales cambian seguido. La línea de cierre es la que sostiene toda la sección: los cuatro se apoyan en el mismo hecho, que el modelo escribe pasos intermedios y esos pasos son el cómputo. Es la tesis de la clase, dicha por cuarta vez."
-    },
-    {
-      "template": "content+cards+image",
-      "section": "Effort y thinking",
       "title": "Thinking: el mecanismo",
       "lead": "**El modelo produce un bloque de razonamiento antes de la respuesta. En los modelos actuales el thinking es adaptativo, así que el modelo evalúa cada petición y decide solo si piensa y cuánto.**",
       "cards": [
@@ -2173,79 +2112,124 @@
       "notes": "Esta es la lámina del mecanismo, y la palabra que hay que fijar es \"adaptativo\". El modelo decide, petición por petición, si le conviene pensar. La consecuencia práctica que más les va a servir en un trabajo real son los dos primeros bullets juntos: si escribes código que asume que todo turno del asistente empieza con un bloque de thinking, se te rompe el día que el modelo decide que la pregunta era fácil. La documentación es explícita en que eso es válido y esperable. Del tercero, el detalle útil es que el bloque llega con un tipo propio, así que se lo trata aparte del texto en el parseo. Del cuarto, que el razonamiento entre herramientas no necesita ninguna configuración extra en los modelos adaptativos. Cierra con `max_tokens`, que es el techo duro y cubre las dos salidas juntas; vuelves sobre eso en la lámina de costo."
     },
     {
-      "template": "concept-breakdown",
+      "template": "code-example",
       "section": "Effort y thinking",
-      "title": "El presupuesto fijo quedó atrás",
-      "lead": "**`budget_tokens` fijaba un techo de tokens de pensamiento. Los modelos actuales lo reemplazaron por thinking adaptativo más `effort`, y la migración depende de qué modelo se esté usando.**",
-      "cards": [
-        {
-          "label": "En los 4.6",
-          "body": "Está deprecado, y las peticiones todavía funcionan.",
-          "icon": "warning"
-        },
-        {
-          "label": "Desde los 4.7",
-          "body": "La API lo rechaza con error 400.",
-          "icon": "block"
-        },
-        {
-          "label": "En los 4.5 y anteriores",
-          "body": "Sigue siendo el único modo disponible en los modelos que soportan thinking.",
-          "icon": "history"
-        },
-        {
-          "label": "La migración",
-          "body": "Sacar `budget_tokens`, poner `thinking: {\"type\": \"adaptive\"}` y graduar con `output_config.effort`.",
-          "icon": "swap_horiz"
-        }
-      ],
+      "title": "Thinking: cómo queda en código",
+      "code": "import anthropic\nclient = anthropic.Anthropic()\n\n# En Opus 5 y Sonnet 5 el thinking ya viene encendido, con\n# display \"omitted\": el bloque llega vacio salvo que lo pidas.\nr = client.messages.create(\n    model=\"claude-opus-5\",\n    max_tokens=16000,                    # techo de thinking + texto\n    thinking={\"type\": \"adaptive\",        # el modelo decide si piensa\n              \"display\": \"summarized\"},  # y si te lo deja ver\n    messages=[{\"role\": \"user\",\n               \"content\": \"¿Este diff introduce un bug?\"}])\n\n# La respuesta es una LISTA de bloques, y el de thinking\n# puede no estar: en una pregunta simple el modelo no piensa.\nrazonamiento = texto = firma = None\nfor b in r.content:\n    if b.type == \"thinking\":\n        razonamiento = b.thinking   # \"\" si display es \"omitted\"\n        firma = b.signature         # se reenvia SIN TOCAR en el turno siguiente\n    elif b.type == \"text\":\n        texto = b.text\n\nprint(texto)                        # lo unico que ve el usuario",
+      "language": "python",
+      "notes": "Veinticuatro líneas para la lámina anterior entera. Tres cosas y todas se ven en el código. La primera es que `display` va adentro del objeto `thinking`, no al lado: es una propiedad del razonamiento, no de la petición. La segunda es el bucle, y es la que más les va a doler en producción: la respuesta es una lista de bloques y el de thinking puede no estar, así que cualquier código que haga `r.content[0].text` se rompe el día que el modelo decide pensar. Mostrales que el patrón correcto es recorrer y preguntar por el tipo. La tercera es la firma: es una copia cifrada del razonamiento completo y se reenvía sin tocar en el turno siguiente, porque el modelo la necesita para seguir el hilo. Si alguien pregunta por qué el bloque viene vacío con `display: \"omitted\"`, la respuesta honesta es que se paga igual; omitirlo mejora la latencia del primer token de texto, no la factura.",
       "_choice": {
         "signals": [
-          "labeled_items=4",
-          "date_labels=false (model versions, not dates or periods)",
-          "is_ordered=false (4.6, 4.7, 4.5 are not a sequence)",
+          "has_code=true",
           "n_images=0",
-          "has_code=false",
-          "has_table=false"
+          "labeled_items=0"
         ],
         "candidates": [
-          "concept-breakdown",
-          "timeline",
-          "process"
+          "code-example",
+          "content-image"
         ],
-        "picked": "concept-breakdown",
+        "picked": "code-example",
         "rejected": {
-          "timeline": "`date_labels` needs dates or periods; model release numbers are not *when*, and the fourth item is not a milestone at all",
-          "process": "the labels carry no ordinal and the items are three model regimes plus a recipe, not steps run in order"
+          "content-image": "no hay imagen ni facts; el panel de codigo es toda la lamina"
+        }
+      }
+    },
+    {
+      "template": "code-example",
+      "section": "Effort y thinking",
+      "title": "Una sola pasada, o una zona de trabajo aparte",
+      "lead": "**\"Un modelo que responde en una sola pasada tiene que acertar todo a la primera: sin borrador, sin verificación, sin poder cambiar de rumbo a mitad de camino.\"**",
+      "code": "## SIN THINKING\nuna sola secuencia de tokens\n\n\"El\" \"MCD\" \"de\" \"1071\" \"y\"\n\"462\" \"es\" \"21.\" \"Esto\" \"se\"\n\"calcula\" \"con\" \"el\"\n\"algoritmo\" \"de\" \"Euclides.\"\n              ^\n   token 8: ya se comprometio\n   con el numero, sin haber\n   hecho la cuenta todavia\n\n> Cada token escrito queda\n> fijo: no hay vuelta atras.\n> Un error en una resta se\n> arrastra hasta el final.",
+      "language": "markdown",
+      "notes": "Esta es la lámina que explica por qué el bloque separado no es cosmético. Caminá primero el caso de arriba y deteneté en el token 8: ahí el modelo ya escribió \"21\" y todavía no hizo ninguna división. Preguntales de dónde salió ese número. La respuesta incómoda es que salió de la predicción, no del cálculo, y que en un problema más difícil eso es exactamente donde aparece el error. Después señalá lo que hace irreversible el problema: cada token que el modelo escribió queda fijo y condiciona los que siguen, así que una resta mal hecha no se corrige, se arrastra. El caso de abajo cambia la estructura, no el esfuerzo: el bloque de razonamiento se genera entero, se completa, y recién entonces el modelo usa un resultado ya resuelto para escribir la respuesta visible. Cuando llega al texto, el 21 ya está verificado. Conectá con la lámina de cadena de pensamiento: es la misma idea, con la diferencia de que allá el plan lo escribías vos en el prompt y acá lo hace el modelo solo, en un bloque con tipo propio.",
+      "_choice": {
+        "signals": [
+          "has_code=true",
+          "n_images=0"
+        ],
+        "candidates": [
+          "code-example",
+          "content-image"
+        ],
+        "picked": "code-example",
+        "rejected": {
+          "content-image": "la traza de tokens es el contenido; no hay imagen que la acompañe"
         }
       },
-      "notes": "Esta lámina ordena la confusión con los tutoriales viejos, y por eso vale la pena aunque parezca menor. Si buscan \"extended thinking\" en Google van a encontrar `budget_tokens`, que era un techo fijo de tokens de pensamiento y hoy ya no es el camino. Explica el estado actual sin exagerar, porque las tres filas dicen cosas distintas: en los 4.6 está deprecado y las peticiones todavía andan, los 4.7 en adelante devuelven un 400, y en los 4.5 y anteriores sigue siendo el único modo que hay. Esa última fila es la que evita que alguien \"migre\" un modelo viejo y lo rompa. La migración en sí es de tres líneas y conviene escribirla en la pizarra si alguien pregunta: se saca `budget_tokens`, se pone el modo adaptativo y la profundidad pasa a graduarse con effort, que es la lámina que viene después de las de entrenamiento."
+      "design": "split-right",
+      "media": {
+        "code": "## CON THINKING\ndos bloques, uno tras otro\n\n**bloque `thinking`**\nzona de trabajo, no es la\nrespuesta\n\n    \"Voy a usar Euclides.\"\n    \"1071 = 2 * 462 + 147\"\n    \"462  = 3 * 147 + 21\"\n    \"147  = 7 * 21  + 0\"\n    \"MCD = 21\"\n\n**bloque `text`**\nrecien ahora arranca\nlo visible\n\n    \"## Encontrando el MCD\"\n    \"Voy a usar el algoritmo\n     de Euclides...\"\n\n> El numero SALE de la cuenta,\n> ya verificado.",
+        "language": "markdown"
+      }
+    },
+    {
+      "template": "value-columns",
+      "section": "Effort y thinking",
+      "title": "Qué cambia el bloque separado",
+      "lead": "**El modelo genera token por token, y cada token nuevo se apoya en todo lo que ya escribió. Si el razonamiento es parte de la respuesta, queda atado a lo que dijo.**",
+      "columns": [
+        {
+          "header": "",
+          "cells": [
+            "**Dónde razona**",
+            "**Compromiso**",
+            "**Riesgo**",
+            "**Lo que ves**"
+          ]
+        },
+        {
+          "header": "Sin thinking",
+          "cells": [
+            "Dentro de la misma respuesta que ves, si es que razona.",
+            "Cada token escrito queda fijo. No puede volver atrás y rehacerlo en limpio.",
+            "Si arranca mal el cálculo tiende a seguir por ese camino: no hay borrador.",
+            "Todo mezclado, si el modelo decide pensar en voz alta en el texto."
+          ]
+        },
+        {
+          "header": "Con thinking",
+          "cells": [
+            "En un bloque separado, antes de la respuesta.",
+            "Puede desarrollar, probar y corregirse, y recién después condensar.",
+            "El error se filtra en el borrador, antes de comprometerse.",
+            "Solo la respuesta pulida; el razonamiento queda aparte, visible si lo pedís."
+          ]
+        }
+      ],
+      "notes": "La tabla existe para cerrar una confusión que aparece siempre: que el thinking es una función de la interfaz. No lo es, y la fila que lo demuestra es la primera. Sin thinking el modelo también puede razonar, pero no tiene dónde, así que el razonamiento se le mezcla en la respuesta: ese \"vamos a ver, el tren A recorre 45 kilómetros, entonces...\" que todos vieron alguna vez es exactamente eso, un modelo pensando en voz alta porque no tiene un cuaderno aparte. La segunda fila es la razón técnica y conviene decirla despacio: el modelo genera de izquierda a derecha y cada token se apoya en los anteriores, así que un paso de cálculo equivocado no se borra, se arrastra. El bloque de thinking es un lugar donde iterar antes de que esos tokens se conviertan en la respuesta comprometida que llega al usuario. La última fila es la que conecta con la lámina de código: lo que ves no es lo que se factura, porque el resumen se puede omitir y el costo es el mismo.",
+      "_choice": {
+        "signals": [
+          "has_table=true",
+          "two_groups=true",
+          "labeled_items=4"
+        ],
+        "candidates": [
+          "value-columns",
+          "pros-cons"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "pros-cons": "no son ventajas contra desventajas: son cuatro factores comparados fila por fila entre dos regimenes"
+        }
+      }
     },
     {
       "template": "content+cards+image",
       "section": "Effort y thinking",
-      "title": "Cómo se aprendió a razonar",
-      "lead": "**DeepSeek-R1, publicado en Nature en 2025, mostró que las capacidades de razonamiento se pueden incentivar con refuerzo puro, sin trayectorias de razonamiento anotadas por humanos.**",
+      "title": "De dónde salió el thinking",
+      "lead": "**DeepSeek-R1, publicado en Nature en 2025, mostró que el razonamiento se puede incentivar con refuerzo puro: sin trayectorias de razonamiento anotadas por humanos.**",
       "cards": [
         {
-          "label": "Sin ejemplos de razonamiento humano",
-          "body": "El trabajo saltea el ajuste supervisado previo al refuerzo.",
-          "icon": "person_off"
+          "label": "Nadie le enseñó a razonar",
+          "body": "Refuerzo puro, sin una sola trayectoria de razonamiento anotada por humanos. El método saltea el ajuste supervisado previo."
         },
         {
-          "label": "La señal premia solo el resultado",
-          "body": "Se mide la predicción final contra la respuesta verdadera, sin mirar el proceso.",
-          "icon": "flag"
+          "label": "Solo se premia acertar",
+          "body": "La recompensa compara la respuesta final contra la verdadera y no mira el proceso. Por eso tiene que ser verificable a máquina: una caja en matemática, el compilador contra tests en código."
         },
         {
-          "label": "Los patrones emergen",
-          "body": "Autorreflexión, verificación y cambio de estrategia aparecen sin que nadie los enseñe.",
-          "icon": "auto_awesome"
-        },
-        {
-          "label": "Los números",
-          "body": "En AIME 2024 el pass@1 promedio va de 15,6% a 77,9%; con self-consistency llega a 86,7%.",
-          "icon": "trending_up"
+          "label": "El razonamiento emergió solo",
+          "body": "Autorreflexión, verificación y cambio de estrategia aparecieron sin que nadie los enseñara. Y la respuesta se alargó sola: al modelo le conviene escribir más."
         }
       ],
       "design": "split-right",
@@ -2255,96 +2239,32 @@
       },
       "highlights": [
         {
-          "body": "**La self-consistency de la sección anterior aparece acá como técnica de evaluación.**",
-          "kind": "takeaway"
+          "body": "En AIME 2024 el pass@1 promedio va de 15,6% a 77,9%, y llega a 86,7% con self-consistency**, la misma técnica de la sección anterior, usada acá para evaluar.",
+          "kind": "example",
+          "position": "bottom"
         }
       ],
+      "notes": "Esta es la lámina que contesta la pregunta que la sección nunca contestaba: cómo se logró que un modelo razone. La fuente es fuerte y conviene decirlo, porque cambia cómo la escuchan: está publicada en Nature, no es un post de blog. Y DeepSeek ya les apareció en la tabla de modelos de la sección de costos, así que no es un nombre nuevo. El hallazgo central en una frase: nadie le enseñó al modelo a razonar mostrándole razonamientos humanos. Se lo premió por acertar y los patrones aparecieron solos. El argumento del primer punto es el que más discusión genera: los autores sostienen que entrenar con trayectorias humanas le pone un techo al modelo, porque lo obliga a copiar la forma en que pensamos nosotros y le limita la exploración.\n\nEl tercer punto es el que funciona mejor con este grupo, porque es ingeniería pura. La pregunta que contesta es cómo se le pone una nota a un razonamiento sin leerlo, y la respuesta del paper es elegante: no lo leas, verificá el resultado. En matemática se exige la respuesta dentro de una caja y se compara; en código se compila y se corre contra tests. Detenete en por qué descartan un modelo de recompensa aprendido: preguntales qué haría un agente optimizador contra un evaluador aprendido, y van a llegar solos a que aprende a agradarle al evaluador en vez de a resolver el problema. Es el mismo problema que ya conocen de las métricas de proxy en producción. Un compilador con tests no se hackea.\n\nEl punto de la etiqueta es el que le cierra el círculo a la sección, y conviene decirlo despacio: esa etiqueta que hoy escriben en un prompt como técnica no salió de un manual de estilo, salió de la función de recompensa con la que se entrenó el modelo. El último punto es la honestidad del paper y marca el borde del método: donde no hay verificador confiable, esto no escala. Los números están para el orden de magnitud, no para memorizar; el 86,7% queda por encima del promedio de los participantes humanos de la competencia, y ese es el que impresiona. El remate del gráfico es lo mejor que tiene el paper para esta clase: la longitud de la respuesta crece sola durante el entrenamiento. El modelo descubre que escribir más lo hace acertar más. Eso es la tesis de la clase, medida experimentalmente por otra gente.\n\nCuatro cosas quedaron fuera de la lámina y valen si hay preguntas. La primera es por qué saltean el ajuste supervisado: los autores sostienen que entrenar con trayectorias humanas le pone un techo al modelo, porque lo obliga a copiar la forma en que pensamos nosotros y le limita la exploración. La segunda es por qué descartan un modelo de recompensa aprendido: preguntales qué haría un agente optimizador contra un evaluador aprendido, y van a llegar solos a que aprende a agradarle al evaluador en vez de a resolver el problema; un compilador con tests no se hackea. La tercera es el borde del método, y es la honestidad del paper: donde no hay verificador confiable, como al escribir, el refuerzo puro sigue siendo un problema abierto y vuelve la anotación humana. La cuarta es el mejor dato suelto que tiene el trabajo para esta clase: la etiqueta `<think>` que hoy escriben en un prompt como técnica no salió de un manual de estilo, salió de la función de recompensa con la que se entrenó el modelo.",
       "_choice": {
         "signals": [
-          "labeled_items=4",
           "n_images=1",
-          "is_ordered=false",
-          "date_labels=false",
-          "big_metrics=false (the figures sit inside one card body, not as standalone metrics)"
+          "labeled_items=6",
+          "has_code=false"
         ],
         "candidates": [
           "content+cards+image",
-          "concept-breakdown",
-          "stat"
+          "content-image"
         ],
         "picked": "content+cards+image",
         "rejected": {
-          "concept-breakdown": "requires images == 0; the training curve is the evidence for the whole slide and would have to be dropped",
-          "stat": "the numbers are one of four labeled findings, not the payload — the catalog reserves `stat` for when 2-4 standalone figures *are* the slide"
+          "content-image": "seis items rotulados piden tarjetas, no una lista de facts sueltos"
         }
-      },
-      "notes": "Esta lámina es nueva y es la que responde la pregunta que la sección nunca contestaba: cómo se logró que un modelo razone. La fuente es fuerte y conviene decirlo, porque cambia cómo la escuchan: está publicada en Nature, no es un post de blog. Y DeepSeek ya les apareció en la tabla de modelos de la sección de costos, así que no es un nombre nuevo. El hallazgo central en una frase: nadie le enseñó al modelo a razonar mostrándole razonamientos humanos. Se lo premió por acertar y los patrones aparecieron solos. El argumento del primer bullet es el que más discusión genera y vale sacarlo a flote: los autores sostienen que entrenar con trayectorias humanas le pone un techo al modelo, porque lo obliga a copiar la forma en que pensamos nosotros y le limita la exploración. Si a alguien le suena a exageración, el segundo bullet lo aterriza: la recompensa mira el resultado final y no impone ninguna restricción sobre cómo llegar. Del tercero, el dato que no está escrito es que el modelo también empieza a generar respuestas más largas por su cuenta, porque le conviene. Los números están para que quede el orden de magnitud, no para memorizarlos; el de 86,7% con self-consistency queda por encima del promedio de los participantes humanos de la competencia, y ese es el que impresiona. El recuadro cierra con la idea de que los autores usan self-consistency como técnica de evaluación, la misma que se enseñó en la sección anterior, para medir el techo del modelo. Y el remate del gráfico es lo mejor que tiene el paper para esta clase: la longitud de la respuesta crece sola durante el entrenamiento. El modelo descubre que escribir más lo hace acertar más. Eso es la tesis de la clase, medida experimentalmente por otra gente."
+      }
     },
     {
       "template": "concept-breakdown",
       "section": "Effort y thinking",
-      "title": "La recompensa tiene que ser verificable",
-      "lead": "**El refuerzo puro funciona mientras la señal de recompensa sea confiable. DeepSeek-R1 la construye con reglas escritas a mano en vez de con un modelo aprendido, y explica por qué.**",
-      "cards": [
-        {
-          "label": "Recompensa de exactitud",
-          "body": "En matemática, la respuesta va en un formato fijado de antemano y un verificador por reglas la comprueba.",
-          "icon": "rule"
-        },
-        {
-          "label": "En código, decide el compilador",
-          "body": "Corre la respuesta contra una batería de tests predefinidos.",
-          "icon": "terminal"
-        },
-        {
-          "label": "Recompensa de formato",
-          "body": "Premia encerrar el razonamiento en las etiquetas `<think>` y `</think>`, por interpretabilidad.",
-          "icon": "code"
-        },
-        {
-          "label": "Sin modelos de recompensa neuronales",
-          "body": "Los autores los descartan: son vulnerables al reward hacking cuando el refuerzo escala.",
-          "icon": "gpp_bad"
-        },
-        {
-          "label": "El límite del método",
-          "body": "Sin verificador confiable, como al escribir, el refuerzo puro sigue siendo un problema abierto.",
-          "icon": "error"
-        }
-      ],
-      "highlights": [
-        {
-          "body": "**La etiqueta `<think>` no es una convención de documentación.** Es parte de la función de recompensa con la que se entrenó el modelo.",
-          "kind": "takeaway"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "labeled_items=5",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "has_code=false",
-          "has_table=false",
-          "two_groups=false"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "process",
-          "content-text"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "process": "the five items are the parts of one reward design plus its limit, with no ordinal and no order that carries meaning",
-          "content-text": "never fall to a plainer template — five labeled concepts are a card set, and `panels:[str]` would drop every label"
-        }
-      },
-      "notes": "Esta lámina es de ingeniería pura y por eso funciona con este grupo. La pregunta que contesta es cómo se le pone una nota a un razonamiento sin leerlo. La respuesta del paper es elegante: no lo leas, verifica el resultado. En matemática se exige la respuesta en un formato fijo y se compara; en código se compila y se corre contra tests. Un detalle concreto que ayuda: en matemática el formato fijado de antemano suele ser una caja, y eso es lo que hace comprobable la respuesta sin leer el razonamiento. Del tercer bullet, conviene agregar que la justificación de las etiquetas es doble: interpretabilidad, y poder analizar después las trazas. Detente en el cuarto, que es el argumento más interesante. Podrían haber entrenado un modelo que puntúe razonamientos, y decidieron no hacerlo porque un modelo de recompensa se puede hackear cuando escalas el entrenamiento; un compilador con tests no. Pregúntales qué haría un agente optimizador contra un evaluador aprendido: van a llegar solos a que aprende a agradarle al evaluador en vez de a resolver el problema. Es el mismo problema que ya conocen de las métricas de proxy en producción. El quinto es la honestidad del paper y conviene no saltearlo, porque marca el borde del método: donde no hay verificador, esto no escala, y ahí vuelve la anotación humana. Y el remate es el que le cierra el círculo a la sección entera: la etiqueta `<think>` estaba en la función de recompensa, así que las etiquetas del prompt y el bloque nativo comparten ancestro. Cuando escriban `<thinking>` en un prompt, van a estar usando la misma convención con la que se entrenó el modelo."
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Effort y thinking",
-      "title": "Del prompt al entrenamiento",
+      "title": "¿CoT todavía sirve?",
       "lead": "**Lo que Chain of Thought conseguía pidiéndolo en el prompt, los modelos de razonamiento lo traen del entrenamiento. El mecanismo es el mismo y cambió quién pide los pasos.**",
       "cards": [
         {
@@ -2417,10 +2337,6 @@
           "body": "Nunca adentro del objeto `thinking`."
         },
         {
-          "label": "`adaptive` es un modo de thinking",
-          "body": "Nunca un valor de `effort`."
-        },
-        {
           "label": "`high` es el default",
           "body": "Pasarlo produce exactamente el mismo comportamiento que omitirlo."
         }
@@ -2458,78 +2374,113 @@
       "notes": "Esta es la lámina que desarma el malentendido más común, así que la primera línea va despacio: el effort no es una propiedad del modelo ni algo que se decidió en el entrenamiento. Es un parámetro que viaja en la petición y que cambia cuánto gasta el mismo modelo. Del código, marca dónde va: adentro de `output_config`. Es el error que todos cometen la primera vez, y es el primero de los tres que conviene que se lleven anotados. El tercero tiene una consecuencia práctica que suele sorprender: si alguien está pasando `high` creyendo que sube algo, no está subiendo nada, porque es el default. Sobre cómo elegir el nivel, la documentación recomienda arrancar en `high` en Opus 5 y en Fable 5.1 y bajar a `medium` o `low` cuando los evals muestren que la calidad aguanta; en Opus 4.7 y 4.8 el punto de partida recomendado para código y tareas agénticas es `xhigh`. Al cambiar de modelo conviene volver a barrer los niveles en vez de reusar el que traían."
     },
     {
-      "template": "value-columns",
+      "template": "content-image",
       "section": "Effort y thinking",
       "title": "Los cinco niveles de effort",
-      "lead": "**Cinco niveles, del más rápido al más exhaustivo. La disponibilidad no es uniforme: hay modelos que soportan `max` y no soportan `xhigh`.**",
-      "columns": [
-        {
-          "header": "Nivel",
-          "cells": [
-            "`max`",
-            "`xhigh`",
-            "`high` (default)",
-            "`medium`",
-            "`low`"
-          ]
-        },
-        {
-          "header": "Comportamiento del thinking",
-          "cells": [
-            "Piensa siempre, sin restricción de profundidad.",
-            "Piensa siempre y en profundidad, con exploración extendida.",
-            "Piensa casi siempre. Razonamiento profundo en tareas complejas.",
-            "Thinking moderado. Puede saltear el thinking en consultas simples.",
-            "Minimiza el thinking. Lo saltea en tareas simples donde manda la velocidad."
-          ]
-        },
-        {
-          "header": "Disponibilidad",
-          "cells": [
-            "Fable 5.1, Mythos 5.1, Fable 5, Mythos 5, Mythos Preview, Opus 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 5, Sonnet 4.6",
-            "Fable 5.1, Mythos 5.1, Fable 5, Mythos 5, Opus 5, Opus 4.8, Opus 4.7, Sonnet 5",
-            "Todos los modelos que soportan `effort`",
-            "Todos los modelos que soportan `effort`",
-            "Todos los modelos que soportan `effort`"
-          ]
-        }
-      ],
-      "highlights": [
+      "lead": "**Cinco niveles, del más rápido al más exhaustivo.**",
+      "facts": [
         {
           "label": "Alcanza a toda la salida",
-          "body": "Texto, llamadas a herramientas y thinking, con el thinking activo o sin él.",
-          "kind": "note"
+          "body": "Texto, llamadas a herramientas y thinking, con el thinking activo o sin él."
         },
         {
           "label": "Con effort bajo el modelo también usa menos herramientas",
-          "body": "Hace menos llamadas y más escuetas.",
-          "kind": "note"
-        },
-        {
-          "body": "**Es una señal de comportamiento, no un presupuesto de tokens.** Con effort bajo el modelo sigue pensando en los problemas difíciles, y piensa menos que con effort alto para el mismo problema.",
-          "kind": "takeaway"
+          "body": "Hace menos llamadas y más escuetas."
         }
       ],
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "Nivel",
+            "cells": [
+              "`max`",
+              "`xhigh`",
+              "`high` (default)",
+              "`medium`",
+              "`low`"
+            ]
+          },
+          {
+            "header": "Comportamiento del thinking",
+            "cells": [
+              "Piensa siempre, sin restricción de profundidad.",
+              "Piensa siempre y en profundidad, con exploración extendida.",
+              "Piensa casi siempre. Razonamiento profundo en tareas complejas.",
+              "Thinking moderado. Puede saltear el thinking en consultas simples.",
+              "Minimiza el thinking. Lo saltea en tareas simples donde manda la velocidad."
+            ]
+          }
+        ]
+      },
+      "highlights": [
+        {
+          "body": "Es una señal de comportamiento, no un presupuesto de tokens.** Con effort bajo el modelo sigue pensando en los problemas difíciles, y piensa menos que con effort alto para el mismo problema.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Esta es la lámina de referencia del bloque y la que más plata les puede ahorrar. De la tabla no leas las filas, que están para consultar; lee la columna de la derecha y di lo importante, que la disponibilidad no es uniforme y que hay modelos que soportan `max` sin soportar `xhigh`. Si el que pregunta necesita el detalle, la tabla de la documentación es la autoridad. El remate tiene un matiz que se pierde si vas rápido: el effort no es un presupuesto de tokens, es una señal. Con effort bajo el modelo sigue pensando cuando el problema es difícil de verdad. Piensa menos que con effort alto, y no deja de pensar. El segundo bullet es el que se le escapa a todo el mundo y vale marcarlo: bajar el effort no solo acorta el razonamiento, también hace que el modelo llame menos herramientas y de forma más escueta, lo cual cambia el comportamiento de un agente entero. Un detalle que ya no está en la tabla y conviene tener a mano: la disponibilidad no es uniforme. Los niveles `high`, `medium` y `low` los soporta todo modelo que acepte `effort`, pero `max` y `xhigh` no van en todos, y no se implican entre sí: hay modelos que soportan `max` y no soportan `xhigh`.",
       "_choice": {
         "signals": [
-          "has_table=true (factor column + 2 value columns x 5 rows)",
-          "labeled_items=2 (the two remarks under the table)",
-          "n_images=0",
-          "is_ordered=false",
-          "two_groups=false"
+          "has_table=true",
+          "labeled_items=2",
+          "n_images=0"
         ],
         "candidates": [
-          "value-columns",
-          "concept-breakdown",
-          "content-text"
+          "content-image",
+          "value-columns"
         ],
-        "picked": "value-columns",
+        "picked": "content-image",
         "rejected": {
-          "concept-breakdown": "the five levels are compared over the same two shared factors (behaviour, availability), so reading across a row is the point; card-per-row would join the two cells into one body and lose the alignment",
-          "content-text": "the body is an aligned grid, not prose — the plainer template has nowhere to put the table"
+          "value-columns": "la tabla acompaña a dos afirmaciones, no es el cuerpo de la lámina; va como media en el lado derecho"
         }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Effort y thinking",
+      "title": "Effort por dentro: una señal, no un flag",
+      "lead": "**`effort` no es una bandera: son tokens que el modelo lee.**",
+      "facts": [
+        {
+          "label": "Viaja con el prompt",
+          "body": "El valor resuelto se renderiza adentro, al lado de tu pedido."
+        },
+        {
+          "label": "Aprendido, no programado",
+          "body": "El modelo fue entrenado para comportarse distinto en cada nivel, y eso quedó grabado en los pesos congelados."
+        },
+        {
+          "label": "Es señal, no tope",
+          "body": "Con `low` igual piensa en los problemas difíciles: se pesa contra la dificultad real, no la reemplaza."
+        },
+        {
+          "label": "Toca tres cosas a la vez",
+          "body": "Si razona, cuántas herramientas llama y qué tan larga es la respuesta."
+        }
+      ],
+      "design": "split-right",
+      "media": {
+        "code": "## 1 · Lo que vos escribis\n\n    output_config={\"effort\": \"low\"}\n    messages=[{\"role\":\"user\",\n      \"content\":\"¿Cuanto es 12*34?\"}]\n\n## 2 · Lo que llega al modelo\n\n    <señal de effort = low>\n    ¿Cuanto es 12*34?\n\n> El modelo no recibe una bandera:\n> recibe **tokens**. El valor se\n> renderiza DENTRO del prompt, al\n> lado de tu pedido.\n> *(la forma exacta no es publica)*\n\n## 3 · Por que responde distinto\n\nEl post-entrenamiento le enseño que\nfrente a esa señal la respuesta\ncorrecta es **corta y directa**, y que\nfrente a `max` la respuesta correcta\nes **larga y verificada**.\n\n    low  ->  [text] \"408\"\n\n    max  ->  [thinking]\n               \"12*30 + 12*4 = 408\"\n             [text] \"408\"\n\n> Ese comportamiento esta grabado en\n> los **pesos congelados**. No hay\n> codigo de servidor que lo implemente:\n> es el mismo modelo respondiendo a un\n> token distinto en su contexto.",
+        "language": "markdown"
       },
-      "notes": "Esta es la lámina de referencia del bloque y la que más plata les puede ahorrar. De la tabla no leas las filas, que están para consultar; lee la columna de la derecha y di lo importante, que la disponibilidad no es uniforme y que hay modelos que soportan `max` sin soportar `xhigh`. Si el que pregunta necesita el detalle, la tabla de la documentación es la autoridad. El remate tiene un matiz que se pierde si vas rápido: el effort no es un presupuesto de tokens, es una señal. Con effort bajo el modelo sigue pensando cuando el problema es difícil de verdad. Piensa menos que con effort alto, y no deja de pensar. El segundo bullet es el que se le escapa a todo el mundo y vale marcarlo: bajar el effort no solo acorta el razonamiento, también hace que el modelo llame menos herramientas y de forma más escueta, lo cual cambia el comportamiento de un agente entero."
+      "notes": "Esta lámina contesta la pregunta que siempre aparece cuando alguien ve el parámetro: qué hace por dentro. La respuesta sorprende y conviene decirla directo: el valor no queda del lado del servidor decidiendo por afuera, se escribe adentro del prompt. El modelo lo lee como contexto, igual que lee el system prompt especializado que la plataforma inyecta cuando el razonamiento está activo. La regla operativa que se desprende es elegir un nivel por conversación y no moverlo. Si algunos turnos necesitan más o menos razonamiento, se guía con lenguaje natural en el último mensaje en vez de cambiar el parámetro.\n\nEl segundo punto es el que más expectativas rompe. La gente espera que bajar el nivel baje la factura, y no es un tope. En un problema genuinamente difícil el modelo va a pensar igual, porque la señal se pesa contra la dificultad real de la tarea en vez de reemplazarla. Si necesitan un límite duro, el único es el techo de tokens de la respuesta.\n\nEl último punto es el que cierra la sección entera: los dos parámetros son hermanos, no está uno adentro del otro. El modo de razonamiento define si existe un bloque separado, con su propio tipo de contenido en la respuesta. El nivel de esfuerzo es la calibración de cuánto usar ese carril, y también cuánto gastar en todo lo demás, texto y llamadas a herramientas incluidas. El punto que más cambia el modelo mental del grupo es el segundo, y conviene decirlo con la cita: el nivel no ejecuta código distinto en el servidor. El comportamiento de cada nivel se le enseñó al modelo en el post-entrenamiento y quedó grabado en los pesos congelados. Cuando la petición llega, el nivel es una entrada más a la que el modelo responde, igual que responde al texto del prompt, y lo que fija es cuán exhaustivo y cuán seguro necesita estar antes de dar la tarea por terminada. De ahí sale que un mismo nivel produzca a la vez más pasos de razonamiento, más llamadas a herramientas y una respuesta más larga: no son tres controles, es una sola disposición aprendida.",
+      "_choice": {
+        "signals": [
+          "has_code=true",
+          "labeled_items=4",
+          "n_images=0"
+        ],
+        "candidates": [
+          "content-image",
+          "code-example"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "code-example": "el panel no es codigo sino la salida de un experimento; acompaña a cuatro afirmaciones que son el cuerpo de la lamina"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -2634,211 +2585,6 @@
         }
       },
       "notes": "Las tres frases están en inglés a propósito, porque son las que la documentación da textuales y porque cambiarles una palabra cambia el efecto. La primera va en el system prompt y mueve el umbral de toda la conversación. Las otras dos van en el turno del usuario y valen solo para ese turno. El ejemplo que mejor aterriza esto para un ingeniero es el del harness agéntico: la misma aplicación pone *\"Please think hard before responding.\"* en los pasos de planificación y *\"Answer directly without deliberating.\"* en las confirmaciones de rutina, sin tocar el system prompt ni cambiar un parámetro entre turnos. Es steering en tiempo de ejecución, decidido por el código. La advertencia final no es un detalle: la documentación misma admite que la efectividad depende de la formulación, y la receta cuando algo no funciona es probar una variante más directa, no insistir con la misma frase."
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Effort y thinking",
-      "title": "Prompting con un modelo que razona",
-      "lead": "**Con un modelo que razona por su cuenta el prompting sigue importando, y cambia qué conviene escribir.**",
-      "cards": [
-        {
-          "label": "Instrucción general antes que plan",
-          "body": "Un \"pensar a fondo\" produce mejor razonamiento que un plan escrito a mano.",
-          "icon": "lightbulb"
-        },
-        {
-          "label": "Los ejemplos con razonamiento siguen sirviendo",
-          "body": "El modelo generaliza ese estilo a sus propios bloques de thinking.",
-          "icon": "school"
-        },
-        {
-          "label": "El CoT manual pasó a ser el plan B",
-          "body": "Sigue vigente para cuando el thinking está apagado.",
-          "icon": "backup"
-        },
-        {
-          "label": "El modelo se autorregula",
-          "body": "Calibra según el effort y la complejidad de la consulta, y en preguntas fáciles responde directo.",
-          "icon": "speed"
-        }
-      ],
-      "highlights": [
-        {
-          "body": "**La palanca de calidad se mudó al parámetro.** Escribir buenas instrucciones sigue importando, y la decisión que más mueve el resultado es cuánto conviene que el modelo razone.",
-          "kind": "takeaway"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "labeled_items=4",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "has_code=false",
-          "has_table=false"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "process",
-          "content-text"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "process": "the four recommendations are peers about what to write, with no ordinal and no order that carries meaning",
-          "content-text": "never fall to a plainer template — the four labels are what make the advice scannable"
-        }
-      },
-      "notes": "Esta lámina cierra el círculo con la sección de técnicas y conviene decirlo así: allá aprendieron cuatro formas de hacer que el modelo escriba los pasos intermedios; acá aparece un modelo que ya los escribe solo. La pregunta natural del alumno es si entonces el prompting sobra, y la respuesta es que no, pero cambia qué conviene escribir. El primer punto es el más contraintuitivo y el que más les va a servir: escribirle el plan paso a paso es peor que pedirle que piense a fondo. La documentación lo dice sin vueltas, y vale citarlo: el razonamiento del modelo frecuentemente excede lo que un humano prescribiría. Es incómodo de aceptar para un ingeniero acostumbrado a especificar. El segundo salva algo que ya enseñamos: mostrarle el patrón de razonamiento dentro de ejemplos few-shot sigue valiendo, y ahora además le enseña un estilo que el modelo aplica a sus propios bloques. El tercero da la regla práctica: CoT a mano solo si el thinking está apagado; si está disponible, conviene dejarlo activo y graduar con effort. Y el cuarto explica por qué subir el effort no siempre cambia nada: si la pregunta es fácil, el modelo responde directo aunque el thinking esté activo. Cierra con el recuadro, que es la tesis de la sección, y agrega la parte que la lámina ya no dice: además de decidir cuánto razona, hay que saber leer la traza que devuelve."
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Effort y thinking",
-      "title": "Qué cuesta el thinking",
-      "lead": "**No existe un presupuesto de tokens de pensamiento. `max_tokens` pone el techo duro de toda la salida y `effort` orienta cuánto de esa salida se va en pensar.**",
-      "cards": [
-        {
-          "label": "`max_tokens` cubre thinking más texto",
-          "body": "El modelo nunca lo pasa.",
-          "icon": "vertical_align_top"
-        },
-        {
-          "label": "Un techo dimensionado sin razonamiento queda corto",
-          "body": "Las respuestas se truncan apenas el modelo empieza a pensar.",
-          "icon": "content_cut"
-        },
-        {
-          "label": "En un bucle de herramientas, cada petición tiene el suyo",
-          "body": "No acota el gasto del turno completo.",
-          "icon": "loop"
-        },
-        {
-          "label": "Si aparece `stop_reason: \"max_tokens\"`",
-          "body": "Subir el techo si ese razonamiento hacía falta, o bajar el effort si hubo exceso de pensamiento.",
-          "icon": "troubleshoot"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "labeled_items=4",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "has_code=false",
-          "has_table=false"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "process",
-          "content-text"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "process": "the four items are facts about one ceiling plus a diagnostic rule, not steps run in order",
-          "content-text": "four labeled concepts are a card set; the plainer template would flatten them into unlabeled panels"
-        }
-      },
-      "notes": "Arranca por la distinción de arriba, que es la que ordena todo: `max_tokens` es un techo duro y el modelo nunca lo pasa; `effort` es una guía blanda y no garantiza ninguna cuenta de tokens. El error clásico es dimensionar `max_tokens` como si no hubiera razonamiento, y después ver respuestas cortadas a la mitad. El tercer bullet es el que rompe la intuición de quien construye un agente: el techo es por petición, así que un bucle de veinte llamadas a herramientas no tiene ningún tope agregado, y ahí es donde el gasto se dispara sin que nadie lo vea. El cuarto da la regla de diagnóstico, y lo importante es que las dos salidas son opuestas: si las respuestas se cortaron y ese razonamiento hacía falta, sube el techo; si lo que hubo fue exceso de pensamiento, baja el effort. Elegir mal empeora el problema."
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Effort y thinking",
-      "title": "Qué se factura del thinking",
-      "lead": "**Se cobra el proceso de pensamiento completo, y el ajuste `display` cambia lo que se ve sin mover la factura.**",
-      "cards": [
-        {
-          "label": "Los tokens de razonamiento",
-          "body": "Se facturan como salida, aunque no se muestren.",
-          "icon": "payments"
-        },
-        {
-          "label": "Los bloques de turnos previos",
-          "body": "Se facturan como entrada mientras siguen en contexto, y el default de preservación varía por modelo.",
-          "icon": "history"
-        },
-        {
-          "label": "`display: \"omitted\"`",
-          "body": "El campo de thinking vuelve vacío y se paga exactamente lo mismo.",
-          "icon": "visibility_off"
-        },
-        {
-          "label": "Cómo auditarlo",
-          "body": "`usage.output_tokens_details.thinking_tokens` informa cuántos tokens facturados fueron razonamiento interno.",
-          "icon": "receipt_long"
-        }
-      ],
-      "highlights": [
-        {
-          "body": "**Cambiar el effort invalida el caché.** El valor resuelto se renderiza dentro del prompt, así que cambiarlo entre peticiones rompe los breakpoints. El effort por mensaje, en beta y con su header, conserva el caché.",
-          "kind": "important"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "labeled_items=4",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "has_code=false",
-          "big_metrics=false"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "process",
-          "content-text"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "process": "the four items are what gets billed and how to audit it, with no ordinal and no sequence",
-          "content-text": "four labeled concepts are a card set; `panels:[str]` would drop the labels that name each billed concept"
-        }
-      },
-      "notes": "Esta es la lámina que les va a ahorrar una sorpresa en la factura, y tiene un dato que casi nadie conoce. El segundo bullet no está en ningún tutorial y conviene detenerse: los bloques de razonamiento de turnos anteriores que siguen en el contexto se pagan como tokens de entrada, turno tras turno. Algunos modelos conservan todos los turnos y otros solo el último, así que el default hay que mirarlo por modelo. Conéctalo con la bola de nieve del contexto que vieron en fundamentos, porque es exactamente el mismo fenómeno aplicado al razonamiento. El tercero es el más contraintuitivo y vale decirlo dos veces: `display` cambia lo que ves, no lo que pagas. Si configuras `omitted` para no mostrar el razonamiento, el campo vuelve vacío y la factura es idéntica. Si alguien quiere auditar cuánto se le está yendo en pensar, el campo del cuarto bullet se lo dice. La advertencia de caché es un enlace directo con la sección de fundamentos y vale la pena hacerlo explícito: el nivel de effort resuelto se escribe adentro del prompt, así que cambiarlo es cambiar el prefijo, y ya saben qué pasa cuando el prefijo cambia. Cambiar el valor de primer nivel reinicia el caché; el effort por mensaje, que todavía está en beta y necesita su header, lo conserva."
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Effort y thinking",
-      "title": "Las perillas de sampling ya no están",
-      "lead": "**Con thinking activo no podés tocar el azar de la generación. En Opus 4.7 y posteriores, `temperature`, `top_p` y `top_k` directamente dejaron de estar soportados.**",
-      "cards": [
-        {
-          "label": "Qué controlaban",
-          "body": "El azar al elegir el próximo token: temperatura baja, salida más conservadora; alta, más variedad. Era la perilla clásica para ajustar creatividad contra consistencia."
-        },
-        {
-          "label": "Qué pasa hoy",
-          "body": "En los modelos con thinking adaptativo ya no se aceptan. La migración recomendada es sacarlas del pedido y guiar el comportamiento por prompt y por effort."
-        },
-        {
-          "label": "Por qué, probablemente",
-          "body": "El razonamiento se entrenó por refuerzo sobre una distribución de muestreo determinada. Tocarla desde afuera cambia las reglas a un proceso calibrado bajo reglas fijas, y degrada justo las bifurcaciones y las vueltas atrás que hacen útil al thinking."
-        },
-        {
-          "label": "Qué queda en su lugar",
-          "body": "El `effort`. Un dial más abstracto, calibrado por el proveedor, en lugar de tres parámetros de bajo nivel que interactuaban mal con una capacidad entrenada."
-        }
-      ],
-      "highlights": [
-        {
-          "label": "La forma de la evolución",
-          "body": "Se pierde control fino y se gana robustez. No es una decisión de producto arbitraria: es consecuencia de que razonar dejó de ser algo que se pide en el prompt y pasó a ser algo que se entrenó.",
-          "kind": "takeaway",
-          "position": "bottom"
-        }
-      ],
-      "notes": "Lámina de cierre de la sección, y sirve para dejar una idea de forma más que un dato. Empezá preguntando quién tocó alguna vez la temperatura de un modelo; en un curso de software varios van a levantar la mano, porque es la perilla que aparece en todos los tutoriales. Y ahora no está. Las tres desaparecieron en Opus 4.7: no es que haya que ponerlas en un valor concreto, es que dejaron de estar soportadas y la migración recomendada es sacarlas del pedido. El tercer punto es el interesante y conviene decirlo con la reserva que lleva: la explicación más razonable es que el razonamiento se entrenó por refuerzo bajo una distribución de muestreo determinada, y meterle mano desde afuera rompe esa calibración — el modelo puede volverse repetitivo o dejar de explorar las ramas que necesita. Es coherente con lo que vieron dos láminas antes sobre cómo se entrenó, pero no está documentado como la razón oficial, así que presentalo como lo que es. Y cerrá con la idea de forma: se pierde control fino, se gana robustez, y el effort es lo que ocupa ese lugar. Es la misma historia de toda la sección: lo que antes se pedía en el prompt ahora viene entrenado, y lo que se ajustaba a mano ahora se gradúa con un dial calibrado.",
-      "_choice": {
-        "signals": [
-          "cuatro puntos etiquetados que descomponen un mismo cambio"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "content-text"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "content-text": "son cuatro puntos rotulados, no prosa corrida"
-        }
-      }
     },
     {
       "template": "section-agenda",
@@ -3355,7 +3101,7 @@
       "cards": [
         {
           "label": "El modelo completa, no razona.",
-          "body": "Genera token a token, de izquierda a derecha, sin un motor de razonamiento aparte. Escribir los pasos intermedios es el cómputo, y por eso CoT, self-consistency, ToT, ReAct y prompt chaining tienen todas la misma forma: hacen que el modelo escriba más antes de responder.",
+          "body": "Genera token a token, de izquierda a derecha, sin un motor de razonamiento aparte. Escribir los pasos intermedios es el cómputo, y por eso CoT, self-consistency, ToT y prompt chaining tienen todas la misma forma: hacen que el modelo escriba más antes de responder.",
           "icon": "auto_stories"
         },
         {
@@ -3397,7 +3143,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "c62957461898e43af7761dbbad44e026e27c4c4721a5531480563133eea7f744",
-    "bytes": 184159
+    "sha256": "f5c56c12ffe463c44563d8351f0212f5ad4cde9783f0a5bd555181079ee7ea3a",
+    "bytes": 175153
   }
 }

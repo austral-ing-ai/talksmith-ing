@@ -14,7 +14,7 @@ Los archivos de la materia se sirven por web, así que el notebook puede leer el
 
 Este link abre el notebook de la clase en Colab, sin descargarlo:
 
-**https://colab.research.google.com/github/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/house-prices.ipynb**
+**https://colab.research.google.com/github/austral-ing-ai/talksmith-ing/blob/main/missions/mlp/house-prices.ipynb**
 
 Apenas se abre, andá a **Archivo → Guardar una copia en Drive**. Si no lo hacés, los cambios se pierden al cerrar la pestaña.
 
@@ -25,7 +25,7 @@ En vez de `pd.read_csv('house-prices-extended.csv')`, poné la URL:
 ```python
 import pandas as pd
 
-URL = "https://austral-ing-ai.github.io/talksmith-ing/missions/clase3/house-prices-extended.csv"
+URL = "https://austral-ing-ai.github.io/talksmith-ing/missions/mlp/house-prices-extended.csv"
 df = pd.read_csv(URL)
 
 print(df.shape)   # (1460, 20)
@@ -100,7 +100,7 @@ La misión pide **un solo `.ipynb`, ejecutado y con las salidas a la vista**, qu
 Si preferís local, en esta carpeta hay un [`setup.sh`](setup.sh) que arma el entorno completo:
 
 ```bash
-cd missions/clase3
+cd missions/mlp
 ./setup.sh
 ```
 

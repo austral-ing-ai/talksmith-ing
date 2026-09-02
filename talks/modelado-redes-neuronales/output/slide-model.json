@@ -423,7 +423,7 @@
       "highlights": [
         {
           "label": "Corrido, tipo por tipo",
-          "body": "Cada fila de esta tabla esta entrenada — con su forma incorrecta al lado — en [`input-data-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/input-data-types.ipynb).",
+          "body": "Cada fila de esta tabla esta entrenada — con su forma incorrecta al lado — en [`input-data-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/mlp/input-data-types.ipynb).",
           "kind": "takeaway"
         }
       ]
@@ -645,7 +645,7 @@
         },
         {
           "label": "Corrido, tarea por tarea",
-          "body": "Las siete familias estan entrenadas — con su forma incorrecta al lado — en [`output-layer-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/output-layer-types.ipynb).",
+          "body": "Las siete familias estan entrenadas — con su forma incorrecta al lado — en [`output-layer-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/mlp/output-layer-types.ipynb).",
           "kind": "takeaway"
         }
       ],
@@ -1768,11 +1768,11 @@
       "items": [
         {
           "label": "La entrada",
-          "body": "[`input-data-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/input-data-types.ipynb) · [abrir en Colab](https://colab.research.google.com/github/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/input-data-types.ipynb) — tipo por tipo, la conversion a floats y cuantos ocupa cada uno. Cada codificacion incorrecta esta entrenada al lado de la correcta."
+          "body": "[`input-data-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/mlp/input-data-types.ipynb) · [abrir en Colab](https://colab.research.google.com/github/austral-ing-ai/talksmith-ing/blob/main/missions/mlp/input-data-types.ipynb) — tipo por tipo, la conversion a floats y cuantos ocupa cada uno. Cada codificacion incorrecta esta entrenada al lado de la correcta."
         },
         {
           "label": "La salida",
-          "body": "[`output-layer-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/output-layer-types.ipynb) · [abrir en Colab](https://colab.research.google.com/github/austral-ing-ai/talksmith-ing/blob/main/missions/clase3/output-layer-types.ipynb) — las mismas casas, pero el precio pasa a ser **entrada** y se predice otra cosa. Una seccion por familia de salida, con su par activacion + loss."
+          "body": "[`output-layer-types.ipynb`](https://github.com/austral-ing-ai/talksmith-ing/blob/main/missions/mlp/output-layer-types.ipynb) · [abrir en Colab](https://colab.research.google.com/github/austral-ing-ai/talksmith-ing/blob/main/missions/mlp/output-layer-types.ipynb) — las mismas casas, pero el precio pasa a ser **entrada** y se predice otra cosa. Una seccion por familia de salida, con su par activacion + loss."
         },
         {
           "label": "El cuerpo de la red nunca cambia",
@@ -1784,7 +1784,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "776be7f2b3e57fd42a57a782b9259eb5249bc41e9954671c655b6e57547dc4a6",
-    "bytes": 184551
+    "sha256": "baed11e0ccaeb5b921a5039d96c6ab3af599bcc41bf71e0c8a200b05b0b6664a",
+    "bytes": 184530
   }
 }
