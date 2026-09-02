@@ -234,7 +234,7 @@ La definición primero y la tabla después: la ventana es memoria de trabajo, no
 
 - **"Claude Code tiene ahora una ventana de contexto de 1 millón de tokens por defecto. Un millón de tokens es mucho: la trilogía de El Señor de los Anillos más El Hobbit tienen unas 576.000 palabras, lo que equivale a ~750.000 tokens. Las cuatro obras caben en un único prompt... y aún sobra espacio."**
 
-| 📚 ~750K tokens | 💾 ¿Y un repositorio? |
+| 📚 ~750K tokens | 💾 ¿Y un repositorio con código? |
 |---|---|
 | Toda la obra de Tolkien: El Hobbit más la trilogía de El Señor de los Anillos. | El código, los tests y la documentación de un servicio de tamaño medio entran cómodos. La cuenta exacta depende del repo. |
 
@@ -274,9 +274,8 @@ Esta es la slide del "ah, mirá". Sirve para que la cifra deje de ser abstracta:
 | `o200k_base` | 199.999 | GPT-4o y la serie o |
 | `o200k_harmony` | 201.087 | variante del anterior, formato *harmony* |
 
-- **BPE, el algoritmo** Arranca de caracteres sueltos y fusiona los pares más frecuentes hasta llenar el vocabulario. Por eso lo común es un token y lo raro se parte en pedazos.
+- **BPE — *byte pair encoding*** Arranca de caracteres sueltos y fusiona los pares más frecuentes hasta llenar el vocabulario. Por eso lo común es un token y lo raro se parte en pedazos.
 - **Vocabulario creciente** De cincuenta mil entradas a doscientas mil. Uno más grande corta menos: el mismo texto rinde menos tokens.
-- **Los conteos no son comparables** Entre familias el número cambia, así que una estimación no se traslada. Para Claude el conteo se le pide a la API con `count_tokens`: estimarlo con `tiktoken` da un costo equivocado.
 
 ### Sources
 
@@ -285,8 +284,6 @@ Esta es la slide del "ah, mirá". Sirve para que la cifra deje de ser abstracta:
 - `gpt-tokenizer.web.md` — el playground interactivo, para verlo en vivo.
 
 ### Speaker notes
-
-Esta lámina responde la pregunta que quedó abierta en la anterior: si un millón de tokens es toda la obra de Tolkien, ¿quién decide dónde se corta? La respuesta es BPE, y la intuición vale más que el algoritmo: se empieza con caracteres sueltos y se fusionan los pares que más aparecen, hasta llenar un vocabulario de tamaño fijo. Por eso las palabras comunes son un token y las raras se parten en pedazos. La tabla no la leas fila por fila; usala para mostrar una sola cosa, que es la columna del medio: el vocabulario se cuadruplicó en pocos años. Y de ahí sale la consecuencia práctica: un vocabulario más grande corta menos, así que el mismo texto da menos tokens en un modelo nuevo que en uno viejo. Los conteos no son comparables entre familias. El cierre es el que más les va a servir y el error que más se ve: estimar el costo de un prompt de Claude con tiktoken. Son tokenizadores distintos y el número no sirve; para Claude hay un endpoint que lo cuenta. Si querés hacerlo vivo, abrí el playground y pegá una línea de código: un identificador en camelCase se parte en tres o cuatro tokens, y eso explica por qué el código consume más de lo que uno cree.
 
 ---
 
@@ -325,11 +322,28 @@ Momento de abrir gpt-tokenizer.dev en vivo y pegar una línea de código. El efe
 
 **Costo total = (tokens de entrada × precio de entrada) + (tokens de salida × precio de salida)**
 
-| Turno | Lo que escribe el usuario | Lo que la app le manda al modelo |
-| --- | --- | --- |
-| Mensaje 1 | "Hola, escribime una función..." | Solo el mensaje 1. |
-| Mensaje 2 | "Ahora cambiale esto..." | Mensaje 1 + respuesta 1 + mensaje 2. |
-| Mensaje 3 | "Y agregale esto otro..." | Mensaje 1 + resp. 1 + mensaje 2 + resp. 2 + mensaje 3. |
+```ascii
+  LO QUE EL USUARIO ESCRIBE          LO QUE LA APP LE MANDA AL MODELO
+  (siempre parecido)                 (crece en cada turno)
+
+  turno 1   [M1]                     [M1]                          1 bloque
+  turno 2   [M2]                     [M1][R1][M2]                  3
+  turno 3   [M3]                     [M1][R1][M2][R2][M3]          5
+  turno 4   [M4]                     [M1][R1][M2][R2][M3][R3][M4]  7
+                                      \____________________/  \__/
+                                       ya se pago 3 veces     lo nuevo
+
+  M = mensaje del usuario     R = respuesta del modelo
+
+  El usuario escribe lo mismo en cada turno. La cuenta crece igual,
+  porque cada llamada reenvia toda la conversacion anterior.
+```
+<!-- ascii-note:
+intent: mostrar la desproporcion entre lo que el usuario escribe (constante) y lo que la aplicacion manda al modelo (crece en cada turno); que el crecimiento no viene del usuario sino del reenvio del historial
+emphasize: las dos columnas contrastadas, la izquierda que no crece y la derecha que si; la llave que separa lo ya pagado varias veces de lo nuevo del turno; la linea de cierre
+labels: "LO QUE EL USUARIO ESCRIBE (siempre parecido)", "LO QUE LA APP LE MANDA AL MODELO (crece en cada turno)", "turno 1..4", "M = mensaje del usuario", "R = respuesta del modelo", "ya se pago 3 veces", "lo nuevo"
+-->
+
 
 - 💡 **¿Por qué no explota el consumo?** Para que el modelo mantenga el contexto, la aplicación le reenvía toda la conversación previa en cada turno: el modelo no recuerda nada entre llamadas, así que cada turno vuelve a leer todo desde cero. Con esa aritmética un chat largo debería costar una fortuna. No la cuesta, y la razón es lo que viene.
 
@@ -469,49 +483,46 @@ Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y 
 
 ---
 
-## 11. Tokenomics: el costo real
+## 11. La economía de los tokens
 
 ### Content
 
-**En agosto de 2026 la Linux Foundation creó la Tokenomics Foundation, con 30 empresas fundadoras, para estandarizar cómo se mide el costo y el retorno de la IA. Su punto de partida es incómodo: el token es la parte visible de la cuenta, no la cuenta.**
+**La economía del consumo de tokens de IA: cuánto cuesta correr modelos de lenguaje —tokens de entrada contra salida, cacheados contra no cacheados, precio por proveedor— y cómo medir el retorno real que eso genera para el negocio.**
 
-- **El token es la unidad, no el total** Buena parte del costo no está en los tokens: cómputo, almacenamiento, base de datos, caché y el trabajo de los ingenieros. Pero el token es la unidad atómica consistente que atraviesa todos esos costos, y por eso sirve para contarlos.
-- **Falta un lenguaje común** El problema que declaran es que no hay forma compartida de conectar gasto con valor. Cada proveedor cobra distinto, y esa fragmentación vuelve incomparable el costo total de propiedad entre organizaciones.
-- **Se mide por llamada, no por token** Uno de los entregables del plan es un método estándar de *costo de servir*: la cuenta completa expresada como costo por llamada, para que el número corresponda al trabajo realmente hecho y no a una unidad interna del proveedor.
-
-- 🎯 **Por qué importa para esta clase.** Goldman Sachs proyecta que el consumo de tokens se multiplique por 24 hacia 2030. Todo lo que vamos a ver después — caching, cascading, effort — son palancas sobre la parte visible de esa cuenta. La discusión que se está abriendo es cómo medir la parte que no se ve.
+- **Lo que ya vimos** Entrada contra salida, la bola de nieve del historial, el prefijo que se cachea y el que no, y el precio distinto de cada proveedor. Todo eso es el lado del costo.
+- **Lo que falta** La otra mitad de la ecuación: cuánto valor devuelve ese gasto. Es la pregunta que ninguna factura responde.
 
 ### Sources
 
-- `research/web/tokenomics-foundation-linux/` — Linux Foundation, comunicado del 4 de agosto de 2026, capturado el 2026-08-28. Fundación lanzada con 30 miembros fundadores (entre ellos Accenture, IBM, JPMorganChase, Oracle, SAP, ServiceNow, Broadcom, Lenovo). Aportan verbatim: que el token es "una unidad atómica consistente de uso" mientras el costo real abarca cómputo, almacenamiento, base de datos, caché y trabajo humano; el objetivo de expresar el costo de servir "por llamada en vez de por token"; y la proyección de Goldman Sachs de 24x en consumo de tokens hacia 2030.
-- Nota: la captura todavía no tiene registro en `research/corpus/` — falta la pasada del librarian sobre la carpeta nueva.
+- Síntesis de la sección, sin fuente externa: recoge lo visto en las láminas de economía de tokens, fórmula del costo y caching.
 
 ### Speaker notes
 
-Esta lámina existe para que la fórmula de la lámina anterior no se lea como si fuera toda la verdad. Acaban de calcular costo por token, y acá aparece una fundación de la Linux Foundation, con treinta empresas grandes adentro, diciendo que ese número es la punta del iceberg. Es material fresco: se lanzó el 4 de agosto de este año, o sea hace tres semanas. Dos cosas para decir en voz alta. La primera es la buena noticia para la clase: aunque el token no sea todo el costo, es la unidad que atraviesa todos los demás, y por eso sirve para contar. La segunda es la incómoda: hoy no hay forma estándar de comparar el costo total entre proveedores, y por eso el ejercicio de la tabla de tarifas que van a ver en la sección siguiente es necesariamente parcial. Si alguien pregunta por qué les importa a ellos como ingenieros: porque el entregable que están proponiendo es medir costo por llamada en vez de por token, que es exactamente la unidad con la que uno razona cuando diseña un sistema. Y el número de Goldman Sachs, veinticuatro veces más consumo hacia 2030, es el que explica por qué esto se volvió urgente ahora.
+Lámina de transición, corta. Sirve para nombrar lo que venimos haciendo sin darle nombre: todo lo anterior —entrada contra salida, la bola de nieve, el prefijo cacheado, el precio por proveedor— es economía de tokens. Decilo y hacé la pausa, porque lo que sigue es que esto tiene nombre propio, tiene una fundación detrás y tiene treinta empresas grandes tratando de estandarizarlo. El giro que importa es el de la segunda viñeta: hasta acá midieron el costo, y la pregunta abierta es el valor. Ninguna factura te dice si valió la pena.
 
 ---
 
-## 12. Tokenomics: qué están construyendo
+## 12. La Tokenomics Foundation
 
 ### Content
 
-**La práctica se ordena alrededor de dos preguntas: qué cuesta realmente la IA, y cuánto vale la inteligencia que devuelve. El plan de trabajo son entregables concretos, no un manifiesto.**
+**La Linux Foundation anunció el lanzamiento de la [Tokenomics Foundation](https://www.tokeneconomics.com/), enfocada en establecer estándares abiertos, benchmarks y mejores prácticas para la economía de la infraestructura de IA. Se lanzó el 4 de agosto de 2026 con 30 empresas fundadoras, entre ellas Accenture, IBM, JPMorganChase, Oracle, SAP, ServiceNow, Broadcom y Lenovo.**
 
-- **Definiciones** Publicar qué es tokenomics y definir el valor y la densidad de un token, separando entrada, salida, razonamiento y caché. Sin vocabulario común no hay comparación posible.
-- **Costo de servir** Un método estándar para medir la cuenta completa, expresada como **costo por llamada** en vez de costo por token, para que el número corresponda al trabajo hecho.
+- **El token es la unidad, no el total** Buena parte del costo no está en los tokens: cómputo, almacenamiento, base de datos, caché y el trabajo de los ingenieros. Pero el token los atraviesa a todos, y por eso sirve para contarlos.
+- **Falta un lenguaje común** No hay forma compartida de conectar gasto con valor, y cada proveedor cobra distinto. Esa fragmentación vuelve incomparable el costo total entre organizaciones.
+- **Costo por llamada, no por token** Uno de sus entregables es un método estándar de *costo de servir*: la cuenta completa expresada por llamada, que es la unidad con la que uno diseña un sistema.
 - **Medición de valor** Un marco que relacione el gasto con resultados, empezando por la proporción de trabajo que se completa sin intervención humana, medida contra lo que ese proceso cuesta hoy.
-- **Telemetría de costo** Llevar el reporte de costos de IA a FOCUS, la especificación abierta de datos de facturación, para poder normalizar cifras entre proveedores.
 
-- 🎯 **Lo más cercano a esta clase.** Uno de sus proyectos, *Big-T*, clasifica la complejidad de costo de una carga de trabajo **antes** de decidir a qué modelo enrutarla. Es exactamente la decisión que vamos a ver en la sección de costos, pero convertida en método.
+- 🎯 **Lo más cercano a esta clase.** Su proyecto *Big-T* clasifica la complejidad de costo de una carga de trabajo **antes** de decidir a qué modelo enrutarla: es el árbol de decisión que vimos, convertido en método. Y el número que explica la urgencia: Goldman Sachs proyecta que el consumo de tokens se multiplique por **24 hacia 2030**.
 
 ### Sources
 
-- `research/web/tokenomics-foundation-linux/` — Linux Foundation, comunicado del 4 de agosto de 2026. Aportan verbatim las dos preguntas que la práctica busca responder ("qué cuesta realmente la IA y cuál es el valor de la inteligencia"), los entregables del plan (definiciones incluyendo valor y densidad de token por entrada/salida/razonamiento/caché; modelo de referencia del costo completo; costo de servir expresado por llamada; marco de medición de valor a partir de la proporción de trabajo sin intervención humana; educación y certificación), el proyecto Big-T para clasificar complejidad de costo antes del ruteo entre modelos, y la telemetría de costos sobre la especificación FOCUS.
+- `research/web/tokenomics-foundation-linux/` — Linux Foundation, comunicado del 4 de agosto de 2026, capturado el 2026-08-28. Aporta verbatim los 30 miembros fundadores, que el token es "una unidad atómica consistente de uso" mientras el costo real abarca cómputo, almacenamiento, base de datos, caché y trabajo humano, los entregables del plan (definiciones, costo de servir por llamada, marco de medición de valor, telemetría sobre la especificación FOCUS), el proyecto Big-T, y la proyección de Goldman Sachs de 24x hacia 2030.
+- Sitio de la iniciativa: <https://www.tokeneconomics.com/>
 
 ### Speaker notes
 
-La lámina anterior planteó el problema; ésta muestra que hay un plan y no solo un diagnóstico, que es lo que la vuelve creíble. Las dos preguntas de arriba vale leerlas tal cual, porque son sorprendentemente honestas para un comunicado: qué cuesta realmente esto, y cuánto vale lo que devuelve. La segunda es la difícil y todavía nadie la sabe responder. De los cuatro entregables, el que más les va a servir como ingenieros es el segundo: pasar de costo por token a costo por llamada. El token es una unidad interna del proveedor; la llamada es la unidad con la que uno diseña un sistema, y por eso el cambio de unidad no es cosmético. El de medición de valor tiene una definición operativa linda y conviene señalarla: empiezan por la proporción de trabajo que se completa sin que intervenga una persona, contra lo que ese proceso cuesta hoy. Es medible, no es retórica. Y cerrá con Big-T, que es el puente directo a la sección que viene: clasificar la complejidad de costo de una carga antes de elegir modelo es exactamente el árbol de decisión y la cascada que van a ver, pero como método formal en vez de criterio de cada equipo.
+Esta lámina existe para que lo anterior no se lea como una preocupación nuestra: hay una fundación de la Linux Foundation, con treinta empresas grandes adentro, tratando de estandarizarlo. Y es material fresco, de hace tres semanas. Cuatro cosas y ninguna es la lista de miembros. La primera es la buena noticia: aunque el token no sea todo el costo, es la unidad que atraviesa a todos los demás y por eso sirve para contar. La segunda es la incómoda: hoy no hay forma estándar de comparar el costo total entre proveedores, y por eso el ejercicio de la tabla de tarifas que vieron antes es necesariamente parcial. La tercera es la que más les sirve como ingenieros: pasar de costo por token a costo por llamada, porque el token es una unidad interna del proveedor y la llamada es la unidad con la que uno diseña. La cuarta tiene una definición operativa linda: empiezan por la proporción de trabajo que se completa sin que intervenga una persona. Es medible, no es retórica. Cerrá con Big-T, que es el puente directo al árbol de decisión de la sección de costos, y con el 24x, que es el número que explica por qué esto se volvió urgente ahora.
 
 ---
 
@@ -1342,7 +1353,6 @@ labels: "SIN CoT", "CON CoT", "pregunta", "paso 1/2/3", "respuesta", "un solo sa
 
 - **Instrucción directa** Pedirle que razone antes de responder, en el propio prompt.
 - **Ejemplos con razonamiento explícito** Dar ejemplos donde se ve el proceso de resolución, no solo la respuesta final.
-
 
 - 🔗 CoT e in-context learning son la misma familia: few-shot CoT es ICL donde los ejemplos incluyen el razonamiento. ICL enseña qué responder; CoT enseña cómo razonar.
 
@@ -2243,6 +2253,34 @@ Esta es la lámina que les va a ahorrar una sorpresa en la factura, y tiene un d
 ### Presenter feedback
 
 - [open] 2026-09-01 — "Lámina nueva, partida de 'Qué cuesta el thinking' para bajarle densidad: la original tenía cinco ítems largos más un recuadro. Esta se queda con la facturación y el caché; la anterior, con `max_tokens`."
+
+---
+
+## 14. Las perillas de sampling ya no están
+
+### Content
+
+**Con thinking activo no podés tocar el azar de la generación. En Opus 4.7 y posteriores, `temperature`, `top_p` y `top_k` directamente dejaron de estar soportados.**
+
+- **Qué controlaban** El azar al elegir el próximo token: temperatura baja, salida más conservadora; alta, más variedad. Era la perilla clásica para ajustar creatividad contra consistencia.
+- **Qué pasa hoy** En los modelos con thinking adaptativo ya no se aceptan. La migración recomendada es sacarlas del pedido y guiar el comportamiento por prompt y por effort.
+- **Por qué, probablemente** El razonamiento se entrenó por refuerzo sobre una distribución de muestreo determinada. Tocarla desde afuera cambia las reglas a un proceso calibrado bajo reglas fijas, y degrada justo las bifurcaciones y las vueltas atrás que hacen útil al thinking.
+- **Qué queda en su lugar** El `effort`. Un dial más abstracto, calibrado por el proveedor, en lugar de tres parámetros de bajo nivel que interactuaban mal con una capacidad entrenada.
+
+- 🎯 **La forma de la evolución.** Se pierde control fino y se gana robustez. No es una decisión de producto arbitraria: es consecuencia de que razonar dejó de ser algo que se pide en el prompt y pasó a ser algo que se entrenó.
+
+### Sources
+
+- `research/web/sampling-removido-4-7/` — guía de migración a Claude Opus 4.7, capturada el 2026-09-01: *"Sampling parameters removed — `temperature`, `top_p`, and `top_k` are no longer supported"*, junto con thinking adaptativo como único modo y la aparición del nivel `xhigh`.
+- `research/web/deepseek-r1-nature/` — el entrenamiento por refuerzo del razonamiento, que es lo que sostiene la explicación del tercer punto.
+
+### Speaker notes
+
+Lámina de cierre de la sección, y sirve para dejar una idea de forma más que un dato. Empezá preguntando quién tocó alguna vez la temperatura de un modelo; en un curso de software varios van a levantar la mano, porque es la perilla que aparece en todos los tutoriales. Y ahora no está. Las tres desaparecieron en Opus 4.7: no es que haya que ponerlas en un valor concreto, es que dejaron de estar soportadas y la migración recomendada es sacarlas del pedido. El tercer punto es el interesante y conviene decirlo con la reserva que lleva: la explicación más razonable es que el razonamiento se entrenó por refuerzo bajo una distribución de muestreo determinada, y meterle mano desde afuera rompe esa calibración — el modelo puede volverse repetitivo o dejar de explorar las ramas que necesita. Es coherente con lo que vieron dos láminas antes sobre cómo se entrenó, pero no está documentado como la razón oficial, así que presentalo como lo que es. Y cerrá con la idea de forma: se pierde control fino, se gana robustez, y el effort es lo que ocupa ese lugar. Es la misma historia de toda la sección: lo que antes se pedía en el prompt ahora viene entrenado, y lo que se ajustaba a mano ahora se gradúa con un dial calibrado.
+
+### Presenter feedback
+
+- [open] 2026-09-01 — "El tercer punto explica *por qué* se quitaron las perillas con el argumento de la calibración del RL. Es coherente con el resto de la sección y con el paper de DeepSeek, pero **ninguna fuente lo declara como la razón oficial**: la documentación reporta el cambio, no su motivo. ¿Se deja como está —marcado en la lámina y en las notas como la explicación más razonable— o se recorta a describir solo el cambio?"
 
 ---
 

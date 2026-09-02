@@ -183,7 +183,7 @@
           "icon": "menu_book"
         },
         {
-          "label": "¿Y un repositorio?",
+          "label": "¿Y un repositorio con código?",
           "body": "El código, los tests y la documentación de un servicio de tamaño medio entran cómodos. La cuenta exacta depende del repo.",
           "icon": "folder_code"
         }
@@ -246,16 +246,12 @@
       },
       "cards": [
         {
-          "label": "BPE, el algoritmo",
+          "label": "BPE — *byte pair encoding*",
           "body": "Arranca de caracteres sueltos y fusiona los pares más frecuentes hasta llenar el vocabulario. Por eso lo común es un token y lo raro se parte en pedazos."
         },
         {
           "label": "Vocabulario creciente",
           "body": "De cincuenta mil entradas a doscientas mil. Uno más grande corta menos: el mismo texto rinde menos tokens."
-        },
-        {
-          "label": "Los conteos no son comparables",
-          "body": "Entre familias el número cambia, así que una estimación no se traslada. Para Claude el conteo se le pide a la API con `count_tokens`: estimarlo con `tiktoken` da un costo equivocado."
         }
       ],
       "media": {
@@ -487,75 +483,50 @@
       "lead": "**En un chat el prefijo crece solo: cada turno agrega al final y deja intacto todo lo anterior. En una aplicación no hay esa suerte — el pedido lo armás vos, y sos vos quien decide dónde corta la frontera entre lo que se reutiliza y lo que cambia.**"
     },
     {
-      "template": "content-image",
+      "template": "code-example",
       "section": "Fundamentos",
       "title": "Prompt caching: implementación",
-      "lead": "**El caching se activa marcando las partes estáticas del prompt con un bloque `cache_control`.**",
-      "notes": "Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y lo que no la dibuja el programador, poniendo `cache_control` en el bloque correcto. Señalá el orden. Lo estático arriba, lo dinámico abajo, siempre, porque el match es por prefijo. Si alguien pone el diff arriba del system prompt, el caché no sirve para nada y no hay ningún error que lo avise. El ejemplo pasó de un system prompt de guías clínicas a la guía de estilo y los ADRs del repo, que es el caso real de un asistente de revisión de código: cincuenta mil tokens de convenciones que no cambian, cien tokens de diff que cambian siempre.",
+      "lead": "**Marcar el prefijo con `cache_control`, y comprobar en la respuesta dónde cayó cada token.**",
+      "notes": "Veinte líneas y tres cosas para señalar con el dedo. La primera es el TTL: por defecto el caché dura cinco minutos, y con `\"ttl\": \"1h\"` se estira a una hora pagando el doble por la escritura. La regla práctica: cinco minutos alcanza para una conversación activa; la hora conviene cuando el mismo prefijo se reusa a lo largo de una jornada de trabajo. La segunda son los tres contadores, y conviene leerlos como un reparto: cada token de entrada cae en exactamente uno de los tres. En el primer request los 50.000 aparecen en `cache_creation`; del segundo en adelante, en `cache_read`. Y los cien del diff caen siempre en `input_tokens`, porque están después del corte. Esa es la forma de comprobar que el caching está funcionando de verdad, en vez de suponerlo mirando la factura a fin de mes. La tercera es la línea de abajo, y es la que más les va a servir: si los dos primeros contadores dan cero, el prompt no se cacheó y nadie te avisó. No hay excepción, no hay warning, solo una factura más alta. Preguntales qué haría que diera cero; la respuesta es lo que vimos antes, cualquier byte que cambie en el prefijo o un prefijo por debajo del mínimo del modelo.",
       "_choice": {
         "signals": [
-          "un ejemplo de código con puntos de lectura al lado"
+          "el bloque de código es el contenido de la lámina, sin conceptos etiquetados al lado"
         ],
         "candidates": [
-          "content-image",
-          "content+cards+image"
+          "code-example",
+          "content-image"
         ],
-        "picked": "content-image",
+        "picked": "code-example",
         "rejected": {
-          "content+cards+image": "las tarjetas fragmentan una lectura que es secuencial; como lista, los puntos se recorren en orden junto al código"
+          "content-image": "ya no hay lista de puntos que acompañe: el código quedó solo y ocupa la lámina entera"
         }
       },
       "media": {
         "code": "import anthropic\nclient = anthropic.Anthropic()\n\n# ESTATICO -- se cachea (50K tokens)\nsystem_prompt = \"\"\"Sos un revisor de codigo senior.\nGuia de estilo, ADRs y convenciones: [... 50K ...]\"\"\"\n\nresponse = client.messages.create(\n    model=\"claude-sonnet-5\",\n    system=[{\"type\": \"text\", \"text\": system_prompt,\n             \"cache_control\": {\"type\": \"ephemeral\"}}],\n    # DINAMICO -- cambia en cada request\n    messages=[{\"role\": \"user\",\n               \"content\": \"Revisa este diff: [... 100 ...]\"}])\n\n# Request 1     cache MISS  ->  se procesa y se guarda\n# Request 2+    cache HIT   ->  se cobra al 10%",
         "language": "python"
       },
-      "design": "split-right",
-      "facts": [
-        {
-          "label": "Parte estática (cacheable)",
-          "body": "System prompt, guía de estilo, decisiones de arquitectura, base de conocimiento. Se marca con `cache_control`."
-        },
-        {
-          "label": "Parte dinámica (no cacheable)",
-          "body": "El diff, el ticket, la consulta puntual. Cambia en cada request, así que va después del corte."
-        },
-        {
-          "label": "Hit de caché",
-          "body": "Si el prefijo ya fue procesado, el proveedor lo reutiliza en vez de recalcularlo."
-        }
-      ]
+      "code": "import anthropic\nclient = anthropic.Anthropic()\n\nresp = client.messages.create(\n    model=\"claude-sonnet-5\",\n    max_tokens=1024,\n    system=[{\n        \"type\": \"text\",\n        \"text\": system_prompt,                  # 50K tokens: guia de estilo, ADRs, base de codigo\n        \"cache_control\": {\"type\": \"ephemeral\", \"ttl\": \"1h\"},\n    }],\n    messages=[{\"role\": \"user\", \"content\": \"Revisa este diff: [... 100 tokens ...]\"}],\n)\n\nu = resp.usage\nprint(u.cache_creation_input_tokens)   # escritos al cache        (request 1: 50000)\nprint(u.cache_read_input_tokens)       # leidos del cache         (request 2+: 50000)\nprint(u.input_tokens)                  # ni leidos ni escritos    (siempre: ~100)\n\n# Si los dos primeros dan 0, el prompt NO se cacheo y no hay error que lo avise.",
+      "language": "python"
     },
     {
       "template": "concept-breakdown",
       "section": "Fundamentos",
-      "title": "Tokenomics: el costo real",
-      "lead": "**En agosto de 2026 la Linux Foundation creó la Tokenomics Foundation, con 30 empresas fundadoras, para estandarizar cómo se mide el costo y el retorno de la IA. Su punto de partida es incómodo: el token es la parte visible de la cuenta, no la cuenta.**",
+      "title": "La economía de los tokens",
+      "lead": "**La economía del consumo de tokens de IA: cuánto cuesta correr modelos de lenguaje —tokens de entrada contra salida, cacheados contra no cacheados, precio por proveedor— y cómo medir el retorno real que eso genera para el negocio.**",
       "cards": [
         {
-          "label": "El token es la unidad, no el total",
-          "body": "Buena parte del costo no está en los tokens: cómputo, almacenamiento, base de datos, caché y el trabajo de los ingenieros. Pero el token es la unidad atómica consistente que atraviesa todos esos costos, y por eso sirve para contarlos."
+          "label": "Lo que ya vimos",
+          "body": "Entrada contra salida, la bola de nieve del historial, el prefijo que se cachea y el que no, y el precio distinto de cada proveedor. Todo eso es el lado del costo."
         },
         {
-          "label": "Falta un lenguaje común",
-          "body": "El problema que declaran es que no hay forma compartida de conectar gasto con valor. Cada proveedor cobra distinto, y esa fragmentación vuelve incomparable el costo total de propiedad entre organizaciones."
-        },
-        {
-          "label": "Se mide por llamada, no por token",
-          "body": "Uno de los entregables del plan es un método estándar de *costo de servir*: la cuenta completa expresada como costo por llamada, para que el número corresponda al trabajo realmente hecho y no a una unidad interna del proveedor."
+          "label": "Lo que falta",
+          "body": "La otra mitad de la ecuación: cuánto valor devuelve ese gasto. Es la pregunta que ninguna factura responde."
         }
       ],
-      "highlights": [
-        {
-          "label": "Por qué importa para esta clase",
-          "body": "Goldman Sachs proyecta que el consumo de tokens se multiplique por 24 hacia 2030. Todo lo que vamos a ver después — caching, cascading, effort — son palancas sobre la parte visible de esa cuenta. La discusión que se está abriendo es cómo medir la parte que no se ve.",
-          "kind": "takeaway",
-          "position": "bottom"
-        }
-      ],
-      "notes": "Esta lámina existe para que la fórmula de la lámina anterior no se lea como si fuera toda la verdad. Acaban de calcular costo por token, y acá aparece una fundación de la Linux Foundation, con treinta empresas grandes adentro, diciendo que ese número es la punta del iceberg. Es material fresco: se lanzó el 4 de agosto de este año, o sea hace tres semanas. Dos cosas para decir en voz alta. La primera es la buena noticia para la clase: aunque el token no sea todo el costo, es la unidad que atraviesa todos los demás, y por eso sirve para contar. La segunda es la incómoda: hoy no hay forma estándar de comparar el costo total entre proveedores, y por eso el ejercicio de la tabla de tarifas que van a ver en la sección siguiente es necesariamente parcial. Si alguien pregunta por qué les importa a ellos como ingenieros: porque el entregable que están proponiendo es medir costo por llamada en vez de por token, que es exactamente la unidad con la que uno razona cuando diseña un sistema. Y el número de Goldman Sachs, veinticuatro veces más consumo hacia 2030, es el que explica por qué esto se volvió urgente ahora.",
+      "notes": "Lámina de transición, corta. Sirve para nombrar lo que venimos haciendo sin darle nombre: todo lo anterior —entrada contra salida, la bola de nieve, el prefijo cacheado, el precio por proveedor— es economía de tokens. Decilo y hacé la pausa, porque lo que sigue es que esto tiene nombre propio, tiene una fundación detrás y tiene treinta empresas grandes tratando de estandarizarlo. El giro que importa es el de la segunda viñeta: hasta acá midieron el costo, y la pregunta abierta es el valor. Ninguna factura te dice si valió la pena.",
       "_choice": {
         "signals": [
-          "tres conceptos etiquetados en paralelo que descomponen una misma idea"
+          "conceptos etiquetados en paralelo"
         ],
         "candidates": [
           "concept-breakdown",
@@ -563,55 +534,55 @@
         ],
         "picked": "concept-breakdown",
         "rejected": {
-          "content-text": "son tres conceptos rotulados, no prosa corrida; el invariante manda tarjetas"
+          "content-text": "son conceptos rotulados, no prosa corrida"
         }
       }
     },
     {
       "template": "concept-breakdown",
       "section": "Fundamentos",
-      "title": "Tokenomics: qué están construyendo",
-      "lead": "**La práctica se ordena alrededor de dos preguntas: qué cuesta realmente la IA, y cuánto vale la inteligencia que devuelve. El plan de trabajo son entregables concretos, no un manifiesto.**",
+      "title": "La Tokenomics Foundation",
+      "lead": "**La Linux Foundation anunció el lanzamiento de la [Tokenomics Foundation](https://www.tokeneconomics.com/), enfocada en establecer estándares abiertos, benchmarks y mejores prácticas para la economía de la infraestructura de IA. Se lanzó el 4 de agosto de 2026 con 30 empresas fundadoras, entre ellas Accenture, IBM, JPMorganChase, Oracle, SAP, ServiceNow, Broadcom y Lenovo.**",
       "cards": [
         {
-          "label": "Definiciones",
-          "body": "Publicar qué es tokenomics y definir el valor y la densidad de un token, separando entrada, salida, razonamiento y caché. Sin vocabulario común no hay comparación posible."
+          "label": "El token es la unidad, no el total",
+          "body": "Buena parte del costo no está en los tokens: cómputo, almacenamiento, base de datos, caché y el trabajo de los ingenieros. Pero el token los atraviesa a todos, y por eso sirve para contarlos."
         },
         {
-          "label": "Costo de servir",
-          "body": "Un método estándar para medir la cuenta completa, expresada como **costo por llamada** en vez de costo por token, para que el número corresponda al trabajo hecho."
+          "label": "Falta un lenguaje común",
+          "body": "No hay forma compartida de conectar gasto con valor, y cada proveedor cobra distinto. Esa fragmentación vuelve incomparable el costo total entre organizaciones."
+        },
+        {
+          "label": "Costo por llamada, no por token",
+          "body": "Uno de sus entregables es un método estándar de *costo de servir*: la cuenta completa expresada por llamada, que es la unidad con la que uno diseña un sistema."
         },
         {
           "label": "Medición de valor",
           "body": "Un marco que relacione el gasto con resultados, empezando por la proporción de trabajo que se completa sin intervención humana, medida contra lo que ese proceso cuesta hoy."
-        },
-        {
-          "label": "Telemetría de costo",
-          "body": "Llevar el reporte de costos de IA a FOCUS, la especificación abierta de datos de facturación, para poder normalizar cifras entre proveedores."
         }
       ],
-      "highlights": [
-        {
-          "label": "Lo más cercano a esta clase",
-          "body": "Uno de sus proyectos, *Big-T*, clasifica la complejidad de costo de una carga de trabajo **antes** de decidir a qué modelo enrutarla. Es exactamente la decisión que vamos a ver en la sección de costos, pero convertida en método.",
-          "kind": "takeaway",
-          "position": "bottom"
-        }
-      ],
-      "notes": "La lámina anterior planteó el problema; ésta muestra que hay un plan y no solo un diagnóstico, que es lo que la vuelve creíble. Las dos preguntas de arriba vale leerlas tal cual, porque son sorprendentemente honestas para un comunicado: qué cuesta realmente esto, y cuánto vale lo que devuelve. La segunda es la difícil y todavía nadie la sabe responder. De los cuatro entregables, el que más les va a servir como ingenieros es el segundo: pasar de costo por token a costo por llamada. El token es una unidad interna del proveedor; la llamada es la unidad con la que uno diseña un sistema, y por eso el cambio de unidad no es cosmético. El de medición de valor tiene una definición operativa linda y conviene señalarla: empiezan por la proporción de trabajo que se completa sin que intervenga una persona, contra lo que ese proceso cuesta hoy. Es medible, no es retórica. Y cerrá con Big-T, que es el puente directo a la sección que viene: clasificar la complejidad de costo de una carga antes de elegir modelo es exactamente el árbol de decisión y la cascada que van a ver, pero como método formal en vez de criterio de cada equipo.",
+      "notes": "Esta lámina existe para que lo anterior no se lea como una preocupación nuestra: hay una fundación de la Linux Foundation, con treinta empresas grandes adentro, tratando de estandarizarlo. Y es material fresco, de hace tres semanas. Cuatro cosas y ninguna es la lista de miembros. La primera es la buena noticia: aunque el token no sea todo el costo, es la unidad que atraviesa a todos los demás y por eso sirve para contar. La segunda es la incómoda: hoy no hay forma estándar de comparar el costo total entre proveedores, y por eso el ejercicio de la tabla de tarifas que vieron antes es necesariamente parcial. La tercera es la que más les sirve como ingenieros: pasar de costo por token a costo por llamada, porque el token es una unidad interna del proveedor y la llamada es la unidad con la que uno diseña. La cuarta tiene una definición operativa linda: empiezan por la proporción de trabajo que se completa sin que intervenga una persona. Es medible, no es retórica. Cerrá con Big-T, que es el puente directo al árbol de decisión de la sección de costos, y con el 24x, que es el número que explica por qué esto se volvió urgente ahora.",
       "_choice": {
         "signals": [
-          "cuatro entregables etiquetados en paralelo"
+          "conceptos etiquetados en paralelo"
         ],
         "candidates": [
           "concept-breakdown",
-          "process"
+          "content-text"
         ],
         "picked": "concept-breakdown",
         "rejected": {
-          "process": "son líneas de trabajo simultáneas, no pasos en secuencia"
+          "content-text": "son conceptos rotulados, no prosa corrida"
         }
-      }
+      },
+      "highlights": [
+        {
+          "label": "Lo más cercano a esta clase",
+          "body": "Su proyecto *Big-T* clasifica la complejidad de costo de una carga de trabajo **antes** de decidir a qué modelo enrutarla: es el árbol de decisión que vimos, convertido en método. Y el número que explica la urgencia: Goldman Sachs proyecta que el consumo de tokens se multiplique por **24 hacia 2030**.",
+          "kind": "takeaway",
+          "position": "bottom"
+        }
+      ]
     },
     {
       "template": "concept-columns",
@@ -2993,6 +2964,52 @@
       "notes": "Esta es la lámina que les va a ahorrar una sorpresa en la factura, y tiene un dato que casi nadie conoce. El segundo bullet no está en ningún tutorial y conviene detenerse: los bloques de razonamiento de turnos anteriores que siguen en el contexto se pagan como tokens de entrada, turno tras turno. Algunos modelos conservan todos los turnos y otros solo el último, así que el default hay que mirarlo por modelo. Conéctalo con la bola de nieve del contexto que vieron en fundamentos, porque es exactamente el mismo fenómeno aplicado al razonamiento. El tercero es el más contraintuitivo y vale decirlo dos veces: `display` cambia lo que ves, no lo que pagas. Si configuras `omitted` para no mostrar el razonamiento, el campo vuelve vacío y la factura es idéntica. Si alguien quiere auditar cuánto se le está yendo en pensar, el campo del cuarto bullet se lo dice. La advertencia de caché es un enlace directo con la sección de fundamentos y vale la pena hacerlo explícito: el nivel de effort resuelto se escribe adentro del prompt, así que cambiarlo es cambiar el prefijo, y ya saben qué pasa cuando el prefijo cambia. Cambiar el valor de primer nivel reinicia el caché; el effort por mensaje, que todavía está en beta y necesita su header, lo conserva."
     },
     {
+      "template": "concept-breakdown",
+      "section": "Effort y thinking",
+      "title": "Las perillas de sampling ya no están",
+      "lead": "**Con thinking activo no podés tocar el azar de la generación. En Opus 4.7 y posteriores, `temperature`, `top_p` y `top_k` directamente dejaron de estar soportados.**",
+      "cards": [
+        {
+          "label": "Qué controlaban",
+          "body": "El azar al elegir el próximo token: temperatura baja, salida más conservadora; alta, más variedad. Era la perilla clásica para ajustar creatividad contra consistencia."
+        },
+        {
+          "label": "Qué pasa hoy",
+          "body": "En los modelos con thinking adaptativo ya no se aceptan. La migración recomendada es sacarlas del pedido y guiar el comportamiento por prompt y por effort."
+        },
+        {
+          "label": "Por qué, probablemente",
+          "body": "El razonamiento se entrenó por refuerzo sobre una distribución de muestreo determinada. Tocarla desde afuera cambia las reglas a un proceso calibrado bajo reglas fijas, y degrada justo las bifurcaciones y las vueltas atrás que hacen útil al thinking."
+        },
+        {
+          "label": "Qué queda en su lugar",
+          "body": "El `effort`. Un dial más abstracto, calibrado por el proveedor, en lugar de tres parámetros de bajo nivel que interactuaban mal con una capacidad entrenada."
+        }
+      ],
+      "highlights": [
+        {
+          "label": "La forma de la evolución",
+          "body": "Se pierde control fino y se gana robustez. No es una decisión de producto arbitraria: es consecuencia de que razonar dejó de ser algo que se pide en el prompt y pasó a ser algo que se entrenó.",
+          "kind": "takeaway",
+          "position": "bottom"
+        }
+      ],
+      "notes": "Lámina de cierre de la sección, y sirve para dejar una idea de forma más que un dato. Empezá preguntando quién tocó alguna vez la temperatura de un modelo; en un curso de software varios van a levantar la mano, porque es la perilla que aparece en todos los tutoriales. Y ahora no está. Las tres desaparecieron en Opus 4.7: no es que haya que ponerlas en un valor concreto, es que dejaron de estar soportadas y la migración recomendada es sacarlas del pedido. El tercer punto es el interesante y conviene decirlo con la reserva que lleva: la explicación más razonable es que el razonamiento se entrenó por refuerzo bajo una distribución de muestreo determinada, y meterle mano desde afuera rompe esa calibración — el modelo puede volverse repetitivo o dejar de explorar las ramas que necesita. Es coherente con lo que vieron dos láminas antes sobre cómo se entrenó, pero no está documentado como la razón oficial, así que presentalo como lo que es. Y cerrá con la idea de forma: se pierde control fino, se gana robustez, y el effort es lo que ocupa ese lugar. Es la misma historia de toda la sección: lo que antes se pedía en el prompt ahora viene entrenado, y lo que se ajustaba a mano ahora se gradúa con un dial calibrado.",
+      "_choice": {
+        "signals": [
+          "cuatro puntos etiquetados que descomponen un mismo cambio"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "son cuatro puntos rotulados, no prosa corrida"
+        }
+      }
+    },
+    {
       "template": "section-agenda",
       "section": "LLMs en ingeniería",
       "title": "LLMs en ingeniería",
@@ -3549,7 +3566,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "fa23415758d86b272cbff1acade6049e82d618065285f459517ea52d6aca806b",
-    "bytes": 179513
+    "sha256": "04acc88362dc290b523852159be93a91dba061057859c4f53d8c14b342111c07",
+    "bytes": 180611
   }
 }

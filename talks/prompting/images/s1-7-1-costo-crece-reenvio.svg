@@ -1,0 +1,76 @@
+<!-- talksmith-ascii-sha256: 6c4fbae81beb8d39337c0b1b96061253c054559e6ec3c4a263e2d52d8513705c -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 378" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="13">
+<title>La fórmula del costo</title>
+<desc>Por qué la factura de un chatbot crece sin que crezca el uso: cada turno reenvía toda la conversación previa, así que lo que el usuario escribe se mantiene igual mientras lo que la aplicación manda al modelo se alarga turno a turno.</desc>
+<rect width="680" height="378" fill="#ffffff"/>
+
+<text x="24" y="32" font-size="10.5" font-weight="bold" letter-spacing="0.4">LO QUE EL</text>
+<text x="24" y="47" font-size="10.5" font-weight="bold" letter-spacing="0.4">USUARIO ESCRIBE</text>
+<text x="24" y="65" font-size="10.5" fill="#6B6464">(siempre parecido)</text>
+<text x="168" y="32" font-size="10.5" font-weight="bold" letter-spacing="0.4">LO QUE LA APP</text>
+<text x="168" y="47" font-size="10.5" font-weight="bold" letter-spacing="0.4">LE MANDA AL MODELO</text>
+<text x="168" y="65" font-size="10.5" fill="#DA1B2E">(crece en cada turno)</text>
+<line x1="24" y1="77" x2="656" y2="77" stroke="#EDEAEA" stroke-width="1"/>
+
+<text x="24" y="110" font-size="11.5" fill="#6B6464">turno 1</text>
+<rect x="78" y="91" width="63" height="28" rx="2.5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="109.5" y="110" text-anchor="middle" font-weight="bold">M1</text>
+<rect x="168" y="91" width="63" height="28" rx="2.5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="199.5" y="110" text-anchor="middle" font-weight="bold">M1</text>
+<text x="243" y="110" font-size="12" fill="#3B3535">1 bloque</text>
+
+<text x="24" y="148" font-size="11.5" fill="#6B6464">turno 2</text>
+<rect x="78" y="129" width="63" height="28" rx="2.5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="109.5" y="148" text-anchor="middle" font-weight="bold">M2</text>
+<rect x="168" y="129" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="199.5" y="148" text-anchor="middle" fill="#6B6464">M1</text>
+<rect x="235" y="129" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="266.5" y="148" text-anchor="middle" fill="#6B6464">R1</text>
+<rect x="302" y="129" width="63" height="28" rx="2.5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="333.5" y="148" text-anchor="middle" font-weight="bold">M2</text>
+<text x="377" y="148" font-size="12" fill="#3B3535">3</text>
+
+<text x="24" y="186" font-size="11.5" fill="#6B6464">turno 3</text>
+<rect x="78" y="167" width="63" height="28" rx="2.5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="109.5" y="186" text-anchor="middle" font-weight="bold">M3</text>
+<rect x="168" y="167" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="199.5" y="186" text-anchor="middle" fill="#6B6464">M1</text>
+<rect x="235" y="167" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="266.5" y="186" text-anchor="middle" fill="#6B6464">R1</text>
+<rect x="302" y="167" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="333.5" y="186" text-anchor="middle" fill="#6B6464">M2</text>
+<rect x="369" y="167" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="400.5" y="186" text-anchor="middle" fill="#6B6464">R2</text>
+<rect x="436" y="167" width="63" height="28" rx="2.5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="467.5" y="186" text-anchor="middle" font-weight="bold">M3</text>
+<text x="511" y="186" font-size="12" fill="#3B3535">5</text>
+
+<text x="24" y="224" font-size="11.5" fill="#6B6464">turno 4</text>
+<rect x="78" y="205" width="63" height="28" rx="2.5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="109.5" y="224" text-anchor="middle" font-weight="bold">M4</text>
+<rect x="168" y="205" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="199.5" y="224" text-anchor="middle" fill="#6B6464">M1</text>
+<rect x="235" y="205" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="266.5" y="224" text-anchor="middle" fill="#6B6464">R1</text>
+<rect x="302" y="205" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="333.5" y="224" text-anchor="middle" fill="#6B6464">M2</text>
+<rect x="369" y="205" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="400.5" y="224" text-anchor="middle" fill="#6B6464">R2</text>
+<rect x="436" y="205" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="467.5" y="224" text-anchor="middle" fill="#6B6464">M3</text>
+<rect x="503" y="205" width="63" height="28" rx="2.5" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.2"/>
+<text x="534.5" y="224" text-anchor="middle" fill="#6B6464">R3</text>
+<rect x="570" y="205" width="63" height="28" rx="2.5" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="601.5" y="224" text-anchor="middle" font-weight="bold">M4</text>
+<text x="645" y="224" font-size="12" font-weight="bold" fill="#DA1B2E">7</text>
+
+<path d="M168,241 L174,249 L560,249 L566,241" fill="none" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="367.0" y="265" font-size="11" fill="#DA1B2E" text-anchor="middle">ya se pagó 3 veces</text>
+<path d="M570,241 L575,249 L628,249 L633,241" fill="none" stroke="#6B6464" stroke-width="1.5"/>
+<text x="601.5" y="265" font-size="11" fill="#6B6464" text-anchor="middle">lo nuevo</text>
+
+<line x1="24" y1="287" x2="656" y2="287" stroke="#EDEAEA" stroke-width="1"/>
+<text x="24" y="307" font-size="11" fill="#6B6464">M = mensaje del usuario   ·   R = respuesta del modelo</text>
+<text x="24" y="331">El usuario escribe lo mismo en cada turno. La cuenta crece igual,</text>
+<text x="24" y="350">porque cada llamada reenvía toda la conversación anterior.</text>
+</svg>

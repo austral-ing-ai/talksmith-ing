@@ -1,0 +1,8 @@
+url: "https://openrouter.ai/docs/cookbook/evaluate-and-optimize/model-migrations/claude-4-7"
+fetched_at: "2026-09-02T12:14:11Z"
+title: "Claude 4.7 Migration Guide"
+http_status: 200
+byte_size: 416587
+assets:
+  - { src: "https://mintcdn.com/openrouter-d02e98a0/ksNSeB_K7gD-BUDh/assets/logo-v2-light.svg?fit=max&auto=format&n=ksNSeB_K7gD-BUDh&q=85&s=690e45873843519efe02bcbe45795dac", absolute: "https://mintcdn.com/openrouter-d02e98a0/ksNSeB_K7gD-BUDh/assets/logo-v2-light.svg?fit=max&auto=format&n=ksNSeB_K7gD-BUDh&q=85&s=690e45873843519efe02bcbe45795dac", saved_as: "logo-v2-light.svg", alt: "light logo" }
+  - { src: "https://mintcdn.com/openrouter-d02e98a0/ksNSeB_K7gD-BUDh/assets/logo-v2-dark.svg?fit=max&auto=format&n=ksNSeB_K7gD-BUDh&q=85&s=8ba2f49b11cd9839c37dd03c62537ebd", absolute: "https://mintcdn.com/openrouter-d02e98a0/ksNSeB_K7gD-BUDh/assets/logo-v2-dark.svg?fit=max&auto=format&n=ksNSeB_K7gD-BUDh&q=85&s=8ba2f49b11cd9839c37dd03c62537ebd", saved_as: "logo-v2-dark.svg", alt: "dark logo" }

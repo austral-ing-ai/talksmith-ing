@@ -1,0 +1,20 @@
+  LO QUE EL USUARIO ESCRIBE          LO QUE LA APP LE MANDA AL MODELO
+  (siempre parecido)                 (crece en cada turno)
+
+  turno 1   [M1]                     [M1]                          1 bloque
+  turno 2   [M2]                     [M1][R1][M2]                  3
+  turno 3   [M3]                     [M1][R1][M2][R2][M3]          5
+  turno 4   [M4]                     [M1][R1][M2][R2][M3][R3][M4]  7
+                                      \____________________/  \__/
+                                       ya se pago 3 veces     lo nuevo
+
+  M = mensaje del usuario     R = respuesta del modelo
+
+  El usuario escribe lo mismo en cada turno. La cuenta crece igual,
+  porque cada llamada reenvia toda la conversacion anterior.
+
+<!-- ascii-note:
+intent: mostrar la desproporcion entre lo que el usuario escribe (constante) y lo que la aplicacion manda al modelo (crece en cada turno); que el crecimiento no viene del usuario sino del reenvio del historial
+emphasize: las dos columnas contrastadas, la izquierda que no crece y la derecha que si; la llave que separa lo ya pagado varias veces de lo nuevo del turno; la linea de cierre
+labels: "LO QUE EL USUARIO ESCRIBE (siempre parecido)", "LO QUE LA APP LE MANDA AL MODELO (crece en cada turno)", "turno 1..4", "M = mensaje del usuario", "R = respuesta del modelo", "ya se pago 3 veces", "lo nuevo"
+-->
