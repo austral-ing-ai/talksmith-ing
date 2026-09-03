@@ -67,22 +67,15 @@ Portada. <!-- deck-omit-text: Presentate y presentá a los otros dos docentes. -
 
 ### Content
 
-**Dos mitades y una misma idea: recortar lo que el modelo ve hasta dejarle solo lo que necesita.**
-
-**RAG · el contexto que el modelo no tiene**
-
-- **Fundamentos** Qué es, cuándo hace falta y los tres pasos del ciclo.
-- **Búsqueda léxica** Índice invertido, TF-IDF y BM25.
-- **Vectorial e híbrida** Embeddings, similitud coseno, búsqueda aproximada y fusión.
-- **Reranking y precisión** Recuperación en dos etapas, RRF y cross-encoders.
-- **Chunking y metadatos** Cómo se parte un documento y qué se guarda con cada fragmento.
-- **Evaluación y seguridad** Métricas, inyección indirecta de prompts y mitigaciones.
-
-**MCP · las acciones que el modelo no puede ejecutar**
-
-- **El protocolo** Qué problema resuelve y por qué no alcanza con HTTP.
-- **Arquitectura y uso** JSON-RPC, ciclo de vida, multi-servidor y el ecosistema medido.
-- **Diseño de herramientas** Routing, agrupamiento y analítica en producción.
+- **1 · Fundamentos** Qué es RAG, cuándo hace falta y los tres pasos del ciclo.
+- **2 · Búsqueda léxica** Índice invertido, TF-IDF y BM25.
+- **3 · Vectorial e híbrida** Embeddings, similitud coseno, búsqueda aproximada y fusión.
+- **4 · Reranking y precisión** Recuperación en dos etapas, RRF y cross-encoders.
+- **5 · Chunking y metadatos** Cómo se parte un documento y qué se guarda con cada fragmento.
+- **6 · Evaluación y seguridad** Métricas, inyección indirecta de prompts y mitigaciones.
+- **7 · El protocolo** Qué problema resuelve MCP y por qué no alcanza con HTTP.
+- **8 · Arquitectura y uso** JSON-RPC, ciclo de vida, multi-servidor y el ecosistema medido.
+- **9 · Diseño de herramientas** Routing, agrupamiento y analítica en producción.
 
 ### Sources
 

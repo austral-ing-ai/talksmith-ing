@@ -23,49 +23,62 @@
     {
       "section": "Portada",
       "title": "Agenda",
-      "lead": "**Dos mitades y una misma idea: recortar lo que el modelo ve hasta dejarle solo lo que necesita.**",
       "notes": "Mapa de la clase en una frase: las dos mitades responden dos carencias distintas del modelo. RAG le da el contexto que no tiene en los pesos; MCP le da las acciones que no puede ejecutar solo. Decilo así y el resto de la clase se ordena solo. Avisá también que la mitad de RAG termina en evaluación y seguridad, que es donde se vuelve un problema de ingeniería y no de demo.",
-      "template": "concept-columns",
-      "subtitle": "Las dos mitades de la clase",
-      "columns": [
-        {
-          "label": "RAG · el contexto que el modelo no tiene",
-          "body": "Cómo se le acerca al modelo lo que no está en sus pesos.",
-          "text": [
-            "**Fundamentos** Qué es, cuándo hace falta y los tres pasos del ciclo.",
-            "**Búsqueda léxica** Índice invertido, TF-IDF y BM25.",
-            "**Vectorial e híbrida** Embeddings, similitud coseno, búsqueda aproximada y fusión.",
-            "**Reranking y precisión** Recuperación en dos etapas, RRF y cross-encoders.",
-            "**Chunking y metadatos** Cómo se parte un documento y qué se guarda con cada fragmento.",
-            "**Evaluación y seguridad** Métricas, inyección indirecta de prompts y mitigaciones."
-          ]
-        },
-        {
-          "label": "MCP · las acciones que no puede ejecutar",
-          "body": "Cómo se le dan herramientas sin cablear una integración por cada una.",
-          "text": [
-            "**El protocolo** Qué problema resuelve y por qué no alcanza con HTTP.",
-            "**Arquitectura y uso** JSON-RPC, ciclo de vida, multi-servidor y el ecosistema medido.",
-            "**Diseño de herramientas** Routing, agrupamiento y analítica en producción."
-          ]
-        }
-      ],
+      "template": "concept-breakdown",
       "_choice": {
         "signals": [
-          "n_images=0",
           "labeled_items=9",
-          "has_table=False",
-          "has_code=False"
+          "n_images=0",
+          "is_ordered=true"
         ],
         "candidates": [
-          "concept-columns",
-          "concept-breakdown"
+          "concept-breakdown",
+          "process"
         ],
-        "picked": "concept-columns",
+        "picked": "concept-breakdown",
         "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+          "process": "las nueve secciones son un temario, no una secuencia donde cada paso alimente al siguiente"
         }
-      }
+      },
+      "format": "row",
+      "cards": [
+        {
+          "label": "1 · Fundamentos",
+          "body": "Qué es RAG, cuándo hace falta y los tres pasos del ciclo."
+        },
+        {
+          "label": "2 · Búsqueda léxica",
+          "body": "Índice invertido, TF-IDF y BM25."
+        },
+        {
+          "label": "3 · Vectorial e híbrida",
+          "body": "Embeddings, similitud coseno, búsqueda aproximada y fusión."
+        },
+        {
+          "label": "4 · Reranking y precisión",
+          "body": "Recuperación en dos etapas, RRF y cross-encoders."
+        },
+        {
+          "label": "5 · Chunking y metadatos",
+          "body": "Cómo se parte un documento y qué se guarda con cada fragmento."
+        },
+        {
+          "label": "6 · Evaluación y seguridad",
+          "body": "Métricas, inyección indirecta de prompts y mitigaciones."
+        },
+        {
+          "label": "7 · El protocolo",
+          "body": "Qué problema resuelve MCP y por qué no alcanza con HTTP."
+        },
+        {
+          "label": "8 · Arquitectura y uso",
+          "body": "JSON-RPC, ciclo de vida, multi-servidor y el ecosistema medido."
+        },
+        {
+          "label": "9 · Diseño de herramientas",
+          "body": "Routing, agrupamiento y analítica en producción."
+        }
+      ]
     },
     {
       "template": "section-agenda",
@@ -2854,7 +2867,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "a5bb3125dc6d4018c75c615c6385082ad83734d4e1fc3c47305372ded4017e12",
-    "bytes": 143286
+    "sha256": "d0f5df9e61cbdd5d0600a2712b42315b8138c1c74ed6add08f9c4682cb0190fc",
+    "bytes": 143134
   }
 }
