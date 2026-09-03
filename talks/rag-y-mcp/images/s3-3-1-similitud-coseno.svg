@@ -1,0 +1,61 @@
+<!-- talksmith-ascii-sha256: 80e8771c306c11fa8ebad00b89feb4f1131eee5cb35f3f9a7468520a2f61cda3 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 632" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>Coseno: importa el ángulo</title>
+<desc>La fórmula sola no enseña nada: la historia son dos flechas que salen del mismo origen y el ángulo entre ellas.</desc>
+<defs>
+<marker id="vr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<path d="M0,0 L10,4.5 L0,9 z" fill="#DA1B2E"/>
+</marker>
+<marker id="vd" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<path d="M0,0 L10,4.5 L0,9 z" fill="#3B3535"/>
+</marker>
+<marker id="vg" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<path d="M0,0 L10,4.5 L0,9 z" fill="#9C9090"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="860" height="632" fill="#ffffff"/>
+
+<line x1="150" y1="260" x2="340" y2="260" stroke="#3B3535" stroke-width="2.2" marker-end="url(#vd)"/>
+<line x1="150" y1="260" x2="315" y2="165" stroke="#DA1B2E" stroke-width="2.6" marker-end="url(#vr)"/>
+<line x1="150" y1="260" x2="235" y2="407" stroke="#9C9090" stroke-width="2" marker-end="url(#vg)"/>
+<circle cx="150" cy="260" r="4" fill="#3B3535"/>
+
+<path d="M225,260 A75,75 0 0,0 215,222" fill="none" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="245" y="240" font-size="11.5" font-weight="bold" fill="#DA1B2E">ángulo chico</text>
+
+<path d="M255,260 A105,105 0 0,1 202,351" fill="none" stroke="#9C9090" stroke-width="1.4"/>
+<text x="235" y="330" font-size="11.5" fill="#9C9090">ángulo grande</text>
+
+<text x="348" y="264" font-size="12.5" font-weight="bold">A  «timeout»</text>
+
+<text x="322" y="160" font-size="12.5" font-weight="bold" fill="#DA1B2E">B  «latencia»</text>
+<text x="322" y="178" font-size="12" font-weight="bold" fill="#DA1B2E">cos = 0,91</text>
+<text x="322" y="194" font-size="11.5" fill="#DA1B2E">muy parecidos</text>
+
+<text x="243" y="423" font-size="12.5" fill="#9C9090">C  «factura»</text>
+<text x="243" y="441" font-size="12" fill="#9C9090">cos = 0,12</text>
+<text x="243" y="457" font-size="11.5" fill="#9C9090">sin relación</text>
+
+<rect x="520" y="60" width="280" height="64" fill="#F4F2F2" stroke="#D8D2D2" stroke-width="1.3"/>
+<text x="660" y="82" text-anchor="middle" font-size="10.5" letter-spacing="1.2" fill="#8C8080">CÓMO SE CALCULA</text>
+<text x="660" y="110" text-anchor="middle" font-size="13.5" font-family="Andale Mono, monospace">cos(t) = (A · B) / (|A| · |B|)</text>
+
+<text x="520" y="164" font-size="10.5" letter-spacing="1.2" fill="#8C8080">VALORES DE REFERENCIA</text>
+<text x="520" y="192" font-size="12" font-family="Andale Mono, monospace">cos(  0 grados) =  1</text>
+<text x="700" y="192" fill="#6B6262">misma dirección</text>
+<text x="520" y="216" font-size="12" font-family="Andale Mono, monospace">cos( 90 grados) =  0</text>
+<text x="700" y="216" fill="#6B6262">sin relación</text>
+<text x="520" y="240" font-size="12" font-family="Andale Mono, monospace">cos(180 grados) = -1</text>
+<text x="700" y="240" fill="#6B6262">opuestos</text>
+
+<rect x="520" y="286" width="280" height="104" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="1.8"/>
+<text x="660" y="312" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#DA1B2E">El largo del vector no cuenta.</text>
+<text x="660" y="336" text-anchor="middle">Un fragmento de 3 palabras y uno</text>
+<text x="660" y="354" text-anchor="middle">de 300 se comparan de igual a igual.</text>
+<text x="660" y="376" text-anchor="middle" font-size="10.5" fill="#8C8080">por eso el coseno, y no la distancia</text>
+
+<line x1="60" y1="500" x2="800" y2="500" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="430" y="526" text-anchor="middle" font-size="12.5">«timeout» y «el servicio corta la conexión tras 30 segundos» dan vectores de largo muy distinto</text>
+<text x="430" y="546" text-anchor="middle" font-size="12.5">y dirección parecida. El coseno los da similares.</text>
+<text x="430" y="572" text-anchor="middle" font-size="11" fill="#8C8080">Los valores 0,91 y 0,12 son ilustrativos: dependen por completo del modelo de embeddings.</text>
+</svg>

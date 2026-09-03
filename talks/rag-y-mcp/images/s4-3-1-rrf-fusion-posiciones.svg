@@ -1,0 +1,50 @@
+<!-- talksmith-ascii-sha256: 75c0cdf7ae477b0970d8417f940cdff1e090e2997ed5e91b9508fc3f55b95339 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>RRF fusiona sumando posiciones</title>
+<desc>RRF opera sobre posiciones, y por eso puede fusionar dos rankings cuyas escalas no son comparables.</desc>
+<rect x="0" y="0" width="900" height="540" fill="#ffffff"/>
+
+<text x="70" y="80" font-size="11.5" font-weight="bold" letter-spacing="1.1" fill="#6B6262">RANKING BM25</text>
+<line x1="60" y1="88" x2="280" y2="88" stroke="#D8D2D2" stroke-width="1.2"/>
+<rect x="60" y="98" width="220" height="20" fill="#FDF3F4"/>
+<text x="76" y="113" font-size="12.5" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E">1. Doc A</text>
+<text x="76" y="137" font-size="12.5" font-family="Andale Mono, monospace">2. Doc C</text>
+<text x="76" y="161" font-size="12.5" font-family="Andale Mono, monospace">3. Doc F</text>
+<text x="76" y="185" font-size="12.5" font-family="Andale Mono, monospace">4. Doc D</text>
+<text x="76" y="209" font-size="12.5" font-family="Andale Mono, monospace">5. Doc B</text>
+<text x="76" y="233" font-size="12.5" font-family="Andale Mono, monospace" fill="#9C9090">...</text>
+
+<text x="320" y="80" font-size="11.5" font-weight="bold" letter-spacing="1.1" fill="#6B6262">RANKING VECTORIAL</text>
+<line x1="310" y1="88" x2="530" y2="88" stroke="#D8D2D2" stroke-width="1.2"/>
+<rect x="310" y="146" width="220" height="20" fill="#FDF3F4"/>
+<text x="326" y="113" font-size="12.5" font-family="Andale Mono, monospace">1. Doc B</text>
+<text x="326" y="137" font-size="12.5" font-family="Andale Mono, monospace">2. Doc E</text>
+<text x="326" y="161" font-size="12.5" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E">3. Doc A</text>
+<text x="326" y="185" font-size="12.5" font-family="Andale Mono, monospace">4. Doc G</text>
+<text x="326" y="209" font-size="12.5" font-family="Andale Mono, monospace" fill="#9C9090">...</text>
+<text x="326" y="233" font-size="12.5" font-family="Andale Mono, monospace">8. Doc C</text>
+
+<text x="60" y="300" font-size="12.5" fill="#5E5757">BM25 puntúa de 0 a infinito.</text>
+<text x="60" y="320" font-size="12.5" fill="#5E5757">El coseno puntúa de -1 a 1.</text>
+<text x="60" y="346" font-size="13.5" font-weight="bold" fill="#DA1B2E">Los scores no son comparables.</text>
+<text x="60" y="366" font-size="12" fill="#6B6262">Por eso RRF suma posiciones, no puntajes.</text>
+
+<rect x="580" y="60" width="260" height="58" fill="#F4F2F2" stroke="#D8D2D2" stroke-width="1.3"/>
+<text x="710" y="86" text-anchor="middle" font-size="12.5" font-family="Andale Mono, monospace">RRF(d) = suma de 1/(k + rank)</text>
+<text x="710" y="106" text-anchor="middle" font-size="12.5" font-family="Andale Mono, monospace" fill="#6B6262">con k = 60</text>
+
+<rect x="580" y="138" width="260" height="20" fill="#FDF3F4"/>
+<text x="588" y="153" font-size="12" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E">Doc A: 1/61 + 1/63 = 0,032</text>
+<text x="588" y="177" font-size="12" font-family="Andale Mono, monospace">Doc B: 1/65 + 1/61 = 0,032</text>
+<text x="588" y="201" font-size="12" font-family="Andale Mono, monospace">Doc C: 1/62 + 1/68 = 0,031</text>
+
+<rect x="580" y="240" width="260" height="112" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="710" y="264" text-anchor="middle" font-size="11.5" font-weight="bold" letter-spacing="1.1" fill="#DA1B2E">RANKING FUSIONADO</text>
+<text x="596" y="291" font-size="12.5" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E">1. Doc A   (0,03227)</text>
+<text x="596" y="315" font-size="12.5" font-family="Andale Mono, monospace">2. Doc B   (0,03178)</text>
+<text x="596" y="339" font-size="12.5" font-family="Andale Mono, monospace">3. Doc C   (0,03083)</text>
+
+<line x1="60" y1="430" x2="840" y2="430" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="450" y="456" text-anchor="middle" font-size="13.5" font-weight="bold">El acuerdo entre los dos rankings pesa más que el entusiasmo de uno solo.</text>
+<text x="450" y="476" text-anchor="middle" font-size="12.5" fill="#6B6262">Doc A no gana ninguno de los dos por goleada: gana por estar arriba en los dos.</text>
+</svg>

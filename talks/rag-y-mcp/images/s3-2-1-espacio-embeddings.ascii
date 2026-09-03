@@ -1,0 +1,25 @@
+        ^  dimension 2 (proyeccion en 2D de 384 dimensiones)
+        |
+        |         . latencia
+        |      . timeout
+        |         . reintento
+        |
+        |                              . factura
+        |                           . pago
+        |
+        |                                          . tipografia
+        +------------------------------------------------------> dim 1
+
+   "timeout"   [ 0.82  -0.31   0.54   0.12  ... ]  384 dimensiones
+   "latencia"  [ 0.79  -0.28   0.51   0.15  ... ]  vecino de "timeout"
+   "reintento" [ 0.71  -0.22   0.48   0.09  ... ]  cerca, no tanto
+   "factura"   [-0.12   0.65  -0.33   0.87  ... ]  otro barrio
+
+  Los ejes no significan nada por separado. La unica lectura
+  valida del espacio es la distancia entre dos puntos.
+
+<!-- ascii-note:
+intent: mostrar que un embedding convierte texto en posición, y que los vecindarios del espacio corresponden a campos de significado; el pie previene la lectura ingenua de que cada eje sea un concepto
+emphasize: el racimo timeout/latencia/reintento como vecindario semántico y su distancia respecto de "factura" y "tipografia"; el pie sobre que los ejes no significan nada
+labels: "dimension 1", "dimension 2 (proyeccion en 2D de 384 dimensiones)", "timeout", "latencia", "reintento", "factura", "pago", "tipografia", "384 dimensiones", "Los ejes no significan nada por separado"
+-->

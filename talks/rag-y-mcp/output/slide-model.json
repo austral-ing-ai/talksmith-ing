@@ -1,0 +1,2860 @@
+{
+  "deck": {
+    "title": "Inteligencia Artificial Generativa (AI Gen)",
+    "institution": null,
+    "class": "RAG y MCP: recuperar contexto y conectar herramientas",
+    "presenter": "Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)",
+    "date": "2026-09-09",
+    "lang": "es",
+    "logo": null,
+    "sections": [
+      "Fundamentos",
+      "Búsqueda léxica",
+      "Vectorial e híbrida",
+      "Reranking y precisión",
+      "Chunking y metadatos",
+      "Evaluación y seguridad",
+      "El protocolo",
+      "Arquitectura y uso",
+      "Diseño de herramientas"
+    ]
+  },
+  "slides": [
+    {
+      "section": "Portada",
+      "title": "Agenda",
+      "lead": "**Dos mitades y una misma idea: recortar lo que el modelo ve hasta dejarle solo lo que necesita.**",
+      "notes": "Mapa de la clase en una frase: las dos mitades responden dos carencias distintas del modelo. RAG le da el contexto que no tiene en los pesos; MCP le da las acciones que no puede ejecutar solo. Decilo así y el resto de la clase se ordena solo. Avisá también que la mitad de RAG termina en evaluación y seguridad, que es donde se vuelve un problema de ingeniería y no de demo.",
+      "template": "concept-columns",
+      "subtitle": "Las dos mitades de la clase",
+      "columns": [
+        {
+          "label": "RAG · el contexto que el modelo no tiene",
+          "body": "Cómo se le acerca al modelo lo que no está en sus pesos.",
+          "text": [
+            "**Fundamentos** Qué es, cuándo hace falta y los tres pasos del ciclo.",
+            "**Búsqueda léxica** Índice invertido, TF-IDF y BM25.",
+            "**Vectorial e híbrida** Embeddings, similitud coseno, búsqueda aproximada y fusión.",
+            "**Reranking y precisión** Recuperación en dos etapas, RRF y cross-encoders.",
+            "**Chunking y metadatos** Cómo se parte un documento y qué se guarda con cada fragmento.",
+            "**Evaluación y seguridad** Métricas, inyección indirecta de prompts y mitigaciones."
+          ]
+        },
+        {
+          "label": "MCP · las acciones que no puede ejecutar",
+          "body": "Cómo se le dan herramientas sin cablear una integración por cada una.",
+          "text": [
+            "**El protocolo** Qué problema resuelve y por qué no alcanza con HTTP.",
+            "**Arquitectura y uso** JSON-RPC, ciclo de vida, multi-servidor y el ecosistema medido.",
+            "**Diseño de herramientas** Routing, agrupamiento y analítica en producción."
+          ]
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=9",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-columns",
+          "concept-breakdown"
+        ],
+        "picked": "concept-columns",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Fundamentos",
+      "title": "Fundamentos",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real del recorrido"
+        }
+      }
+    },
+    {
+      "section": "Fundamentos",
+      "title": "RAG suma lo que no está en los pesos",
+      "lead": "**Un modelo preentrenado guarda conocimiento en sus parámetros, pero no puede acceder a lo que nunca vio: tu documentación, tus tickets, tu código.**",
+      "notes": "Arranque conceptual. El error frecuente es presentar RAG como \"el modelo busca en Google\": lo que hace el recuperador es traer texto, y el modelo sigue siendo el único que genera. Vale la pena marcar acá la deriva del término: el paper de Lewis define RAG como una receta de entrenamiento con el recuperador entrenado junto al generador; lo que la industria llama RAG hoy son componentes desacoplados y sin entrenamiento. Las dos acepciones son legítimas, pero atribuirle al paper el pipeline moderno de chunking y vector store es un salto que la fuente no sostiene.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Recuperador",
+          "body": "Componente que busca fragmentos relevantes en una fuente externa a partir de la consulta. Devuelve texto, no respuestas."
+        },
+        {
+          "label": "Base de conocimiento",
+          "body": "El corpus sobre el que busca el recuperador: documentación técnica, ADRs, tickets, changelogs, código."
+        },
+        {
+          "label": "LLM",
+          "body": "El único componente que genera texto. Recibe la consulta y los fragmentos ya recuperados, y no busca nada por su cuenta."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Lewis y otros (2020) lo plantean como combinar dos memorias: la **paramétrica**, que vive en los pesos, y la **no paramétrica**, que vive en un índice y se puede actualizar sin reentrenar.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Fundamentos",
+      "title": "Recuperar, aumentar, generar",
+      "lead": "**Todo lo demás de la clase (chunking, embeddings, reranking, búsqueda híbrida) existe para hacer mejor uno de estos tres pasos.**",
+      "notes": "Esta es la lámina que hay que dejar clavada. Si se entienden los tres pasos, el resto de la sección de RAG son optimizaciones de uno u otro. Señalá la línea del prompt armado: ahí se ve que \"aumentar\" es concatenación de texto, no magia. El apunte del título corrige un error del deck original, que prometía cuatro pasos y daba tres; si alguien lo recuerda de la versión anterior, la respuesta es que el cuarto es la indexación y tiene lámina propia.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s1-2-1-recuperar-aumentar-generar.svg",
+        "alt": "Tubería de tres pasos de RAG: recuperar, aumentar y generar, sin que cambien los pesos del modelo"
+      },
+      "highlights": [
+        {
+          "body": "Falta un cuarto trabajo, y es anterior a todo esto: llenar el índice sobre el que busca el paso 1. Es la lámina siguiente.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=0",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Fundamentos",
+      "title": "Antes de consultar hay que indexar",
+      "lead": "**La indexación es trabajo offline: se corre una vez y se repite cuando el corpus cambia. La consulta solo lee lo que la indexación dejó escrito.**",
+      "notes": "Lámina nueva. Cierra el agujero que dejaba el deck original, donde el pipeline aparecía siempre desde la consulta y nunca se decía quién había llenado el índice. El punto de ingeniería que importa para esta audiencia es el segundo: la indexación es un job, tiene disparador, tiene costo y tiene versión. La pregunta que suele salir acá es qué pasa cuando cambia un documento; la respuesta corta es que se reindexan sus fragmentos, y por eso conviene guardar el identificador de fuente en los metadatos (lámina 5.3).",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s1-3-1-indexar-antes-consultar.svg",
+        "alt": "Fase de indexación offline y fase de consulta online, unidas por el índice"
+      },
+      "cards": [
+        {
+          "label": "El modelo de embeddings tiene que ser el mismo en las dos fases.",
+          "body": "Un vector calculado con un modelo y buscado con otro no compara nada."
+        },
+        {
+          "label": "El índice se persiste.",
+          "body": "En un tutorial se reconstruye al arrancar; en producción vive en disco o en una base gestionada y se refresca cuando cambia la documentación."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Fundamentos",
+      "title": "Cinco razones para no reentrenar",
+      "notes": "Cinco tarjetas y dos importan más que las otras tres para esta audiencia. La de auditabilidad es la que convierte a RAG en una decisión de arquitectura y no en un truco: en un sistema que alguien va a operar, poder contestar \"de dónde salió esto\" vale más que un punto de calidad. La de costo es la que suele decidir en la práctica. Si alguien pregunta cuándo sí conviene fine-tuning, la respuesta honesta es: cuando lo que falta es formato o estilo, no conocimiento.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Datos actualizados",
+          "body": "Los datos de entrenamiento tienen fecha de corte. El índice se actualiza el día que cambia el documento."
+        },
+        {
+          "label": "Datos propietarios",
+          "body": "Tu documentación interna y tus APIs nunca estuvieron en el entrenamiento de ningún modelo. RAG conecta el modelo a esa base sin publicarla."
+        },
+        {
+          "label": "Precisión y citas",
+          "body": "El modelo inventa cuando no sabe. RAG restringe la generación a los fragmentos recuperados y cada afirmación queda enlazada a su fuente."
+        },
+        {
+          "label": "Auditabilidad",
+          "body": "Un modelo puro no deja rastro de por qué dijo lo que dijo. Con RAG, la respuesta apunta a documentos concretos."
+        },
+        {
+          "label": "Costo",
+          "body": "El fine-tuning es caro y lento de actualizar. Con RAG se actualiza el repositorio de documentos y no hace falta reentrenar."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=5",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Fundamentos",
+      "title": "Demo: un pipeline de RAG paso a paso",
+      "lead": "**Implementación de un pipeline RAG con LangChain, ejecutable en el navegador.**",
+      "notes": "Primera parada práctica. El módulo cubre los tres pasos de la lámina 1.2 con código corriendo. Mostralo hasta la primera respuesta con citas y seguí; el detalle de índices y embeddings viene en las secciones 2 y 3, y conviene no adelantarlo acá. La imagen del botón \"Haz clic aquí\" del deck original se retiró: estaba en tuteo peninsular y se repetía en seis láminas.",
+      "template": "single-point",
+      "point": "[aitutorial.dev/rag/fundamentals](https://aitutorial.dev/rag/fundamentals)",
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "single-point",
+          "concept-breakdown"
+        ],
+        "picked": "single-point",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Fundamentos",
+      "title": "Qué le falta a la demo para producción",
+      "lead": "**El prototipo de tres pasos anda en una demo. Estas cuatro preocupaciones son las que aparecen cuando el corpus crece y hay usuarios reales, y cada una tiene su sección en esta clase.**",
+      "notes": "Lámina de mapa. Sirve para dos cosas: cerrar la sección 1 y anunciar el resto de la clase. Leé las cuatro y señalá a qué sección va cada una; después no vuelvas sobre ella. Si alguien pregunta por la observabilidad, el número que conviene tener a mano es que en producción se loguea latencia y costo por consulta, y que las herramientas que nunca se usan o que fallan seguido son señales de diseño, no de capacidad del modelo (ese argumento vuelve en la lámina 9.6, del lado de MCP).",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Procesamiento de documentos",
+          "body": "Chunking, extracción de metadatos y filtrado de calidad. → sección 5"
+        },
+        {
+          "label": "Recuperación en dos etapas",
+          "body": "Primera pasada amplia y rápida, después reranking preciso. → sección 4"
+        },
+        {
+          "label": "Ingeniería de contexto",
+          "body": "Diseño del prompt, formato de citas y qué hacer cuando el contexto recuperado no alcanza. → secciones 3 y 6"
+        },
+        {
+          "label": "Evaluación continua",
+          "body": "Métricas de recuperación y de generación, medidas por separado. → sección 6"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Observabilidad atraviesa las cuatro: calidad, latencia y costo por consulta solo se ven con tráfico real.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Búsqueda léxica",
+      "title": "Búsqueda léxica",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real del recorrido"
+        }
+      }
+    },
+    {
+      "section": "Búsqueda léxica",
+      "title": "Las fuentes ponen el techo de calidad",
+      "notes": "Lámina de inventario. El punto que conviene remarcar es el de la advertencia: en un sistema RAG la puerta de entrada es el corpus, y filtrar calidad ahí sale mucho más barato que corregir después con reranking. Si alguien pregunta por deduplicación, es un problema real y se resuelve en la etapa de ingesta, no en la de consulta.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Documentos no estructurados",
+          "body": "Texto sin esquema: documentación técnica, ADRs, RFCs, informes post-mortem, PDFs. Es la fuente más común y la que más trabajo de chunking pide."
+        },
+        {
+          "label": "Bases de datos estructuradas",
+          "body": "Registros con esquema: tablas relacionales, catálogos de productos, inventarios de servicios, taxonomías internas."
+        },
+        {
+          "label": "APIs y fuentes en tiempo real",
+          "body": "Datos que cambian mientras se consulta: estado de servicios, feeds de incidentes, resultados de búsqueda web, endpoints REST propios."
+        },
+        {
+          "label": "Código y datos técnicos",
+          "body": "Repositorios, historial de commits, logs de aplicación, trazas, métricas de sensores y de instrumentación."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Garbage in, garbage out. Un fragmento mal extraído, desactualizado o duplicado se recupera igual que uno bueno, y el modelo no tiene cómo distinguirlos.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Búsqueda léxica",
+      "title": "Palabras, significado, o las dos",
+      "notes": "Lámina de encuadre de toda la sección. Las tres tarjetas anticipan el orden: el índice invertido ocupa el resto de esta sección, el vectorial abre la siguiente, y la fusión llega en 3.7 y en la sección 4. El ejemplo que mejor funciona para justificar la híbrida con esta audiencia es un buscador interno donde conviven preguntas del tipo \"cómo configuro el retry del cliente HTTP\" y búsquedas del tipo \"ERR_CONN_1042\": la primera la resuelve el vectorial, la segunda solo la resuelve el léxico. Los motores concretos, por si preguntan: léxicos, Elasticsearch, OpenSearch, Solr y Typesense; vectoriales, Pinecone, Weaviate, Qdrant, Chroma y pgvector; híbridos, Elasticsearch, Weaviate, Azure AI Search y MongoDB Atlas. Y el cierre que el diagrama ya insinúa: ninguna de las dos gana siempre, porque el léxico falla cuando el usuario no usa las palabras del documento, y el vectorial falla cuando hay que encontrar un identificador exacto que ningún embedding distingue de otro parecido.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s2-2-1-lexica-vs-semantica.svg",
+        "alt": "La misma consulta sometida a búsqueda léxica y a búsqueda semántica, con lo que engancha cada una"
+      },
+      "cards": [
+        {
+          "label": "Índice invertido",
+          "body": "Mapea cada término a la lista de documentos que lo contienen. Sirve para identificadores y jerga cerrada."
+        },
+        {
+          "label": "Base vectorial",
+          "body": "Guarda cada fragmento como un vector y busca por cercanía. Sirve para preguntas en lenguaje natural."
+        },
+        {
+          "label": "Búsqueda híbrida",
+          "body": "Corre las dos en paralelo y funde los rankings. Es el estándar de producción, y el que más piezas tiene que mantener."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Búsqueda léxica",
+      "title": "Cómo funciona un índice invertido",
+      "lead": "**El índice se llama invertido porque da vuelta la relación natural: en lugar de guardar qué términos tiene cada documento, guarda en qué documentos está cada término.**",
+      "notes": "El diagrama muestra la inversión y la lista de abajo nombra los cuatro pasos, así que no conviene leer las dos cosas: señalá el giro del encabezado y dejá que la lista quede como referencia. La pregunta que conviene sembrar antes de pasar: si \"servicio cliente\" devuelve Doc3, ¿qué pasa cuando la intersección devuelve cuatro mil documentos? Ahí entra el ranking, que es la lámina siguiente.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s2-3-1-indice-invertido.svg",
+        "alt": "La inversión de documento a términos en término a documentos, base del índice invertido"
+      },
+      "cards": [
+        {
+          "label": "Ingesta",
+          "body": "Entran los documentos crudos."
+        },
+        {
+          "label": "Tokenización",
+          "body": "Minúsculas, stopwords fuera, cada palabra a su raíz."
+        },
+        {
+          "label": "Construcción",
+          "body": "Cada término apunta a su *posting list*."
+        },
+        {
+          "label": "Consulta",
+          "body": "Se tokeniza igual y se intersectan las listas. El orden lo decide un score, que es la lámina siguiente."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=4",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Búsqueda léxica",
+      "title": "TF-IDF: frecuente acá, raro afuera",
+      "lead": "**Esas dos mitades son TF e IDF, y el score de un término en un documento es su producto.**",
+      "notes": "Dos cosas que hay que decir en voz alta. La base del logaritmo está declarada en la fórmula y es natural en todo el deck: conviene decirlo en voz alta, porque quien rehaga las cuentas con base 10 obtiene otros números. Si alguien pregunta por qué el IDF lleva logaritmo, la respuesta corta es que sin él la rareza domina el score entero.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "TF (Term Frequency)",
+          "body": "Qué tan frecuente es el término dentro del documento. `TF(t, d) = apariciones de t en d / total de tokens de d`. Ejemplo: \"timeout\" aparece 3 veces en un documento de 100 tokens → TF = 0,03."
+        },
+        {
+          "label": "IDF (Inverse Document Frequency)",
+          "body": "Qué tan raro es el término en todo el corpus. `IDF(t) = ln(N / df(t))`, con `N` el total de documentos y `df(t)` en cuántos aparece `t`. Penaliza lo que está en todas partes: \"el\", \"de\" → IDF ≈ 0; \"deadlock\" → IDF alto."
+        },
+        {
+          "label": "Score",
+          "body": "`TF-IDF(t, d) = TF(t, d) × IDF(t)`. Se suma sobre los términos de la consulta para puntuar cada documento."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "TF-IDF no satura: un término que aparece 100 veces pesa 100 veces más que uno que aparece una sola vez. BM25 corrige eso, y es la lámina 2.6.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Búsqueda léxica",
+      "title": "TF-IDF sobre tres documentos",
+      "notes": "Tabla recalculada. El deck original tenía dos errores acá: consignaba TF(\"el\", Doc1) = 2/5 cuando Doc1 tiene un solo \"el\" en cinco tokens, y usaba base 10 en el IDF mientras la lámina siguiente usaba natural. Los dos están corregidos y los números cierran con la lámina 2.7. Si alguien rehace las cuentas en el momento, van a dar. Vale la pena detenerse en la primera viñeta: que el IDF de una stopword sea cero por construcción es el resultado más elegante de la fórmula.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "Término",
+            "cells": [
+              "el",
+              "servicio",
+              "devuelve",
+              "timeout",
+              "intermitente"
+            ]
+          },
+          {
+            "header": "Aparece en",
+            "cells": [
+              "Doc1, Doc2, Doc3",
+              "Doc1, Doc3",
+              "Doc1, Doc2",
+              "Doc1",
+              "Doc1"
+            ]
+          },
+          {
+            "header": "TF (Doc1)",
+            "cells": [
+              "1/5 = 0,20",
+              "1/5 = 0,20",
+              "1/5 = 0,20",
+              "1/5 = 0,20",
+              "1/5 = 0,20"
+            ]
+          },
+          {
+            "header": "IDF = ln(3/df)",
+            "cells": [
+              "ln(3/3) = 0,00",
+              "ln(3/2) = 0,41",
+              "ln(3/2) = 0,41",
+              "ln(3/1) = 1,10",
+              "ln(3/1) = 1,10"
+            ]
+          },
+          {
+            "header": "TF-IDF (Doc1)",
+            "cells": [
+              "0,00 (stopword)",
+              "0,08",
+              "0,08",
+              "0,22 ⭐",
+              "0,22 ⭐"
+            ]
+          }
+        ]
+      },
+      "facts": [
+        {
+          "label": "Las stopwords se eliminan solas.",
+          "body": "\"el\" está en los tres documentos, así que su IDF es exactamente cero y su score también. No hace falta una lista de stopwords para que deje de contar."
+        },
+        {
+          "label": "Lo raro vale más.",
+          "body": "\"timeout\" e \"intermitente\" están solo en Doc1, y son los que mejor lo distinguen del resto del corpus."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=2",
+          "has_table=True",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Búsqueda léxica",
+      "title": "BM25 satura la frecuencia",
+      "lead": "**BM25 es la línea de base léxica de todo sistema RAG en producción, y arregla dos cosas que TF-IDF hace mal.**",
+      "notes": "Lámina nueva, y de las que más falta hacían. El deck original nombraba BM25 doce veces sin definirlo nunca: aparecía como la línea de base léxica de todo el pipeline y solo decía que \"extiende\" TF-IDF. Las dos propiedades del diagrama son todo lo que hay que retener. Si alguien pregunta por los valores usuales de k1 y b, decí que 1,2 y 0,75 son los defaults de Lucene, no valores del paper: la fuente solo da rangos (1,2 < k1 < 2 y 0,5 < b < 0,8), es explícita en que el modelo no los deriva, y sus figuras muestran que la función objetivo no es suave, así que ajustarlos sale caro. La intuición de la saturación funciona bien con un ejemplo de esta audiencia: un README que menciona \"docker\" ochenta veces no es ochenta veces más sobre Docker que uno que lo menciona dos veces. El fundamento, por si alguien pregunta de dónde sale la fórmula: BM25 sale del Probabilistic Relevance Framework, que trata la relevancia como una variable oculta del par consulta-documento y ordena por probabilidad estimada. La saturación se deriva del modelo 2-Poisson y de la noción de eliteness.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s2-6-1-bm25-satura-frecuencia.svg",
+        "alt": "Curva de saturación de BM25 frente al crecimiento lineal de TF-IDF"
+      },
+      "cards": [
+        {
+          "label": "Saturación de la frecuencia.",
+          "body": "El peso crece con `tf` pero se acerca a un máximo. El parámetro `k1` decide qué tan rápido llega al techo."
+        },
+        {
+          "label": "Normalización suave por longitud.",
+          "body": "Un documento largo puede serlo por dos motivos opuestos: dice lo mismo con más palabras, o tiene más para decir. El parámetro `b` interpola entre las dos hipótesis en lugar de dividir por la longitud a secas."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Búsqueda léxica",
+      "title": "Solo Doc1 puntúa distinto de cero",
+      "lead": "**Consulta: `\"¿qué documentos hablan de timeout intermitente?\"` → se tokeniza igual que los documentos → `[timeout, intermitente]`**",
+      "notes": "Cierre del bloque léxico. Los números están recalculados con logaritmo natural y coinciden con la tabla de la lámina 2.5: TF = 0,20 e IDF = ln(3) = 1,10 para los dos términos, 0,22 cada uno, 0,44 en total. La advertencia del final es el puente a la búsqueda vectorial y conviene decirla con un ejemplo propio: una consulta que dice \"el servicio no responde\" contra un runbook que dice \"timeout del upstream\" puntúa cero en léxico, y es exactamente el documento que hacía falta.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "Documento",
+            "cells": [
+              "Doc 1",
+              "Doc 2",
+              "Doc 3"
+            ]
+          },
+          {
+            "header": "Contenido",
+            "cells": [
+              "\"el servicio devuelve timeout intermitente\"",
+              "\"el cliente devuelve error de conexion\"",
+              "\"el servicio y el cliente reintentan solos\""
+            ]
+          },
+          {
+            "header": "Cálculo",
+            "cells": [
+              "(0,20 × 1,10) + (0,20 × 1,10)",
+              "ningún término de la consulta",
+              "ningún término de la consulta"
+            ]
+          },
+          {
+            "header": "Score",
+            "cells": [
+              "**0,44**",
+              "0,00",
+              "0,00"
+            ]
+          },
+          {
+            "header": "Al LLM",
+            "cells": [
+              "✅ sí, top-1",
+              "❌ no",
+              "❌ no"
+            ]
+          }
+        ]
+      },
+      "facts": [
+        {
+          "label": "Lookup",
+          "body": "Se traen las posting lists: `timeout → [Doc1]`, `intermitente → [Doc1]`. Intersección: Doc1."
+        },
+        {
+          "label": "Score",
+          "body": "Se calcula TF-IDF de cada término de la consulta contra cada candidato y se suman."
+        },
+        {
+          "label": "Ranking y entrega",
+          "body": "Se ordena por score descendente y los primeros se inyectan como contexto en el prompt."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Acá se ve el límite de lo léxico: los documentos que no comparten ninguna palabra con la consulta puntúan cero, aunque hablen de lo mismo con otras palabras. Eso es lo que resuelve la búsqueda vectorial.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=True",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Búsqueda léxica",
+      "title": "Demo: índice invertido en vivo",
+      "lead": "**El mismo corpus de tres documentos, indexado y consultado paso a paso.**",
+      "notes": "Segunda parada práctica, corta. Mostrá la construcción del índice y una consulta, y volvé. Si el tiempo aprieta, esta se puede saltear: la lámina 2.3 ya tiene el diagrama y la 2.7 la corrida numérica.",
+      "template": "single-point",
+      "point": "[aitutorial.dev/rag/fundamentals](https://aitutorial.dev/rag/fundamentals)",
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "single-point",
+          "concept-breakdown"
+        ],
+        "picked": "single-point",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Vectorial e híbrida",
+      "title": "Vectorial e híbrida",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real del recorrido"
+        }
+      }
+    },
+    {
+      "section": "Vectorial e híbrida",
+      "title": "Encontrar por significado",
+      "lead": "**Tres pasos, y el primero es el que cambia todo: el texto deja de compararse como cadena de caracteres y pasa a compararse como punto en un espacio.**",
+      "notes": "Apertura del bloque vectorial. Los tres pasos llegaban del pptx como bullets sueltos separados de sus números por el aplanado de SmartArt. El ejemplo del pie es el que engancha: hace ver que el problema no era de ranking sino de representación. Las tres láminas que siguen abren cada paso: embeddings, coseno y búsqueda aproximada. El caso que el índice invertido no puede resolver, y que conviene decir en voz alta antes de pasar: \"no puedo iniciar sesión\" y \"olvidé mi contraseña\" no comparten ninguna palabra y describen el mismo problema. Es exactamente el par del diagrama.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s3-1-1-buscar-por-significado.svg",
+        "alt": "Dos frases con el mismo significado y ninguna palabra en común, comparadas por caracteres y por posición"
+      },
+      "cards": [
+        {
+          "label": "Conversión a vectores",
+          "body": "Un modelo de embeddings convierte cada fragmento en un vector de varios cientos de dimensiones."
+        },
+        {
+          "label": "Cálculo de similitud",
+          "body": "Se mide qué tan cerca cae el vector de la consulta de cada uno de ellos."
+        },
+        {
+          "label": "Recuperación",
+          "body": "Devuelve los más cercanos, aunque no compartan ni una palabra con la consulta."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Vectorial e híbrida",
+      "title": "Embeddings: cada texto es un punto",
+      "lead": "**Textos con significado parecido caen cerca. Esa cercanía es lo único que la búsqueda vectorial mide.**",
+      "notes": "El diagrama reemplaza a los cuatro iconos decorativos del deck original. Lo que hay que dejar claro con él es que la proyección a dos dimensiones es una mentira útil: el espacio real tiene 384 ejes y ninguno es interpretable por separado. Si alguien pregunta por la aritmética de vectores del tipo rey menos hombre más mujer, aclarale que es de word2vec y que con embeddings de oración modernos no funciona de manera confiable; no lo pongas en la lámina. Modelos usados hoy, por si preguntan: text-embedding-3-small de OpenAI, all-MiniLM-L6-v2 en open source, embed-multilingual-v3 de Cohere. Y la aclaración que conviene tener a mano: el embedding captura significado y no sintaxis.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s3-2-1-espacio-embeddings.svg",
+        "alt": "Espacio de embeddings donde los textos cercanos forman vecindarios de significado"
+      },
+      "cards": [
+        {
+          "label": "Entrenamiento contrastivo",
+          "body": "El modelo aprende, con millones de pares (pregunta, respuesta relevante), que lo parecido tiene que quedar cerca."
+        },
+        {
+          "label": "Dimensionalidad",
+          "body": "Entre 384 y 3072 dimensiones. Más dimensiones dan más capacidad semántica y cuestan más por consulta."
+        },
+        {
+          "label": "Multilingüe",
+          "body": "\"deployment\" y \"despliegue\" caen cerca, así que la búsqueda cruza idiomas sin traducir."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Vectorial e híbrida",
+      "title": "Coseno: importa el ángulo",
+      "lead": "**Dos textos son parecidos si sus vectores apuntan en la misma dirección. El largo del vector no entra en la cuenta, y eso es lo que permite comparar un fragmento de tres palabras con uno de trescientas.**",
+      "notes": "La fórmula sola no enseña nada; el diagrama sí. Contá la historia de las dos flechas saliendo del origen y el ángulo entre ellas, y recién después mostrá la fórmula como la manera de calcular ese ángulo. Los tres valores del pie venían del deck original sin fuente y quedaron marcados como ilustrativos: no los presentes como medidos, porque dependen por completo del modelo de embeddings. La lámina que sigue explica por qué en producción no se calcula el coseno contra todos los vectores. Valores de referencia que se pueden decir de palabra si ayudan: \"timeout\" contra \"latencia\" ronda 0,91, contra \"reintento\" 0,76, contra \"factura\" 0,12. Decilos como ilustrativos, porque dependen por completo del modelo de embeddings.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s3-3-1-similitud-coseno.svg",
+        "alt": "La similitud como ángulo entre vectores, independiente del largo del texto"
+      },
+      "cards": [
+        {
+          "label": "Invariante al largo del texto",
+          "body": "Sin esa propiedad, los fragmentos largos ganarían siempre."
+        },
+        {
+          "label": "Alternativas",
+          "body": "La distancia euclidiana es sensible a la magnitud. El producto punto es más rápido y se usa a escala."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Vectorial e híbrida",
+      "title": "HNSW: no comparar contra todos",
+      "lead": "**HNSW (*Hierarchical Navigable Small World*) es una estructura de índice que encuentra vecinos cercanos sin recorrer todos los vectores. Calcular el coseno contra cada vector del corpus es O(n), y con diez millones de fragmentos eso no entra en el presupuesto de latencia de una consulta.**",
+      "notes": "Lámina nueva. El deck original nombraba HNSW e IVF una sola vez, en un pie de página, y nunca los expandía. La analogía que funciona con esta audiencia es la skip list, y está en la fuente: capas ralas arriba para moverse rápido, capa completa abajo para afinar. Advertencia sobre lo que no se puede citar contra esta fuente: el registro del corpus es solo el abstract, así que nada de tunear M, efConstruction o ef, y nada sobre consumo de memoria o costo de borrado, por más que en producción sean los tres problemas reales de HNSW. El mecanismo fino, por si preguntan: la separación de escalas es lo que da el rendimiento, porque los enlaces quedan separados por su distancia característica y empezar por la capa de arriba permite escalado logarítmico.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s3-4-1-hnsw-capas.svg",
+        "alt": "Capas de HNSW: capas ralas para acercarse rápido y capa densa para afinar"
+      },
+      "facts": [
+        {
+          "label": "La capa de cada elemento se sortea.",
+          "body": "Con una distribución exponencial decreciente, igual que en una skip list. De ahí sale la jerarquía."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Aproximado quiere decir que el vecino más cercano real puede quedar afuera. En un buscador de documentación es aceptable; conviene saber que el intercambio existe y que se regula con parámetros del índice.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Vectorial e híbrida",
+      "title": "Gana un documento sin palabras en común",
+      "lead": "**Consulta: `\"¿por qué se cuelga la API a veces?\"` → se convierte en embedding → se buscan los vectores más cercanos**",
+      "notes": "La consulta no comparte ninguna palabra con Doc1: no dice \"servicio\", ni \"devuelve\", ni \"timeout\", ni \"intermitente\". En el deck original el ejemplo se contradecía, porque el pie afirmaba que la consulta no contenía el término que sí contenía; acá el argumento se sostiene. Los tres valores de coseno son ilustrativos, igual que los de la lámina anterior. El contraste con la lámina 2.7 es lo que hay que mostrar: mismo corpus, misma intención, dos mecanismos y dos resultados.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "Documento",
+            "cells": [
+              "Doc 1",
+              "Doc 3",
+              "Doc 2"
+            ]
+          },
+          {
+            "header": "Contenido",
+            "cells": [
+              "\"el servicio devuelve timeout intermitente\"",
+              "\"el servicio y el cliente reintentan solos\"",
+              "\"el cliente devuelve error de conexion\""
+            ]
+          },
+          {
+            "header": "Coseno",
+            "cells": [
+              "**0,91**",
+              "0,43",
+              "0,21"
+            ]
+          },
+          {
+            "header": "Al LLM",
+            "cells": [
+              "✅ sí, alta similitud",
+              "❌ nombra el servicio pero no la falla",
+              "❌ describe una falla distinta"
+            ]
+          }
+        ]
+      },
+      "facts": [
+        {
+          "label": "Embedding de la consulta",
+          "body": "El mismo modelo que indexó los fragmentos convierte la consulta en un vector."
+        },
+        {
+          "label": "Búsqueda aproximada",
+          "body": "El índice HNSW devuelve los K vectores más cercanos sin recorrer todo el corpus."
+        },
+        {
+          "label": "Ranking y entrega",
+          "body": "Se ordena por similitud descendente y los primeros van al prompt."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Doc 1 gana sin compartir ni una palabra con la consulta: no dice \"cuelga\", ni \"API\", ni \"veces\". Un índice léxico le habría dado score cero.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=True",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Vectorial e híbrida",
+      "title": "Demo: búsqueda semántica en vivo",
+      "lead": "**El mismo corpus, indexado como vectores y consultado en lenguaje natural.**",
+      "notes": "Tercera parada práctica. Lo que conviene mostrar es una consulta que el índice léxico no resolvería, para que el contraste con la demo de la lámina 2.8 quede a la vista.",
+      "template": "single-point",
+      "point": "[aitutorial.dev/rag/fundamentals](https://aitutorial.dev/rag/fundamentals)",
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "single-point",
+          "concept-breakdown"
+        ],
+        "picked": "single-point",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Vectorial e híbrida",
+      "title": "Cuándo conviene cada estrategia",
+      "notes": "Lámina de decisión, y la única de la sección que se puede aplicar el lunes. El deck original traía acá \"85-92% relevancia\", \"100-500ms\", \"~$0.0001/query\" y \"~$0.002-0.015/query\": cuatro cifras que un alumno usaría para justificar una decisión de arquitectura y que no tienen de dónde agarrarse. Están retiradas y anotadas en las preguntas abiertas. Si te piden números, la respuesta honesta es que se miden en el corpus propio, porque dependen del tamaño del índice, del modelo de embeddings y del proveedor.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Léxica (BM25)",
+          "body": "Rápida, exacta en términos literales y sin GPU. No reconoce sinónimos ni paráfrasis. Conviene cuando lo que se busca es un identificador: código de error, SKU, nombre de función, número de versión."
+        },
+        {
+          "label": "Semántica (embeddings)",
+          "body": "Reconoce sinónimos, paráfrasis y otros idiomas. Más lenta y con costo de inferencia. Conviene para preguntas en lenguaje natural sobre documentación, FAQs y mesa de ayuda."
+        },
+        {
+          "label": "Híbrida (las dos, fusionadas con RRF)",
+          "body": "Mejor cobertura que cualquiera de las dos sola. Más piezas que mantener y pesos que ajustar. Es el estándar de producción, y la fusión es el tema de la sección 4."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Los números de relevancia, latencia y costo por consulta que circulan para estas tres estrategias dependen del tamaño del índice, del modelo de embeddings y del proveedor. Se miden sobre el corpus propio, con las consultas reales.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Vectorial e híbrida",
+      "title": "El flujo completo en producción",
+      "lead": "**Las dos búsquedas corren en paralelo, se funden en un solo ranking y recién ahí interviene el modelo caro.**",
+      "notes": "Lámina bisagra: cierra la sección 3 y abre la 4. El deck original la resolvía con cinco viñetas sueltas y un icono. Recorré el diagrama de arriba abajo una vez, sin detenerte en RRF ni en el cross-encoder, y anunciá que las dos cajas del medio son la sección siguiente entera. La frase del pie es la que justifica el orden y conviene decirla con los dos números: cien mil documentos contra cien.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s3-8-1-flujo-produccion.svg",
+        "alt": "Pipeline de producción que se abre en dos recuperadores, fusiona y cierra con el reranker"
+      },
+      "facts": [
+        {
+          "label": "Lo barato filtra, lo caro ordena.",
+          "body": "BM25 y la búsqueda vectorial procesan cien mil documentos en milisegundos; el cross-encoder maneja alrededor de cien. Por eso van en ese orden."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Vectorial e híbrida",
+      "title": "Con 1M de tokens, ¿para qué recuperar?",
+      "lead": "**Es la objeción que corresponde hacer después de la clase de prompting. Tiene tres respuestas y ninguna depende del largo de la ventana.**",
+      "notes": "Esta lámina existe porque la clase de prompting ya mostró ventanas de uno a diez millones de tokens, y la pregunta va a salir. La respuesta que más aguanta es la segunda, porque no es una limitación de capacidad sino de rendimiento: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. El deck original resolvía esta lámina con tres tarjetas sobre el límite de tokens y una mención a corpus biomédicos; acá es una objeción respondida.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s3-9-1-ventana-vs-corpus.svg",
+        "alt": "Desproporción entre el corpus y la ventana de contexto, y las razones que sobreviven"
+      },
+      "facts": [
+        {
+          "label": "Seleccionar los pasajes relevantes es en sí mismo un problema no trivial.",
+          "body": "Esa selección es lo que hace un sistema RAG, y no desaparece porque la ventana crezca."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Reranking y precisión",
+      "title": "Reranking y precisión",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real del recorrido"
+        }
+      }
+    },
+    {
+      "section": "Reranking y precisión",
+      "title": "Recuperar y ordenar son dos trabajos",
+      "lead": "**Los recuperadores rápidos encuentran candidatos y los ordenan mal. Los cross-encoders ordenan muy bien y no escalan. Por eso el pipeline los pone en serie.**",
+      "notes": "Apertura de la sección. Lo que hay que dejar instalado son las dos métricas: recall arriba, precisión abajo. Es la distinción que después ordena todo, incluida la evaluación de la sección 6. Si alguien pregunta por qué no se usa el cross-encoder desde el principio, la respuesta está en el diagrama: requiere una inferencia completa por documento, y cien mil inferencias por consulta no cierran ni en latencia ni en costo.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s4-1-1-embudo-dos-etapas.svg",
+        "alt": "Embudo de dos etapas: recall arriba, precisión abajo, de cien mil a cinco documentos"
+      },
+      "cards": [
+        {
+          "label": "Etapa 1, recall",
+          "body": "El objetivo es no dejar afuera ningún documento relevante. Se aceptan falsos positivos: el ruido se filtra después."
+        },
+        {
+          "label": "Etapa 2, precisión",
+          "body": "El objetivo es quedarse solo con los mejores. Se aceptan falsos negativos: lo que entra al prompt tiene que ser bueno."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Reranking y precisión",
+      "title": "Tres síntomas de que falta una etapa",
+      "lead": "**Antes de agregar una etapa conviene saber si el sistema la pide. Estos son los tres síntomas que la piden.**",
+      "notes": "Lámina nueva. El bloque de reranking del deck original tenía cuatro láminas, dos de ellas sin título, y saltaba de la definición de reranking al pipeline completo sin decir nunca cuándo hace falta. Esta lámina responde la pregunta de ingeniería que la sección se salteaba. El tercer síntoma es el que aplica a más gente en esta audiencia: si ya tienen dos buscadores, la fusión es el paso que falta y es la lámina siguiente.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Respuestas inconsistentes",
+          "body": "El mismo sistema contesta bien una consulta y mal la siguiente, sin un patrón claro. Señal de que el problema está en el orden de los candidatos."
+        },
+        {
+          "label": "El documento correcto existe y no aparece arriba",
+          "body": "Alguien lo encuentra a mano en el corpus y el recuperador lo deja fuera del top-k. El documento está indexado; lo que falla es el orden."
+        },
+        {
+          "label": "Ya conviven búsqueda léxica y semántica",
+          "body": "Dos rankings sin una regla de fusión terminan en heurísticas frágiles del tipo \"primero los de BM25 y después los otros\"."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "La calidad final es una cadena: cada etapa depende de todas las anteriores. Un reranking impecable sobre candidatos malos sigue devolviendo documentos malos.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Reranking y precisión",
+      "title": "RRF fusiona sumando posiciones",
+      "lead": "**BM25 puntúa de cero a infinito y el coseno de menos uno a uno. Los scores no son comparables. Las posiciones sí.**",
+      "notes": "La tabla de RRF del deck original tenía un error de cuenta: daba 0,028 para Doc C cuando 1/62 + 1/68 da 0,0308. Era la única tabla del deck donde se podía verificar la fórmula recién enseñada y no cerraba; está corregida y los tres valores se pueden rehacer en el pizarrón. Sobre k = 60: es la cifra que más se repite sin contexto en las charlas de RAG, y acá se puede decir algo mejor que \"es el default\", porque la fuente dice de dónde salió y que casi no importa. La advertencia final es honestidad de fuente y conviene decirla: el paper es de 2009 y fusiona corridas de TREC, no BM25 con embeddings. Dos datos de color sobre RRF que valen si hay tiempo: nació como línea de base, porque Cormack y otros lo diseñaron como control para comparar contra métodos de learning-to-rank y terminó ganándoles; y la ventaja medida es de entre un 4 % y un 5 % en promedio sobre Condorcet y CombMNZ, salvo CombMNZ en LETOR 3, donde pierde por un margen no significativo. Sobre k = 60: salió de un experimento piloto de 2009 sobre tópicos de TREC, y su único rol declarado es amortiguar el efecto de que un sistema atípico ponga algo muy arriba.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s4-3-1-rrf-fusion-posiciones.svg",
+        "alt": "RRF fusionando dos rankings por posición y premiando el acuerdo entre ellos"
+      },
+      "facts": [
+        {
+          "label": "`k = 60` es empírico y no es crítico.",
+          "body": "Los autores lo reportan como cercano al óptimo y no crítico: cualquier valor entre 10 y 100 rinde casi igual."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "El paper nunca evaluó RRF sobre búsqueda híbrida léxica más vectorial. Usarlo así es una extrapolación razonable, apoyada en que ignora los scores, pero la ganancia del 4 % al 5 % no está validada en ese régimen.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Reranking y precisión",
+      "title": "El cross-encoder lee los dos juntos",
+      "lead": "**Un bi-encoder codifica cada texto por separado y compara vectores. Un cross-encoder los concatena y deja que la atención cruce cada token de la consulta con cada token del documento.**",
+      "notes": "Esta es la lámina que explica el porqué de toda la sección, y el diagrama hace casi todo el trabajo. El ejemplo de \"banco\" es el que mejor funciona: el bi-encoder produce un vector de la palabra que no depende de la consulta, así que la desambiguación tiene que ocurrir en algún otro lado, y el cross-encoder es ese otro lado. Si alguien pregunta si un LLM puede hacer de reranker, la respuesta es que sí y se hace, con la misma cuenta de costo: una llamada por candidato.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s4-4-1-bi-encoder-cross-encoder.svg",
+        "alt": "Bi-encoder y cross-encoder: quién ve a quién en cada arquitectura"
+      },
+      "cards": [
+        {
+          "label": "Precisión",
+          "body": "Distingue matices que el coseno entre vectores separados no puede ver: negaciones, ambigüedad léxica y dependencia del contexto."
+        },
+        {
+          "label": "Costo",
+          "body": "Requiere una inferencia completa por cada par (consulta, documento). Con cien mil documentos es inviable, y por eso corre solo sobre los candidatos de la etapa 1."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Modelos usados hoy: Cohere Rerank, BGE-Reranker, ms-marco-MiniLM.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Reranking y precisión",
+      "title": "Ajustes de producción",
+      "notes": "Lámina corta y práctica. Las cuatro recomendaciones venían como un pie de página del deck original y merecen lámina propia porque son las que se aplican al armar el sistema. La cuarta es la que conecta con la sección 6: sin medición, cualquier ajuste de los otros tres es una opinión.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Pool de candidatos: 20 a 100 documentos",
+          "body": "Menos deja relevantes afuera; más multiplica el costo del reranking sin mejorar el resultado final."
+        },
+        {
+          "label": "Top-k final: 3 a 5 documentos",
+          "body": "Es lo que entra al prompt. Más contexto recuperado diluye la señal y sube el costo por consulta."
+        },
+        {
+          "label": "Las dos búsquedas en paralelo",
+          "body": "BM25 y la vectorial no dependen una de otra. Correrlas en serie duplica la latencia sin ganar nada."
+        },
+        {
+          "label": "Loguear latencia y costo por consulta",
+          "body": "Las dos métricas se degradan por separado y por motivos distintos: la latencia por el reranking, el costo por el tamaño del contexto."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Reranking y precisión",
+      "title": "Demo: reranking en vivo",
+      "lead": "**Los mismos candidatos, antes y después del cross-encoder.**",
+      "notes": "Cierre de la sección. Lo que conviene mostrar es el reordenamiento: el mismo conjunto de candidatos con dos órdenes distintos, y un documento que sube varios puestos. En el deck original esta lámina estaba etiquetada como parte de la sección de MCP por un error de plantilla.",
+      "template": "single-point",
+      "point": "[aitutorial.dev/rag/reranking](https://aitutorial.dev/rag/reranking)",
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "single-point",
+          "concept-breakdown"
+        ],
+        "picked": "single-point",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Chunking y metadatos",
+      "title": "Chunking y metadatos",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real del recorrido"
+        }
+      }
+    },
+    {
+      "section": "Chunking y metadatos",
+      "title": "El corte decide qué se recupera junto",
+      "lead": "**El fragmento es la unidad de recuperación. Un argumento partido al medio se recupera sin la mitad que lo explica.**",
+      "notes": "El deck original mezclaba en una sola tabla las tres estrategias con una cuarta fila (\"con metadatos\") que no es una estrategia de corte sino lo que se guarda al lado; esa fila pasó a la lámina 5.3. Para esta audiencia la tercera es la que más rinde: la documentación técnica ya viene con estructura, y usar los encabezados como límite sale gratis. El ejemplo que funciona es un archivo de referencia de API donde cada endpoint es una sección: cortar por encabezado da un fragmento por endpoint.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s5-1-1-estrategias-corte.svg",
+        "alt": "Tres estrategias de corte sobre el mismo documento y dónde cae cada límite"
+      },
+      "cards": [
+        {
+          "label": "Largo fijo",
+          "body": "Corta por cantidad de tokens. Simple y predecible, y corta frases por la mitad."
+        },
+        {
+          "label": "Semántico",
+          "body": "Respeta límites de párrafo y de sección. Mejor coherencia, largo variable."
+        },
+        {
+          "label": "Por estructura",
+          "body": "Usa la jerarquía del documento: encabezados, secciones, funciones. Es la que mejor funciona con documentación técnica, especificaciones de API y código."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Chunking y metadatos",
+      "title": "Tamaño del fragmento y solapamiento",
+      "lead": "**Fragmentos chicos recuperan con precisión y pierden contexto. Fragmentos grandes conservan contexto y diluyen lo que había que encontrar. El solapamiento compra un poco de las dos cosas.**",
+      "notes": "Lámina nueva, y es la que evita que la sección quede en dos láminas. El punto de ingeniería es que no hay un número correcto: la elección depende del corpus y del tipo de consulta, y se mide con el mismo eval set que la sección 6. Los rangos de la advertencia salían del deck original sin fuente y quedan marcados como orientativos; están registrados en las preguntas abiertas.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s5-2-1-solapamiento-fragmentos.svg",
+        "alt": "Una idea que cruza el límite de corte, con y sin solapamiento entre fragmentos"
+      },
+      "highlights": [
+        {
+          "body": "Los rangos de tamaño que circulan (800 a 1000 caracteres para prosa, 600 a 800 para documentación técnica) son orientativos y no vienen de una medición del corpus de esta clase. El tamaño correcto se mide sobre el corpus propio, con las consultas reales.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=0",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Chunking y metadatos",
+      "title": "Los metadatos filtran antes de buscar",
+      "lead": "**Un fragmento sin metadatos solo se puede buscar por su contenido. Con metadatos se puede filtrar antes de buscar, que es más barato y más preciso.**",
+      "notes": "La tabla de tamaños recomendados por tipo de documento del deck original llegaba partida en dos por el aplanado de SmartArt y sin fuente; su contenido se recontextualizó como rango orientativo en la lámina 5.2. Lo que queda acá son los metadatos, que es lo que de verdad se decide al diseñar el índice. El timestamp y el identificador de fuente son los dos que después habilitan todo lo demás: sin identificador no hay cita, y sin timestamp no hay forma de saber si un fragmento quedó viejo. El punto operativo: el filtrado por metadatos corre antes de la búsqueda vectorial y reduce el espacio de candidatos. Una consulta sobre la versión 3 de un servicio no tiene por qué mirar los fragmentos de la versión 1.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s5-3-1-filtro-metadatos.svg",
+        "alt": "El fragmento indexado como sobre de metadatos y texto, y el filtro barato previo a la búsqueda"
+      },
+      "cards": [
+        {
+          "label": "Siempre",
+          "body": "Identificador de la fuente, timestamp y posición dentro del documento: hacen falta para reindexar, citar y reconstruir el orden."
+        },
+        {
+          "label": "Según el caso",
+          "body": "Autor o equipo, tipo y versión, jerarquía de sección, idioma, score de calidad."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Evaluación y seguridad",
+      "title": "Evaluación y seguridad",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real del recorrido"
+        }
+      }
+    },
+    {
+      "section": "Evaluación y seguridad",
+      "title": "Evaluar las dos etapas por separado",
+      "lead": "**Un sistema RAG tiene dos formas de fallar y una sola respuesta visible. Medirlas juntas no dice cuál de las dos se rompió.**",
+      "notes": "El deck original abría esta lámina afirmando que el 70 % de los fallos de RAG vienen de la recuperación. Era la cifra más fuerte de todo el bloque, justificaba el énfasis en retrieval y reranking, y llegaba sin cita, sin fecha y sin definición de qué contaba como fallo. Se retiró y quedó registrada en las preguntas abiertas. El argumento sobrevive sin ella y es más honesto: la calidad es una cadena, así que medir por etapa es la única forma de saber dónde intervenir. Si te preguntan por herramientas, RAGAS y TruLens son las que más se usan, pero no están en el corpus de la clase.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s6-1-1-metricas-por-etapa.svg",
+        "alt": "Tres métricas midiendo tres puntos distintos del pipeline de RAG"
+      },
+      "cards": [
+        {
+          "label": "Context Relevance",
+          "body": "¿El recuperador trajo los documentos correctos? Mide la etapa 1 del pipeline, y es independiente de lo que el modelo haga después."
+        },
+        {
+          "label": "Answer Faithfulness",
+          "body": "¿La respuesta está sostenida por el contexto recuperado? Mide si el modelo se limitó a los documentos o agregó cosas de sus pesos."
+        },
+        {
+          "label": "Answer Relevance",
+          "body": "¿La respuesta contesta lo que se preguntó? Un texto fiel al contexto y ajeno a la pregunta falla igual."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Nadie optimiza la métrica de punta a punta: el recuperador y el generador se ajustan por separado, y mejorar uno no siempre mejora el resultado final.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Evaluación y seguridad",
+      "title": "Riesgos de seguridad propios de RAG",
+      "lead": "**RAG agrega dos superficies de ataque que un modelo suelto no tiene: un índice con datos internos y un canal por el que entra texto de terceros al prompt.**",
+      "notes": "Los ejemplos del deck original eran historiales clínicos y datos genómicos; acá son credenciales, datos de clientes y código propietario. El punto que hay que remarcar es el primero: los permisos tienen que aplicarse en la recuperación, no en la presentación. Filtrar la respuesta después de generarla llega tarde, porque el fragmento ya estuvo en el prompt y ya influyó en lo que el modelo dijo.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Acceso no autorizado",
+          "body": "El recuperador ve todo el índice. Si los permisos no se aplican en la recuperación, un usuario recibe fragmentos de documentos que no tendría que poder leer: credenciales, datos de clientes, código propietario."
+        },
+        {
+          "label": "Inyección indirecta de prompts",
+          "body": "Un atacante escribe instrucciones en un documento que el sistema va a indexar. La lámina siguiente lo desarrolla."
+        },
+        {
+          "label": "Falta de controles",
+          "body": "Sin política de acceso, auditoría de consultas y validación de entradas y salidas, los dos riesgos anteriores no se detectan hasta que alguien los reporta."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Evaluación y seguridad",
+      "title": "El atacante nunca le habla al modelo",
+      "lead": "**Escribe en un documento que el sistema va a recuperar más tarde. Para el modelo, el fragmento recuperado y la instrucción del sistema son el mismo texto.**",
+      "notes": "Lámina nueva y la más importante de la sección. El deck original nombraba prompt injection al pasar, dentro de una tarjeta sobre explotación de vulnerabilidades, y no explicaba el mecanismo. Recorré los cuatro pasos del diagrama despacio: lo que sorprende a la audiencia es la separación temporal entre el paso 1 y el paso 3, que pueden estar a meses de distancia. La advertencia hay que decirla tal cual: no hay defensa de prompt que funcione, y quien venda una está vendiendo humo. Esto se retoma del lado de MCP en la lámina 8.6, porque un servidor MCP que trae contenido externo abre exactamente la misma puerta.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s6-3-1-inyeccion-indirecta.svg",
+        "alt": "Cadena de inyección indirecta: la escritura maliciosa entra por el corpus y se dispara en una consulta legítima"
+      },
+      "facts": [
+        {
+          "label": "Lo que sí reduce el riesgo",
+          "body": "Restringir qué fuentes entran al índice, aplicar permisos en la recuperación, y tratar todo fragmento recuperado como entrada no confiable a la hora de decidir qué acciones puede disparar la respuesta."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Ninguna estrategia de prompt ni de delimitadores previene de forma confiable la inyección indirecta. Es la afirmación más honesta del material de esta clase, y viene de la documentación de LangChain, que es quien implementa el patrón.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Evaluación y seguridad",
+      "title": "Cómo se filtra un documento restringido",
+      "lead": "**Supongamos un chatbot interno con RAG que no valida los permisos del usuario en el momento de recuperar. Así se filtra un documento restringido.**",
+      "notes": "Escenario corto que aterriza la lámina 6.2. Decilo como hipótesis, no como caso: no hay empresa, fecha ni fuente detrás, y el deck cierra pidiendo verificar las cifras antes de repetirlas. Caso corto que aterriza la lámina 6.2. La tercera tarjeta es la que hay que dejar: el filtro tiene que estar aguas arriba. Una pregunta útil para tirar acá: si el índice es uno solo y hay cinco niveles de permiso, ¿se filtra en la consulta o se mantienen cinco índices? Las dos respuestas se usan, y la elección depende de cuántos niveles haya y de cuánto cambien.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Dónde falla",
+          "body": "El sistema de permisos se aplica en la capa de presentación y no en la de recuperación. Documentos marcados como restringidos entraron igual al contexto."
+        },
+        {
+          "label": "Qué se rompe",
+          "body": "Información sensible expuesta a usuarios no autorizados, con implicancias legales y regulatorias."
+        },
+        {
+          "label": "Cómo se evita",
+          "body": "Filtrar en la recuperación. Un documento que llegó al prompt ya influyó en la salida, aunque no aparezca citado."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Evaluación y seguridad",
+      "title": "Buenas prácticas para mitigar riesgos",
+      "notes": "Cuatro prácticas, y el pie es lo que evita que la lámina suene a checklist tranquilizador. Después de la lámina 6.3 nadie debería salir creyendo que estas cuatro cierran el problema; lo que hacen es reducir la superficie y acortar el tiempo de detección. La cuarta es la que más aplica cuando la salida del modelo alimenta una herramienta, que es el tema de la segunda mitad de la clase.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Control de acceso granular",
+          "body": "Permisos a nivel de documento y de usuario, aplicados en la recuperación y no en la presentación."
+        },
+        {
+          "label": "Encriptación y anonimización",
+          "body": "Cifrado en reposo y en tránsito, y anonimización de datos personales antes de indexar."
+        },
+        {
+          "label": "Monitoreo continuo",
+          "body": "Auditoría de consultas y accesos en tiempo real, con pruebas de penetración periódicas."
+        },
+        {
+          "label": "Validación de salidas",
+          "body": "Revisar la respuesta generada antes de entregarla, sobre todo cuando la respuesta puede disparar una acción."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Ninguna de las cuatro previene la inyección indirecta por sí sola. Lo que hacen es acotar el daño cuando ocurre.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Evaluación y seguridad",
+      "title": "Resumen de RAG",
+      "notes": "Cierre de la mitad de RAG. Las cuatro viñetas siguen el orden qué, cómo, dónde falla, cómo se mide, y la tercera es la que más sorprende: el instinto es culpar al modelo, y casi siempre el problema está aguas arriba. Después de esta lámina viene el corte y arranca MCP, así que conviene anunciar el cambio de tema con la frase de la agenda: hasta acá el contexto que el modelo no tiene, de acá en adelante las acciones que no puede ejecutar.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Qué resuelve",
+          "body": "El modelo no tiene en sus pesos ni tu documentación ni lo que pasó ayer. RAG le acerca esos fragmentos en el prompt, sin reentrenar."
+        },
+        {
+          "label": "Cómo lo resuelve",
+          "body": "Índice léxico y vectorial en paralelo, fusión de rankings y reranking, para que lleguen pocos documentos y buenos."
+        },
+        {
+          "label": "Dónde se rompe",
+          "body": "En el corpus (calidad y permisos) y en el corte (chunking). Casi nunca en el modelo."
+        },
+        {
+          "label": "Cómo se sabe si anda",
+          "body": "Midiendo recuperación y generación por separado, con un conjunto de evaluación propio."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Se usa en cualquier dominio con información que cambia y que hay que citar: documentación de producto, soporte técnico, legal, finanzas.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "El protocolo",
+      "title": "El protocolo",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real del recorrido"
+        }
+      }
+    },
+    {
+      "section": "El protocolo",
+      "title": "MCP conecta modelos con herramientas",
+      "lead": "**Model Context Protocol define cómo una aplicación de IA le pide datos y acciones a un sistema externo, con un único formato de mensajes en lugar de un conector por integración.**",
+      "notes": "El deck original abría MCP con un párrafo de siete líneas que anunciaba lo que se iba a ver. Acá hay tres definiciones y ninguna promesa. La tercera es la que importa para el resto de la clase: la unidad de MCP es la herramienta, y el modelo la elige leyendo su descripción. Toda la sección 9 se apoya en eso. Un apunte de precisión histórica que sirve como color: el anuncio original de Anthropic, en noviembre de 2024, no usa la palabra \"tool\" ni una sola vez. Hablaba de fuentes de datos. La centralidad de las herramientas es posterior al lanzamiento.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Servidor MCP",
+          "body": "Proceso que expone capacidades (herramientas, recursos y prompts) siguiendo el protocolo. Lo escribe quien tiene los datos o el sistema."
+        },
+        {
+          "label": "Cliente MCP",
+          "body": "La aplicación de IA que se conecta a uno o varios servidores y descubre en tiempo de ejecución qué puede hacer cada uno. Claude Desktop, Claude Code, Cursor y cualquier agente propio."
+        },
+        {
+          "label": "Herramienta",
+          "body": "La unidad que un servidor expone: un nombre, una descripción en lenguaje natural y un esquema de parámetros. El modelo elige cuál llamar leyendo la descripción."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Cliente y servidor son roles, no procesos. Una misma implementación puede cumplir los dos al mismo tiempo.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "El protocolo",
+      "title": "Cada integración era un conector",
+      "notes": "Tres tarjetas y la cita del anuncio al pie. Vale la pena marcar que el diagnóstico de Anthropic es sobre aislamiento y no sobre capacidad: el modelo no es tonto, está desconectado. La lámina siguiente pone números a por qué eso no escalaba.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Conocimiento estático",
+          "body": "El modelo opera con lo que quedó en sus pesos durante el entrenamiento. No consulta un sistema de producción ni ejecuta nada."
+        },
+        {
+          "label": "Conectores propietarios",
+          "body": "Antes de MCP, cada par (aplicación, fuente de datos) necesitaba su propia integración, con su formato, su autenticación y su mantenimiento."
+        },
+        {
+          "label": "Silos de información",
+          "body": "Sin un formato común, cada equipo reimplementaba el mismo conector a Slack, a GitHub o a Postgres, y ninguno servía fuera de su aplicación."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "El diagnóstico del anuncio original: \"even the most sophisticated models are constrained by their isolation from data — trapped behind information silos and legacy systems\".",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "El protocolo",
+      "title": "M×N conectores, o M+N piezas",
+      "lead": "**Con M aplicaciones y N fuentes, sin protocolo hacen falta M×N integraciones. Con un protocolo, cada lado implementa una vez.**",
+      "notes": "Lámina nueva, con el diagrama que faltaba. Nota de honestidad de fuente para vos, que no va en la lámina: el argumento M×N frente a M+N es correcto y es el argumento estándar, pero el anuncio de Anthropic nunca lo enuncia así. Dice que las integraciones a medida son difíciles de escalar y no da la cuenta. O sea que lo presentamos como razonamiento de la clase, que es lo que es. Si alguien pregunta por qué no alcanzaba con una librería compartida en vez de un protocolo, la respuesta está en la lámina 7.5.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s7-3-1-malla-vs-estrella.svg",
+        "alt": "Malla de conectores que crece con el producto frente a la estrella que crece con la suma"
+      },
+      "facts": [
+        {
+          "label": "El costo está en el mantenimiento.",
+          "body": "Nueve integraciones son nueve superficies de autenticación, nueve manejos de error y nueve cosas que se rompen cuando cambia una API."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "El protocolo",
+      "title": "Noviembre de 2024: MCP se publica",
+      "lead": "**Se lanzó con tres piezas el primer día: la especificación con sus SDKs, soporte de servidores locales en Claude Desktop, y un repositorio abierto de servidores de ejemplo.**",
+      "notes": "El deck original ponía la analogía del USB-C como si fuera de Anthropic. No lo es: viene de los directorios de la comunidad, y el pie de la lámina lo aclara. La analogía sirve igual, pero atribuirla bien cuesta cero. Dos advertencias temporales: el anuncio es de noviembre de 2024 y esta clase es de septiembre de 2026, así que todo lo que el anuncio da por futuro (servidores remotos en producción) ya es presente. Y no cites este anuncio para nada técnico: no tiene un solo ejemplo de mensaje, ni un nombre de método, ni una mención del transporte.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Servidores pre-construidos del día uno",
+          "body": "Google Drive, Slack, GitHub, Git, Postgres y Puppeteer."
+        },
+        {
+          "label": "Primeros adoptantes",
+          "body": "Block y Apollo lo integraron en sus sistemas; Zed, Replit, Codeium y Sourcegraph trabajaron sobre el protocolo desde el lanzamiento."
+        },
+        {
+          "label": "La visión declarada",
+          "body": "Que los sistemas de IA mantengan contexto al moverse entre herramientas y conjuntos de datos distintos, en lugar de reconstruirlo en cada integración."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "La analogía \"USB-C para IA\" circula en los directorios de la comunidad, no en el anuncio de Anthropic, que nunca la usa.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "El protocolo",
+      "title": "Por qué no alcanza HTTP ni GraphQL",
+      "notes": "La advertencia del pie corrige una contradicción del deck original, que vendía MCP por sus \"sesiones persistentes con estado compartido\" en una lámina y dos después describía el protocolo como \"sin estado\". Las dos afirmaciones eran ciertas en niveles distintos y el deck nunca hacía la distinción. Hacela vos acá, que además prepara la lámina 8.1. Aviso de alcance: la especificación oficial de MCP no está en el corpus de la clase, así que todo lo normativo que digas sobre el protocolo apoyate en `modelcontextprotocol.io` y decilo como tal.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "HTTP resuelve el transporte, no la interfaz",
+          "body": "Cada servicio expone su propia forma. No hay negociación de capacidades entre cliente y servidor, ni una manera estándar de que el cliente pregunte \"¿qué sabés hacer?\"."
+        },
+        {
+          "label": "GraphQL resuelve la consulta de datos, no la ejecución de acciones",
+          "body": "Está pensado para traer datos con la forma que el cliente pide. No estandariza invocar operaciones ni orquestar varias fuentes en un mismo flujo."
+        },
+        {
+          "label": "Lo que agrega MCP",
+          "body": "Descubrimiento de capacidades en tiempo de conexión (`tools/list`), una sesión con estado entre cliente y servidor, y un formato común para describir herramientas de modo que un modelo pueda elegirlas."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "MCP tiene sesión con estado; su capa de mensajes, JSON-RPC, es sin estado. Son dos niveles distintos: JSON-RPC define cómo se ve un mensaje, MCP define qué se acuerda al conectarse y qué se recuerda mientras dure la conexión.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Arquitectura y uso",
+      "title": "Arquitectura y uso",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real del recorrido"
+        }
+      }
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "JSON-RPC 2.0: la capa de mensajes de MCP",
+      "lead": "**MCP no inventó un formato de mensajes. Usa JSON-RPC 2.0, que es liviano, agnóstico del transporte y lo bastante viejo como para estar implementado en todos lados.**",
+      "notes": "El ejemplo del deck original mostraba una respuesta que no era JSON-RPC: devolvía `{ \"temperature\": 22, \"condition\": \"soleado\" }` sin `jsonrpc`, sin `result` y sin `id`. Material de clase que no cumplía el protocolo que enseñaba. El diagrama está corregido y las tres claves obligatorias se ven en cada respuesta. La notificación del final es la que conviene explicar bien, porque es la que permite que el servidor le hable al cliente sin que nadie haya preguntado, y es lo que el anuncio original llamaba \"two-way connections\" sin explicarlo nunca.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s8-1-1-json-rpc-mensajes.svg",
+        "alt": "Intercambio de mensajes JSON-RPC de MCP, con el id como mecanismo de correlación"
+      },
+      "cards": [
+        {
+          "label": "`result` y `error` son mutuamente excluyentes.",
+          "body": "Una respuesta lleva uno de los dos, nunca los dos ni ninguno."
+        },
+        {
+          "label": "Agnóstico del transporte.",
+          "body": "Los mismos mensajes viajan sobre stdio, sobre HTTP en streaming o sobre SSE. La especificación no privilegia ninguno."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "El servidor separa herramienta y agente",
+      "notes": "Corrección importante respecto del deck original, que afirmaba que MCP es \"JSON-RPC estandarizado sobre HTTP\" y que el servidor corre \"en localhost\". Lo primero es incorrecto para el caso más común y lo segundo confunde subproceso con servicio de red. La configuración que van a ver en la lámina 8.6, con `command` y `args` y `npx`, es stdio: no hay ningún puerto. Vale la pena decirlo porque es el error mental que después les hace buscar un puerto que no existe cuando algo falla.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "Herramienta hardcodeada",
+            "cells": [
+              "La lógica vive dentro del código del agente.",
+              "El agente conoce sus herramientas en tiempo de compilación.",
+              "Reutilizarla en otro agente significa copiar el código.",
+              "Cambiar la herramienta obliga a redesplegar el agente.",
+              "El formato de invocación lo define el framework."
+            ]
+          },
+          {
+            "header": "Servidor MCP",
+            "cells": [
+              "La herramienta corre como un proceso aparte.",
+              "El agente descubre las herramientas en tiempo de ejecución, con `tools/list`.",
+              "Cualquier cliente que hable MCP se conecta al mismo servidor.",
+              "Cambiar la herramienta obliga a reiniciar el servidor.",
+              "El formato es JSON-RPC, común a todos los servidores."
+            ]
+          }
+        ]
+      },
+      "highlights": [
+        {
+          "body": "MCP separa las herramientas de los agentes: un mismo servidor lo usan Claude, Cursor o un agente propio, sin que ninguno sepa de los otros.",
+          "kind": "example",
+          "position": "bottom"
+        },
+        {
+          "body": "Lo que decide el transporte es quién arranca el proceso. Con **stdio** lo lanza el cliente como subproceso y hablan por entrada y salida estándar, sin red: es el caso más común para una herramienta local. Con **HTTP en streaming** o **SSE** el servidor ya está corriendo y escuchando en una URL, que puede ser remota o tu propia máquina en desarrollo.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=0",
+          "has_table=True",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      },
+      "lead": "**La misma capacidad, del lado de adentro o del lado de afuera del agente.**"
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "El ciclo de vida de una herramienta MCP",
+      "notes": "El deck original resolvía los seis pasos con una tabla de dos columnas y seis ordinales escritos a mano. El diagrama los pone en secuencia, que es lo que la tabla no lograba. Lo único que hay que dejar clavado es el pie: la descripción de la herramienta es la interfaz que consume el modelo, así que escribirla es trabajo de diseño y no de documentación. La sección 9 entera sale de ahí.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s8-3-1-ciclo-vida-herramienta.svg",
+        "alt": "Los seis pasos del ciclo de vida de una herramienta MCP, con el paso de elección destacado"
+      },
+      "highlights": [
+        {
+          "body": "El paso 2 ocurre en tiempo de ejecución, y por eso agregar una herramienta no obliga a tocar el agente. El paso 3 ocurre dentro del modelo, leyendo texto: ahí se gana o se pierde la precisión de todo el sistema.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=0",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      },
+      "lead": "**Seis pasos, del arranque del servidor a la respuesta con el resultado ya incorporado.**"
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "Cuatro principios de diseño",
+      "notes": "Los cuatro principios se sostienen; lo que se cayó es el respaldo numérico del tercero. El dato de MSR que sí conviene contar acá es el del cuarto principio: casi seis de cada diez respuestas que un servidor marcó como exitosas contenían un error en el texto. Y dos ejemplos verbatim de mensajes de error reales del estudio, que siempre funcionan: una herramienta de búsqueda web que falló con el string \"error: job\", y una de búsqueda académica que devolvió \"Please retry with 0 or fewer IDs.\" Ese es el estado real del ecosistema.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Nombres explícitos",
+          "body": "Convención `[verbo]_[sustantivo]_[contexto]`: `get_customer_by_email`, `search_products_by_category`, `calculate_shipping_cost_for_order`. Nombres como `process`, `fetch` o `do_thing` no le dicen nada al modelo."
+        },
+        {
+          "label": "Descripciones exhaustivas",
+          "body": "Es el campo que más pesa. Tiene que contestar cuatro preguntas: qué hace, cuándo usarla, cuándo NO usarla, y qué forma tienen la entrada y la salida."
+        },
+        {
+          "label": "Esquemas de parámetros simples",
+          "body": "Pocos parámetros y poco anidamiento. Varias herramientas simples funcionan mejor que una compleja con muchas opciones."
+        },
+        {
+          "label": "Formato de respuesta consistente",
+          "body": "Un envoltorio estándar del tipo `{ success, data, error, message }`, igual en todas las herramientas del servidor, para que el manejo de errores del agente sea uno solo."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Lo que sí está medido sobre esquemas de parámetros está en la lámina 8.8.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "Conectar un servidor MCP: tres caminos",
+      "notes": "Los tres métodos del deck original estaban en tuteo peninsular (\"Abre\", \"Busca\", \"Haz clic\", \"Edita\") dentro de un deck en voseo, y el Método 3 arrancaba con un paso numerado \"4.\" sin 1, 2 ni 3. Corregido. La advertencia de seguridad es la que hay que decir en voz alta y con tiempo: instalar un servidor MCP es más parecido a instalar una extensión de navegador que a agregar una dependencia, porque corre con tus permisos y ve lo que vos ves.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Extensiones de escritorio",
+          "body": "El camino corto. En Claude Desktop: Configuración → Extensions, buscá el servidor, instalalo y concedé permisos. Abrí un chat nuevo y probalo."
+        },
+        {
+          "label": "Configuración manual (stdio)",
+          "body": "Editás el archivo de configuración del cliente y declarás el comando que lanza el servidor. El cliente lo arranca como subproceso. Es el camino de los servidores publicados como paquete npm."
+        },
+        {
+          "label": "Servidor local por HTTP",
+          "body": "Para un servidor propio en desarrollo o una herramienta interna. El servidor corre por su cuenta y el cliente se conecta a su URL."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Un servidor MCP ejecuta código, lee archivos y hace pedidos de red con tus permisos. Instalá solo servidores de origen conocido y revisá qué permisos piden. Los que traen contenido externo abren la misma puerta de inyección indirecta de la lámina 6.3.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "La configuración, en concreto",
+      "notes": "Lámina partida de la anterior, porque las dos configuraciones juntas con los tres métodos no entraban. Lo pedagógico acá es el contraste entre los dos bloques: el primero no tiene URL ni puerto porque el cliente lanza el proceso, el segundo no tiene comando porque el proceso ya está corriendo. Si alguien tipea el primero y busca en qué puerto quedó, la respuesta es que en ninguno.",
+      "template": "code-example",
+      "code": "{\n  \"mcpServers\": {\n    \"filesystem\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@modelcontextprotocol/server-filesystem\", \"/ruta/al/proyecto\"]\n    },\n    \"github\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],\n      \"env\": { \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"tu_token\" }\n    }\n  }\n}",
+      "language": "json",
+      "explanation": [
+        "**Dónde vive el archivo** macOS: `~/Library/Application Support/Claude/claude_desktop_config.json` · Windows: `%APPDATA%\\Claude\\claude_desktop_config.json`",
+        "**Después de editar** Reiniciá el cliente y verificá que aparezca el ícono de herramientas en el chat.",
+        "El transporte es stdio: el cliente lanza el proceso y le habla por entrada y salida estándar. No hay puerto ni URL."
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=True"
+        ],
+        "candidates": [
+          "code-example",
+          "concept-breakdown"
+        ],
+        "picked": "code-example",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "Demo: un servidor MCP mínimo",
+      "lead": "**De una herramienta hardcodeada en el agente al mismo código expuesto como servidor MCP.**",
+      "notes": "El botón de esta lámina en el deck original apuntaba a `https://localhost:3000/agents/model-context-protocol#from-hardcoded-tools-to-mcp`, el servidor de desarrollo de quien armó el deck. No resuelve para nadie más, y encima usa https contra un puerto que sirve http. Está retirado y anotado en las preguntas abiertas: por la forma de la ruta, el destino público probable es la sección de agentes de aitutorial.dev, pero no se pudo verificar y no se pone un enlace sin verificar. Antes de dar la clase, confirmá el destino o mostrá el servidor mínimo desde tu propio editor.",
+      "template": "single-point",
+      "_choice": {
+        "signals": [
+          "labeled_items=0",
+          "one_claim=true"
+        ],
+        "candidates": [
+          "single-point",
+          "content-text"
+        ],
+        "picked": "single-point",
+        "rejected": {
+          "content-text": "no hay paneles: es una sola afirmación"
+        }
+      },
+      "point": "De una herramienta hardcodeada en el agente al mismo código expuesto como servidor MCP."
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "La complejidad de los esquemas, medida",
+      "lead": "**Microsoft Research inspeccionó 1.470 servidores MCP en ejecución y midió la profundidad del esquema de entrada de 12.643 herramientas.**",
+      "notes": "Esta es la corrección más importante del deck. La lámina original le atribuía a Microsoft Research un gráfico que Microsoft Research no publicó, con números que no están en ninguna parte del artículo. Los únicos porcentajes del texto son 85 %, 91 %, 47 %, 40 %, 7,6 % y 5 %; no hay 90, ni 80, ni 65. El error de fondo es de categoría antes que de cifra: es una encuesta de servidores, no una evaluación de agentes, así que no puede producir una curva de precisión aunque uno quisiera. Contá esto en voz alta si te da el tiempo: es la mejor lección de higiene de fuentes que da la clase, y le pasó a un deck nuestro.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s8-8-1-complejidad-esquemas.svg",
+        "alt": "Distribución medida de la complejidad de los esquemas MCP y la mejora al aplanarlos"
+      },
+      "highlights": [
+        {
+          "body": "Circula un gráfico de barras con \"1-3 parámetros → 90 %, 4-6 → 80 %, 7+ → 65 %\" atribuido a este mismo estudio. **Ese gráfico y esas cifras no existen en él.** El artículo mide propiedades de los catálogos de servidores; nunca mide tasa de acierto de ningún agente, así que no puede producir una curva de precisión.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=0",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "Un agente, varios servidores",
+      "notes": "En el deck original esta lámina tenía el título \"Arquitectura multi-servidor: Agente de soporte al cliente\" y una sola frase de contenido: prometía una arquitectura y no la mostraba. Ahora el diagrama es la lámina. La segunda viñeta es el puente a la sección 9 y conviene decirla como problema abierto: el agente ve todo junto, y todo junto es exactamente el escenario donde elige peor. El mismo agente de soporte vuelve como caso en las láminas 9.3 y 9.4.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s8-9-1-agente-varios-servidores.svg",
+        "alt": "Un agente frente a un catálogo único y plano formado por varios servidores independientes"
+      },
+      "cards": [
+        {
+          "label": "Independencia operativa",
+          "body": "Cada servidor gestiona su dominio, tiene su propio despliegue y su propia autenticación. Un servidor caído deja al agente sin ese dominio y con el resto funcionando."
+        },
+        {
+          "label": "El costo del aplanado",
+          "body": "El agente descubre todas las herramientas juntas. Si dos servidores registran una herramienta con el mismo nombre, MCP no tiene forma de desambiguarlas: no hay namespaces en la especificación."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "Casos de uso con Claude",
+      "lead": "**Con servidores conectados, el mismo pedido en lenguaje natural atraviesa varios sistemas sin que nadie escriba el pegamento.**",
+      "notes": "Los cinco ejemplos ya venían del dominio de software y se dejaron como estaban. Lo que se agregó es el pie, que es lo que los convierte en un caso y no en una lista: los cinco pedidos son la misma tarea, y la feature ENG-4521 los hilvana. Contalo así, en orden, como el día de trabajo de alguien.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Código y repositorios",
+          "body": "\"Implementá la funcionalidad del issue ENG-4521 y abrí un PR.\" → GitHub MCP, Filesystem MCP"
+        },
+        {
+          "label": "Consultas a bases de datos",
+          "body": "\"Traeme los mails de 10 usuarios que usaron la feature ENG-4521.\" → PostgreSQL MCP"
+        },
+        {
+          "label": "Análisis y monitoreo",
+          "body": "\"Revisá Sentry y Statsig para ver el uso de la feature y los errores.\" → Sentry MCP, Statsig MCP"
+        },
+        {
+          "label": "Diseño y comunicación",
+          "body": "\"Actualizá la plantilla de email con los diseños de Figma que se publicaron en Slack.\" → Figma MCP, Slack MCP"
+        },
+        {
+          "label": "Automatización de flujos",
+          "body": "\"Creá borradores en Gmail invitando a esos 10 usuarios a una sesión de feedback.\" → Gmail MCP"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Los cinco pedidos son del mismo hilo de trabajo. El valor no está en cada herramienta suelta, está en que el contexto se mantiene al cruzar de una a otra.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=5",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Arquitectura y uso",
+      "title": "El ecosistema, con fechas y fuentes",
+      "lead": "**Los recuentos de servidores que circulan no son comparables entre sí. Cada uno cuenta cosas distintas, en momentos distintos, y ninguno declara su criterio.**",
+      "notes": "El deck original ponía tres directorios, tres números y ninguna fecha, y llamaba \"registro oficial\" a mcp.so, que es un marketplace comunitario con posiciones pagas. La tabla de acá pone cada número con su fuente y su fecha, y muestra el problema de frente: Smithery figura con 7.000 en septiembre de 2025 y con 3.600 en febrero de 2026. No perdió la mitad de su catálogo en cinco meses; están contando cosas distintas. Ese es el punto de la lámina, y es más útil que cualquiera de los números: en un ecosistema que se mueve así, un recuento sin fecha y sin criterio no significa nada.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "Fuente",
+            "cells": [
+              "Registro oficial MCP",
+              "Smithery",
+              "Smithery",
+              "skillsplayground",
+              "claudemcp.org"
+            ]
+          },
+          {
+            "header": "Recuento",
+            "cells": [
+              "5.000+",
+              "3.600+",
+              "7.000+",
+              "890+",
+              "30+"
+            ]
+          },
+          {
+            "header": "Fecha",
+            "cells": [
+              "feb. 2026",
+              "feb. 2026",
+              "sep. 2025",
+              "feb. 2026",
+              "sin fecha"
+            ]
+          },
+          {
+            "header": "Qué cuenta",
+            "cells": [
+              "según skillsplayground, que dice tomar de ahí su catálogo",
+              "según skillsplayground",
+              "según Microsoft Research",
+              "su propio directorio curado",
+              "servidores comunitarios \"populares\""
+            ]
+          }
+        ]
+      },
+      "facts": [
+        {
+          "label": "Servidores más usados por categoría",
+          "body": "Archivos y código: Filesystem, Git, GitHub. Bases de datos: PostgreSQL, SQLite, Memory. Productividad: Slack, Gmail, Google Drive. Web: Brave Search, Fetch, Playwright. Diseño y APIs: Figma, OpenAPI, Google Maps."
+        },
+        {
+          "label": "Dónde buscar",
+          "body": "[Registro oficial](https://registry.modelcontextprotocol.io) · [Repositorio de servidores de referencia](https://github.com/modelcontextprotocol/servers) · [claudemcp.org](https://claudemcp.org) · [skillsplayground.com](https://skillsplayground.com/guides/mcp-servers) · [mcp.so](https://mcp.so)"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "`mcp.so` es un marketplace comunitario con publicidad paga, no el registro oficial. El registro oficial está en `registry.modelcontextprotocol.io`.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=2",
+          "has_table=True",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Diseño de herramientas",
+      "title": "Diseño de herramientas",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real del recorrido"
+        }
+      }
+    },
+    {
+      "section": "Diseño de herramientas",
+      "title": "Más herramientas, peor elección",
+      "lead": "**El modelo hace coincidencia de patrones sobre descripciones en lenguaje natural. Un espacio de opciones grande lo desborda, y eso no lo arregla un modelo mejor.**",
+      "notes": "La escala se queda porque es la que ordena la sección, y se queda con su procedencia a la vista. Decilo sin vueltas: viene de un sitio de tutoriales sin autor ni fecha que la presenta como \"Research shows\" y no cita a nadie, y el deck la repetía tres veces como si fuera un dato medido. Lo accionable es la recomendación de OpenAI, que sí tiene fuente y apunta al mismo umbral. Si alguien quiere un número más fuerte, el de MSR es \"hasta 85 % de caída para algunos modelos\", pero viene de un preprint que no está en nuestro corpus y el \"hasta\" es un límite superior, no un promedio.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s9-1-1-umbral-veinte-funciones.svg",
+        "alt": "El umbral accionable de menos de veinte funciones, con la escala sin estudio detrás como nota al pie"
+      },
+      "cards": [
+        {
+          "label": "La causa que propone la fuente",
+          "body": "\"LLMs pattern-match descriptions. Large option spaces overwhelm them.\" El fallo ocurre al reconocer entre opciones parecidas."
+        },
+        {
+          "label": "El \"42 % de elecciones incorrectas\" no es un dato aparte.",
+          "body": "Es el complemento de 58, presentado en prosa como si fuera una segunda medición."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Diseño de herramientas",
+      "title": "El mismo problema, ya en el catálogo",
+      "lead": "**Microsoft Research inspeccionó 1.470 servidores MCP en ejecución. La interferencia entre herramientas ya está en el catálogo.**",
+      "notes": "Lámina nueva, y es la que le da respaldo real a toda la sección. El bloque de nombres es lo que hay que mostrar: no hace falta leerlo, alcanza con que se vea la masa. Preguntá cuál elegiría el modelo y dejá el silencio. Después el dato de las 775 colisiones exactas, que es el caso donde ni siquiera hay ambigüedad semántica: son dos herramientas distintas con el mismo nombre y el protocolo no tiene cómo distinguirlas. Un número que conviene tener a mano por si preguntan por el sesgo del estudio: los servidores que requieren credenciales quedaron fuera del testeo funcional, y son los más populares.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s9-2-1-superposicion-semantica.svg",
+        "alt": "Lista real de nombres de herramientas que compiten por el mismo trabajo"
+      },
+      "cards": [
+        {
+          "label": "La mediana es de 4 herramientas por servidor",
+          "body": "y el promedio de 8,6. El servidor promedio es razonable; el problema son los extremos: el máximo declara 256 herramientas, y GitHub MCP expone 91."
+        },
+        {
+          "label": "El límite duro no es el mismo para todos.",
+          "body": "La API de OpenAI tolera 128 herramientas y la propia OpenAI recomienda menos de 20. Un servidor MCP no sabe con qué cliente ni con qué modelo está hablando, así que expone el mismo catálogo a todos."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Diseño de herramientas",
+      "title": "Routing jerárquico: una sola entrada",
+      "lead": "**En lugar de 20 herramientas planas, una sola herramienta de ruteo que recibe dominio y acción. El segundo paso resuelve el par y llama a la función concreta.**",
+      "notes": "La tabla del deck original estaba a medio traducir: los encabezados en español y el contenido en inglés (\"The agent sees all 20 tools at once → 58% accuracy\"). Corregido, y las cifras de 90 %+ se retiraron porque salían de un comentario de pseudocódigo. Lo interesante de este patrón para esta audiencia es que Microsoft Research pide lo mismo pero a nivel de protocolo: que MCP tenga una forma estándar de agrupar herramientas, para que el cliente elija primero categoría y después herramienta sin cargar todo el catálogo en contexto. Hoy hay que hacerlo a mano, servidor por servidor.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s9-3-1-routing-jerarquico.svg",
+        "alt": "Routing jerárquico: de veinte nombres libres a dos enumeraciones cerradas"
+      },
+      "highlights": [
+        {
+          "body": "El patrón esconde un costo que la fuente no menciona: agrega un salto extra, no define qué pasa cuando el par `(domain, action)` no existe en el mapa, y no dice cómo se le devuelve al modelo un error de ruteo.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=0",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Diseño de herramientas",
+      "title": "El catálogo cambia con la fase",
+      "lead": "**Una conversación de soporte tiene fases, y cada fase necesita herramientas distintas. Se expone solo el grupo de la fase en curso.**",
+      "notes": "El patrón es bueno y el pie es la pregunta que hay que hacer: el ejemplo de la fuente recibe la fase ya resuelta, y nunca dice quién la resolvió. Si la clasifica el mismo modelo, no se eliminó el problema de selección, se lo movió un nivel arriba y ahora es un problema de clasificación. En la práctica la fase suele venir del estado de la aplicación, que es lo que hace que el patrón funcione. Las cifras de \"90 %+\" del deck original se retiraron por lo mismo que en la lámina anterior.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s9-4-1-catalogo-por-fase.svg",
+        "alt": "Catálogo de herramientas que cambia según la fase de la conversación"
+      },
+      "facts": [
+        {
+          "body": "**Es filtrado dinámico del catálogo**, no una jerarquía. El mismo mecanismo que VS Code llama agrupamiento de herramientas y el servidor MCP de GitHub llama descubrimiento dinámico."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Diseño de herramientas",
+      "title": "La descripción dice cuándo NO usarla",
+      "lead": "**Con tres herramientas alcanza para romper la precisión, si las tres suenan igual. La descripción tiene que decir cuándo usar cada una y cuándo no.**",
+      "notes": "La lámina más aplicable de la sección, y la que menos depende de cifras dudosas. El dato que le da peso es el de la fuente: con solo tres herramientas superpuestas el modelo elige al azar o llama a las tres. O sea que el problema no es de cantidad sino de distinguibilidad, y la lámina 9.2 lo confirma con los veintitrés nombres de búsqueda web del ecosistema real. El \"NO usar cuando\" es la parte que casi nadie escribe y la que más rinde.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "`search_products_by_text`",
+          "body": "Búsqueda de texto completo. ✅ Usar cuando el cliente describe el producto con palabras (\"mouse inalámbrico\"). ❌ No usar cuando ya se tiene el SKU exacto. Parámetro: `query: string`"
+        },
+        {
+          "label": "`get_product_by_sku`",
+          "body": "Búsqueda exacta por identificador. ✅ Usar cuando el cliente da un SKU (\"PROD-001\"). ❌ No usar para búsqueda de texto libre. Parámetro: `sku: string`"
+        },
+        {
+          "label": "`filter_products_by_attributes`",
+          "body": "Filtro estructurado. ✅ Usar cuando el cliente especifica categoría, precio o marca. ❌ No usar para búsqueda de texto. Parámetros: `category?: string`, `priceMax?: number`"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Con las descripciones diferenciadas, la elección deja de ser ambigua: \"mouse inalámbrico\" → texto · \"PROD-001\" → SKU · \"mouses de menos de $20\" → atributos.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Diseño de herramientas",
+      "title": "Analítica en producción",
+      "lead": "**Instrumentar cada llamada convierte el diseño del catálogo en algo medible, en vez de una discusión de opiniones.**",
+      "notes": "Cierre de la sección y de la clase. El encabezado \"Key metrics to track\" del deck original quedó traducido, igual que \"Diseña\" e \"Itera\", que estaban en tuteo peninsular. El pie es la conclusión que conecta las dos mitades de la clase: en RAG el problema casi nunca está en el modelo sino en el corpus y en el corte; en MCP casi nunca está en el modelo sino en las descripciones y en el tamaño del catálogo. Es la misma lección dos veces.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Qué medir por herramienta",
+          "body": "`call_count` (invocaciones), `success_rate` (tasa de éxito), `avg_latency_ms` (latencia promedio) y `last_used` (última vez usada)."
+        },
+        {
+          "label": "Herramientas sin uso",
+          "body": "Nunca se invocan. Acción: eliminarlas o consolidarlas. Cada herramienta que sobra le compite atención a las que sirven."
+        },
+        {
+          "label": "Herramientas con alta tasa de error",
+          "body": "Fallan seguido. Acción: revisar el manejo de errores o reescribir la descripción, porque muchas veces el modelo la está llamando para lo que no es."
+        },
+        {
+          "label": "Herramientas lentas",
+          "body": "Latencia promedio alta. Acción: cachear o arreglar la API de atrás."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Que el agente nunca use una herramienta, o la use mal, es señal de diseño y no de capacidad del modelo. Iterá sobre descripciones y esquemas antes de cambiar de LLM.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Diseño de herramientas",
+      "title": "Key takeaways",
+      "notes": "Cuatro frases y ninguna es un resumen de la agenda. La primera es la tesis desplegada y es la que une las dos mitades de una clase que podría parecer dos clases distintas. La segunda es la que más rápido pueden aplicar. La cuarta es la que menos se espera de una clase y la que más se recuerda: contá el caso concreto del gráfico atribuido a Microsoft Research, porque le pasó a este deck y lo encontramos revisando las fuentes una por una. Si te queda tiempo, cerrá con una pregunta abierta: en el sistema que estén construyendo, ¿el problema es que el modelo no sabe, o que no le estamos mostrando lo correcto? Casi siempre es lo segundo.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Las dos mitades resuelven la misma clase de problema.",
+          "body": "El modelo no tiene el contexto ni las acciones, y en los dos casos la solución es la misma: acercarle poco y bien elegido. Recuperar cinco documentos buenos vence a recuperar cincuenta; exponer tres herramientas distinguibles vence a exponer veinte."
+        },
+        {
+          "label": "El cuello de botella está aguas arriba del modelo.",
+          "body": "En RAG se rompe en el corpus y en el corte del documento; en MCP se rompe en la descripción de la herramienta y en el tamaño del catálogo. Cambiar de modelo es lo último que hay que probar, no lo primero."
+        },
+        {
+          "label": "Sin medición, todo lo anterior es opinión.",
+          "body": "Recuperación y generación se evalúan por separado, y cada llamada a herramienta se loguea. Es lo que convierte el diseño de un sistema RAG o de un servidor MCP en ingeniería."
+        },
+        {
+          "label": "Verificá las cifras antes de repetirlas.",
+          "body": "Este mismo deck le atribuía a Microsoft Research un gráfico que ese estudio no contiene, y repetía tres veces una escala de precisión que sale de un tutorial sin autor. Pasa en el material de todos, incluido el nuestro."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    }
+  ],
+  "_source": {
+    "file": "final.md",
+    "sha256": "a5bb3125dc6d4018c75c615c6385082ad83734d4e1fc3c47305372ded4017e12",
+    "bytes": 143286
+  }
+}

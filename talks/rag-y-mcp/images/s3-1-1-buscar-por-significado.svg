@@ -1,0 +1,65 @@
+<!-- talksmith-ascii-sha256: e3d9299efa5977754fa0ac90522684d72a38ba10d740340aaee3cac4bf2f2812 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 580" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Encontrar por significado</title>
+<desc>El texto deja de compararse como cadena de caracteres y pasa a compararse como punto en un espacio.</desc>
+<defs>
+<marker id="ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto">
+<path d="M0,0 L9,4 L0,8 z" fill="#8C8080"/>
+</marker>
+<marker id="ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto">
+<path d="M0,0 L9,4 L0,8 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="860" height="580" fill="#ffffff"/>
+
+<rect x="60" y="60" width="340" height="372" fill="#F4F2F2" stroke="#D8D2D2" stroke-width="1.5"/>
+<rect x="460" y="60" width="340" height="372" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+
+<text x="230" y="88" text-anchor="middle" font-size="12.5" font-weight="bold" letter-spacing="0.9" fill="#8C8080">UN ÍNDICE LÉXICO COMPARA</text>
+<text x="230" y="106" text-anchor="middle" font-size="13" fill="#8C8080">cadenas de caracteres</text>
+<line x1="84" y1="118" x2="376" y2="118" stroke="#D8D2D2" stroke-width="1.2"/>
+
+<text x="630" y="88" text-anchor="middle" font-size="12.5" font-weight="bold" letter-spacing="0.9" fill="#DA1B2E">UN ÍNDICE VECTORIAL COMPARA</text>
+<text x="630" y="106" text-anchor="middle" font-size="13">posiciones en un espacio</text>
+<line x1="484" y1="118" x2="776" y2="118" stroke="#EFC3C8" stroke-width="1.2"/>
+
+<text x="230" y="146" text-anchor="middle" font-size="13.5" font-style="italic" fill="#3B3535">«olvidé mi contraseña»</text>
+<line x1="230" y1="156" x2="230" y2="184" stroke="#8C8080" stroke-width="1.5" marker-end="url(#ag)"/>
+<text x="242" y="174" font-size="11" fill="#8C8080">tokenizar</text>
+<rect x="80" y="184" width="300" height="30" fill="#ffffff" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="230" y="204" text-anchor="middle" font-size="12" font-family="Andale Mono, monospace" fill="#6B6262">[olvidé] [mi] [contraseña]</text>
+
+<text x="630" y="146" text-anchor="middle" font-size="13.5" font-style="italic">«olvidé mi contraseña»</text>
+<line x1="630" y1="156" x2="630" y2="184" stroke="#DA1B2E" stroke-width="1.7" marker-end="url(#ar)"/>
+<text x="642" y="174" font-size="11" fill="#DA1B2E">modelo de embeddings</text>
+<rect x="480" y="184" width="300" height="30" fill="#FDF3F4" stroke="#EFC3C8" stroke-width="1.2"/>
+<text x="630" y="204" text-anchor="middle" font-size="12" font-family="Andale Mono, monospace">[ 0.71  -0.22  0.48  ... ]</text>
+
+<text x="230" y="244" text-anchor="middle" font-size="13.5" font-style="italic" fill="#3B3535">«no puedo iniciar sesión»</text>
+<line x1="230" y1="254" x2="230" y2="282" stroke="#8C8080" stroke-width="1.5" marker-end="url(#ag)"/>
+<text x="242" y="272" font-size="11" fill="#8C8080">tokenizar</text>
+<rect x="80" y="282" width="300" height="30" fill="#ffffff" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="230" y="302" text-anchor="middle" font-size="12" font-family="Andale Mono, monospace" fill="#6B6262">[no] [puedo] [iniciar] [sesión]</text>
+
+<text x="630" y="244" text-anchor="middle" font-size="13.5" font-style="italic">«no puedo iniciar sesión»</text>
+<line x1="630" y1="254" x2="630" y2="282" stroke="#DA1B2E" stroke-width="1.7" marker-end="url(#ar)"/>
+<text x="642" y="272" font-size="11" fill="#DA1B2E">modelo de embeddings</text>
+<rect x="480" y="282" width="300" height="30" fill="#FDF3F4" stroke="#EFC3C8" stroke-width="1.2"/>
+<text x="630" y="302" text-anchor="middle" font-size="12" font-family="Andale Mono, monospace">[ 0.69  -0.25  0.51  ... ]</text>
+
+<line x1="230" y1="320" x2="230" y2="350" stroke="#8C8080" stroke-width="1.5" marker-end="url(#ag)"/>
+<text x="242" y="339" font-size="11" fill="#8C8080">intersectar</text>
+<text x="230" y="368" text-anchor="middle" font-size="12" fill="#8C8080">0 términos en común</text>
+<rect x="112" y="384" width="236" height="40" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.5"/>
+<text x="230" y="410" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="0.8" fill="#8C8080">SIN COINCIDENCIA</text>
+
+<line x1="630" y1="320" x2="630" y2="350" stroke="#DA1B2E" stroke-width="1.7" marker-end="url(#ar)"/>
+<text x="642" y="339" font-size="11" fill="#DA1B2E">medir el ángulo</text>
+<text x="630" y="368" text-anchor="middle" font-size="12">vectores casi paralelos</text>
+<rect x="512" y="384" width="236" height="40" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="630" y="410" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="0.8" fill="#DA1B2E">MUY PARECIDOS</text>
+
+<line x1="60" y1="470" x2="800" y2="470" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="430" y="496" text-anchor="middle" font-size="13.5" font-weight="bold">Las dos frases describen el mismo problema con cero palabras compartidas.</text>
+<text x="430" y="516" text-anchor="middle" font-size="12.5" fill="#6B6262">Es exactamente el caso que el índice léxico no puede resolver.</text>
+</svg>

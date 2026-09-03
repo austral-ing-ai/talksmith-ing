@@ -1,0 +1,54 @@
+<!-- talksmith-ascii-sha256: 906d77983342ae4ae42a8fa8061218575070df0f34d994cbcb0bcf8382a32e75 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 612" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>El corte decide qué se recupera junto</title>
+<desc>La diferencia entre estrategias de corte no es de tamaño sino de dónde caen los límites respecto de la estructura del texto.</desc>
+<rect x="0" y="0" width="900" height="612" fill="#ffffff"/>
+
+<text x="60" y="78" font-size="11.5" font-weight="bold" letter-spacing="1.1" fill="#6B6262">UN DOCUMENTO</text>
+
+<rect x="60" y="92" width="140" height="34" fill="#E6E1E1" stroke="#B9AFAF" stroke-width="1.2"/>
+<text x="130" y="113" text-anchor="middle" font-size="11.5" font-weight="bold">Título</text>
+<rect x="200" y="92" width="180" height="34" fill="#F7F5F5" stroke="#B9AFAF" stroke-width="1.2"/>
+<text x="290" y="113" text-anchor="middle" font-size="11.5" fill="#5E5757">párrafo A</text>
+<rect x="380" y="92" width="165" height="34" fill="#F7F5F5" stroke="#B9AFAF" stroke-width="1.2"/>
+<text x="462" y="113" text-anchor="middle" font-size="11.5" fill="#5E5757">párrafo B</text>
+<rect x="545" y="92" width="155" height="34" fill="#E6E1E1" stroke="#B9AFAF" stroke-width="1.2"/>
+<text x="622" y="113" text-anchor="middle" font-size="11.5" font-weight="bold">Sección 2</text>
+<rect x="700" y="92" width="140" height="34" fill="#F7F5F5" stroke="#B9AFAF" stroke-width="1.2"/>
+<text x="770" y="113" text-anchor="middle" font-size="11.5" fill="#5E5757">párrafo C</text>
+
+<line x1="200" y1="126" x2="200" y2="382" stroke="#E3DDDD" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="200" y1="408" x2="200" y2="442" stroke="#E3DDDD" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="380" y1="126" x2="380" y2="442" stroke="#E3DDDD" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="545" y1="126" x2="545" y2="442" stroke="#E3DDDD" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="700" y1="126" x2="700" y2="442" stroke="#E3DDDD" stroke-width="1.2" stroke-dasharray="4 4"/>
+
+<text x="60" y="180" font-size="13" font-weight="bold" letter-spacing="0.8" fill="#6B6262">LARGO FIJO</text>
+<rect x="60" y="192" width="195" height="30" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<rect x="255" y="192" width="195" height="30" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<rect x="450" y="192" width="195" height="30" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<rect x="645" y="192" width="195" height="30" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<path d="M255,224 l -6,12 l 12,0 z" fill="#9C9090"/>
+<path d="M450,224 l -6,12 l 12,0 z" fill="#9C9090"/>
+<path d="M645,224 l -6,12 l 12,0 z" fill="#9C9090"/>
+<text x="60" y="252" font-size="12" fill="#5E5757">los cortes caen donde toca la cuenta de tokens: ninguno coincide con un límite del documento</text>
+
+<text x="60" y="290" font-size="13" font-weight="bold" letter-spacing="0.8" fill="#6B6262">SEMÁNTICO</text>
+<rect x="60" y="302" width="320" height="30" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<rect x="380" y="302" width="320" height="30" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<rect x="700" y="302" width="140" height="30" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<path d="M380,334 l -6,12 l 12,0 z" fill="#9C9090"/>
+<path d="M700,334 l -6,12 l 12,0 z" fill="#9C9090"/>
+<text x="60" y="362" font-size="12" fill="#5E5757">los cortes caen en los límites de párrafo, pero el encabezado queda separado del texto que titula</text>
+
+<text x="60" y="400" font-size="12.5" font-weight="bold" letter-spacing="0.4" fill="#DA1B2E">POR ESTRUCTURA</text>
+<rect x="60" y="412" width="485" height="30" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="302" y="432" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#DA1B2E">Título + párrafo A + párrafo B</text>
+<rect x="545" y="412" width="295" height="30" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="692" y="432" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#DA1B2E">Sección 2 + párrafo C</text>
+<path d="M545,444 l -7,14 l 14,0 z" fill="#DA1B2E"/>
+<text x="60" y="474" font-size="12" font-weight="bold" fill="#DA1B2E">los cortes caen en los encabezados: cada fragmento se lleva su título con su contenido</text>
+
+<line x1="60" y1="520" x2="840" y2="520" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="450" y="548" text-anchor="middle" font-size="13.5" font-weight="bold">Misma cantidad de texto, tres lugares distintos donde cortar.</text>
+</svg>

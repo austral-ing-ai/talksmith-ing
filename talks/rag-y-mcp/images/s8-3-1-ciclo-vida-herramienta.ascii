@@ -1,0 +1,29 @@
+  1. ARRANQUE        el servidor MCP levanta y declara sus herramientas:
+                     nombre + descripcion + esquema de parametros
+                              |
+  2. DESCUBRIMIENTO           v
+                     agente  --- tools/list ---->  servidor
+                     agente  <-- catalogo ------   servidor
+                              |
+  3. CONSULTA                 v
+                     el usuario pregunta algo; el LLM lee las
+                     DESCRIPCIONES del catalogo y elige una herramienta
+                              |
+  4. LLAMADA                  v
+                     agente --- tools/call { name, arguments } --> servidor
+                              |
+  5. EJECUCION                v
+                     el servidor corre el codigo y devuelve un
+                     resultado estructurado
+                              |
+  6. USO                      v
+                     el LLM lee el resultado y sigue razonando,
+                     o responde al usuario
+
+  El modelo elige por la descripcion. La descripcion es la interfaz.
+
+<!-- ascii-note:
+intent: recorrer los seis pasos y dejar claro cuál es el que decide la calidad del sistema: el paso 3, donde el modelo elige leyendo texto en lenguaje natural y no una firma de tipos
+emphasize: el paso 3 y la palabra DESCRIPCIONES; el pie, que es la conclusión de diseño que abre la sección 9
+labels: "1. ARRANQUE", "2. DESCUBRIMIENTO", "3. CONSULTA", "4. LLAMADA", "5. EJECUCION", "6. USO", "tools/list", "tools/call", "El modelo elige por la descripcion. La descripcion es la interfaz."
+-->

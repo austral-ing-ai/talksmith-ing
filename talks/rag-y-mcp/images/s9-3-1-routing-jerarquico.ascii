@@ -1,0 +1,26 @@
+  ANTI-PATRON: lista plana           SOLUCION: una herramienta de ruteo
+
+  el agente ve 20 nombres            el agente ve 1 nombre
+
+  searchCustomers  getCustomer         route_to_domain(domain, action)
+  searchProducts   getProduct
+  searchOrders     getOrder             domain: customers | products
+  searchTickets    getTicket                    orders    | tickets
+  updateCustomer   createCustomer
+  updateProduct    createProduct        action: search | get | update
+  updateOrder      createOrder                  create | delete
+  updateTicket     createTicket
+  deleteCustomer   deleteProduct        paso 2: el servidor mapea
+  deleteOrder      deleteTicket         (domain, action) -> la funcion
+
+  20 nombres en lenguaje natural     4 x 5 valores de dos enums
+  compitiendo entre si               cerrados y excluyentes
+
+  Las 20 opciones no desaparecen: se mudan del nombre al esquema,
+  que es un espacio cerrado y chico.
+
+<!-- ascii-note:
+intent: mostrar que el patrón no reduce las opciones sino que las cambia de lugar: de veinte nombres en lenguaje natural a dos enumeraciones cerradas, que es un espacio de decisión mucho más fácil
+emphasize: la columna derecha con la única herramienta y sus dos enums; el pie, que es la lectura crítica y evita venderlo como magia
+labels: "ANTI-PATRON: lista plana", "SOLUCION: una herramienta de ruteo", "route_to_domain(domain, action)", "domain: customers|products|orders|tickets", "action: search|get|update|create|delete", "Las 20 opciones se mudan del nombre al esquema"
+-->

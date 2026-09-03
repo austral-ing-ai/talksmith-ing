@@ -1,0 +1,60 @@
+<!-- talksmith-ascii-sha256: 014a60e1ff7856019c2166b9be85f61482b38572d7f445ce50a2629573105fe6 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 476" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>Evaluar las dos etapas por separado</title>
+<desc>Las tres métricas no miden lo mismo en tres versiones: miden tres puntos distintos del pipeline.</desc>
+<defs>
+<marker id="ed" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+<path d="M0,0 L9,4 L0,8 z" fill="#3B3535"/>
+</marker>
+<marker id="er" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+<path d="M0,0 L9,4 L0,8 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="900" height="476" fill="#ffffff"/>
+
+<rect x="60" y="70" width="100" height="36" rx="18" fill="#F4F2F2" stroke="#B9AFAF" stroke-width="1.5"/>
+<text x="110" y="93" text-anchor="middle" font-size="12.5" font-weight="bold">consulta</text>
+<line x1="162" y1="88" x2="182" y2="88" stroke="#3B3535" stroke-width="1.8" marker-end="url(#ed)"/>
+
+<rect x="190" y="66" width="170" height="44" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
+<text x="275" y="94" text-anchor="middle" font-size="14" font-weight="bold">RECUPERAR</text>
+
+<line x1="360" y1="88" x2="427" y2="88" stroke="#3B3535" stroke-width="1.8" marker-end="url(#ed)"/>
+<text x="394" y="80" text-anchor="middle" font-size="10.5" fill="#6B6262">fragmentos</text>
+
+<rect x="435" y="66" width="170" height="44" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
+<text x="520" y="94" text-anchor="middle" font-size="14" font-weight="bold">GENERAR</text>
+
+<line x1="605" y1="88" x2="667" y2="88" stroke="#3B3535" stroke-width="1.8" marker-end="url(#ed)"/>
+<rect x="670" y="70" width="110" height="36" rx="18" fill="#F4F2F2" stroke="#B9AFAF" stroke-width="1.5"/>
+<text x="725" y="93" text-anchor="middle" font-size="12.5" font-weight="bold">respuesta</text>
+
+<circle cx="275" cy="110" r="4" fill="#DA1B2E"/>
+<line x1="275" y1="110" x2="275" y2="166" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#er)"/>
+<circle cx="520" cy="110" r="4" fill="#3B3535"/>
+<line x1="520" y1="110" x2="520" y2="166" stroke="#3B3535" stroke-width="1.8" marker-end="url(#ed)"/>
+<circle cx="725" cy="106" r="4" fill="#3B3535"/>
+<line x1="725" y1="106" x2="725" y2="166" stroke="#3B3535" stroke-width="1.8" marker-end="url(#ed)"/>
+
+<rect x="185" y="170" width="180" height="80" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="1.8"/>
+<text x="275" y="194" text-anchor="middle" font-size="11.5" font-weight="bold" letter-spacing="0.6" fill="#DA1B2E">CONTEXT RELEVANCE</text>
+<text x="275" y="216" text-anchor="middle" font-size="11.5">¿trajo los documentos</text>
+<text x="275" y="234" text-anchor="middle" font-size="11.5">correctos?</text>
+
+<rect x="430" y="170" width="180" height="80" fill="#F7F5F5" stroke="#B9AFAF" stroke-width="1.4"/>
+<text x="520" y="194" text-anchor="middle" font-size="11.5" font-weight="bold" letter-spacing="0.6" fill="#5E5757">ANSWER FAITHFULNESS</text>
+<text x="520" y="216" text-anchor="middle" font-size="11.5">¿lo que dice está sostenido</text>
+<text x="520" y="234" text-anchor="middle" font-size="11.5">por los fragmentos?</text>
+
+<rect x="635" y="170" width="180" height="80" fill="#F7F5F5" stroke="#B9AFAF" stroke-width="1.4"/>
+<text x="725" y="194" text-anchor="middle" font-size="11.5" font-weight="bold" letter-spacing="0.6" fill="#5E5757">ANSWER RELEVANCE</text>
+<text x="725" y="216" text-anchor="middle" font-size="11.5">¿contesta lo que</text>
+<text x="725" y="234" text-anchor="middle" font-size="11.5">se preguntó?</text>
+
+<line x1="60" y1="300" x2="840" y2="300" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="450" y="328" text-anchor="middle" font-size="13.5" font-weight="bold">Una sola respuesta visible. Dos etapas que pueden fallar solas.</text>
+
+<rect x="180" y="352" width="540" height="64" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="1.8"/>
+<text x="450" y="378" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#DA1B2E">Si Context Relevance está bajo,</text>
+<text x="450" y="398" text-anchor="middle" font-size="12.5" fill="#DA1B2E">tocar el prompt de generación no mueve el resultado.</text>
+</svg>

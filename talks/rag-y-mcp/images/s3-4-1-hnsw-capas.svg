@@ -1,0 +1,71 @@
+<!-- talksmith-ascii-sha256: 3d37e23448470e4e580a60a006b36baf80f1d019fc062869b0035d3dabe561c8 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 610" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>HNSW: no comparar contra todos</title>
+<desc>Capas ralas arriba para moverse rápido, capa completa abajo para afinar, igual que en una skip list.</desc>
+<defs>
+<marker id="hr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<path d="M0,0 L10,4.5 L0,9 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="900" height="610" fill="#ffffff"/>
+
+<text x="60" y="70" font-size="13.5" font-weight="bold">Buscar el vecino más cercano entre 10 millones de vectores.</text>
+<text x="60" y="90" font-size="12" fill="#6B6262">Comparar contra todos es O(n). HNSW baja a escala logarítmica.</text>
+
+<text x="90" y="154" font-size="12" font-weight="bold" fill="#6B6262">capa 2</text>
+<text x="90" y="264" font-size="12" font-weight="bold" fill="#6B6262">capa 1</text>
+<text x="90" y="374" font-size="12" font-weight="bold" fill="#6B6262">capa 0</text>
+
+<line x1="410" y1="150" x2="610" y2="150" stroke="#C9C0C0" stroke-width="1.6"/>
+<line x1="170" y1="260" x2="410" y2="260" stroke="#C9C0C0" stroke-width="1.6"/>
+<line x1="530" y1="260" x2="650" y2="260" stroke="#C9C0C0" stroke-width="1.6"/>
+<line x1="170" y1="370" x2="650" y2="370" stroke="#C9C0C0" stroke-width="1.6"/>
+
+<line x1="170" y1="150" x2="410" y2="150" stroke="#DA1B2E" stroke-width="2.8"/>
+<line x1="410" y1="260" x2="530" y2="260" stroke="#DA1B2E" stroke-width="2.8"/>
+<line x1="530" y1="370" x2="570" y2="370" stroke="#DA1B2E" stroke-width="2.8"/>
+
+<line x1="410" y1="158" x2="410" y2="248" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#hr)"/>
+<line x1="530" y1="268" x2="530" y2="358" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#hr)"/>
+
+<circle cx="170" cy="150" r="6.5" fill="#DA1B2E"/>
+<circle cx="410" cy="150" r="6.5" fill="#DA1B2E"/>
+<circle cx="610" cy="150" r="6.5" fill="#ffffff" stroke="#9C9090" stroke-width="1.6"/>
+
+<circle cx="170" cy="260" r="6" fill="#ffffff" stroke="#9C9090" stroke-width="1.6"/>
+<circle cx="290" cy="260" r="6" fill="#ffffff" stroke="#9C9090" stroke-width="1.6"/>
+<circle cx="410" cy="260" r="6" fill="#DA1B2E"/>
+<circle cx="530" cy="260" r="6" fill="#DA1B2E"/>
+<circle cx="650" cy="260" r="6" fill="#ffffff" stroke="#9C9090" stroke-width="1.6"/>
+
+<circle cx="170" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<circle cx="210" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<circle cx="250" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<circle cx="290" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<circle cx="330" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<circle cx="370" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<circle cx="410" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<circle cx="450" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<circle cx="490" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<circle cx="530" cy="370" r="5" fill="#DA1B2E"/>
+<circle cx="570" cy="370" r="7" fill="#DA1B2E"/>
+<circle cx="610" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+<circle cx="650" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
+
+<line x1="170" y1="104" x2="170" y2="140" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#hr)"/>
+<text x="182" y="122" font-size="11.5" font-weight="bold" fill="#DA1B2E">se entra por arriba</text>
+
+<line x1="570" y1="428" x2="570" y2="382" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#hr)"/>
+<text x="570" y="448" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#DA1B2E">resultado</text>
+
+<text x="690" y="146" fill="#6B6262">pocos nodos,</text>
+<text x="690" y="162" fill="#6B6262">saltos largos</text>
+<text x="690" y="256" fill="#6B6262">más nodos,</text>
+<text x="690" y="272" fill="#6B6262">saltos medianos</text>
+<text x="690" y="366" fill="#6B6262">todos los vectores,</text>
+<text x="690" y="382" fill="#6B6262">saltos cortos</text>
+
+<line x1="60" y1="500" x2="840" y2="500" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="450" y="526" text-anchor="middle" font-size="12.5">Se entra por la capa de arriba y se baja cuando ya no hay un vecino más cercano en la capa actual.</text>
+<text x="450" y="548" text-anchor="middle" font-size="13" font-weight="bold" fill="#DA1B2E">Se cambia algo de exactitud por velocidad: el resultado es aproximado.</text>
+</svg>

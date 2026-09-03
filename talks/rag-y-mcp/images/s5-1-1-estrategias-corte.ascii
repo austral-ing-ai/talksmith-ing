@@ -1,0 +1,24 @@
+  Un documento:  # Titulo | parrafo A | parrafo B | ## Seccion 2 | parrafo C
+
+  LARGO FIJO
+  |----------------|----------------|----------------|
+                   ^                ^
+                   los cortes caen donde toca la cuenta de tokens
+
+  SEMANTICO
+  |----A----|------B------|----------C----------|
+            ^             ^
+            los cortes caen en los limites de parrafo
+
+  POR ESTRUCTURA
+  |------ Titulo + A + B ------|---- Seccion 2 + C ----|
+                               ^
+                               los cortes caen en los encabezados
+
+  Misma cantidad de texto, tres lugares distintos donde cortar.
+
+<!-- ascii-note:
+intent: comparar tres estrategias de corte sobre el mismo documento para que se vea que la diferencia no es de tamaño sino de dónde caen los límites respecto de la estructura del texto
+emphasize: la posición de los cursores de corte en cada fila, que es lo único que cambia entre las tres; la fila POR ESTRUCTURA, donde los cortes coinciden con la jerarquía del documento
+labels: "Un documento", "LARGO FIJO", "SEMANTICO", "POR ESTRUCTURA", "los cortes caen donde toca la cuenta de tokens", "los cortes caen en los limites de parrafo", "los cortes caen en los encabezados"
+-->

@@ -1,0 +1,28 @@
+                B "latencia"
+               /
+              /
+             /   angulo chico  ->  cos = 0.91  ->  muy parecidos
+            /
+           /
+          o------------------------ A "timeout"
+           \
+             \
+               \    angulo grande  ->  cos = 0.12  ->  sin relacion
+                 \
+                   C "factura"
+
+  cos(t) = (A . B) / (||A|| x ||B||)
+
+     cos(  0 grados) =  1    misma direccion, identicos
+     cos( 90 grados) =  0    sin relacion
+     cos(180 grados) = -1    opuestos
+
+  "timeout" y "el servicio corta la conexion tras 30 segundos" dan
+  vectores de largo muy distinto y direccion parecida: el coseno
+  los da similares.
+
+<!-- ascii-note:
+intent: mostrar que la similitud se lee como ángulo entre dos flechas que salen del mismo origen, y que por eso el largo del vector (que depende del largo del texto) no afecta el resultado
+emphasize: el ángulo chico entre A y B frente al ángulo grande hacia C; el pie sobre la invariancia al largo, que es la razón práctica de usar coseno
+labels: "A timeout", "B latencia", "C factura", "angulo chico -> cos = 0.91", "angulo grande -> cos = 0.12", "cos(t) = (A . B) / (||A|| x ||B||)", "0 / 90 / 180 grados"
+-->

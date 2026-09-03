@@ -1,0 +1,72 @@
+<!-- talksmith-ascii-sha256: cb2879aa7c9fd25dc48236de7be65cced6605b1916139b415e39d647c4f620a9 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>Routing jer&#225;rquico: una sola entrada</title>
+<desc>El patr&#243;n no reduce las opciones: las cambia de lugar, de veinte nombres libres a dos enumeraciones cerradas.</desc>
+<rect x="0" y="0" width="900" height="560" fill="#ffffff"/>
+
+<text x="60" y="78" font-size="13" font-weight="bold" letter-spacing="0.6" fill="#8C8080">ANTI-PATR&#211;N: lista plana</text>
+<text x="60" y="98" font-size="12" fill="#8C8080">el agente ve 20 nombres</text>
+<line x1="60" y1="110" x2="430" y2="110" stroke="#D8D2D2" stroke-width="1.4"/>
+
+<text x="470" y="78" font-size="13" font-weight="bold" letter-spacing="0.6" fill="#DA1B2E">SOLUCI&#211;N: una herramienta de ruteo</text>
+<text x="470" y="98" font-size="12" fill="#5E5757">el agente ve 1 nombre</text>
+<line x1="470" y1="110" x2="840" y2="110" stroke="#DA1B2E" stroke-width="1.6"/>
+
+<text x="60" y="134" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">searchCustomers</text>
+<text x="250" y="134" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">getCustomer</text>
+<text x="60" y="158" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">searchProducts</text>
+<text x="250" y="158" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">getProduct</text>
+<text x="60" y="182" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">searchOrders</text>
+<text x="250" y="182" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">getOrder</text>
+<text x="60" y="206" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">searchTickets</text>
+<text x="250" y="206" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">getTicket</text>
+<text x="60" y="230" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">updateCustomer</text>
+<text x="250" y="230" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">createCustomer</text>
+<text x="60" y="254" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">updateProduct</text>
+<text x="250" y="254" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">createProduct</text>
+<text x="60" y="278" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">updateOrder</text>
+<text x="250" y="278" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">createOrder</text>
+<text x="60" y="302" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">updateTicket</text>
+<text x="250" y="302" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">createTicket</text>
+<text x="60" y="326" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">deleteCustomer</text>
+<text x="250" y="326" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">deleteProduct</text>
+<text x="60" y="350" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">deleteOrder</text>
+<text x="250" y="350" font-size="10.5" font-family="Andale Mono, monospace" fill="#8C8080">deleteTicket</text>
+
+<rect x="470" y="126" width="370" height="44" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.6"/>
+<text x="655" y="154" text-anchor="middle" font-size="13" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E">route_to_domain(domain, action)</text>
+
+<text x="470" y="200" font-size="10.5" font-weight="bold" letter-spacing="1.2" fill="#6B6262">DOMAIN</text>
+<rect x="470" y="214" width="88" height="26" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4"/>
+<text x="514" y="231" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace" fill="#DA1B2E">customers</text>
+<rect x="564" y="214" width="88" height="26" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4"/>
+<text x="608" y="231" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace" fill="#DA1B2E">products</text>
+<rect x="658" y="214" width="88" height="26" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4"/>
+<text x="702" y="231" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace" fill="#DA1B2E">orders</text>
+<rect x="752" y="214" width="88" height="26" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4"/>
+<text x="796" y="231" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace" fill="#DA1B2E">tickets</text>
+
+<text x="470" y="266" font-size="10.5" font-weight="bold" letter-spacing="1.2" fill="#6B6262">ACTION</text>
+<rect x="470" y="280" width="70" height="26" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4"/>
+<text x="505" y="297" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace" fill="#DA1B2E">search</text>
+<rect x="545" y="280" width="70" height="26" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4"/>
+<text x="580" y="297" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace" fill="#DA1B2E">get</text>
+<rect x="620" y="280" width="70" height="26" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4"/>
+<text x="655" y="297" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace" fill="#DA1B2E">update</text>
+<rect x="695" y="280" width="70" height="26" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4"/>
+<text x="730" y="297" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace" fill="#DA1B2E">create</text>
+<rect x="770" y="280" width="70" height="26" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.4"/>
+<text x="805" y="297" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace" fill="#DA1B2E">delete</text>
+
+<text x="470" y="340" font-size="12" fill="#5E5757">paso 2: el servidor mapea el par</text>
+<text x="470" y="358" font-size="12" fill="#5E5757">(domain, action) a la funci&#243;n concreta</text>
+
+<text x="60" y="394" font-size="12" font-weight="bold" fill="#8C8080">20 nombres en lenguaje natural</text>
+<text x="60" y="412" font-size="12" fill="#8C8080">compitiendo entre s&#237;</text>
+<text x="470" y="394" font-size="12" font-weight="bold" fill="#DA1B2E">4 x 5 valores de dos enums</text>
+<text x="470" y="412" font-size="12" fill="#DA1B2E">cerrados y excluyentes</text>
+
+<line x1="60" y1="450" x2="840" y2="450" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="450" y="476" text-anchor="middle" font-size="13.5" font-weight="bold">Las 20 opciones no desaparecen: se mudan del nombre al esquema,</text>
+<text x="450" y="496" text-anchor="middle" font-size="12.5" fill="#5E5757">que es un espacio cerrado y chico.</text>
+</svg>

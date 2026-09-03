@@ -1,0 +1,52 @@
+<!-- talksmith-ascii-sha256: a83ac523071585d36961f8e2c8be91a824e0bc25d0b463b14323625d8189c0d8 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 492" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>Los metadatos filtran antes de buscar</title>
+<desc>Un fragmento indexado es un sobre con dos mitades, y la mitad de metadatos habilita un filtro barato que corre antes de la búsqueda cara.</desc>
+<defs>
+<marker id="mr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+<path d="M0,0 L9,4 L0,8 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="900" height="492" fill="#ffffff"/>
+
+<text x="60" y="78" font-size="11.5" font-weight="bold" letter-spacing="1.1" fill="#6B6262">UN FRAGMENTO, TAL COMO VIVE EN EL ÍNDICE</text>
+
+<rect x="60" y="92" width="520" height="272" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
+<rect x="61" y="93" width="518" height="138" fill="#F4F2F2"/>
+<text x="78" y="118" font-size="12" font-weight="bold" letter-spacing="1" fill="#6B6262">METADATOS</text>
+<text x="96" y="142" font-size="11.5" font-family="Andale Mono, monospace" fill="#6B6262">fuente</text>
+<text x="190" y="142" font-size="11.5" font-family="Andale Mono, monospace">docs/api/pagos.md</text>
+<rect x="78" y="152" width="484" height="20" fill="#FDF3F4"/>
+<text x="96" y="166" font-size="11.5" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E">version</text>
+<text x="190" y="166" font-size="11.5" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E">v3</text>
+<text x="96" y="190" font-size="11.5" font-family="Andale Mono, monospace" fill="#6B6262">seccion</text>
+<text x="190" y="190" font-size="11.5" font-family="Andale Mono, monospace">Autenticaci&#243;n &gt; Tokens</text>
+<text x="96" y="214" font-size="11.5" font-family="Andale Mono, monospace" fill="#6B6262">fecha</text>
+<text x="190" y="214" font-size="11.5" font-family="Andale Mono, monospace">2026-07-14</text>
+
+<line x1="68" y1="231" x2="572" y2="231" stroke="#9C9090" stroke-width="1.4" stroke-dasharray="6 4"/>
+
+<text x="78" y="256" font-size="12" font-weight="bold" letter-spacing="1" fill="#6B6262">TEXTO</text>
+<text x="96" y="282" font-size="11.5" font-style="italic">«El token expira a los 3600 segundos.</text>
+<text x="96" y="300" font-size="11.5" font-style="italic">Para renovarlo se usa el endpoint /refresh ...»</text>
+<text x="96" y="332" font-size="11" font-family="Andale Mono, monospace" fill="#6B6262">vector</text>
+<text x="190" y="332" font-size="11" font-family="Andale Mono, monospace" fill="#6B6262">[ 0.41  -0.18   0.62  ... ]</text>
+
+<text x="620" y="118" font-size="11.5" font-weight="bold" letter-spacing="1.1" fill="#6B6262">CONSULTA</text>
+<text x="620" y="142" font-size="13" font-style="italic">«cómo renuevo el token en v3»</text>
+
+<text x="620" y="196" font-size="12.5" font-weight="bold" fill="#DA1B2E">1. FILTRAR POR METADATOS</text>
+<text x="620" y="215" font-size="11.5" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E">version = v3</text>
+<rect x="620" y="226" width="220" height="16" fill="#C9C0C0"/>
+<text x="620" y="258" font-size="11" fill="#6B6262">todo el índice, antes de filtrar</text>
+
+<text x="620" y="298" font-size="12.5" font-weight="bold">2. BUSCAR POR VECTOR</text>
+<text x="620" y="317" font-size="11.5" fill="#5E5757">solo entre los que quedaron</text>
+<rect x="620" y="328" width="62" height="16" fill="#DA1B2E"/>
+<line x1="690" y1="336" x2="726" y2="336" stroke="#DA1B2E" stroke-width="2" marker-end="url(#mr)"/>
+<text x="736" y="340" font-size="12.5" font-weight="bold" fill="#DA1B2E">top-5</text>
+<text x="620" y="360" font-size="11" fill="#DA1B2E">el subconjunto que mira la búsqueda cara</text>
+
+<line x1="60" y1="400" x2="840" y2="400" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="450" y="428" text-anchor="middle" font-size="13.5" font-weight="bold">Sin metadatos, el paso 1 no existe y el paso 2 mira todo el índice.</text>
+</svg>

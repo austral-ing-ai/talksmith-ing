@@ -1,0 +1,42 @@
+<!-- talksmith-ascii-sha256: 417d329c0c3a811c4f2d4d80df1136040f135716b8b6fe0b3aed7bfa828d9700 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 522" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>El catálogo cambia con la fase</title>
+<desc>El catálogo puede ser dinámico y depender del estado de la conversación, pero quién clasifica la fase queda fuera del patrón.</desc>
+<rect x="0" y="0" width="900" height="522" fill="#ffffff"/>
+
+<text x="60" y="76" font-size="11.5" font-weight="bold" letter-spacing="1.2" fill="#6B6262">EL CATÁLOGO CAMBIA CON LA FASE DE LA CONVERSACIÓN</text>
+
+<rect x="60" y="92" width="380" height="120" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.6"/>
+<text x="76" y="118" font-size="13" font-weight="bold" letter-spacing="0.6">FASE 1</text>
+<text x="146" y="118" font-size="12" fill="#5E5757">saludo y autenticación</text>
+<rect x="76" y="130" width="348" height="26" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="88" y="147" font-size="11" font-family="Andale Mono, monospace" fill="#DA1B2E">authenticateCustomer</text>
+<text x="76" y="200" font-size="11" fill="#8C8080">ocultas: búsqueda, ticketing</text>
+
+<rect x="460" y="92" width="380" height="120" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.6"/>
+<text x="476" y="118" font-size="13" font-weight="bold" letter-spacing="0.6">FASE 2</text>
+<text x="546" y="118" font-size="12" fill="#5E5757">diagnóstico</text>
+<rect x="476" y="130" width="348" height="26" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="488" y="147" font-size="11" font-family="Andale Mono, monospace" fill="#DA1B2E">searchKnowledgeBase</text>
+<rect x="476" y="162" width="348" height="26" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="488" y="179" font-size="11" font-family="Andale Mono, monospace" fill="#DA1B2E">checkSystemStatus</text>
+<text x="476" y="200" font-size="11" fill="#8C8080">ocultas: auth, ticketing</text>
+
+<rect x="60" y="248" width="380" height="120" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.6"/>
+<text x="76" y="274" font-size="13" font-weight="bold" letter-spacing="0.6">FASE 3</text>
+<text x="146" y="274" font-size="12" fill="#5E5757">resolución</text>
+<rect x="76" y="286" width="348" height="26" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="88" y="303" font-size="11" font-family="Andale Mono, monospace" fill="#DA1B2E">createTicket</text>
+<rect x="76" y="318" width="348" height="26" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="88" y="335" font-size="11" font-family="Andale Mono, monospace" fill="#DA1B2E">scheduleCallback</text>
+<text x="76" y="356" font-size="11" fill="#8C8080">ocultas: auth, búsqueda</text>
+
+<rect x="460" y="248" width="380" height="120" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="650" y="292" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">El agente nunca ve más de</text>
+<text x="650" y="314" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">dos o tres herramientas,</text>
+<text x="650" y="340" text-anchor="middle" font-size="12.5" fill="#5E5757">aunque el sistema tenga 20.</text>
+
+<line x1="60" y1="410" x2="840" y2="410" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="450" y="436" text-anchor="middle" font-size="13.5" font-weight="bold">Quién decide la fase queda fuera del patrón.</text>
+<text x="450" y="458" text-anchor="middle" font-size="12.5" fill="#5E5757">Si la clasifica el mismo LLM, el problema de selección vuelve un nivel más arriba.</text>
+</svg>

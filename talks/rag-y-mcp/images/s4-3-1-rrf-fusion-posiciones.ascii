@@ -1,0 +1,20 @@
+  ranking BM25        ranking vectorial      RRF(d) = suma de 1/(k + rank)
+  1. Doc A            1. Doc B                       con k = 60
+  2. Doc C            2. Doc E
+  3. Doc F            3. Doc A               Doc A: 1/61 + 1/63 = 0.032
+  4. Doc D            4. Doc G               Doc B: 1/65 + 1/61 = 0.032
+  5. Doc B            ...                    Doc C: 1/62 + 1/68 = 0.031
+  ...                 8. Doc C
+                                             ranking fusionado
+  BM25 puntua de 0 a infinito                  1. Doc A   (0.03227)
+  el coseno puntua de -1 a 1                   2. Doc B   (0.03178)
+  los scores no son comparables                3. Doc C   (0.03083)
+
+  El acuerdo entre los dos rankings pesa mas que el entusiasmo
+  de uno solo: Doc A gana por estar arriba en los dos.
+
+<!-- ascii-note:
+intent: mostrar que RRF opera sobre posiciones y por eso puede fusionar dos rankings de escalas incompatibles; el remate es que premia el acuerdo entre rankings por encima del entusiasmo de uno solo
+emphasize: la columna derecha con las tres cuentas de RRF y el ranking fusionado que producen; la línea del medio sobre las escalas incomparables, que es el motivo de existir del método
+labels: "ranking BM25", "ranking vectorial", "RRF(d) = suma de 1/(k + rank), con k = 60", "los scores no son comparables", "ranking fusionado"
+-->

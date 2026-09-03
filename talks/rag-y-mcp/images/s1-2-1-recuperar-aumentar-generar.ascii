@@ -1,0 +1,28 @@
+  CONSULTA DEL USUARIO
+  "¿por que falla el deploy de staging?"
+         |
+         v
+  +------------------+   busca en el indice los fragmentos
+  |  1. RECUPERAR    |   que se parecen a la consulta
+  +------------------+
+         |  top-k fragmentos
+         v
+  +------------------+   los pega dentro del prompt,
+  |  2. AUMENTAR     |   junto a la consulta original
+  +------------------+
+         |  prompt = instruccion + fragmentos + consulta
+         v
+  +------------------+   responde usando SOLO esos fragmentos
+  |  3. GENERAR      |   y cita de cual salio cada afirmacion
+  +------------------+
+         |
+         v
+  RESPUESTA CON CITAS
+
+  Los pesos del modelo no cambian en ningun paso.
+
+<!-- ascii-note:
+intent: mostrar RAG como una tubería lineal de tres pasos donde lo único que se mueve es el texto; el remate es que ningún paso toca los pesos, que es lo que lo distingue del fine-tuning
+emphasize: los tres bloques numerados en la columna central; la línea del prompt armado entre el paso 2 y el 3, que es donde se ve qué es "aumentar"; el pie sobre los pesos
+labels: "CONSULTA DEL USUARIO", "1. RECUPERAR", "2. AUMENTAR", "3. GENERAR", "top-k fragmentos", "prompt = instruccion + fragmentos + consulta", "RESPUESTA CON CITAS", "Los pesos del modelo no cambian en ningun paso"
+-->

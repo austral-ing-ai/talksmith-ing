@@ -1,0 +1,63 @@
+<!-- talksmith-ascii-sha256: dbead4d44ac50cb2d40ef47a9dce69a7fa35159c3051c24cd3d623d4577c3098 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 580" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>Un agente, varios servidores</title>
+<desc>El agente ve un catálogo único y plano aunque las herramientas vengan de servidores independientes.</desc>
+<defs>
+<marker id="nd" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+<path d="M0,0 L9,4 L0,8 z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="900" height="580" fill="#ffffff"/>
+
+<rect x="320" y="64" width="260" height="56" fill="#F4F2F2" stroke="#3B3535" stroke-width="1.8"/>
+<text x="450" y="86" text-anchor="middle" font-size="14" font-weight="bold">AGENTE DE SOPORTE</text>
+<text x="450" y="104" text-anchor="middle" font-size="11.5" fill="#5E5757">(cliente MCP)</text>
+
+<line x1="390" y1="120" x2="145" y2="196" stroke="#7A7070" stroke-width="1.5" marker-end="url(#nd)"/>
+<line x1="430" y1="120" x2="345" y2="196" stroke="#7A7070" stroke-width="1.5" marker-end="url(#nd)"/>
+<line x1="470" y1="120" x2="545" y2="196" stroke="#7A7070" stroke-width="1.5" marker-end="url(#nd)"/>
+<line x1="510" y1="120" x2="745" y2="196" stroke="#7A7070" stroke-width="1.5" marker-end="url(#nd)"/>
+<text x="230" y="152" font-size="10.5" font-family="Andale Mono, monospace" fill="#6B6262">tools/list</text>
+<text x="612" y="152" font-size="10.5" font-family="Andale Mono, monospace" fill="#6B6262">tools/list</text>
+
+<rect x="60" y="200" width="170" height="56" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="145" y="220" text-anchor="middle" font-size="11.5" letter-spacing="0.8" fill="#6B6262">SERVIDOR</text>
+<text x="145" y="240" text-anchor="middle" font-size="13" font-weight="bold">clientes</text>
+<rect x="260" y="200" width="170" height="56" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="345" y="220" text-anchor="middle" font-size="11.5" letter-spacing="0.8" fill="#6B6262">SERVIDOR</text>
+<text x="345" y="240" text-anchor="middle" font-size="13" font-weight="bold">productos</text>
+<rect x="460" y="200" width="170" height="56" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="545" y="220" text-anchor="middle" font-size="11.5" letter-spacing="0.8" fill="#6B6262">SERVIDOR</text>
+<text x="545" y="240" text-anchor="middle" font-size="13" font-weight="bold">pedidos</text>
+<rect x="660" y="200" width="170" height="56" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="745" y="220" text-anchor="middle" font-size="11.5" letter-spacing="0.8" fill="#6B6262">SERVIDOR</text>
+<text x="745" y="240" text-anchor="middle" font-size="13" font-weight="bold">tickets</text>
+
+<line x1="145" y1="256" x2="145" y2="288" stroke="#7A7070" stroke-width="1.5" marker-end="url(#nd)"/>
+<line x1="345" y1="256" x2="345" y2="288" stroke="#7A7070" stroke-width="1.5" marker-end="url(#nd)"/>
+<line x1="545" y1="256" x2="545" y2="288" stroke="#7A7070" stroke-width="1.5" marker-end="url(#nd)"/>
+<line x1="745" y1="256" x2="745" y2="288" stroke="#7A7070" stroke-width="1.5" marker-end="url(#nd)"/>
+<text x="145" y="306" text-anchor="middle" font-size="12" fill="#5E5757">CRM base</text>
+<text x="345" y="306" text-anchor="middle" font-size="12" fill="#5E5757">catálogo</text>
+<text x="545" y="306" text-anchor="middle" font-size="12" fill="#5E5757">ERP pedidos</text>
+<text x="745" y="306" text-anchor="middle" font-size="12" fill="#5E5757">Jira / Zendesk</text>
+
+<rect x="60" y="360" width="780" height="76" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="450" y="384" text-anchor="middle" font-size="12.5" font-weight="bold" letter-spacing="0.8" fill="#DA1B2E">LO QUE VE EL AGENTE: UN CATÁLOGO ÚNICO Y PLANO</text>
+<rect x="76" y="396" width="118" height="24" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.1"/>
+<text x="135" y="412" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace">buscar_cliente</text>
+<rect x="202" y="396" width="118" height="24" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.1"/>
+<text x="261" y="412" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace">listar_productos</text>
+<rect x="328" y="396" width="118" height="24" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.1"/>
+<text x="387" y="412" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace">estado_pedido</text>
+<rect x="454" y="396" width="118" height="24" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.1"/>
+<text x="513" y="412" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace">crear_ticket</text>
+<rect x="580" y="396" width="118" height="24" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.1"/>
+<text x="639" y="412" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace">stock_item</text>
+<rect x="706" y="396" width="118" height="24" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.1"/>
+<text x="765" y="412" text-anchor="middle" font-size="10" font-family="Andale Mono, monospace">cerrar_ticket</text>
+
+<line x1="60" y1="470" x2="840" y2="470" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="450" y="496" text-anchor="middle" font-size="13.5" font-weight="bold">Cada servidor se despliega, se escala y se rompe por separado.</text>
+<text x="450" y="518" text-anchor="middle" font-size="12.5" fill="#DA1B2E">El agente ve un catálogo plano y no sabe de qué servidor vino cada herramienta.</text>
+</svg>

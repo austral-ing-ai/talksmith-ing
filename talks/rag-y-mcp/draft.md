@@ -2614,7 +2614,7 @@ Cierre de la sección y de la clase. El encabezado "Key metrics to track" del de
 
 # Conclusions
 
-## 7. Key takeaways
+## 1. Key takeaways
 
 ### Content
 

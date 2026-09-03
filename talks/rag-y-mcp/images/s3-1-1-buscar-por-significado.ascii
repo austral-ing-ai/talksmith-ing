@@ -1,0 +1,26 @@
+  UN INDICE LEXICO COMPARA          UN INDICE VECTORIAL COMPARA
+  cadenas de caracteres             posiciones en un espacio
+
+  "olvide mi contrasena"            "olvide mi contrasena"
+         |                                   |
+         v  tokenizar                        v  modelo de embeddings
+  [olvide][mi][contrasena]           [ 0.71  -0.22   0.48  ... ]
+         |                                   |
+  "no puedo iniciar sesion"         "no puedo iniciar sesion"
+         |                                   |
+         v  tokenizar                        v  modelo de embeddings
+  [no][puedo][iniciar][sesion]       [ 0.69  -0.25   0.51  ... ]
+         |                                   |
+         v  intersectar                      v  medir el angulo
+   0 terminos en comun                vectores casi paralelos
+                                             |
+   SIN COINCIDENCIA                    MUY PARECIDOS
+
+  Las dos frases describen el mismo problema con cero palabras
+  compartidas. Es el caso que el indice lexico no puede resolver.
+
+<!-- ascii-note:
+intent: mostrar el cambio de unidad de comparación (caracteres frente a posición) sobre un par concreto de frases que significan lo mismo y no comparten ninguna palabra; ese par es el argumento entero de la sección
+emphasize: las dos salidas contrapuestas al pie de cada columna, "SIN COINCIDENCIA" contra "MUY PARECIDOS", sobre las mismas dos frases de entrada
+labels: "UN INDICE LEXICO COMPARA cadenas de caracteres", "UN INDICE VECTORIAL COMPARA posiciones en un espacio", "tokenizar", "modelo de embeddings", "intersectar", "medir el angulo", "SIN COINCIDENCIA", "MUY PARECIDOS"
+-->

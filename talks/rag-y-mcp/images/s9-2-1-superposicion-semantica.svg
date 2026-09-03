@@ -1,0 +1,67 @@
+<!-- talksmith-ascii-sha256: a766de4ebbc029db30edb0a0a03242646ab052a7beaa2eb8fa80a11f405ec225 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>El mismo problema, ya en el cat&#225;logo</title>
+<desc>La lista real de nombres que compiten por el mismo trabajo hace tangible el problema de superposici&#243;n sem&#225;ntica.</desc>
+<rect x="0" y="0" width="900" height="550" fill="#ffffff"/>
+
+<text x="60" y="76" font-size="14" font-weight="bold">Veintitr&#233;s nombres distintos para la misma herramienta de b&#250;squeda web</text>
+<text x="60" y="96" font-size="11.5" fill="#5E5757">conviviendo en el ecosistema &#183; 1.470 servidores inspeccionados</text>
+<line x1="60" y1="108" x2="840" y2="108" stroke="#3B3535" stroke-width="1.6"/>
+
+<rect x="60" y="130" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="69" y="146" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">websearch</text>
+<rect x="255" y="130" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="264" y="146" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">web_search</text>
+<rect x="450" y="130" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="459" y="146" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">search_web</text>
+<rect x="645" y="130" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="654" y="146" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">search-web</text>
+<rect x="60" y="160" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="69" y="176" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">google_search</text>
+<rect x="255" y="160" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="264" y="176" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">search_google</text>
+<rect x="450" y="160" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="459" y="176" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">brave_web_search</text>
+<rect x="645" y="160" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="654" y="176" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">ai_web_search</text>
+<rect x="60" y="190" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="69" y="206" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">web_search_exa</text>
+<rect x="255" y="190" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="264" y="206" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">duckduckgo_web_search</text>
+<rect x="450" y="190" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="459" y="206" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">tavily_web_search</text>
+<rect x="645" y="190" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="654" y="206" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">google_news_search</text>
+<rect x="60" y="220" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="69" y="236" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">google_search_parsed</text>
+<rect x="255" y="220" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="264" y="236" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">search_google_images</text>
+<rect x="450" y="220" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="459" y="236" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">search_webkr</text>
+<rect x="645" y="220" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="654" y="236" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">get_webset_search_exa</text>
+<rect x="60" y="250" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="69" y="266" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">search_google_scholar</text>
+<rect x="255" y="250" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="264" y="266" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">web_search_agent</text>
+<rect x="450" y="250" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="459" y="266" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">answer_query_websearch</text>
+<rect x="645" y="250" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="654" y="266" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">batch-web-search</text>
+<rect x="60" y="280" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="69" y="296" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">search_web_tool</text>
+<rect x="255" y="280" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="264" y="296" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">google-play-search</text>
+<rect x="450" y="280" width="185" height="24" fill="#F7F5F5" stroke="#D8D2D2" stroke-width="1.1"/>
+<text x="459" y="296" font-size="10" font-family="Andale Mono, monospace" fill="#5E5757">google_search_scraper</text>
+
+<rect x="60" y="336" width="780" height="76" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="80" y="364" font-size="13.5" font-weight="bold" fill="#DA1B2E">Y adem&#225;s 775 herramientas con colisi&#243;n de nombre EXACTA.</text>
+<text x="80" y="390" font-size="12.5">La m&#225;s repetida:</text>
+<text x="192" y="390" font-size="12.5" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E">search</text>
+<text x="252" y="390" font-size="12.5">en 32 servidores distintos</text>
+
+<line x1="60" y1="440" x2="840" y2="440" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="60" y="466" font-size="13" font-weight="bold">MCP no tiene namespaces.</text>
+<text x="60" y="486" font-size="12.5" fill="#5E5757">El OpenAI Agents SDK lanza error ante el duplicado; Claude Code prefija los nombres para distinguirlos.</text>
+</svg>

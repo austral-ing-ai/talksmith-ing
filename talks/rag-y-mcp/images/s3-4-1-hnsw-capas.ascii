@@ -1,0 +1,23 @@
+  Buscar el vecino mas cercano entre 10 millones de vectores.
+  Comparar contra todos es O(n). HNSW baja a escala logaritmica.
+
+  capa 2   o----------------------o              pocos nodos,
+           |                      |              saltos largos
+           v                      v
+  capa 1   o---------o------------o---------o    mas nodos,
+           |         |            |         |    saltos medianos
+           v         v            v         v
+  capa 0   o--o--o--o--o--o--o--o--o--o--o--o--o  todos los vectores,
+                          ^                       saltos cortos
+                          |
+                     resultado
+
+  Se entra por la capa de arriba y se baja cuando ya no hay un
+  vecino mas cercano en la capa actual. Se cambia algo de
+  exactitud por velocidad: el resultado es aproximado.
+
+<!-- ascii-note:
+intent: mostrar la jerarquía de capas de HNSW como el mecanismo que convierte una búsqueda lineal en logarítmica: capas ralas para acercarse rápido, capa densa para afinar
+emphasize: el descenso escalonado de capa 2 a capa 0 y la diferencia de densidad de nodos entre capas; el pie sobre el intercambio exactitud/velocidad
+labels: "capa 2 / capa 1 / capa 0", "pocos nodos, saltos largos", "mas nodos, saltos medianos", "todos los vectores, saltos cortos", "resultado", "el resultado es aproximado"
+-->

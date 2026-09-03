@@ -1,0 +1,21 @@
+  Profundidad del esquema de entrada de una herramienta MCP
+  (Microsoft Research, septiembre 2025, 12.643 herramientas)
+
+   0   sin propiedades          { }
+   1   propiedades sin anotar   { location }
+   2   propiedades anotadas     { location: string, "ciudad o codigo" }
+   3+  estructuras anidadas     { filtro: { geo: { lat, lon } } }
+
+       media 2,24      mediana 2,00      maximo 20
+
+  El ecosistema vive en profundidad 2. El problema son los outliers:
+  existe al menos una herramienta con 20 niveles de anidamiento.
+
+  Evidencia externa citada por el estudio: aplanar el espacio de
+  parametros mejoro el tool-calling un 47% sobre la linea de base.
+
+<!-- ascii-note:
+intent: reemplazar una curva de precisión inventada por la única medición real disponible: cómo se distribuye la complejidad de los esquemas en el ecosistema, y qué mejora se midió al aplanarlos
+emphasize: la fila de profundidad 2 con su ejemplo, que es donde vive la mediana; el máximo de 20 como outlier; la línea del 47%
+labels: "Profundidad del esquema de entrada", "0 / 1 / 2 / 3+", "media 2,24", "mediana 2,00", "maximo 20", "aplanar mejoro el tool-calling un 47%"
+-->

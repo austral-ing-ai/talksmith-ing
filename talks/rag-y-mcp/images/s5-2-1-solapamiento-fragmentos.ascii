@@ -1,0 +1,22 @@
+  SIN SOLAPAMIENTO
+  [---- chunk 1 ----][---- chunk 2 ----][---- chunk 3 ----]
+                     ^
+                     la frase que cruza el corte queda partida y
+                     ninguno de los dos fragmentos la explica solo
+
+  CON SOLAPAMIENTO  (50 tokens)
+  [---- chunk 1 ----]
+                [---- chunk 2 ----]
+                              [---- chunk 3 ----]
+                 ^^^^         ^^^^
+                 zona repetida: cose el corte
+
+  fragmento chico    ->  mas preciso, pierde el contexto de alrededor
+  fragmento grande   ->  guarda contexto, diluye lo que hay que hallar
+  el solapamiento    ->  cuesta almacenamiento y duplica recuperaciones
+
+<!-- ascii-note:
+intent: mostrar por qué existe el solapamiento: sin él, cualquier idea que cruce un límite de corte queda incompleta en los dos fragmentos; con él, la zona repetida garantiza que alguna copia la contenga entera
+emphasize: la zona repetida entre chunks en el bloque de abajo y el punto de corte problemático marcado con el cursor en el bloque de arriba; las tres líneas de compromiso al pie
+labels: "SIN SOLAPAMIENTO", "CON SOLAPAMIENTO (50 tokens)", "zona repetida: cose el corte", "fragmento chico", "fragmento grande", "el solapamiento"
+-->

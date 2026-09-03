@@ -1,0 +1,27 @@
+   consulta del usuario
+          |
+          +-----------------------------+
+          |                             |
+          v                             v
+   [ BM25 / lexica ]            [ vectorial / ANN ]
+     top-50 por                   top-50 por
+     coincidencia exacta          cercania semantica
+          |                             |
+          +--------------+--------------+
+                         v
+                  [ FUSION RRF ]   un ranking unico, sin
+                         |         normalizar scores
+                         v
+              [ RERANK cross-encoder ]   de 50 a 5
+                         |
+                         v
+        prompt = instruccion + top-5 + consulta
+                         |
+                         v
+                     [ LLM ]  ->  respuesta con citas
+
+<!-- ascii-note:
+intent: mostrar el pipeline completo como una única bifurcación que se abre en dos recuperadores y se vuelve a cerrar en una fusión, con el modelo caro al final y actuando sobre pocos documentos
+emphasize: la bifurcación y el reencuentro de las dos ramas; el embudo 50 -> 5 en el reranking; que el LLM está al final y ve solo cinco documentos
+labels: "consulta del usuario", "BM25 / lexica", "vectorial / ANN", "top-50", "FUSION RRF", "RERANK cross-encoder", "de 50 a 5", "prompt = instruccion + top-5 + consulta", "LLM", "respuesta con citas"
+-->

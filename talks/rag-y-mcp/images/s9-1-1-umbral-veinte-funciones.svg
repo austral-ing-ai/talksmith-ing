@@ -1,0 +1,32 @@
+<!-- talksmith-ascii-sha256: 0a7482894ddcb2e14008c499a12a2a19d6385544632c25c7f03fd917a4c298c3 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 564" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>Más herramientas, peor elección</title>
+<desc>El umbral accionable y con fuente es el objeto dominante; la escala que circula no tiene estudio detrás y queda como nota al pie.</desc>
+<rect x="0" y="0" width="900" height="564" fill="#ffffff"/>
+
+<text x="60" y="76" font-size="11.5" font-weight="bold" letter-spacing="1.2" fill="#6B6262">EL NÚMERO ACCIONABLE</text>
+
+<rect x="60" y="92" width="780" height="190" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.8"/>
+<text x="450" y="166" text-anchor="middle" font-size="31" font-weight="bold" fill="#DA1B2E">MENOS DE 20 FUNCIONES A LA VEZ</text>
+<text x="450" y="208" text-anchor="middle" font-size="13" font-style="italic">«Aim for fewer than 20 functions at any one time,</text>
+<text x="450" y="228" text-anchor="middle" font-size="13" font-style="italic">though this is just a soft suggestion.»</text>
+<text x="450" y="256" text-anchor="middle" font-size="12" fill="#5E5757">OpenAI, citado por Microsoft Research</text>
+
+<rect x="60" y="310" width="220" height="70" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="170" y="352" text-anchor="middle" font-size="30" font-weight="bold" fill="#DA1B2E">20</text>
+<text x="170" y="370" text-anchor="middle" font-size="11" fill="#DA1B2E">recomendadas</text>
+
+<rect x="300" y="310" width="220" height="70" fill="#F4F2F2" stroke="#C9C0C0" stroke-width="1.6"/>
+<text x="410" y="352" text-anchor="middle" font-size="30" font-weight="bold" fill="#6B6262">128</text>
+<text x="410" y="370" text-anchor="middle" font-size="11" fill="#6B6262">límite técnico de la API</text>
+
+<text x="545" y="342" font-size="13" font-weight="bold">seis veces más alto</text>
+<text x="545" y="362" font-size="12.5" fill="#5E5757">que su propio consejo</text>
+
+<line x1="60" y1="410" x2="840" y2="410" stroke="#D8D2D2" stroke-width="1.2" stroke-dasharray="4 4"/>
+
+<text x="60" y="436" font-size="10.5" font-weight="bold" letter-spacing="1" fill="#8C8080">LA ESCALA QUE CIRCULA — SIN ESTUDIO DETRÁS</text>
+<text x="60" y="456" font-size="11" fill="#8C8080">Apunta al mismo umbral y ordena la sección, pero no hay medición que la respalde</text>
+<text x="60" y="474" font-size="11" fill="#8C8080">(aitutorial.dev, «Research shows:», sin autor ni fecha).</text>
+<text x="60" y="500" font-size="11" font-family="Andale Mono, monospace" fill="#8C8080">1-5 herr. 92 %  ·  6-10  84 %  ·  11-20  71 %  ·  20+  58 %</text>
+</svg>

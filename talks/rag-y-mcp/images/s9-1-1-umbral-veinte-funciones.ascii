@@ -1,0 +1,27 @@
+  EL NUMERO ACCIONABLE
+
+  +---------------------------------------------------------------+
+  |                                                               |
+  |        MENOS DE 20 FUNCIONES A LA VEZ                         |
+  |                                                               |
+  |   "Aim for fewer than 20 functions at any one time,           |
+  |    though this is just a soft suggestion."                    |
+  |                                                               |
+  |                     OpenAI, citado por Microsoft Research     |
+  +---------------------------------------------------------------+
+
+  El limite tecnico de la propia API de OpenAI es 128 herramientas:
+  seis veces mas alto que su propio consejo.
+
+  .................................................................
+
+  La escala que circula apunta al mismo umbral y ordena la seccion,
+  pero no tiene estudio detras (aitutorial.dev, "Research shows:"):
+
+    1-5 herr.  92%      6-10  84%      11-20  71%      20+  58%
+
+<!-- ascii-note:
+intent: poner el umbral accionable y con fuente (menos de 20 funciones) como el objeto dominante de la lámina, y dejar la escala sin estudio detrás como una nota al pie que apunta al mismo lugar
+emphasize: la caja grande con "MENOS DE 20 FUNCIONES A LA VEZ" y su cita; después el contraste con el límite técnico de 128; la escala de abajo va en gris, pequeña y subordinada
+labels: "EL NUMERO ACCIONABLE", "MENOS DE 20 FUNCIONES A LA VEZ", "OpenAI, citado por Microsoft Research", "El limite tecnico de la propia API de OpenAI es 128 herramientas", "1-5 herr. 92%", "6-10 84%", "11-20 71%", "20+ 58%"
+-->

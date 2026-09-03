@@ -1,0 +1,77 @@
+<!-- talksmith-ascii-sha256: d4470418975d76d3864037650a07d7ae43e50291cf1fdba84f690cde6c27bd82 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 810 796" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#3B3535">
+<title>Recuperar, aumentar, generar</title>
+<desc>Esta es la lamina que hay que dejar clavada: los tres pasos de RAG y el hecho de que ninguno toca los pesos del modelo.</desc>
+<defs>
+<marker id="ar" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto"><path d="M0.5,0.5 L11,5 L0.5,9.5 Z" fill="#7A7070"/></marker>
+</defs>
+<rect x="0" y="0" width="810" height="796" fill="#ffffff"/>
+
+<rect x="210" y="40" width="320" height="58" rx="10" fill="#F7F5F5" stroke="#D6CFCF" stroke-width="1.4"/>
+<text x="370" y="62" text-anchor="middle" font-size="11" letter-spacing="1.4" fill="#6B6060">CONSULTA DEL USUARIO</text>
+<text x="370" y="84" text-anchor="middle" font-size="13.5">“¿por qué falla el deploy de staging?”</text>
+
+<line x1="370" y1="98" x2="370" y2="132" stroke="#7A7070" stroke-width="2" marker-end="url(#ar)"/>
+
+<rect x="40" y="132" width="150" height="70" rx="6" fill="#F2EFEF" stroke="#D6CFCF" stroke-width="1.3"/>
+<text x="115" y="158" text-anchor="middle" font-size="12" letter-spacing="1.3" fill="#6B6060">ÍNDICE</text>
+<text x="115" y="176" text-anchor="middle" font-size="10.5" fill="#8A8080">de fragmentos</text>
+<line x1="190" y1="167" x2="252" y2="167" stroke="#7A7070" stroke-width="2" marker-end="url(#ar)"/>
+<text x="221" y="155" text-anchor="middle" font-size="10" fill="#8A8080">busca</text>
+
+<rect x="250" y="132" width="240" height="70" rx="6" fill="#ffffff" stroke="#B9B1B1" stroke-width="1.4"/>
+<circle cx="284" cy="167" r="17" fill="#DA1B2E"/>
+<text x="284" y="173" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">1</text>
+<text x="312" y="174" font-size="17.5" font-weight="bold" letter-spacing="0.5">RECUPERAR</text>
+<text x="516" y="163" fill="#4A4444">busca en el índice los fragmentos</text>
+<text x="516" y="182" fill="#4A4444">que se parecen a la consulta</text>
+
+<line x1="370" y1="202" x2="370" y2="292" stroke="#7A7070" stroke-width="2" marker-end="url(#ar)"/>
+<text x="384" y="234" font-size="11.5" fill="#6B6060">top-k fragmentos</text>
+
+<rect x="516" y="228" width="68" height="26" rx="4" fill="#F2EFEF" stroke="#D6CFCF" stroke-width="1.1"/>
+<text x="550" y="245" text-anchor="middle" font-size="10" fill="#6B6060">frag 1</text>
+<rect x="594" y="228" width="68" height="26" rx="4" fill="#F2EFEF" stroke="#D6CFCF" stroke-width="1.1"/>
+<text x="628" y="245" text-anchor="middle" font-size="10" fill="#6B6060">frag 2</text>
+<rect x="672" y="228" width="68" height="26" rx="4" fill="#F2EFEF" stroke="#D6CFCF" stroke-width="1.1"/>
+<text x="706" y="245" text-anchor="middle" font-size="10" fill="#6B6060">frag 3</text>
+<text x="516" y="274" font-size="10.5" fill="#8A8080">trozos de texto, tal cual están en el índice</text>
+
+<rect x="250" y="292" width="240" height="70" rx="6" fill="#ffffff" stroke="#B9B1B1" stroke-width="1.4"/>
+<circle cx="284" cy="327" r="17" fill="#DA1B2E"/>
+<text x="284" y="333" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">2</text>
+<text x="312" y="334" font-size="17.5" font-weight="bold" letter-spacing="0.5">AUMENTAR</text>
+<text x="516" y="323" fill="#4A4444">los pega dentro del prompt,</text>
+<text x="516" y="342" fill="#4A4444">junto a la consulta original</text>
+
+<line x1="370" y1="362" x2="370" y2="398" stroke="#7A7070" stroke-width="2" marker-end="url(#ar)"/>
+
+<rect x="150" y="398" width="436" height="88" rx="8" fill="#FCF2F3" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="170" y="422" font-size="12" font-weight="bold" fill="#DA1B2E">“aumentar” = concatenar texto. No hay magia ni entrenamiento.</text>
+<rect x="170" y="436" width="116" height="36" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.2"/>
+<text x="228" y="459" text-anchor="middle" font-size="11.5">instrucción</text>
+<text x="294" y="461" text-anchor="middle" font-size="16" font-weight="bold" fill="#DA1B2E">+</text>
+<rect x="302" y="436" width="132" height="36" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.2"/>
+<text x="368" y="459" text-anchor="middle" font-size="11.5">fragmentos</text>
+<text x="442" y="461" text-anchor="middle" font-size="16" font-weight="bold" fill="#DA1B2E">+</text>
+<rect x="450" y="436" width="116" height="36" rx="4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.2"/>
+<text x="508" y="459" text-anchor="middle" font-size="11.5">consulta</text>
+
+<line x1="370" y1="486" x2="370" y2="518" stroke="#7A7070" stroke-width="2" marker-end="url(#ar)"/>
+
+<rect x="250" y="518" width="240" height="70" rx="6" fill="#ffffff" stroke="#B9B1B1" stroke-width="1.4"/>
+<circle cx="284" cy="553" r="17" fill="#DA1B2E"/>
+<text x="284" y="559" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">3</text>
+<text x="312" y="560" font-size="17.5" font-weight="bold" letter-spacing="0.5">GENERAR</text>
+<text x="516" y="549" fill="#4A4444">responde usando solo esos fragmentos</text>
+<text x="516" y="568" fill="#4A4444">y cita de cuál salió cada afirmación</text>
+
+<line x1="370" y1="588" x2="370" y2="624" stroke="#7A7070" stroke-width="2" marker-end="url(#ar)"/>
+
+<rect x="210" y="624" width="320" height="58" rx="10" fill="#F7F5F5" stroke="#D6CFCF" stroke-width="1.4"/>
+<text x="370" y="648" text-anchor="middle" font-size="14" font-weight="bold" letter-spacing="0.8">RESPUESTA CON CITAS</text>
+<text x="370" y="668" text-anchor="middle" font-size="11" fill="#6B6060">cada afirmación apunta a su fragmento</text>
+
+<rect x="40" y="712" width="730" height="44" rx="6" fill="#F2EFEF" stroke="#E3DDDD" stroke-width="1.2"/>
+<text x="405" y="740" text-anchor="middle" font-size="14.5" font-weight="bold">Ningún paso toca los pesos del modelo — por eso RAG no es fine-tuning.</text>
+</svg>

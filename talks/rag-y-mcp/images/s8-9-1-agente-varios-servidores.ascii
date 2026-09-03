@@ -1,0 +1,24 @@
+                        +-----------------------+
+                        |   AGENTE DE SOPORTE   |
+                        |     (cliente MCP)     |
+                        +-----------------------+
+                          |      |      |      |
+              tools/list  |      |      |      |  tools/list
+                          v      v      v      v
+        +-----------+ +-----------+ +-----------+ +-----------+
+        | SERVIDOR  | | SERVIDOR  | | SERVIDOR  | | SERVIDOR  |
+        | clientes  | | productos | | pedidos   | | tickets   |
+        +-----------+ +-----------+ +-----------+ +-----------+
+              |             |             |             |
+              v             v             v             v
+           CRM base      catalogo      ERP pedidos   Jira / Zendesk
+
+  Cada servidor se despliega, se escala y se rompe por separado.
+  El agente ve UN catalogo plano y no sabe de que servidor vino
+  cada herramienta.
+
+<!-- ascii-note:
+intent: mostrar que el agente ve un catálogo único y plano aunque las herramientas vengan de servidores independientes; esa planitud es la que produce el problema de selección de la sección 9
+emphasize: el aplanado, o sea que las cuatro cajas de servidor desembocan en un solo agente; el pie sobre el catálogo único
+labels: "AGENTE DE SOPORTE (cliente MCP)", "tools/list", "SERVIDOR clientes / productos / pedidos / tickets", "CRM base", "catalogo", "ERP pedidos", "Jira / Zendesk", "El agente ve UN catalogo plano"
+-->

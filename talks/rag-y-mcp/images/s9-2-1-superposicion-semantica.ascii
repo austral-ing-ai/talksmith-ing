@@ -1,0 +1,23 @@
+  Veintitres nombres distintos para la misma herramienta de busqueda
+  web, conviviendo en el ecosistema (1.470 servidores inspeccionados)
+
+    websearch            web_search            search_web
+    search-web           google_search         search_google
+    brave_web_search     ai_web_search         web_search_exa
+    duckduckgo_web_search                      tavily_web_search
+    google_news_search   google_search_parsed  search_google_images
+    search_webkr         get_webset_search_exa search_google_scholar
+    web_search_agent     answer_query_websearch batch-web-search
+    search_web_tool      google-play-search    google_search_scraper
+
+  Y ademas 775 herramientas con colision de nombre EXACTA.
+  La mas repetida:   search   ->   en 32 servidores distintos
+
+  MCP no tiene namespaces. El OpenAI Agents SDK lanza error ante
+  el duplicado; Claude Code prefija los nombres para distinguirlos.
+
+<!-- ascii-note:
+intent: hacer tangible el problema de superposición semántica mostrando la lista real de nombres que compiten por el mismo trabajo; la masa de nombres parecidos es el argumento
+emphasize: el bloque de nombres como masa visual indistinguible; la línea de las 775 colisiones exactas y el "search en 32 servidores"
+labels: "Veintitres nombres distintos para la misma herramienta de busqueda web", "775 herramientas con colision de nombre EXACTA", "search -> en 32 servidores distintos", "MCP no tiene namespaces"
+-->

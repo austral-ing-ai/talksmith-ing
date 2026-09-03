@@ -1,0 +1,22 @@
+  FASE 1  saludo y autenticacion      FASE 2  diagnostico
+  +----------------------------+      +----------------------------+
+  | authenticateCustomer       |      | searchKnowledgeBase        |
+  |                            |      | checkSystemStatus          |
+  +----------------------------+      +----------------------------+
+   ocultas: busqueda, ticketing        ocultas: auth, ticketing
+
+  FASE 3  resolucion
+  +----------------------------+      El agente nunca ve mas de
+  | createTicket               |      dos o tres herramientas,
+  | scheduleCallback           |      aunque el sistema tenga 20.
+  +----------------------------+
+   ocultas: auth, busqueda
+
+  Quien decide la fase queda fuera del patron. Si la clasifica el
+  mismo LLM, el problema de seleccion vuelve un nivel mas arriba.
+
+<!-- ascii-note:
+intent: mostrar que el catálogo puede ser dinámico y depender del estado de la conversación, y cerrar con la pregunta que el patrón no resuelve (quién clasifica la fase)
+emphasize: las tres cajas de fase con sus dos o tres herramientas visibles, y las líneas de "ocultas" debajo de cada una; el pie con la pregunta abierta
+labels: "FASE 1 saludo y autenticacion", "FASE 2 diagnostico", "FASE 3 resolucion", "ocultas", "El agente nunca ve mas de dos o tres herramientas", "Quien decide la fase queda fuera del patron"
+-->

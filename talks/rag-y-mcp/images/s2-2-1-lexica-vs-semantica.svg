@@ -1,0 +1,78 @@
+<!-- talksmith-ascii-sha256: f160cdce4dbfd609fe741c026bded0ee9fc80c946bf9e855ca3a7735057cd1b7 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 522" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Palabras, significado, o las dos</title>
+<desc>Una misma consulta entra en los dos índices y cada mecanismo engancha algo distinto: el índice invertido los términos literales, la base vectorial el sentido de la frase.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<path d="M0 0 L10.5 4.5 L0 9 Z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="740" height="522" fill="#ffffff"/>
+
+<text x="370" y="40" text-anchor="middle" font-size="9.5" letter-spacing="1.6" fill="#9A9292">UNA MISMA CONSULTA</text>
+<rect x="170" y="50" width="400" height="34" rx="17" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="370" y="72" text-anchor="middle" font-family="Andale Mono, monospace" font-size="13.5">el login tira 503 cada tanto</text>
+
+<path d="M370 84 L370 106" stroke="#DA1B2E" stroke-width="1.6" fill="none"/>
+<path d="M190 106 L550 106" stroke="#DA1B2E" stroke-width="1.6" fill="none"/>
+<path d="M190 106 L190 132" stroke="#DA1B2E" stroke-width="1.6" fill="none" marker-end="url(#ah)"/>
+<path d="M550 106 L550 132" stroke="#DA1B2E" stroke-width="1.6" fill="none" marker-end="url(#ah)"/>
+
+<rect x="30" y="134" width="320" height="44" rx="3" fill="#F2F0F0" stroke="#C9C3C3"/>
+<text x="190" y="153" text-anchor="middle" font-size="13.5" font-weight="bold">ÍNDICE INVERTIDO</text>
+<text x="190" y="169" text-anchor="middle" font-size="10.5" fill="#7A7272">de la palabra a los documentos</text>
+<rect x="390" y="134" width="320" height="44" rx="3" fill="#F2F0F0" stroke="#C9C3C3"/>
+<text x="550" y="153" text-anchor="middle" font-size="13.5" font-weight="bold">BASE VECTORIAL</text>
+<text x="550" y="169" text-anchor="middle" font-size="10.5" fill="#7A7272">del vector a sus vecinos</text>
+
+<text x="30" y="203.5" font-size="9" letter-spacing="1.3" fill="#9A9292">QUÉ ENGANCHA DE LA CONSULTA</text>
+<path d="M212 200 L710 200" stroke="#E3DEDE" stroke-width="1" fill="none"/>
+
+<rect x="30" y="214" width="31" height="22" rx="3" fill="#ffffff" stroke="#D8D3D3" stroke-dasharray="3 3"/>
+<text x="45.5" y="229.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="11" fill="#9A9292">el</text>
+<rect x="71" y="214" width="51" height="22" rx="3" fill="#FCF0F1" stroke="#DA1B2E"/>
+<text x="96.5" y="229.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="11">login</text>
+<rect x="132" y="214" width="45" height="22" rx="3" fill="#ffffff" stroke="#D8D3D3" stroke-dasharray="3 3"/>
+<text x="154.5" y="229.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="11" fill="#9A9292">tira</text>
+<rect x="187" y="214" width="38" height="22" rx="3" fill="#FCF0F1" stroke="#DA1B2E"/>
+<text x="206" y="229.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="11">503</text>
+
+<rect x="30" y="244" width="84" height="22" rx="3" fill="#ffffff" stroke="#D8D3D3" stroke-dasharray="3 3"/>
+<text x="72" y="259.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="11" fill="#9A9292">cada tanto</text>
+<text x="126" y="259.5" font-size="9.5" fill="#9A9292">ningún término lo indexa</text>
+<text x="30" y="292" font-size="12" font-weight="bold">coincidencia literal</text>
+
+<circle cx="455" cy="244" r="36" fill="none" stroke="#C9C3C3" stroke-dasharray="4 4"/>
+<circle cx="398" cy="214" r="2.8" fill="#D8D3D3"/>
+<circle cx="401" cy="278" r="2.8" fill="#D8D3D3"/>
+<circle cx="396" cy="246" r="2.8" fill="#D8D3D3"/>
+<circle cx="433" cy="228" r="3.4" fill="#8A8080"/>
+<circle cx="479" cy="232" r="3.4" fill="#8A8080"/>
+<circle cx="443" cy="268" r="3.4" fill="#8A8080"/>
+<circle cx="474" cy="264" r="3.4" fill="#8A8080"/>
+<circle cx="455" cy="244" r="5" fill="#DA1B2E"/>
+<text x="520" y="232" font-size="9" letter-spacing="1.1" fill="#9A9292">VECINOS MÁS CERCANOS</text>
+<text x="520" y="250" font-family="Andale Mono, monospace" font-size="11">falla intermitente</text>
+<text x="520" y="266" font-family="Andale Mono, monospace" font-size="11">al autenticar</text>
+<text x="390" y="292" font-size="12" font-weight="bold">cercanía en el espacio</text>
+
+<text x="30" y="321.5" font-size="9" letter-spacing="1.3" fill="#9A9292">QUÉ CUESTA</text>
+<path d="M112 318 L710 318" stroke="#E3DEDE" stroke-width="1" fill="none"/>
+<text x="30" y="344" font-size="11.5" fill="#5A5252">milisegundos, sin GPU</text>
+<rect x="30" y="352" width="48" height="6" fill="#C9C3C3"/>
+<text x="390" y="344" font-size="11.5" fill="#5A5252">una inferencia por consulta</text>
+<rect x="390" y="352" width="176" height="6" fill="#C9C3C3"/>
+
+<text x="30" y="385.5" font-size="9" letter-spacing="1.3" fill="#9A9292">DÓNDE SE CAE</text>
+<path d="M126 382 L710 382" stroke="#E3DEDE" stroke-width="1" fill="none"/>
+<rect x="30" y="394" width="320" height="58" rx="3" fill="#EFEBEB" stroke="#8A8080" stroke-width="1.3"/>
+<rect x="30" y="394" width="5" height="58" fill="#3B3535"/>
+<text x="50" y="418" font-size="12">si el usuario no usa las</text>
+<text x="50" y="436" font-size="12">palabras del documento</text>
+<rect x="390" y="394" width="320" height="58" rx="3" fill="#EFEBEB" stroke="#8A8080" stroke-width="1.3"/>
+<rect x="390" y="394" width="5" height="58" fill="#3B3535"/>
+<text x="410" y="418" font-size="12">si hay que encontrar un</text>
+<text x="410" y="436" font-size="12">identificador exacto</text>
+
+<text x="370" y="488" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#DA1B2E">Los dos fallan, y fallan en casos distintos.</text>
+</svg>

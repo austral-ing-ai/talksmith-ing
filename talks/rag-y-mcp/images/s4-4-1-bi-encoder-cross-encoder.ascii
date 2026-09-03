@@ -1,0 +1,30 @@
+  BI-ENCODER  (busqueda vectorial)     CROSS-ENCODER  (reranker)
+
+   consulta       documento             consulta + [SEP] + documento
+      |              |                            |
+      v              v                            v
+  [ modelo ]     [ modelo ]                +----------------+
+      |              |                     |     modelo     |
+      v              v                     | la atencion    |
+   vector A       vector B                 | cruza cada     |
+      |              |                     | token con      |
+      +------>o<-----+                     | cada token     |
+          cos(A, B)                        +----------------+
+                                                   |
+                                                   v
+                                          score de relevancia 0..1
+
+  el vector del documento se            hay que correr el modelo
+  precalcula una sola vez               una vez por cada par
+  O(1) por doc en la consulta           O(n) por consulta
+  escala a millones de docs             solo sobre los top-50
+
+  "banco" tiene un unico vector,        "banco" se lee pegado a la
+  sirva la consulta para hablar         consulta, y la consulta dice
+  de dinero o de un rio                 de cual de los dos se trata
+
+<!-- ascii-note:
+intent: mostrar que la diferencia no es de tamaño de modelo sino de arquitectura: quién ve a quién. El bi-encoder nunca pone los dos textos en la misma pasada; el cross-encoder sí, y de ahí sale toda su precisión y todo su costo
+emphasize: la concatenación de consulta y documento en la columna derecha frente a las dos ramas separadas de la izquierda; el par de líneas finales sobre "banco", que es donde se ve la consecuencia práctica
+labels: "BI-ENCODER (busqueda vectorial)", "CROSS-ENCODER (reranker)", "cos(A, B)", "score de relevancia 0..1", "O(1) por doc", "O(n) por consulta", "banco"
+-->

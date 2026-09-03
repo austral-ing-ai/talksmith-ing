@@ -1,0 +1,82 @@
+<!-- talksmith-ascii-sha256: e006e53358d1761f31767cada340079214f91df33528df7ecb79ea45956037f6 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 492" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>M×N conectores, o M+N piezas</title>
+<desc>El problema es de crecimiento y no de dificultad: la malla crece con el producto y la estrella con la suma.</desc>
+<defs>
+<marker id="sr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+<path d="M0,0 L9,4 L0,8 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="900" height="492" fill="#ffffff"/>
+
+<text x="60" y="78" font-size="13" font-weight="bold" letter-spacing="0.8" fill="#6B6262">SIN PROTOCOLO</text>
+<text x="60" y="96" font-size="12" fill="#8C8080">cada par necesita su conector</text>
+<line x1="60" y1="106" x2="430" y2="106" stroke="#D8D2D2" stroke-width="1.4"/>
+
+<text x="470" y="78" font-size="13" font-weight="bold" letter-spacing="0.8" fill="#DA1B2E">CON UN PROTOCOLO</text>
+<text x="470" y="96" font-size="12" fill="#5E5757">cada lado habla el mismo idioma</text>
+<line x1="470" y1="106" x2="840" y2="106" stroke="#DA1B2E" stroke-width="1.6"/>
+
+<line x1="150" y1="150" x2="340" y2="150" stroke="#C9C0C0" stroke-width="1.2"/>
+<line x1="150" y1="150" x2="340" y2="200" stroke="#C9C0C0" stroke-width="1.2"/>
+<line x1="150" y1="150" x2="340" y2="250" stroke="#C9C0C0" stroke-width="1.2"/>
+<line x1="150" y1="200" x2="340" y2="150" stroke="#C9C0C0" stroke-width="1.2"/>
+<line x1="150" y1="200" x2="340" y2="200" stroke="#C9C0C0" stroke-width="1.2"/>
+<line x1="150" y1="200" x2="340" y2="250" stroke="#C9C0C0" stroke-width="1.2"/>
+<line x1="150" y1="250" x2="340" y2="150" stroke="#C9C0C0" stroke-width="1.2"/>
+<line x1="150" y1="250" x2="340" y2="200" stroke="#C9C0C0" stroke-width="1.2"/>
+<line x1="150" y1="250" x2="340" y2="250" stroke="#C9C0C0" stroke-width="1.2"/>
+
+<rect x="70" y="136" width="80" height="28" fill="#F4F2F2" stroke="#B9AFAF" stroke-width="1.3"/>
+<text x="110" y="155" text-anchor="middle" font-size="11.5" fill="#5E5757">app 1</text>
+<rect x="70" y="186" width="80" height="28" fill="#F4F2F2" stroke="#B9AFAF" stroke-width="1.3"/>
+<text x="110" y="205" text-anchor="middle" font-size="11.5" fill="#5E5757">app 2</text>
+<rect x="70" y="236" width="80" height="28" fill="#F4F2F2" stroke="#B9AFAF" stroke-width="1.3"/>
+<text x="110" y="255" text-anchor="middle" font-size="11.5" fill="#5E5757">app 3</text>
+
+<rect x="340" y="136" width="90" height="28" fill="#F4F2F2" stroke="#B9AFAF" stroke-width="1.3"/>
+<text x="385" y="155" text-anchor="middle" font-size="11.5" fill="#5E5757">fuente A</text>
+<rect x="340" y="186" width="90" height="28" fill="#F4F2F2" stroke="#B9AFAF" stroke-width="1.3"/>
+<text x="385" y="205" text-anchor="middle" font-size="11.5" fill="#5E5757">fuente B</text>
+<rect x="340" y="236" width="90" height="28" fill="#F4F2F2" stroke="#B9AFAF" stroke-width="1.3"/>
+<text x="385" y="255" text-anchor="middle" font-size="11.5" fill="#5E5757">fuente C</text>
+
+<line x1="560" y1="150" x2="616" y2="192" stroke="#DA1B2E" stroke-width="1.8"/>
+<line x1="560" y1="200" x2="616" y2="200" stroke="#DA1B2E" stroke-width="1.8"/>
+<line x1="560" y1="250" x2="616" y2="208" stroke="#DA1B2E" stroke-width="1.8"/>
+<line x1="710" y1="192" x2="746" y2="150" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#sr)"/>
+<line x1="710" y1="200" x2="746" y2="200" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#sr)"/>
+<line x1="710" y1="208" x2="746" y2="250" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#sr)"/>
+
+<rect x="480" y="136" width="80" height="28" fill="#ffffff" stroke="#7A7070" stroke-width="1.4"/>
+<text x="520" y="155" text-anchor="middle" font-size="11.5">app 1</text>
+<rect x="480" y="186" width="80" height="28" fill="#ffffff" stroke="#7A7070" stroke-width="1.4"/>
+<text x="520" y="205" text-anchor="middle" font-size="11.5">app 2</text>
+<rect x="480" y="236" width="80" height="28" fill="#ffffff" stroke="#7A7070" stroke-width="1.4"/>
+<text x="520" y="255" text-anchor="middle" font-size="11.5">app 3</text>
+
+<rect x="616" y="180" width="94" height="40" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.6"/>
+<text x="663" y="205" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">MCP</text>
+
+<rect x="750" y="136" width="90" height="28" fill="#ffffff" stroke="#7A7070" stroke-width="1.4"/>
+<text x="795" y="155" text-anchor="middle" font-size="11.5">fuente A</text>
+<rect x="750" y="186" width="90" height="28" fill="#ffffff" stroke="#7A7070" stroke-width="1.4"/>
+<text x="795" y="205" text-anchor="middle" font-size="11.5">fuente B</text>
+<rect x="750" y="236" width="90" height="28" fill="#ffffff" stroke="#7A7070" stroke-width="1.4"/>
+<text x="795" y="255" text-anchor="middle" font-size="11.5">fuente C</text>
+
+<text x="60" y="314" font-size="13" font-family="Andale Mono, monospace" font-weight="bold" fill="#6B6262">M x N = 9 conectores</text>
+<text x="60" y="340" font-size="12" fill="#5E5757">sumar una fuente:</text>
+<text x="250" y="340" font-size="12" font-weight="bold" fill="#5E5757">+3 conectores</text>
+<text x="60" y="360" font-size="12" fill="#5E5757">sumar una app:</text>
+<text x="250" y="360" font-size="12" font-weight="bold" fill="#5E5757">+3 conectores</text>
+
+<text x="470" y="314" font-size="13" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E">M + N = 6 implementaciones</text>
+<text x="470" y="340" font-size="12" fill="#5E5757">sumar una fuente:</text>
+<text x="660" y="340" font-size="12" font-weight="bold" fill="#DA1B2E">+1 servidor</text>
+<text x="470" y="360" font-size="12" fill="#5E5757">sumar una app:</text>
+<text x="660" y="360" font-size="12" font-weight="bold" fill="#DA1B2E">+1 cliente</text>
+
+<line x1="60" y1="400" x2="840" y2="400" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="450" y="428" text-anchor="middle" font-size="13.5" font-weight="bold">Cada conector a medida se mantiene por separado, se autentica distinto y se rompe por su cuenta.</text>
+</svg>

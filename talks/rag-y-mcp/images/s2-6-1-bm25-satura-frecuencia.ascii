@@ -1,0 +1,25 @@
+  peso del termino
+     ^
+     |                                         TF-IDF: crece lineal
+     |                                     ,-'      y sin techo
+     |                                 ,-'
+     |                             ,-'
+     |                         ,-'
+     |                     ,-'        _________________  BM25: satura
+     |                 ,-'      _,---'
+     |             ,-'    _,---'
+     |         ,-'  _,---'
+     |     ,-' _,--'
+     |  ,-'_,-'
+     | ,--'
+     +-------------------------------------------------------> tf
+       0   1   2   3    5      10        20            100
+
+  La 2a aparicion de un termino agrega mucho.
+  La 100a no agrega casi nada: el documento ya trataba del tema.
+
+<!-- ascii-note:
+intent: mostrar por qué BM25 reemplaza a TF-IDF: el peso de un término tiene que crecer con la frecuencia pero acercarse a un techo, porque a partir de cierto punto repetir la palabra ya no dice nada nuevo
+emphasize: la curva de BM25 que se aplana hacia su asíntota, frente a la recta de TF-IDF que sigue subiendo; el pie que explica la intuición
+labels: "peso del termino", "tf", "TF-IDF: crece lineal y sin techo", "BM25: satura", "La 2a aparicion agrega mucho. La 100a no agrega casi nada"
+-->

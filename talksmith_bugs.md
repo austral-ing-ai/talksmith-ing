@@ -155,3 +155,31 @@
     acotada por un `--cb-fs-max` (p. ej. 2.6cqw) en lugar de solo hacia abajo. Alternativa mas
     barata: exponer una variable CSS por lamina (`code_scale` en el modelo, mapeada a
     `--cb-fs`) para que el autor pueda subir el tamano donde sabe que el codigo es corto.
+
+- id: BUG-20260903-01
+  status: ABIERTO (detectado 2026-09-03, plugin 0.98.1)
+  date: 2026-09-03
+  talk: talks/rag-y-mcp
+  step: 6 (Polish — pase ASCII a SVG)
+  where: la regla de estilo de diagramas que prescribe `font-family="'DejaVu Sans Mono', monospace"`
+    para el texto monoespaciado de los SVG.
+  what: en una maquina sin DejaVu instalada, cairosvg toma literalmente la PRIMERA familia de la
+    lista y cae a su sans por defecto en vez de recorrer el resto de la cascada. El resultado es
+    que TODO el texto que deberia ser monoespaciado — bloques de codigo, vectores, cargas JSON,
+    tablas de metadatos, trazas de tokens — se dibuja en proporcional, sin ningun error ni aviso.
+    Es un fallo silencioso: el SVG se genera, el PNG se genera, las auditorias pasan, y el defecto
+    solo se ve mirando la imagen y sabiendo que ahi tendria que haber monoespaciado.
+  repro: 1) verificar que DejaVu Sans Mono NO este instalada (`fc-list | grep -i dejavu` vacio, o
+    en macOS sin la fuente en ~/Library/Fonts ni /Library/Fonts);
+    2) renderizar cualquier bloque ```ascii que contenga un fragmento de codigo o una tabla;
+    3) abrir el PNG: el texto sale en sans proporcional y las columnas no alinean.
+  context: aparecio dibujando los 28 diagramas de este Talk. Afectaba a los 28 y no lo detecto
+    ninguna auditoria; lo encontro el ilustrador midiendo el ancho de los glifos. Se corrigio
+    cambiando a `Andale Mono, monospace`, que en macOS viene instalada. Efecto secundario: una vez
+    que el monoespaciado real entro en juego, las corridas de guiones (`-->`, `---`) se dibujaron
+    como barras continuas sin separacion, y hubo que reemplazarlas por geometria de flecha.
+  suggested-fix: dos opciones, no excluyentes. (a) Que la regla de estilo no prescriba una familia
+    concreta sino que el renderizador resuelva la primera familia monoespaciada REALMENTE presente
+    en el sistema, con una lista de candidatos por plataforma. (b) Que el pase de render falle
+    ruidosamente, o al menos advierta, cuando la familia pedida no resuelve — un fallo silencioso
+    que degrada todos los diagramas del deck es peor que un error.

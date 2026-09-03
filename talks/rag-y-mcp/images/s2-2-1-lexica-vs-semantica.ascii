@@ -1,0 +1,24 @@
+  Una misma consulta:  "el login tira 503 cada tanto"
+         |
+         +--------------------------------+
+         v                                v
+  +--------------------+          +---------------------+
+  |  INDICE INVERTIDO  |          |   BASE VECTORIAL    |
+  |  palabra -> docs   |          |  vector -> vecinos  |
+  +--------------------+          +---------------------+
+   engancha "503"                  engancha el sentido de
+   engancha "login"                "falla intermitente al
+   no ve "cada tanto"               autenticar"
+
+   coincidencia literal            cercania en el espacio
+   milisegundos, sin GPU           inferencia por consulta
+   falla si el usuario no          falla si hay que encontrar
+   usa las palabras del doc        un identificador exacto
+
+  Los dos fallan, y fallan en casos distintos.
+
+<!-- ascii-note:
+intent: mostrar que las dos familias no son dos calidades del mismo mecanismo sino dos mecanismos distintos, sometiendo a la misma consulta a los dos y mostrando qué engancha cada uno y dónde se cae
+emphasize: la bifurcación de la única consulta hacia las dos cajas; el par de líneas finales de cada columna, donde cada mecanismo declara su propio modo de falla
+labels: "Una misma consulta", "INDICE INVERTIDO / palabra -> docs", "BASE VECTORIAL / vector -> vecinos", "coincidencia literal", "cercania en el espacio", "Los dos fallan, y fallan en casos distintos"
+-->

@@ -1,0 +1,112 @@
+<!-- talksmith-ascii-sha256: 0a33250e1afbef87c282beb2db507022fe744595d27d183646cd12a711bc0f7c -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 766 477" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#3B3535">
+<title>Antes de consultar hay que indexar</title>
+<desc>La indexacion es un trabajo offline que llena el indice; la consulta, online, solo lee lo que ese trabajo dejo escrito.</desc>
+<defs>
+<marker id="ah" markerWidth="9" markerHeight="8" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#8A8080"/></marker>
+<marker id="aha" markerWidth="9" markerHeight="8" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="766" height="477" fill="#ffffff"/>
+
+<text x="20" y="32" font-size="15" font-weight="bold" letter-spacing="0.6">FASE 1 &#183; INDEXACI&#211;N</text>
+<text x="20" y="50" font-size="11.5" fill="#6B6262">offline &#8212; se corre una vez, y otra vez con cada cambio del corpus</text>
+<text x="20" y="76" font-size="11.5" fill="#6B6262">docs, ADRs, tickets, c&#243;digo fuente</text>
+<line x1="48" y1="82" x2="48" y2="106" stroke="#8A8080" stroke-width="1.6" marker-end="url(#ah)"/>
+
+<rect x="20" y="106" width="116" height="58" rx="5" fill="#F6F4F4" stroke="#C9C2C2" stroke-width="1.2"/>
+<text x="78" y="130" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="0.5">LOAD</text>
+<text x="78" y="148" text-anchor="middle" fill="#6B6262">abrir cada archivo</text>
+
+<rect x="160" y="106" width="116" height="58" rx="5" fill="#F6F4F4" stroke="#C9C2C2" stroke-width="1.2"/>
+<text x="218" y="130" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="0.5">SPLIT</text>
+<text x="218" y="148" text-anchor="middle" fill="#6B6262">cortar en fragmentos</text>
+
+<rect x="300" y="106" width="116" height="58" rx="5" fill="#FDF1F2" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="358" y="130" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="0.5">EMBED</text>
+<text x="358" y="148" text-anchor="middle" fill="#6B6262">un vector por frag.</text>
+
+<rect x="440" y="106" width="116" height="58" rx="5" fill="#F6F4F4" stroke="#C9C2C2" stroke-width="1.2"/>
+<text x="498" y="130" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="0.5">STORE</text>
+<text x="498" y="148" text-anchor="middle" fill="#6B6262">escribir al &#237;ndice</text>
+
+<line x1="136" y1="135" x2="160" y2="135" stroke="#8A8080" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="276" y1="135" x2="300" y2="135" stroke="#8A8080" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="416" y1="135" x2="440" y2="135" stroke="#8A8080" stroke-width="1.6" marker-end="url(#ah)"/>
+
+<text x="578" y="128" font-size="9.5" text-anchor="middle" fill="#DA1B2E" font-weight="bold">escribe</text>
+<line x1="556" y1="135" x2="600" y2="135" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#aha)"/>
+
+<line x1="20" y1="200" x2="330" y2="200" stroke="#D8D2D2" stroke-width="1"/>
+<line x1="476" y1="200" x2="596" y2="200" stroke="#D8D2D2" stroke-width="1"/>
+
+<line x1="358" y1="164" x2="358" y2="264" stroke="#DA1B2E" stroke-width="1.6" stroke-dasharray="4 3"/>
+<circle cx="358" cy="164" r="2.8" fill="#DA1B2E"/>
+<circle cx="358" cy="264" r="2.8" fill="#DA1B2E"/>
+<text x="368" y="197" font-size="10" fill="#DA1B2E" font-weight="bold">el mismo modelo</text>
+<text x="368" y="211" font-size="10" fill="#DA1B2E" font-weight="bold">en las dos fases</text>
+
+<text x="20" y="226" font-size="15" font-weight="bold" letter-spacing="0.6">FASE 2 &#183; CONSULTA</text>
+<text x="20" y="244" font-size="11.5" fill="#6B6262">online &#8212; se ejecuta entera en cada pregunta</text>
+
+<rect x="160" y="264" width="116" height="58" rx="5" fill="#FFFFFF" stroke="#C9C2C2" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="218" y="288" font-size="12" font-weight="bold" text-anchor="middle" fill="#6B6262">pregunta</text>
+<text x="218" y="306" text-anchor="middle" fill="#6B6262">del usuario</text>
+
+<rect x="300" y="264" width="116" height="58" rx="5" fill="#FDF1F2" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="358" y="288" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="0.5">EMBED</text>
+<text x="358" y="306" text-anchor="middle" fill="#6B6262">un vector, uno solo</text>
+
+<rect x="440" y="264" width="116" height="58" rx="5" fill="#F6F4F4" stroke="#C9C2C2" stroke-width="1.2"/>
+<text x="498" y="288" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="0.5">RETRIEVE</text>
+<text x="498" y="306" text-anchor="middle" fill="#6B6262">top-k m&#225;s cercanos</text>
+
+<line x1="276" y1="293" x2="300" y2="293" stroke="#8A8080" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="416" y1="293" x2="440" y2="293" stroke="#8A8080" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="578" y="286" font-size="9.5" text-anchor="middle" fill="#DA1B2E" font-weight="bold">lee</text>
+<line x1="600" y1="293" x2="556" y2="293" stroke="#DA1B2E" stroke-width="1.8" marker-end="url(#aha)"/>
+
+<line x1="498" y1="322" x2="498" y2="364" stroke="#8A8080" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="440" y="364" width="116" height="58" rx="5" fill="#F6F4F4" stroke="#C9C2C2" stroke-width="1.2"/>
+<text x="498" y="388" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="0.5">GENERATE</text>
+<text x="498" y="406" text-anchor="middle" fill="#6B6262">responde con eso</text>
+<line x1="498" y1="422" x2="498" y2="440" stroke="#8A8080" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="498" y="454" font-size="11.5" text-anchor="middle" fill="#6B6262">respuesta al usuario</text>
+
+<rect x="20" y="364" width="3" height="58" fill="#C9C2C2"/>
+<text x="34" y="382" fill="#6B6262">La fase 2 nunca vuelve a abrir</text>
+<text x="34" y="396" fill="#6B6262">los documentos: solo lee lo que</text>
+<text x="34" y="410" fill="#6B6262">la fase 1 dej&#243; en el &#237;ndice.</text>
+
+<rect x="600" y="106" width="146" height="316" rx="7" fill="#FDF1F2" stroke="#DA1B2E" stroke-width="1.8"/>
+<text x="673" y="130" font-size="13" font-weight="bold" text-anchor="middle" fill="#DA1B2E" letter-spacing="0.8">&#205;NDICE</text>
+<text x="673" y="146" font-size="9.5" text-anchor="middle" fill="#6B6262">fragmento + vector</text>
+<line x1="614" y1="156" x2="732" y2="156" stroke="#E8B9BF" stroke-width="1"/>
+
+<rect x="614" y="170" width="118" height="26" rx="3" fill="#FFFFFF" stroke="#E8B9BF" stroke-width="1"/>
+<text x="622" y="187" font-size="9.5" font-family="Andale Mono, monospace" fill="#6B6262">frag 01</text>
+<rect x="686" y="180" width="6" height="6" fill="#DA1B2E" opacity="0.85"/><rect x="696" y="180" width="6" height="6" fill="#DA1B2E" opacity="0.35"/><rect x="706" y="180" width="6" height="6" fill="#DA1B2E" opacity="0.6"/><rect x="716" y="180" width="6" height="6" fill="#DA1B2E" opacity="0.45"/>
+
+<rect x="614" y="204" width="118" height="26" rx="3" fill="#FFFFFF" stroke="#E8B9BF" stroke-width="1"/>
+<text x="622" y="221" font-size="9.5" font-family="Andale Mono, monospace" fill="#6B6262">frag 02</text>
+<rect x="686" y="214" width="6" height="6" fill="#DA1B2E" opacity="0.4"/><rect x="696" y="214" width="6" height="6" fill="#DA1B2E" opacity="0.8"/><rect x="706" y="214" width="6" height="6" fill="#DA1B2E" opacity="0.3"/><rect x="716" y="214" width="6" height="6" fill="#DA1B2E" opacity="0.7"/>
+
+<rect x="614" y="238" width="118" height="26" rx="3" fill="#FFFFFF" stroke="#E8B9BF" stroke-width="1"/>
+<text x="622" y="255" font-size="9.5" font-family="Andale Mono, monospace" fill="#6B6262">frag 03</text>
+<rect x="686" y="248" width="6" height="6" fill="#DA1B2E" opacity="0.65"/><rect x="696" y="248" width="6" height="6" fill="#DA1B2E" opacity="0.45"/><rect x="706" y="248" width="6" height="6" fill="#DA1B2E" opacity="0.85"/><rect x="716" y="248" width="6" height="6" fill="#DA1B2E" opacity="0.3"/>
+
+<rect x="614" y="272" width="118" height="26" rx="3" fill="#FFFFFF" stroke="#E8B9BF" stroke-width="1"/>
+<text x="622" y="289" font-size="9.5" font-family="Andale Mono, monospace" fill="#6B6262">frag 04</text>
+<rect x="686" y="282" width="6" height="6" fill="#DA1B2E" opacity="0.5"/><rect x="696" y="282" width="6" height="6" fill="#DA1B2E" opacity="0.7"/><rect x="706" y="282" width="6" height="6" fill="#DA1B2E" opacity="0.4"/><rect x="716" y="282" width="6" height="6" fill="#DA1B2E" opacity="0.85"/>
+
+<rect x="614" y="306" width="118" height="26" rx="3" fill="#FFFFFF" stroke="#E8B9BF" stroke-width="1"/>
+<text x="622" y="323" font-size="9.5" font-family="Andale Mono, monospace" fill="#6B6262">frag 05</text>
+<rect x="686" y="316" width="6" height="6" fill="#DA1B2E" opacity="0.75"/><rect x="696" y="316" width="6" height="6" fill="#DA1B2E" opacity="0.3"/><rect x="706" y="316" width="6" height="6" fill="#DA1B2E" opacity="0.55"/><rect x="716" y="316" width="6" height="6" fill="#DA1B2E" opacity="0.4"/>
+
+<rect x="614" y="340" width="118" height="26" rx="3" fill="#FFFFFF" stroke="#E8B9BF" stroke-width="1"/>
+<text x="622" y="357" font-size="9.5" font-family="Andale Mono, monospace" fill="#6B6262">frag 06</text>
+<rect x="686" y="350" width="6" height="6" fill="#DA1B2E" opacity="0.35"/><rect x="696" y="350" width="6" height="6" fill="#DA1B2E" opacity="0.6"/><rect x="706" y="350" width="6" height="6" fill="#DA1B2E" opacity="0.8"/><rect x="716" y="350" width="6" height="6" fill="#DA1B2E" opacity="0.5"/>
+
+<rect x="614" y="374" width="118" height="26" rx="3" fill="#FFFFFF" stroke="#E8B9BF" stroke-width="1"/>
+<text x="622" y="391" font-size="9.5" font-family="Andale Mono, monospace" fill="#6B6262">frag 07</text>
+<rect x="686" y="384" width="6" height="6" fill="#DA1B2E" opacity="0.55"/><rect x="696" y="384" width="6" height="6" fill="#DA1B2E" opacity="0.85"/><rect x="706" y="384" width="6" height="6" fill="#DA1B2E" opacity="0.35"/><rect x="716" y="384" width="6" height="6" fill="#DA1B2E" opacity="0.65"/>
+</svg>

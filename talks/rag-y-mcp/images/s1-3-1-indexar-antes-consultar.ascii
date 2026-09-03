@@ -1,0 +1,25 @@
+  FASE 1 - INDEXACION       offline: una vez, y en cada cambio del corpus
+
+    docs, ADRs, tickets, codigo fuente
+         |
+         v
+    [ LOAD ] -> [ SPLIT ] -> [ EMBED ] -> [ STORE ] --.
+     abrir el    cortar en    un vector    escribir     |
+     archivo     fragmentos   por frag.    al indice    |
+                                                        v
+                                               +-----------------+
+                                               |     INDICE      |
+                                               +-----------------+
+                                                        ^
+  FASE 2 - CONSULTA         online: en cada pregunta del usuario
+
+    consulta -> [ EMBED ] -> [ RETRIEVE ] ---------------'
+                                  |
+                                  v
+                            [ GENERATE ] -> respuesta
+
+<!-- ascii-note:
+intent: separar el trabajo caro y offline (indexar) del trabajo barato y online (consultar), y mostrar que las dos fases se tocan en un solo punto, el índice
+emphasize: el bloque INDICE en el centro como punto de encuentro de las dos fases; la cadena LOAD/SPLIT/EMBED/STORE de la fase 1; que EMBED aparece en las dos fases y tiene que ser el mismo modelo
+labels: "FASE 1 - INDEXACION (offline)", "LOAD", "SPLIT", "EMBED", "STORE", "INDICE", "FASE 2 - CONSULTA (online)", "RETRIEVE", "GENERATE"
+-->

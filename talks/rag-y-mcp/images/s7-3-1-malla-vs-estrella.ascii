@@ -1,0 +1,21 @@
+  SIN PROTOCOLO                      CON UN PROTOCOLO
+  cada par necesita su conector      cada lado habla el mismo idioma
+
+  app1 ---+---+---+  fuente A        app1 --+
+          |   |   |                         |
+  app2 ---+---+---+  fuente B        app2 --+--> [ MCP ] --+--> fuente A
+          |   |   |                         |              +--> fuente B
+  app3 ---+---+---+  fuente C        app3 --+              +--> fuente C
+
+  M x N = 9 conectores               M + N = 6 implementaciones
+  sumar una fuente: +3 conectores    sumar una fuente: +1 servidor
+  sumar una app:    +3 conectores    sumar una app:    +1 cliente
+
+  Cada conector a medida se mantiene por separado, se autentica
+  distinto y se rompe por su cuenta.
+
+<!-- ascii-note:
+intent: mostrar por qué el problema es de crecimiento y no de dificultad: la malla completa de la izquierda crece con el producto, la estrella de la derecha con la suma, y eso se ve en cuánto cuesta agregar un actor nuevo
+emphasize: la malla cruzada de la izquierda frente a la estrella con un cubo central a la derecha; el par de líneas "sumar una fuente", que es donde se ve la diferencia entre +3 y +1
+labels: "SIN PROTOCOLO", "CON UN PROTOCOLO", "M x N = 9 conectores", "M + N = 6 implementaciones", "sumar una fuente: +3 / +1", "sumar una app: +3 / +1"
+-->

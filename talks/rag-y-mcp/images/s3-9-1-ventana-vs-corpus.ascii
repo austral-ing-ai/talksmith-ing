@@ -1,0 +1,23 @@
+  +-----------------------------------------------------------+
+  |  TODO EL CORPUS DE LA EMPRESA                              |
+  |  documentacion + ADRs + tickets + codigo + logs            |
+  |                                                            |
+  |     +----------------------+                               |
+  |     | ventana de 1M tokens |  <- lo unico que el modelo ve  |
+  |     +----------------------+                               |
+  |                                                            |
+  +-----------------------------------------------------------+
+
+   1. NO ENTRA          el corpus crece mas rapido que la ventana
+
+   2. SI ENTRA,         el modelo rinde peor buscando dentro de
+      ENCUENTRA PEOR    entradas muy largas
+
+   3. SE PAGA TODO      cada consulta reenvia el corpus completo,
+                        y se cobra por token de entrada
+
+<!-- ascii-note:
+intent: contestar la objeción "con ventanas gigantes RAG sobra" mostrando la desproporción entre corpus y ventana, y listando las tres razones que sobreviven aunque la ventana crezca
+emphasize: la caja chica de la ventana dentro de la caja grande del corpus, que es la desproporción; los tres numerales de abajo, sobre todo el 2, que es el que no depende del tamaño
+labels: "TODO EL CORPUS DE LA EMPRESA", "ventana de 1M tokens", "lo unico que el modelo ve", "NO ENTRA", "SI ENTRA, ENCUENTRA PEOR", "SE PAGA TODO"
+-->

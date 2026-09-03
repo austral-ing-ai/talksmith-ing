@@ -1,0 +1,27 @@
+       +----------------------------------------------------+
+       |                100.000+ documentos                  |
+       +----------------------------------------------------+
+                              |
+                              |  ETAPA 1   x 1/2000
+                              v
+                     +-------------------+
+                     |  50 candidatos    |
+                     +-------------------+
+                              |
+                              |  ETAPA 2   x 1/10
+                              v
+                        +-----------+
+                        |  5 docs   |  --> al prompt
+                        +-----------+
+
+       el corpus entero        lo que el modelo caro llega a leer
+       [##################]    [#]
+
+  Dos recortes de magnitud muy distinta, y el segundo cuesta
+  mas que el primero.
+
+<!-- ascii-note:
+intent: mostrar el embudo de dos etapas y que cada etapa persigue una métrica distinta (recall arriba, precisión abajo); la caída de magnitud 100.000 -> 50 -> 5 es el argumento
+emphasize: el estrechamiento brutal de las tres cajas y los dos factores de recorte anotados en las flechas; la barra comparativa del pie, que muestra cuánto del corpus llega realmente al modelo
+labels: "100.000+ documentos", "ETAPA 1 x 1/2000", "50 candidatos", "ETAPA 2 x 1/10", "5 docs", "al prompt", "el corpus entero", "lo que el modelo caro llega a leer"
+-->

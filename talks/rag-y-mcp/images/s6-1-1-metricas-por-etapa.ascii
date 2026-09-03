@@ -1,0 +1,23 @@
+  consulta
+     |
+     v
+  +--------------+      +--------------+
+  |  RECUPERAR   | ---> |   GENERAR    | ---> respuesta
+  +--------------+ frag +--------------+
+     |                     |                     |
+     v                     v                     v
+  CONTEXT RELEVANCE   ANSWER FAITHFULNESS   ANSWER RELEVANCE
+  ¿trajo los          ¿lo que dice esta     ¿contesta lo que
+   documentos          sostenido por los     se pregunto?
+   correctos?          fragmentos?
+
+  Una sola respuesta visible. Dos etapas que pueden fallar solas.
+
+  Context Relevance bajo  ->  tocar el prompt de generacion
+                              no mueve el resultado
+
+<!-- ascii-note:
+intent: mostrar que las tres métricas no miden lo mismo en tres versiones sino tres puntos distintos del pipeline, y que por eso una respuesta mala no dice por sí sola dónde está la falla
+emphasize: las tres flechas que bajan desde puntos distintos del pipeline hacia su métrica; la línea final sobre la inutilidad de tocar la generación cuando la falla está en la recuperación
+labels: "RECUPERAR", "GENERAR", "CONTEXT RELEVANCE", "ANSWER FAITHFULNESS", "ANSWER RELEVANCE", "Una sola respuesta visible. Dos etapas que pueden fallar solas."
+-->

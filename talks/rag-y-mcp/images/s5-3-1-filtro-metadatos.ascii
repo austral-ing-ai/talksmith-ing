@@ -1,0 +1,29 @@
+  UN FRAGMENTO, TAL COMO VIVE EN EL INDICE
+
+  +--------------------------------------------------------+
+  |  METADATOS                                             |
+  |    fuente   docs/api/pagos.md                          |
+  |    version  v3                                         |
+  |    seccion  Autenticacion > Tokens                     |
+  |    fecha    2026-07-14                                 |
+  |  - - - - - - - - - - - - - - - - - - - - - - - - - -   |
+  |  TEXTO                                                 |
+  |    "El token expira a los 3600 segundos. Para          |
+  |     renovarlo se usa el endpoint /refresh ..."         |
+  |    vector  [ 0.41  -0.18   0.62  ... ]                 |
+  +--------------------------------------------------------+
+
+  CONSULTA  "como renuevo el token en v3"
+
+   1. filtrar por metadatos        2. buscar por vector
+      version = v3                    solo entre los que quedaron
+      [##################]            [###]  -->  top-5
+      todo el indice                  el subconjunto
+
+  Sin metadatos, el paso 1 no existe y el paso 2 mira todo.
+
+<!-- ascii-note:
+intent: mostrar que un fragmento indexado es un sobre con dos mitades, y que la mitad de metadatos habilita un filtro barato que corre ANTES de la búsqueda cara
+emphasize: la separación entre las dos mitades del sobre; el par de barras del pie, donde se ve que el paso 1 recorta el espacio antes de que el paso 2 empiece
+labels: "UN FRAGMENTO, TAL COMO VIVE EN EL INDICE", "METADATOS", "TEXTO", "CONSULTA", "1. filtrar por metadatos", "2. buscar por vector", "todo el indice", "el subconjunto"
+-->

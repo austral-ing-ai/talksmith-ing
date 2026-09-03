@@ -1,0 +1,29 @@
+  DOCUMENTO -> TERMINOS        (lo natural, y lo que no sirve para buscar)
+  Doc1  el servicio devuelve timeout intermitente
+  Doc2  el cliente devuelve error de conexion
+  Doc3  el servicio y el cliente reintentan solos
+        |
+        | tokenizar, minusculas, sacar stopwords ("el", "y", "de")
+        v
+  Doc1 [servicio, devuelve, timeout, intermitente]
+  Doc2 [cliente, devuelve, error, conexion]
+  Doc3 [servicio, cliente, reintentan, solos]
+        |
+        | INVERTIR
+        v
+  TERMINO -> DOCUMENTOS                  CONSULTA  "servicio cliente"
+  servicio     -> [Doc1, Doc3]
+  devuelve     -> [Doc1, Doc2]             servicio -> [Doc1, Doc3]
+  cliente      -> [Doc2, Doc3]             cliente  -> [Doc2, Doc3]
+  timeout      -> [Doc1]                   -----------------------
+  intermitente -> [Doc1]                   interseccion --> Doc3
+  error        -> [Doc2]
+  conexion     -> [Doc2]                 Buscar deja de ser leer cada
+  reintentan   -> [Doc3]                 documento y pasa a ser cruzar
+  solos        -> [Doc3]                 dos listas cortas.
+
+<!-- ascii-note:
+intent: mostrar la inversión misma como la operación que da nombre a la estructura: se entra con documento->terminos y se sale con termino->documentos, y recién ahí una consulta se resuelve cruzando dos listas cortas en vez de leer todo
+emphasize: el paso "INVERTIR" que separa los dos bloques y el giro del encabezado de "DOCUMENTO -> TERMINOS" a "TERMINO -> DOCUMENTOS"; el pie sobre cruzar dos listas
+labels: "DOCUMENTO -> TERMINOS", "tokenizar, minusculas, sacar stopwords", "INVERTIR", "TERMINO -> DOCUMENTOS", "CONSULTA servicio cliente", "interseccion --> Doc3", "Buscar deja de ser leer cada documento"
+-->

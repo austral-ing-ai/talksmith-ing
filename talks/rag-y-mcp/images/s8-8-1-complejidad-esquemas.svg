@@ -1,0 +1,47 @@
+<!-- talksmith-ascii-sha256: 727d650dc9fe04a5753cb72755abaac438bce7ea5310027482849ee2a552dcb6 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>La complejidad de los esquemas, medida</title>
+<desc>La única medición real disponible sobre cómo se distribuye la complejidad de los esquemas en el ecosistema MCP.</desc>
+<rect x="0" y="0" width="900" height="550" fill="#ffffff"/>
+
+<text x="60" y="76" font-size="14.5" font-weight="bold">Profundidad del esquema de entrada de una herramienta MCP</text>
+<text x="60" y="96" font-size="11.5" fill="#5E5757">Microsoft Research, septiembre 2025 · 12.643 herramientas inspeccionadas</text>
+<line x1="60" y1="108" x2="840" y2="108" stroke="#3B3535" stroke-width="1.6"/>
+
+<text x="76" y="146" font-size="15" font-weight="bold" fill="#5E5757">0</text>
+<text x="130" y="146" font-size="12.5">sin propiedades</text>
+<text x="380" y="146" font-size="11.5" font-family="Andale Mono, monospace" fill="#5E5757">{ }</text>
+
+<text x="76" y="186" font-size="15" font-weight="bold" fill="#5E5757">1</text>
+<text x="130" y="186" font-size="12.5">propiedades sin anotar</text>
+<text x="380" y="186" font-size="11.5" font-family="Andale Mono, monospace" fill="#5E5757">{ location }</text>
+
+<rect x="60" y="206" width="780" height="34" fill="#FDF3F4"/>
+<rect x="60" y="206" width="5" height="34" fill="#DA1B2E"/>
+<text x="76" y="228" font-size="15" font-weight="bold" fill="#DA1B2E">2</text>
+<text x="130" y="228" font-size="12.5" font-weight="bold" fill="#DA1B2E">propiedades anotadas</text>
+<text x="380" y="228" font-size="11.5" font-family="Andale Mono, monospace" fill="#DA1B2E">{ location: string, "ciudad o código" }</text>
+
+<text x="76" y="268" font-size="15" font-weight="bold" fill="#5E5757">3+</text>
+<text x="130" y="268" font-size="12.5">estructuras anidadas</text>
+<text x="380" y="268" font-size="11.5" font-family="Andale Mono, monospace" fill="#5E5757">{ filtro: { geo: { lat, lon } } }</text>
+
+<rect x="60" y="308" width="240" height="70" fill="#F4F2F2" stroke="#C9C0C0" stroke-width="1.4"/>
+<text x="180" y="330" text-anchor="middle" font-size="10.5" letter-spacing="1.2" fill="#6B6262">MEDIA</text>
+<text x="180" y="362" text-anchor="middle" font-size="26" font-weight="bold">2,24</text>
+
+<rect x="320" y="308" width="240" height="70" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="440" y="330" text-anchor="middle" font-size="10.5" letter-spacing="1.2" fill="#DA1B2E">MEDIANA</text>
+<text x="440" y="362" text-anchor="middle" font-size="26" font-weight="bold" fill="#DA1B2E">2,00</text>
+
+<rect x="580" y="308" width="260" height="70" fill="#F4F2F2" stroke="#C9C0C0" stroke-width="1.4"/>
+<text x="710" y="330" text-anchor="middle" font-size="10.5" letter-spacing="1.2" fill="#6B6262">MÁXIMO</text>
+<text x="710" y="362" text-anchor="middle" font-size="26" font-weight="bold">20</text>
+
+<text x="60" y="410" font-size="12.5">El ecosistema vive en profundidad 2. El problema son los outliers: existe al menos una herramienta</text>
+<text x="60" y="428" font-size="12.5">con 20 niveles de anidamiento.</text>
+
+<rect x="60" y="452" width="780" height="58" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="80" y="478" font-size="13" font-weight="bold" fill="#DA1B2E">Aplanar el espacio de parámetros mejoró el tool-calling un 47 % sobre la línea de base.</text>
+<text x="80" y="497" font-size="11.5" fill="#5E5757">evidencia externa citada por el mismo estudio</text>
+</svg>
