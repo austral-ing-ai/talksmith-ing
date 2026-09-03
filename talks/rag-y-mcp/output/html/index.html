@@ -916,7 +916,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight example"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M422.5-103.5Q399-127 399-161h162q0 34-23.5 57.5T480-80q-34 0-57.5-23.5ZM318-223v-60h324v60H318Zm5-121q-66-43-104.5-107.5T180-597q0-122 89-211t211-89q122 0 211 89t89 211q0 81-38 145.5T637-344H323Zm22-60h271q48-32 76-83t28-110q0-99-70.5-169.5T480-837q-99 0-169.5 70.5T240-597q0 59 28 110t77 83Zm135 0Z"/></svg></span><p>Lewis y otros (2020) lo plantean como combinar dos memorias: la <b>paramétrica</b>, que vive en los pesos, y la <b>no paramétrica</b>, que vive en un índice y se puede actualizar sin reentrenar.</p></div></div></div>
 <aside class="notes"><p>Arranque conceptual. El error frecuente es presentar RAG como "el modelo busca en Google": lo que hace el recuperador es traer texto, y el modelo sigue siendo el único que genera. Vale la pena marcar acá la deriva del término: el paper de Lewis define RAG como una receta de entrenamiento con el recuperador entrenado junto al generador; lo que la industria llama RAG hoy son componentes desacoplados y sin entrenamiento. Las dos acepciones son legítimas, pero atribuirle al paper el pipeline moderno de chunking y vector store es un salto que la fuente no sostiene.</p></aside></section><section class="slide" data-kind="content-image"><div class="stage d-split side-right bodyless">
 <div class="shead"><span class="pill">Fundamentos de RAG</span><h2 class="stitle">Recuperar, aumentar, generar</h2><p class="lead"><b>Todo lo demás de la clase (chunking, embeddings, reranking, búsqueda híbrida) existe para hacer mejor uno de estos tres pasos.</b></p></div><div class="cbody"><div class="cfit"></div></div>
-<div class="highlights hl-bottom fragment fade-up"><div class="highlight example"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M422.5-103.5Q399-127 399-161h162q0 34-23.5 57.5T480-80q-34 0-57.5-23.5ZM318-223v-60h324v60H318Zm5-121q-66-43-104.5-107.5T180-597q0-122 89-211t211-89q122 0 211 89t89 211q0 81-38 145.5T637-344H323Zm22-60h271q48-32 76-83t28-110q0-99-70.5-169.5T480-837q-99 0-169.5 70.5T240-597q0 59 28 110t77 83Zm135 0Z"/></svg></span><p>Falta un cuarto trabajo, y es anterior a todo esto: llenar el índice sobre el que busca el paso 1. Es la lámina siguiente.</p></div></div><div class="smedia"><div class="imgph svg"><!-- talksmith-ascii-sha256: d4470418975d76d3864037650a07d7ae43e50291cf1fdba84f690cde6c27bd82 -->
+<div class="smedia"><div class="imgph svg"><!-- talksmith-ascii-sha256: d4470418975d76d3864037650a07d7ae43e50291cf1fdba84f690cde6c27bd82 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 810 796" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#3B3535">
 <title>Recuperar, aumentar, generar</title>
 <desc>Esta es la lamina que hay que dejar clavada: los tres pasos de RAG y el hecho de que ninguno toca los pesos del modelo.</desc>
@@ -1118,7 +1118,51 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 </div>
 </div></div>
 </div>
-<aside class="notes"><p>Cinco tarjetas y dos importan más que las otras tres para esta audiencia. La de auditabilidad es la que convierte a RAG en una decisión de arquitectura y no en un truco: en un sistema que alguien va a operar, poder contestar "de dónde salió esto" vale más que un punto de calidad. La de costo es la que suele decidir en la práctica. Si alguien pregunta cuándo sí conviene fine-tuning, la respuesta honesta es: cuando lo que falta es formato o estilo, no conocimiento.</p></aside></section><section class="slide" data-kind="single-point"><div class="stage d-full bodyless">
+<aside class="notes"><p>Cinco tarjetas y dos importan más que las otras tres para esta audiencia. La de auditabilidad es la que convierte a RAG en una decisión de arquitectura y no en un truco: en un sistema que alguien va a operar, poder contestar "de dónde salió esto" vale más que un punto de calidad. La de costo es la que suele decidir en la práctica. Si alguien pregunta cuándo sí conviene fine-tuning, la respuesta honesta es: cuando lo que falta es formato o estilo, no conocimiento.</p></aside></section><section class="slide" data-kind="content-image"><div class="stage d-split side-right">
+<div class="shead"><span class="pill">Fundamentos de RAG</span><h2 class="stitle">Con 1M de tokens, ¿para qué recuperar?</h2><p class="lead"><b>Es la objeción que corresponde hacer después de la clase de prompting. Tiene tres respuestas y ninguna depende del largo de la ventana.</b></p></div><div class="cbody"><div class="cfit"><div class="citext">
+<ul class="cifacts"><li><b>Seleccionar los pasajes relevantes es en sí mismo un problema no trivial.</b>: Esa selección es lo que hace un sistema RAG, y no desaparece porque la ventana crezca.</li></ul></div>
+</div></div>
+<div class="smedia"><div class="imgph svg"><!-- talksmith-ascii-sha256: b9d940fe62cddbcbbaeebc707ae51c6e8578696e0a9a364e787482b6f87beb07 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 630" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
+<title>Con 1M de tokens, ¿para qué recuperar?</title>
+<desc>Es la objeción que corresponde hacer después de la clase de prompting, y tiene tres respuestas que no dependen del largo de la ventana.</desc>
+<defs>
+<marker id="e3-wr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<path d="M0,0 L10,4.5 L0,9 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="860" height="630" fill="#ffffff"/>
+
+<rect x="60" y="60" width="740" height="230" fill="#F1EEEE" stroke="#B9AFAF" stroke-width="1.6"/>
+<text x="80" y="86" font-size="13.5" font-weight="bold" letter-spacing="0.8" fill="#6B6262">TODO EL CORPUS DE LA EMPRESA</text>
+<text x="80" y="106" font-size="12" fill="#544E4E">documentación + ADRs + tickets + código + logs</text>
+
+<rect x="100" y="150" width="180" height="54" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.6"/>
+<text x="190" y="173" text-anchor="middle" font-size="12" font-weight="bold" fill="#DA1B2E">ventana de</text>
+<text x="190" y="191" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">1M tokens</text>
+<line x1="284" y1="177" x2="326" y2="177" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#e3-wr)"/>
+<text x="336" y="181" font-size="12.5" font-weight="bold" fill="#DA1B2E">lo único que el modelo ve</text>
+<text x="80" y="270" font-size="12" fill="#544E4E">el resto sigue existiendo, y hay que ir a buscarlo</text>
+
+<text x="76" y="354" font-size="20" font-weight="bold" fill="#8C8080">1</text>
+<text x="110" y="350" font-size="13" font-weight="bold" letter-spacing="0.5">NO ENTRA</text>
+<text x="330" y="350" font-size="12.5" fill="#4A4444">el corpus crece más rápido que la ventana</text>
+
+<rect x="60" y="382" width="740" height="48" fill="#FDF3F4"/>
+<rect x="60" y="382" width="4" height="48" fill="#DA1B2E"/>
+<text x="76" y="416" font-size="20" font-weight="bold" fill="#DA1B2E">2</text>
+<text x="110" y="412" font-size="13" font-weight="bold" letter-spacing="0.5" fill="#DA1B2E">SI ENTRA, ENCUENTRA PEOR</text>
+<text x="330" y="412" font-size="12.5" fill="#4A4444">el modelo rinde peor buscando dentro de entradas muy largas</text>
+
+<text x="76" y="474" font-size="20" font-weight="bold" fill="#8C8080">3</text>
+<text x="110" y="470" font-size="13" font-weight="bold" letter-spacing="0.5">SE PAGA TODO</text>
+<text x="330" y="470" font-size="12.5" fill="#4A4444">cada consulta reenvía el corpus completo, y se cobra por token de entrada</text>
+
+<line x1="60" y1="520" x2="800" y2="520" stroke="#D8D2D2" stroke-width="1.2"/>
+<text x="430" y="546" text-anchor="middle" font-size="13.5" font-weight="bold">Seleccionar los pasajes relevantes es en sí mismo un problema no trivial.</text>
+<text x="430" y="566" text-anchor="middle" font-size="12.5" fill="#6B6262">Eso es lo que hace un sistema RAG, y no desaparece porque la ventana crezca.</text>
+</svg></div></div></div>
+<aside class="notes"><p>Esta lámina existe porque la clase de prompting ya mostró ventanas de uno a diez millones de tokens, y la pregunta va a salir. La respuesta que más aguanta es la segunda, porque no es una limitación de capacidad sino de rendimiento: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. El deck original resolvía esta lámina con tres tarjetas sobre el límite de tokens y una mención a corpus biomédicos; acá es una objeción respondida.</p></aside></section><section class="slide" data-kind="single-point"><div class="stage d-full bodyless">
 <div class="shead"><span class="pill">Fundamentos de RAG</span><h2 class="stitle">Demo: un pipeline de RAG paso a paso</h2><p class="lead"><b>Implementación de un pipeline RAG con LangChain, ejecutable en el navegador.</b></p></div><div class="cbody"><div class="cfit"></div></div>
 </div>
 <aside class="notes"><p>Primera parada práctica. El módulo cubre los tres pasos de la lámina 1.2 con código corriendo. Mostralo hasta la primera respuesta con citas y seguí; el detalle de índices y embeddings viene en las secciones 2 y 3, y conviene no adelantarlo acá. La imagen del botón "Haz clic aquí" del deck original se retiró: estaba en tuteo peninsular y se repetía en seis láminas.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
@@ -1160,7 +1204,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <title>Palabras, significado, o las dos</title>
 <desc>Una misma consulta entra en los dos índices y cada mecanismo engancha algo distinto: el índice invertido los términos literales, la base vectorial el sentido de la frase.</desc>
 <defs>
-<marker id="e3-ah" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<marker id="e4-ah" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
 <path d="M0 0 L10.5 4.5 L0 9 Z" fill="#DA1B2E"/>
 </marker>
 </defs>
@@ -1172,8 +1216,8 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 
 <path d="M370 84 L370 106" stroke="#DA1B2E" stroke-width="1.6" fill="none"/>
 <path d="M190 106 L550 106" stroke="#DA1B2E" stroke-width="1.6" fill="none"/>
-<path d="M190 106 L190 132" stroke="#DA1B2E" stroke-width="1.6" fill="none" marker-end="url(#e3-ah)"/>
-<path d="M550 106 L550 132" stroke="#DA1B2E" stroke-width="1.6" fill="none" marker-end="url(#e3-ah)"/>
+<path d="M190 106 L190 132" stroke="#DA1B2E" stroke-width="1.6" fill="none" marker-end="url(#e4-ah)"/>
+<path d="M550 106 L550 132" stroke="#DA1B2E" stroke-width="1.6" fill="none" marker-end="url(#e4-ah)"/>
 
 <rect x="30" y="134" width="320" height="44" rx="3" fill="#F2F0F0" stroke="#C9C3C3"/>
 <text x="190" y="153" text-anchor="middle" font-size="13.5" font-weight="bold">ÍNDICE INVERTIDO</text>
@@ -1241,13 +1285,13 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <title>Cómo funciona un índice invertido</title>
 <desc>El diagrama muestra la inversión: se entra con documento a términos y se sale con término a documentos, y recién ahí una consulta se resuelve cruzando dos listas cortas.</desc>
 <defs>
-<marker id="e4-ha" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 Z" fill="#DA1B2E"/></marker>
-<marker id="e4-hg" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#8C8484"/></marker>
+<marker id="e5-ha" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 Z" fill="#DA1B2E"/></marker>
+<marker id="e5-hg" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#8C8484"/></marker>
 </defs>
 <rect x="0" y="0" width="684" height="412" fill="#ffffff"/>
 
 <text x="24" y="34" font-size="12" font-weight="bold" letter-spacing="0.6" fill="#9A9292">DOCUMENTO</text>
-<line x1="114" y1="30" x2="136" y2="30" stroke="#9A9292" stroke-width="1.3" marker-end="url(#e4-hg)"/>
+<line x1="114" y1="30" x2="136" y2="30" stroke="#9A9292" stroke-width="1.3" marker-end="url(#e5-hg)"/>
 <text x="142" y="34" font-size="12" font-weight="bold" letter-spacing="0.6" fill="#9A9292">TÉRMINOS</text>
 <text x="24" y="48" font-size="9" fill="#9A9292">lo natural — y lo que no sirve para buscar</text>
 
@@ -1256,7 +1300,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <text x="350" y="59" font-size="8.5" fill="#8C8484" text-anchor="middle">leídos al revés</text>
 
 <text x="400" y="34" font-size="12" font-weight="bold" letter-spacing="0.6" fill="#DA1B2E">TÉRMINO</text>
-<line x1="466" y1="30" x2="488" y2="30" stroke="#DA1B2E" stroke-width="1.3" marker-end="url(#e4-ha)"/>
+<line x1="466" y1="30" x2="488" y2="30" stroke="#DA1B2E" stroke-width="1.3" marker-end="url(#e5-ha)"/>
 <text x="494" y="34" font-size="12" font-weight="bold" letter-spacing="0.6" fill="#DA1B2E">DOCUMENTOS</text>
 <text x="400" y="48" font-size="9" fill="#8C8484">el índice invertido — lo que hace posible buscar</text>
 
@@ -1266,16 +1310,16 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <text x="38" y="105" font-family="Andale Mono, monospace" font-size="8.5" fill="#6E6767" xml:space="preserve">Doc2  el cliente devuelve error de conexión</text>
 <text x="38" y="121" font-family="Andale Mono, monospace" font-size="8.5" fill="#6E6767" xml:space="preserve">Doc3  el servicio y el cliente reintentan solos</text>
 
-<line x1="60" y1="130" x2="60" y2="170" stroke="#9A9292" stroke-width="1.3" marker-end="url(#e4-hg)"/>
+<line x1="60" y1="130" x2="60" y2="170" stroke="#9A9292" stroke-width="1.3" marker-end="url(#e5-hg)"/>
 <text x="76" y="154" font-size="9" fill="#8C8484">tokenizar · minúsculas · sin stopwords</text>
 
 <rect x="24" y="170" width="276" height="88" rx="5" fill="#F7F5F5" stroke="#E0DADA" stroke-width="1"/>
 <text x="38" y="183" font-size="7.5" font-weight="bold" letter-spacing="0.8" fill="#A39B9B">tokenizados</text>
 
-<path d="M300,221 C348,221 352,182 400,182" fill="none" stroke="#D6CFCF" stroke-width="1" marker-end="url(#e4-hg)"/>
-<path d="M300,221 C350,221 356,203 400,203" fill="none" stroke="#D6CFCF" stroke-width="1" marker-end="url(#e4-hg)"/>
-<path d="M112,199 L300,199 C345,199 355,74 400,74" fill="none" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#e4-ha)"/>
-<path d="M112,243 L300,243 C352,243 358,74 400,74" fill="none" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#e4-ha)"/>
+<path d="M300,221 C348,221 352,182 400,182" fill="none" stroke="#D6CFCF" stroke-width="1" marker-end="url(#e5-hg)"/>
+<path d="M300,221 C350,221 356,203 400,203" fill="none" stroke="#D6CFCF" stroke-width="1" marker-end="url(#e5-hg)"/>
+<path d="M112,199 L300,199 C345,199 355,74 400,74" fill="none" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#e5-ha)"/>
+<path d="M112,243 L300,243 C352,243 358,74 400,74" fill="none" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#e5-ha)"/>
 
 <text x="38" y="202" font-family="Andale Mono, monospace" font-size="8.5" font-weight="bold" fill="#6E6767">Doc1</text>
 <rect x="64" y="190" width="48" height="18" rx="3" fill="#FCEBED" stroke="#DA1B2E" stroke-width="1.3"/>
@@ -1331,15 +1375,15 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <text x="524" y="250">[Doc3]</text>
 </g>
 <g stroke-width="1.2" fill="none">
-<line x1="494" y1="74.5" x2="516" y2="74.5" stroke="#DA1B2E" marker-end="url(#e4-ha)"/>
-<line x1="494" y1="96.5" x2="516" y2="96.5" stroke="#A39B9B" marker-end="url(#e4-hg)"/>
-<line x1="494" y1="117.5" x2="516" y2="117.5" stroke="#A39B9B" marker-end="url(#e4-hg)"/>
-<line x1="494" y1="139.5" x2="516" y2="139.5" stroke="#A39B9B" marker-end="url(#e4-hg)"/>
-<line x1="494" y1="160.5" x2="516" y2="160.5" stroke="#A39B9B" marker-end="url(#e4-hg)"/>
-<line x1="494" y1="182.5" x2="516" y2="182.5" stroke="#A39B9B" marker-end="url(#e4-hg)"/>
-<line x1="494" y1="203.5" x2="516" y2="203.5" stroke="#A39B9B" marker-end="url(#e4-hg)"/>
-<line x1="494" y1="225.5" x2="516" y2="225.5" stroke="#A39B9B" marker-end="url(#e4-hg)"/>
-<line x1="494" y1="246.5" x2="516" y2="246.5" stroke="#A39B9B" marker-end="url(#e4-hg)"/>
+<line x1="494" y1="74.5" x2="516" y2="74.5" stroke="#DA1B2E" marker-end="url(#e5-ha)"/>
+<line x1="494" y1="96.5" x2="516" y2="96.5" stroke="#A39B9B" marker-end="url(#e5-hg)"/>
+<line x1="494" y1="117.5" x2="516" y2="117.5" stroke="#A39B9B" marker-end="url(#e5-hg)"/>
+<line x1="494" y1="139.5" x2="516" y2="139.5" stroke="#A39B9B" marker-end="url(#e5-hg)"/>
+<line x1="494" y1="160.5" x2="516" y2="160.5" stroke="#A39B9B" marker-end="url(#e5-hg)"/>
+<line x1="494" y1="182.5" x2="516" y2="182.5" stroke="#A39B9B" marker-end="url(#e5-hg)"/>
+<line x1="494" y1="203.5" x2="516" y2="203.5" stroke="#A39B9B" marker-end="url(#e5-hg)"/>
+<line x1="494" y1="225.5" x2="516" y2="225.5" stroke="#A39B9B" marker-end="url(#e5-hg)"/>
+<line x1="494" y1="246.5" x2="516" y2="246.5" stroke="#A39B9B" marker-end="url(#e5-hg)"/>
 </g>
 <path d="M606,68 C612,68 608,150 614,158 C608,166 612,248 606,248" fill="none" stroke="#B9B1B1" stroke-width="1.1"/>
 <text transform="translate(630,158) rotate(-90)" text-anchor="middle" font-size="9" letter-spacing="0.8" fill="#8C8484">posting lists</text>
@@ -1348,19 +1392,19 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <text x="40" y="294" font-size="9.5" font-weight="bold" letter-spacing="1" fill="#8C8484">CONSULTA</text>
 <rect x="40" y="304" width="128" height="30" rx="4" fill="#ffffff" stroke="#B9B1B1" stroke-width="1.2"/>
 <text x="104" y="323" font-family="Andale Mono, monospace" font-size="11" text-anchor="middle">servicio cliente</text>
-<line x1="176" y1="319" x2="202" y2="319" stroke="#8C8484" stroke-width="1.2" marker-end="url(#e4-hg)"/>
+<line x1="176" y1="319" x2="202" y2="319" stroke="#8C8484" stroke-width="1.2" marker-end="url(#e5-hg)"/>
 
 <text x="208" y="310" font-family="Andale Mono, monospace" font-size="10">servicio</text>
-<line x1="264" y1="306.5" x2="286" y2="306.5" stroke="#A39B9B" stroke-width="1.2" marker-end="url(#e4-hg)"/>
+<line x1="264" y1="306.5" x2="286" y2="306.5" stroke="#A39B9B" stroke-width="1.2" marker-end="url(#e5-hg)"/>
 <text x="294" y="310" font-family="Andale Mono, monospace" font-size="10">[Doc1, <tspan fill="#DA1B2E" font-weight="bold">Doc3</tspan>]</text>
 <text x="208" y="334" font-family="Andale Mono, monospace" font-size="10">cliente</text>
-<line x1="264" y1="330.5" x2="286" y2="330.5" stroke="#A39B9B" stroke-width="1.2" marker-end="url(#e4-hg)"/>
+<line x1="264" y1="330.5" x2="286" y2="330.5" stroke="#A39B9B" stroke-width="1.2" marker-end="url(#e5-hg)"/>
 <text x="294" y="334" font-family="Andale Mono, monospace" font-size="10">[Doc2, <tspan fill="#DA1B2E" font-weight="bold">Doc3</tspan>]</text>
 
 <path d="M376,306 L402,319" fill="none" stroke="#B9B1B1" stroke-width="1.2"/>
 <path d="M376,331 L402,319" fill="none" stroke="#B9B1B1" stroke-width="1.2"/>
 <text x="435" y="309" font-size="9.5" fill="#8C8484" text-anchor="middle">intersección</text>
-<line x1="402" y1="319" x2="476" y2="319" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#e4-ha)"/>
+<line x1="402" y1="319" x2="476" y2="319" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#e5-ha)"/>
 <rect x="476" y="302" width="84" height="34" rx="5" fill="#FCEBED" stroke="#DA1B2E" stroke-width="1.6"/>
 <text x="518" y="325" font-family="Andale Mono, monospace" font-size="14" font-weight="bold" fill="#DA1B2E" text-anchor="middle">Doc3</text>
 <text x="574" y="314" font-size="8" fill="#8C8484">el único con los</text>
@@ -1478,10 +1522,10 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <title>Encontrar por significado</title>
 <desc>El texto deja de compararse como cadena de caracteres y pasa a compararse como punto en un espacio.</desc>
 <defs>
-<marker id="e6-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto">
+<marker id="e7-ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto">
 <path d="M0,0 L9,4 L0,8 z" fill="#8C8080"/>
 </marker>
-<marker id="e6-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto">
+<marker id="e7-ar" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto">
 <path d="M0,0 L9,4 L0,8 z" fill="#DA1B2E"/>
 </marker>
 </defs>
@@ -1499,36 +1543,36 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <line x1="484" y1="118" x2="776" y2="118" stroke="#EFC3C8" stroke-width="1.2"/>
 
 <text x="230" y="146" text-anchor="middle" font-size="13.5" font-style="italic" fill="#3B3535">«olvidé mi contraseña»</text>
-<line x1="230" y1="156" x2="230" y2="184" stroke="#8C8080" stroke-width="1.5" marker-end="url(#e6-ag)"/>
+<line x1="230" y1="156" x2="230" y2="184" stroke="#8C8080" stroke-width="1.5" marker-end="url(#e7-ag)"/>
 <text x="242" y="174" font-size="11" fill="#8C8080">tokenizar</text>
 <rect x="80" y="184" width="300" height="30" fill="#ffffff" stroke="#D8D2D2" stroke-width="1.2"/>
 <text x="230" y="204" text-anchor="middle" font-size="12" font-family="Andale Mono, monospace" fill="#6B6262">[olvidé] [mi] [contraseña]</text>
 
 <text x="630" y="146" text-anchor="middle" font-size="13.5" font-style="italic">«olvidé mi contraseña»</text>
-<line x1="630" y1="156" x2="630" y2="184" stroke="#DA1B2E" stroke-width="1.7" marker-end="url(#e6-ar)"/>
+<line x1="630" y1="156" x2="630" y2="184" stroke="#DA1B2E" stroke-width="1.7" marker-end="url(#e7-ar)"/>
 <text x="642" y="174" font-size="11" fill="#DA1B2E">modelo de embeddings</text>
 <rect x="480" y="184" width="300" height="30" fill="#FDF3F4" stroke="#EFC3C8" stroke-width="1.2"/>
 <text x="630" y="204" text-anchor="middle" font-size="12" font-family="Andale Mono, monospace">[ 0.71  -0.22  0.48  ... ]</text>
 
 <text x="230" y="244" text-anchor="middle" font-size="13.5" font-style="italic" fill="#3B3535">«no puedo iniciar sesión»</text>
-<line x1="230" y1="254" x2="230" y2="282" stroke="#8C8080" stroke-width="1.5" marker-end="url(#e6-ag)"/>
+<line x1="230" y1="254" x2="230" y2="282" stroke="#8C8080" stroke-width="1.5" marker-end="url(#e7-ag)"/>
 <text x="242" y="272" font-size="11" fill="#8C8080">tokenizar</text>
 <rect x="80" y="282" width="300" height="30" fill="#ffffff" stroke="#D8D2D2" stroke-width="1.2"/>
 <text x="230" y="302" text-anchor="middle" font-size="12" font-family="Andale Mono, monospace" fill="#6B6262">[no] [puedo] [iniciar] [sesión]</text>
 
 <text x="630" y="244" text-anchor="middle" font-size="13.5" font-style="italic">«no puedo iniciar sesión»</text>
-<line x1="630" y1="254" x2="630" y2="282" stroke="#DA1B2E" stroke-width="1.7" marker-end="url(#e6-ar)"/>
+<line x1="630" y1="254" x2="630" y2="282" stroke="#DA1B2E" stroke-width="1.7" marker-end="url(#e7-ar)"/>
 <text x="642" y="272" font-size="11" fill="#DA1B2E">modelo de embeddings</text>
 <rect x="480" y="282" width="300" height="30" fill="#FDF3F4" stroke="#EFC3C8" stroke-width="1.2"/>
 <text x="630" y="302" text-anchor="middle" font-size="12" font-family="Andale Mono, monospace">[ 0.69  -0.25  0.51  ... ]</text>
 
-<line x1="230" y1="320" x2="230" y2="350" stroke="#8C8080" stroke-width="1.5" marker-end="url(#e6-ag)"/>
+<line x1="230" y1="320" x2="230" y2="350" stroke="#8C8080" stroke-width="1.5" marker-end="url(#e7-ag)"/>
 <text x="242" y="339" font-size="11" fill="#8C8080">intersectar</text>
 <text x="230" y="368" text-anchor="middle" font-size="12" fill="#8C8080">0 términos en común</text>
 <rect x="112" y="384" width="236" height="40" fill="#ffffff" stroke="#B9AFAF" stroke-width="1.5"/>
 <text x="230" y="410" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="0.8" fill="#8C8080">SIN COINCIDENCIA</text>
 
-<line x1="630" y1="320" x2="630" y2="350" stroke="#DA1B2E" stroke-width="1.7" marker-end="url(#e6-ar)"/>
+<line x1="630" y1="320" x2="630" y2="350" stroke="#DA1B2E" stroke-width="1.7" marker-end="url(#e7-ar)"/>
 <text x="642" y="339" font-size="11" fill="#DA1B2E">medir el ángulo</text>
 <text x="630" y="368" text-anchor="middle" font-size="12">vectores casi paralelos</text>
 <rect x="512" y="384" width="236" height="40" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.5"/>
@@ -1546,7 +1590,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <title>Embeddings: cada texto es un punto</title>
 <desc>La proyección a dos dimensiones es una mentira útil: el espacio real tiene 384 ejes y ninguno es interpretable por separado.</desc>
 <defs>
-<marker id="e7-ax" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto">
+<marker id="e8-ax" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto">
 <path d="M0,0 L9,4 L0,8 z" fill="#8C8080"/>
 </marker>
 </defs>
@@ -1554,8 +1598,8 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 
 <text x="380" y="72" text-anchor="middle" font-size="12.5" font-weight="bold" letter-spacing="0.6" fill="#6B6262">PROYECCIÓN 2D DE UN ESPACIO DE 384 DIMENSIONES</text>
 
-<line x1="150" y1="340" x2="640" y2="340" stroke="#8C8080" stroke-width="1.5" marker-end="url(#e7-ax)"/>
-<line x1="150" y1="340" x2="150" y2="106" stroke="#8C8080" stroke-width="1.5" marker-end="url(#e7-ax)"/>
+<line x1="150" y1="340" x2="640" y2="340" stroke="#8C8080" stroke-width="1.5" marker-end="url(#e8-ax)"/>
+<line x1="150" y1="340" x2="150" y2="106" stroke="#8C8080" stroke-width="1.5" marker-end="url(#e8-ax)"/>
 <text x="614" y="358" font-size="11" fill="#8C8080">dim 1</text>
 <text x="160" y="112" font-size="11" fill="#8C8080">dim 2</text>
 
@@ -1606,21 +1650,21 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <title>Coseno: importa el ángulo</title>
 <desc>La fórmula sola no enseña nada: la historia son dos flechas que salen del mismo origen y el ángulo entre ellas.</desc>
 <defs>
-<marker id="e8-vr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<marker id="e9-vr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
 <path d="M0,0 L10,4.5 L0,9 z" fill="#DA1B2E"/>
 </marker>
-<marker id="e8-vd" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<marker id="e9-vd" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
 <path d="M0,0 L10,4.5 L0,9 z" fill="#3B3535"/>
 </marker>
-<marker id="e8-vg" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<marker id="e9-vg" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
 <path d="M0,0 L10,4.5 L0,9 z" fill="#9C9090"/>
 </marker>
 </defs>
 <rect x="0" y="0" width="860" height="632" fill="#ffffff"/>
 
-<line x1="150" y1="260" x2="340" y2="260" stroke="#3B3535" stroke-width="2.2" marker-end="url(#e8-vd)"/>
-<line x1="150" y1="260" x2="315" y2="165" stroke="#DA1B2E" stroke-width="2.6" marker-end="url(#e8-vr)"/>
-<line x1="150" y1="260" x2="235" y2="407" stroke="#9C9090" stroke-width="2" marker-end="url(#e8-vg)"/>
+<line x1="150" y1="260" x2="340" y2="260" stroke="#3B3535" stroke-width="2.2" marker-end="url(#e9-vd)"/>
+<line x1="150" y1="260" x2="315" y2="165" stroke="#DA1B2E" stroke-width="2.6" marker-end="url(#e9-vr)"/>
+<line x1="150" y1="260" x2="235" y2="407" stroke="#9C9090" stroke-width="2" marker-end="url(#e9-vg)"/>
 <circle cx="150" cy="260" r="4" fill="#3B3535"/>
 
 <path d="M225,260 A75,75 0 0,0 215,222" fill="none" stroke="#DA1B2E" stroke-width="1.6"/>
@@ -1671,7 +1715,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <title>HNSW: no comparar contra todos</title>
 <desc>Capas ralas arriba para moverse rápido, capa completa abajo para afinar, igual que en una skip list.</desc>
 <defs>
-<marker id="e9-hr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<marker id="e10-hr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
 <path d="M0,0 L10,4.5 L0,9 z" fill="#DA1B2E"/>
 </marker>
 </defs>
@@ -1693,8 +1737,8 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <line x1="410" y1="260" x2="530" y2="260" stroke="#DA1B2E" stroke-width="2.8"/>
 <line x1="530" y1="370" x2="570" y2="370" stroke="#DA1B2E" stroke-width="2.8"/>
 
-<line x1="410" y1="158" x2="410" y2="248" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#e9-hr)"/>
-<line x1="530" y1="268" x2="530" y2="358" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#e9-hr)"/>
+<line x1="410" y1="158" x2="410" y2="248" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#e10-hr)"/>
+<line x1="530" y1="268" x2="530" y2="358" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#e10-hr)"/>
 
 <circle cx="170" cy="150" r="6.5" fill="#DA1B2E"/>
 <circle cx="410" cy="150" r="6.5" fill="#DA1B2E"/>
@@ -1720,10 +1764,10 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <circle cx="610" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
 <circle cx="650" cy="370" r="5" fill="#ffffff" stroke="#9C9090" stroke-width="1.4"/>
 
-<line x1="170" y1="104" x2="170" y2="140" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#e9-hr)"/>
+<line x1="170" y1="104" x2="170" y2="140" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#e10-hr)"/>
 <text x="182" y="122" font-size="11.5" font-weight="bold" fill="#DA1B2E">se entra por arriba</text>
 
-<line x1="570" y1="428" x2="570" y2="382" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#e9-hr)"/>
+<line x1="570" y1="428" x2="570" y2="382" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#e10-hr)"/>
 <text x="570" y="448" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#DA1B2E">resultado</text>
 
 <text x="690" y="146" fill="#6B6262">pocos nodos,</text>
@@ -1762,10 +1806,10 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <title>El flujo completo en producción</title>
 <desc>Las dos búsquedas corren en paralelo, se funden en un solo ranking y recién ahí interviene el modelo caro.</desc>
 <defs>
-<marker id="e10-pd" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<marker id="e11-pd" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
 <path d="M0,0 L10,4.5 L0,9 z" fill="#3B3535"/>
 </marker>
-<marker id="e10-pr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<marker id="e11-pr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
 <path d="M0,0 L10,4.5 L0,9 z" fill="#DA1B2E"/>
 </marker>
 </defs>
@@ -1776,8 +1820,8 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 
 <line x1="410" y1="90" x2="410" y2="116" stroke="#3B3535" stroke-width="2"/>
 <line x1="250" y1="116" x2="570" y2="116" stroke="#3B3535" stroke-width="2"/>
-<line x1="250" y1="116" x2="250" y2="150" stroke="#3B3535" stroke-width="2" marker-end="url(#e10-pd)"/>
-<line x1="570" y1="116" x2="570" y2="150" stroke="#3B3535" stroke-width="2" marker-end="url(#e10-pd)"/>
+<line x1="250" y1="116" x2="250" y2="150" stroke="#3B3535" stroke-width="2" marker-end="url(#e11-pd)"/>
+<line x1="570" y1="116" x2="570" y2="150" stroke="#3B3535" stroke-width="2" marker-end="url(#e11-pd)"/>
 
 <rect x="140" y="150" width="220" height="66" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
 <text x="250" y="176" text-anchor="middle" font-size="13.5" font-weight="bold">BM25 / léxica</text>
@@ -1790,81 +1834,37 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <line x1="250" y1="216" x2="250" y2="270" stroke="#3B3535" stroke-width="2"/>
 <line x1="570" y1="216" x2="570" y2="270" stroke="#3B3535" stroke-width="2"/>
 <line x1="250" y1="270" x2="570" y2="270" stroke="#3B3535" stroke-width="2"/>
-<line x1="410" y1="270" x2="410" y2="302" stroke="#3B3535" stroke-width="2" marker-end="url(#e10-pd)"/>
+<line x1="410" y1="270" x2="410" y2="302" stroke="#3B3535" stroke-width="2" marker-end="url(#e11-pd)"/>
 
 <rect x="290" y="302" width="240" height="56" fill="#F4F2F2" stroke="#3B3535" stroke-width="1.8"/>
 <text x="410" y="335" text-anchor="middle" font-size="13.5" font-weight="bold">FUSIÓN RRF</text>
 <text x="548" y="322" fill="#6B6262">un ranking único,</text>
 <text x="548" y="338" fill="#6B6262">sin normalizar scores</text>
 
-<line x1="410" y1="358" x2="410" y2="392" stroke="#DA1B2E" stroke-width="2.4" marker-end="url(#e10-pr)"/>
+<line x1="410" y1="358" x2="410" y2="392" stroke="#DA1B2E" stroke-width="2.4" marker-end="url(#e11-pr)"/>
 
 <rect x="270" y="392" width="280" height="56" fill="#FDF3F4" stroke="#DA1B2E" stroke-width="2.6"/>
 <text x="410" y="425" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#DA1B2E">RERANK cross-encoder</text>
 <text x="568" y="416" font-size="15" font-weight="bold" fill="#DA1B2E">de 50 a 5</text>
 <text x="568" y="434" fill="#6B6262">el modelo caro, sobre pocos</text>
 
-<line x1="410" y1="448" x2="410" y2="482" stroke="#DA1B2E" stroke-width="2.4" marker-end="url(#e10-pr)"/>
+<line x1="410" y1="448" x2="410" y2="482" stroke="#DA1B2E" stroke-width="2.4" marker-end="url(#e11-pr)"/>
 
 <rect x="190" y="482" width="440" height="44" fill="#ffffff" stroke="#C9C0C0" stroke-width="1.5"/>
 <text x="410" y="510" text-anchor="middle" font-size="12.5" font-family="Andale Mono, monospace">prompt = instrucción + top-5 + consulta</text>
 
-<line x1="410" y1="526" x2="410" y2="560" stroke="#3B3535" stroke-width="2" marker-end="url(#e10-pd)"/>
+<line x1="410" y1="526" x2="410" y2="560" stroke="#3B3535" stroke-width="2" marker-end="url(#e11-pd)"/>
 
 <rect x="330" y="560" width="160" height="48" fill="#F4F2F2" stroke="#3B3535" stroke-width="1.8"/>
 <text x="410" y="590" text-anchor="middle" font-size="15" font-weight="bold">LLM</text>
-<line x1="490" y1="584" x2="556" y2="584" stroke="#3B3535" stroke-width="2" marker-end="url(#e10-pd)"/>
+<line x1="490" y1="584" x2="556" y2="584" stroke="#3B3535" stroke-width="2" marker-end="url(#e11-pd)"/>
 <text x="566" y="588" font-size="12.5" font-weight="bold">respuesta con citas</text>
 
 <line x1="60" y1="650" x2="760" y2="650" stroke="#D8D2D2" stroke-width="1.2"/>
 <text x="410" y="676" text-anchor="middle" font-size="13.5" font-weight="bold">Lo barato filtra, lo caro ordena.</text>
 <text x="410" y="696" text-anchor="middle" font-size="12" fill="#6B6262">BM25 y la búsqueda vectorial procesan cien mil documentos en milisegundos; el cross-encoder, alrededor de cien.</text>
 </svg></div></div></div>
-<aside class="notes"><p>Lámina bisagra: cierra la sección 3 y abre la 4. El deck original la resolvía con cinco viñetas sueltas y un icono. Recorré el diagrama de arriba abajo una vez, sin detenerte en RRF ni en el cross-encoder, y anunciá que las dos cajas del medio son la sección siguiente entera. La frase del pie es la que justifica el orden y conviene decirla con los dos números: cien mil documentos contra cien.</p></aside></section><section class="slide" data-kind="content-image"><div class="stage d-split side-right">
-<div class="shead"><span class="pill">Búsqueda por significado</span><h2 class="stitle">Con 1M de tokens, ¿para qué recuperar?</h2><p class="lead"><b>Es la objeción que corresponde hacer después de la clase de prompting. Tiene tres respuestas y ninguna depende del largo de la ventana.</b></p></div><div class="cbody"><div class="cfit"><div class="citext">
-<ul class="cifacts"><li><b>Seleccionar los pasajes relevantes es en sí mismo un problema no trivial.</b>: Esa selección es lo que hace un sistema RAG, y no desaparece porque la ventana crezca.</li></ul></div>
-</div></div>
-<div class="smedia"><div class="imgph svg"><!-- talksmith-ascii-sha256: b9d940fe62cddbcbbaeebc707ae51c6e8578696e0a9a364e787482b6f87beb07 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 630" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#3B3535">
-<title>Con 1M de tokens, ¿para qué recuperar?</title>
-<desc>Es la objeción que corresponde hacer después de la clase de prompting, y tiene tres respuestas que no dependen del largo de la ventana.</desc>
-<defs>
-<marker id="e11-wr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
-<path d="M0,0 L10,4.5 L0,9 z" fill="#DA1B2E"/>
-</marker>
-</defs>
-<rect x="0" y="0" width="860" height="630" fill="#ffffff"/>
-
-<rect x="60" y="60" width="740" height="230" fill="#F1EEEE" stroke="#B9AFAF" stroke-width="1.6"/>
-<text x="80" y="86" font-size="13.5" font-weight="bold" letter-spacing="0.8" fill="#6B6262">TODO EL CORPUS DE LA EMPRESA</text>
-<text x="80" y="106" font-size="12" fill="#544E4E">documentación + ADRs + tickets + código + logs</text>
-
-<rect x="100" y="150" width="180" height="54" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.6"/>
-<text x="190" y="173" text-anchor="middle" font-size="12" font-weight="bold" fill="#DA1B2E">ventana de</text>
-<text x="190" y="191" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">1M tokens</text>
-<line x1="284" y1="177" x2="326" y2="177" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#e11-wr)"/>
-<text x="336" y="181" font-size="12.5" font-weight="bold" fill="#DA1B2E">lo único que el modelo ve</text>
-<text x="80" y="270" font-size="12" fill="#544E4E">el resto sigue existiendo, y hay que ir a buscarlo</text>
-
-<text x="76" y="354" font-size="20" font-weight="bold" fill="#8C8080">1</text>
-<text x="110" y="350" font-size="13" font-weight="bold" letter-spacing="0.5">NO ENTRA</text>
-<text x="330" y="350" font-size="12.5" fill="#4A4444">el corpus crece más rápido que la ventana</text>
-
-<rect x="60" y="382" width="740" height="48" fill="#FDF3F4"/>
-<rect x="60" y="382" width="4" height="48" fill="#DA1B2E"/>
-<text x="76" y="416" font-size="20" font-weight="bold" fill="#DA1B2E">2</text>
-<text x="110" y="412" font-size="13" font-weight="bold" letter-spacing="0.5" fill="#DA1B2E">SI ENTRA, ENCUENTRA PEOR</text>
-<text x="330" y="412" font-size="12.5" fill="#4A4444">el modelo rinde peor buscando dentro de entradas muy largas</text>
-
-<text x="76" y="474" font-size="20" font-weight="bold" fill="#8C8080">3</text>
-<text x="110" y="470" font-size="13" font-weight="bold" letter-spacing="0.5">SE PAGA TODO</text>
-<text x="330" y="470" font-size="12.5" fill="#4A4444">cada consulta reenvía el corpus completo, y se cobra por token de entrada</text>
-
-<line x1="60" y1="520" x2="800" y2="520" stroke="#D8D2D2" stroke-width="1.2"/>
-<text x="430" y="546" text-anchor="middle" font-size="13.5" font-weight="bold">Seleccionar los pasajes relevantes es en sí mismo un problema no trivial.</text>
-<text x="430" y="566" text-anchor="middle" font-size="12.5" fill="#6B6262">Eso es lo que hace un sistema RAG, y no desaparece porque la ventana crezca.</text>
-</svg></div></div></div>
-<aside class="notes"><p>Esta lámina existe porque la clase de prompting ya mostró ventanas de uno a diez millones de tokens, y la pregunta va a salir. La respuesta que más aguanta es la segunda, porque no es una limitación de capacidad sino de rendimiento: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. El deck original resolvía esta lámina con tres tarjetas sobre el límite de tokens y una mención a corpus biomédicos; acá es una objeción respondida.</p></aside></section><section class="slide" id="sec-3" data-kind="section-agenda"><div class="stage"><div class="secag">
+<aside class="notes"><p>Lámina bisagra: cierra la sección 3 y abre la 4. El deck original la resolvía con cinco viñetas sueltas y un icono. Recorré el diagrama de arriba abajo una vez, sin detenerte en RRF ni en el cross-encoder, y anunciá que las dos cajas del medio son la sección siguiente entera. La frase del pie es la que justifica el orden y conviene decirla con los dos números: cien mil documentos contra cien.</p></aside></section><section class="slide" id="sec-3" data-kind="section-agenda"><div class="stage"><div class="secag">
 <div class="secaglist">
 <a class="secagrow " href="#sec-0"><span class="secagn">01</span><span>Fundamentos de RAG</span></a>
 <a class="secagrow " href="#sec-1"><span class="secagn">02</span><span>Búsqueda léxica</span></a>
@@ -2697,15 +2697,6 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <text x="450" y="524" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">El modelo elige por la descripción. La descripción es la interfaz.</text>
 </svg></div></div></div>
 <aside class="notes"><p>El deck original resolvía los seis pasos con una tabla de dos columnas y seis ordinales escritos a mano. El diagrama los pone en secuencia, que es lo que la tabla no lograba. Lo único que hay que dejar clavado es el pie: la descripción de la herramienta es la interfaz que consume el modelo, así que escribirla es trabajo de diseño y no de documentación. La sección 9 entera sale de ahí.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
-<div class="shead"><span class="pill">Anatomía de un servidor</span><h2 class="stitle">Cuatro principios de diseño</h2></div><div class="cbody"><div class="cfit"><div class="cardrow">
-<div class="rcard fragment fade-up"><span class="chip"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M530-481 332-679l43-43 241 241-241 241-43-43 198-198Z"/></svg></span><h3>Nombres explícitos</h3><p>Convención <code>[verbo]_[sustantivo]_[contexto]</code>: <code>get_customer_by_email</code>, <code>search_products_by_category</code>, <code>calculate_shipping_cost_for_order</code>. Nombres como <code>process</code>, <code>fetch</code> o <code>do_thing</code> no le dicen nada al modelo.</p></div>
-<div class="rcard fragment fade-up"><span class="chip"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M140-160q-24.75 0-42.37-17.63Q80-195.25 80-220v-520q0-24.75 17.63-42.38Q115.25-800 140-800h471q14.25 0 27 6.37 12.75 6.38 21 17.63l222 296-221 296q-8.25 11.25-21 17.62-12.75 6.38-27 6.38H140Zm0-60h471l195-260-195-260H140v520Zm236-260Z"/></svg></span><h3>Descripciones exhaustivas</h3><p>Es el campo que más pesa. Tiene que contestar cuatro preguntas: qué hace, cuándo usarla, cuándo NO usarla, y qué forma tienen la entrada y la salida.</p></div>
-<div class="rcard fragment fade-up"><span class="chip"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M705-128 447-388q-23 8-46 13t-47 5q-97.08 0-165.04-67.67Q121-505.33 121-602q0-31 8.16-60.39T152-718l145 145 92-86-149-149q25.91-15.16 54.96-23.58Q324-840 354-840q99.17 0 168.58 69.42Q592-701.17 592-602q0 24-5 47t-13 46l259 258q11 10.96 11 26.48T833-198l-76 70q-10.7 11-25.85 11Q716-117 705-128Zm28-57 40-40-273-273q16-21 24-49.5t8-54.5q0-75-55.5-127T350-782l102 104q9 9 8.5 21.5T451-635L318-510q-9.27 8-21.64 8-12.36 0-20.36-8l-98-97q3 77 54.67 127T354-430q25 0 53-8t49-24l277 277ZM476-484Z"/></svg></span><h3>Esquemas de parámetros simples</h3><p>Pocos parámetros y poco anidamiento. Varias herramientas simples funcionan mejor que una compleja con muchas opciones.</p></div>
-<div class="rcard fragment fade-up"><span class="chip"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M780-200v-156q0-60-39-99t-99-39H236l163 163-43 43-236-236 236-236 43 43-163 163h406q85 0 141.5 56.5T840-356v156h-60Z"/></svg></span><h3>Formato de respuesta consistente</h3><p>Un envoltorio estándar del tipo <code>{ success, data, error, message }</code>, igual en todas las herramientas del servidor, para que el manejo de errores del agente sea uno solo.</p></div>
-</div>
-</div></div>
-<div class="highlights hl-bottom fragment fade-up"><div class="highlight example"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M422.5-103.5Q399-127 399-161h162q0 34-23.5 57.5T480-80q-34 0-57.5-23.5ZM318-223v-60h324v60H318Zm5-121q-66-43-104.5-107.5T180-597q0-122 89-211t211-89q122 0 211 89t89 211q0 81-38 145.5T637-344H323Zm22-60h271q48-32 76-83t28-110q0-99-70.5-169.5T480-837q-99 0-169.5 70.5T240-597q0 59 28 110t77 83Zm135 0Z"/></svg></span><p>Lo que sí está medido sobre esquemas de parámetros está en la lámina 8.8.</p></div></div></div>
-<aside class="notes"><p>Los cuatro principios se sostienen; lo que se cayó es el respaldo numérico del tercero. El dato de MSR que sí conviene contar acá es el del cuarto principio: casi seis de cada diez respuestas que un servidor marcó como exitosas contenían un error en el texto. Y dos ejemplos verbatim de mensajes de error reales del estudio, que siempre funcionan: una herramienta de búsqueda web que falló con el string "error: job", y una de búsqueda académica que devolvió "Please retry with 0 or fewer IDs." Ese es el estado real del ecosistema.</p></aside></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
 <div class="shead"><span class="pill">Anatomía de un servidor</span><h2 class="stitle">Conectar un servidor MCP: tres caminos</h2></div><div class="cbody"><div class="cfit"><div class="cardrow">
 <div class="rcard fragment fade-up"><span class="chip"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M734.88-289Q753-308 753-333.88q0-25.88-18.12-44t-44-18.12Q665-396 646-377.88q-19 18.12-19 44T646-289q19 19 44.88 19 25.88 0 44-19ZM689.5-145q33.5 0 60.5-14t46-40q-26-14-51.96-21t-54-7q-28.04 0-54.54 7T584-199q19 26 45.5 40t60 14ZM480-80q-138-32-229-156.5T160-522v-239l320-120 320 120v270q-14-7-30-12.5t-30-7.5v-208l-260-96-260 96v197q0 76 24.5 140T307-269.5q38 48.5 84 80.5t89 46q6 12 18 27t20 23q-9 5-19 7.5T480-80Zm212.5 0Q615-80 560-135.5T505-267q0-78.43 54.99-133.72Q614.98-456 693-456q77 0 132.5 55.28Q881-345.43 881-267q0 76-55.5 131.5T692.5-80ZM480-479Z"/></svg></span><h3>Extensiones de escritorio</h3><p>El camino corto. En Claude Desktop: Configuración → Extensions, buscá el servidor, instalalo y concedé permisos. Abrí un chat nuevo y probalo.</p></div>
 <div class="rcard fragment fade-up"><span class="chip"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m388-80-20-126q-19-7-40-19t-37-25l-118 54-93-164 108-79q-2-9-2.5-20.5T185-480q0-9 .5-20.5T188-521L80-600l93-164 118 54q16-13 37-25t40-18l20-127h184l20 126q19 7 40.5 18.5T669-710l118-54 93 164-108 77q2 10 2.5 21.5t.5 21.5q0 10-.5 21t-2.5 21l108 78-93 164-118-54q-16 13-36.5 25.5T592-206L572-80H388Zm48-60h88l14-112q33-8 62.5-25t53.5-41l106 46 40-72-94-69q4-17 6.5-33.5T715-480q0-17-2-33.5t-7-33.5l94-69-40-72-106 46q-23-26-52-43.5T538-708l-14-112h-88l-14 112q-34 7-63.5 24T306-642l-106-46-40 72 94 69q-4 17-6.5 33.5T245-480q0 17 2.5 33.5T254-413l-94 69 40 72 106-46q24 24 53.5 41t62.5 25l14 112Zm44-210q54 0 92-38t38-92q0-54-38-92t-92-38q-54 0-92 38t-38 92q0 54 38 92t92 38Zm0-130Z"/></svg></span><h3>Configuración manual (stdio)</h3><p>Editás el archivo de configuración del cliente y declarás el comando que lanza el servidor. El cliente lo arranca como subproceso. Es el camino de los servidores publicados como paquete npm.</p></div>
@@ -2876,7 +2867,16 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 <a class="secagrow on" href="#sec-8"><span class="secagn">09</span><span>Diseño de herramientas</span></a>
 </div>
 <div class="secagnow"><span class="secagnum">09</span><p class="secagtitle">Diseño de herramientas</p></div>
-</div></div></section><section class="slide" data-kind="content+cards+image"><div class="stage d-split side-right">
+</div></div></section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
+<div class="shead"><span class="pill">Diseño de herramientas</span><h2 class="stitle">Cuatro principios de diseño</h2></div><div class="cbody"><div class="cfit"><div class="cardrow">
+<div class="rcard fragment fade-up"><span class="chip"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M530-481 332-679l43-43 241 241-241 241-43-43 198-198Z"/></svg></span><h3>Nombres explícitos</h3><p>Convención <code>[verbo]_[sustantivo]_[contexto]</code>: <code>get_customer_by_email</code>, <code>search_products_by_category</code>, <code>calculate_shipping_cost_for_order</code>. Nombres como <code>process</code>, <code>fetch</code> o <code>do_thing</code> no le dicen nada al modelo.</p></div>
+<div class="rcard fragment fade-up"><span class="chip"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M140-160q-24.75 0-42.37-17.63Q80-195.25 80-220v-520q0-24.75 17.63-42.38Q115.25-800 140-800h471q14.25 0 27 6.37 12.75 6.38 21 17.63l222 296-221 296q-8.25 11.25-21 17.62-12.75 6.38-27 6.38H140Zm0-60h471l195-260-195-260H140v520Zm236-260Z"/></svg></span><h3>Descripciones exhaustivas</h3><p>Es el campo que más pesa. Tiene que contestar cuatro preguntas: qué hace, cuándo usarla, cuándo NO usarla, y qué forma tienen la entrada y la salida.</p></div>
+<div class="rcard fragment fade-up"><span class="chip"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M705-128 447-388q-23 8-46 13t-47 5q-97.08 0-165.04-67.67Q121-505.33 121-602q0-31 8.16-60.39T152-718l145 145 92-86-149-149q25.91-15.16 54.96-23.58Q324-840 354-840q99.17 0 168.58 69.42Q592-701.17 592-602q0 24-5 47t-13 46l259 258q11 10.96 11 26.48T833-198l-76 70q-10.7 11-25.85 11Q716-117 705-128Zm28-57 40-40-273-273q16-21 24-49.5t8-54.5q0-75-55.5-127T350-782l102 104q9 9 8.5 21.5T451-635L318-510q-9.27 8-21.64 8-12.36 0-20.36-8l-98-97q3 77 54.67 127T354-430q25 0 53-8t49-24l277 277ZM476-484Z"/></svg></span><h3>Esquemas de parámetros simples</h3><p>Pocos parámetros y poco anidamiento. Varias herramientas simples funcionan mejor que una compleja con muchas opciones.</p></div>
+<div class="rcard fragment fade-up"><span class="chip"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M780-200v-156q0-60-39-99t-99-39H236l163 163-43 43-236-236 236-236 43 43-163 163h406q85 0 141.5 56.5T840-356v156h-60Z"/></svg></span><h3>Formato de respuesta consistente</h3><p>Un envoltorio estándar del tipo <code>{ success, data, error, message }</code>, igual en todas las herramientas del servidor, para que el manejo de errores del agente sea uno solo.</p></div>
+</div>
+</div></div>
+<div class="highlights hl-bottom fragment fade-up"><div class="highlight example"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M422.5-103.5Q399-127 399-161h162q0 34-23.5 57.5T480-80q-34 0-57.5-23.5ZM318-223v-60h324v60H318Zm5-121q-66-43-104.5-107.5T180-597q0-122 89-211t211-89q122 0 211 89t89 211q0 81-38 145.5T637-344H323Zm22-60h271q48-32 76-83t28-110q0-99-70.5-169.5T480-837q-99 0-169.5 70.5T240-597q0 59 28 110t77 83Zm135 0Z"/></svg></span><p>Lo que sí está medido sobre esquemas de parámetros está en la lámina 8.8.</p></div></div></div>
+<aside class="notes"><p>Los cuatro principios se sostienen; lo que se cayó es el respaldo numérico del tercero. El dato de MSR que sí conviene contar acá es el del cuarto principio: casi seis de cada diez respuestas que un servidor marcó como exitosas contenían un error en el texto. Y dos ejemplos verbatim de mensajes de error reales del estudio, que siempre funcionan: una herramienta de búsqueda web que falló con el string "error: job", y una de búsqueda académica que devolvió "Please retry with 0 or fewer IDs." Ese es el estado real del ecosistema.</p></aside></section><section class="slide" data-kind="content+cards+image"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Diseño de herramientas</span><h2 class="stitle">Más herramientas, peor elección</h2><p class="lead"><b>El modelo hace coincidencia de patrones sobre descripciones en lenguaje natural. Un espacio de opciones grande lo desborda, y eso no lo arregla un modelo mejor.</b></p></div><div class="cbody"><div class="cfit"><div class="ccicards">
 <div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M530-481 332-679l43-43 241 241-241 241-43-43 198-198Z"/></svg></span><h3>La causa que propone la fuente</h3><p>"LLMs pattern-match descriptions. Large option spaces overwhelm them." El fallo ocurre al reconocer entre opciones parecidas.</p></div><div class="ccard sm fragment fade-up"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M453-280h60v-240h-60v240Zm50.5-323.2q9.5-9.2 9.5-22.8 0-14.45-9.48-24.22-9.48-9.78-23.5-9.78t-23.52 9.78Q447-640.45 447-626q0 13.6 9.48 22.8 9.48 9.2 23.5 9.2t23.52-9.2ZM480.27-80q-82.74 0-155.5-31.5Q252-143 197.5-197.5t-86-127.34Q80-397.68 80-480.5t31.5-155.66Q143-709 197.5-763t127.34-85.5Q397.68-880 480.5-880t155.66 31.5Q709-817 763-763t85.5 127Q880-563 880-480.27q0 82.74-31.5 155.5Q817-252 763-197.68q-54 54.31-127 86Q563-80 480.27-80Zm.23-60Q622-140 721-239.5t99-241Q820-622 721.19-721T480-820q-141 0-240.5 98.81T140-480q0 141 99.5 240.5t241 99.5Zm-.5-340Z"/></svg></span><h3>El "42 % de elecciones incorrectas" no es un dato aparte.</h3><p>Es el complemento de 58, presentado en prosa como si fuera una segunda medición.</p></div></div></div></div>
 <div class="smedia"><div class="imgph svg"><!-- talksmith-ascii-sha256: 0a7482894ddcb2e14008c499a12a2a19d6385544632c25c7f03fd917a4c298c3 -->

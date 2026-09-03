@@ -203,7 +203,6 @@ emphasize: los tres bloques numerados en la columna central; la línea del promp
 labels: "CONSULTA DEL USUARIO", "1. RECUPERAR", "2. AUMENTAR", "3. GENERAR", "top-k fragmentos", "prompt = instruccion + fragmentos + consulta", "RESPUESTA CON CITAS", "Los pesos del modelo no cambian en ningun paso"
 -->
 
-- ⚠️ Falta un cuarto trabajo, y es anterior a todo esto: llenar el índice sobre el que busca el paso 1. Es la lámina siguiente.
 
 ### Sources
 
@@ -297,7 +296,56 @@ Cinco tarjetas y dos importan más que las otras tres para esta audiencia. La de
 
 ---
 
-## 5. Demo: un pipeline de RAG paso a paso
+## 5. Con 1M de tokens, ¿para qué recuperar?
+
+<!-- slide 24 del pptx original -->
+
+### Content
+
+**Es la objeción que corresponde hacer después de la clase de prompting. Tiene tres respuestas y ninguna depende del largo de la ventana.**
+
+```ascii
+  +-----------------------------------------------------------+
+  |  TODO EL CORPUS DE LA EMPRESA                              |
+  |  documentacion + ADRs + tickets + codigo + logs            |
+  |                                                            |
+  |     +----------------------+                               |
+  |     | ventana de 1M tokens |  <- lo unico que el modelo ve  |
+  |     +----------------------+                               |
+  |                                                            |
+  +-----------------------------------------------------------+
+
+   1. NO ENTRA          el corpus crece mas rapido que la ventana
+
+   2. SI ENTRA,         el modelo rinde peor buscando dentro de
+      ENCUENTRA PEOR    entradas muy largas
+
+   3. SE PAGA TODO      cada consulta reenvia el corpus completo,
+                        y se cobra por token de entrada
+```
+<!-- ascii-note:
+intent: contestar la objeción "con ventanas gigantes RAG sobra" mostrando la desproporción entre corpus y ventana, y listando las tres razones que sobreviven aunque la ventana crezca
+emphasize: la caja chica de la ventana dentro de la caja grande del corpus, que es la desproporción; los tres numerales de abajo, sobre todo el 2, que es el que no depende del tamaño
+labels: "TODO EL CORPUS DE LA EMPRESA", "ventana de 1M tokens", "lo unico que el modelo ve", "NO ENTRA", "SI ENTRA, ENCUENTRA PEOR", "SE PAGA TODO"
+-->
+
+- **Seleccionar los pasajes relevantes es en sí mismo un problema no trivial.** Esa selección es lo que hace un sistema RAG, y no desaparece porque la ventana crezca.
+
+### Sources
+
+- `AIG4B-Clase-5-RAG-y-MCP.md.md` (slide 24)
+- `langchain-rag-tutorial.web.md` — las tres razones acumulativas contra "meter todo en el contexto": el corpus no entra, aun cuando entra los modelos rinden peor buscando en entradas muy largas, y no es eficiente en tokens.
+
+### Speaker notes
+
+Esta lámina existe porque la clase de prompting ya mostró ventanas de uno a diez millones de tokens, y la pregunta va a salir. La respuesta que más aguanta es la segunda, porque no es una limitación de capacidad sino de rendimiento: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. El deck original resolvía esta lámina con tres tarjetas sobre el límite de tokens y una mención a corpus biomédicos; acá es una objeción respondida.
+
+### Presenter feedback
+
+
+---
+
+## 6. Demo: un pipeline de RAG paso a paso
 
 <!-- slide 6 del pptx original -->
 
@@ -321,7 +369,7 @@ Primera parada práctica. El módulo cubre los tres pasos de la lámina 1.2 con 
 
 ---
 
-## 6. Qué le falta a la demo para producción
+## 7. Qué le falta a la demo para producción
 
 <!-- slide 7 del pptx original -->
 
@@ -1032,55 +1080,6 @@ labels: "consulta del usuario", "BM25 / lexica", "vectorial / ANN", "top-50", "F
 ### Speaker notes
 
 Lámina bisagra: cierra la sección 3 y abre la 4. El deck original la resolvía con cinco viñetas sueltas y un icono. Recorré el diagrama de arriba abajo una vez, sin detenerte en RRF ni en el cross-encoder, y anunciá que las dos cajas del medio son la sección siguiente entera. La frase del pie es la que justifica el orden y conviene decirla con los dos números: cien mil documentos contra cien.
-
-### Presenter feedback
-
-
----
-
-## 9. Con 1M de tokens, ¿para qué recuperar?
-
-<!-- slide 24 del pptx original -->
-
-### Content
-
-**Es la objeción que corresponde hacer después de la clase de prompting. Tiene tres respuestas y ninguna depende del largo de la ventana.**
-
-```ascii
-  +-----------------------------------------------------------+
-  |  TODO EL CORPUS DE LA EMPRESA                              |
-  |  documentacion + ADRs + tickets + codigo + logs            |
-  |                                                            |
-  |     +----------------------+                               |
-  |     | ventana de 1M tokens |  <- lo unico que el modelo ve  |
-  |     +----------------------+                               |
-  |                                                            |
-  +-----------------------------------------------------------+
-
-   1. NO ENTRA          el corpus crece mas rapido que la ventana
-
-   2. SI ENTRA,         el modelo rinde peor buscando dentro de
-      ENCUENTRA PEOR    entradas muy largas
-
-   3. SE PAGA TODO      cada consulta reenvia el corpus completo,
-                        y se cobra por token de entrada
-```
-<!-- ascii-note:
-intent: contestar la objeción "con ventanas gigantes RAG sobra" mostrando la desproporción entre corpus y ventana, y listando las tres razones que sobreviven aunque la ventana crezca
-emphasize: la caja chica de la ventana dentro de la caja grande del corpus, que es la desproporción; los tres numerales de abajo, sobre todo el 2, que es el que no depende del tamaño
-labels: "TODO EL CORPUS DE LA EMPRESA", "ventana de 1M tokens", "lo unico que el modelo ve", "NO ENTRA", "SI ENTRA, ENCUENTRA PEOR", "SE PAGA TODO"
--->
-
-- **Seleccionar los pasajes relevantes es en sí mismo un problema no trivial.** Esa selección es lo que hace un sistema RAG, y no desaparece porque la ventana crezca.
-
-### Sources
-
-- `AIG4B-Clase-5-RAG-y-MCP.md.md` (slide 24)
-- `langchain-rag-tutorial.web.md` — las tres razones acumulativas contra "meter todo en el contexto": el corpus no entra, aun cuando entra los modelos rinden peor buscando en entradas muy largas, y no es eficiente en tokens.
-
-### Speaker notes
-
-Esta lámina existe porque la clase de prompting ya mostró ventanas de uno a diez millones de tokens, y la pregunta va a salir. La respuesta que más aguanta es la segunda, porque no es una limitación de capacidad sino de rendimiento: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. El deck original resolvía esta lámina con tres tarjetas sobre el límite de tokens y una mención a corpus biomédicos; acá es una objeción respondida.
 
 ### Presenter feedback
 
@@ -2034,37 +2033,7 @@ El deck original resolvía los seis pasos con una tabla de dos columnas y seis o
 
 ---
 
-## 4. Cuatro principios de diseño
-
-<!-- slide 49 del pptx original -->
-
-### Content
-
-- **Nombres explícitos** Convención `[verbo]_[sustantivo]_[contexto]`: `get_customer_by_email`, `search_products_by_category`, `calculate_shipping_cost_for_order`. Nombres como `process`, `fetch` o `do_thing` no le dicen nada al modelo.
-- **Descripciones exhaustivas** Es el campo que más pesa. Tiene que contestar cuatro preguntas: qué hace, cuándo usarla, cuándo NO usarla, y qué forma tienen la entrada y la salida.
-- **Esquemas de parámetros simples** Pocos parámetros y poco anidamiento. Varias herramientas simples funcionan mejor que una compleja con muchas opciones.
-- **Formato de respuesta consistente** Un envoltorio estándar del tipo `{ success, data, error, message }`, igual en todas las herramientas del servidor, para que el manejo de errores del agente sea uno solo.
-
-- 💡 Lo que sí está medido sobre esquemas de parámetros está en la lámina 8.8.
-
-### Sources
-
-- `AIG4B-Clase-5-RAG-y-MCP.md.md` (slide 49)
-- `agents-aitutorial-tool-selection.web.md` — la convención "Use when" / "Do NOT use" como contenido concreto de una descripción.
-- `tool-space-interference-msr.web.md` — los servidores señalizan mal los errores: sobre 5.983 resultados sin flag de error, un juez automático encontró 3.536 que sí describían errores en su contenido. Ese hallazgo es lo que sostiene el cuarto principio.
-
-### Speaker notes
-
-Los cuatro principios se sostienen; lo que se cayó es el respaldo numérico del tercero. El dato de MSR que sí conviene contar acá es el del cuarto principio: casi seis de cada diez respuestas que un servidor marcó como exitosas contenían un error en el texto. Y dos ejemplos verbatim de mensajes de error reales del estudio, que siempre funcionan: una herramienta de búsqueda web que falló con el string "error: job", y una de búsqueda académica que devolvió "Please retry with 0 or fewer IDs." Ese es el estado real del ecosistema.
-
-### Presenter feedback
-
-- [closed] 2026-09-03 (editor) — "La escala de precisión por cantidad de parámetros (90 %+ / 75-85 % / 60-70 %) llega sin fuente y la fuente que el deck le atribuye no la contiene (corpus, Inconsistencias 13 y 1 de `tool-space-interference-msr`)."
-  Resolution: la escala se retiró del contenido visible y se reemplazó por una nota que dice que no está respaldada, apuntando a la lámina 8.8 con la evidencia medida.
-
----
-
-## 5. Conectar un servidor MCP: tres caminos
+## 4. Conectar un servidor MCP: tres caminos
 
 <!-- template: process -->
 
@@ -2094,7 +2063,7 @@ Los tres métodos del deck original estaban en tuteo peninsular ("Abre", "Busca"
 
 ---
 
-## 6. La configuración, en concreto
+## 5. La configuración, en concreto
 
 <!-- slide 50 del pptx original -->
 
@@ -2148,7 +2117,7 @@ Lámina partida de la anterior, porque las dos configuraciones juntas con los tr
 
 ---
 
-## 7. Demo: un servidor MCP mínimo
+## 6. Demo: un servidor MCP mínimo
 
 <!-- slide 51 del pptx original -->
 
@@ -2169,7 +2138,7 @@ El botón de esta lámina en el deck original apuntaba a `https://localhost:3000
 
 ---
 
-## 8. La complejidad de los esquemas, medida
+## 7. La complejidad de los esquemas, medida
 
 <!-- slide 52 del pptx original -->
 
@@ -2220,7 +2189,7 @@ Esta es la corrección más importante del deck. La lámina original le atribuí
 
 ---
 
-## 9. Un agente, varios servidores
+## 8. Un agente, varios servidores
 
 <!-- slide 53 del pptx original -->
 
@@ -2271,7 +2240,7 @@ En el deck original esta lámina tenía el título "Arquitectura multi-servidor:
 
 ---
 
-## 10. Casos de uso con Claude
+## 9. Casos de uso con Claude
 
 <!-- slide 54 del pptx original -->
 
@@ -2301,7 +2270,7 @@ Los cinco ejemplos ya venían del dominio de software y se dejaron como estaban.
 
 ---
 
-## 11. El ecosistema, con fechas y fuentes
+## 10. El ecosistema, con fechas y fuentes
 
 <!-- slide 55 del pptx original -->
 
@@ -2350,7 +2319,37 @@ El deck original ponía tres directorios, tres números y ninguna fecha, y llama
 
 ---
 
-## 1. Más herramientas, peor elección
+## 1. Cuatro principios de diseño
+
+<!-- slide 49 del pptx original -->
+
+### Content
+
+- **Nombres explícitos** Convención `[verbo]_[sustantivo]_[contexto]`: `get_customer_by_email`, `search_products_by_category`, `calculate_shipping_cost_for_order`. Nombres como `process`, `fetch` o `do_thing` no le dicen nada al modelo.
+- **Descripciones exhaustivas** Es el campo que más pesa. Tiene que contestar cuatro preguntas: qué hace, cuándo usarla, cuándo NO usarla, y qué forma tienen la entrada y la salida.
+- **Esquemas de parámetros simples** Pocos parámetros y poco anidamiento. Varias herramientas simples funcionan mejor que una compleja con muchas opciones.
+- **Formato de respuesta consistente** Un envoltorio estándar del tipo `{ success, data, error, message }`, igual en todas las herramientas del servidor, para que el manejo de errores del agente sea uno solo.
+
+- 💡 Lo que sí está medido sobre esquemas de parámetros está en la lámina 8.8.
+
+### Sources
+
+- `AIG4B-Clase-5-RAG-y-MCP.md.md` (slide 49)
+- `agents-aitutorial-tool-selection.web.md` — la convención "Use when" / "Do NOT use" como contenido concreto de una descripción.
+- `tool-space-interference-msr.web.md` — los servidores señalizan mal los errores: sobre 5.983 resultados sin flag de error, un juez automático encontró 3.536 que sí describían errores en su contenido. Ese hallazgo es lo que sostiene el cuarto principio.
+
+### Speaker notes
+
+Los cuatro principios se sostienen; lo que se cayó es el respaldo numérico del tercero. El dato de MSR que sí conviene contar acá es el del cuarto principio: casi seis de cada diez respuestas que un servidor marcó como exitosas contenían un error en el texto. Y dos ejemplos verbatim de mensajes de error reales del estudio, que siempre funcionan: una herramienta de búsqueda web que falló con el string "error: job", y una de búsqueda académica que devolvió "Please retry with 0 or fewer IDs." Ese es el estado real del ecosistema.
+
+### Presenter feedback
+
+- [closed] 2026-09-03 (editor) — "La escala de precisión por cantidad de parámetros (90 %+ / 75-85 % / 60-70 %) llega sin fuente y la fuente que el deck le atribuye no la contiene (corpus, Inconsistencias 13 y 1 de `tool-space-interference-msr`)."
+  Resolution: la escala se retiró del contenido visible y se reemplazó por una nota que dice que no está respaldada, apuntando a la lámina 8.8 con la evidencia medida.
+
+---
+
+## 2. Más herramientas, peor elección
 
 <!-- slide 57 del pptx original -->
 
@@ -2406,7 +2405,7 @@ La escala se queda porque es la que ordena la sección, y se queda con su proced
 
 ---
 
-## 2. El mismo problema, ya en el catálogo
+## 3. El mismo problema, ya en el catálogo
 
 ### Content
 
@@ -2453,7 +2452,7 @@ Lámina nueva, y es la que le da respaldo real a toda la sección. El bloque de 
 
 ---
 
-## 3. Routing jerárquico: una sola entrada
+## 4. Routing jerárquico: una sola entrada
 
 <!-- slide 58 del pptx original -->
 
@@ -2506,7 +2505,7 @@ La tabla del deck original estaba a medio traducir: los encabezados en español 
 
 ---
 
-## 4. El catálogo cambia con la fase
+## 5. El catálogo cambia con la fase
 
 <!-- slide 59 del pptx original -->
 
@@ -2555,7 +2554,7 @@ El patrón es bueno y el pie es la pregunta que hay que hacer: el ejemplo de la 
 
 ---
 
-## 5. La descripción dice cuándo NO usarla
+## 6. La descripción dice cuándo NO usarla
 
 <!-- slide 60 del pptx original -->
 
@@ -2583,7 +2582,7 @@ La lámina más aplicable de la sección, y la que menos depende de cifras dudos
 
 ---
 
-## 6. Analítica en producción
+## 7. Analítica en producción
 
 <!-- slide 61 del pptx original -->
 
@@ -2614,7 +2613,7 @@ Cierre de la sección y de la clase. El encabezado "Key metrics to track" del de
 
 # Conclusions
 
-## 1. Key takeaways
+## 8. Key takeaways
 
 ### Content
 

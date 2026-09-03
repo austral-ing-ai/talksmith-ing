@@ -94,13 +94,6 @@
         "src": "images/s1-2-1-recuperar-aumentar-generar.svg",
         "alt": "Tubería de tres pasos de RAG: recuperar, aumentar y generar, sin que cambien los pesos del modelo"
       },
-      "highlights": [
-        {
-          "body": "Falta un cuarto trabajo, y es anterior a todo esto: llenar el índice sobre el que busca el paso 1. Es la lámina siguiente.",
-          "kind": "example",
-          "position": "bottom"
-        }
-      ],
       "_choice": {
         "signals": [
           "n_images=1",
@@ -196,6 +189,40 @@
           "concept-breakdown"
         ],
         "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Fundamentos de RAG",
+      "title": "Con 1M de tokens, ¿para qué recuperar?",
+      "lead": "**Es la objeción que corresponde hacer después de la clase de prompting. Tiene tres respuestas y ninguna depende del largo de la ventana.**",
+      "notes": "Esta lámina existe porque la clase de prompting ya mostró ventanas de uno a diez millones de tokens, y la pregunta va a salir. La respuesta que más aguanta es la segunda, porque no es una limitación de capacidad sino de rendimiento: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. El deck original resolvía esta lámina con tres tarjetas sobre el límite de tokens y una mención a corpus biomédicos; acá es una objeción respondida.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s3-9-1-ventana-vs-corpus.svg",
+        "alt": "Desproporción entre el corpus y la ventana de contexto, y las razones que sobreviven"
+      },
+      "facts": [
+        {
+          "label": "Seleccionar los pasajes relevantes es en sí mismo un problema no trivial.",
+          "body": "Esa selección es lo que hace un sistema RAG, y no desaparece porque la ventana crezca."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
         "rejected": {
           "concept-breakdown": "la lámina no es solo un conjunto rotulado"
         }
@@ -1055,40 +1082,6 @@
         {
           "label": "Lo barato filtra, lo caro ordena.",
           "body": "BM25 y la búsqueda vectorial procesan cien mil documentos en milisegundos; el cross-encoder maneja alrededor de cien. Por eso van en ese orden."
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=1",
-          "has_table=False",
-          "has_code=False"
-        ],
-        "candidates": [
-          "content-image",
-          "concept-breakdown"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "section": "Búsqueda por significado",
-      "title": "Con 1M de tokens, ¿para qué recuperar?",
-      "lead": "**Es la objeción que corresponde hacer después de la clase de prompting. Tiene tres respuestas y ninguna depende del largo de la ventana.**",
-      "notes": "Esta lámina existe porque la clase de prompting ya mostró ventanas de uno a diez millones de tokens, y la pregunta va a salir. La respuesta que más aguanta es la segunda, porque no es una limitación de capacidad sino de rendimiento: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. El deck original resolvía esta lámina con tres tarjetas sobre el límite de tokens y una mención a corpus biomédicos; acá es una objeción respondida.",
-      "template": "content-image",
-      "design": "split-right",
-      "media": {
-        "src": "images/s3-9-1-ventana-vs-corpus.svg",
-        "alt": "Desproporción entre el corpus y la ventana de contexto, y las razones que sobreviven"
-      },
-      "facts": [
-        {
-          "label": "Seleccionar los pasajes relevantes es en sí mismo un problema no trivial.",
-          "body": "Esa selección es lo que hace un sistema RAG, y no desaparece porque la ventana crezca."
         }
       ],
       "_choice": {
@@ -2156,54 +2149,6 @@
     },
     {
       "section": "Anatomía de un servidor",
-      "title": "Cuatro principios de diseño",
-      "notes": "Los cuatro principios se sostienen; lo que se cayó es el respaldo numérico del tercero. El dato de MSR que sí conviene contar acá es el del cuarto principio: casi seis de cada diez respuestas que un servidor marcó como exitosas contenían un error en el texto. Y dos ejemplos verbatim de mensajes de error reales del estudio, que siempre funcionan: una herramienta de búsqueda web que falló con el string \"error: job\", y una de búsqueda académica que devolvió \"Please retry with 0 or fewer IDs.\" Ese es el estado real del ecosistema.",
-      "template": "concept-breakdown",
-      "format": "row",
-      "cards": [
-        {
-          "label": "Nombres explícitos",
-          "body": "Convención `[verbo]_[sustantivo]_[contexto]`: `get_customer_by_email`, `search_products_by_category`, `calculate_shipping_cost_for_order`. Nombres como `process`, `fetch` o `do_thing` no le dicen nada al modelo."
-        },
-        {
-          "label": "Descripciones exhaustivas",
-          "body": "Es el campo que más pesa. Tiene que contestar cuatro preguntas: qué hace, cuándo usarla, cuándo NO usarla, y qué forma tienen la entrada y la salida."
-        },
-        {
-          "label": "Esquemas de parámetros simples",
-          "body": "Pocos parámetros y poco anidamiento. Varias herramientas simples funcionan mejor que una compleja con muchas opciones."
-        },
-        {
-          "label": "Formato de respuesta consistente",
-          "body": "Un envoltorio estándar del tipo `{ success, data, error, message }`, igual en todas las herramientas del servidor, para que el manejo de errores del agente sea uno solo."
-        }
-      ],
-      "highlights": [
-        {
-          "body": "Lo que sí está medido sobre esquemas de parámetros está en la lámina 8.8.",
-          "kind": "example",
-          "position": "bottom"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "n_images=0",
-          "labeled_items=4",
-          "has_table=False",
-          "has_code=False"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "concept-breakdown"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "section": "Anatomía de un servidor",
       "title": "Conectar un servidor MCP: tres caminos",
       "notes": "Los tres métodos del deck original estaban en tuteo peninsular (\"Abre\", \"Busca\", \"Haz clic\", \"Edita\") dentro de un deck en voseo, y el Método 3 arrancaba con un paso numerado \"4.\" sin 1, 2 ni 3. Corregido. La advertencia de seguridad es la que hay que decir en voz alta y con tiempo: instalar un servidor MCP es más parecido a instalar una extensión de navegador que a agregar una dependencia, porque corre con tus permisos y ve lo que vos ves.",
       "template": "concept-breakdown",
@@ -2527,6 +2472,54 @@
     },
     {
       "section": "Diseño de herramientas",
+      "title": "Cuatro principios de diseño",
+      "notes": "Los cuatro principios se sostienen; lo que se cayó es el respaldo numérico del tercero. El dato de MSR que sí conviene contar acá es el del cuarto principio: casi seis de cada diez respuestas que un servidor marcó como exitosas contenían un error en el texto. Y dos ejemplos verbatim de mensajes de error reales del estudio, que siempre funcionan: una herramienta de búsqueda web que falló con el string \"error: job\", y una de búsqueda académica que devolvió \"Please retry with 0 or fewer IDs.\" Ese es el estado real del ecosistema.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Nombres explícitos",
+          "body": "Convención `[verbo]_[sustantivo]_[contexto]`: `get_customer_by_email`, `search_products_by_category`, `calculate_shipping_cost_for_order`. Nombres como `process`, `fetch` o `do_thing` no le dicen nada al modelo."
+        },
+        {
+          "label": "Descripciones exhaustivas",
+          "body": "Es el campo que más pesa. Tiene que contestar cuatro preguntas: qué hace, cuándo usarla, cuándo NO usarla, y qué forma tienen la entrada y la salida."
+        },
+        {
+          "label": "Esquemas de parámetros simples",
+          "body": "Pocos parámetros y poco anidamiento. Varias herramientas simples funcionan mejor que una compleja con muchas opciones."
+        },
+        {
+          "label": "Formato de respuesta consistente",
+          "body": "Un envoltorio estándar del tipo `{ success, data, error, message }`, igual en todas las herramientas del servidor, para que el manejo de errores del agente sea uno solo."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Lo que sí está medido sobre esquemas de parámetros está en la lámina 8.8.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False",
+          "has_code=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Diseño de herramientas",
       "title": "Más herramientas, peor elección",
       "lead": "**El modelo hace coincidencia de patrones sobre descripciones en lenguaje natural. Un espacio de opciones grande lo desborda, y eso no lo arregla un modelo mejor.**",
       "notes": "La escala se queda porque es la que ordena la sección, y se queda con su procedencia a la vista. Decilo sin vueltas: viene de un sitio de tutoriales sin autor ni fecha que la presenta como \"Research shows\" y no cita a nadie, y el deck la repetía tres veces como si fuera un dato medido. Lo accionable es la recomendación de OpenAI, que sí tiene fuente y apunta al mismo umbral. Si alguien quiere un número más fuerte, el de MSR es \"hasta 85 % de caída para algunos modelos\", pero viene de un preprint que no está en nuestro corpus y el \"hasta\" es un límite superior, no un promedio.",
@@ -2807,7 +2800,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "6b705936514759e92b6fa64f315b86a7d737b65619646c935635af26333bdfa6",
-    "bytes": 141648
+    "sha256": "995c213d38c5af29856bb22137b5fe233698e906205a5a8974635d0eb7e36efd",
+    "bytes": 141513
   }
 }
