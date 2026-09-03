@@ -46,6 +46,6 @@ Las entregas de los trabajos prácticos se realizan en la clase indicada.
 
 | TP | Clase | Fecha de entrega | Tema / consigna |
 |---:|---:|---|---|
-| 1 | 2 | Miércoles 12 de agosto | [Corta, del caos a producción](missions/clase2/mission.md) |
-| 2 | 3 | Miércoles 19 de agosto | [¿Cuánto vale esta casa?](missions/mlp/mission.md) |
+| 1 | 2 | Viernes 15 de agosto | [Corta, del caos a producción](missions/clase2/mission.md) |
+| 2 | 3 | Viernes Sep 4 | [¿Cuánto vale esta casa?](missions/mlp/mission.md) |
 
