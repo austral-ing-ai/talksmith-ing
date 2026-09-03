@@ -63,31 +63,6 @@ Portada. <!-- deck-omit-text: Presentate y presentá a los otros dos docentes. -
 
 ---
 
-## 2. Agenda
-
-### Content
-
-- **1 · Fundamentos** Qué es RAG, cuándo hace falta y los tres pasos del ciclo.
-- **2 · Búsqueda léxica** Índice invertido, TF-IDF y BM25.
-- **3 · Vectorial e híbrida** Embeddings, similitud coseno, búsqueda aproximada y fusión.
-- **4 · Reranking y precisión** Recuperación en dos etapas, RRF y cross-encoders.
-- **5 · Chunking y metadatos** Cómo se parte un documento y qué se guarda con cada fragmento.
-- **6 · Evaluación y seguridad** Métricas, inyección indirecta de prompts y mitigaciones.
-- **7 · El protocolo** Qué problema resuelve MCP y por qué no alcanza con HTTP.
-- **8 · Arquitectura y uso** JSON-RPC, ciclo de vida, multi-servidor y el ecosistema medido.
-- **9 · Diseño de herramientas** Routing, agrupamiento y analítica en producción.
-
-### Sources
-
-- `AIG4B-Clase-5-RAG-y-MCP.md.md` (slide 2)
-- Reescrita: la agenda del deck original anunciaba las secciones en un orden distinto al que tenía el propio deck, con MCP intercalado en el medio de RAG. El bloque de búsqueda se abrió en dos secciones (léxica y vectorial/híbrida).
-
-### Speaker notes
-
-Mapa de la clase en una frase: las dos mitades responden dos carencias distintas del modelo. RAG le da el contexto que no tiene en los pesos; MCP le da las acciones que no puede ejecutar solo. Decilo así y el resto de la clase se ordena solo. Avisá también que la mitad de RAG termina en evaluación y seguridad, que es donde se vuelve un problema de ingeniería y no de demo.
-
----
-
 # 1. Fundamentos
 
 **Goal of this section:** Dejar claro qué problema resuelve RAG, cuáles son sus tres pasos y qué trabajo hay que hacer antes de la primera consulta.

@@ -21,66 +21,6 @@
   },
   "slides": [
     {
-      "section": "Portada",
-      "title": "Agenda",
-      "notes": "Mapa de la clase en una frase: las dos mitades responden dos carencias distintas del modelo. RAG le da el contexto que no tiene en los pesos; MCP le da las acciones que no puede ejecutar solo. Decilo así y el resto de la clase se ordena solo. Avisá también que la mitad de RAG termina en evaluación y seguridad, que es donde se vuelve un problema de ingeniería y no de demo.",
-      "template": "concept-breakdown",
-      "_choice": {
-        "signals": [
-          "labeled_items=9",
-          "n_images=0",
-          "is_ordered=true"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "process"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "process": "las nueve secciones son un temario, no una secuencia donde cada paso alimente al siguiente"
-        }
-      },
-      "format": "row",
-      "cards": [
-        {
-          "label": "1 · Fundamentos",
-          "body": "Qué es RAG, cuándo hace falta y los tres pasos del ciclo."
-        },
-        {
-          "label": "2 · Búsqueda léxica",
-          "body": "Índice invertido, TF-IDF y BM25."
-        },
-        {
-          "label": "3 · Vectorial e híbrida",
-          "body": "Embeddings, similitud coseno, búsqueda aproximada y fusión."
-        },
-        {
-          "label": "4 · Reranking y precisión",
-          "body": "Recuperación en dos etapas, RRF y cross-encoders."
-        },
-        {
-          "label": "5 · Chunking y metadatos",
-          "body": "Cómo se parte un documento y qué se guarda con cada fragmento."
-        },
-        {
-          "label": "6 · Evaluación y seguridad",
-          "body": "Métricas, inyección indirecta de prompts y mitigaciones."
-        },
-        {
-          "label": "7 · El protocolo",
-          "body": "Qué problema resuelve MCP y por qué no alcanza con HTTP."
-        },
-        {
-          "label": "8 · Arquitectura y uso",
-          "body": "JSON-RPC, ciclo de vida, multi-servidor y el ecosistema medido."
-        },
-        {
-          "label": "9 · Diseño de herramientas",
-          "body": "Routing, agrupamiento y analítica en producción."
-        }
-      ]
-    },
-    {
       "template": "section-agenda",
       "section": "Fundamentos",
       "title": "Fundamentos",
@@ -2867,7 +2807,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "d0f5df9e61cbdd5d0600a2712b42315b8138c1c74ed6add08f9c4682cb0190fc",
-    "bytes": 143134
+    "sha256": "713d83df3a006bc32bfa7b529d4587171a894314504e0ddfb5c4b2ec15df30b5",
+    "bytes": 141626
   }
 }
