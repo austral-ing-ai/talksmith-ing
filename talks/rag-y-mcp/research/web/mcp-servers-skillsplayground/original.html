@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Servers Guide: How to Find, Install, and Use Model Context Protocol Servers</title>
+  <meta name="description" content="The complete Model Context Protocol (MCP) server guide. Learn what MCP servers are, browse the best MCP server list, and install servers for Claude Code, Cursor, and Windsurf.">
+  <meta name="keywords" content="mcp servers, mcp server list, model context protocol servers, claude mcp servers, best mcp servers, mcp server directory, claude code mcp, mcp server registry, how to install mcp server, mcp server tutorial">
+  <meta name="author" content="Jack Culpan">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://skillsplayground.com/guides/mcp-servers/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://skillsplayground.com/guides/mcp-servers/">
+  <meta property="og:title" content="MCP Servers Guide: Find, Install, and Use Model Context Protocol Servers">
+  <meta property="og:description" content="Complete guide to MCP servers. Learn how to find, install, configure, and build MCP servers for Claude Code and other AI assistants.">
+  <meta property="og:image" content="https://og-image-api.merchantai.workers.dev/?title=MCP%20Servers%20Guide&subtitle=Model%20Context%20Protocol%20for%20Claude%20Code">
+  <meta property="og:site_name" content="Skills Playground">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://skillsplayground.com/guides/mcp-servers/">
+  <meta name="twitter:title" content="MCP Servers Guide: Find, Install, and Use Model Context Protocol Servers">
+  <meta name="twitter:description" content="Complete guide to MCP servers. Learn how to find, install, configure, and build MCP servers for Claude Code and other AI assistants.">
+  <meta name="twitter:image" content="https://og-image-api.merchantai.workers.dev/?title=MCP%20Servers%20Guide&subtitle=Model%20Context%20Protocol%20for%20Claude%20Code">
+  <meta name="twitter:creator" content="@jackculpan">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "MCP Servers Guide: How to Find, Install, and Use Model Context Protocol Servers",
+    "description": "Complete guide to MCP servers for Claude Code, Cursor, and AI assistants.",
+    "author": { "@type": "Person", "name": "Jack Culpan" },
+    "publisher": { "@type": "Organization", "name": "Skills Playground" },
+    "datePublished": "2026-02-25",
+    "dateModified": "2026-02-25"
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-base: #0c0c0e;
+      --bg-elevated: #141416;
+      --bg-surface: #1a1a1d;
+      --bg-hover: #222225;
+      --border-subtle: #2a2a2e;
+      --border-default: #363639;
+      --text-primary: #f5f5f5;
+      --text-secondary: #a0a0a5;
+      --text-muted: #6a6a70;
+      --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.15);
+      --accent-bright: #34d399;
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.15);
+      --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+      --font-sans: 'Space Grotesk', -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 48px; padding: 0 24px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(12px);
+    }
+    .site-header a { text-decoration: none; }
+    .brand { font-family: var(--font-mono); font-weight: 600; font-size: 14px; color: var(--accent); letter-spacing: -0.02em; }
+    .header-nav { display: flex; align-items: center; gap: 16px; }
+    .header-nav a { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .header-nav a:hover { color: var(--accent); }
+
+    .article-container { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    h1 { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .article-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 40px; font-family: var(--font-mono); }
+    h2 { font-size: 24px; font-weight: 600; margin: 48px 0 16px; letter-spacing: -0.01em; }
+    h3 { font-size: 18px; font-weight: 600; margin: 32px 0 12px; }
+    p { font-size: 15px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-bright); text-decoration: underline; }
+    ul, ol { margin: 0 0 16px 24px; color: var(--text-secondary); font-size: 15px; line-height: 1.8; }
+    li { margin-bottom: 8px; }
+    strong { color: var(--text-primary); }
+    code { font-family: var(--font-mono); font-size: 13px; background: var(--bg-surface); padding: 2px 6px; border-radius: 4px; color: var(--accent-bright); }
+    pre { background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 20px; margin: 16px 0 24px; overflow-x: auto; }
+    pre code { background: none; padding: 0; color: var(--text-primary); font-size: 13px; line-height: 1.6; }
+
+    .callout { background: var(--accent-dim); border-left: 3px solid var(--accent); padding: 16px 20px; margin: 24px 0; border-radius: 0 8px 8px 0; }
+    .callout p { margin-bottom: 0; color: var(--text-primary); }
+    .callout-warning { background: var(--orange-dim); border-left-color: var(--orange); }
+
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 16px 0 24px; list-style: none; padding: 0; }
+    .category-grid a { display: block; padding: 16px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 8px; color: var(--text-primary); font-weight: 500; font-size: 14px; text-decoration: none; transition: all 0.15s; }
+    .category-grid a:hover { border-color: var(--accent); background: var(--accent-dim); text-decoration: none; }
+    .category-grid .cat-count { display: block; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); margin-top: 4px; }
+
+    .guide-footer { max-width: 720px; margin: 0 auto; padding: 40px 24px 60px; border-top: 1px solid var(--border-subtle); }
+    .guide-footer h3 { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+    .guide-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; list-style: none; margin: 0; padding: 0; }
+    .guide-links a { display: block; padding: 16px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 8px; color: var(--text-primary); font-weight: 500; font-size: 14px; text-decoration: none; transition: all 0.15s; }
+    .guide-links a:hover { border-color: var(--accent); background: var(--accent-dim); text-decoration: none; }
+    .guide-links .link-desc { display: block; font-size: 12px; color: var(--text-muted); font-weight: 400; margin-top: 4px; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 28px; }
+      h2 { font-size: 20px; }
+      .article-container { padding: 32px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand">⚡ skillsplayground</a>
+    <nav class="header-nav">
+      <a href="/mcps/">MCP Servers</a>
+      <a href="/skills/">Skills</a>
+      <a href="/guides/claude-code-best-practices/">Best Practices</a>
+      <a href="/">Playground</a>
+    </nav>
+  </header>
+
+  <article class="article-container">
+    <h1>MCP Servers: The Complete Guide</h1>
+    <div class="article-meta">Updated February 2026 &middot; 15 min read</div>
+
+    <p><strong>MCP (Model Context Protocol) servers</strong> extend AI assistants like Claude Code, Cursor, and Windsurf with external capabilities -- connecting them to databases, APIs, cloud services, and thousands of other tools. This guide covers everything you need to know about finding, installing, configuring, and building MCP servers.</p>
+
+    <div class="callout">
+      <p>Browse our <a href="/mcps/">MCP Server Directory</a> with 890+ servers sourced from the official MCP registry, organized by category with install commands.</p>
+    </div>
+
+    <h2>1. What Are MCP Servers?</h2>
+
+    <p>The <strong>Model Context Protocol (MCP)</strong> is an open standard created by Anthropic that defines how AI assistants communicate with external tools and services. An MCP server is a lightweight process that exposes specific capabilities (tools, resources, or prompts) to AI clients via a standardized protocol.</p>
+
+    <p>Think of MCP servers as plugins for AI assistants. Instead of the AI trying to do everything itself, it can delegate to specialized MCP servers that handle specific tasks -- querying a database, searching the web, managing files, interacting with APIs, and more.</p>
+
+    <h3>Key concepts</h3>
+
+    <ul>
+      <li><strong>Tools</strong> -- Functions the AI can call, like <code>query_database</code> or <code>send_email</code></li>
+      <li><strong>Resources</strong> -- Data the AI can read, like file contents or API responses</li>
+      <li><strong>Prompts</strong> -- Pre-built prompt templates the AI can use</li>
+      <li><strong>Transports</strong> -- How the client communicates with the server (stdio, SSE, or streamable-http)</li>
+    </ul>
+
+    <h2>2. How to Install MCP Servers</h2>
+
+    <p>There are three main ways to add MCP servers to your AI assistant setup:</p>
+
+    <h3>Method 1: Claude Code CLI (recommended)</h3>
+
+    <p>Claude Code has built-in MCP server management. Add a server directly from the command line:</p>
+
+    <pre><code># Add an npm-based MCP server
+claude mcp add my-server -- npx -y @modelcontextprotocol/server-filesystem /path/to/allowed
+
+# Add a Python-based MCP server
+claude mcp add my-db-server -- uvx mcp-server-sqlite --db-path ./my.db
+
+# List installed MCP servers
+claude mcp list
+
+# Remove a server
+claude mcp remove my-server</code></pre>
+
+    <h3>Method 2: Configuration file</h3>
+
+    <p>Add servers to your <code>.mcp.json</code> file (for Claude Code) or <code>claude_desktop_config.json</code> (for Claude Desktop):</p>
+
+    <pre><code>{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/me/projects"]
+    },
+    "postgres": {
+      "command": "uvx",
+      "args": ["mcp-server-postgres"],
+      "env": {
+        "DATABASE_URL": "postgresql://user:pass@localhost/mydb"
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "your-api-key-here"
+      }
+    }
+  }
+}</code></pre>
+
+    <h3>Method 3: Remote MCP servers</h3>
+
+    <p>Some MCP servers run remotely and connect via HTTP. These don't require local installation:</p>
+
+    <pre><code>{
+  "mcpServers": {
+    "remote-service": {
+      "url": "https://mcp.example.com/sse",
+      "transport": "sse"
+    }
+  }
+}</code></pre>
+
+    <h2>3. Best MCP Servers by Category</h2>
+
+    <p>Here are the most popular and useful MCP servers organized by what they do. Browse our full <a href="/mcps/">MCP Server Directory</a> for the complete list.</p>
+
+    <div class="category-grid">
+      <a href="/mcps/categories/database/">
+        Database
+        <span class="cat-count">PostgreSQL, MySQL, SQLite, Redis</span>
+      </a>
+      <a href="/mcps/categories/developer-tools/">
+        Developer Tools
+        <span class="cat-count">Git, GitHub, CI/CD, testing</span>
+      </a>
+      <a href="/mcps/categories/search/">
+        Search & Scraping
+        <span class="cat-count">Brave, Google, web scraping</span>
+      </a>
+      <a href="/mcps/categories/ai-ml/">
+        AI & ML
+        <span class="cat-count">OpenAI, embeddings, vectors</span>
+      </a>
+      <a href="/mcps/categories/cloud/">
+        Cloud & Infra
+        <span class="cat-count">AWS, Docker, Kubernetes</span>
+      </a>
+      <a href="/mcps/categories/communication/">
+        Communication
+        <span class="cat-count">Slack, Discord, email</span>
+      </a>
+      <a href="/mcps/categories/productivity/">
+        Productivity
+        <span class="cat-count">Notion, Jira, Linear</span>
+      </a>
+      <a href="/mcps/categories/data/">
+        Data & Analytics
+        <span class="cat-count">CSV, JSON, BigQuery</span>
+      </a>
+    </div>
+
+    <h3>The official reference servers</h3>
+
+    <p>These are maintained by the MCP team and serve as reference implementations:</p>
+
+    <ul>
+      <li><strong>Filesystem</strong> -- Secure file operations with configurable allowed directories</li>
+      <li><strong>Fetch</strong> -- Web content fetching with HTML-to-markdown conversion</li>
+      <li><strong>Git</strong> -- Repository operations (status, diff, log, commit)</li>
+      <li><strong>Memory</strong> -- Persistent knowledge graph for storing facts across sessions</li>
+      <li><strong>Sequential Thinking</strong> -- Structured problem-solving through thought sequences</li>
+    </ul>
+
+    <h2>4. Transport Types Explained</h2>
+
+    <p>MCP servers communicate with clients using one of three transport protocols:</p>
+
+    <ul>
+      <li><strong>stdio</strong> -- The server runs as a local subprocess. The client launches it and communicates via stdin/stdout. Most common for local tools. Simple, fast, no network required.</li>
+      <li><strong>SSE (Server-Sent Events)</strong> -- The server runs as an HTTP service. Client connects via HTTP and receives events over a persistent connection. Good for remote servers.</li>
+      <li><strong>Streamable HTTP</strong> -- Modern HTTP-based transport using standard request/response with streaming. The newest and most flexible option for remote servers.</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Which transport should you use?</strong> For local tools, use <code>stdio</code> -- it's the simplest and most reliable. For remote/shared servers, use <code>streamable-http</code> if the server supports it, otherwise <code>sse</code>.</p>
+    </div>
+
+    <h2>5. MCP Servers vs Claude Code Skills</h2>
+
+    <p>Both MCP servers and <a href="/guides/claude-code-skills-vs-mcp/">Claude Code skills</a> extend AI capabilities, but they work differently:</p>
+
+    <ul>
+      <li><strong>Skills</strong> are prompt-based instructions that guide how Claude approaches a task. They're text files (<code>SKILL.md</code>) loaded into context. Great for encoding workflows, standards, and domain expertise.</li>
+      <li><strong>MCP servers</strong> are executable tools that give Claude new capabilities it doesn't have by default. They run as separate processes and handle specific actions like database queries or API calls.</li>
+    </ul>
+
+    <p>Use <strong>skills</strong> when you want to change <em>how</em> Claude thinks. Use <strong>MCP servers</strong> when you want to change <em>what</em> Claude can do.</p>
+
+    <p>They work great together: a skill might instruct Claude to use a specific MCP server in a certain way. For example, a "database migration" skill could guide Claude through a migration workflow while using a PostgreSQL MCP server to inspect the current schema.</p>
+
+    <h2>6. Building Your Own MCP Server</h2>
+
+    <p>Creating an MCP server is straightforward with the official SDKs:</p>
+
+    <h3>TypeScript (Node.js)</h3>
+
+    <pre><code>import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+
+const server = new McpServer({
+  name: "my-server",
+  version: "1.0.0",
+});
+
+// Define a tool
+server.tool("greet", { name: "string" }, async ({ name }) => ({
+  content: [{ type: "text", text: `Hello, ${name}!` }],
+}));
+
+// Start the server
+const transport = new StdioServerTransport();
+await server.connect(transport);</code></pre>
+
+    <h3>Python</h3>
+
+    <pre><code>from mcp.server import Server
+from mcp.server.stdio import stdio_server
+
+server = Server("my-server")
+
+@server.tool()
+async def greet(name: str) -> str:
+    """Greet someone by name."""
+    return f"Hello, {name}!"
+
+async def main():
+    async with stdio_server() as (read, write):
+        await server.run(read, write)</code></pre>
+
+    <div class="callout">
+      <p>For a detailed guide on building MCP servers, check out the <a href="/skills/anthropics-skills-mcp-builder/">MCP Builder skill</a> from Anthropic's official skills collection.</p>
+    </div>
+
+    <h2>7. Where to Find MCP Servers</h2>
+
+    <p>The MCP ecosystem is growing rapidly. Here are the best places to discover servers:</p>
+
+    <ul>
+      <li><strong><a href="/mcps/">Skills Playground MCP Directory</a></strong> -- Our curated directory with 890+ servers, organized by category</li>
+      <li><strong>Official MCP Registry</strong> -- The canonical registry at <code>registry.modelcontextprotocol.io</code> with 5,000+ servers</li>
+      <li><strong>Smithery</strong> -- A popular directory and hosting platform with 3,600+ servers</li>
+      <li><strong>GitHub</strong> -- Search for <code>mcp-server</code> repos; many are open source</li>
+    </ul>
+
+    <h2>8. Configuration Best Practices</h2>
+
+    <ul>
+      <li><strong>Use environment variables for secrets</strong> -- Never hardcode API keys in <code>.mcp.json</code>. Use the <code>env</code> field to reference environment variables.</li>
+      <li><strong>Limit file system access</strong> -- When using the filesystem MCP server, restrict access to specific directories rather than giving access to your entire system.</li>
+      <li><strong>Version pin packages</strong> -- Use specific versions in your install commands (<code>npx -y @package/name@1.2.3</code>) to avoid breaking changes.</li>
+      <li><strong>Start small</strong> -- Only add MCP servers you actively need. Each server adds startup time and context. You can always add more later.</li>
+      <li><strong>Test locally first</strong> -- Before adding a server to your config, test it manually to make sure it works and provides the tools you expect.</li>
+    </ul>
+
+    <div class="callout callout-warning">
+      <p><strong>Security note:</strong> MCP servers can execute code, access files, and make network requests. Only install servers from trusted sources, review their permissions, and use environment variables for sensitive configuration.</p>
+    </div>
+
+    <h2>9. Troubleshooting Common Issues</h2>
+
+    <h3>Server not connecting</h3>
+    <ul>
+      <li>Check that the package is installed: <code>npx -y @package/name --version</code></li>
+      <li>Verify the command and args in your config match what the server expects</li>
+      <li>Check for required environment variables in the server's documentation</li>
+    </ul>
+
+    <h3>Tools not appearing</h3>
+    <ul>
+      <li>Restart Claude Code after adding or modifying <code>.mcp.json</code></li>
+      <li>Run <code>claude mcp list</code> to verify the server is registered</li>
+      <li>Some servers require authentication before tools become available</li>
+    </ul>
+
+    <h3>Slow startup</h3>
+    <ul>
+      <li>Use <code>npx -y</code> (the <code>-y</code> flag skips the install prompt) for faster npm-based servers</li>
+      <li>Consider using <code>bunx</code> instead of <code>npx</code> for faster package resolution</li>
+      <li>Reduce the number of active MCP servers to only what you need</li>
+    </ul>
+  </article>
+
+  <footer class="guide-footer">
+    <h3>More Resources</h3>
+    <div class="guide-links">
+      <a href="/mcps/">
+        MCP Server Directory
+        <span class="link-desc">Browse 5,000+ MCP servers by category</span>
+      </a>
+      <a href="/guides/claude-code-skills-vs-mcp/">
+        Skills vs MCP Servers
+        <span class="link-desc">When to use skills vs MCP tools</span>
+      </a>
+      <a href="/guides/claude-code-best-practices/">
+        Claude Code Best Practices
+        <span class="link-desc">CLAUDE.md, skills, hooks, workflows</span>
+      </a>
+      <a href="/guides/claude-code-plugins/">
+        Claude Code Plugins
+        <span class="link-desc">Install, create, and manage plugins</span>
+      </a>
+      <a href="/skills/">
+        Skills Directory
+        <span class="link-desc">Browse Claude Code skills</span>
+      </a>
+      <a href="/guides/claude-code-agents/">
+        Agents Guide
+        <span class="link-desc">Build and run autonomous coding agents</span>
+      </a>
+      <a href="/guides/claude-code-memory/">
+        Memory Guide
+        <span class="link-desc">How Claude Code remembers across sessions</span>
+      </a>
+      <a href="/guides/claude-code-install/">
+        Install Guide
+        <span class="link-desc">Step-by-step setup for macOS, Linux & Windows</span>
+      </a>
+      <a href="/guides/claude-code-system-prompt/">
+        System Prompt Guide
+        <span class="link-desc">Custom instructions, CLAUDE.md rules & settings</span>
+      </a>
+      <a href="/guides/claude-code-github/">
+        GitHub Guide
+        <span class="link-desc">Pull requests, Actions & git workflows</span>
+      </a>
+      <a href="/guides/claude-code-pricing/">
+        Pricing Guide
+        <span class="link-desc">Cost, API rates & subscription plans</span>
+      </a>
+      <a href="/guides/claude-code-docker/">
+        Docker Guide
+        <span class="link-desc">Containers, dev containers &amp; sandboxed environments</span>
+      </a>
+      <a href="/guides/claude-code-permissions/">
+        Permissions Guide
+        <span class="link-desc">Sandbox, security &amp; access controls</span>
+      </a>
+      <a href="/guides/claude-code-sdk/">
+        SDK Guide
+        <span class="link-desc">Build custom AI agents programmatically</span>
+      </a>
+      <a href="/guides/claude-code-cli/">
+        CLI Reference
+        <span class="link-desc">Master every command, flag, and shortcut</span>
+      </a>
+    </div>
+  </footer>
+</body>
+</html>

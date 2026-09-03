@@ -1,0 +1,46 @@
+url: "https://mcp.so"
+fetched_at: "2026-08-14T16:57:14Z"
+title: "MCP.so - MCP Marketplace"
+http_status: 200
+byte_size: 211474
+assets:
+  - { src: "/logo.png", absolute: "https://mcp.so/logo.png", saved_as: "logo.png", alt: "MCP.so" }
+  - { src: "https://cdn.mcp.so/uploads/c186c0c154579cd73196bf7a5063b45a.png", absolute: "https://cdn.mcp.so/uploads/c186c0c154579cd73196bf7a5063b45a.png", saved_as: "c186c0c154579cd73196bf7a5063b45a.png", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/a87f3fcd83addd468e032cc8d5b6003e.svg", absolute: "https://cdn.mcp.so/uploads/a87f3fcd83addd468e032cc8d5b6003e.svg", saved_as: "a87f3fcd83addd468e032cc8d5b6003e.svg", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/6753a6798ace8ce5babe213dc8519a75.png", absolute: "https://cdn.mcp.so/uploads/6753a6798ace8ce5babe213dc8519a75.png", saved_as: "6753a6798ace8ce5babe213dc8519a75.png", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/73e9663f1831a9db00cc41d2d3e39886.png", absolute: "https://cdn.mcp.so/uploads/73e9663f1831a9db00cc41d2d3e39886.png", saved_as: "73e9663f1831a9db00cc41d2d3e39886.png", alt: "" }
+  - { src: "https://svgl.app/library/asana-logo.svg", absolute: "https://svgl.app/library/asana-logo.svg", saved_as: "asana-logo.svg", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/9e9b1c9484d705fb14961cc0e1498596.png", absolute: "https://cdn.mcp.so/uploads/9e9b1c9484d705fb14961cc0e1498596.png", saved_as: "9e9b1c9484d705fb14961cc0e1498596.png", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/c186c0c154579cd73196bf7a5063b45a.png", absolute: "https://cdn.mcp.so/uploads/c186c0c154579cd73196bf7a5063b45a.png", saved_as: "c186c0c154579cd73196bf7a5063b45a.png", alt: "", deduped: True }
+  - { src: "https://avatars.githubusercontent.com/u/296988713?v=4", absolute: "https://avatars.githubusercontent.com/u/296988713?v=4", saved_as: "296988713.bin", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/a87f3fcd83addd468e032cc8d5b6003e.svg", absolute: "https://cdn.mcp.so/uploads/a87f3fcd83addd468e032cc8d5b6003e.svg", saved_as: "a87f3fcd83addd468e032cc8d5b6003e.svg", alt: "", deduped: True }
+  - { src: "https://avatars.githubusercontent.com/u/101812180?v=4", absolute: "https://avatars.githubusercontent.com/u/101812180?v=4", saved_as: "101812180.bin", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/6753a6798ace8ce5babe213dc8519a75.png", absolute: "https://cdn.mcp.so/uploads/6753a6798ace8ce5babe213dc8519a75.png", saved_as: "6753a6798ace8ce5babe213dc8519a75.png", alt: "", deduped: True }
+  - { src: "https://cdn.mcp.so/uploads/73e9663f1831a9db00cc41d2d3e39886.png", absolute: "https://cdn.mcp.so/uploads/73e9663f1831a9db00cc41d2d3e39886.png", saved_as: "73e9663f1831a9db00cc41d2d3e39886.png", alt: "", deduped: True }
+  - { src: "https://avatars.githubusercontent.com/u/310856622?v=4", absolute: "https://avatars.githubusercontent.com/u/310856622?v=4", saved_as: "310856622.bin", alt: "" }
+  - { src: "https://svgl.app/library/asana-logo.svg", absolute: "https://svgl.app/library/asana-logo.svg", saved_as: "asana-logo.svg", alt: "", deduped: True }
+  - { src: "https://cdn.mcp.so/uploads/9e9b1c9484d705fb14961cc0e1498596.png", absolute: "https://cdn.mcp.so/uploads/9e9b1c9484d705fb14961cc0e1498596.png", saved_as: "9e9b1c9484d705fb14961cc0e1498596.png", alt: "", deduped: True }
+  - { src: "https://cdn.mcp.so/uploads/d1341762da73dfa75d09dca3c073ac88.png", absolute: "https://cdn.mcp.so/uploads/d1341762da73dfa75d09dca3c073ac88.png", saved_as: "d1341762da73dfa75d09dca3c073ac88.png", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/8cdb222cfc33889eeb289c05bf7d8a10.jpg", absolute: "https://cdn.mcp.so/uploads/8cdb222cfc33889eeb289c05bf7d8a10.jpg", saved_as: "8cdb222cfc33889eeb289c05bf7d8a10.jpg", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/82ea0d0f20e13c828479a07cc5ea6716.jpg", absolute: "https://cdn.mcp.so/uploads/82ea0d0f20e13c828479a07cc5ea6716.jpg", saved_as: "82ea0d0f20e13c828479a07cc5ea6716.jpg", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/732581d3c1b54526ef807d71e79d47e1.webp", absolute: "https://cdn.mcp.so/uploads/732581d3c1b54526ef807d71e79d47e1.webp", saved_as: "732581d3c1b54526ef807d71e79d47e1.webp", alt: "" }
+  - { src: "https://github.com/oven-sh.png?size=128", absolute: "https://github.com/oven-sh.png?size=128", skipped: "fetch-failed: HTTPError" }
+  - { src: "https://github.com/cloudflare.png?size=128", absolute: "https://github.com/cloudflare.png?size=128", skipped: "fetch-failed: HTTPError" }
+  - { src: "https://github.com/duckdb.png?size=128", absolute: "https://github.com/duckdb.png?size=128", skipped: "fetch-failed: HTTPError" }
+  - { src: "https://github.com/FFmpeg.png?size=128", absolute: "https://github.com/FFmpeg.png?size=128", skipped: "fetch-failed: HTTPError" }
+  - { src: "https://avatars.githubusercontent.com/u/75462971?v=4", absolute: "https://avatars.githubusercontent.com/u/75462971?v=4", saved_as: "75462971.bin", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/9e58505c6cb490cc371926850626936c.png", absolute: "https://cdn.mcp.so/uploads/9e58505c6cb490cc371926850626936c.png", saved_as: "9e58505c6cb490cc371926850626936c.png", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/c9c490b994c82c8c4fe1b1e3efc24dd0.png", absolute: "https://cdn.mcp.so/uploads/c9c490b994c82c8c4fe1b1e3efc24dd0.png", saved_as: "c9c490b994c82c8c4fe1b1e3efc24dd0.png", alt: "" }
+  - { src: "https://avatars.githubusercontent.com/u/159428968?v=4", absolute: "https://avatars.githubusercontent.com/u/159428968?v=4", saved_as: "159428968.bin", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/a87f3fcd83addd468e032cc8d5b6003e.svg", absolute: "https://cdn.mcp.so/uploads/a87f3fcd83addd468e032cc8d5b6003e.svg", saved_as: "a87f3fcd83addd468e032cc8d5b6003e.svg", alt: "", deduped: True }
+  - { src: "https://avatars.githubusercontent.com/u/296988713?v=4", absolute: "https://avatars.githubusercontent.com/u/296988713?v=4", saved_as: "296988713.bin", alt: "", deduped: True }
+  - { src: "https://cdn.mcp.so/uploads/c186c0c154579cd73196bf7a5063b45a.png", absolute: "https://cdn.mcp.so/uploads/c186c0c154579cd73196bf7a5063b45a.png", saved_as: "c186c0c154579cd73196bf7a5063b45a.png", alt: "", deduped: True }
+  - { src: "https://cdn.mcp.so/uploads/6753a6798ace8ce5babe213dc8519a75.png", absolute: "https://cdn.mcp.so/uploads/6753a6798ace8ce5babe213dc8519a75.png", saved_as: "6753a6798ace8ce5babe213dc8519a75.png", alt: "", deduped: True }
+  - { src: "https://cdn.mcp.so/uploads/e45fc107af19de98735b6d9566855195.png", absolute: "https://cdn.mcp.so/uploads/e45fc107af19de98735b6d9566855195.png", saved_as: "e45fc107af19de98735b6d9566855195.png", alt: "" }
+  - { src: "https://avatars.githubusercontent.com/u/314216781?v=4", absolute: "https://avatars.githubusercontent.com/u/314216781?v=4", saved_as: "314216781.bin", alt: "" }
+  - { src: "https://avatars.githubusercontent.com/u/316378971?v=4", absolute: "https://avatars.githubusercontent.com/u/316378971?v=4", saved_as: "316378971.bin", alt: "" }
+  - { src: "https://cdn.mcp.so/uploads/6cf12be2b766c0a6d89c0dc9bd7f6da7.png", absolute: "https://cdn.mcp.so/uploads/6cf12be2b766c0a6d89c0dc9bd7f6da7.png", saved_as: "6cf12be2b766c0a6d89c0dc9bd7f6da7.png", alt: "" }
+  - { src: "https://avatars.githubusercontent.com/u/310856622?v=4", absolute: "https://avatars.githubusercontent.com/u/310856622?v=4", saved_as: "310856622.bin", alt: "", deduped: True }
+  - { src: "https://avatars.githubusercontent.com/u/296988713?v=4", absolute: "https://avatars.githubusercontent.com/u/296988713?v=4", saved_as: "296988713.bin", alt: "", deduped: True }
+  - { src: "https://cdn.mcp.so/uploads/b2b170f09d1630fa4063b777228d1d1b.png", absolute: "https://cdn.mcp.so/uploads/b2b170f09d1630fa4063b777228d1d1b.png", saved_as: "b2b170f09d1630fa4063b777228d1d1b.png", alt: "" }
+  - { src: "https://avatars.githubusercontent.com/u/49634116?v=4", absolute: "https://avatars.githubusercontent.com/u/49634116?v=4", saved_as: "49634116.bin", alt: "" }

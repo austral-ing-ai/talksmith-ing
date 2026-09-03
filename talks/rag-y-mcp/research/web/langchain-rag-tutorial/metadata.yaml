@@ -1,0 +1,10 @@
+url: "https://docs.langchain.com/oss/python/deepagents/rag"
+fetched_at: "2026-08-14T16:57:36Z"
+title: "Retrieval Augmented Generation (RAG) with Deep Agents - Docs by LangChain"
+http_status: 200
+byte_size: 1837416
+assets:
+  - { src: "https://mintcdn.com/langchain-5e9cc07a/nQm-sjd_MByLhgeW/images/brand/langchain-docs-dark-blue.png?fit=max&auto=format&n=nQm-sjd_MByLhgeW&q=85&s=5babf1a1962208fd7eed942fa2432ecb", absolute: "https://mintcdn.com/langchain-5e9cc07a/nQm-sjd_MByLhgeW/images/brand/langchain-docs-dark-blue.png?fit=max&auto=format&n=nQm-sjd_MByLhgeW&q=85&s=5babf1a1962208fd7eed942fa2432ecb", saved_as: "langchain-docs-dark-blue.png", alt: "light logo" }
+  - { src: "https://mintcdn.com/langchain-5e9cc07a/nQm-sjd_MByLhgeW/images/brand/langchain-docs-light-blue.png?fit=max&auto=format&n=nQm-sjd_MByLhgeW&q=85&s=0bcd2a1f2599ed228bcedf0f535b45b1", absolute: "https://mintcdn.com/langchain-5e9cc07a/nQm-sjd_MByLhgeW/images/brand/langchain-docs-light-blue.png?fit=max&auto=format&n=nQm-sjd_MByLhgeW&q=85&s=0bcd2a1f2599ed228bcedf0f535b45b1", saved_as: "langchain-docs-light-blue.png", alt: "dark logo" }
+  - { src: "https://mintcdn.com/langchain-5e9cc07a/I6RpA28iE233vhYX/images/rag_indexing.png?fit=max&auto=format&n=I6RpA28iE233vhYX&q=85&s=21403ce0d0c772da84dcc5b75cff4451", absolute: "https://mintcdn.com/langchain-5e9cc07a/I6RpA28iE233vhYX/images/rag_indexing.png?fit=max&auto=format&n=I6RpA28iE233vhYX&q=85&s=21403ce0d0c772da84dcc5b75cff4451", saved_as: "rag_indexing.png", alt: "index_diagram" }
+  - { src: "https://mintcdn.com/langchain-5e9cc07a/I6RpA28iE233vhYX/images/rag_retrieval_generation.png?fit=max&auto=format&n=I6RpA28iE233vhYX&q=85&s=994c3585cece93c80873d369960afd44", absolute: "https://mintcdn.com/langchain-5e9cc07a/I6RpA28iE233vhYX/images/rag_retrieval_generation.png?fit=max&auto=format&n=I6RpA28iE233vhYX&q=85&s=994c3585cece93c80873d369960afd44", saved_as: "rag_retrieval_generation.png", alt: "retrieval_diagram" }

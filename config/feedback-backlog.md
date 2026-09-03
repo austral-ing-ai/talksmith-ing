@@ -813,3 +813,27 @@
   feedback: "La sección 6 tiene demasiado texto. Está bien agregar láminas si hace falta."
   resolution: la sección pasó de 9 a 13 láminas, sin borrar contenido. Cuatro particiones: 'Thinking: el mecanismo' soltó la deprecación de `budget_tokens` a la nueva 6.3; 'Effort: un parámetro de la petición' soltó la tabla de niveles a la nueva 6.8; 'Pedirle al modelo que piense' soltó las tres frases verbatim a la nueva 6.10; y 'Qué cuesta el thinking' soltó la facturación y el caché a la nueva 6.13. En las nueve láminas preexistentes los ítems de dos y tres oraciones se cortaron a etiqueta más una línea, y la prosa que sacaron bajó a `### Speaker notes`. Los tres diagramas ASCII, sus `ascii-note` y el bloque de código quedaron intactos byte por byte. La lámina 'Etiquetas `<thinking>` en el prompt' no se repuso.
   tags: [density, slide-split, structure, speaker-notes]
+- talk: rag-y-mcp
+  date: 2026-08-14
+  location: Thesis
+  feedback: "Restaurado 1:1 desde `AIG4B-Clase-5-RAG-y-MCP.pptx`. La tesis no estaba explícita en el deck original: falta escribirla."
+  resolution: tesis escrita uniendo las dos mitades del deck bajo un mismo mecanismo (recortar lo que el modelo ve). Los objetivos de las ocho secciones se derivaron de ella.
+  tags: [thesis, section-goal, content-addition]
+- talk: rag-y-mcp
+  date: 2026-09-03
+  location: Slide "1. La calidad de las fuentes pone el techo de la calidad de las respuestas"
+  feedback: "Quedan menciones al dominio biomédico heredadas de la materia anterior: convertilas a ejemplos de software y sistemas."
+  resolution: guías clínicas, informes, ontologías médicas (SNOMED, ICD-10) y registros clínicos se reemplazaron por documentación técnica, ADRs, RFCs, post-mortems, catálogos y taxonomías internas.
+  tags: [generalize-examples, terminology, examples]
+- talk: rag-y-mcp
+  date: 2026-09-03
+  location: Slide "2. Riesgos de seguridad propios de RAG"
+  feedback: "Menciones biomédicas heredadas: historiales clínicos y datos genómicos."
+  resolution: reemplazados por credenciales, datos de clientes y código propietario, y se agregó la inyección indirecta de prompts como riesgo propio con lámina dedicada.
+  tags: [generalize-examples, examples, new-slide]
+- talk: rag-y-mcp
+  date: 2026-08-14
+  location: Slide "1. Key takeaways"
+  feedback: "El deck original no tiene slide de cierre; hay que escribirla."
+  resolution: se escribieron cuatro takeaways derivados de la tesis (el mecanismo común, dónde se rompe, la medición y la higiene de fuentes), cada uno apoyado en las fuentes primarias del corpus.
+  tags: [takeaway, new-slide, content-addition]
