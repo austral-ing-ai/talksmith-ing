@@ -1,0 +1,20 @@
+  ONE-HOT                             EMBEDDING
+
+  cat      [0 1 0 0 0 0 0 ... 0]      cat      [ 0.82 -0.31  0.54 ...]
+  dog      [0 0 1 0 0 0 0 ... 0]      dog      [ 0.79 -0.28  0.51 ...]
+  heladera [0 0 0 0 0 1 0 ... 0]      heladera [-0.12  0.65 -0.33 ...]
+
+  cat - dog       ->  distancia d     cat - dog       ->  cerca
+  cat - heladera  ->  distancia d     cat - heladera  ->  lejos
+
+  Todos los pares estan a la misma    La distancia dice algo, y
+  distancia. El espacio no guarda     es lo unico que hay que
+  nada sobre el significado.          medir para comparar.
+
+  |V| dimensiones, una por token      unos cientos de dimensiones
+
+<!-- ascii-note:
+intent: mostrar por qué one-hot no alcanza y embeddings sí, comparando la misma terna de palabras en los dos espacios: en uno todas las distancias son iguales, en el otro la distancia es la información
+emphasize: las dos líneas de distancia de la columna derecha, cerca y lejos, frente a la d repetida de la izquierda; ése es todo el argumento
+labels: "ONE-HOT", "EMBEDDING", "cat", "dog", "heladera", "distancia d", "cerca", "lejos", "|V| dimensiones, una por token", "unos cientos de dimensiones"
+-->

@@ -1,0 +1,26 @@
+   precio
+      ^
+      |                                           .    ,-'
+      |                                       ,-'
+      |                           .     ,-'        .
+      |                      .      ,-'
+      |               .        ,-'
+      |         .        ,-'  (?)      .
+      |      .      ,-'        ^
+      |   ,-'   .              |
+      +-------------------------------------------> metros cuadrados
+                               |
+                    aca no se vendio ninguna casa, y la recta
+                    igual devuelve un precio
+
+   Cada punto es una casa ya vendida: sus metros y lo que pago
+   alguien. La recta es el modelo, y contesta en todo el eje, asi
+   que se le puede pedir el precio de un metraje que nunca aparecio
+   en los datos. La salida sale de un rango continuo, y por eso los
+   valores posibles no se pueden enumerar.
+
+<!-- ascii-note:
+intent: mostrar que un modelo de regresion contesta tambien donde no hay datos, que es lo que separa una salida continua de una eleccion entre categorias; el ejemplo del metraje no vendido es el argumento
+emphasize: el signo (?) sobre la recta en el hueco sin puntos, con su llamada al pie; es lo que el listado de la lamina no dice
+labels: "precio", "metros cuadrados", "(?)", "aca no se vendio ninguna casa, y la recta igual devuelve un precio", "La salida sale de un rango continuo"
+-->

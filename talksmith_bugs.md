@@ -183,3 +183,32 @@
     en el sistema, con una lista de candidatos por plataforma. (b) Que el pase de render falle
     ruidosamente, o al menos advierta, cuando la familia pedida no resuelve — un fallo silencioso
     que degrada todos los diagramas del deck es peor que un error.
+
+- id: BUG-20260903-02
+  status: ABIERTO (detectado 2026-09-03, plugin 0.98.1)
+  date: 2026-09-03
+  talk: talks/deep-learning-y-nlp
+  step: 6 (Polish — derivacion de final.md)
+  where: skills/feedback-cycle/strip_feedback.py, funcion `_normalize()`
+  what: `_normalize()` colapsa las corridas de lineas en blanco sobre TODO el cuerpo del
+    documento, sin distinguir si esta dentro o fuera de una cerca. Sobre un Talk con bloques
+    ```ascii eso destruye el espaciado vertical del arte, que es portante: un diagrama que
+    separa dos bandas con dos lineas en blanco queda con una sola y las bandas se pegan.
+    Ocurre en silencio: `final.md` se genera, no hay error, y el defecto solo se ve
+    comparando byte a byte contra `draft.md` o mirando el diagrama renderizado.
+    Caso latente mas grave: la guarda `_HR = ^\s{0,3}-{3,}\s*$` interpreta como regla
+    horizontal cualquier linea de tres guiones o mas, e inserta una linea en blanco. Un
+    diagrama que dibuje una regla horizontal con guiones — algo completamente normal en arte
+    ASCII — queda partido por el medio.
+  repro: 1) tomar un Talk con un bloque ```ascii que tenga dos lineas en blanco consecutivas
+    adentro, o una linea de tres guiones o mas;
+    2) correr la derivacion de Polish que invoca `strip_feedback.py`;
+    3) comparar el interior del bloque en `final.md` contra `draft.md`: el espaciado no coincide.
+  context: aparecio derivando `final.md` de un Talk con 20 bloques ASCII. Dos bloques
+    perdieron lineas en blanco interiores; se restauraron a mano copiando el interior verbatim
+    desde `draft.md`. Ninguno de los 20 tenia una regla de guiones, asi que el caso grave no
+    llego a dispararse, pero el proximo diagrama que dibuje una si.
+  suggested-fix: que `_normalize()` lleve estado de cerca y no toque nada entre una apertura
+    ``` y su cierre. Es el mismo cuidado que ya aplican los recorridos de secciones del resto
+    del flujo, y que en este repositorio ya causo dos laminas mal numeradas por la misma razon
+    (comentarios de codigo que empiezan con almohadilla leidos como encabezados).

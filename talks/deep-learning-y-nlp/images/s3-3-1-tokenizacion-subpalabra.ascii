@@ -1,0 +1,25 @@
+  POR PALABRA                          POR SUB-PALABRA
+
+  "the cat sat on the mat"             "unbelievable"
+             |                                |
+             v                                v
+  [the][cat][sat][on][the][mat]        [un][believ][able]
+           6 tokens                          3 tokens
+
+
+  UNA PALABRA QUE EL MODELO NUNCA VIO:  "descontracturante"
+
+    por palabra      ->  [ <desconocido> ]
+                         el contenido se pierde entero
+
+    por sub-palabra  ->  [des][contract][urante]
+                         se arma con piezas ya conocidas
+
+  El vocabulario deja de tener que contener el idioma entero, y el
+  mismo vocabulario sirve para varios idiomas a la vez.
+
+<!-- ascii-note:
+intent: mostrar que la elección de unidad no es cosmética: con palabras enteras una palabra desconocida se pierde, con sub-palabras se reconstruye desde piezas que el modelo ya tiene
+emphasize: el bloque de abajo, la palabra nunca vista, y en particular la línea de sub-palabra que la descompone en tres piezas conocidas; ése es el argumento que la parte de arriba no da
+labels: "POR PALABRA", "POR SUB-PALABRA", "6 tokens", "3 tokens", "UNA PALABRA QUE EL MODELO NUNCA VIO", "<desconocido>", "des / contract / urante", "se arma con piezas ya conocidas"
+-->

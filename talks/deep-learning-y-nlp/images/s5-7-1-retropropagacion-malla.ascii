@@ -1,0 +1,29 @@
+  Una sola red, recorrida dos veces y en sentidos opuestos.
+
+  IDA     entrada --> [ capa 1 ]==[ capa 2 ] --> ... --> prediccion
+                                                              |
+                                                              v
+                                                            loss
+                                                              |
+        LA MALLA DE CERCA, ENTRE CAPA 1 Y CAPA 2              |
+                                                              |
+          (a) ----+----+----+    9 conexiones entre           |
+                  |    |    |    estas dos capas: una         |
+          (b) ----+----+----+    por cada par de nodos,       |
+                  |    |    |    y el mismo patron entre      |
+          (c) ----+----+----+    las capas que siguen.        |
+                  v    v    v                                 |
+                 (d)  (e)  (f)                                |
+                                                              |
+  VUELTA  entrada <== [ capa 1 ]==[ capa 2 ] <== ... <========'
+
+  Cada + es una conexion con su propio peso, y por cada + vuelve un
+  pedazo del error. Ahi esta la escala del problema: entre dos capas
+  de 3 nodos hay 9 caminos de vuelta, y entre dos capas de mil nodos
+  hay un millon. Un modelo real tiene miles de millones.
+
+<!-- ascii-note:
+intent: mostrar los dos sentidos de circulacion en las bandas de arriba y de abajo, y ampliar una sola vez la malla entre dos capas para que se vea que el error vuelve por cada conexion y no por cada capa; de ahi sale que entrenar sea un problema de escala
+emphasize: la banda de VUELTA con sus flechas dobles de derecha a izquierda, que es el sentido que la lamina explica; los nueve simbolos + de la malla ampliada, que se pueden contar uno por uno
+labels: "IDA", "VUELTA", "entrada", "capa 1", "capa 2", "prediccion", "loss", "LA MALLA DE CERCA, ENTRE CAPA 1 Y CAPA 2", "9 conexiones entre estas dos capas: una por cada par de nodos", "Cada + es una conexion con su propio peso", "entre dos capas de mil nodos hay un millon"
+-->

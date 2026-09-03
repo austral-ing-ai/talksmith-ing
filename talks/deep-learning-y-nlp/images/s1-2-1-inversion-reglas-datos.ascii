@@ -1,0 +1,23 @@
+                     ENTRA               PROCESO            SALE
+
+  PROGRAMACION       reglas      ---.
+  CLASICA                            +--> [ programa  ] --> respuestas
+                     datos       ---'
+
+
+  MACHINE            datos       ---.
+  LEARNING                           +--> [ entrenar  ] --> reglas
+                     respuestas  ---'
+
+
+  reglas       entran arriba   ->   salen abajo
+  respuestas   salen arriba    ->   entran abajo
+  datos        entran en los dos
+
+  Lo que en un paradigma se escribe a mano, en el otro se deduce.
+
+<!-- ascii-note:
+intent: mostrar que los dos paradigmas usan las mismas tres piezas y que lo que cambia es cual es entrada y cual es salida; el nombre del proceso es lo de menos
+emphasize: las tres lineas de abajo, que nombran la inversion pieza por pieza. En el cuerpo, la palabra "reglas" en las dos filas: entra en la de arriba y sale en la de abajo, y esa es toda la leccion
+labels: "ENTRA", "PROCESO", "SALE", "PROGRAMACION CLASICA", "MACHINE LEARNING", "reglas", "datos", "respuestas", y las tres lineas de inversion
+-->

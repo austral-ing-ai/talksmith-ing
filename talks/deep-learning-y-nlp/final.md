@@ -28,11 +28,10 @@ La clase arranca por arriba, con las familias de problemas que la IA resuelve, y
 - 1. Problemas clásicos de ML
 - 2. Motivación de NLP
 - 3. Modelado de lenguaje
-- 4. Tokens y embeddings
+- 4. Embeddings
 - 5. Redes neuronales
-- 6. Cómo aprende una red
-- 7. De las RNN a la atención
-- 8. Transformers y LLM
+- 6. De las RNN a la atención
+- 7. Transformers y LLM
 
 ---
 
@@ -132,7 +131,7 @@ labels: "ENTRA", "PROCESO", "SALE", "PROGRAMACION CLASICA", "MACHINE LEARNING", 
 
 ### Sources
 
-- `AIG4B-Clase-2-LLM.md.md` (slide 4) — la lámina original era solo el título y una figura. La figura (`slide-04-1.jpg`) se rehizo como diagrama propio: era un esquema plano rotulado en inglés que codificaba la inversión con el color de los círculos, y el diagrama nuevo la nombra pieza por pieza.
+- `AIG4B-Clase-2-LLM.md.md` (slide 4) — la lámina original era solo el título y una figura. La figura se rehizo como diagrama propio: era un esquema plano rotulado en inglés que codificaba la inversión con el color de los círculos, y el diagrama nuevo la nombra pieza por pieza.
 
 ### Speaker notes
 
@@ -149,17 +148,45 @@ La figura es el argumento entero y conviene recorrerla en voz alta: fila de arri
 - **Clasificación** Asignar una entrada a una de varias categorías conocidas de antemano. Pregunta: ¿a qué categoría pertenece? Ejemplo: decidir si un correo es spam.
 - **Regresión** Estimar un valor continuo a partir de las características de la entrada. Pregunta: ¿qué valor va a tener? Ejemplo: estimar el precio de una casa por sus metros cuadrados.
 
-![Diagrama de clasificación de imágenes: una foto de un gato entra a una caja rotulada Modelo y sale la etiqueta CAT](research/corpus/AIG4B-Clase-2-LLM.md/images/slide-05-1.png)
+![Diagrama de clasificación de imágenes: una foto de un gato entra a una caja rotulada Modelo y sale la etiqueta CAT](images/clasificacion-de-imagenes.png)
 
-![Gráfico de dispersión con precio en el eje vertical y metros cuadrados en el horizontal, y una recta ajustada a los puntos](research/corpus/AIG4B-Clase-2-LLM.md/images/slide-05-2.jpg)
+<!-- ascii-render: force -->
+```ascii
+   precio
+      ^
+      |                                           .    ,-'
+      |                                       ,-'
+      |                           .     ,-'        .
+      |                      .      ,-'
+      |               .        ,-'
+      |         .        ,-'  (?)      .
+      |      .      ,-'        ^
+      |   ,-'   .              |
+      +-------------------------------------------> metros cuadrados
+                               |
+                    aca no se vendio ninguna casa, y la recta
+                    igual devuelve un precio
+
+   Cada punto es una casa ya vendida: sus metros y lo que pago
+   alguien. La recta es el modelo, y contesta en todo el eje, asi
+   que se le puede pedir el precio de un metraje que nunca aparecio
+   en los datos. La salida sale de un rango continuo, y por eso los
+   valores posibles no se pueden enumerar.
+```
+<!-- ascii-note:
+intent: mostrar que un modelo de regresion contesta tambien donde no hay datos, que es lo que separa una salida continua de una eleccion entre categorias; el ejemplo del metraje no vendido es el argumento
+emphasize: el signo (?) sobre la recta en el hueco sin puntos, con su llamada al pie; es lo que el listado de la lamina no dice
+labels: "precio", "metros cuadrados", "(?)", "aca no se vendio ninguna casa, y la recta igual devuelve un precio", "La salida sale de un rango continuo"
+-->
 
 ### Sources
 
 - `AIG4B-Clase-2-LLM.md.md` (slide 5) — las dos formulaciones y sus ejemplos, verbatim.
+- Diagrama propio. La lámina original ilustraba la regresión con una captura de un curso en video, en inglés y con un error tipográfico en su propio título; se rehízo como diagrama propio en español, con el mecanismo y sin nada de la fuente.
 
 ### Speaker notes
 
-Las dos figuras hacen el trabajo: una salida discreta a la izquierda, una continua a la derecha. El ejemplo de la casa del texto y el de la figura de regresión coinciden, así que se pueden señalar juntos. La lámina original juntaba las cuatro formulaciones y cuatro figuras en una sola pantalla; acá van de a dos. Las dos figuras están en inglés (Modelo / CAT en la primera, price y square feet en la segunda).
+La clasificación queda del lado de la figura y la regresión del lado del diagrama: una salida discreta y una continua, en la misma pantalla. El ejemplo de la casa del texto y el del diagrama coinciden, así que se pueden señalar juntos. Detenete en el signo de pregunta: ahí no se vendió ninguna casa y la recta contesta igual, y ésa es la diferencia práctica con elegir entre categorías. La nube de puntos y la recta son esquemáticas, sin escala en los ejes a propósito, porque no hay ningún conjunto de datos detrás. La lámina original juntaba las cuatro formulaciones y cuatro figuras en una sola pantalla; acá van de a dos.
 
 ---
 
@@ -174,17 +201,44 @@ Las dos figuras hacen el trabajo: una salida discreta a la izquierda, una contin
 - **Clustering** Agrupar elementos parecidos sin categorías definidas de antemano. Pregunta: ¿qué datos se parecen entre sí? Ejemplo: agrupar los tickets de soporte que describen la misma falla, sin haber decidido antes cuáles son las fallas.
 - **Generación** Producir datos nuevos que se parezcan a los de entrenamiento sin copiarlos. Pregunta: ¿puedo crear datos que no estaban? Ejemplo: escribir texto o completar código.
 
-![Diagrama de topic modeling: una colección de documentos entra a una caja de Topic Modelling y salen agrupamientos de palabras y de documentos por tópico](research/corpus/AIG4B-Clase-2-LLM.md/images/slide-05-3.png)
+```ascii
+  ANTES                            DESPUES DE AGRUPAR
+
+  una pila de tickets,             tres grupos, y recien ahora
+  sin categoria ninguna            se les puede poner nombre
+
+   t1  "no carga el login"          +----------------+
+   t2  "el pago tira 500"           | t1   t3   t7   |  <- una persona
+   t3  "no puedo entrar"            +----------------+     los lee y
+   t4  "la factura sale mal"                               les pone
+   t5  "timeout al pagar"           +----------------+     nombre
+   t6  "no llega el recibo"         | t2   t5        |     recien
+   t7  "usuario bloqueado"          +----------------+     aca
+   t8  "el importe no cierra"
+                                    +----------------+
+                                    | t4   t6   t8   |
+                                    +----------------+
+
+  El algoritmo forma los grupos midiendo parecido entre los textos.
+  No sabe que el primero es "acceso" ni el tercero "facturacion":
+  los nombres los pone alguien despues, mirando el resultado.
+```
+<!-- ascii-note:
+intent: mostrar que el agrupamiento produce los grupos y no los nombres; el algoritmo mide parecido y las etiquetas las pone una persona despues, que es lo que distingue agrupar de clasificar
+emphasize: las tres cajas de la derecha con sus tickets adentro, y la llamada que dice que el nombre llega despues y lo pone una persona
+labels: "ANTES", "DESPUES DE AGRUPAR", "una pila de tickets, sin categoria ninguna", "tres grupos, y recien ahora se les puede poner nombre", "una persona los lee y les pone nombre recien aca", "El algoritmo forma los grupos midiendo parecido entre los textos"
+-->
 
 - 💡 El modelo aprende patrones de los datos. Nadie le escribe las reglas.
 
 ### Sources
 
-- `AIG4B-Clase-2-LLM.md.md` (slide 5) — las dos formulaciones, el cierre sobre patrones y la figura de topic modeling.
+- `AIG4B-Clase-2-LLM.md.md` (slide 5) — las dos formulaciones y el cierre sobre patrones.
+- Diagrama propio. La lámina original ilustraba el agrupamiento con una figura de un tercero, en inglés y con su logo proyectado; se rehízo como diagrama propio en español, con el mecanismo y sin nada de la marca.
 
 ### Speaker notes
 
-El clustering es el que más cuesta, porque la pregunta "¿qué datos se parecen?" suena vacía hasta que se ve un caso. El de tickets de soporte funciona bien con esta audiencia: nadie sabe de antemano cuántas fallas distintas hay en la cola, y agrupar es justamente cómo se descubren. La figura de topic modeling muestra las dos salidas del clustering sobre texto, agrupamientos de palabras y agrupamientos de documentos, y ese par vuelve en la matriz de tareas de NLP. Está en inglés y lleva la marca de agua de GeeksforGeeks.
+El clustering es el que más cuesta, porque la pregunta "¿qué datos se parecen?" suena vacía hasta que se ve un caso. El de tickets de soporte funciona bien con esta audiencia: nadie sabe de antemano cuántas fallas distintas hay en la cola, y agrupar es justamente cómo se descubren. Leé dos o tres tickets de la columna izquierda y preguntá cómo los agruparían; van a dar los tres grupos del diagrama sin esfuerzo, y ése es el momento de decir que el algoritmo llega hasta ahí y no más. Los nombres —acceso, pagos, facturación— los pone una persona mirando el resultado, y eso es lo que separa agrupar de clasificar.
 
 ---
 
@@ -361,13 +415,39 @@ labels: "the cat sat on the mat", "La ventana avanza un token por vez", "entrada
 
 ## 2. La salida es un vector, no una palabra
 
-<!-- design: split-right -->
-
 ### Content
 
 **El modelo devuelve un número por cada token del vocabulario: la probabilidad de que ese token sea el siguiente. El vector tiene longitud |V|.**
 
-![Miniatura de una frase incompleta partida en tokens que entra a un modelo y produce un gráfico de barras horizontales con varios candidatos de longitudes distintas](research/corpus/AIG4B-Clase-2-LLM.md/images/slide-05-4.jpg)
+```ascii
+  ENTRADA   "the cat is on the"
+                     |
+                     v
+                [ MODELO ]
+                     |
+                     v
+  SALIDA    un valor por cada token del vocabulario
+
+     mat    #################################
+     bed    ############
+     piso   #####
+     dog    ##
+     the    #
+     roof   .
+     ...    y asi hasta completar los |V| tokens
+            -----------------------------------------------
+            los |V| valores suman 1
+
+  La lista entera es la salida del modelo. Quedarse con la barra
+  mas larga es un paso aparte, y no es el unico: muestrear entre
+  las primeras es lo que hace que el mismo texto de entrada no
+  devuelva siempre la misma continuacion.
+```
+<!-- ascii-note:
+intent: mostrar que la salida es una lista completa sobre el vocabulario y no una palabra, y separar dos cosas que se confunden: producir la distribucion, que hace el modelo, y elegir un token, que es un paso posterior
+emphasize: la columna de barras entera, sobre todo las filas de abajo que casi no se ven y la linea de que los |V| valores suman 1; la barra mas larga es solo una fila de esa lista
+labels: "ENTRADA", "MODELO", "SALIDA", "un valor por cada token del vocabulario", "los |V| valores suman 1", "La lista entera es la salida del modelo", "Quedarse con la barra mas larga es un paso aparte"
+-->
 
 - **Una posición por token del vocabulario.** El valor de cada posición es la probabilidad de ese token, y las |V| posiciones suman uno.
 - **Elegir viene después.** Quedarse con el máximo es una decisión aparte, y no es la única. Muestrear con algo de aleatoriedad es la otra, y es lo que controla la temperatura.
@@ -375,11 +455,11 @@ labels: "the cat sat on the mat", "La ventana avanza un token por vez", "entrada
 ### Sources
 
 - `AIG4B-Clase-2-LLM.md.md` (slide 10) — el bloque "Importante": el modelo devuelve un vector de probabilidades sobre todo el vocabulario, de longitud |V|.
-- `AIG4B-Clase-2-LLM.md.md` (slide 5) — la figura, reubicada desde la lámina de problemas clásicos.
+- Diagrama propio. La lámina original ilustraba esto con una miniatura de video del deck, en inglés y con estética de portada; se rehízo como diagrama propio en español, con el mecanismo y sin nada de la fuente.
 
 ### Speaker notes
 
-La figura muestra exactamente esto: una frase incompleta, el modelo, y una barra por candidato con alturas distintas. En el deck original estaba en la slide 5, cinco láminas antes de que el concepto se formalizara, así que ilustraba algo que todavía no se había explicado; acá cae donde corresponde. Está en inglés ("It rains a lot in the" y los candidatos UK, winter, summer, Pacific, mountain), y funciona igual porque el argumento son las alturas relativas. El punto que conviene decir en voz alta es el segundo: el modelo no elige, produce una distribución, y elegir es una decisión de quien lo usa.
+El diagrama es el argumento entero: una frase incompleta entra, y lo que sale es la columna completa de barras. Recorré las filas de arriba abajo hasta las que casi no se ven, y decí que la lista sigue hasta completar el vocabulario. El punto que conviene decir en voz alta es el segundo de los de apoyo: el modelo produce la distribución, y elegir un token es una decisión de quien lo usa. Las barras son esquemáticas y no llevan números a propósito, porque no salen de ninguna corrida; lo único que se afirma es la estructura, que hay un valor por token y que suman uno.
 
 ---
 
@@ -529,25 +609,48 @@ El diagrama es la definición de one-hot y su límite en la misma imagen. La ter
 
 ## 2. De token a vector
 
-<!-- design: split-right -->
-
 ### Content
 
 **Un embedding de texto es un vector que codifica el significado de un token. Cada token del vocabulario tiene el suyo, y ese vector es lo que entra al modelo.**
 
-![Tres bloques encadenados: cuatro palabras, la matriz de sus vectores de embedding fila por fila, y los mismos cuatro puntos ubicados en un espacio de tres ejes](research/corpus/AIG4B-Clase-2-LLM.md/images/slide-17-2.jpg)
+```ascii
+   LA PALABRA        SU FILA DE NUMEROS       SU LUGAR EN EL ESPACIO
+
+                                                ^ dim 2
+    "hombre"  --->   [ . . . . . . ]  --->      |     o-------->o
+                                                |   hombre    mujer
+    "mujer"   --->   [ . . . . . . ]  --->      |
+                                                |  o-------->o
+    "rey"     --->   [ . . . . . . ]  --->      | rey       reina
+                                                |
+    "reina"   --->   [ . . . . . . ]  --->      +---------------> dim 1
+
+   Cada fila tiene tantos numeros como dimensiones tiene el espacio,
+   y esos numeros son las coordenadas del punto. La fila y el punto
+   son la misma cosa escrita de dos maneras.
+
+   De ahi que una relacion se pueda medir como un trecho: el que va
+   de hombre a mujer y el que va de rey a reina tienen el mismo
+   largo y la misma direccion.
+```
+<!-- ascii-note:
+intent: cerrar el circuito palabra -> fila de numeros -> punto, y sobre todo que la fila y el punto son lo mismo: los numeros son las coordenadas; de ahi sale que una relacion se pueda medir como un desplazamiento
+emphasize: las dos flechas del panel derecho, paralelas y del mismo largo, que muestran que la misma relacion es el mismo desplazamiento; los puntos de la fila de numeros van deliberadamente sin valores
+labels: "LA PALABRA", "SU FILA DE NUMEROS", "SU LUGAR EN EL ESPACIO", "hombre", "mujer", "rey", "reina", "dim 1", "dim 2", "esos numeros son las coordenadas del punto", "el mismo largo y la misma direccion"
+-->
 
 - **El circuito completo** Palabra, fila de números, punto en el espacio. Las tres cosas son la misma, escritas de tres maneras.
 - **La dimensión no es interpretable de a una.** Ningún eje del espacio significa algo por separado; lo único que se lee es la posición relativa entre puntos.
 
 ### Sources
 
-- `AIG4B-Clase-2-LLM.md.md` (slide 16) — "hay que convertir los tokens en números"; la figura cierra ese paso.
+- `AIG4B-Clase-2-LLM.md.md` (slide 16) — "hay que convertir los tokens en números"; el diagrama cierra ese paso.
 - `AIG4B-Clase-2-LLM.md.md` (slide 17) — "embedding de texto: vector que codifica el significado de una palabra".
+- Diagrama propio. La lámina original traía una figura del deck con los tres bloques encadenados, en inglés y con una matriz de valores ilustrativos; se rehízo como diagrama propio en español, sin los valores, que eran decorado.
 
 ### Speaker notes
 
-La figura hace en una imagen el recorrido que el texto describe en tres pasos, y conviene recorrerla de izquierda a derecha señalando que las tres representaciones son la misma cosa. Los valores numéricos de la matriz son ilustrativos, no salidas de ningún modelo; decilo, porque están escritos con dos decimales y parecen medidos. El segundo punto de apoyo es el que evita el malentendido más común de la sección: nadie va a poder decir qué mide la dimensión 3.
+Recorré el diagrama de izquierda a derecha una vez y volvé al medio: lo que hay que dejar dicho es que la fila de números y el punto son la misma cosa, porque los números *son* las coordenadas. Ése es el paso que cierra la sección y el que más cuesta. Las filas van con puntos suspensivos y sin valores a propósito: la figura del deck original traía una matriz con dos decimales que parecía medida y no salía de ningún modelo. El segundo punto de apoyo evita el malentendido más común de la sección: nadie va a poder decir qué mide la dimensión 3. Las dos flechas del panel derecho anticipan la lámina siguiente, así que señalalas y no las desarrolles acá.
 
 ---
 
@@ -559,7 +662,7 @@ La figura hace en una imagen el recorrido que el texto describe en tres pasos, y
 
 **Los tokens de significado parecido caen cerca. Esa cercanía es lo único que el espacio codifica, y es lo que permite comparar dos textos sin compararlos palabra por palabra.**
 
-![Plano cartesiano con cuatro vectores que salen del origen y terminan en emojis: un rey y una reina agrupados arriba, una manzana y una banana agrupadas abajo](research/corpus/AIG4B-Clase-2-LLM.md/images/slide-17-3.png)
+![Plano cartesiano con cuatro vectores que salen del origen y terminan en emojis: un rey y una reina agrupados arriba, una manzana y una banana agrupadas abajo](images/plano-de-embeddings.png)
 
 - **Los vecindarios son campos de significado.** Realeza en una zona, frutas en otra, sin que nadie haya escrito esas categorías: salen de con qué palabras aparece cada una en el corpus.
 - **La cercanía se mide, no se lee.** En dos dimensiones se ve; en las varias centenas reales del espacio, se calcula.
@@ -582,7 +685,7 @@ La figura no tiene una sola palabra escrita: usa emojis en vez de etiquetas, as�
 
 **El espacio no sólo agrupa: también guarda relaciones. El desplazamiento que lleva de "man" a "woman" es el mismo que lleva de "king" a "queen".**
 
-![Tres paneles de ejes tridimensionales con flechas punteadas paralelas: pares de género, pares de tiempo verbal y pares de país y capital](research/corpus/AIG4B-Clase-2-LLM.md/images/slide-17-1.jpg)
+![Tres paneles de ejes tridimensionales con flechas punteadas paralelas: pares de género, pares de tiempo verbal y pares de país y capital](images/analogias-vectoriales.jpg)
 
 - **La regularidad no es un accidente del ejemplo de género.** Se repite con tiempo verbal (walking → walked, swimming → swam) y con país y capital (Italy → Rome, Japan → Tokyo).
 - **De ahí sale la aritmética de analogías** que se cita seguido como `rey − hombre + mujer ≈ reina`.
@@ -686,7 +789,7 @@ El diagrama y la fórmula dicen lo mismo salvo en un punto, y es el que conviene
 
 **Una red neuronal profunda es una pila de capas de perceptrones, donde la salida de cada capa es la entrada de la siguiente. De ahí sale el nombre deep learning.**
 
-![Diagrama de un perceptrón multicapa: capa de entrada, dos capas ocultas con sus pesos indexados, capas omitidas y un nodo de salida](research/corpus/AIG4B-Clase-2-LLM.md/images/slide-20-1.jpg)
+![Diagrama de un perceptrón multicapa: capa de entrada, dos capas ocultas con sus pesos indexados, capas omitidas y un nodo de salida](images/red-multicapa.jpg)
 
 - **Cada capa abstrae más que la anterior.** Las iniciales detectan patrones simples (combinaciones de letras, formas básicas); las intermedias, patrones compuestos (palabras, frases, relaciones); las finales, conceptos de alto nivel (significado, intención, contexto).
 - **Más capas es más capacidad y más costo.** Más parámetros permiten modelar relaciones más complejas, y a la vez exigen más datos para entrenar y más cómputo.
@@ -757,7 +860,7 @@ Lámina bisagra: cierra las redes neuronales y plantea el problema que resuelve 
 
 **El descenso por gradiente ajusta cada peso en la dirección que más reduce la loss. La dirección la da el gradiente cambiado de signo, −∇.**
 
-![Superficie tridimensional de pérdida en malla, con picos y valles coloreados y una trayectoria que desciende serpenteando desde la cima hasta el fondo de un valle](research/corpus/AIG4B-Clase-2-LLM.md/images/slide-21-1.jpg)
+![Superficie tridimensional de pérdida en malla, con picos y valles coloreados y una trayectoria que desciende serpenteando desde la cima hasta el fondo de un valle](images/superficie-de-perdida.jpg)
 
 - **El ciclo por ejemplo** Entra un ejemplo, el modelo predice con los pesos que tiene, se compara con la respuesta correcta, se calcula la loss, se ajustan los pesos un poco en la dirección de −∇, y sigue el ejemplo siguiente.
 - **La analogía que se sostiene** Estar en una montaña con niebla y querer llegar al valle. El camino completo no se ve; la pendiente bajo los pies, sí. Cada paso va un poco para abajo.
@@ -1232,19 +1335,21 @@ Lámina nueva, y la única de la clase con números medidos de una fuente primar
 
 **El Transformer es la arquitectura que reemplazó a las RNN en 2017. Procesa la secuencia entera de una vez, en paralelo, apilando bloques de atención.**
 
-![Diagrama de arquitectura en dos columnas: la izquierda con embedding de entrada, codificación posicional, atención multi-cabeza y feed forward; la derecha con atención enmascarada y atención cruzada, terminando en una capa lineal y un softmax hacia probabilidades de salida](research/corpus/AIG4B-Clase-2-LLM.md/images/slide-27-1.jpg)
+![Diagrama de arquitectura en dos columnas: la izquierda con embedding de entrada, codificación posicional, atención multi-cabeza y feed forward; la derecha con atención enmascarada y atención cruzada, terminando en una capa lineal y un softmax hacia probabilidades de salida](images/arquitectura-transformer.jpg)
 
 - **Dos columnas, dos trabajos.** La izquierda codifica la entrada; la derecha genera la salida token a token y consulta a la izquierda por el camino.
 - **El softmax de arriba es la distribución sobre el vocabulario.** El "Output Probabilities" del tope de la figura es literalmente ese vector de tamaño |V| con el que se formuló el modelado de lenguaje.
 
+- Figura 1 de Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser y Polosukhin, *Attention Is All You Need*, arXiv:1706.03762 (2017).
+
 ### Sources
 
 - `AIG4B-Clase-2-LLM.md.md` (slide 27) — "la arquitectura que cambió todo (2017); a diferencia de las RNN, los Transformers procesan toda la secuencia de una vez, en paralelo" y la afirmación sobre encoder más decoder.
-- `attention-is-all-you-need.web.md` — el abstract enmarca el Transformer dentro del paradigma encoder-decoder para transducción de secuencias.
+- `attention-is-all-you-need.web.md` — el abstract enmarca el Transformer dentro del paradigma encoder-decoder para transducción de secuencias. La figura reproducida en la lámina es la figura 1 del paper, y la atribución va al pie del contenido visible.
 
 ### Speaker notes
 
-La figura es la figura 1 del paper de Vaswani y otros, y el deck original la reproducía sin atribución; acá la cita está en las fuentes. Está en inglés y es densa: no la recorras entera. Señalá tres cosas y seguí: las dos columnas, la caja de atención multi-cabeza que se repite, y el softmax de arriba, que es donde el recorrido se cierra sobre el modelado de lenguaje. El deck original agregaba que los LLM modernos usan solo decoder, o sea sólo la columna derecha. Es cierto y es consenso, pero no sale del paper de 2017 ni de ninguna fuente de nuestro corpus, así que decilo de palabra y como afirmación propia, no como algo que el paper diga. Está anotado en las preguntas abiertas.
+La figura es la figura 1 del paper de Vaswani y otros, y el deck original la reproducía sin atribución; acá el crédito está al pie de la lámina, a la vista, además de en las fuentes. Es la figura más reconocible del campo y proyectarla sin crédito es evitable. Está en inglés y es densa: no la recorras entera. Señalá tres cosas y seguí: las dos columnas, la caja de atención multi-cabeza que se repite, y el softmax de arriba, que es donde el recorrido se cierra sobre el modelado de lenguaje. El deck original agregaba que los LLM modernos usan solo decoder, o sea sólo la columna derecha. Es cierto y es consenso, pero no sale del paper de 2017 ni de ninguna fuente de nuestro corpus, así que decilo de palabra y como afirmación propia, no como algo que el paper diga. Está anotado en las preguntas abiertas.
 
 ---
 
@@ -1401,7 +1506,7 @@ Tres cuidados con los números de la columna derecha, y los tres importan porque
 
 # Conclusions
 
-## 7. Lo que queda de la clase
+## 1. Lo que queda de la clase
 
 ### Content
 
@@ -1426,22 +1531,22 @@ Cinco frases y ninguna es un resumen de la agenda. La primera es la tesis desple
 
 **Cifras que quedaron sin respaldo verificable**
 
-- **El vocabulario de ~100.000 tokens y los cientos de miles de millones de parámetros (8.4)** — Vienen del deck original. Ni OpenAI ni Anthropic publican esos números para sus modelos actuales, así que no se pueden verificar contra ninguna fuente. Quedaron en la lámina con "del orden de". Falta decidir si se citan contra un modelo abierto con números publicados o si se retiran.
+- **El vocabulario de ~100.000 tokens y los cientos de miles de millones de parámetros (sección 7, escala del vocabulario)** — Vienen del deck original. Ni OpenAI ni Anthropic publican esos números para sus modelos actuales, así que no se pueden verificar contra ninguna fuente. Quedaron en la lámina con "del orden de". Falta decidir si se citan contra un modelo abierto con números publicados o si se retiran.
 - **"Billones de palabras" (8.4 y 8.6)** — En español rioplatense un billón es 10¹²; el original casi con seguridad traduce "billions" (10⁹) del inglés. Retirado de las dos láminas y reemplazado por descripción cualitativa. Falta decidir si se pone una cifra con fuente.
 - **Los valores de embedding de las láminas 4.2 y 4.3** — Ilustrativos, no salidas de ningún modelo. Los de la figura 17-2 vienen así del deck original. Están declarados como ilustrativos en las notas del orador.
 - **Los pesos de atención de la lámina 7.6** — Deliberadamente cualitativos (bajo, medio, alto), sin números, porque cualquier valor concreto sería inventado y se leería como medido.
 
 **Afirmaciones que el corpus no sostiene**
 
-- **"Los LLM modernos usan solo decoder" (8.1)** — El registro de `attention-is-all-you-need.web.md` es explícito: el paper es de 2017 y GPT, LLaMA y Claude son posteriores, así que la afirmación no sale de ahí. Es correcta y es consenso, pero quedó en notas del orador como afirmación propia. Falta capturar una fuente que la sostenga.
-- **LSTM sin captura en el corpus (7.4)** — Es la única de las tres variantes sin fuente propia. La descripción de las compuertas sale del deck original. Convendría capturar Hochreiter y Schmidhuber (1997) antes de la próxima edición.
-- **La mecánica de Word2Vec (4.6)** — Que promedia los vectores del contexto es la arquitectura CBOW, que vive en el cuerpo del paper y no en el abstract capturado. Lo mismo con la aritmética `rey − hombre + mujer ≈ reina` y con los nombres CBOW y skip-gram. Convendría capturar el PDF.
-- **La atribución de la GRU a Cho y otros (7.4)** — Correcta y estándar, pero el abstract capturado no menciona la sigla, ni la palabra "gated", ni compara con LSTM. La lámina está redactada para no exceder lo que la captura sostiene.
+- **"Los LLM modernos usan solo decoder" (sección 7, la arquitectura de 2017)** — El registro de `attention-is-all-you-need.web.md` es explícito: el paper es de 2017 y GPT, LLaMA y Claude son posteriores, así que la afirmación no sale de ahí. Es correcta y es consenso, pero quedó en notas del orador como afirmación propia. Falta capturar una fuente que la sostenga.
+- **LSTM sin captura en el corpus (sección 6, LSTM/GRU/ELMo)** — Es la única de las tres variantes sin fuente propia. La descripción de las compuertas sale del deck original. Convendría capturar Hochreiter y Schmidhuber (1997) antes de la próxima edición.
+- **La mecánica de Word2Vec (sección 4, Word2Vec)** — Que promedia los vectores del contexto es la arquitectura CBOW, que vive en el cuerpo del paper y no en el abstract capturado. Lo mismo con la aritmética `rey − hombre + mujer ≈ reina` y con los nombres CBOW y skip-gram. Convendría capturar el PDF.
+- **La atribución de la GRU a Cho y otros (sección 6, LSTM/GRU/ELMo)** — Correcta y estándar, pero el abstract capturado no menciona la sigla, ni la palabra "gated", ni compara con LSTM. La lámina está redactada para no exceder lo que la captura sostiene.
 - **Las cinco capturas de arXiv son páginas de abstract, no papers** — Nada del mecanismo interno de ninguno de los cuatro trabajos está en el corpus: ni self-attention, ni multi-head, ni positional encoding, ni las compuertas de la GRU, ni las capas del biLM de ELMo.
 
 **Decisiones de alcance**
 
-- **Largo de la clase** — La revisión del 2026-09-03 llevó el deck de 32 a 40 láminas, con 15 diagramas ASCII y 11 figuras del deck original conservadas. Para 150 minutos son unos 3,5 minutos por lámina. Falta decidir si alcanza o si hay que recortar la última sección.
-- **Los mínimos locales de la figura de descenso por gradiente (6.1)** — La superficie muestra varios valles y el deck original nunca los menciona. Quedó en notas del orador como material para preguntas. Falta decidir si entra al contenido visible.
-- **Nueve de las once figuras conservadas están en inglés** — Todas salvo la de clasificación de imágenes (título en español) y la del plano de embeddings (sin texto, usa emojis). Se traducen de palabra al presentarlas. Falta decidir si alguna más se rehace como diagrama propio en español.
+- **Largo de la clase** — La revisión del 2026-09-03 llevó el deck de 32 a 40 láminas, con 20 diagramas ASCII y 6 figuras del deck original conservadas. Para 150 minutos son unos 3,5 minutos por lámina. Falta decidir si alcanza o si hay que recortar la última sección.
+- **Los mínimos locales de la figura de descenso por gradiente (sección 5, descenso por gradiente)** — La superficie muestra varios valles y el deck original nunca los menciona. Quedó en notas del orador como material para preguntas. Falta decidir si entra al contenido visible.
+- **Cuatro de las seis figuras conservadas están en inglés** — Las excepciones son la de clasificación de imágenes (título en español) y la del plano de embeddings (sin texto, usa emojis). Las cuatro restantes se conservan porque aportan algo que el arte de texto no reproduce: la superficie de pérdida en 3D, la geometría vectorial con valores en los ejes, la densidad de la red multicapa y la figura canónica del Transformer. Se traducen de palabra al presentarlas.
 - Ver `research/corpus/AIG4B-Clase-2-LLM.md.md` → *Inconsistencies / open questions* para el resto de los problemas detectados en el material original.

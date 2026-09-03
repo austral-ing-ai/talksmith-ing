@@ -1,0 +1,26 @@
+  ANTES                            DESPUES DE AGRUPAR
+
+  una pila de tickets,             tres grupos, y recien ahora
+  sin categoria ninguna            se les puede poner nombre
+
+   t1  "no carga el login"          +----------------+
+   t2  "el pago tira 500"           | t1   t3   t7   |  <- una persona
+   t3  "no puedo entrar"            +----------------+     los lee y
+   t4  "la factura sale mal"                               les pone
+   t5  "timeout al pagar"           +----------------+     nombre
+   t6  "no llega el recibo"         | t2   t5        |     recien
+   t7  "usuario bloqueado"          +----------------+     aca
+   t8  "el importe no cierra"
+                                    +----------------+
+                                    | t4   t6   t8   |
+                                    +----------------+
+
+  El algoritmo forma los grupos midiendo parecido entre los textos.
+  No sabe que el primero es "acceso" ni el tercero "facturacion":
+  los nombres los pone alguien despues, mirando el resultado.
+
+<!-- ascii-note:
+intent: mostrar que el agrupamiento produce los grupos y no los nombres; el algoritmo mide parecido y las etiquetas las pone una persona despues, que es lo que distingue agrupar de clasificar
+emphasize: las tres cajas de la derecha con sus tickets adentro, y la llamada que dice que el nombre llega despues y lo pone una persona
+labels: "ANTES", "DESPUES DE AGRUPAR", "una pila de tickets, sin categoria ninguna", "tres grupos, y recien ahora se les puede poner nombre", "una persona los lee y les pone nombre recien aca", "El algoritmo forma los grupos midiendo parecido entre los textos"
+-->

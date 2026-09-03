@@ -1,0 +1,25 @@
+  TAREA 1  sentimiento     TAREA 2  traduccion     TAREA 3  entidades
+  +------------------+   +------------------+   +------------------+
+  | textos crudos    |   | textos crudos    |   | textos crudos    |
+  +------------------+   +------------------+   +------------------+
+           |                      |                      |
+           v  etiqueta            v  etiqueta            v  etiqueta
+           |  una persona         |  una persona         |  una persona
+  +------------------+   +------------------+   +------------------+
+  | pos / neg        |   | pares es <-> en  |   | PER / ORG / LOC  |
+  +------------------+   +------------------+   +------------------+
+           |                      |                      |
+           v                      v                      v
+  +------------------+   +------------------+   +------------------+
+  | modelo propio    |   | modelo propio    |   | modelo propio    |
+  +------------------+   +------------------+   +------------------+
+
+  Nada cruza de una columna a la otra. Sumar una tarea cuesta una
+  columna entera, y el tramo caro es el del medio: lo escribe una
+  persona, una fila por vez.
+
+<!-- ascii-note:
+intent: mostrar que el costo del enfoque tradicional no está en el modelo sino en la etiqueta, y que las columnas son independientes: nada de lo hecho para una tarea sirve para la siguiente
+emphasize: la fila del medio, el etiquetado humano, que es donde está el costo real; el aislamiento de las tres columnas, que nunca se tocan
+labels: "TAREA 1 sentimiento", "TAREA 2 traduccion", "TAREA 3 entidades", "textos crudos", "etiqueta una persona", "pos / neg", "pares es <-> en", "PER / ORG / LOC", "modelo propio", "Nada cruza de una columna a la otra"
+-->

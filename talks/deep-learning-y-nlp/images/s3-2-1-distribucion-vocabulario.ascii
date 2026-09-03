@@ -1,0 +1,28 @@
+  ENTRADA   "the cat is on the"
+                     |
+                     v
+                [ MODELO ]
+                     |
+                     v
+  SALIDA    un valor por cada token del vocabulario
+
+     mat    #################################
+     bed    ############
+     piso   #####
+     dog    ##
+     the    #
+     roof   .
+     ...    y asi hasta completar los |V| tokens
+            -----------------------------------------------
+            los |V| valores suman 1
+
+  La lista entera es la salida del modelo. Quedarse con la barra
+  mas larga es un paso aparte, y no es el unico: muestrear entre
+  las primeras es lo que hace que el mismo texto de entrada no
+  devuelva siempre la misma continuacion.
+
+<!-- ascii-note:
+intent: mostrar que la salida es una lista completa sobre el vocabulario y no una palabra, y separar dos cosas que se confunden: producir la distribucion, que hace el modelo, y elegir un token, que es un paso posterior
+emphasize: la columna de barras entera, sobre todo las filas de abajo que casi no se ven y la linea de que los |V| valores suman 1; la barra mas larga es solo una fila de esa lista
+labels: "ENTRADA", "MODELO", "SALIDA", "un valor por cada token del vocabulario", "los |V| valores suman 1", "La lista entera es la salida del modelo", "Quedarse con la barra mas larga es un paso aparte"
+-->

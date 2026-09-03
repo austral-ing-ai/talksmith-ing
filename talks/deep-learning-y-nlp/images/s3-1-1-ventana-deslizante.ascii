@@ -1,0 +1,22 @@
+  Una frase del corpus, sin una sola etiqueta escrita a mano:
+
+      the   cat   sat   on   the   mat
+
+  La ventana avanza un token por vez. Lo que quedo a la izquierda
+  es la entrada; el token siguiente es la respuesta correcta.
+
+      [ the ]                       ->  cat
+      [ the cat ]                   ->  sat
+      [ the cat sat ]               ->  on
+      [ the cat sat on ]            ->  the
+      [ the cat sat on the ]        ->  mat
+
+  Una frase de 6 tokens dio 5 ejemplos de entrenamiento, y la
+  respuesta correcta de cada uno ya estaba escrita en el texto.
+  Ahi esta la diferencia con la lamina anterior: nadie etiqueto.
+
+<!-- ascii-note:
+intent: mostrar que la supervisión del modelado de lenguaje sale del propio texto: la ventana que se corre convierte una frase cruda en varios pares entrada-respuesta sin intervención humana
+emphasize: la columna de respuestas correctas a la derecha de las flechas, que es lo que en la lámina anterior escribía una persona; el pie que cierra el contraste
+labels: "the cat sat on the mat", "La ventana avanza un token por vez", "entrada", "respuesta correcta", "6 tokens dio 5 ejemplos", "nadie etiqueto"
+-->

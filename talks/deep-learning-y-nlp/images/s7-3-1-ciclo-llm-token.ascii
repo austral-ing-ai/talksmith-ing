@@ -1,0 +1,31 @@
+  texto de entrada:  "¿Como estas?"
+        |
+        v
+   [ TOKENIZAR ]    ["¿"]["Como"]["est"]["as"]["?"]
+        |
+        v
+   [ EMBEDDER ]     un vector por token
+        |
+        v
+   [ TRANSFORMER ]  capas de atencion sobre la secuencia entera
+        |
+        v
+   [ DISTRIBUCION ] un valor por cada token del vocabulario, |V|
+        |
+        v
+   [ ELEGIR ]       se toma uno; la temperatura decide cuanto se
+        |           aparta del mas probable
+        v
+     "Bien"  ---> se agrega al final del texto y vuelve a empezar
+        |                                                       |
+        +-------------------------------------------------------+
+
+  El modelo no escribe una respuesta de una: escribe un token, se
+  relee entero con ese token adentro, y vuelve a decidir. Lo que
+  se ve como una frase que aparece de a poco son N vueltas.
+
+<!-- ascii-note:
+intent: mostrar que la generación es un bucle que se realimenta con su propia salida, y que el costo de una respuesta es lineal en la cantidad de tokens que produce
+emphasize: la flecha de retorno desde el token producido hasta el comienzo del ciclo, que es lo que convierte cinco cajas en un bucle; el paso de la distribución sobre el vocabulario
+labels: "texto de entrada", "TOKENIZAR", "EMBEDDER", "TRANSFORMER", "DISTRIBUCION", "ELEGIR", "temperatura", "se agrega al final del texto y vuelve a empezar", "N vueltas"
+-->

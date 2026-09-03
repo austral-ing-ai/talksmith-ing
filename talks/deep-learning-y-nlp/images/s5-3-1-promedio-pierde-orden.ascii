@@ -1,0 +1,25 @@
+  "el cliente cancelo el pedido"    "el pedido cancelo al cliente"
+      |     |       |     |             |     |       |     |
+      v     v       v     v             v     v       v     v
+    [..]  [..]    [..]  [..]          [..]  [..]    [..]  [..]
+       \    |      |    /                \    |      |    /
+        \   |      |   /                  \   |      |   /
+         +--+------+--+                    +--+------+--+
+              |                                  |
+              v  PROMEDIO                        v  PROMEDIO
+              |                                  |
+              v                                  v
+     [ 0.41 -0.08  0.22 ...]           [ 0.41 -0.08  0.22 ...]
+
+                     EL MISMO VECTOR
+
+  Las dos frases tienen las mismas palabras y dicen cosas opuestas.
+  El promedio no las distingue, porque sumar no depende del orden.
+  Para que el orden importe hace falta procesar la frase token por
+  token, y ese es el tema de la seccion que sigue.
+
+<!-- ascii-note:
+intent: mostrar que promediar es una operación conmutativa y por lo tanto ciega al orden, usando dos frases con las mismas palabras y sentido opuesto que colapsan en el mismo punto
+emphasize: la línea "EL MISMO VECTOR" entre las dos salidas idénticas, que es donde se ve el problema; las dos frases de arriba, que son la evidencia
+labels: "el cliente cancelo el pedido", "el pedido cancelo al cliente", "PROMEDIO", "EL MISMO VECTOR", "sumar no depende del orden"
+-->

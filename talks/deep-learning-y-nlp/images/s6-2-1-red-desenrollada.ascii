@@ -1,0 +1,23 @@
+  La misma red, aplicada una vez por token. Los pesos W no cambian
+  entre pasos. Lo unico que viaja hacia adelante es el estado h.
+
+      "The"        "cat"        "is"         "on"        "the"
+        |            |            |            |            |
+        v            v            v            v            v
+     +-----+  h1  +-----+  h2  +-----+  h3  +-----+  h4  +-----+
+  h0-|  W  |----->|  W  |----->|  W  |----->|  W  |----->|  W  |--> h5
+     +-----+      +-----+      +-----+      +-----+      +-----+
+        |            |            |            |            |
+        v            v            v            v            v
+      salida       salida       salida       salida     prediccion
+                                                         de "_"
+
+  Los pesos son los mismos cinco veces: entrenar una RNN es
+  entrenar una sola caja W que se reusa en cada posicion. Por eso
+  la frase puede tener cualquier largo sin cambiar el modelo.
+
+<!-- ascii-note:
+intent: mostrar que la recurrencia es una sola red reusada, no una red por posición: los pesos W se repiten idénticos y el estado h es el único canal entre pasos; de ahí sale que la frase pueda tener cualquier largo
+emphasize: la cadena horizontal de estados h0 a h5, que es lo único que se mueve entre cajas; la repetición de la etiqueta W idéntica en las cinco cajas
+labels: "The / cat / is / on / the", "W", "h0", "h1", "h2", "h3", "h4", "h5", "prediccion de _", "Los pesos son los mismos cinco veces"
+-->

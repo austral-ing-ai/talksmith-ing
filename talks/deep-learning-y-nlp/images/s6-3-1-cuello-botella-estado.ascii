@@ -1,0 +1,24 @@
+  UNA FRASE CORTA                   UNA FRASE LARGA
+
+  el pago fallo                     el pago de marzo fallo por un
+                                    timeout del banco
+
+      |    |    |                    |  |  |  |  |  |  |  |  |  |
+      v    v    v                    v  v  v  v  v  v  v  v  v  v
+  +-----------------+               +-----------------+
+  |  h  tamano fijo |               |  h  tamano fijo |
+  +-----------------+               +-----------------+
+
+  Tres palabras, un vector.         Diez palabras, un vector del
+                                    mismo tamano exacto.
+
+  El estado no crece con la frase. Lo que el modelo sabe del token
+  1 cuando llega al token 10 tuvo que sobrevivir nueve reescrituras
+  del mismo vector. Esa compresion es el cuello de botella, y es
+  independiente de que la red este bien o mal entrenada.
+
+<!-- ascii-note:
+intent: mostrar que el cuello de botella no es un defecto de entrenamiento sino una propiedad de la arquitectura: el mismo recipiente de tamaño fijo tiene que contener tres palabras o diez, y la compresión crece con el largo
+emphasize: las dos cajas de estado, idénticas en tamaño bajo entradas de largo muy distinto; el pie que explica que la compresión es estructural
+labels: "UNA FRASE CORTA", "UNA FRASE LARGA", "h tamano fijo", "Tres palabras, un vector", "Diez palabras, un vector del mismo tamano exacto", "Esa compresion es el cuello de botella"
+-->

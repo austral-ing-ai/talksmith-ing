@@ -1,0 +1,27 @@
+   ENTRADAS         PESOS         SUMA       ACTIVACION   SALIDA
+                (se aprenden)   PONDERADA
+
+    x1 o------------ w1 ------+
+                              |
+    x2 o------------ w2 ------+
+                              |
+    x3 o------------ w3 ------+---> ( S ) ----> ( f ) ----> y
+                              |
+    1  o------------ b -------+
+    ^                ^
+    |                |
+    |                +-- el sesgo es un peso mas y se aprende
+    |                    igual que w1, w2 y w3
+    |
+    +-- entrada constante: no sale de los datos, vale 1 siempre
+
+  y = f( x1*w1 + x2*w2 + x3*w3 + b )
+
+  Aprender un perceptron es elegir cuatro numeros: w1, w2, w3 y b.
+  Las entradas cambian con cada ejemplo; esos cuatro no cambian.
+
+<!-- ascii-note:
+intent: mostrar el sesgo como lo que realmente es, una entrada mas que no viene de los datos y que trae su propio peso aprendido, en vez de un termino suelto que aparece en la formula sin explicacion
+emphasize: la cuarta fila de entrada, la que vale 1 fijo y lleva el peso b, y sus dos llamadas al pie; es la fila que distingue este diagrama de la formula escrita arriba
+labels: "ENTRADAS", "PESOS (se aprenden)", "SUMA PONDERADA", "ACTIVACION", "SALIDA", "x1", "x2", "x3", "1", "w1", "w2", "w3", "b", "entrada constante: no sale de los datos, vale 1 siempre", "el sesgo es un peso mas y se aprende igual que w1, w2 y w3"
+-->

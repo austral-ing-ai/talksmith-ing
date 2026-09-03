@@ -1,0 +1,25 @@
+  "it" le pregunta a cada token de la frase cuanto le importa, y
+  arma su nueva representacion con las respuestas.
+
+     The     animal    didn't   cross    the    street   because
+      |         |        |        |       |        |        |
+      v         v        v        v       v        v        v
+    bajo       ALTO     bajo     bajo    bajo    medio     bajo
+      \         |        |        |       |        |        /
+       \        |        |        |       |        |       /
+        +-------+--------+--------+-------+--------+------+
+                              |
+                              v
+                  "it" reescrito con el peso
+                  puesto sobre "animal"
+
+  Los pesos son una distribucion: suman uno y salen de comparar el
+  vector de "it" contra el de cada token. Esa fila se calcula para
+  cada token de la frase, y todas juntas, en una multiplicacion de
+  matrices. Ahi esta la paralelizacion: no hay orden que respetar.
+
+<!-- ascii-note:
+intent: mostrar la atención como una distribución de pesos que un token calcula contra la frase entera, y de ahí derivar la paralelización: si no hay dependencia secuencial, todas las filas se calculan a la vez
+emphasize: la etiqueta ALTO sobre "animal", que es el peso que resuelve el pronombre y lo que hay que mirar; la convergencia de las siete ramas en la nueva representación
+labels: "The / animal / didn't / cross / the / street / because", "bajo", "ALTO", "medio", "it reescrito con el peso puesto sobre animal", "Los pesos son una distribucion: suman uno", "no hay orden que respetar"
+-->

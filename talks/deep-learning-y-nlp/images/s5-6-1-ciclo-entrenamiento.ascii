@@ -1,0 +1,31 @@
+        .-------------------------------------------------.
+        |                                                 |
+        v                                                 |
+  +---------------+                                       |
+  | PESOS y SESGO |                                       |
+  +---------------+                                       |
+        |                                                 |
+        v                                                 |
+  [ MODELO ] <---- caracteristicas ---- DATASET           |
+        |                                  |              |
+        | predicciones                     | etiquetas    |
+        v                                  v              |
+  [ CALCULAR LA LOSS ] <-------------------'              |
+        |                                                 |
+        v                                                 |
+  [ DETERMINAR LA DIRECCION ]  hacia donde baja la loss   |
+        |                                                 |
+        v                                                 |
+  [ ACTUALIZAR: UN PASO CHICO ] --------------------------'
+
+  Se repite hasta que la loss no pueda bajar mas.
+
+  El dataset entra por dos puertas distintas: las caracteristicas
+  van al modelo y las etiquetas van a la loss. Lo unico que da la
+  vuelta entera y vuelve a empezar son los pesos.
+
+<!-- ascii-note:
+intent: mostrar el entrenamiento como un lazo cerrado y, sobre todo, que el dataset entra por dos puertas distintas (caracteristicas al modelo, etiquetas a la loss); la lista de al lado nombra los cuatro pasos pero no dice que circula
+emphasize: la flecha de retorno que va del ultimo paso a la caja de pesos y sesgo y cierra el lazo; las dos entradas separadas del dataset
+labels: "PESOS y SESGO", "MODELO", "DATASET", "caracteristicas", "etiquetas", "predicciones", "CALCULAR LA LOSS", "DETERMINAR LA DIRECCION", "ACTUALIZAR: UN PASO CHICO", "Se repite hasta que la loss no pueda bajar mas", "Lo unico que da la vuelta entera son los pesos"
+-->

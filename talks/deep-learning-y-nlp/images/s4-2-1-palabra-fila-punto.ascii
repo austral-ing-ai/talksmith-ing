@@ -1,0 +1,24 @@
+   LA PALABRA        SU FILA DE NUMEROS       SU LUGAR EN EL ESPACIO
+
+                                                ^ dim 2
+    "hombre"  --->   [ . . . . . . ]  --->      |     o-------->o
+                                                |   hombre    mujer
+    "mujer"   --->   [ . . . . . . ]  --->      |
+                                                |  o-------->o
+    "rey"     --->   [ . . . . . . ]  --->      | rey       reina
+                                                |
+    "reina"   --->   [ . . . . . . ]  --->      +---------------> dim 1
+
+   Cada fila tiene tantos numeros como dimensiones tiene el espacio,
+   y esos numeros son las coordenadas del punto. La fila y el punto
+   son la misma cosa escrita de dos maneras.
+
+   De ahi que una relacion se pueda medir como un trecho: el que va
+   de hombre a mujer y el que va de rey a reina tienen el mismo
+   largo y la misma direccion.
+
+<!-- ascii-note:
+intent: cerrar el circuito palabra -> fila de numeros -> punto, y sobre todo que la fila y el punto son lo mismo: los numeros son las coordenadas; de ahi sale que una relacion se pueda medir como un desplazamiento
+emphasize: las dos flechas del panel derecho, paralelas y del mismo largo, que muestran que la misma relacion es el mismo desplazamiento; los puntos de la fila de numeros van deliberadamente sin valores
+labels: "LA PALABRA", "SU FILA DE NUMEROS", "SU LUGAR EN EL ESPACIO", "hombre", "mujer", "rey", "reina", "dim 1", "dim 2", "esos numeros son las coordenadas del punto", "el mismo largo y la misma direccion"
+-->

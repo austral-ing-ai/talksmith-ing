@@ -1,0 +1,33 @@
+  RED DIRECTA                          RED RECURRENTE
+
+  paso 1  "The"                        paso 1  "The"
+            |                                    |
+            v                                    v
+        +-------+                            +-------+
+        |  red  |                            |  red  |---.
+        +-------+                            +-------+   | h1
+            |                                    |       |
+            v                                    v       |
+        salida A                             salida A    |
+                                                         |
+  paso 2  "cat"                        paso 2  "cat"     |
+            |                                    |   .---'
+            |                                    |   |
+            v                                    v   v
+        +-------+                            +-----------+
+        |  red  |                            |    red    |
+        +-------+                            +-----------+
+            |                                      |
+            v                                      v
+        salida B                               salida C
+
+  En cada paso entra solo la          En el paso 2 entran dos cosas:
+  palabra. La salida de "cat"         la palabra Y el estado h1. La
+  es la misma aparezca donde          salida de "cat" cambia segun
+  aparezca en la frase.               que palabra vino antes.
+
+<!-- ascii-note:
+intent: mostrar la diferencia entre las dos arquitecturas por lo que entra en cada paso, no por la forma del dibujo: a la derecha el paso 2 recibe dos entradas y a la izquierda una sola, y de ahi sale que una tenga memoria y la otra no
+emphasize: la conexion que baja desde la salida del paso 1 hasta la entrada del paso 2 en la columna derecha, rotulada h1, y la caja mas ancha del paso 2 que la recibe; es la unica diferencia entre las dos columnas
+labels: "RED DIRECTA", "RED RECURRENTE", "paso 1", "paso 2", "The", "cat", "red", "h1", "salida A", "salida B", "salida C", "En cada paso entra solo la palabra", "En el paso 2 entran dos cosas: la palabra Y el estado h1"
+-->

@@ -1,0 +1,35 @@
+  "The animal didn't cross the street because it was too tired"
+   Para resolver "it" hay que llegar hasta "animal".
+
+        CON RECURRENCIA                    CON ATENCION
+
+           animal                            animal
+             |                                 |
+             v                                 |
+           didn't                              |
+             |                                 |
+             v                                 |
+           cross                               |
+             |                                 |
+             v                                 |    un solo
+            the                                |    salto
+             |                                 |
+             v                                 |
+          street                               |
+             |                                 |
+             v                                 |
+          because                              |
+             |                                 |
+             v                                 v
+             it                                it
+
+  Seis estados intermedios y una             "it" consulta a
+  reescritura del vector en cada             "animal" directo,
+  paso. Lo de "animal" que llega             sin importar cuantas
+  a "it" es lo que sobrevivio.               palabras hay en medio.
+
+<!-- ascii-note:
+intent: comparar los dos recorridos posibles entre las mismas dos palabras de la misma frase, alineados en altura para que la diferencia se lea como distancia recorrida
+emphasize: la columna derecha, la línea única y continua de "animal" a "it" con la etiqueta "un solo salto"; ése es el mecanismo que la sección viene a presentar
+labels: "The animal didn't cross the street because it was too tired", "CON RECURRENCIA", "CON ATENCION", "animal", "it", "un solo salto", "Seis estados intermedios", "sin importar cuantas palabras hay en medio"
+-->

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 670 464" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>El modelo aprende las reglas</title>
+<desc>Fila de arriba: reglas mas datos entran y salen respuestas; fila de abajo: datos mas respuestas entran y salen reglas.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="8" refX="9" refY="4" orient="auto">
+<path d="M0,0 L9,4 L0,8 Z" fill="#7A7070"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="670" height="464" fill="#ffffff"/>
+
+<text x="229" y="34" text-anchor="middle" font-size="11" font-weight="bold" letter-spacing="1.6" fill="#9A9090">ENTRA</text>
+<text x="416" y="34" text-anchor="middle" font-size="11" font-weight="bold" letter-spacing="1.6" fill="#9A9090">PROCESO</text>
+<text x="587" y="34" text-anchor="middle" font-size="11" font-weight="bold" letter-spacing="1.6" fill="#9A9090">SALE</text>
+
+<text x="24" y="110" font-size="13" font-weight="bold" letter-spacing="0.4">PROGRAMACIÓN</text>
+<text x="24" y="127" font-size="13" font-weight="bold" letter-spacing="0.4">CLÁSICA</text>
+
+<rect x="170" y="76" width="118" height="32" rx="16" fill="#FDECEE" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="229" y="97" text-anchor="middle" font-family="Andale Mono, monospace" font-size="14" font-weight="bold" fill="#DA1B2E">reglas</text>
+
+<rect x="170" y="124" width="118" height="32" rx="16" fill="#F5F2F2" stroke="#C9C1C1" stroke-width="1.4"/>
+<text x="229" y="145" text-anchor="middle" font-family="Andale Mono, monospace" font-size="14">datos</text>
+
+<path d="M288,92 H312 V140 H288" fill="none" stroke="#7A7070" stroke-width="1.4"/>
+<line x1="312" y1="116" x2="346" y2="116" stroke="#7A7070" stroke-width="1.4" marker-end="url(#ah)"/>
+
+<rect x="346" y="93" width="140" height="46" rx="4" fill="#ffffff" stroke="#B5ACAC" stroke-width="1.4"/>
+<text x="416" y="121" text-anchor="middle" font-family="Andale Mono, monospace" font-size="14" fill="#7A7070">programa</text>
+
+<line x1="486" y1="116" x2="528" y2="116" stroke="#7A7070" stroke-width="1.4" marker-end="url(#ah)"/>
+
+<rect x="528" y="100" width="118" height="32" rx="16" fill="#F5F2F2" stroke="#C9C1C1" stroke-width="1.4"/>
+<text x="587" y="121" text-anchor="middle" font-family="Andale Mono, monospace" font-size="14">respuestas</text>
+
+<line x1="24" y1="181" x2="646" y2="181" stroke="#E5DFDF" stroke-width="1"/>
+
+<text x="24" y="240" font-size="13" font-weight="bold" letter-spacing="0.4">MACHINE</text>
+<text x="24" y="257" font-size="13" font-weight="bold" letter-spacing="0.4">LEARNING</text>
+
+<rect x="170" y="206" width="118" height="32" rx="16" fill="#F5F2F2" stroke="#C9C1C1" stroke-width="1.4"/>
+<text x="229" y="227" text-anchor="middle" font-family="Andale Mono, monospace" font-size="14">datos</text>
+
+<rect x="170" y="254" width="118" height="32" rx="16" fill="#F5F2F2" stroke="#C9C1C1" stroke-width="1.4"/>
+<text x="229" y="275" text-anchor="middle" font-family="Andale Mono, monospace" font-size="14">respuestas</text>
+
+<path d="M288,222 H312 V270 H288" fill="none" stroke="#7A7070" stroke-width="1.4"/>
+<line x1="312" y1="246" x2="346" y2="246" stroke="#7A7070" stroke-width="1.4" marker-end="url(#ah)"/>
+
+<rect x="346" y="223" width="140" height="46" rx="4" fill="#ffffff" stroke="#B5ACAC" stroke-width="1.4"/>
+<text x="416" y="251" text-anchor="middle" font-family="Andale Mono, monospace" font-size="14" fill="#7A7070">entrenar</text>
+
+<line x1="486" y1="246" x2="528" y2="246" stroke="#7A7070" stroke-width="1.4" marker-end="url(#ah)"/>
+
+<rect x="528" y="230" width="118" height="32" rx="16" fill="#FDECEE" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="587" y="251" text-anchor="middle" font-family="Andale Mono, monospace" font-size="14" font-weight="bold" fill="#DA1B2E">reglas</text>
+
+<rect x="133" y="314" width="405" height="94" rx="6" fill="#FBF9F9" stroke="#E5DFDF" stroke-width="1"/>
+
+<text x="159" y="345" font-family="Andale Mono, monospace" font-size="14" font-weight="bold" fill="#DA1B2E">reglas</text>
+<text x="265" y="345" font-size="13.5">entran arriba</text>
+<line x1="377" y1="340.5" x2="413" y2="340.5" stroke="#7A7070" stroke-width="1.4" marker-end="url(#ah)"/>
+<text x="427" y="345" font-size="13.5">salen abajo</text>
+
+<text x="159" y="371" font-family="Andale Mono, monospace" font-size="14" font-weight="bold">respuestas</text>
+<text x="265" y="371" font-size="13.5">salen arriba</text>
+<line x1="377" y1="366.5" x2="413" y2="366.5" stroke="#7A7070" stroke-width="1.4" marker-end="url(#ah)"/>
+<text x="427" y="371" font-size="13.5">entran abajo</text>
+
+<text x="159" y="397" font-family="Andale Mono, monospace" font-size="14" font-weight="bold">datos</text>
+<text x="265" y="397" font-size="13.5">entran en las dos filas</text>
+
+<text x="335" y="436" text-anchor="middle" font-size="13" font-style="italic" fill="#6B6262">Lo que en un paradigma se escribe a mano, en el otro se deduce.</text>
+</svg>
