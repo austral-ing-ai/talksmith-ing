@@ -1,0 +1,9 @@
+url: "https://arxiv.org/abs/1406.1078"
+fetched_at: "2026-08-14T16:38:23Z"
+title: "[1406.1078] Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation"
+http_status: 200
+byte_size: 43144
+assets:
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "archive" }
+  - { src: "/static/browse/0.3.4/images/icons/social/bibsonomy.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/bibsonomy.png", saved_as: "bibsonomy.png", alt: "BibSonomy" }
+  - { src: "/static/browse/0.3.4/images/icons/social/reddit.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/reddit.png", saved_as: "reddit.png", alt: "Reddit" }

@@ -1,0 +1,7 @@
+url: "https://aima.cs.berkeley.edu/"
+fetched_at: "2026-08-14T16:38:24Z"
+title: "Artificial Intelligence: A Modern Approach, 4th US ed."
+http_status: 200
+byte_size: 6018
+assets:
+  - { src: "cover2.jpg", absolute: "https://aima.cs.berkeley.edu/cover2.jpg", saved_as: "cover2.jpg", alt: "" }
