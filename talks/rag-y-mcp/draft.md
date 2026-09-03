@@ -30,14 +30,14 @@ La clase abre por el problema de conocimiento: el modelo sabe lo que estaba en s
 
 **Sections (in delivery order):**
 
-- 1. Fundamentos
+- 1. Fundamentos de RAG
 - 2. Búsqueda léxica
-- 3. Vectorial e híbrida
-- 4. Reranking y precisión
+- 3. Búsqueda por significado
+- 4. Reranking
 - 5. Chunking y metadatos
 - 6. Evaluación y seguridad
-- 7. El protocolo
-- 8. Arquitectura y uso
+- 7. Fundamentos de MCP
+- 8. Anatomía de un servidor
 - 9. Diseño de herramientas
 
 <!-- Agenda tal como figuraba en el deck original (registro histórico, no se entrega así). -->
@@ -127,7 +127,7 @@ Mapa de la clase en una frase: las dos mitades responden dos carencias distintas
 
 ---
 
-# 1. Fundamentos
+# 1. Fundamentos de RAG
 
 **Goal of this section:** Dejar claro qué problema resuelve RAG, cuáles son sus tres pasos y qué trabajo hay que hacer antes de la primera consulta.
 
@@ -675,7 +675,7 @@ Segunda parada práctica, corta. Mostrá la construcción del índice y una cons
 
 ---
 
-# 3. Vectorial e híbrida
+# 3. Búsqueda por significado
 
 **Goal of this section:** Mostrar cómo se busca por significado, qué estructura lo hace viable a escala, y por qué producción combina las dos familias en lugar de elegir una.
 
@@ -1087,7 +1087,7 @@ Esta lámina existe porque la clase de prompting ya mostró ventanas de uno a di
 
 ---
 
-# 4. Reranking y precisión
+# 4. Reranking
 
 **Goal of this section:** Explicar por qué una sola pasada de recuperación no alcanza y cómo se ordena lo recuperado antes de dárselo al modelo.
 
@@ -1716,7 +1716,7 @@ Cierre de la mitad de RAG. Las cuatro viñetas siguen el orden qué, cómo, dón
 
 ---
 
-# 7. El protocolo
+# 7. Fundamentos de MCP
 
 **Goal of this section:** Explicar qué problema de integración resuelve MCP y por qué no alcanzaba con los protocolos que ya existían.
 
@@ -1880,7 +1880,7 @@ La advertencia del pie corrige una contradicción del deck original, que vendía
 
 ---
 
-# 8. Arquitectura y uso
+# 8. Anatomía de un servidor
 
 **Goal of this section:** Recorrer el protocolo, el ciclo de vida de una herramienta y el ecosistema real, con los números que sí están medidos.
 

@@ -8,22 +8,22 @@
     "lang": "es",
     "logo": null,
     "sections": [
-      "Fundamentos",
+      "Fundamentos de RAG",
       "Búsqueda léxica",
-      "Vectorial e híbrida",
-      "Reranking y precisión",
+      "Búsqueda por significado",
+      "Reranking",
       "Chunking y metadatos",
       "Evaluación y seguridad",
-      "El protocolo",
-      "Arquitectura y uso",
+      "Fundamentos de MCP",
+      "Anatomía de un servidor",
       "Diseño de herramientas"
     ]
   },
   "slides": [
     {
       "template": "section-agenda",
-      "section": "Fundamentos",
-      "title": "Fundamentos",
+      "section": "Fundamentos de RAG",
+      "title": "Fundamentos de RAG",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -39,7 +39,7 @@
       }
     },
     {
-      "section": "Fundamentos",
+      "section": "Fundamentos de RAG",
       "title": "RAG suma lo que no está en los pesos",
       "lead": "**Un modelo preentrenado guarda conocimiento en sus parámetros, pero no puede acceder a lo que nunca vio: tu documentación, tus tickets, tu código.**",
       "notes": "Arranque conceptual. El error frecuente es presentar RAG como \"el modelo busca en Google\": lo que hace el recuperador es traer texto, y el modelo sigue siendo el único que genera. Vale la pena marcar acá la deriva del término: el paper de Lewis define RAG como una receta de entrenamiento con el recuperador entrenado junto al generador; lo que la industria llama RAG hoy son componentes desacoplados y sin entrenamiento. Las dos acepciones son legítimas, pero atribuirle al paper el pipeline moderno de chunking y vector store es un salto que la fuente no sostiene.",
@@ -84,7 +84,7 @@
       }
     },
     {
-      "section": "Fundamentos",
+      "section": "Fundamentos de RAG",
       "title": "Recuperar, aumentar, generar",
       "lead": "**Todo lo demás de la clase (chunking, embeddings, reranking, búsqueda híbrida) existe para hacer mejor uno de estos tres pasos.**",
       "notes": "Esta es la lámina que hay que dejar clavada. Si se entienden los tres pasos, el resto de la sección de RAG son optimizaciones de uno u otro. Señalá la línea del prompt armado: ahí se ve que \"aumentar\" es concatenación de texto, no magia. El apunte del título corrige un error del deck original, que prometía cuatro pasos y daba tres; si alguien lo recuerda de la versión anterior, la respuesta es que el cuarto es la indexación y tiene lámina propia.",
@@ -119,7 +119,7 @@
       }
     },
     {
-      "section": "Fundamentos",
+      "section": "Fundamentos de RAG",
       "title": "Antes de consultar hay que indexar",
       "lead": "**La indexación es trabajo offline: se corre una vez y se repite cuando el corpus cambia. La consulta solo lee lo que la indexación dejó escrito.**",
       "notes": "Lámina nueva. Cierra el agujero que dejaba el deck original, donde el pipeline aparecía siempre desde la consulta y nunca se decía quién había llenado el índice. El punto de ingeniería que importa para esta audiencia es el segundo: la indexación es un job, tiene disparador, tiene costo y tiene versión. La pregunta que suele salir acá es qué pasa cuando cambia un documento; la respuesta corta es que se reindexan sus fragmentos, y por eso conviene guardar el identificador de fuente en los metadatos (lámina 5.3).",
@@ -157,7 +157,7 @@
       }
     },
     {
-      "section": "Fundamentos",
+      "section": "Fundamentos de RAG",
       "title": "Cinco razones para no reentrenar",
       "notes": "Cinco tarjetas y dos importan más que las otras tres para esta audiencia. La de auditabilidad es la que convierte a RAG en una decisión de arquitectura y no en un truco: en un sistema que alguien va a operar, poder contestar \"de dónde salió esto\" vale más que un punto de calidad. La de costo es la que suele decidir en la práctica. Si alguien pregunta cuándo sí conviene fine-tuning, la respuesta honesta es: cuando lo que falta es formato o estilo, no conocimiento.",
       "template": "concept-breakdown",
@@ -202,7 +202,7 @@
       }
     },
     {
-      "section": "Fundamentos",
+      "section": "Fundamentos de RAG",
       "title": "Demo: un pipeline de RAG paso a paso",
       "lead": "**Implementación de un pipeline RAG con LangChain, ejecutable en el navegador.**",
       "notes": "Primera parada práctica. El módulo cubre los tres pasos de la lámina 1.2 con código corriendo. Mostralo hasta la primera respuesta con citas y seguí; el detalle de índices y embeddings viene en las secciones 2 y 3, y conviene no adelantarlo acá. La imagen del botón \"Haz clic aquí\" del deck original se retiró: estaba en tuteo peninsular y se repetía en seis láminas.",
@@ -226,7 +226,7 @@
       }
     },
     {
-      "section": "Fundamentos",
+      "section": "Fundamentos de RAG",
       "title": "Qué le falta a la demo para producción",
       "lead": "**El prototipo de tres pasos anda en una demo. Estas cuatro preocupaciones son las que aparecen cuando el corpus crece y hay usuarios reales, y cada una tiene su sección en esta clase.**",
       "notes": "Lámina de mapa. Sirve para dos cosas: cerrar la sección 1 y anunciar el resto de la clase. Leé las cuatro y señalá a qué sección va cada una; después no vuelvas sobre ella. Si alguien pregunta por la observabilidad, el número que conviene tener a mano es que en producción se loguea latencia y costo por consulta, y que las herramientas que nunca se usan o que fallan seguido son señales de diseño, no de capacidad del modelo (ese argumento vuelve en la lámina 9.6, del lado de MCP).",
@@ -712,8 +712,8 @@
     },
     {
       "template": "section-agenda",
-      "section": "Vectorial e híbrida",
-      "title": "Vectorial e híbrida",
+      "section": "Búsqueda por significado",
+      "title": "Búsqueda por significado",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -729,7 +729,7 @@
       }
     },
     {
-      "section": "Vectorial e híbrida",
+      "section": "Búsqueda por significado",
       "title": "Encontrar por significado",
       "lead": "**Tres pasos, y el primero es el que cambia todo: el texto deja de compararse como cadena de caracteres y pasa a compararse como punto en un espacio.**",
       "notes": "Apertura del bloque vectorial. Los tres pasos llegaban del pptx como bullets sueltos separados de sus números por el aplanado de SmartArt. El ejemplo del pie es el que engancha: hace ver que el problema no era de ranking sino de representación. Las tres láminas que siguen abren cada paso: embeddings, coseno y búsqueda aproximada. El caso que el índice invertido no puede resolver, y que conviene decir en voz alta antes de pasar: \"no puedo iniciar sesión\" y \"olvidé mi contraseña\" no comparten ninguna palabra y describen el mismo problema. Es exactamente el par del diagrama.",
@@ -771,7 +771,7 @@
       }
     },
     {
-      "section": "Vectorial e híbrida",
+      "section": "Búsqueda por significado",
       "title": "Embeddings: cada texto es un punto",
       "lead": "**Textos con significado parecido caen cerca. Esa cercanía es lo único que la búsqueda vectorial mide.**",
       "notes": "El diagrama reemplaza a los cuatro iconos decorativos del deck original. Lo que hay que dejar claro con él es que la proyección a dos dimensiones es una mentira útil: el espacio real tiene 384 ejes y ninguno es interpretable por separado. Si alguien pregunta por la aritmética de vectores del tipo rey menos hombre más mujer, aclarale que es de word2vec y que con embeddings de oración modernos no funciona de manera confiable; no lo pongas en la lámina. Modelos usados hoy, por si preguntan: text-embedding-3-small de OpenAI, all-MiniLM-L6-v2 en open source, embed-multilingual-v3 de Cohere. Y la aclaración que conviene tener a mano: el embedding captura significado y no sintaxis.",
@@ -813,7 +813,7 @@
       }
     },
     {
-      "section": "Vectorial e híbrida",
+      "section": "Búsqueda por significado",
       "title": "Coseno: importa el ángulo",
       "lead": "**Dos textos son parecidos si sus vectores apuntan en la misma dirección. El largo del vector no entra en la cuenta, y eso es lo que permite comparar un fragmento de tres palabras con uno de trescientas.**",
       "notes": "La fórmula sola no enseña nada; el diagrama sí. Contá la historia de las dos flechas saliendo del origen y el ángulo entre ellas, y recién después mostrá la fórmula como la manera de calcular ese ángulo. Los tres valores del pie venían del deck original sin fuente y quedaron marcados como ilustrativos: no los presentes como medidos, porque dependen por completo del modelo de embeddings. La lámina que sigue explica por qué en producción no se calcula el coseno contra todos los vectores. Valores de referencia que se pueden decir de palabra si ayudan: \"timeout\" contra \"latencia\" ronda 0,91, contra \"reintento\" 0,76, contra \"factura\" 0,12. Decilos como ilustrativos, porque dependen por completo del modelo de embeddings.",
@@ -851,7 +851,7 @@
       }
     },
     {
-      "section": "Vectorial e híbrida",
+      "section": "Búsqueda por significado",
       "title": "HNSW: no comparar contra todos",
       "lead": "**HNSW (*Hierarchical Navigable Small World*) es una estructura de índice que encuentra vecinos cercanos sin recorrer todos los vectores. Calcular el coseno contra cada vector del corpus es O(n), y con diez millones de fragmentos eso no entra en el presupuesto de latencia de una consulta.**",
       "notes": "Lámina nueva. El deck original nombraba HNSW e IVF una sola vez, en un pie de página, y nunca los expandía. La analogía que funciona con esta audiencia es la skip list, y está en la fuente: capas ralas arriba para moverse rápido, capa completa abajo para afinar. Advertencia sobre lo que no se puede citar contra esta fuente: el registro del corpus es solo el abstract, así que nada de tunear M, efConstruction o ef, y nada sobre consumo de memoria o costo de borrado, por más que en producción sean los tres problemas reales de HNSW. El mecanismo fino, por si preguntan: la separación de escalas es lo que da el rendimiento, porque los enlaces quedan separados por su distancia característica y empezar por la capa de arriba permite escalado logarítmico.",
@@ -892,7 +892,7 @@
       }
     },
     {
-      "section": "Vectorial e híbrida",
+      "section": "Búsqueda por significado",
       "title": "Gana un documento sin palabras en común",
       "lead": "**Consulta: `\"¿por qué se cuelga la API a veces?\"` → se convierte en embedding → se buscan los vectores más cercanos**",
       "notes": "La consulta no comparte ninguna palabra con Doc1: no dice \"servicio\", ni \"devuelve\", ni \"timeout\", ni \"intermitente\". En el deck original el ejemplo se contradecía, porque el pie afirmaba que la consulta no contenía el término que sí contenía; acá el argumento se sostiene. Los tres valores de coseno son ilustrativos, igual que los de la lámina anterior. El contraste con la lámina 2.7 es lo que hay que mostrar: mismo corpus, misma intención, dos mecanismos y dos resultados.",
@@ -973,7 +973,7 @@
       }
     },
     {
-      "section": "Vectorial e híbrida",
+      "section": "Búsqueda por significado",
       "title": "Demo: búsqueda semántica en vivo",
       "lead": "**El mismo corpus, indexado como vectores y consultado en lenguaje natural.**",
       "notes": "Tercera parada práctica. Lo que conviene mostrar es una consulta que el índice léxico no resolvería, para que el contraste con la demo de la lámina 2.8 quede a la vista.",
@@ -997,7 +997,7 @@
       }
     },
     {
-      "section": "Vectorial e híbrida",
+      "section": "Búsqueda por significado",
       "title": "Cuándo conviene cada estrategia",
       "notes": "Lámina de decisión, y la única de la sección que se puede aplicar el lunes. El deck original traía acá \"85-92% relevancia\", \"100-500ms\", \"~$0.0001/query\" y \"~$0.002-0.015/query\": cuatro cifras que un alumno usaría para justificar una decisión de arquitectura y que no tienen de dónde agarrarse. Están retiradas y anotadas en las preguntas abiertas. Si te piden números, la respuesta honesta es que se miden en el corpus propio, porque dependen del tamaño del índice, del modelo de embeddings y del proveedor.",
       "template": "concept-breakdown",
@@ -1041,7 +1041,7 @@
       }
     },
     {
-      "section": "Vectorial e híbrida",
+      "section": "Búsqueda por significado",
       "title": "El flujo completo en producción",
       "lead": "**Las dos búsquedas corren en paralelo, se funden en un solo ranking y recién ahí interviene el modelo caro.**",
       "notes": "Lámina bisagra: cierra la sección 3 y abre la 4. El deck original la resolvía con cinco viñetas sueltas y un icono. Recorré el diagrama de arriba abajo una vez, sin detenerte en RRF ni en el cross-encoder, y anunciá que las dos cajas del medio son la sección siguiente entera. La frase del pie es la que justifica el orden y conviene decirla con los dos números: cien mil documentos contra cien.",
@@ -1075,7 +1075,7 @@
       }
     },
     {
-      "section": "Vectorial e híbrida",
+      "section": "Búsqueda por significado",
       "title": "Con 1M de tokens, ¿para qué recuperar?",
       "lead": "**Es la objeción que corresponde hacer después de la clase de prompting. Tiene tres respuestas y ninguna depende del largo de la ventana.**",
       "notes": "Esta lámina existe porque la clase de prompting ya mostró ventanas de uno a diez millones de tokens, y la pregunta va a salir. La respuesta que más aguanta es la segunda, porque no es una limitación de capacidad sino de rendimiento: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. El deck original resolvía esta lámina con tres tarjetas sobre el límite de tokens y una mención a corpus biomédicos; acá es una objeción respondida.",
@@ -1110,8 +1110,8 @@
     },
     {
       "template": "section-agenda",
-      "section": "Reranking y precisión",
-      "title": "Reranking y precisión",
+      "section": "Reranking",
+      "title": "Reranking",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -1127,7 +1127,7 @@
       }
     },
     {
-      "section": "Reranking y precisión",
+      "section": "Reranking",
       "title": "Recuperar y ordenar son dos trabajos",
       "lead": "**Los recuperadores rápidos encuentran candidatos y los ordenan mal. Los cross-encoders ordenan muy bien y no escalan. Por eso el pipeline los pone en serie.**",
       "notes": "Apertura de la sección. Lo que hay que dejar instalado son las dos métricas: recall arriba, precisión abajo. Es la distinción que después ordena todo, incluida la evaluación de la sección 6. Si alguien pregunta por qué no se usa el cross-encoder desde el principio, la respuesta está en el diagrama: requiere una inferencia completa por documento, y cien mil inferencias por consulta no cierran ni en latencia ni en costo.",
@@ -1165,7 +1165,7 @@
       }
     },
     {
-      "section": "Reranking y precisión",
+      "section": "Reranking",
       "title": "Tres síntomas de que falta una etapa",
       "lead": "**Antes de agregar una etapa conviene saber si el sistema la pide. Estos son los tres síntomas que la piden.**",
       "notes": "Lámina nueva. El bloque de reranking del deck original tenía cuatro láminas, dos de ellas sin título, y saltaba de la definición de reranking al pipeline completo sin decir nunca cuándo hace falta. Esta lámina responde la pregunta de ingeniería que la sección se salteaba. El tercer síntoma es el que aplica a más gente en esta audiencia: si ya tienen dos buscadores, la fusión es el paso que falta y es la lámina siguiente.",
@@ -1210,7 +1210,7 @@
       }
     },
     {
-      "section": "Reranking y precisión",
+      "section": "Reranking",
       "title": "RRF fusiona sumando posiciones",
       "lead": "**BM25 puntúa de cero a infinito y el coseno de menos uno a uno. Los scores no son comparables. Las posiciones sí.**",
       "notes": "La tabla de RRF del deck original tenía un error de cuenta: daba 0,028 para Doc C cuando 1/62 + 1/68 da 0,0308. Era la única tabla del deck donde se podía verificar la fórmula recién enseñada y no cerraba; está corregida y los tres valores se pueden rehacer en el pizarrón. Sobre k = 60: es la cifra que más se repite sin contexto en las charlas de RAG, y acá se puede decir algo mejor que \"es el default\", porque la fuente dice de dónde salió y que casi no importa. La advertencia final es honestidad de fuente y conviene decirla: el paper es de 2009 y fusiona corridas de TREC, no BM25 con embeddings. Dos datos de color sobre RRF que valen si hay tiempo: nació como línea de base, porque Cormack y otros lo diseñaron como control para comparar contra métodos de learning-to-rank y terminó ganándoles; y la ventaja medida es de entre un 4 % y un 5 % en promedio sobre Condorcet y CombMNZ, salvo CombMNZ en LETOR 3, donde pierde por un margen no significativo. Sobre k = 60: salió de un experimento piloto de 2009 sobre tópicos de TREC, y su único rol declarado es amortiguar el efecto de que un sistema atípico ponga algo muy arriba.",
@@ -1251,7 +1251,7 @@
       }
     },
     {
-      "section": "Reranking y precisión",
+      "section": "Reranking",
       "title": "El cross-encoder lee los dos juntos",
       "lead": "**Un bi-encoder codifica cada texto por separado y compara vectores. Un cross-encoder los concatena y deja que la atención cruce cada token de la consulta con cada token del documento.**",
       "notes": "Esta es la lámina que explica el porqué de toda la sección, y el diagrama hace casi todo el trabajo. El ejemplo de \"banco\" es el que mejor funciona: el bi-encoder produce un vector de la palabra que no depende de la consulta, así que la desambiguación tiene que ocurrir en algún otro lado, y el cross-encoder es ese otro lado. Si alguien pregunta si un LLM puede hacer de reranker, la respuesta es que sí y se hace, con la misma cuenta de costo: una llamada por candidato.",
@@ -1296,7 +1296,7 @@
       }
     },
     {
-      "section": "Reranking y precisión",
+      "section": "Reranking",
       "title": "Ajustes de producción",
       "notes": "Lámina corta y práctica. Las cuatro recomendaciones venían como un pie de página del deck original y merecen lámina propia porque son las que se aplican al armar el sistema. La cuarta es la que conecta con la sección 6: sin medición, cualquier ajuste de los otros tres es una opinión.",
       "template": "concept-breakdown",
@@ -1337,7 +1337,7 @@
       }
     },
     {
-      "section": "Reranking y precisión",
+      "section": "Reranking",
       "title": "Demo: reranking en vivo",
       "lead": "**Los mismos candidatos, antes y después del cross-encoder.**",
       "notes": "Cierre de la sección. Lo que conviene mostrar es el reordenamiento: el mismo conjunto de candidatos con dos órdenes distintos, y un documento que sube varios puestos. En el deck original esta lámina estaba etiquetada como parte de la sección de MCP por un error de plantilla.",
@@ -1775,8 +1775,8 @@
     },
     {
       "template": "section-agenda",
-      "section": "El protocolo",
-      "title": "El protocolo",
+      "section": "Fundamentos de MCP",
+      "title": "Fundamentos de MCP",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -1792,7 +1792,7 @@
       }
     },
     {
-      "section": "El protocolo",
+      "section": "Fundamentos de MCP",
       "title": "MCP conecta modelos con herramientas",
       "lead": "**Model Context Protocol define cómo una aplicación de IA le pide datos y acciones a un sistema externo, con un único formato de mensajes en lugar de un conector por integración.**",
       "notes": "El deck original abría MCP con un párrafo de siete líneas que anunciaba lo que se iba a ver. Acá hay tres definiciones y ninguna promesa. La tercera es la que importa para el resto de la clase: la unidad de MCP es la herramienta, y el modelo la elige leyendo su descripción. Toda la sección 9 se apoya en eso. Un apunte de precisión histórica que sirve como color: el anuncio original de Anthropic, en noviembre de 2024, no usa la palabra \"tool\" ni una sola vez. Hablaba de fuentes de datos. La centralidad de las herramientas es posterior al lanzamiento.",
@@ -1837,7 +1837,7 @@
       }
     },
     {
-      "section": "El protocolo",
+      "section": "Fundamentos de MCP",
       "title": "Cada integración era un conector",
       "notes": "Tres tarjetas y la cita del anuncio al pie. Vale la pena marcar que el diagnóstico de Anthropic es sobre aislamiento y no sobre capacidad: el modelo no es tonto, está desconectado. La lámina siguiente pone números a por qué eso no escalaba.",
       "template": "concept-breakdown",
@@ -1881,7 +1881,7 @@
       }
     },
     {
-      "section": "El protocolo",
+      "section": "Fundamentos de MCP",
       "title": "M×N conectores, o M+N piezas",
       "lead": "**Con M aplicaciones y N fuentes, sin protocolo hacen falta M×N integraciones. Con un protocolo, cada lado implementa una vez.**",
       "notes": "Lámina nueva, con el diagrama que faltaba. Nota de honestidad de fuente para vos, que no va en la lámina: el argumento M×N frente a M+N es correcto y es el argumento estándar, pero el anuncio de Anthropic nunca lo enuncia así. Dice que las integraciones a medida son difíciles de escalar y no da la cuenta. O sea que lo presentamos como razonamiento de la clase, que es lo que es. Si alguien pregunta por qué no alcanzaba con una librería compartida en vez de un protocolo, la respuesta está en la lámina 7.5.",
@@ -1915,7 +1915,7 @@
       }
     },
     {
-      "section": "El protocolo",
+      "section": "Fundamentos de MCP",
       "title": "Noviembre de 2024: MCP se publica",
       "lead": "**Se lanzó con tres piezas el primer día: la especificación con sus SDKs, soporte de servidores locales en Claude Desktop, y un repositorio abierto de servidores de ejemplo.**",
       "notes": "El deck original ponía la analogía del USB-C como si fuera de Anthropic. No lo es: viene de los directorios de la comunidad, y el pie de la lámina lo aclara. La analogía sirve igual, pero atribuirla bien cuesta cero. Dos advertencias temporales: el anuncio es de noviembre de 2024 y esta clase es de septiembre de 2026, así que todo lo que el anuncio da por futuro (servidores remotos en producción) ya es presente. Y no cites este anuncio para nada técnico: no tiene un solo ejemplo de mensaje, ni un nombre de método, ni una mención del transporte.",
@@ -1960,7 +1960,7 @@
       }
     },
     {
-      "section": "El protocolo",
+      "section": "Fundamentos de MCP",
       "title": "Por qué no alcanza HTTP ni GraphQL",
       "notes": "La advertencia del pie corrige una contradicción del deck original, que vendía MCP por sus \"sesiones persistentes con estado compartido\" en una lámina y dos después describía el protocolo como \"sin estado\". Las dos afirmaciones eran ciertas en niveles distintos y el deck nunca hacía la distinción. Hacela vos acá, que además prepara la lámina 8.1. Aviso de alcance: la especificación oficial de MCP no está en el corpus de la clase, así que todo lo normativo que digas sobre el protocolo apoyate en `modelcontextprotocol.io` y decilo como tal.",
       "template": "concept-breakdown",
@@ -2005,8 +2005,8 @@
     },
     {
       "template": "section-agenda",
-      "section": "Arquitectura y uso",
-      "title": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
+      "title": "Anatomía de un servidor",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -2022,7 +2022,7 @@
       }
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "JSON-RPC 2.0: la capa de mensajes de MCP",
       "lead": "**MCP no inventó un formato de mensajes. Usa JSON-RPC 2.0, que es liviano, agnóstico del transporte y lo bastante viejo como para estar implementado en todos lados.**",
       "notes": "El ejemplo del deck original mostraba una respuesta que no era JSON-RPC: devolvía `{ \"temperature\": 22, \"condition\": \"soleado\" }` sin `jsonrpc`, sin `result` y sin `id`. Material de clase que no cumplía el protocolo que enseñaba. El diagrama está corregido y las tres claves obligatorias se ven en cada respuesta. La notificación del final es la que conviene explicar bien, porque es la que permite que el servidor le hable al cliente sin que nadie haya preguntado, y es lo que el anuncio original llamaba \"two-way connections\" sin explicarlo nunca.",
@@ -2060,7 +2060,7 @@
       }
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "El servidor separa herramienta y agente",
       "notes": "Corrección importante respecto del deck original, que afirmaba que MCP es \"JSON-RPC estandarizado sobre HTTP\" y que el servidor corre \"en localhost\". Lo primero es incorrecto para el caso más común y lo segundo confunde subproceso con servicio de red. La configuración que van a ver en la lámina 8.6, con `command` y `args` y `npx`, es stdio: no hay ningún puerto. Vale la pena decirlo porque es el error mental que después les hace buscar un puerto que no existe cuando algo falla.",
       "template": "content-image",
@@ -2120,7 +2120,7 @@
       "lead": "**La misma capacidad, del lado de adentro o del lado de afuera del agente.**"
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "El ciclo de vida de una herramienta MCP",
       "notes": "El deck original resolvía los seis pasos con una tabla de dos columnas y seis ordinales escritos a mano. El diagrama los pone en secuencia, que es lo que la tabla no lograba. Lo único que hay que dejar clavado es el pie: la descripción de la herramienta es la interfaz que consume el modelo, así que escribirla es trabajo de diseño y no de documentación. La sección 9 entera sale de ahí.",
       "template": "content-image",
@@ -2155,7 +2155,7 @@
       "lead": "**Seis pasos, del arranque del servidor a la respuesta con el resultado ya incorporado.**"
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "Cuatro principios de diseño",
       "notes": "Los cuatro principios se sostienen; lo que se cayó es el respaldo numérico del tercero. El dato de MSR que sí conviene contar acá es el del cuarto principio: casi seis de cada diez respuestas que un servidor marcó como exitosas contenían un error en el texto. Y dos ejemplos verbatim de mensajes de error reales del estudio, que siempre funcionan: una herramienta de búsqueda web que falló con el string \"error: job\", y una de búsqueda académica que devolvió \"Please retry with 0 or fewer IDs.\" Ese es el estado real del ecosistema.",
       "template": "concept-breakdown",
@@ -2203,7 +2203,7 @@
       }
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "Conectar un servidor MCP: tres caminos",
       "notes": "Los tres métodos del deck original estaban en tuteo peninsular (\"Abre\", \"Busca\", \"Haz clic\", \"Edita\") dentro de un deck en voseo, y el Método 3 arrancaba con un paso numerado \"4.\" sin 1, 2 ni 3. Corregido. La advertencia de seguridad es la que hay que decir en voz alta y con tiempo: instalar un servidor MCP es más parecido a instalar una extensión de navegador que a agregar una dependencia, porque corre con tus permisos y ve lo que vos ves.",
       "template": "concept-breakdown",
@@ -2247,7 +2247,7 @@
       }
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "La configuración, en concreto",
       "notes": "Lámina partida de la anterior, porque las dos configuraciones juntas con los tres métodos no entraban. Lo pedagógico acá es el contraste entre los dos bloques: el primero no tiene URL ni puerto porque el cliente lanza el proceso, el segundo no tiene comando porque el proceso ya está corriendo. Si alguien tipea el primero y busca en qué puerto quedó, la respuesta es que en ninguno.",
       "template": "code-example",
@@ -2276,7 +2276,7 @@
       }
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "Demo: un servidor MCP mínimo",
       "lead": "**De una herramienta hardcodeada en el agente al mismo código expuesto como servidor MCP.**",
       "notes": "El botón de esta lámina en el deck original apuntaba a `https://localhost:3000/agents/model-context-protocol#from-hardcoded-tools-to-mcp`, el servidor de desarrollo de quien armó el deck. No resuelve para nadie más, y encima usa https contra un puerto que sirve http. Está retirado y anotado en las preguntas abiertas: por la forma de la ruta, el destino público probable es la sección de agentes de aitutorial.dev, pero no se pudo verificar y no se pone un enlace sin verificar. Antes de dar la clase, confirmá el destino o mostrá el servidor mínimo desde tu propio editor.",
@@ -2298,7 +2298,7 @@
       "point": "De una herramienta hardcodeada en el agente al mismo código expuesto como servidor MCP."
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "La complejidad de los esquemas, medida",
       "lead": "**Microsoft Research inspeccionó 1.470 servidores MCP en ejecución y midió la profundidad del esquema de entrada de 12.643 herramientas.**",
       "notes": "Esta es la corrección más importante del deck. La lámina original le atribuía a Microsoft Research un gráfico que Microsoft Research no publicó, con números que no están en ninguna parte del artículo. Los únicos porcentajes del texto son 85 %, 91 %, 47 %, 40 %, 7,6 % y 5 %; no hay 90, ni 80, ni 65. El error de fondo es de categoría antes que de cifra: es una encuesta de servidores, no una evaluación de agentes, así que no puede producir una curva de precisión aunque uno quisiera. Contá esto en voz alta si te da el tiempo: es la mejor lección de higiene de fuentes que da la clase, y le pasó a un deck nuestro.",
@@ -2333,7 +2333,7 @@
       }
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "Un agente, varios servidores",
       "notes": "En el deck original esta lámina tenía el título \"Arquitectura multi-servidor: Agente de soporte al cliente\" y una sola frase de contenido: prometía una arquitectura y no la mostraba. Ahora el diagrama es la lámina. La segunda viñeta es el puente a la sección 9 y conviene decirla como problema abierto: el agente ve todo junto, y todo junto es exactamente el escenario donde elige peor. El mismo agente de soporte vuelve como caso en las láminas 9.3 y 9.4.",
       "template": "content+cards+image",
@@ -2370,7 +2370,7 @@
       }
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "Casos de uso con Claude",
       "lead": "**Con servidores conectados, el mismo pedido en lenguaje natural atraviesa varios sistemas sin que nadie escriba el pegamento.**",
       "notes": "Los cinco ejemplos ya venían del dominio de software y se dejaron como estaban. Lo que se agregó es el pie, que es lo que los convierte en un caso y no en una lista: los cinco pedidos son la misma tarea, y la feature ENG-4521 los hilvana. Contalo así, en orden, como el día de trabajo de alguien.",
@@ -2423,7 +2423,7 @@
       }
     },
     {
-      "section": "Arquitectura y uso",
+      "section": "Anatomía de un servidor",
       "title": "El ecosistema, con fechas y fuentes",
       "lead": "**Los recuentos de servidores que circulan no son comparables entre sí. Cada uno cuenta cosas distintas, en momentos distintos, y ninguno declara su criterio.**",
       "notes": "El deck original ponía tres directorios, tres números y ninguna fecha, y llamaba \"registro oficial\" a mcp.so, que es un marketplace comunitario con posiciones pagas. La tabla de acá pone cada número con su fuente y su fecha, y muestra el problema de frente: Smithery figura con 7.000 en septiembre de 2025 y con 3.600 en febrero de 2026. No perdió la mitad de su catálogo en cinco meses; están contando cosas distintas. Ese es el punto de la lámina, y es más útil que cualquiera de los números: en un ecosistema que se mueve así, un recuento sin fecha y sin criterio no significa nada.",
@@ -2807,7 +2807,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "713d83df3a006bc32bfa7b529d4587171a894314504e0ddfb5c4b2ec15df30b5",
-    "bytes": 141626
+    "sha256": "6b705936514759e92b6fa64f315b86a7d737b65619646c935635af26333bdfa6",
+    "bytes": 141648
   }
 }
