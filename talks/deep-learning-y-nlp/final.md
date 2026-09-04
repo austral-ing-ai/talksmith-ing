@@ -11,7 +11,7 @@ date: 2026-09-23
 
 # Thesis
 
-**Claim:** Un modelo de lenguaje hace una sola cosa, predecir el token que sigue, y todo lo que la clase recorre (tokens, embeddings, capas, gradientes, recurrencia y atención) existe para que esa predicción pueda usar el contexto entero en lugar de las últimas palabras.
+**Claim:** Un modelo de lenguaje hace una sola cosa, predecir el token que sigue, y todo lo que la clase recorre (tokens, embeddings, capas, recurrencia y atención) existe para que esa predicción pueda usar el contexto entero en lugar de las últimas palabras.
 
 **Why it matters:** Las decisiones que aparecen después en la materia (ventana de contexto, costo por consulta, alucinación, diseño de prompts) se explican desde ese mecanismo. Sin él, un LLM queda como una caja que a veces acierta.
 
@@ -21,7 +21,7 @@ date: 2026-09-23
 
 **Narrative arc:**
 
-La clase arranca por arriba, con las familias de problemas que la IA resuelve, y baja hasta la más chica de todas: predecir la palabra que sigue. Las tres primeras secciones instalan ese problema y muestran que todas las tareas de texto se pueden escribir así. La cuarta y la quinta arman las dos piezas que hacen falta para resolverlo con una red: convertir palabras en vectores y apilar perceptrones. La sexta explica cómo se ajustan esas piezas. La séptima es el nudo: procesar la frase token por token funciona y se rompe con la distancia, y la atención es lo que la desarma. La octava cierra mostrando que un LLM de hoy es el mismo problema de la sección tres, con otro tamaño.
+La clase arranca por arriba, con las familias de problemas que la IA resuelve, y baja hasta la más chica de todas: predecir la palabra que sigue. Las tres primeras secciones instalan ese problema y muestran que todas las tareas de texto se pueden escribir así. La cuarta y la quinta arman las dos piezas que hacen falta para resolverlo con una red: convertir palabras en vectores y apilar perceptrones. La sexta es el nudo: procesar la frase token por token funciona y se rompe con la distancia, y la atención es lo que la desarma. La séptima cierra mostrando que un LLM de hoy es el mismo problema de la sección tres, con otro tamaño. Cómo se ajustan los pesos no se cuenta acá: lo da entero la clase de modelado de redes neuronales, y esta clase la da por vista.
 
 **Sections (in delivery order):**
 
@@ -878,182 +878,6 @@ Lámina bisagra: cierra las redes neuronales y plantea el problema que resuelve 
 
 ---
 
-## 4. Bajar por la pendiente
-
-<!-- design: split-right -->
-
-### Content
-
-**El descenso por gradiente ajusta cada peso en la dirección que más reduce la loss. La dirección la da el gradiente cambiado de signo, −∇.**
-
-![Superficie tridimensional de pérdida en malla, con picos y valles coloreados y una trayectoria que desciende serpenteando desde la cima hasta el fondo de un valle](images/superficie-de-perdida.jpg)
-
-- **El ciclo por ejemplo** Entra un ejemplo, el modelo predice con los pesos que tiene, se compara con la respuesta correcta, se calcula la loss, se ajustan los pesos un poco en la dirección de −∇, y sigue el ejemplo siguiente.
-- **La analogía que se sostiene** Estar en una montaña con niebla y querer llegar al valle. El camino completo no se ve; la pendiente bajo los pies, sí. Cada paso va un poco para abajo.
-
-### Sources
-
-- `AIG4B-Clase-2-LLM.md.md` (slide 21) — el ciclo iterativo en seis pasos, la dirección −∇ y la analogía de la montaña, verbatim.
-
-### Speaker notes
-
-La figura es la analogía dibujada, así que contá la montaña señalándola. Hay algo que la figura muestra y el deck original nunca menciona: la superficie tiene varios valles azules, o sea varios mínimos locales, y la trayectoria termina en uno cualquiera. Si alguien lo marca, la respuesta honesta es que sí, que el descenso por gradiente no garantiza el mínimo global, y que en redes grandes eso resulta ser menos grave de lo que suena. No lo abras vos si el tiempo aprieta. La figura casi no tiene texto: sólo un "04" heredado de la numeración del deck original. La viñeta decorativa de esta lámina se retiró.
-
----
-
-## 5. El learning rate es el paso
-
-### Content
-
-**El learning rate decide cuánto se mueve cada peso en cada paso. Es un número que se elige antes de entrenar, y los dos extremos fallan de maneras distintas.**
-
-![Paso demasiado grande y paso demasiado chico sobre la misma curva de loss](images/s5-5-1-learning-rate-paso.svg)
-<!-- ascii-source:
-  PASO DEMASIADO GRANDE                PASO DEMASIADO CHICO
-
-   loss                                 loss
-    ^                                    ^
-    |  \                    /            |  \                   /
-    |   \       o          /             |   \                 /
-    |    \     / \    o   /              |    \  o            /
-    |     \   /   \  / \ /               |     \  ooo        /
-    |      \ /     \/   o                |      \____ooooo__/
-    |       o                            |
-    +---------------------&gt; peso         +--------------------&gt; peso
-
-   Cada paso se pasa de largo y          Cada paso corrige poco.
-   la loss rebota sin bajar.             Baja, y tarda demasiado.
-
-  El esquema es cualitativo: la curva no sale de ninguna medicion.
-  Ni el rebote ni el arrastre son un problema del modelo. Los dos
-  salen del mismo numero mal elegido.
--->
-<!-- ascii-note:
-intent: mostrar que los dos modos de falla del entrenamiento vienen del mismo parámetro, contraponiendo la trayectoria que rebota con la que se arrastra sobre la misma curva de loss
-emphasize: la trayectoria de la izquierda, que rebota de pared a pared sin bajar, frente a la de la derecha, que baja y se estanca; el pie que dice que la curva es cualitativa
-labels: "PASO DEMASIADO GRANDE", "PASO DEMASIADO CHICO", "loss", "peso", "la loss rebota sin bajar", "baja, y tarda demasiado", "El esquema es cualitativo"
--->
-
-### Sources
-
-- `AIG4B-Clase-2-LLM.md.md` (slide 21) — "learning rate = tamaño del paso: muy grande → te pasás, muy chico → tardás una eternidad".
-
-### Speaker notes
-
-El diagrama es cualitativo y está declarado como tal dentro del propio dibujo, porque una curva de loss dibujada a mano se lee como medición si no se aclara. Los ejes están rotulados, loss contra peso, y ésa es la única lectura válida. Lo que conviene decir es que el learning rate es el primer hiperparámetro que alguien toca cuando un entrenamiento no converge, y que las dos fallas se distinguen a simple vista en la curva de loss: si oscila, el paso es grande; si baja plano y no llega, es chico. La lámina se separó de la anterior porque el deck original metía la figura de la montaña, el ciclo de seis pasos, la analogía y el learning rate en una sola pantalla.
-
----
-
-## 6. Cuatro pasos que se repiten
-
-### Content
-
-**El entrenamiento es un bucle de cuatro pasos que corre hasta que la loss deja de bajar.**
-
-![El lazo cerrado del entrenamiento y las dos puertas por las que entra el dataset](images/s5-6-1-ciclo-entrenamiento.svg)
-<!-- ascii-source:
-        .-------------------------------------------------.
-        |                                                 |
-        v                                                 |
-  +---------------+                                       |
-  | PESOS y SESGO |                                       |
-  +---------------+                                       |
-        |                                                 |
-        v                                                 |
-  [ MODELO ] <---- caracteristicas ---- DATASET           |
-        |                                  |              |
-        | predicciones                     | etiquetas    |
-        v                                  v              |
-  [ CALCULAR LA LOSS ] <-------------------'              |
-        |                                                 |
-        v                                                 |
-  [ DETERMINAR LA DIRECCION ]  hacia donde baja la loss   |
-        |                                                 |
-        v                                                 |
-  [ ACTUALIZAR: UN PASO CHICO ] --------------------------'
-
-  Se repite hasta que la loss no pueda bajar mas.
-
-  El dataset entra por dos puertas distintas: las caracteristicas
-  van al modelo y las etiquetas van a la loss. Lo unico que da la
-  vuelta entera y vuelve a empezar son los pesos.
--->
-<!-- ascii-note:
-intent: mostrar el entrenamiento como un lazo cerrado y, sobre todo, que el dataset entra por dos puertas distintas (caracteristicas al modelo, etiquetas a la loss); la lista de al lado nombra los cuatro pasos pero no dice que circula
-emphasize: la flecha de retorno que va del ultimo paso a la caja de pesos y sesgo y cierra el lazo; las dos entradas separadas del dataset
-labels: "PESOS y SESGO", "MODELO", "DATASET", "caracteristicas", "etiquetas", "predicciones", "CALCULAR LA LOSS", "DETERMINAR LA DIRECCION", "ACTUALIZAR: UN PASO CHICO", "Se repite hasta que la loss no pueda bajar mas", "Lo unico que da la vuelta entera son los pesos"
--->
-
-- **Calcular la loss** Pasar los datos por el modelo con los pesos y el bias actuales, generar predicciones y medir qué tan lejos quedaron.
-- **Determinar la dirección** Averiguar hacia dónde mover los pesos y el bias para que la loss baje.
-- **Actualizar los pesos** Moverse un paso chico en esa dirección. El tamaño del paso es el learning rate.
-- **Repetir** Volver al primer paso hasta que la loss no baje más.
-
-### Sources
-
-- `AIG4B-Clase-2-LLM.md.md` (slide 22) — los cuatro pasos del ciclo, verbatim.
-- Diagrama propio. La lámina original traía una infografía del deck, en inglés y con marca gráfica de otra empresa; se rehízo como diagrama propio, en español y con el lazo cerrado a la vista.
-
-### Speaker notes
-
-El diagrama y la lista dicen los cuatro pasos, así que conviene usar uno de los dos y no leer los dos: recorré el lazo con el dedo y dejá la lista como referencia. Lo que el diagrama agrega y la lista no dice es el rol del conjunto de datos, que entra por dos puertas distintas, las características al modelo y las etiquetas al cálculo de la loss. La otra cosa que conviene señalar es la flecha de retorno: lo único que da la vuelta entera y vuelve a empezar son los pesos. Esta lámina es el único lugar de la clase donde vive el ciclo: la de vocabulario del modelado de lenguaje se quedó con las definiciones.
-
----
-
-## 7. Repartir la culpa hacia atrás
-
-### Content
-
-**En una red de muchas capas, la retropropagación es lo que decide cuánto ajustar cada peso: propaga el error desde la salida hacia atrás y le asigna a cada peso una parte proporcional a su contribución.**
-
-![Ida y vuelta sobre la misma red, con la malla de nueve conexiones ampliada en el medio](images/s5-7-1-retropropagacion-malla.svg)
-<!-- ascii-source:
-  Una sola red, recorrida dos veces y en sentidos opuestos.
-
-  IDA     entrada --&gt; [ capa 1 ]==[ capa 2 ] --&gt; ... --&gt; prediccion
-                                                              |
-                                                              v
-                                                            loss
-                                                              |
-        LA MALLA DE CERCA, ENTRE CAPA 1 Y CAPA 2              |
-                                                              |
-          (a) ----+----+----+    9 conexiones entre           |
-                  |    |    |    estas dos capas: una         |
-          (b) ----+----+----+    por cada par de nodos,       |
-                  |    |    |    y el mismo patron entre      |
-          (c) ----+----+----+    las capas que siguen.        |
-                  v    v    v                                 |
-                 (d)  (e)  (f)                                |
-                                                              |
-  VUELTA  entrada <== [ capa 1 ]==[ capa 2 ] <== ... <========'
-
-  Cada + es una conexion con su propio peso, y por cada + vuelve un
-  pedazo del error. Ahi esta la escala del problema: entre dos capas
-  de 3 nodos hay 9 caminos de vuelta, y entre dos capas de mil nodos
-  hay un millon. Un modelo real tiene miles de millones.
--->
-<!-- ascii-note:
-intent: mostrar los dos sentidos de circulacion en las bandas de arriba y de abajo, y ampliar una sola vez la malla entre dos capas para que se vea que el error vuelve por cada conexion y no por cada capa; de ahi sale que entrenar sea un problema de escala
-emphasize: la banda de VUELTA con sus flechas dobles de derecha a izquierda, que es el sentido que la lamina explica; los nueve simbolos + de la malla ampliada, que se pueden contar uno por uno
-labels: "IDA", "VUELTA", "entrada", "capa 1", "capa 2", "prediccion", "loss", "LA MALLA DE CERCA, ENTRE CAPA 1 Y CAPA 2", "9 conexiones entre estas dos capas: una por cada par de nodos", "Cada + es una conexion con su propio peso", "entre dos capas de mil nodos hay un millon"
--->
-
-- **Forward pass** La entrada viaja hacia adelante por la red hasta producir una predicción, y se mide el error contra el valor real.
-- **Backward pass** El error vuelve hacia atrás por cada conexión, y en cada peso queda registrado cuánto contribuyó. Cada peso se ajusta en proporción a esa contribución.
-
-- 💡 Formalmente es la regla de la cadena aplicada a una composición de funciones, y funciona porque una red es aproximadamente diferenciable. Es lo que hace viable entrenar redes de millones de parámetros.
-
-### Sources
-
-- `AIG4B-Clase-2-LLM.md.md` (slide 23) — los cuatro pasos, la regla de la cadena, la condición de diferenciabilidad y la analogía de rastrear un error en una cadena de producción.
-- Diagrama propio. La lámina original traía una figura del deck, en inglés y dibujada a mano, donde los dos sentidos de circulación se perdían entre las conexiones; se rehízo como diagrama propio, con la malla ampliada una sola vez para que la densidad se vea sin tapar los dos sentidos.
-
-### Speaker notes
-
-Las dos láminas del deck original se juntaron: la 23 era el texto y la 24 una figura sola. El diagrama tiene dos lecturas y conviene hacerlas en orden. Primero las bandas: la ida de izquierda a derecha, la loss, y la vuelta de derecha a izquierda por la banda de abajo. Después la ampliación del medio, que es donde está el argumento nuevo: pedí que cuenten los `+`. Son nueve entre dos capas de tres nodos, y por cada uno vuelve un pedazo del error. Eso es lo que hace que entrenar sea un problema de escala y no de aritmética, y es lo que la figura original decía en silencio con su malla. La analogía del deck original, rastrear un defecto en una cadena de producción para ver quién tuvo más culpa en cada paso, funciona bien y va de palabra. La regla de la cadena está al pie a propósito: es el fundamento, no lo que hay que retener.
-
----
-
 # 6. De las RNN a la atención
 
 **Goal of this section:** Mostrar por qué procesar una frase token por token resuelve el orden y se rompe con la distancia, y qué hace la atención distinto.
@@ -1545,7 +1369,7 @@ Tres cuidados con los números de la columna derecha, y los tres importan porque
 
 ### Content
 
-- **Un modelo de lenguaje hace una sola cosa.** Predice el token siguiente y devuelve una distribución sobre el vocabulario entero. Todo lo demás de la clase, tokens, embeddings, capas, gradientes y atención, existe para que esa predicción use el contexto.
+- **Un modelo de lenguaje hace una sola cosa.** Predice el token siguiente y devuelve una distribución sobre el vocabulario entero. Todo lo demás de la clase, tokens, embeddings, capas y atención, existe para que esa predicción use el contexto.
 - **La etiqueta gratis es lo que cambió la escala.** Mientras cada tarea necesitaba su propio conjunto etiquetado a mano, el costo crecía tarea por tarea. El texto crudo trae la respuesta correcta adentro, y eso convirtió a internet en conjunto de entrenamiento.
 - **El cuello de botella de las RNN era estructural.** Comprimir la frase entera en un vector de tamaño fijo diluye lo primero que entró, y ningún entrenamiento arregla eso. La atención lo elimina dejando que cada token consulte a todos los demás en un solo paso.
 - **Un LLM de hoy es el ejemplo de catorce tokens con otro tamaño.** Cambian el vocabulario, los datos y la cantidad de parámetros. La cuenta es la misma.
@@ -1582,6 +1406,5 @@ Cinco frases y ninguna es un resumen de la agenda. La primera es la tesis desple
 **Decisiones de alcance**
 
 - **Largo de la clase** — La revisión del 2026-09-03 llevó el deck de 32 a 40 láminas, con 20 diagramas ASCII y 6 figuras del deck original conservadas. Para 150 minutos son unos 3,5 minutos por lámina. Falta decidir si alcanza o si hay que recortar la última sección.
-- **Los mínimos locales de la figura de descenso por gradiente (sección 5, descenso por gradiente)** — La superficie muestra varios valles y el deck original nunca los menciona. Quedó en notas del orador como material para preguntas. Falta decidir si entra al contenido visible.
 - **Cuatro de las seis figuras conservadas están en inglés** — Las excepciones son la de clasificación de imágenes (título en español) y la del plano de embeddings (sin texto, usa emojis). Las cuatro restantes se conservan porque aportan algo que el arte de texto no reproduce: la superficie de pérdida en 3D, la geometría vectorial con valores en los ejes, la densidad de la red multicapa y la figura canónica del Transformer. Se traducen de palabra al presentarlas.
 - Ver `research/corpus/AIG4B-Clase-2-LLM.md.md` → *Inconsistencies / open questions* para el resto de los problemas detectados en el material original.

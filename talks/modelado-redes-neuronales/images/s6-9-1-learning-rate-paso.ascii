@@ -1,0 +1,24 @@
+  PASO DEMASIADO GRANDE                PASO DEMASIADO CHICO
+
+   loss                                 loss
+    ^                                    ^
+    |  \                    /            |  \                   /
+    |   \       o          /             |   \                 /
+    |    \     / \    o   /              |    \  o            /
+    |     \   /   \  / \ /               |     \  ooo        /
+    |      \ /     \/   o                |      \____ooooo__/
+    |       o                            |
+    +---------------------> peso         +--------------------> peso
+
+   Cada paso se pasa de largo y          Cada paso corrige poco.
+   la loss rebota sin bajar.             Baja, y tarda demasiado.
+
+  El esquema es cualitativo: la curva no sale de ninguna medicion.
+  Ni el rebote ni el arrastre son un problema del modelo. Los dos
+  salen del mismo numero mal elegido.
+
+<!-- ascii-note:
+intent: mostrar que los dos modos de falla del entrenamiento vienen del mismo parámetro, contraponiendo la trayectoria que rebota con la que se arrastra sobre la misma curva de loss
+emphasize: la trayectoria de la izquierda, que rebota de pared a pared sin bajar, frente a la de la derecha, que baja y se estanca; el pie que dice que la curva es cualitativa
+labels: "PASO DEMASIADO GRANDE", "PASO DEMASIADO CHICO", "loss", "peso", "la loss rebota sin bajar", "baja, y tarda demasiado", "El esquema es cualitativo"
+-->

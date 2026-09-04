@@ -1604,9 +1604,33 @@ Si alguien trae la versión de 3Blue1Brown de esta misma fórmula, que la escrib
 
 ### Content
 
-Cerrado el batch y promediados los gradientes acumulados, corregir un peso es restarle una fracción de su gradiente. Cuánta es esa fracción lo fija la **tasa de aprendizaje `η`**, y es uno de los hiperparámetros más sensibles del entrenamiento.
+Cerrado el batch y promediados los gradientes acumulados, corregir un peso es restarle una fracción de su gradiente: `W ← W − η · ∂L/∂W`. Cuánta es esa fracción lo fija la **tasa de aprendizaje `η`**, y es uno de los hiperparámetros más sensibles del entrenamiento.
 
-![El paso de actualización](images/bp-paso-de-actualizacion.png)
+```ascii
+  PASO DEMASIADO GRANDE                PASO DEMASIADO CHICO
+
+   loss                                 loss
+    ^                                    ^
+    |  \                    /            |  \                   /
+    |   \       o          /             |   \                 /
+    |    \     / \    o   /              |    \  o            /
+    |     \   /   \  / \ /               |     \  ooo        /
+    |      \ /     \/   o                |      \____ooooo__/
+    |       o                            |
+    +---------------------> peso         +--------------------> peso
+
+   Cada paso se pasa de largo y          Cada paso corrige poco.
+   la loss rebota sin bajar.             Baja, y tarda demasiado.
+
+  El esquema es cualitativo: la curva no sale de ninguna medicion.
+  Ni el rebote ni el arrastre son un problema del modelo. Los dos
+  salen del mismo numero mal elegido.
+```
+<!-- ascii-note:
+intent: mostrar que los dos modos de falla del entrenamiento vienen del mismo parámetro, contraponiendo la trayectoria que rebota con la que se arrastra sobre la misma curva de loss
+emphasize: la trayectoria de la izquierda, que rebota de pared a pared sin bajar, frente a la de la derecha, que baja y se estanca; el pie que dice que la curva es cualitativa
+labels: "PASO DEMASIADO GRANDE", "PASO DEMASIADO CHICO", "loss", "peso", "la loss rebota sin bajar", "baja, y tarda demasiado", "El esquema es cualitativo"
+-->
 
 - **El signo menos.** El gradiente apunta hacia donde el error crece, así que el paso va en la dirección opuesta.
 - **`η` muy chico.** El entrenamiento avanza, pero tan despacio que puede volverse impracticable.
@@ -1616,9 +1640,13 @@ Cerrado el batch y promediados los gradientes acumulados, corregir un peso es re
 
 knowledge-library/backpropagation/index.md (aportado por la Talk intro-redes-neuronales) — imagen `s36`, el paso de actualización y el rol de la tasa de aprendizaje
 
+Diagrama propio, traído de la Talk deep-learning-y-nlp (lámina 5.5 "El learning rate es el paso", retirada de allá el 2026-09-04 por duplicar esta sección) — las dos trayectorias de falla sobre la misma curva de loss.
+
 ### Speaker notes
 
-La imagen que funciona en clase es la pelota bajando por un valle, con `η` como el tamaño del paso: pasos chicos tardan una eternidad, pasos grandes saltan de una ladera a la otra sin bajar nunca.
+La analogía de la pelota bajando por un valle ahora está dibujada, y son dos pelotas sobre la misma curva: la de la izquierda salta de una ladera a la otra sin bajar nunca, la de la derecha baja y se arrastra. Contala señalando, porque el remate es el diagnóstico y se lleva directo a la práctica: si la loss oscila, el paso es grande; si baja plana y no llega, es chico. Es el primer hiperparámetro que alguien toca cuando un entrenamiento no converge.
+
+La curva es cualitativa y el propio dibujo lo declara al pie, porque una curva de loss trazada a mano se lee como medición si no se aclara. Los ejes están rotulados, loss contra peso, y ésa es la única lectura válida.
 
 Conectá con la sección 2 de esta clase: el gradiente respecto de un peso es proporcional al valor de la entrada, y el learning rate es uno solo para toda la red. Si una variable va de 0 a 1.000.000 y otra de 0 a 1, sus gradientes viven en escalas distintas y un solo `η` no le sirve a las dos. Ese es el argumento formal de por qué se normaliza el input, y ahora tienen la fórmula delante.
 
@@ -2687,3 +2715,28 @@ La diapositiva se retiró de la sección 2 por pedido del presentador. **El cont
 - `BCEWithLogitsLoss` y `CrossEntropyLoss` ya incluyen la sigmoide y el softmax por estabilidad numérica. Si además se pone la activación en la capa, se aplica dos veces y el modelo entrena mal.
 - En inferencia, con logits crudos: `prob = torch.sigmoid(model(x))`. Un logit de 2.3 no es una probabilidad.
 - Fuente: corpus/chat.md.md (§8 El detalle de implementación; los pares que no se rompen).
+
+## Diapositiva 6.9 "La tasa de aprendizaje η" — la imagen de fórmula `bp-paso-de-actualizacion.png` (reemplazada, 2026-09-04)
+
+La lámina traía la fórmula del paso de actualización como imagen y nada más. Se reemplazó por el
+diagrama de las dos trayectorias sobre la misma curva de loss, que llegó de la Talk
+deep-learning-y-nlp al retirarse de allá su lámina 5.5 por duplicar esta sección. La fórmula no se
+perdió: bajó a texto en la apertura de la lámina, `W ← W − η · ∂L/∂W`, donde además se lee sin
+depender de una imagen. El archivo sigue en `images/`.
+
+Motivo del cambio: la lámina describía en las notas del orador exactamente lo que el diagrama
+dibuja (pasos chicos que tardan una eternidad, pasos grandes que saltan de ladera a ladera), así
+que la imagen que la acompañaba no mostraba el argumento de la lámina sino su aritmética, que ya
+está en el texto.
+
+## `superficie-de-perdida.jpg` — disponible, sin usar (2026-09-04)
+
+Foto de una superficie de pérdida tridimensional en malla, con varios valles y una trayectoria que
+desciende serpenteando. Llegó con la lámina 5.4 de deep-learning-y-nlp, "Bajar por la pendiente",
+retirada de allá por duplicar la 6.1 de esta clase.
+
+No se colocó en 6.1: esa lámina ya tiene su propio diagrama, el descenso al mínimo con los pasos
+numerados y `η`, y dos visuales en una lámina rompen el presupuesto de densidad del mazo. Lo único
+que la foto agrega y el diagrama no es que la superficie real tiene varios mínimos locales, y eso
+ya está dicho en las notas del orador de 6.1. Queda en `images/` por si se decide cambiar el
+diagrama por la foto.

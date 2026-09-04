@@ -1402,9 +1402,55 @@ Si alguien trae la versión de 3Blue1Brown de esta misma fórmula, que la escrib
 
 ### Content
 
-Cerrado el batch y promediados los gradientes acumulados, corregir un peso es restarle una fracción de su gradiente. Cuánta es esa fracción lo fija la **tasa de aprendizaje `η`**, y es uno de los hiperparámetros más sensibles del entrenamiento.
+Cerrado el batch y promediados los gradientes acumulados, corregir un peso es restarle una fracción de su gradiente: `W ← W − η · ∂L/∂W`. Cuánta es esa fracción lo fija la **tasa de aprendizaje `η`**, y es uno de los hiperparámetros más sensibles del entrenamiento.
 
-![El paso de actualización](images/bp-paso-de-actualizacion.png)
+![Superficie tridimensional de pérdida en malla, con picos y valles coloreados y una trayectoria que desciende serpenteando desde la cima hasta el fondo de un valle](images/superficie-de-perdida.jpg)
+
+- **El ciclo por ejemplo** Entra un ejemplo, el modelo predice con los pesos que tiene, se compara con la respuesta correcta, se calcula la loss, se ajustan los pesos un poco en la dirección de −∇, y sigue el ejemplo siguiente.
+- **La analogía que se sostiene** Estar en una montaña con niebla y querer llegar al valle. El camino completo no se ve; la pendiente bajo los pies, sí. Cada paso va un poco para abajo.
+
+### Sources
+
+- `AIG4B-Clase-2-LLM.md.md` (slide 21) — el ciclo iterativo en seis pasos, la dirección −∇ y la analogía de la montaña, verbatim.
+
+### Speaker notes
+
+La figura es la analogía dibujada, así que contá la montaña señalándola. Hay algo que la figura muestra y el deck original nunca menciona: la superficie tiene varios valles azules, o sea varios mínimos locales, y la trayectoria termina en uno cualquiera. Si alguien lo marca, la respuesta honesta es que sí, que el descenso por gradiente no garantiza el mínimo global, y que en redes grandes eso resulta ser menos grave de lo que suena. No lo abras vos si el tiempo aprieta. La figura casi no tiene texto: sólo un "04" heredado de la numeración del deck original. La viñeta decorativa de esta lámina se retiró.
+
+---
+
+## 5. El learning rate es el paso
+
+### Content
+
+**El learning rate decide cuánto se mueve cada peso en cada paso. Es un número que se elige antes de entrenar, y los dos extremos fallan de maneras distintas.**
+
+![Paso demasiado grande y paso demasiado chico sobre la misma curva de loss](images/s6-9-1-learning-rate-paso.svg)
+<!-- ascii-source:
+  PASO DEMASIADO GRANDE                PASO DEMASIADO CHICO
+
+   loss                                 loss
+    ^                                    ^
+    |  \                    /            |  \                   /
+    |   \       o          /             |   \                 /
+    |    \     / \    o   /              |    \  o            /
+    |     \   /   \  / \ /               |     \  ooo        /
+    |      \ /     \/   o                |      \____ooooo__/
+    |       o                            |
+    +---------------------&gt; peso         +--------------------&gt; peso
+
+   Cada paso se pasa de largo y          Cada paso corrige poco.
+   la loss rebota sin bajar.             Baja, y tarda demasiado.
+
+  El esquema es cualitativo: la curva no sale de ninguna medicion.
+  Ni el rebote ni el arrastre son un problema del modelo. Los dos
+  salen del mismo numero mal elegido.
+-->
+<!-- ascii-note:
+intent: mostrar que los dos modos de falla del entrenamiento vienen del mismo parámetro, contraponiendo la trayectoria que rebota con la que se arrastra sobre la misma curva de loss
+emphasize: la trayectoria de la izquierda, que rebota de pared a pared sin bajar, frente a la de la derecha, que baja y se estanca; el pie que dice que la curva es cualitativa
+labels: "PASO DEMASIADO GRANDE", "PASO DEMASIADO CHICO", "loss", "peso", "la loss rebota sin bajar", "baja, y tarda demasiado", "El esquema es cualitativo"
+-->
 
 - **El signo menos.** El gradiente apunta hacia donde el error crece, así que el paso va en la dirección opuesta.
 - **`η` muy chico.** El entrenamiento avanza, pero tan despacio que puede volverse impracticable.
@@ -1414,9 +1460,13 @@ Cerrado el batch y promediados los gradientes acumulados, corregir un peso es re
 
 knowledge-library/backpropagation/index.md (aportado por la Talk intro-redes-neuronales) — imagen `s36`, el paso de actualización y el rol de la tasa de aprendizaje
 
+Diagrama propio, traído de la Talk deep-learning-y-nlp (lámina 5.5 "El learning rate es el paso", retirada de allá el 2026-09-04 por duplicar esta sección) — las dos trayectorias de falla sobre la misma curva de loss.
+
 ### Speaker notes
 
-La imagen que funciona en clase es la pelota bajando por un valle, con `η` como el tamaño del paso: pasos chicos tardan una eternidad, pasos grandes saltan de una ladera a la otra sin bajar nunca.
+La analogía de la pelota bajando por un valle ahora está dibujada, y son dos pelotas sobre la misma curva: la de la izquierda salta de una ladera a la otra sin bajar nunca, la de la derecha baja y se arrastra. Contala señalando, porque el remate es el diagnóstico y se lleva directo a la práctica: si la loss oscila, el paso es grande; si baja plana y no llega, es chico. Es el primer hiperparámetro que alguien toca cuando un entrenamiento no converge.
+
+La curva es cualitativa y el propio dibujo lo declara al pie, porque una curva de loss trazada a mano se lee como medición si no se aclara. Los ejes están rotulados, loss contra peso, y ésa es la única lectura válida.
 
 Conectá con la sección 2 de esta clase: el gradiente respecto de un peso es proporcional al valor de la entrada, y el learning rate es uno solo para toda la red. Si una variable va de 0 a 1.000.000 y otra de 0 a 1, sus gradientes viven en escalas distintas y un solo `η` no le sirve a las dos. Ese es el argumento formal de por qué se normaliza el input, y ahora tienen la fórmula delante.
 
