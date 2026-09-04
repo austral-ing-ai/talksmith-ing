@@ -1,0 +1,75 @@
+<!-- talksmith-ascii-sha256: 23ed4554899eddb338d64aec0ce706bf071f8d23273c19d7538d7bf8762e9188 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 812 480" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Los modelos no leen letras</title>
+<desc>Una palabra nunca vista se pierde entera con tokenizacion por palabra, pero se reconstruye con piezas conocidas por sub-palabra.</desc>
+<defs>
+<marker id="ag" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4 L0 8 Z" fill="#8A8080"/></marker>
+<marker id="ar" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4 L0 8 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="812" height="480" fill="#ffffff"/>
+
+<rect x="24" y="24" width="372" height="190" rx="6" fill="#F9F7F7" stroke="#E0DADA" stroke-width="1.2"/>
+<rect x="416" y="24" width="372" height="190" rx="6" fill="#F9F7F7" stroke="#E0DADA" stroke-width="1.2"/>
+
+<text x="210" y="52" text-anchor="middle" font-size="13.5" font-weight="bold" letter-spacing="1" fill="#6B6363">POR PALABRA</text>
+<text x="602" y="52" text-anchor="middle" font-size="13.5" font-weight="bold" letter-spacing="1" fill="#6B6363">POR SUB-PALABRA</text>
+
+<text x="210" y="88" text-anchor="middle" font-size="15" font-family="Andale Mono, monospace">"the cat sat on the mat"</text>
+<text x="602" y="88" text-anchor="middle" font-size="15" font-family="Andale Mono, monospace">"unbelievable"</text>
+
+<line x1="210" y1="102" x2="210" y2="130" stroke="#8A8080" stroke-width="1.4" marker-end="url(#ag)"/>
+<line x1="602" y1="102" x2="602" y2="130" stroke="#8A8080" stroke-width="1.4" marker-end="url(#ag)"/>
+
+<g fill="#ffffff" stroke="#B8AFAF" stroke-width="1.2">
+<rect x="47" y="130" width="51" height="32" rx="4"/>
+<rect x="104" y="130" width="51" height="32" rx="4"/>
+<rect x="161" y="130" width="51" height="32" rx="4"/>
+<rect x="218" y="130" width="42" height="32" rx="4"/>
+<rect x="266" y="130" width="51" height="32" rx="4"/>
+<rect x="323" y="130" width="51" height="32" rx="4"/>
+<rect x="506" y="130" width="42" height="32" rx="4"/>
+<rect x="554" y="130" width="78" height="32" rx="4"/>
+<rect x="638" y="130" width="60" height="32" rx="4"/>
+</g>
+<g font-size="15" font-family="Andale Mono, monospace" text-anchor="middle">
+<text x="72.5" y="151">the</text>
+<text x="129.5" y="151">cat</text>
+<text x="186.5" y="151">sat</text>
+<text x="239" y="151">on</text>
+<text x="291.5" y="151">the</text>
+<text x="348.5" y="151">mat</text>
+<text x="527" y="151">un</text>
+<text x="593" y="151">believ</text>
+<text x="668" y="151">able</text>
+</g>
+
+<text x="210" y="187" text-anchor="middle" font-size="13.5" fill="#6B6363">6 tokens</text>
+<text x="602" y="187" text-anchor="middle" font-size="13.5" fill="#6B6363">3 tokens</text>
+
+<rect x="24" y="248" width="764" height="208" rx="6" fill="#ffffff" stroke="#C9C1C1" stroke-width="1.2"/>
+
+<text x="48" y="280" font-size="13.5" font-weight="bold" letter-spacing="0.8" fill="#6B6363">UNA PALABRA QUE EL MODELO NUNCA VIO</text>
+<rect x="48" y="292" width="201" height="34" rx="4" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
+<text x="148.5" y="315" text-anchor="middle" font-size="17" font-family="Andale Mono, monospace">descontracturante</text>
+
+<text x="48" y="371" font-size="14" fill="#8A8080">por palabra</text>
+<line x1="180" y1="366" x2="224" y2="366" stroke="#8A8080" stroke-width="1.4" marker-end="url(#ag)"/>
+<rect x="224" y="350" width="141" height="32" rx="4" fill="#F2EFEF" stroke="#C9C1C1" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="294.5" y="371" text-anchor="middle" font-size="15" font-family="Andale Mono, monospace" fill="#8A8080">&lt;desconocido&gt;</text>
+<text x="381" y="371" font-size="13" fill="#8A8080">el contenido se pierde entero</text>
+
+<rect x="36" y="396" width="3" height="44" fill="#DA1B2E"/>
+<text x="48" y="423" font-size="14" font-weight="bold" fill="#3B3535">por sub-palabra</text>
+<line x1="180" y1="418" x2="224" y2="418" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#ar)"/>
+<g fill="#FDF2F3" stroke="#DA1B2E" stroke-width="1.6">
+<rect x="224" y="402" width="51" height="32" rx="4"/>
+<rect x="281" y="402" width="96" height="32" rx="4"/>
+<rect x="383" y="402" width="78" height="32" rx="4"/>
+</g>
+<g font-size="15" font-family="Andale Mono, monospace" text-anchor="middle" fill="#DA1B2E">
+<text x="249.5" y="423">des</text>
+<text x="329" y="423">contract</text>
+<text x="422" y="423">urante</text>
+</g>
+<text x="477" y="423" font-size="13" font-weight="bold" fill="#DA1B2E">se arma con piezas ya conocidas</text>
+</svg>

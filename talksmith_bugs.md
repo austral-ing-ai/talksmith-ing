@@ -129,7 +129,13 @@
     ya existe con sello valido, para no pisar el trabajo de un dispatch previo
 
 - id: BUG-20260902-01
-  status: ABIERTO (detectado 2026-09-02, plugin 0.98.1)
+  status: RESUELTO en 0.99.0. El ajuste del panel de codigo ahora es bidireccional: mide el alto que
+    la maqueta realmente dejo (cabecera, bandas y `lead` ya descontados) y busca el tamano mas grande
+    que entra ahi, hacia arriba o hacia abajo. El techo dejo de ser el valor de la hoja y pasa a ser
+    un token nuevo, `--cb-grow` en theme.css, expresado como multiplo del tamano autorado: 1.5x para
+    un panel que ES la lamina, 1.25x para uno que acompana contenido al costado. Un deck que prefiera
+    el tamano fijo de antes lo consigue poniendolo en 1. El caso que motivo la entrada — codigo corto
+    sin `lead` ni `highlights` — ahora usa el aire en vez de dejarlo.
   date: 2026-09-02
   talk: talks/prompting
   step: 7 (render html-strict)
@@ -157,7 +163,17 @@
     `--cb-fs`) para que el autor pueda subir el tamano donde sabe que el codigo es corto.
 
 - id: BUG-20260903-01
-  status: ABIERTO (detectado 2026-09-03, plugin 0.98.1)
+  status: RESUELTO en 0.99.0. La regla de estilo dejo de prescribir una familia concreta, porque no
+    hay ninguna que exista en todas las maquinas. Ahora `rasterize.py --check` MIDE cual dibuja
+    monoespaciado de verdad en esta maquina — traza una corrida de `i` y una de `M` y compara cuanto
+    abarca cada una — y la imprime como `mono-family:` para que el ilustrador la use; si ninguna
+    resuelve, el preflight sale con codigo 2 antes de que se dibuje el primer diagrama. Ademas cada
+    rasterizacion revisa las familias que el SVG declaro y avisa por nombre cuando una esta saliendo
+    proporcional. Verificado en esta misma maquina: reproduce el fallo (DejaVu mide igual que
+    Helvetica y que un nombre inexistente, ratio 3.8) y resuelve `Andale Mono` (ratio 1.01).
+    El efecto secundario que reportaste quedo como regla propia en diagram-style.md: las corridas de
+    guiones se dibujan como barra continua en cualquier monoespaciada, asi que un conector va como
+    geometria de flecha y nunca como `-->`.
   date: 2026-09-03
   talk: talks/rag-y-mcp
   step: 6 (Polish — pase ASCII a SVG)
@@ -185,7 +201,13 @@
     que degrada todos los diagramas del deck es peor que un error.
 
 - id: BUG-20260903-02
-  status: ABIERTO (detectado 2026-09-03, plugin 0.98.1)
+  status: RESUELTO en 0.99.0. `strip_feedback.py` lleva estado de cerca. Nada entre una apertura
+    ``` o ~~~ y su cierre se toca: ni el colapso de lineas en blanco, ni la guarda de `---`, ni el
+    recorte de bordes. Tampoco se reconoce adentro ninguna etiqueta de campo, encabezado ni frontera,
+    asi que un `#` de comentario o un `## Presenter feedback` dibujado en el arte ya no desvia el
+    barrido. Tres tests nuevos cubren el caso: arte que sobrevive byte a byte, regla de guiones
+    adentro de una cerca, y cerca de tildes. Verificado contra el codigo viejo, que efectivamente
+    colapsaba las dos lineas en blanco del bloque de prueba.
   date: 2026-09-03
   talk: talks/deep-learning-y-nlp
   step: 6 (Polish — derivacion de final.md)

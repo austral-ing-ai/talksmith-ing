@@ -1,0 +1,78 @@
+<!-- talksmith-ascii-sha256: 4b817304d94831aaa65f2cae4ada3109dfa5ea14740a082e44a0bf2c73311114 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 948 366" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>La red desenrollada en el tiempo</title>
+<desc>Las cinco cajas dicen la misma W: es una sola red aplicada cinco veces, y la flecha horizontal del estado es lo unico que las conecta.</desc>
+<defs>
+<marker id="ad" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10.5" refY="4.5" orient="auto"><path d="M0,0 L10.5,4.5 L0,9 Z" fill="#3B3535"/></marker>
+<marker id="aa" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="10" refX="12.5" refY="5" orient="auto"><path d="M0,0 L12.5,5 L0,10 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="948" height="366" fill="#ffffff"/>
+
+<text x="24" y="35" font-size="15">La misma red, aplicada una vez por token. Los pesos W no cambian entre pasos.</text>
+<text x="24" y="55" font-size="15">Lo único que viaja hacia adelante es el estado h.</text>
+
+<text x="145" y="112" font-size="15" font-family="Andale Mono, monospace" text-anchor="middle">"The"</text>
+<text x="309" y="112" font-size="15" font-family="Andale Mono, monospace" text-anchor="middle">"cat"</text>
+<text x="473" y="112" font-size="15" font-family="Andale Mono, monospace" text-anchor="middle">"is"</text>
+<text x="637" y="112" font-size="15" font-family="Andale Mono, monospace" text-anchor="middle">"on"</text>
+<text x="801" y="112" font-size="15" font-family="Andale Mono, monospace" text-anchor="middle">"the"</text>
+
+<g stroke="#3B3535" stroke-width="1.6" marker-end="url(#ad)">
+<line x1="145" y1="122" x2="145" y2="155"/>
+<line x1="309" y1="122" x2="309" y2="155"/>
+<line x1="473" y1="122" x2="473" y2="155"/>
+<line x1="637" y1="122" x2="637" y2="155"/>
+<line x1="801" y1="122" x2="801" y2="155"/>
+<line x1="145" y1="211" x2="145" y2="244"/>
+<line x1="309" y1="211" x2="309" y2="244"/>
+<line x1="473" y1="211" x2="473" y2="244"/>
+<line x1="637" y1="211" x2="637" y2="244"/>
+<line x1="801" y1="211" x2="801" y2="244"/>
+</g>
+
+<g fill="#F2EFEF" stroke="#3B3535" stroke-width="1.6">
+<rect x="100" y="155" width="90" height="56" rx="4"/>
+<rect x="264" y="155" width="90" height="56" rx="4"/>
+<rect x="428" y="155" width="90" height="56" rx="4"/>
+<rect x="592" y="155" width="90" height="56" rx="4"/>
+<rect x="756" y="155" width="90" height="56" rx="4"/>
+</g>
+
+<g stroke="#DA1B2E" stroke-width="2.4" marker-end="url(#aa)">
+<line x1="46" y1="183" x2="100" y2="183"/>
+<line x1="190" y1="183" x2="264" y2="183"/>
+<line x1="354" y1="183" x2="428" y2="183"/>
+<line x1="518" y1="183" x2="592" y2="183"/>
+<line x1="682" y1="183" x2="756" y2="183"/>
+<line x1="846" y1="183" x2="900" y2="183"/>
+</g>
+
+<g font-size="17" font-family="Andale Mono, monospace" font-weight="bold" fill="#DA1B2E" text-anchor="middle">
+<text x="145" y="189">W</text>
+<text x="309" y="189">W</text>
+<text x="473" y="189">W</text>
+<text x="637" y="189">W</text>
+<text x="801" y="189">W</text>
+</g>
+
+<g font-size="14" font-family="Andale Mono, monospace" fill="#DA1B2E" text-anchor="middle">
+<text x="227" y="174">h1</text>
+<text x="391" y="174">h2</text>
+<text x="555" y="174">h3</text>
+<text x="719" y="174">h4</text>
+</g>
+<text x="24" y="188" font-size="14" font-family="Andale Mono, monospace" fill="#DA1B2E">h0</text>
+<text x="907" y="188" font-size="14" font-family="Andale Mono, monospace" fill="#DA1B2E">h5</text>
+
+<g font-size="14" text-anchor="middle">
+<text x="145" y="262">salida</text>
+<text x="309" y="262">salida</text>
+<text x="473" y="262">salida</text>
+<text x="637" y="262">salida</text>
+<text x="801" y="262">predicción</text>
+<text x="801" y="280" font-family="Andale Mono, monospace">de "_"</text>
+</g>
+
+<text x="24" y="318" font-size="14">Los pesos son los mismos cinco veces: entrenar una RNN es entrenar una sola caja W que se reúsa en cada posición.</text>
+<text x="24" y="338" font-size="14">Por eso la frase puede tener cualquier largo sin cambiar el modelo.</text>
+</svg>

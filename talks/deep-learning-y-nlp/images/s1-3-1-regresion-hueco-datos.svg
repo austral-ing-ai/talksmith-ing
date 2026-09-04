@@ -1,0 +1,47 @@
+<!-- talksmith-ascii-sha256: d5f18f265979f73cc67d902aae5e688bc3fbf2e1b9b325953a0ff12e10f6c876 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 416" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Clasificar y predecir un valor</title>
+<desc>La regresion estima un valor continuo: la recta ajustada a las casas vendidas devuelve un precio incluso en el tramo de metros cuadrados donde no hay ningun dato.</desc>
+<defs>
+<marker id="an" markerWidth="12" markerHeight="10" refX="10" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 4 L0 8 Z" fill="#3B3535"/></marker>
+<marker id="aa" markerWidth="13" markerHeight="11" refX="11" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L11 4.5 L0 9 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="600" height="416" fill="#ffffff"/>
+
+<rect x="300" y="40" width="92" height="290" fill="#FBEAEC"/>
+<text x="346" y="60" text-anchor="middle" font-family="Andale Mono, monospace" font-size="13" fill="#DA1B2E">sin datos</text>
+
+<line x1="70" y1="330" x2="70" y2="22" stroke="#3B3535" stroke-width="1.8" marker-end="url(#an)"/>
+<line x1="70" y1="330" x2="577" y2="330" stroke="#3B3535" stroke-width="1.8" marker-end="url(#an)"/>
+<text transform="rotate(-90 30 190)" x="30" y="190" text-anchor="middle">precio</text>
+<text x="574" y="352" text-anchor="end">metros cuadrados</text>
+
+<line x1="88" y1="302" x2="555" y2="95" stroke="#3B3535" stroke-width="2.4"/>
+
+<g fill="#4A4444">
+<circle cx="95" cy="306" r="3.6"/><circle cx="112" cy="280" r="3.6"/><circle cx="128" cy="293" r="3.6"/>
+<circle cx="145" cy="268" r="3.6"/><circle cx="160" cy="281" r="3.6"/><circle cx="176" cy="252" r="3.6"/>
+<circle cx="192" cy="266" r="3.6"/><circle cx="208" cy="238" r="3.6"/><circle cx="224" cy="253" r="3.6"/>
+<circle cx="240" cy="225" r="3.6"/><circle cx="256" cy="240" r="3.6"/><circle cx="272" cy="212" r="3.6"/>
+<circle cx="288" cy="226" r="3.6"/>
+<circle cx="402" cy="172" r="3.6"/><circle cx="418" cy="146" r="3.6"/><circle cx="434" cy="158" r="3.6"/>
+<circle cx="450" cy="133" r="3.6"/><circle cx="466" cy="145" r="3.6"/><circle cx="482" cy="118" r="3.6"/>
+<circle cx="498" cy="130" r="3.6"/><circle cx="514" cy="105" r="3.6"/><circle cx="530" cy="116" r="3.6"/>
+<circle cx="546" cy="92" r="3.6"/><circle cx="558" cy="103" r="3.6"/>
+</g>
+
+<circle cx="102" cy="62" r="3.6" fill="#4A4444"/>
+<text x="126" y="66" font-size="13">casas ya vendidas</text>
+<line x1="88" y1="84" x2="116" y2="84" stroke="#3B3535" stroke-width="2.4"/>
+<text x="126" y="88" font-size="13">recta ajustada</text>
+
+<line x1="400" y1="256" x2="363" y2="208" stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#aa)"/>
+<rect x="324" y="173" width="44" height="30" rx="15" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.4"/>
+<text x="346" y="194" text-anchor="middle" font-family="Andale Mono, monospace" font-size="17" fill="#DA1B2E">(?)</text>
+
+<text x="404" y="270" font-size="13" font-weight="bold" fill="#DA1B2E">acá no se vendió ninguna</text>
+<text x="404" y="287" font-size="13" font-weight="bold" fill="#DA1B2E">casa, y la recta igual</text>
+<text x="404" y="304" font-size="13" font-weight="bold" fill="#DA1B2E">devuelve un precio</text>
+
+<text x="70" y="390">La salida sale de un rango continuo: la recta contesta en todo el eje.</text>
+</svg>

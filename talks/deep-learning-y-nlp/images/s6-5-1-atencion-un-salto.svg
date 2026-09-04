@@ -1,0 +1,79 @@
+<!-- talksmith-ascii-sha256: 93a901534af68ee0e0c9bfc7a1ed40fd8816bf7272d7c294ca2521a8eb3c8e3d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 568" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Cuando "it" queda lejos</title>
+<desc>El deck original usa esta frase dos veces, primero como problema de las RNN y después como intuición de la atención.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto">
+<path d="M0,0 L8,4 L0,8 Z" fill="#8C8080"/>
+</marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="11" refX="11" refY="5.5" orient="auto">
+<path d="M0,0 L11,5.5 L0,11 Z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="660" height="568" fill="#ffffff"/>
+
+<text x="330" y="43" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16">"The animal didn't cross the street because it was too tired"</text>
+<text x="330" y="68" text-anchor="middle" font-size="13" fill="#6E6363">Para resolver "it" hay que llegar hasta "animal".</text>
+
+<text x="180" y="106" text-anchor="middle" font-size="14" font-weight="bold">CON RECURRENCIA</text>
+<text x="480" y="106" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">CON ATENCIÓN</text>
+<line x1="55" y1="116" x2="305" y2="116" stroke="#E3DCDC" stroke-width="1"/>
+<line x1="355" y1="116" x2="605" y2="116" stroke="#DA1B2E" stroke-width="1" opacity="0.45"/>
+
+<g fill="#F5F2F2" stroke="#C9C0C0" stroke-width="1.2">
+<rect x="134" y="134" width="92" height="28" rx="4"/>
+<rect x="134" y="183" width="92" height="28" rx="4"/>
+<rect x="134" y="232" width="92" height="28" rx="4"/>
+<rect x="134" y="281" width="92" height="28" rx="4"/>
+<rect x="134" y="330" width="92" height="28" rx="4"/>
+<rect x="134" y="379" width="92" height="28" rx="4"/>
+<rect x="134" y="428" width="92" height="28" rx="4"/>
+</g>
+<g text-anchor="middle" font-family="Andale Mono, monospace" font-size="14">
+<text x="180" y="153">animal</text>
+<text x="180" y="202">didn't</text>
+<text x="180" y="251">cross</text>
+<text x="180" y="300">the</text>
+<text x="180" y="349">street</text>
+<text x="180" y="398">because</text>
+<text x="180" y="447">it</text>
+</g>
+<g stroke="#8C8080" stroke-width="1.4" marker-end="url(#ah)">
+<line x1="180" y1="162" x2="180" y2="183"/>
+<line x1="180" y1="211" x2="180" y2="232"/>
+<line x1="180" y1="260" x2="180" y2="281"/>
+<line x1="180" y1="309" x2="180" y2="330"/>
+<line x1="180" y1="358" x2="180" y2="379"/>
+<line x1="180" y1="407" x2="180" y2="428"/>
+</g>
+<g font-size="10" fill="#9A9090">
+<text x="192" y="176">1</text>
+<text x="192" y="225">2</text>
+<text x="192" y="274">3</text>
+<text x="192" y="323">4</text>
+<text x="192" y="372">5</text>
+<text x="192" y="421">6</text>
+</g>
+
+<g fill="#FDF3F4" stroke="#DA1B2E" stroke-width="1.6">
+<rect x="434" y="134" width="92" height="28" rx="4"/>
+<rect x="434" y="428" width="92" height="28" rx="4"/>
+</g>
+<g text-anchor="middle" font-family="Andale Mono, monospace" font-size="14">
+<text x="480" y="153">animal</text>
+<text x="480" y="447">it</text>
+</g>
+<line x1="480" y1="162" x2="480" y2="428" stroke="#DA1B2E" stroke-width="2.6" marker-end="url(#ahr)"/>
+<line x1="480" y1="295" x2="493" y2="295" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="498" y="291" font-size="13.5" font-weight="bold" fill="#DA1B2E">un solo salto</text>
+<text x="498" y="306" font-size="11" fill="#B04A55">sin pasos intermedios</text>
+
+<g text-anchor="middle" font-size="12.5" fill="#6E6363">
+<text x="180" y="492">Seis estados intermedios y una reescritura</text>
+<text x="180" y="510">del vector en cada paso: lo que llega de</text>
+<text x="180" y="528">"animal" a "it" es lo que sobrevivió.</text>
+<text x="480" y="492">"it" consulta a "animal" directo,</text>
+<text x="480" y="510">sin importar cuántas palabras hay</text>
+<text x="480" y="528">en medio.</text>
+</g>
+</svg>

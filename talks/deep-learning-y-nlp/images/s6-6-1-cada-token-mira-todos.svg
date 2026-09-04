@@ -1,0 +1,89 @@
+<!-- talksmith-ascii-sha256: b0f941f9097998f4ca401331df1bba717da20f021818eaffef3c80fdaff1b818 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 461" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="14">
+<title>Cada token mira a todos</title>
+<desc>La atención le da a cada token un peso contra todos los demás tokens de la secuencia, y con esos pesos arma su propia lectura de la frase.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#6E6666"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#DA1B2E"/></marker>
+<marker id="ahb" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="11" refX="13" refY="5.5" orient="auto"><path d="M0,0 L13,5.5 L0,11 Z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="860" height="461" fill="#ffffff"/>
+
+<text x="430" y="51" text-anchor="middle" font-size="15.5">&#8220;it&#8221; le pregunta a cada token de la frase cu&#225;nto le importa,</text>
+<text x="430" y="71" text-anchor="middle" font-size="15.5">y arma su nueva representaci&#243;n con las respuestas.</text>
+
+<rect x="40" y="97" width="96" height="38" rx="5" fill="#F4F2F2" stroke="#CFC8C8"/>
+<rect x="154" y="97" width="96" height="38" rx="5" fill="#FCEDEF" stroke="#DA1B2E" stroke-width="1.8"/>
+<rect x="268" y="97" width="96" height="38" rx="5" fill="#F4F2F2" stroke="#CFC8C8"/>
+<rect x="382" y="97" width="96" height="38" rx="5" fill="#F4F2F2" stroke="#CFC8C8"/>
+<rect x="496" y="97" width="96" height="38" rx="5" fill="#F4F2F2" stroke="#CFC8C8"/>
+<rect x="610" y="97" width="96" height="38" rx="5" fill="#F4F2F2" stroke="#CFC8C8"/>
+<rect x="724" y="97" width="96" height="38" rx="5" fill="#F4F2F2" stroke="#CFC8C8"/>
+
+<g font-family="Andale Mono, monospace" font-size="16" text-anchor="middle">
+<text x="88" y="121">The</text>
+<text x="202" y="121" fill="#A61220">animal</text>
+<text x="316" y="121">didn't</text>
+<text x="430" y="121">cross</text>
+<text x="544" y="121">the</text>
+<text x="658" y="121">street</text>
+<text x="772" y="121">because</text>
+</g>
+
+<line x1="88" y1="137" x2="88" y2="159" stroke="#6E6666" stroke-width="1.4" marker-end="url(#ah)"/>
+<line x1="202" y1="137" x2="202" y2="159" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ahr)"/>
+<line x1="316" y1="137" x2="316" y2="159" stroke="#6E6666" stroke-width="1.4" marker-end="url(#ah)"/>
+<line x1="430" y1="137" x2="430" y2="159" stroke="#6E6666" stroke-width="1.4" marker-end="url(#ah)"/>
+<line x1="544" y1="137" x2="544" y2="159" stroke="#6E6666" stroke-width="1.4" marker-end="url(#ah)"/>
+<line x1="658" y1="137" x2="658" y2="159" stroke="#6E6666" stroke-width="1.4" marker-end="url(#ah)"/>
+<line x1="772" y1="137" x2="772" y2="159" stroke="#6E6666" stroke-width="1.4" marker-end="url(#ah)"/>
+
+<g fill="#EDE9E9">
+<rect x="46" y="165" width="84" height="11" rx="2"/>
+<rect x="160" y="165" width="84" height="11" rx="2"/>
+<rect x="274" y="165" width="84" height="11" rx="2"/>
+<rect x="388" y="165" width="84" height="11" rx="2"/>
+<rect x="502" y="165" width="84" height="11" rx="2"/>
+<rect x="616" y="165" width="84" height="11" rx="2"/>
+<rect x="730" y="165" width="84" height="11" rx="2"/>
+</g>
+<g fill="#8C8383">
+<rect x="46" y="165" width="8" height="11" rx="2"/>
+<rect x="274" y="165" width="8" height="11" rx="2"/>
+<rect x="388" y="165" width="8" height="11" rx="2"/>
+<rect x="502" y="165" width="8" height="11" rx="2"/>
+<rect x="616" y="165" width="30" height="11" rx="2"/>
+<rect x="730" y="165" width="8" height="11" rx="2"/>
+</g>
+<rect x="160" y="163" width="78" height="15" rx="2" fill="#DA1B2E"/>
+
+<g text-anchor="middle" font-size="13" fill="#6E6666">
+<text x="88" y="197">bajo</text>
+<text x="316" y="197">bajo</text>
+<text x="430" y="197">bajo</text>
+<text x="544" y="197">bajo</text>
+<text x="658" y="197">medio</text>
+<text x="772" y="197">bajo</text>
+</g>
+<text x="202" y="199" text-anchor="middle" font-size="19" font-weight="bold" fill="#DA1B2E">ALTO</text>
+
+<g fill="none" stroke="#9A9090" stroke-width="1.4">
+<path d="M88,211 C88,235 430,231 430,255"/>
+<path d="M316,211 C316,235 430,231 430,255"/>
+<path d="M430,211 L430,255"/>
+<path d="M544,211 C544,235 430,231 430,255"/>
+<path d="M658,211 C658,235 430,231 430,255"/>
+<path d="M772,211 C772,235 430,231 430,255"/>
+</g>
+<path d="M202,211 C202,235 430,231 430,255" fill="none" stroke="#DA1B2E" stroke-width="2.2"/>
+<circle cx="430" cy="255" r="4.5" fill="#3B3535"/>
+<line x1="430" y1="259" x2="430" y2="283" stroke="#3B3535" stroke-width="2.6" marker-end="url(#ahb)"/>
+
+<rect x="230" y="283" width="400" height="58" rx="7" fill="#ffffff" stroke="#3B3535" stroke-width="2"/>
+<text x="430" y="307" text-anchor="middle" font-size="16">&#8220;it&#8221; reescrito con el peso</text>
+<text x="430" y="329" text-anchor="middle" font-size="16">puesto sobre &#8220;animal&#8221;</text>
+
+<text x="430" y="379" text-anchor="middle">Los pesos son una distribuci&#243;n: suman uno y salen de comparar el vector de &#8220;it&#8221; contra el de cada token.</text>
+<text x="430" y="399" text-anchor="middle">Esa fila se calcula para cada token de la frase, y todas juntas, en una sola multiplicaci&#243;n de matrices.</text>
+<text x="430" y="421" text-anchor="middle" font-weight="bold">Ah&#237; est&#225; la paralelizaci&#243;n: no hay orden que respetar.</text>
+</svg>

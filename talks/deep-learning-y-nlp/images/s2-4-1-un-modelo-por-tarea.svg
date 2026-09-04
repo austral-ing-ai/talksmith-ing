@@ -1,0 +1,85 @@
+<!-- talksmith-ascii-sha256: cabdfaefb791651176b8015f3273ae5e42210bfb7420c94bae6a14174bc3c3ca -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 353" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Un modelo por tarea</title>
+<desc>El costo del enfoque tradicional no esta en entrenar sino en etiquetar, y no se amortiza entre tareas.</desc>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 Z" fill="#3B3535"/></marker>
+<marker id="ahr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 Z" fill="#DA1B2E"/></marker>
+<marker id="ahrs" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M10 0 L0 5 L10 10 Z" fill="#DA1B2E"/></marker>
+<marker id="ahre" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="710" height="353" fill="#ffffff"/>
+
+<line x1="237" y1="50" x2="237" y2="282" stroke="#D5CFCF" stroke-width="1" stroke-dasharray="2 5"/>
+<line x1="473" y1="50" x2="473" y2="282" stroke="#D5CFCF" stroke-width="1" stroke-dasharray="2 5"/>
+
+<text x="119" y="34" text-anchor="middle" font-size="13.5" font-weight="bold">TAREA 1 · sentimiento</text>
+<text x="355" y="34" text-anchor="middle" font-size="13.5" font-weight="bold">TAREA 2 · traducción</text>
+<text x="591" y="34" text-anchor="middle" font-size="13.5" font-weight="bold">TAREA 3 · entidades</text>
+
+<g fill="#ffffff" stroke="#B9B2B2" stroke-width="1.2">
+<rect x="24" y="52" width="190" height="44" rx="3"/>
+<rect x="260" y="52" width="190" height="44" rx="3"/>
+<rect x="496" y="52" width="190" height="44" rx="3"/>
+<rect x="24" y="232" width="190" height="44" rx="3"/>
+<rect x="260" y="232" width="190" height="44" rx="3"/>
+<rect x="496" y="232" width="190" height="44" rx="3"/>
+</g>
+
+<g fill="#FBEAEC" stroke="#DA1B2E" stroke-width="2">
+<rect x="24" y="148" width="190" height="48" rx="3"/>
+<rect x="260" y="148" width="190" height="48" rx="3"/>
+<rect x="496" y="148" width="190" height="48" rx="3"/>
+</g>
+
+<g text-anchor="middle" font-size="12.5">
+<text x="119" y="72">textos crudos</text>
+<text x="355" y="72">textos crudos</text>
+<text x="591" y="72">textos crudos</text>
+</g>
+<g text-anchor="middle" font-size="10" fill="#8A8181">
+<text x="119" y="86">sin etiquetar</text>
+<text x="355" y="86">sin etiquetar</text>
+<text x="591" y="86">sin etiquetar</text>
+<text x="119" y="270">entrenado desde cero</text>
+<text x="355" y="270">entrenado desde cero</text>
+<text x="591" y="270">entrenado desde cero</text>
+</g>
+<g text-anchor="middle" font-size="12.5">
+<text x="119" y="256">modelo propio</text>
+<text x="355" y="256">modelo propio</text>
+<text x="591" y="256">modelo propio</text>
+</g>
+
+<g text-anchor="middle" font-size="12.5" font-weight="bold" fill="#DA1B2E" font-family="Andale Mono, monospace">
+<text x="119" y="177">pos / neg</text>
+<text x="591" y="177">PER / ORG / LOC</text>
+<text x="355" y="165">pares</text>
+</g>
+<text x="337" y="185" text-anchor="end" font-size="12.5" font-weight="bold" fill="#DA1B2E" font-family="Andale Mono, monospace">es</text>
+<text x="373" y="185" font-size="12.5" font-weight="bold" fill="#DA1B2E" font-family="Andale Mono, monospace">en</text>
+<line x1="341" y1="181" x2="369" y2="181" stroke="#DA1B2E" stroke-width="1.6" marker-start="url(#ahrs)" marker-end="url(#ahre)"/>
+
+<g stroke="#DA1B2E" stroke-width="2.2" marker-end="url(#ahr)">
+<line x1="119" y1="96" x2="119" y2="148"/>
+<line x1="355" y1="96" x2="355" y2="148"/>
+<line x1="591" y1="96" x2="591" y2="148"/>
+</g>
+<g stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)">
+<line x1="119" y1="196" x2="119" y2="232"/>
+<line x1="355" y1="196" x2="355" y2="232"/>
+<line x1="591" y1="196" x2="591" y2="232"/>
+</g>
+
+<g font-size="11" fill="#DA1B2E">
+<text x="131" y="116">etiqueta</text>
+<text x="131" y="130">una persona</text>
+<text x="367" y="116">etiqueta</text>
+<text x="367" y="130">una persona</text>
+<text x="603" y="116">etiqueta</text>
+<text x="603" y="130">una persona</text>
+</g>
+
+<text x="24" y="306" font-size="12.5">Nada cruza de una columna a la otra: sumar una tarea cuesta una columna entera.</text>
+<text x="24" y="325" font-size="12.5">El tramo caro es el del medio — lo escribe una persona, una fila por vez.</text>
+</svg>

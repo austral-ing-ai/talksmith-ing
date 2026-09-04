@@ -1,0 +1,129 @@
+<!-- talksmith-ascii-sha256: 4ddbb8946dab33cf5b7d5672744f4d3b3aa7bc128998f958c4647c2d0851cf56 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 0 870 700" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Repartir la culpa hacia atrás</title>
+<desc>La misma red recorrida en los dos sentidos: la ida hasta la loss y la vuelta del error por cada una de las nueve conexiones entre dos capas.</desc>
+<defs>
+<marker id="ag" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A8080"/></marker>
+<marker id="aa" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="11" refX="11" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="60" y="0" width="870" height="700" fill="#ffffff"/>
+
+<text x="90" y="46" font-size="19" font-weight="bold">Una sola red, recorrida dos veces y en sentidos opuestos.</text>
+
+<text x="90" y="78" font-size="13" font-weight="bold" letter-spacing="2.4" fill="#8A8080">IDA</text>
+
+<g fill="#ffffff" stroke="#8A8080" stroke-width="1.6">
+<rect x="100" y="88" width="115" height="44" rx="5"/>
+<rect x="255" y="88" width="115" height="44" rx="5"/>
+<rect x="410" y="88" width="115" height="44" rx="5"/>
+<rect x="600" y="88" width="148" height="44" rx="5"/>
+</g>
+<g font-family="Andale Mono, monospace" font-size="15" text-anchor="middle">
+<text x="157" y="115">entrada</text>
+<text x="312" y="115">capa 1</text>
+<text x="467" y="115">capa 2</text>
+<text x="674" y="115">predicción</text>
+<text x="562" y="117" font-size="19" fill="#8A8080">...</text>
+</g>
+
+<g stroke="#8A8080" stroke-width="2" marker-end="url(#ag)" fill="none">
+<line x1="217" y1="110" x2="255" y2="110"/>
+<line x1="372" y1="110" x2="410" y2="110"/>
+<line x1="527" y1="110" x2="548" y2="110"/>
+<line x1="577" y1="110" x2="600" y2="110"/>
+<path d="M750,110 L840,110 Q850,110 850,120 L850,300"/>
+</g>
+
+<rect x="800" y="300" width="100" height="50" rx="5" fill="#F2EFEF" stroke="#8A8080" stroke-width="1.6"/>
+<text x="850" y="331" font-family="Andale Mono, monospace" font-size="15" text-anchor="middle">loss</text>
+
+<g stroke="#D8D3D3" stroke-width="1" stroke-dasharray="4 4">
+<line x1="372" y1="134" x2="90" y2="185"/>
+<line x1="410" y1="134" x2="760" y2="185"/>
+</g>
+
+<rect x="90" y="185" width="670" height="285" rx="10" fill="#FAF9F9" stroke="#DFDADA" stroke-width="1.4"/>
+<text x="112" y="214" font-size="12.5" letter-spacing="1.2" fill="#8A8080">LA MALLA DE CERCA, ENTRE CAPA 1 Y CAPA 2</text>
+
+<g stroke="#C9C4C4" stroke-width="1.6" fill="none">
+<line x1="172" y1="265" x2="440" y2="265"/>
+<line x1="172" y1="320" x2="440" y2="320"/>
+<line x1="172" y1="375" x2="440" y2="375"/>
+</g>
+<g stroke="#C9C4C4" stroke-width="1.6" fill="none" marker-end="url(#ag)">
+<line x1="250" y1="244" x2="250" y2="420"/>
+<line x1="335" y1="244" x2="335" y2="420"/>
+<line x1="420" y1="244" x2="420" y2="420"/>
+</g>
+
+<g fill="#ffffff" stroke="#8A8080" stroke-width="1.6">
+<circle cx="155" cy="265" r="17"/>
+<circle cx="155" cy="320" r="17"/>
+<circle cx="155" cy="375" r="17"/>
+<circle cx="250" cy="437" r="17"/>
+<circle cx="335" cy="437" r="17"/>
+<circle cx="420" cy="437" r="17"/>
+</g>
+<g font-family="Andale Mono, monospace" font-size="15" text-anchor="middle" fill="#3B3535">
+<text x="155" y="270">a</text>
+<text x="155" y="325">b</text>
+<text x="155" y="380">c</text>
+<text x="250" y="442">d</text>
+<text x="335" y="442">e</text>
+<text x="420" y="442">f</text>
+</g>
+
+<g fill="#ffffff">
+<circle cx="250" cy="265" r="11"/><circle cx="335" cy="265" r="11"/><circle cx="420" cy="265" r="11"/>
+<circle cx="250" cy="320" r="11"/><circle cx="335" cy="320" r="11"/><circle cx="420" cy="320" r="11"/>
+<circle cx="250" cy="375" r="11"/><circle cx="335" cy="375" r="11"/><circle cx="420" cy="375" r="11"/>
+</g>
+<g stroke="#DA1B2E" stroke-width="3" stroke-linecap="round">
+<line x1="243" y1="265" x2="257" y2="265"/><line x1="250" y1="258" x2="250" y2="272"/>
+<line x1="328" y1="265" x2="342" y2="265"/><line x1="335" y1="258" x2="335" y2="272"/>
+<line x1="413" y1="265" x2="427" y2="265"/><line x1="420" y1="258" x2="420" y2="272"/>
+<line x1="243" y1="320" x2="257" y2="320"/><line x1="250" y1="313" x2="250" y2="327"/>
+<line x1="328" y1="320" x2="342" y2="320"/><line x1="335" y1="313" x2="335" y2="327"/>
+<line x1="413" y1="320" x2="427" y2="320"/><line x1="420" y1="313" x2="420" y2="327"/>
+<line x1="243" y1="375" x2="257" y2="375"/><line x1="250" y1="368" x2="250" y2="382"/>
+<line x1="328" y1="375" x2="342" y2="375"/><line x1="335" y1="368" x2="335" y2="382"/>
+<line x1="413" y1="375" x2="427" y2="375"/><line x1="420" y1="368" x2="420" y2="382"/>
+</g>
+
+<text x="500" y="282" font-size="14" font-weight="bold" fill="#DA1B2E">9 conexiones entre estas dos</text>
+<g font-size="14">
+<text x="500" y="303">capas: una por cada par de</text>
+<text x="500" y="324">nodos, y el mismo patrón entre</text>
+<text x="500" y="345">las capas que siguen.</text>
+</g>
+
+<text x="90" y="526" font-size="13" font-weight="bold" letter-spacing="2.4" fill="#DA1B2E">VUELTA</text>
+
+<g fill="#ffffff" stroke="#8A8080" stroke-width="1.6">
+<rect x="100" y="536" width="115" height="44" rx="5"/>
+<rect x="255" y="536" width="115" height="44" rx="5"/>
+<rect x="410" y="536" width="115" height="44" rx="5"/>
+<rect x="600" y="536" width="148" height="44" rx="5"/>
+</g>
+<g font-family="Andale Mono, monospace" font-size="15" text-anchor="middle">
+<text x="157" y="563">entrada</text>
+<text x="312" y="563">capa 1</text>
+<text x="467" y="563">capa 2</text>
+<text x="674" y="563">predicción</text>
+<text x="562" y="565" font-size="19" fill="#8A8080">...</text>
+</g>
+
+<g stroke="#DA1B2E" stroke-width="2.6" marker-end="url(#aa)" fill="none">
+<path d="M850,350 L850,548 Q850,558 840,558 L750,558"/>
+<line x1="598" y1="558" x2="577" y2="558"/>
+<line x1="548" y1="558" x2="527" y2="558"/>
+<line x1="408" y1="558" x2="370" y2="558"/>
+<line x1="253" y1="558" x2="215" y2="558"/>
+</g>
+
+<g font-size="15">
+<text x="90" y="620">Cada + es una conexión con su propio peso, y por cada uno vuelve un pedazo del error.</text>
+<text x="90" y="643">Dos capas de 3 nodos dan 9 caminos de vuelta; entre dos capas de mil nodos hay un millón.</text>
+<text x="90" y="666">Un modelo real tiene miles de millones de parámetros.</text>
+</g>
+</svg>

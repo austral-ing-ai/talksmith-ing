@@ -529,7 +529,7 @@ labels: "the cat sat on the mat", "La ventana avanza un token por vez", "entrada
 
      mat    #################################
      bed    ############
-     piso   #####
+     floor  #####
      dog    ##
      the    #
      roof   .

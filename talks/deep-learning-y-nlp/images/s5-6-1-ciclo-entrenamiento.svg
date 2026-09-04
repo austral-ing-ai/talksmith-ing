@@ -1,0 +1,53 @@
+<!-- talksmith-ascii-sha256: 068667045ae80267e68d9156ed783850466a9472b217d173314f9b8f28ebc767 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 697 628" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Cuatro pasos que se repiten</title>
+<desc>El entrenamiento es un lazo cerrado: el dataset entra por dos puertas distintas y lo unico que da la vuelta entera son los pesos.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto">
+<path d="M0,0 L10,4.5 L0,9 Z" fill="#3B3535"/>
+</marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="11" refX="12" refY="5.5" orient="auto">
+<path d="M0,0 L12,5.5 L0,11 Z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="697" height="628" fill="#ffffff"/>
+
+<path d="M316,490 L671,490 L671,48 L171,48 L171,71.5" fill="none" stroke="#DA1B2E" stroke-width="2.8" stroke-linejoin="round" marker-end="url(#ahr)"/>
+<text x="421" y="36" text-anchor="middle" font-size="13.5" fill="#DA1B2E">Lo único que da la vuelta entera son los pesos</text>
+
+<rect x="26" y="68" width="290" height="44" rx="4" fill="#FCEFF0" stroke="#DA1B2E" stroke-width="2.2"/>
+<text x="171" y="96" text-anchor="middle" font-family="Andale Mono, monospace" font-size="15" fill="#3B3535">PESOS y SESGO</text>
+
+<rect x="26" y="168" width="290" height="44" rx="4" fill="#F4F2F1" stroke="#3B3535" stroke-width="1.6"/>
+<text x="171" y="196" text-anchor="middle" font-family="Andale Mono, monospace" font-size="15" fill="#3B3535">MODELO</text>
+
+<rect x="26" y="268" width="290" height="44" rx="4" fill="#F4F2F1" stroke="#3B3535" stroke-width="1.6"/>
+<text x="171" y="296" text-anchor="middle" font-family="Andale Mono, monospace" font-size="15" fill="#3B3535">CALCULAR LA LOSS</text>
+
+<rect x="26" y="368" width="290" height="44" rx="4" fill="#F4F2F1" stroke="#3B3535" stroke-width="1.6"/>
+<text x="171" y="396" text-anchor="middle" font-family="Andale Mono, monospace" font-size="15" fill="#3B3535">DETERMINAR LA DIRECCIÓN</text>
+
+<rect x="26" y="468" width="290" height="44" rx="4" fill="#F4F2F1" stroke="#3B3535" stroke-width="1.6"/>
+<text x="171" y="496" text-anchor="middle" font-family="Andale Mono, monospace" font-size="15" fill="#3B3535">ACTUALIZAR: UN PASO CHICO</text>
+
+<rect x="501" y="168" width="140" height="44" rx="20" fill="#E7E3E0" stroke="#3B3535" stroke-width="1.6"/>
+<text x="571" y="196" text-anchor="middle" font-family="Andale Mono, monospace" font-size="15" fill="#3B3535">DATASET</text>
+
+<line x1="171" y1="112" x2="171" y2="168" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="171" y1="212" x2="171" y2="268" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="171" y1="312" x2="171" y2="368" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="171" y1="412" x2="171" y2="468" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="181" y="245" font-size="12.5" fill="#3B3535">predicciones</text>
+
+<line x1="501" y1="190" x2="316" y2="190" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="408" y="181" text-anchor="middle" font-size="12.5" fill="#3B3535">características</text>
+
+<path d="M571,212 L571,290 L316,290" fill="none" stroke="#3B3535" stroke-width="2" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="446" y="281" text-anchor="middle" font-size="12.5" fill="#3B3535">etiquetas</text>
+
+<text x="326" y="396" font-size="12.5" fill="#7A716E">hacia dónde baja la loss</text>
+
+<text x="26" y="556" font-size="15" font-weight="bold" fill="#3B3535">Se repite hasta que la loss no pueda bajar más.</text>
+<text x="26" y="580" font-size="13" fill="#7A716E">El dataset entra por dos puertas distintas: las características</text>
+<text x="26" y="598" font-size="13" fill="#7A716E">van al modelo y las etiquetas van a la loss.</text>
+</svg>

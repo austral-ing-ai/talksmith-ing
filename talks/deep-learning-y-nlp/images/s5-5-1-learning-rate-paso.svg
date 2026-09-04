@@ -1,0 +1,63 @@
+<!-- talksmith-ascii-sha256: 572c35c11fc3ff0fd2f46ec46d6c242689a9c5f369ff114703b7b797a9e0c118 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 798 364" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>El learning rate es el paso</title>
+<desc>El diagrama es cualitativo: la misma curva de loss recorrida con un paso demasiado grande, que rebota sin bajar, y con un paso demasiado chico, que baja y se estanca antes del mínimo.</desc>
+<defs>
+<marker id="pa" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="7" refX="8.4" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 Z" fill="#3B3535"/></marker>
+<marker id="ta" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="6.4" refX="7.6" refY="3.2" orient="auto"><path d="M0,0 L8,3.2 L0,6.4 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="798" height="364" fill="#ffffff"/>
+<text x="24" y="35" font-family="Andale Mono, monospace" font-size="14" letter-spacing="0.4">PASO DEMASIADO GRANDE</text>
+<text x="423" y="35" font-family="Andale Mono, monospace" font-size="14" letter-spacing="0.4">PASO DEMASIADO CHICO</text>
+<g transform="translate(7,58)">
+<line x1="30" y1="170" x2="30" y2="8" stroke="#3B3535" stroke-width="1.4" marker-end="url(#pa)"/>
+<line x1="30" y1="170" x2="330" y2="170" stroke="#3B3535" stroke-width="1.4" marker-end="url(#pa)"/>
+<text x="30" y="-1" text-anchor="middle" font-family="Andale Mono, monospace" font-size="12.5">loss</text>
+<text x="338" y="175" font-family="Andale Mono, monospace" font-size="12.5">peso</text>
+<path d="M45,25 Q182.5,285 320,25" fill="none" stroke="#A39A94" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="182.5" y1="158" x2="182.5" y2="170" stroke="#C9C2BD" stroke-width="1.1" stroke-dasharray="2.5 2.5"/>
+<circle cx="182.5" cy="155" r="2.8" fill="#ffffff" stroke="#A39A94" stroke-width="1.4"/>
+<text x="182.5" y="185" text-anchor="middle" font-size="11.5" fill="#6E6560">mínimo</text>
+<line x1="135.94" y1="136.79" x2="254.55" y2="116.40" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ta)"/>
+<line x1="254.04" y1="115.21" x2="88.46" y2="90.16" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ta)"/>
+<line x1="88.97" y1="89.14" x2="294.53" y2="63.70" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ta)"/>
+<line x1="294.02" y1="62.86" x2="55.48" y2="38.26" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ta)"/>
+<circle cx="132.00" cy="137.46" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="258.00" cy="115.80" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="85.00" cy="89.63" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="298.00" cy="63.27" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="52.00" cy="37.90" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+</g>
+<g transform="translate(406,58)">
+<line x1="30" y1="170" x2="30" y2="8" stroke="#3B3535" stroke-width="1.4" marker-end="url(#pa)"/>
+<line x1="30" y1="170" x2="330" y2="170" stroke="#3B3535" stroke-width="1.4" marker-end="url(#pa)"/>
+<text x="30" y="-1" text-anchor="middle" font-family="Andale Mono, monospace" font-size="12.5">loss</text>
+<text x="338" y="175" font-family="Andale Mono, monospace" font-size="12.5">peso</text>
+<path d="M45,25 Q182.5,285 320,25" fill="none" stroke="#A39A94" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="182.5" y1="158" x2="182.5" y2="170" stroke="#C9C2BD" stroke-width="1.1" stroke-dasharray="2.5 2.5"/>
+<circle cx="182.5" cy="155" r="2.8" fill="#ffffff" stroke="#A39A94" stroke-width="1.4"/>
+<text x="182.5" y="185" text-anchor="middle" font-size="11.5" fill="#6E6560">mínimo</text>
+<line x1="77.38" y1="78.75" x2="91.91" y2="98.33" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ta)"/>
+<line x1="96.68" y1="104.11" x2="107.65" y2="116.26" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ta)"/>
+<line x1="112.95" y1="121.56" x2="119.42" y2="127.47" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ta)"/>
+<line x1="125.16" y1="132.29" x2="127.24" y2="133.90" stroke="#DA1B2E" stroke-width="2"/>
+<line x1="132.09" y1="137.48" x2="132.91" y2="138.05" stroke="#DA1B2E" stroke-width="2"/>
+<line x1="136.08" y1="140.17" x2="136.92" y2="140.70" stroke="#DA1B2E" stroke-width="2"/>
+<circle cx="75.00" cy="75.54" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="94.00" cy="101.15" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="110.00" cy="118.86" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="122.00" cy="129.83" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="130.00" cy="136.05" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="135.00" cy="139.49" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="138.00" cy="141.38" r="3.2" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.1"/>
+</g>
+<line x1="399" y1="26" x2="399" y2="292" stroke="#E8E3DF" stroke-width="1.2"/>
+<text x="24" y="268">Cada paso se pasa de largo y</text>
+<text x="24" y="286">la loss rebota sin bajar.</text>
+<text x="423" y="268">Cada paso corrige poco:</text>
+<text x="423" y="286">baja, y tarda demasiado.</text>
+<line x1="24" y1="300" x2="774" y2="300" stroke="#E8E3DF" stroke-width="1.2"/>
+<rect x="24" y="306" width="3" height="32" fill="#DA1B2E"/>
+<text x="38" y="318" font-size="12.5">El esquema es cualitativo: la curva no sale de ninguna medición.</text>
+<text x="38" y="336" font-size="12.5" fill="#6E6560">Ni el rebote ni el arrastre son un problema del modelo: los dos salen del mismo número mal elegido.</text>
+</svg>

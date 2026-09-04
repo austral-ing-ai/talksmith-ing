@@ -101,16 +101,17 @@ Lámina de encuadre. Lo único que hay que dejar clavado es que la última famil
 
 **La programación clásica recibe reglas y datos, y devuelve respuestas. Machine learning recibe datos y respuestas, y devuelve las reglas.**
 
-```ascii
+![La inversión entre programación clásica y machine learning: las mismas tres piezas cambian de lado](images/s1-2-1-inversion-reglas-datos.svg)
+<!-- ascii-source:
                      ENTRA               PROCESO            SALE
 
   PROGRAMACION       reglas      ---.
-  CLASICA                            +--> [ programa  ] --> respuestas
+  CLASICA                            +--&gt; [ programa  ] --&gt; respuestas
                      datos       ---'
 
 
   MACHINE            datos       ---.
-  LEARNING                           +--> [ entrenar  ] --> reglas
+  LEARNING                           +--&gt; [ entrenar  ] --&gt; reglas
                      respuestas  ---'
 
 
@@ -119,7 +120,7 @@ Lámina de encuadre. Lo único que hay que dejar clavado es que la última famil
   datos        entran en los dos
 
   Lo que en un paradigma se escribe a mano, en el otro se deduce.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que los dos paradigmas usan las mismas tres piezas y que lo que cambia es cual es entrada y cual es salida; el nombre del proceso es lo de menos
 emphasize: las tres lineas de abajo, que nombran la inversion pieza por pieza. En el cuerpo, la palabra "reglas" en las dos filas: entra en la de arriba y sale en la de abajo, y esa es toda la leccion
@@ -151,7 +152,8 @@ La figura es el argumento entero y conviene recorrerla en voz alta: fila de arri
 ![Diagrama de clasificación de imágenes: una foto de un gato entra a una caja rotulada Modelo y sale la etiqueta CAT](images/clasificacion-de-imagenes.png)
 
 <!-- ascii-render: force -->
-```ascii
+![Una recta de regresión devuelve un precio incluso en el tramo donde no se vendió ninguna casa](images/s1-3-1-regresion-hueco-datos.svg)
+<!-- ascii-source:
    precio
       ^
       |                                           .    ,-'
@@ -162,7 +164,7 @@ La figura es el argumento entero y conviene recorrerla en voz alta: fila de arri
       |         .        ,-'  (?)      .
       |      .      ,-'        ^
       |   ,-'   .              |
-      +-------------------------------------------> metros cuadrados
+      +-------------------------------------------&gt; metros cuadrados
                                |
                     aca no se vendio ninguna casa, y la recta
                     igual devuelve un precio
@@ -172,7 +174,7 @@ La figura es el argumento entero y conviene recorrerla en voz alta: fila de arri
    que se le puede pedir el precio de un metraje que nunca aparecio
    en los datos. La salida sale de un rango continuo, y por eso los
    valores posibles no se pueden enumerar.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que un modelo de regresion contesta tambien donde no hay datos, que es lo que separa una salida continua de una eleccion entre categorias; el ejemplo del metraje no vendido es el argumento
 emphasize: el signo (?) sobre la recta en el hueco sin puntos, con su llamada al pie; es lo que el listado de la lamina no dice
@@ -201,7 +203,8 @@ La clasificación queda del lado de la figura y la regresión del lado del diagr
 - **Clustering** Agrupar elementos parecidos sin categorías definidas de antemano. Pregunta: ¿qué datos se parecen entre sí? Ejemplo: agrupar los tickets de soporte que describen la misma falla, sin haber decidido antes cuáles son las fallas.
 - **Generación** Producir datos nuevos que se parezcan a los de entrenamiento sin copiarlos. Pregunta: ¿puedo crear datos que no estaban? Ejemplo: escribir texto o completar código.
 
-```ascii
+![El agrupamiento forma los grupos de tickets; los nombres los pone una persona después](images/s1-4-1-agrupar-tickets.svg)
+<!-- ascii-source:
   ANTES                            DESPUES DE AGRUPAR
 
   una pila de tickets,             tres grupos, y recien ahora
@@ -222,7 +225,7 @@ La clasificación queda del lado de la figura y la regresión del lado del diagr
   El algoritmo forma los grupos midiendo parecido entre los textos.
   No sabe que el primero es "acceso" ni el tercero "facturacion":
   los nombres los pone alguien despues, mirando el resultado.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que el agrupamiento produce los grupos y no los nombres; el algoritmo mide parecido y las etiquetas las pone una persona despues, que es lo que distingue agrupar de clasificar
 emphasize: las tres cajas de la derecha con sus tickets adentro, y la llamada que dice que el nombre llega despues y lo pone una persona
@@ -326,7 +329,8 @@ Lámina de referencia, no de lectura. Señalá una celda por columna y seguí; l
 
 **Antes de los modelos fundacionales, cada tarea de la matriz anterior necesitaba su propio conjunto de datos etiquetado y su propio modelo entrenado desde cero.**
 
-```ascii
+![Tres tareas, tres columnas aisladas, y el etiquetado humano como tramo caro del medio](images/s2-4-1-un-modelo-por-tarea.svg)
+<!-- ascii-source:
   TAREA 1  sentimiento     TAREA 2  traduccion     TAREA 3  entidades
   +------------------+   +------------------+   +------------------+
   | textos crudos    |   | textos crudos    |   | textos crudos    |
@@ -346,7 +350,7 @@ Lámina de referencia, no de lectura. Señalá una celda por columna y seguí; l
   Nada cruza de una columna a la otra. Sumar una tarea cuesta una
   columna entera, y el tramo caro es el del medio: lo escribe una
   persona, una fila por vez.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que el costo del enfoque tradicional no está en el modelo sino en la etiqueta, y que las columnas son independientes: nada de lo hecho para una tarea sirve para la siguiente
 emphasize: la fila del medio, el etiquetado humano, que es donde está el costo real; el aislamiento de las tres columnas, que nunca se tocan
@@ -377,7 +381,8 @@ El diagrama dice algo que la lista del deck original no decía: el costo no est�
 
 **El problema tiene tres entradas: un vocabulario V, un corpus de texto T y una frase incompleta P. La salida es el token más probable a continuación de P.**
 
-```ascii
+![La ventana deslizante convierte una frase cruda en cinco pares de entrada y respuesta](images/s3-1-1-ventana-deslizante.svg)
+<!-- ascii-source:
   Una frase del corpus, sin una sola etiqueta escrita a mano:
 
       the   cat   sat   on   the   mat
@@ -394,7 +399,7 @@ El diagrama dice algo que la lista del deck original no decía: el costo no est�
   Una frase de 6 tokens dio 5 ejemplos de entrenamiento, y la
   respuesta correcta de cada uno ya estaba escrita en el texto.
   Ahi esta la diferencia con la lamina anterior: nadie etiqueto.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que la supervisión del modelado de lenguaje sale del propio texto: la ventana que se corre convierte una frase cruda en varios pares entrada-respuesta sin intervención humana
 emphasize: la columna de respuestas correctas a la derecha de las flechas, que es lo que en la lámina anterior escribía una persona; el pie que cierra el contraste
@@ -419,7 +424,8 @@ labels: "the cat sat on the mat", "La ventana avanza un token por vez", "entrada
 
 **El modelo devuelve un número por cada token del vocabulario: la probabilidad de que ese token sea el siguiente. El vector tiene longitud |V|.**
 
-```ascii
+![La salida del modelo es un valor por cada token del vocabulario, no una palabra](images/s3-2-1-distribucion-vocabulario.svg)
+<!-- ascii-source:
   ENTRADA   "the cat is on the"
                      |
                      v
@@ -430,7 +436,7 @@ labels: "the cat sat on the mat", "La ventana avanza un token por vez", "entrada
 
      mat    #################################
      bed    ############
-     piso   #####
+     floor  #####
      dog    ##
      the    #
      roof   .
@@ -442,7 +448,7 @@ labels: "the cat sat on the mat", "La ventana avanza un token por vez", "entrada
   mas larga es un paso aparte, y no es el unico: muestrear entre
   las primeras es lo que hace que el mismo texto de entrada no
   devuelva siempre la misma continuacion.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que la salida es una lista completa sobre el vocabulario y no una palabra, y separar dos cosas que se confunden: producir la distribucion, que hace el modelo, y elegir un token, que es un paso posterior
 emphasize: la columna de barras entera, sobre todo las filas de abajo que casi no se ven y la linea de que los |V| valores suman 1; la barra mas larga es solo una fila de esa lista
@@ -469,7 +475,8 @@ El diagrama es el argumento entero: una frase incompleta entra, y lo que sale es
 
 **Un token es la unidad mínima que el modelo procesa: una palabra entera, un pedazo de palabra o un signo de puntuación. Tokenizar es el primer paso de cualquier tarea de NLP.**
 
-```ascii
+![Tokenización por palabra frente a sub-palabra ante una palabra nunca vista](images/s3-3-1-tokenizacion-subpalabra.svg)
+<!-- ascii-source:
   POR PALABRA                          POR SUB-PALABRA
 
   "the cat sat on the mat"             "unbelievable"
@@ -489,7 +496,7 @@ El diagrama es el argumento entero: una frase incompleta entra, y lo que sale es
 
   El vocabulario deja de tener que contener el idioma entero, y el
   mismo vocabulario sirve para varios idiomas a la vez.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que la elección de unidad no es cosmética: con palabras enteras una palabra desconocida se pierde, con sub-palabras se reconstruye desde piezas que el modelo ya tiene
 emphasize: el bloque de abajo, la palabra nunca vista, y en particular la línea de sub-palabra que la descompone en tres piezas conocidas; ése es el argumento que la parte de arriba no da
@@ -575,7 +582,8 @@ Lámina de vocabulario, corta a propósito. Las tres definiciones se usan sin pa
 - **One-hot encoding** Un vector de largo |V| con un solo uno, en la posición del token. Distingue tokens, pero todos quedan a la misma distancia entre sí.
 - **Embeddings** Vectores densos de unos cientos de dimensiones, donde los tokens de significado parecido caen cerca. Es lo que usan los modelos modernos.
 
-```ascii
+![En one-hot todas las distancias son iguales; en embeddings la distancia es la información](images/s4-1-1-one-hot-vs-embedding.svg)
+<!-- ascii-source:
   ONE-HOT                             EMBEDDING
 
   cat      [0 1 0 0 0 0 0 ... 0]      cat      [ 0.82 -0.31  0.54 ...]
@@ -590,7 +598,7 @@ Lámina de vocabulario, corta a propósito. Las tres definiciones se usan sin pa
   nada sobre el significado.          medir para comparar.
 
   |V| dimensiones, una por token      unos cientos de dimensiones
-```
+-->
 <!-- ascii-note:
 intent: mostrar por qué one-hot no alcanza y embeddings sí, comparando la misma terna de palabras en los dos espacios: en uno todas las distancias son iguales, en el otro la distancia es la información
 emphasize: las dos líneas de distancia de la columna derecha, cerca y lejos, frente a la d repetida de la izquierda; ése es todo el argumento
@@ -613,17 +621,18 @@ El diagrama es la definición de one-hot y su límite en la misma imagen. La ter
 
 **Un embedding de texto es un vector que codifica el significado de un token. Cada token del vocabulario tiene el suyo, y ese vector es lo que entra al modelo.**
 
-```ascii
+![De la palabra a su fila de números y de ahí a su punto en el espacio](images/s4-2-1-palabra-fila-punto.svg)
+<!-- ascii-source:
    LA PALABRA        SU FILA DE NUMEROS       SU LUGAR EN EL ESPACIO
 
                                                 ^ dim 2
-    "hombre"  --->   [ . . . . . . ]  --->      |     o-------->o
+    "hombre"  ---&gt;   [ . . . . . . ]  ---&gt;      |     o--------&gt;o
                                                 |   hombre    mujer
-    "mujer"   --->   [ . . . . . . ]  --->      |
-                                                |  o-------->o
-    "rey"     --->   [ . . . . . . ]  --->      | rey       reina
+    "mujer"   ---&gt;   [ . . . . . . ]  ---&gt;      |
+                                                |  o--------&gt;o
+    "rey"     ---&gt;   [ . . . . . . ]  ---&gt;      | rey       reina
                                                 |
-    "reina"   --->   [ . . . . . . ]  --->      +---------------> dim 1
+    "reina"   ---&gt;   [ . . . . . . ]  ---&gt;      +---------------&gt; dim 1
 
    Cada fila tiene tantos numeros como dimensiones tiene el espacio,
    y esos numeros son las coordenadas del punto. La fila y el punto
@@ -632,7 +641,7 @@ El diagrama es la definición de one-hot y su límite en la misma imagen. La ter
    De ahi que una relacion se pueda medir como un trecho: el que va
    de hombre a mujer y el que va de rey a reina tienen el mismo
    largo y la misma direccion.
-```
+-->
 <!-- ascii-note:
 intent: cerrar el circuito palabra -> fila de numeros -> punto, y sobre todo que la fila y el punto son lo mismo: los numeros son las coordenadas; de ahi sale que una relacion se pueda medir como un desplazamiento
 emphasize: las dos flechas del panel derecho, paralelas y del mismo largo, que muestran que la misma relacion es el mismo desplazamiento; los puntos de la fila de numeros van deliberadamente sin valores
@@ -737,7 +746,8 @@ Tres advertencias sobre el respaldo, todas del registro del corpus, y ninguna va
 
 **Un perceptrón es la neurona artificial más simple: recibe varios números, los combina con un peso cada uno, les suma un bias y pasa el resultado por una función de activación.**
 
-```ascii
+![El perceptrón con el sesgo dibujado como una cuarta entrada constante que no sale de los datos](images/s5-1-1-perceptron-con-sesgo.svg)
+<!-- ascii-source:
    ENTRADAS         PESOS         SUMA       ACTIVACION   SALIDA
                 (se aprenden)   PONDERADA
 
@@ -745,7 +755,7 @@ Tres advertencias sobre el respaldo, todas del registro del corpus, y ninguna va
                               |
     x2 o------------ w2 ------+
                               |
-    x3 o------------ w3 ------+---> ( S ) ----> ( f ) ----> y
+    x3 o------------ w3 ------+---&gt; ( S ) ----&gt; ( f ) ----&gt; y
                               |
     1  o------------ b -------+
     ^                ^
@@ -759,7 +769,7 @@ Tres advertencias sobre el respaldo, todas del registro del corpus, y ninguna va
 
   Aprender un perceptron es elegir cuatro numeros: w1, w2, w3 y b.
   Las entradas cambian con cada ejemplo; esos cuatro no cambian.
-```
+-->
 <!-- ascii-note:
 intent: mostrar el sesgo como lo que realmente es, una entrada mas que no viene de los datos y que trae su propio peso aprendido, en vez de un termino suelto que aparece en la formula sin explicacion
 emphasize: la cuarta fila de entrada, la que vale 1 fijo y lleva el peso b, y sus dos llamadas al pie; es la fila que distingue este diagrama de la formula escrita arriba
@@ -813,7 +823,8 @@ Las dos láminas del deck original se juntaron: la 19 era el texto sin figura y 
 
 **Un perceptrón necesita un vector de tamaño fijo, y una frase son varios vectores. La forma directa de resolverlo es promediarlos, y esa forma tiene un costo.**
 
-```ascii
+![Dos frases opuestas con las mismas palabras colapsan en el mismo vector al promediar](images/s5-3-1-promedio-pierde-orden.svg)
+<!-- ascii-source:
   "el cliente cancelo el pedido"    "el pedido cancelo al cliente"
       |     |       |     |             |     |       |     |
       v     v       v     v             v     v       v     v
@@ -833,7 +844,7 @@ Las dos láminas del deck original se juntaron: la 19 era el texto sin figura y 
   El promedio no las distingue, porque sumar no depende del orden.
   Para que el orden importe hace falta procesar la frase token por
   token, y ese es el tema de la seccion que sigue.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que promediar es una operación conmutativa y por lo tanto ciega al orden, usando dos frases con las mismas palabras y sentido opuesto que colapsan en el mismo punto
 emphasize: la línea "EL MISMO VECTOR" entre las dos salidas idénticas, que es donde se ve el problema; las dos frases de arriba, que son la evidencia
@@ -881,7 +892,8 @@ La figura es la analogía dibujada, así que contá la montaña señalándola. H
 
 **El learning rate decide cuánto se mueve cada peso en cada paso. Es un número que se elige antes de entrenar, y los dos extremos fallan de maneras distintas.**
 
-```ascii
+![Paso demasiado grande y paso demasiado chico sobre la misma curva de loss](images/s5-5-1-learning-rate-paso.svg)
+<!-- ascii-source:
   PASO DEMASIADO GRANDE                PASO DEMASIADO CHICO
 
    loss                                 loss
@@ -892,7 +904,7 @@ La figura es la analogía dibujada, así que contá la montaña señalándola. H
     |     \   /   \  / \ /               |     \  ooo        /
     |      \ /     \/   o                |      \____ooooo__/
     |       o                            |
-    +---------------------> peso         +--------------------> peso
+    +---------------------&gt; peso         +--------------------&gt; peso
 
    Cada paso se pasa de largo y          Cada paso corrige poco.
    la loss rebota sin bajar.             Baja, y tarda demasiado.
@@ -900,7 +912,7 @@ La figura es la analogía dibujada, así que contá la montaña señalándola. H
   El esquema es cualitativo: la curva no sale de ninguna medicion.
   Ni el rebote ni el arrastre son un problema del modelo. Los dos
   salen del mismo numero mal elegido.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que los dos modos de falla del entrenamiento vienen del mismo parámetro, contraponiendo la trayectoria que rebota con la que se arrastra sobre la misma curva de loss
 emphasize: la trayectoria de la izquierda, que rebota de pared a pared sin bajar, frente a la de la derecha, que baja y se estanca; el pie que dice que la curva es cualitativa
@@ -923,7 +935,8 @@ El diagrama es cualitativo y está declarado como tal dentro del propio dibujo, 
 
 **El entrenamiento es un bucle de cuatro pasos que corre hasta que la loss deja de bajar.**
 
-```ascii
+![El lazo cerrado del entrenamiento y las dos puertas por las que entra el dataset](images/s5-6-1-ciclo-entrenamiento.svg)
+<!-- ascii-source:
         .-------------------------------------------------.
         |                                                 |
         v                                                 |
@@ -949,7 +962,7 @@ El diagrama es cualitativo y está declarado como tal dentro del propio dibujo, 
   El dataset entra por dos puertas distintas: las caracteristicas
   van al modelo y las etiquetas van a la loss. Lo unico que da la
   vuelta entera y vuelve a empezar son los pesos.
-```
+-->
 <!-- ascii-note:
 intent: mostrar el entrenamiento como un lazo cerrado y, sobre todo, que el dataset entra por dos puertas distintas (caracteristicas al modelo, etiquetas a la loss); la lista de al lado nombra los cuatro pasos pero no dice que circula
 emphasize: la flecha de retorno que va del ultimo paso a la caja de pesos y sesgo y cierra el lazo; las dos entradas separadas del dataset
@@ -978,10 +991,11 @@ El diagrama y la lista dicen los cuatro pasos, así que conviene usar uno de los
 
 **En una red de muchas capas, la retropropagación es lo que decide cuánto ajustar cada peso: propaga el error desde la salida hacia atrás y le asigna a cada peso una parte proporcional a su contribución.**
 
-```ascii
+![Ida y vuelta sobre la misma red, con la malla de nueve conexiones ampliada en el medio](images/s5-7-1-retropropagacion-malla.svg)
+<!-- ascii-source:
   Una sola red, recorrida dos veces y en sentidos opuestos.
 
-  IDA     entrada --> [ capa 1 ]==[ capa 2 ] --> ... --> prediccion
+  IDA     entrada --&gt; [ capa 1 ]==[ capa 2 ] --&gt; ... --&gt; prediccion
                                                               |
                                                               v
                                                             loss
@@ -1002,7 +1016,7 @@ El diagrama y la lista dicen los cuatro pasos, así que conviene usar uno de los
   pedazo del error. Ahi esta la escala del problema: entre dos capas
   de 3 nodos hay 9 caminos de vuelta, y entre dos capas de mil nodos
   hay un millon. Un modelo real tiene miles de millones.
-```
+-->
 <!-- ascii-note:
 intent: mostrar los dos sentidos de circulacion en las bandas de arriba y de abajo, y ampliar una sola vez la malla entre dos capas para que se vea que el error vuelve por cada conexion y no por cada capa; de ahi sale que entrenar sea un problema de escala
 emphasize: la banda de VUELTA con sus flechas dobles de derecha a izquierda, que es el sentido que la lamina explica; los nueve simbolos + de la malla ampliada, que se pueden contar uno por uno
@@ -1037,7 +1051,8 @@ Las dos láminas del deck original se juntaron: la 23 era el texto y la 24 una f
 
 **Una red común procesa cada entrada de forma independiente: dado el mismo vector, produce siempre la misma salida. Una red recurrente recibe además el estado que dejó el paso anterior, y con eso arrastra lo que ya procesó.**
 
-```ascii
+![La red recurrente recibe en el paso 2 la palabra y el estado h1; la directa solo la palabra](images/s6-1-1-directa-vs-recurrente.svg)
+<!-- ascii-source:
   RED DIRECTA                          RED RECURRENTE
 
   paso 1  "The"                        paso 1  "The"
@@ -1065,7 +1080,7 @@ Las dos láminas del deck original se juntaron: la 23 era el texto y la 24 una f
   palabra. La salida de "cat"         la palabra Y el estado h1. La
   es la misma aparezca donde          salida de "cat" cambia segun
   aparezca en la frase.               que palabra vino antes.
-```
+-->
 <!-- ascii-note:
 intent: mostrar la diferencia entre las dos arquitecturas por lo que entra en cada paso, no por la forma del dibujo: a la derecha el paso 2 recibe dos entradas y a la izquierda una sola, y de ahi sale que una tenga memoria y la otra no
 emphasize: la conexion que baja desde la salida del paso 1 hasta la entrada del paso 2 en la columna derecha, rotulada h1, y la caja mas ancha del paso 2 que la recibe; es la unica diferencia entre las dos columnas
@@ -1093,7 +1108,8 @@ Recorré las dos columnas en paralelo, paso por paso, y detenete en el paso 2: a
 
 **Desenrollar la red es dibujar una copia por cada token de la frase. Las copias comparten los mismos pesos, y lo único que viaja de una a la otra es el estado.**
 
-```ascii
+![La misma caja de pesos W reusada cinco veces, con el estado h como único canal entre pasos](images/s6-2-1-red-desenrollada.svg)
+<!-- ascii-source:
   La misma red, aplicada una vez por token. Los pesos W no cambian
   entre pasos. Lo unico que viaja hacia adelante es el estado h.
 
@@ -1101,7 +1117,7 @@ Recorré las dos columnas en paralelo, paso por paso, y detenete en el paso 2: a
         |            |            |            |            |
         v            v            v            v            v
      +-----+  h1  +-----+  h2  +-----+  h3  +-----+  h4  +-----+
-  h0-|  W  |----->|  W  |----->|  W  |----->|  W  |----->|  W  |--> h5
+  h0-|  W  |-----&gt;|  W  |-----&gt;|  W  |-----&gt;|  W  |-----&gt;|  W  |--&gt; h5
      +-----+      +-----+      +-----+      +-----+      +-----+
         |            |            |            |            |
         v            v            v            v            v
@@ -1111,7 +1127,7 @@ Recorré las dos columnas en paralelo, paso por paso, y detenete en el paso 2: a
   Los pesos son los mismos cinco veces: entrenar una RNN es
   entrenar una sola caja W que se reusa en cada posicion. Por eso
   la frase puede tener cualquier largo sin cambiar el modelo.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que la recurrencia es una sola red reusada, no una red por posición: los pesos W se repiten idénticos y el estado h es el único canal entre pasos; de ahí sale que la frase pueda tener cualquier largo
 emphasize: la cadena horizontal de estados h0 a h5, que es lo único que se mueve entre cajas; la repetición de la etiqueta W idéntica en las cinco cajas
@@ -1137,7 +1153,8 @@ Lámina nueva, y de las que más falta hacían: el deck original describía la r
 
 **El estado tiene un tamaño fijo y no crece con la frase. Cuanto más larga la entrada, más comprimido queda cada token, y el primero que entró es el primero que se diluye.**
 
-```ascii
+![El mismo vector de tamaño fijo tiene que contener tres palabras o diez](images/s6-3-1-cuello-botella-estado.svg)
+<!-- ascii-source:
   UNA FRASE CORTA                   UNA FRASE LARGA
 
   el pago fallo                     el pago de marzo fallo por un
@@ -1156,7 +1173,7 @@ Lámina nueva, y de las que más falta hacían: el deck original describía la r
   1 cuando llega al token 10 tuvo que sobrevivir nueve reescrituras
   del mismo vector. Esa compresion es el cuello de botella, y es
   independiente de que la red este bien o mal entrenada.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que el cuello de botella no es un defecto de entrenamiento sino una propiedad de la arquitectura: el mismo recipiente de tamaño fijo tiene que contener tres palabras o diez, y la compresión crece con el largo
 emphasize: las dos cajas de estado, idénticas en tamaño bajo entradas de largo muy distinto; el pie que explica que la compresión es estructural
@@ -1206,7 +1223,8 @@ Tres advertencias del registro del corpus, y ninguna cambia lo que dice la lámi
 
 **En `"The animal didn't cross the street because it was too tired"`, resolver a qué se refiere `it` obliga a llegar hasta `animal`. Con recurrencia esa información recorre seis estados intermedios; con atención, uno solo.**
 
-```ascii
+![Seis estados intermedios con recurrencia frente a un solo salto con atención](images/s6-5-1-atencion-un-salto.svg)
+<!-- ascii-source:
   "The animal didn't cross the street because it was too tired"
    Para resolver "it" hay que llegar hasta "animal".
 
@@ -1236,7 +1254,7 @@ Tres advertencias del registro del corpus, y ninguna cambia lo que dice la lámi
   reescritura del vector en cada             "animal" directo,
   paso. Lo de "animal" que llega             sin importar cuantas
   a "it" es lo que sobrevivio.               palabras hay en medio.
-```
+-->
 <!-- ascii-note:
 intent: comparar los dos recorridos posibles entre las mismas dos palabras de la misma frase, alineados en altura para que la diferencia se lea como distancia recorrida
 emphasize: la columna derecha, la línea única y continua de "animal" a "it" con la etiqueta "un solo salto"; ése es el mecanismo que la sección viene a presentar
@@ -1260,7 +1278,8 @@ El deck original usa esta frase dos veces, primero como problema de las RNN y de
 
 **La atención le da a cada token un peso contra todos los demás tokens de la secuencia, y con esos pesos arma su propia lectura de la frase.**
 
-```ascii
+![El token it consulta a toda la frase y reescribe su representación con el peso sobre animal](images/s6-6-1-cada-token-mira-todos.svg)
+<!-- ascii-source:
   "it" le pregunta a cada token de la frase cuanto le importa, y
   arma su nueva representacion con las respuestas.
 
@@ -1280,7 +1299,7 @@ El deck original usa esta frase dos veces, primero como problema de las RNN y de
   vector de "it" contra el de cada token. Esa fila se calcula para
   cada token de la frase, y todas juntas, en una multiplicacion de
   matrices. Ahi esta la paralelizacion: no hay orden que respetar.
-```
+-->
 <!-- ascii-note:
 intent: mostrar la atención como una distribución de pesos que un token calcula contra la frase entera, y de ahí derivar la paralelización: si no hay dependencia secuencial, todas las filas se calculan a la vez
 emphasize: la etiqueta ALTO sobre "animal", que es el peso que resuelve el pronombre y lo que hay que mirar; la convergencia de las siete ramas en la nueva representación
@@ -1381,7 +1400,8 @@ Lámina de repaso, y la única que conviene leer entera, porque cada fila es una
 
 **Cada palabra que aparece en pantalla es una vuelta entera de este ciclo. El modelo escribe un token, se vuelve a leer completo y escribe el siguiente.**
 
-```ascii
+![El ciclo de generación de un LLM, que se realimenta con su propio token de salida](images/s7-3-1-ciclo-llm-token.svg)
+<!-- ascii-source:
   texto de entrada:  "¿Como estas?"
         |
         v
@@ -1400,14 +1420,14 @@ Lámina de repaso, y la única que conviene leer entera, porque cada fila es una
    [ ELEGIR ]       se toma uno; la temperatura decide cuanto se
         |           aparta del mas probable
         v
-     "Bien"  ---> se agrega al final del texto y vuelve a empezar
+     "Bien"  ---&gt; se agrega al final del texto y vuelve a empezar
         |                                                       |
         +-------------------------------------------------------+
 
   El modelo no escribe una respuesta de una: escribe un token, se
   relee entero con ese token adentro, y vuelve a decidir. Lo que
   se ve como una frase que aparece de a poco son N vueltas.
-```
+-->
 <!-- ascii-note:
 intent: mostrar que la generación es un bucle que se realimenta con su propia salida, y que el costo de una respuesta es lineal en la cantidad de tokens que produce
 emphasize: la flecha de retorno desde el token producido hasta el comienzo del ciclo, que es lo que convierte cinco cajas en un bucle; el paso de la distribución sobre el vocabulario

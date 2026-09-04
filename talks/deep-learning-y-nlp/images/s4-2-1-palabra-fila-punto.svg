@@ -1,0 +1,85 @@
+<!-- talksmith-ascii-sha256: 5ccbd1a19ace6564e2a759dd797266f0e4a5dc70f9f1fbdfe960ce4f303ec3da -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 376" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>De token a vector</title>
+<desc>La fila de numeros y el punto en el espacio son la misma cosa: los numeros son las coordenadas.</desc>
+<defs>
+<marker id="ag" viewBox="0 0 10 8" refX="9.5" refY="4" markerWidth="10" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#8A8080"/></marker>
+<marker id="ax" viewBox="0 0 9 7" refX="8.5" refY="3.5" markerWidth="9" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,3.5 L0,7 Z" fill="#3B3535"/></marker>
+<marker id="ar" viewBox="0 0 12 9" refX="11.5" refY="4.5" markerWidth="12" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,4.5 L0,9 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="940" height="376" fill="#ffffff"/>
+
+<text x="100" y="34" text-anchor="middle" font-size="14" font-weight="bold" letter-spacing="0.6">LA PALABRA</text>
+<text x="330" y="34" text-anchor="middle" font-size="14" font-weight="bold" letter-spacing="0.6">SU FILA DE NÚMEROS</text>
+<text x="700" y="34" text-anchor="middle" font-size="14" font-weight="bold" letter-spacing="0.6">SU LUGAR EN EL ESPACIO</text>
+
+<rect x="24" y="56" width="152" height="260" rx="8" fill="#F7F5F5" stroke="#E3DEDE"/>
+<rect x="224" y="56" width="212" height="260" rx="8" fill="#F7F5F5" stroke="#E3DEDE"/>
+<rect x="484" y="56" width="432" height="260" rx="8" fill="#F7F5F5" stroke="#E3DEDE"/>
+
+<g font-family="Andale Mono, monospace" font-size="14" text-anchor="middle">
+<rect x="44" y="76" width="112" height="32" rx="6" fill="#ffffff" stroke="#C9C0C0"/>
+<text x="100" y="97">hombre</text>
+<rect x="44" y="136" width="112" height="32" rx="6" fill="#ffffff" stroke="#C9C0C0"/>
+<text x="100" y="157">mujer</text>
+<rect x="44" y="196" width="112" height="32" rx="6" fill="#ffffff" stroke="#C9C0C0"/>
+<text x="100" y="217">rey</text>
+<rect x="44" y="256" width="112" height="32" rx="6" fill="#ffffff" stroke="#C9C0C0"/>
+<text x="100" y="277">reina</text>
+</g>
+
+<g fill="none" stroke="#8A8080" stroke-width="1.6" marker-end="url(#ag)">
+<line x1="180" y1="92" x2="224" y2="92"/>
+<line x1="180" y1="152" x2="224" y2="152"/>
+<line x1="180" y1="212" x2="224" y2="212"/>
+<line x1="180" y1="272" x2="224" y2="272"/>
+<line x1="440" y1="92" x2="484" y2="92"/>
+<line x1="440" y1="152" x2="484" y2="152"/>
+<line x1="440" y1="212" x2="484" y2="212"/>
+<line x1="440" y1="272" x2="484" y2="272"/>
+</g>
+
+<g fill="none" stroke="#6E6565" stroke-width="1.8" stroke-linecap="butt">
+<path d="M258,78 L252,78 L252,106 L258,106"/><path d="M402,78 L408,78 L408,106 L402,106"/>
+<path d="M258,138 L252,138 L252,166 L258,166"/><path d="M402,138 L408,138 L408,166 L402,166"/>
+<path d="M258,198 L252,198 L252,226 L258,226"/><path d="M402,198 L408,198 L408,226 L402,226"/>
+<path d="M258,258 L252,258 L252,286 L258,286"/><path d="M402,258 L408,258 L408,286 L402,286"/>
+</g>
+<g fill="#8A8080">
+<circle cx="270" cy="92" r="2.8"/><circle cx="294" cy="92" r="2.8"/><circle cx="318" cy="92" r="2.8"/><circle cx="342" cy="92" r="2.8"/><circle cx="366" cy="92" r="2.8"/><circle cx="390" cy="92" r="2.8"/>
+<circle cx="270" cy="152" r="2.8"/><circle cx="294" cy="152" r="2.8"/><circle cx="318" cy="152" r="2.8"/><circle cx="342" cy="152" r="2.8"/><circle cx="366" cy="152" r="2.8"/><circle cx="390" cy="152" r="2.8"/>
+<circle cx="270" cy="212" r="2.8"/><circle cx="294" cy="212" r="2.8"/><circle cx="318" cy="212" r="2.8"/><circle cx="342" cy="212" r="2.8"/><circle cx="366" cy="212" r="2.8"/><circle cx="390" cy="212" r="2.8"/>
+<circle cx="270" cy="272" r="2.8"/><circle cx="294" cy="272" r="2.8"/><circle cx="318" cy="272" r="2.8"/><circle cx="342" cy="272" r="2.8"/><circle cx="366" cy="272" r="2.8"/><circle cx="390" cy="272" r="2.8"/>
+</g>
+
+<g fill="none" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ax)">
+<line x1="520" y1="288" x2="884" y2="288"/>
+<line x1="520" y1="288" x2="520" y2="78"/>
+</g>
+<text x="530" y="86" font-size="12" fill="#6E6565">dim 2</text>
+<text x="878" y="306" text-anchor="end" font-size="12" fill="#6E6565">dim 1</text>
+
+<g stroke="#CFC8C8" stroke-width="1" stroke-dasharray="3 3">
+<line x1="632" y1="197" x2="632" y2="245"/>
+<line x1="778" y1="159" x2="778" y2="207"/>
+</g>
+
+<g fill="none" stroke="#DA1B2E" stroke-width="2.6" marker-end="url(#ar)">
+<line x1="639.7" y1="188.0" x2="772.2" y2="153.5"/>
+<line x1="639.7" y1="250.0" x2="772.2" y2="215.5"/>
+</g>
+
+<g fill="#3B3535">
+<circle cx="632" cy="190" r="4.5"/><circle cx="778" cy="152" r="4.5"/>
+<circle cx="632" cy="252" r="4.5"/><circle cx="778" cy="214" r="4.5"/>
+</g>
+<g font-family="Andale Mono, monospace" font-size="13">
+<text x="622" y="194" text-anchor="end">hombre</text>
+<text x="788" y="156">mujer</text>
+<text x="622" y="256" text-anchor="end">rey</text>
+<text x="788" y="218">reina</text>
+</g>
+
+<text x="330" y="349" text-anchor="middle" font-size="13">esos números son las coordenadas del punto</text>
+<text x="700" y="349" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">el mismo largo y la misma dirección</text>
+</svg>

@@ -1,0 +1,91 @@
+<!-- talksmith-ascii-sha256: e37585e2bbab7d25e8cb28f83d581a2901455af8662cc29dd0e779d33f2d2311 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 888 434" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3B3535">
+<title>Tres formas de volver texto en números</title>
+<desc>One-hot deja las tres palabras a la misma distancia; en el espacio de embeddings la distancia es la información.</desc>
+<rect x="0" y="0" width="888" height="434" fill="#ffffff"/>
+
+<rect x="24" y="24" width="400" height="386" rx="8" fill="#FBFAFA" stroke="#DCD8D6" stroke-width="1"/>
+<rect x="464" y="24" width="400" height="386" rx="8" fill="#FBFAFA" stroke="#DCD8D6" stroke-width="1"/>
+
+<text x="44" y="56" font-size="18" font-weight="bold" letter-spacing="1.6">ONE-HOT</text>
+<text x="484" y="56" font-size="18" font-weight="bold" letter-spacing="1.6">EMBEDDING</text>
+
+<line x1="44" y1="72" x2="404" y2="72" stroke="#E5E1DF" stroke-width="1"/>
+<line x1="484" y1="72" x2="844" y2="72" stroke="#E5E1DF" stroke-width="1"/>
+
+<g font-family="Andale Mono, monospace" font-size="13.5">
+<text x="44" y="102">cat</text>
+<text x="44" y="132">dog</text>
+<text x="44" y="162">heladera</text>
+<text x="484" y="102">cat</text>
+<text x="484" y="132">dog</text>
+<text x="484" y="162">heladera</text>
+</g>
+
+<g fill="none" stroke="#8C8580" stroke-width="1.4" stroke-linecap="square">
+<path d="M130 88 L124 88 L124 107 L130 107"/><path d="M284 88 L290 88 L290 107 L284 107"/>
+<path d="M130 118 L124 118 L124 137 L130 137"/><path d="M284 118 L290 118 L290 137 L284 137"/>
+<path d="M130 148 L124 148 L124 167 L130 167"/><path d="M284 148 L290 148 L290 167 L284 167"/>
+<path d="M570 88 L564 88 L564 107 L570 107"/><path d="M740 88 L746 88 L746 107 L740 107"/>
+<path d="M570 118 L564 118 L564 137 L570 137"/><path d="M740 118 L746 118 L746 137 L740 137"/>
+<path d="M570 148 L564 148 L564 167 L570 167"/><path d="M740 148 L746 148 L746 167 L740 167"/>
+</g>
+
+<g font-family="Andale Mono, monospace" font-size="13" xml:space="preserve">
+<text x="132" y="102">0 1 0 0 0 0 0 ... 0</text>
+<text x="132" y="132">0 0 1 0 0 0 0 ... 0</text>
+<text x="132" y="162">0 0 0 0 0 1 0 ... 0</text>
+<text x="572" y="102"> 0.82 -0.31  0.54 ...</text>
+<text x="572" y="132"> 0.79 -0.28  0.51 ...</text>
+<text x="572" y="162">-0.12  0.65 -0.33 ...</text>
+</g>
+
+<line x1="44" y1="182" x2="404" y2="182" stroke="#E5E1DF" stroke-width="1"/>
+<line x1="484" y1="182" x2="844" y2="182" stroke="#E5E1DF" stroke-width="1"/>
+
+<g stroke="#8C8580" stroke-width="1.6" stroke-linecap="butt">
+<line x1="74" y1="220" x2="264" y2="220"/>
+<line x1="74" y1="212" x2="74" y2="228"/><line x1="264" y1="212" x2="264" y2="228"/>
+<line x1="74" y1="276" x2="264" y2="276"/>
+<line x1="74" y1="268" x2="74" y2="284"/><line x1="264" y1="268" x2="264" y2="284"/>
+</g>
+<g stroke="#DA1B2E" stroke-width="2.4" stroke-linecap="butt">
+<line x1="514" y1="220" x2="584" y2="220"/>
+<line x1="514" y1="211" x2="514" y2="229"/><line x1="584" y1="211" x2="584" y2="229"/>
+<line x1="514" y1="276" x2="764" y2="276"/>
+<line x1="514" y1="267" x2="514" y2="285"/><line x1="764" y1="267" x2="764" y2="285"/>
+</g>
+
+<g text-anchor="middle">
+<text x="169" y="208">distancia d</text>
+<text x="169" y="264">distancia d</text>
+</g>
+<g text-anchor="middle" font-size="13.5" font-weight="bold" fill="#DA1B2E">
+<text x="549" y="208">cerca</text>
+<text x="639" y="264">lejos</text>
+</g>
+
+<g text-anchor="middle" font-family="Andale Mono, monospace">
+<text x="74" y="240">cat</text><text x="264" y="240">dog</text>
+<text x="74" y="296">cat</text><text x="264" y="296">heladera</text>
+<text x="514" y="240">cat</text><text x="584" y="240">dog</text>
+<text x="514" y="296">cat</text><text x="764" y="296">heladera</text>
+</g>
+
+<line x1="44" y1="314" x2="404" y2="314" stroke="#E5E1DF" stroke-width="1"/>
+<line x1="484" y1="314" x2="844" y2="314" stroke="#E5E1DF" stroke-width="1"/>
+
+<g font-size="12.5">
+<text x="44" y="336">Todos los pares están a la misma distancia:</text>
+<text x="44" y="354">el espacio no guarda nada sobre el significado.</text>
+<text x="484" y="336">La distancia dice algo, y es lo único que hay</text>
+<text x="484" y="354">que medir para comparar.</text>
+</g>
+
+<rect x="44" y="368" width="192" height="26" rx="13" fill="#F0EEED"/>
+<rect x="484" y="368" width="182" height="26" rx="13" fill="#F0EEED"/>
+<g text-anchor="middle">
+<text x="140" y="385">|V| dimensiones, una por token</text>
+<text x="575" y="385">unos cientos de dimensiones</text>
+</g>
+</svg>
