@@ -1460,7 +1460,7 @@ labels: "PASO DEMASIADO GRANDE", "PASO DEMASIADO CHICO", "loss", "peso", "la los
 
 knowledge-library/backpropagation/index.md (aportado por la Talk intro-redes-neuronales) — imagen `s36`, el paso de actualización y el rol de la tasa de aprendizaje
 
-Diagrama propio, traído de la Talk deep-learning-y-nlp (lámina 5.5 "El learning rate es el paso", retirada de allá el 2026-09-04 por duplicar esta sección) — las dos trayectorias de falla sobre la misma curva de loss.
+Diagrama propio, traído de la Talk palabra-al-transformer (lámina 5.5 "El learning rate es el paso", retirada de allá el 2026-09-04 por duplicar esta sección) — las dos trayectorias de falla sobre la misma curva de loss.
 
 ### Speaker notes
 

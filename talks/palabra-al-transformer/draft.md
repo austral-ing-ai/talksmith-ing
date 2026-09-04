@@ -1,6 +1,6 @@
 ---
 presentation: Inteligencia Artificial Generativa (AI Gen)
-class: "Deep learning y NLP: de la palabra al transformer"
+class: "De la palabra al transformer"
 research: research/corpus/
 description: Slides are grouped into Sections. Each Section contains one or more Slides.
 presenter: Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)
@@ -30,13 +30,12 @@ La clase arranca por arriba, con las familias de problemas que la IA resuelve, y
 
 **Sections (in delivery order):**
 
-- 1. Problemas clásicos de ML
-- 2. Motivación de NLP
+- 1. Familias de problemas
+- 2. Por qué procesar texto
 - 3. Modelado de lenguaje
 - 4. Embeddings
-- 5. Redes neuronales
-- 6. De las RNN a la atención
-- 7. Transformers y LLM
+- 5. De las RNN a la atención
+- 6. Transformers y LLM
 
 <!-- Agenda tal como figuraba en el deck original (registro histórico, no se entrega así). -->
 <!-- **Objetivo: Entender cómo se puede generar texto automáticamente.** -->
@@ -67,13 +66,13 @@ La clase arranca por arriba, con las familias de problemas que la IA resuelve, y
 
 ---
 
-## 1. Deep learning y NLP
+## 1. De la palabra al transformer
 
 ### Content
 
 **Inteligencia Artificial Generativa (AI Gen) · Clase 8**
 
-- **De la palabra al transformer**
+- **Cómo un modelo aprende a predecir la palabra que sigue**
 - **Paulo Veiga, Claudio Righetti y Marco Sorondo (Universidad Austral)**
 - **Última modificación: septiembre 2026**
 
@@ -90,7 +89,7 @@ Portada. Presentate y presentá a los otros dos docentes.
 
 ---
 
-# 1. Problemas clásicos de ML
+# 1. Familias de problemas
 
 **Goal of this section:** Ubicar el modelado de lenguaje dentro del mapa completo de problemas que resuelve la IA, y dejar clara la inversión que define a machine learning.
 
@@ -318,7 +317,7 @@ El clustering es el que más cuesta, porque la pregunta "¿qué datos se parecen
 
 ---
 
-# 2. Motivación de NLP
+# 2. Por qué procesar texto
 
 **Goal of this section:** Mostrar que toda tarea de texto cae en las mismas familias ya vistas, y qué costaba resolverlas antes de que un solo modelo sirviera para todas.
 
@@ -891,9 +890,9 @@ Tres advertencias sobre el respaldo, todas del registro del corpus, y ninguna va
 
 ---
 
-# 5. Redes neuronales
+# 5. De las RNN a la atención
 
-**Goal of this section:** Construir la red desde su unidad mínima y mostrar qué se gana al apilar capas, hasta llegar al problema que una red común no resuelve con texto.
+**Goal of this section:** Mostrar por qué procesar una frase token por token resuelve el orden y se rompe con la distancia, y qué hace la atención distinto.
 
 **Presenter feedback:**
 
@@ -979,16 +978,7 @@ Lámina bisagra: cierra las redes neuronales y plantea el problema que resuelve 
 
 ---
 
-# 6. De las RNN a la atención
-
-**Goal of this section:** Mostrar por qué procesar una frase token por token resuelve el orden y se rompe con la distancia, y qué hace la atención distinto.
-
-**Presenter feedback:**
-
-
----
-
-## 1. Una red sin memoria
+## 3. Una red sin memoria
 
 <!-- slide 26 del pptx original -->
 
@@ -1052,7 +1042,7 @@ Recorré las dos columnas en paralelo, paso por paso, y detenete en el paso 2: a
 
 ---
 
-## 2. La red desenrollada en el tiempo
+## 4. La red desenrollada en el tiempo
 
 ### Content
 
@@ -1099,7 +1089,7 @@ Lámina nueva, y de las que más falta hacían: el deck original describía la r
 
 ---
 
-## 3. Todo el pasado en un vector
+## 5. Todo el pasado en un vector
 
 ### Content
 
@@ -1147,7 +1137,7 @@ Lámina nueva. El dato que le da peso es que el vector de longitud fija está de
 
 ---
 
-## 4. LSTM, GRU y ELMo
+## 6. LSTM, GRU y ELMo
 
 <!-- slide 25 del pptx original -->
 
@@ -1178,7 +1168,7 @@ Tres advertencias del registro del corpus, y ninguna cambia lo que dice la lámi
 
 ---
 
-## 5. Cuando "it" queda lejos
+## 7. Cuando "it" queda lejos
 
 <!-- slide 25 del pptx original -->
 
@@ -1237,7 +1227,7 @@ El deck original usa esta frase dos veces, primero como problema de las RNN y de
 
 ---
 
-## 6. Cada token mira a todos
+## 8. Cada token mira a todos
 
 <!-- slide 27 del pptx original -->
 
@@ -1287,7 +1277,7 @@ labels: "The / animal / didn't / cross / the / street / because", "bajo", "ALTO"
 
 ---
 
-## 7. Qué se gana al soltar la recurrencia
+## 9. Qué se gana al soltar la recurrencia
 
 ### Content
 
@@ -1312,7 +1302,7 @@ Lámina nueva, y la única de la clase con números medidos de una fuente primar
 
 ---
 
-# 7. Transformers y LLM
+# 6. Transformers y LLM
 
 **Goal of this section:** Cerrar el recorrido mostrando la arquitectura completa y el ciclo que corre cada vez que un modelo escribe una palabra, y que ese ciclo es el problema del modelado de lenguaje a otra escala.
 

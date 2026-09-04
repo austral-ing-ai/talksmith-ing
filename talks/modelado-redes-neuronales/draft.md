@@ -1640,7 +1640,7 @@ labels: "PASO DEMASIADO GRANDE", "PASO DEMASIADO CHICO", "loss", "peso", "la los
 
 knowledge-library/backpropagation/index.md (aportado por la Talk intro-redes-neuronales) — imagen `s36`, el paso de actualización y el rol de la tasa de aprendizaje
 
-Diagrama propio, traído de la Talk deep-learning-y-nlp (lámina 5.5 "El learning rate es el paso", retirada de allá el 2026-09-04 por duplicar esta sección) — las dos trayectorias de falla sobre la misma curva de loss.
+Diagrama propio, traído de la Talk palabra-al-transformer (lámina 5.5 "El learning rate es el paso", retirada de allá el 2026-09-04 por duplicar esta sección) — las dos trayectorias de falla sobre la misma curva de loss.
 
 ### Speaker notes
 
@@ -2720,7 +2720,7 @@ La diapositiva se retiró de la sección 2 por pedido del presentador. **El cont
 
 La lámina traía la fórmula del paso de actualización como imagen y nada más. Se reemplazó por el
 diagrama de las dos trayectorias sobre la misma curva de loss, que llegó de la Talk
-deep-learning-y-nlp al retirarse de allá su lámina 5.5 por duplicar esta sección. La fórmula no se
+palabra-al-transformer al retirarse de allá su lámina 5.5 por duplicar esta sección. La fórmula no se
 perdió: bajó a texto en la apertura de la lámina, `W ← W − η · ∂L/∂W`, donde además se lee sin
 depender de una imagen. El archivo sigue en `images/`.
 
@@ -2732,7 +2732,7 @@ está en el texto.
 ## `superficie-de-perdida.jpg` — disponible, sin usar (2026-09-04)
 
 Foto de una superficie de pérdida tridimensional en malla, con varios valles y una trayectoria que
-desciende serpenteando. Llegó con la lámina 5.4 de deep-learning-y-nlp, "Bajar por la pendiente",
+desciende serpenteando. Llegó con la lámina 5.4 de palabra-al-transformer, "Bajar por la pendiente",
 retirada de allá por duplicar la 6.1 de esta clase.
 
 No se colocó en 6.1: esa lámina ya tiene su propio diagrama, el descenso al mínimo con los pasos

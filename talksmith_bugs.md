@@ -11,8 +11,19 @@
 
 <!-- Talksmith appends entries below this line, newest at the bottom. -->
 - id: BUG-20260826-01
-  status: ABIERTO (verificado 2026-09-01, plugin 0.97.0) — `${CLAUDE_PLUGIN_ROOT}` sigue vacio en
-    este runtime y los comandos /plugin siguen sin existir. Es del entorno, no de una version del plugin.
+  status: ABIERTO (reverificado 2026-09-04, plugin 0.100.0) — `${CLAUDE_PLUGIN_ROOT}` sigue vacio en
+    este runtime y los comandos /plugin siguen sin existir. Es del entorno, no de una version del
+    plugin, y ninguna version puede cerrarlo.
+    De las dos mitades del suggested_fix, la (a) ya estaba hecha: el paso 1 del stub tiene una
+    comprobacion explicita ("deberias ver el encabezado de la spec; si no, leela ahora"), no una
+    nota al pie. La (b) se hizo en 0.100.0: el stub ahora nombra las dos rutas canonicas del
+    install en vez de mandar a buscarlas con find, y dice que se anote la raiz una sola vez porque
+    todos los scripts que el flujo llama por ruta cuelgan de ella. **Requiere re-correr
+    `/talksmith:init`** en cada working directory para que llegue.
+    Dato util verificado hoy: el install de esta maquina esta en
+    `~/.claude/plugins/marketplaces/talksmith` y es un clon de este mismo repo, sincronizado con
+    el arbol de trabajo. O sea que una edicion en el repo llega al runtime sin push y sin
+    reinstalar — solo hace falta abrir sesion nueva.
   date: 2026-08-26
   talk: -
   step: 0 (arranque de sesión)
@@ -60,13 +71,17 @@
     (el status vive una sola vez, en el encabezado de la entrada)
 
 - id: BUG-20260901-13
-  status: ABIERTO (reverificado 2026-09-04, plugin 0.99.0) — `agents/diagram-illustrator.md` es
-    byte-identico al de 0.98.1 y el changelog de 0.99.0 no lo menciona. El sintoma se repitio
-    cinco veces mas desde que se abrio la entrada, en dos Talks distintos: corta el turno tras
-    extraer los sidecars y anunciar que renderiza. Mitigacion que si funciona y conviene dejar
-    escrita: instruir explicitamente "trabaja secuencial, un bloque completo por vez" y "verifica
-    con ls antes de contestar" en el brief del dispatch. Con esa instruccion el pase de 20
-    diagramas termino de una sola vez.
+  status: RESUELTO en 0.100.0. Confirmado primero lo que reportaste: `agents/diagram-illustrator.md`
+    no se habia tocado desde 0.98.1. Ahora el rol lleva un contrato de finalizacion explicito, y las
+    dos mitigaciones que mediste quedaron escritas en la spec. (1) No cierra el turno mientras haya
+    un dispatch pendiente. (2) Escribe el log de cada bloque apenas ese bloque vuelve, en vez de
+    acumular en contexto y escribir al final, asi un turno cortado deja estado parcial coherente en
+    disco y no nada. (3) Arma el reporte listando `images/`, no de memoria: un bloque que no esta en
+    disco se reporta `failed`, no `rendered` — es el chequeo que convierte un corte silencioso en uno
+    visible, y es tu "verifica con ls antes de contestar". (4) No pisa un destino cuyo sello ya
+    coincide con su sidecar, que es la proteccion contra doble escritura del reintento. Y tu otra
+    mitigacion quedo como regla: si el pase ya fue retomado una vez, la ventana baja a 1 y va bloque
+    por bloque. Es el unico lugar donde el 5 fijo cede, y cede por medicion, no por prudencia.
   date: 2026-09-01
   talk: talks/prompting
   step: 6 (Polish) — paso 1

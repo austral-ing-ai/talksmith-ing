@@ -2,17 +2,16 @@
   "deck": {
     "title": "Inteligencia Artificial Generativa (AI Gen)",
     "institution": null,
-    "class": "Deep learning y NLP: de la palabra al transformer",
+    "class": "De la palabra al transformer",
     "presenter": "Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)",
     "date": "2026-09-23",
     "lang": "es",
     "logo": null,
     "sections": [
-      "Problemas clásicos de ML",
-      "Motivación de NLP",
+      "Familias de problemas",
+      "Por qué procesar texto",
       "Modelado de lenguaje",
       "Embeddings",
-      "Redes neuronales",
       "De las RNN a la atención",
       "Transformers y LLM"
     ]
@@ -20,8 +19,8 @@
   "slides": [
     {
       "template": "section-agenda",
-      "section": "Problemas clásicos de ML",
-      "title": "Problemas clásicos de ML",
+      "section": "Familias de problemas",
+      "title": "Familias de problemas",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -37,7 +36,7 @@
       }
     },
     {
-      "section": "Problemas clásicos de ML",
+      "section": "Familias de problemas",
       "title": "Siete familias de problemas de IA",
       "lead": "**Cada familia se define por la forma de su entrada y de su salida, no por el dominio en el que se aplica.**",
       "notes": "Lámina de encuadre. Lo único que hay que dejar clavado es que la última familia, generación, es la que ocupa el resto de la clase, y que las otras seis aparecen para dar contraste. Si alguien pregunta por qué representación y generación suenan parecidas, la respuesta corta es que representación aprende el espacio y generación produce puntos nuevos dentro de él; las secciones de embeddings y de transformers lo muestran en concreto. El deck original ponía ocho iconos y nombraba siete categorías: el octavo icono era la viñeta del callout, no una familia. Los ocho se retiraron.",
@@ -97,7 +96,7 @@
       }
     },
     {
-      "section": "Problemas clásicos de ML",
+      "section": "Familias de problemas",
       "title": "El modelo aprende las reglas",
       "lead": "**La programación clásica recibe reglas y datos, y devuelve respuestas. Machine learning recibe datos y respuestas, y devuelve las reglas.**",
       "notes": "La figura es el argumento entero y conviene recorrerla en voz alta: fila de arriba, reglas más datos entran y salen respuestas; fila de abajo, datos más respuestas entran y salen reglas. Es la definición operativa de machine learning y la más útil para esta audiencia, porque describe qué artefacto produce el equipo. La figura está en inglés (Rules, Data, Answers, Classical Programming, Machine Learning); traducila al pasar. El título del deck original tenía un typo, \"IA moAderna\", corregido acá.",
@@ -134,7 +133,7 @@
       }
     },
     {
-      "section": "Problemas clásicos de ML",
+      "section": "Familias de problemas",
       "title": "Clasificar: elegir entre categorías",
       "lead": "**Asignar una entrada a una de varias categorías conocidas de antemano. La salida es una etiqueta de un conjunto cerrado.**",
       "notes": "Primera de las dos formulaciones de predicción. La figura es literal y conviene usarla así: entra una foto, sale una etiqueta. Lo que define la clasificación es que el conjunto de salidas está fijado de antemano y el modelo elige uno.",
@@ -167,7 +166,7 @@
       }
     },
     {
-      "section": "Problemas clásicos de ML",
+      "section": "Familias de problemas",
       "title": "Regresión: estimar un número",
       "lead": "**Estimar un valor continuo a partir de las características de la entrada. La salida es un número, no una etiqueta.**",
       "notes": "La clasificación queda del lado de la figura y la regresión del lado del diagrama: una salida discreta y una continua, en la misma pantalla. El ejemplo de la casa del texto y el del diagrama coinciden, así que se pueden señalar juntos. Detenete en el signo de pregunta: ahí no se vendió ninguna casa y la recta contesta igual, y ésa es la diferencia práctica con elegir entre categorías. La nube de puntos y la recta son esquemáticas, sin escala en los ejes a propósito, porque no hay ningún conjunto de datos detrás. La lámina original juntaba las cuatro formulaciones y cuatro figuras en una sola pantalla; acá van de a dos.",
@@ -200,7 +199,7 @@
       }
     },
     {
-      "section": "Problemas clásicos de ML",
+      "section": "Familias de problemas",
       "title": "Agrupar y crear datos nuevos",
       "lead": "**Las otras dos formulaciones no tienen respuesta correcta escrita de antemano: una descubre la estructura, la otra produce muestras que no estaban en los datos.**",
       "notes": "El clustering es el que más cuesta, porque la pregunta \"¿qué datos se parecen?\" suena vacía hasta que se ve un caso. El de tickets de soporte funciona bien con esta audiencia: nadie sabe de antemano cuántas fallas distintas hay en la cola, y agrupar es justamente cómo se descubren. Leé dos o tres tickets de la columna izquierda y preguntá cómo los agruparían; van a dar los tres grupos del diagrama sin esfuerzo, y ése es el momento de decir que el algoritmo llega hasta ahí y no más. Los nombres —acceso, pagos, facturación— los pone una persona mirando el resultado, y eso es lo que separa agrupar de clasificar.",
@@ -245,8 +244,8 @@
     },
     {
       "template": "section-agenda",
-      "section": "Motivación de NLP",
-      "title": "Motivación de NLP",
+      "section": "Por qué procesar texto",
+      "title": "Por qué procesar texto",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -262,7 +261,7 @@
       }
     },
     {
-      "section": "Motivación de NLP",
+      "section": "Por qué procesar texto",
       "title": "Los mismos problemas, con texto",
       "lead": "**Cada formulación clásica tiene su equivalente cuando la entrada es texto. Cambia el tipo de dato, no la forma del problema.**",
       "notes": "Lámina bisagra entre el mapa general y el resto de la clase. El punto que conviene subrayar es el primero de los dos de abajo, porque anticipa el modelado de lenguaje: predicción y generación son la misma cuenta, y por eso un modelo que sabe completar huecos sabe escribir. Las dos últimas filas de la tabla lo muestran con la misma frase. El ejemplo de sentimiento del deck original (\"qué bien comimos en el restaurante\") se retiró: la columna de la derecha ya trae uno.",
@@ -329,7 +328,7 @@
       }
     },
     {
-      "section": "Motivación de NLP",
+      "section": "Por qué procesar texto",
       "title": "Hay más texto del que se puede leer",
       "lead": "**Procesamiento del lenguaje natural (NLP) es el campo que se ocupa de resolver estas tareas de forma automática, sobre volúmenes de texto que nadie va a leer entero.**",
       "notes": "Lámina corta y de motivación. Lo que la sostiene es el callout del final: la escala es lo que separa una tarea de NLP de un rato de lectura. Si querés un caso propio, la cola de tickets de cualquier equipo grande sirve, porque nadie la lee entera y todos necesitan saber qué hay adentro. El deck original listaba historias clínicas y opiniones de pacientes sobre un tratamiento, heredados de la materia anterior; están convertidos.",
@@ -369,7 +368,7 @@
       }
     },
     {
-      "section": "Motivación de NLP",
+      "section": "Por qué procesar texto",
       "title": "Veinticinco tareas de NLP",
       "lead": "**Las cinco familias, aterrizadas. Cada columna es una formulación de la lámina anterior y cada celda una tarea que alguien resuelve hoy en producción.**",
       "notes": "Lámina de referencia, no de lectura. Señalá una celda por columna y seguí; la matriz está para que quede como material de consulta. La celda que conviene marcar es \"predecir la siguiente palabra de una oración\", en la columna de predicción, porque es la que abre la sección siguiente y la que termina absorbiendo a casi todas las demás cuando aparecen los modelos fundacionales.",
@@ -446,7 +445,7 @@
       }
     },
     {
-      "section": "Motivación de NLP",
+      "section": "Por qué procesar texto",
       "title": "Un modelo por tarea",
       "lead": "**Antes de los modelos fundacionales, cada tarea de la matriz anterior necesitaba su propio conjunto de datos etiquetado y su propio modelo entrenado desde cero.**",
       "notes": "El diagrama dice algo que la lista del deck original no decía: el costo no está en entrenar sino en etiquetar, y no se amortiza entre tareas. Recorré las tres columnas señalando que ninguna flecha cruza de una a otra. Esta lámina es la que le da peso al cierre de la clase: cuando se muestre que las tres tareas se resuelven con el mismo modelo y tres prompts distintos, el contraste es contra esta imagen. La viñeta decorativa del deck original en esta lámina se retiró.",
@@ -907,8 +906,8 @@
     },
     {
       "template": "section-agenda",
-      "section": "Redes neuronales",
-      "title": "Redes neuronales",
+      "section": "De las RNN a la atención",
+      "title": "De las RNN a la atención",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -925,7 +924,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "Redes neuronales",
+      "section": "De las RNN a la atención",
       "title": "Lo que ya vieron sobre redes",
       "lead": "**Todo esto se dio en las clases 3 y 4. Va como repaso de una lámina, porque el resto de la clase se apoya en ello.**",
       "format": "row",
@@ -971,7 +970,7 @@
       }
     },
     {
-      "section": "Redes neuronales",
+      "section": "De las RNN a la atención",
       "title": "Promediar una frase pierde el orden",
       "lead": "**Un perceptrón necesita un vector de tamaño fijo, y una frase son varios vectores. La forma directa de resolverlo es promediarlos, y esa forma tiene un costo.**",
       "notes": "Lámina bisagra: cierra las redes neuronales y plantea el problema que resuelve la atención. El ejemplo de las dos frases con las mismas palabras y sentido opuesto es agregado; el deck original decía \"se pierde información del orden\" y no lo mostraba. Con esta audiencia funciona directo, porque conmutatividad es una propiedad que ya conocen y acá tiene consecuencia semántica. Si alguien pregunta si no alcanza con ponderar el promedio, la respuesta corta es que ninguna ponderación fija arregla el orden: hace falta que el cálculo dependa de la posición, y eso es lo que hacen las redes recurrentes primero y la atención después.",
@@ -1000,24 +999,6 @@
         "picked": "content-image",
         "rejected": {
           "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "template": "section-agenda",
-      "section": "De las RNN a la atención",
-      "title": "De las RNN a la atención",
-      "_choice": {
-        "signals": [
-          "encabezado de sección"
-        ],
-        "candidates": [
-          "section-agenda",
-          "divider"
-        ],
-        "picked": "section-agenda",
-        "rejected": {
-          "divider": "es una sección real"
         }
       }
     },
@@ -1646,7 +1627,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "cc1897ccc6e2f7dc92dcbc0dfc7a5eadd168ad0bc8b82dae300c57c3585e78c3",
-    "bytes": 92584
+    "sha256": "850828d6f19c6727aaa2307143241c4ef06a6dc13a66c7a9efaf2475bf7779c0",
+    "bytes": 92376
   }
 }
