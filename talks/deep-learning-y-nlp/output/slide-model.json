@@ -924,87 +924,49 @@
       }
     },
     {
+      "template": "concept-breakdown",
       "section": "Redes neuronales",
-      "title": "El perceptrón",
-      "lead": "**Un perceptrón es la neurona artificial más simple: recibe varios números, los combina con un peso cada uno, les suma un bias y pasa el resultado por una función de activación.**",
-      "notes": "El diagrama y la fórmula dicen lo mismo salvo en un punto, y es el que conviene señalar: la cuarta entrada vale 1 siempre y no sale de ningún dato. Esa es la forma honesta de explicar el sesgo, porque deja de ser un término que aparece en la fórmula y pasa a ser un peso más, aprendido igual que los otros tres. La figura del deck original directamente lo omitía. La analogía del original (varios factores, cada uno pesa distinto, y una decisión al final) funciona bien y va de palabra, no en la lámina. La viñeta decorativa de esta lámina se retiró.",
-      "template": "content+cards+image",
-      "design": "split-right",
-      "media": {
-        "src": "images/s5-1-1-perceptron-con-sesgo.svg",
-        "alt": "El perceptrón con el sesgo dibujado como una cuarta entrada constante que no sale de los datos"
-      },
+      "title": "Lo que ya vieron sobre redes",
+      "lead": "**Todo esto se dio en las clases 3 y 4. Va como repaso de una lámina, porque el resto de la clase se apoya en ello.**",
+      "format": "row",
       "cards": [
         {
-          "label": "La cuenta completa",
-          "body": "`salida = activación( x₁·w₁ + x₂·w₂ + x₃·w₃ + bias )`."
+          "label": "La neurona",
+          "body": "Una combinación lineal de las entradas más un sesgo, seguida de una no linealidad. Clase 3."
         },
         {
-          "label": "Qué se aprende y qué no.",
-          "body": "Los pesos y el bias son los parámetros que el entrenamiento ajusta. Las entradas vienen de afuera y la forma de la cuenta no cambia."
+          "label": "La profundidad",
+          "body": "Apilar capas es lo que permite representar funciones que una sola capa no puede. Clase 3."
         },
         {
-          "label": "El peso es cuánto importa cada entrada.",
-          "body": "El bias corre el umbral: es la predisposición del perceptrón antes de mirar las entradas."
+          "label": "El entrenamiento",
+          "body": "Calcular el error, ver en qué dirección baja, mover los pesos un paso, repetir. El tamaño del paso es el learning rate. Clases 3 y 4."
+        },
+        {
+          "label": "La retropropagación",
+          "body": "El error vuelve por cada conexión, con la regla de la cadena, y a cada peso le toca su parte. Clase 3."
         }
       ],
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=3",
-          "has_table=False"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "concept-breakdown"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "section": "Redes neuronales",
-      "title": "Apilar capas da profundidad",
-      "lead": "**Una red neuronal profunda es una pila de capas de perceptrones, donde la salida de cada capa es la entrada de la siguiente. De ahí sale el nombre deep learning.**",
-      "notes": "Las dos láminas del deck original se juntaron: la 19 era el texto sin figura y la 20 era la figura sin texto. Lo que hay que hacer con el diagrama es señalar un nodo verde y decir \"esto es la lámina anterior\", y después señalar los subíndices de los pesos para que se vea por qué el conteo de parámetros explota con la profundidad. Arriba a la derecha la figura trae un esquema compacto de cajas encadenadas que sirve como lectura de alto nivel. Está en inglés. La viñeta decorativa de la slide 19 se retiró.",
-      "template": "content+cards+image",
-      "design": "split-right",
-      "media": {
-        "src": "images/red-multicapa.jpg",
-        "alt": "Diagrama de un perceptrón multicapa: capa de entrada, dos capas ocultas con sus pesos indexados, capas omitidas y un nodo de salida"
-      },
-      "cards": [
-        {
-          "label": "Cada capa abstrae más que la anterior.",
-          "body": "Las iniciales detectan patrones simples (combinaciones de letras, formas básicas); las intermedias, patrones compuestos (palabras, frases, relaciones); las finales, conceptos de alto nivel (significado, intención, contexto)."
-        },
-        {
-          "label": "Más capas es más capacidad y más costo.",
-          "body": "Más parámetros permiten modelar relaciones más complejas, y a la vez exigen más datos para entrenar y más cómputo."
-        }
-      ],
+      "notes": "Lámina de repaso, no de enseñanza. Recorrela en dos minutos y no te detengas: el grupo ya vio las cuatro cosas con detalle. Sirve para dos cosas. Una, reactivar el vocabulario que el resto de la clase va a usar sin volver a explicarlo. Dos, dejar dicho explícitamente que el aparato de redes no cambia cuando el dato es texto: lo que cambia es la representación de la entrada, y a eso se dedica la clase. Si alguien no cursó las clases 3 y 4, mandalo a esos dos decks, que están enlazados en el README.",
       "highlights": [
         {
-          "body": "Los modelos de lenguaje de hoy tienen miles de millones de parámetros. Cada nodo del diagrama es el perceptrón de la lámina anterior, repetido.",
+          "body": "único que cambia con texto es qué se le da de comer a esa red, y es el problema del resto de la clase.",
           "kind": "example",
           "position": "bottom"
         }
       ],
       "_choice": {
         "signals": [
-          "n_images=1",
-          "labeled_items=2",
-          "has_table=False"
+          "labeled_items=4",
+          "n_images=0"
         ],
         "candidates": [
-          "content+cards+image",
-          "concept-breakdown"
+          "concept-breakdown",
+          "content-text"
         ],
-        "picked": "content+cards+image",
+        "picked": "concept-breakdown",
         "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+          "content-text": "son cuatro conceptos rotulados, no prosa"
         }
       }
     },
@@ -1036,159 +998,6 @@
           "concept-breakdown"
         ],
         "picked": "content-image",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "section": "Redes neuronales",
-      "title": "Bajar por la pendiente",
-      "lead": "**El descenso por gradiente ajusta cada peso en la dirección que más reduce la loss. La dirección la da el gradiente cambiado de signo, −∇.**",
-      "notes": "La figura es la analogía dibujada, así que contá la montaña señalándola. Hay algo que la figura muestra y el deck original nunca menciona: la superficie tiene varios valles azules, o sea varios mínimos locales, y la trayectoria termina en uno cualquiera. Si alguien lo marca, la respuesta honesta es que sí, que el descenso por gradiente no garantiza el mínimo global, y que en redes grandes eso resulta ser menos grave de lo que suena. No lo abras vos si el tiempo aprieta. La figura casi no tiene texto: sólo un \"04\" heredado de la numeración del deck original. La viñeta decorativa de esta lámina se retiró.",
-      "template": "content+cards+image",
-      "design": "split-right",
-      "media": {
-        "src": "images/superficie-de-perdida.jpg",
-        "alt": "Superficie tridimensional de pérdida en malla, con picos y valles coloreados y una trayectoria que desciende serpenteando desde la cima hasta el fondo de un valle"
-      },
-      "cards": [
-        {
-          "label": "El ciclo por ejemplo",
-          "body": "Entra un ejemplo, el modelo predice con los pesos que tiene, se compara con la respuesta correcta, se calcula la loss, se ajustan los pesos un poco en la dirección de −∇, y sigue el ejemplo siguiente."
-        },
-        {
-          "label": "La analogía que se sostiene",
-          "body": "Estar en una montaña con niebla y querer llegar al valle. El camino completo no se ve; la pendiente bajo los pies, sí. Cada paso va un poco para abajo."
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=2",
-          "has_table=False"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "concept-breakdown"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "section": "Redes neuronales",
-      "title": "El learning rate es el paso",
-      "lead": "**El learning rate decide cuánto se mueve cada peso en cada paso. Es un número que se elige antes de entrenar, y los dos extremos fallan de maneras distintas.**",
-      "notes": "El diagrama es cualitativo y está declarado como tal dentro del propio dibujo, porque una curva de loss dibujada a mano se lee como medición si no se aclara. Los ejes están rotulados, loss contra peso, y ésa es la única lectura válida. Lo que conviene decir es que el learning rate es el primer hiperparámetro que alguien toca cuando un entrenamiento no converge, y que las dos fallas se distinguen a simple vista en la curva de loss: si oscila, el paso es grande; si baja plano y no llega, es chico. La lámina se separó de la anterior porque el deck original metía la figura de la montaña, el ciclo de seis pasos, la analogía y el learning rate en una sola pantalla.",
-      "template": "content-image",
-      "design": "split-right",
-      "media": {
-        "src": "images/s5-5-1-learning-rate-paso.svg",
-        "alt": "Paso demasiado grande y paso demasiado chico sobre la misma curva de loss"
-      },
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=0",
-          "has_table=False"
-        ],
-        "candidates": [
-          "content-image",
-          "concept-breakdown"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "section": "Redes neuronales",
-      "title": "Cuatro pasos que se repiten",
-      "lead": "**El entrenamiento es un bucle de cuatro pasos que corre hasta que la loss deja de bajar.**",
-      "notes": "El diagrama y la lista dicen los cuatro pasos, así que conviene usar uno de los dos y no leer los dos: recorré el lazo con el dedo y dejá la lista como referencia. Lo que el diagrama agrega y la lista no dice es el rol del conjunto de datos, que entra por dos puertas distintas, las características al modelo y las etiquetas al cálculo de la loss. La otra cosa que conviene señalar es la flecha de retorno: lo único que da la vuelta entera y vuelve a empezar son los pesos. Esta lámina es el único lugar de la clase donde vive el ciclo: la de vocabulario del modelado de lenguaje se quedó con las definiciones.",
-      "template": "content+cards+image",
-      "design": "split-right",
-      "media": {
-        "src": "images/s5-6-1-ciclo-entrenamiento.svg",
-        "alt": "El lazo cerrado del entrenamiento y las dos puertas por las que entra el dataset"
-      },
-      "cards": [
-        {
-          "label": "Calcular la loss",
-          "body": "Pasar los datos por el modelo con los pesos y el bias actuales, generar predicciones y medir qué tan lejos quedaron."
-        },
-        {
-          "label": "Determinar la dirección",
-          "body": "Averiguar hacia dónde mover los pesos y el bias para que la loss baje."
-        },
-        {
-          "label": "Actualizar los pesos",
-          "body": "Moverse un paso chico en esa dirección. El tamaño del paso es el learning rate."
-        },
-        {
-          "label": "Repetir",
-          "body": "Volver al primer paso hasta que la loss no baje más."
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=4",
-          "has_table=False"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "concept-breakdown"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "section": "Redes neuronales",
-      "title": "Repartir la culpa hacia atrás",
-      "lead": "**En una red de muchas capas, la retropropagación es lo que decide cuánto ajustar cada peso: propaga el error desde la salida hacia atrás y le asigna a cada peso una parte proporcional a su contribución.**",
-      "notes": "Las dos láminas del deck original se juntaron: la 23 era el texto y la 24 una figura sola. El diagrama tiene dos lecturas y conviene hacerlas en orden. Primero las bandas: la ida de izquierda a derecha, la loss, y la vuelta de derecha a izquierda por la banda de abajo. Después la ampliación del medio, que es donde está el argumento nuevo: pedí que cuenten los `+`. Son nueve entre dos capas de tres nodos, y por cada uno vuelve un pedazo del error. Eso es lo que hace que entrenar sea un problema de escala y no de aritmética, y es lo que la figura original decía en silencio con su malla. La analogía del deck original, rastrear un defecto en una cadena de producción para ver quién tuvo más culpa en cada paso, funciona bien y va de palabra. La regla de la cadena está al pie a propósito: es el fundamento, no lo que hay que retener.",
-      "template": "content+cards+image",
-      "design": "split-right",
-      "media": {
-        "src": "images/s5-7-1-retropropagacion-malla.svg",
-        "alt": "Ida y vuelta sobre la misma red, con la malla de nueve conexiones ampliada en el medio"
-      },
-      "cards": [
-        {
-          "label": "Forward pass",
-          "body": "La entrada viaja hacia adelante por la red hasta producir una predicción, y se mide el error contra el valor real."
-        },
-        {
-          "label": "Backward pass",
-          "body": "El error vuelve hacia atrás por cada conexión, y en cada peso queda registrado cuánto contribuyó. Cada peso se ajusta en proporción a esa contribución."
-        }
-      ],
-      "highlights": [
-        {
-          "body": "Formalmente es la regla de la cadena aplicada a una composición de funciones, y funciona porque una red es aproximadamente diferenciable. Es lo que hace viable entrenar redes de millones de parámetros.",
-          "kind": "example",
-          "position": "bottom"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=2",
-          "has_table=False"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "concept-breakdown"
-        ],
-        "picked": "content+cards+image",
         "rejected": {
           "concept-breakdown": "la lámina no es solo un conjunto rotulado"
         }
@@ -1364,26 +1173,25 @@
       "title": "Cuando \"it\" queda lejos",
       "lead": "**En `\"The animal didn't cross the street because it was too tired\"`, resolver a qué se refiere `it` obliga a llegar hasta `animal`. Con recurrencia esa información recorre seis estados intermedios; con atención, uno solo.**",
       "notes": "El deck original usa esta frase dos veces, primero como problema de las RNN y después como intuición de la atención. Acá está una sola vez, con los dos recorridos al lado, que es lo que hace que se entienda de una. Contá los pasos en voz alta: seis estados de \"animal\" a \"it\", con una reescritura del vector en cada uno. El conteo sale de la frase: animal, didn't, cross, the, street, because, it. Lo que hay que señalar es la columna de la derecha, no la de la izquierda: el argumento de la lámina es el salto único, y la cadena está para dar la medida de lo que se ahorra.",
-      "template": "content-image",
-      "design": "split-right",
-      "media": {
-        "src": "images/s6-5-1-atencion-un-salto.svg",
-        "alt": "Seis estados intermedios con recurrencia frente a un solo salto con atención"
-      },
+      "template": "image-full",
       "_choice": {
         "signals": [
           "n_images=1",
-          "labeled_items=0",
-          "has_table=False"
+          "image_only=true",
+          "labeled_items=0"
         ],
         "candidates": [
-          "content-image",
-          "concept-breakdown"
+          "image-full",
+          "content-image"
         ],
-        "picked": "content-image",
+        "picked": "image-full",
         "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+          "content-image": "no hay facts que poner al lado: la columna de texto quedaría vacía y el diagrama aplastado a media lámina"
         }
+      },
+      "image": {
+        "src": "images/s6-5-1-atencion-un-salto.svg",
+        "alt": "Seis estados intermedios con recurrencia frente a un solo salto con atención"
       }
     },
     {
@@ -1838,7 +1646,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "719e043b39fabbc6222191fe82c5c47af5d7d1e6f0b6c4533fa5aecba2c92f55",
-    "bytes": 108124
+    "sha256": "cc1897ccc6e2f7dc92dcbc0dfc7a5eadd168ad0bc8b82dae300c57c3585e78c3",
+    "bytes": 92584
   }
 }

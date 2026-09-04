@@ -900,98 +900,36 @@ Tres advertencias sobre el respaldo, todas del registro del corpus, y ninguna va
 
 ---
 
-## 1. El perceptrón
-
-<!-- slide 18 del pptx original -->
+## 1. Lo que ya vieron sobre redes
 
 ### Content
 
-**Un perceptrón es la neurona artificial más simple: recibe varios números, los combina con un peso cada uno, les suma un bias y pasa el resultado por una función de activación.**
+**Todo esto se dio en las clases 3 y 4. Va como repaso de una lámina, porque el resto de la clase se apoya en ello.**
 
-```ascii
-   ENTRADAS         PESOS         SUMA       ACTIVACION   SALIDA
-                (se aprenden)   PONDERADA
+- **La neurona** Una combinación lineal de las entradas más un sesgo, seguida de una no linealidad. Clase 3.
+- **La profundidad** Apilar capas es lo que permite representar funciones que una sola capa no puede. Clase 3.
+- **El entrenamiento** Calcular el error, ver en qué dirección baja, mover los pesos un paso, repetir. El tamaño del paso es el learning rate. Clases 3 y 4.
+- **La retropropagación** El error vuelve por cada conexión, con la regla de la cadena, y a cada peso le toca su parte. Clase 3.
 
-    x1 o------------ w1 ------+
-                              |
-    x2 o------------ w2 ------+
-                              |
-    x3 o------------ w3 ------+---> ( S ) ----> ( f ) ----> y
-                              |
-    1  o------------ b -------+
-    ^                ^
-    |                |
-    |                +-- el sesgo es un peso mas y se aprende
-    |                    igual que w1, w2 y w3
-    |
-    +-- entrada constante: no sale de los datos, vale 1 siempre
-
-  y = f( x1*w1 + x2*w2 + x3*w3 + b )
-
-  Aprender un perceptron es elegir cuatro numeros: w1, w2, w3 y b.
-  Las entradas cambian con cada ejemplo; esos cuatro no cambian.
-```
-<!-- ascii-note:
-intent: mostrar el sesgo como lo que realmente es, una entrada mas que no viene de los datos y que trae su propio peso aprendido, en vez de un termino suelto que aparece en la formula sin explicacion
-emphasize: la cuarta fila de entrada, la que vale 1 fijo y lleva el peso b, y sus dos llamadas al pie; es la fila que distingue este diagrama de la formula escrita arriba
-labels: "ENTRADAS", "PESOS (se aprenden)", "SUMA PONDERADA", "ACTIVACION", "SALIDA", "x1", "x2", "x3", "1", "w1", "w2", "w3", "b", "entrada constante: no sale de los datos, vale 1 siempre", "el sesgo es un peso mas y se aprende igual que w1, w2 y w3"
--->
-
-- **La cuenta completa** `salida = activación( x₁·w₁ + x₂·w₂ + x₃·w₃ + bias )`.
-- **Qué se aprende y qué no.** Los pesos y el bias son los parámetros que el entrenamiento ajusta. Las entradas vienen de afuera y la forma de la cuenta no cambia.
-- **El peso es cuánto importa cada entrada.** El bias corre el umbral: es la predisposición del perceptrón antes de mirar las entradas.
+- 💡 Lo único que cambia con texto es qué se le da de comer a esa red, y es el problema del resto de la clase.
 
 ### Sources
 
-- `AIG4B-Clase-2-LLM.md.md` (slide 18) — la mecánica en cuatro pasos, la fórmula verbatim y la analogía de la decisión con factores.
-- Diagrama propio. La lámina original traía una figura del deck, en inglés y sin dibujar el sesgo que el texto declara como parámetro aprendido; se rehízo como diagrama propio para incorporarlo.
+- `talks/intro-redes-neuronales/final.md` — la neurona, la profundidad, la función de coste y la retropropagación se dictaron en la clase 3.
+- `talks/modelado-redes-neuronales/final.md` — el learning rate y la loss se dictaron en la clase 4.
 
 ### Speaker notes
 
-El diagrama y la fórmula dicen lo mismo salvo en un punto, y es el que conviene señalar: la cuarta entrada vale 1 siempre y no sale de ningún dato. Esa es la forma honesta de explicar el sesgo, porque deja de ser un término que aparece en la fórmula y pasa a ser un peso más, aprendido igual que los otros tres. La figura del deck original directamente lo omitía. La analogía del original (varios factores, cada uno pesa distinto, y una decisión al final) funciona bien y va de palabra, no en la lámina. La viñeta decorativa de esta lámina se retiró.
+Lámina de repaso, no de enseñanza. Recorrela en dos minutos y no te detengas: el grupo ya vio las cuatro cosas con detalle. Sirve para dos cosas. Una, reactivar el vocabulario que el resto de la clase va a usar sin volver a explicarlo. Dos, dejar dicho explícitamente que el aparato de redes no cambia cuando el dato es texto: lo que cambia es la representación de la entrada, y a eso se dedica la clase. Si alguien no cursó las clases 3 y 4, mandalo a esos dos decks, que están enlazados en el README.
 
 ### Presenter feedback
 
-- [closed] 2026-09-03 (editor) — "La figura del perceptrón no dibujaba el sesgo, que el texto nombra como parámetro aprendido."
-  Resolution: la figura se reemplazó por un diagrama propio en español que dibuja el sesgo como una cuarta entrada de valor constante con su propio peso. Deja de ser una pregunta abierta.
-
-
----
-
-## 2. Apilar capas da profundidad
-
-<!-- slide 19 y 20 del pptx original -->
-
-<!-- design: split-right -->
-
-### Content
-
-**Una red neuronal profunda es una pila de capas de perceptrones, donde la salida de cada capa es la entrada de la siguiente. De ahí sale el nombre deep learning.**
-
-![Diagrama de un perceptrón multicapa: capa de entrada, dos capas ocultas con sus pesos indexados, capas omitidas y un nodo de salida](images/red-multicapa.jpg)
-
-- **Cada capa abstrae más que la anterior.** Las iniciales detectan patrones simples (combinaciones de letras, formas básicas); las intermedias, patrones compuestos (palabras, frases, relaciones); las finales, conceptos de alto nivel (significado, intención, contexto).
-- **Más capas es más capacidad y más costo.** Más parámetros permiten modelar relaciones más complejas, y a la vez exigen más datos para entrenar y más cómputo.
-
-- 💡 Los modelos de lenguaje de hoy tienen miles de millones de parámetros. Cada nodo del diagrama es el perceptrón de la lámina anterior, repetido.
-
-### Sources
-
-- `AIG4B-Clase-2-LLM.md.md` (slide 19) — la jerarquía de abstracción por capas, el trade-off entre capacidad y costo, y "los modelos de lenguaje modernos tienen miles de millones de parámetros".
-- `AIG4B-Clase-2-LLM.md.md` (slide 20) — la figura del perceptrón multicapa.
-
-### Speaker notes
-
-Las dos láminas del deck original se juntaron: la 19 era el texto sin figura y la 20 era la figura sin texto. Lo que hay que hacer con el diagrama es señalar un nodo verde y decir "esto es la lámina anterior", y después señalar los subíndices de los pesos para que se vea por qué el conteo de parámetros explota con la profundidad. Arriba a la derecha la figura trae un esquema compacto de cajas encadenadas que sirve como lectura de alto nivel. Está en inglés. La viñeta decorativa de la slide 19 se retiró.
-
-### Presenter feedback
-
-- [closed] 2026-09-03 (editor) — "La slide 20 del deck original no tenía texto propio: sólo el título y la figura."
-  Resolution: se fusionó con la 19, que tenía el texto y ninguna figura. La lámina resultante queda dentro del presupuesto de densidad: encabezado, figura y un bloque de apoyo.
+- [closed] 2026-09-04 — "Seis láminas de esta sección repetían contenido ya dictado en las clases 3 y 4: el perceptrón, apilar capas, el descenso por gradiente, el learning rate, los cuatro pasos del entrenamiento y la retropropagación."
+  Resolution: las seis pasaron a `Cut material` y quedaron reemplazadas por esta lámina de repaso. La única de la sección que era propia de esta clase, sobre la pérdida de orden al promediar, se conservó.
 
 ---
 
-## 3. Promediar una frase pierde el orden
+## 2. Promediar una frase pierde el orden
 
 <!-- slide 18 del pptx original -->
 
@@ -1651,6 +1589,158 @@ Cinco frases y ninguna es un resumen de la agenda. La primera es la tesis desple
 - Ver `research/corpus/AIG4B-Clase-2-LLM.md.md` → *Inconsistencies / open questions* para el resto de los problemas detectados en el material original.
 
 # Cut material
+
+## Seis láminas de redes neuronales ya dictadas en las clases 3 y 4
+
+Retiradas el 2026-09-04. Motivo: el Talk se importó de otra materia donde era la clase 2 y estos temas no se habían dado. Acá cae en la clase 8, después de dos clases enteras de redes neuronales. Se reemplazaron por una sola lámina de repaso.
+
+> ## 1. El perceptrón
+>
+> <!-- slide 18 del pptx original -->
+>
+> ### Content
+>
+> **Un perceptrón es la neurona artificial más simple: recibe varios números, los combina con un peso cada uno, les suma un bias y pasa el resultado por una función de activación.**
+>
+> ```ascii
+>    ENTRADAS         PESOS         SUMA       ACTIVACION   SALIDA
+>                 (se aprenden)   PONDERADA
+>
+>     x1 o------------ w1 ------+
+>                               |
+>     x2 o------------ w2 ------+
+>                               |
+>     x3 o------------ w3 ------+---> ( S ) ----> ( f ) ----> y
+>                               |
+>     1  o------------ b -------+
+>     ^                ^
+>     |                |
+>     |                +-- el sesgo es un peso mas y se aprende
+>     |                    igual que w1, w2 y w3
+>     |
+>     +-- entrada constante: no sale de los datos, vale 1 siempre
+>
+>   y = f( x1*w1 + x2*w2 + x3*w3 + b )
+>
+>   Aprender un perceptron es elegir cuatro numeros: w1, w2, w3 y b.
+>   Las entradas cambian con cada ejemplo; esos cuatro no cambian.
+> ```
+> <!-- ascii-note:
+> intent: mostrar el sesgo como lo que realmente es, una entrada mas que no viene de los datos y que trae su propio peso aprendido, en vez de un termino suelto que aparece en la formula sin explicacion
+> emphasize: la cuarta fila de entrada, la que vale 1 fijo y lleva el peso b, y sus dos llamadas al pie; es la fila que distingue este diagrama de la formula escrita arriba
+> labels: "ENTRADAS", "PESOS (se aprenden)", "SUMA PONDERADA", "ACTIVACION", "SALIDA", "x1", "x2", "x3", "1", "w1", "w2", "w3", "b", "entrada constante: no sale de los datos, vale 1 siempre", "el sesgo es un peso mas y se aprende igual que w1, w2 y w3"
+> -->
+>
+> - **La cuenta completa** `salida = activación( x₁·w₁ + x₂·w₂ + x₃·w₃ + bias )`.
+> - **Qué se aprende y qué no.** Los pesos y el bias son los parámetros que el entrenamiento ajusta. Las entradas vienen de afuera y la forma de la cuenta no cambia.
+> - **El peso es cuánto importa cada entrada.** El bias corre el umbral: es la predisposición del perceptrón antes de mirar las entradas.
+>
+> ### Sources
+>
+> - `AIG4B-Clase-2-LLM.md.md` (slide 18) — la mecánica en cuatro pasos, la fórmula verbatim y la analogía de la decisión con factores.
+> - Diagrama propio. La lámina original traía una figura del deck, en inglés y sin dibujar el sesgo que el texto declara como parámetro aprendido; se rehízo como diagrama propio para incorporarlo.
+>
+> ### Speaker notes
+>
+> El diagrama y la fórmula dicen lo mismo salvo en un punto, y es el que conviene señalar: la cuarta entrada vale 1 siempre y no sale de ningún dato. Esa es la forma honesta de explicar el sesgo, porque deja de ser un término que aparece en la fórmula y pasa a ser un peso más, aprendido igual que los otros tres. La figura del deck original directamente lo omitía. La analogía del original (varios factores, cada uno pesa distinto, y una decisión al final) funciona bien y va de palabra, no en la lámina. La viñeta decorativa de esta lámina se retiró.
+>
+> ### Presenter feedback
+>
+> - [closed] 2026-09-03 (editor) — "La figura del perceptrón no dibujaba el sesgo, que el texto nombra como parámetro aprendido."
+>   Resolution: la figura se reemplazó por un diagrama propio en español que dibuja el sesgo como una cuarta entrada de valor constante con su propio peso. Deja de ser una pregunta abierta.
+>
+>
+> ---
+>
+
+> ## 2. Apilar capas da profundidad
+>
+> <!-- slide 19 y 20 del pptx original -->
+>
+> <!-- design: split-right -->
+>
+> ### Content
+>
+> **Una red neuronal profunda es una pila de capas de perceptrones, donde la salida de cada capa es la entrada de la siguiente. De ahí sale el nombre deep learning.**
+>
+> ![Diagrama de un perceptrón multicapa: capa de entrada, dos capas ocultas con sus pesos indexados, capas omitidas y un nodo de salida](images/red-multicapa.jpg)
+>
+> - **Cada capa abstrae más que la anterior.** Las iniciales detectan patrones simples (combinaciones de letras, formas básicas); las intermedias, patrones compuestos (palabras, frases, relaciones); las finales, conceptos de alto nivel (significado, intención, contexto).
+> - **Más capas es más capacidad y más costo.** Más parámetros permiten modelar relaciones más complejas, y a la vez exigen más datos para entrenar y más cómputo.
+>
+> - 💡 Los modelos de lenguaje de hoy tienen miles de millones de parámetros. Cada nodo del diagrama es el perceptrón de la lámina anterior, repetido.
+>
+> ### Sources
+>
+> - `AIG4B-Clase-2-LLM.md.md` (slide 19) — la jerarquía de abstracción por capas, el trade-off entre capacidad y costo, y "los modelos de lenguaje modernos tienen miles de millones de parámetros".
+> - `AIG4B-Clase-2-LLM.md.md` (slide 20) — la figura del perceptrón multicapa.
+>
+> ### Speaker notes
+>
+> Las dos láminas del deck original se juntaron: la 19 era el texto sin figura y la 20 era la figura sin texto. Lo que hay que hacer con el diagrama es señalar un nodo verde y decir "esto es la lámina anterior", y después señalar los subíndices de los pesos para que se vea por qué el conteo de parámetros explota con la profundidad. Arriba a la derecha la figura trae un esquema compacto de cajas encadenadas que sirve como lectura de alto nivel. Está en inglés. La viñeta decorativa de la slide 19 se retiró.
+>
+> ### Presenter feedback
+>
+> - [closed] 2026-09-03 (editor) — "La slide 20 del deck original no tenía texto propio: sólo el título y la figura."
+>   Resolution: se fusionó con la 19, que tenía el texto y ninguna figura. La lámina resultante queda dentro del presupuesto de densidad: encabezado, figura y un bloque de apoyo.
+>
+> ---
+>
+
+
+> ## Bajar por la pendiente
+>
+> **El descenso por gradiente ajusta cada peso en la dirección que más reduce la loss. La dirección la da el gradiente cambiado de signo, −∇.**
+>
+> - **El ciclo por ejemplo** Entra un ejemplo, el modelo predice con los pesos que tiene, se compara con la respuesta correcta, se calcula la loss, se ajustan los pesos un poco en la dirección de −∇, y sigue el ejemplo siguiente.
+> - **La analogía que se sostiene** Estar en una montaña con niebla y querer llegar al valle. El camino completo no se ve; la pendiente bajo los pies, sí. Cada paso va un poco para abajo.
+>
+> ![Superficie tridimensional de pérdida en malla, con picos y valles coloreados y una trayectoria que desciende serpenteando desde la cima hasta el fondo de un valle](images/superficie-de-perdida.jpg)
+>
+> ### Speaker notes
+>
+> La figura es la analogía dibujada, así que contá la montaña señalándola. Hay algo que la figura muestra y el deck original nunca menciona: la superficie tiene varios valles azules, o sea varios mínimos locales, y la trayectoria termina en uno cualquiera. Si alguien lo marca, la respuesta honesta es que sí, que el descenso por gradiente no garantiza el mínimo global, y que en redes grandes eso resulta ser menos grave de lo que suena. No lo abras vos si el tiempo aprieta. La figura casi no tiene texto: sólo un "04" heredado de la numeración del deck original. La viñeta decorativa de esta lámina se retiró.
+
+> ## El learning rate es el paso
+>
+> **El learning rate decide cuánto se mueve cada peso en cada paso. Es un número que se elige antes de entrenar, y los dos extremos fallan de maneras distintas.**
+>
+>
+> ![Paso demasiado grande y paso demasiado chico sobre la misma curva de loss](images/s5-5-1-learning-rate-paso.svg)
+>
+> ### Speaker notes
+>
+> El diagrama es cualitativo y está declarado como tal dentro del propio dibujo, porque una curva de loss dibujada a mano se lee como medición si no se aclara. Los ejes están rotulados, loss contra peso, y ésa es la única lectura válida. Lo que conviene decir es que el learning rate es el primer hiperparámetro que alguien toca cuando un entrenamiento no converge, y que las dos fallas se distinguen a simple vista en la curva de loss: si oscila, el paso es grande; si baja plano y no llega, es chico. La lámina se separó de la anterior porque el deck original metía la figura de la montaña, el ciclo de seis pasos, la analogía y el learning rate en una sola pantalla.
+
+> ## Cuatro pasos que se repiten
+>
+> **El entrenamiento es un bucle de cuatro pasos que corre hasta que la loss deja de bajar.**
+>
+> - **Calcular la loss** Pasar los datos por el modelo con los pesos y el bias actuales, generar predicciones y medir qué tan lejos quedaron.
+> - **Determinar la dirección** Averiguar hacia dónde mover los pesos y el bias para que la loss baje.
+> - **Actualizar los pesos** Moverse un paso chico en esa dirección. El tamaño del paso es el learning rate.
+> - **Repetir** Volver al primer paso hasta que la loss no baje más.
+>
+> ![El lazo cerrado del entrenamiento y las dos puertas por las que entra el dataset](images/s5-6-1-ciclo-entrenamiento.svg)
+>
+> ### Speaker notes
+>
+> El diagrama y la lista dicen los cuatro pasos, así que conviene usar uno de los dos y no leer los dos: recorré el lazo con el dedo y dejá la lista como referencia. Lo que el diagrama agrega y la lista no dice es el rol del conjunto de datos, que entra por dos puertas distintas, las características al modelo y las etiquetas al cálculo de la loss. La otra cosa que conviene señalar es la flecha de retorno: lo único que da la vuelta entera y vuelve a empezar son los pesos. Esta lámina es el único lugar de la clase donde vive el ciclo: la de vocabulario del modelado de lenguaje se quedó con las definiciones.
+
+> ## Repartir la culpa hacia atrás
+>
+> **En una red de muchas capas, la retropropagación es lo que decide cuánto ajustar cada peso: propaga el error desde la salida hacia atrás y le asigna a cada peso una parte proporcional a su contribución.**
+>
+> - **Forward pass** La entrada viaja hacia adelante por la red hasta producir una predicción, y se mide el error contra el valor real.
+> - **Backward pass** El error vuelve hacia atrás por cada conexión, y en cada peso queda registrado cuánto contribuyó. Cada peso se ajusta en proporción a esa contribución.
+>
+> ![Ida y vuelta sobre la misma red, con la malla de nueve conexiones ampliada en el medio](images/s5-7-1-retropropagacion-malla.svg)
+>
+> - 💡 Formalmente es la regla de la cadena aplicada a una composición de funciones, y funciona porque una red es aproximadamente diferenciable. Es lo que hace viable entrenar redes de millones de parámetros.
+>
+> ### Speaker notes
+>
+> Las dos láminas del deck original se juntaron: la 23 era el texto y la 24 una figura sola. El diagrama tiene dos lecturas y conviene hacerlas en orden. Primero las bandas: la ida de izquierda a derecha, la loss, y la vuelta de derecha a izquierda por la banda de abajo. Después la ampliación del medio, que es donde está el argumento nuevo: pedí que cuenten los `+`. Son nueve entre dos capas de tres nodos, y por cada uno vuelve un pedazo del error. Eso es lo que hace que entrenar sea un problema de escala y no de aritmética, y es lo que la figura original decía en silencio con su malla. La analogía del deck original, rastrear un defecto en una cadena de producción para ver quién tuvo más culpa en cada paso, funciona bien y va de palabra. La regla de la cadena está al pie a propósito: es el fundamento, no lo que hay que retener.
 
 ## Las 14 imágenes decorativas del deck original
 
