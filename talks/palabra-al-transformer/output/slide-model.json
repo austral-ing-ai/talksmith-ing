@@ -8,19 +8,18 @@
     "lang": "es",
     "logo": null,
     "sections": [
-      "Familias de problemas",
-      "Por qué procesar texto",
-      "Modelado de lenguaje",
-      "Embeddings",
+      "Un modelo por cada tarea",
+      "Predecir lo que sigue",
+      "Palabras como vectores",
       "De las RNN a la atención",
-      "Transformers y LLM"
+      "El transformer completo"
     ]
   },
   "slides": [
     {
       "template": "section-agenda",
-      "section": "Familias de problemas",
-      "title": "Familias de problemas",
+      "section": "Un modelo por cada tarea",
+      "title": "Un modelo por cada tarea",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -36,232 +35,48 @@
       }
     },
     {
-      "section": "Familias de problemas",
-      "title": "Siete familias de problemas de IA",
-      "lead": "**Cada familia se define por la forma de su entrada y de su salida, no por el dominio en el que se aplica.**",
-      "notes": "Lámina de encuadre. Lo único que hay que dejar clavado es que la última familia, generación, es la que ocupa el resto de la clase, y que las otras seis aparecen para dar contraste. Si alguien pregunta por qué representación y generación suenan parecidas, la respuesta corta es que representación aprende el espacio y generación produce puntos nuevos dentro de él; las secciones de embeddings y de transformers lo muestran en concreto. El deck original ponía ocho iconos y nombraba siete categorías: el octavo icono era la viñeta del callout, no una familia. Los ocho se retiraron.",
       "template": "concept-breakdown",
-      "format": "row",
+      "section": "Un modelo por cada tarea",
+      "title": "Lo que ya vieron sobre tipos de problema",
+      "lead": "Repaso de una lámina. En la clase 4 el catálogo de tareas se organizó por la forma de la salida; acá interesa una sola distinción, y es la última.",
       "cards": [
         {
-          "label": "Predicción",
-          "body": "Aprender una función de X a Y a partir de datos etiquetados. Incluye clasificación y regresión."
+          "label": "Predecir un valor",
+          "body": "Un número, una clase entre N, varias etiquetas, un conteo. Es lo que la clase 4 recorrió tarea por tarea, con su capa de salida y su loss para cada una."
         },
         {
-          "label": "Percepción",
-          "body": "Extraer estructura de señales sensoriales: imagen, audio, video."
+          "label": "Agrupar sin etiquetas",
+          "body": "Descubrir qué datos se parecen cuando nadie definió las categorías de antemano."
         },
         {
-          "label": "Representación",
-          "body": "Aprender embeddings y espacios latentes que capturan relaciones entre datos."
-        },
-        {
-          "label": "Decisión secuencial",
-          "body": "Maximizar recompensa acumulada a lo largo de una serie de acciones. Se formaliza como reinforcement learning."
-        },
-        {
-          "label": "Búsqueda y planificación",
-          "body": "Encontrar la mejor secuencia de acciones dentro de un espacio de estados."
-        },
-        {
-          "label": "Razonamiento simbólico",
-          "body": "Manipular símbolos y reglas IF–THEN para derivar conclusiones lógicas."
-        },
-        {
-          "label": "Generación",
-          "body": "Producir muestras nuevas y coherentes: texto, imagen, audio, código. La cantidad de salidas posibles no tiene tope."
+          "label": "Generar",
+          "body": "Producir algo nuevo que se parezca a los datos de entrenamiento sin copiarlos. **La cantidad de salidas posibles no tiene tope**, y esa es la diferencia que importa."
         }
       ],
-      "highlights": [
-        {
-          "body": "Un sistema real casi nunca usa una sola. Un auto autónomo combina percepción, decisión secuencial y planificación.",
-          "kind": "example",
-          "position": "bottom"
-        }
-      ],
+      "notes": "Lámina de repaso, no de enseñanza, y va rápido. Las dos primeras filas son recordatorio: eso ya lo trabajaron con detalle en las clases 3 y 4, incluida la elección de capa de salida y de función de pérdida. Lo único que hay que dejar clavado es la tercera. En predicción y agrupamiento la salida sale de un conjunto conocido; en generación no hay conjunto, y por eso el problema parece intratable hasta que se lo reformula como predecir el token que sigue. Esa reformulación es la clase entera, así que conviene decirlo acá y volver a ella cuando aparezca el modelado de lenguaje.",
       "_choice": {
         "signals": [
-          "n_images=0",
-          "labeled_items=7",
-          "has_table=False"
+          "tres elementos etiquetados con cuerpo",
+          "sin imagen",
+          "sin código"
         ],
         "candidates": [
           "concept-breakdown",
-          "concept-breakdown"
+          "value-columns"
         ],
-        "picked": "concept-breakdown",
+        "pick": "concept-breakdown",
         "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+          "value-columns": "las tres filas no comparten ejes comparables; son categorías con desarrollo, no columnas de una misma dimensión"
         }
-      }
-    },
-    {
-      "section": "Familias de problemas",
-      "title": "El modelo aprende las reglas",
-      "lead": "**La programación clásica recibe reglas y datos, y devuelve respuestas. Machine learning recibe datos y respuestas, y devuelve las reglas.**",
-      "notes": "La figura es el argumento entero y conviene recorrerla en voz alta: fila de arriba, reglas más datos entran y salen respuestas; fila de abajo, datos más respuestas entran y salen reglas. Es la definición operativa de machine learning y la más útil para esta audiencia, porque describe qué artefacto produce el equipo. La figura está en inglés (Rules, Data, Answers, Classical Programming, Machine Learning); traducila al pasar. El título del deck original tenía un typo, \"IA moAderna\", corregido acá.",
-      "template": "content+cards+image",
-      "design": "split-right",
-      "media": {
-        "src": "images/s1-2-1-inversion-reglas-datos.svg",
-        "alt": "La inversión entre programación clásica y machine learning: las mismas tres piezas cambian de lado"
       },
-      "cards": [
-        {
-          "label": "Lo que se escribe a mano cambia de lugar.",
-          "body": "En el paradigma clásico alguien escribe las reglas. En machine learning alguien junta ejemplos resueltos, y el algoritmo escribe las reglas."
-        },
-        {
-          "label": "La consecuencia práctica",
-          "body": "El costo se muda de la lógica al conjunto de datos. Cuando cada tarea necesitaba su propio conjunto etiquetado a mano, ese costo se pagaba entero una vez por tarea."
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=2",
-          "has_table=False"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "concept-breakdown"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "section": "Familias de problemas",
-      "title": "Clasificar: elegir entre categorías",
-      "lead": "**Asignar una entrada a una de varias categorías conocidas de antemano. La salida es una etiqueta de un conjunto cerrado.**",
-      "notes": "Primera de las dos formulaciones de predicción. La figura es literal y conviene usarla así: entra una foto, sale una etiqueta. Lo que define la clasificación es que el conjunto de salidas está fijado de antemano y el modelo elige uno.",
-      "template": "content-image",
-      "design": "split-right",
-      "media": {
-        "src": "images/clasificacion-de-imagenes.png",
-        "alt": "Diagrama de clasificación de imágenes: una foto de un gato entra a una caja rotulada Modelo y sale la etiqueta CAT"
-      },
-      "facts": [
-        {
-          "label": "Clasificación",
-          "body": "Asignar una entrada a una de varias categorías conocidas de antemano. Pregunta: ¿a qué categoría pertenece? Ejemplo: decidir si un correo es spam."
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=1",
-          "has_table=False"
-        ],
-        "candidates": [
-          "content-image",
-          "concept-breakdown"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "section": "Familias de problemas",
-      "title": "Regresión: estimar un número",
-      "lead": "**Estimar un valor continuo a partir de las características de la entrada. La salida es un número, no una etiqueta.**",
-      "notes": "La clasificación queda del lado de la figura y la regresión del lado del diagrama: una salida discreta y una continua, en la misma pantalla. El ejemplo de la casa del texto y el del diagrama coinciden, así que se pueden señalar juntos. Detenete en el signo de pregunta: ahí no se vendió ninguna casa y la recta contesta igual, y ésa es la diferencia práctica con elegir entre categorías. La nube de puntos y la recta son esquemáticas, sin escala en los ejes a propósito, porque no hay ningún conjunto de datos detrás. La lámina original juntaba las cuatro formulaciones y cuatro figuras en una sola pantalla; acá van de a dos.",
-      "template": "content-image",
-      "design": "split-right",
-      "media": {
-        "src": "images/s1-3-1-regresion-hueco-datos.svg",
-        "alt": "Una recta de regresión devuelve un precio incluso en el tramo donde no se vendió ninguna casa"
-      },
-      "facts": [
-        {
-          "label": "Regresión",
-          "body": "Estimar un valor continuo a partir de las características de la entrada. Pregunta: ¿qué valor va a tener? Ejemplo: estimar el precio de una casa por sus metros cuadrados."
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=1",
-          "has_table=False"
-        ],
-        "candidates": [
-          "content-image",
-          "concept-breakdown"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
-    },
-    {
-      "section": "Familias de problemas",
-      "title": "Agrupar y crear datos nuevos",
-      "lead": "**Las otras dos formulaciones no tienen respuesta correcta escrita de antemano: una descubre la estructura, la otra produce muestras que no estaban en los datos.**",
-      "notes": "El clustering es el que más cuesta, porque la pregunta \"¿qué datos se parecen?\" suena vacía hasta que se ve un caso. El de tickets de soporte funciona bien con esta audiencia: nadie sabe de antemano cuántas fallas distintas hay en la cola, y agrupar es justamente cómo se descubren. Leé dos o tres tickets de la columna izquierda y preguntá cómo los agruparían; van a dar los tres grupos del diagrama sin esfuerzo, y ése es el momento de decir que el algoritmo llega hasta ahí y no más. Los nombres —acceso, pagos, facturación— los pone una persona mirando el resultado, y eso es lo que separa agrupar de clasificar.",
-      "template": "content+cards+image",
-      "design": "split-right",
-      "media": {
-        "src": "images/s1-4-1-agrupar-tickets.svg",
-        "alt": "El agrupamiento forma los grupos de tickets; los nombres los pone una persona después"
-      },
-      "cards": [
-        {
-          "label": "Clustering",
-          "body": "Agrupar elementos parecidos sin categorías definidas de antemano. Pregunta: ¿qué datos se parecen entre sí? Ejemplo: agrupar los tickets de soporte que describen la misma falla, sin haber decidido antes cuáles son las fallas."
-        },
-        {
-          "label": "Generación",
-          "body": "Producir datos nuevos que se parezcan a los de entrenamiento sin copiarlos. Pregunta: ¿puedo crear datos que no estaban? Ejemplo: escribir texto o completar código."
-        }
-      ],
       "highlights": [
         {
-          "body": "El modelo aprende patrones de los datos. Nadie le escribe las reglas.",
-          "kind": "example",
-          "position": "bottom"
+          "body": "Las dos primeras eligen dentro de un conjunto conocido. La tercera no tiene conjunto. Un modelo de lenguaje vive en la tercera, y el resto de la clase explica cómo se las arregla para que sea tratable."
         }
-      ],
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=2",
-          "has_table=False"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "concept-breakdown"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
-        }
-      }
+      ]
     },
     {
-      "template": "section-agenda",
-      "section": "Por qué procesar texto",
-      "title": "Por qué procesar texto",
-      "_choice": {
-        "signals": [
-          "encabezado de sección"
-        ],
-        "candidates": [
-          "section-agenda",
-          "divider"
-        ],
-        "picked": "section-agenda",
-        "rejected": {
-          "divider": "es una sección real"
-        }
-      }
-    },
-    {
-      "section": "Por qué procesar texto",
+      "section": "Un modelo por cada tarea",
       "title": "Los mismos problemas, con texto",
       "lead": "**Cada formulación clásica tiene su equivalente cuando la entrada es texto. Cambia el tipo de dato, no la forma del problema.**",
       "notes": "Lámina bisagra entre el mapa general y el resto de la clase. El punto que conviene subrayar es el primero de los dos de abajo, porque anticipa el modelado de lenguaje: predicción y generación son la misma cuenta, y por eso un modelo que sabe completar huecos sabe escribir. Las dos últimas filas de la tabla lo muestran con la misma frase. El ejemplo de sentimiento del deck original (\"qué bien comimos en el restaurante\") se retiró: la columna de la derecha ya trae uno.",
@@ -328,7 +143,7 @@
       }
     },
     {
-      "section": "Por qué procesar texto",
+      "section": "Un modelo por cada tarea",
       "title": "Hay más texto del que se puede leer",
       "lead": "**Procesamiento del lenguaje natural (NLP) es el campo que se ocupa de resolver estas tareas de forma automática, sobre volúmenes de texto que nadie va a leer entero.**",
       "notes": "Lámina corta y de motivación. Lo que la sostiene es el callout del final: la escala es lo que separa una tarea de NLP de un rato de lectura. Si querés un caso propio, la cola de tickets de cualquier equipo grande sirve, porque nadie la lee entera y todos necesitan saber qué hay adentro. El deck original listaba historias clínicas y opiniones de pacientes sobre un tratamiento, heredados de la materia anterior; están convertidos.",
@@ -368,7 +183,7 @@
       }
     },
     {
-      "section": "Por qué procesar texto",
+      "section": "Un modelo por cada tarea",
       "title": "Veinticinco tareas de NLP",
       "lead": "**Las cinco familias, aterrizadas. Cada columna es una formulación de la lámina anterior y cada celda una tarea que alguien resuelve hoy en producción.**",
       "notes": "Lámina de referencia, no de lectura. Señalá una celda por columna y seguí; la matriz está para que quede como material de consulta. La celda que conviene marcar es \"predecir la siguiente palabra de una oración\", en la columna de predicción, porque es la que abre la sección siguiente y la que termina absorbiendo a casi todas las demás cuando aparecen los modelos fundacionales.",
@@ -445,7 +260,7 @@
       }
     },
     {
-      "section": "Por qué procesar texto",
+      "section": "Un modelo por cada tarea",
       "title": "Un modelo por tarea",
       "lead": "**Antes de los modelos fundacionales, cada tarea de la matriz anterior necesitaba su propio conjunto de datos etiquetado y su propio modelo entrenado desde cero.**",
       "notes": "El diagrama dice algo que la lista del deck original no decía: el costo no está en entrenar sino en etiquetar, y no se amortiza entre tareas. Recorré las tres columnas señalando que ninguna flecha cruza de una a otra. Esta lámina es la que le da peso al cierre de la clase: cuando se muestre que las tres tareas se resuelven con el mismo modelo y tres prompts distintos, el contraste es contra esta imagen. La viñeta decorativa del deck original en esta lámina se retiró.",
@@ -479,8 +294,8 @@
     },
     {
       "template": "section-agenda",
-      "section": "Modelado de lenguaje",
-      "title": "Modelado de lenguaje",
+      "section": "Predecir lo que sigue",
+      "title": "Predecir lo que sigue",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -496,7 +311,7 @@
       }
     },
     {
-      "section": "Modelado de lenguaje",
+      "section": "Predecir lo que sigue",
       "title": "Predecir la palabra que sigue",
       "lead": "**El problema tiene tres entradas: un vocabulario V, un corpus de texto T y una frase incompleta P. La salida es el token más probable a continuación de P.**",
       "notes": "Ésta es la lámina que hay que dejar clavada de la sección. El diagrama contesta la pregunta que queda flotando desde el enfoque tradicional: si etiquetar es lo caro, cómo se entrenaron los modelos grandes. La respuesta es que para esta tarea la etiqueta ya está escrita, y por eso el conjunto de entrenamiento es todo el texto disponible. Contá los ejemplos en voz alta: seis tokens, cinco pares. Si alguien pregunta por qué son cinco y no seis, es porque el último token no tiene siguiente. La viñeta decorativa del deck original en esta lámina se retiró.",
@@ -529,7 +344,7 @@
       }
     },
     {
-      "section": "Modelado de lenguaje",
+      "section": "Predecir lo que sigue",
       "title": "La salida es un vector, no una palabra",
       "lead": "**El modelo devuelve un número por cada token del vocabulario: la probabilidad de que ese token sea el siguiente. El vector tiene longitud |V|.**",
       "notes": "El diagrama es el argumento entero: una frase incompleta entra, y lo que sale es la columna completa de barras. Recorré las filas de arriba abajo hasta las que casi no se ven, y decí que la lista sigue hasta completar el vocabulario. El punto que conviene decir en voz alta es el segundo de los de apoyo: el modelo produce la distribución, y elegir un token es una decisión de quien lo usa. Las barras son esquemáticas y no llevan números a propósito, porque no salen de ninguna corrida; lo único que se afirma es la estructura, que hay un valor por token y que suman uno.",
@@ -566,7 +381,7 @@
       }
     },
     {
-      "section": "Modelado de lenguaje",
+      "section": "Predecir lo que sigue",
       "title": "Los modelos no leen letras",
       "lead": "**Un token es la unidad mínima que el modelo procesa: una palabra entera, un pedazo de palabra o un signo de puntuación. Tokenizar es el primer paso de cualquier tarea de NLP.**",
       "notes": "Los dos conteos del diagrama están verificados contra el deck: \"the cat sat on the mat\" da seis tokens y \"unbelievable\" da tres. El ejemplo de la palabra desconocida es agregado y no está en el deck original: sirve porque es el único momento en que se ve para qué sirve la descomposición, y \"descontracturante\" funciona con esta audiencia porque nadie duda de que ningún vocabulario la va a tener. Si preguntan cómo se decide el vocabulario de sub-palabras, la respuesta corta es que se aprende del corpus por frecuencia, y que el algoritmo concreto (BPE y parientes) queda fuera de esta clase.",
@@ -599,7 +414,7 @@
       }
     },
     {
-      "section": "Modelado de lenguaje",
+      "section": "Predecir lo que sigue",
       "title": "Catorce tokens y cinco frases",
       "lead": "**El mismo problema, con números chicos: un vocabulario de 14 tokens, un corpus de 5 frases y una frase incompleta.**",
       "notes": "Los números cierran: el vector suma uno exacto y el vocabulario tiene los catorce tokens que declara. Si alguien los suma en el momento, van a dar. La frase incompleta se resuelve por la tercera del corpus, \"the dog sat on bed\". El deck original la identificaba como `T[2]` sin declarar si indexaba desde cero o desde uno; acá se dice cuál es la frase en vez de su índice, porque las dos lecturas dan \"bed\" y la ambigüedad no aporta nada. Notá también que la primera frase del corpus dice \"the cat sat on mat\" y no \"the cat sat on the mat\": es un corpus de juguete y está bien, pero si alguien lo marca, es eso.",
@@ -647,7 +462,7 @@
       ]
     },
     {
-      "section": "Modelado de lenguaje",
+      "section": "Predecir lo que sigue",
       "title": "Aprender es ajustar parámetros",
       "lead": "**Un modelo por dentro es un conjunto de números ajustables. Entrenar es buscar los valores que hacen que la salida se parezca al vector objetivo.**",
       "notes": "Lámina de vocabulario, corta a propósito. Las tres definiciones se usan sin parar en las dos secciones de redes neuronales, así que conviene decirlas despacio y no volver sobre ellas. El ciclo concreto (cómo se calcula la loss, en qué dirección se mueven los parámetros) es la sección *Cómo aprende una red* entera y acá no se adelanta. Si alguien pregunta cuántos parámetros, la respuesta llega al hablar de profundidad. Una advertencia sobre el deck original: sus pasos 03 y 04 decían \"la palabra más probable era alfombra\", confundiendo la palabra correcta del corpus con la más probable según el modelo, que es justamente lo que se está comparando; acá esa redacción no se usa.",
@@ -692,8 +507,8 @@
     },
     {
       "template": "section-agenda",
-      "section": "Embeddings",
-      "title": "Embeddings",
+      "section": "Palabras como vectores",
+      "title": "Palabras como vectores",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -709,7 +524,7 @@
       }
     },
     {
-      "section": "Embeddings",
+      "section": "Palabras como vectores",
       "title": "Tres formas de volver texto en números",
       "lead": "**El vocabulario V es el conjunto de tokens que el modelo conoce, y por eso predice un vector de tamaño |V|. Pero un token es texto, y los parámetros son números: hace falta una representación numérica.**",
       "notes": "El diagrama es la definición de one-hot y su límite en la misma imagen. La terna cat / dog / heladera viene del deck original, que usaba \"refrigerator\"; se tradujo la tercera para que el contraste se lea sin pasar por el inglés. Lo que hay que dejar dicho es la última línea: one-hot necesita tantas dimensiones como tokens tenga el vocabulario, o sea decenas de miles, y no usa ninguna de ellas para decir algo sobre significado. Los valores de embedding son ilustrativos.",
@@ -750,7 +565,7 @@
       }
     },
     {
-      "section": "Embeddings",
+      "section": "Palabras como vectores",
       "title": "De token a vector",
       "lead": "**Un embedding de texto es un vector que codifica el significado de un token. Cada token del vocabulario tiene el suyo, y ese vector es lo que entra al modelo.**",
       "notes": "Recorré el diagrama de izquierda a derecha una vez y volvé al medio: lo que hay que dejar dicho es que la fila de números y el punto son la misma cosa, porque los números *son* las coordenadas. Ése es el paso que cierra la sección y el que más cuesta. Las filas van con puntos suspensivos y sin valores a propósito: la figura del deck original traía una matriz con dos decimales que parecía medida y no salía de ningún modelo. El segundo punto de apoyo evita el malentendido más común de la sección: nadie va a poder decir qué mide la dimensión 3. Las dos flechas del panel derecho anticipan la lámina siguiente, así que señalalas y no las desarrolles acá.",
@@ -787,7 +602,7 @@
       }
     },
     {
-      "section": "Embeddings",
+      "section": "Palabras como vectores",
       "title": "El espacio de embeddings",
       "lead": "**Los tokens de significado parecido caen cerca. Esa cercanía es lo único que el espacio codifica, y es lo que permite comparar dos textos sin compararlos palabra por palabra.**",
       "notes": "La figura no tiene una sola palabra escrita: usa emojis en vez de etiquetas, así que se entiende en cualquier idioma y sirve para señalar los dos grupos sin leer nada. Es la más directa de las tres de embeddings. Lo que conviene aclarar es que la proyección a dos ejes es una simplificación útil: el espacio real tiene varias centenas de dimensiones y no se puede dibujar. Si alguien pregunta cuántas, la respuesta honesta es que depende del modelo y que esta clase no fija un número.",
@@ -824,7 +639,7 @@
       }
     },
     {
-      "section": "Embeddings",
+      "section": "Palabras como vectores",
       "title": "Las relaciones también son vectores",
       "lead": "**El espacio no sólo agrupa: también guarda relaciones. El desplazamiento que lleva de \"man\" a \"woman\" es el mismo que lleva de \"king\" a \"queen\".**",
       "notes": "Los tres paneles muestran tres relaciones distintas con flechas paralelas, y el argumento es la paralelidad, no los puntos. El panel del medio, tiempo verbal, es la relación sintáctica; los otros dos son semánticos, y esa división es justamente la que el paper de Mikolov usa para evaluar. Advertencia sobre lo que no se puede citar contra el corpus: la aritmética de vectores `rey − hombre + mujer ≈ reina` está en el cuerpo del paper, no en el abstract que tenemos capturado, así que en la lámina aparece como formulación del propio deck. La figura está en inglés.",
@@ -861,7 +676,7 @@
       }
     },
     {
-      "section": "Embeddings",
+      "section": "Palabras como vectores",
       "title": "Word2Vec aprende de la compañía",
       "lead": "**Word2Vec es un método para aprender los vectores de embedding a partir de un corpus, sin que nadie los diseñe a mano. Parte de que una palabra queda definida por las palabras que la rodean.**",
       "notes": "Tres advertencias sobre el respaldo, todas del registro del corpus, y ninguna va en la lámina. Primera: el deck original decía que Word2Vec fue el primer método que aprende embeddings, y el abstract del paper se compara explícitamente con técnicas neuronales anteriores, así que no reclama ser el primero; acá la lámina dice \"un método\", no \"el primero\". Segunda: la frase \"una palabra se define por la compañía que tiene\" es la hipótesis distribucional de Firth, de 1957, y no aparece en el paper; está parafraseada en el encabezado sin atribuírsela a Mikolov. Tercera: que Word2Vec promedia los vectores de contexto es la mecánica de la arquitectura CBOW, que vive en el cuerpo del paper y no en el abstract capturado, así que no la presentes como algo que el paper afirma en la parte que tenemos. El único número de la lámina, 1.600 millones de palabras en menos de un día, sí está en el abstract y se puede citar de frente.",
@@ -1254,8 +1069,8 @@
     },
     {
       "template": "section-agenda",
-      "section": "Transformers y LLM",
-      "title": "Transformers y LLM",
+      "section": "El transformer completo",
+      "title": "El transformer completo",
       "_choice": {
         "signals": [
           "encabezado de sección"
@@ -1271,7 +1086,7 @@
       }
     },
     {
-      "section": "Transformers y LLM",
+      "section": "El transformer completo",
       "title": "La arquitectura de 2017",
       "lead": "**El Transformer es la arquitectura que reemplazó a las RNN en 2017. Procesa la secuencia entera de una vez, en paralelo, apilando bloques de atención.**",
       "notes": "La figura es la figura 1 del paper de Vaswani y otros, y el deck original la reproducía sin atribución; acá el crédito está al pie de la lámina, a la vista, además de en las fuentes. Es la figura más reconocible del campo y proyectarla sin crédito es evitable. Está en inglés y es densa: no la recorras entera. Señalá tres cosas y seguí: las dos columnas, la caja de atención multi-cabeza que se repite, y el softmax de arriba, que es donde el recorrido se cierra sobre el modelado de lenguaje. El deck original agregaba que los LLM modernos usan solo decoder, o sea sólo la columna derecha. Es cierto y es consenso, pero no sale del paper de 2017 ni de ninguna fuente de nuestro corpus, así que decilo de palabra y como afirmación propia, no como algo que el paper diga. Está anotado en las preguntas abiertas.",
@@ -1311,7 +1126,7 @@
       }
     },
     {
-      "section": "Transformers y LLM",
+      "section": "El transformer completo",
       "title": "Tres generaciones de representación",
       "lead": "**El recorrido de la clase, en una tabla: representaciones estáticas, después secuenciales, después contextuales con atención.**",
       "notes": "Lámina de repaso, y la única que conviene leer entera, porque cada fila es una sección de la clase. La lectura útil es en columna: la columna de la derecha es la cadena de motivaciones, porque cada limitación es lo que el renglón siguiente vino a arreglar. La tabla del deck original tenía cinco columnas, con \"Novedad\" y \"Pros\" diciendo casi lo mismo; quedaron fusionadas en una. Si preguntan por lo cuadrático de la última fila, es que cada token calcula un peso contra cada otro token, o sea n² pares.",
@@ -1370,7 +1185,7 @@
       }
     },
     {
-      "section": "Transformers y LLM",
+      "section": "El transformer completo",
       "title": "El ciclo de un LLM, token a token",
       "lead": "**Cada palabra que aparece en pantalla es una vuelta entera de este ciclo. El modelo escribe un token, se vuelve a leer completo y escribe el siguiente.**",
       "notes": "El diagrama convierte una tabla de seis celdas en un bucle, que es lo que la tabla del deck original no dejaba ver. Lo que hay que señalar es la flecha de retorno: es la que explica por qué una respuesta larga tarda más que una corta de forma proporcional, y por qué el costo se cobra por token. El ejemplo de tokenización en español es bueno y vale detenerse: \"estás\" se parte en dos sub-palabras y los dos signos de interrogación son tokens propios, o sea que una frase de dos palabras da cinco tokens. Eso conecta directo con la tokenización por sub-palabras.",
@@ -1403,7 +1218,7 @@
       }
     },
     {
-      "section": "Transformers y LLM",
+      "section": "El transformer completo",
       "title": "El mismo problema, a otra escala",
       "lead": "**Es la misma formulación de modelado de lenguaje, con los mismos tres ingredientes y otro orden de magnitud.**",
       "notes": "Tres cuidados con los números de la columna derecha, y los tres importan porque son las cifras que un alumno se lleva anotadas. El primero: el deck original decía \"billones de palabras\" para el corpus, que en español rioplatense son 10¹² y en el original en inglés casi con seguridad eran 10⁹; como no hay forma de saber cuál era la intención, la cifra se retiró y quedó la descripción cualitativa. El segundo: los cientos de miles de millones de parámetros y los ~100.000 tokens de vocabulario salen del deck original y no de una fuente pública, porque ni OpenAI ni Anthropic publican esos números para sus modelos actuales; están con \"del orden de\" y anotados en las preguntas abiertas. El tercero: la fila de vocabulario del deck original mezclaba unidades, \"14 palabras\" contra \"100.000 tokens\"; acá las dos dicen tokens, que es la unidad que la clase estableció al tokenizar.",
@@ -1466,7 +1281,7 @@
       }
     },
     {
-      "section": "Transformers y LLM",
+      "section": "El transformer completo",
       "title": "Casi cualquier tarea es generación",
       "lead": "**Un modelo que comprende texto y genera palabras permite reescribir casi cualquier tarea de NLP como una instrucción en texto.**",
       "notes": "Ésta es la lámina donde la clase se cierra sobre sí misma, y el callout final es el remate: volvé a la 2.4, la de las tres columnas independientes, y contrastá. Ahí estaba el costo de etiquetar tres veces; acá son tres frases. Si alguien pregunta si entonces el entrenamiento etiquetado desapareció, la respuesta corta es que no, que se mudó al ajuste de instrucciones y a la alineación, y que eso es materia de otra clase. Esta lámina también es la que engancha con la clase de prompting.",
@@ -1514,7 +1329,7 @@
       }
     },
     {
-      "section": "Transformers y LLM",
+      "section": "El transformer completo",
       "title": "Entrenamiento e inferencia",
       "lead": "**Dos fases distintas, con costos, responsables y momentos distintos. Confundirlas es el malentendido más común sobre estos modelos.**",
       "notes": "Última lámina de contenido y la más aplicable de la sección. El primer punto de abajo es el que hay que decir despacio, porque es el malentendido más frecuente que va a aparecer fuera de la clase: la conversación no entrena nada. El deck original decía \"billones de palabras\" también acá; se retiró por la misma ambigüedad de la tabla de escala y quedó \"escala web\". La fila de \"Ejemplo\" del deck original (entrenar GPT-4 contra preguntarle qué es NLP) se retiró porque repetía lo que ya dicen las filas de qué pasa y cuándo.",
@@ -1581,7 +1396,7 @@
       }
     },
     {
-      "section": "Transformers y LLM",
+      "section": "El transformer completo",
       "title": "Lo que queda de la clase",
       "notes": "Cinco frases y ninguna es un resumen de la agenda. La primera es la tesis desplegada. La segunda es la que más se recuerda, porque explica el salto de escala con un argumento económico y no con uno técnico. La tercera es el nudo de la clase y conviene decirla mirando el diagrama del cuello de botella. La quinta es la que menos se espera de una clase: contá que al revisar este mismo material encontramos tres papers citados sin nombre y una unidad ambigua, y que se corrigieron. Si te queda tiempo, cerrá con la pregunta que abre la clase siguiente: si el modelo sólo predice el token siguiente, de dónde sale que parezca que razona.",
       "template": "concept-breakdown",
@@ -1627,7 +1442,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "850828d6f19c6727aaa2307143241c4ef06a6dc13a66c7a9efaf2475bf7779c0",
-    "bytes": 92376
+    "sha256": "6977b53af8c3e72486ebb4b3dccb253f85bc6a9910293353b5b201ff439d46d5",
+    "bytes": 82644
   }
 }

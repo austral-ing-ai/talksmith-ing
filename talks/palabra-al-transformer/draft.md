@@ -26,16 +26,16 @@ date: 2026-09-23
 
 **Narrative arc:**
 
-La clase arranca por arriba, con las familias de problemas que la IA resuelve, y baja hasta la más chica de todas: predecir la palabra que sigue. Las tres primeras secciones instalan ese problema y muestran que todas las tareas de texto se pueden escribir así. La cuarta y la quinta arman las dos piezas que hacen falta para resolverlo con una red: convertir palabras en vectores y apilar perceptrones. La sexta es el nudo: procesar la frase token por token funciona y se rompe con la distancia, y la atención es lo que la desarma. La séptima cierra mostrando que un LLM de hoy es el mismo problema de la sección tres, con otro tamaño. Cómo se ajustan los pesos no se cuenta acá: lo da entero la clase de modelado de redes neuronales, y esta clase la da por vista.
+La clase baja hasta el problema más chico de todos: predecir la palabra que sigue. La primera sección muestra el estado anterior, cuando cada tarea de texto pedía su propio modelo. La segunda instala el problema y muestra que todas esas tareas se pueden escribir así. La tercera y la cuarta arman las dos piezas que hacen falta para resolverlo con una red: convertir palabras en vectores y procesar la frase respetando el orden. La cuarta es el nudo: hacerlo token por token funciona y se rompe con la distancia, y la atención es lo que lo desarma. La quinta cierra mostrando que un LLM de hoy es el mismo problema de la sección dos, con otro tamaño. Cómo se ajustan los pesos no se cuenta acá: lo da entero la clase de modelado de redes neuronales, y esta clase la da por vista.
 
 **Sections (in delivery order):**
 
-- 1. Familias de problemas
-- 2. Por qué procesar texto
-- 3. Modelado de lenguaje
-- 4. Embeddings
+- 1. Portada
+- 2. Un modelo por cada tarea
+- 3. Predecir lo que sigue
+- 4. Palabras como vectores
 - 5. De las RNN a la atención
-- 6. Transformers y LLM
+- 6. El transformer completo
 
 <!-- Agenda tal como figuraba en el deck original (registro histórico, no se entrega así). -->
 <!-- **Objetivo: Entender cómo se puede generar texto automáticamente.** -->
@@ -57,7 +57,7 @@ La clase arranca por arriba, con las familias de problemas que la IA resuelve, y
 
 ---
 
-# 0. Portada
+# 1. Portada
 
 **Goal of this section:** Apertura del deck original — portada y mapa de la clase.
 
@@ -74,7 +74,7 @@ La clase arranca por arriba, con las familias de problemas que la IA resuelve, y
 
 - **Cómo un modelo aprende a predecir la palabra que sigue**
 - **Paulo Veiga, Claudio Righetti y Marco Sorondo (Universidad Austral)**
-- **Última modificación: septiembre 2026**
+- **Última modificación: septiembre 2026** <!-- deck-omit-text: Última modificación -->
 
 ### Sources
 
@@ -89,235 +89,7 @@ Portada. Presentate y presentá a los otros dos docentes.
 
 ---
 
-# 1. Familias de problemas
-
-**Goal of this section:** Ubicar el modelado de lenguaje dentro del mapa completo de problemas que resuelve la IA, y dejar clara la inversión que define a machine learning.
-
-**Presenter feedback:**
-
-
----
-
-## 1. Siete familias de problemas de IA
-
-<!-- slide 3 del pptx original -->
-
-<!-- format: editorial -->
-
-### Content
-
-**Cada familia se define por la forma de su entrada y de su salida, no por el dominio en el que se aplica.**
-
-- **Predicción** Aprender una función de X a Y a partir de datos etiquetados. Incluye clasificación y regresión.
-- **Percepción** Extraer estructura de señales sensoriales: imagen, audio, video.
-- **Representación** Aprender embeddings y espacios latentes que capturan relaciones entre datos.
-- **Decisión secuencial** Maximizar recompensa acumulada a lo largo de una serie de acciones. Se formaliza como reinforcement learning.
-- **Búsqueda y planificación** Encontrar la mejor secuencia de acciones dentro de un espacio de estados.
-- **Razonamiento simbólico** Manipular símbolos y reglas IF–THEN para derivar conclusiones lógicas.
-- **Generación** Producir muestras nuevas y coherentes: texto, imagen, audio, código. La cantidad de salidas posibles no tiene tope.
-
-- 💡 Un sistema real casi nunca usa una sola. Un auto autónomo combina percepción, decisión secuencial y planificación.
-
-### Sources
-
-- `AIG4B-Clase-2-LLM.md.md` (slide 3) — las siete definiciones, verbatim del deck original.
-
-### Speaker notes
-
-Lámina de encuadre. Lo único que hay que dejar clavado es que la última familia, generación, es la que ocupa el resto de la clase, y que las otras seis aparecen para dar contraste. Si alguien pregunta por qué representación y generación suenan parecidas, la respuesta corta es que representación aprende el espacio y generación produce puntos nuevos dentro de él; las secciones de embeddings y de transformers lo muestran en concreto. El deck original ponía ocho iconos y nombraba siete categorías: el octavo icono era la viñeta del callout, no una familia. Los ocho se retiraron.
-
-### Presenter feedback
-
-- [closed] 2026-09-03 (editor) — "El deck ponía ocho iconos para siete categorías nombradas (corpus, conteo de tipos de problema en la slide 3)."
-  Resolution: los ocho iconos decorativos se retiraron y la lámina enumera las siete familias que el deck efectivamente define. El octavo archivo era la viñeta del callout, según el registro del corpus.
-
----
-
-## 2. El modelo aprende las reglas
-
-<!-- slide 4 del pptx original -->
-
-### Content
-
-**La programación clásica recibe reglas y datos, y devuelve respuestas. Machine learning recibe datos y respuestas, y devuelve las reglas.**
-
-```ascii
-                     ENTRA               PROCESO            SALE
-
-  PROGRAMACION       reglas      ---.
-  CLASICA                            +--> [ programa  ] --> respuestas
-                     datos       ---'
-
-
-  MACHINE            datos       ---.
-  LEARNING                           +--> [ entrenar  ] --> reglas
-                     respuestas  ---'
-
-
-  reglas       entran arriba   ->   salen abajo
-  respuestas   salen arriba    ->   entran abajo
-  datos        entran en los dos
-
-  Lo que en un paradigma se escribe a mano, en el otro se deduce.
-```
-<!-- ascii-note:
-intent: mostrar que los dos paradigmas usan las mismas tres piezas y que lo que cambia es cual es entrada y cual es salida; el nombre del proceso es lo de menos
-emphasize: las tres lineas de abajo, que nombran la inversion pieza por pieza. En el cuerpo, la palabra "reglas" en las dos filas: entra en la de arriba y sale en la de abajo, y esa es toda la leccion
-labels: "ENTRA", "PROCESO", "SALE", "PROGRAMACION CLASICA", "MACHINE LEARNING", "reglas", "datos", "respuestas", y las tres lineas de inversion
--->
-
-- **Lo que se escribe a mano cambia de lugar.** En el paradigma clásico alguien escribe las reglas. En machine learning alguien junta ejemplos resueltos, y el algoritmo escribe las reglas.
-- **La consecuencia práctica** El costo se muda de la lógica al conjunto de datos. Cuando cada tarea necesitaba su propio conjunto etiquetado a mano, ese costo se pagaba entero una vez por tarea.
-
-### Sources
-
-- `AIG4B-Clase-2-LLM.md.md` (slide 4) — la lámina original era solo el título y una figura. La figura se rehizo como diagrama propio: era un esquema plano rotulado en inglés que codificaba la inversión con el color de los círculos, y el diagrama nuevo la nombra pieza por pieza.
-
-### Speaker notes
-
-La figura es el argumento entero y conviene recorrerla en voz alta: fila de arriba, reglas más datos entran y salen respuestas; fila de abajo, datos más respuestas entran y salen reglas. Es la definición operativa de machine learning y la más útil para esta audiencia, porque describe qué artefacto produce el equipo. La figura está en inglés (Rules, Data, Answers, Classical Programming, Machine Learning); traducila al pasar. El título del deck original tenía un typo, "IA moAderna", corregido acá.
-
-### Presenter feedback
-
-- [closed] 2026-09-03 (editor) — "Lámina sin texto propio: sólo el título y la figura."
-  Resolution: se escribió el encabezado que la figura sostiene y dos puntos de apoyo. La figura se conserva porque, según el registro del corpus, es la formalización visual de la afirmación central de la sección.
-
----
-
-## 3. Clasificar: elegir entre categorías
-
-### Content
-
-**Asignar una entrada a una de varias categorías conocidas de antemano. La salida es una etiqueta de un conjunto cerrado.**
-
-- **Clasificación** Asignar una entrada a una de varias categorías conocidas de antemano. Pregunta: ¿a qué categoría pertenece? Ejemplo: decidir si un correo es spam.
-
-![Diagrama de clasificación de imágenes: una foto de un gato entra a una caja rotulada Modelo y sale la etiqueta CAT](images/clasificacion-de-imagenes.png)
-
-### Sources
-
-- `AIG4B-Clase-2-LLM.md.md` (slide 5) — las dos formulaciones y sus ejemplos, verbatim.
-- Diagrama propio. La lámina original ilustraba la regresión con una captura de un curso en video, en inglés y con un error tipográfico en su propio título; se rehízo como diagrama propio en español, con el mecanismo y sin nada de la fuente.
-
-### Speaker notes
-
-Primera de las dos formulaciones de predicción. La figura es literal y conviene usarla así: entra una foto, sale una etiqueta. Lo que define la clasificación es que el conjunto de salidas está fijado de antemano y el modelo elige uno.
-
----
-
-## 4. Regresión: estimar un número
-
-### Content
-
-**Estimar un valor continuo a partir de las características de la entrada. La salida es un número, no una etiqueta.**
-
-- **Regresión** Estimar un valor continuo a partir de las características de la entrada. Pregunta: ¿qué valor va a tener? Ejemplo: estimar el precio de una casa por sus metros cuadrados.
-
-<!-- ascii-render: force -->
-```ascii
-   precio
-      ^
-      |                                           .    ,-'
-      |                                       ,-'
-      |                           .     ,-'        .
-      |                      .      ,-'
-      |               .        ,-'
-      |         .        ,-'  (?)      .
-      |      .      ,-'        ^
-      |   ,-'   .              |
-      +-------------------------------------------> metros cuadrados
-                               |
-                    aca no se vendio ninguna casa, y la recta
-                    igual devuelve un precio
-   Cada punto es una casa ya vendida: sus metros y lo que pago
-   alguien. La recta es el modelo, y contesta en todo el eje, asi
-   que se le puede pedir el precio de un metraje que nunca aparecio
-   en los datos. La salida sale de un rango continuo, y por eso los
-   valores posibles no se pueden enumerar.
-```
-<!-- ascii-note:
-intent: mostrar que un modelo de regresion contesta tambien donde no hay datos, que es lo que separa una salida continua de una eleccion entre categorias; el ejemplo del metraje no vendido es el argumento
-emphasize: el signo (?) sobre la recta en el hueco sin puntos, con su llamada al pie; es lo que el listado de la lamina no dice
-labels: "precio", "metros cuadrados", "(?)", "aca no se vendio ninguna casa, y la recta igual devuelve un precio", "La salida sale de un rango continuo"
--->
-
-### Sources
-
-- `AIG4B-Clase-2-LLM.md.md` (slide 5) — las dos formulaciones y sus ejemplos, verbatim.
-- Diagrama propio. La lámina original ilustraba la regresión con una captura de un curso en video, en inglés y con un error tipográfico en su propio título; se rehízo como diagrama propio en español, con el mecanismo y sin nada de la fuente.
-
-### Speaker notes
-
-La clasificación queda del lado de la figura y la regresión del lado del diagrama: una salida discreta y una continua, en la misma pantalla. El ejemplo de la casa del texto y el del diagrama coinciden, así que se pueden señalar juntos. Detenete en el signo de pregunta: ahí no se vendió ninguna casa y la recta contesta igual, y ésa es la diferencia práctica con elegir entre categorías. La nube de puntos y la recta son esquemáticas, sin escala en los ejes a propósito, porque no hay ningún conjunto de datos detrás. La lámina original juntaba las cuatro formulaciones y cuatro figuras en una sola pantalla; acá van de a dos.
-
-### Presenter feedback
-
-- [closed] 2026-09-03 (editor) — "La figura de regresión era una captura de un curso en video, en inglés y con un typo en su propio título."
-  Resolution: reemplazada por un diagrama propio en español que dibuja la dispersión y la recta, y agrega el argumento que el listado no hacía: la recta contesta también donde no hay datos.
-
-## 5. Agrupar y crear datos nuevos
-
-<!-- slide 5 del pptx original -->
-
-<!-- design: split-right -->
-
-### Content
-
-**Las otras dos formulaciones no tienen respuesta correcta escrita de antemano: una descubre la estructura, la otra produce muestras que no estaban en los datos.**
-
-- **Clustering** Agrupar elementos parecidos sin categorías definidas de antemano. Pregunta: ¿qué datos se parecen entre sí? Ejemplo: agrupar los tickets de soporte que describen la misma falla, sin haber decidido antes cuáles son las fallas.
-- **Generación** Producir datos nuevos que se parezcan a los de entrenamiento sin copiarlos. Pregunta: ¿puedo crear datos que no estaban? Ejemplo: escribir texto o completar código.
-
-```ascii
-  ANTES                            DESPUES DE AGRUPAR
-
-  una pila de tickets,             tres grupos, y recien ahora
-  sin categoria ninguna            se les puede poner nombre
-
-   t1  "no carga el login"          +----------------+
-   t2  "el pago tira 500"           | t1   t3   t7   |  <- una persona
-   t3  "no puedo entrar"            +----------------+     los lee y
-   t4  "la factura sale mal"                               les pone
-   t5  "timeout al pagar"           +----------------+     nombre
-   t6  "no llega el recibo"         | t2   t5        |     recien
-   t7  "usuario bloqueado"          +----------------+     aca
-   t8  "el importe no cierra"
-                                    +----------------+
-                                    | t4   t6   t8   |
-                                    +----------------+
-
-  El algoritmo forma los grupos midiendo parecido entre los textos.
-  No sabe que el primero es "acceso" ni el tercero "facturacion":
-  los nombres los pone alguien despues, mirando el resultado.
-```
-<!-- ascii-note:
-intent: mostrar que el agrupamiento produce los grupos y no los nombres; el algoritmo mide parecido y las etiquetas las pone una persona despues, que es lo que distingue agrupar de clasificar
-emphasize: las tres cajas de la derecha con sus tickets adentro, y la llamada que dice que el nombre llega despues y lo pone una persona
-labels: "ANTES", "DESPUES DE AGRUPAR", "una pila de tickets, sin categoria ninguna", "tres grupos, y recien ahora se les puede poner nombre", "una persona los lee y les pone nombre recien aca", "El algoritmo forma los grupos midiendo parecido entre los textos"
--->
-
-- 💡 El modelo aprende patrones de los datos. Nadie le escribe las reglas.
-
-### Sources
-
-- `AIG4B-Clase-2-LLM.md.md` (slide 5) — las dos formulaciones y el cierre sobre patrones.
-- Diagrama propio. La lámina original ilustraba el agrupamiento con una figura de un tercero, en inglés y con su logo proyectado; se rehízo como diagrama propio en español, con el mecanismo y sin nada de la marca.
-
-### Speaker notes
-
-El clustering es el que más cuesta, porque la pregunta "¿qué datos se parecen?" suena vacía hasta que se ve un caso. El de tickets de soporte funciona bien con esta audiencia: nadie sabe de antemano cuántas fallas distintas hay en la cola, y agrupar es justamente cómo se descubren. Leé dos o tres tickets de la columna izquierda y preguntá cómo los agruparían; van a dar los tres grupos del diagrama sin esfuerzo, y ése es el momento de decir que el algoritmo llega hasta ahí y no más. Los nombres —acceso, pagos, facturación— los pone una persona mirando el resultado, y eso es lo que separa agrupar de clasificar.
-
-### Presenter feedback
-
-- [closed] 2026-09-03 (editor) — "La figura de agrupamiento llevaba el logo de un tercero proyectado en una lámina de la materia."
-  Resolution: reemplazada por un diagrama propio en español, sin marca ni estética de la fuente, que además agrega lo que el listado no decía: el algoritmo forma los grupos y los nombres los pone una persona después.
-
-- [closed] 2026-09-03 — "Quedan menciones al dominio biomédico heredadas de la materia anterior: convertilas a ejemplos de software y sistemas."
-  Resolution: "agrupar pacientes con síntomas similares" se reemplazó por "agrupar los tickets de soporte que describen la misma falla", que conserva la estructura del ejemplo (agrupar por parecido sin categorías previas) en el dominio de la materia.
-
----
-
-# 2. Por qué procesar texto
+# 2. Un modelo por cada tarea
 
 **Goal of this section:** Mostrar que toda tarea de texto cae en las mismas familias ya vistas, y qué costaba resolverlas antes de que un solo modelo sirviera para todas.
 
@@ -326,7 +98,36 @@ El clustering es el que más cuesta, porque la pregunta "¿qué datos se parecen
 
 ---
 
-## 1. Los mismos problemas, con texto
+## 1. Lo que ya vieron sobre tipos de problema
+
+### Content
+
+**Repaso de una lámina. En la clase 4 el catálogo de tareas se organizó por la forma de la salida; acá interesa una sola distinción, y es la última.**
+
+- **Predecir un valor** Un número, una clase entre N, varias etiquetas, un conteo. Es lo que la clase 4 recorrió tarea por tarea, con su capa de salida y su loss para cada una.
+- **Agrupar sin etiquetas** Descubrir qué datos se parecen cuando nadie definió las categorías de antemano.
+- **Generar** Producir algo nuevo que se parezca a los datos de entrenamiento sin copiarlos. **La cantidad de salidas posibles no tiene tope**, y esa es la diferencia que importa.
+
+- 💡 Las dos primeras eligen dentro de un conjunto conocido. La tercera no tiene conjunto. Un modelo de lenguaje vive en la tercera, y el resto de la clase explica cómo se las arregla para que sea tratable.
+
+### Sources
+
+- `talks/modelado-redes-neuronales/final.md` — el catálogo de tareas por forma de salida se dictó en la clase 4.
+- `talks/intro-redes-neuronales/final.md` — que el modelo aprende de los datos en vez de recibir reglas escritas se dictó en la clase 3.
+- `AIG4B-Clase-2-LLM.md.md` (slides 3 a 6) — la taxonomía original del deck importado, de la que se conservó la distinción que esta clase necesita.
+
+### Speaker notes
+
+Lámina de repaso, no de enseñanza, y va rápido. Las dos primeras filas son recordatorio: eso ya lo trabajaron con detalle en las clases 3 y 4, incluida la elección de capa de salida y de función de pérdida. Lo único que hay que dejar clavado es la tercera. En predicción y agrupamiento la salida sale de un conjunto conocido; en generación no hay conjunto, y por eso el problema parece intratable hasta que se lo reformula como predecir el token que sigue. Esa reformulación es la clase entera, así que conviene decirlo acá y volver a ella cuando aparezca el modelado de lenguaje.
+
+### Presenter feedback
+
+- [closed] 2026-09-04 — "La sección entera de familias de problemas repetía las clases 3 y 4: la inversión entre programación clásica y aprendizaje automático, la regresión con su capa de salida, y la taxonomía de tareas. Además la palabra «familias» colisionaba: la clase 4 llama así a las siete formas de capa de salida."
+  Resolution: las cuatro láminas se retiraron a `Cut material` y quedaron reemplazadas por esta sola lámina de repaso, que conserva la única distinción que esta clase necesita: generación no tiene conjunto de salidas.
+
+---
+
+## 2. Los mismos problemas, con texto
 
 <!-- slide 6 del pptx original -->
 
@@ -358,7 +159,7 @@ Lámina bisagra entre el mapa general y el resto de la clase. El punto que convi
 
 ---
 
-## 2. Hay más texto del que se puede leer
+## 3. Hay más texto del que se puede leer
 
 <!-- slide 7 del pptx original -->
 
@@ -386,7 +187,7 @@ Lámina corta y de motivación. Lo que la sostiene es el callout del final: la e
 
 ---
 
-## 3. Veinticinco tareas de NLP
+## 4. Veinticinco tareas de NLP
 
 <!-- slide 8 del pptx original -->
 
@@ -415,7 +216,7 @@ Lámina de referencia, no de lectura. Señalá una celda por columna y seguí; l
 
 ---
 
-## 4. Un modelo por tarea
+## 5. Un modelo por tarea
 
 <!-- slide 9 del pptx original -->
 
@@ -465,7 +266,7 @@ El diagrama dice algo que la lista del deck original no decía: el costo no est�
 
 ---
 
-# 3. Modelado de lenguaje
+# 3. Predecir lo que sigue
 
 **Goal of this section:** Formular el problema que resuelve un LLM —predecir el token siguiente— y dejar claro que su salida es una distribución sobre el vocabulario entero, no una palabra.
 
@@ -691,7 +492,7 @@ Lámina de vocabulario, corta a propósito. Las tres definiciones se usan sin pa
 
 ---
 
-# 4. Embeddings
+# 4. Palabras como vectores
 
 **Goal of this section:** Cerrar el camino de texto a números: cómo se parte una frase en unidades y cómo se le da a cada unidad un vector cuya distancia significa algo.
 
@@ -1302,7 +1103,7 @@ Lámina nueva, y la única de la clase con números medidos de una fuente primar
 
 ---
 
-# 6. Transformers y LLM
+# 6. El transformer completo
 
 **Goal of this section:** Cerrar el recorrido mostrando la arquitectura completa y el ciclo que corre cada vez que un modelo escribe una palabra, y que ese ciclo es el problema del modelado de lenguaje a otra escala.
 
@@ -1529,7 +1330,7 @@ Tres cuidados con los números de la columna derecha, y los tres importan porque
 
 # Conclusions
 
-## 7. Lo que queda de la clase
+## 1. Lo que queda de la clase
 
 ### Content
 
@@ -1579,6 +1380,248 @@ Cinco frases y ninguna es un resumen de la agenda. La primera es la tesis desple
 - Ver `research/corpus/AIG4B-Clase-2-LLM.md.md` → *Inconsistencies / open questions* para el resto de los problemas detectados en el material original.
 
 # Cut material
+
+## Sección "Familias de problemas" completa
+
+Retirada el 2026-09-04. Motivo: repetía las clases 3 y 4 (la inversión programación clásica contra aprendizaje automático, la regresión con su capa de salida y su loss, y la taxonomía de tareas), y la palabra «familias» colisionaba con el uso que le da la clase 4. Se reemplazó por una sola lámina de repaso.
+
+> # 1. Qué resuelve la IA
+>
+> **Goal of this section:** Ubicar el modelado de lenguaje dentro del mapa completo de problemas que resuelve la IA, y dejar clara la inversión que define a machine learning.
+>
+> **Presenter feedback:**
+>
+>
+> ---
+>
+> ## 1. El mapa de problemas de IA
+>
+> <!-- slide 3 del pptx original -->
+>
+> <!-- format: editorial -->
+>
+> ### Content
+>
+> **Cada familia se define por la forma de su entrada y de su salida, no por el dominio en el que se aplica.**
+>
+> - **Predicción** Aprender una función de X a Y a partir de datos etiquetados. Incluye clasificación y regresión.
+> - **Percepción** Extraer estructura de señales sensoriales: imagen, audio, video.
+> - **Representación** Aprender embeddings y espacios latentes que capturan relaciones entre datos.
+> - **Decisión secuencial** Maximizar recompensa acumulada a lo largo de una serie de acciones. Se formaliza como reinforcement learning.
+> - **Búsqueda y planificación** Encontrar la mejor secuencia de acciones dentro de un espacio de estados.
+> - **Razonamiento simbólico** Manipular símbolos y reglas IF–THEN para derivar conclusiones lógicas.
+> - **Generación** Producir muestras nuevas y coherentes: texto, imagen, audio, código. La cantidad de salidas posibles no tiene tope.
+>
+> - ⚠️ **Ojo con la palabra "familias".** En la clase 4, sobre diseño de redes, se llamó así a otra cosa: las siete formas de capa de salida según qué predice el modelo (un real, sí o no, una de N, varias de N, conteo, percentiles, distribución). Todas ésas caen dentro de **una sola** de las familias de acá, la de predicción.
+>
+> - 💡 Un sistema real casi nunca usa una sola. Un auto autónomo combina percepción, decisión secuencial y planificación.
+>
+> ### Sources
+>
+> - `AIG4B-Clase-2-LLM.md.md` (slide 3) — las siete definiciones, verbatim del deck original.
+>
+> ### Speaker notes
+>
+> Lámina de encuadre. Lo único que hay que dejar clavado es que la última familia, generación, es la que ocupa el resto de la clase, y que las otras seis aparecen para dar contraste. Si alguien pregunta por qué representación y generación suenan parecidas, la respuesta corta es que representación aprende el espacio y generación produce puntos nuevos dentro de él; las secciones de embeddings y de transformers lo muestran en concreto. El deck original ponía ocho iconos y nombraba siete categorías: el octavo icono era la viñeta del callout, no una familia. Los ocho se retiraron.
+>
+> ### Presenter feedback
+>
+> - [closed] 2026-09-03 (editor) — "El deck ponía ocho iconos para siete categorías nombradas (corpus, conteo de tipos de problema en la slide 3)."
+>   Resolution: los ocho iconos decorativos se retiraron y la lámina enumera las siete familias que el deck efectivamente define. El octavo archivo era la viñeta del callout, según el registro del corpus.
+>
+> ---
+>
+> ## 2. El modelo aprende las reglas
+>
+> <!-- slide 4 del pptx original -->
+>
+> ### Content
+>
+> **La programación clásica recibe reglas y datos, y devuelve respuestas. Machine learning recibe datos y respuestas, y devuelve las reglas.**
+>
+> ```ascii
+>                      ENTRA               PROCESO            SALE
+>
+>   PROGRAMACION       reglas      ---.
+>   CLASICA                            +--> [ programa  ] --> respuestas
+>                      datos       ---'
+>
+>
+>   MACHINE            datos       ---.
+>   LEARNING                           +--> [ entrenar  ] --> reglas
+>                      respuestas  ---'
+>
+>
+>   reglas       entran arriba   ->   salen abajo
+>   respuestas   salen arriba    ->   entran abajo
+>   datos        entran en los dos
+>
+>   Lo que en un paradigma se escribe a mano, en el otro se deduce.
+> ```
+> <!-- ascii-note:
+> intent: mostrar que los dos paradigmas usan las mismas tres piezas y que lo que cambia es cual es entrada y cual es salida; el nombre del proceso es lo de menos
+> emphasize: las tres lineas de abajo, que nombran la inversion pieza por pieza. En el cuerpo, la palabra "reglas" en las dos filas: entra en la de arriba y sale en la de abajo, y esa es toda la leccion
+> labels: "ENTRA", "PROCESO", "SALE", "PROGRAMACION CLASICA", "MACHINE LEARNING", "reglas", "datos", "respuestas", y las tres lineas de inversion
+> -->
+>
+> - **Lo que se escribe a mano cambia de lugar.** En el paradigma clásico alguien escribe las reglas. En machine learning alguien junta ejemplos resueltos, y el algoritmo escribe las reglas.
+> - **La consecuencia práctica** El costo se muda de la lógica al conjunto de datos. Cuando cada tarea necesitaba su propio conjunto etiquetado a mano, ese costo se pagaba entero una vez por tarea.
+>
+> ### Sources
+>
+> - `AIG4B-Clase-2-LLM.md.md` (slide 4) — la lámina original era solo el título y una figura. La figura se rehizo como diagrama propio: era un esquema plano rotulado en inglés que codificaba la inversión con el color de los círculos, y el diagrama nuevo la nombra pieza por pieza.
+>
+> ### Speaker notes
+>
+> La figura es el argumento entero y conviene recorrerla en voz alta: fila de arriba, reglas más datos entran y salen respuestas; fila de abajo, datos más respuestas entran y salen reglas. Es la definición operativa de machine learning y la más útil para esta audiencia, porque describe qué artefacto produce el equipo. La figura está en inglés (Rules, Data, Answers, Classical Programming, Machine Learning); traducila al pasar. El título del deck original tenía un typo, "IA moAderna", corregido acá.
+>
+> ### Presenter feedback
+>
+> - [closed] 2026-09-03 (editor) — "Lámina sin texto propio: sólo el título y la figura."
+>   Resolution: se escribió el encabezado que la figura sostiene y dos puntos de apoyo. La figura se conserva porque, según el registro del corpus, es la formalización visual de la afirmación central de la sección.
+>
+> ---
+>
+> ## 3. Regresión: estimar un número
+>
+> ### Content
+>
+> **Estimar un valor continuo a partir de las características de la entrada. La salida es un número, no una etiqueta.**
+>
+> - **Regresión** Estimar un valor continuo a partir de las características de la entrada. Pregunta: ¿qué valor va a tener? Ejemplo: estimar el precio de una casa por sus metros cuadrados.
+>
+> <!-- ascii-render: force -->
+> ```ascii
+>    precio
+>       ^
+>       |                                           .    ,-'
+>       |                                       ,-'
+>       |                           .     ,-'        .
+>       |                      .      ,-'
+>       |               .        ,-'
+>       |         .        ,-'  (?)      .
+>       |      .      ,-'        ^
+>       |   ,-'   .              |
+>       +-------------------------------------------> metros cuadrados
+>                                |
+>                     aca no se vendio ninguna casa, y la recta
+>                     igual devuelve un precio
+>    Cada punto es una casa ya vendida: sus metros y lo que pago
+>    alguien. La recta es el modelo, y contesta en todo el eje, asi
+>    que se le puede pedir el precio de un metraje que nunca aparecio
+>    en los datos. La salida sale de un rango continuo, y por eso los
+>    valores posibles no se pueden enumerar.
+> ```
+> <!-- ascii-note:
+> intent: mostrar que un modelo de regresion contesta tambien donde no hay datos, que es lo que separa una salida continua de una eleccion entre categorias; el ejemplo del metraje no vendido es el argumento
+> emphasize: el signo (?) sobre la recta en el hueco sin puntos, con su llamada al pie; es lo que el listado de la lamina no dice
+> labels: "precio", "metros cuadrados", "(?)", "aca no se vendio ninguna casa, y la recta igual devuelve un precio", "La salida sale de un rango continuo"
+> -->
+>
+> ### Sources
+>
+> - `AIG4B-Clase-2-LLM.md.md` (slide 5) — las dos formulaciones y sus ejemplos, verbatim.
+> - Diagrama propio. La lámina original ilustraba la regresión con una captura de un curso en video, en inglés y con un error tipográfico en su propio título; se rehízo como diagrama propio en español, con el mecanismo y sin nada de la fuente.
+>
+> ### Speaker notes
+>
+> La clasificación queda del lado de la figura y la regresión del lado del diagrama: una salida discreta y una continua, en la misma pantalla. El ejemplo de la casa del texto y el del diagrama coinciden, así que se pueden señalar juntos. Detenete en el signo de pregunta: ahí no se vendió ninguna casa y la recta contesta igual, y ésa es la diferencia práctica con elegir entre categorías. La nube de puntos y la recta son esquemáticas, sin escala en los ejes a propósito, porque no hay ningún conjunto de datos detrás. La lámina original juntaba las cuatro formulaciones y cuatro figuras en una sola pantalla; acá van de a dos.
+>
+> ### Presenter feedback
+>
+> - [closed] 2026-09-03 (editor) — "La figura de regresión era una captura de un curso en video, en inglés y con un typo en su propio título."
+>   Resolution: reemplazada por un diagrama propio en español que dibuja la dispersión y la recta, y agrega el argumento que el listado no hacía: la recta contesta también donde no hay datos.
+>
+> ## 4. Agrupar y crear datos nuevos
+>
+> <!-- slide 5 del pptx original -->
+>
+> <!-- design: split-right -->
+>
+> ### Content
+>
+> **Las otras dos formulaciones no tienen respuesta correcta escrita de antemano: una descubre la estructura, la otra produce muestras que no estaban en los datos.**
+>
+> - **Clustering** Agrupar elementos parecidos sin categorías definidas de antemano. Pregunta: ¿qué datos se parecen entre sí? Ejemplo: agrupar los tickets de soporte que describen la misma falla, sin haber decidido antes cuáles son las fallas.
+> - **Generación** Producir datos nuevos que se parezcan a los de entrenamiento sin copiarlos. Pregunta: ¿puedo crear datos que no estaban? Ejemplo: escribir texto o completar código.
+>
+> ```ascii
+>   ANTES                            DESPUES DE AGRUPAR
+>
+>   una pila de tickets,             tres grupos, y recien ahora
+>   sin categoria ninguna            se les puede poner nombre
+>
+>    t1  "no carga el login"          +----------------+
+>    t2  "el pago tira 500"           | t1   t3   t7   |  <- una persona
+>    t3  "no puedo entrar"            +----------------+     los lee y
+>    t4  "la factura sale mal"                               les pone
+>    t5  "timeout al pagar"           +----------------+     nombre
+>    t6  "no llega el recibo"         | t2   t5        |     recien
+>    t7  "usuario bloqueado"          +----------------+     aca
+>    t8  "el importe no cierra"
+>                                     +----------------+
+>                                     | t4   t6   t8   |
+>                                     +----------------+
+>
+>   El algoritmo forma los grupos midiendo parecido entre los textos.
+>   No sabe que el primero es "acceso" ni el tercero "facturacion":
+>   los nombres los pone alguien despues, mirando el resultado.
+> ```
+> <!-- ascii-note:
+> intent: mostrar que el agrupamiento produce los grupos y no los nombres; el algoritmo mide parecido y las etiquetas las pone una persona despues, que es lo que distingue agrupar de clasificar
+> emphasize: las tres cajas de la derecha con sus tickets adentro, y la llamada que dice que el nombre llega despues y lo pone una persona
+> labels: "ANTES", "DESPUES DE AGRUPAR", "una pila de tickets, sin categoria ninguna", "tres grupos, y recien ahora se les puede poner nombre", "una persona los lee y les pone nombre recien aca", "El algoritmo forma los grupos midiendo parecido entre los textos"
+> -->
+>
+> - 💡 El modelo aprende patrones de los datos. Nadie le escribe las reglas.
+>
+> ### Sources
+>
+> - `AIG4B-Clase-2-LLM.md.md` (slide 5) — las dos formulaciones y el cierre sobre patrones.
+> - Diagrama propio. La lámina original ilustraba el agrupamiento con una figura de un tercero, en inglés y con su logo proyectado; se rehízo como diagrama propio en español, con el mecanismo y sin nada de la marca.
+>
+> ### Speaker notes
+>
+> El clustering es el que más cuesta, porque la pregunta "¿qué datos se parecen?" suena vacía hasta que se ve un caso. El de tickets de soporte funciona bien con esta audiencia: nadie sabe de antemano cuántas fallas distintas hay en la cola, y agrupar es justamente cómo se descubren. Leé dos o tres tickets de la columna izquierda y preguntá cómo los agruparían; van a dar los tres grupos del diagrama sin esfuerzo, y ése es el momento de decir que el algoritmo llega hasta ahí y no más. Los nombres —acceso, pagos, facturación— los pone una persona mirando el resultado, y eso es lo que separa agrupar de clasificar.
+>
+> ### Presenter feedback
+>
+> - [closed] 2026-09-03 (editor) — "La figura de agrupamiento llevaba el logo de un tercero proyectado en una lámina de la materia."
+>   Resolution: reemplazada por un diagrama propio en español, sin marca ni estética de la fuente, que además agrega lo que el listado no decía: el algoritmo forma los grupos y los nombres los pone una persona después.
+>
+> - [closed] 2026-09-03 — "Quedan menciones al dominio biomédico heredadas de la materia anterior: convertilas a ejemplos de software y sistemas."
+>   Resolution: "agrupar pacientes con síntomas similares" se reemplazó por "agrupar los tickets de soporte que describen la misma falla", que conserva la estructura del ejemplo (agrupar por parecido sin categorías previas) en el dominio de la materia.
+>
+> ---
+>
+
+
+## Lámina "Clasificar: elegir entre categorías"
+
+Retirada el 2026-09-04. Motivo: la clasificación ya se cubre en la clase 4 (diseño de redes), donde el catálogo de tareas la parte en "una de N clases" y "varias de N", con su capa de salida y su loss. Acá quedaba como definición suelta y sin aportar nada propio de texto.
+
+> ## 3. Clasificar: elegir entre categorías
+>
+> ### Content
+>
+> **Asignar una entrada a una de varias categorías conocidas de antemano. La salida es una etiqueta de un conjunto cerrado.**
+>
+> - **Clasificación** Asignar una entrada a una de varias categorías conocidas de antemano. Pregunta: ¿a qué categoría pertenece? Ejemplo: decidir si un correo es spam.
+>
+> ![Diagrama de clasificación de imágenes: una foto de un gato entra a una caja rotulada Modelo y sale la etiqueta CAT](images/clasificacion-de-imagenes.png)
+>
+> ### Sources
+>
+> - `AIG4B-Clase-2-LLM.md.md` (slide 5) — las dos formulaciones y sus ejemplos, verbatim.
+> - Diagrama propio. La lámina original ilustraba la regresión con una captura de un curso en video, en inglés y con un error tipográfico en su propio título; se rehízo como diagrama propio en español, con el mecanismo y sin nada de la fuente.
+>
+> ### Speaker notes
+>
+> Primera de las dos formulaciones de predicción. La figura es literal y conviene usarla así: entra una foto, sale una etiqueta. Lo que define la clasificación es que el conjunto de salidas está fijado de antemano y el modelo elige uno.
+>
+> ---
+>
+
 
 ## Seis láminas de redes neuronales ya dictadas en las clases 3 y 4
 
