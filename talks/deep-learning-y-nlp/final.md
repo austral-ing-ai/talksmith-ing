@@ -57,7 +57,7 @@ La clase arranca por arriba, con las familias de problemas que la IA resuelve, y
 
 ### Speaker notes
 
-Portada. Presentate y presentá a los otros dos docentes. La imagen de portada del deck original se retiró: el logo de la institución lo pone el renderizador desde `config/logo.png`.
+<!-- deck-omit-text: Presentate y presentá a los otros dos docentes. --> Portada. Presentate y presentá a los otros dos docentes.
 
 ---
 
@@ -140,16 +140,34 @@ La figura es el argumento entero y conviene recorrerla en voz alta: fila de arri
 
 ---
 
-## 3. Clasificar y predecir un valor
+## 3. Clasificar: elegir entre categorías
 
 ### Content
 
-**Las dos formulaciones de predicción se distinguen por el tipo de salida: una categoría de un conjunto cerrado, o un número.**
+**Asignar una entrada a una de varias categorías conocidas de antemano. La salida es una etiqueta de un conjunto cerrado.**
 
 - **Clasificación** Asignar una entrada a una de varias categorías conocidas de antemano. Pregunta: ¿a qué categoría pertenece? Ejemplo: decidir si un correo es spam.
-- **Regresión** Estimar un valor continuo a partir de las características de la entrada. Pregunta: ¿qué valor va a tener? Ejemplo: estimar el precio de una casa por sus metros cuadrados.
 
 ![Diagrama de clasificación de imágenes: una foto de un gato entra a una caja rotulada Modelo y sale la etiqueta CAT](images/clasificacion-de-imagenes.png)
+
+### Sources
+
+- `AIG4B-Clase-2-LLM.md.md` (slide 5) — las dos formulaciones y sus ejemplos, verbatim.
+- Diagrama propio. La lámina original ilustraba la regresión con una captura de un curso en video, en inglés y con un error tipográfico en su propio título; se rehízo como diagrama propio en español, con el mecanismo y sin nada de la fuente.
+
+### Speaker notes
+
+Primera de las dos formulaciones de predicción. La figura es literal y conviene usarla así: entra una foto, sale una etiqueta. Lo que define la clasificación es que el conjunto de salidas está fijado de antemano y el modelo elige uno.
+
+---
+
+## 4. Regresión: estimar un número
+
+### Content
+
+**Estimar un valor continuo a partir de las características de la entrada. La salida es un número, no una etiqueta.**
+
+- **Regresión** Estimar un valor continuo a partir de las características de la entrada. Pregunta: ¿qué valor va a tener? Ejemplo: estimar el precio de una casa por sus metros cuadrados.
 
 <!-- ascii-render: force -->
 ![Una recta de regresión devuelve un precio incluso en el tramo donde no se vendió ninguna casa](images/s1-3-1-regresion-hueco-datos.svg)
@@ -168,7 +186,6 @@ La figura es el argumento entero y conviene recorrerla en voz alta: fila de arri
                                |
                     aca no se vendio ninguna casa, y la recta
                     igual devuelve un precio
-
    Cada punto es una casa ya vendida: sus metros y lo que pago
    alguien. La recta es el modelo, y contesta en todo el eje, asi
    que se le puede pedir el precio de un metraje que nunca aparecio
@@ -190,9 +207,7 @@ labels: "precio", "metros cuadrados", "(?)", "aca no se vendio ninguna casa, y l
 
 La clasificación queda del lado de la figura y la regresión del lado del diagrama: una salida discreta y una continua, en la misma pantalla. El ejemplo de la casa del texto y el del diagrama coinciden, así que se pueden señalar juntos. Detenete en el signo de pregunta: ahí no se vendió ninguna casa y la recta contesta igual, y ésa es la diferencia práctica con elegir entre categorías. La nube de puntos y la recta son esquemáticas, sin escala en los ejes a propósito, porque no hay ningún conjunto de datos detrás. La lámina original juntaba las cuatro formulaciones y cuatro figuras en una sola pantalla; acá van de a dos.
 
----
-
-## 4. Agrupar y crear datos nuevos
+## 5. Agrupar y crear datos nuevos
 
 <!-- design: split-right -->
 
@@ -1526,7 +1541,7 @@ Tres cuidados con los números de la columna derecha, y los tres importan porque
 
 # Conclusions
 
-## 1. Lo que queda de la clase
+## 7. Lo que queda de la clase
 
 ### Content
 

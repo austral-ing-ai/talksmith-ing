@@ -32,7 +32,7 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 | 5 | Miércoles 2 de septiembre | LLMs: prompting, costos y producción | [Trabajar con LLMs](https://austral-ing-ai.github.io/talksmith-ing/talks/prompting/output/html/) |
 | 6 | Miércoles 9 de septiembre | RAG, Bases Vectoriales,Inveted Index etc | [RAG y MCP](https://austral-ing-ai.github.io/talksmith-ing/talks/rag-y-mcp/output/html/) |
 | 7 | Miércoles 16 de septiembre | MCP & Tools | — |
-| 8 | Miércoles 23 de septiembre | LLM - Embeddings, Tokens, word2Vec, Sec, Transformers | — |
+| 8 | Miércoles 23 de septiembre | LLM - Embeddings, Tokens, word2Vec, Sec, Transformers | [Deep learning y NLP](https://austral-ing-ai.github.io/talksmith-ing/talks/deep-learning-y-nlp/output/html/) |
 | 9 | Miércoles 30 de septiembre | LLM - Advanced Concepts | — |
 | 10 | Miércoles 7 de octubre | LLM - Fine Tunning | — |
 | 11 | Miércoles 21 de octubre |Vision: CNN (Senales & Imagenes)| — |

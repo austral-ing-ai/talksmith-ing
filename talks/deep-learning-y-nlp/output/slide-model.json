@@ -1,0 +1,1844 @@
+{
+  "deck": {
+    "title": "Inteligencia Artificial Generativa (AI Gen)",
+    "institution": null,
+    "class": "Deep learning y NLP: de la palabra al transformer",
+    "presenter": "Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)",
+    "date": "2026-09-23",
+    "lang": "es",
+    "logo": null,
+    "sections": [
+      "Problemas clásicos de ML",
+      "Motivación de NLP",
+      "Modelado de lenguaje",
+      "Embeddings",
+      "Redes neuronales",
+      "De las RNN a la atención",
+      "Transformers y LLM"
+    ]
+  },
+  "slides": [
+    {
+      "template": "section-agenda",
+      "section": "Problemas clásicos de ML",
+      "title": "Problemas clásicos de ML",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real"
+        }
+      }
+    },
+    {
+      "section": "Problemas clásicos de ML",
+      "title": "Siete familias de problemas de IA",
+      "lead": "**Cada familia se define por la forma de su entrada y de su salida, no por el dominio en el que se aplica.**",
+      "notes": "Lámina de encuadre. Lo único que hay que dejar clavado es que la última familia, generación, es la que ocupa el resto de la clase, y que las otras seis aparecen para dar contraste. Si alguien pregunta por qué representación y generación suenan parecidas, la respuesta corta es que representación aprende el espacio y generación produce puntos nuevos dentro de él; las secciones de embeddings y de transformers lo muestran en concreto. El deck original ponía ocho iconos y nombraba siete categorías: el octavo icono era la viñeta del callout, no una familia. Los ocho se retiraron.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Predicción",
+          "body": "Aprender una función de X a Y a partir de datos etiquetados. Incluye clasificación y regresión."
+        },
+        {
+          "label": "Percepción",
+          "body": "Extraer estructura de señales sensoriales: imagen, audio, video."
+        },
+        {
+          "label": "Representación",
+          "body": "Aprender embeddings y espacios latentes que capturan relaciones entre datos."
+        },
+        {
+          "label": "Decisión secuencial",
+          "body": "Maximizar recompensa acumulada a lo largo de una serie de acciones. Se formaliza como reinforcement learning."
+        },
+        {
+          "label": "Búsqueda y planificación",
+          "body": "Encontrar la mejor secuencia de acciones dentro de un espacio de estados."
+        },
+        {
+          "label": "Razonamiento simbólico",
+          "body": "Manipular símbolos y reglas IF–THEN para derivar conclusiones lógicas."
+        },
+        {
+          "label": "Generación",
+          "body": "Producir muestras nuevas y coherentes: texto, imagen, audio, código. La cantidad de salidas posibles no tiene tope."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Un sistema real casi nunca usa una sola. Un auto autónomo combina percepción, decisión secuencial y planificación.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=7",
+          "has_table=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Problemas clásicos de ML",
+      "title": "El modelo aprende las reglas",
+      "lead": "**La programación clásica recibe reglas y datos, y devuelve respuestas. Machine learning recibe datos y respuestas, y devuelve las reglas.**",
+      "notes": "La figura es el argumento entero y conviene recorrerla en voz alta: fila de arriba, reglas más datos entran y salen respuestas; fila de abajo, datos más respuestas entran y salen reglas. Es la definición operativa de machine learning y la más útil para esta audiencia, porque describe qué artefacto produce el equipo. La figura está en inglés (Rules, Data, Answers, Classical Programming, Machine Learning); traducila al pasar. El título del deck original tenía un typo, \"IA moAderna\", corregido acá.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s1-2-1-inversion-reglas-datos.svg",
+        "alt": "La inversión entre programación clásica y machine learning: las mismas tres piezas cambian de lado"
+      },
+      "cards": [
+        {
+          "label": "Lo que se escribe a mano cambia de lugar.",
+          "body": "En el paradigma clásico alguien escribe las reglas. En machine learning alguien junta ejemplos resueltos, y el algoritmo escribe las reglas."
+        },
+        {
+          "label": "La consecuencia práctica",
+          "body": "El costo se muda de la lógica al conjunto de datos. Cuando cada tarea necesitaba su propio conjunto etiquetado a mano, ese costo se pagaba entero una vez por tarea."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Problemas clásicos de ML",
+      "title": "Clasificar: elegir entre categorías",
+      "lead": "**Asignar una entrada a una de varias categorías conocidas de antemano. La salida es una etiqueta de un conjunto cerrado.**",
+      "notes": "Primera de las dos formulaciones de predicción. La figura es literal y conviene usarla así: entra una foto, sale una etiqueta. Lo que define la clasificación es que el conjunto de salidas está fijado de antemano y el modelo elige uno.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/clasificacion-de-imagenes.png",
+        "alt": "Diagrama de clasificación de imágenes: una foto de un gato entra a una caja rotulada Modelo y sale la etiqueta CAT"
+      },
+      "facts": [
+        {
+          "label": "Clasificación",
+          "body": "Asignar una entrada a una de varias categorías conocidas de antemano. Pregunta: ¿a qué categoría pertenece? Ejemplo: decidir si un correo es spam."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Problemas clásicos de ML",
+      "title": "Regresión: estimar un número",
+      "lead": "**Estimar un valor continuo a partir de las características de la entrada. La salida es un número, no una etiqueta.**",
+      "notes": "La clasificación queda del lado de la figura y la regresión del lado del diagrama: una salida discreta y una continua, en la misma pantalla. El ejemplo de la casa del texto y el del diagrama coinciden, así que se pueden señalar juntos. Detenete en el signo de pregunta: ahí no se vendió ninguna casa y la recta contesta igual, y ésa es la diferencia práctica con elegir entre categorías. La nube de puntos y la recta son esquemáticas, sin escala en los ejes a propósito, porque no hay ningún conjunto de datos detrás. La lámina original juntaba las cuatro formulaciones y cuatro figuras en una sola pantalla; acá van de a dos.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s1-3-1-regresion-hueco-datos.svg",
+        "alt": "Una recta de regresión devuelve un precio incluso en el tramo donde no se vendió ninguna casa"
+      },
+      "facts": [
+        {
+          "label": "Regresión",
+          "body": "Estimar un valor continuo a partir de las características de la entrada. Pregunta: ¿qué valor va a tener? Ejemplo: estimar el precio de una casa por sus metros cuadrados."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Problemas clásicos de ML",
+      "title": "Agrupar y crear datos nuevos",
+      "lead": "**Las otras dos formulaciones no tienen respuesta correcta escrita de antemano: una descubre la estructura, la otra produce muestras que no estaban en los datos.**",
+      "notes": "El clustering es el que más cuesta, porque la pregunta \"¿qué datos se parecen?\" suena vacía hasta que se ve un caso. El de tickets de soporte funciona bien con esta audiencia: nadie sabe de antemano cuántas fallas distintas hay en la cola, y agrupar es justamente cómo se descubren. Leé dos o tres tickets de la columna izquierda y preguntá cómo los agruparían; van a dar los tres grupos del diagrama sin esfuerzo, y ése es el momento de decir que el algoritmo llega hasta ahí y no más. Los nombres —acceso, pagos, facturación— los pone una persona mirando el resultado, y eso es lo que separa agrupar de clasificar.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s1-4-1-agrupar-tickets.svg",
+        "alt": "El agrupamiento forma los grupos de tickets; los nombres los pone una persona después"
+      },
+      "cards": [
+        {
+          "label": "Clustering",
+          "body": "Agrupar elementos parecidos sin categorías definidas de antemano. Pregunta: ¿qué datos se parecen entre sí? Ejemplo: agrupar los tickets de soporte que describen la misma falla, sin haber decidido antes cuáles son las fallas."
+        },
+        {
+          "label": "Generación",
+          "body": "Producir datos nuevos que se parezcan a los de entrenamiento sin copiarlos. Pregunta: ¿puedo crear datos que no estaban? Ejemplo: escribir texto o completar código."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "El modelo aprende patrones de los datos. Nadie le escribe las reglas.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Motivación de NLP",
+      "title": "Motivación de NLP",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real"
+        }
+      }
+    },
+    {
+      "section": "Motivación de NLP",
+      "title": "Los mismos problemas, con texto",
+      "lead": "**Cada formulación clásica tiene su equivalente cuando la entrada es texto. Cambia el tipo de dato, no la forma del problema.**",
+      "notes": "Lámina bisagra entre el mapa general y el resto de la clase. El punto que conviene subrayar es el primero de los dos de abajo, porque anticipa el modelado de lenguaje: predicción y generación son la misma cuenta, y por eso un modelo que sabe completar huecos sabe escribir. Las dos últimas filas de la tabla lo muestran con la misma frase. El ejemplo de sentimiento del deck original (\"qué bien comimos en el restaurante\") se retiró: la columna de la derecha ya trae uno.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "Formulación",
+            "cells": [
+              "Clasificación",
+              "Clasificación multiclase",
+              "Clustering",
+              "Predicción",
+              "Generación"
+            ]
+          },
+          {
+            "header": "Qué resuelve",
+            "cells": [
+              "Asignar una categoría",
+              "Elegir entre varias categorías",
+              "Agrupar datos similares",
+              "Completar información faltante",
+              "Crear datos nuevos"
+            ]
+          },
+          {
+            "header": "Ejemplo con texto",
+            "cells": [
+              "¿Este comentario es positivo o negativo?",
+              "¿En qué idioma está escrito?",
+              "Agrupar incidentes por causa raíz",
+              "`The ___ is on the mat` → `cat`",
+              "`The cat is on the ___` → `mat`"
+            ]
+          }
+        ]
+      },
+      "facts": [
+        {
+          "label": "Predicción y generación son la misma operación en distinta posición.",
+          "body": "Las dos completan un hueco con el token más probable; la única diferencia es dónde está el hueco."
+        },
+        {
+          "label": "Todas necesitan lo mismo primero:",
+          "body": "alguna forma de convertir texto en algo que un modelo pueda operar. Eso es tokenizar y embeber, y es la sección *Tokens y embeddings*."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=2",
+          "has_table=True"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Motivación de NLP",
+      "title": "Hay más texto del que se puede leer",
+      "lead": "**Procesamiento del lenguaje natural (NLP) es el campo que se ocupa de resolver estas tareas de forma automática, sobre volúmenes de texto que nadie va a leer entero.**",
+      "notes": "Lámina corta y de motivación. Lo que la sostiene es el callout del final: la escala es lo que separa una tarea de NLP de un rato de lectura. Si querés un caso propio, la cola de tickets de cualquier equipo grande sirve, porque nadie la lee entera y todos necesitan saber qué hay adentro. El deck original listaba historias clínicas y opiniones de pacientes sobre un tratamiento, heredados de la materia anterior; están convertidos.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "De dónde sale el texto",
+          "body": "Tickets de soporte, mensajes de commit, logs de aplicación, documentación técnica, hilos de incidentes, correos, foros y reseñas de usuarios."
+        },
+        {
+          "label": "Qué se le pide",
+          "body": "Analizar miles de reportes de usuarios sobre una misma versión; clasificar tickets por área; detectar el idioma de un documento; responder preguntas sobre un texto largo; resumir un informe de treinta páginas en un párrafo."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "El volumen es lo que convierte estas tareas en un problema de ingeniería. Cualquiera de ellas la resuelve una persona sobre diez documentos; ninguna se resuelve así sobre diez mil.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Motivación de NLP",
+      "title": "Veinticinco tareas de NLP",
+      "lead": "**Las cinco familias, aterrizadas. Cada columna es una formulación de la lámina anterior y cada celda una tarea que alguien resuelve hoy en producción.**",
+      "notes": "Lámina de referencia, no de lectura. Señalá una celda por columna y seguí; la matriz está para que quede como material de consulta. La celda que conviene marcar es \"predecir la siguiente palabra de una oración\", en la columna de predicción, porque es la que abre la sección siguiente y la que termina absorbiendo a casi todas las demás cuando aparecen los modelos fundacionales.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "Clasificación",
+            "cells": [
+              "Detección de spam (spam / no spam)",
+              "Análisis de sentimiento (positivo / negativo)",
+              "Detección de discurso de odio (sí / no)",
+              "Detección de noticias falsas (real / falsa)",
+              "Detección de paráfrasis (sí / no)"
+            ]
+          },
+          {
+            "header": "Clasificación multiclase",
+            "cells": [
+              "Detección de idioma (español, inglés, francés…)",
+              "Clasificación de intención (comprar, preguntar, quejarse…)",
+              "Etiquetado gramatical (sustantivo, verbo, adjetivo…)",
+              "Clasificación de emociones (alegría, tristeza, enojo, miedo…)",
+              "Clasificación de tickets de soporte (facturación, técnico, ventas…)"
+            ]
+          },
+          {
+            "header": "Clustering",
+            "cells": [
+              "Agrupar noticias por tema",
+              "Agrupar reseñas similares de productos",
+              "Segmentar usuarios por estilo de escritura",
+              "Descubrir tópicos en un corpus",
+              "Agrupar documentos legales por área"
+            ]
+          },
+          {
+            "header": "Predicción",
+            "cells": [
+              "Autocompletar en un buscador",
+              "Predecir la siguiente palabra de una oración",
+              "Completar huecos en el texto (masked LM)",
+              "Predecir la puntuación de una reseña",
+              "Predecir palabras faltantes en un OCR dañado"
+            ]
+          },
+          {
+            "header": "Generación",
+            "cells": [
+              "Resumen automático de textos",
+              "Traducción automática",
+              "Generación de respuestas en chatbots",
+              "Generación de código a partir de texto",
+              "Parafraseo automático de oraciones"
+            ]
+          }
+        ]
+      },
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=0",
+          "has_table=True"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Motivación de NLP",
+      "title": "Un modelo por tarea",
+      "lead": "**Antes de los modelos fundacionales, cada tarea de la matriz anterior necesitaba su propio conjunto de datos etiquetado y su propio modelo entrenado desde cero.**",
+      "notes": "El diagrama dice algo que la lista del deck original no decía: el costo no está en entrenar sino en etiquetar, y no se amortiza entre tareas. Recorré las tres columnas señalando que ninguna flecha cruza de una a otra. Esta lámina es la que le da peso al cierre de la clase: cuando se muestre que las tres tareas se resuelven con el mismo modelo y tres prompts distintos, el contraste es contra esta imagen. La viñeta decorativa del deck original en esta lámina se retiró.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s2-4-1-un-modelo-por-tarea.svg",
+        "alt": "Tres tareas, tres columnas aisladas, y el etiquetado humano como tramo caro del medio"
+      },
+      "facts": [
+        {
+          "label": "Recolectar, etiquetar, entrenar",
+          "body": "eran los tres trabajos, y el segundo no se automatizaba: alguien tenía que marcar a mano qué era positivo y qué negativo."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Modelado de lenguaje",
+      "title": "Modelado de lenguaje",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real"
+        }
+      }
+    },
+    {
+      "section": "Modelado de lenguaje",
+      "title": "Predecir la palabra que sigue",
+      "lead": "**El problema tiene tres entradas: un vocabulario V, un corpus de texto T y una frase incompleta P. La salida es el token más probable a continuación de P.**",
+      "notes": "Ésta es la lámina que hay que dejar clavada de la sección. El diagrama contesta la pregunta que queda flotando desde el enfoque tradicional: si etiquetar es lo caro, cómo se entrenaron los modelos grandes. La respuesta es que para esta tarea la etiqueta ya está escrita, y por eso el conjunto de entrenamiento es todo el texto disponible. Contá los ejemplos en voz alta: seis tokens, cinco pares. Si alguien pregunta por qué son cinco y no seis, es porque el último token no tiene siguiente. La viñeta decorativa del deck original en esta lámina se retiró.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s3-1-1-ventana-deslizante.svg",
+        "alt": "La ventana deslizante convierte una frase cruda en cinco pares de entrada y respuesta"
+      },
+      "facts": [
+        {
+          "label": "Por qué esto escala y lo anterior no.",
+          "body": "El texto crudo trae la respuesta adentro. Todo lo escrito en internet es un conjunto de entrenamiento ya etiquetado para esta tarea."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Modelado de lenguaje",
+      "title": "La salida es un vector, no una palabra",
+      "lead": "**El modelo devuelve un número por cada token del vocabulario: la probabilidad de que ese token sea el siguiente. El vector tiene longitud |V|.**",
+      "notes": "El diagrama es el argumento entero: una frase incompleta entra, y lo que sale es la columna completa de barras. Recorré las filas de arriba abajo hasta las que casi no se ven, y decí que la lista sigue hasta completar el vocabulario. El punto que conviene decir en voz alta es el segundo de los de apoyo: el modelo produce la distribución, y elegir un token es una decisión de quien lo usa. Las barras son esquemáticas y no llevan números a propósito, porque no salen de ninguna corrida; lo único que se afirma es la estructura, que hay un valor por token y que suman uno.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s3-2-1-distribucion-vocabulario.svg",
+        "alt": "La salida del modelo es un valor por cada token del vocabulario, no una palabra"
+      },
+      "cards": [
+        {
+          "label": "Una posición por token del vocabulario.",
+          "body": "El valor de cada posición es la probabilidad de ese token, y las |V| posiciones suman uno."
+        },
+        {
+          "label": "Elegir viene después.",
+          "body": "Quedarse con el máximo es una decisión aparte, y no es la única. Muestrear con algo de aleatoriedad es la otra, y es lo que controla la temperatura."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Modelado de lenguaje",
+      "title": "Los modelos no leen letras",
+      "lead": "**Un token es la unidad mínima que el modelo procesa: una palabra entera, un pedazo de palabra o un signo de puntuación. Tokenizar es el primer paso de cualquier tarea de NLP.**",
+      "notes": "Los dos conteos del diagrama están verificados contra el deck: \"the cat sat on the mat\" da seis tokens y \"unbelievable\" da tres. El ejemplo de la palabra desconocida es agregado y no está en el deck original: sirve porque es el único momento en que se ve para qué sirve la descomposición, y \"descontracturante\" funciona con esta audiencia porque nadie duda de que ningún vocabulario la va a tener. Si preguntan cómo se decide el vocabulario de sub-palabras, la respuesta corta es que se aprende del corpus por frecuencia, y que el algoritmo concreto (BPE y parientes) queda fuera de esta clase.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s3-3-1-tokenizacion-subpalabra.svg",
+        "alt": "Tokenización por palabra frente a sub-palabra ante una palabra nunca vista"
+      },
+      "facts": [
+        {
+          "label": "Vocabularios más chicos",
+          "body": "No hace falta una entrada por cada palabra del idioma, y las palabras nuevas se arman con piezas."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Modelado de lenguaje",
+      "title": "Catorce tokens y cinco frases",
+      "lead": "**El mismo problema, con números chicos: un vocabulario de 14 tokens, un corpus de 5 frases y una frase incompleta.**",
+      "notes": "Los números cierran: el vector suma uno exacto y el vocabulario tiene los catorce tokens que declara. Si alguien los suma en el momento, van a dar. La frase incompleta se resuelve por la tercera del corpus, \"the dog sat on bed\". El deck original la identificaba como `T[2]` sin declarar si indexaba desde cero o desde uno; acá se dice cuál es la frase en vez de su índice, porque las dos lecturas dan \"bed\" y la ambigüedad no aporta nada. Notá también que la primera frase del corpus dice \"the cat sat on mat\" y no \"the cat sat on the mat\": es un corpus de juguete y está bien, pero si alguien lo marca, es eso.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "V",
+          "body": "`{ \"a\", \"to\", \"on\", \"the\", \"sat\", \"cat\", \"dog\", \"bed\", \"ran\", \"mat\", \" \", \"<fin>\", \".\", \",\" }` — 14 tokens."
+        },
+        {
+          "label": "T",
+          "body": "`\"the cat sat on mat\"` · `\"a dog ran to bed\"` · `\"the dog sat on bed\"` · `\"a cat ran to mat\"` · `\"the cat ran to dog\"` — 5 frases."
+        },
+        {
+          "label": "P",
+          "body": "`\"the dog sat on\"`. La única frase del corpus que empieza así continúa con `\"bed\"`, así que ésa es la respuesta correcta."
+        },
+        {
+          "label": "El vector objetivo es todo ceros y un uno",
+          "body": "en la posición de `bed`. Entrenar es acercar la salida del modelo a ese vector."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      },
+      "highlights": [
+        {
+          "body": "La salida completa sobre el vocabulario: `a: 0,01` · `to: 0,02` · `on: 0,03` · `the: 0,04` · `sat: 0,01` · `cat: 0,01` · `dog: 0,02` · **`bed: 0,78`** · `ran: 0,03` · `mat: 0,04` · `\" \": 0,01` · `<fin>: 0,00`",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ]
+    },
+    {
+      "section": "Modelado de lenguaje",
+      "title": "Aprender es ajustar parámetros",
+      "lead": "**Un modelo por dentro es un conjunto de números ajustables. Entrenar es buscar los valores que hacen que la salida se parezca al vector objetivo.**",
+      "notes": "Lámina de vocabulario, corta a propósito. Las tres definiciones se usan sin parar en las dos secciones de redes neuronales, así que conviene decirlas despacio y no volver sobre ellas. El ciclo concreto (cómo se calcula la loss, en qué dirección se mueven los parámetros) es la sección *Cómo aprende una red* entera y acá no se adelanta. Si alguien pregunta cuántos parámetros, la respuesta llega al hablar de profundidad. Una advertencia sobre el deck original: sus pasos 03 y 04 decían \"la palabra más probable era alfombra\", confundiendo la palabra correcta del corpus con la más probable según el modelo, que es justamente lo que se está comparando; acá esa redacción no se usa.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Parámetros",
+          "body": "Los números internos del modelo, los que el deck llama \"clavijas\". Empiezan en valores arbitrarios y son lo único que el entrenamiento modifica."
+        },
+        {
+          "label": "Loss (pérdida)",
+          "body": "Un número que mide qué tan lejos quedó la salida del modelo del vector objetivo. Cuanto más chico, mejor predijo."
+        },
+        {
+          "label": "Optimización",
+          "body": "El procedimiento que ajusta los parámetros para que la loss baje. Termina quedándose con los valores que dan la loss más chica."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "El método no depende de la tarea. Cambia qué es la respuesta correcta (el token siguiente, la categoría, el número) y el resto del procedimiento es el mismo para cualquiera de las tareas de NLP ya vistas.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Embeddings",
+      "title": "Embeddings",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real"
+        }
+      }
+    },
+    {
+      "section": "Embeddings",
+      "title": "Tres formas de volver texto en números",
+      "lead": "**El vocabulario V es el conjunto de tokens que el modelo conoce, y por eso predice un vector de tamaño |V|. Pero un token es texto, y los parámetros son números: hace falta una representación numérica.**",
+      "notes": "El diagrama es la definición de one-hot y su límite en la misma imagen. La terna cat / dog / heladera viene del deck original, que usaba \"refrigerator\"; se tradujo la tercera para que el contraste se lea sin pasar por el inglés. Lo que hay que dejar dicho es la última línea: one-hot necesita tantas dimensiones como tokens tenga el vocabulario, o sea decenas de miles, y no usa ninguna de ellas para decir algo sobre significado. Los valores de embedding son ilustrativos.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s4-1-1-one-hot-vs-embedding.svg",
+        "alt": "En one-hot todas las distancias son iguales; en embeddings la distancia es la información"
+      },
+      "cards": [
+        {
+          "label": "Bag of words / TF-IDF",
+          "body": "Contar apariciones de cada palabra. Ignora el orden y el significado."
+        },
+        {
+          "label": "One-hot encoding",
+          "body": "Un vector de largo |V| con un solo uno, en la posición del token. Distingue tokens, pero todos quedan a la misma distancia entre sí."
+        },
+        {
+          "label": "Embeddings",
+          "body": "Vectores densos de unos cientos de dimensiones, donde los tokens de significado parecido caen cerca. Es lo que usan los modelos modernos."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Embeddings",
+      "title": "De token a vector",
+      "lead": "**Un embedding de texto es un vector que codifica el significado de un token. Cada token del vocabulario tiene el suyo, y ese vector es lo que entra al modelo.**",
+      "notes": "Recorré el diagrama de izquierda a derecha una vez y volvé al medio: lo que hay que dejar dicho es que la fila de números y el punto son la misma cosa, porque los números *son* las coordenadas. Ése es el paso que cierra la sección y el que más cuesta. Las filas van con puntos suspensivos y sin valores a propósito: la figura del deck original traía una matriz con dos decimales que parecía medida y no salía de ningún modelo. El segundo punto de apoyo evita el malentendido más común de la sección: nadie va a poder decir qué mide la dimensión 3. Las dos flechas del panel derecho anticipan la lámina siguiente, así que señalalas y no las desarrolles acá.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s4-2-1-palabra-fila-punto.svg",
+        "alt": "De la palabra a su fila de números y de ahí a su punto en el espacio"
+      },
+      "cards": [
+        {
+          "label": "El circuito completo",
+          "body": "Palabra, fila de números, punto en el espacio. Las tres cosas son la misma, escritas de tres maneras."
+        },
+        {
+          "label": "La dimensión no es interpretable de a una.",
+          "body": "Ningún eje del espacio significa algo por separado; lo único que se lee es la posición relativa entre puntos."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Embeddings",
+      "title": "El espacio de embeddings",
+      "lead": "**Los tokens de significado parecido caen cerca. Esa cercanía es lo único que el espacio codifica, y es lo que permite comparar dos textos sin compararlos palabra por palabra.**",
+      "notes": "La figura no tiene una sola palabra escrita: usa emojis en vez de etiquetas, así que se entiende en cualquier idioma y sirve para señalar los dos grupos sin leer nada. Es la más directa de las tres de embeddings. Lo que conviene aclarar es que la proyección a dos ejes es una simplificación útil: el espacio real tiene varias centenas de dimensiones y no se puede dibujar. Si alguien pregunta cuántas, la respuesta honesta es que depende del modelo y que esta clase no fija un número.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/plano-de-embeddings.png",
+        "alt": "Plano cartesiano con cuatro vectores que salen del origen y terminan en emojis: un rey y una reina agrupados arriba, una manzana y una banana agrupadas abajo"
+      },
+      "cards": [
+        {
+          "label": "Los vecindarios son campos de significado.",
+          "body": "Realeza en una zona, frutas en otra, sin que nadie haya escrito esas categorías: salen de con qué palabras aparece cada una en el corpus."
+        },
+        {
+          "label": "La cercanía se mide, no se lee.",
+          "body": "En dos dimensiones se ve; en las varias centenas reales del espacio, se calcula."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Embeddings",
+      "title": "Las relaciones también son vectores",
+      "lead": "**El espacio no sólo agrupa: también guarda relaciones. El desplazamiento que lleva de \"man\" a \"woman\" es el mismo que lleva de \"king\" a \"queen\".**",
+      "notes": "Los tres paneles muestran tres relaciones distintas con flechas paralelas, y el argumento es la paralelidad, no los puntos. El panel del medio, tiempo verbal, es la relación sintáctica; los otros dos son semánticos, y esa división es justamente la que el paper de Mikolov usa para evaluar. Advertencia sobre lo que no se puede citar contra el corpus: la aritmética de vectores `rey − hombre + mujer ≈ reina` está en el cuerpo del paper, no en el abstract que tenemos capturado, así que en la lámina aparece como formulación del propio deck. La figura está en inglés.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/analogias-vectoriales.jpg",
+        "alt": "Tres paneles de ejes tridimensionales con flechas punteadas paralelas: pares de género, pares de tiempo verbal y pares de país y capital"
+      },
+      "cards": [
+        {
+          "label": "La regularidad no es un accidente del ejemplo de género.",
+          "body": "Se repite con tiempo verbal (walking → walked, swimming → swam) y con país y capital (Italy → Rome, Japan → Tokyo)."
+        },
+        {
+          "label": "De ahí sale la aritmética de analogías",
+          "body": "que se cita seguido como `rey − hombre + mujer ≈ reina`."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Embeddings",
+      "title": "Word2Vec aprende de la compañía",
+      "lead": "**Word2Vec es un método para aprender los vectores de embedding a partir de un corpus, sin que nadie los diseñe a mano. Parte de que una palabra queda definida por las palabras que la rodean.**",
+      "notes": "Tres advertencias sobre el respaldo, todas del registro del corpus, y ninguna va en la lámina. Primera: el deck original decía que Word2Vec fue el primer método que aprende embeddings, y el abstract del paper se compara explícitamente con técnicas neuronales anteriores, así que no reclama ser el primero; acá la lámina dice \"un método\", no \"el primero\". Segunda: la frase \"una palabra se define por la compañía que tiene\" es la hipótesis distribucional de Firth, de 1957, y no aparece en el paper; está parafraseada en el encabezado sin atribuírsela a Mikolov. Tercera: que Word2Vec promedia los vectores de contexto es la mecánica de la arquitectura CBOW, que vive en el cuerpo del paper y no en el abstract capturado, así que no la presentes como algo que el paper afirma en la parte que tenemos. El único número de la lámina, 1.600 millones de palabras en menos de un día, sí está en el abstract y se puede citar de frente.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Qué produce",
+          "body": "Un vector por palabra del vocabulario, aprendido de las coocurrencias del corpus. Vectores, no texto."
+        },
+        {
+          "label": "Qué no es",
+          "body": "Un modelo de lenguaje. Word2Vec no genera palabras; produce las representaciones que después usa un modelo que sí genera."
+        },
+        {
+          "label": "Qué cuesta",
+          "body": "Menos de un día para aprender vectores de calidad sobre un corpus de 1.600 millones de palabras, según el paper original. Esa es la mitad interesante del resultado: gana precisión y baja el costo a la vez."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Cada palabra recibe un vector y sólo uno, sin importar la frase en la que aparezca. \"Banco\" tiene el mismo vector en un río que en una plaza. Resolver eso es lo que motiva las representaciones contextuales y, después, la atención.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Redes neuronales",
+      "title": "Redes neuronales",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real"
+        }
+      }
+    },
+    {
+      "section": "Redes neuronales",
+      "title": "El perceptrón",
+      "lead": "**Un perceptrón es la neurona artificial más simple: recibe varios números, los combina con un peso cada uno, les suma un bias y pasa el resultado por una función de activación.**",
+      "notes": "El diagrama y la fórmula dicen lo mismo salvo en un punto, y es el que conviene señalar: la cuarta entrada vale 1 siempre y no sale de ningún dato. Esa es la forma honesta de explicar el sesgo, porque deja de ser un término que aparece en la fórmula y pasa a ser un peso más, aprendido igual que los otros tres. La figura del deck original directamente lo omitía. La analogía del original (varios factores, cada uno pesa distinto, y una decisión al final) funciona bien y va de palabra, no en la lámina. La viñeta decorativa de esta lámina se retiró.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s5-1-1-perceptron-con-sesgo.svg",
+        "alt": "El perceptrón con el sesgo dibujado como una cuarta entrada constante que no sale de los datos"
+      },
+      "cards": [
+        {
+          "label": "La cuenta completa",
+          "body": "`salida = activación( x₁·w₁ + x₂·w₂ + x₃·w₃ + bias )`."
+        },
+        {
+          "label": "Qué se aprende y qué no.",
+          "body": "Los pesos y el bias son los parámetros que el entrenamiento ajusta. Las entradas vienen de afuera y la forma de la cuenta no cambia."
+        },
+        {
+          "label": "El peso es cuánto importa cada entrada.",
+          "body": "El bias corre el umbral: es la predisposición del perceptrón antes de mirar las entradas."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Redes neuronales",
+      "title": "Apilar capas da profundidad",
+      "lead": "**Una red neuronal profunda es una pila de capas de perceptrones, donde la salida de cada capa es la entrada de la siguiente. De ahí sale el nombre deep learning.**",
+      "notes": "Las dos láminas del deck original se juntaron: la 19 era el texto sin figura y la 20 era la figura sin texto. Lo que hay que hacer con el diagrama es señalar un nodo verde y decir \"esto es la lámina anterior\", y después señalar los subíndices de los pesos para que se vea por qué el conteo de parámetros explota con la profundidad. Arriba a la derecha la figura trae un esquema compacto de cajas encadenadas que sirve como lectura de alto nivel. Está en inglés. La viñeta decorativa de la slide 19 se retiró.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/red-multicapa.jpg",
+        "alt": "Diagrama de un perceptrón multicapa: capa de entrada, dos capas ocultas con sus pesos indexados, capas omitidas y un nodo de salida"
+      },
+      "cards": [
+        {
+          "label": "Cada capa abstrae más que la anterior.",
+          "body": "Las iniciales detectan patrones simples (combinaciones de letras, formas básicas); las intermedias, patrones compuestos (palabras, frases, relaciones); las finales, conceptos de alto nivel (significado, intención, contexto)."
+        },
+        {
+          "label": "Más capas es más capacidad y más costo.",
+          "body": "Más parámetros permiten modelar relaciones más complejas, y a la vez exigen más datos para entrenar y más cómputo."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Los modelos de lenguaje de hoy tienen miles de millones de parámetros. Cada nodo del diagrama es el perceptrón de la lámina anterior, repetido.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Redes neuronales",
+      "title": "Promediar una frase pierde el orden",
+      "lead": "**Un perceptrón necesita un vector de tamaño fijo, y una frase son varios vectores. La forma directa de resolverlo es promediarlos, y esa forma tiene un costo.**",
+      "notes": "Lámina bisagra: cierra las redes neuronales y plantea el problema que resuelve la atención. El ejemplo de las dos frases con las mismas palabras y sentido opuesto es agregado; el deck original decía \"se pierde información del orden\" y no lo mostraba. Con esta audiencia funciona directo, porque conmutatividad es una propiedad que ya conocen y acá tiene consecuencia semántica. Si alguien pregunta si no alcanza con ponderar el promedio, la respuesta corta es que ninguna ponderación fija arregla el orden: hace falta que el cálculo dependa de la posición, y eso es lo que hacen las redes recurrentes primero y la atención después.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s5-3-1-promedio-pierde-orden.svg",
+        "alt": "Dos frases opuestas con las mismas palabras colapsan en el mismo vector al promediar"
+      },
+      "facts": [
+        {
+          "label": "Ésta es la limitación que arrastra Word2Vec al pasar de palabra a frase.",
+          "body": "El método da un vector por palabra; el promedio es una agregación que se aplica encima, no parte del método."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Redes neuronales",
+      "title": "Bajar por la pendiente",
+      "lead": "**El descenso por gradiente ajusta cada peso en la dirección que más reduce la loss. La dirección la da el gradiente cambiado de signo, −∇.**",
+      "notes": "La figura es la analogía dibujada, así que contá la montaña señalándola. Hay algo que la figura muestra y el deck original nunca menciona: la superficie tiene varios valles azules, o sea varios mínimos locales, y la trayectoria termina en uno cualquiera. Si alguien lo marca, la respuesta honesta es que sí, que el descenso por gradiente no garantiza el mínimo global, y que en redes grandes eso resulta ser menos grave de lo que suena. No lo abras vos si el tiempo aprieta. La figura casi no tiene texto: sólo un \"04\" heredado de la numeración del deck original. La viñeta decorativa de esta lámina se retiró.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/superficie-de-perdida.jpg",
+        "alt": "Superficie tridimensional de pérdida en malla, con picos y valles coloreados y una trayectoria que desciende serpenteando desde la cima hasta el fondo de un valle"
+      },
+      "cards": [
+        {
+          "label": "El ciclo por ejemplo",
+          "body": "Entra un ejemplo, el modelo predice con los pesos que tiene, se compara con la respuesta correcta, se calcula la loss, se ajustan los pesos un poco en la dirección de −∇, y sigue el ejemplo siguiente."
+        },
+        {
+          "label": "La analogía que se sostiene",
+          "body": "Estar en una montaña con niebla y querer llegar al valle. El camino completo no se ve; la pendiente bajo los pies, sí. Cada paso va un poco para abajo."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Redes neuronales",
+      "title": "El learning rate es el paso",
+      "lead": "**El learning rate decide cuánto se mueve cada peso en cada paso. Es un número que se elige antes de entrenar, y los dos extremos fallan de maneras distintas.**",
+      "notes": "El diagrama es cualitativo y está declarado como tal dentro del propio dibujo, porque una curva de loss dibujada a mano se lee como medición si no se aclara. Los ejes están rotulados, loss contra peso, y ésa es la única lectura válida. Lo que conviene decir es que el learning rate es el primer hiperparámetro que alguien toca cuando un entrenamiento no converge, y que las dos fallas se distinguen a simple vista en la curva de loss: si oscila, el paso es grande; si baja plano y no llega, es chico. La lámina se separó de la anterior porque el deck original metía la figura de la montaña, el ciclo de seis pasos, la analogía y el learning rate en una sola pantalla.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s5-5-1-learning-rate-paso.svg",
+        "alt": "Paso demasiado grande y paso demasiado chico sobre la misma curva de loss"
+      },
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=0",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Redes neuronales",
+      "title": "Cuatro pasos que se repiten",
+      "lead": "**El entrenamiento es un bucle de cuatro pasos que corre hasta que la loss deja de bajar.**",
+      "notes": "El diagrama y la lista dicen los cuatro pasos, así que conviene usar uno de los dos y no leer los dos: recorré el lazo con el dedo y dejá la lista como referencia. Lo que el diagrama agrega y la lista no dice es el rol del conjunto de datos, que entra por dos puertas distintas, las características al modelo y las etiquetas al cálculo de la loss. La otra cosa que conviene señalar es la flecha de retorno: lo único que da la vuelta entera y vuelve a empezar son los pesos. Esta lámina es el único lugar de la clase donde vive el ciclo: la de vocabulario del modelado de lenguaje se quedó con las definiciones.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s5-6-1-ciclo-entrenamiento.svg",
+        "alt": "El lazo cerrado del entrenamiento y las dos puertas por las que entra el dataset"
+      },
+      "cards": [
+        {
+          "label": "Calcular la loss",
+          "body": "Pasar los datos por el modelo con los pesos y el bias actuales, generar predicciones y medir qué tan lejos quedaron."
+        },
+        {
+          "label": "Determinar la dirección",
+          "body": "Averiguar hacia dónde mover los pesos y el bias para que la loss baje."
+        },
+        {
+          "label": "Actualizar los pesos",
+          "body": "Moverse un paso chico en esa dirección. El tamaño del paso es el learning rate."
+        },
+        {
+          "label": "Repetir",
+          "body": "Volver al primer paso hasta que la loss no baje más."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=4",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Redes neuronales",
+      "title": "Repartir la culpa hacia atrás",
+      "lead": "**En una red de muchas capas, la retropropagación es lo que decide cuánto ajustar cada peso: propaga el error desde la salida hacia atrás y le asigna a cada peso una parte proporcional a su contribución.**",
+      "notes": "Las dos láminas del deck original se juntaron: la 23 era el texto y la 24 una figura sola. El diagrama tiene dos lecturas y conviene hacerlas en orden. Primero las bandas: la ida de izquierda a derecha, la loss, y la vuelta de derecha a izquierda por la banda de abajo. Después la ampliación del medio, que es donde está el argumento nuevo: pedí que cuenten los `+`. Son nueve entre dos capas de tres nodos, y por cada uno vuelve un pedazo del error. Eso es lo que hace que entrenar sea un problema de escala y no de aritmética, y es lo que la figura original decía en silencio con su malla. La analogía del deck original, rastrear un defecto en una cadena de producción para ver quién tuvo más culpa en cada paso, funciona bien y va de palabra. La regla de la cadena está al pie a propósito: es el fundamento, no lo que hay que retener.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s5-7-1-retropropagacion-malla.svg",
+        "alt": "Ida y vuelta sobre la misma red, con la malla de nueve conexiones ampliada en el medio"
+      },
+      "cards": [
+        {
+          "label": "Forward pass",
+          "body": "La entrada viaja hacia adelante por la red hasta producir una predicción, y se mide el error contra el valor real."
+        },
+        {
+          "label": "Backward pass",
+          "body": "El error vuelve hacia atrás por cada conexión, y en cada peso queda registrado cuánto contribuyó. Cada peso se ajusta en proporción a esa contribución."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Formalmente es la regla de la cadena aplicada a una composición de funciones, y funciona porque una red es aproximadamente diferenciable. Es lo que hace viable entrenar redes de millones de parámetros.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "De las RNN a la atención",
+      "title": "De las RNN a la atención",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real"
+        }
+      }
+    },
+    {
+      "section": "De las RNN a la atención",
+      "title": "Una red sin memoria",
+      "lead": "**Una red común procesa cada entrada de forma independiente: dado el mismo vector, produce siempre la misma salida. Una red recurrente recibe además el estado que dejó el paso anterior, y con eso arrastra lo que ya procesó.**",
+      "notes": "Recorré las dos columnas en paralelo, paso por paso, y detenete en el paso 2: a la izquierda entra una flecha, a la derecha entran dos. Ésa es la definición operativa de la recurrencia y es todo lo que hay que retener de la lámina. El detalle que vale señalar es que el paso 1 da la misma salida en las dos columnas, porque todavía no hay estado anterior que traer; la diferencia aparece recién en el segundo. La figura del deck original mostraba los bucles pero no lo que entra en cada paso, así que el argumento quedaba en el dibujo y no en la mecánica. Anunciá la lámina siguiente: acá se ve un paso; ahora vamos a ver la frase entera.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s6-1-1-directa-vs-recurrente.svg",
+        "alt": "La red recurrente recibe en el paso 2 la palabra y el estado h1; la directa solo la palabra"
+      },
+      "cards": [
+        {
+          "label": "El caso concreto",
+          "body": "Al procesar `\"The cat is on the _\"`, una red común da siempre la misma salida para `\"cat\"`, venga de donde venga. Una recurrente guarda lo que produjo con `\"The\"` y lo usa para procesar `\"cat\"`."
+        },
+        {
+          "label": "Lo único que cambia es una conexión.",
+          "body": "Las dos columnas tienen los mismos pasos, la misma red y las mismas palabras. La diferencia está en que a la derecha el paso 2 recibe también el estado del paso 1, y eso alcanza para que haya memoria."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=2",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "De las RNN a la atención",
+      "title": "La red desenrollada en el tiempo",
+      "lead": "**Desenrollar la red es dibujar una copia por cada token de la frase. Las copias comparten los mismos pesos, y lo único que viaja de una a la otra es el estado.**",
+      "notes": "Lámina nueva, y de las que más falta hacían: el deck original describía la recurrencia en palabras y nunca la desenrollaba. Lo que hay que señalar es que las cinco cajas dicen la misma W, o sea que es una sola red aplicada cinco veces, y que la flecha horizontal es lo único que las conecta. De ahí salen dos cosas que la sección necesita: que el modelo no depende del largo de la frase, y que todo lo que el paso 5 sabe del paso 1 tiene que haber sobrevivido cuatro reescrituras del estado. Esa segunda idea es la lámina siguiente.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s6-2-1-red-desenrollada.svg",
+        "alt": "La misma caja de pesos W reusada cinco veces, con el estado h como único canal entre pasos"
+      },
+      "facts": [
+        {
+          "label": "Un solo juego de pesos, cualquier largo de frase.",
+          "body": "Es lo que permite entrenar con frases de cinco palabras y aplicar el modelo a una de cincuenta."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "De las RNN a la atención",
+      "title": "Todo el pasado en un vector",
+      "lead": "**El estado tiene un tamaño fijo y no crece con la frase. Cuanto más larga la entrada, más comprimido queda cada token, y el primero que entró es el primero que se diluye.**",
+      "notes": "Lámina nueva. El dato que le da peso es que el vector de longitud fija está declarado en el abstract del paper de Cho, no es una crítica posterior: el paper lo presenta como propiedad de diseño y la crítica llegó después, con el trabajo de atención de Bahdanau, que es coautor de este mismo paper y no está en nuestro corpus. Si alguien pregunta de qué tamaño es el estado, decí que es una decisión de diseño del modelo y no fijes un número, porque no lo tenemos sostenido en ninguna fuente. El diagrama no lo fija a propósito.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s6-3-1-cuello-botella-estado.svg",
+        "alt": "El mismo vector de tamaño fijo tiene que contener tres palabras o diez"
+      },
+      "facts": [
+        {
+          "label": "El cuello de botella está en la arquitectura, no en el entrenamiento.",
+          "body": "El modelo encoder-decoder de Cho y otros (2014) lo describe de frente: una RNN codifica la secuencia entera en una representación vectorial de longitud fija, y la otra la decodifica."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "De las RNN a la atención",
+      "title": "LSTM, GRU y ELMo",
+      "lead": "**Tres trabajos que empujaron la línea recurrente antes de que la atención la reemplazara.**",
+      "notes": "Tres advertencias del registro del corpus, y ninguna cambia lo que dice la lámina, pero conviene tenerlas si preguntan. Primera: LSTM no tiene captura en nuestro corpus, así que la descripción de las compuertas es del deck original y de conocimiento general, no de una fuente que podamos mostrar. Segunda: el abstract del paper de Cho no menciona la sigla GRU, ni la palabra \"gated\", ni compara con LSTM; la atribución es correcta y estándar, pero la celda se define en el cuerpo del paper, así que la lámina dice \"que introduce el trabajo\" y no \"que el paper llama GRU\". El deck original la calificaba de \"simplificada\", que es consenso posterior y no una afirmación del paper; se retiró. Tercera: el abstract de ELMo no menciona RNN ni LSTM en ninguna forma, así que la lámina no lo presenta como variante de RNN, aunque su modelo bidireccional efectivamente esté construido con LSTM. De las seis tareas que ELMo mejora, el abstract sólo nombra tres: question answering, textual entailment y análisis de sentimiento. Ninguna de las tres capturas trae un número de benchmark.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "LSTM",
+          "body": "Una celda recurrente con compuertas que deciden qué guardar y qué descartar del estado en cada paso. Ataca la dilución que muestra la lámina anterior."
+        },
+        {
+          "label": "GRU",
+          "body": "La celda con compuertas que introduce el trabajo de Cho y otros (2014), dentro del modelo encoder-decoder. Se usa como alternativa más chica a la LSTM."
+        },
+        {
+          "label": "ELMo",
+          "body": "Representaciones de palabra profundamente contextualizadas: el vector de una palabra cambia según la oración en la que aparece. Sale de las capas internas de un modelo de lenguaje bidireccional preentrenado, y su paper nombra la polisemia como el problema que viene a resolver."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "ELMo es lo que arregla el límite de Word2Vec: ahí \"banco\" tiene un solo vector; con representaciones contextuales tiene uno por contexto.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "De las RNN a la atención",
+      "title": "Cuando \"it\" queda lejos",
+      "lead": "**En `\"The animal didn't cross the street because it was too tired\"`, resolver a qué se refiere `it` obliga a llegar hasta `animal`. Con recurrencia esa información recorre seis estados intermedios; con atención, uno solo.**",
+      "notes": "El deck original usa esta frase dos veces, primero como problema de las RNN y después como intuición de la atención. Acá está una sola vez, con los dos recorridos al lado, que es lo que hace que se entienda de una. Contá los pasos en voz alta: seis estados de \"animal\" a \"it\", con una reescritura del vector en cada uno. El conteo sale de la frase: animal, didn't, cross, the, street, because, it. Lo que hay que señalar es la columna de la derecha, no la de la izquierda: el argumento de la lámina es el salto único, y la cadena está para dar la medida de lo que se ahorra.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s6-5-1-atencion-un-salto.svg",
+        "alt": "Seis estados intermedios con recurrencia frente a un solo salto con atención"
+      },
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=0",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "De las RNN a la atención",
+      "title": "Cada token mira a todos",
+      "lead": "**La atención le da a cada token un peso contra todos los demás tokens de la secuencia, y con esos pesos arma su propia lectura de la frase.**",
+      "notes": "Ésta es la lámina más importante de la clase y el deck original la resolvía con tres viñetas dentro de una lámina que ya tenía otras cuatro cosas. Los pesos del diagrama son cualitativos a propósito: bajo, medio y alto, sin números, porque cualquier número que pusiéramos sería inventado y se leería como medido. Lo que hay que decir es que la fila suma uno, que es lo que la vuelve una distribución, y que la misma fila se calcula para cada token. De ahí sale la paralelización, que es la propiedad que hizo posible entrenar modelos grandes, y es el tema de la lámina siguiente.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s6-6-1-cada-token-mira-todos.svg",
+        "alt": "El token it consulta a toda la frase y reescribe su representación con el peso sobre animal"
+      },
+      "facts": [
+        {
+          "label": "Qué captura",
+          "body": "Dependencias largas entre palabras separadas, relaciones sintácticas de sujeto, verbo y objeto, y relaciones semánticas de contexto."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "De las RNN a la atención",
+      "title": "Qué se gana al soltar la recurrencia",
+      "lead": "**El Transformer prescinde por completo de recurrencia y de convoluciones, y se apoya sólo en mecanismos de atención. El resultado del paper original es doble: mejor calidad y menos tiempo de entrenamiento a la vez.**",
+      "notes": "Lámina nueva, y la única de la clase con números medidos de una fuente primaria. Dos cuidados al decirlos. Primero: la mejora es de más de 2 **puntos** BLEU, no de un 2 %; BLEU es una escala de 0 a 100 y confundir puntos con porcentaje es el error clásico. Segundo: el abstract no dice qué GPU eran ni cuánto costaron en dinero, así que \"3,5 días sobre ocho GPU\" es todo lo que se puede afirmar. Lo que no está en nuestro corpus, porque la captura es la página de abstract y no el paper: self-attention, multi-head attention, positional encoding, scaled dot-product y layer normalization. Si alguien pregunta por el detalle interno, la respuesta es que está en el paper y que esta clase se queda en el mecanismo de la lámina anterior.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Paralelización",
+          "body": "Sin dependencia secuencial, la secuencia entera se procesa de una. Es la consecuencia directa de sacar la recurrencia, y lo que permite aprovechar una GPU de punta a punta."
+        },
+        {
+          "label": "Calidad medida",
+          "body": "28,4 BLEU en la tarea de traducción inglés a alemán de WMT 2014, más de 2 puntos BLEU por encima de los mejores resultados previos, incluidos los ensambles. Y 41,8 BLEU en inglés a francés, estado del arte para modelo único."
+        },
+        {
+          "label": "Costo medido",
+          "body": "Ese resultado de inglés a francés salió de 3,5 días de entrenamiento sobre ocho GPU, que los autores describen como una fracción pequeña del costo de los mejores modelos de la literatura."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "La arquitectura no quedó atada a la traducción: el mismo paper la aplica a análisis sintáctico de constituyentes en inglés, con datos abundantes y con datos limitados.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=3",
+          "has_table=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "section": "Transformers y LLM",
+      "title": "Transformers y LLM",
+      "_choice": {
+        "signals": [
+          "encabezado de sección"
+        ],
+        "candidates": [
+          "section-agenda",
+          "divider"
+        ],
+        "picked": "section-agenda",
+        "rejected": {
+          "divider": "es una sección real"
+        }
+      }
+    },
+    {
+      "section": "Transformers y LLM",
+      "title": "La arquitectura de 2017",
+      "lead": "**El Transformer es la arquitectura que reemplazó a las RNN en 2017. Procesa la secuencia entera de una vez, en paralelo, apilando bloques de atención.**",
+      "notes": "La figura es la figura 1 del paper de Vaswani y otros, y el deck original la reproducía sin atribución; acá el crédito está al pie de la lámina, a la vista, además de en las fuentes. Es la figura más reconocible del campo y proyectarla sin crédito es evitable. Está en inglés y es densa: no la recorras entera. Señalá tres cosas y seguí: las dos columnas, la caja de atención multi-cabeza que se repite, y el softmax de arriba, que es donde el recorrido se cierra sobre el modelado de lenguaje. El deck original agregaba que los LLM modernos usan solo decoder, o sea sólo la columna derecha. Es cierto y es consenso, pero no sale del paper de 2017 ni de ninguna fuente de nuestro corpus, así que decilo de palabra y como afirmación propia, no como algo que el paper diga. Está anotado en las preguntas abiertas.",
+      "template": "content+cards+image",
+      "design": "split-right",
+      "media": {
+        "src": "images/arquitectura-transformer.jpg",
+        "alt": "Diagrama de arquitectura en dos columnas: la izquierda con embedding de entrada, codificación posicional, atención multi-cabeza y feed forward; la derecha con atención enmascarada y atención cruzada, terminando en una capa lineal y un softmax hacia probabilidades de salida"
+      },
+      "cards": [
+        {
+          "label": "Dos columnas, dos trabajos.",
+          "body": "La izquierda codifica la entrada; la derecha genera la salida token a token y consulta a la izquierda por el camino."
+        },
+        {
+          "label": "El softmax de arriba es la distribución sobre el vocabulario.",
+          "body": "El \"Output Probabilities\" del tope de la figura es literalmente ese vector de tamaño |V| con el que se formuló el modelado de lenguaje."
+        },
+        {
+          "body": "Figura 1 de Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser y Polosukhin, *Attention Is All You Need*, arXiv:1706.03762 (2017)."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Transformers y LLM",
+      "title": "Tres generaciones de representación",
+      "lead": "**El recorrido de la clase, en una tabla: representaciones estáticas, después secuenciales, después contextuales con atención.**",
+      "notes": "Lámina de repaso, y la única que conviene leer entera, porque cada fila es una sección de la clase. La lectura útil es en columna: la columna de la derecha es la cadena de motivaciones, porque cada limitación es lo que el renglón siguiente vino a arreglar. La tabla del deck original tenía cinco columnas, con \"Novedad\" y \"Pros\" diciendo casi lo mismo; quedaron fusionadas en una. Si preguntan por lo cuadrático de la última fila, es que cada token calcula un peso contra cada otro token, o sea n² pares.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "",
+            "cells": [
+              "**Word2Vec**",
+              "**RNN (LSTM, GRU)**",
+              "**Transformers**"
+            ]
+          },
+          {
+            "header": "Idea principal",
+            "cells": [
+              "Aprende embeddings del contexto en el que aparecen las palabras",
+              "Procesan el texto secuencialmente con un estado interno que hace de memoria",
+              "Atención para que cada token mire a todos los demás, en paralelo"
+            ]
+          },
+          {
+            "header": "Lo que aportó",
+            "cells": [
+              "Representaciones semánticas aprendidas sin supervisión; las palabras parecidas quedan cerca",
+              "Modelan secuencias y dependencias temporales; habilitaron traducción y generación",
+              "Dependencias largas sin degradación y entrenamiento paralelo. Base de todos los LLM actuales"
+            ]
+          },
+          {
+            "header": "Lo que no resuelve",
+            "cells": [
+              "Un solo vector por palabra, sin importar el contexto. No modela el orden ni las secuencias",
+              "Procesamiento secuencial, no paralelizable. Pierden información en secuencias largas",
+              "Enormes cantidades de datos y cómputo. La atención crece cuadráticamente con la longitud"
+            ]
+          }
+        ]
+      },
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=0",
+          "has_table=True"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Transformers y LLM",
+      "title": "El ciclo de un LLM, token a token",
+      "lead": "**Cada palabra que aparece en pantalla es una vuelta entera de este ciclo. El modelo escribe un token, se vuelve a leer completo y escribe el siguiente.**",
+      "notes": "El diagrama convierte una tabla de seis celdas en un bucle, que es lo que la tabla del deck original no dejaba ver. Lo que hay que señalar es la flecha de retorno: es la que explica por qué una respuesta larga tarda más que una corta de forma proporcional, y por qué el costo se cobra por token. El ejemplo de tokenización en español es bueno y vale detenerse: \"estás\" se parte en dos sub-palabras y los dos signos de interrogación son tokens propios, o sea que una frase de dos palabras da cinco tokens. Eso conecta directo con la tokenización por sub-palabras.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "src": "images/s7-3-1-ciclo-llm-token.svg",
+        "alt": "El ciclo de generación de un LLM, que se realimenta con su propio token de salida"
+      },
+      "facts": [
+        {
+          "label": "Temperatura",
+          "body": "El parámetro que decide cuánta aleatoriedad hay en el paso de elegir. Con temperatura cero, siempre el token más probable."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "has_table=False"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Transformers y LLM",
+      "title": "El mismo problema, a otra escala",
+      "lead": "**Es la misma formulación de modelado de lenguaje, con los mismos tres ingredientes y otro orden de magnitud.**",
+      "notes": "Tres cuidados con los números de la columna derecha, y los tres importan porque son las cifras que un alumno se lleva anotadas. El primero: el deck original decía \"billones de palabras\" para el corpus, que en español rioplatense son 10¹² y en el original en inglés casi con seguridad eran 10⁹; como no hay forma de saber cuál era la intención, la cifra se retiró y quedó la descripción cualitativa. El segundo: los cientos de miles de millones de parámetros y los ~100.000 tokens de vocabulario salen del deck original y no de una fuente pública, porque ni OpenAI ni Anthropic publican esos números para sus modelos actuales; están con \"del orden de\" y anotados en las preguntas abiertas. El tercero: la fila de vocabulario del deck original mezclaba unidades, \"14 palabras\" contra \"100.000 tokens\"; acá las dos dicen tokens, que es la unidad que la clase estableció al tokenizar.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "",
+            "cells": [
+              "**Vocabulario V**",
+              "**Corpus T**",
+              "**Parámetros**",
+              "**Entrenamiento**",
+              "**Frase P**"
+            ]
+          },
+          {
+            "header": "El ejemplo de juguete",
+            "cells": [
+              "14 tokens",
+              "5 frases",
+              "pocos",
+              "segundos",
+              "`\"the dog sat on\"`"
+            ]
+          },
+          {
+            "header": "Un LLM de hoy",
+            "cells": [
+              "del orden de 100.000 tokens, sub-palabras de varios idiomas",
+              "texto de internet, libros, código y papers",
+              "del orden de cientos de miles de millones",
+              "meses sobre miles de GPU",
+              "cualquier texto, de cualquier largo"
+            ]
+          }
+        ]
+      },
+      "facts": [
+        {
+          "label": "El concepto no cambia:",
+          "body": "predecir el token siguiente. Lo que cambia es el tamaño del vocabulario, la cantidad de datos y la del modelo."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=1",
+          "has_table=True"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Transformers y LLM",
+      "title": "Casi cualquier tarea es generación",
+      "lead": "**Un modelo que comprende texto y genera palabras permite reescribir casi cualquier tarea de NLP como una instrucción en texto.**",
+      "notes": "Ésta es la lámina donde la clase se cierra sobre sí misma, y el callout final es el remate: volvé a la 2.4, la de las tres columnas independientes, y contrastá. Ahí estaba el costo de etiquetar tres veces; acá son tres frases. Si alguien pregunta si entonces el entrenamiento etiquetado desapareció, la respuesta corta es que no, que se mudó al ajuste de instrucciones y a la alineación, y que eso es materia de otra clase. Esta lámina también es la que engancha con la clase de prompting.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Sentimiento",
+          "body": "`\"¿Este comentario es positivo o negativo?\"` → el modelo genera `\"positivo\"`."
+        },
+        {
+          "label": "Traducción",
+          "body": "`\"Traducí: the cat is on the mat\"` → el modelo genera `\"el gato está sobre la alfombra\"`."
+        },
+        {
+          "label": "Resumen",
+          "body": "`\"Resumí este texto: […]\"` → el modelo genera el resumen."
+        },
+        {
+          "label": "La cadena completa:",
+          "body": "problema → prompt (instrucción en texto) → el modelo genera la solución."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Con el enfoque tradicional, esas tres tareas necesitaban tres conjuntos etiquetados y tres modelos entrenados por separado. Acá son tres frases contra el mismo modelo.",
+          "kind": "example",
+          "position": "bottom"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=4",
+          "has_table=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Transformers y LLM",
+      "title": "Entrenamiento e inferencia",
+      "lead": "**Dos fases distintas, con costos, responsables y momentos distintos. Confundirlas es el malentendido más común sobre estos modelos.**",
+      "notes": "Última lámina de contenido y la más aplicable de la sección. El primer punto de abajo es el que hay que decir despacio, porque es el malentendido más frecuente que va a aparecer fuera de la clase: la conversación no entrena nada. El deck original decía \"billones de palabras\" también acá; se retiró por la misma ambigüedad de la tabla de escala y quedó \"escala web\". La fila de \"Ejemplo\" del deck original (entrenar GPT-4 contra preguntarle qué es NLP) se retiró porque repetía lo que ya dicen las filas de qué pasa y cuándo.",
+      "template": "content-image",
+      "design": "split-right",
+      "media": {
+        "columns": [
+          {
+            "header": "",
+            "cells": [
+              "**Qué pasa**",
+              "**Cuándo**",
+              "**Quién**",
+              "**Costo**",
+              "**Parámetros**"
+            ]
+          },
+          {
+            "header": "Entrenamiento",
+            "cells": [
+              "Aprende ajustando parámetros",
+              "Antes de que el modelo esté disponible",
+              "OpenAI, Anthropic, Meta y unos pocos más",
+              "Millones de dólares, semanas",
+              "Se modifican constantemente"
+            ]
+          },
+          {
+            "header": "Inferencia",
+            "cells": [
+              "Usa parámetros ya aprendidos",
+              "Cada vez que alguien pregunta",
+              "Cualquiera que use el modelo",
+              "Fracción de segundo por respuesta",
+              "Están congelados"
+            ]
+          }
+        ]
+      },
+      "facts": [
+        {
+          "label": "Una conversación no entrena al modelo.",
+          "body": "Los parámetros ya están fijos; lo que ocurre en el chat es inferencia."
+        },
+        {
+          "label": "Por eso son pocas las organizaciones que entrenan.",
+          "body": "Entrenar un modelo grande pide un corpus de escala web y miles de GPU durante semanas."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=2",
+          "has_table=True"
+        ],
+        "candidates": [
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    },
+    {
+      "section": "Transformers y LLM",
+      "title": "Lo que queda de la clase",
+      "notes": "Cinco frases y ninguna es un resumen de la agenda. La primera es la tesis desplegada. La segunda es la que más se recuerda, porque explica el salto de escala con un argumento económico y no con uno técnico. La tercera es el nudo de la clase y conviene decirla mirando el diagrama del cuello de botella. La quinta es la que menos se espera de una clase: contá que al revisar este mismo material encontramos tres papers citados sin nombre y una unidad ambigua, y que se corrigieron. Si te queda tiempo, cerrá con la pregunta que abre la clase siguiente: si el modelo sólo predice el token siguiente, de dónde sale que parezca que razona.",
+      "template": "concept-breakdown",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Un modelo de lenguaje hace una sola cosa.",
+          "body": "Predice el token siguiente y devuelve una distribución sobre el vocabulario entero. Todo lo demás de la clase, tokens, embeddings, capas, gradientes y atención, existe para que esa predicción use el contexto."
+        },
+        {
+          "label": "La etiqueta gratis es lo que cambió la escala.",
+          "body": "Mientras cada tarea necesitaba su propio conjunto etiquetado a mano, el costo crecía tarea por tarea. El texto crudo trae la respuesta correcta adentro, y eso convirtió a internet en conjunto de entrenamiento."
+        },
+        {
+          "label": "El cuello de botella de las RNN era estructural.",
+          "body": "Comprimir la frase entera en un vector de tamaño fijo diluye lo primero que entró, y ningún entrenamiento arregla eso. La atención lo elimina dejando que cada token consulte a todos los demás en un solo paso."
+        },
+        {
+          "label": "Un LLM de hoy es el ejemplo de catorce tokens con otro tamaño.",
+          "body": "Cambian el vocabulario, los datos y la cantidad de parámetros. La cuenta es la misma."
+        },
+        {
+          "label": "Verificá las cifras antes de repetirlas.",
+          "body": "Este mismo deck citaba tres papers sin nombrarlos y usaba \"billones\" en un sentido ambiguo entre 10⁹ y 10¹². Pasa en el material de todos, incluido el nuestro."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=0",
+          "labeled_items=5",
+          "has_table=False"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "concept-breakdown"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-breakdown": "la lámina no es solo un conjunto rotulado"
+        }
+      }
+    }
+  ],
+  "_source": {
+    "file": "final.md",
+    "sha256": "719e043b39fabbc6222191fe82c5c47af5d7d1e6f0b6c4533fa5aecba2c92f55",
+    "bytes": 108124
+  }
+}
