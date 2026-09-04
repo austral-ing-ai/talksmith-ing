@@ -1419,7 +1419,7 @@ La figura es la analogía dibujada, así que contá la montaña señalándola. H
 
 ---
 
-## 5. El learning rate es el paso
+## 10. El learning rate es el paso
 
 ### Content
 
@@ -1474,7 +1474,7 @@ Si preguntan por Adam, la respuesta corta: escala el paso por parámetro y absor
 
 ---
 
-## 10. Batch y época no son lo mismo
+## 11. Batch y época no son lo mismo
 
 ### Content
 
@@ -1525,7 +1525,7 @@ Dato que conecta con la sección 2, por si hay tiempo: en una tabla de embedding
 
 ---
 
-## 11. El ciclo completo, batch a batch
+## 12. El ciclo completo, batch a batch
 
 ### Content
 
@@ -1596,7 +1596,7 @@ Una precisión que conviene decir vos primero, porque en el dibujo `g` parece un
 
 ---
 
-## 12. La función objetivo
+## 13. La función objetivo
 
 ### Content
 
@@ -1649,7 +1649,7 @@ Si preguntan cómo se sabe que hace falta regularizar, la respuesta es la brecha
 
 ---
 
-## 13. Qué mirar cuando esto se entrena
+## 14. Qué mirar cuando esto se entrena
 
 ### Content
 
@@ -2401,7 +2401,7 @@ Lo enuncia la 6.2 y lo dibuja la 6.9, así que en las notas de la 6.8 era la ter
 
 Se retiró al declararse el alcance MLP en la sección 1. La tabla listaba seis familias (sin estructura, grilla 1D, grilla 2D, secuencia, conjunto, grafo) con su arquitectura natural, y quedaba solapada con la tabla de tres arquitecturas de la diapositiva 1.2 y con la tabla de tipos de dato de la 1.5. La 2.1 pasó a definir solo el caso tabular.
 
-## 1. Todo termina en un vector de floats
+## 7. Todo termina en un vector de floats
 
 ### Content
 

@@ -1199,11 +1199,11 @@
       "template": "content+cards+image",
       "section": "Backpropagation",
       "title": "La tasa de aprendizaje η",
-      "notes": "La imagen que funciona en clase es la pelota bajando por un valle, con `η` como el tamaño del paso: pasos chicos tardan una eternidad, pasos grandes saltan de una ladera a la otra sin bajar nunca.\n\nConectá con la sección 2 de esta clase: el gradiente respecto de un peso es proporcional al valor de la entrada, y el learning rate es uno solo para toda la red. Si una variable va de 0 a 1.000.000 y otra de 0 a 1, sus gradientes viven en escalas distintas y un solo `η` no le sirve a las dos. Ese es el argumento formal de por qué se normaliza el input, y ahora tienen la fórmula delante.\n\nSi preguntan por Adam, la respuesta corta: escala el paso por parámetro y absorbe parte del problema, pero no arregla la saturación ni una inicialización rota.\n\n---",
+      "notes": "La figura es la analogía dibujada, así que contá la montaña señalándola. Hay algo que la figura muestra y el deck original nunca menciona: la superficie tiene varios valles azules, o sea varios mínimos locales, y la trayectoria termina en uno cualquiera. Si alguien lo marca, la respuesta honesta es que sí, que el descenso por gradiente no garantiza el mínimo global, y que en redes grandes eso resulta ser menos grave de lo que suena. No lo abras vos si el tiempo aprieta. La figura casi no tiene texto: sólo un \"04\" heredado de la numeración del deck original. La viñeta decorativa de esta lámina se retiró.\n\n---",
       "lead": "Cerrado el batch y promediados los gradientes acumulados, corregir un peso es restarle una fracción de su gradiente. Cuánta es esa fracción lo fija la **tasa de aprendizaje `η`**, uno de los hiperparámetros más sensibles.",
       "media": {
-        "src": "images/bp-paso-de-actualizacion.png",
-        "alt": "El paso de actualización"
+        "src": "images/superficie-de-perdida.jpg",
+        "alt": "Superficie tridimensional de pérdida en malla, con picos y valles coloreados y una trayectoria que desciende serpenteando desde la cima hasta el fondo de un valle"
       },
       "design": "split-right",
       "cards": [
@@ -1220,6 +1220,45 @@
           "body": "Los pasos se pasan del mínimo y el error oscila o diverge."
         }
       ]
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Backpropagation",
+      "title": "El learning rate es el paso",
+      "design": "split-right",
+      "media": {
+        "src": "images/s6-9-1-learning-rate-paso.svg",
+        "alt": "Paso demasiado grande y paso demasiado chico sobre la misma curva de loss"
+      },
+      "cards": [
+        {
+          "label": "El signo menos.",
+          "body": "El gradiente apunta hacia donde el error crece, así que el paso va en la dirección opuesta."
+        },
+        {
+          "label": "`η` muy chico.",
+          "body": "El entrenamiento avanza, pero tan despacio que puede volverse impracticable."
+        },
+        {
+          "label": "`η` muy grande.",
+          "body": "Los pasos se pasan del mínimo y el error oscila o diverge."
+        }
+      ],
+      "notes": "La analogía de la pelota bajando por un valle ahora está dibujada, y son dos pelotas sobre la misma curva: la de la izquierda salta de una ladera a la otra sin bajar nunca, la de la derecha baja y se arrastra. Contala señalando, porque el remate es el diagnóstico y se lleva directo a la práctica: si la loss oscila, el paso es grande; si baja plana y no llega, es chico. Es el primer hiperparámetro que alguien toca cuando un entrenamiento no converge.\n\nLa curva es cualitativa y el propio dibujo lo declara al pie, porque una curva de loss trazada a mano se lee como medición si no se aclara. Los ejes están rotulados, loss contra peso, y ésa es la única lectura válida.\n\nConectá con la sección 2 de esta clase: el gradiente respecto de un peso es proporcional al valor de la entrada, y el learning rate es uno solo para toda la red. Si una variable va de 0 a 1.000.000 y otra de 0 a 1, sus gradientes viven en escalas distintas y un solo `η` no le sirve a las dos. Ese es el argumento formal de por qué se normaliza el input, y ahora tienen la fórmula delante.\n\nSi preguntan por Adam, la respuesta corta: escala el paso por parámetro y absorbe parte del problema, pero no arregla la saturación ni una inicialización rota.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "content-image": "los tres items son un conjunto rotulado"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -1784,7 +1823,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "7774e372414a95f6663910dcd49033bfac03d189894e6aec7c9b0f6ec01bb1d4",
-    "bytes": 188413
+    "sha256": "510c078843574fe4544b3776be34b09d2bb4d52f22e1afa83cb46631a233fbbd",
+    "bytes": 188414
   }
 }

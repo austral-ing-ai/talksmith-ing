@@ -2649,7 +2649,7 @@ Lo enuncia la 6.2 y lo dibuja la 6.9, así que en las notas de la 6.8 era la ter
 
 Se retiró al declararse el alcance MLP en la sección 1. La tabla listaba seis familias (sin estructura, grilla 1D, grilla 2D, secuencia, conjunto, grafo) con su arquitectura natural, y quedaba solapada con la tabla de tres arquitecturas de la diapositiva 1.2 y con la tabla de tipos de dato de la 1.5. La 2.1 pasó a definir solo el caso tabular.
 
-## 1. Todo termina en un vector de floats
+## 7. Todo termina en un vector de floats
 
 ### Content
 
