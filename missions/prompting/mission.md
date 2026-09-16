@@ -101,7 +101,7 @@ Documenten, para **todos** los intentos del ejercicio 2 (los quemados también):
 
 ## La entrega
 
-Se entrega **pusheando al repo de GitHub del grupo**, con la forma de trabajo de la clase 2 (CLAUDE.md, SPEC.md e historia de commits limpia). El repo tiene que contener:
+Se entrega **pusheando al repo de GitHub del grupo**, con la forma de trabajo de la clase 2: CLAUDE.md, SPEC.md, TDD e historia de commits limpia. Esa forma de trabajo aplica a lo que construyen ustedes con su IA para programar (la interfaz de chat y todo lo que rodea al LLM), no a `vida.py`: ese archivo entra al repo tal cual salió del chat, y sus tests son los de la cátedra. El repo tiene que contener:
 
 - **El código de la interfaz** del ejercicio 1.
 - **Un log de chat de prueba por cada uno de los 4 modelos** (`.md`): prueban que cada modelo es usable desde la interfaz y que las conversaciones se guardan con su usage.
