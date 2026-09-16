@@ -1,0 +1,691 @@
+{
+  "deck": {
+    "title": "Inteligencia Artificial Generativa (AI Gen)",
+    "lang": "es",
+    "institution": "Universidad Austral",
+    "class": "Clase 7: MCP y herramientas, con repaso de RAG",
+    "presenter": "Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)",
+    "date": "2026-09-16",
+    "logo": null,
+    "sections": [
+      "Formas de recuperar",
+      "Los hiperparámetros de RAG",
+      "Evaluación y seguridad",
+      "MCP: el protocolo",
+      "Diseño de herramientas",
+      "Conclusiones"
+    ]
+  },
+  "slides": [
+    {
+      "template": "section-agenda",
+      "title": "Formas de recuperar"
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Formas de recuperar",
+      "title": "RAG en tres pasos",
+      "lead": "El modelo guarda conocimiento en sus pesos y no puede acceder a lo que nunca vio. RAG le acerca fragmentos de una fuente externa dentro del prompt, sin reentrenar.",
+      "cards": [
+        {
+          "label": "Indexación",
+          "body": "Trabajo offline: se cargan los documentos, se cortan, se calculan los embeddings y se guardan en el índice, una vez y en cada cambio del corpus. La consulta solo lee ese índice. El modelo de embeddings es el mismo en las dos fases."
+        },
+        {
+          "label": "Ventanas de 1M de tokens",
+          "body": "No reemplazan la recuperación, por tres motivos. El corpus crece más rápido que la ventana. El modelo rinde peor cuando busca dentro de entradas muy largas. Y cada consulta que reenvía el corpus entero paga todos esos tokens."
+        }
+      ],
+      "image": {
+        "src": "images/s1-1-1-rag-tres-pasos.png",
+        "alt": "RAG en tres pasos: recuperar, aumentar, generar; los pesos del modelo no cambian"
+      },
+      "notes": "Una sola lámina de repaso, porque la clase pasada ya hizo el recorrido completo. Lo que hay que reinstalar en dos minutos: los tres pasos, que \"aumentar\" es concatenar texto en el prompt, y que los pesos no se tocan. El segundo bullet contesta la objeción que quedó de la clase de prompting, y la respuesta que más aguanta es la del medio: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. Desde acá la clase se concentra en lo que se decide al armar el pipeline. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Formas de recuperar",
+      "title": "Por palabras: el índice invertido",
+      "lead": "Guarda en qué documentos está cada término. Buscar deja de ser leer cada documento y pasa a ser cruzar listas cortas.",
+      "cards": [
+        {
+          "label": "El orden lo decide un score",
+          "body": "TF-IDF premia el término frecuente en el documento y raro en el corpus; BM25, la línea de base de producción, satura la frecuencia y normaliza por longitud."
+        },
+        {
+          "label": "Cuándo conviene",
+          "body": "Identificadores exactos (código de error, SKU, nombre de función, versión). Rápido, sin GPU, y ciego a sinónimos y paráfrasis."
+        }
+      ],
+      "image": {
+        "src": "images/s1-2-1-indice-invertido.png",
+        "alt": "Como se invierte un indice: de documento a terminos, a termino a documentos, y una consulta resuelta por interseccion"
+      },
+      "notes": "Primera forma. El diagrama muestra la inversión y alcanza con señalar el giro del encabezado. Lo que se repasa en voz: el score ordena la intersección, TF-IDF es la idea y BM25 la implementación que usa todo el mundo. Y el límite, que es lo que justifica la lámina siguiente: un runbook que dice \"timeout del upstream\" puntúa cero para la consulta \"el servicio no responde\", y es exactamente el documento que hacía falta. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Formas de recuperar",
+      "title": "Por significado: embeddings y similitud",
+      "lead": "Cada fragmento se convierte en un vector; la consulta también. Se devuelven los fragmentos cuyo vector queda más cerca del de la consulta, compartan o no palabras con ella.",
+      "cards": [
+        {
+          "label": "Similitud coseno",
+          "body": "Mide el ángulo entre los dos vectores. Como el largo del vector no entra en la cuenta, un fragmento de tres palabras se compara con uno de trescientas."
+        },
+        {
+          "label": "Búsqueda aproximada",
+          "body": "Comparar la consulta contra cada vector es O(n): diez millones de fragmentos son diez millones de cosenos por consulta. Un índice HNSW encuentra los vecinos cercanos en tiempo logarítmico, a cambio de un resultado aproximado."
+        },
+        {
+          "label": "Cuándo conviene",
+          "body": "Preguntas en lenguaje natural sobre documentación, FAQs y mesa de ayuda. Reconoce sinónimos, paráfrasis y otros idiomas. Cuesta una inferencia por consulta."
+        }
+      ],
+      "image": {
+        "src": "images/s1-3-1-lexico-vs-vectorial.png",
+        "alt": "Un indice lexico compara cadenas y uno vectorial compara posiciones: dos frases sin palabras en comun resultan muy parecidas"
+      },
+      "notes": "Segunda forma. El par del diagrama es el argumento entero: mismo problema, cero palabras en común, y el índice invertido no lo puede resolver. Los tres bullets van rápido porque la clase pasada los desarrolló: coseno para que el largo no pese, HNSW para no recorrer diez millones de vectores, y el criterio de uso. Si preguntan por valores de similitud concretos, decir que dependen por completo del modelo de embeddings. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Formas de recuperar",
+      "title": "Como herramienta: el agente decide cuándo buscar",
+      "lead": "En el pipeline clásico la recuperación corre siempre, antes del modelo. Con la recuperación como herramienta, el modelo decide si busca, qué busca y cuántas veces.",
+      "cards": [
+        {
+          "label": "Ventajas",
+          "body": "El modelo reformula la consulta y combina varias fuentes en una respuesta. Cuando la pregunta no necesita contexto, no recupera nada."
+        },
+        {
+          "label": "Costos",
+          "body": "Cada ronda suma una llamada, con su latencia y sus tokens. La calidad depende de la descripción de la herramienta, el tema de la segunda mitad."
+        },
+        {
+          "label": "Puente a MCP",
+          "body": "Un buscador expuesto como herramienta es un servidor MCP más en el catálogo del agente."
+        }
+      ],
+      "image": {
+        "src": "images/s1-4-1-recuperacion-como-herramienta.png",
+        "alt": "Pipeline clasico con recuperacion fija frente a recuperacion como herramienta donde el modelo decide cuando y que buscar"
+      },
+      "notes": "Tercera forma, y la que conecta las dos mitades de la clase. El contraste del diagrama es todo: a la izquierda el modelo recibe contexto sin opinar; a la derecha lo pide, y puede pedirlo dos veces con consultas distintas o no pedirlo. Ejemplo para decir en voz alta: la pregunta \"¿qué versión de Node usamos?\" con el pipeline clásico recupera k fragmentos de lo que sea; con la herramienta, el modelo busca en el package.json y listo, o no busca porque la respuesta ya estaba en la conversación. El costo se dice también: más llamadas y una dependencia nueva, la descripción de la herramienta, que es lo que la sección 5 enseña a escribir. Tiempo objetivo: ~4 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Formas de recuperar",
+      "title": "En producción se usan las dos",
+      "lead": "La búsqueda híbrida corre el índice léxico y el vectorial en paralelo y funde los dos rankings en uno. Es el estándar de producción.",
+      "cards": [
+        {
+          "label": "Fusión por posición",
+          "body": "BM25 puntúa de cero a infinito y el coseno de menos uno a uno, así que los scores no se comparan. RRF suma 1/(k + posición) de cada documento en cada ranking, y gana el que está arriba en los dos."
+        },
+        {
+          "label": "Cobertura",
+          "body": "Los dos índices fallan en casos distintos: el léxico cuando el usuario no usa las palabras del documento, el vectorial con identificadores exactos. La fusión cubre los dos."
+        }
+      ],
+      "image": {
+        "src": "images/s1-5-1-pipeline-hibrido.png",
+        "alt": "Pipeline hibrido de produccion: BM25 y vectorial en paralelo, fusion RRF, reranking de 50 a 5 y el LLM al final"
+      },
+      "notes": "Mención, a grandes rasgos y en dos minutos: las dos búsquedas en paralelo, un ranking único por posiciones y el modelo al final viendo cinco documentos. La cuenta de RRF no se hace en el pizarrón (está en el deck de la clase 6 para quien quiera); alcanza con la intuición de que el acuerdo entre rankings pesa más que el entusiasmo de uno solo. El diagrama ya muestra el reranking en el medio, y eso sirve de puente: la sección siguiente lo trata como una perilla del pipeline. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Los hiperparámetros de RAG"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Los hiperparámetros de RAG",
+      "title": "Top-k y similitud mínima",
+      "cards": [
+        {
+          "label": "Top-k",
+          "body": "Cuántos fragmentos devuelve el recuperador. Pool de candidatos de 20 a 100 en la primera etapa; 3 a 5 en el prompt final. Más contexto diluye la señal y sube el costo por consulta.",
+          "icon": "filter_list"
+        },
+        {
+          "label": "Similitud mínima (umbral)",
+          "body": "Un fragmento entra solo si su similitud con la consulta supera un piso. Sin umbral, una consulta sobre un tema ausente del corpus igual devuelve k fragmentos, todos irrelevantes, y el modelo responde sobre ruido.",
+          "icon": "vertical_align_bottom"
+        },
+        {
+          "label": "Tensión",
+          "body": "Un k alto con umbral bajo trae de todo. Un umbral alto con k bajo deja preguntas sin contexto. El punto correcto sale del conjunto de evaluación de la sección 3.",
+          "icon": "balance"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "El valor del umbral depende del modelo de embeddings y de la distribución de similitudes del corpus propio: un 0,7 no significa lo mismo en dos sistemas distintos. Se calibra sobre la similitud que tienen los pares correctos.",
+          "kind": "important"
+        }
+      ],
+      "notes": "Las dos perillas más baratas de tocar y las que más cambian el resultado. El caso que justifica el umbral es el de la pregunta fuera del corpus: sin piso de similitud, el recuperador siempre devuelve algo, y ese algo es basura con cara de contexto. Con umbral, el sistema puede decir \"no tengo información sobre eso\", que es una respuesta mucho mejor que una inventada sobre fragmentos ajenos. La advertencia es importante para esta audiencia: el umbral no se copia de un tutorial, se calibra sobre las similitudes reales del corpus propio. Tiempo objetivo: ~4 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Los hiperparámetros de RAG",
+      "title": "Chunking: dónde cortar y cuánto solapar",
+      "lead": "El fragmento es la unidad de recuperación. Un argumento partido al medio se recupera sin la mitad que lo explica.",
+      "cards": [
+        {
+          "label": "Tamaño",
+          "body": "Los fragmentos chicos recuperan con precisión y pierden el contexto de alrededor. Los grandes conservan contexto y diluyen lo que había que encontrar."
+        },
+        {
+          "label": "Solapamiento",
+          "body": "Repetir unos tokens entre fragmentos consecutivos cose el corte, y la frase que cruzaba el límite queda entera en alguna copia. Cuesta almacenamiento y duplica recuperaciones."
+        },
+        {
+          "label": "Corte por estructura",
+          "body": "Es el que más rinde con documentación técnica, referencias de API y código, porque los encabezados marcan dónde cortar."
+        }
+      ],
+      "image": {
+        "src": "images/s2-2-1-estrategias-de-corte.png",
+        "alt": "Tres estrategias de chunking sobre el mismo documento: largo fijo, semantico y por estructura"
+      },
+      "notes": "La perilla que más se subestima. El diagrama muestra que la diferencia entre estrategias no es de tamaño sino de dónde caen los cortes respecto de la estructura. Para esta audiencia el ejemplo que funciona es una referencia de API donde cada endpoint es una sección: cortar por encabezado da un fragmento por endpoint, gratis. Sobre el tamaño, los rangos que circulan (600 a 1000 caracteres) son orientativos y no salen de ninguna medición: el tamaño correcto se mide sobre el corpus propio con las consultas reales. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Los hiperparámetros de RAG",
+      "title": "Metadatos: filtrar antes de buscar",
+      "lead": "Un fragmento sin metadatos solo se puede buscar por su contenido. Con metadatos se filtra antes de buscar, que es más barato y más preciso.",
+      "cards": [
+        {
+          "label": "Siempre",
+          "body": "Identificador de la fuente, timestamp y posición dentro del documento. Con ellos se reindexa, se cita y se reconstruye el orden."
+        },
+        {
+          "label": "Según el caso",
+          "body": "Autor o equipo, tipo y versión, jerarquía de sección, idioma, score de calidad."
+        },
+        {
+          "label": "Metadatos como texto buscable",
+          "body": "Los campos también se indexan. El título y la ruta de sección entran al índice léxico con peso propio, o se anteponen al texto del fragmento antes de calcular el embedding, y así el vector sabe de qué documento viene. La técnica inversa también es común: se embebe un resumen del documento entero, se recupera por ese resumen y se devuelven los fragmentos del documento."
+        }
+      ],
+      "image": {
+        "src": "images/s2-3-1-fragmento-con-metadatos.png",
+        "alt": "Un fragmento indexado con metadatos y texto, y el filtrado por metadatos antes de la busqueda vectorial"
+      },
+      "notes": "El tercer bullet contesta la pregunta de si los metadatos solo filtran: también se buscan. Dos formas comunes, en una frase cada una. Una, el título y la ruta de sección se indexan como campos léxicos con peso propio, o se pegan adelante del texto del fragmento antes de embeber, así un fragmento que dice \"el token expira a los 3600 segundos\" lleva encima \"docs/api/pagos.md > Autenticación > Tokens\" y su vector queda ubicado. Dos, la inversa: un resumen por documento con su propio vector, se recupera el documento por el resumen y recién ahí se traen sus fragmentos; es lo que hacen los recuperadores de documento padre y los índices por resumen de LangChain y LlamaIndex.\n\nLos metadatos son lo que se decide al diseñar el índice, y los dos obligatorios habilitan todo lo demás: sin identificador de fuente no hay cita, sin timestamp no se sabe si un fragmento quedó viejo. El punto operativo del diagrama es que el filtro corre antes de la búsqueda vectorial: una consulta sobre la versión 3 no tiene por qué mirar los fragmentos de la versión 1. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Los hiperparámetros de RAG",
+      "title": "Reranking: la segunda etapa",
+      "lead": "Los recuperadores rápidos encuentran candidatos y los ordenan mal. Un cross-encoder los ordena muy bien y no escala. Por eso el pipeline los pone en serie.",
+      "cards": [
+        {
+          "label": "Etapa 1, recall",
+          "body": "No dejar afuera ningún relevante. Se aceptan falsos positivos, porque el ruido se filtra después."
+        },
+        {
+          "label": "Etapa 2, precisión",
+          "body": "Quedarse solo con los mejores. Se aceptan falsos negativos, porque lo que entra al prompt tiene que ser bueno."
+        },
+        {
+          "label": "Cross-encoder",
+          "body": "Lee consulta y documento juntos en una misma pasada, y distingue negaciones, ambigüedad y contexto que dos vectores separados no capturan. Cuesta una inferencia por par, y por eso corre solo sobre los 50."
+        },
+        {
+          "label": "Como perilla",
+          "body": "El tamaño del pool (20 a 100) y el top-k final (3 a 5) son los mismos de la lámina 2.1. Con reranking, un pool generoso no se paga en el prompt."
+        }
+      ],
+      "image": {
+        "src": "images/s2-4-1-embudo-dos-etapas.png",
+        "alt": "Embudo de recuperacion en dos etapas: de 100.000 documentos a 50 candidatos y a 5 en el prompt"
+      },
+      "notes": "El reranking cierra la sección de perillas porque es la que hace viables las otras: un pool de 50 con umbral bajo sería un desastre en el prompt, y con la segunda etapa se convierte en 5 buenos. El ejemplo de \"banco\" sirve si hay tiempo: el vector de la palabra no depende de la consulta, y la desambiguación tiene que pasar en algún lado; el cross-encoder es ese lado. Si preguntan si un LLM puede hacer de reranker, sí, con la misma cuenta de costo: una llamada por candidato. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Evaluación y seguridad"
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Evaluación y seguridad",
+      "title": "Evaluar las dos etapas por separado",
+      "lead": "Un sistema RAG tiene dos formas de fallar y una sola respuesta visible. Medirlas juntas no dice cuál de las dos se rompió.",
+      "cards": [
+        {
+          "label": "Context Relevance",
+          "body": "La métrica de la recuperación. Contra ella se calibran top-k, umbral y chunking."
+        },
+        {
+          "label": "Answer Faithfulness y Answer Relevance",
+          "body": "Las métricas de la generación: si la respuesta está sostenida por los fragmentos, y si contesta lo que se preguntó."
+        },
+        {
+          "label": "Conjunto de evaluación propio",
+          "body": "Preguntas reales con sus documentos correctos anotados. Sin él no hay forma de saber si un ajuste de la sección 2 mejoró algo."
+        }
+      ],
+      "image": {
+        "src": "images/s3-1-1-metricas-por-etapa.png",
+        "alt": "Tres metricas colgando de dos etapas: context relevance en la recuperacion, faithfulness y relevance en la generacion"
+      },
+      "notes": "La lámina que convierte la sección anterior en ingeniería: todas las perillas se ajustan contra Context Relevance, y sin un conjunto de evaluación propio no hay forma de saber si un cambio mejoró algo. La calidad es una cadena, así que medir por etapa es la única forma de saber dónde intervenir; el instinto de culpar al modelo casi siempre se equivoca de etapa. Herramientas si preguntan: RAGAS y TruLens. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Evaluación y seguridad",
+      "title": "El atacante nunca le habla al modelo",
+      "lead": "RAG agrega dos superficies de ataque que un modelo suelto no tiene: un índice con datos internos y un canal por el que entra texto de terceros al prompt.",
+      "cards": [
+        {
+          "label": "Inyección indirecta",
+          "body": "Para el modelo, el fragmento recuperado y la instrucción del sistema son el mismo texto. Ninguna estrategia de prompt ni de delimitadores la previene de forma confiable."
+        },
+        {
+          "label": "Acceso no autorizado",
+          "body": "Los permisos se aplican en la recuperación. Filtrar en la presentación llega tarde: un documento que entró al prompt ya influyó en la salida aunque no aparezca citado."
+        },
+        {
+          "label": "Mitigaciones",
+          "body": "Restringir qué fuentes entran al índice y aplicar permisos por documento al recuperar. Tratar cada fragmento como entrada no confiable al decidir qué acciones dispara la respuesta, y validar la salida cuando alimenta una herramienta."
+        }
+      ],
+      "image": {
+        "src": "images/s3-2-1-inyeccion-indirecta.png",
+        "alt": "Inyeccion indirecta en cuatro pasos: envenenar, indexar, recuperar y ejecutar; el ataque entra por el corpus"
+      },
+      "notes": "Recorrer los cuatro pasos del diagrama despacio: lo que sorprende es la distancia temporal entre el paso 1 y el paso 3, que pueden estar a meses. La advertencia se dice tal cual: no hay defensa de prompt que funcione, y quien venda una está vendiendo humo. El segundo bullet es el que más aplica a sistemas internos: filtrar después de generar llega tarde. Y el tercero deja sembrada la segunda mitad: un servidor MCP que trae contenido externo abre exactamente la misma puerta, y la salida del modelo que dispara una herramienta es donde el daño deja de ser texto. Tiempo objetivo: ~4 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "MCP: el protocolo"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "MCP: el protocolo",
+      "title": "MCP conecta modelos con herramientas",
+      "cards": [
+        {
+          "label": "Servidor MCP",
+          "body": "Proceso que expone capacidades (herramientas, recursos y prompts) siguiendo el protocolo. Lo escribe quien tiene los datos o el sistema.",
+          "icon": "dns"
+        },
+        {
+          "label": "Cliente MCP",
+          "body": "La aplicación de IA que se conecta a uno o varios servidores y descubre en tiempo de ejecución qué puede hacer cada uno: Claude Desktop, Claude Code, Cursor, un agente propio.",
+          "icon": "smart_toy"
+        },
+        {
+          "label": "Herramienta",
+          "body": "La unidad que un servidor expone: un nombre, una descripción en lenguaje natural y un esquema de parámetros. El modelo elige cuál llamar leyendo la descripción.",
+          "icon": "build"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Model Context Protocol define cómo una aplicación de IA le pide datos y acciones a un sistema externo, con un único formato de mensajes en lugar de un conector por integración. Anthropic lo publicó en noviembre de 2024 como especificación abierta con SDKs.",
+          "kind": "definition"
+        },
+        {
+          "body": "Cliente y servidor son roles, no procesos. Una misma implementación puede cumplir los dos al mismo tiempo.",
+          "kind": "note"
+        }
+      ],
+      "notes": "Apertura de la segunda mitad, con la frase de la agenda: hasta acá el contexto que el modelo no tiene, de acá en adelante las acciones que no puede ejecutar. Tres definiciones y la tercera es la que ordena el resto: la unidad de MCP es la herramienta, y el modelo la elige leyendo su descripción. Color histórico si hay tiempo: el anuncio original de Anthropic no usa la palabra \"tool\" ni una vez; hablaba de fuentes de datos, y la centralidad de las herramientas es posterior. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content-image",
+      "section": "MCP: el protocolo",
+      "title": "M×N conectores, o M+N piezas",
+      "lead": "Con M aplicaciones y N fuentes, sin protocolo hacen falta M×N integraciones. Con un protocolo, cada lado implementa una vez.",
+      "image": {
+        "src": "images/s4-2-1-mxn-vs-mmasn.png",
+        "alt": "Sin protocolo M por N conectores; con MCP M mas N implementaciones"
+      },
+      "facts": [
+        {
+          "label": "Por qué no alcanzaba HTTP ni GraphQL",
+          "body": "HTTP resuelve el transporte y no la interfaz: no hay forma estándar de que el cliente pregunte \"¿qué sabés hacer?\". GraphQL resuelve la consulta de datos y no la ejecución de acciones. MCP agrega descubrimiento de capacidades (tools/list), una sesión con estado y un formato común para describir herramientas de modo que un modelo pueda elegirlas."
+        }
+      ],
+      "notes": "El argumento de crecimiento con el diagrama: la malla crece con el producto, la estrella con la suma, y se ve en cuánto cuesta agregar un actor nuevo. El bullet de HTTP y GraphQL contesta la pregunta que alguien va a hacer (\"¿por qué un protocolo nuevo?\"): lo que faltaba era el descubrimiento y un formato de descripción que un modelo pueda leer. Nota de honestidad para vos: la cuenta M×N es el argumento estándar, pero el anuncio de Anthropic no la enuncia; se presenta como razonamiento de la clase. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content+cards+image",
+      "section": "MCP: el protocolo",
+      "title": "JSON-RPC 2.0: la capa de mensajes",
+      "lead": "MCP no inventó un formato de mensajes. Usa JSON-RPC 2.0, liviano, agnóstico del transporte y lo bastante viejo como para estar implementado en todos lados.",
+      "cards": [
+        {
+          "label": "result y error son excluyentes",
+          "body": "Una respuesta lleva uno de los dos."
+        },
+        {
+          "label": "Agnóstico del transporte",
+          "body": "Los mismos mensajes viajan sobre stdio, HTTP en streaming o SSE."
+        },
+        {
+          "label": "Dos niveles",
+          "body": "La sesión MCP tiene estado (qué se acordó al conectarse); la capa de mensajes JSON-RPC no lo tiene."
+        }
+      ],
+      "image": {
+        "src": "images/s4-3-1-mensajes-jsonrpc.png",
+        "alt": "Intercambio JSON-RPC entre cliente y servidor MCP: tools/list, tools/call y una notificacion sin id"
+      },
+      "notes": "Para esta audiencia esta lámina es la que más se lee sola: dos métodos, `tools/list` y `tools/call`, y el `id` que aparea pedido con respuesta. La notificación del final conviene explicarla bien, porque es lo que permite que el servidor le hable al cliente sin que nadie haya preguntado. Y la distinción del tercer bullet evita una confusión clásica: MCP tiene sesión con estado y JSON-RPC es sin estado, en niveles distintos. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "comparison",
+      "section": "MCP: el protocolo",
+      "title": "Herramienta hardcodeada o servidor aparte",
+      "columns": [
+        {
+          "header": "Herramienta hardcodeada",
+          "cells": [
+            "La lógica vive dentro del código del agente.",
+            "El agente conoce sus herramientas en tiempo de compilación.",
+            "Reutilizarla en otro agente significa copiar el código.",
+            "Cambiar la herramienta obliga a redesplegar el agente."
+          ]
+        },
+        {
+          "header": "Servidor MCP",
+          "cells": [
+            "La herramienta corre como un proceso aparte.",
+            "El agente las descubre en tiempo de ejecución, con tools/list.",
+            "Cualquier cliente que hable MCP se conecta al mismo servidor.",
+            "Cambiar la herramienta obliga a reiniciar el servidor."
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Lo que decide el transporte es quién arranca el proceso. Con stdio lo lanza el cliente como subproceso y hablan por entrada y salida estándar, sin red: el caso más común para una herramienta local. Con HTTP en streaming o SSE el servidor ya está corriendo y escuchando en una URL.",
+          "kind": "important"
+        }
+      ],
+      "notes": "La tabla es la separación que MCP introduce: un mismo servidor lo usan Claude, Cursor o un agente propio sin que ninguno sepa de los otros. La advertencia corrige el error mental más frecuente: la configuración con `command` y `args` que viene en la lámina 4.6 es stdio, y no hay ningún puerto. Quien busque en qué puerto quedó el servidor cuando algo falla, no lo va a encontrar. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "content-image",
+      "section": "MCP: el protocolo",
+      "title": "El ciclo de vida de una herramienta",
+      "image": {
+        "src": "images/s4-5-1-ciclo-vida-herramienta.png",
+        "alt": "Ciclo de vida de una herramienta MCP en seis pasos, del arranque al uso del resultado"
+      },
+      "facts": [
+        {
+          "label": "Descubrimiento en tiempo de ejecución",
+          "body": "El paso 2 ocurre al conectarse, y por eso agregar una herramienta no obliga a tocar el agente."
+        },
+        {
+          "label": "La elección ocurre dentro del modelo",
+          "body": "El paso 3 se resuelve leyendo texto: ahí se gana o se pierde la precisión de todo el sistema."
+        }
+      ],
+      "notes": "Lo único que hay que dejar clavado es el pie: la descripción de la herramienta es la interfaz que consume el modelo, así que escribirla es trabajo de diseño y no de documentación. La sección 5 entera sale de ahí. Y es la misma idea de la lámina 1.4 vista desde el otro lado: el buscador expuesto como herramienta es una entrada más en este catálogo. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "code-example",
+      "section": "MCP: el protocolo",
+      "title": "Conectar un servidor: los caminos y la configuración",
+      "language": "json",
+      "code": "{\n  \"mcpServers\": {\n    \"github\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],\n      \"env\": { \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"tu_token\" }\n    },\n    \"mi-servidor-local\": { \"type\": \"http\", \"url\": \"http://localhost:8002/mcp\" }\n  }\n}",
+      "explanation": [
+        "Extensiones de escritorio: el camino corto. En Claude Desktop, Configuración → Extensions, buscar el servidor, instalarlo y conceder permisos.",
+        "Configuración manual (stdio): se declara en el archivo de configuración del cliente el comando que lanza el servidor; el cliente lo arranca como subproceso.",
+        "Servidor propio por HTTP: el servidor ya corre en su puerto y el cliente solo apunta a la URL."
+      ],
+      "highlights": [
+        {
+          "body": "Un servidor MCP ejecuta código, lee archivos y hace pedidos de red con tus permisos. Instalar uno se parece más a instalar una extensión de navegador que a agregar una dependencia. Los que traen contenido externo abren la misma puerta de inyección indirecta de la lámina 3.2.",
+          "kind": "important"
+        }
+      ],
+      "notes": "Lo pedagógico está en el contraste entre las dos entradas del JSON: la primera no tiene URL ni puerto porque el cliente lanza el proceso; la segunda no tiene comando porque el proceso ya está corriendo. La advertencia de seguridad se dice con tiempo, y engancha con la misión de la clase 2, donde ya configuraron los MCPs de GitHub y Railway: en ese momento le dieron a un proceso de terceros sus credenciales, y eso es lo que hay que mirar antes de instalar cualquiera. Dónde buscar servidores, si preguntan: el registro oficial y el repo de servidores de referencia; los marketplaces comunitarios como mcp.so venden posiciones. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content-image",
+      "section": "MCP: el protocolo",
+      "title": "Un agente, varios servidores",
+      "image": {
+        "src": "images/s4-7-1-agente-varios-servidores.png",
+        "alt": "Un agente de soporte conectado a cuatro servidores MCP que ve un catalogo plano"
+      },
+      "facts": [
+        {
+          "label": "Independencia operativa",
+          "body": "Cada servidor gestiona su dominio, con su despliegue y su autenticación. Un servidor caído deja al agente sin ese dominio y con el resto funcionando."
+        },
+        {
+          "label": "El costo del aplanado",
+          "body": "El agente descubre todas las herramientas juntas. Si dos servidores registran una herramienta con el mismo nombre, MCP no tiene forma de desambiguarlas: no hay namespaces en la especificación."
+        }
+      ],
+      "notes": "El diagrama es la lámina. La segunda viñeta es el puente a la sección 5 y conviene decirla como problema abierto: el agente ve todo junto, y todo junto es exactamente el escenario donde elige peor. El mismo agente de soporte vuelve como caso en las láminas de routing y de fases. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "MCP: el protocolo",
+      "title": "Un día de trabajo con servidores conectados",
+      "cards": [
+        {
+          "label": "Código y repositorios",
+          "body": "\"Implementá la funcionalidad del issue ENG-4521 y abrí un PR.\" → GitHub MCP, Filesystem MCP",
+          "icon": "code"
+        },
+        {
+          "label": "Consultas a bases de datos",
+          "body": "\"Traeme los mails de 10 usuarios que usaron la feature ENG-4521.\" → PostgreSQL MCP",
+          "icon": "database"
+        },
+        {
+          "label": "Análisis y monitoreo",
+          "body": "\"Revisá Sentry y Statsig para ver el uso de la feature y los errores.\" → Sentry MCP, Statsig MCP",
+          "icon": "monitoring"
+        },
+        {
+          "label": "Diseño y comunicación",
+          "body": "\"Actualizá la plantilla de email con los diseños de Figma que se publicaron en Slack.\" → Figma MCP, Slack MCP",
+          "icon": "palette"
+        },
+        {
+          "label": "Automatización de flujos",
+          "body": "\"Creá borradores en Gmail invitando a esos 10 usuarios a una sesión de feedback.\" → Gmail MCP",
+          "icon": "mail"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Los cinco pedidos son del mismo hilo de trabajo. El valor está en que el contexto se mantiene al cruzar de una herramienta a otra.",
+          "kind": "takeaway"
+        }
+      ],
+      "notes": "Contarlo en orden, como el día de trabajo de alguien: la feature ENG-4521 hilvana los cinco pedidos. Es el cierre de la sección del protocolo y el momento de conectar con lo que ya usaron en la misión de Corta: GitHub y Railway por MCP fueron exactamente esto, a escala chica. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Diseño de herramientas"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Diseño de herramientas",
+      "title": "Cuatro principios de diseño",
+      "cards": [
+        {
+          "label": "Nombres explícitos",
+          "body": "Convención [verbo]_[sustantivo]_[contexto]: get_customer_by_email, search_products_by_category. Nombres como process, fetch o do_thing no le dicen nada al modelo.",
+          "icon": "label"
+        },
+        {
+          "label": "Descripciones exhaustivas",
+          "body": "El campo que más pesa. Contesta cuatro preguntas: qué hace, cuándo usarla, cuándo NO usarla, y qué forma tienen la entrada y la salida.",
+          "icon": "description"
+        },
+        {
+          "label": "Esquemas de parámetros simples",
+          "body": "Pocos parámetros y poco anidamiento. Varias herramientas simples funcionan mejor que una compleja con muchas opciones.",
+          "icon": "data_object"
+        },
+        {
+          "label": "Formato de respuesta consistente",
+          "body": "Un envoltorio estándar del tipo { success, data, error, message }, igual en todas las herramientas del servidor.",
+          "icon": "check_box"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Microsoft Research midió el estado real del ecosistema: sobre 5.983 resultados que los servidores marcaron como exitosos, un juez automático encontró 3.536 que describían errores en su contenido.",
+          "kind": "note"
+        }
+      ],
+      "notes": "Los cuatro principios se sostienen, y el dato de MSR es el que le da peso al cuarto: casi seis de cada diez respuestas marcadas como exitosas contenían un error en el texto. Dos ejemplos verbatim del estudio que siempre funcionan: una herramienta de búsqueda web que falló con el string \"error: job\", y una de búsqueda académica que devolvió \"Please retry with 0 or fewer IDs.\" Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content-image",
+      "section": "Diseño de herramientas",
+      "title": "Más herramientas, peor elección",
+      "lead": "El modelo hace coincidencia de patrones sobre descripciones en lenguaje natural. Un espacio de opciones grande lo desborda, y eso no lo arregla un modelo mejor.",
+      "image": {
+        "src": "images/s5-2-1-menos-de-20-funciones.png",
+        "alt": "El numero accionable: menos de 20 funciones a la vez, con la escala sin fuente subordinada al pie"
+      },
+      "facts": [
+        {
+          "label": "El problema ya está en el catálogo real",
+          "body": "Microsoft Research inspeccionó 1.470 servidores MCP: veintitrés nombres distintos para la misma herramienta de búsqueda web, 775 herramientas con colisión de nombre exacta, y search en 32 servidores distintos."
+        },
+        {
+          "label": "Es la misma lección de RAG",
+          "body": "Recuperar cincuenta fragmentos envenena la respuesta; exponer cincuenta herramientas envenena la elección."
+        }
+      ],
+      "notes": "El número accionable es el de OpenAI, menos de 20, y tiene fuente. La escala de abajo se muestra con su procedencia a la vista: viene de un tutorial sin autor que dice \"Research shows\" y no cita a nadie. El primer bullet es el que hace tangible el problema, y si hay tiempo vale mostrar la lista de los veintitrés nombres del deck de la clase 6 y preguntar cuál elegiría el modelo. El segundo bullet es la tesis de la clase en una frase. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "content-image",
+      "section": "Diseño de herramientas",
+      "title": "Routing jerárquico y catálogo por fase",
+      "lead": "Dos patrones para que el agente nunca vea el catálogo entero: mudar las opciones del nombre al esquema, o mostrar solo las de la fase en curso.",
+      "image": {
+        "src": "images/s5-3-1-routing-jerarquico.png",
+        "alt": "Lista plana de 20 herramientas frente a una unica herramienta de ruteo con dos enumeraciones cerradas"
+      },
+      "facts": [
+        {
+          "label": "Catálogo por fase",
+          "body": "Una conversación de soporte tiene fases (autenticación, diagnóstico, resolución) y cada una necesita dos o tres herramientas. Se expone solo el grupo de la fase en curso; el resto queda oculto."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Los dos patrones dejan algo afuera: el routing no define qué pasa cuando el par (domain, action) no existe, y el catálogo por fase no dice quién clasifica la fase. Si lo hace el mismo LLM, el problema de selección vuelve un nivel más arriba.",
+          "kind": "important"
+        }
+      ],
+      "notes": "Dos patrones en una lámina. El de ruteo se lee con el diagrama y el pie: las 20 opciones no desaparecen, se mudan a un espacio cerrado y chico. El de fases va hablado sobre el bullet: nunca más de dos o tres herramientas visibles aunque el sistema tenga veinte. La advertencia es la lectura crítica que evita venderlos como magia, y el dato interesante para esta audiencia es que Microsoft Research pide lo mismo a nivel de protocolo: hoy hay que hacerlo a mano, servidor por servidor. Tiempo objetivo: ~4 min."
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Diseño de herramientas",
+      "title": "La descripción dice cuándo NO usarla",
+      "cards": [
+        {
+          "label": "search_products_by_text",
+          "body": "Búsqueda de texto completo. Usar cuando el cliente describe el producto con palabras (\"mouse inalámbrico\"). No usar cuando ya se tiene el SKU exacto. Parámetro: query: string",
+          "icon": "manage_search"
+        },
+        {
+          "label": "get_product_by_sku",
+          "body": "Búsqueda exacta por identificador. Usar cuando el cliente da un SKU (\"PROD-001\"). No usar para búsqueda de texto libre. Parámetro: sku: string",
+          "icon": "qr_code"
+        },
+        {
+          "label": "filter_products_by_attributes",
+          "body": "Filtro estructurado. Usar cuando el cliente especifica categoría, precio o marca. No usar para búsqueda de texto. Parámetros: category?: string, priceMax?: number",
+          "icon": "tune"
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Con tres herramientas alcanza para romper la precisión, si las tres suenan igual. La descripción tiene que decir cuándo usar cada una y cuándo no.",
+          "kind": "takeaway"
+        },
+        {
+          "body": "Con las descripciones diferenciadas, la elección deja de ser ambigua: \"mouse inalámbrico\" → texto · \"PROD-001\" → SKU · \"mouses de menos de $20\" → atributos.",
+          "kind": "example"
+        }
+      ],
+      "notes": "La lámina más aplicable de la sección. El problema no es de cantidad sino de distinguibilidad: con tres herramientas superpuestas el modelo elige al azar o llama a las tres. El \"NO usar cuando\" es la parte que casi nadie escribe y la que más rinde. Puente con la práctica: es la misma disciplina que la descripción de una Skill o de un subagente en Claude Code (clase 2), la descripción es el disparador. Tiempo objetivo: ~3 min."
+    },
+    {
+      "template": "icon-list",
+      "section": "Diseño de herramientas",
+      "title": "Analítica en producción",
+      "lead": "Instrumentar cada llamada convierte el diseño del catálogo en algo medible.",
+      "rows": [
+        {
+          "label": "Qué medir por herramienta",
+          "body": "call_count, success_rate, avg_latency_ms y last_used."
+        },
+        {
+          "label": "Herramientas sin uso",
+          "body": "Nunca se invocan. Eliminarlas o consolidarlas: cada una que sobra le compite atención a las que sirven."
+        },
+        {
+          "label": "Herramientas con alta tasa de error",
+          "body": "Revisar el manejo de errores o reescribir la descripción, porque muchas veces el modelo la está llamando para lo que no es."
+        },
+        {
+          "label": "Herramientas lentas",
+          "body": "Cachear o arreglar la API de atrás."
+        }
+      ],
+      "highlights": [
+        {
+          "body": "Que el agente nunca use una herramienta, o la use mal, es señal de diseño y no de capacidad del modelo. Iterar sobre descripciones y esquemas antes de cambiar de LLM.",
+          "kind": "takeaway"
+        }
+      ],
+      "notes": "El espejo de la lámina 3.1 del lado de las herramientas: sin medición, cualquier ajuste del catálogo es una opinión. El pie es la conclusión que conecta las dos mitades: en RAG el problema casi nunca está en el modelo sino en el corpus y el corte; en MCP casi nunca está en el modelo sino en las descripciones y el tamaño del catálogo. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "section-agenda",
+      "title": "Conclusiones"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Conclusiones",
+      "title": "Poco y bien elegido",
+      "cards": [
+        {
+          "label": "Las dos mitades resuelven la misma clase de problema",
+          "body": "El modelo no tiene el contexto ni las acciones, y la solución es la misma: acercarle poco y bien elegido. Cinco documentos buenos vencen a cincuenta; tres herramientas distinguibles vencen a veinte.",
+          "icon": "join_inner"
+        },
+        {
+          "label": "El cuello de botella está aguas arriba del modelo",
+          "body": "En RAG se rompe en el corpus, en el corte y en las perillas del recuperador; en MCP, en la descripción de la herramienta y en el tamaño del catálogo. Cambiar de modelo es lo último que se prueba.",
+          "icon": "water_drop"
+        },
+        {
+          "label": "Sin medición, todo lo anterior es opinión",
+          "body": "Recuperación y generación se evalúan por separado, y cada llamada a herramienta se loguea.",
+          "icon": "analytics"
+        }
+      ],
+      "notes": "Tres frases y ninguna es un resumen de la agenda. La primera es la tesis desplegada; la segunda es la que más rápido pueden aplicar; la tercera es lo que convierte esto en ingeniería. Cierre con una pregunta abierta: en el sistema que estén construyendo, ¿el problema es que el modelo no sabe, o que no le estamos mostrando lo correcto? Casi siempre es lo segundo. Si hay ejercitación después, este es el momento de anunciarla. Tiempo objetivo: ~2 min."
+    }
+  ],
+  "_source": {
+    "file": "final.md",
+    "sha256": "36c2f19d77e535f85c4c6c40d3cb41b42a99c7f7870407ed78910a50af1f6250",
+    "bytes": 70491
+  }
+}

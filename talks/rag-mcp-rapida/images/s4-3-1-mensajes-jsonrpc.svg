@@ -1,0 +1,51 @@
+<!-- talksmith-ascii-sha256: ad2c65a35dd9579648b2c4e1f6f34aa4589e21df548fb1c3d88c83669441fdd8 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#3B3535">
+<title>JSON-RPC 2.0: la capa de mensajes</title>
+<desc>Dos métodos, tools/list y tools/call, y el id que aparea pedido con respuesta; la notificación final no lleva id y no se responde.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="600" height="460" fill="#ffffff"/>
+<text x="50" y="30" text-anchor="middle" font-size="13" font-weight="bold">CLIENTE</text>
+<text x="510" y="30" text-anchor="middle" font-size="13" font-weight="bold">SERVIDOR MCP</text>
+<line x1="50" y1="40" x2="50" y2="384" stroke="#3B3535" stroke-width="1.2"/>
+<line x1="510" y1="40" x2="510" y2="384" stroke="#3B3535" stroke-width="1.2"/>
+<g font-family="'DejaVu Sans Mono', monospace" xml:space="preserve">
+<text x="68" y="60" font-family="Helvetica, Arial, sans-serif" font-weight="bold">request</text>
+<text x="140" y="60">{ "jsonrpc": "2.0",</text>
+<text x="140" y="74">  "method":  "tools/list",</text>
+<text x="140" y="88" fill="#DA1B2E" font-weight="bold">  "id":      1 }</text>
+<text x="68" y="122" font-family="Helvetica, Arial, sans-serif" font-weight="bold">response</text>
+<text x="140" y="122">{ "jsonrpc": "2.0",</text>
+<text x="140" y="136">  "result":  { "tools": [...] },</text>
+<text x="140" y="150" fill="#DA1B2E" font-weight="bold">  "id":      1 }</text>
+<text x="68" y="186" font-family="Helvetica, Arial, sans-serif" font-weight="bold">request</text>
+<text x="140" y="186">{ "jsonrpc": "2.0",</text>
+<text x="140" y="200">  "method":  "tools/call",</text>
+<text x="140" y="214">  "params":  { "name": ... },</text>
+<text x="140" y="228" fill="#DA1B2E" font-weight="bold">  "id":      2 }</text>
+<text x="68" y="264" font-family="Helvetica, Arial, sans-serif" font-weight="bold">response</text>
+<text x="140" y="264">{ "jsonrpc": "2.0",</text>
+<text x="140" y="278">  "result":  { ... },</text>
+<text x="140" y="292" fill="#DA1B2E" font-weight="bold">  "id":      2 }</text>
+</g>
+<line x1="50" y1="100" x2="510" y2="100" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="510" y1="162" x2="50" y2="162" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="50" y1="240" x2="510" y2="240" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="510" y1="304" x2="50" y2="304" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M522,100 L530,100 L530,162 L522,162" fill="none" stroke="#DA1B2E" stroke-width="1.2"/>
+<rect x="536" y="122" width="44" height="18" rx="9" fill="#FBE3E6" stroke="#DA1B2E" stroke-width="1"/>
+<text x="558" y="135" text-anchor="middle" font-size="10" font-weight="bold" fill="#DA1B2E">id = 1</text>
+<path d="M522,240 L530,240 L530,304 L522,304" fill="none" stroke="#DA1B2E" stroke-width="1.2"/>
+<rect x="536" y="263" width="44" height="18" rx="9" fill="#FBE3E6" stroke="#DA1B2E" stroke-width="1"/>
+<text x="558" y="276" text-anchor="middle" font-size="10" font-weight="bold" fill="#DA1B2E">id = 2</text>
+<rect x="60" y="318" width="440" height="44" rx="4" fill="#FBE3E6" stroke="#DA1B2E" stroke-width="1"/>
+<text x="68" y="336" font-weight="bold" fill="#DA1B2E">notification</text>
+<text x="150" y="336" font-family="'DejaVu Sans Mono', monospace" fill="#DA1B2E">(mensaje SIN "id")</text>
+<text x="68" y="353" font-style="italic">el servidor no espera respuesta</text>
+<line x1="510" y1="372" x2="50" y2="372" stroke="#DA1B2E" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#ahr)"/>
+<rect x="40" y="396" width="520" height="44" rx="4" fill="#F2F2F2"/>
+<text x="300" y="414" text-anchor="middle" font-size="12">El "id" es lo único que aparea pedido con respuesta.</text>
+<text x="300" y="431" text-anchor="middle" font-size="12" font-weight="bold">Un mensaje sin "id" es una notificación y no debe responderse.</text>
+</svg>

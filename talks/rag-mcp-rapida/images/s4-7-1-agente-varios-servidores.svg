@@ -1,0 +1,52 @@
+<!-- talksmith-ascii-sha256: 226796ed9561ba148833d589c037bcc1bda39e4f047f83d52315e6f7d64abfd1 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 324" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3B3535">
+<title>Un agente, varios servidores</title>
+<desc>El diagrama es la lámina: un agente de soporte ve un catálogo único y plano aunque las herramientas vengan de cuatro servidores independientes.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+<path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect width="672" height="324" fill="#ffffff"/>
+
+<rect x="186" y="20" width="300" height="76" rx="4" fill="#F2F2F2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="336" y="42" text-anchor="middle" font-size="14" font-weight="bold">AGENTE DE SOPORTE</text>
+<text x="336" y="58" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="11">(cliente MCP)</text>
+<rect x="221" y="68" width="230" height="20" rx="10" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="336" y="82" text-anchor="middle" font-size="11" font-weight="bold" fill="#DA1B2E">ve UN catálogo plano, sin namespaces</text>
+
+<line x1="240" y1="96" x2="90" y2="150" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="304" y1="96" x2="254" y2="150" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="368" y1="96" x2="418" y2="150" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="432" y1="96" x2="582" y2="150" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="150" y="120" text-anchor="end" font-family="'DejaVu Sans Mono', monospace" font-size="11">tools/list</text>
+<text x="522" y="120" text-anchor="start" font-family="'DejaVu Sans Mono', monospace" font-size="11">tools/list</text>
+
+<rect x="20" y="150" width="140" height="56" rx="4" fill="#F2F2F2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="90" y="173" text-anchor="middle" font-weight="bold">SERVIDOR</text>
+<text x="90" y="191" text-anchor="middle">clientes</text>
+
+<rect x="184" y="150" width="140" height="56" rx="4" fill="#F2F2F2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="254" y="173" text-anchor="middle" font-weight="bold">SERVIDOR</text>
+<text x="254" y="191" text-anchor="middle">productos</text>
+
+<rect x="348" y="150" width="140" height="56" rx="4" fill="#F2F2F2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="418" y="173" text-anchor="middle" font-weight="bold">SERVIDOR</text>
+<text x="418" y="191" text-anchor="middle">pedidos</text>
+
+<rect x="512" y="150" width="140" height="56" rx="4" fill="#F2F2F2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="582" y="173" text-anchor="middle" font-weight="bold">SERVIDOR</text>
+<text x="582" y="191" text-anchor="middle">tickets</text>
+
+<line x1="90" y1="206" x2="90" y2="236" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="254" y1="206" x2="254" y2="236" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="418" y1="206" x2="418" y2="236" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="582" y1="206" x2="582" y2="236" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="90" y="252" text-anchor="middle">CRM base</text>
+<text x="254" y="252" text-anchor="middle">catálogo</text>
+<text x="418" y="252" text-anchor="middle">ERP pedidos</text>
+<text x="582" y="252" text-anchor="middle">Jira / Zendesk</text>
+
+<text x="336" y="284" text-anchor="middle">Cada servidor se despliega, se escala y se rompe por separado.</text>
+<text x="336" y="302" text-anchor="middle">El agente ve un catálogo plano y no sabe de qué servidor vino cada herramienta.</text>
+</svg>

@@ -1,0 +1,96 @@
+<!-- talksmith-ascii-sha256: 332f40d3bd6b6c397087f168b44cb2f42e2a73da04d9286c577edc8c45c1881d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 560" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3B3535">
+<title>Por palabras: el índice invertido</title>
+<desc>Primera forma: el diagrama muestra la inversión, de documento a términos y de término a documentos, y una consulta que se resuelve cruzando dos listas cortas.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0.5 L8,4.5 L0,8.5 Z" fill="#3B3535"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0.5 L11,6 L0,11.5 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="590" height="560" fill="#ffffff"/>
+
+<text x="20" y="34" font-size="14" font-weight="bold">DOCUMENTO</text>
+<line x1="120" y1="29" x2="144" y2="29" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="150" y="34" font-size="14" font-weight="bold">TÉRMINOS</text>
+<text x="246" y="34" fill="#7A7373">lo natural, y lo que no sirve para buscar</text>
+
+<rect x="20" y="46" width="400" height="76" fill="#F3F1F1" stroke="#C9C4C4"/>
+<text x="32" y="68" font-weight="bold">Doc1</text>
+<text x="72" y="68" font-family="'DejaVu Sans Mono', monospace">el servicio devuelve timeout intermitente</text>
+<text x="32" y="90" font-weight="bold">Doc2</text>
+<text x="72" y="90" font-family="'DejaVu Sans Mono', monospace">el cliente devuelve error de conexion</text>
+<text x="32" y="112" font-weight="bold">Doc3</text>
+<text x="72" y="112" font-family="'DejaVu Sans Mono', monospace">el servicio y el cliente reintentan solos</text>
+
+<line x1="60" y1="122" x2="60" y2="170" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="76" y="150">tokenizar, minúsculas, sacar stopwords («el», «y», «de»)</text>
+
+<rect x="20" y="170" width="400" height="76" fill="#F3F1F1" stroke="#C9C4C4"/>
+<text x="32" y="192" font-weight="bold">Doc1</text>
+<text x="72" y="192" font-family="'DejaVu Sans Mono', monospace">[servicio, devuelve, timeout, intermitente]</text>
+<text x="32" y="214" font-weight="bold">Doc2</text>
+<text x="72" y="214" font-family="'DejaVu Sans Mono', monospace">[cliente, devuelve, error, conexion]</text>
+<text x="32" y="236" font-weight="bold">Doc3</text>
+<text x="72" y="236" font-family="'DejaVu Sans Mono', monospace">[servicio, cliente, reintentan, solos]</text>
+
+<line x1="60" y1="246" x2="60" y2="302" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ahr)"/>
+<text x="76" y="280" font-size="16" font-weight="bold" fill="#DA1B2E">INVERTIR</text>
+
+<text x="20" y="322" font-size="14" font-weight="bold">TÉRMINO</text>
+<line x1="88" y1="317" x2="112" y2="317" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="118" y="322" font-size="14" font-weight="bold">DOCUMENTOS</text>
+
+<rect x="20" y="334" width="290" height="206" fill="#F3F1F1" stroke="#C9C4C4"/>
+<rect x="21" y="342" width="288" height="18" fill="#FBE3E5"/>
+<rect x="21" y="386" width="288" height="18" fill="#FBE3E5"/>
+<g font-family="'DejaVu Sans Mono', monospace">
+<text x="32" y="355">servicio</text>
+<text x="32" y="377">devuelve</text>
+<text x="32" y="399">cliente</text>
+<text x="32" y="421">timeout</text>
+<text x="32" y="443">intermitente</text>
+<text x="32" y="465">error</text>
+<text x="32" y="487">conexion</text>
+<text x="32" y="509">reintentan</text>
+<text x="32" y="531">solos</text>
+<text x="176" y="355">[Doc1, Doc3]</text>
+<text x="176" y="377">[Doc1, Doc2]</text>
+<text x="176" y="399">[Doc2, Doc3]</text>
+<text x="176" y="421">[Doc1]</text>
+<text x="176" y="443">[Doc1]</text>
+<text x="176" y="465">[Doc2]</text>
+<text x="176" y="487">[Doc2]</text>
+<text x="176" y="509">[Doc3]</text>
+<text x="176" y="531">[Doc3]</text>
+</g>
+<g stroke="#3B3535" stroke-width="1.4" marker-end="url(#ah)">
+<line x1="130" y1="351" x2="166" y2="351"/>
+<line x1="130" y1="373" x2="166" y2="373"/>
+<line x1="130" y1="395" x2="166" y2="395"/>
+<line x1="130" y1="417" x2="166" y2="417"/>
+<line x1="130" y1="439" x2="166" y2="439"/>
+<line x1="130" y1="461" x2="166" y2="461"/>
+<line x1="130" y1="483" x2="166" y2="483"/>
+<line x1="130" y1="505" x2="166" y2="505"/>
+<line x1="130" y1="527" x2="166" y2="527"/>
+</g>
+
+<text x="340" y="355" font-size="14" font-weight="bold">CONSULTA</text>
+<text x="420" y="355" font-family="'DejaVu Sans Mono', monospace" font-size="13">«servicio cliente»</text>
+<g font-family="'DejaVu Sans Mono', monospace">
+<text x="340" y="387">servicio</text>
+<text x="340" y="409">cliente</text>
+<text x="450" y="387">[Doc1, Doc3]</text>
+<text x="450" y="409">[Doc2, Doc3]</text>
+</g>
+<g stroke="#3B3535" stroke-width="1.4" marker-end="url(#ah)">
+<line x1="410" y1="383" x2="440" y2="383"/>
+<line x1="410" y1="405" x2="440" y2="405"/>
+</g>
+<line x1="340" y1="420" x2="560" y2="420" stroke="#3B3535" stroke-width="1.2"/>
+<text x="340" y="441">intersección</text>
+<line x1="416" y1="437" x2="446" y2="437" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="452" y="441" font-family="'DejaVu Sans Mono', monospace" font-size="13" font-weight="bold">Doc3</text>
+
+<text x="340" y="500" font-size="13">Buscar deja de ser leer cada documento</text>
+<text x="340" y="518" font-size="13">y pasa a ser cruzar dos listas cortas.</text>
+</svg>

@@ -1,0 +1,44 @@
+<!-- talksmith-ascii-sha256: d4470418975d76d3864037650a07d7ae43e50291cf1fdba84f690cde6c27bd82 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>RAG en tres pasos</title>
+<desc>Una sola lámina de repaso: recuperar, aumentar y generar mueven texto dentro del prompt; los pesos del modelo no se tocan.</desc>
+<rect x="0" y="0" width="560" height="520" fill="#ffffff"/>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+<path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/>
+</marker>
+</defs>
+
+<text x="124" y="36" text-anchor="middle" font-weight="bold" font-size="14">CONSULTA DEL USUARIO</text>
+<text x="124" y="56" text-anchor="middle" font-size="12" font-style="italic">“¿por qué falla el deploy de staging?”</text>
+
+<line x1="124" y1="66" x2="124" y2="90" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<rect x="24" y="90" width="200" height="52" rx="4" fill="#f2f2f2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="124" y="121" text-anchor="middle" font-weight="bold" font-size="15">1. RECUPERAR</text>
+<text x="254" y="111">busca en el índice los fragmentos</text>
+<text x="254" y="129">que se parecen a la consulta</text>
+
+<line x1="124" y1="142" x2="124" y2="200" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="134" y="175" font-size="12">top-k fragmentos</text>
+
+<rect x="24" y="200" width="200" height="52" rx="4" fill="#f2f2f2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="124" y="231" text-anchor="middle" font-weight="bold" font-size="15">2. AUMENTAR</text>
+<text x="254" y="221">los pega dentro del prompt,</text>
+<text x="254" y="239">junto a la consulta original</text>
+
+<line x1="124" y1="252" x2="124" y2="320" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="134" y="290" font-size="12" font-weight="bold" font-family="'DejaVu Sans Mono', monospace">prompt = instrucción + fragmentos + consulta</text>
+
+<rect x="24" y="320" width="200" height="52" rx="4" fill="#f2f2f2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="124" y="351" text-anchor="middle" font-weight="bold" font-size="15">3. GENERAR</text>
+<text x="254" y="341">responde usando SOLO esos fragmentos</text>
+<text x="254" y="359">y cita de cuál salió cada afirmación</text>
+
+<line x1="124" y1="372" x2="124" y2="420" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<text x="124" y="442" text-anchor="middle" font-weight="bold" font-size="14">RESPUESTA CON CITAS</text>
+
+<line x1="24" y1="466" x2="536" y2="466" stroke="#DA1B2E" stroke-width="1"/>
+<text x="280" y="492" text-anchor="middle" font-weight="bold" font-size="14" fill="#DA1B2E">Los pesos del modelo no cambian en ningún paso.</text>
+</svg>

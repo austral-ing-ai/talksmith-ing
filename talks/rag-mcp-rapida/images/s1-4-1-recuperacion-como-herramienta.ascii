@@ -1,0 +1,29 @@
+  PIPELINE CLASICO                     RECUPERACION COMO HERRAMIENTA
+
+  consulta                             consulta
+     |                                    |
+     v                                    v
+  [ RECUPERAR ]  siempre, k fijo       [ LLM ]  lee la consulta y decide
+     |                                    |
+     v                                    |  "necesito buscar en docs"
+  [ AUMENTAR ]                            v
+     |                              tools/call buscar_docs("timeout staging")
+     v                                    |
+  [ GENERAR ]                             v
+     |                                 fragmentos --> [ LLM ] --> "no alcanza,
+     v                                                             busco en tickets"
+  respuesta                                                        |
+                                                                   v
+                                                   tools/call buscar_tickets(...)
+                                                                   |
+                                                                   v
+                                                               respuesta
+
+  El modelo pasa de recibir contexto a pedirlo. Puede reformular la
+  consulta, cambiar de fuente o no buscar nada si ya sabe.
+
+<!-- ascii-note:
+intent: contrastar la recuperación fija del pipeline clásico (siempre corre, antes del modelo) con la recuperación como herramienta, donde el modelo decide si busca, qué busca, en qué fuente y cuántas rondas hace
+emphasize: la columna derecha con el loop de dos llamadas a herramienta y la decisión del modelo entre ambas; el pie que resume el cambio de rol del modelo, de receptor a solicitante de contexto
+labels: "PIPELINE CLASICO", "RECUPERACION COMO HERRAMIENTA", "RECUPERAR siempre, k fijo", "LLM lee la consulta y decide", "tools/call buscar_docs", "tools/call buscar_tickets", "El modelo pasa de recibir contexto a pedirlo"
+-->

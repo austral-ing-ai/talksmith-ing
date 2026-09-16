@@ -1,0 +1,27 @@
+<!-- talksmith-ascii-sha256: 0a7482894ddcb2e14008c499a12a2a19d6385544632c25c7f03fd917a4c298c3 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 372" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Más herramientas, peor elección</title>
+<desc>El número accionable es el de OpenAI, menos de 20, y tiene fuente; la escala de abajo se muestra con su procedencia a la vista.</desc>
+<rect x="0" y="0" width="680" height="372" fill="#ffffff"/>
+<text x="20" y="34" font-size="12" font-weight="bold" letter-spacing="1.5" fill="#6B6565">EL NÚMERO ACCIONABLE</text>
+<rect x="20" y="48" width="640" height="140" rx="6" fill="#FBF0F1" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="340" y="90" font-size="26" font-weight="bold" text-anchor="middle" fill="#DA1B2E">MENOS DE 20 FUNCIONES A LA VEZ</text>
+<text x="340" y="124" font-size="15" font-style="italic" text-anchor="middle">“Aim for fewer than 20 functions at any one time,</text>
+<text x="340" y="145" font-size="15" font-style="italic" text-anchor="middle">though this is just a soft suggestion.”</text>
+<text x="640" y="174" font-size="12" text-anchor="end" fill="#6B6565">OpenAI, citado por Microsoft Research</text>
+<text x="20" y="218" font-size="14">El límite técnico de la propia API de OpenAI es <tspan font-weight="bold">128 herramientas</tspan>:</text>
+<text x="20" y="238" font-size="14">seis veces más alto que su propio consejo.</text>
+<line x1="20" y1="262" x2="660" y2="262" stroke="#B8B2B2" stroke-width="1.5" stroke-dasharray="2 5"/>
+<text x="20" y="288" font-size="12" fill="#7A7474">La escala que circula apunta al mismo umbral y ordena la sección,</text>
+<text x="20" y="306" font-size="12" fill="#7A7474">pero no tiene estudio detrás (aitutorial.dev, “Research shows:”):</text>
+<g font-size="12" fill="#7A7474" text-anchor="middle">
+<rect x="30" y="326" width="140" height="26" rx="13" fill="#F2F0F0" stroke="#D5D0D0" stroke-width="1"/>
+<text x="100" y="343">1–5 herr. · 92%</text>
+<rect x="190" y="326" width="140" height="26" rx="13" fill="#F2F0F0" stroke="#D5D0D0" stroke-width="1"/>
+<text x="260" y="343">6–10 herr. · 84%</text>
+<rect x="350" y="326" width="140" height="26" rx="13" fill="#F2F0F0" stroke="#D5D0D0" stroke-width="1"/>
+<text x="420" y="343">11–20 herr. · 71%</text>
+<rect x="510" y="326" width="140" height="26" rx="13" fill="#F2F0F0" stroke="#D5D0D0" stroke-width="1"/>
+<text x="580" y="343">20+ herr. · 58%</text>
+</g>
+</svg>

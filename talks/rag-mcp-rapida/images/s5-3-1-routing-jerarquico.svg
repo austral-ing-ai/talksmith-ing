@@ -1,0 +1,54 @@
+<!-- talksmith-ascii-sha256: cb2879aa7c9fd25dc48236de7be65cced6605b1916139b415e39d647c4f620a9 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 440" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3B3535">
+<title>Routing jerárquico y catálogo por fase</title>
+<desc>Dos patrones en una lámina: las 20 opciones no desaparecen, se mudan a un espacio cerrado y chico.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+<path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="680" height="440" fill="#ffffff"/>
+
+<text x="20" y="34" font-size="14" font-weight="bold">ANTI-PATRÓN: lista plana</text>
+<rect x="20" y="60" width="330" height="270" fill="#F4F4F4" stroke="#BDBDBD" stroke-width="1"/>
+<text x="185" y="84" text-anchor="middle" font-style="italic">el agente ve 20 nombres</text>
+<g font-family="'DejaVu Sans Mono', monospace" font-size="12">
+<text x="40" y="108">searchCustomers</text><text x="195" y="108">getCustomer</text>
+<text x="40" y="128">searchProducts</text><text x="195" y="128">getProduct</text>
+<text x="40" y="148">searchOrders</text><text x="195" y="148">getOrder</text>
+<text x="40" y="168">searchTickets</text><text x="195" y="168">getTicket</text>
+<text x="40" y="188">updateCustomer</text><text x="195" y="188">createCustomer</text>
+<text x="40" y="208">updateProduct</text><text x="195" y="208">createProduct</text>
+<text x="40" y="228">updateOrder</text><text x="195" y="228">createOrder</text>
+<text x="40" y="248">updateTicket</text><text x="195" y="248">createTicket</text>
+<text x="40" y="268">deleteCustomer</text><text x="195" y="268">deleteProduct</text>
+<text x="40" y="288">deleteOrder</text><text x="195" y="288">deleteTicket</text>
+</g>
+<text x="185" y="352" text-anchor="middle">20 nombres en lenguaje natural</text>
+<text x="185" y="368" text-anchor="middle">compitiendo entre sí</text>
+
+<text x="370" y="34" font-size="14" font-weight="bold" fill="#DA1B2E">SOLUCIÓN: una herramienta de ruteo</text>
+<rect x="370" y="60" width="290" height="270" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="515" y="84" text-anchor="middle" font-style="italic">el agente ve 1 nombre</text>
+<rect x="385" y="98" width="260" height="30" fill="#ffffff" stroke="#DA1B2E" stroke-width="2" rx="4"/>
+<text x="515" y="118" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-weight="bold" fill="#DA1B2E">route_to_domain(domain, action)</text>
+<rect x="385" y="145" width="260" height="50" fill="#F4F4F4" stroke="#BDBDBD" stroke-width="1"/>
+<g font-family="'DejaVu Sans Mono', monospace" xml:space="preserve">
+<text x="397" y="165">domain: customers | products</text>
+<text x="397" y="183">        orders    | tickets</text>
+</g>
+<rect x="385" y="205" width="260" height="50" fill="#F4F4F4" stroke="#BDBDBD" stroke-width="1"/>
+<g font-family="'DejaVu Sans Mono', monospace" xml:space="preserve">
+<text x="397" y="225">action: search | get | update</text>
+<text x="397" y="243">        create | delete</text>
+</g>
+<path d="M515,255 L515,274" stroke="#3B3535" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+<text x="515" y="292" text-anchor="middle">paso 2: el servidor mapea</text>
+<text x="515" y="308" text-anchor="middle">(domain, action) a la función</text>
+<text x="515" y="352" text-anchor="middle">4 × 5 valores de dos enums</text>
+<text x="515" y="368" text-anchor="middle">cerrados y excluyentes</text>
+
+<path d="M20,386 L660,386" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="340" y="404" text-anchor="middle" font-weight="bold">Las 20 opciones no desaparecen: se mudan del nombre al esquema,</text>
+<text x="340" y="420" text-anchor="middle" font-weight="bold">que es un espacio cerrado y chico.</text>
+</svg>

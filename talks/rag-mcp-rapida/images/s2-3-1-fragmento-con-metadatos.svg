@@ -1,0 +1,53 @@
+<!-- talksmith-ascii-sha256: e9850a3f8bb46ab4714617133a1fc21c608da86c7021c0862e9b8bb6d85485dd -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 458" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3B3535">
+<title>Metadatos: filtrar antes de buscar</title>
+<desc>Un fragmento indexado tiene dos mitades, metadatos y texto; los metadatos habilitan un filtro barato que corre antes de la búsqueda vectorial.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+<path d="M0,0 L10,5 L0,10 Z" fill="#3B3535"/>
+</marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+<path d="M0,0 L10,5 L0,10 Z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect width="680" height="458" fill="#ffffff"/>
+
+<text x="20" y="34" font-size="14" font-weight="bold">UN FRAGMENTO, TAL COMO SE GUARDA EN EL ÍNDICE</text>
+
+<rect x="20" y="50" width="640" height="122" fill="#F2F0F0" stroke="none"/>
+<rect x="20" y="172" width="640" height="94" fill="#ffffff" stroke="none"/>
+<rect x="20" y="50" width="640" height="216" fill="none" stroke="#3B3535" stroke-width="1.5"/>
+<line x1="20" y1="172" x2="660" y2="172" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="6,5"/>
+
+<text x="34" y="74" font-size="13" font-weight="bold">METADATOS</text>
+<text x="46" y="96" font-family="'DejaVu Sans Mono', monospace" xml:space="preserve">fuente   docs/api/pagos.md</text>
+<text x="46" y="116" font-family="'DejaVu Sans Mono', monospace" xml:space="preserve" fill="#DA1B2E" font-weight="bold">versión  v3</text>
+<text x="46" y="136" font-family="'DejaVu Sans Mono', monospace" xml:space="preserve">sección  Autenticación &gt; Tokens</text>
+<text x="46" y="156" font-family="'DejaVu Sans Mono', monospace" xml:space="preserve">fecha    2026-07-14</text>
+
+<text x="34" y="194" font-size="13" font-weight="bold">TEXTO</text>
+<text x="46" y="214">“El token expira a los 3600 segundos. Para renovarlo</text>
+<text x="46" y="232">se usa el endpoint /refresh …”</text>
+<text x="46" y="254" font-family="'DejaVu Sans Mono', monospace" xml:space="preserve">vector   [ 0.41  -0.18   0.62  ... ]</text>
+
+<text x="20" y="298" font-size="13" font-weight="bold">CONSULTA</text>
+<text x="100" y="298" font-family="'DejaVu Sans Mono', monospace">"cómo renuevo el token en v3"</text>
+
+<text x="20" y="332" font-size="13" font-weight="bold">1. filtrar por metadatos</text>
+<text x="20" y="350" font-family="'DejaVu Sans Mono', monospace" fill="#DA1B2E">versión = v3</text>
+<rect x="20" y="362" width="270" height="20" fill="#DCD8D8" stroke="#3B3535" stroke-width="1"/>
+<rect x="246" y="362" width="44" height="20" fill="#DA1B2E" stroke="#3B3535" stroke-width="1"/>
+<text x="20" y="402">todo el índice</text>
+
+<line x1="296" y1="372" x2="330" y2="372" stroke="#DA1B2E" stroke-width="1.5" marker-end="url(#ahr)"/>
+
+<text x="340" y="332" font-size="13" font-weight="bold">2. buscar por vector</text>
+<text x="340" y="350">solo entre los que quedaron</text>
+<rect x="340" y="362" width="44" height="20" fill="#DA1B2E" stroke="#3B3535" stroke-width="1"/>
+<line x1="390" y1="372" x2="436" y2="372" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="436" y="361" width="66" height="22" rx="11" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<text x="469" y="376" text-anchor="middle" font-weight="bold">top-5</text>
+<text x="340" y="402">el subconjunto</text>
+
+<text x="20" y="438" font-style="italic">Sin metadatos, el paso 1 no existe y el paso 2 mira todo.</text>
+</svg>

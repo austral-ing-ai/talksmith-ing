@@ -1,0 +1,30 @@
+  CLIENTE                                          SERVIDOR MCP
+
+    | --- request  { "jsonrpc": "2.0",                |
+    |                "method":  "tools/list",         |
+    |                "id":      1 }             --->  |
+    |                                                 |
+    | <-- response { "jsonrpc": "2.0",                |
+    |                "result":  { "tools": [...] },   |
+    |                "id":      1 }             ---   |
+    |                                                 |
+    | --- request  { "jsonrpc": "2.0",                |
+    |                "method":  "tools/call",         |
+    |                "params":  { "name": ... },      |
+    |                "id":      2 }             --->  |
+    |                                                 |
+    | <-- response { "jsonrpc": "2.0",                |
+    |                "result":  { ... },              |
+    |                "id":      2 }             ---   |
+    |                                                 |
+    | <-- notification  (mensaje SIN "id")       ---  |
+    |     el servidor no espera respuesta             |
+
+  El "id" es lo unico que aparea pedido con respuesta. Un mensaje
+  sin "id" es una notificacion y NO DEBE responderse.
+
+<!-- ascii-note:
+intent: mostrar el intercambio real de mensajes de MCP y que el "id" es el mecanismo de correlación; la notificación al final introduce el caso sin respuesta, que es lo que hace bidireccional al canal
+emphasize: la columna de "id" repetida en cada par pedido/respuesta; el último mensaje sin "id" y el pie que explica su regla
+labels: "CLIENTE", "SERVIDOR MCP", "tools/list", "tools/call", "jsonrpc: 2.0", "result", "id", "notification (mensaje SIN id)"
+-->

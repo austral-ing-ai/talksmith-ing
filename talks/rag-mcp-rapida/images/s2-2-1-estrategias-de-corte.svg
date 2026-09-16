@@ -1,0 +1,70 @@
+<!-- talksmith-ascii-sha256: 906d77983342ae4ae42a8fa8061218575070df0f34d994cbcb0bcf8382a32e75 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#3B3535">
+<title>Chunking: dónde cortar y cuánto solapar</title>
+<desc>La diferencia entre estrategias de corte no es de tamaño sino de dónde caen los cortes respecto de la estructura del documento.</desc>
+<rect x="0" y="0" width="680" height="330" fill="#ffffff"/>
+
+<text x="20" y="46" font-size="12" font-weight="bold">Un documento</text>
+<rect x="180" y="28" width="50" height="28" fill="#D9D9D9" stroke="#3B3535" stroke-width="1"/>
+<rect x="230" y="28" width="120" height="28" fill="#F2F2F2" stroke="#3B3535" stroke-width="1"/>
+<rect x="350" y="28" width="120" height="28" fill="#F2F2F2" stroke="#3B3535" stroke-width="1"/>
+<rect x="470" y="28" width="70" height="28" fill="#D9D9D9" stroke="#3B3535" stroke-width="1"/>
+<rect x="540" y="28" width="120" height="28" fill="#F2F2F2" stroke="#3B3535" stroke-width="1"/>
+<text x="205" y="46" text-anchor="middle" font-size="10">Título</text>
+<text x="290" y="46" text-anchor="middle">párrafo A</text>
+<text x="410" y="46" text-anchor="middle">párrafo B</text>
+<text x="505" y="46" text-anchor="middle" font-size="10">Sección 2</text>
+<text x="600" y="46" text-anchor="middle">párrafo C</text>
+
+<g stroke="#B8B2B2" stroke-width="1" stroke-dasharray="3,3">
+<line x1="230" y1="56" x2="230" y2="120"/>
+<line x1="350" y1="56" x2="350" y2="120"/>
+<line x1="470" y1="56" x2="470" y2="120"/>
+<line x1="540" y1="56" x2="540" y2="120"/>
+<line x1="230" y1="142" x2="230" y2="190"/>
+<line x1="350" y1="142" x2="350" y2="190"/>
+<line x1="470" y1="142" x2="470" y2="190"/>
+<line x1="540" y1="142" x2="540" y2="190"/>
+<line x1="230" y1="212" x2="230" y2="256"/>
+<line x1="350" y1="212" x2="350" y2="256"/>
+<line x1="470" y1="212" x2="470" y2="256"/>
+<line x1="540" y1="212" x2="540" y2="256"/>
+</g>
+
+<text x="20" y="107" font-size="12" font-weight="bold">LARGO FIJO</text>
+<rect x="180" y="90" width="160" height="26" fill="#ffffff" stroke="#3B3535" stroke-width="1"/>
+<rect x="340" y="90" width="160" height="26" fill="#ffffff" stroke="#3B3535" stroke-width="1"/>
+<rect x="500" y="90" width="160" height="26" fill="#ffffff" stroke="#3B3535" stroke-width="1"/>
+<text x="260" y="107" text-anchor="middle">n tokens</text>
+<text x="420" y="107" text-anchor="middle">n tokens</text>
+<text x="580" y="107" text-anchor="middle">n tokens</text>
+<path d="M335,82 L345,82 L340,89 Z" fill="#DA1B2E"/>
+<line x1="340" y1="90" x2="340" y2="116" stroke="#DA1B2E" stroke-width="2.5"/>
+<path d="M495,82 L505,82 L500,89 Z" fill="#DA1B2E"/>
+<line x1="500" y1="90" x2="500" y2="116" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="180" y="134" font-style="italic" fill="#6B6363">los cortes caen donde toca la cuenta de tokens</text>
+
+<text x="20" y="177" font-size="12" font-weight="bold">SEMÁNTICO</text>
+<rect x="180" y="160" width="170" height="26" fill="#ffffff" stroke="#3B3535" stroke-width="1"/>
+<rect x="350" y="160" width="120" height="26" fill="#ffffff" stroke="#3B3535" stroke-width="1"/>
+<rect x="470" y="160" width="190" height="26" fill="#ffffff" stroke="#3B3535" stroke-width="1"/>
+<text x="265" y="177" text-anchor="middle">Título + A</text>
+<text x="410" y="177" text-anchor="middle">B</text>
+<text x="565" y="177" text-anchor="middle">Sección 2 + C</text>
+<path d="M345,152 L355,152 L350,159 Z" fill="#DA1B2E"/>
+<line x1="350" y1="160" x2="350" y2="186" stroke="#DA1B2E" stroke-width="2.5"/>
+<path d="M465,152 L475,152 L470,159 Z" fill="#DA1B2E"/>
+<line x1="470" y1="160" x2="470" y2="186" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="180" y="204" font-style="italic" fill="#6B6363">los cortes caen en los límites de párrafo</text>
+
+<text x="20" y="247" font-size="12" font-weight="bold" fill="#DA1B2E">POR ESTRUCTURA</text>
+<rect x="180" y="230" width="290" height="26" fill="#FBE9EB" stroke="#DA1B2E" stroke-width="1.5"/>
+<rect x="470" y="230" width="190" height="26" fill="#FBE9EB" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="325" y="247" text-anchor="middle">Título + A + B</text>
+<text x="565" y="247" text-anchor="middle">Sección 2 + C</text>
+<path d="M465,222 L475,222 L470,229 Z" fill="#DA1B2E"/>
+<line x1="470" y1="230" x2="470" y2="256" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="180" y="274" font-style="italic" fill="#DA1B2E">los cortes caen en los encabezados</text>
+
+<text x="20" y="308" font-size="12">Misma cantidad de texto, tres lugares distintos donde cortar.</text>
+</svg>

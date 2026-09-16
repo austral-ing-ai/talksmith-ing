@@ -1,0 +1,52 @@
+<!-- talksmith-ascii-sha256: bc51728d5084dc9a5ca6f5b6ab65183014dbbdbccd1a6b86b1a591ddd6e2da29 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2 0 694 458" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3B3535">
+<title>Como herramienta: el agente decide cuándo buscar</title>
+<desc>Tercera forma, y la que conecta las dos mitades de la clase: a la izquierda el modelo recibe contexto sin opinar; a la derecha lo pide, y puede pedirlo dos veces con consultas distintas o no pedirlo.</desc>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+<path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="748" height="462" fill="#ffffff"/>
+
+<text x="90" y="30" text-anchor="middle" font-size="13" font-weight="bold">PIPELINE CLÁSICO</text>
+<text x="90" y="62" text-anchor="middle">consulta</text>
+<line x1="90" y1="70" x2="90" y2="90" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="20" y="90" width="140" height="36" rx="4" fill="#F2F2F2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="90" y="113" text-anchor="middle" font-weight="bold">RECUPERAR</text>
+<text x="168" y="112" font-size="11">siempre, k fijo</text>
+<line x1="90" y1="126" x2="90" y2="150" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="20" y="150" width="140" height="36" rx="4" fill="#F2F2F2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="90" y="173" text-anchor="middle" font-weight="bold">AUMENTAR</text>
+<line x1="90" y1="186" x2="90" y2="210" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="20" y="210" width="140" height="36" rx="4" fill="#F2F2F2" stroke="#3B3535" stroke-width="1.5"/>
+<text x="90" y="233" text-anchor="middle" font-weight="bold">GENERAR</text>
+<line x1="90" y1="246" x2="90" y2="270" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="90" y="286" text-anchor="middle">respuesta</text>
+
+<line x1="280" y1="20" x2="280" y2="395" stroke="#BDB8B8" stroke-width="1" stroke-dasharray="4 4"/>
+
+<text x="450" y="30" text-anchor="middle" font-size="13" font-weight="bold">RECUPERACIÓN COMO HERRAMIENTA</text>
+<text x="450" y="62" text-anchor="middle">consulta</text>
+<line x1="450" y1="70" x2="450" y2="90" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="380" y="90" width="140" height="36" rx="4" fill="#FBE3E5" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="450" y="113" text-anchor="middle" font-weight="bold" fill="#DA1B2E">LLM</text>
+<text x="530" y="112" font-size="11">lee la consulta y decide</text>
+<line x1="450" y1="126" x2="450" y2="166" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="530" y="150" font-size="11" font-style="italic">«necesito buscar en docs»</text>
+<rect x="300" y="166" width="300" height="28" rx="14" fill="#ffffff" stroke="#8C8686" stroke-width="1.2"/>
+<text x="450" y="184" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="11">tools/call buscar_docs("timeout staging")</text>
+<line x1="450" y1="194" x2="450" y2="230" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="530" y="216" font-size="11">fragmentos</text>
+<rect x="380" y="230" width="140" height="36" rx="4" fill="#FBE3E5" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="450" y="253" text-anchor="middle" font-weight="bold" fill="#DA1B2E">LLM</text>
+<text x="530" y="252" font-size="11" font-style="italic">«no alcanza, busco en tickets»</text>
+<line x1="450" y1="266" x2="450" y2="306" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="300" y="306" width="300" height="28" rx="14" fill="#ffffff" stroke="#8C8686" stroke-width="1.2"/>
+<text x="450" y="324" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="11">tools/call buscar_tickets(...)</text>
+<line x1="450" y1="334" x2="450" y2="370" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="450" y="386" text-anchor="middle">respuesta</text>
+
+<text x="374" y="420" text-anchor="middle" font-size="13" font-weight="bold">El modelo pasa de recibir contexto a pedirlo.</text>
+<text x="374" y="438" text-anchor="middle">Puede reformular la consulta, cambiar de fuente o no buscar nada si ya sabe.</text>
+</svg>
