@@ -8,6 +8,8 @@ Cada grupo tiene que construir ese asistente en tres pasos (un RAG vectorial, un
 
 El hospital es inventado, así que ningún modelo conoce las respuestas de antemano. El asistente solo contesta bien si recupera la información correcta.
 
+Todo el código de la misión tiene que estar escrito en **Python**: el RAG, los agentes, el servidor MCP y la capa de atención.
+
 **Entrega: viernes 9 de octubre de 2026.**
 
 ## Qué hay en esta carpeta
@@ -121,6 +123,10 @@ Sin juez, el evaluador también calcula el **ruteo**, que es la proporción de h
 ## Parte 3: las mismas herramientas como servidor MCP (15 puntos)
 
 Muevan las seis herramientas a un **servidor MCP** (`servidor_mcp.py`, transporte stdio, con el SDK oficial `mcp` de Python) y armen un agente cliente que las descubra con `tools/list` y las llame con `tools/call`, con el mismo modelo de la parte 2.
+
+Para el servidor tienen que usar FastMCP, que viene adentro del SDK oficial (`from mcp.server.fastmcp import FastMCP`). Cada herramienta es una función con el decorador `@mcp.tool()`, y el modelo lee su docstring como descripción. No instalen el paquete `fastmcp` aparte. El servidor no usa LangChain.
+
+Usen la versión 1.x del SDK, que es la que fija `requirements.txt`. En la 2.x, FastMCP cambió de nombre, y `langchain-mcp-adapters` todavía no la acepta.
 
 ```bash
 python3 agente_mcp.py --preguntas datos/preguntas_agente_dev.jsonl --salida respuestas_mcp.jsonl
