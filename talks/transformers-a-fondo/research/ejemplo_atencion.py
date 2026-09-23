@@ -1,11 +1,10 @@
 import numpy as np
 np.set_printoptions(precision=2, suppress=True)
-toks = ["the","cat","sat","on"]
-# embeddings de juguete, 4 tokens x d=4, enteros chicos
+toks = ["the","cat","sat"]
+# embeddings de juguete, 3 tokens x d=4, enteros chicos (n distinto de d a proposito)
 X = np.array([[1,0,1,0],
               [0,2,0,1],
-              [1,1,1,1],
-              [0,1,1,2]], float)
+              [1,1,1,1]], float)
 Wq = np.array([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]], float)   # identidad: Q = X
 Wk = np.array([[0,1,0,0],[1,0,0,0],[0,0,0,1],[0,0,1,0]], float)   # permuta pares de columnas
 Wv = np.array([[1,0],[0,1],[1,0],[0,1]], float)                    # 4 -> 2, suma pares
@@ -15,7 +14,7 @@ Ssc = S/np.sqrt(4)
 def softmax(a): e=np.exp(a-a.max(-1,keepdims=True)); return e/e.sum(-1,keepdims=True)
 A = softmax(Ssc)
 O = A@V
-mask = np.triu(np.ones((4,4)),1).astype(bool)
+mask = np.triu(np.ones((3,3)),1).astype(bool)
 Am = softmax(np.where(mask,-np.inf,Ssc))
 Om = Am@V
 for n,m in [("X",X),("Q=XWq",Q),("K=XWk",K),("V=XWv",V),("QK^T",S),("QK^T/sqrt(d)",Ssc),("softmax (filas)",A),("salida A V",O),("mascara causal: softmax",Am),("salida causal",Om)]:

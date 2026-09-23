@@ -1,0 +1,20 @@
+{"id": "R01", "pregunta": "Mi papá está en terapia intensiva, ¿a qué hora lo puedo ir a ver al mediodía?", "evidencia": ["de 12:00 a 12:30"]}
+{"id": "R02", "pregunta": "¿Cuántas horas antes de una endoscopía no puedo comer?", "evidencia": ["ayuno de sólidos de 8 horas"]}
+{"id": "R03", "pregunta": "Me mandaron a hacer una eco de abdomen, ¿tengo que ir en ayunas?", "evidencia": ["ayuno de 6 horas y no tomar bebidas con gas"]}
+{"id": "R04", "pregunta": "¿Cuánto tiempo puede esperar en la guardia alguien clasificado como amarillo?", "evidencia": ["dentro de los 60 minutos"]}
+{"id": "R05", "pregunta": "Falté a varios turnos sin avisar, ¿me pueden bloquear?", "evidencia": ["durante 60 días"]}
+{"id": "R06", "pregunta": "¿Tengo que pagar algo si tengo PrevenSur y me piden una resonancia?", "evidencia": ["autorización previa, que tarda hasta 72 horas hábiles"]}
+{"id": "R07", "pregunta": "¿A qué hora me dan el alta normalmente?", "evidencia": ["Las altas se dan de 10:00 a 12:00"]}
+{"id": "R08", "pregunta": "¿Puedo tomar agua antes de operarme?", "evidencia": ["se permiten hasta 2 horas antes"]}
+{"id": "R09", "pregunta": "Para el colesterol, ¿cuántas horas de ayuno necesito?", "evidencia": ["el ayuno es de 12 horas"]}
+{"id": "R10", "pregunta": "¿Qué días puedo retirar remedios en la farmacia del hospital?", "evidencia": ["de lunes a viernes de 8:00 a 20:00"]}
+{"id": "R11", "pregunta": "Estoy embarazada de 5 meses, ¿me puedo dar la antigripal?", "evidencia": ["embarazadas en cualquier trimestre"]}
+{"id": "R12", "pregunta": "¿Desde qué semana puedo hacer el curso de preparación para el parto?", "evidencia": ["desde la semana 28"]}
+{"id": "R13", "pregunta": "Mi bebé de dos meses tiene 38 de fiebre, ¿lo llevo a la guardia?", "evidencia": ["menos de 3 meses y fiebre de 38 °C o más"]}
+{"id": "R14", "pregunta": "¿Cuánto tardan en darme una copia de mi historia clínica?", "evidencia": ["dentro de las 48 horas hábiles"]}
+{"id": "R15", "pregunta": "¿Por qué calle entra la ambulancia?", "evidencia": ["ingresan por la calle Las Acacias"]}
+{"id": "R16", "pregunta": "Me hice un tatuaje hace 4 meses, ¿puedo donar sangre?", "evidencia": ["No pueden donar por 12 meses"]}
+{"id": "R17", "pregunta": "¿Qué protección uso para visitar a alguien con tuberculosis?", "evidencia": ["Barbijo N95 antes de entrar"]}
+{"id": "R18", "pregunta": "¿Cuántas sesiones de kinesio cubre una orden?", "evidencia": ["un máximo de 10 sesiones"]}
+{"id": "R19", "pregunta": "Los abuelos, ¿cuándo pueden ver al recién nacido internado?", "evidencia": ["martes y jueves de 16:00 a 17:00"]}
+{"id": "R20", "pregunta": "¿Cuánto dura la curva de glucosa?", "evidencia": ["Dura 2 horas y se hace en el hospital"]}

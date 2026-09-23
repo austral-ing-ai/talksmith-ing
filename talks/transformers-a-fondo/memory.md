@@ -1,7 +1,7 @@
 # memory.md — transformers-a-fondo
 
 **Current step:** 5 — Review awaiting_presenter
-**Awaiting:** revision del presentador sobre el primer draft completo (28 laminas, 9 diagramas ASCII).
+**Awaiting:** segunda revision del presentador (ronda 1 aplicada el 2026-09-22: 8 comentarios; ahora 30 laminas, 11 diagramas ASCII, 84 min).
 **Mode:** B (Agent Draft)
 **Topic:** El transformer por dentro: self-attention con numeros, multi-head, el bloque completo, encoder/decoder/decoder-only y las arquitecturas derivadas; variantes modernas solo cualitativas.
 **Folder:** talks/transformers-a-fondo/
@@ -55,5 +55,20 @@ attention-is-all-you-need (ar5iv, paper completo), illustrated-transformer-alamm
 ## 2026-09-22 — Step 4 (Draft)
 - Status: complete. Composer (scope=full): 0 blockers, 6 majors y 21 minors, todos aplicados; ejemplo numerico verificado celda por celda; 83 min de contenido. Desrobotizado lamina por lamina el 2026-09-22 a pedido de Marco.
 - 28 laminas de contenido: 1 Donde quedamos (2), 2 La atencion con numeros (6), 3 El bloque completo (6), 4 Encoder, decoder y la familia (6), 5 Lo que cambio desde 2017 (5), 6 Entrenamiento a vuelo de pajaro (2), Conclusiones (1). 9 diagramas ASCII.
-- Ejemplo numerico de toda la clase: "the cat sat on", d = 4, X con enteros chicos, Wq = I, Wk permuta pares de columnas, Wv suma pares y baja a d_v = 2; script `ejemplo_atencion.py` en el scratchpad de la sesion (copiar a la mision).
+- Ejemplo numerico de toda la clase: "the cat sat" (3 tokens, d = 4, para que n y d no coincidan), X con enteros chicos, Wq = I, Wk permuta pares de columnas, Wv suma pares y baja a d_v = 2; script `ejemplo_atencion.py` en el scratchpad de la sesion (copiar a la mision).
 - Cada lamina de operacion lleva en las notas la justificacion de la operacion, pensada para el ejercicio a mano de la practica.
+
+## 2026-09-22 — Step 5 (Review), ronda 1
+- Status: aplicada. Draft pusheado con el feedback de Marco (a46c147) antes de aplicarlo.
+- Feedback y resolucion: (1) 1.1 la atencion enriquece los embeddings con contexto → agregado; (2) n = d confundia → ejemplo pasa a 3 tokens x d = 4, todas las tablas recalculadas (QK^T 3x3, softmax fila cat [0,45 0,10 0,45], A·V cat [1,80 1,20], con mascara [1,64 0,55]); (3) intuicion de Q/K/V segun Marco → viñeta nueva en 2.1; (4) W entrenables → viñeta en 2.2; (5) QK^T es *casi* la matriz de atencion → viñeta en 2.3; (6) el softmax da la matriz de atencion A → claim de 2.4; (7) explicar el problema antes de las residuales → lamina nueva 3.3 "El problema de apilar: el gradiente se pierde" (regla de la cadena, 0,9^48), y 3.4 explica por que x + f(x) lo resuelve; (8) embeddings posicionales desde el principio → lamina nueva 1.3 "La posicion entra con el embedding"; la 3.6 queda solo con la formula sinusoidal.
+- Pendiente de decision: nada; esperar ronda 2.
+
+## 2026-09-23 — Step 5 (Review), ronda 2
+- "GPT-2 es la columna derecha sola" → encoder/decoder por nombre en todo el deck; regla nueva en reglas-propias ("apodos visuales").
+- "Entrenamiento a vuelo de pajaro" → "Como se entrena"; otros modismos figurados corregidos.
+- Seccion 5: Marco pidio mencion conceptual y habia 5 laminas con mecanismo, numeros y diagramas. Queda UNA lamina: tabla tecnica → problema que ataca, sin explicar como funciona; todo el detalle va a la clase 9 (Transformers Avanzados).
+- Lamina "Las leyes de escala" eliminada; seccion 6 queda con una lamina (que se minimiza).
+
+## 2026-09-23 — Mision asociada escrita
+- `missions/rag-mcp-transformers/` (ver su mission.md). Decisiones de Marco: dominio hospital; dataset y API los genera la catedra y los alumnos levantan la API localmente; parte 5 con "El banco aguanta" / "El banco presta"; parte 3 sin Claude Code/Desktop: deepseek-v4-flash (agente) → gpt-5.6-luna ("mejor"); juez gemini-3.7-flash; entrega 9 de octubre.
+- Pendiente del deck: ampliar el contenido sobre entrenamiento (pedido de Marco).

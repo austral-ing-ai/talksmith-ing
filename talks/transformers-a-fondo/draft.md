@@ -21,7 +21,7 @@ date: 2026-09-23
 
 # Agenda
 
-**Narrative arc:** La clase anterior terminó en la intuición de que cada token mira a todos los demás y arma su lectura de la frase. Esta clase muestra la matemática detrás de esa intuición. Primero se retoma el ciclo token a token y se fija la notación (1). Después la atención con números: tres proyecciones del mismo vector, el producto punto como medida de afinidad, la escala, el softmax y la mezcla de valores, calculado a mano sobre "the cat sat on", y la máscara causal que convierte un encoder en un generador (2). Sigue el bloque completo: varias cabezas en paralelo, la red feed-forward por posición, las conexiones residuales, la normalización y la codificación de posición, con la cuenta de parámetros por bloque (3). Con el bloque armado se ve cómo se apila: las dos columnas del paper de 2017, por qué los LLM se quedaron solo con el decoder, por qué BERT se quedó solo con el encoder, y la familia de modelos derivados que la práctica va a usar (4). Después las variantes modernas, cada una como respuesta a un cuello de botella concreto, solo a nivel de idea; la clase siguiente las desarrolla (5). El cierre es el entrenamiento a vuelo de pájaro: qué se minimiza, cómo escala la pérdida con el tamaño, y de dónde salen los cientos de miles de millones de parámetros de la tabla de la clase anterior (6).
+**Narrative arc:** La clase anterior terminó en la intuición de que cada token mira a todos los demás y arma su lectura de la frase. Esta clase muestra la matemática detrás de esa intuición. Primero se retoma el ciclo token a token, se fija la notación y se explica por qué la posición se suma al embedding antes de todo (1). Después la atención con números: tres proyecciones del mismo vector, el producto punto como medida de afinidad, la escala, el softmax y la mezcla de valores, calculado a mano sobre "the cat sat on", y la máscara causal que convierte un encoder en un generador (2). Sigue el bloque completo: varias cabezas en paralelo, la red feed-forward por posición, el problema del gradiente y las conexiones residuales, la normalización y la fórmula de la posición, con la cuenta de parámetros por bloque (3). Con el bloque armado se ve cómo se apila: el encoder y el decoder del paper de 2017, por qué los LLM se quedaron solo con el decoder, por qué BERT se quedó solo con el encoder, y la familia de modelos derivados que la práctica va a usar (4). Después se nombran las variantes modernas y el problema que ataca cada una, sin explicarlas; la clase siguiente las desarrolla (5). El cierre es qué se minimiza al entrenar (6).
 
 **Sections (in delivery order):**
 
@@ -30,7 +30,7 @@ date: 2026-09-23
 - 3. El bloque completo
 - 4. Encoder, decoder y la familia
 - 5. Lo que cambió desde 2017
-- 6. Entrenamiento a vuelo de pájaro
+- 6. Cómo se entrena
 - Conclusiones
 
 **Presenter feedback:**
@@ -39,7 +39,7 @@ date: 2026-09-23
 
 # 1. Dónde quedamos
 
-**Goal of this section:** Retomar en dos láminas el punto exacto donde terminó la clase anterior y fijar la notación de matrices que se usa el resto de la clase. Dos láminas.
+**Goal of this section:** Retomar el punto exacto donde terminó la clase anterior, fijar la notación de matrices y explicar por qué la posición se suma al embedding antes de cualquier cálculo. Tres láminas.
 
 **Presenter feedback:**
 
@@ -52,13 +52,14 @@ date: 2026-09-23
 **Cada token generado es una vuelta del ciclo: tokenizar, embeber, transformer, distribución sobre el vocabulario, elegir. El transformer es un bloque repetido N veces.**
 
 ```ascii
-  "the cat sat on"
+  "the cat sat"
         |
         v
-  [ TOKENIZAR ]  the | cat | sat | on          4 tokens
+  [ TOKENIZAR ]  the | cat | sat               3 tokens
         |
         v
-  [ EMBEDDER ]   una fila por token            X : 4 x d
+  [ EMBEDDER ]   una fila por token            X : 3 x d
+                 + posicion de cada token
         |
         v
   +---------------------------------------------+
@@ -71,47 +72,46 @@ date: 2026-09-23
   [ DISTRIBUCION ] un valor por token de V      |V| = 50.257 en GPT-2
         |
         v
-  [ ELEGIR ]  "the"  -> se agrega y vuelve a empezar
+  [ ELEGIR ]  "on"  -> se agrega y vuelve a empezar
 ```
 
 - **Entrada y salida del bloque tienen la misma forma:** una matriz de n filas (una por token) por d columnas. Por eso se pueden apilar.
 - **N bloques con la misma forma y pesos propios.** GPT-2 chico: 12 bloques. El paper de 2017: 6.
-- **Cada bloque hace dos cosas.** La atención mueve información entre tokens. La feed-forward procesa cada token por separado.
+- **Cada bloque hace dos cosas.** La atención mueve información entre tokens y enriquece el embedding de cada uno con información del contexto. La feed-forward procesa cada token por separado.
 
 ### Sources
 
 - `gpt2-radford-2019.pdf.md` (§2.3, Table 2): vocabulario de 50.257 tokens, 12 capas y d_model 768 para el modelo chico.
 - `attention-is-all-you-need.html.md` (§3.1): N = 6 capas idénticas en encoder y decoder.
-- `talks/palabra-al-transformer/final.md` (6.3): el ciclo de seis pasos de la clase anterior; este diagrama abre la caja del transformer.
+- `talks/palabra-al-transformer/final.md` (6.3): el ciclo de seis pasos de la clase anterior; este diagrama agrega el contenido del bloque transformer.
 
 ### Speaker notes
 
-Es la lámina 6.3 de la clase pasada con una sola diferencia: la caja "TRANSFORMER" está abierta y dice "bloque x N". Decilo así, en voz alta: lo de afuera ya lo vieron, hoy es la caja. La frase de ejemplo va a ser "the cat sat on" toda la clase, con vectores de dimensión 4, porque con eso las cuentas se hacen a mano y en la práctica van a tener que hacerlas. Tiempo objetivo: ~2 min.
+Es la lámina 6.3 de la clase pasada con una sola diferencia: el recuadro "TRANSFORMER" muestra que es un bloque repetido N veces. Todo lo que está fuera de ese recuadro ya se vio; esta clase trata lo que está adentro. La frase de ejemplo va a ser "the cat sat" toda la clase, con vectores de dimensión 4, porque con eso las cuentas se hacen a mano y en la práctica van a tener que hacerlas. Tiempo objetivo: ~2 min.
 
 **Presenter feedback:**
-"La atención mueve información entre tokens, enriqueciendo sus embeddings con información del contexto"
 ---
 
 ## 2. La frase como matriz
 
 ### Content
 
-**La frase "the cat sat on" es una matriz X de 4 tokens por 4 dimensiones. La atención opera sobre esa matriz.**
+**La frase "the cat sat" es una matriz X de 3 tokens por 4 dimensiones. La atención opera sobre esa matriz.**
 
 | | dim 1 | dim 2 | dim 3 | dim 4 |
 |---|---|---|---|---|
 | **the** | 1 | 0 | 1 | 0 |
 | **cat** | 0 | 2 | 0 | 1 |
 | **sat** | 1 | 1 | 1 | 1 |
-| **on** | 0 | 1 | 1 | 2 |
 
-- **Una fila por token, una columna por dimensión.** En un modelo real las filas son cientos o miles y d es 768 (GPT-2 chico), 512 (paper de 2017) o más. La forma es la misma.
+- **Una fila por token, una columna por dimensión.** La cantidad de tokens y la dimensión del embedding son independientes: en un modelo real las filas son cientos o miles y d es 768 (GPT-2 chico) o 512 (paper de 2017). X casi nunca es cuadrada.
+- **X ya incluye la posición.** Cada fila es el embedding del token más un vector que codifica su posición en la frase (lámina siguiente). En el ejemplo se toman los números ya sumados.
 - **Los números son de juguete.** Son enteros chicos para poder multiplicar a mano. En un modelo real son decimales aprendidos sin significado individual.
-- **Convención:** n es la cantidad de tokens (acá 4) y d la dimensión del embedding (acá 4). Las matrices de pesos W son de d por d salvo indicación.
+- **Convención:** n es la cantidad de tokens (acá 3) y d la dimensión del embedding (acá 4). Las matrices de pesos W son de d por d salvo indicación.
 
 ### Sources
 
-- Ejemplo propio, calculado con NumPy (`ejemplo_atencion.py`, guardado con el material de la práctica). Los valores de X se eligieron para que ningún par de filas dé los mismos scores de atención.
+- Ejemplo propio, calculado con NumPy (`ejemplo_atencion.py`, guardado con el material de la práctica). Se usan 3 tokens y d = 4 para que n y d no coincidan y ninguna matriz de datos sea cuadrada.
 - `attention-is-all-you-need.html.md` (§3.2.2): d_model = 512 en el modelo base. `gpt2-radford-2019.pdf.md` (Table 2): 768 en GPT-2 chico.
 
 ### Speaker notes
@@ -119,7 +119,43 @@ Es la lámina 6.3 de la clase pasada con una sola diferencia: la caja "TRANSFORM
 Lámina de referencia, no de explicación: se muestra, se dice que van a volver a verla, y se sigue. El único punto que vale decir es que en un modelo real un embedding es un vector de 768 decimales que nadie interpreta columna por columna; acá son cuatro enteros solo para poder multiplicar en el pizarrón. Si alguien pregunta de dónde salen estos números en un modelo real: de la tabla de embeddings, que es una matriz |V| por d aprendida, y la lámina 3.2 de la clase pasada. Tiempo objetivo: ~1 min.
 
 **Presenter feedback:**
-es confuso hacer que la dimension del embedding sea exactamente la misma que la cantidad de palabras, hagamos que sean distintos para que no piensen que la matriz es siempre cuadrada
+---
+
+## 3. La posición entra con el embedding
+
+### Content
+
+**La atención compara vectores y no sabe en qué lugar de la frase está cada uno. Por eso, antes de cualquier cálculo, a cada embedding se le suma un vector que codifica su posición.**
+
+```ascii
+   token:      the         cat         sat
+                |           |           |
+   embedding   e_the       e_cat       e_sat        (d valores cada uno,
+                +           +           +            de la tabla |V| x d)
+   posicion    p_0         p_1         p_2          (d valores cada uno,
+                |           |           |            uno por lugar)
+                v           v           v
+   fila de X   x_the       x_cat       x_sat        X : n x d
+
+   sin p:  "the cat sat" y "sat cat the" darian las mismas filas
+           en otro orden, y la atencion no distinguiria una de otra
+```
+
+- **Por qué hace falta.** Todo lo que viene (proyecciones, productos punto, softmax, mezcla) trata a las filas de X como un conjunto: si se permutan las filas, se permuta la salida y nada más. Sin la posición, el modelo no distingue "the cat sat" de "sat cat the".
+- **Cómo se agrega.** Se suma, no se concatena: el vector de posición tiene la misma dimensión d que el embedding, y el modelo aprende a leer las dos cosas mezcladas en el mismo vector.
+- **De dónde sale p.** Del paper de 2017, una fórmula fija de senos y cosenos; en BERT y GPT-2, una tabla aprendida con una fila por posición (512 y 1024 filas). La lámina 3.6 muestra la fórmula.
+
+### Sources
+
+- `attention-is-all-you-need.html.md` (§3.5): "Since our model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence"; los positional encodings "are added to the input embeddings at the bottoms of the encoder and decoder stacks" y tienen la misma dimensión d_model.
+- `bert-devlin-2018.html.md` (§3): entrada = token + segmento + posición, con position embeddings aprendidos hasta 512. `gpt2-radford-2019.pdf.md` y `gpt2-to-kimi3-waterloo-intern.md.md`: `wpe`, tabla de 1024 posiciones, `x = tok_emb + pos_emb`.
+
+### Speaker notes
+
+Va acá, antes de la atención, porque la pregunta "¿y el orden?" aparece en cuanto se ve que todo son productos entre filas, y es mejor contestarla antes de que se formule. El argumento de la permutación se puede demostrar después de la sección 2 (pedir que sigan la cuenta con dos filas de X intercambiadas), pero la solución conviene tenerla vista desde ahora: X ya lleva la posición sumada. Que se sume y no se concatene suele sorprender; la razón es que así todas las matrices siguen siendo de d columnas y el modelo aprende a separar lo que necesita. Tiempo objetivo: ~3 min.
+
+**Presenter feedback:**
+
 ---
 
 # 2. La atención con números
@@ -134,10 +170,10 @@ es confuso hacer que la dimension del embedding sea exactamente la misma que la 
 
 ### Content
 
-**Cada token se proyecta tres veces con tres matrices aprendidas. Q representa la consulta del token, K la clave con la que otros lo encuentran y V el contenido que aporta cuando lo eligen.**
+**Cada token se proyecta tres veces con tres matrices que son parámetros entrenables del modelo. Q codifica lo que el token necesita del contexto, K lo que cada token le ofrece a los demás, y V la información que se mezcla para producir el embedding enriquecido.**
 
 ```ascii
-                 X (4 x d)
+                 X (n x d)
        fila de "cat": [0 2 0 1]
                  |
      +-----------+-----------+
@@ -148,9 +184,10 @@ es confuso hacer que la dimension del embedding sea exactamente la misma que la 
      v           v           v
      Q           K           V
   "que busco"  "que ofrezco" "que entrego"
-   (4 x d)      (4 x d)      (4 x dv)
+   (n x d)      (n x d)      (n x dv)
 ```
 
+- **La intuición de cada una.** Q sobre el embedding de una palabra da lo que esa palabra busca en el contexto. K sobre todas las palabras da lo que cada una aporta a la que consulta; comparar Q con las K produce la matriz de atención. V es la información que se combina con esos pesos, y el resultado es un embedding nuevo de la misma palabra con más información del contexto.
 - **Las tres salen del mismo X.** De ahí el nombre *self*-attention: consultas, claves y valores vienen de la misma secuencia.
 - **Son tres matrices porque son tres trabajos.** Buscar y ser encontrado no es simétrico: "it" busca un sustantivo y "animal" ofrece ser uno. Si consulta y clave fueran la misma proyección, un token de norma grande se parecería sobre todo a sí mismo; las tres matrices rompen esa simetría.
 - **En el ejemplo:** Wq es la identidad (Q = X), Wk permuta pares de columnas y Wv suma la columna 1 con la 3 y la 2 con la 4, y baja a dimensión 2. Se eligieron para que las cuentas salgan a mano; en un modelo real las tres son aprendidas y densas.
@@ -165,7 +202,6 @@ es confuso hacer que la dimension del embedding sea exactamente la misma que la 
 La pregunta que hay que contestar acá es por qué tres y no una. La respuesta corta es la asimetría: lo que un token pregunta no es lo que ofrece. Si usaran el mismo vector para buscar y para ser encontrado, el score de un token contra sí mismo sería su norma al cuadrado, y por Cauchy-Schwarz ningún otro token de norma igual o menor podría superarlo: la atención tendería a que cada token se mire a sí mismo. Ojo con afirmarlo como regla absoluta: con Q = K = X en el ejemplo, la fila de "the" da [2 0 2 1], empate entre "the" y "sat", porque "sat" tiene norma mayor. Las matrices del ejemplo son deliberadamente simples y hay que decirlo: nadie entrena una identidad. Tiempo objetivo: ~3 min.
 
 **Presenter feedback:**
-esta bien, pero creo que la intuicion para V es la siguiente: aplicar Q sobre el embedding de una palabra me da el significado contextual de la palabra codificado en un vector, aplicar K sobre todas las palabras me da el la información que aportan el resto de las palabras sobre la palabra de la query, que resulta en la matriz de atencion; y V aplica la operacion que inter-relaciona la informacion entre la palabra que se aplicó a Q contra las K utilizando la matriz de atención resultante, resultando en un nuevo embedding que codifica el significado de la palabra pero con mas enriquecimiento, mas informacion
 ---
 
 ## 2. Q y K en el ejemplo
@@ -179,17 +215,16 @@ esta bien, pero creo que la intuicion para V es la siguiente: aplicar Q sobre el
 | **the** | 1 | 0 | 1 | 0 |
 | **cat** | 0 | 2 | 0 | 1 |
 | **sat** | 1 | 1 | 1 | 1 |
-| **on** | 0 | 1 | 1 | 2 |
 
 | K = X Wk | | | | |
 |---|---|---|---|---|
 | **the** | 0 | 1 | 0 | 1 |
 | **cat** | 2 | 0 | 1 | 0 |
 | **sat** | 1 | 1 | 1 | 1 |
-| **on** | 1 | 0 | 2 | 1 |
 
 - **Wk intercambia la columna 1 con la 2 y la 3 con la 4.** Por eso "the", que en X es [1 0 1 0], como clave es [0 1 0 1].
-- **V baja a dimensión 2** sumando la columna 1 con la 3 y la 2 con la 4: the [2 0], cat [0 3], sat [2 2], on [1 3]. La salida de la atención va a tener esa dimensión.
+- **V baja a dimensión 2** sumando la columna 1 con la 3 y la 2 con la 4: the [2 0], cat [0 3], sat [2 2]. La salida de la atención va a tener esa dimensión.
+- **Wq, Wk y Wv son parámetros entrenables.** El entrenamiento las ajusta por gradiente como a cualquier peso de la red; las del ejemplo están fijadas a mano solo para poder calcular.
 - **La forma importa más que los valores.** Q y K tienen que tener la misma dimensión para poder multiplicarse. V puede tener otra.
 
 ### Sources
@@ -202,7 +237,6 @@ esta bien, pero creo que la intuicion para V es la siguiente: aplicar Q sobre el
 Lámina de cálculo puro; no expliques, verificá una celda con ellos. Elegí la fila de "cat" en K: [0 2 0 1] con las columnas intercambiadas es [2 0 1 0]. Con una alcanza. El punto conceptual es la última viñeta: d_k tiene que coincidir entre Q y K porque se van a multiplicar, y d_v es libre. En el paper las tres son 64 por cabeza. Tiempo objetivo: ~2 min.
 
 **Presenter feedback:**
-falta aclarar que las matrices W que resultan en Q,K,V son parámetros entrenables del modelo
 ---
 
 ## 3. El producto punto mide afinidad
@@ -211,83 +245,78 @@ falta aclarar que las matrices W que resultan en Q,K,V son parámetros entrenabl
 
 **Cada consulta se multiplica contra todas las claves. El resultado, Q Kᵀ, es una matriz de n por n: cuánto le importa a cada token cada otro token.**
 
-| Q Kᵀ | the | cat | sat | on |
-|---|---|---|---|---|
-| **the** | 0 | 3 | 2 | 3 |
-| **cat** | 3 | 0 | 3 | 1 |
-| **sat** | 2 | 3 | 4 | 4 |
-| **on** | 3 | 1 | 4 | 4 |
+| Q Kᵀ | the | cat | sat |
+|---|---|---|---|
+| **the** | 0 | 3 | 2 |
+| **cat** | 3 | 0 | 3 |
+| **sat** | 2 | 3 | 4 |
 
 - **Una celda es un producto punto.** Fila "cat" (consulta [0 2 0 1]) contra columna "the" (clave [0 1 0 1]): 0·0 + 2·1 + 0·0 + 1·1 = 3.
 - **Por qué producto punto.** Es grande cuando los dos vectores apuntan para el mismo lado y se calcula para toda la frase con una sola multiplicación de matrices, que es la operación para la que las GPU están optimizadas. El paper lo compara con la atención aditiva (una red chica por par) y la descarta por lenta.
-- **Esta matriz es el costo cuadrático.** Son n² celdas: 16 con 4 tokens, 16 millones con 4.096, por cabeza y por capa.
+- **Es casi la matriz de atención.** Le faltan dos pasos, la escala y el softmax, para que cada fila sea una distribución. Es la única matriz cuadrada del proceso: n por n, sea cual sea d.
+- **Esta matriz es el costo cuadrático.** Son n² celdas: 9 con 3 tokens, 16 millones con 4.096, por cabeza y por capa.
 
 ### Sources
 
 - `attention-is-all-you-need.html.md` (§3.2.1): dot-product vs additive attention, "dot-product attention is much faster and more space-efficient in practice, since it can be implemented using highly optimized matrix multiplication code"; Table 1: complejidad O(n²·d) por capa.
-- Ejemplo propio: la fila de "cat" en QKᵀ es [3 0 3 1].
+- Ejemplo propio: la fila de "cat" en QKᵀ es [3 0 3].
 
 ### Speaker notes
 
-Hacé la cuenta de una celda en el pizarrón, la de "cat" contra "the", y dejá que ellos hagan otra. La observación más importante es la de la tercera viñeta: esta matriz es la razón de casi todo lo que viene en la sección 5 (KV cache, FlashAttention, GQA, atención lineal). Cuando alguien diga "el transformer es cuadrático", es esta tabla. Una cosa que conviene señalar: la diagonal no es la más alta en todas las filas ("the" contra sí mismo da 0), y eso es efecto de que Wk no es la identidad. Con Q = K la diagonal tendería a ganar, sobre todo en los tokens de norma grande. Tiempo objetivo: ~4 min.
+Hacé la cuenta de una celda en el pizarrón, la de "cat" contra "the", y dejá que ellos hagan otra. Señalá que es la primera matriz cuadrada que aparece, y que lo es porque compara tokens contra tokens, no por la dimensión del embedding. La observación más importante es la de la tercera viñeta: esta matriz es el costo que atacan casi todas las variantes modernas que se nombran en la sección 5. Cuando alguien diga "el transformer es cuadrático", es esta tabla. Una cosa que conviene señalar: la diagonal no es la más alta en todas las filas ("the" contra sí mismo da 0), y eso es efecto de que Wk no es la identidad. Con Q = K la diagonal tendería a ganar, sobre todo en los tokens de norma grande. Tiempo objetivo: ~4 min.
 
 **Presenter feedback:**
-falta aclarar que Q Kᵀ es *casi* la matriz de atención
 ---
 
 ## 4. Escalar y repartir: el softmax
 
 ### Content
 
-**Los scores se dividen por √d_k y cada fila pasa por un softmax. El resultado es una distribución por token: pesos positivos que suman uno.**
+**Los scores se dividen por √d_k y cada fila pasa por un softmax. El resultado es la matriz de atención A: una distribución por token, con pesos positivos que suman uno.**
 
-| softmax(Q Kᵀ / √4) | the | cat | sat | on |
-|---|---|---|---|---|
-| **the** | 0,08 | 0,35 | 0,21 | 0,35 |
-| **cat** | 0,39 | 0,09 | 0,39 | 0,14 |
-| **sat** | 0,12 | 0,20 | 0,34 | 0,34 |
-| **on** | 0,21 | 0,08 | 0,35 | 0,35 |
+| A = softmax(Q Kᵀ / √4) | the | cat | sat |
+|---|---|---|---|
+| **the** | 0,12 | 0,55 | 0,33 |
+| **cat** | 0,45 | 0,10 | 0,45 |
+| **sat** | 0,19 | 0,31 | 0,51 |
 
-- **Dividir por √d_k = 2.** La fila "cat" pasa de [3 0 3 1] a [1,5 0 1,5 0,5]. Sin la escala, los productos crecen con d_k y con d_k = 64 el softmax se satura: un peso cerca de 1, el resto cerca de 0 y gradiente casi nulo.
-- **Softmax por fila:** e^{x_i} / Σ e^{x_j}. Para "cat": e^{1,5} = 4,48, e^0 = 1, e^{1,5} = 4,48, e^{0,5} = 1,65; suma 11,6; pesos 0,39 · 0,09 · 0,39 · 0,14.
-- **Por qué softmax.** Es derivable, así que se entrena por gradiente, y reparte: "cat" mira a "the" y a "sat" por igual y algo a "on". Quedarse con el máximo daría un peso de 1 a un solo token y no tendría gradiente.
+- **Dividir por √d_k = 2.** La fila "cat" pasa de [3 0 3] a [1,5 0 1,5]. Sin la escala, los productos crecen con d_k y con d_k = 64 el softmax se satura: un peso cerca de 1, el resto cerca de 0 y gradiente casi nulo.
+- **Softmax por fila:** e^{x_i} / Σ e^{x_j}. Para "cat": e^{1,5} = 4,48, e^0 = 1, e^{1,5} = 4,48; suma 9,96; pesos 0,45 · 0,10 · 0,45.
+- **Por qué softmax.** Es derivable, así que se entrena por gradiente, y reparte: "cat" mira a "the" y a "sat" por igual y casi nada a sí misma. Quedarse con el máximo daría un peso de 1 a un solo token y no tendría gradiente.
 
 ### Sources
 
 - `attention-is-all-you-need.html.md` (§3.2.1, eq. 1 y nota al pie): Attention(Q,K,V) = softmax(QKᵀ/√d_k)V; "for large values of d_k, the dot products grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients"; con componentes de varianza 1, el producto punto tiene varianza d_k.
-- Ejemplo propio: fila "cat" del softmax [0,39 0,09 0,39 0,14].
+- Ejemplo propio: fila "cat" del softmax [0,45 0,10 0,45].
 
 ### Speaker notes
 
 Dos justificaciones, y las dos van al ejercicio a mano de la práctica. La de la escala es estadística: si las componentes de q y k son independientes con varianza 1, la suma de d_k productos tiene varianza d_k, así que dividir por √d_k devuelve la varianza a 1 sea cual sea la dimensión. Con d = 4 el efecto es chico, pero decí que con 64 sin la escala los scores andan por ±8 y el softmax ya está saturado. La del softmax es la derivabilidad: el entrenamiento necesita que un cambio chico en los pesos mueva la salida un poco, y un máximo duro no lo hace. Verificá la fila de "cat" con ellos, con calculadora, es un minuto. Tiempo objetivo: ~4 min.
 
 **Presenter feedback:**
-falta aclarar que esto resulta en la matriz de atención
 ---
 
 ## 5. Mezclar los valores
 
 ### Content
 
-**La salida de cada token es la suma de todos los V, pesada por su fila de atención. "cat" se reescribe como 0,39·the + 0,09·cat + 0,39·sat + 0,14·on.**
+**La salida de cada token es la suma de todos los V, pesada por su fila de atención. "cat" se reescribe como 0,45·the + 0,10·cat + 0,45·sat.**
 
 ```ascii
   fila de atencion de "cat"     V (que entrega cada token)
-     the  cat  sat  on             the [2 0]
-    [0,39 0,09 0,39 0,14]    x     cat [0 3]     =   [1,69  1,46]
+     the  cat  sat                 the [2 0]
+    [0,45 0,10 0,45]         x     cat [0 3]     =   [1,80  1,20]
                                    sat [2 2]
-                                   on  [1 3]
                                                   nueva "cat"
-  0,39*2 + 0,09*0 + 0,39*2 + 0,14*1 = 1,69
-  0,39*0 + 0,09*3 + 0,39*2 + 0,14*3 = 1,46
+  0,45*2 + 0,10*0 + 0,45*2 = 1,80
+  0,45*0 + 0,10*3 + 0,45*2 = 1,20
 ```
 
 | salida A·V | dim 1 | dim 2 |
 |---|---|---|
-| **the** | 0,94 | 2,55 |
-| **cat** | 1,69 | 1,46 |
-| **sat** | 1,26 | 2,29 |
-| **on** | 1,49 | 2,00 |
+| **the** | 0,91 | 2,30 |
+| **cat** | 1,80 | 1,20 |
+| **sat** | 1,39 | 1,93 |
 
 - **Es un promedio ponderado.** Cada token sale como una mezcla de lo que entregan todos, con más peso de los que le importan. Es la versión numérica de "it reescrito con el peso puesto sobre animal".
 - **Toda la frase se procesa con cinco multiplicaciones de matrices y un softmax:** X Wq, X Wk, X Wv, Q Kᵀ, softmax por fila y A·V. No hay bucle sobre los tokens, y por eso paraleliza.
@@ -312,17 +341,16 @@ Acá se cierra la atención. La cuenta del diagrama es la que hay que hacer en e
 
 **Para generar texto, un token no puede mirar a los que vienen después. Se ponen en menos infinito antes del softmax y quedan con peso cero.**
 
-| con máscara | the | cat | sat | on |
-|---|---|---|---|---|
-| **the** | 1,00 | 0 | 0 | 0 |
-| **cat** | 0,82 | 0,18 | 0 | 0 |
-| **sat** | 0,19 | 0,31 | 0,51 | 0 |
-| **on** | 0,21 | 0,08 | 0,35 | 0,35 |
+| con máscara | the | cat | sat |
+|---|---|---|---|
+| **the** | 1,00 | 0 | 0 |
+| **cat** | 0,82 | 0,18 | 0 |
+| **sat** | 0,19 | 0,31 | 0,51 |
 
 - **Por qué menos infinito.** e^{-∞} = 0, así que el softmax reparte solo entre los tokens permitidos y la fila sigue sumando uno. Un score de cero le daría al token prohibido un peso e^0 = 1, que no es cero.
-- **La última fila no cambia.** "on" ya veía a todos. La fila de "the" ahora solo se ve a sí misma.
+- **La última fila no cambia.** "sat" ya veía a todos. La fila de "the" ahora solo se ve a sí misma.
 - **Es la diferencia entre un encoder-only y un decoder-only.** BERT no enmascara y cada token ve la frase entera. GPT enmascara y cada token ve solo lo anterior. El resto del bloque es igual.
-- **La salida cambia con la máscara:** "cat" pasa de [1,69 1,46] a [1,64 0,55], porque ya no recibe nada de "sat" ni de "on". Salida completa: the [2,00 0], cat [1,64 0,55], sat [1,39 1,94], on [1,49 2,00].
+- **La salida cambia con la máscara:** "cat" pasa de [1,80 1,20] a [1,64 0,55], porque ya no recibe nada de "sat". Salida completa: the [2,00 0], cat [1,64 0,55], sat [1,39 1,93].
 
 ### Sources
 
@@ -341,7 +369,7 @@ La justificación es de entrenamiento: si "cat" pudiera ver "sat" mientras apren
 
 # 3. El bloque completo
 
-**Goal of this section:** Armar el bloque del transformer alrededor de la atención ya calculada: varias cabezas, la feed-forward por posición, residuales y normalización, la posición, y la cuenta de parámetros. Seis láminas.
+**Goal of this section:** Armar el bloque del transformer alrededor de la atención ya calculada: varias cabezas, la feed-forward por posición, el problema del gradiente y las residuales, la normalización, la fórmula de la posición y la cuenta de parámetros. Siete láminas.
 
 **Presenter feedback:**
 
@@ -375,7 +403,7 @@ La justificación es de entrenamiento: si "cat" pudiera ver "sat" mientras apren
 
 - **Por qué varias.** Una sola cabeza promedia: si "it" necesita mirar al sujeto para una cosa y al verbo para otra, con una distribución tiene que repartir. Con ocho cabezas, cada una aprende una relación distinta. El paper lo muestra: cabezas que siguen dependencias largas, otras que resuelven anáforas, otras que siguen la estructura sintáctica.
 - **El costo no sube.** d_k = d/h: en el paper, 512/8 = 64 por cabeza. Las ocho cabezas juntas cuestan lo mismo que una de dimensión completa.
-- **En el ejemplo de juguete,** con h = 2, habría dos cabezas de dimensión 2. La tabla de atención de la sección 2 corresponde a una sola cabeza.
+- **En el ejemplo de juguete,** con h = 2, habría dos cabezas de dimensión 2, cada una con su propia matriz de atención de 3 por 3. La de la sección 2 corresponde a una sola cabeza.
 
 ### Sources
 
@@ -409,13 +437,45 @@ La justificación es el "averaging inhibits this" del paper: una sola distribuci
 
 ### Speaker notes
 
-La justificación de la FFN es la que más cuesta y la que más importa: la atención es lineal en V (pesos por valores), así que si solo hubiera atención, el modelo entero sería casi una composición de mapas lineales. La ReLU es el único lugar del bloque donde se computa algo que no es una combinación de la entrada. La cuenta de la última viñeta prepara la lámina 3.6. Tiempo objetivo: ~4 min.
+La justificación de la FFN es la que más cuesta y la que más importa: la atención es lineal en V (pesos por valores), así que si solo hubiera atención, el modelo entero sería casi una composición de mapas lineales. La ReLU es el único lugar del bloque donde se computa algo que no es una combinación de la entrada. La cuenta de la última viñeta prepara la lámina 3.7. Tiempo objetivo: ~4 min.
 
 **Presenter feedback:**
 
 ---
 
-## 3. Residuales: la salida es la entrada más una corrección
+## 3. El problema de apilar: el gradiente se pierde
+
+### Content
+
+**Para entrenar, el error medido en la salida tiene que volver hasta la primera capa. En una pila de N bloques ese camino es un producto de N derivadas, y un producto largo de números menores que uno tiende a cero.**
+
+```ascii
+   salida  <-- bloque N <-- ... <-- bloque 2 <-- bloque 1 <-- embedding
+
+   gradiente en la capa 1  =  dL/dx_N . J_N . J_(N-1) . ... . J_2 . J_1
+
+   si cada J "encoge" la senal (norma < 1):   0,9^12 = 0,28   0,9^48 = 0,006
+   si cada J la "agranda"  (norma > 1):       1,1^48 = 97
+```
+
+- **La intuición.** Cada bloque transforma su entrada, y la derivada de la composición es el producto de las derivadas de cada uno (regla de la cadena, la misma de backpropagation). Con 12, 48 o 96 factores, el producto se desvanece o explota salvo que cada factor esté muy cerca de uno.
+- **La consecuencia práctica.** Las primeras capas casi no reciben señal de error y aprenden poco o nada; las redes profundas de los años 2000 se entrenaban peor que las chicas por este motivo.
+- **Lo que hace falta:** un camino desde la salida hasta la entrada cuya derivada sea exactamente uno, sin importar cuántos bloques haya. Eso es la conexión residual de la lámina siguiente.
+
+### Sources
+
+- `attention-is-all-you-need.html.md` (§3.1): las residuales se citan de He et al. (2016), ResNet, cuyo argumento es este. La derivación de la regla de la cadena es material de la clase de backpropagation (`knowledge-library/backpropagation/`).
+- `gpt2-radford-2019.pdf.md` (§2.3): el escalado de los pesos residuales por 1/√N al inicializar existe para controlar exactamente esta acumulación con la profundidad.
+
+### Speaker notes
+
+Lámina de problema, sin solución todavía, para que la residual de la siguiente se lea como respuesta y no como convención. La cuenta de 0,9^48 se hace en el pizarrón en diez segundos y es la que se acuerdan. Conectá con la clase de backpropagation: es la misma regla de la cadena que ya derivaron, aplicada a una composición larga. Si preguntan por qué las derivadas serían menores que uno, la respuesta corta es que activaciones como la sigmoide tienen derivada máxima 0,25 y que las matrices de pesos con inicialización chica también encogen; ReLU y una buena inicialización ayudan pero no alcanzan a 96 capas. Tiempo objetivo: ~2 min.
+
+**Presenter feedback:**
+
+---
+
+## 4. Residuales: la salida es la entrada más una corrección
 
 ### Content
 
@@ -441,7 +501,7 @@ La justificación de la FFN es la que más cuesta y la que más importa: la aten
 ```
 
 - **El vector de cada token atraviesa toda la pila** y cada bloque le agrega algo. Se lo llama *residual stream*. Una cabeza puede escribir en él en la capa 3 y otra leerlo en la capa 10.
-- **Por qué está.** Con 12, 48 o 96 bloques apilados, el gradiente tiene que llegar desde la salida hasta el embedding. El camino residual es una identidad, así que la señal de error pasa sin atenuarse por más capas que haya.
+- **Por qué resuelve el problema anterior.** La derivada de x + f(x) respecto de x es 1 + f'(x): el producto largo de la lámina anterior ahora tiene un término que es la identidad en cada bloque, y la señal de error llega a la primera capa aunque los f'(x) sean chicos.
 - **Por qué d se conserva** en toda la pila: para que la suma sea posible.
 
 ### Sources
@@ -455,10 +515,9 @@ La justificación de la FFN es la que más cuesta y la que más importa: la aten
 La justificación es de optimización y les va a sonar de la clase de backpropagation: sin el atajo, el gradiente en la capa 1 es el producto de 48 jacobianos y se desvanece o explota. Con el atajo, hay un término que es la identidad. La consecuencia de la segunda viñeta es la más útil para leer papers modernos: la imagen del residual stream como una cinta que atraviesa el modelo y a la que las capas leen y escriben. AttnRes de Kimi K3, que van a ver en la clase que viene, es una atención sobre esa cinta. Tiempo objetivo: ~3 min.
 
 **Presenter feedback:**
-falta explicar la razón matemática y la intuición de por la que se hace todo esto, quizás una diapositiva previa explicando el problema primero y luego la solución que se muestra en esta diapositiva
 ---
 
-## 4. Layer norm: mantener los números en rango
+## 5. Layer norm: mantener los números en rango
 
 ### Content
 
@@ -484,11 +543,11 @@ Hacé la cuenta de la primera viñeta, es de treinta segundos y es exactamente l
 
 ---
 
-## 5. La posición: la atención no sabe el orden
+## 6. La fórmula de la posición: senos y cosenos
 
 ### Content
 
-**Nada en Q Kᵀ depende de dónde está cada token: si se permutan las filas de X, se permuta la salida y nada más. La posición hay que agregarla a la entrada.**
+**El vector de posición que se suma al embedding (lámina 1.3) puede ser fijo. El paper de 2017 usa senos y cosenos de distinta frecuencia, uno por dimensión.**
 
 | pos | dim 1 (sen) | dim 2 (cos) | dim 3 (sen) | dim 4 (cos) |
 |---|---|---|---|---|
@@ -509,13 +568,12 @@ Hacé la cuenta de la primera viñeta, es de treinta segundos y es exactamente l
 
 ### Speaker notes
 
-La justificación se demuestra, no se afirma: pedí que imaginen X con las filas de "cat" y "sat" intercambiadas y sigan la cuenta de la sección 2. Q Kᵀ queda con filas y columnas intercambiadas, el softmax por fila da lo mismo permutado, y A·V devuelve las mismas filas en otro orden. El modelo no puede distinguir "the cat sat on" de "on sat cat the". La tabla muestra el truco del paper con d = 4, que es demasiado chico para verlo bien (las dos columnas de la derecha casi no se mueven); con d = 512 hay 256 frecuencias entre las dos. No entres en RoPE acá. Tiempo objetivo: ~4 min.
+El porqué ya está dicho en 1.3; acá se demuestra la permutación si no se hizo entonces: X con las filas de "cat" y "sat" intercambiadas da Q Kᵀ con filas y columnas intercambiadas, el mismo softmax permutado y A·V con las mismas filas en otro orden. La tabla muestra la fórmula del paper con d = 4, que es demasiado chico para verlo bien (las dos columnas de la derecha casi no se mueven); con d = 512 hay 256 frecuencias entre las dos. No entres en RoPE acá. Tiempo objetivo: ~2 min.
 
 **Presenter feedback:**
-los embeddings posicionales se tienen que explicar tambien desde el principio, antes de empezar a hablar sobre cómo se obtiene la matriz de atención 
 ---
 
-## 6. Cuenta de parámetros de un bloque
+## 7. Cuenta de parámetros de un bloque
 
 ### Content
 
@@ -551,13 +609,13 @@ La lámina cierra la sección con una cuenta que cualquiera puede repetir y que 
 
 # 4. Encoder, decoder y la familia
 
-**Goal of this section:** Mostrar cómo se apilan los bloques en las dos columnas del paper, por qué los LLM se quedaron con el decoder y BERT con el encoder, y el mapa de arquitecturas y modelos derivados que la práctica va a usar. Seis láminas.
+**Goal of this section:** Mostrar cómo se apilan los bloques en el encoder y el decoder del paper, por qué los LLM se quedaron con el decoder y BERT con el encoder, y el mapa de arquitecturas y modelos derivados que la práctica va a usar. Seis láminas.
 
 **Presenter feedback:**
 
 ---
 
-## 1. Las dos columnas de 2017
+## 1. Encoder y decoder en el paper de 2017
 
 ### Content
 
@@ -586,7 +644,7 @@ La lámina cierra la sección con una cuenta que cualquiera puede repetir y que 
 
 - **Encoder:** lee la frase de entrada completa, cada token ve a todos. Produce una representación contextual por token.
 - **Decoder:** genera la salida token a token con máscara causal, y en cada paso consulta al encoder con la cross-attention: la misma cuenta de la sección 2, con Q de un lado y K, V del otro.
-- **Fue diseñado para traducir.** Entrada en un idioma, salida en otro; por eso dos columnas. Casi ningún modelo actual usa las dos.
+- **Fue diseñado para traducir.** La entrada está en un idioma y la salida en otro, y por eso hay un encoder y un decoder. Casi ningún modelo actual usa los dos.
 
 ### Sources
 
@@ -595,7 +653,7 @@ La lámina cierra la sección con una cuenta que cualquiera puede repetir y que 
 
 ### Speaker notes
 
-Es la figura que vieron la clase pasada, ahora con nombres en cada caja porque ya saben qué hay adentro. Lo nuevo es la cross-attention, y la justificación es simple: es la misma fórmula con Q de una secuencia y K, V de otra; es el mecanismo por el que el decoder "lee" la frase de origen. La tercera viñeta prepara las dos láminas siguientes. Tiempo objetivo: ~3 min.
+Es la figura que vieron la clase pasada, ahora con nombres en cada caja porque ya saben qué hay adentro. Lo nuevo es la cross-attention, y la justificación es simple: es la misma fórmula con Q de una secuencia y K, V de otra; es el mecanismo por el que el decoder "lee" la frase de origen. La tercera viñeta prepara las dos láminas siguientes. Tiempo objetivo: ~2 min.
 
 **Presenter feedback:**
 
@@ -605,7 +663,7 @@ Es la figura que vieron la clase pasada, ahora con nombres en cada caja porque y
 
 ### Content
 
-**GPT-2 es la columna derecha sola, sin cross-attention: bloques de self-attention con máscara causal más feed-forward, y un softmax sobre el vocabulario arriba. Es la arquitectura de casi todos los LLM actuales.**
+**GPT-2 usa solo el decoder del transformer, sin cross-attention. Cada bloque tiene self-attention con máscara causal y feed-forward, y la pila termina en un softmax sobre el vocabulario. Casi todos los LLM actuales tienen esta arquitectura.**
 
 - **Por qué alcanza con el decoder.** Si la tarea es "predecir el token siguiente", entrada y salida son la misma secuencia: no hay una frase de origen aparte que codificar. El prompt y la respuesta van en el mismo flujo, y la máscara causal garantiza que cada token solo vea lo anterior.
 - **Cuatro tamaños en 2019:** 117 M (12 capas, d = 768), 345 M (24, 1024), 762 M (36, 1280), 1.542 M (48, 1600). El más chico tiene el tamaño del GPT original; el segundo, el de BERT-large. Todos con contexto de 1024 tokens.
@@ -619,7 +677,7 @@ Es la figura que vieron la clase pasada, ahora con nombres en cada caja porque y
 
 ### Speaker notes
 
-La justificación de "solo decoder" es la primera viñeta y es conceptual, no de ingeniería: cuando entrada y salida son la misma cadena de texto, el encoder no tiene qué codificar. La tabla de tamaños sirve para que vean que 1,5 mil millones era "enorme" en 2019 y hoy es un modelo de celular. La tercera viñeta cierra el círculo con la clase de prompting. Tiempo objetivo: ~3 min.
+La justificación de "solo decoder" es la primera viñeta y es conceptual, no de ingeniería: cuando entrada y salida son la misma cadena de texto, el encoder no tiene qué codificar. La tabla de tamaños sirve para que vean que 1,5 mil millones era "enorme" en 2019 y hoy es un modelo de celular. La tercera viñeta conecta con la clase de prompting. Tiempo objetivo: ~3 min.
 
 **Presenter feedback:**
 
@@ -629,7 +687,7 @@ La justificación de "solo decoder" es la primera viñeta y es conceptual, no de
 
 ### Content
 
-**BERT es la columna izquierda sola: bloques sin máscara, cada token ve la frase entera. No genera texto; produce una representación contextual por token, y la práctica usa esa representación para RAG.**
+**BERT usa solo el encoder del transformer. Sus bloques no tienen máscara y cada token ve la frase entera. No genera texto: produce una representación contextual por token, y la práctica usa esa representación para RAG.**
 
 - **Sin máscara, el next-token no sirve** (cada token vería la respuesta). BERT se entrena tapando el 15 % de los tokens y prediciéndolos desde ambos lados (*masked language model*), con una tarea auxiliar: decidir si una frase sigue a otra.
 - **Dos tamaños:** BERT-base, 12 capas, d = 768, 12 cabezas, 110 M (elegido para igualar al GPT original); BERT-large, 24 capas, d = 1024, 16 cabezas, 340 M. Entrada: tokens WordPiece (30k) + embedding de segmento + embedding de posición aprendido, máximo 512.
@@ -641,7 +699,7 @@ La justificación de "solo decoder" es la primera viñeta y es conceptual, no de
 
 ### Speaker notes
 
-La justificación de la máscara al revés: si nadie enmascara la atención, hay que enmascarar la entrada, porque de lo contrario predecir el token siguiente es copiarlo. Eso es el MLM. Para la práctica lo que importa es la tercera viñeta: BERT como fábrica de vectores contextuales. Pero ojo con la lámina que sigue: los vectores crudos de BERT son malos embeddings de oración, y hay que decirlo antes de que alguien los use así. Tiempo objetivo: ~3 min.
+La justificación de la máscara al revés: si nadie enmascara la atención, hay que enmascarar la entrada, porque de lo contrario predecir el token siguiente es copiarlo. Eso es el MLM. Para la práctica lo que importa es la tercera viñeta: BERT como generador de vectores contextuales. Pero ojo con la lámina que sigue: los vectores crudos de BERT son malos embeddings de oración, y hay que decirlo antes de que alguien los use así. Tiempo objetivo: ~3 min.
 
 **Presenter feedback:**
 
@@ -696,7 +754,7 @@ Esta lámina conecta la clase con la práctica de RAG y es la que justifica que 
 
 ### Speaker notes
 
-Lámina de una idea: el transformer es agnóstico a la modalidad porque lo único que ve son filas de una matriz. La justificación de por qué necesita más datos es la que vale: las CNN traen de fábrica que los píxeles vecinos se relacionan y que un gato a la izquierda es el mismo gato que a la derecha; el transformer tiene que aprender eso de los datos. Es una lámina de contexto; no se profundiza. Tiempo objetivo: ~2 min.
+Lámina de una idea: el transformer es agnóstico a la modalidad porque lo único que ve son filas de una matriz. La justificación de por qué necesita más datos es la que vale: las CNN incorporan por diseño que los píxeles vecinos se relacionan y que un gato a la izquierda es el mismo gato que a la derecha; el transformer tiene que aprender eso de los datos. Es una lámina de contexto; no se profundiza. Tiempo objetivo: ~2 min.
 
 **Presenter feedback:**
 
@@ -734,164 +792,46 @@ Lámina de repaso de la sección, y la que hay que dejar en pantalla mientras se
 
 # 5. Lo que cambió desde 2017
 
-**Goal of this section:** Presentar las variantes modernas del bloque como respuestas a cuellos de botella concretos, solo a nivel de idea: qué problema atacan y qué cambian. Cada una se abre en la clase siguiente. Cinco láminas.
+**Goal of this section:** Nombrar las variantes modernas del bloque y el problema que ataca cada una, sin explicar cómo funcionan. Se desarrollan en la clase 9, Transformers Avanzados. Una lámina.
 
 **Presenter feedback:**
 
 ---
 
-## 1. El cuello de botella es la matriz n por n
+## 1. Qué cambió desde 2017
 
 ### Content
 
-**Casi todo lo que cambió desde 2017 ataca el mismo lugar: la tabla de atención de n por n de la sección 2 y la memoria para guardar K y V durante la generación.**
+**Desde 2017, la mayoría de los cambios apuntan a dos costos: la matriz de atención crece con el cuadrado de la longitud, y generar texto exige guardar K y V de todos los tokens anteriores. Todo esto se ve en detalle en la clase 9.**
 
-| Cuello de botella | Dónde aparece | Respuesta | Clase |
-|---|---|---|---|
-| Recomputar K y V de todos los tokens anteriores en cada paso de generación | inferencia | KV cache | hoy |
-| El KV cache ocupa más memoria que los pesos con contextos largos | inferencia | MQA, GQA, MLA | hoy |
-| Leer y escribir la matriz n × n en memoria lenta | entrenamiento e inferencia | FlashAttention | hoy |
-| La posición sumada no generaliza a contextos más largos | ambas | RoPE | hoy |
-| La feed-forward es la mayoría de los parámetros y no todo token la necesita entera | ambas | Mixture of Experts | hoy |
-| La atención sigue siendo O(n²) por más rápida que sea | ambas | atención lineal, DeltaNet, híbridos | clase 9 |
+| Técnica | Qué problema ataca |
+|---|---|
+| **KV cache** | Recalcular K y V de todo el texto previo en cada token generado |
+| **GQA y MLA** | La memoria que ocupa esa cache con contextos largos |
+| **FlashAttention** | El tiempo que se pierde leyendo y escribiendo la matriz de atención en la memoria de la GPU |
+| **RoPE** | Cómo codificar la posición para que el modelo funcione con textos más largos que los del entrenamiento |
+| **Mixture of Experts** | Tener muchos más parámetros sin pagarlos todos en cada token |
+| **Atención lineal e híbridos** | El costo cuadrático en sí, que las anteriores no eliminan |
 
-- **Ninguna cambia la matemática de la sección 2.** KV cache, GQA, FlashAttention y MLA calculan la misma atención con menos memoria o menos tráfico; RoPE cambia cómo entra la posición y MoE cambia la feed-forward. La atención lineal sí cambia la fórmula (clase 9).
+- **Las cinco primeras conservan la fórmula de la sección 2.** Cambian cómo se calcula, qué se guarda o dónde está la posición. La última la reemplaza por otra.
 
 ### Sources
 
 - `attention-is-all-you-need.html.md` (Table 1): complejidad por capa O(n²·d).
-- `gpt2-to-kimi3-waterloo-intern.md.md`: el recorrido de GPT-2 a Kimi K3, del que esta tabla toma el orden de los problemas.
-- Los papers de cada fila están citados en las láminas siguientes.
+- `gpt2-to-kimi3-waterloo-intern.md.md`: KV cache, atención lineal, DeltaNet e híbridos hasta Kimi K3 (MLA, MoE).
+- `gqa-ainslie-2023.html.md`, `deepseek-v2-mla-2024.html.md`, `flashattention-dao-2022.html.md`, `rope-su-2021.html.md`: el problema que ataca cada técnica, según su propio paper.
 
 ### Speaker notes
 
-Lámina índice de la sección. Lo único que hay que decir es la viñeta: cuatro de las cinco variantes de hoy no tocan la fórmula, solo la implementan mejor, y por eso se pueden contar en una lámina cada una. Anticipá que la clase que viene arranca en la última fila, con el artículo de GPT-2 a Kimi K3 como guía. Tiempo objetivo: ~2 min.
+Es una lámina de anticipo, no de explicación: se lee la tabla y se sigue. Si alguien pregunta cómo funciona alguna, la respuesta es que es tema de la clase 9, que arranca justamente en la última fila, con el artículo que va de GPT-2 a Kimi K3 como guía. Lo único que conviene conectar con lo de hoy: la KV cache existe por la máscara causal de la lámina 2.6 (las filas de los tokens anteriores no cambian cuando aparece uno nuevo), y el costo cuadrático es la matriz Q Kᵀ de la lámina 2.3. Tiempo objetivo: ~3 min.
 
 **Presenter feedback:**
 
 ---
 
-## 2. KV cache y GQA: guardar claves y valores, y compartirlos
+# 6. Cómo se entrena
 
-### Content
-
-**Al generar, cada token nuevo solo necesita su propia consulta contra las claves y valores de todos los anteriores, que no cambian. Se guardan (KV cache) y el costo baja de recomputar todo a una fila por paso. El precio es memoria, y GQA la reduce compartiendo K y V entre cabezas.**
-
-```ascii
-  paso t:  tokens 1..t-1 ya tienen K y V guardados
-                                 K cache (t-1 x d)   V cache (t-1 x d)
-   token t -> q_t (1 x d) ---->  q_t K^T  -> softmax -> . V  -> salida_t
-                                   |
-                                   +--> k_t, v_t se agregan al cache
-  sin cache: recalcular Q, K, V de los t tokens en cada paso  (t x d)
-  con cache: una fila nueva por paso                        (1 x d)
-  memoria del cache: 2 x capas x cabezas x d_cabeza x t
-```
-
-- **Por qué funciona.** Con máscara causal, las filas de K y V de los tokens anteriores no dependen del token nuevo: son las mismas en el paso t y en el t+1. Lo único nuevo es la consulta del último token.
-- **Por qué tarda el primer token.** El *prefill* procesa el prompt entero de una vez (n × n); los tokens siguientes son una fila cada uno. El tiempo hasta el primer token crece con el prompt; el resto no.
-- **GQA:** en lugar de una K y una V por cabeza, varias cabezas de consulta comparten una misma K y V. Con 8 grupos, T5-XXL genera en 0,28 s por muestra contra 1,51 s con todas las cabezas, con la misma calidad. Llama y casi todos los modelos abiertos usan GQA. MLA (DeepSeek) va más lejos: guarda un vector comprimido por token y reconstruye K y V; su cache equivale al de GQA con 2,25 grupos y rinde mejor que MHA.
-
-### Sources
-
-- `gpt2-to-kimi3-waterloo-intern.md.md`: "The KV cache comes from a straightforward observation: after appending the generated token to the input, the model would otherwise recompute projections for all previous tokens. Storing their key and value vectors avoids that redundant work"; "can become large enough to create a memory-bandwidth bottleneck"; código con `past_kv` y prefill vs decode.
-- `gqa-ainslie-2023.html.md` (§1, §2.2, Table 1): "memory bandwidth overhead from loading keys and values"; grupos de cabezas de consulta que comparten una cabeza de K y V; MHA-XXL 1,51 s y 47,2 de promedio, GQA-8-XXL 0,28 s y 47,1; KV cache H/G veces menor.
-- `deepseek-v2-mla-2024.html.md` (§2.1.2, Table 1): latente comprimido c_t^{KV} por token, "reduces the KV cache by 93.3%", equivalente a GQA con 2,25 grupos pero mejor que MHA.
-
-### Speaker notes
-
-La justificación de la KV cache sale directo de la máscara causal de la lámina 2.6: si la fila de "cat" no puede ver a "sat", entonces la K y la V de "cat" no cambian cuando aparece "sat", y no tiene sentido recalcularlas. La segunda viñeta explica una experiencia que todos tuvieron con un chat: la pausa antes de la primera palabra y la velocidad después. La fórmula de memoria del diagrama es la que hay que hacer una vez con números: Llama-2 70B, 80 capas, 8 grupos KV de 128, 16 bits, son 2·80·8·128·2 bytes = 320 KB por token; 100k tokens de contexto son 32 GB solo de cache. GQA se cuenta como "compartir", MLA como "comprimir", y ahí se termina. Tiempo objetivo: ~4 min.
-
-**Presenter feedback:**
-
----
-
-## 3. FlashAttention: la misma atención por bloques
-
-### Content
-
-**La atención estándar escribe la matriz n × n en la memoria principal de la GPU y la vuelve a leer para el softmax y para multiplicar por V. FlashAttention calcula por bloques que caben en la memoria rápida del chip y nunca materializa la matriz. El resultado es exacto y hasta 3 veces más rápido según hardware y forma.**
-
-- **El diagnóstico:** en una A100, la memoria principal (HBM) mueve 1,5 a 2 TB/s; la memoria del chip (SRAM), 19 TB/s pero solo 192 KB por multiprocesador. El tráfico de memoria limita a la atención antes que la cantidad de operaciones.
-- **El método:** partir Q, K y V en bloques, calcular la atención bloque por bloque en SRAM, y combinar los softmax parciales de forma exacta llevando un máximo y una suma corrientes (*online softmax*). Para el gradiente, recalcular los bloques en vez de guardarlos.
-- **Resultados:** hasta 3× sobre la implementación de GPT-2 de HuggingFace y 1,7 a 1,8× sobre Megatron-LM, memoria lineal en n en vez de cuadrática, y contextos de 16k tokens con la versión exacta (64k con una variante por bloques dispersos, que ya no es exacta).
-
-### Sources
-
-- `flashattention-dao-2022.html.md` (§1, §2.1, §3.1, §4): "a missing principle is making attention algorithms IO-aware"; A100 con 40-80 GB de HBM a 1,5-2,0 TB/s y 192 KB de SRAM por cada uno de 108 SMs a ≈ 19 TB/s; tiling con online softmax (running max m y running sum ℓ) y recomputación en backward; Theorem 1: resultado exacto con O(N) memoria extra; hasta 3× sobre HuggingFace en GPT-2, Path-X (16K) y Path-256 (64K) resueltos por primera vez.
-
-### Speaker notes
-
-La justificación es de arquitectura de computadoras, y a ingenieros de software les va a gustar: el problema no era cuántas multiplicaciones, era cuántas veces se lee y escribe la RAM de la GPU. El softmax por bloques es la parte no obvia: parece que necesitás la fila entera para normalizar, pero podés llevar el máximo y la suma parciales y corregir al final; es un truco de dos líneas que vale la pena mostrar en la clase que viene. Lo que hay que dejar claro hoy es que el resultado es idéntico y no una aproximación, y que el 2 a 4× que se cita a veces es la variante dispersa contra FlashAttention, no FlashAttention contra el estándar. Tiempo objetivo: ~3 min.
-
-**Presenter feedback:**
-
----
-
-## 4. RoPE: la posición como rotación
-
-### Content
-
-**En vez de sumar un vector de posición al embedding, RoPE rota Q y K un ángulo proporcional a la posición. El producto punto entre una consulta en la posición m y una clave en la n depende entonces solo de la distancia m − n.**
-
-- **La idea en dos dimensiones:** el vector (x, y) de la posición m se rota un ángulo m·θ. Rotar q en m·θ y k en n·θ y hacer el producto punto equivale a rotar uno de ellos (m − n)·θ. Solo queda la posición relativa.
-- **En d dimensiones:** el vector se parte en d/2 planos, cada uno con su frecuencia θ_i = 10000^{-2i/d} para i = 0 … d/2 − 1, las mismas frecuencias de la lámina 3.5 pero multiplicando en vez de sumando. Se implementa sin matrices, con senos y cosenos elemento a elemento.
-- **Por qué se impuso.** Es relativa por construcción, no agrega parámetros, decae con la distancia y se puede estirar a contextos más largos que los del entrenamiento. Llama, DeepSeek, Kimi y casi todos los LLM actuales la usan.
-
-### Sources
-
-- `rope-su-2021.html.md` (§3.1-3.4): objetivo ⟨f_q(x_m, m), f_k(x_n, n)⟩ = g(x_m, x_n, m − n) (eq. 11); rotación por e^{imθ} en 2D (eq. 12-13); d/2 planos con θ_i = 10000^{-2(i-1)/d} (eq. 14-15); q_mᵀ k_n = x_mᵀ W_q R_{Θ,n−m} W_k x_n (eq. 16); realización elemento a elemento (eq. 34); decaimiento con la distancia (§3.4.3); WMT14 27,5 vs 27,3 BLEU (Table 1).
-- `deepseek-v2-mla-2024.html.md` (§2.1.3): RoPE como matriz dependiente de la posición entre W^Q y W^{UK}, y el "decoupled RoPE" que MLA necesita para poder comprimir.
-
-### Speaker notes
-
-La justificación es la de la lámina 3.5 llevada un paso más lejos: sumar posición absoluta obliga al modelo a aprender solo la relativa; rotar se la da gratis. El argumento de la rotación en 2D se puede hacer en el pizarrón en un minuto con un ángulo: dos vectores rotados el mismo ángulo mantienen su producto punto, así que rotarlos ángulos distintos deja solo la diferencia. Es la única lámina de la sección con una fórmula, y va porque la práctica de la clase siguiente la implementa. Tiempo objetivo: ~3 min.
-
-**Presenter feedback:**
-
----
-
-## 5. Mixture of Experts: varias feed-forward y un router
-
-### Content
-
-**La feed-forward es dos tercios de los parámetros y todo token la atraviesa entera. MoE reemplaza esa red por varias (expertos) y un router que elige unas pocas por token. El modelo tiene muchos más parámetros de los que usa en cada paso.**
-
-```ascii
-                token h_t
-                    |
-             [ router: softmax(h_t . e_i) ]  -> elige top-K expertos
-                    |
-     +--------------+--------------+----------------+
-     |              |              |                |
-  experto 3     experto 17      ... (K elegidos)   expertos compartidos
-  FFN_3(h_t)    FFN_17(h_t)                        (siempre activos)
-     |              |                               |
-     +------ suma pesada por la afinidad -----------+
-                    |
-                 salida
-```
-
-- **Los números de DeepSeek-V2:** 236 mil millones de parámetros totales, 21 mil millones activos por token; 2 expertos compartidos y 160 ruteados, de los que cada token usa 6.
-- **Por qué.** El costo por token depende de los parámetros activos y la capacidad de los totales. Un MoE de DeepSeek-V2 cuesta como un modelo de 21 B y rinde como uno mucho más grande. El precio es memoria, porque todos los expertos tienen que estar cargados, y balance, porque el router tiende a mandar todo a los mismos expertos y hay que corregirlo con pérdidas auxiliares.
-- **Los expertos compartidos** procesan todos los tokens y aprenden lo común. Los ruteados se especializan.
-
-### Sources
-
-- `deepseek-v2-mla-2024.html.md` (§1, §2.2, §3.1.2, eq. 20-22): 236 B totales, 21 B activados; h'_t = u_t + Σ FFN_shared + Σ g_{i,t} FFN_routed con afinidades softmax(u_tᵀ e_i) y top-K_r; 2 compartidos + 160 ruteados, 6 activos por token; pérdidas de balance por experto, por dispositivo y de comunicación.
-- `gpt2-to-kimi3-waterloo-intern.md.md`: Kimi K3 con 898 expertos, 2 compartidos, 16 de 896 elegidos por token; la primera capa densa y el resto latent MoE.
-
-### Speaker notes
-
-La justificación se apoya en la cuenta de la lámina 3.6: si la FFN es 8d² de los 12d² del bloque, ahí es donde conviene poner capacidad sin pagarla en cada token. El router es un softmax sobre productos punto, o sea, otra atención: el token consulta a los expertos. Según el artículo de Kimi K3 (sin verificar contra el reporte técnico), ese modelo tiene 898 expertos, 2 compartidos y 16 de 896 por token. Con eso alcanza; cómo se balancea y cómo se distribuye en máquinas es de la clase que viene. Tiempo objetivo: ~3 min.
-
-**Presenter feedback:**
-
----
-
-# 6. Entrenamiento a vuelo de pájaro
-
-**Goal of this section:** Cerrar con qué se minimiza al entrenar, cómo escala la pérdida con tamaño, datos y cómputo, y qué sale de ahí. Dos láminas.
+**Goal of this section:** Cerrar con qué se minimiza al entrenar. Una lámina.
 
 **Presenter feedback:**
 
@@ -921,28 +861,6 @@ Retoma "aprender es ajustar parámetros" de la clase pasada con la función conc
 
 ---
 
-## 2. Las leyes de escala
-
-### Content
-
-**Con la misma arquitectura, la pérdida baja como una ley de potencia con los parámetros, los datos y el cómputo, a lo largo de siete órdenes de magnitud. La forma del modelo (profundo o ancho) casi no importa comparada con el tamaño.**
-
-- **Las tres leyes de Kaplan (2020):** L(N) ∝ N^{-0,076} con N los parámetros sin embeddings; L(D) ∝ D^{-0,095} con D los tokens; L(C) ∝ C^{-0,050} con C el cómputo. Rectas en escala log-log.
-- **Qué implica.** Se puede predecir la pérdida de un modelo grande entrenando chicos. Con presupuesto fijo, conviene un modelo grande entrenado poco antes que uno chico entrenado hasta converger. Chinchilla (2022) corrigió la receta hacia más datos por parámetro, pero la forma de ley de potencia quedó.
-- **Los cientos de miles de millones de parámetros y los meses sobre miles de GPU** son el punto de la curva al que cada laboratorio decidió llegar.
-
-### Sources
-
-- `scaling-laws-kaplan-2020.html.md` (§1.2, eq. 1.1-1.3, §1.1, Appendix C): α_N ≈ 0,076, α_D ≈ 0,095, α_C^{min} ≈ 0,050; "some trends spanning more than seven orders of magnitude"; forma del modelo con efecto mínimo; con cómputo fijo, "train very large models and stop well short of convergence"; nota del corpus: Chinchilla (2022) revisó la asignación óptima hacia más datos.
-
-### Speaker notes
-
-Última lámina de contenido y la que explica la economía del campo en una curva. La justificación de "por qué escalar" no es filosófica: la pérdida baja de forma predecible, así que gastar más da un modelo mejor con una certeza que casi ninguna otra inversión de ingeniería tiene. Mencioná Chinchilla en una frase (más tokens por parámetro que lo que Kaplan decía) y no entres. Cerrá volviendo a la fórmula 12Nd² de la lámina 3.6: escalar es elegir N y d más grandes en esa fórmula. Tiempo objetivo: ~3 min.
-
-**Presenter feedback:**
-
----
-
 # Conclusiones
 
 **Goal of this section:** Una lámina de resumen con el enganche con la práctica y con la clase siguiente.
@@ -959,8 +877,8 @@ Retoma "aprender es ajustar parámetros" de la clase pasada con la función conc
 
 - **La atención, en una línea:** softmax(Q Kᵀ / √d_k) V. Tres proyecciones, una afinidad, una escala, una distribución y una mezcla. Con máscara causal genera texto; sin máscara produce representaciones.
 - **El bloque:** varias cabezas, feed-forward de 4d con la única no linealidad por posición, residuales para que el gradiente llegue a las primeras capas, layer norm para mantener la escala, posición porque la atención no sabe el orden. Unos 12 d² parámetros por bloque.
-- **La familia:** encoder para vectores (BERT, el encoder de la práctica), decoder para texto (GPT y casi todos los LLM), las dos columnas para traducción, resumen y audio. ViT es el mismo encoder con parches.
-- **Lo que cambió desde 2017** ataca la matriz n × n y el KV cache sin tocar la fórmula. La atención lineal y sus derivados hasta Kimi K3 sí la cambian, y son el tema de la clase 9.
+- **La familia:** encoder para vectores (BERT, el encoder de la práctica), decoder para texto (GPT y casi todos los LLM), encoder-decoder para traducción, resumen y audio. ViT es el mismo encoder con parches.
+- **Desde 2017** las variantes apuntan a la matriz n × n y a la memoria de K y V; se ven en la clase 9.
 - **La práctica:** un RAG con encoder elegido y evaluado, un agente con ese RAG y tool-use, las herramientas como servidor MCP, una capa de atención en NumPy, y una hoja con las cuentas de la atención y del bloque hechas a mano, con la justificación de cada operación.
 
 ### Sources
@@ -969,7 +887,7 @@ Retoma "aprender es ajustar parámetros" de la clase pasada con la función conc
 
 ### Speaker notes
 
-Lámina de cierre; se lee de arriba abajo en dos minutos y se pasa a presentar la práctica. La última viñeta es la consigna: el ejercicio a mano es la sección 2 y las láminas 3.3 y 3.4, con la frase de juguete u otra, y en cada paso una línea que diga para qué sirve esa operación. Tiempo objetivo: ~2 min.
+Lámina de cierre; se lee de arriba abajo en dos minutos y se pasa a presentar la práctica. La última viñeta es la consigna: el ejercicio a mano es la sección 2 y las láminas 3.4 y 3.5, con la frase de juguete u otra, y en cada paso una línea que diga para qué sirve esa operación. Tiempo objetivo: ~2 min.
 
 **Presenter feedback:**
 
@@ -977,11 +895,7 @@ Lámina de cierre; se lee de arriba abajo en dos minutos y se pasa a presentar l
 
 # Open questions
 
-- T5, BART, Whisper, RoBERTa y Llama aparecen en el mapa de la familia (4.6) y GPT-3 175B en las notas de 3.6 como conocimiento general, sin registro en el corpus. Si se quiere fuente, capturar sus papers.
-- La cuenta de memoria de KV cache para Llama-2 70B en las notas de 5.2 (80 capas, 8 grupos, d_cabeza 128) usa la configuración publicada por Meta; no está en el corpus.
-- "Casi todos los LLM actuales usan RoPE y GQA" (5.2, 5.4) se afirma por conocimiento del área; el corpus solo lo documenta para DeepSeek-V2 y Kimi.
+- T5, BART, Whisper, RoBERTa y Llama aparecen en el mapa de la familia (4.6) y GPT-3 175B en las notas de 3.7 como conocimiento general, sin registro en el corpus. Si se quiere fuente, capturar sus papers.
 - El ejemplo de juguete usa Wq = identidad; conviene decidir si el ejercicio a mano de la práctica usa estas mismas matrices o pide a cada grupo elegir las suyas con la restricción de enteros chicos.
-- Chinchilla (Hoffmann 2022) se menciona en 6.2 como corrección de Kaplan; no está en el corpus.
 - GPT-2 con d_ff = 4d: el paper no lo declara; la lámina 3.2 lo sostiene solo para BERT. Verificar en el código de referencia si se quiere afirmar para GPT-2.
-- Las cifras de expertos de Kimi K3 (898, 2 compartidos, 16 de 896) vienen del artículo de X y quedaron en notas de 5.5 hasta verificarlas contra el reporte técnico de Moonshot.
-- "En la práctica extrapolan mal" sobre las sinusoides (3.5) es conocimiento del área; el paper de 2017 solo conjetura la extrapolación.
+- "En la práctica extrapolan mal" sobre las sinusoides (3.6) es conocimiento del área; el paper de 2017 solo conjetura la extrapolación.

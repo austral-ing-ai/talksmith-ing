@@ -1,0 +1,154 @@
+{
+  "fecha": "2026-10-05",
+  "camas": {
+    "clinica_medica": {
+      "total": 60,
+      "ocupadas": 57
+    },
+    "cirugia_general": {
+      "total": 40,
+      "ocupadas": 31
+    },
+    "terapia_intensiva": {
+      "total": 12,
+      "ocupadas": 12
+    },
+    "pediatria": {
+      "total": 24,
+      "ocupadas": 17
+    },
+    "neonatologia": {
+      "total": 16,
+      "ocupadas": 15
+    },
+    "maternidad": {
+      "total": 20,
+      "ocupadas": 11
+    }
+  },
+  "guardia_hoy": {
+    "clinica_medica": [
+      {
+        "profesional": "Dra. Mariela Quiroga",
+        "horario": "08:00-20:00"
+      },
+      {
+        "profesional": "Dr. Hernán Sosa",
+        "horario": "20:00-08:00"
+      }
+    ],
+    "cardiologia": [
+      {
+        "profesional": "Dr. Julián Ferreyra",
+        "horario": "08:00-20:00"
+      },
+      {
+        "profesional": "Dra. Paula Benítez",
+        "horario": "20:00-08:00"
+      }
+    ],
+    "pediatria": [
+      {
+        "profesional": "Dra. Carolina Ibáñez",
+        "horario": "08:00-20:00"
+      },
+      {
+        "profesional": "Dr. Tomás Aguirre",
+        "horario": "20:00-08:00"
+      }
+    ],
+    "traumatologia": [
+      {
+        "profesional": "Dr. Nicolás Paz",
+        "horario": "08:00-08:00"
+      }
+    ],
+    "obstetricia": [
+      {
+        "profesional": "Dra. Lucía Méndez",
+        "horario": "08:00-08:00"
+      }
+    ],
+    "salud_mental": [
+      {
+        "profesional": "Lic. Andrés Villalba",
+        "horario": "08:00-20:00"
+      },
+      {
+        "profesional": "Dra. Sofía Ledesma",
+        "horario": "20:00-08:00"
+      }
+    ]
+  },
+  "turnos": {
+    "cardiologia": [
+      "2026-10-14 09:30",
+      "2026-10-14 10:00",
+      "2026-10-16 15:00"
+    ],
+    "dermatologia": [
+      "2026-11-03 11:00",
+      "2026-11-05 11:30"
+    ],
+    "traumatologia": [
+      "2026-10-07 08:40",
+      "2026-10-07 09:00",
+      "2026-10-08 14:20"
+    ],
+    "psicologia": [
+      "2026-10-20 16:00"
+    ],
+    "gastroenterologia": [
+      "2026-10-22 09:00",
+      "2026-10-29 09:00"
+    ],
+    "obstetricia": [
+      "2026-10-06 10:00",
+      "2026-10-06 10:20",
+      "2026-10-07 11:00"
+    ],
+    "kinesiologia": [
+      "2026-10-06 18:00",
+      "2026-10-08 18:00"
+    ]
+  },
+  "farmacia": {
+    "amoxicilina 500 mg": {
+      "stock": 340,
+      "unidad": "comprimidos"
+    },
+    "enalapril 10 mg": {
+      "stock": 0,
+      "unidad": "comprimidos",
+      "reposicion": "2026-10-09"
+    },
+    "metformina 850 mg": {
+      "stock": 1200,
+      "unidad": "comprimidos"
+    },
+    "salbutamol aerosol": {
+      "stock": 18,
+      "unidad": "aerosoles"
+    },
+    "insulina NPH": {
+      "stock": 0,
+      "unidad": "frascos",
+      "reposicion": "2026-10-12"
+    },
+    "paracetamol 500 mg": {
+      "stock": 2500,
+      "unidad": "comprimidos"
+    },
+    "levotiroxina 50 mcg": {
+      "stock": 90,
+      "unidad": "comprimidos"
+    }
+  },
+  "espera_guardia_minutos": {
+    "rojo": 0,
+    "naranja": 7,
+    "amarillo": 48,
+    "verde": 135,
+    "azul": 210
+  }
+}
