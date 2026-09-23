@@ -26,7 +26,7 @@ Las preguntas `dev` son para desarrollar y tunear. La cátedra va a evaluar la e
 
 ## Modelos
 
-Todo lo que usa un LLM pasa por OpenRouter, como en la misión de prompting. La cátedra define qué modelo se usa en cada parte, y no se puede reemplazar por otro:
+Todo lo que usa un LLM pasa por OpenRouter, como en la misión de prompting. Tienen que usar los siguientes modelos:
 
 | Uso | Modelo | Precio por millón de tokens (entrada / salida) |
 |---|---|---|
