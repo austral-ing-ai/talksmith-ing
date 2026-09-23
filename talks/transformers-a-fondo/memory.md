@@ -78,8 +78,17 @@ attention-is-all-you-need (ar5iv, paper completo), illustrated-transformer-alamm
 
 ## 2026-09-23 — Step 6 (Polish) y Step 7 (Render)
 - 8 diagramas ASCII renderizados con critica ciega (ascii-notes agregadas al draft antes): 6 limpios a la primera, mezcla de valores limpio tras 1 revision (margen), posicion limpio tras 2 revisiones (recorte; Claude autorizo una pasada extra). Embedding de oracion: el critico marco "pooling" en ingles; aceptado como termino tecnico. La lamina 4.1 conserva la figura del paper (bloque documentation-only).
-- final.md: stamp-renders, cleanup, strip_feedback. Modelo con `research/build_model_draft.py --final` (matrices como code-example con espacios no separables por el bug del codebox; laminas con diagrama como content-image; quiz de repaso como quiz). Audits ok. 41 laminas en output/html/index.html.
+- final.md: stamp-renders, cleanup, strip_feedback. (Ese primer modelo salio de un builder en python; quedo reemplazado por el Polish 1.0, ver abajo.)
 - Quirk del harness repetido: los veredictos de los criticos llegan al orquestador y hay que reenviarlos a cada worker.
 
 ## 2026-09-23 — Polish de las matrices
 - Marco pidio las matrices como imagenes: las 6 tablas (X, Q y K, Q K^T, A, mascara causal, tabla de posicion) pasaron a bloques ASCII con ascii-note en el draft y se renderizaron a SVG con critica ciega. 5 limpias a la primera; la mascara causal, limpia tras 1 revision (etiquetas de fila pegadas al corchete). Los 8 diagramas anteriores se reutilizaron sin re-render (digest estampado). Deck: 41 laminas, 14 diagramas.
+
+## 2026-09-23 — Polish y Render de nuevo con Talksmith 1.0.0
+- Plugin actualizado a 1.0.0 (mas templates, `design` para ubicar la imagen, `_choice` obligatorio). El clon local del plugin quedo sin cambios, a pedido de Marco.
+- Polish rehecho desde cero: 14 diagramas con critica ciega (log "Run 2026-09-23 (1.0.0)" en cada `.critique/*.md`).
+- El FILL de `output/slide-model.json` se escribe a mano, segun la spec. Marco marco como bug el builder en python y `research/build_model*.py` se borraron. Las notas se copian textuales de final.md.
+- El critico de clasificacion confirmo las elecciones; se corrigieron las trazas de 16, 17, 18, 30 y 33.
+- Las 14 laminas con diagrama usan content+cards+image con `design` split-left/split-right, porque sin design no se ve la imagen.
+- "Cuenta de parametros" se partio en dos laminas: tabla + conclusion, y las dos notas como tarjetas. Con las tres notas abajo, el ajuste llegaba al minimo de escala y recortaba las dos ultimas filas.
+- Deck: 42 laminas. Todas las audits dan ok. Los warnings de template_diversity estan justificados: domina content+cards+image y el repaso son 8 quiz seguidos.

@@ -25,10 +25,10 @@
       "notes": ""
     },
     {
+      "template": "quiz",
       "section": "Repaso",
       "title": "La salida del modelo",
-      "notes": "Mano alzada, revelar y seguir. Es el paso final del ciclo de la lámina 1.1: la última capa termina en un softmax sobre el vocabulario. Tiempo objetivo: ~1 min.\n\n---",
-      "template": "quiz",
+      "notes": "Mano alzada, revelar y seguir. Es el paso final del ciclo de la lámina 1.1: la última capa termina en un softmax sobre el vocabulario. Tiempo objetivo: ~1 min.",
       "question": "¿Qué devuelve un modelo de lenguaje cuando procesa \"the cat sat on\"?",
       "options": [
         "La palabra \"the\".",
@@ -37,13 +37,29 @@
         "Un embedding de la frase."
       ],
       "correct": "B",
-      "answer": "Devuelve una distribución sobre las |V| palabras; elegir una es un paso aparte."
+      "answer": "B. Un vector con una probabilidad por cada token del vocabulario.",
+      "explanation": "Devuelve una distribución sobre las |V| palabras; elegir una es un paso aparte.",
+      "_choice": {
+        "signals": [
+          "is_question=true",
+          "labeled_items=4",
+          "n_images=0"
+        ],
+        "candidates": [
+          "quiz",
+          "concept-breakdown"
+        ],
+        "picked": "quiz",
+        "rejected": {
+          "concept-breakdown": "is_question con opciones A-D: son elecciones, no un conjunto rotulado; el catálogo manda quiz antes que las reglas de enumeración"
+        }
+      }
     },
     {
+      "template": "quiz",
       "section": "Repaso",
       "title": "Ejemplos gratis",
-      "notes": "Mano alzada, revelar y seguir. Prepara la máscara causal (2.6), que calcula esos cinco ejemplos a la vez. Tiempo objetivo: ~1 min.\n\n---",
-      "template": "quiz",
+      "notes": "Mano alzada, revelar y seguir. Prepara la máscara causal (2.6), que calcula esos cinco ejemplos a la vez. Tiempo objetivo: ~1 min.",
       "question": "Una frase de 6 tokens del corpus, ¿cuántos ejemplos de entrenamiento da para predecir el token siguiente?",
       "options": [
         "1",
@@ -52,13 +68,28 @@
         "Ninguno: hay que etiquetarla a mano."
       ],
       "correct": "B",
-      "answer": "La ventana deslizante da un ejemplo por token, salvo el último, que no tiene siguiente."
+      "answer": "B. 5",
+      "explanation": "La ventana deslizante da un ejemplo por token, salvo el último, que no tiene siguiente.",
+      "_choice": {
+        "signals": [
+          "is_question=true",
+          "labeled_items=4"
+        ],
+        "candidates": [
+          "quiz",
+          "concept-breakdown"
+        ],
+        "picked": "quiz",
+        "rejected": {
+          "concept-breakdown": "multiple choice con respuesta a revelar es quiz"
+        }
+      }
     },
     {
+      "template": "quiz",
       "section": "Repaso",
       "title": "Por qué no una RNN",
-      "notes": "Mano alzada, revelar y seguir. Justifica la segunda viñeta de 2.5: la atención no tiene bucle sobre los tokens. Tiempo objetivo: ~1 min.\n\n---",
-      "template": "quiz",
+      "notes": "Mano alzada, revelar y seguir. Justifica la segunda viñeta de 2.5: la atención no tiene bucle sobre los tokens. Tiempo objetivo: ~1 min.",
       "question": "¿Por qué una RNN no se puede paralelizar durante el entrenamiento?",
       "options": [
         "Porque usa demasiados parámetros.",
@@ -67,13 +98,28 @@
         "Porque solo procesa frases cortas."
       ],
       "correct": "B",
-      "answer": "El estado del token t depende del estado del token t − 1, así que hay que ir en orden."
+      "answer": "B. Porque cada paso necesita el estado del paso anterior.",
+      "explanation": "El estado del token t depende del estado del token t − 1, así que hay que ir en orden.",
+      "_choice": {
+        "signals": [
+          "is_question=true",
+          "labeled_items=4"
+        ],
+        "candidates": [
+          "quiz",
+          "concept-breakdown"
+        ],
+        "picked": "quiz",
+        "rejected": {
+          "concept-breakdown": "multiple choice con respuesta a revelar es quiz"
+        }
+      }
     },
     {
+      "template": "quiz",
       "section": "Repaso",
       "title": "Qué hace la atención",
-      "notes": "Mano alzada, revelar y seguir. Es el punto de partida de la sección 2, que hoy lleva esa intuición a números. Tiempo objetivo: ~1 min.\n\n---",
-      "template": "quiz",
+      "notes": "Mano alzada, revelar y seguir. Es el punto de partida de la sección 2, que hoy lleva esa intuición a números. Tiempo objetivo: ~1 min.",
       "question": "En \"The animal didn't cross the street because it was too tired\", ¿qué hace la atención con \"it\"?",
       "options": [
         "Lo borra.",
@@ -82,13 +128,28 @@
         "Lo deja sin cambios."
       ],
       "correct": "C",
-      "answer": "\"it\" sigue siendo \"it\", pero su vector nuevo incorpora sobre todo lo que aporta \"animal\"."
+      "answer": "C. Arma su representación con un peso alto sobre \"animal\" y bajo sobre el resto.",
+      "explanation": "\"it\" sigue siendo \"it\", pero su vector nuevo incorpora sobre todo lo que aporta \"animal\".",
+      "_choice": {
+        "signals": [
+          "is_question=true",
+          "labeled_items=4"
+        ],
+        "candidates": [
+          "quiz",
+          "concept-breakdown"
+        ],
+        "picked": "quiz",
+        "rejected": {
+          "concept-breakdown": "multiple choice con respuesta a revelar es quiz"
+        }
+      }
     },
     {
+      "template": "quiz",
       "section": "Repaso",
       "title": "Una fila de pesos",
-      "notes": "Mano alzada, revelar y seguir. Cada fila de la matriz de atención es una de estas distribuciones; se ve en 2.4. Tiempo objetivo: ~1 min.\n\n---",
-      "template": "quiz",
+      "notes": "Mano alzada, revelar y seguir. Cada fila de la matriz de atención es una de estas distribuciones; se ve en 2.4. Tiempo objetivo: ~1 min.",
       "question": "Los pesos de atención de un token sobre todos los demás, ¿cuánto suman?",
       "options": [
         "1",
@@ -97,13 +158,28 @@
         "0"
       ],
       "correct": "A",
-      "answer": "Son una distribución: positivos y con suma 1. Por eso la salida es un promedio ponderado."
+      "answer": "A. 1",
+      "explanation": "Son una distribución: positivos y con suma 1. Por eso la salida es un promedio ponderado.",
+      "_choice": {
+        "signals": [
+          "is_question=true",
+          "labeled_items=4"
+        ],
+        "candidates": [
+          "quiz",
+          "big-number"
+        ],
+        "picked": "quiz",
+        "rejected": {
+          "big-number": "el 1 es la respuesta de una pregunta, no una cifra que la lámina afirma"
+        }
+      }
     },
     {
+      "template": "quiz",
       "section": "Repaso",
       "title": "El tamaño de la matriz",
-      "notes": "Mano alzada, revelar y seguir. Es la tabla cuadrada de 2.3 y el costo cuadrático que atacan las variantes de la sección 5. Tiempo objetivo: ~1 min.\n\n---",
-      "template": "quiz",
+      "notes": "Mano alzada, revelar y seguir. Es la tabla cuadrada de 2.3 y el costo cuadrático que atacan las variantes de la sección 5. Tiempo objetivo: ~1 min.",
       "question": "Con una frase de n tokens, ¿cuántos pesos de atención calcula una cabeza en una capa?",
       "options": [
         "n",
@@ -112,13 +188,28 @@
         "Depende de la dimensión del embedding."
       ],
       "correct": "C",
-      "answer": "Cada token calcula un peso contra cada token, incluido él mismo: n por n."
+      "answer": "C. n²",
+      "explanation": "Cada token calcula un peso contra cada token, incluido él mismo: n por n.",
+      "_choice": {
+        "signals": [
+          "is_question=true",
+          "labeled_items=4"
+        ],
+        "candidates": [
+          "quiz",
+          "concept-breakdown"
+        ],
+        "picked": "quiz",
+        "rejected": {
+          "concept-breakdown": "multiple choice con respuesta a revelar es quiz"
+        }
+      }
     },
     {
+      "template": "quiz",
       "section": "Repaso",
       "title": "¿Es simétrica?",
-      "notes": "Mano alzada, revelar y seguir. Pregunta de anticipación: nadie la vio todavía. Se contesta en 2.1 (Q y K son proyecciones distintas) y se ve en la tabla de 2.3, que no es simétrica. Tiempo objetivo: ~1 min.\n\n---",
-      "template": "quiz",
+      "notes": "Mano alzada, revelar y seguir. Pregunta de anticipación: nadie la vio todavía. Se contesta en 2.1 (Q y K son proyecciones distintas) y se ve en la tabla de 2.3, que no es simétrica. Tiempo objetivo: ~1 min.",
       "question": "El peso de \"it\" sobre \"animal\", ¿es igual al peso de \"animal\" sobre \"it\"?",
       "options": [
         "Sí, siempre: la matriz de atención es simétrica.",
@@ -127,13 +218,28 @@
         "Solo con máscara causal."
       ],
       "correct": "B",
-      "answer": "Lo que un token busca no es lo mismo que lo que ofrece; la clase de hoy muestra de dónde sale esa asimetría."
+      "answer": "B. No necesariamente.",
+      "explanation": "Lo que un token busca no es lo mismo que lo que ofrece; la clase de hoy muestra de dónde sale esa asimetría.",
+      "_choice": {
+        "signals": [
+          "is_question=true",
+          "labeled_items=4"
+        ],
+        "candidates": [
+          "quiz",
+          "statement"
+        ],
+        "picked": "quiz",
+        "rejected": {
+          "statement": "la lámina pregunta y revela, no afirma una sola idea"
+        }
+      }
     },
     {
+      "template": "quiz",
       "section": "Repaso",
       "title": "El chat no aprende",
-      "notes": "Mano alzada, revelar y seguir. Prepara la sección 6, sobre qué se minimiza al entrenar. Tiempo objetivo: ~1 min.\n\n---",
-      "template": "quiz",
+      "notes": "Mano alzada, revelar y seguir. Prepara la sección 6, sobre qué se minimiza al entrenar. Tiempo objetivo: ~1 min.",
       "question": "Cuando alguien le escribe a un chat, ¿el modelo aprende de esa conversación?",
       "options": [
         "Sí, ajusta sus parámetros en cada mensaje.",
@@ -142,7 +248,23 @@
         "Solo con temperatura alta."
       ],
       "correct": "B",
-      "answer": "Entrenar y usar el modelo son dos fases distintas; en el chat los pesos no cambian."
+      "answer": "B. No: la conversación es inferencia y los parámetros están congelados.",
+      "explanation": "Entrenar y usar el modelo son dos fases distintas; en el chat los pesos no cambian.",
+      "_choice": {
+        "signals": [
+          "is_question=true",
+          "labeled_items=4",
+          "polarity=false"
+        ],
+        "candidates": [
+          "quiz",
+          "pros-cons"
+        ],
+        "picked": "quiz",
+        "rejected": {
+          "pros-cons": "no hay dos grupos de ventajas y riesgos: es una pregunta con opciones"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -150,16 +272,16 @@
       "notes": ""
     },
     {
+      "template": "content+cards+image",
       "section": "Dónde quedamos",
       "title": "El ciclo de generación con el transformer abierto",
-      "notes": "Es la lámina 6.3 de la clase pasada con una sola diferencia: el recuadro \"TRANSFORMER\" muestra que es un bloque repetido N veces. Todo lo que está fuera de ese recuadro ya se vio; esta clase trata lo que está adentro. La frase de ejemplo va a ser \"the cat sat\" toda la clase, con vectores de dimensión 4, porque con eso las cuentas se hacen a mano y en la práctica van a tener que hacerlas. Tiempo objetivo: ~2 min.\n\n---",
-      "template": "content-image",
+      "notes": "Es la lámina 6.3 de la clase pasada con una sola diferencia: el recuadro \"TRANSFORMER\" muestra que es un bloque repetido N veces. Todo lo que está fuera de ese recuadro ya se vio; esta clase trata lo que está adentro. La frase de ejemplo va a ser \"the cat sat\" toda la clase, con vectores de dimensión 4, porque con eso las cuentas se hacen a mano y en la práctica van a tener que hacerlas. Tiempo objetivo: ~2 min.",
       "lead": "Cada token generado es una vuelta del ciclo: tokenizar, embeber, transformer, distribución sobre el vocabulario, elegir. El transformer es un bloque repetido N veces.",
-      "image": {
-        "src": "images/s1-1-1-ciclo-con-bloque.png",
+      "media": {
+        "src": "images/s1-1-1-ciclo-con-bloque.svg",
         "alt": "El ciclo de generacion con el transformer abierto: un bloque de atencion y feed-forward repetido N veces"
       },
-      "facts": [
+      "cards": [
         {
           "label": "Entrada y salida del bloque tienen la misma forma",
           "body": "una matriz de n filas (una por token) por d columnas. Por eso se pueden apilar."
@@ -172,19 +294,40 @@
           "label": "Cada bloque hace dos cosas",
           "body": "La atención mueve información entre tokens y enriquece el embedding de cada uno con información del contexto. La feed-forward procesa cada token por separado."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "has_table=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "process",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "process": "el ciclo ordenado está en el diagrama; los tres puntos son propiedades del bloque, no pasos",
+          "content-image": "labeled_items >= 2 con una imagen compartida: disolver los rótulos en facts está prohibido"
+        }
+      },
+      "design": "split-left"
     },
     {
+      "template": "content+cards+image",
       "section": "Dónde quedamos",
       "title": "La frase como matriz",
-      "notes": "Lámina de referencia, no de explicación: se muestra, se dice que van a volver a verla, y se sigue. El único punto que vale decir es que en un modelo real un embedding es un vector de 768 decimales que nadie interpreta columna por columna; acá son cuatro enteros solo para poder multiplicar en el pizarrón. Si alguien pregunta de dónde salen estos números en un modelo real: de la tabla de embeddings, que es una matriz |V| por d aprendida, y la lámina 3.2 de la clase pasada. Tiempo objetivo: ~1 min.\n\n---",
-      "template": "content-image",
+      "notes": "Lámina de referencia, no de explicación: se muestra, se dice que van a volver a verla, y se sigue. El único punto que vale decir es que en un modelo real un embedding es un vector de 768 decimales que nadie interpreta columna por columna; acá son cuatro enteros solo para poder multiplicar en el pizarrón. Si alguien pregunta de dónde salen estos números en un modelo real: de la tabla de embeddings, que es una matriz |V| por d aprendida, y la lámina 3.2 de la clase pasada. Tiempo objetivo: ~1 min.",
       "lead": "La frase \"the cat sat\" es una matriz X de 3 tokens por 4 dimensiones. La atención opera sobre esa matriz.",
-      "image": {
-        "src": "images/s1-2-1-frase-como-matriz.png",
+      "media": {
+        "src": "images/s1-2-1-frase-como-matriz.svg",
         "alt": "La frase the cat sat como matriz X de 3 tokens por 4 dimensiones"
       },
-      "facts": [
+      "cards": [
         {
           "label": "Una fila por token, una columna por dimensión",
           "body": "La cantidad de tokens y la dimensión del embedding son independientes: en un modelo real las filas son cientos o miles y d es 768 (GPT-2 chico) o 512 (paper de 2017). X casi nunca es cuadrada."
@@ -196,26 +339,44 @@
         {
           "label": "Los números son de juguete",
           "body": "Son enteros chicos para poder multiplicar a mano. En un modelo real son decimales aprendidos sin significado individual."
+        },
+        {
+          "label": "Convención",
+          "body": "n es la cantidad de tokens (acá 3) y d la dimensión del embedding (acá 4). Las matrices de pesos W son de d por d salvo indicación."
         }
       ],
-      "highlights": [
-        {
-          "body": "Convención: n es la cantidad de tokens (acá 3) y d la dimensión del embedding (acá 4). Las matrices de pesos W son de d por d salvo indicación.",
-          "kind": "note"
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=4",
+          "big_metrics=false",
+          "two_groups=false",
+          "has_table=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "la matriz es la imagen; los puntos no se leen en fila sobre un factor común",
+          "content-image": "cuatro rótulos paralelos con una imagen compartida: son tarjetas, no facts"
         }
-      ]
+      },
+      "design": "split-left"
     },
     {
+      "template": "content+cards+image",
       "section": "Dónde quedamos",
       "title": "La posición entra con el embedding",
-      "notes": "Va acá, antes de la atención, porque la pregunta \"¿y el orden?\" aparece en cuanto se ve que todo son productos entre filas, y es mejor contestarla antes de que se formule. El argumento de la permutación se puede demostrar después de la sección 2 (pedir que sigan la cuenta con dos filas de X intercambiadas), pero la solución conviene tenerla vista desde ahora: X ya lleva la posición sumada. Que se sume y no se concatene suele sorprender; la razón es que así todas las matrices siguen siendo de d columnas y el modelo aprende a separar lo que necesita. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "content-image",
+      "notes": "Va acá, antes de la atención, porque la pregunta \"¿y el orden?\" aparece en cuanto se ve que todo son productos entre filas, y es mejor contestarla antes de que se formule. El argumento de la permutación se puede demostrar después de la sección 2 (pedir que sigan la cuenta con dos filas de X intercambiadas), pero la solución conviene tenerla vista desde ahora: X ya lleva la posición sumada. Que se sume y no se concatene suele sorprender; la razón es que así todas las matrices siguen siendo de d columnas y el modelo aprende a separar lo que necesita. Tiempo objetivo: ~3 min.",
       "lead": "La atención compara vectores y no sabe en qué lugar de la frase está cada uno. Por eso, antes de cualquier cálculo, a cada embedding se le suma un vector que codifica su posición.",
-      "image": {
-        "src": "images/s1-3-1-posicion-mas-embedding.png",
+      "media": {
+        "src": "images/s1-3-1-posicion-mas-embedding.svg",
         "alt": "Cada fila de X es el embedding del token mas el vector de su posicion"
       },
-      "facts": [
+      "cards": [
         {
           "label": "Por qué hace falta",
           "body": "Todo lo que viene (proyecciones, productos punto, softmax, mezcla) trata a las filas de X como un conjunto: si se permutan las filas, se permuta la salida y nada más. Sin la posición, el modelo no distingue \"the cat sat\" de \"sat cat the\"."
@@ -228,7 +389,25 @@
           "label": "De dónde sale p",
           "body": "Del paper de 2017, una fórmula fija de senos y cosenos; en BERT y GPT-2, una tabla aprendida con una fila por posición (512 y 1024 filas). La lámina 3.6 muestra la fórmula."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "is_ordered=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "content-image": "Match de content-image: un conjunto rotulado de 2 o más conceptos con una imagen es content+cards+image; pasar las tarjetas a facts les quita el ícono",
+          "concept-breakdown": "requiere images == 0; perdería el diagrama de la suma"
+        }
+      },
+      "design": "split-right"
     },
     {
       "template": "section-agenda",
@@ -236,16 +415,16 @@
       "notes": ""
     },
     {
+      "template": "content+cards+image",
       "section": "La atención con números",
       "title": "Tres proyecciones del mismo vector",
-      "notes": "La pregunta que hay que contestar acá es por qué tres y no una. La respuesta corta es la asimetría: lo que un token pregunta no es lo que ofrece. Si usaran el mismo vector para buscar y para ser encontrado, el score de un token contra sí mismo sería su norma al cuadrado, y por Cauchy-Schwarz ningún otro token de norma igual o menor podría superarlo: la atención tendería a que cada token se mire a sí mismo. Ojo con afirmarlo como regla absoluta: con Q = K = X en el ejemplo, la fila de \"the\" da [2 0 2 1], empate entre \"the\" y \"sat\", porque \"sat\" tiene norma mayor. Las matrices del ejemplo son deliberadamente simples y hay que decirlo: nadie entrena una identidad. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "content-image",
+      "notes": "La pregunta que hay que contestar acá es por qué tres y no una. La respuesta corta es la asimetría: lo que un token pregunta no es lo que ofrece. Si usaran el mismo vector para buscar y para ser encontrado, el score de un token contra sí mismo sería su norma al cuadrado, y por Cauchy-Schwarz ningún otro token de norma igual o menor podría superarlo: la atención tendería a que cada token se mire a sí mismo. Ojo con afirmarlo como regla absoluta: con Q = K = X en el ejemplo, la fila de \"the\" da [2 0 2 1], empate entre \"the\" y \"sat\", porque \"sat\" tiene norma mayor. Las matrices del ejemplo son deliberadamente simples y hay que decirlo: nadie entrena una identidad. Tiempo objetivo: ~3 min.",
       "lead": "Cada token se proyecta tres veces con tres matrices que son parámetros entrenables del modelo. Q codifica lo que el token necesita del contexto, K lo que cada token le ofrece a los demás, y V la información que se mezcla para producir el embedding enriquecido.",
-      "image": {
-        "src": "images/s2-1-1-tres-proyecciones.png",
+      "media": {
+        "src": "images/s2-1-1-tres-proyecciones.svg",
         "alt": "X se multiplica por Wq, Wk y Wv y da Q, K y V"
       },
-      "facts": [
+      "cards": [
         {
           "label": "La intuición de cada una",
           "body": "Q sobre el embedding de una palabra da lo que esa palabra busca en el contexto. K sobre todas las palabras da lo que cada una aporta a la que consulta; comparar Q con las K produce la matriz de atención. V es la información que se combina con esos pesos, y el resultado es un embedding nuevo de la misma palabra con más información del contexto."
@@ -257,26 +436,42 @@
         {
           "label": "Son tres matrices porque son tres trabajos",
           "body": "Buscar y ser encontrado no es simétrico: \"it\" busca un sustantivo y \"animal\" ofrece ser uno. Si consulta y clave fueran la misma proyección, un token de norma grande se parecería sobre todo a sí mismo; las tres matrices rompen esa simetría."
+        },
+        {
+          "label": "En el ejemplo",
+          "body": "Wq es la identidad (Q = X), Wk permuta pares de columnas y Wv suma la columna 1 con la 3 y la 2 con la 4, y baja a dimensión 2. Se eligieron para que las cuentas salgan a mano; en un modelo real las tres son aprendidas y densas."
         }
       ],
-      "highlights": [
-        {
-          "body": "En el ejemplo: Wq es la identidad (Q = X), Wk permuta pares de columnas y Wv suma la columna 1 con la 3 y la 2 con la 4, y baja a dimensión 2. Se eligieron para que las cuentas salgan a mano; en un modelo real las tres son aprendidas y densas.",
-          "kind": "note"
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=4",
+          "two_groups=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-columns": "Q, K y V ya están explicadas en el diagrama; los cuatro puntos no son una columna por término",
+          "content-image": "Match de content-image: un conjunto rotulado de 2 o más conceptos con una imagen es content+cards+image; pasar las tarjetas a facts les quita el ícono"
         }
-      ]
+      },
+      "design": "split-right"
     },
     {
+      "template": "content+cards+image",
       "section": "La atención con números",
       "title": "Q y K en el ejemplo",
-      "notes": "Lámina de cálculo puro; no expliques, verificá una celda con ellos. Elegí la fila de \"cat\" en K: [0 2 0 1] con las columnas intercambiadas es [2 0 1 0]. Con una alcanza. El punto conceptual es la última viñeta: d_k tiene que coincidir entre Q y K porque se van a multiplicar, y d_v es libre. En el paper las tres son 64 por cabeza. Tiempo objetivo: ~2 min.\n\n---",
-      "template": "content-image",
+      "notes": "Lámina de cálculo puro; no expliques, verificá una celda con ellos. Elegí la fila de \"cat\" en K: [0 2 0 1] con las columnas intercambiadas es [2 0 1 0]. Con una alcanza. El punto conceptual es la última viñeta: d_k tiene que coincidir entre Q y K porque se van a multiplicar, y d_v es libre. En el paper las tres son 64 por cabeza. Tiempo objetivo: ~2 min.",
       "lead": "Con las matrices del ejemplo, las consultas quedan iguales a X y las claves son X con los pares de columnas intercambiados.",
-      "image": {
-        "src": "images/s2-2-1-q-y-k.png",
+      "media": {
+        "src": "images/s2-2-1-q-y-k.svg",
         "alt": "Las matrices Q y K del ejemplo, lado a lado"
       },
-      "facts": [
+      "cards": [
         {
           "label": "Wk intercambia la columna 1 con la 2 y la 3 con la 4",
           "body": "Por eso \"the\", que en X es [1 0 1 0], como clave es [0 1 0 1]."
@@ -288,26 +483,46 @@
         {
           "label": "Wq, Wk y Wv son parámetros entrenables",
           "body": "El entrenamiento las ajusta por gradiente como a cualquier peso de la red; las del ejemplo están fijadas a mano solo para poder calcular."
+        },
+        {
+          "label": "La forma importa más que los valores",
+          "body": "Q y K tienen que tener la misma dimensión para poder multiplicarse. V puede tener otra."
         }
       ],
-      "highlights": [
-        {
-          "body": "La forma importa más que los valores. Q y K tienen que tener la misma dimensión para poder multiplicarse. V puede tener otra.",
-          "kind": "note"
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=4",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "polarity=false",
+          "has_table=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "regla de columnas: leer una fila no dice nada y los cuatro puntos no comparten un factor (chequeo anti-default de lectura cruzada: no); la comparación Q contra K está en la imagen, no en el cuerpo",
+          "content-image": "Match de content-image: un conjunto rotulado de 2 o más conceptos con una imagen es content+cards+image; pasar las tarjetas a facts les quita el ícono"
         }
-      ]
+      },
+      "design": "split-left"
     },
     {
+      "template": "content+cards+image",
       "section": "La atención con números",
       "title": "El producto punto mide afinidad",
-      "notes": "Hacé la cuenta de una celda en el pizarrón, la de \"cat\" contra \"the\", y dejá que ellos hagan otra. Señalá que es la primera matriz cuadrada que aparece, y que lo es porque compara tokens contra tokens, no por la dimensión del embedding. La observación más importante es la de la tercera viñeta: esta matriz es el costo que atacan casi todas las variantes modernas que se nombran en la sección 5. Cuando alguien diga \"el transformer es cuadrático\", es esta tabla. Una cosa que conviene señalar: la diagonal no es la más alta en todas las filas (\"the\" contra sí mismo da 0), y eso es efecto de que Wk no es la identidad. Con Q = K la diagonal tendería a ganar, sobre todo en los tokens de norma grande. Tiempo objetivo: ~4 min.\n\n---",
-      "template": "content-image",
+      "notes": "Hacé la cuenta de una celda en el pizarrón, la de \"cat\" contra \"the\", y dejá que ellos hagan otra. Señalá que es la primera matriz cuadrada que aparece, y que lo es porque compara tokens contra tokens, no por la dimensión del embedding. La observación más importante es la de la tercera viñeta: esta matriz es el costo que atacan casi todas las variantes modernas que se nombran en la sección 5. Cuando alguien diga \"el transformer es cuadrático\", es esta tabla. Una cosa que conviene señalar: la diagonal no es la más alta en todas las filas (\"the\" contra sí mismo da 0), y eso es efecto de que Wk no es la identidad. Con Q = K la diagonal tendería a ganar, sobre todo en los tokens de norma grande. Tiempo objetivo: ~4 min.",
       "lead": "Cada consulta se multiplica contra todas las claves. El resultado, Q Kᵀ, es una matriz de n por n: cuánto le importa a cada token cada otro token.",
-      "image": {
-        "src": "images/s2-3-1-matriz-qkt.png",
+      "media": {
+        "src": "images/s2-3-1-matriz-qkt.svg",
         "alt": "La matriz Q K transpuesta de 3 por 3 y la cuenta de la celda cat contra the"
       },
-      "facts": [
+      "cards": [
         {
           "label": "Una celda es un producto punto",
           "body": "Fila \"cat\" (consulta [0 2 0 1]) contra columna \"the\" (clave [0 1 0 1]): 0·0 + 2·1 + 0·0 + 1·1 = 3."
@@ -319,26 +534,47 @@
         {
           "label": "Es casi la matriz de atención",
           "body": "Le faltan dos pasos, la escala y el softmax, para que cada fila sea una distribución. Es la única matriz cuadrada del proceso: n por n, sea cual sea d."
+        },
+        {
+          "label": "Esta matriz es el costo cuadrático",
+          "body": "Son n² celdas: 9 con 3 tokens, 16 millones con 4.096, por cabeza y por capa."
         }
       ],
-      "highlights": [
-        {
-          "body": "Esta matriz es el costo cuadrático. Son n² celdas: 9 con 3 tokens, 16 millones con 4.096, por cabeza y por capa.",
-          "kind": "note"
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=4",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "one_metric=false",
+          "has_table=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "stat",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "stat": "big_metrics=false: las cifras están dentro de prosa explicativa; stat necesita 2-4 métricas sueltas como carga",
+          "content-image": "Match de content-image: un conjunto rotulado de 2 o más conceptos con una imagen es content+cards+image; pasar las tarjetas a facts les quita el ícono"
         }
-      ]
+      },
+      "design": "split-left"
     },
     {
+      "template": "content+cards+image",
       "section": "La atención con números",
       "title": "Escalar y repartir: el softmax",
-      "notes": "Dos justificaciones, y las dos van al ejercicio a mano de la práctica. La de la escala es estadística: si las componentes de q y k son independientes con varianza 1, la suma de d_k productos tiene varianza d_k, así que dividir por √d_k devuelve la varianza a 1 sea cual sea la dimensión. Con d = 4 el efecto es chico, pero decí que con 64 sin la escala los scores andan por ±8 y el softmax ya está saturado. La del softmax es la derivabilidad: el entrenamiento necesita que un cambio chico en los pesos mueva la salida un poco, y un máximo duro no lo hace. Verificá la fila de \"cat\" con ellos, con calculadora, es un minuto. Tiempo objetivo: ~4 min.\n\n---",
-      "template": "content-image",
+      "notes": "Dos justificaciones, y las dos van al ejercicio a mano de la práctica. La de la escala es estadística: si las componentes de q y k son independientes con varianza 1, la suma de d_k productos tiene varianza d_k, así que dividir por √d_k devuelve la varianza a 1 sea cual sea la dimensión. Con d = 4 el efecto es chico, pero decí que con 64 sin la escala los scores andan por ±8 y el softmax ya está saturado. La del softmax es la derivabilidad: el entrenamiento necesita que un cambio chico en los pesos mueva la salida un poco, y un máximo duro no lo hace. Verificá la fila de \"cat\" con ellos, con calculadora, es un minuto. Tiempo objetivo: ~4 min.",
       "lead": "Los scores se dividen por √d_k y cada fila pasa por un softmax. El resultado es la matriz de atención A: una distribución por token, con pesos positivos que suman uno.",
-      "image": {
-        "src": "images/s2-4-1-matriz-de-atencion.png",
+      "media": {
+        "src": "images/s2-4-1-matriz-de-atencion.svg",
         "alt": "La matriz de atencion A con filas que suman 1 y el camino de la fila de cat"
       },
-      "facts": [
+      "cards": [
         {
           "label": "Dividir por √d_k = 2",
           "body": "La fila \"cat\" pasa de [3 0 3] a [1,5 0 1,5]. Sin la escala, los productos crecen con d_k y con d_k = 64 el softmax se satura: un peso cerca de 1, el resto cerca de 0 y gradiente casi nulo."
@@ -351,44 +587,108 @@
           "label": "Por qué softmax",
           "body": "Es derivable, así que se entrena por gradiente, y reparte: \"cat\" mira a \"the\" y a \"sat\" por igual y casi nada a sí misma. Quedarse con el máximo daría un peso de 1 a un solo token y no tendría gradiente."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "has_table=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "process",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "process": "Match de process: el orden tiene que tener sentido en todo el conjunto (rótulos ordinales o flujo de pasos); solo dos de tres puntos son pasos y ninguno lleva ordinal, así que is_ordered=false",
+          "content-image": "Match de content-image: un conjunto rotulado de 2 o más conceptos con una imagen es content+cards+image; pasar las tarjetas a facts les quita el ícono"
+        }
+      },
+      "design": "split-right"
     },
     {
+      "template": "value-columns",
       "section": "La atención con números",
       "title": "Mezclar los valores",
-      "notes": "Acá se cierra la atención. La cuenta del diagrama es la que hay que hacer en el pizarrón: una fila de pesos por una matriz de valores da la nueva fila del token. Insistí en la palabra \"mezcla\": la salida de \"cat\" ya no es solo \"cat\", es \"cat\" leído en su contexto, y eso es lo que la clase pasada llamaba representación contextual. La segunda viñeta es el argumento de la paralelización, ahora con las operaciones a la vista: ningún paso depende del token anterior. Tiempo objetivo: ~4 min.\n\n---",
-      "template": "content-image",
+      "notes": "Acá se cierra la atención. La cuenta del diagrama es la que hay que hacer en el pizarrón: una fila de pesos por una matriz de valores da la nueva fila del token. Insistí en la palabra \"mezcla\": la salida de \"cat\" ya no es solo \"cat\", es \"cat\" leído en su contexto, y eso es lo que la clase pasada llamaba representación contextual. La segunda viñeta es el argumento de la paralelización, ahora con las operaciones a la vista: ningún paso depende del token anterior. Tiempo objetivo: ~4 min.",
       "lead": "La salida de cada token es la suma de todos los V, pesada por su fila de atención. \"cat\" se reescribe como 0,45·the + 0,10·cat + 0,45·sat.",
-      "image": {
-        "src": "images/s2-5-1-mezcla-de-valores.png",
+      "media": {
+        "src": "images/s2-5-1-mezcla-de-valores.svg",
         "alt": "La fila de pesos de cat por la matriz V da la nueva representacion de cat"
       },
-      "facts": [
+      "design": "split-left",
+      "columns": [
+        {
+          "header": "salida A·V",
+          "cells": [
+            "the",
+            "cat",
+            "sat"
+          ]
+        },
+        {
+          "header": "dim 1",
+          "cells": [
+            "0,91",
+            "1,80",
+            "1,39"
+          ]
+        },
+        {
+          "header": "dim 2",
+          "cells": [
+            "2,30",
+            "1,20",
+            "1,93"
+          ]
+        }
+      ],
+      "highlights": [
         {
           "label": "Es un promedio ponderado",
-          "body": "Cada token sale como una mezcla de lo que entregan todos, con más peso de los que le importan. Es la versión numérica de \"it reescrito con el peso puesto sobre animal\"."
+          "body": "Cada token sale como una mezcla de lo que entregan todos, con más peso de los que le importan. Es la versión numérica de \"it reescrito con el peso puesto sobre animal\".",
+          "kind": "note"
         },
         {
           "label": "Toda la frase se procesa con cinco multiplicaciones de matrices y un softmax",
-          "body": "X Wq, X Wk, X Wv, Q Kᵀ, softmax por fila y A·V. No hay bucle sobre los tokens, y por eso paraleliza."
-        },
-        {
-          "label": "Salida",
-          "body": "the 0,91 2,30 · cat 1,80 1,20 · sat 1,39 1,93"
+          "body": "X Wq, X Wk, X Wv, Q Kᵀ, softmax por fila y A·V. No hay bucle sobre los tokens, y por eso paraleliza.",
+          "kind": "takeaway"
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "has_table=true",
+          "n_images=1",
+          "labeled_items=2"
+        ],
+        "candidates": [
+          "value-columns",
+          "content+cards+image",
+          "content-image"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "content+cards+image": "una tabla con imagen compartida sigue siendo value-columns con media; como tarjetas se pierde la alineación de la salida",
+          "content-image": "disolvería la tabla en facts"
+        }
+      }
     },
     {
+      "template": "content+cards+image",
       "section": "La atención con números",
       "title": "La máscara causal",
-      "notes": "La justificación es de entrenamiento: si \"cat\" pudiera ver \"sat\" mientras aprende a predecir \"sat\", la tarea sería trivial y no aprendería nada. Con la máscara, una frase de n tokens da n ejemplos de entrenamiento válidos de una vez: es la ventana deslizante de la clase pasada calculada en paralelo. La tercera viñeta organiza la sección 4: encoder y decoder difieren en esta matriz triangular y en poco más. Tiempo objetivo: ~4 min.\n\n---",
-      "template": "content-image",
+      "notes": "La justificación es de entrenamiento: si \"cat\" pudiera ver \"sat\" mientras aprende a predecir \"sat\", la tarea sería trivial y no aprendería nada. Con la máscara, una frase de n tokens da n ejemplos de entrenamiento válidos de una vez: es la ventana deslizante de la clase pasada calculada en paralelo. La tercera viñeta organiza la sección 4: encoder y decoder difieren en esta matriz triangular y en poco más. Tiempo objetivo: ~4 min.",
       "lead": "Para generar texto, un token no puede mirar a los que vienen después. Se ponen en menos infinito antes del softmax y quedan con peso cero.",
-      "image": {
-        "src": "images/s2-6-1-mascara-causal.png",
+      "media": {
+        "src": "images/s2-6-1-mascara-causal.svg",
         "alt": "Scores con menos infinito arriba de la diagonal y la matriz de atencion triangular resultante"
       },
-      "facts": [
+      "cards": [
         {
           "label": "Por qué menos infinito",
           "body": "e^{-∞} = 0, así que el softmax reparte solo entre los tokens permitidos y la fila sigue sumando uno. Un score de cero le daría al token prohibido un peso e^0 = 1, que no es cero."
@@ -400,14 +700,30 @@
         {
           "label": "Es la diferencia entre un encoder-only y un decoder-only",
           "body": "BERT no enmascara y cada token ve la frase entera. GPT enmascara y cada token ve solo lo anterior. El resto del bloque es igual."
+        },
+        {
+          "label": "La salida cambia con la máscara",
+          "body": "\"cat\" pasa de [1,80 1,20] a [1,64 0,55], porque ya no recibe nada de \"sat\". Salida completa: the [2,00 0], cat [1,64 0,55], sat [1,39 1,93]."
         }
       ],
-      "highlights": [
-        {
-          "body": "La salida cambia con la máscara: \"cat\" pasa de [1,80 1,20] a [1,64 0,55], porque ya no recibe nada de \"sat\". Salida completa: the [2,00 0], cat [1,64 0,55], sat [1,39 1,93].",
-          "kind": "note"
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=4",
+          "two_groups=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "el antes/después de la máscara está en la imagen; los puntos no comparten filas",
+          "content-image": "Match de content-image: un conjunto rotulado de 2 o más conceptos con una imagen es content+cards+image; pasar las tarjetas a facts les quita el ícono"
         }
-      ]
+      },
+      "design": "split-left"
     },
     {
       "template": "section-agenda",
@@ -415,16 +731,16 @@
       "notes": ""
     },
     {
+      "template": "content+cards+image",
       "section": "El bloque completo",
       "title": "Varias cabezas en paralelo",
-      "notes": "La justificación es el \"averaging inhibits this\" del paper: una sola distribución de pesos no puede apuntar fuerte a dos lugares por dos motivos distintos. La segunda viñeta suele sorprender y conviene detenerse: no son ocho atenciones de 512, son ocho de 64, y la concatenación devuelve 512. Wo es la matriz que mezcla lo que dijeron las cabezas; sin ella cada cabeza escribiría en su propio rincón del vector. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "content-image",
+      "notes": "La justificación es el \"averaging inhibits this\" del paper: una sola distribución de pesos no puede apuntar fuerte a dos lugares por dos motivos distintos. La segunda viñeta suele sorprender y conviene detenerse: no son ocho atenciones de 512, son ocho de 64, y la concatenación devuelve 512. Wo es la matriz que mezcla lo que dijeron las cabezas; sin ella cada cabeza escribiría en su propio rincón del vector. Tiempo objetivo: ~3 min.",
       "lead": "Multi-head attention corre h atenciones en paralelo, cada una con sus propias Wq, Wk, Wv y dimensión d/h, concatena las salidas y las proyecta con una matriz más.",
-      "image": {
-        "src": "images/s3-1-1-multicabeza.png",
+      "media": {
+        "src": "images/s3-1-1-multicabeza.svg",
         "alt": "h cabezas de atencion en paralelo que se concatenan y se proyectan con Wo"
       },
-      "facts": [
+      "cards": [
         {
           "label": "Por qué varias",
           "body": "Una sola cabeza promedia: si \"it\" necesita mirar al sujeto para una cosa y al verbo para otra, con una distribución tiene que repartir. Con ocho cabezas, cada una aprende una relación distinta. El paper lo muestra: cabezas que siguen dependencias largas, otras que resuelven anáforas, otras que siguen la estructura sintáctica."
@@ -434,18 +750,37 @@
           "body": "d_k = d/h: en el paper, 512/8 = 64 por cabeza. Las ocho cabezas juntas cuestan lo mismo que una de dimensión completa."
         },
         {
-          "label": "En el ejemplo de juguete,",
+          "label": "En el ejemplo de juguete",
           "body": "con h = 2, habría dos cabezas de dimensión 2, cada una con su propia matriz de atención de 3 por 3. La de la sección 2 corresponde a una sola cabeza."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "is_ordered=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "content-image": "Match de content-image: un conjunto rotulado de 2 o más conceptos con una imagen es content+cards+image; pasar las tarjetas a facts les quita el ícono",
+          "concept-breakdown": "requiere images == 0"
+        }
+      },
+      "design": "split-right"
     },
     {
+      "template": "concept-breakdown",
       "section": "El bloque completo",
       "title": "La feed-forward: la misma red para cada posición",
-      "notes": "La justificación de la FFN es la que más cuesta y la que más importa: la atención es lineal en V (pesos por valores), así que si solo hubiera atención, el modelo entero sería casi una composición de mapas lineales. La ReLU es el único lugar del bloque donde se computa algo que no es una combinación de la entrada. La cuenta de la última viñeta prepara la lámina 3.7. Tiempo objetivo: ~4 min.\n\n---",
-      "template": "icon-list",
+      "notes": "La justificación de la FFN es la que más cuesta y la que más importa: la atención es lineal en V (pesos por valores), así que si solo hubiera atención, el modelo entero sería casi una composición de mapas lineales. La ReLU es el único lugar del bloque donde se computa algo que no es una combinación de la entrada. La cuenta de la última viñeta prepara la lámina 3.7. Tiempo objetivo: ~4 min.",
       "lead": "Después de la atención, cada token pasa solo por una red de dos capas: subir a 4d, ReLU, bajar a d. Es la misma red para todas las posiciones y concentra dos tercios de los parámetros del bloque.",
-      "rows": [
+      "format": "grid",
+      "cards": [
         {
           "label": "FFN(x) = max(0, x W1 + b1) W2 + b2",
           "body": "En el paper: d = 512, d_ff = 2048. BERT usa el mismo 4d, con GELU en vez de ReLU, siguiendo al GPT original."
@@ -462,19 +797,39 @@
           "label": "Cuenta",
           "body": "dos matrices de d por 4d son 8d² parámetros. La atención (Wq, Wk, Wv, Wo) son 4d². Feed-forward es el doble que la atención."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "n_images=0",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "stat"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "subir-ReLU-bajar está en el lead; los cuatro puntos son fórmula, dos porqués y una cuenta, sin orden",
+          "stat": "8d² y 4d² aparecen dentro de una explicación, no como cifras sueltas"
+        }
+      }
     },
     {
+      "template": "content+cards+image",
       "section": "El bloque completo",
       "title": "El problema de apilar: el gradiente se pierde",
-      "notes": "Lámina de problema, sin solución todavía, para que la residual de la siguiente se lea como respuesta y no como convención. La cuenta de 0,9^48 se hace en el pizarrón en diez segundos y es la que se acuerdan. Conectá con la clase de backpropagation: es la misma regla de la cadena que ya derivaron, aplicada a una composición larga. Si preguntan por qué las derivadas serían menores que uno, la respuesta corta es que activaciones como la sigmoide tienen derivada máxima 0,25 y que las matrices de pesos con inicialización chica también encogen; ReLU y una buena inicialización ayudan pero no alcanzan a 96 capas. Tiempo objetivo: ~2 min.\n\n---",
-      "template": "content-image",
+      "notes": "Lámina de problema, sin solución todavía, para que la residual de la siguiente se lea como respuesta y no como convención. La cuenta de 0,9^48 se hace en el pizarrón en diez segundos y es la que se acuerdan. Conectá con la clase de backpropagation: es la misma regla de la cadena que ya derivaron, aplicada a una composición larga. Si preguntan por qué las derivadas serían menores que uno, la respuesta corta es que activaciones como la sigmoide tienen derivada máxima 0,25 y que las matrices de pesos con inicialización chica también encogen; ReLU y una buena inicialización ayudan pero no alcanzan a 96 capas. Tiempo objetivo: ~2 min.",
       "lead": "Para entrenar, el error medido en la salida tiene que volver hasta la primera capa. En una pila de N bloques ese camino es un producto de N derivadas, y un producto largo de números menores que uno tiende a cero.",
-      "image": {
-        "src": "images/s3-3-1-gradiente-que-se-pierde.png",
+      "media": {
+        "src": "images/s3-3-1-gradiente-que-se-pierde.svg",
         "alt": "El gradiente de la primera capa es un producto de N derivadas que se desvanece o explota"
       },
-      "facts": [
+      "cards": [
         {
           "label": "La intuición",
           "body": "Cada bloque transforma su entrada, y la derivada de la composición es el producto de las derivadas de cada uno (regla de la cadena, la misma de backpropagation). Con 12, 48 o 96 factores, el producto se desvanece o explota salvo que cada factor esté muy cerca de uno."
@@ -487,19 +842,38 @@
           "label": "Lo que hace falta",
           "body": "un camino desde la salida hasta la entrada cuya derivada sea exactamente uno, sin importar cuántos bloques haya. Eso es la conexión residual de la lámina siguiente."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "is_ordered=false",
+          "one_metric=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "big-number",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "big-number": "el 0,006 vive en el diagrama; la lámina es un argumento en tres partes, no una cifra sola",
+          "content-image": "Match de content-image: un conjunto rotulado de 2 o más conceptos con una imagen es content+cards+image; pasar las tarjetas a facts les quita el ícono"
+        }
+      },
+      "design": "split-left"
     },
     {
+      "template": "content+cards+image",
       "section": "El bloque completo",
       "title": "Residuales: la salida es la entrada más una corrección",
-      "notes": "La justificación es de optimización y les va a sonar de la clase de backpropagation: sin el atajo, el gradiente en la capa 1 es el producto de 48 jacobianos y se desvanece o explota. Con el atajo, hay un término que es la identidad. La consecuencia de la segunda viñeta es la más útil para leer papers modernos: la imagen del residual stream como una cinta que atraviesa el modelo y a la que las capas leen y escriben. AttnRes de Kimi K3, que van a ver en la clase que viene, es una atención sobre esa cinta. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "content-image",
+      "notes": "La justificación es de optimización y les va a sonar de la clase de backpropagation: sin el atajo, el gradiente en la capa 1 es el producto de 48 jacobianos y se desvanece o explota. Con el atajo, hay un término que es la identidad. La consecuencia de la segunda viñeta es la más útil para leer papers modernos: la imagen del residual stream como una cinta que atraviesa el modelo y a la que las capas leen y escriben. AttnRes de Kimi K3, que van a ver en la clase que viene, es una atención sobre esa cinta. Tiempo objetivo: ~3 min.",
       "lead": "Cada subcapa suma su resultado al vector de entrada: x → x + Atención(x) → x + FFN(x). El camino directo deja pasar la entrada intacta y las capas aprenden solo la diferencia.",
-      "image": {
-        "src": "images/s3-4-1-residuales.png",
+      "media": {
+        "src": "images/s3-4-1-residuales.svg",
         "alt": "Cada subcapa suma su resultado a la entrada por un camino residual"
       },
-      "facts": [
+      "cards": [
         {
           "label": "El vector de cada token atraviesa toda la pila",
           "body": "y cada bloque le agrega algo. Se lo llama *residual stream*. Una cabeza puede escribir en él en la capa 3 y otra leerlo en la capa 10."
@@ -512,15 +886,34 @@
           "label": "Por qué d se conserva",
           "body": "en toda la pila: para que la suma sea posible."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "is_ordered=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "content-image": "Match de content-image: un conjunto rotulado de 2 o más conceptos con una imagen es content+cards+image; pasar las tarjetas a facts les quita el ícono",
+          "concept-breakdown": "requiere images == 0"
+        }
+      },
+      "design": "split-right"
     },
     {
+      "template": "concept-breakdown",
       "section": "El bloque completo",
       "title": "Layer norm: mantener los números en rango",
-      "notes": "Hacé la cuenta de la primera viñeta, es de treinta segundos y es exactamente lo que van a tener que justificar en el ejercicio a mano: qué hace y por qué. La justificación de \"por vector\" es la que distingue layer norm de batch norm, que vieron en redes: acá cada token se normaliza solo, y por eso funciona con secuencias de distinto largo y con batch de tamaño uno en inferencia. Lo de pre-LN contra post-LN es una viñeta y sigue; lo que importa es que el diagrama de la lámina anterior, con la suma limpia, es pre-LN. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "icon-list",
+      "notes": "Hacé la cuenta de la primera viñeta, es de treinta segundos y es exactamente lo que van a tener que justificar en el ejercicio a mano: qué hace y por qué. La justificación de \"por vector\" es la que distingue layer norm de batch norm, que vieron en redes: acá cada token se normaliza solo, y por eso funciona con secuencias de distinto largo y con batch de tamaño uno en inferencia. Lo de pre-LN contra post-LN es una viñeta y sigue; lo que importa es que el diagrama de la lámina anterior, con la suma limpia, es pre-LN. Tiempo objetivo: ~3 min.",
       "lead": "Antes de cada subcapa, cada vector se normaliza por separado: se le resta su media y se lo divide por su desvío. Dos parámetros aprendidos por dimensión lo reescalan.",
-      "rows": [
+      "format": "grid",
+      "cards": [
         {
           "label": "La cuenta, para un vector [2 0 1 1]",
           "body": "media 1, varianza 0,5, desvío 0,71. Normalizado: [1,41 -1,41 0 0]. Después se multiplica por γ y se suma β, aprendidos."
@@ -537,19 +930,38 @@
           "label": "Pre-LN y post-LN",
           "body": "El paper de 2017 normaliza después de sumar: LN(x + Sub(x)). GPT-2 lo movió antes: x + Sub(LN(x)). Con pre-LN el camino residual queda limpio y el entrenamiento es más estable. GPT-2, ViT y casi todo lo posterior usan pre-LN."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "n_images=0",
+          "is_ordered=false",
+          "two_groups=false",
+          "big_metrics=false"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "pros-cons",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "pros-cons": "pre-LN contra post-LN es una tarjeta de cuatro, no la estructura de la lámina, y no hay polaridad ventaja/riesgo",
+          "process": "los puntos no forman una secuencia"
+        }
+      }
     },
     {
+      "template": "content+cards+image",
       "section": "El bloque completo",
       "title": "La fórmula de la posición: senos y cosenos",
-      "notes": "El porqué ya está dicho en 1.3; acá se demuestra la permutación si no se hizo entonces: X con las filas de \"cat\" y \"sat\" intercambiadas da Q Kᵀ con filas y columnas intercambiadas, el mismo softmax permutado y A·V con las mismas filas en otro orden. La tabla muestra la fórmula del paper con d = 4, que es demasiado chico para verlo bien (las dos columnas de la derecha casi no se mueven); con d = 512 hay 256 frecuencias entre las dos. No entres en RoPE acá. Tiempo objetivo: ~2 min.\n\n---",
-      "template": "content-image",
+      "notes": "El porqué ya está dicho en 1.3; acá se demuestra la permutación si no se hizo entonces: X con las filas de \"cat\" y \"sat\" intercambiadas da Q Kᵀ con filas y columnas intercambiadas, el mismo softmax permutado y A·V con las mismas filas en otro orden. La tabla muestra la fórmula del paper con d = 4, que es demasiado chico para verlo bien (las dos columnas de la derecha casi no se mueven); con d = 512 hay 256 frecuencias entre las dos. No entres en RoPE acá. Tiempo objetivo: ~2 min.",
       "lead": "El vector de posición que se suma al embedding (lámina 1.3) puede ser fijo. El paper de 2017 usa senos y cosenos de distinta frecuencia, uno por dimensión.",
-      "image": {
-        "src": "images/s3-6-1-tabla-de-posicion.png",
+      "media": {
+        "src": "images/s3-6-1-tabla-de-posicion.svg",
         "alt": "Tabla de codificacion sinusoidal de posicion con d igual a 4 para las posiciones 0 a 3"
       },
-      "facts": [
+      "cards": [
         {
           "label": "El paper suma un vector fijo de senos y cosenos",
           "body": "PE(pos, 2i) = sen(pos / 10000^{2i/d}), PE(pos, 2i+1) = cos(·). Cada par de dimensiones es una sinusoide de distinta frecuencia; las de la izquierda cambian rápido, las de la derecha casi no cambian (con d = 4, la tercera y cuarta columna apenas se mueven)."
@@ -562,51 +974,135 @@
           "label": "Alternativas",
           "body": "embeddings de posición aprendidos (BERT, GPT-2: una tabla de 512 o 1024 filas, iguales en calidad según el paper) y RoPE, que rota Q y K en vez de sumar un vector; la usan los LLM actuales (sección 5)."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "has_table=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "la tabla de posiciones es la imagen; el texto no tiene tabla propia",
+          "content-image": "Match de content-image: un conjunto rotulado de 2 o más conceptos con una imagen es content+cards+image; pasar las tarjetas a facts les quita el ícono"
+        }
+      },
+      "design": "split-left"
     },
     {
+      "template": "value-columns",
       "section": "El bloque completo",
       "title": "Cuenta de parámetros de un bloque",
-      "notes": "La lámina cierra la sección con una cuenta que cualquiera puede repetir y que resuelve una pregunta que quedó abierta la clase pasada (\"del orden de cientos de miles de millones\", sin fuente). El ejemplo de d = 12.288 y 96 capas es la configuración publicada de GPT-3 175B; da 174 mil millones con la fórmula, y el resto son embeddings. Los 63 M contra los 65 M del paper: la diferencia son sesgos, layer norms y el redondeo del vocabulario; el decoder suma 4 d² más por bloque por la cross-attention, y por eso su fila es 16 N d². Alcanza con que el orden dé. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "comparison",
+      "notes": "La lámina cierra la sección con una cuenta que cualquiera puede repetir y que resuelve una pregunta que quedó abierta la clase pasada (\"del orden de cientos de miles de millones\", sin fuente). Los 63 M contra los 65 M del paper: la diferencia son sesgos, layer norms y el redondeo del vocabulario; el decoder suma 4 d² más por bloque por la cross-attention, y por eso su fila es 16 N d². Alcanza con que el orden dé. Tiempo objetivo: ~3 min.",
+      "lead": "Un bloque tiene unos 12 d² parámetros: 4 d² en la atención y 8 d² en la feed-forward. Con eso se reconstruyen los tamaños de los modelos conocidos.",
+      "design": "full",
       "columns": [
+        {
+          "header": "",
+          "cells": [
+            "Atención por bloque",
+            "Feed-forward por bloque",
+            "N bloques de encoder",
+            "N bloques de decoder",
+            "Embeddings",
+            "Total aprox."
+          ]
+        },
+        {
+          "header": "Fórmula",
+          "cells": [
+            "4 d² (Wq, Wk, Wv, Wo)",
+            "8 d² (d × 4d, 4d × d)",
+            "12 N d²",
+            "16 N d² (suma la cross-attention)",
+            "|V| · d (+ posiciones)",
+            ""
+          ]
+        },
         {
           "header": "Paper 2017 (d = 512, N = 6)",
           "cells": [
-            "Atención por bloque (4 d² (Wq, Wk, Wv, Wo)): 1,05 M",
-            "Feed-forward por bloque (8 d² (d × 4d, 4d × d)): 2,10 M",
-            "N bloques de encoder (12 N d²): 18,9 M",
-            "N bloques de decoder (16 N d² (suma la cross-attention)): 25,2 M",
-            "Embeddings (|V| · d (+ posiciones)): 37k · 512 = 19 M",
-            "Total aprox.: ~63 M (paper: 65 M)"
+            "1,05 M",
+            "2,10 M",
+            "18,9 M",
+            "25,2 M",
+            "37k · 512 = 19 M",
+            "~63 M (paper: 65 M)"
           ]
         },
         {
           "header": "GPT-2 chico (d = 768, N = 12)",
           "cells": [
-            "Atención por bloque: 2,36 M",
-            "Feed-forward por bloque: 4,72 M",
-            "N bloques de encoder: 84,9 M (decoder-only)",
-            "N bloques de decoder: no tiene",
-            "Embeddings: 50.257 · 768 = 38,6 M",
-            "Total aprox.: ~124 M"
+            "2,36 M",
+            "4,72 M",
+            "84,9 M (decoder-only)",
+            "no tiene",
+            "50.257 · 768 = 38,6 M",
+            "~124 M"
           ]
         }
       ],
       "highlights": [
         {
-          "body": "Un bloque tiene unos 12 d² parámetros: 4 d² en la atención y 8 d² en la feed-forward. Con eso se reconstruyen los tamaños de los modelos conocidos.",
-          "kind": "important"
-        },
-        {
-          "body": "Los bloques suman 12 N d². Es la fórmula de Kaplan y otros para los parámetros sin contar embeddings; con ella se estima cualquier modelo del que se conozcan d y N.",
-          "kind": "note"
-        },
-        {
-          "body": "La tabla de embeddings es grande en modelos chicos y despreciable en los grandes. En GPT-2 chico es un tercio del total; en un modelo con d = 12.288 y 96 bloques, los bloques son 174.000 M y los embeddings 600 M.",
-          "kind": "note"
+          "label": "Los cientos de miles de millones de parámetros de un LLM",
+          "body": "son 12 N d² con d y N grandes.",
+          "kind": "takeaway"
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "has_table=true",
+          "big_metrics=true",
+          "labeled_items=3"
+        ],
+        "candidates": [
+          "value-columns",
+          "stat",
+          "concept-breakdown"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "stat": "son seis filas por tres columnas de valores, no 2-4 cifras sueltas",
+          "concept-breakdown": "factor -> fórmula -> modelo A -> modelo B se lee por columnas; como tarjetas se pierde la alineación"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "El bloque completo",
+      "title": "Cuenta de parámetros de un bloque",
+      "format": "grid",
+      "cards": [
+        {
+          "label": "Los bloques suman 12 N d²",
+          "body": "Es la fórmula de Kaplan y otros para los parámetros sin contar embeddings; con ella se estima cualquier modelo del que se conozcan d y N."
+        },
+        {
+          "label": "La tabla de embeddings es grande en modelos chicos y despreciable en los grandes",
+          "body": "En GPT-2 chico es un tercio del total; en un modelo con d = 12.288 y 96 bloques, los bloques son 174.000 M y los embeddings 600 M."
+        }
+      ],
+      "notes": "El ejemplo de d = 12.288 y 96 capas es la configuración publicada de GPT-3 175B; da 174 mil millones con la fórmula, y el resto son embeddings.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "has_table=false",
+          "ordered=false"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "pros-cons"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "pros-cons": "las dos notas no son ventajas y desventajas de una opción; son dos lecturas paralelas de la tabla anterior"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -614,16 +1110,16 @@
       "notes": ""
     },
     {
+      "template": "content+cards+image",
       "section": "Encoder, decoder y la familia",
       "title": "Encoder y decoder en el paper de 2017",
-      "notes": "Es la figura que vieron la clase pasada, ahora con nombres en cada caja porque ya saben qué hay adentro. Lo nuevo es la cross-attention, y la justificación es simple: es la misma fórmula con Q de una secuencia y K, V de otra; es el mecanismo por el que el decoder \"lee\" la frase de origen. La tercera viñeta prepara las dos láminas siguientes. Tiempo objetivo: ~2 min.\n\n---",
-      "template": "content-image",
+      "notes": "Es la figura que vieron la clase pasada, ahora con nombres en cada caja porque ya saben qué hay adentro. Lo nuevo es la cross-attention, y la justificación es simple: es la misma fórmula con Q de una secuencia y K, V de otra; es el mecanismo por el que el decoder \"lee\" la frase de origen. La tercera viñeta prepara las dos láminas siguientes. Tiempo objetivo: ~2 min.",
       "lead": "El paper apila 6 bloques de encoder y 6 de decoder. El decoder tiene una tercera subcapa, la cross-attention, donde las consultas vienen del decoder y las claves y valores del encoder.",
-      "image": {
+      "media": {
         "src": "images/arquitectura-transformer.jpg",
         "alt": "Figura 1 del paper de Vaswani y otros, la misma que se proyectó la clase pasada"
       },
-      "facts": [
+      "cards": [
         {
           "label": "Encoder",
           "body": "lee la frase de entrada completa, cada token ve a todos. Produce una representación contextual por token."
@@ -636,15 +1132,37 @@
           "label": "Fue diseñado para traducir",
           "body": "La entrada está en un idioma y la salida en otro, y por eso hay un encoder y un decoder. Casi ningún modelo actual usa los dos."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "has_code=false (el bloque ascii es un diagrama sin renderizar, marcado documentation-only)",
+          "two_groups=false",
+          "is_ordered=false",
+          "date_labels=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "concept-columns"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "regla de columnas: encoder y decoder no comparten filas de atributos, y la tercera tarjeta no es de ninguno de los dos; leer a través no dice nada",
+          "concept-columns": "Match de concept-columns: rótulo más una sola línea por ítem, sin subestructura, va a concept-breakdown; con una imagen compartida, esa forma es content+cards+image"
+        }
+      },
+      "design": "split-right"
     },
     {
+      "template": "concept-breakdown",
       "section": "Encoder, decoder y la familia",
       "title": "Solo el decoder: GPT",
-      "notes": "La justificación de \"solo decoder\" es la primera viñeta y es conceptual, no de ingeniería: cuando entrada y salida son la misma cadena de texto, el encoder no tiene qué codificar. La tabla de tamaños sirve para que vean que 1,5 mil millones era \"enorme\" en 2019 y hoy es un modelo de celular. La tercera viñeta conecta con la clase de prompting. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "icon-list",
+      "notes": "La justificación de \"solo decoder\" es la primera viñeta y es conceptual, no de ingeniería: cuando entrada y salida son la misma cadena de texto, el encoder no tiene qué codificar. La tabla de tamaños sirve para que vean que 1,5 mil millones era \"enorme\" en 2019 y hoy es un modelo de celular. La tercera viñeta conecta con la clase de prompting. Tiempo objetivo: ~3 min.",
       "lead": "GPT-2 usa solo el decoder del transformer, sin cross-attention. Cada bloque tiene self-attention con máscara causal y feed-forward, y la pila termina en un softmax sobre el vocabulario. Casi todos los LLM actuales tienen esta arquitectura.",
-      "rows": [
+      "format": "grid",
+      "cards": [
         {
           "label": "Por qué alcanza con el decoder",
           "body": "Si la tarea es \"predecir el token siguiente\", entrada y salida son la misma secuencia: no hay una frase de origen aparte que codificar. El prompt y la respuesta van en el mismo flujo, y la máscara causal garantiza que cada token solo vea lo anterior."
@@ -657,15 +1175,34 @@
           "label": "La tesis del paper",
           "body": "entrenado solo con next-token sobre 40 GB de texto de la web, el modelo hace tareas para las que nadie lo entrenó (traducción, resumen, preguntas) si se le describe la tarea en el prompt. Es el origen del prompting (clase 5)."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "n_images=0",
+          "big_metrics=false",
+          "date_labels=false"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "stat",
+          "timeline"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "stat": "los cuatro tamaños son un punto de tres; las cifras no son la carga de la lámina",
+          "timeline": "2019 aparece en un rótulo, pero los rótulos no son fechas"
+        }
+      }
     },
     {
+      "template": "concept-breakdown",
       "section": "Encoder, decoder y la familia",
       "title": "Solo el encoder: BERT",
-      "notes": "La justificación de la máscara al revés: si nadie enmascara la atención, hay que enmascarar la entrada, porque de lo contrario predecir el token siguiente es copiarlo. Eso es el MLM. Para la práctica lo que importa es la tercera viñeta: BERT como generador de vectores contextuales. Pero ojo con la lámina que sigue: los vectores crudos de BERT son malos embeddings de oración, y hay que decirlo antes de que alguien los use así. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "icon-list",
+      "notes": "La justificación de la máscara al revés: si nadie enmascara la atención, hay que enmascarar la entrada, porque de lo contrario predecir el token siguiente es copiarlo. Eso es el MLM. Para la práctica lo que importa es la tercera viñeta: BERT como generador de vectores contextuales. Pero ojo con la lámina que sigue: los vectores crudos de BERT son malos embeddings de oración, y hay que decirlo antes de que alguien los use así. Tiempo objetivo: ~3 min.",
       "lead": "BERT usa solo el encoder del transformer. Sus bloques no tienen máscara y cada token ve la frase entera. No genera texto: produce una representación contextual por token, y la práctica usa esa representación para RAG.",
-      "rows": [
+      "format": "grid",
+      "cards": [
         {
           "label": "Sin máscara, el next-token no sirve",
           "body": "(cada token vería la respuesta). BERT se entrena tapando el 15 % de los tokens y prediciéndolos desde ambos lados (*masked language model*), con una tarea auxiliar: decidir si una frase sigue a otra."
@@ -678,19 +1215,37 @@
           "label": "Cómo se usa",
           "body": "se agrega una capa de salida y se ajusta entero para la tarea (clasificación, respuesta a preguntas), o se toman las representaciones de las últimas capas como vectores fijos. Con solo la última opción, BERT pierde apenas 0,3 F1 en reconocimiento de entidades contra ajustarlo entero."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "n_images=0",
+          "two_groups=false",
+          "big_metrics=false"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "value-columns",
+          "stat"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "value-columns": "base contra large es un punto de tres, no la estructura de la lámina",
+          "stat": "las cifras están dentro de prosa"
+        }
+      }
     },
     {
+      "template": "content+cards+image",
       "section": "Encoder, decoder y la familia",
       "title": "Del encoder al embedding de oración",
-      "notes": "Esta lámina conecta la clase con la práctica de RAG y es la que justifica que \"elegir el encoder\" sea un hiperparámetro. La justificación del pooling: el encoder produce n vectores y la búsqueda necesita uno, así que hay que colapsar la secuencia, y la media resultó mejor que el token especial. La del ajuste siamés: el coseno solo sirve como similitud si el modelo fue entrenado para que lo sea; BERT fue entrenado para tapar palabras, no para eso. Los modelos de embeddings actuales (los que van a probar) son esta misma idea con más datos y objetivos contrastivos. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "content-image",
+      "notes": "Esta lámina conecta la clase con la práctica de RAG y es la que justifica que \"elegir el encoder\" sea un hiperparámetro. La justificación del pooling: el encoder produce n vectores y la búsqueda necesita uno, así que hay que colapsar la secuencia, y la media resultó mejor que el token especial. La del ajuste siamés: el coseno solo sirve como similitud si el modelo fue entrenado para que lo sea; BERT fue entrenado para tapar palabras, no para eso. Los modelos de embeddings actuales (los que van a probar) son esta misma idea con más datos y objetivos contrastivos. Tiempo objetivo: ~3 min.",
       "lead": "Para RAG hace falta un vector por fragmento, comparable por coseno. BERT crudo no lo da: promediar sus tokens es peor que promediar GloVe. Sentence-BERT lo arregla con pooling y un ajuste siamés.",
-      "image": {
-        "src": "images/s4-4-1-embedding-de-oracion.png",
+      "media": {
+        "src": "images/s4-4-1-embedding-de-oracion.svg",
         "alt": "Dos fragmentos pasan por el mismo BERT, se promedian y se comparan por coseno"
       },
-      "facts": [
+      "cards": [
         {
           "label": "El problema medido",
           "body": "en STS, promediar los tokens de BERT da 54,8 y usar el vector [CLS] da 29,2; promediar GloVe da 61,3. BERT sin ajustar no sabe que dos frases se parecen."
@@ -703,15 +1258,38 @@
           "label": "La solución",
           "body": "una capa de pooling (la media de los tokens funciona mejor que [CLS] o el máximo) y ajuste con pares de frases para que el coseno refleje similitud. STS sube a 74,9 (base) y 76,6 (large). Es la idea de base de los modelos de embeddings actuales, que le suman objetivos contrastivos y más datos."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "one_metric=false",
+          "two_groups=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "process",
+          "stat"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "process": "is_ordered=false: problema, alternativa y solución son roles de un argumento, sin rótulos ordinales ni flujo de pasos",
+          "stat": "big_metrics: stat pide 2-4 números sueltos como carga; las cifras de STS están dentro de prosa que las compara"
+        }
+      },
+      "design": "split-left"
     },
     {
+      "template": "concept-breakdown",
       "section": "Encoder, decoder y la familia",
       "title": "Fuera del texto: ViT",
-      "notes": "Lámina de una idea: el transformer es agnóstico a la modalidad porque lo único que ve son filas de una matriz. La justificación de por qué necesita más datos es la que vale: las CNN incorporan por diseño que los píxeles vecinos se relacionan y que un gato a la izquierda es el mismo gato que a la derecha; el transformer tiene que aprender eso de los datos. Es una lámina de contexto; no se profundiza. Tiempo objetivo: ~2 min.\n\n---",
-      "template": "icon-list",
+      "notes": "Lámina de una idea: el transformer es agnóstico a la modalidad porque lo único que ve son filas de una matriz. La justificación de por qué necesita más datos es la que vale: las CNN incorporan por diseño que los píxeles vecinos se relacionan y que un gato a la izquierda es el mismo gato que a la derecha; el transformer tiene que aprender eso de los datos. Es una lámina de contexto; no se profundiza. Tiempo objetivo: ~2 min.",
       "lead": "El bloque no sabe que procesa texto. Si una imagen se corta en parches y cada parche se proyecta a un vector, el mismo encoder clasifica imágenes: Vision Transformer.",
-      "rows": [
+      "format": "grid",
+      "cards": [
         {
           "label": "Cómo",
           "body": "una imagen de 224 × 224 se corta en parches de 16 × 16 (196 parches), cada uno se aplana (16·16·3 = 768 valores) y se proyecta linealmente a d. Se agrega un token [class] al frente, como el [CLS] de BERT, y embeddings de posición aprendidos. Después, un encoder estándar con pre-LN."
@@ -724,55 +1302,104 @@
           "label": "Tamaños calcados de BERT",
           "body": "ViT-Base 12 capas, d = 768, 86 M; ViT-Large 24, 1024, 307 M; ViT-Huge 32, 1280, 632 M. \"ViT-L/16\" quiere decir Large con parches de 16."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "n_images=0",
+          "is_ordered=false",
+          "big_metrics=false"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "value-columns"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "solo el primer punto es un procedimiento; los otros dos son propiedades",
+          "value-columns": "los tamaños son un punto de tres, no una tabla"
+        }
+      }
     },
     {
+      "template": "value-columns",
       "section": "Encoder, decoder y la familia",
       "title": "El mapa de la familia",
-      "notes": "Lámina de repaso de la sección, y la que hay que dejar en pantalla mientras se presenta la práctica: el encoder del ejercicio 1 está en la primera columna y el agente del ejercicio 2 en la segunda. La regla práctica de la primera viñeta es la que importa. Si alguien pregunta por qué no usar un LLM decoder-only como encoder de embeddings: se puede, y hay modelos de embeddings hechos así, pero un token de decoder solo vio lo anterior, así que hay que tomar el último o ajustar el modelo para que mire todo. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "comparison",
+      "notes": "Lámina de repaso de la sección, y la que hay que dejar en pantalla mientras se presenta la práctica: el encoder del ejercicio 1 está en la primera columna y el agente del ejercicio 2 en la segunda. La regla práctica de la primera viñeta es la que importa. Si alguien pregunta por qué no usar un LLM decoder-only como encoder de embeddings: se puede, y hay modelos de embeddings hechos así, pero un token de decoder solo vio lo anterior, así que hay que tomar el último o ajustar el modelo para que mire todo. Tiempo objetivo: ~3 min.",
+      "lead": "Tres formas de apilar el mismo bloque, y qué modelo va con cada tarea.",
+      "design": "full",
       "columns": [
+        {
+          "header": "",
+          "cells": [
+            "Máscara",
+            "Objetivo de entrenamiento",
+            "Produce",
+            "Modelos",
+            "En la práctica"
+          ]
+        },
         {
           "header": "Encoder-only",
           "cells": [
-            "Máscara: ninguna: cada token ve todo",
-            "Objetivo de entrenamiento: tapar tokens y predecirlos (MLM)",
-            "Produce: una representación por token",
-            "Modelos: BERT, RoBERTa, Sentence-BERT, los modelos de embeddings, ViT",
-            "En la práctica: el encoder del RAG vectorial"
+            "ninguna: cada token ve todo",
+            "tapar tokens y predecirlos (MLM)",
+            "una representación por token",
+            "BERT, RoBERTa, Sentence-BERT, los modelos de embeddings, ViT",
+            "el encoder del RAG vectorial"
           ]
         },
         {
           "header": "Decoder-only",
           "cells": [
-            "Máscara: causal: solo lo anterior",
-            "Objetivo de entrenamiento: predecir el token siguiente",
-            "Produce: texto, token a token",
-            "Modelos: GPT-2 y sucesores, Llama, DeepSeek, Kimi",
-            "En la práctica: el agente que responde y llama herramientas"
+            "causal: solo lo anterior",
+            "predecir el token siguiente",
+            "texto, token a token",
+            "GPT-2 y sucesores, Llama, DeepSeek, Kimi",
+            "el agente que responde y llama herramientas"
           ]
         },
         {
           "header": "Encoder-decoder",
           "cells": [
-            "Máscara: encoder sin máscara, decoder con máscara y cross-attention",
-            "Objetivo de entrenamiento: secuencia de entrada a secuencia de salida",
-            "Produce: texto, condicionado a una entrada aparte",
-            "Modelos: el transformer de 2017, T5, BART, Whisper",
-            "En la práctica: no se usa"
+            "encoder sin máscara, decoder con máscara y cross-attention",
+            "secuencia de entrada a secuencia de salida",
+            "texto, condicionado a una entrada aparte",
+            "el transformer de 2017, T5, BART, Whisper",
+            "no se usa"
           ]
         }
       ],
       "highlights": [
         {
-          "body": "La regla práctica: cuando la salida es un vector se usa un encoder; cuando es texto, un decoder. Encoder-decoder sobrevive en traducción, resumen y audio, donde la entrada es de otra naturaleza que la salida.",
+          "label": "La regla práctica",
+          "body": "cuando la salida es un vector se usa un encoder; cuando es texto, un decoder. Encoder-decoder sobrevive en traducción, resumen y audio, donde la entrada es de otra naturaleza que la salida.",
           "kind": "takeaway"
         },
         {
-          "body": "Todos comparten el bloque de la sección 3. Cambian la máscara, el objetivo de entrenamiento y la salida que se lee.",
-          "kind": "takeaway"
+          "label": "Todos comparten el bloque de la sección 3",
+          "body": "Cambian la máscara, el objetivo de entrenamiento y la salida que se lee.",
+          "kind": "note"
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "has_table=true",
+          "two_groups=false",
+          "labeled_items=2"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-columns",
+          "concept-breakdown"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-columns": "las tres arquitecturas comparten las mismas cinco filas; concept-columns es para columnas sin filas comunes",
+          "concept-breakdown": "la tabla se lee por fila a través de las tres arquitecturas"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -780,46 +1407,58 @@
       "notes": ""
     },
     {
+      "template": "value-columns",
       "section": "Lo que cambió desde 2017",
       "title": "Qué cambió desde 2017",
-      "notes": "Es una lámina de anticipo, no de explicación: se lee la tabla y se sigue. Si alguien pregunta cómo funciona alguna, la respuesta es que es tema de la clase 9, que arranca justamente en la última fila, con el artículo que va de GPT-2 a Kimi K3 como guía. Lo único que conviene conectar con lo de hoy: la KV cache existe por la máscara causal de la lámina 2.6 (las filas de los tokens anteriores no cambian cuando aparece uno nuevo), y el costo cuadrático es la matriz Q Kᵀ de la lámina 2.3. Tiempo objetivo: ~3 min.\n\n---",
-      "template": "concept-breakdown",
-      "cards": [
+      "notes": "Es una lámina de anticipo, no de explicación: se lee la tabla y se sigue. Si alguien pregunta cómo funciona alguna, la respuesta es que es tema de la clase 9, que arranca justamente en la última fila, con el artículo que va de GPT-2 a Kimi K3 como guía. Lo único que conviene conectar con lo de hoy: la KV cache existe por la máscara causal de la lámina 2.6 (las filas de los tokens anteriores no cambian cuando aparece uno nuevo), y el costo cuadrático es la matriz Q Kᵀ de la lámina 2.3. Tiempo objetivo: ~3 min.",
+      "lead": "Desde 2017, la mayoría de los cambios apuntan a dos costos: la matriz de atención crece con el cuadrado de la longitud, y generar texto exige guardar K y V de todos los tokens anteriores. Todo esto se ve en detalle en la clase 9.",
+      "design": "full",
+      "columns": [
         {
-          "label": "KV cache",
-          "body": "Recalcular K y V de todo el texto previo en cada token generado"
+          "header": "Técnica",
+          "cells": [
+            "KV cache",
+            "GQA y MLA",
+            "FlashAttention",
+            "RoPE",
+            "Mixture of Experts",
+            "Atención lineal e híbridos"
+          ]
         },
         {
-          "label": "GQA y MLA",
-          "body": "La memoria que ocupa esa cache con contextos largos"
-        },
-        {
-          "label": "FlashAttention",
-          "body": "El tiempo que se pierde leyendo y escribiendo la matriz de atención en la memoria de la GPU"
-        },
-        {
-          "label": "RoPE",
-          "body": "Cómo codificar la posición para que el modelo funcione con textos más largos que los del entrenamiento"
-        },
-        {
-          "label": "Mixture of Experts",
-          "body": "Tener muchos más parámetros sin pagarlos todos en cada token"
-        },
-        {
-          "label": "Atención lineal e híbridos",
-          "body": "El costo cuadrático en sí, que las anteriores no eliminan"
+          "header": "Qué problema ataca",
+          "cells": [
+            "Recalcular K y V de todo el texto previo en cada token generado",
+            "La memoria que ocupa esa cache con contextos largos",
+            "El tiempo que se pierde leyendo y escribiendo la matriz de atención en la memoria de la GPU",
+            "Cómo codificar la posición para que el modelo funcione con textos más largos que los del entrenamiento",
+            "Tener muchos más parámetros sin pagarlos todos en cada token",
+            "El costo cuadrático en sí, que las anteriores no eliminan"
+          ]
         }
       ],
       "highlights": [
         {
-          "body": "Desde 2017, la mayoría de los cambios apuntan a dos costos: la matriz de atención crece con el cuadrado de la longitud, y generar texto exige guardar K y V de todos los tokens anteriores. Todo esto se ve en detalle en la clase 9.",
-          "kind": "note"
-        },
-        {
-          "body": "Las cinco primeras conservan la fórmula de la sección 2. Cambian cómo se calcula, qué se guarda o dónde está la posición. La última la reemplaza por otra.",
+          "label": "Las cinco primeras conservan la fórmula de la sección 2",
+          "body": "Cambian cómo se calcula, qué se guarda o dónde está la posición. La última la reemplaza por otra.",
           "kind": "takeaway"
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "has_table=true",
+          "labeled_items=6",
+          "two_groups=false"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-breakdown"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-breakdown": "tabla de consulta con los dos encabezados cargados de sentido (Técnica -> Qué problema ataca): el catálogo la manda a value-columns"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -827,12 +1466,13 @@
       "notes": ""
     },
     {
+      "template": "concept-breakdown",
       "section": "Cómo se entrena",
       "title": "Qué se minimiza",
-      "notes": "Retoma \"aprender es ajustar parámetros\" de la clase pasada con la función concreta. La justificación de la cross-entropy: es la que vieron para clasificación en la clase de redes, con |V| clases. El punto de la segunda viñeta merece la frase: el mínimo no es cero porque después de \"the cat sat on the\" hay varios tokens razonables, y ningún modelo puede saber cuál iba. Los números de la tercera viñeta son para dar escala. Tiempo objetivo: ~2 min.\n\n---",
-      "template": "icon-list",
+      "notes": "Retoma \"aprender es ajustar parámetros\" de la clase pasada con la función concreta. La justificación de la cross-entropy: es la que vieron para clasificación en la clase de redes, con |V| clases. El punto de la segunda viñeta merece la frase: el mínimo no es cero porque después de \"the cat sat on the\" hay varios tokens razonables, y ningún modelo puede saber cuál iba. Los números de la tercera viñeta son para dar escala. Tiempo objetivo: ~2 min.",
       "lead": "La pérdida es la cross-entropy entre la distribución que el modelo produce sobre el vocabulario y el token que seguía en el texto. Con la máscara causal, cada posición de cada frase es un ejemplo.",
-      "rows": [
+      "format": "grid",
+      "cards": [
         {
           "label": "Para una posición",
           "body": "el modelo da p(token) para los |V| tokens; la pérdida es −log p(token correcto). Si le dio 0,5 al correcto, 0,69; si le dio 0,01, 4,6. Se promedia sobre todas las posiciones del batch."
@@ -845,7 +1485,25 @@
           "label": "Escala de los entrenamientos",
           "body": "el modelo base de 2017, 100k pasos y 12 horas en 8 GPU P100; el grande, 300k pasos y 3,5 días. GPT-2: 40 GB de texto. BERT: 3.300 millones de palabras, 4 días en 4 Cloud TPU (16 chips)."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "n_images=0",
+          "big_metrics=false",
+          "is_ordered=false"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "stat",
+          "value-columns"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "stat": "las cifras de pérdida y de escala están dentro de prosa",
+          "value-columns": "la escala de los tres modelos es un punto, no la estructura de la lámina"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -853,12 +1511,13 @@
       "notes": ""
     },
     {
+      "template": "concept-breakdown",
       "section": "Conclusiones",
       "title": "Un bloque repetido",
-      "notes": "Lámina de cierre; se lee de arriba abajo en dos minutos y se pasa a presentar la práctica. La última viñeta es la consigna: el ejercicio a mano es la sección 2 y las láminas 3.4 y 3.5, con la frase de juguete u otra, y en cada paso una línea que diga para qué sirve esa operación. Tiempo objetivo: ~2 min.\n\n---",
-      "template": "icon-list",
+      "notes": "Lámina de cierre; se lee de arriba abajo en dos minutos y se pasa a presentar la práctica. La última viñeta es la consigna: el ejercicio a mano es la sección 2 y las láminas 3.4 y 3.5, con la frase de juguete u otra, y en cada paso una línea que diga para qué sirve esa operación. Tiempo objetivo: ~2 min.",
       "lead": "Un transformer es un bloque repetido. En el bloque, la atención mezcla entre tokens y la feed-forward procesa cada token. Con eso se lee cualquier modelo actual.",
-      "rows": [
+      "format": "grid",
+      "cards": [
         {
           "label": "La atención, en una línea",
           "body": "softmax(Q Kᵀ / √d_k) V. Tres proyecciones, una afinidad, una escala, una distribución y una mezcla. Con máscara causal genera texto; sin máscara produce representaciones."
@@ -879,12 +1538,30 @@
           "label": "La práctica",
           "body": "un RAG con encoder elegido y evaluado, un agente con ese RAG y tool-use, las herramientas como servidor MCP, una capa de atención en NumPy, y una hoja con las cuentas de la atención y del bloque hechas a mano, con la justificación de cada operación."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=5",
+          "n_images=0",
+          "is_terminal=true",
+          "is_cta=false"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "closing-cta",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "closing-cta": "los puntos son conceptos resumidos, no recursos, links ni próximos pasos",
+          "process": "los cinco puntos no forman una secuencia"
+        }
+      }
     }
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "664bca042bf042d5ab1fd5e34f4e43b33400d038738c67c3bcd4158c4e666ba4",
+    "sha256": "50a062d30213079064939b0fdc4a738a69a768356e73492712e8cf9b17487aa2",
     "bytes": 74794
   }
 }

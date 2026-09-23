@@ -244,7 +244,7 @@ Mano alzada, revelar y seguir. Prepara la sección 6, sobre qué se minimiza al 
 
 **Cada token generado es una vuelta del ciclo: tokenizar, embeber, transformer, distribución sobre el vocabulario, elegir. El transformer es un bloque repetido N veces.**
 
-![El ciclo de generacion con el transformer abierto: un bloque de atencion y feed-forward repetido N veces](images/s1-1-1-ciclo-con-bloque.png)
+![El ciclo de generacion con el transformer abierto: un bloque de atencion y feed-forward repetido N veces](images/s1-1-1-ciclo-con-bloque.svg)
 <!-- ascii-source:
   "the cat sat"
         |
@@ -296,7 +296,7 @@ Es la lámina 6.3 de la clase pasada con una sola diferencia: el recuadro "TRANS
 
 **La frase "the cat sat" es una matriz X de 3 tokens por 4 dimensiones. La atención opera sobre esa matriz.**
 
-![La frase the cat sat como matriz X de 3 tokens por 4 dimensiones](images/s1-2-1-frase-como-matriz.png)
+![La frase the cat sat como matriz X de 3 tokens por 4 dimensiones](images/s1-2-1-frase-como-matriz.svg)
 <!-- ascii-source:
                  dim 1  dim 2  dim 3  dim 4
           the  [   1      0      1      0   ]
@@ -331,7 +331,7 @@ Lámina de referencia, no de explicación: se muestra, se dice que van a volver 
 
 **La atención compara vectores y no sabe en qué lugar de la frase está cada uno. Por eso, antes de cualquier cálculo, a cada embedding se le suma un vector que codifica su posición.**
 
-![Cada fila de X es el embedding del token mas el vector de su posicion](images/s1-3-1-posicion-mas-embedding.png)
+![Cada fila de X es el embedding del token mas el vector de su posicion](images/s1-3-1-posicion-mas-embedding.svg)
 <!-- ascii-source:
    token:      the         cat         sat
                 |           |           |
@@ -378,7 +378,7 @@ Va acá, antes de la atención, porque la pregunta "¿y el orden?" aparece en cu
 
 **Cada token se proyecta tres veces con tres matrices que son parámetros entrenables del modelo. Q codifica lo que el token necesita del contexto, K lo que cada token le ofrece a los demás, y V la información que se mezcla para producir el embedding enriquecido.**
 
-![X se multiplica por Wq, Wk y Wv y da Q, K y V](images/s2-1-1-tres-proyecciones.png)
+![X se multiplica por Wq, Wk y Wv y da Q, K y V](images/s2-1-1-tres-proyecciones.svg)
 <!-- ascii-source:
                  X (n x d)
        fila de "cat": [0 2 0 1]
@@ -421,7 +421,7 @@ La pregunta que hay que contestar acá es por qué tres y no una. La respuesta c
 
 **Con las matrices del ejemplo, las consultas quedan iguales a X y las claves son X con los pares de columnas intercambiados.**
 
-![Las matrices Q y K del ejemplo, lado a lado](images/s2-2-1-q-y-k.png)
+![Las matrices Q y K del ejemplo, lado a lado](images/s2-2-1-q-y-k.svg)
 <!-- ascii-source:
         Q = X Wq                       K = X Wk
   the  [ 1  0  1  0 ]            the  [ 0  1  0  1 ]
@@ -458,7 +458,7 @@ Lámina de cálculo puro; no expliques, verificá una celda con ellos. Elegí la
 
 **Cada consulta se multiplica contra todas las claves. El resultado, Q Kᵀ, es una matriz de n por n: cuánto le importa a cada token cada otro token.**
 
-![La matriz Q K transpuesta de 3 por 3 y la cuenta de la celda cat contra the](images/s2-3-1-matriz-qkt.png)
+![La matriz Q K transpuesta de 3 por 3 y la cuenta de la celda cat contra the](images/s2-3-1-matriz-qkt.svg)
 <!-- ascii-source:
                       claves
                    the  cat  sat
@@ -496,7 +496,7 @@ Hacé la cuenta de una celda en el pizarrón, la de "cat" contra "the", y dejá 
 
 **Los scores se dividen por √d_k y cada fila pasa por un softmax. El resultado es la matriz de atención A: una distribución por token, con pesos positivos que suman uno.**
 
-![La matriz de atencion A con filas que suman 1 y el camino de la fila de cat](images/s2-4-1-matriz-de-atencion.png)
+![La matriz de atencion A con filas que suman 1 y el camino de la fila de cat](images/s2-4-1-matriz-de-atencion.svg)
 <!-- ascii-source:
                                 the    cat    sat
                           the [ 0,12   0,55   0,33 ]   suma 1
@@ -532,7 +532,7 @@ Dos justificaciones, y las dos van al ejercicio a mano de la práctica. La de la
 
 **La salida de cada token es la suma de todos los V, pesada por su fila de atención. "cat" se reescribe como 0,45·the + 0,10·cat + 0,45·sat.**
 
-![La fila de pesos de cat por la matriz V da la nueva representacion de cat](images/s2-5-1-mezcla-de-valores.png)
+![La fila de pesos de cat por la matriz V da la nueva representacion de cat](images/s2-5-1-mezcla-de-valores.svg)
 <!-- ascii-source:
   pesos de "cat"          V
    the  cat  sat        the [2 0]
@@ -577,7 +577,7 @@ Acá se cierra la atención. La cuenta del diagrama es la que hay que hacer en e
 
 **Para generar texto, un token no puede mirar a los que vienen después. Se ponen en menos infinito antes del softmax y quedan con peso cero.**
 
-![Scores con menos infinito arriba de la diagonal y la matriz de atencion triangular resultante](images/s2-6-1-mascara-causal.png)
+![Scores con menos infinito arriba de la diagonal y la matriz de atencion triangular resultante](images/s2-6-1-mascara-causal.svg)
 <!-- ascii-source:
    scores con mascara                    A con mascara
          the   cat   sat                        the    cat    sat
@@ -623,7 +623,7 @@ La justificación es de entrenamiento: si "cat" pudiera ver "sat" mientras apren
 
 **Multi-head attention corre h atenciones en paralelo, cada una con sus propias Wq, Wk, Wv y dimensión d/h, concatena las salidas y las proyecta con una matriz más.**
 
-![h cabezas de atencion en paralelo que se concatenan y se proyectan con Wo](images/s3-1-1-multicabeza.png)
+![h cabezas de atencion en paralelo que se concatenan y se proyectan con Wo](images/s3-1-1-multicabeza.svg)
 <!-- ascii-source:
                      X (n x d)
                         |
@@ -693,7 +693,7 @@ La justificación de la FFN es la que más cuesta y la que más importa: la aten
 
 **Para entrenar, el error medido en la salida tiene que volver hasta la primera capa. En una pila de N bloques ese camino es un producto de N derivadas, y un producto largo de números menores que uno tiende a cero.**
 
-![El gradiente de la primera capa es un producto de N derivadas que se desvanece o explota](images/s3-3-1-gradiente-que-se-pierde.png)
+![El gradiente de la primera capa es un producto de N derivadas que se desvanece o explota](images/s3-3-1-gradiente-que-se-pierde.svg)
 <!-- ascii-source:
    salida  <-- bloque N <-- ... <-- bloque 2 <-- bloque 1 <-- embedding
 
@@ -729,7 +729,7 @@ Lámina de problema, sin solución todavía, para que la residual de la siguient
 
 **Cada subcapa suma su resultado al vector de entrada: x → x + Atención(x) → x + FFN(x). El camino directo deja pasar la entrada intacta y las capas aprenden solo la diferencia.**
 
-![Cada subcapa suma su resultado a la entrada por un camino residual](images/s3-4-1-residuales.png)
+![Cada subcapa suma su resultado a la entrada por un camino residual](images/s3-4-1-residuales.svg)
 <!-- ascii-source:
         x  ---------------------------+
         |                             |
@@ -800,7 +800,7 @@ Hacé la cuenta de la primera viñeta, es de treinta segundos y es exactamente l
 
 **El vector de posición que se suma al embedding (lámina 1.3) puede ser fijo. El paper de 2017 usa senos y cosenos de distinta frecuencia, uno por dimensión.**
 
-![Tabla de codificacion sinusoidal de posicion con d igual a 4 para las posiciones 0 a 3](images/s3-6-1-tabla-de-posicion.png)
+![Tabla de codificacion sinusoidal de posicion con d igual a 4 para las posiciones 0 a 3](images/s3-6-1-tabla-de-posicion.svg)
 <!-- ascii-source:
               dim 1    dim 2    dim 3    dim 4
               (sen)    (cos)    (sen)    (cos)
@@ -961,7 +961,7 @@ La justificación de la máscara al revés: si nadie enmascara la atención, hay
 
 **Para RAG hace falta un vector por fragmento, comparable por coseno. BERT crudo no lo da: promediar sus tokens es peor que promediar GloVe. Sentence-BERT lo arregla con pooling y un ajuste siamés.**
 
-![Dos fragmentos pasan por el mismo BERT, se promedian y se comparan por coseno](images/s4-4-1-embedding-de-oracion.png)
+![Dos fragmentos pasan por el mismo BERT, se promedian y se comparan por coseno](images/s4-4-1-embedding-de-oracion.svg)
 <!-- ascii-source:
    fragmento A  ->  [ BERT ]  -> tokens (n x d) -> POOLING (media) -> u (d)
                                                                        \

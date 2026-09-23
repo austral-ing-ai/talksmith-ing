@@ -1,75 +1,71 @@
 <!-- talksmith-ascii-sha256: c5fb077235cbda8042dd14305afcc4c931509eecd9802ae15f2e945eae9beb6e -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 0 660 564" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="15">
 <title>Varias cabezas en paralelo</title>
-<desc>Una sola distribución de pesos no puede apuntar fuerte a dos lugares por dos motivos distintos: h cabezas de dimensión d/h leen la misma X, se concatenan y Wo las mezcla de vuelta a n × d.</desc>
+<desc>La justificación es el "averaging inhibits this" del paper: una sola distribución de pesos no puede apuntar fuerte a dos lugares por dos motivos distintos.</desc>
 <defs>
-<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
-<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="11" refY="6" orient="auto"><path d="M0,1 L11,6 L0,11 Z" fill="#3B3535"/></marker>
 </defs>
-<rect x="0" y="0" width="680" height="560" fill="#ffffff"/>
-<g transform="translate(-20,10)">
-<g stroke="#3B3535" stroke-width="1.5" fill="none">
-<line x1="360" y1="64" x2="360" y2="84"/>
-<line x1="140" y1="84" x2="580" y2="84"/>
-<line x1="140" y1="84" x2="140" y2="110" marker-end="url(#ah)"/>
-<line x1="340" y1="84" x2="340" y2="110" marker-end="url(#ah)"/>
-<line x1="580" y1="84" x2="580" y2="110" marker-end="url(#ah)"/>
-<line x1="140" y1="210" x2="140" y2="236" marker-end="url(#ah)"/>
-<line x1="340" y1="210" x2="340" y2="236" marker-end="url(#ah)"/>
-<line x1="580" y1="210" x2="580" y2="236" marker-end="url(#ah)"/>
-<line x1="140" y1="290" x2="140" y2="320" marker-end="url(#ah)"/>
-<line x1="340" y1="290" x2="340" y2="320" marker-end="url(#ah)"/>
-<line x1="580" y1="290" x2="580" y2="320" marker-end="url(#ah)"/>
-<line x1="360" y1="366" x2="360" y2="396" marker-end="url(#ah)"/>
-<line x1="360" y1="446" x2="360" y2="476" marker-end="url(#ah)"/>
-</g>
-<rect x="280" y="20" width="160" height="44" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
-<text x="360" y="47" text-anchor="middle" font-weight="bold" font-size="16">X  (n × d)</text>
-<text x="50" y="40" font-size="13" fill="#6b6464">en el paper: h = 8</text>
-<text x="50" y="58" font-size="13" fill="#6b6464">d/h = 512 / 8 = 64</text>
-<g fill="#f2f2f2" stroke="#9a9494" stroke-width="1.2">
-<rect x="50" y="110" width="180" height="100" rx="8"/>
-<rect x="250" y="110" width="180" height="100" rx="8"/>
-<rect x="490" y="110" width="180" height="100" rx="8"/>
-<rect x="60" y="236" width="160" height="54" rx="6" fill="#ffffff"/>
-<rect x="260" y="236" width="160" height="54" rx="6" fill="#ffffff"/>
-<rect x="500" y="236" width="160" height="54" rx="6" fill="#ffffff"/>
-</g>
+<rect x="30" y="0" width="660" height="564" fill="#FFFFFF"/>
 <g text-anchor="middle">
-<text x="140" y="136" font-weight="bold" font-size="16">cabeza 1</text>
-<text x="340" y="136" font-weight="bold" font-size="16">cabeza 2</text>
-<text x="580" y="136" font-weight="bold" font-size="16">cabeza h</text>
+<rect x="270" y="20" width="180" height="44" rx="8" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/>
+<text x="360" y="47" font-weight="bold" fill="#1F1E1E">X  (n × d)</text>
+<g stroke="#3B3535" stroke-width="1.5" fill="none">
+<line x1="360" y1="64" x2="360" y2="90"/>
+<line x1="130" y1="90" x2="590" y2="90"/>
+<line x1="130" y1="90" x2="130" y2="120" marker-end="url(#ah)"/>
+<line x1="310" y1="90" x2="310" y2="120" marker-end="url(#ah)"/>
+<line x1="590" y1="90" x2="590" y2="120" marker-end="url(#ah)"/>
+<line x1="130" y1="200" x2="130" y2="240" marker-end="url(#ah)"/>
+<line x1="310" y1="200" x2="310" y2="240" marker-end="url(#ah)"/>
+<line x1="590" y1="200" x2="590" y2="240" marker-end="url(#ah)"/>
+<line x1="130" y1="300" x2="130" y2="330"/>
+<line x1="310" y1="300" x2="310" y2="330"/>
+<line x1="590" y1="300" x2="590" y2="330"/>
+<line x1="130" y1="330" x2="590" y2="330"/>
+<line x1="360" y1="330" x2="360" y2="346" marker-end="url(#ah)"/>
+<line x1="360" y1="394" x2="360" y2="420" marker-end="url(#ah)"/>
+<line x1="360" y1="474" x2="360" y2="500" marker-end="url(#ah)"/>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="50" y="120" width="160" height="80" rx="8"/>
+<rect x="230" y="120" width="160" height="80" rx="8"/>
+<rect x="510" y="120" width="160" height="80" rx="8"/>
+<rect x="50" y="240" width="160" height="60" rx="8"/>
+<rect x="230" y="240" width="160" height="60" rx="8"/>
+<rect x="510" y="240" width="160" height="60" rx="8"/>
+</g>
+<g font-weight="bold" fill="#1F1E1E">
+<text x="130" y="144">cabeza 1</text>
+<text x="310" y="144">cabeza 2</text>
+<text x="590" y="144">cabeza h</text>
+<text x="130" y="265">atención (1)</text>
+<text x="310" y="265">atención (2)</text>
+<text x="590" y="265">atención (h)</text>
+</g>
 <g font-family="'DejaVu Sans Mono', monospace" font-size="14">
-<text x="140" y="164">Wq1  Wk1  Wv1</text>
-<text x="340" y="164">Wq2  Wk2  Wv2</text>
-<text x="580" y="164">Wqh  Wkh  Wvh</text>
+<text x="130" y="168">Wq1 Wk1 Wv1</text>
+<text x="310" y="168">Wq2 Wk2 Wv2</text>
+<text x="590" y="168">Wqh Wkh Wvh</text>
 </g>
-<g font-size="13" fill="#6b6464">
-<text x="140" y="190">cada una: d × d/h</text>
-<text x="340" y="190">cada una: d × d/h</text>
-<text x="580" y="190">cada una: d × d/h</text>
-</g>
-<text x="140" y="259">atención 1</text>
-<text x="340" y="259">atención 2</text>
-<text x="580" y="259">atención h</text>
-<g font-size="13" fill="#6b6464">
-<text x="140" y="279">n × d/h</text>
-<text x="340" y="279">n × d/h</text>
-<text x="580" y="279">n × d/h</text>
-</g>
+<g font-size="13">
+<text x="130" y="189">d × d/h cada una</text>
+<text x="310" y="189">d × d/h cada una</text>
+<text x="590" y="189">d × d/h cada una</text>
+<text x="130" y="287">n × d/h</text>
+<text x="310" y="287">n × d/h</text>
+<text x="590" y="287">n × d/h</text>
 </g>
 <g fill="#3B3535">
-<circle cx="448" cy="160" r="2.5"/><circle cx="460" cy="160" r="2.5"/><circle cx="472" cy="160" r="2.5"/>
-<circle cx="448" cy="263" r="2.5"/><circle cx="460" cy="263" r="2.5"/><circle cx="472" cy="263" r="2.5"/>
+<circle cx="435" cy="160" r="3"/><circle cx="450" cy="160" r="3"/><circle cx="465" cy="160" r="3"/>
+<circle cx="435" cy="270" r="3"/><circle cx="450" cy="270" r="3"/><circle cx="465" cy="270" r="3"/>
 </g>
-<rect x="50" y="320" width="620" height="46" rx="8" fill="#fdecee" stroke="#DA1B2E" stroke-width="2"/>
-<text x="360" y="349" text-anchor="middle" font-weight="bold" font-size="16" fill="#DA1B2E">concatenar: h bloques de n × d/h  =  n × d</text>
-<rect x="260" y="396" width="200" height="50" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
-<text x="360" y="419" text-anchor="middle" font-weight="bold" font-size="16">× Wo</text>
-<text x="360" y="437" text-anchor="middle" font-size="13" fill="#6b6464">(d × d)</text>
-<text x="478" y="416" font-size="13" fill="#6b6464">mezcla lo que</text>
-<text x="478" y="433" font-size="13" fill="#6b6464">dijeron las cabezas</text>
-<rect x="270" y="476" width="180" height="44" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="2"/>
-<text x="360" y="503" text-anchor="middle" font-weight="bold" font-size="16">salida  (n × d)</text>
+<rect x="260" y="346" width="200" height="48" rx="8" fill="#DA1B2E"/>
+<text x="360" y="366" font-weight="bold" fill="#FFFFFF" font-size="16">concatenar</text>
+<text x="360" y="386" font-weight="bold" fill="#FFFFFF" font-size="14">n × d</text>
+<rect x="220" y="420" width="280" height="54" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="360" y="442" font-weight="bold" fill="#1F1E1E">proyección con Wo</text>
+<text x="360" y="463" font-size="13">(n × d) × Wo (d × d)</text>
+<rect x="260" y="500" width="200" height="44" rx="8" fill="#FFFFFF" stroke="#1F1E1E" stroke-width="2.5"/>
+<text x="360" y="527" font-weight="bold" fill="#1F1E1E">salida  (n × d)</text>
 </g>
 </svg>

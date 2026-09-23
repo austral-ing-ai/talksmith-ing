@@ -1,64 +1,39 @@
 <!-- talksmith-ascii-sha256: 0a00be97c0e8ca18de7cb675aed4ea68b5979f58427ac0704b3893551f148ae8 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 12 644 300" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="38 48 718 302" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
 <title>Mezclar los valores</title>
-<desc>La fila de pesos de atención de «cat» multiplicada por la matriz de valores V da la nueva representación de «cat»: [1,80 1,20].</desc>
-<rect x="16" y="12" width="644" height="300" fill="#ffffff"/>
-<text x="130" y="72" font-size="16" font-weight="bold" text-anchor="middle">pesos de «cat»</text>
-<g font-size="14" text-anchor="middle" fill="#6B6363">
-<text x="75" y="100">the</text>
-<text x="130" y="100">cat</text>
-<text x="185" y="100">sat</text>
+<desc>Una fila de pesos por la matriz de valores V da la nueva fila del token cat.</desc>
+<rect x="38" y="48" width="718" height="302" fill="#FFFFFF"/>
+<g fill="none" stroke-width="2.5" stroke="#3B3535">
+<path d="M70 146 H62 V186 H70"/><path d="M284 146 H292 V186 H284"/>
+<path d="M448 106 H440 V226 H448"/><path d="M526 106 H534 V226 H526"/>
 </g>
-<g fill="#F2F2F2" stroke="#8C8585" stroke-width="1.2">
-<rect x="48" y="108" width="54" height="40"/>
-<rect x="103" y="108" width="54" height="40"/>
-<rect x="158" y="108" width="54" height="40"/>
+<g fill="none" stroke-width="3" stroke="#DA1B2E">
+<path d="M608 146 H600 V186 H608"/><path d="M728 146 H736 V186 H728"/>
 </g>
-<g font-size="18" text-anchor="middle">
-<text x="75" y="134">0,45</text>
-<text x="130" y="134">0,10</text>
-<text x="185" y="134">0,45</text>
+<text x="177" y="90" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">pesos de «cat»</text>
+<g font-size="18" fill="#6B6464" text-anchor="middle">
+<text x="96" y="128">the</text><text x="176" y="128">cat</text><text x="256" y="128">sat</text>
 </g>
-<text x="265" y="137" font-size="26" text-anchor="middle">×</text>
-<text x="385" y="48" font-size="16" font-weight="bold" text-anchor="middle">V</text>
-<g font-size="14" text-anchor="end" fill="#6B6363">
-<text x="350" y="87">the</text>
-<text x="350" y="133">cat</text>
-<text x="350" y="179">sat</text>
+<g font-size="22" text-anchor="end">
+<text x="118" y="174">0,45</text><text x="198" y="174">0,10</text><text x="278" y="174">0,45</text>
 </g>
-<g fill="#F2F2F2" stroke="#8C8585" stroke-width="1.2">
-<rect x="358" y="62" width="50" height="40"/>
-<rect x="409" y="62" width="50" height="40"/>
-<rect x="358" y="108" width="50" height="40"/>
-<rect x="409" y="108" width="50" height="40"/>
-<rect x="358" y="154" width="50" height="40"/>
-<rect x="409" y="154" width="50" height="40"/>
+<text x="337" y="176" text-anchor="middle" font-size="30">×</text>
+<text x="487" y="90" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F1E1E">V</text>
+<g font-size="18" fill="#6B6464" text-anchor="end">
+<text x="422" y="133">the</text><text x="422" y="173">cat</text><text x="422" y="213">sat</text>
 </g>
-<g font-size="18" text-anchor="middle">
-<text x="383" y="88">2</text>
-<text x="434" y="88">0</text>
-<text x="383" y="134">0</text>
-<text x="434" y="134">3</text>
-<text x="383" y="180">2</text>
-<text x="434" y="180">2</text>
+<g font-size="22" text-anchor="end">
+<text x="478" y="134">2</text><text x="514" y="134">0</text>
+<text x="478" y="174">0</text><text x="514" y="174">3</text>
+<text x="478" y="214">2</text><text x="514" y="214">2</text>
 </g>
-<text x="492" y="137" font-size="26" text-anchor="middle">=</text>
-<g fill="#FBE8EA" stroke="#DA1B2E" stroke-width="2">
-<rect x="518" y="108" width="58" height="40"/>
-<rect x="577" y="108" width="58" height="40"/>
+<text x="567" y="176" text-anchor="middle" font-size="30">=</text>
+<g font-size="22" font-weight="bold" fill="#DA1B2E" text-anchor="end">
+<text x="662" y="174">1,80</text><text x="722" y="174">1,20</text>
 </g>
-<g font-size="18" font-weight="bold" text-anchor="middle" fill="#DA1B2E">
-<text x="547" y="134">1,80</text>
-<text x="606" y="134">1,20</text>
-<text x="576" y="176" font-size="16">nueva «cat»</text>
-</g>
-<line x1="40" y1="220" x2="632" y2="220" stroke="#D9D6D6" stroke-width="1"/>
-<g font-size="14" text-anchor="end" fill="#6B6363">
-<text x="190" y="256">dim 1</text>
-<text x="190" y="290">dim 2</text>
-</g>
-<g font-family="'DejaVu Sans Mono', monospace" font-size="17">
-<text x="205" y="256" xml:space="preserve">0,45·2 + 0,10·0 + 0,45·2 = <tspan font-weight="bold" fill="#DA1B2E">1,80</tspan></text>
-<text x="205" y="290" xml:space="preserve">0,45·0 + 0,10·3 + 0,45·2 = <tspan font-weight="bold" fill="#DA1B2E">1,20</tspan></text>
+<text x="668" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#DA1B2E">nueva «cat»</text>
+<g font-family="'DejaVu Sans Mono', monospace" font-size="20">
+<text x="211" y="296">0,45·2 + 0,10·0 + 0,45·2 = <tspan font-weight="bold" fill="#DA1B2E">1,80</tspan></text>
+<text x="211" y="330">0,45·0 + 0,10·3 + 0,45·2 = <tspan font-weight="bold" fill="#DA1B2E">1,20</tspan></text>
 </g>
 </svg>

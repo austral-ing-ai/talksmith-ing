@@ -1,52 +1,57 @@
 <!-- talksmith-ascii-sha256: d3b5b3704694127fa453ab5ba0c8948f4ca53da47c67fafac3413e49ed7d6076 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 17 820 340" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 52 853 354" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
 <title>Escalar y repartir: el softmax</title>
-<desc>La matriz de atención A = softmax(Q K^T / 2): cada fila es una distribución que suma 1, y abajo el camino de la fila de cat desde los scores [3 0 3] hasta los pesos [0,45 0,10 0,45].</desc>
+<desc>Matriz de atención A: cada fila es una distribución que suma 1, y el camino de la fila de cat desde los scores, divididos por 2, hasta los pesos del softmax.</desc>
 <defs>
-<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#3B3535"/></marker>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/></marker>
 </defs>
-<rect x="0" y="17" width="820" height="340" fill="#ffffff"/>
-<text x="30" y="169" font-size="24">A = softmax(Q K<tspan dy="-10" font-size="15">T</tspan><tspan dy="10" font-size="24"> / 2)</tspan></text>
-<g font-size="20" fill="#6B6363" text-anchor="middle">
-<text x="420" y="62">the</text>
-<text x="500" y="62">cat</text>
-<text x="580" y="62">sat</text>
+<rect x="0" y="52" width="853" height="354" fill="#FFFFFF"/>
+<text x="30" y="207" font-size="23" fill="#1F1E1E">A = softmax(Q K<tspan dy="-9" font-size="15">T</tspan><tspan dy="9"> / 2)</tspan></text>
+<g font-family="'DejaVu Sans Mono', monospace" font-size="21" text-anchor="middle" fill="#3B3535">
+<text x="431" y="106">the</text>
+<text x="531" y="106">cat</text>
+<text x="631" y="106">sat</text>
 </g>
-<g font-size="20" fill="#6B6363" text-anchor="end">
-<text x="345" y="117">the</text>
-<text x="345" y="217">sat</text>
+<g font-family="'DejaVu Sans Mono', monospace" font-size="21" text-anchor="end">
+<text x="350" y="162">the</text>
+<text x="350" y="207" fill="#DA1B2E" font-weight="bold">cat</text>
+<text x="350" y="252">sat</text>
 </g>
-<text x="345" y="167" font-size="20" font-weight="bold" fill="#DA1B2E" text-anchor="end">cat</text>
-<rect x="370" y="138" width="260" height="44" rx="6" fill="#FBE4E6"/>
-<path d="M372,82 L362,82 L362,238 L372,238" fill="none" stroke="#3B3535" stroke-width="2.5"/>
-<path d="M628,82 L638,82 L638,238 L628,238" fill="none" stroke="#3B3535" stroke-width="2.5"/>
-<g font-size="26" text-anchor="middle">
-<text x="420" y="120">0,12</text>
-<text x="500" y="120">0,55</text>
-<text x="580" y="120">0,33</text>
-<text x="420" y="220">0,19</text>
-<text x="500" y="220">0,31</text>
-<text x="580" y="220">0,51</text>
+<rect x="386" y="182" width="286" height="34" rx="4" fill="#F9D2D6" stroke="#DA1B2E" stroke-width="1.5"/>
+<path d="M 382 125 H 368 V 270 H 382" fill="none" stroke="#3B3535" stroke-width="2.5"/>
+<path d="M 676 125 H 690 V 270 H 676" fill="none" stroke="#3B3535" stroke-width="2.5"/>
+<g font-family="'DejaVu Sans Mono', monospace" font-size="24" text-anchor="end" fill="#1F1E1E">
+<text x="460" y="162">0,12</text>
+<text x="560" y="162">0,55</text>
+<text x="660" y="162">0,33</text>
+<text x="460" y="207" fill="#DA1B2E" font-weight="bold">0,45</text>
+<text x="560" y="207" fill="#DA1B2E" font-weight="bold">0,10</text>
+<text x="660" y="207" fill="#DA1B2E" font-weight="bold">0,45</text>
+<text x="460" y="252">0,19</text>
+<text x="560" y="252">0,31</text>
+<text x="660" y="252">0,51</text>
 </g>
-<g font-size="26" font-weight="bold" fill="#DA1B2E" text-anchor="middle">
-<text x="420" y="170">0,45</text>
-<text x="500" y="170">0,10</text>
-<text x="580" y="170">0,45</text>
+<g font-size="19" fill="#6E6666">
+<text x="708" y="161">suma 1</text>
+<text x="708" y="206">suma 1</text>
+<text x="708" y="251">suma 1</text>
 </g>
-<g font-size="18" fill="#6B6363">
-<text x="660" y="118">suma 1</text>
-<text x="660" y="168">suma 1</text>
-<text x="660" y="218">suma 1</text>
+<line x1="30" y1="296" x2="823" y2="296" stroke="#D8D2CE" stroke-width="1"/>
+<text x="30" y="345" font-size="20" font-weight="bold" fill="#DA1B2E">fila cat:</text>
+<g font-family="'DejaVu Sans Mono', monospace" font-size="22" fill="#1F1E1E">
+<text x="128" y="345">[3 0 3]</text>
+<text x="336" y="345">[1,5 0 1,5]</text>
+<text x="612" y="345" fill="#DA1B2E" font-weight="bold">[0,45 0,10 0,45]</text>
 </g>
-<text x="30" y="314" font-size="20" font-weight="bold" fill="#DA1B2E">fila cat:</text>
-<rect x="140" y="285" width="110" height="42" rx="6" fill="#F1EFEF" stroke="#BDB7B7" stroke-width="1.5"/>
-<text x="195" y="314" font-size="22" text-anchor="middle" xml:space="preserve">[ 3  0  3 ]</text>
-<line x1="250" y1="306" x2="330" y2="306" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<text x="290" y="295" font-size="17" fill="#6B6363" text-anchor="middle">/ 2</text>
-<rect x="330" y="285" width="150" height="42" rx="6" fill="#F1EFEF" stroke="#BDB7B7" stroke-width="1.5"/>
-<text x="405" y="314" font-size="22" text-anchor="middle" xml:space="preserve">[ 1,5  0  1,5 ]</text>
-<line x1="480" y1="306" x2="580" y2="306" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<text x="530" y="295" font-size="17" fill="#6B6363" text-anchor="middle">softmax</text>
-<rect x="580" y="285" width="210" height="42" rx="6" fill="#FBE4E6" stroke="#DA1B2E" stroke-width="1.5"/>
-<text x="685" y="314" font-size="22" font-weight="bold" fill="#DA1B2E" text-anchor="middle" xml:space="preserve">[ 0,45  0,10  0,45 ]</text>
+<line x1="234" y1="338" x2="324" y2="338" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="494" y1="338" x2="600" y2="338" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<g font-size="17" text-anchor="middle" fill="#3B3535">
+<text x="279" y="326">/ 2</text>
+<text x="547" y="326">softmax</text>
+</g>
+<g font-size="15" text-anchor="middle" fill="#6E6666">
+<text x="174" y="376">scores</text>
+<text x="409" y="376">escalados</text>
+<text x="717" y="376">pesos</text>
+</g>
 </svg>

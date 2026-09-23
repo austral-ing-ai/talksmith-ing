@@ -1,71 +1,60 @@
 <!-- talksmith-ascii-sha256: 7e326741bab8e6750c5a5deb696825b0246fff8110b449a630a49f5abbf750e4 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="7 9 782 411" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 19 788 397" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
 <title>La posición entra con el embedding</title>
-<desc>Cada fila de X es la suma del embedding del token y un vector de su posición; sin la posición, dos frases con las mismas palabras en otro orden darían las mismas filas.</desc>
+<desc>Cada fila de X es la suma del embedding del token y un vector que codifica su posición; sin esa suma, dos frases con las mismas palabras en otro orden darían las mismas filas.</desc>
 <defs>
-<marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/></marker>
+<g id="plus"><circle r="11" fill="#DA1B2E"/><path d="M-6,0 H6 M0,-6 V6" stroke="#FFFFFF" stroke-width="2.5"/></g>
 </defs>
-<rect x="0" y="0" width="860" height="420" fill="#ffffff"/>
-<g font-size="17" font-weight="bold">
-<text x="30" y="46">token</text>
-<text x="30" y="96">embedding</text>
-<text x="30" y="191">posición</text>
-<text x="30" y="291">fila de X</text>
+<rect x="6" y="19" width="788" height="397" fill="#FFFFFF"/>
+<g font-size="16" font-weight="bold" fill="#1F1E1E">
+<text x="30" y="66">token</text>
+<text x="30" y="126">embedding</text>
+<text x="30" y="202">posición</text>
+<text x="30" y="276">fila de X</text>
 </g>
-<g font-family="'DejaVu Sans Mono', monospace" font-size="19" text-anchor="middle">
-<text x="240" y="46" font-weight="bold">the</text>
-<text x="370" y="46" font-weight="bold">cat</text>
-<text x="500" y="46" font-weight="bold">sat</text>
+<g stroke="#3B3535" stroke-width="1.5">
+<line x1="260" y1="77" x2="260" y2="101"/><line x1="400" y1="77" x2="400" y2="101"/><line x1="540" y1="77" x2="540" y2="101"/>
+<line x1="260" y1="139" x2="260" y2="147"/><line x1="400" y1="139" x2="400" y2="147"/><line x1="540" y1="139" x2="540" y2="147"/>
+<line x1="260" y1="169" x2="260" y2="177"/><line x1="400" y1="169" x2="400" y2="177"/><line x1="540" y1="169" x2="540" y2="177"/>
+<line x1="260" y1="215" x2="260" y2="251" marker-end="url(#ah)"/><line x1="400" y1="215" x2="400" y2="251" marker-end="url(#ah)"/><line x1="540" y1="215" x2="540" y2="251" marker-end="url(#ah)"/>
 </g>
-<g fill="#F2F2F2" stroke="#9A9494" stroke-width="1.5">
-<rect x="192" y="70" width="96" height="40" rx="6"/>
-<rect x="322" y="70" width="96" height="40" rx="6"/>
-<rect x="452" y="70" width="96" height="40" rx="6"/>
-<rect x="192" y="165" width="96" height="40" rx="6"/>
-<rect x="322" y="165" width="96" height="40" rx="6"/>
-<rect x="452" y="165" width="96" height="40" rx="6"/>
+<g fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="220" y="43" width="80" height="34" rx="17"/><rect x="360" y="43" width="80" height="34" rx="17"/><rect x="500" y="43" width="80" height="34" rx="17"/>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="205" y="101" width="110" height="38" rx="6"/><rect x="345" y="101" width="110" height="38" rx="6"/><rect x="485" y="101" width="110" height="38" rx="6"/>
+<rect x="205" y="177" width="110" height="38" rx="6"/><rect x="345" y="177" width="110" height="38" rx="6"/><rect x="485" y="177" width="110" height="38" rx="6"/>
 </g>
 <g fill="#FFFFFF" stroke="#3B3535" stroke-width="2">
-<rect x="192" y="265" width="96" height="40" rx="6"/>
-<rect x="322" y="265" width="96" height="40" rx="6"/>
-<rect x="452" y="265" width="96" height="40" rx="6"/>
+<rect x="205" y="251" width="110" height="38" rx="6"/><rect x="345" y="251" width="110" height="38" rx="6"/><rect x="485" y="251" width="110" height="38" rx="6"/>
 </g>
-<g font-family="'DejaVu Sans Mono', monospace" font-size="17" text-anchor="middle">
-<text x="240" y="96">e_the</text>
-<text x="370" y="96">e_cat</text>
-<text x="500" y="96">e_sat</text>
-<text x="240" y="191">p_0</text>
-<text x="370" y="191">p_1</text>
-<text x="500" y="191">p_2</text>
-<text x="240" y="291" font-weight="bold">x_the</text>
-<text x="370" y="291" font-weight="bold">x_cat</text>
-<text x="500" y="291" font-weight="bold">x_sat</text>
+<use href="#plus" x="260" y="158"/><use href="#plus" x="400" y="158"/><use href="#plus" x="540" y="158"/>
+<g font-family="'DejaVu Sans Mono', monospace" font-size="17" fill="#1F1E1E">
+<text x="260" y="66" text-anchor="middle">the</text>
+<text x="400" y="66" text-anchor="middle">cat</text>
+<text x="540" y="66" text-anchor="middle">sat</text>
 </g>
-<g fill="#DA1B2E">
-<circle cx="240" cy="137.5" r="15"/>
-<circle cx="370" cy="137.5" r="15"/>
-<circle cx="500" cy="137.5" r="15"/>
+<g font-family="'DejaVu Sans Mono', monospace" font-size="18" fill="#1F1E1E">
+<text x="241" y="126">e<tspan font-size="13" dy="4">the</tspan></text>
+<text x="381" y="126">e<tspan font-size="13" dy="4">cat</tspan></text>
+<text x="521" y="126">e<tspan font-size="13" dy="4">sat</tspan></text>
+<text x="250" y="202">p<tspan font-size="13" dy="4">0</tspan></text>
+<text x="390" y="202">p<tspan font-size="13" dy="4">1</tspan></text>
+<text x="530" y="202">p<tspan font-size="13" dy="4">2</tspan></text>
+<text x="241" y="276">x<tspan font-size="13" dy="4">the</tspan></text>
+<text x="381" y="276">x<tspan font-size="13" dy="4">cat</tspan></text>
+<text x="521" y="276">x<tspan font-size="13" dy="4">sat</tspan></text>
 </g>
-<g stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round">
-<path d="M231,137.5 H249 M240,128.5 V146.5"/>
-<path d="M361,137.5 H379 M370,128.5 V146.5"/>
-<path d="M491,137.5 H509 M500,128.5 V146.5"/>
+<g font-size="14">
+<text x="620" y="117">d valores cada uno,</text>
+<text x="620" y="135">de la tabla |V| × d</text>
+<text x="620" y="193">d valores cada uno,</text>
+<text x="620" y="211">uno por lugar</text>
 </g>
-<g stroke="#3B3535" stroke-width="2" marker-end="url(#ah)">
-<line x1="240" y1="205" x2="240" y2="265"/>
-<line x1="370" y1="205" x2="370" y2="265"/>
-<line x1="500" y1="205" x2="500" y2="265"/>
-</g>
-<g font-size="15">
-<text x="580" y="88">d valores cada uno,</text>
-<text x="580" y="107">de la tabla |V| × d</text>
-<text x="580" y="143" fill="#DA1B2E" font-weight="bold">se suma, no se concatena</text>
-<text x="580" y="183">d valores cada uno,</text>
-<text x="580" y="202">uno por lugar</text>
-<text x="580" y="291" font-family="'DejaVu Sans Mono', monospace" font-size="17" font-weight="bold">X : n × d</text>
-</g>
-<rect x="30" y="335" width="736" height="62" rx="6" fill="#F7F7F7"/>
-<rect x="30" y="335" width="6" height="62" fill="#DA1B2E"/>
-<text x="52" y="361" font-size="16"><tspan font-weight="bold" fill="#DA1B2E">sin p:</tspan> “the cat sat” y “sat cat the” darían las mismas filas en otro orden,</text>
-<text x="52" y="384" font-size="16">y la atención no distinguiría una de otra.</text>
+<text x="620" y="276" font-size="16" font-weight="bold" fill="#1F1E1E">X : n × d</text>
+<rect x="30" y="322" width="740" height="70" fill="#F2F2F2"/>
+<rect x="30" y="322" width="5" height="70" fill="#DA1B2E"/>
+<text x="52" y="351" font-size="16"><tspan font-weight="bold" fill="#DA1B2E">sin p:</tspan> “the cat sat” y “sat cat the” darían las mismas filas en otro orden,</text>
+<text x="52" y="375" font-size="16">y la atención no distinguiría una de otra</text>
 </svg>
