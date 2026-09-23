@@ -1,0 +1,35 @@
+<!-- talksmith-ascii-sha256: 4148b4368955c08a5acfe0666058f11f74ae77698579121779d3626f35ccf77e -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 6 918 302" font-size="34" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>La frase como matriz</title>
+<desc>La frase the cat sat como una matriz X de 3 tokens por 4 dimensiones: una fila por token, una columna por dimensión.</desc>
+<rect x="0" y="0" width="1000" height="330" fill="#ffffff"/>
+<text x="245.0" y="44" text-anchor="middle" font-size="20" fill="#6B6B6B">dim 1</text>
+<text x="335.0" y="44" text-anchor="middle" font-size="20" fill="#6B6B6B">dim 2</text>
+<text x="425.0" y="44" text-anchor="middle" font-size="20" fill="#6B6B6B">dim 3</text>
+<text x="515.0" y="44" text-anchor="middle" font-size="20" fill="#6B6B6B">dim 4</text>
+<rect x="200" y="60" width="360" height="216" fill="#F4F4F4" stroke="#D0D0D0" stroke-width="1.5"/>
+<line x1="290" y1="60" x2="290" y2="276" stroke="#D0D0D0" stroke-width="1.5"/>
+<line x1="380" y1="60" x2="380" y2="276" stroke="#D0D0D0" stroke-width="1.5"/>
+<line x1="470" y1="60" x2="470" y2="276" stroke="#D0D0D0" stroke-width="1.5"/>
+<line x1="200" y1="132" x2="560" y2="132" stroke="#D0D0D0" stroke-width="1.5"/>
+<line x1="200" y1="204" x2="560" y2="204" stroke="#D0D0D0" stroke-width="1.5"/>
+<text x="176" y="105.0" text-anchor="end" font-size="26" font-weight="bold">the</text>
+<text x="245.0" y="108.0" text-anchor="middle">1</text>
+<text x="335.0" y="108.0" text-anchor="middle">0</text>
+<text x="425.0" y="108.0" text-anchor="middle">1</text>
+<text x="515.0" y="108.0" text-anchor="middle">0</text>
+<text x="176" y="177.0" text-anchor="end" font-size="26" font-weight="bold">cat</text>
+<text x="245.0" y="180.0" text-anchor="middle">0</text>
+<text x="335.0" y="180.0" text-anchor="middle">2</text>
+<text x="425.0" y="180.0" text-anchor="middle">0</text>
+<text x="515.0" y="180.0" text-anchor="middle">1</text>
+<text x="176" y="249.0" text-anchor="end" font-size="26" font-weight="bold">sat</text>
+<text x="245.0" y="252.0" text-anchor="middle">1</text>
+<text x="335.0" y="252.0" text-anchor="middle">1</text>
+<text x="425.0" y="252.0" text-anchor="middle">1</text>
+<text x="515.0" y="252.0" text-anchor="middle">1</text>
+<path d="M204 54 H192 V282 H204" fill="none" stroke="#3B3535" stroke-width="3"/>
+<path d="M556 54 H568 V282 H556" fill="none" stroke="#3B3535" stroke-width="3"/>
+<text x="24" y="182.0" font-size="40" font-weight="bold">X =</text>
+<text x="604" y="176.0" font-size="24" fill="#DA1B2E" font-weight="bold">3 tokens × 4 dimensiones</text>
+</svg>

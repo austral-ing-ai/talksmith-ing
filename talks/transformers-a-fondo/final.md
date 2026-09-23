@@ -296,11 +296,18 @@ Es la lámina 6.3 de la clase pasada con una sola diferencia: el recuadro "TRANS
 
 **La frase "the cat sat" es una matriz X de 3 tokens por 4 dimensiones. La atención opera sobre esa matriz.**
 
-| | dim 1 | dim 2 | dim 3 | dim 4 |
-|---|---|---|---|---|
-| **the** | 1 | 0 | 1 | 0 |
-| **cat** | 0 | 2 | 0 | 1 |
-| **sat** | 1 | 1 | 1 | 1 |
+![La frase the cat sat como matriz X de 3 tokens por 4 dimensiones](images/s1-2-1-frase-como-matriz.png)
+<!-- ascii-source:
+                 dim 1  dim 2  dim 3  dim 4
+          the  [   1      0      1      0   ]
+   X  =   cat  [   0      2      0      1   ]     3 tokens x 4 dimensiones
+          sat  [   1      1      1      1   ]
+-->
+<!-- ascii-note:
+intent: mostrar la frase the cat sat como una matriz X de 3 filas (una por token) por 4 columnas (una por dimension), no cuadrada
+emphasize: la forma 3 x 4, con las etiquetas de fila (tokens) y de columna (dimensiones); ningun valor en particular
+labels: "X", "the", "cat", "sat", "dim 1", "dim 2", "dim 3", "dim 4", "3 tokens x 4 dimensiones"
+-->
 
 - **Una fila por token, una columna por dimensión.** La cantidad de tokens y la dimensión del embedding son independientes: en un modelo real las filas son cientos o miles y d es 768 (GPT-2 chico) o 512 (paper de 2017). X casi nunca es cuadrada.
 - **X ya incluye la posición.** Cada fila es el embedding del token más un vector que codifica su posición en la frase (lámina siguiente). En el ejemplo se toman los números ya sumados.
@@ -414,17 +421,20 @@ La pregunta que hay que contestar acá es por qué tres y no una. La respuesta c
 
 **Con las matrices del ejemplo, las consultas quedan iguales a X y las claves son X con los pares de columnas intercambiados.**
 
-| Q = X Wq | | | | |
-|---|---|---|---|---|
-| **the** | 1 | 0 | 1 | 0 |
-| **cat** | 0 | 2 | 0 | 1 |
-| **sat** | 1 | 1 | 1 | 1 |
+![Las matrices Q y K del ejemplo, lado a lado](images/s2-2-1-q-y-k.png)
+<!-- ascii-source:
+        Q = X Wq                       K = X Wk
+  the  [ 1  0  1  0 ]            the  [ 0  1  0  1 ]
+  cat  [ 0  2  0  1 ]            cat  [ 2  0  1  0 ]
+  sat  [ 1  1  1  1 ]            sat  [ 1  1  1  1 ]
 
-| K = X Wk | | | | |
-|---|---|---|---|---|
-| **the** | 0 | 1 | 0 | 1 |
-| **cat** | 2 | 0 | 1 | 0 |
-| **sat** | 1 | 1 | 1 | 1 |
+  Wq = identidad: Q queda igual a X      Wk intercambia columna 1 con 2 y 3 con 4
+-->
+<!-- ascii-note:
+intent: mostrar lado a lado las consultas Q y las claves K del ejemplo, dos matrices de 3 x 4, y la regla que produjo cada una
+emphasize: la fila de cat en las dos matrices ([0 2 0 1] como consulta, [2 0 1 0] como clave), que es la que se sigue en las laminas siguientes
+labels: "Q = X Wq", "K = X Wk", "the", "cat", "sat", "Wq = identidad: Q queda igual a X", "Wk intercambia columna 1 con 2 y 3 con 4"
+-->
 
 - **Wk intercambia la columna 1 con la 2 y la 3 con la 4.** Por eso "the", que en X es [1 0 1 0], como clave es [0 1 0 1].
 - **V baja a dimensión 2** sumando la columna 1 con la 3 y la 2 con la 4: the [2 0], cat [0 3], sat [2 2]. La salida de la atención va a tener esa dimensión.
@@ -448,11 +458,21 @@ Lámina de cálculo puro; no expliques, verificá una celda con ellos. Elegí la
 
 **Cada consulta se multiplica contra todas las claves. El resultado, Q Kᵀ, es una matriz de n por n: cuánto le importa a cada token cada otro token.**
 
-| Q Kᵀ | the | cat | sat |
-|---|---|---|---|
-| **the** | 0 | 3 | 2 |
-| **cat** | 3 | 0 | 3 |
-| **sat** | 2 | 3 | 4 |
+![La matriz Q K transpuesta de 3 por 3 y la cuenta de la celda cat contra the](images/s2-3-1-matriz-qkt.png)
+<!-- ascii-source:
+                      claves
+                   the  cat  sat
+            the  [  0    3    2  ]
+   Q K^T =  cat  [  3    0    3  ]     n x n = 3 x 3
+ consultas  sat  [  2    3    4  ]
+
+   cat . the = 0*0 + 2*1 + 0*0 + 1*1 = 3
+-->
+<!-- ascii-note:
+intent: mostrar la matriz de afinidades Q K^T como una tabla cuadrada de consultas (filas) contra claves (columnas), y la cuenta de una celda
+emphasize: la fila de cat y la celda cat contra the (3), que es la cuenta escrita abajo; la forma cuadrada n x n
+labels: "Q K^T", "consultas", "claves", "the", "cat", "sat", "n x n = 3 x 3", "cat . the = 0*0 + 2*1 + 0*0 + 1*1 = 3"
+-->
 
 - **Una celda es un producto punto.** Fila "cat" (consulta [0 2 0 1]) contra columna "the" (clave [0 1 0 1]): 0·0 + 2·1 + 0·0 + 1·1 = 3.
 - **Por qué producto punto.** Es grande cuando los dos vectores apuntan para el mismo lado y se calcula para toda la frase con una sola multiplicación de matrices, que es la operación para la que las GPU están optimizadas. El paper lo compara con la atención aditiva (una red chica por par) y la descarta por lenta.
@@ -476,11 +496,20 @@ Hacé la cuenta de una celda en el pizarrón, la de "cat" contra "the", y dejá 
 
 **Los scores se dividen por √d_k y cada fila pasa por un softmax. El resultado es la matriz de atención A: una distribución por token, con pesos positivos que suman uno.**
 
-| A = softmax(Q Kᵀ / √4) | the | cat | sat |
-|---|---|---|---|
-| **the** | 0,12 | 0,55 | 0,33 |
-| **cat** | 0,45 | 0,10 | 0,45 |
-| **sat** | 0,19 | 0,31 | 0,51 |
+![La matriz de atencion A con filas que suman 1 y el camino de la fila de cat](images/s2-4-1-matriz-de-atencion.png)
+<!-- ascii-source:
+                                the    cat    sat
+                          the [ 0,12   0,55   0,33 ]   suma 1
+  A = softmax(Q K^T / 2)  cat [ 0,45   0,10   0,45 ]   suma 1
+                          sat [ 0,19   0,31   0,51 ]   suma 1
+
+  fila cat:  [3 0 3]  / 2  ->  [1,5 0 1,5]  softmax ->  [0,45 0,10 0,45]
+-->
+<!-- ascii-note:
+intent: mostrar la matriz de atencion A, cada fila una distribucion que suma 1, y el camino de la fila de cat desde los scores hasta los pesos
+emphasize: la fila de cat en A y la cadena escalar y softmax escrita abajo; las marcas "suma 1" a la derecha de cada fila
+labels: "A = softmax(Q K^T / 2)", "the", "cat", "sat", "suma 1", "fila cat: [3 0 3] / 2 -> [1,5 0 1,5] softmax -> [0,45 0,10 0,45]"
+-->
 
 - **Dividir por √d_k = 2.** La fila "cat" pasa de [3 0 3] a [1,5 0 1,5]. Sin la escala, los productos crecen con d_k y con d_k = 64 el softmax se satura: un peso cerca de 1, el resto cerca de 0 y gradiente casi nulo.
 - **Softmax por fila:** e^{x_i} / Σ e^{x_j}. Para "cat": e^{1,5} = 4,48, e^0 = 1, e^{1,5} = 4,48; suma 9,96; pesos 0,45 · 0,10 · 0,45.
@@ -548,11 +577,21 @@ Acá se cierra la atención. La cuenta del diagrama es la que hay que hacer en e
 
 **Para generar texto, un token no puede mirar a los que vienen después. Se ponen en menos infinito antes del softmax y quedan con peso cero.**
 
-| con máscara | the | cat | sat |
-|---|---|---|---|
-| **the** | 1,00 | 0 | 0 |
-| **cat** | 0,82 | 0,18 | 0 |
-| **sat** | 0,19 | 0,31 | 0,51 |
+![Scores con menos infinito arriba de la diagonal y la matriz de atencion triangular resultante](images/s2-6-1-mascara-causal.png)
+<!-- ascii-source:
+   scores con mascara                    A con mascara
+         the   cat   sat                        the    cat    sat
+   the [  0   -inf  -inf ]              the [ 1,00   0      0    ]
+   cat [ 1,5   0    -inf ]   softmax    cat [ 0,82   0,18   0    ]
+   sat [  1   1,5    2   ]   ------&gt;    sat [ 0,19   0,31   0,51 ]
+
+   un token no mira a los que vienen despues: e^(-inf) = 0
+-->
+<!-- ascii-note:
+intent: mostrar la mascara causal: los scores de los tokens posteriores pasan a menos infinito y despues del softmax quedan en cero, con una matriz triangular
+emphasize: el triangulo superior de -inf a la izquierda que se convierte en ceros a la derecha
+labels: "scores con mascara", "A con mascara", "the", "cat", "sat", "-inf", "softmax", "un token no mira a los que vienen despues: e^(-inf) = 0"
+-->
 
 - **Por qué menos infinito.** e^{-∞} = 0, así que el softmax reparte solo entre los tokens permitidos y la fila sigue sumando uno. Un score de cero le daría al token prohibido un peso e^0 = 1, que no es cero.
 - **La última fila no cambia.** "sat" ya veía a todos. La fila de "the" ahora solo se ve a sí misma.
@@ -761,12 +800,22 @@ Hacé la cuenta de la primera viñeta, es de treinta segundos y es exactamente l
 
 **El vector de posición que se suma al embedding (lámina 1.3) puede ser fijo. El paper de 2017 usa senos y cosenos de distinta frecuencia, uno por dimensión.**
 
-| pos | dim 1 (sen) | dim 2 (cos) | dim 3 (sen) | dim 4 (cos) |
-|---|---|---|---|---|
-| 0 | 0 | 1 | 0 | 1 |
-| 1 | 0,84 | 0,54 | 0,01 | 1,00 |
-| 2 | 0,91 | -0,42 | 0,02 | 1,00 |
-| 3 | 0,14 | -0,99 | 0,03 | 1,00 |
+![Tabla de codificacion sinusoidal de posicion con d igual a 4 para las posiciones 0 a 3](images/s3-6-1-tabla-de-posicion.png)
+<!-- ascii-source:
+              dim 1    dim 2    dim 3    dim 4
+              (sen)    (cos)    (sen)    (cos)
+   pos 0  [   0        1        0        1      ]
+   pos 1  [   0,84     0,54     0,01     1,00   ]
+   pos 2  [   0,91    -0,42     0,02     1,00   ]
+   pos 3  [   0,14    -0,99     0,03     1,00   ]
+              ^^^^^^^^^^^^      ^^^^^^^^^^^^
+              cambia rapido     casi no cambia
+-->
+<!-- ascii-note:
+intent: mostrar la tabla de codificacion de posicion sinusoidal con d = 4 para las posiciones 0 a 3: el primer par de dimensiones oscila rapido y el segundo casi no se mueve
+emphasize: el contraste entre las dos columnas de la izquierda (cambian rapido) y las dos de la derecha (casi constantes)
+labels: "pos 0", "pos 1", "pos 2", "pos 3", "dim 1 (sen)", "dim 2 (cos)", "dim 3 (sen)", "dim 4 (cos)", "cambia rapido", "casi no cambia"
+-->
 
 - **El paper suma un vector fijo de senos y cosenos:** PE(pos, 2i) = sen(pos / 10000^{2i/d}), PE(pos, 2i+1) = cos(·). Cada par de dimensiones es una sinusoide de distinta frecuencia; las de la izquierda cambian rápido, las de la derecha casi no cambian (con d = 4, la tercera y cuarta columna apenas se mueven).
 - **Por qué sinusoides.** Para cualquier desplazamiento k, PE(pos + k) es una función lineal de PE(pos), así que el modelo puede aprender a atender por posición relativa. El paper conjetura que extrapolan a secuencias más largas que las del entrenamiento; en la práctica lo hacen mal, y eso motiva RoPE (sección 5).

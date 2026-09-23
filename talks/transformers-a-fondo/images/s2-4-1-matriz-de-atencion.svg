@@ -1,0 +1,52 @@
+<!-- talksmith-ascii-sha256: d3b5b3704694127fa453ab5ba0c8948f4ca53da47c67fafac3413e49ed7d6076 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 17 820 340" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Escalar y repartir: el softmax</title>
+<desc>La matriz de atención A = softmax(Q K^T / 2): cada fila es una distribución que suma 1, y abajo el camino de la fila de cat desde los scores [3 0 3] hasta los pesos [0,45 0,10 0,45].</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="17" width="820" height="340" fill="#ffffff"/>
+<text x="30" y="169" font-size="24">A = softmax(Q K<tspan dy="-10" font-size="15">T</tspan><tspan dy="10" font-size="24"> / 2)</tspan></text>
+<g font-size="20" fill="#6B6363" text-anchor="middle">
+<text x="420" y="62">the</text>
+<text x="500" y="62">cat</text>
+<text x="580" y="62">sat</text>
+</g>
+<g font-size="20" fill="#6B6363" text-anchor="end">
+<text x="345" y="117">the</text>
+<text x="345" y="217">sat</text>
+</g>
+<text x="345" y="167" font-size="20" font-weight="bold" fill="#DA1B2E" text-anchor="end">cat</text>
+<rect x="370" y="138" width="260" height="44" rx="6" fill="#FBE4E6"/>
+<path d="M372,82 L362,82 L362,238 L372,238" fill="none" stroke="#3B3535" stroke-width="2.5"/>
+<path d="M628,82 L638,82 L638,238 L628,238" fill="none" stroke="#3B3535" stroke-width="2.5"/>
+<g font-size="26" text-anchor="middle">
+<text x="420" y="120">0,12</text>
+<text x="500" y="120">0,55</text>
+<text x="580" y="120">0,33</text>
+<text x="420" y="220">0,19</text>
+<text x="500" y="220">0,31</text>
+<text x="580" y="220">0,51</text>
+</g>
+<g font-size="26" font-weight="bold" fill="#DA1B2E" text-anchor="middle">
+<text x="420" y="170">0,45</text>
+<text x="500" y="170">0,10</text>
+<text x="580" y="170">0,45</text>
+</g>
+<g font-size="18" fill="#6B6363">
+<text x="660" y="118">suma 1</text>
+<text x="660" y="168">suma 1</text>
+<text x="660" y="218">suma 1</text>
+</g>
+<text x="30" y="314" font-size="20" font-weight="bold" fill="#DA1B2E">fila cat:</text>
+<rect x="140" y="285" width="110" height="42" rx="6" fill="#F1EFEF" stroke="#BDB7B7" stroke-width="1.5"/>
+<text x="195" y="314" font-size="22" text-anchor="middle" xml:space="preserve">[ 3  0  3 ]</text>
+<line x1="250" y1="306" x2="330" y2="306" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="290" y="295" font-size="17" fill="#6B6363" text-anchor="middle">/ 2</text>
+<rect x="330" y="285" width="150" height="42" rx="6" fill="#F1EFEF" stroke="#BDB7B7" stroke-width="1.5"/>
+<text x="405" y="314" font-size="22" text-anchor="middle" xml:space="preserve">[ 1,5  0  1,5 ]</text>
+<line x1="480" y1="306" x2="580" y2="306" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="530" y="295" font-size="17" fill="#6B6363" text-anchor="middle">softmax</text>
+<rect x="580" y="285" width="210" height="42" rx="6" fill="#FBE4E6" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="685" y="314" font-size="22" font-weight="bold" fill="#DA1B2E" text-anchor="middle" xml:space="preserve">[ 0,45  0,10  0,45 ]</text>
+</svg>

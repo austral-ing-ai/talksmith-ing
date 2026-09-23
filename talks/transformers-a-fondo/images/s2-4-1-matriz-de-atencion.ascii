@@ -1,0 +1,12 @@
+                                the    cat    sat
+                          the [ 0,12   0,55   0,33 ]   suma 1
+  A = softmax(Q K^T / 2)  cat [ 0,45   0,10   0,45 ]   suma 1
+                          sat [ 0,19   0,31   0,51 ]   suma 1
+
+  fila cat:  [3 0 3]  / 2  ->  [1,5 0 1,5]  softmax ->  [0,45 0,10 0,45]
+
+<!-- ascii-note:
+intent: mostrar la matriz de atencion A, cada fila una distribucion que suma 1, y el camino de la fila de cat desde los scores hasta los pesos
+emphasize: la fila de cat en A y la cadena escalar y softmax escrita abajo; las marcas "suma 1" a la derecha de cada fila
+labels: "A = softmax(Q K^T / 2)", "the", "cat", "sat", "suma 1", "fila cat: [3 0 3] / 2 -> [1,5 0 1,5] softmax -> [0,45 0,10 0,45]"
+-->

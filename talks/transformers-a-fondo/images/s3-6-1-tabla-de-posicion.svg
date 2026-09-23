@@ -1,0 +1,31 @@
+<!-- talksmith-ascii-sha256: 54d4599fa38c9c7638313f4f83ceb1c12661d582f4005ca37a01ff65362c52d7 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>La fórmula de la posición: senos y cosenos</title>
+<desc>Tabla de codificación de posición sinusoidal con d = 4 para las posiciones 0 a 3: las dimensiones 1 y 2 cambian rápido y las dimensiones 3 y 4 casi no cambian.</desc>
+<rect x="0" y="0" width="720" height="340" fill="#ffffff"/>
+<rect x="155" y="92" width="250" height="168" rx="6" fill="#FBE6E8"/>
+<rect x="415" y="92" width="250" height="168" rx="6" fill="#F1F1F1"/>
+<g font-size="22" font-weight="bold" text-anchor="middle">
+<text x="220" y="44">dim 1</text><text x="340" y="44">dim 2</text><text x="480" y="44">dim 3</text><text x="600" y="44">dim 4</text>
+</g>
+<g font-size="18" text-anchor="middle" fill="#6B6363">
+<text x="220" y="70">(sen)</text><text x="340" y="70">(cos)</text><text x="480" y="70">(sen)</text><text x="600" y="70">(cos)</text>
+</g>
+<g font-size="22" font-weight="bold">
+<text x="20" y="133">pos 0</text><text x="20" y="173">pos 1</text><text x="20" y="213">pos 2</text><text x="20" y="253">pos 3</text>
+</g>
+<g fill="none" stroke="#3B3535" stroke-width="3">
+<path d="M 140 88 H 128 V 264 H 140"/>
+<path d="M 680 88 H 692 V 264 H 680"/>
+</g>
+<g font-size="24" text-anchor="end" font-family="'DejaVu Sans Mono', monospace">
+<text x="252" y="133">0</text><text x="372" y="133">1</text><text x="512" y="133">0</text><text x="632" y="133">1</text>
+<text x="252" y="173">0,84</text><text x="372" y="173">0,54</text><text x="512" y="173">0,01</text><text x="632" y="173">1,00</text>
+<text x="252" y="213">0,91</text><text x="372" y="213">-0,42</text><text x="512" y="213">0,02</text><text x="632" y="213">1,00</text>
+<text x="252" y="253">0,14</text><text x="372" y="253">-0,99</text><text x="512" y="253">0,03</text><text x="632" y="253">1,00</text>
+</g>
+<path d="M 160 274 V 286 H 400 V 274" fill="none" stroke="#DA1B2E" stroke-width="3"/>
+<path d="M 420 274 V 286 H 660 V 274" fill="none" stroke="#6B6363" stroke-width="3"/>
+<text x="280" y="318" font-size="22" font-weight="bold" text-anchor="middle" fill="#DA1B2E">cambia rápido</text>
+<text x="540" y="318" font-size="22" font-weight="bold" text-anchor="middle" fill="#6B6363">casi no cambia</text>
+</svg>

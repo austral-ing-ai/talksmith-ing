@@ -1,0 +1,14 @@
+              dim 1    dim 2    dim 3    dim 4
+              (sen)    (cos)    (sen)    (cos)
+   pos 0  [   0        1        0        1      ]
+   pos 1  [   0,84     0,54     0,01     1,00   ]
+   pos 2  [   0,91    -0,42     0,02     1,00   ]
+   pos 3  [   0,14    -0,99     0,03     1,00   ]
+              ^^^^^^^^^^^^      ^^^^^^^^^^^^
+              cambia rapido     casi no cambia
+
+<!-- ascii-note:
+intent: mostrar la tabla de codificacion de posicion sinusoidal con d = 4 para las posiciones 0 a 3: el primer par de dimensiones oscila rapido y el segundo casi no se mueve
+emphasize: el contraste entre las dos columnas de la izquierda (cambian rapido) y las dos de la derecha (casi constantes)
+labels: "pos 0", "pos 1", "pos 2", "pos 3", "dim 1 (sen)", "dim 2 (cos)", "dim 3 (sen)", "dim 4 (cos)", "cambia rapido", "casi no cambia"
+-->

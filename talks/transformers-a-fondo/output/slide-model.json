@@ -178,19 +178,27 @@
       "section": "Dónde quedamos",
       "title": "La frase como matriz",
       "notes": "Lámina de referencia, no de explicación: se muestra, se dice que van a volver a verla, y se sigue. El único punto que vale decir es que en un modelo real un embedding es un vector de 768 decimales que nadie interpreta columna por columna; acá son cuatro enteros solo para poder multiplicar en el pizarrón. Si alguien pregunta de dónde salen estos números en un modelo real: de la tabla de embeddings, que es una matriz |V| por d aprendida, y la lámina 3.2 de la clase pasada. Tiempo objetivo: ~1 min.\n\n---",
-      "template": "code-example",
-      "language": "text",
-      "code": "     dim 1  dim 2  dim 3  dim 4\nthe      1      0      1      0\ncat      0      2      0      1\nsat      1      1      1      1",
-      "explanation": [
-        "La frase \"the cat sat\" es una matriz X de 3 tokens por 4 dimensiones. La atención opera sobre esa matriz.",
-        "Una fila por token, una columna por dimensión. La cantidad de tokens y la dimensión del embedding son independientes: en un modelo real las filas son cientos o miles y d es 768 (GPT-2 chico) o 512 (paper de 2017). X casi nunca es cuadrada.",
-        "X ya incluye la posición. Cada fila es el embedding del token más un vector que codifica su posición en la frase (lámina siguiente). En el ejemplo se toman los números ya sumados."
+      "template": "content-image",
+      "lead": "La frase \"the cat sat\" es una matriz X de 3 tokens por 4 dimensiones. La atención opera sobre esa matriz.",
+      "image": {
+        "src": "images/s1-2-1-frase-como-matriz.png",
+        "alt": "La frase the cat sat como matriz X de 3 tokens por 4 dimensiones"
+      },
+      "facts": [
+        {
+          "label": "Una fila por token, una columna por dimensión",
+          "body": "La cantidad de tokens y la dimensión del embedding son independientes: en un modelo real las filas son cientos o miles y d es 768 (GPT-2 chico) o 512 (paper de 2017). X casi nunca es cuadrada."
+        },
+        {
+          "label": "X ya incluye la posición",
+          "body": "Cada fila es el embedding del token más un vector que codifica su posición en la frase (lámina siguiente). En el ejemplo se toman los números ya sumados."
+        },
+        {
+          "label": "Los números son de juguete",
+          "body": "Son enteros chicos para poder multiplicar a mano. En un modelo real son decimales aprendidos sin significado individual."
+        }
       ],
       "highlights": [
-        {
-          "body": "Los números son de juguete. Son enteros chicos para poder multiplicar a mano. En un modelo real son decimales aprendidos sin significado individual.",
-          "kind": "note"
-        },
         {
           "body": "Convención: n es la cantidad de tokens (acá 3) y d la dimensión del embedding (acá 4). Las matrices de pesos W son de d por d salvo indicación.",
           "kind": "note"
@@ -262,19 +270,27 @@
       "section": "La atención con números",
       "title": "Q y K en el ejemplo",
       "notes": "Lámina de cálculo puro; no expliques, verificá una celda con ellos. Elegí la fila de \"cat\" en K: [0 2 0 1] con las columnas intercambiadas es [2 0 1 0]. Con una alcanza. El punto conceptual es la última viñeta: d_k tiene que coincidir entre Q y K porque se van a multiplicar, y d_v es libre. En el paper las tres son 64 por cabeza. Tiempo objetivo: ~2 min.\n\n---",
-      "template": "code-example",
-      "language": "text",
-      "code": "Q = X Wq\nthe       1  0  1  0\ncat       0  2  0  1\nsat       1  1  1  1\n\nK = X Wk\nthe       0  1  0  1\ncat       2  0  1  0\nsat       1  1  1  1",
-      "explanation": [
-        "Con las matrices del ejemplo, las consultas quedan iguales a X y las claves son X con los pares de columnas intercambiados.",
-        "Wk intercambia la columna 1 con la 2 y la 3 con la 4. Por eso \"the\", que en X es [1 0 1 0], como clave es [0 1 0 1].",
-        "V baja a dimensión 2: sumando la columna 1 con la 3 y la 2 con la 4: the [2 0], cat [0 3], sat [2 2]. La salida de la atención va a tener esa dimensión."
+      "template": "content-image",
+      "lead": "Con las matrices del ejemplo, las consultas quedan iguales a X y las claves son X con los pares de columnas intercambiados.",
+      "image": {
+        "src": "images/s2-2-1-q-y-k.png",
+        "alt": "Las matrices Q y K del ejemplo, lado a lado"
+      },
+      "facts": [
+        {
+          "label": "Wk intercambia la columna 1 con la 2 y la 3 con la 4",
+          "body": "Por eso \"the\", que en X es [1 0 1 0], como clave es [0 1 0 1]."
+        },
+        {
+          "label": "V baja a dimensión 2",
+          "body": "sumando la columna 1 con la 3 y la 2 con la 4: the [2 0], cat [0 3], sat [2 2]. La salida de la atención va a tener esa dimensión."
+        },
+        {
+          "label": "Wq, Wk y Wv son parámetros entrenables",
+          "body": "El entrenamiento las ajusta por gradiente como a cualquier peso de la red; las del ejemplo están fijadas a mano solo para poder calcular."
+        }
       ],
       "highlights": [
-        {
-          "body": "Wq, Wk y Wv son parámetros entrenables. El entrenamiento las ajusta por gradiente como a cualquier peso de la red; las del ejemplo están fijadas a mano solo para poder calcular.",
-          "kind": "note"
-        },
         {
           "body": "La forma importa más que los valores. Q y K tienen que tener la misma dimensión para poder multiplicarse. V puede tener otra.",
           "kind": "note"
@@ -285,19 +301,27 @@
       "section": "La atención con números",
       "title": "El producto punto mide afinidad",
       "notes": "Hacé la cuenta de una celda en el pizarrón, la de \"cat\" contra \"the\", y dejá que ellos hagan otra. Señalá que es la primera matriz cuadrada que aparece, y que lo es porque compara tokens contra tokens, no por la dimensión del embedding. La observación más importante es la de la tercera viñeta: esta matriz es el costo que atacan casi todas las variantes modernas que se nombran en la sección 5. Cuando alguien diga \"el transformer es cuadrático\", es esta tabla. Una cosa que conviene señalar: la diagonal no es la más alta en todas las filas (\"the\" contra sí mismo da 0), y eso es efecto de que Wk no es la identidad. Con Q = K la diagonal tendería a ganar, sobre todo en los tokens de norma grande. Tiempo objetivo: ~4 min.\n\n---",
-      "template": "code-example",
-      "language": "text",
-      "code": "Q Kᵀ  the  cat  sat\nthe     0    3    2\ncat     3    0    3\nsat     2    3    4",
-      "explanation": [
-        "Cada consulta se multiplica contra todas las claves. El resultado, Q Kᵀ, es una matriz de n por n: cuánto le importa a cada token cada otro token.",
-        "Una celda es un producto punto. Fila \"cat\" (consulta [0 2 0 1]) contra columna \"the\" (clave [0 1 0 1]): 0·0 + 2·1 + 0·0 + 1·1 = 3.",
-        "Por qué producto punto. Es grande cuando los dos vectores apuntan para el mismo lado y se calcula para toda la frase con una sola multiplicación de matrices, que es la operación para la que las GPU están optimizadas. El paper lo compara con la atención aditiva (una red chica por par) y la descarta por lenta."
+      "template": "content-image",
+      "lead": "Cada consulta se multiplica contra todas las claves. El resultado, Q Kᵀ, es una matriz de n por n: cuánto le importa a cada token cada otro token.",
+      "image": {
+        "src": "images/s2-3-1-matriz-qkt.png",
+        "alt": "La matriz Q K transpuesta de 3 por 3 y la cuenta de la celda cat contra the"
+      },
+      "facts": [
+        {
+          "label": "Una celda es un producto punto",
+          "body": "Fila \"cat\" (consulta [0 2 0 1]) contra columna \"the\" (clave [0 1 0 1]): 0·0 + 2·1 + 0·0 + 1·1 = 3."
+        },
+        {
+          "label": "Por qué producto punto",
+          "body": "Es grande cuando los dos vectores apuntan para el mismo lado y se calcula para toda la frase con una sola multiplicación de matrices, que es la operación para la que las GPU están optimizadas. El paper lo compara con la atención aditiva (una red chica por par) y la descarta por lenta."
+        },
+        {
+          "label": "Es casi la matriz de atención",
+          "body": "Le faltan dos pasos, la escala y el softmax, para que cada fila sea una distribución. Es la única matriz cuadrada del proceso: n por n, sea cual sea d."
+        }
       ],
       "highlights": [
-        {
-          "body": "Es casi la matriz de atención. Le faltan dos pasos, la escala y el softmax, para que cada fila sea una distribución. Es la única matriz cuadrada del proceso: n por n, sea cual sea d.",
-          "kind": "note"
-        },
         {
           "body": "Esta matriz es el costo cuadrático. Son n² celdas: 9 con 3 tokens, 16 millones con 4.096, por cabeza y por capa.",
           "kind": "note"
@@ -308,18 +332,24 @@
       "section": "La atención con números",
       "title": "Escalar y repartir: el softmax",
       "notes": "Dos justificaciones, y las dos van al ejercicio a mano de la práctica. La de la escala es estadística: si las componentes de q y k son independientes con varianza 1, la suma de d_k productos tiene varianza d_k, así que dividir por √d_k devuelve la varianza a 1 sea cual sea la dimensión. Con d = 4 el efecto es chico, pero decí que con 64 sin la escala los scores andan por ±8 y el softmax ya está saturado. La del softmax es la derivabilidad: el entrenamiento necesita que un cambio chico en los pesos mueva la salida un poco, y un máximo duro no lo hace. Verificá la fila de \"cat\" con ellos, con calculadora, es un minuto. Tiempo objetivo: ~4 min.\n\n---",
-      "template": "code-example",
-      "language": "text",
-      "code": "A = softmax(Q Kᵀ / √4)   the   cat   sat\nthe                     0,12  0,55  0,33\ncat                     0,45  0,10  0,45\nsat                     0,19  0,31  0,51",
-      "explanation": [
-        "Los scores se dividen por √d_k y cada fila pasa por un softmax. El resultado es la matriz de atención A: una distribución por token, con pesos positivos que suman uno.",
-        "Dividir por √d_k = 2. La fila \"cat\" pasa de [3 0 3] a [1,5 0 1,5]. Sin la escala, los productos crecen con d_k y con d_k = 64 el softmax se satura: un peso cerca de 1, el resto cerca de 0 y gradiente casi nulo.",
-        "Softmax por fila: e^{x_i} / Σ e^{x_j}. Para \"cat\": e^{1,5} = 4,48, e^0 = 1, e^{1,5} = 4,48; suma 9,96; pesos 0,45 · 0,10 · 0,45."
-      ],
-      "highlights": [
+      "template": "content-image",
+      "lead": "Los scores se dividen por √d_k y cada fila pasa por un softmax. El resultado es la matriz de atención A: una distribución por token, con pesos positivos que suman uno.",
+      "image": {
+        "src": "images/s2-4-1-matriz-de-atencion.png",
+        "alt": "La matriz de atencion A con filas que suman 1 y el camino de la fila de cat"
+      },
+      "facts": [
         {
-          "body": "Por qué softmax. Es derivable, así que se entrena por gradiente, y reparte: \"cat\" mira a \"the\" y a \"sat\" por igual y casi nada a sí misma. Quedarse con el máximo daría un peso de 1 a un solo token y no tendría gradiente.",
-          "kind": "note"
+          "label": "Dividir por √d_k = 2",
+          "body": "La fila \"cat\" pasa de [3 0 3] a [1,5 0 1,5]. Sin la escala, los productos crecen con d_k y con d_k = 64 el softmax se satura: un peso cerca de 1, el resto cerca de 0 y gradiente casi nulo."
+        },
+        {
+          "label": "Softmax por fila",
+          "body": "e^{x_i} / Σ e^{x_j}. Para \"cat\": e^{1,5} = 4,48, e^0 = 1, e^{1,5} = 4,48; suma 9,96; pesos 0,45 · 0,10 · 0,45."
+        },
+        {
+          "label": "Por qué softmax",
+          "body": "Es derivable, así que se entrena por gradiente, y reparte: \"cat\" mira a \"the\" y a \"sat\" por igual y casi nada a sí misma. Quedarse con el máximo daría un peso de 1 a un solo token y no tendría gradiente."
         }
       ]
     },
@@ -352,19 +382,27 @@
       "section": "La atención con números",
       "title": "La máscara causal",
       "notes": "La justificación es de entrenamiento: si \"cat\" pudiera ver \"sat\" mientras aprende a predecir \"sat\", la tarea sería trivial y no aprendería nada. Con la máscara, una frase de n tokens da n ejemplos de entrenamiento válidos de una vez: es la ventana deslizante de la clase pasada calculada en paralelo. La tercera viñeta organiza la sección 4: encoder y decoder difieren en esta matriz triangular y en poco más. Tiempo objetivo: ~4 min.\n\n---",
-      "template": "code-example",
-      "language": "text",
-      "code": "con máscara   the   cat   sat\nthe          1,00     0     0\ncat          0,82  0,18     0\nsat          0,19  0,31  0,51",
-      "explanation": [
-        "Para generar texto, un token no puede mirar a los que vienen después. Se ponen en menos infinito antes del softmax y quedan con peso cero.",
-        "Por qué menos infinito. e^{-∞} = 0, así que el softmax reparte solo entre los tokens permitidos y la fila sigue sumando uno. Un score de cero le daría al token prohibido un peso e^0 = 1, que no es cero.",
-        "La última fila no cambia. \"sat\" ya veía a todos. La fila de \"the\" ahora solo se ve a sí misma."
+      "template": "content-image",
+      "lead": "Para generar texto, un token no puede mirar a los que vienen después. Se ponen en menos infinito antes del softmax y quedan con peso cero.",
+      "image": {
+        "src": "images/s2-6-1-mascara-causal.png",
+        "alt": "Scores con menos infinito arriba de la diagonal y la matriz de atencion triangular resultante"
+      },
+      "facts": [
+        {
+          "label": "Por qué menos infinito",
+          "body": "e^{-∞} = 0, así que el softmax reparte solo entre los tokens permitidos y la fila sigue sumando uno. Un score de cero le daría al token prohibido un peso e^0 = 1, que no es cero."
+        },
+        {
+          "label": "La última fila no cambia",
+          "body": "\"sat\" ya veía a todos. La fila de \"the\" ahora solo se ve a sí misma."
+        },
+        {
+          "label": "Es la diferencia entre un encoder-only y un decoder-only",
+          "body": "BERT no enmascara y cada token ve la frase entera. GPT enmascara y cada token ve solo lo anterior. El resto del bloque es igual."
+        }
       ],
       "highlights": [
-        {
-          "body": "Es la diferencia entre un encoder-only y un decoder-only. BERT no enmascara y cada token ve la frase entera. GPT enmascara y cada token ve solo lo anterior. El resto del bloque es igual.",
-          "kind": "note"
-        },
         {
           "body": "La salida cambia con la máscara: \"cat\" pasa de [1,80 1,20] a [1,64 0,55], porque ya no recibe nada de \"sat\". Salida completa: the [2,00 0], cat [1,64 0,55], sat [1,39 1,93].",
           "kind": "note"
@@ -505,18 +543,24 @@
       "section": "El bloque completo",
       "title": "La fórmula de la posición: senos y cosenos",
       "notes": "El porqué ya está dicho en 1.3; acá se demuestra la permutación si no se hizo entonces: X con las filas de \"cat\" y \"sat\" intercambiadas da Q Kᵀ con filas y columnas intercambiadas, el mismo softmax permutado y A·V con las mismas filas en otro orden. La tabla muestra la fórmula del paper con d = 4, que es demasiado chico para verlo bien (las dos columnas de la derecha casi no se mueven); con d = 512 hay 256 frecuencias entre las dos. No entres en RoPE acá. Tiempo objetivo: ~2 min.\n\n---",
-      "template": "code-example",
-      "language": "text",
-      "code": "pos  dim 1 (sen)  dim 2 (cos)  dim 3 (sen)  dim 4 (cos)\n0              0            1            0            1\n1           0,84         0,54         0,01         1,00\n2           0,91        -0,42         0,02         1,00\n3           0,14        -0,99         0,03         1,00",
-      "explanation": [
-        "El vector de posición que se suma al embedding (lámina 1.3) puede ser fijo. El paper de 2017 usa senos y cosenos de distinta frecuencia, uno por dimensión.",
-        "El paper suma un vector fijo de senos y cosenos: PE(pos, 2i) = sen(pos / 10000^{2i/d}), PE(pos, 2i+1) = cos(·). Cada par de dimensiones es una sinusoide de distinta frecuencia; las de la izquierda cambian rápido, las de la derecha casi no cambian (con d = 4, la tercera y cuarta columna apenas se mueven).",
-        "Por qué sinusoides. Para cualquier desplazamiento k, PE(pos + k) es una función lineal de PE(pos), así que el modelo puede aprender a atender por posición relativa. El paper conjetura que extrapolan a secuencias más largas que las del entrenamiento; en la práctica lo hacen mal, y eso motiva RoPE (sección 5)."
-      ],
-      "highlights": [
+      "template": "content-image",
+      "lead": "El vector de posición que se suma al embedding (lámina 1.3) puede ser fijo. El paper de 2017 usa senos y cosenos de distinta frecuencia, uno por dimensión.",
+      "image": {
+        "src": "images/s3-6-1-tabla-de-posicion.png",
+        "alt": "Tabla de codificacion sinusoidal de posicion con d igual a 4 para las posiciones 0 a 3"
+      },
+      "facts": [
         {
-          "body": "Alternativas: embeddings de posición aprendidos (BERT, GPT-2: una tabla de 512 o 1024 filas, iguales en calidad según el paper) y RoPE, que rota Q y K en vez de sumar un vector; la usan los LLM actuales (sección 5).",
-          "kind": "note"
+          "label": "El paper suma un vector fijo de senos y cosenos",
+          "body": "PE(pos, 2i) = sen(pos / 10000^{2i/d}), PE(pos, 2i+1) = cos(·). Cada par de dimensiones es una sinusoide de distinta frecuencia; las de la izquierda cambian rápido, las de la derecha casi no cambian (con d = 4, la tercera y cuarta columna apenas se mueven)."
+        },
+        {
+          "label": "Por qué sinusoides",
+          "body": "Para cualquier desplazamiento k, PE(pos + k) es una función lineal de PE(pos), así que el modelo puede aprender a atender por posición relativa. El paper conjetura que extrapolan a secuencias más largas que las del entrenamiento; en la práctica lo hacen mal, y eso motiva RoPE (sección 5)."
+        },
+        {
+          "label": "Alternativas",
+          "body": "embeddings de posición aprendidos (BERT, GPT-2: una tabla de 512 o 1024 filas, iguales en calidad según el paper) y RoPE, que rota Q y K en vez de sumar un vector; la usan los LLM actuales (sección 5)."
         }
       ]
     },
@@ -840,7 +884,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "e33383df6da2f36e02cca6eebdb9d95ae11119cbe17065d273055947a82961e5",
-    "bytes": 70746
+    "sha256": "664bca042bf042d5ab1fd5e34f4e43b33400d038738c67c3bcd4158c4e666ba4",
+    "bytes": 74794
   }
 }

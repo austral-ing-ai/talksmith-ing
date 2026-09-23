@@ -1,0 +1,71 @@
+<!-- talksmith-ascii-sha256: d683932dc3c8dbe5f366d2cc02f2099301ca391b78220a105a8bf2307cb27a78 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="34 0 836 378" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>La máscara causal</title>
+<desc>Si "cat" pudiera ver "sat" mientras aprende a predecir "sat", la tarea sería trivial: los scores de los tokens posteriores pasan a menos infinito y el softmax los deja en cero.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto"><path d="M0,1 L15,8 L0,15 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="880" height="380" fill="#ffffff"/>
+<g font-size="24" font-weight="bold" text-anchor="middle">
+<text x="230" y="44">scores con máscara</text>
+<text x="710" y="44">A con máscara</text>
+</g>
+<g font-size="20" text-anchor="middle" fill="#6b6464">
+<text x="150" y="88">the</text><text x="230" y="88">cat</text><text x="310" y="88">sat</text>
+<text x="630" y="88">the</text><text x="710" y="88">cat</text><text x="790" y="88">sat</text>
+</g>
+<g font-size="20" text-anchor="end" fill="#6b6464">
+<text x="84" y="135">the</text><text x="84" y="191">cat</text><text x="84" y="247">sat</text>
+<text x="564" y="135">the</text><text x="564" y="191">cat</text><text x="564" y="247">sat</text>
+</g>
+<g stroke="#c9c4c4" stroke-width="1.5">
+<rect x="110" y="100" width="80" height="56" fill="#f4f3f3"/>
+<rect x="190" y="100" width="80" height="56" fill="#FBE3E5"/>
+<rect x="270" y="100" width="80" height="56" fill="#FBE3E5"/>
+<rect x="110" y="156" width="80" height="56" fill="#f4f3f3"/>
+<rect x="190" y="156" width="80" height="56" fill="#f4f3f3"/>
+<rect x="270" y="156" width="80" height="56" fill="#FBE3E5"/>
+<rect x="110" y="212" width="80" height="56" fill="#f4f3f3"/>
+<rect x="190" y="212" width="80" height="56" fill="#f4f3f3"/>
+<rect x="270" y="212" width="80" height="56" fill="#f4f3f3"/>
+<rect x="590" y="100" width="80" height="56" fill="#f4f3f3"/>
+<rect x="670" y="100" width="80" height="56" fill="#FBE3E5"/>
+<rect x="750" y="100" width="80" height="56" fill="#FBE3E5"/>
+<rect x="590" y="156" width="80" height="56" fill="#f4f3f3"/>
+<rect x="670" y="156" width="80" height="56" fill="#f4f3f3"/>
+<rect x="750" y="156" width="80" height="56" fill="#FBE3E5"/>
+<rect x="590" y="212" width="80" height="56" fill="#f4f3f3"/>
+<rect x="670" y="212" width="80" height="56" fill="#f4f3f3"/>
+<rect x="750" y="212" width="80" height="56" fill="#f4f3f3"/>
+</g>
+<g stroke="#3B3535" stroke-width="2.5" fill="none">
+<path d="M104,100 h-6 v168 h6"/><path d="M356,100 h6 v168 h-6"/>
+<path d="M584,100 h-6 v168 h6"/><path d="M836,100 h6 v168 h-6"/>
+</g>
+<g font-size="24" text-anchor="middle">
+<text x="150" y="136">0</text>
+<text x="230" y="136" fill="#DA1B2E" font-weight="bold">−∞</text>
+<text x="310" y="136" fill="#DA1B2E" font-weight="bold">−∞</text>
+<text x="150" y="192">1,5</text>
+<text x="230" y="192">0</text>
+<text x="310" y="192" fill="#DA1B2E" font-weight="bold">−∞</text>
+<text x="150" y="248">1</text>
+<text x="230" y="248">1,5</text>
+<text x="310" y="248">2</text>
+<text x="630" y="136">1,00</text>
+<text x="710" y="136" fill="#DA1B2E" font-weight="bold">0</text>
+<text x="790" y="136" fill="#DA1B2E" font-weight="bold">0</text>
+<text x="630" y="192">0,82</text>
+<text x="710" y="192">0,18</text>
+<text x="790" y="192" fill="#DA1B2E" font-weight="bold">0</text>
+<text x="630" y="248">0,19</text>
+<text x="710" y="248">0,31</text>
+<text x="790" y="248">0,51</text>
+</g>
+<path d="M392,184 L514,184" stroke="#3B3535" stroke-width="3" marker-end="url(#ah)"/>
+<text x="453" y="170" font-size="22" font-style="italic" text-anchor="middle">softmax</text>
+<text x="440" y="316" font-size="22" text-anchor="middle">un token no mira a los que vienen después:</text>
+<text x="424" y="352" font-size="24" text-anchor="end">e</text>
+<text x="426" y="340" font-size="16" fill="#DA1B2E" font-weight="bold">−∞</text>
+<text x="452" y="352" font-size="24">= 0</text>
+</svg>

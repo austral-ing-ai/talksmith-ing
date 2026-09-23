@@ -1,0 +1,10 @@
+                 dim 1  dim 2  dim 3  dim 4
+          the  [   1      0      1      0   ]
+   X  =   cat  [   0      2      0      1   ]     3 tokens x 4 dimensiones
+          sat  [   1      1      1      1   ]
+
+<!-- ascii-note:
+intent: mostrar la frase the cat sat como una matriz X de 3 filas (una por token) por 4 columnas (una por dimension), no cuadrada
+emphasize: la forma 3 x 4, con las etiquetas de fila (tokens) y de columna (dimensiones); ningun valor en particular
+labels: "X", "the", "cat", "sat", "dim 1", "dim 2", "dim 3", "dim 4", "3 tokens x 4 dimensiones"
+-->

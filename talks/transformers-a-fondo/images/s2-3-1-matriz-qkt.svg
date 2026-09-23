@@ -1,0 +1,38 @@
+<!-- talksmith-ascii-sha256: da5271e6fc682da15e21c0e835c56284f0885c58f2b0f4e97164b096903ad8f7 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>El producto punto mide afinidad</title>
+<desc>Matriz Q Kᵀ de 3 por 3 para la frase the cat sat: cada celda es el producto punto de una consulta contra una clave, con la cuenta de la celda cat contra the.</desc>
+<rect x="0" y="0" width="800" height="400" fill="#ffffff"/>
+<text x="470" y="44" font-size="20" text-anchor="middle" fill="#6B6565" font-style="italic">claves</text>
+<text x="380" y="84" font-size="24" text-anchor="middle" font-weight="bold">the</text>
+<text x="470" y="84" font-size="24" text-anchor="middle">cat</text>
+<text x="560" y="84" font-size="24" text-anchor="middle">sat</text>
+<text x="238" y="190" font-size="20" text-anchor="middle" fill="#6B6565" font-style="italic" transform="rotate(-90 238 190)">consultas</text>
+<text x="305" y="139" font-size="24" text-anchor="end">the</text>
+<text x="305" y="199" font-size="24" text-anchor="end" font-weight="bold" fill="#DA1B2E">cat</text>
+<text x="305" y="259" font-size="24" text-anchor="end">sat</text>
+<rect x="335" y="160" width="270" height="60" fill="#EFEDED"/>
+<g fill="none" stroke="#DDDADA" stroke-width="1">
+<path d="M335 160 H605 M335 220 H605 M425 100 V280 M515 100 V280"/>
+</g>
+<rect x="336" y="161" width="88" height="58" fill="#FBE3E5" stroke="#DA1B2E" stroke-width="3"/>
+<g fill="none" stroke="#3B3535" stroke-width="3">
+<path d="M335 98 H320 V282 H335"/>
+<path d="M605 98 H620 V282 H605"/>
+</g>
+<g font-size="30" text-anchor="middle">
+<text x="380" y="141">0</text>
+<text x="470" y="141">3</text>
+<text x="560" y="141">2</text>
+<text x="380" y="201" font-weight="bold" fill="#DA1B2E">3</text>
+<text x="470" y="201">0</text>
+<text x="560" y="201">3</text>
+<text x="380" y="261">2</text>
+<text x="470" y="261">3</text>
+<text x="560" y="261">4</text>
+</g>
+<text x="40" y="200" font-size="32" font-weight="bold">Q K<tspan font-size="20" dy="-14">T</tspan><tspan dy="14"> =</tspan></text>
+<text x="645" y="199" font-size="22" fill="#6B6565">n × n = 3 × 3</text>
+<text x="200" y="336" font-size="26"><tspan font-weight="bold" fill="#DA1B2E">cat · the</tspan> = 0·0 + 2·1 + 0·0 + 1·1 = <tspan font-weight="bold" fill="#DA1B2E">3</tspan></text>
+<text x="470" y="372" font-size="18" text-anchor="middle" fill="#6B6565">consulta de cat [0 2 0 1] contra clave de the [0 1 0 1]</text>
+</svg>

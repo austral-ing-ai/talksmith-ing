@@ -1,0 +1,13 @@
+   scores con mascara                    A con mascara
+         the   cat   sat                        the    cat    sat
+   the [  0   -inf  -inf ]              the [ 1,00   0      0    ]
+   cat [ 1,5   0    -inf ]   softmax    cat [ 0,82   0,18   0    ]
+   sat [  1   1,5    2   ]   ------>    sat [ 0,19   0,31   0,51 ]
+
+   un token no mira a los que vienen despues: e^(-inf) = 0
+
+<!-- ascii-note:
+intent: mostrar la mascara causal: los scores de los tokens posteriores pasan a menos infinito y despues del softmax quedan en cero, con una matriz triangular
+emphasize: el triangulo superior de -inf a la izquierda que se convierte en ceros a la derecha
+labels: "scores con mascara", "A con mascara", "the", "cat", "sat", "-inf", "softmax", "un token no mira a los que vienen despues: e^(-inf) = 0"
+-->
