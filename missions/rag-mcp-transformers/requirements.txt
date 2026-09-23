@@ -4,3 +4,6 @@ transformers
 torch
 mcp
 openai
+langchain
+langchain-openai
+langchain-mcp-adapters

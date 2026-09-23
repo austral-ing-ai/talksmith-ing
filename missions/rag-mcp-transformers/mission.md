@@ -76,6 +76,8 @@ La métrica castiga los dos extremos: traer pocos fragmentos pierde evidencia, y
 
 Armen un agente con **tool calling** sobre `deepseek/deepseek-v4-flash-0731` que conteste las preguntas de pacientes con dos fuentes: el recuperador de la parte 1 y la API del hospital (`python3 api/servidor.py`, en `http://localhost:8765`).
 
+El agente tiene que estar hecho con **LangChain**. El modelo se conecta con `ChatOpenAI` de `langchain-openai`, apuntando a OpenRouter (`base_url="https://openrouter.ai/api/v1"`), y cada herramienta es una tool de LangChain.
+
 Las herramientas tienen que llevar estos nombres, porque el evaluador los usa para verificar si el agente llamó a las que correspondían:
 
 | Herramienta | Qué hace |
@@ -124,6 +126,8 @@ Muevan las seis herramientas a un **servidor MCP** (`servidor_mcp.py`, transport
 python3 agente_mcp.py --preguntas datos/preguntas_agente_dev.jsonl --salida respuestas_mcp.jsonl
 ```
 
+El agente cliente también tiene que estar hecho con LangChain. Las herramientas del servidor se cargan como tools de LangChain con `langchain-mcp-adapters`.
+
 Las herramientas tienen que quedar en un solo lugar: `agente_mcp.py` no puede tener código propio para consultar la API ni el recuperador, y tiene que obtener todo del servidor.
 
 Para comprobar que el servidor funciona con cualquier cliente MCP, conéctenlo también al **MCP Inspector** (`npx @modelcontextprotocol/inspector python3 servidor_mcp.py`), que no usa ningún LLM, y llamen desde ahí a cada una de las seis herramientas. Guarden capturas de pantalla en `experimentos/inspector/`.
@@ -145,6 +149,8 @@ python3 atencion/test_atencion.py atencion.py
 La consigna completa está en `a_mano/ejercicio.md`: tienen que pasar las frases "El banco aguanta" y "El banco presta" por un bloque completo, con y sin máscara, en papel. **En cada operación tienen que escribir la razón y la utilidad de esa operación**, y en la nota esa justificación va a pesar más que la cuenta. Hay que entregar las hojas escaneadas y las respuestas a las cinco preguntas del final.
 
 La parte 4 sirve para verificar las cuentas de la parte 5, pero las hojas tienen que mostrar el cálculo a mano.
+
+Antes de hacer las cuentas, miren [Attention in transformers, step-by-step](https://www.youtube.com/watch?v=eMlx5fFNoYc) (3Blue1Brown, Deep Learning Chapter 6).
 
 ## Antes de empezar
 

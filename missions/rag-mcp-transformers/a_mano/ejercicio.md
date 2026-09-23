@@ -7,6 +7,8 @@ Las dos frases de este ejercicio tienen la misma palabra ambigua:
 
 "banco" puede ser un asiento o una entidad financiera. En este ejercicio tienen que pasar las dos frases por un bloque de transformer completo, con papel, lápiz y calculadora. Con los resultados van a poder observar cómo la atención le da a "banco" un significado distinto según el contexto y qué palabra predice el modelo para completar cada frase.
 
+Antes de hacer las cuentas, miren [Attention in transformers, step-by-step](https://www.youtube.com/watch?v=eMlx5fFNoYc) (3Blue1Brown, Deep Learning Chapter 6).
+
 ## Reglas
 
 - **Tienen que resolver todo a mano**, en papel y con letra propia. Se permite calculadora para exponenciales y raíces. Tienen que entregar el escaneo o la foto legible de las hojas, en `a_mano/` del repo.
