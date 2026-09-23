@@ -108,3 +108,13 @@
 - **Causa:** `.codebox` en `skills/md-to-deck/templates/html/theme.css` no declara `white-space: pre` (ni `pre-wrap`), y `code-example.j2` emite texto plano con `<br>`.
 - **Workaround usado:** reemplazar los espacios por U+00A0 al llenar el modelo (`talks/transformers-a-fondo/research/build_model_draft.py`).
 - **Fix sugerido:** agregar `white-space: pre` a `.codebox` (o envolver el contenido en `<pre>`), y considerar achicar la fuente cuando la línea más larga supera el ancho de la caja.
+
+## FILL: partir una lámina solo en `slide-model.json` diverge de la fuente y se pierde al re-renderizar (2026-09-23)
+
+- **Contexto:** deck `talks/transformers-a-fondo`, Step 7 (Render), Talksmith 1.0.0. La lámina `## 7. Cuenta de parámetros de un bloque` (`final.md:836`) tiene lead + tabla de 6×4 + 3 viñetas. Al renderizarla entera, el ajuste adaptativo de escala llega al mínimo y **recorta las dos últimas filas de la tabla** sin avisar.
+- **Workaround usado:** durante el FILL se partió a mano en dos láminas (28 y 29) dentro de `output/slide-model.json`. El deck sale bien.
+- **El defecto:** esa partición existe **solo en el modelo derivado**. `final.md` sigue teniendo una sola lámina, así que cualquier re-render desde la fuente vuelve a producir el recorte, y el arreglo hay que rehacerlo a mano en cada FILL. El modelo derivado pasó a contener una decisión editorial que la fuente no expresa — el audit trail queda roto.
+- **expected:** o bien que el render avise cuando recorta contenido en vez de hacerlo en silencio, o bien que exista forma de expresar el corte en `final.md` para que sobreviva al Polish.
+- **actual:** recorte silencioso; la única salida es divergir el modelo de la fuente.
+- **Repro:** renderizar una lámina con `content+cards` cuya tabla tenga ≥6 filas de 4 columnas más 3 viñetas de apoyo; comparar las filas del HTML contra las del Markdown.
+- **Fix sugerido (hipótesis):** que el ajuste de escala emita un evento de stage cuando toca el piso y quede contenido fuera de caja, para que el orquestador lo reporte como lámina a revisar en vez de que se descubra leyendo el deck. Lo de expresar el corte en la fuente es una decisión de diseño aparte; el aviso alcanza para que no pase inadvertido.
