@@ -100,3 +100,11 @@
   suggested-fix (hipotesis, no verificada): que el rol escriba a disco por item apenas cada render
     vuelve, en vez de acumular y reportar al final; y que antes de escribir un destino verifique si
     ya existe con sello valido, para no pisar el trabajo de un dispatch previo
+
+## html-strict: el recuadro de `code-example` colapsa los espacios (2026-09-23)
+
+- **Contexto:** deck `talks/transformers-a-fondo`, vista `--draft`. Las láminas con matrices y diagramas ASCII en `code-example` pierden la alineación.
+- **Repro:** un `code-example` cuyo `code` tenga columnas alineadas con espacios (`"the  1  0\ncat  0  2"`). En el HTML, las líneas salen unidas con `<br>` dentro de `.codebox` y los espacios múltiples se colapsan a uno.
+- **Causa:** `.codebox` en `skills/md-to-deck/templates/html/theme.css` no declara `white-space: pre` (ni `pre-wrap`), y `code-example.j2` emite texto plano con `<br>`.
+- **Workaround usado:** reemplazar los espacios por U+00A0 al llenar el modelo (`talks/transformers-a-fondo/research/build_model_draft.py`).
+- **Fix sugerido:** agregar `white-space: pre` a `.codebox` (o envolver el contenido en `<pre>`), y considerar achicar la fuente cuando la línea más larga supera el ancho de la caja.

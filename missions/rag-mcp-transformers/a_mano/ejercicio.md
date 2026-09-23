@@ -17,7 +17,9 @@ Las dos frases de este ejercicio tienen la misma palabra ambigua:
 
 Los vectores tienen dimensión d = 4. Las dimensiones de los embeddings de este ejercicio tienen un significado inventado para poder leer los resultados: 1 = objeto físico o mueble, 2 = dinero o finanzas, 3 = acción, 4 = función gramatical. En un modelo real ninguna dimensión tiene un significado tan limpio.
 
-**Embeddings de palabra (E)**
+**Vocabulario.** El modelo conoce seis palabras: V = {El, banco, aguanta, presta, peso, dinero}. Es el mismo vocabulario para la entrada y para la salida: cualquiera de las seis puede entrar en una frase, y el modelo predice la palabra siguiente eligiendo entre las seis.
+
+**Embeddings de palabra (E)**, una fila por palabra del vocabulario:
 
 | palabra | d1 | d2 | d3 | d4 |
 |---|---|---|---|---|
@@ -25,6 +27,8 @@ Los vectores tienen dimensión d = 4. Las dimensiones de los embeddings de este 
 | banco | 1 | 1 | 0 | 0 |
 | aguanta | 1 | 0 | 1 | 0 |
 | presta | 0 | 1 | 1 | 0 |
+| peso | 1 | 0 | 0 | 0 |
+| dinero | 0 | 1 | 0 | 0 |
 
 **Embeddings de posición aprendidos (P)**
 
@@ -44,11 +48,12 @@ Wk =  1  0  0  0                W1 =  1 -1  0  0               W2 = identidad (4
       1  1  0  0                      0  0  0  0
       0  0  0  0                      0  0  0  0
 
-Wout (4 x 3), columnas = vocabulario [peso, dinero, gente]:
-      1  0  0
-      0  1  0
-      0  0  1
-      0  0  0
+Wout (4 x 6), una columna por palabra del vocabulario:
+         El  banco  aguanta  presta  peso  dinero
+          0    0      0        0      2     0
+          0    0      0        0      0     2
+          0    0      1        1      0     0
+          0    0      0        0      0     0
 ```
 
 Varias matrices son la identidad para que las cuentas sean manejables. Igual hay que escribir la operación y justificarla: en un modelo real son densas y aprendidas.
@@ -69,7 +74,7 @@ Para cada una de las dos frases:
 10. **Feed-forward.** FFN = ReLU(LN(Z) W1) W2.
 11. **Residual.** H = Z + FFN.
 12. **Layer norm final.** LN(H).
-13. **Predicción.** Con la última fila de LN(H), logits = fila · Wout, y softmax sobre las tres palabras del vocabulario. ¿Qué palabra completa la frase?
+13. **Predicción.** Con la última fila de LN(H), logits = fila · Wout (un valor por palabra del vocabulario) y softmax sobre esos seis valores. ¿Qué palabra completa la frase, y con qué probabilidad?
 
 ## Parte B: la misma atención sin máscara (encoder)
 

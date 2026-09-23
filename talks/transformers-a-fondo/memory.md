@@ -70,5 +70,8 @@ attention-is-all-you-need (ar5iv, paper completo), illustrated-transformer-alamm
 - Lamina "Las leyes de escala" eliminada; seccion 6 queda con una lamina (que se minimiza).
 
 ## 2026-09-23 — Mision asociada escrita
-- `missions/rag-mcp-transformers/` (ver su mission.md). Decisiones de Marco: dominio hospital; dataset y API los genera la catedra y los alumnos levantan la API localmente; parte 5 con "El banco aguanta" / "El banco presta"; parte 3 sin Claude Code/Desktop: deepseek-v4-flash (agente) → gpt-5.6-luna ("mejor"); juez gemini-3.7-flash; entrega 9 de octubre.
-- Pendiente del deck: ampliar el contenido sobre entrenamiento (pedido de Marco).
+- `missions/rag-mcp-transformers/` (ver su mission.md). Decisiones de Marco: dominio hospital; dataset y API los genera la catedra y los alumnos levantan la API localmente; parte 5 con "El banco aguanta" / "El banco presta"; parte 3 con un solo LLM barato (deepseek-v4-flash, el mismo de la parte 2; el "agente mejor" se descarto el 2026-09-23) y el MCP Inspector como segundo cliente sin LLM; juez gemini-3.7-flash; entrega 9 de octubre.
+- Pendientes del deck, en este orden, despues de terminar la mision (pedido de Marco 2026-09-23):
+  1. Ampliar el contenido sobre entrenamiento.
+  2. Quiz inicial de repaso (de la clase anterior, palabra-al-transformer).
+  3. Quizas un quiz final post presentacion.

@@ -21,10 +21,11 @@ date: 2026-09-23
 
 # Agenda
 
-**Narrative arc:** La clase anterior terminó en la intuición de que cada token mira a todos los demás y arma su lectura de la frase. Esta clase muestra la matemática detrás de esa intuición. Primero se retoma el ciclo token a token, se fija la notación y se explica por qué la posición se suma al embedding antes de todo (1). Después la atención con números: tres proyecciones del mismo vector, el producto punto como medida de afinidad, la escala, el softmax y la mezcla de valores, calculado a mano sobre "the cat sat on", y la máscara causal que convierte un encoder en un generador (2). Sigue el bloque completo: varias cabezas en paralelo, la red feed-forward por posición, el problema del gradiente y las conexiones residuales, la normalización y la fórmula de la posición, con la cuenta de parámetros por bloque (3). Con el bloque armado se ve cómo se apila: el encoder y el decoder del paper de 2017, por qué los LLM se quedaron solo con el decoder, por qué BERT se quedó solo con el encoder, y la familia de modelos derivados que la práctica va a usar (4). Después se nombran las variantes modernas y el problema que ataca cada una, sin explicarlas; la clase siguiente las desarrolla (5). El cierre es qué se minimiza al entrenar (6).
+**Narrative arc:** Abre un quiz de repaso con foco en la matriz de atención. La clase anterior terminó en la intuición de que cada token mira a todos los demás y arma su lectura de la frase. Esta clase muestra la matemática detrás de esa intuición. Primero se retoma el ciclo token a token, se fija la notación y se explica por qué la posición se suma al embedding antes de todo (1). Después la atención con números: tres proyecciones del mismo vector, el producto punto como medida de afinidad, la escala, el softmax y la mezcla de valores, calculado a mano sobre "the cat sat on", y la máscara causal que convierte un encoder en un generador (2). Sigue el bloque completo: varias cabezas en paralelo, la red feed-forward por posición, el problema del gradiente y las conexiones residuales, la normalización y la fórmula de la posición, con la cuenta de parámetros por bloque (3). Con el bloque armado se ve cómo se apila: el encoder y el decoder del paper de 2017, por qué los LLM se quedaron solo con el decoder, por qué BERT se quedó solo con el encoder, y la familia de modelos derivados que la práctica va a usar (4). Después se nombran las variantes modernas y el problema que ataca cada una, sin explicarlas; la clase siguiente las desarrolla (5). El cierre es qué se minimiza al entrenar (6).
 
 **Sections (in delivery order):**
 
+- Repaso
 - 1. Dónde quedamos
 - 2. La atención con números
 - 3. El bloque completo
@@ -32,6 +33,222 @@ date: 2026-09-23
 - 5. Lo que cambió desde 2017
 - 6. Cómo se entrena
 - Conclusiones
+
+**Presenter feedback:**
+
+---
+
+# Repaso
+
+**Goal of this section:** Repasar con un quiz a mano alzada los conceptos de la clase anterior que esta clase necesita, con foco en la matriz de atención. Ocho preguntas, unos 8 minutos.
+
+**Presenter feedback:**
+
+---
+
+## 1. Quiz: La salida del modelo
+<!-- template: quiz -->
+
+### Content
+
+**¿Qué devuelve un modelo de lenguaje cuando procesa "the cat sat on"?**
+
+- A. La palabra "the".
+- B. Un vector con una probabilidad por cada token del vocabulario.
+- C. La frase completa, corregida.
+- D. Un embedding de la frase.
+
+**Respuesta: B.** Devuelve una distribución sobre las |V| palabras; elegir una es un paso aparte.
+
+### Sources
+
+- `talks/palabra-al-transformer/final.md`: contenido de la clase anterior.
+
+### Speaker notes
+
+Mano alzada, revelar y seguir. Es el paso final del ciclo de la lámina 1.1: la última capa termina en un softmax sobre el vocabulario. Tiempo objetivo: ~1 min.
+
+**Presenter feedback:**
+
+---
+
+## 2. Quiz: Ejemplos gratis
+<!-- template: quiz -->
+
+### Content
+
+**Una frase de 6 tokens del corpus, ¿cuántos ejemplos de entrenamiento da para predecir el token siguiente?**
+
+- A. 1
+- B. 5
+- C. 6
+- D. Ninguno: hay que etiquetarla a mano.
+
+**Respuesta: B.** La ventana deslizante da un ejemplo por token, salvo el último, que no tiene siguiente.
+
+### Sources
+
+- `talks/palabra-al-transformer/final.md`: contenido de la clase anterior.
+
+### Speaker notes
+
+Mano alzada, revelar y seguir. Prepara la máscara causal (2.6), que calcula esos cinco ejemplos a la vez. Tiempo objetivo: ~1 min.
+
+**Presenter feedback:**
+
+---
+
+## 3. Quiz: Por qué no una RNN
+<!-- template: quiz -->
+
+### Content
+
+**¿Por qué una RNN no se puede paralelizar durante el entrenamiento?**
+
+- A. Porque usa demasiados parámetros.
+- B. Porque cada paso necesita el estado del paso anterior.
+- C. Porque no tiene embeddings.
+- D. Porque solo procesa frases cortas.
+
+**Respuesta: B.** El estado del token t depende del estado del token t − 1, así que hay que ir en orden.
+
+### Sources
+
+- `talks/palabra-al-transformer/final.md`: contenido de la clase anterior.
+
+### Speaker notes
+
+Mano alzada, revelar y seguir. Justifica la segunda viñeta de 2.5: la atención no tiene bucle sobre los tokens. Tiempo objetivo: ~1 min.
+
+**Presenter feedback:**
+
+---
+
+## 4. Quiz: Qué hace la atención
+<!-- template: quiz -->
+
+### Content
+
+**En "The animal didn't cross the street because it was too tired", ¿qué hace la atención con "it"?**
+
+- A. Lo borra.
+- B. Lo reemplaza por "animal".
+- C. Arma su representación con un peso alto sobre "animal" y bajo sobre el resto.
+- D. Lo deja sin cambios.
+
+**Respuesta: C.** "it" sigue siendo "it", pero su vector nuevo incorpora sobre todo lo que aporta "animal".
+
+### Sources
+
+- `talks/palabra-al-transformer/final.md`: contenido de la clase anterior.
+
+### Speaker notes
+
+Mano alzada, revelar y seguir. Es el punto de partida de la sección 2, que hoy lleva esa intuición a números. Tiempo objetivo: ~1 min.
+
+**Presenter feedback:**
+
+---
+
+## 5. Quiz: Una fila de pesos
+<!-- template: quiz -->
+
+### Content
+
+**Los pesos de atención de un token sobre todos los demás, ¿cuánto suman?**
+
+- A. 1
+- B. La cantidad de tokens de la frase.
+- C. Depende de la frase.
+- D. 0
+
+**Respuesta: A.** Son una distribución: positivos y con suma 1. Por eso la salida es un promedio ponderado.
+
+### Sources
+
+- `talks/palabra-al-transformer/final.md`: contenido de la clase anterior.
+
+### Speaker notes
+
+Mano alzada, revelar y seguir. Cada fila de la matriz de atención es una de estas distribuciones; se ve en 2.4. Tiempo objetivo: ~1 min.
+
+**Presenter feedback:**
+
+---
+
+## 6. Quiz: El tamaño de la matriz
+<!-- template: quiz -->
+
+### Content
+
+**Con una frase de n tokens, ¿cuántos pesos de atención calcula una cabeza en una capa?**
+
+- A. n
+- B. 2n
+- C. n²
+- D. Depende de la dimensión del embedding.
+
+**Respuesta: C.** Cada token calcula un peso contra cada token, incluido él mismo: n por n.
+
+### Sources
+
+- `talks/palabra-al-transformer/final.md`: contenido de la clase anterior.
+
+### Speaker notes
+
+Mano alzada, revelar y seguir. Es la tabla cuadrada de 2.3 y el costo cuadrático que atacan las variantes de la sección 5. Tiempo objetivo: ~1 min.
+
+**Presenter feedback:**
+
+---
+
+## 7. Quiz: ¿Es simétrica?
+<!-- template: quiz -->
+
+### Content
+
+**El peso de "it" sobre "animal", ¿es igual al peso de "animal" sobre "it"?**
+
+- A. Sí, siempre: la matriz de atención es simétrica.
+- B. No necesariamente.
+- C. Solo si la frase es corta.
+- D. Solo con máscara causal.
+
+**Respuesta: B.** Lo que un token busca no es lo mismo que lo que ofrece; la clase de hoy muestra de dónde sale esa asimetría.
+
+### Sources
+
+- `talks/palabra-al-transformer/final.md`: contenido de la clase anterior.
+
+### Speaker notes
+
+Mano alzada, revelar y seguir. Pregunta de anticipación: nadie la vio todavía. Se contesta en 2.1 (Q y K son proyecciones distintas) y se ve en la tabla de 2.3, que no es simétrica. Tiempo objetivo: ~1 min.
+
+**Presenter feedback:**
+
+---
+
+## 8. Quiz: El chat no aprende
+<!-- template: quiz -->
+
+### Content
+
+**Cuando alguien le escribe a un chat, ¿el modelo aprende de esa conversación?**
+
+- A. Sí, ajusta sus parámetros en cada mensaje.
+- B. No: la conversación es inferencia y los parámetros están congelados.
+- C. Solo si la conversación es larga.
+- D. Solo con temperatura alta.
+
+**Respuesta: B.** Entrenar y usar el modelo son dos fases distintas; en el chat los pesos no cambian.
+
+### Sources
+
+- `talks/palabra-al-transformer/final.md`: contenido de la clase anterior.
+
+### Speaker notes
+
+Mano alzada, revelar y seguir. Prepara la sección 6, sobre qué se minimiza al entrenar. Tiempo objetivo: ~1 min.
 
 **Presenter feedback:**
 
@@ -303,11 +520,13 @@ Dos justificaciones, y las dos van al ejercicio a mano de la práctica. La de la
 **La salida de cada token es la suma de todos los V, pesada por su fila de atención. "cat" se reescribe como 0,45·the + 0,10·cat + 0,45·sat.**
 
 ```ascii
-  fila de atencion de "cat"     V (que entrega cada token)
-     the  cat  sat                 the [2 0]
-    [0,45 0,10 0,45]         x     cat [0 3]     =   [1,80  1,20]
-                                   sat [2 2]
-                                                  nueva "cat"
+  pesos de "cat"          V
+   the  cat  sat        the [2 0]
+  [0,45 0,10 0,45]  x   cat [0 3]
+                        sat [2 2]
+
+  = [1,80 1,20]   nueva "cat"
+
   0,45*2 + 0,10*0 + 0,45*2 = 1,80
   0,45*0 + 0,10*3 + 0,45*2 = 1,20
 ```

@@ -31,7 +31,6 @@ Todo lo que usa un LLM pasa por OpenRouter, como en la misión de prompting. Tie
 | Uso | Modelo | Precio por millón de tokens (entrada / salida) |
 |---|---|---|
 | Agente de las partes 2 y 3 | `deepseek/deepseek-v4-flash-0731` | USD 0,04 / 0,64 |
-| Agente "mejor" de la parte 3 | `openai/gpt-5.6-luna` | USD 0,20 / 1,20 |
 | Juez del evaluador (lo llama `evaluar.py`) | `google/gemini-3.7-flash` | USD 0,75 / 3,75 |
 
 (Precios verificados en la API de OpenRouter el 2026-09-23. Si algún id desaparece del catálogo, reemplácenlo por el equivalente vigente del mismo proveedor y anótenlo en el informe.)
@@ -119,16 +118,17 @@ Sin juez, el evaluador también calcula el **ruteo**, que es la proporción de h
 
 ## Parte 3: las mismas herramientas como servidor MCP (15 puntos)
 
-Muevan las seis herramientas a un **servidor MCP** (`servidor_mcp.py`, transporte stdio, con el SDK oficial `mcp` de Python) y armen un agente cliente que las descubra con `tools/list` y las llame con `tools/call`.
+Muevan las seis herramientas a un **servidor MCP** (`servidor_mcp.py`, transporte stdio, con el SDK oficial `mcp` de Python) y armen un agente cliente que las descubra con `tools/list` y las llame con `tools/call`, con el mismo modelo de la parte 2.
 
 ```bash
-python3 agente_mcp.py --modelo deepseek/deepseek-v4-flash-0731 --preguntas datos/preguntas_agente_dev.jsonl --salida respuestas_deepseek.jsonl
-python3 agente_mcp.py --modelo openai/gpt-5.6-luna --preguntas datos/preguntas_agente_dev.jsonl --salida respuestas_luna.jsonl
+python3 agente_mcp.py --preguntas datos/preguntas_agente_dev.jsonl --salida respuestas_mcp.jsonl
 ```
 
-**El servidor no puede cambiar cuando cambia el modelo.** Corran el benchmark con los dos modelos sin tocar `servidor_mcp.py` entre una corrida y otra. El informe tiene que incluir el hash del commit de cada corrida y el `git diff` vacío del servidor entre ellas.
+Las herramientas tienen que quedar en un solo lugar: `agente_mcp.py` no puede tener código propio para consultar la API ni el recuperador, y tiene que obtener todo del servidor.
 
-**Criterio de éxito:** las dos corridas con el mismo servidor, cada una con su log y su evaluación, y una tabla que compare las cuatro métricas y el costo total de cada modelo. La conclusión tiene que decir, con los números, si la mejora del segundo modelo justifica su precio.
+Para comprobar que el servidor funciona con cualquier cliente MCP, conéctenlo también al **MCP Inspector** (`npx @modelcontextprotocol/inspector python3 servidor_mcp.py`), que no usa ningún LLM, y llamen desde ahí a cada una de las seis herramientas. Guarden capturas de pantalla en `experimentos/inspector/`.
+
+**Criterio de éxito:** la corrida del benchmark con el agente MCP, con su log y su evaluación, y una tabla que compare sus cuatro métricas y su costo con los de la parte 2. Si los números cambian, el informe tiene que explicar por qué, a partir de los logs.
 
 ## Parte 4: una capa de atención en NumPy (15 puntos)
 
@@ -162,9 +162,9 @@ La entrega se hace **pusheando al repo de GitHub del grupo**, a más tardar el v
 
 - `recuperar.py`, `agente.py`, `servidor_mcp.py`, `agente_mcp.py` y `atencion.py`, corriendo con los comandos de este enunciado.
 - `experimentos/` con la evaluación de cada configuración de la parte 1.
-- Los `respuestas*.jsonl` y sus `.eval.json` de las partes 2 y 3, con los logs `.md` de cada corrida.
+- Los `respuestas*.jsonl` y sus `.eval.json` de las partes 2 y 3, con los logs `.md` de cada corrida, y las capturas del MCP Inspector.
 - `test_atencion.py` tal cual se entregó, en verde contra su `atencion.py`.
 - `a_mano/` con las hojas escaneadas de la parte 5.
-- **El informe** (`INFORME.md`): la tabla de experimentos y la elección de la parte 1, los resultados de la parte 2 con un análisis de las preguntas donde el agente falló, la comparación de modelos de la parte 3, y el costo total de la misión en OpenRouter, contrastado con el dashboard de actividad.
+- **El informe** (`INFORME.md`): la tabla de experimentos y la elección de la parte 1, los resultados de la parte 2 con un análisis de las preguntas donde el agente falló, la comparación entre el agente de la parte 2 y el agente MCP de la parte 3, y el costo total de la misión en OpenRouter, contrastado con el dashboard de actividad.
 
 No modifiquen `evaluar/evaluar.py`, `api/`, `datos/` ni `atencion/test_atencion.py`: la cátedra va a correr sus propias copias.
