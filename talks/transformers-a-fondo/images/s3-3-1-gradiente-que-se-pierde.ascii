@@ -1,0 +1,12 @@
+   salida  <-- bloque N <-- ... <-- bloque 2 <-- bloque 1 <-- embedding
+
+   gradiente en la capa 1  =  dL/dx_N . J_N . J_(N-1) . ... . J_2 . J_1
+
+   si cada J "encoge" la senal (norma < 1):   0,9^12 = 0,28   0,9^48 = 0,006
+   si cada J la "agranda"  (norma > 1):       1,1^48 = 97
+
+<!-- ascii-note:
+intent: mostrar que el gradiente que llega a la primera capa es un producto de N derivadas y que ese producto se desvanece o explota con la profundidad
+emphasize: el numero 0,006 (0,9^48), que es el que hay que recordar
+labels: "salida", "bloque N", "bloque 1", "embedding", "gradiente en la capa 1 = dL/dx_N . J_N . ... . J_1", "0,9^12 = 0,28", "0,9^48 = 0,006", "1,1^48 = 97"
+-->

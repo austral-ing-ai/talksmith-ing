@@ -1,0 +1,60 @@
+<!-- talksmith-ascii-sha256: 7448008edf2fdbdc729a36edccd978cc59324674d3cb155c60d1fec3e986af68 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 342" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Del encoder al embedding de oración</title>
+<desc>Esta lámina conecta la clase con la práctica de RAG y es la que justifica que elegir el encoder sea un hiperparámetro.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="920" height="342" fill="#ffffff"/>
+<g stroke="#3B3535" stroke-width="1.5">
+<rect x="20" y="20" width="120" height="56" rx="8" fill="#ffffff"/>
+<rect x="175" y="20" width="110" height="56" rx="8" fill="#e9e9e9" stroke-width="2"/>
+<rect x="320" y="20" width="130" height="56" rx="8" fill="#f5f5f5"/>
+<rect x="485" y="20" width="120" height="56" rx="8" fill="#f5f5f5"/>
+<rect x="640" y="20" width="60" height="56" rx="8" fill="#ffffff"/>
+<rect x="20" y="180" width="120" height="56" rx="8" fill="#ffffff"/>
+<rect x="175" y="180" width="110" height="56" rx="8" fill="#e9e9e9" stroke-width="2"/>
+<rect x="320" y="180" width="130" height="56" rx="8" fill="#f5f5f5"/>
+<rect x="485" y="180" width="120" height="56" rx="8" fill="#f5f5f5"/>
+<rect x="640" y="180" width="60" height="56" rx="8" fill="#ffffff"/>
+<line x1="140" y1="48" x2="175" y2="48" marker-end="url(#ah)"/>
+<line x1="285" y1="48" x2="320" y2="48" marker-end="url(#ah)"/>
+<line x1="450" y1="48" x2="485" y2="48" marker-end="url(#ah)"/>
+<line x1="605" y1="48" x2="640" y2="48" marker-end="url(#ah)"/>
+<line x1="140" y1="208" x2="175" y2="208" marker-end="url(#ah)"/>
+<line x1="285" y1="208" x2="320" y2="208" marker-end="url(#ah)"/>
+<line x1="450" y1="208" x2="485" y2="208" marker-end="url(#ah)"/>
+<line x1="605" y1="208" x2="640" y2="208" marker-end="url(#ah)"/>
+</g>
+<g stroke="#DA1B2E" stroke-width="2" fill="none">
+<line x1="700" y1="48" x2="760" y2="112" marker-end="url(#ahr)"/>
+<line x1="700" y1="208" x2="760" y2="144" marker-end="url(#ahr)"/>
+<line x1="230" y1="76" x2="230" y2="180" stroke-dasharray="6 5"/>
+</g>
+<rect x="760" y="96" width="140" height="64" rx="10" fill="#fdecee" stroke="#DA1B2E" stroke-width="2.5"/>
+<rect x="238" y="116" width="112" height="24" fill="#ffffff"/>
+<g font-size="16" text-anchor="middle">
+<text x="80" y="54">fragmento A</text>
+<text x="80" y="214">fragmento B</text>
+<text x="230" y="55" font-weight="bold" font-size="18">BERT</text>
+<text x="230" y="215" font-weight="bold" font-size="18">BERT</text>
+<text x="385" y="45">tokens</text>
+<text x="385" y="65" font-size="13">(n x d)</text>
+<text x="385" y="205">tokens</text>
+<text x="385" y="225" font-size="13">(n x d)</text>
+<text x="545" y="45" font-weight="bold">pooling</text>
+<text x="545" y="65" font-size="13">media</text>
+<text x="545" y="205" font-weight="bold">pooling</text>
+<text x="545" y="225" font-size="13">media</text>
+<text x="670" y="45" font-weight="bold">u</text>
+<text x="670" y="65" font-size="13">(d)</text>
+<text x="670" y="205" font-weight="bold">v</text>
+<text x="670" y="225" font-size="13">(d)</text>
+<text x="830" y="134" font-weight="bold" font-size="18" fill="#DA1B2E">coseno(u, v)</text>
+</g>
+<text x="242" y="133" font-size="14" font-weight="bold" fill="#DA1B2E">mismos pesos</text>
+<rect x="20" y="262" width="880" height="60" rx="8" fill="#f5f5f5" stroke="#bdbdbd" stroke-width="1"/>
+<text x="40" y="286" font-size="15"><tspan font-weight="bold">entrenamiento:</tspan> pares de frases etiquetadas (NLI, STS)</text>
+<text x="40" y="308" font-size="15">para que coseno alto = significado parecido</text>
+</svg>

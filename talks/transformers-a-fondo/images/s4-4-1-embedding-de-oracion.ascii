@@ -1,0 +1,14 @@
+   fragmento A  ->  [ BERT ]  -> tokens (n x d) -> POOLING (media) -> u (d)
+                                                                       \
+                                                                        coseno(u, v)
+                                                                       /
+   fragmento B  ->  [ BERT ]  -> tokens (n x d) -> POOLING (media) -> v (d)
+                    (mismos pesos)
+   entrenamiento: pares de frases etiquetadas (NLI, STS) para que
+   coseno alto = significado parecido
+
+<!-- ascii-note:
+intent: mostrar dos fragmentos que pasan por el mismo BERT, se promedian sus tokens en un vector y se comparan por coseno, con el ajuste por pares de frases
+emphasize: los dos brazos con los mismos pesos que convergen en coseno(u, v)
+labels: "fragmento A", "fragmento B", "BERT", "tokens (n x d)", "media", "u (d)", "v (d)", "coseno(u, v)", "mismos pesos", "entrenamiento: pares de frases (NLI, STS)"
+-->

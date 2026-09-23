@@ -1,0 +1,23 @@
+                     X (n x d)
+                        |
+        +---------------+---------------+
+        |               |               |
+     cabeza 1        cabeza 2   ...   cabeza h
+   Wq1 Wk1 Wv1     Wq2 Wk2 Wv2      Wqh Wkh Wvh
+   (d x d/h c/u)
+        |               |               |
+   atencion(1)     atencion(2)      atencion(h)
+   (n x d/h)       (n x d/h)        (n x d/h)
+        |               |               |
+        +-------- concatenar -----------+
+                        |
+                   (n x d)  x  Wo (d x d)
+                        |
+                        v
+                  salida (n x d)
+
+<!-- ascii-note:
+intent: mostrar h cabezas de atencion en paralelo sobre la misma X, cada una con sus pesos y dimension d/h, que se concatenan y se proyectan con Wo
+emphasize: las cabezas lado a lado y el paso de concatenar que las junta; la dimension que vuelve a ser n x d
+labels: "X (n x d)", "cabeza 1", "cabeza 2", "cabeza h", "Wq Wk Wv", "atencion", "n x d/h", "concatenar", "x Wo", "salida (n x d)"
+-->

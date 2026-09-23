@@ -1,0 +1,17 @@
+   token:      the         cat         sat
+                |           |           |
+   embedding   e_the       e_cat       e_sat        (d valores cada uno,
+                +           +           +            de la tabla |V| x d)
+   posicion    p_0         p_1         p_2          (d valores cada uno,
+                |           |           |            uno por lugar)
+                v           v           v
+   fila de X   x_the       x_cat       x_sat        X : n x d
+
+   sin p:  "the cat sat" y "sat cat the" darian las mismas filas
+           en otro orden, y la atencion no distinguiria una de otra
+
+<!-- ascii-note:
+intent: mostrar que cada fila de X es la suma del embedding del token y un vector de su posicion, y que sin la posicion dos frases con las palabras en otro orden dan las mismas filas
+emphasize: el signo + entre embedding y posicion en cada columna; el pie "sin p" que explica por que hace falta
+labels: "token", "the", "cat", "sat", "embedding", "posicion", "fila de X", "n x d", "sin p: the cat sat y sat cat the dan las mismas filas en otro orden"
+-->

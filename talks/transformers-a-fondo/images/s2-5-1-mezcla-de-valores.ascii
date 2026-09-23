@@ -1,0 +1,15 @@
+  pesos de "cat"          V
+   the  cat  sat        the [2 0]
+  [0,45 0,10 0,45]  x   cat [0 3]
+                        sat [2 2]
+
+  = [1,80 1,20]   nueva "cat"
+
+  0,45*2 + 0,10*0 + 0,45*2 = 1,80
+  0,45*0 + 0,10*3 + 0,45*2 = 1,20
+
+<!-- ascii-note:
+intent: mostrar la cuenta de la salida de un token como la fila de pesos por la matriz V, con los numeros del ejemplo
+emphasize: el resultado [1,80 1,20] como la nueva representacion de cat; las dos cuentas escritas abajo
+labels: "pesos de cat", "the", "cat", "sat", "[0,45 0,10 0,45]", "V", "[2 0]", "[0 3]", "[2 2]", "[1,80 1,20]", "nueva cat", "0,45*2 + 0,10*0 + 0,45*2 = 1,80", "0,45*0 + 0,10*3 + 0,45*2 = 1,20"
+-->

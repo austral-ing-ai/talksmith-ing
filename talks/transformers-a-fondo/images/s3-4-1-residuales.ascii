@@ -1,0 +1,22 @@
+        x  ---------------------------+
+        |                             |
+        v                             |
+   [ atencion ]                       |  camino residual
+        |                             |
+        v                             v
+       (+) <--------------------------+
+        |
+   x' = x + atencion(x)
+        |  -----------------------------+
+        v                               |
+   [ feed-forward ]                     |
+        |                               v
+       (+) <----------------------------+
+        |
+   x'' = x' + FFN(x')
+
+<!-- ascii-note:
+intent: mostrar que cada subcapa suma su resultado a la entrada por un camino directo, primero la atencion y despues la feed-forward
+emphasize: el camino residual que rodea cada subcapa y llega al signo +
+labels: "x", "atencion", "feed-forward", "camino residual", "x' = x + atencion(x)", "x'' = x' + FFN(x')"
+-->

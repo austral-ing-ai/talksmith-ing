@@ -1,0 +1,75 @@
+<!-- talksmith-ascii-sha256: c5fb077235cbda8042dd14305afcc4c931509eecd9802ae15f2e945eae9beb6e -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Varias cabezas en paralelo</title>
+<desc>Una sola distribución de pesos no puede apuntar fuerte a dos lugares por dos motivos distintos: h cabezas de dimensión d/h leen la misma X, se concatenan y Wo las mezcla de vuelta a n × d.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="560" fill="#ffffff"/>
+<g transform="translate(-20,10)">
+<g stroke="#3B3535" stroke-width="1.5" fill="none">
+<line x1="360" y1="64" x2="360" y2="84"/>
+<line x1="140" y1="84" x2="580" y2="84"/>
+<line x1="140" y1="84" x2="140" y2="110" marker-end="url(#ah)"/>
+<line x1="340" y1="84" x2="340" y2="110" marker-end="url(#ah)"/>
+<line x1="580" y1="84" x2="580" y2="110" marker-end="url(#ah)"/>
+<line x1="140" y1="210" x2="140" y2="236" marker-end="url(#ah)"/>
+<line x1="340" y1="210" x2="340" y2="236" marker-end="url(#ah)"/>
+<line x1="580" y1="210" x2="580" y2="236" marker-end="url(#ah)"/>
+<line x1="140" y1="290" x2="140" y2="320" marker-end="url(#ah)"/>
+<line x1="340" y1="290" x2="340" y2="320" marker-end="url(#ah)"/>
+<line x1="580" y1="290" x2="580" y2="320" marker-end="url(#ah)"/>
+<line x1="360" y1="366" x2="360" y2="396" marker-end="url(#ah)"/>
+<line x1="360" y1="446" x2="360" y2="476" marker-end="url(#ah)"/>
+</g>
+<rect x="280" y="20" width="160" height="44" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<text x="360" y="47" text-anchor="middle" font-weight="bold" font-size="16">X  (n × d)</text>
+<text x="50" y="40" font-size="13" fill="#6b6464">en el paper: h = 8</text>
+<text x="50" y="58" font-size="13" fill="#6b6464">d/h = 512 / 8 = 64</text>
+<g fill="#f2f2f2" stroke="#9a9494" stroke-width="1.2">
+<rect x="50" y="110" width="180" height="100" rx="8"/>
+<rect x="250" y="110" width="180" height="100" rx="8"/>
+<rect x="490" y="110" width="180" height="100" rx="8"/>
+<rect x="60" y="236" width="160" height="54" rx="6" fill="#ffffff"/>
+<rect x="260" y="236" width="160" height="54" rx="6" fill="#ffffff"/>
+<rect x="500" y="236" width="160" height="54" rx="6" fill="#ffffff"/>
+</g>
+<g text-anchor="middle">
+<text x="140" y="136" font-weight="bold" font-size="16">cabeza 1</text>
+<text x="340" y="136" font-weight="bold" font-size="16">cabeza 2</text>
+<text x="580" y="136" font-weight="bold" font-size="16">cabeza h</text>
+<g font-family="'DejaVu Sans Mono', monospace" font-size="14">
+<text x="140" y="164">Wq1  Wk1  Wv1</text>
+<text x="340" y="164">Wq2  Wk2  Wv2</text>
+<text x="580" y="164">Wqh  Wkh  Wvh</text>
+</g>
+<g font-size="13" fill="#6b6464">
+<text x="140" y="190">cada una: d × d/h</text>
+<text x="340" y="190">cada una: d × d/h</text>
+<text x="580" y="190">cada una: d × d/h</text>
+</g>
+<text x="140" y="259">atención 1</text>
+<text x="340" y="259">atención 2</text>
+<text x="580" y="259">atención h</text>
+<g font-size="13" fill="#6b6464">
+<text x="140" y="279">n × d/h</text>
+<text x="340" y="279">n × d/h</text>
+<text x="580" y="279">n × d/h</text>
+</g>
+</g>
+<g fill="#3B3535">
+<circle cx="448" cy="160" r="2.5"/><circle cx="460" cy="160" r="2.5"/><circle cx="472" cy="160" r="2.5"/>
+<circle cx="448" cy="263" r="2.5"/><circle cx="460" cy="263" r="2.5"/><circle cx="472" cy="263" r="2.5"/>
+</g>
+<rect x="50" y="320" width="620" height="46" rx="8" fill="#fdecee" stroke="#DA1B2E" stroke-width="2"/>
+<text x="360" y="349" text-anchor="middle" font-weight="bold" font-size="16" fill="#DA1B2E">concatenar: h bloques de n × d/h  =  n × d</text>
+<rect x="260" y="396" width="200" height="50" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<text x="360" y="419" text-anchor="middle" font-weight="bold" font-size="16">× Wo</text>
+<text x="360" y="437" text-anchor="middle" font-size="13" fill="#6b6464">(d × d)</text>
+<text x="478" y="416" font-size="13" fill="#6b6464">mezcla lo que</text>
+<text x="478" y="433" font-size="13" fill="#6b6464">dijeron las cabezas</text>
+<rect x="270" y="476" width="180" height="44" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="2"/>
+<text x="360" y="503" text-anchor="middle" font-weight="bold" font-size="16">salida  (n × d)</text>
+</g>
+</svg>

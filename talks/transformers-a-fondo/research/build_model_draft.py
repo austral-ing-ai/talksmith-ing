@@ -1,9 +1,12 @@
-"""Arma output/slide-model.draft.json desde draft.md (vista en vivo html-strict --draft).
-Uso, desde la raiz del repo: python3 talks/transformers-a-fondo/research/build_model_draft.py"""
-import json, re
+"""Arma el modelo de laminas html-strict.
+  sin argumentos: draft.md -> output/slide-model.draft.json (vista en vivo --draft)
+  --final:        final.md -> output/slide-model.json (render final, con los diagramas ya en PNG)
+Uso, desde la raiz del repo: python3 talks/transformers-a-fondo/research/build_model_draft.py [--final]"""
+import json, re, sys
 from pathlib import Path
 T = Path("talks/transformers-a-fondo")
-src = (T / "draft.md").read_text(encoding="utf-8")
+FINAL = "--final" in sys.argv
+src = (T / ("final.md" if FINAL else "draft.md")).read_text(encoding="utf-8")
 fm = dict(re.findall(r'^(\w+): "?(.*?)"?$', src.split("---")[1], flags=re.M))
 body = src.split("# Open questions")[0]
 
@@ -113,6 +116,14 @@ for sec in re.finditer(r"^# (?:\d+\. )?(.+?)\n(.*?)(?=^# |\Z)", body, flags=re.M
                     {"header": "Paper 2017 (d = 512, N = 6)", "cells": [f"{r[0]} ({r[1]}): {r[2]}" if r[1] else f"{r[0]}: {r[2]}" for r in rows]},
                     {"header": "GPT-2 chico (d = 768, N = 12)", "cells": [f"{r[0]}: {r[3]}" for r in rows]}],
                  "highlights": [{"body": p["lead"], "kind": "important"}] + [{"body": btxt(b), "kind": "note"} for b in p["bullets"][:2]]}
+        elif FINAL and p["img"] and not title.startswith("Encoder y decoder en el paper"):
+            img = {"src": p["img"].group(2).replace(".svg", ".png"), "alt": p["img"].group(1)}
+            exp = [btxt(b) for b in p["bullets"]]
+            s = {**base, "template": "content-image", "lead": p["lead"], "image": img,
+                 "facts": [{"label": b["label"].rstrip(".:"), "body": b["body"]} for b in p["bullets"]][:3],
+                 **({"highlights": [{"body": x, "kind": "note"} for x in exp[3:]]} if exp[3:] else {})}
+            if p["tables"]:
+                s["facts"].append({"label": "Salida", "body": " · ".join(" ".join(r) for r in [[clean(c) for c in l.strip().strip("|").split("|")] for l in p["tables"][0].strip().splitlines()[2:]])})
         elif p["ascii"] or p["tables"]:
             parts = ([ANGOSTOS[title]] if title in ANGOSTOS else [squeeze(a) for a in p["ascii"]]) + [mono(t) for t in p["tables"]]
             s = code_slide(base, p, "\n\n".join(parts))
@@ -122,7 +133,7 @@ for sec in re.finditer(r"^# (?:\d+\. )?(.+?)\n(.*?)(?=^# |\Z)", body, flags=re.M
 
 deck = {"title": fm.get("presentation"), "lang": "es", "institution": "Universidad Austral", "class": fm.get("class"),
         "presenter": fm.get("presenter"), "date": fm.get("date"), "logo": None, "sections": sections}
-out = T / "output" / "slide-model.draft.json"; out.parent.mkdir(exist_ok=True)
+out = T / "output" / ("slide-model.json" if FINAL else "slide-model.draft.json"); out.parent.mkdir(exist_ok=True)
 out.write_text(json.dumps({"deck": deck, "slides": slides}, ensure_ascii=False, indent=1), encoding="utf-8")
 print(len(slides), "slides;", sum(1 for s in slides if s["template"] != "section-agenda"), "de contenido")
 for s in slides:

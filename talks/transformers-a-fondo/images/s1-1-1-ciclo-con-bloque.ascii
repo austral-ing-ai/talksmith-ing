@@ -1,0 +1,27 @@
+  "the cat sat"
+        |
+        v
+  [ TOKENIZAR ]  the | cat | sat               3 tokens
+        |
+        v
+  [ EMBEDDER ]   una fila por token            X : 3 x d
+                 + posicion de cada token
+        |
+        v
+  +---------------------------------------------+
+  |  TRANSFORMER  =  bloque x N                 |   <-- hoy
+  |                                             |
+  |   bloque:  atencion  ->  feed-forward       |
+  +---------------------------------------------+
+        |
+        v
+  [ DISTRIBUCION ] un valor por token de V      |V| = 50.257 en GPT-2
+        |
+        v
+  [ ELEGIR ]  "on"  -> se agrega y vuelve a empezar
+
+<!-- ascii-note:
+intent: mostrar el ciclo de generacion de la clase anterior con la caja del transformer abierta: un bloque repetido N veces que hace atencion y despues feed-forward
+emphasize: el recuadro TRANSFORMER = bloque x N con la etiqueta "hoy", que es lo unico nuevo; el resto del ciclo va en tono secundario
+labels: "the cat sat", "TOKENIZAR", "EMBEDDER", "+ posicion de cada token", "TRANSFORMER = bloque x N", "atencion -> feed-forward", "DISTRIBUCION", "ELEGIR", "|V| = 50.257 en GPT-2", "hoy"
+-->

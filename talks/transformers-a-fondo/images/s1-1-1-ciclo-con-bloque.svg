@@ -1,0 +1,67 @@
+<!-- talksmith-ascii-sha256: ebc4abc979d5a966af398be85c6cf34cade3be5c175de809efd7b257cacf656a -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 532" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>El ciclo de generación con el transformer abierto</title>
+<desc>El ciclo de generación de la clase pasada, con el recuadro del transformer abierto: un bloque repetido N veces que hace atención y después feed-forward.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7A7474"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="740" height="532" fill="#ffffff"/>
+<g stroke="#7A7474" stroke-width="1.6" fill="none" marker-end="url(#ah)">
+<line x1="170" y1="50" x2="170" y2="70"/>
+<line x1="170" y1="114" x2="170" y2="140"/>
+<line x1="170" y1="184" x2="170" y2="212"/>
+<line x1="170" y1="372" x2="170" y2="398"/>
+<line x1="170" y1="442" x2="170" y2="468"/>
+<path d="M60,490 H20 V35 H110" stroke-dasharray="5 4"/>
+</g>
+<rect x="110" y="20" width="120" height="30" rx="15" fill="#ffffff" stroke="#9A9494" stroke-width="1.4"/>
+<text x="170" y="40" text-anchor="middle" font-size="15">“the cat sat”</text>
+<g fill="#F2F2F2" stroke="#9A9494" stroke-width="1.4">
+<rect x="60" y="70" width="220" height="44" rx="6"/>
+<rect x="60" y="140" width="220" height="44" rx="6"/>
+<rect x="60" y="398" width="220" height="44" rx="6"/>
+<rect x="60" y="468" width="220" height="44" rx="6"/>
+</g>
+<g text-anchor="middle" font-weight="bold" font-size="15">
+<text x="170" y="97">TOKENIZAR</text>
+<text x="170" y="167">EMBEDDER</text>
+<text x="170" y="425">DISTRIBUCIÓN</text>
+<text x="170" y="495">ELEGIR</text>
+</g>
+<g fill="#ffffff" stroke="#9A9494" stroke-width="1.2">
+<rect x="310" y="78" width="52" height="28" rx="4"/>
+<rect x="368" y="78" width="52" height="28" rx="4"/>
+<rect x="426" y="78" width="52" height="28" rx="4"/>
+<rect x="310" y="476" width="52" height="28" rx="4"/>
+</g>
+<g text-anchor="middle" font-family="'DejaVu Sans Mono', monospace" font-size="13">
+<text x="336" y="97">the</text>
+<text x="394" y="97">cat</text>
+<text x="452" y="97">sat</text>
+<text x="336" y="495">on</text>
+</g>
+<text x="496" y="97" fill="#6B6565">3 tokens</text>
+<text x="310" y="157">una fila por token + posición de cada token</text>
+<text x="310" y="177" font-family="'DejaVu Sans Mono', monospace" font-size="13" fill="#6B6565">X : 3 × d</text>
+<text x="310" y="415">un valor por token de V</text>
+<text x="310" y="435" font-family="'DejaVu Sans Mono', monospace" font-size="13" fill="#6B6565">|V| = 50.257 en GPT-2</text>
+<text x="376" y="495">se agrega y vuelve a empezar</text>
+<rect x="40" y="212" width="600" height="160" rx="8" fill="#FDECEE" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="60" y="242" font-size="18" font-weight="bold">TRANSFORMER = bloque × N</text>
+<rect x="84" y="258" width="440" height="84" rx="6" fill="#ffffff" stroke="#E88A94" stroke-width="1.2"/>
+<rect x="78" y="264" width="440" height="84" rx="6" fill="#ffffff" stroke="#E88A94" stroke-width="1.2"/>
+<rect x="72" y="270" width="440" height="84" rx="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.6"/>
+<text x="86" y="290" font-size="13" fill="#6B6565">bloque</text>
+<rect x="110" y="300" width="150" height="40" rx="6" fill="#FDECEE" stroke="#DA1B2E" stroke-width="1.4"/>
+<rect x="312" y="300" width="170" height="40" rx="6" fill="#FDECEE" stroke="#DA1B2E" stroke-width="1.4"/>
+<line x1="260" y1="320" x2="312" y2="320" stroke="#DA1B2E" stroke-width="1.6" marker-end="url(#ahr)"/>
+<g text-anchor="middle" font-size="15" font-weight="bold">
+<text x="185" y="325">atención</text>
+<text x="397" y="325">feed-forward</text>
+</g>
+<text x="548" y="322" font-size="24" font-weight="bold" fill="#DA1B2E">× N</text>
+<line x1="640" y1="238" x2="660" y2="238" stroke="#DA1B2E" stroke-width="1.6"/>
+<rect x="660" y="224" width="60" height="28" rx="14" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<text x="690" y="243" text-anchor="middle" font-size="15" font-weight="bold" fill="#DA1B2E">hoy</text>
+</svg>

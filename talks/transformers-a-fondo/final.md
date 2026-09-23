@@ -15,8 +15,6 @@ date: 2026-09-23
 
 **Why it matters:** Los modelos que los alumnos van a usar y a evaluar en la práctica (BERT como encoder para RAG, un LLM decoder-only como agente) son este mismo bloque repetido con otros números. Quien sabe de dónde sale cada operación puede leer un paper de arquitectura nueva, razonar sobre costo por token y KV cache, y elegir un encoder con criterio.
 
-**Presenter feedback:**
-
 ---
 
 # Agenda
@@ -34,15 +32,11 @@ date: 2026-09-23
 - 6. Cómo se entrena
 - Conclusiones
 
-**Presenter feedback:**
-
 ---
 
 # Repaso
 
 **Goal of this section:** Repasar con un quiz a mano alzada los conceptos de la clase anterior que esta clase necesita, con foco en la matriz de atención. Ocho preguntas, unos 8 minutos.
-
-**Presenter feedback:**
 
 ---
 
@@ -68,8 +62,6 @@ date: 2026-09-23
 
 Mano alzada, revelar y seguir. Es el paso final del ciclo de la lámina 1.1: la última capa termina en un softmax sobre el vocabulario. Tiempo objetivo: ~1 min.
 
-**Presenter feedback:**
-
 ---
 
 ## 2. Quiz: Ejemplos gratis
@@ -93,8 +85,6 @@ Mano alzada, revelar y seguir. Es el paso final del ciclo de la lámina 1.1: la 
 ### Speaker notes
 
 Mano alzada, revelar y seguir. Prepara la máscara causal (2.6), que calcula esos cinco ejemplos a la vez. Tiempo objetivo: ~1 min.
-
-**Presenter feedback:**
 
 ---
 
@@ -120,8 +110,6 @@ Mano alzada, revelar y seguir. Prepara la máscara causal (2.6), que calcula eso
 
 Mano alzada, revelar y seguir. Justifica la segunda viñeta de 2.5: la atención no tiene bucle sobre los tokens. Tiempo objetivo: ~1 min.
 
-**Presenter feedback:**
-
 ---
 
 ## 4. Quiz: Qué hace la atención
@@ -145,8 +133,6 @@ Mano alzada, revelar y seguir. Justifica la segunda viñeta de 2.5: la atención
 ### Speaker notes
 
 Mano alzada, revelar y seguir. Es el punto de partida de la sección 2, que hoy lleva esa intuición a números. Tiempo objetivo: ~1 min.
-
-**Presenter feedback:**
 
 ---
 
@@ -172,8 +158,6 @@ Mano alzada, revelar y seguir. Es el punto de partida de la sección 2, que hoy 
 
 Mano alzada, revelar y seguir. Cada fila de la matriz de atención es una de estas distribuciones; se ve en 2.4. Tiempo objetivo: ~1 min.
 
-**Presenter feedback:**
-
 ---
 
 ## 6. Quiz: El tamaño de la matriz
@@ -197,8 +181,6 @@ Mano alzada, revelar y seguir. Cada fila de la matriz de atención es una de est
 ### Speaker notes
 
 Mano alzada, revelar y seguir. Es la tabla cuadrada de 2.3 y el costo cuadrático que atacan las variantes de la sección 5. Tiempo objetivo: ~1 min.
-
-**Presenter feedback:**
 
 ---
 
@@ -224,8 +206,6 @@ Mano alzada, revelar y seguir. Es la tabla cuadrada de 2.3 y el costo cuadrátic
 
 Mano alzada, revelar y seguir. Pregunta de anticipación: nadie la vio todavía. Se contesta en 2.1 (Q y K son proyecciones distintas) y se ve en la tabla de 2.3, que no es simétrica. Tiempo objetivo: ~1 min.
 
-**Presenter feedback:**
-
 ---
 
 ## 8. Quiz: El chat no aprende
@@ -250,15 +230,11 @@ Mano alzada, revelar y seguir. Pregunta de anticipación: nadie la vio todavía.
 
 Mano alzada, revelar y seguir. Prepara la sección 6, sobre qué se minimiza al entrenar. Tiempo objetivo: ~1 min.
 
-**Presenter feedback:**
-
 ---
 
 # 1. Dónde quedamos
 
 **Goal of this section:** Retomar el punto exacto donde terminó la clase anterior, fijar la notación de matrices y explicar por qué la posición se suma al embedding antes de cualquier cálculo. Tres láminas.
-
-**Presenter feedback:**
 
 ---
 
@@ -268,7 +244,8 @@ Mano alzada, revelar y seguir. Prepara la sección 6, sobre qué se minimiza al 
 
 **Cada token generado es una vuelta del ciclo: tokenizar, embeber, transformer, distribución sobre el vocabulario, elegir. El transformer es un bloque repetido N veces.**
 
-```ascii
+![El ciclo de generacion con el transformer abierto: un bloque de atencion y feed-forward repetido N veces](images/s1-1-1-ciclo-con-bloque.png)
+<!-- ascii-source:
   "the cat sat"
         |
         v
@@ -290,7 +267,7 @@ Mano alzada, revelar y seguir. Prepara la sección 6, sobre qué se minimiza al 
         |
         v
   [ ELEGIR ]  "on"  -> se agrega y vuelve a empezar
-```
+-->
 <!-- ascii-note:
 intent: mostrar el ciclo de generacion de la clase anterior con la caja del transformer abierta: un bloque repetido N veces que hace atencion y despues feed-forward
 emphasize: el recuadro TRANSFORMER = bloque x N con la etiqueta "hoy", que es lo unico nuevo; el resto del ciclo va en tono secundario
@@ -311,7 +288,6 @@ labels: "the cat sat", "TOKENIZAR", "EMBEDDER", "+ posicion de cada token", "TRA
 
 Es la lámina 6.3 de la clase pasada con una sola diferencia: el recuadro "TRANSFORMER" muestra que es un bloque repetido N veces. Todo lo que está fuera de ese recuadro ya se vio; esta clase trata lo que está adentro. La frase de ejemplo va a ser "the cat sat" toda la clase, con vectores de dimensión 4, porque con eso las cuentas se hacen a mano y en la práctica van a tener que hacerlas. Tiempo objetivo: ~2 min.
 
-**Presenter feedback:**
 ---
 
 ## 2. La frase como matriz
@@ -340,7 +316,6 @@ Es la lámina 6.3 de la clase pasada con una sola diferencia: el recuadro "TRANS
 
 Lámina de referencia, no de explicación: se muestra, se dice que van a volver a verla, y se sigue. El único punto que vale decir es que en un modelo real un embedding es un vector de 768 decimales que nadie interpreta columna por columna; acá son cuatro enteros solo para poder multiplicar en el pizarrón. Si alguien pregunta de dónde salen estos números en un modelo real: de la tabla de embeddings, que es una matriz |V| por d aprendida, y la lámina 3.2 de la clase pasada. Tiempo objetivo: ~1 min.
 
-**Presenter feedback:**
 ---
 
 ## 3. La posición entra con el embedding
@@ -349,7 +324,8 @@ Lámina de referencia, no de explicación: se muestra, se dice que van a volver 
 
 **La atención compara vectores y no sabe en qué lugar de la frase está cada uno. Por eso, antes de cualquier cálculo, a cada embedding se le suma un vector que codifica su posición.**
 
-```ascii
+![Cada fila de X es el embedding del token mas el vector de su posicion](images/s1-3-1-posicion-mas-embedding.png)
+<!-- ascii-source:
    token:      the         cat         sat
                 |           |           |
    embedding   e_the       e_cat       e_sat        (d valores cada uno,
@@ -361,7 +337,7 @@ Lámina de referencia, no de explicación: se muestra, se dice que van a volver 
 
    sin p:  "the cat sat" y "sat cat the" darian las mismas filas
            en otro orden, y la atencion no distinguiria una de otra
-```
+-->
 <!-- ascii-note:
 intent: mostrar que cada fila de X es la suma del embedding del token y un vector de su posicion, y que sin la posicion dos frases con las palabras en otro orden dan las mismas filas
 emphasize: el signo + entre embedding y posicion en cada columna; el pie "sin p" que explica por que hace falta
@@ -381,15 +357,11 @@ labels: "token", "the", "cat", "sat", "embedding", "posicion", "fila de X", "n x
 
 Va acá, antes de la atención, porque la pregunta "¿y el orden?" aparece en cuanto se ve que todo son productos entre filas, y es mejor contestarla antes de que se formule. El argumento de la permutación se puede demostrar después de la sección 2 (pedir que sigan la cuenta con dos filas de X intercambiadas), pero la solución conviene tenerla vista desde ahora: X ya lleva la posición sumada. Que se sume y no se concatene suele sorprender; la razón es que así todas las matrices siguen siendo de d columnas y el modelo aprende a separar lo que necesita. Tiempo objetivo: ~3 min.
 
-**Presenter feedback:**
-
 ---
 
 # 2. La atención con números
 
 **Goal of this section:** Calcular una capa de self-attention completa sobre la frase de juguete, operación por operación, y justificar cada una: por qué tres proyecciones, por qué producto punto, por qué la escala, por qué softmax, por qué la mezcla de valores. Cierra con la máscara causal. Seis láminas.
-
-**Presenter feedback:**
 
 ---
 
@@ -399,7 +371,8 @@ Va acá, antes de la atención, porque la pregunta "¿y el orden?" aparece en cu
 
 **Cada token se proyecta tres veces con tres matrices que son parámetros entrenables del modelo. Q codifica lo que el token necesita del contexto, K lo que cada token le ofrece a los demás, y V la información que se mezcla para producir el embedding enriquecido.**
 
-```ascii
+![X se multiplica por Wq, Wk y Wv y da Q, K y V](images/s2-1-1-tres-proyecciones.png)
+<!-- ascii-source:
                  X (n x d)
        fila de "cat": [0 2 0 1]
                  |
@@ -412,7 +385,7 @@ Va acá, antes de la atención, porque la pregunta "¿y el orden?" aparece en cu
      Q           K           V
   "que busco"  "que ofrezco" "que entrego"
    (n x d)      (n x d)      (n x dv)
-```
+-->
 <!-- ascii-note:
 intent: mostrar que la misma matriz X se multiplica por tres matrices distintas y da Q, K y V, cada una con su papel
 emphasize: la bifurcacion de X en tres ramas; las etiquetas de papel bajo Q, K y V
@@ -433,7 +406,6 @@ labels: "X (n x d)", "fila de cat: [0 2 0 1]", "X Wq", "X Wk", "X Wv", "Q", "K",
 
 La pregunta que hay que contestar acá es por qué tres y no una. La respuesta corta es la asimetría: lo que un token pregunta no es lo que ofrece. Si usaran el mismo vector para buscar y para ser encontrado, el score de un token contra sí mismo sería su norma al cuadrado, y por Cauchy-Schwarz ningún otro token de norma igual o menor podría superarlo: la atención tendería a que cada token se mire a sí mismo. Ojo con afirmarlo como regla absoluta: con Q = K = X en el ejemplo, la fila de "the" da [2 0 2 1], empate entre "the" y "sat", porque "sat" tiene norma mayor. Las matrices del ejemplo son deliberadamente simples y hay que decirlo: nadie entrena una identidad. Tiempo objetivo: ~3 min.
 
-**Presenter feedback:**
 ---
 
 ## 2. Q y K en el ejemplo
@@ -468,7 +440,6 @@ La pregunta que hay que contestar acá es por qué tres y no una. La respuesta c
 
 Lámina de cálculo puro; no expliques, verificá una celda con ellos. Elegí la fila de "cat" en K: [0 2 0 1] con las columnas intercambiadas es [2 0 1 0]. Con una alcanza. El punto conceptual es la última viñeta: d_k tiene que coincidir entre Q y K porque se van a multiplicar, y d_v es libre. En el paper las tres son 64 por cabeza. Tiempo objetivo: ~2 min.
 
-**Presenter feedback:**
 ---
 
 ## 3. El producto punto mide afinidad
@@ -497,7 +468,6 @@ Lámina de cálculo puro; no expliques, verificá una celda con ellos. Elegí la
 
 Hacé la cuenta de una celda en el pizarrón, la de "cat" contra "the", y dejá que ellos hagan otra. Señalá que es la primera matriz cuadrada que aparece, y que lo es porque compara tokens contra tokens, no por la dimensión del embedding. La observación más importante es la de la tercera viñeta: esta matriz es el costo que atacan casi todas las variantes modernas que se nombran en la sección 5. Cuando alguien diga "el transformer es cuadrático", es esta tabla. Una cosa que conviene señalar: la diagonal no es la más alta en todas las filas ("the" contra sí mismo da 0), y eso es efecto de que Wk no es la identidad. Con Q = K la diagonal tendería a ganar, sobre todo en los tokens de norma grande. Tiempo objetivo: ~4 min.
 
-**Presenter feedback:**
 ---
 
 ## 4. Escalar y repartir: el softmax
@@ -525,7 +495,6 @@ Hacé la cuenta de una celda en el pizarrón, la de "cat" contra "the", y dejá 
 
 Dos justificaciones, y las dos van al ejercicio a mano de la práctica. La de la escala es estadística: si las componentes de q y k son independientes con varianza 1, la suma de d_k productos tiene varianza d_k, así que dividir por √d_k devuelve la varianza a 1 sea cual sea la dimensión. Con d = 4 el efecto es chico, pero decí que con 64 sin la escala los scores andan por ±8 y el softmax ya está saturado. La del softmax es la derivabilidad: el entrenamiento necesita que un cambio chico en los pesos mueva la salida un poco, y un máximo duro no lo hace. Verificá la fila de "cat" con ellos, con calculadora, es un minuto. Tiempo objetivo: ~4 min.
 
-**Presenter feedback:**
 ---
 
 ## 5. Mezclar los valores
@@ -534,7 +503,8 @@ Dos justificaciones, y las dos van al ejercicio a mano de la práctica. La de la
 
 **La salida de cada token es la suma de todos los V, pesada por su fila de atención. "cat" se reescribe como 0,45·the + 0,10·cat + 0,45·sat.**
 
-```ascii
+![La fila de pesos de cat por la matriz V da la nueva representacion de cat](images/s2-5-1-mezcla-de-valores.png)
+<!-- ascii-source:
   pesos de "cat"          V
    the  cat  sat        the [2 0]
   [0,45 0,10 0,45]  x   cat [0 3]
@@ -544,7 +514,7 @@ Dos justificaciones, y las dos van al ejercicio a mano de la práctica. La de la
 
   0,45*2 + 0,10*0 + 0,45*2 = 1,80
   0,45*0 + 0,10*3 + 0,45*2 = 1,20
-```
+-->
 <!-- ascii-note:
 intent: mostrar la cuenta de la salida de un token como la fila de pesos por la matriz V, con los numeros del ejemplo
 emphasize: el resultado [1,80 1,20] como la nueva representacion de cat; las dos cuentas escritas abajo
@@ -569,8 +539,6 @@ labels: "pesos de cat", "the", "cat", "sat", "[0,45 0,10 0,45]", "V", "[2 0]", "
 ### Speaker notes
 
 Acá se cierra la atención. La cuenta del diagrama es la que hay que hacer en el pizarrón: una fila de pesos por una matriz de valores da la nueva fila del token. Insistí en la palabra "mezcla": la salida de "cat" ya no es solo "cat", es "cat" leído en su contexto, y eso es lo que la clase pasada llamaba representación contextual. La segunda viñeta es el argumento de la paralelización, ahora con las operaciones a la vista: ningún paso depende del token anterior. Tiempo objetivo: ~4 min.
-
-**Presenter feedback:**
 
 ---
 
@@ -602,15 +570,11 @@ Acá se cierra la atención. La cuenta del diagrama es la que hay que hacer en e
 
 La justificación es de entrenamiento: si "cat" pudiera ver "sat" mientras aprende a predecir "sat", la tarea sería trivial y no aprendería nada. Con la máscara, una frase de n tokens da n ejemplos de entrenamiento válidos de una vez: es la ventana deslizante de la clase pasada calculada en paralelo. La tercera viñeta organiza la sección 4: encoder y decoder difieren en esta matriz triangular y en poco más. Tiempo objetivo: ~4 min.
 
-**Presenter feedback:**
-
 ---
 
 # 3. El bloque completo
 
 **Goal of this section:** Armar el bloque del transformer alrededor de la atención ya calculada: varias cabezas, la feed-forward por posición, el problema del gradiente y las residuales, la normalización, la fórmula de la posición y la cuenta de parámetros. Siete láminas.
-
-**Presenter feedback:**
 
 ---
 
@@ -620,7 +584,8 @@ La justificación es de entrenamiento: si "cat" pudiera ver "sat" mientras apren
 
 **Multi-head attention corre h atenciones en paralelo, cada una con sus propias Wq, Wk, Wv y dimensión d/h, concatena las salidas y las proyecta con una matriz más.**
 
-```ascii
+![h cabezas de atencion en paralelo que se concatenan y se proyectan con Wo](images/s3-1-1-multicabeza.png)
+<!-- ascii-source:
                      X (n x d)
                         |
         +---------------+---------------+
@@ -638,7 +603,7 @@ La justificación es de entrenamiento: si "cat" pudiera ver "sat" mientras apren
                         |
                         v
                   salida (n x d)
-```
+-->
 <!-- ascii-note:
 intent: mostrar h cabezas de atencion en paralelo sobre la misma X, cada una con sus pesos y dimension d/h, que se concatenan y se proyectan con Wo
 emphasize: las cabezas lado a lado y el paso de concatenar que las junta; la dimension que vuelve a ser n x d
@@ -657,8 +622,6 @@ labels: "X (n x d)", "cabeza 1", "cabeza 2", "cabeza h", "Wq Wk Wv", "atencion",
 ### Speaker notes
 
 La justificación es el "averaging inhibits this" del paper: una sola distribución de pesos no puede apuntar fuerte a dos lugares por dos motivos distintos. La segunda viñeta suele sorprender y conviene detenerse: no son ocho atenciones de 512, son ocho de 64, y la concatenación devuelve 512. Wo es la matriz que mezcla lo que dijeron las cabezas; sin ella cada cabeza escribiría en su propio rincón del vector. Tiempo objetivo: ~3 min.
-
-**Presenter feedback:**
 
 ---
 
@@ -683,8 +646,6 @@ La justificación es el "averaging inhibits this" del paper: una sola distribuci
 
 La justificación de la FFN es la que más cuesta y la que más importa: la atención es lineal en V (pesos por valores), así que si solo hubiera atención, el modelo entero sería casi una composición de mapas lineales. La ReLU es el único lugar del bloque donde se computa algo que no es una combinación de la entrada. La cuenta de la última viñeta prepara la lámina 3.7. Tiempo objetivo: ~4 min.
 
-**Presenter feedback:**
-
 ---
 
 ## 3. El problema de apilar: el gradiente se pierde
@@ -693,14 +654,15 @@ La justificación de la FFN es la que más cuesta y la que más importa: la aten
 
 **Para entrenar, el error medido en la salida tiene que volver hasta la primera capa. En una pila de N bloques ese camino es un producto de N derivadas, y un producto largo de números menores que uno tiende a cero.**
 
-```ascii
+![El gradiente de la primera capa es un producto de N derivadas que se desvanece o explota](images/s3-3-1-gradiente-que-se-pierde.png)
+<!-- ascii-source:
    salida  <-- bloque N <-- ... <-- bloque 2 <-- bloque 1 <-- embedding
 
    gradiente en la capa 1  =  dL/dx_N . J_N . J_(N-1) . ... . J_2 . J_1
 
    si cada J "encoge" la senal (norma < 1):   0,9^12 = 0,28   0,9^48 = 0,006
    si cada J la "agranda"  (norma > 1):       1,1^48 = 97
-```
+-->
 <!-- ascii-note:
 intent: mostrar que el gradiente que llega a la primera capa es un producto de N derivadas y que ese producto se desvanece o explota con la profundidad
 emphasize: el numero 0,006 (0,9^48), que es el que hay que recordar
@@ -720,8 +682,6 @@ labels: "salida", "bloque N", "bloque 1", "embedding", "gradiente en la capa 1 =
 
 Lámina de problema, sin solución todavía, para que la residual de la siguiente se lea como respuesta y no como convención. La cuenta de 0,9^48 se hace en el pizarrón en diez segundos y es la que se acuerdan. Conectá con la clase de backpropagation: es la misma regla de la cadena que ya derivaron, aplicada a una composición larga. Si preguntan por qué las derivadas serían menores que uno, la respuesta corta es que activaciones como la sigmoide tienen derivada máxima 0,25 y que las matrices de pesos con inicialización chica también encogen; ReLU y una buena inicialización ayudan pero no alcanzan a 96 capas. Tiempo objetivo: ~2 min.
 
-**Presenter feedback:**
-
 ---
 
 ## 4. Residuales: la salida es la entrada más una corrección
@@ -730,7 +690,8 @@ Lámina de problema, sin solución todavía, para que la residual de la siguient
 
 **Cada subcapa suma su resultado al vector de entrada: x → x + Atención(x) → x + FFN(x). El camino directo deja pasar la entrada intacta y las capas aprenden solo la diferencia.**
 
-```ascii
+![Cada subcapa suma su resultado a la entrada por un camino residual](images/s3-4-1-residuales.png)
+<!-- ascii-source:
         x  ---------------------------+
         |                             |
         v                             |
@@ -747,7 +708,7 @@ Lámina de problema, sin solución todavía, para que la residual de la siguient
        (+) <----------------------------+
         |
    x'' = x' + FFN(x')
-```
+-->
 <!-- ascii-note:
 intent: mostrar que cada subcapa suma su resultado a la entrada por un camino directo, primero la atencion y despues la feed-forward
 emphasize: el camino residual que rodea cada subcapa y llega al signo +
@@ -768,7 +729,6 @@ labels: "x", "atencion", "feed-forward", "camino residual", "x' = x + atencion(x
 
 La justificación es de optimización y les va a sonar de la clase de backpropagation: sin el atajo, el gradiente en la capa 1 es el producto de 48 jacobianos y se desvanece o explota. Con el atajo, hay un término que es la identidad. La consecuencia de la segunda viñeta es la más útil para leer papers modernos: la imagen del residual stream como una cinta que atraviesa el modelo y a la que las capas leen y escriben. AttnRes de Kimi K3, que van a ver en la clase que viene, es una atención sobre esa cinta. Tiempo objetivo: ~3 min.
 
-**Presenter feedback:**
 ---
 
 ## 5. Layer norm: mantener los números en rango
@@ -792,8 +752,6 @@ La justificación es de optimización y les va a sonar de la clase de backpropag
 ### Speaker notes
 
 Hacé la cuenta de la primera viñeta, es de treinta segundos y es exactamente lo que van a tener que justificar en el ejercicio a mano: qué hace y por qué. La justificación de "por vector" es la que distingue layer norm de batch norm, que vieron en redes: acá cada token se normaliza solo, y por eso funciona con secuencias de distinto largo y con batch de tamaño uno en inferencia. Lo de pre-LN contra post-LN es una viñeta y sigue; lo que importa es que el diagrama de la lámina anterior, con la suma limpia, es pre-LN. Tiempo objetivo: ~3 min.
-
-**Presenter feedback:**
 
 ---
 
@@ -824,7 +782,6 @@ Hacé la cuenta de la primera viñeta, es de treinta segundos y es exactamente l
 
 El porqué ya está dicho en 1.3; acá se demuestra la permutación si no se hizo entonces: X con las filas de "cat" y "sat" intercambiadas da Q Kᵀ con filas y columnas intercambiadas, el mismo softmax permutado y A·V con las mismas filas en otro orden. La tabla muestra la fórmula del paper con d = 4, que es demasiado chico para verlo bien (las dos columnas de la derecha casi no se mueven); con d = 512 hay 256 frecuencias entre las dos. No entres en RoPE acá. Tiempo objetivo: ~2 min.
 
-**Presenter feedback:**
 ---
 
 ## 7. Cuenta de parámetros de un bloque
@@ -857,15 +814,11 @@ El porqué ya está dicho en 1.3; acá se demuestra la permutación si no se hiz
 
 La lámina cierra la sección con una cuenta que cualquiera puede repetir y que resuelve una pregunta que quedó abierta la clase pasada ("del orden de cientos de miles de millones", sin fuente). El ejemplo de d = 12.288 y 96 capas es la configuración publicada de GPT-3 175B; da 174 mil millones con la fórmula, y el resto son embeddings. Los 63 M contra los 65 M del paper: la diferencia son sesgos, layer norms y el redondeo del vocabulario; el decoder suma 4 d² más por bloque por la cross-attention, y por eso su fila es 16 N d². Alcanza con que el orden dé. Tiempo objetivo: ~3 min.
 
-**Presenter feedback:**
-
 ---
 
 # 4. Encoder, decoder y la familia
 
 **Goal of this section:** Mostrar cómo se apilan los bloques en el encoder y el decoder del paper, por qué los LLM se quedaron con el decoder y BERT con el encoder, y el mapa de arquitecturas y modelos derivados que la práctica va a usar. Seis láminas.
-
-**Presenter feedback:**
 
 ---
 
@@ -909,8 +862,6 @@ La lámina cierra la sección con una cuenta que cualquiera puede repetir y que 
 
 Es la figura que vieron la clase pasada, ahora con nombres en cada caja porque ya saben qué hay adentro. Lo nuevo es la cross-attention, y la justificación es simple: es la misma fórmula con Q de una secuencia y K, V de otra; es el mecanismo por el que el decoder "lee" la frase de origen. La tercera viñeta prepara las dos láminas siguientes. Tiempo objetivo: ~2 min.
 
-**Presenter feedback:**
-
 ---
 
 ## 2. Solo el decoder: GPT
@@ -933,8 +884,6 @@ Es la figura que vieron la clase pasada, ahora con nombres en cada caja porque y
 
 La justificación de "solo decoder" es la primera viñeta y es conceptual, no de ingeniería: cuando entrada y salida son la misma cadena de texto, el encoder no tiene qué codificar. La tabla de tamaños sirve para que vean que 1,5 mil millones era "enorme" en 2019 y hoy es un modelo de celular. La tercera viñeta conecta con la clase de prompting. Tiempo objetivo: ~3 min.
 
-**Presenter feedback:**
-
 ---
 
 ## 3. Solo el encoder: BERT
@@ -955,8 +904,6 @@ La justificación de "solo decoder" es la primera viñeta y es conceptual, no de
 
 La justificación de la máscara al revés: si nadie enmascara la atención, hay que enmascarar la entrada, porque de lo contrario predecir el token siguiente es copiarlo. Eso es el MLM. Para la práctica lo que importa es la tercera viñeta: BERT como generador de vectores contextuales. Pero ojo con la lámina que sigue: los vectores crudos de BERT son malos embeddings de oración, y hay que decirlo antes de que alguien los use así. Tiempo objetivo: ~3 min.
 
-**Presenter feedback:**
-
 ---
 
 ## 4. Del encoder al embedding de oración
@@ -965,7 +912,8 @@ La justificación de la máscara al revés: si nadie enmascara la atención, hay
 
 **Para RAG hace falta un vector por fragmento, comparable por coseno. BERT crudo no lo da: promediar sus tokens es peor que promediar GloVe. Sentence-BERT lo arregla con pooling y un ajuste siamés.**
 
-```ascii
+![Dos fragmentos pasan por el mismo BERT, se promedian y se comparan por coseno](images/s4-4-1-embedding-de-oracion.png)
+<!-- ascii-source:
    fragmento A  ->  [ BERT ]  -> tokens (n x d) -> POOLING (media) -> u (d)
                                                                        \
                                                                         coseno(u, v)
@@ -974,7 +922,7 @@ La justificación de la máscara al revés: si nadie enmascara la atención, hay
                     (mismos pesos)
    entrenamiento: pares de frases etiquetadas (NLI, STS) para que
    coseno alto = significado parecido
-```
+-->
 <!-- ascii-note:
 intent: mostrar dos fragmentos que pasan por el mismo BERT, se promedian sus tokens en un vector y se comparan por coseno, con el ajuste por pares de frases
 emphasize: los dos brazos con los mismos pesos que convergen en coseno(u, v)
@@ -992,8 +940,6 @@ labels: "fragmento A", "fragmento B", "BERT", "tokens (n x d)", "media", "u (d)"
 ### Speaker notes
 
 Esta lámina conecta la clase con la práctica de RAG y es la que justifica que "elegir el encoder" sea un hiperparámetro. La justificación del pooling: el encoder produce n vectores y la búsqueda necesita uno, así que hay que colapsar la secuencia, y la media resultó mejor que el token especial. La del ajuste siamés: el coseno solo sirve como similitud si el modelo fue entrenado para que lo sea; BERT fue entrenado para tapar palabras, no para eso. Los modelos de embeddings actuales (los que van a probar) son esta misma idea con más datos y objetivos contrastivos. Tiempo objetivo: ~3 min.
-
-**Presenter feedback:**
 
 ---
 
@@ -1014,8 +960,6 @@ Esta lámina conecta la clase con la práctica de RAG y es la que justifica que 
 ### Speaker notes
 
 Lámina de una idea: el transformer es agnóstico a la modalidad porque lo único que ve son filas de una matriz. La justificación de por qué necesita más datos es la que vale: las CNN incorporan por diseño que los píxeles vecinos se relacionan y que un gato a la izquierda es el mismo gato que a la derecha; el transformer tiene que aprender eso de los datos. Es una lámina de contexto; no se profundiza. Tiempo objetivo: ~2 min.
-
-**Presenter feedback:**
 
 ---
 
@@ -1045,15 +989,11 @@ Lámina de una idea: el transformer es agnóstico a la modalidad porque lo únic
 
 Lámina de repaso de la sección, y la que hay que dejar en pantalla mientras se presenta la práctica: el encoder del ejercicio 1 está en la primera columna y el agente del ejercicio 2 en la segunda. La regla práctica de la primera viñeta es la que importa. Si alguien pregunta por qué no usar un LLM decoder-only como encoder de embeddings: se puede, y hay modelos de embeddings hechos así, pero un token de decoder solo vio lo anterior, así que hay que tomar el último o ajustar el modelo para que mire todo. Tiempo objetivo: ~3 min.
 
-**Presenter feedback:**
-
 ---
 
 # 5. Lo que cambió desde 2017
 
 **Goal of this section:** Nombrar las variantes modernas del bloque y el problema que ataca cada una, sin explicar cómo funcionan. Se desarrollan en la clase 9, Transformers Avanzados. Una lámina.
-
-**Presenter feedback:**
 
 ---
 
@@ -1084,15 +1024,11 @@ Lámina de repaso de la sección, y la que hay que dejar en pantalla mientras se
 
 Es una lámina de anticipo, no de explicación: se lee la tabla y se sigue. Si alguien pregunta cómo funciona alguna, la respuesta es que es tema de la clase 9, que arranca justamente en la última fila, con el artículo que va de GPT-2 a Kimi K3 como guía. Lo único que conviene conectar con lo de hoy: la KV cache existe por la máscara causal de la lámina 2.6 (las filas de los tokens anteriores no cambian cuando aparece uno nuevo), y el costo cuadrático es la matriz Q Kᵀ de la lámina 2.3. Tiempo objetivo: ~3 min.
 
-**Presenter feedback:**
-
 ---
 
 # 6. Cómo se entrena
 
 **Goal of this section:** Cerrar con qué se minimiza al entrenar. Una lámina.
-
-**Presenter feedback:**
 
 ---
 
@@ -1116,15 +1052,11 @@ Es una lámina de anticipo, no de explicación: se lee la tabla y se sigue. Si a
 
 Retoma "aprender es ajustar parámetros" de la clase pasada con la función concreta. La justificación de la cross-entropy: es la que vieron para clasificación en la clase de redes, con |V| clases. El punto de la segunda viñeta merece la frase: el mínimo no es cero porque después de "the cat sat on the" hay varios tokens razonables, y ningún modelo puede saber cuál iba. Los números de la tercera viñeta son para dar escala. Tiempo objetivo: ~2 min.
 
-**Presenter feedback:**
-
 ---
 
 # Conclusiones
 
 **Goal of this section:** Una lámina de resumen con el enganche con la práctica y con la clase siguiente.
-
-**Presenter feedback:**
 
 ---
 
@@ -1147,8 +1079,6 @@ Retoma "aprender es ajustar parámetros" de la clase pasada con la función conc
 ### Speaker notes
 
 Lámina de cierre; se lee de arriba abajo en dos minutos y se pasa a presentar la práctica. La última viñeta es la consigna: el ejercicio a mano es la sección 2 y las láminas 3.4 y 3.5, con la frase de juguete u otra, y en cada paso una línea que diga para qué sirve esa operación. Tiempo objetivo: ~2 min.
-
-**Presenter feedback:**
 
 ---
 

@@ -1,0 +1,51 @@
+<!-- talksmith-ascii-sha256: 700be23c4c937868bcc477bb48059f4c750b10da3b493372371749bc9369615a -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 364" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>El problema de apilar: el gradiente se pierde</title>
+<desc>Lámina de problema, sin solución todavía: el gradiente que llega a la primera capa es un producto de N derivadas, y ese producto se desvanece o explota con la profundidad.</desc>
+<defs>
+<marker id="ag" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A8585"/></marker>
+<marker id="ar" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="740" height="364" fill="#ffffff"/>
+<text x="20" y="24" font-size="13" fill="#8A8585">pasada hacia adelante</text>
+<g fill="#F2F2F2" stroke="#8A8585" stroke-width="1.5">
+<rect x="20" y="34" width="100" height="44" rx="6"/>
+<rect x="160" y="34" width="100" height="44" rx="6"/>
+<rect x="300" y="34" width="100" height="44" rx="6"/>
+<rect x="480" y="34" width="100" height="44" rx="6"/>
+<rect x="620" y="34" width="100" height="44" rx="6"/>
+</g>
+<g font-size="15" text-anchor="middle">
+<text x="70" y="61">embedding</text>
+<text x="210" y="61">bloque 1</text>
+<text x="350" y="61">bloque 2</text>
+<text x="440" y="61" font-size="20">…</text>
+<text x="530" y="61">bloque N</text>
+<text x="670" y="61" font-weight="bold">salida</text>
+</g>
+<g stroke="#8A8585" stroke-width="1.5" marker-end="url(#ag)">
+<line x1="120" y1="56" x2="160" y2="56"/>
+<line x1="260" y1="56" x2="300" y2="56"/>
+<line x1="400" y1="56" x2="418" y2="56"/>
+<line x1="462" y1="56" x2="480" y2="56"/>
+<line x1="580" y1="56" x2="620" y2="56"/>
+</g>
+<path d="M670,78 L670,112 L70,112 L70,78" fill="none" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#ar)"/>
+<g font-size="14" fill="#DA1B2E" font-weight="bold">
+<text x="202" y="102">J<tspan font-size="10" dy="4">1</tspan></text>
+<text x="342" y="102">J<tspan font-size="10" dy="4">2</tspan></text>
+<text x="522" y="102">J<tspan font-size="10" dy="4">N</tspan></text>
+</g>
+<text x="370" y="134" font-size="14" fill="#DA1B2E" text-anchor="middle">el error vuelve hacia atrás: un factor J por bloque</text>
+<rect x="20" y="152" width="700" height="46" rx="6" fill="#F2F2F2"/>
+<text x="40" y="181" font-size="17">gradiente en la capa 1  =  dL/dx<tspan font-size="12" dy="4">N</tspan><tspan dy="-4">  ·  J</tspan><tspan font-size="12" dy="4">N</tspan><tspan dy="-4">  ·  J</tspan><tspan font-size="12" dy="4">N−1</tspan><tspan dy="-4">  ·  …  ·  J</tspan><tspan font-size="12" dy="4">2</tspan><tspan dy="-4">  ·  J</tspan><tspan font-size="12" dy="4">1</tspan></text>
+<rect x="20" y="216" width="340" height="128" rx="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<rect x="380" y="216" width="340" height="128" rx="6" fill="#ffffff" stroke="#8A8585" stroke-width="1.5"/>
+<text x="40" y="242" font-size="15" font-weight="bold">si cada J encoge la señal (norma &lt; 1)</text>
+<text x="40" y="272" font-size="18">0,9<tspan font-size="12" dy="-8">12</tspan><tspan dy="8"> = 0,28</tspan></text>
+<text x="40" y="310" font-size="28" font-weight="bold" fill="#DA1B2E">0,9<tspan font-size="17" dy="-12">48</tspan><tspan dy="12"> = 0,006</tspan></text>
+<text x="40" y="332" font-size="13">el gradiente se desvanece</text>
+<text x="400" y="242" font-size="15" font-weight="bold">si cada J la agranda (norma &gt; 1)</text>
+<text x="400" y="296" font-size="26">1,1<tspan font-size="16" dy="-11">48</tspan><tspan dy="11"> = 97</tspan></text>
+<text x="400" y="332" font-size="13">el gradiente explota</text>
+</svg>

@@ -1,7 +1,7 @@
 # memory.md — transformers-a-fondo
 
-**Current step:** 5 — Review awaiting_presenter
-**Awaiting:** segunda revision del presentador (ronda 1 aplicada el 2026-09-22: 8 comentarios; ahora 30 laminas, 11 diagramas ASCII, 84 min).
+**Current step:** 7 — Render html-strict hecho (Polish completo)
+**Awaiting:** revision del presentador sobre el deck renderizado; pendientes: ampliar entrenamiento, quiz final, post-LN vs pre-LN en el ejercicio a mano.
 **Mode:** B (Agent Draft)
 **Topic:** El transformer por dentro: self-attention con numeros, multi-head, el bloque completo, encoder/decoder/decoder-only y las arquitecturas derivadas; variantes modernas solo cualitativas.
 **Folder:** talks/transformers-a-fondo/
@@ -75,3 +75,8 @@ attention-is-all-you-need (ar5iv, paper completo), illustrated-transformer-alamm
   1. Ampliar el contenido sobre entrenamiento.
   2. Quiz inicial de repaso (de la clase anterior, palabra-al-transformer).
   3. Quizas un quiz final post presentacion.
+
+## 2026-09-23 — Step 6 (Polish) y Step 7 (Render)
+- 8 diagramas ASCII renderizados con critica ciega (ascii-notes agregadas al draft antes): 6 limpios a la primera, mezcla de valores limpio tras 1 revision (margen), posicion limpio tras 2 revisiones (recorte; Claude autorizo una pasada extra). Embedding de oracion: el critico marco "pooling" en ingles; aceptado como termino tecnico. La lamina 4.1 conserva la figura del paper (bloque documentation-only).
+- final.md: stamp-renders, cleanup, strip_feedback. Modelo con `research/build_model_draft.py --final` (matrices como code-example con espacios no separables por el bug del codebox; laminas con diagrama como content-image; quiz de repaso como quiz). Audits ok. 41 laminas en output/html/index.html.
+- Quirk del harness repetido: los veredictos de los criticos llegan al orquestador y hay que reenviarlos a cada worker.

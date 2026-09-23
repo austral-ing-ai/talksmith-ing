@@ -1,0 +1,18 @@
+                 X (n x d)
+       fila de "cat": [0 2 0 1]
+                 |
+     +-----------+-----------+
+     |           |           |
+     v           v           v
+   X Wq        X Wk        X Wv
+     |           |           |
+     v           v           v
+     Q           K           V
+  "que busco"  "que ofrezco" "que entrego"
+   (n x d)      (n x d)      (n x dv)
+
+<!-- ascii-note:
+intent: mostrar que la misma matriz X se multiplica por tres matrices distintas y da Q, K y V, cada una con su papel
+emphasize: la bifurcacion de X en tres ramas; las etiquetas de papel bajo Q, K y V
+labels: "X (n x d)", "fila de cat: [0 2 0 1]", "X Wq", "X Wk", "X Wv", "Q", "K", "V", "que busco", "que ofrezco", "que entrego", "n x d", "n x dv"
+-->
