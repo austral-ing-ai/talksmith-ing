@@ -1,0 +1,20 @@
+url: "https://huyenchip.com/2023/05/02/rlhf.html"
+fetched_at: "2026-09-25T22:37:00Z"
+title: "RLHF: Reinforcement Learning from Human FeedbackRLHF: Reinforcement Learning from Human Feedback | Chip Huyen"
+http_status: 200
+byte_size: 68507
+assets:
+  - { src: "/assets/pics/rlhf/1-chatgpt-training.png", absolute: "https://huyenchip.com/assets/pics/rlhf/1-chatgpt-training.png", saved_as: "1-chatgpt-training.png", alt: "3 phases of ChatGPT development" }
+  - { src: "/assets/pics/rlhf/2-shoggoth.jpg", absolute: "https://huyenchip.com/assets/pics/rlhf/2-shoggoth.jpg", saved_as: "2-shoggoth.jpg", alt: "3 phases of ChatGPT development" }
+  - { src: "/assets/pics/rlhf/3-complete.gif", absolute: "https://huyenchip.com/assets/pics/rlhf/3-complete.gif", saved_as: "3-complete.gif", alt: "3 phases of ChatGPT development" }
+  - { src: "/assets/pics/rlhf/4-1t-tokens.png", absolute: "https://huyenchip.com/assets/pics/rlhf/4-1t-tokens.png", saved_as: "4-1t-tokens.png", alt: "RedPajama vs. LLaMa data" }
+  - { src: "/assets/pics/rlhf/5-internet-data.png", absolute: "https://huyenchip.com/assets/pics/rlhf/5-internet-data.png", saved_as: "5-internet-data.png", alt: "We're at the risk of running out of Internet data" }
+  - { src: "/assets/pics/rlhf/7-sft-prompts.png", absolute: "https://huyenchip.com/assets/pics/rlhf/7-sft-prompts.png", saved_as: "7-sft-prompts.png", alt: "3 phases of ChatGPT development" }
+  - { src: "/assets/pics/rlhf/8-labeler-degrees.png", absolute: "https://huyenchip.com/assets/pics/rlhf/8-labeler-degrees.png", saved_as: "8-labeler-degrees.png", alt: "3 phases of ChatGPT development" }
+  - { src: "/assets/pics/rlhf/9-sft-rlhf.png", absolute: "https://huyenchip.com/assets/pics/rlhf/9-sft-rlhf.png", saved_as: "9-sft-rlhf.png", alt: "3 phases of ChatGPT development" }
+  - { src: "/assets/pics/rlhf/11-graph-rm-loss.png", absolute: "https://huyenchip.com/assets/pics/rlhf/11-graph-rm-loss.png", saved_as: "11-graph-rm-loss.png", alt: "3 phases of ChatGPT development" }
+  - { src: "/assets/pics/rlhf/12-ui.png", absolute: "https://huyenchip.com/assets/pics/rlhf/12-ui.png", saved_as: "12-ui.png", alt: "3 phases of ChatGPT development" }
+  - { src: "/assets/pics/rlhf/6-sft-rlhf.png", absolute: "https://huyenchip.com/assets/pics/rlhf/6-sft-rlhf.png", saved_as: "6-sft-rlhf.png", alt: "3 phases of ChatGPT development" }
+  - { src: "/assets/pics/rlhf/14-rlhf-objective.png", absolute: "https://huyenchip.com/assets/pics/rlhf/14-rlhf-objective.png", saved_as: "14-rlhf-objective.png", alt: "RLHF objective function" }
+  - { src: "/assets/pics/rlhf/13-schulman-fix-rl.png", absolute: "https://huyenchip.com/assets/pics/rlhf/13-schulman-fix-rl.png", saved_as: "13-schulman-fix-rl.png", alt: "Fix hallucination with R" }
+  - { src: "/assets/pics/rlhf/10-hallucination.png", absolute: "https://huyenchip.com/assets/pics/rlhf/10-hallucination.png", saved_as: "10-hallucination.png", alt: "RLHF makes hallucination worse" }

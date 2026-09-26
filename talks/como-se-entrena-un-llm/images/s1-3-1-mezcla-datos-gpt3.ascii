@@ -1,0 +1,13 @@
+ Mezcla de entrenamiento de GPT-3 (share de la mezcla)
+
+   Common Crawl filtrado  ############################## 60%
+   WebText2               ###########                   22%
+   Books1                 ####                           8%
+   Books2                 ####                           8%
+   Wikipedia              ##                             3%
+
+<!-- ascii-note:
+intent: dibujar como gráfico de torta (pie chart) la mezcla de datos de GPT-3
+emphasize: la porción de Common Crawl (60%); las demás en tonos secundarios
+labels: porcentaje en cada porción; nota al pie "suma 101% por redondeo, Brown et al. 2020"
+-->

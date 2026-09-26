@@ -1,0 +1,8 @@
+url: "https://rlhfbook.com/c/13-tools"
+fetched_at: "2026-09-25T22:37:34Z"
+title: "Tool Use and Function Calling | RLHF and Post-Training Book by Nathan Lambert"
+http_status: 200
+byte_size: 91010
+assets:
+  - { src: "images/tool_use_generation.png", absolute: "https://rlhfbook.com/c/images/tool_use_generation.png", saved_as: "tool_use_generation.png", alt: "Figure 1: Tool use interleaves model generation with external execution: the model generates tokens until it emits a tool call (orange), an external system executes the tool and injects the output (purple) into the sequence, then the model continues generating. Models can emit multiple tool calls in a single generation. During training, tool call and output tokens are typically masked from the loss." }
+  - { src: "images/tool_use_rl_loop.png", absolute: "https://rlhfbook.com/c/images/tool_use_rl_loop.png", saved_as: "tool_use_rl_loop.png", alt: "Figure 2: Reinforcement learning for multi-step tool use. A prompt is sampled from the training data and the agent (policy \\pi_\\theta) interacts with the environment and its tools over a trajectory, alternating actions a_t with observations o_t. The completed trajectory is graded or verified to produce a single reward r_T at the end, which drives the policy update. Unlike the per-sample RLHF loop, the reward arrives only after a multi-step rollout – closer to classic RL." }

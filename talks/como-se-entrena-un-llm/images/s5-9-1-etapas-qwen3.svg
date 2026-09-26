@@ -1,0 +1,42 @@
+<!-- talksmith-ascii-sha256: 9ea6a1c1cf28a1f450d6b3a6faacce4e262776baaca8a17061ac6caaecefc622 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1122 234" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Qwen3: las cuatro etapas</title>
+<desc>Las etapas 1 y 2 son las de DeepSeek-R1; las 3 y 4 enseñan a elegir.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+<path d="M0,0 L10,6 L0,12 Z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="1122" height="234" fill="#ffffff"/>
+<rect x="24" y="24" width="90" height="128" rx="8" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="2"/>
+<text x="69" y="84" font-size="16" font-weight="bold" fill="#1F1E1E" text-anchor="middle">Modelo</text>
+<text x="69" y="106" font-size="16" font-weight="bold" fill="#1F1E1E" text-anchor="middle">base</text>
+<line x1="114" y1="88" x2="150" y2="88" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="150" y="24" width="210" height="128" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="2"/>
+<text x="166" y="52" font-size="13" font-weight="bold" letter-spacing="1">ETAPA 1</text>
+<text x="166" y="80" font-size="18" font-weight="bold" fill="#1F1E1E">Cold start</text>
+<text x="166" y="108" font-size="15">SFT con CoT largo</text>
+<text x="166" y="130" font-size="15">verificado</text>
+<line x1="360" y1="88" x2="396" y2="88" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="396" y="24" width="210" height="128" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="2"/>
+<text x="412" y="52" font-size="13" font-weight="bold" letter-spacing="1">ETAPA 2</text>
+<text x="412" y="80" font-size="18" font-weight="bold" fill="#1F1E1E">RL de razonamiento</text>
+<text x="412" y="108" font-size="15">GRPO sobre 3.995</text>
+<text x="412" y="130" font-size="15">problemas</text>
+<line x1="606" y1="88" x2="642" y2="88" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="642" y="24" width="210" height="128" rx="8" fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="658" y="52" font-size="13" font-weight="bold" letter-spacing="1" fill="#DA1B2E">ETAPA 3</text>
+<text x="658" y="80" font-size="18" font-weight="bold" fill="#1F1E1E">Fusión de modos</text>
+<text x="658" y="108" font-size="15">SFT con /think</text>
+<text x="658" y="130" font-size="15">y /no_think</text>
+<line x1="852" y1="88" x2="888" y2="88" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="888" y="24" width="210" height="128" rx="8" fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="904" y="52" font-size="13" font-weight="bold" letter-spacing="1" fill="#DA1B2E">ETAPA 4</text>
+<text x="904" y="80" font-size="18" font-weight="bold" fill="#1F1E1E">RL general</text>
+<text x="904" y="108" font-size="15">Premia respetar los</text>
+<text x="904" y="130" font-size="15">flags y el formato</text>
+<path d="M150,168 V180 H606 V168" fill="none" stroke="#3B3535" stroke-width="2"/>
+<text x="378" y="206" font-size="17" font-weight="bold" fill="#1F1E1E" text-anchor="middle">Aprender a pensar</text>
+<path d="M642,168 V180 H1098 V168" fill="none" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="870" y="206" font-size="17" font-weight="bold" fill="#DA1B2E" text-anchor="middle">Aprender a elegir si pensar</text>
+</svg>

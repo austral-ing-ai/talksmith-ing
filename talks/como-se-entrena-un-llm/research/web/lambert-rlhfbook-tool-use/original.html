@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <!-- Set the theme before first paint to avoid a flash of the wrong theme. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t !== 'light' && t !== 'dark') {
+          t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="canonical" href="https://rlhfbook.com/c/13-tools" />
+  <meta name="description" content="Tool use and function calling as post-training targets for building more capable language model products and agents." />
+
+  <!-- Add Open Graph meta tags for share image -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="RLHF Book" />
+  <meta property="og:image" content="https://rlhfbook.com/assets/rlhf-book-share.png" />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1080" />
+  
+  <!-- <meta property="og:title" content="Reinforcement Learning from Human Feedback" /> -->
+  <meta property="og:title" content="Tool Use and Function Calling | RLHF and Post-Training Book by Nathan Lambert" />
+  <meta property="og:description" content="Tool use and function calling as post-training targets for building more capable language model products and agents." />
+  <meta property="og:url" content="https://rlhfbook.com/c/13-tools" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tool Use and Function Calling | RLHF and Post-Training Book by Nathan Lambert" />
+  <meta name="twitter:description" content="Tool use and function calling as post-training targets for building more capable language model products and agents." />
+  <meta name="twitter:image" content="https://rlhfbook.com/assets/rlhf-book-share.png" />
+
+    <meta name="author" content="Nathan Lambert" />
+  <meta name="dcterms.date" content="2026-09-24" />
+  <meta name="keywords" content="RLHF, post-training, language models, LLMs, reward models, preference tuning, direct preference optimization, DPO, RLVR, reinforcement learning, AI alignment" />
+  <!-- <title>RLHF Book</title> -->
+   <!-- SEO and Open Graph titles -->
+   <title>Tool Use and Function Calling | RLHF and Post-Training Book by Nathan Lambert</title>
+
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Chapter","author":{"@type":"Person","name":"Nathan Lambert"},"description":"Tool use and function calling as post-training targets for building more capable language model products and agents.","headline":"Tool Use and Function Calling","image":"https://rlhfbook.com/assets/rlhf-book-share.png","inLanguage":"en-US","isPartOf":{"@type":"Book","name":"Reinforcement Learning from Human Feedback","url":"https://rlhfbook.com/"},"url":"https://rlhfbook.com/c/13-tools"}
+  </script>
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://rlhfbook.com/","name":"RLHF Book","position":1},{"@type":"ListItem","item":"https://rlhfbook.com/c/13-tools","name":"Tool Use and Function Calling","position":2}]}
+  </script>
+  
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    div.abstract {
+      margin: 2em 2em 2em 2em;
+      text-align: left;
+      font-size: 85%;
+    }
+    div.abstract-title {
+      font-weight: bold;
+      text-align: center;
+      padding: 0;
+      margin-bottom: 0.5em;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }    /*
+      * Custom CSS file. Override it as you like.
+      *
+      * Credits to @killercup (https://gist.github.com/killercup); Extracted from this Gist:
+      *   https://gist.github.com/killercup/5917178
+      * Substantial modifications made by natolambert
+      */
+
+     /* ---------------------------------------------------------------------------
+      * Theme color tokens.
+      *
+      * Light values live in :root. Dark values live in :root[data-theme="dark"].
+      * A tiny inline script in each page <head> sets data-theme on <html> BEFORE
+      * first paint (from localStorage, falling back to the OS prefers-color-scheme
+      * setting), which avoids a flash of the wrong theme. The theme toggle button
+      * (theme.js) flips data-theme and persists the choice. With JavaScript
+      * disabled the page renders in the light theme.
+      * ------------------------------------------------------------------------- */
+     :root {
+         --color-bg: #fefefe;
+         --color-bg-elev: #f6f6f6;
+         --color-bg-section: #ffffff;
+         --color-bg-subtle: #f8f8f8;
+         --color-code-inline-bg: #f0f0f0;
+         --color-th-bg: #eeeeee;
+         --color-thead-bg: #f5f5f5;
+         --color-text: #444444;
+         --color-heading: #111111;
+         --color-text-muted: #666666;
+         --color-text-faint: #888888;
+         --color-code-text: #000000;
+         --color-link: #0645ad;
+         --color-link-visited: #0b0080;
+         --color-link-hover: #0066ee;
+         --color-link-active: #faa700;
+         --color-section-link: #0066cc;
+         --color-border: #dddddd;
+         --color-border-strong: #aaaaaa;
+         --color-border-light: #eeeeee;
+         --color-pre-border: #e8e8e8;
+         --color-shadow: rgba(0, 0, 0, 0.12);
+         --color-selection-bg: rgba(255, 255, 0, 0.3);
+         --color-tooltip-bg: #ffffff;
+         --color-tooltip-text: #333333;
+         --color-btn-bg: #ffffff;
+         --color-conv-user-bg: #0f3460;
+         --color-conv-user-text: #ffffff;
+         --color-conv-assistant-bg: #f4f4f8;
+         --color-conv-assistant-text: #333333;
+         --color-thinking-border: rgba(0, 0, 0, 0.1);
+         --color-thinking-bg: rgba(0, 0, 0, 0.03);
+         color-scheme: light;
+     }
+
+     :root[data-theme="dark"] {
+         /* Slate/blue palette adopted from segyges.github.io (Blowfish theme).
+            Values map onto Tailwind "slate" neutrals + "blue" primaries. */
+         --color-bg: #1e293b;            /* neutral-800 */
+         --color-bg-elev: #334155;       /* neutral-700 */
+         --color-bg-section: #2a3a52;    /* between 800/700 */
+         --color-bg-subtle: #243044;     /* between 900/800 */
+         --color-code-inline-bg: #334155;/* neutral-700 */
+         --color-th-bg: #334155;         /* neutral-700 */
+         --color-thead-bg: #2a3a52;
+         --color-text: #cbd5e1;          /* neutral-300 */
+         --color-heading: #f1f5f9;       /* neutral-100 */
+         --color-text-muted: #94a3b8;    /* neutral-400 */
+         --color-text-faint: #64748b;    /* neutral-500 */
+         --color-code-text: #e2e8f0;     /* neutral-200 */
+         --color-link: #60a5fa;          /* primary-400 */
+         --color-link-visited: #b89cff;
+         --color-link-hover: #93c5fd;    /* primary-300 */
+         --color-link-active: #f5c542;
+         --color-section-link: #60a5fa;  /* primary-400 */
+         --color-border: #334155;        /* neutral-700 */
+         --color-border-strong: #475569; /* neutral-600 */
+         --color-border-light: #2a3a52;
+         --color-pre-border: #334155;    /* neutral-700 */
+         --color-shadow: rgba(0, 0, 0, 0.5);
+         --color-selection-bg: rgba(255, 255, 0, 0.18);
+         --color-tooltip-bg: #0f172a;    /* neutral-900 */
+         --color-tooltip-text: #cbd5e1;
+         --color-btn-bg: #334155;        /* neutral-700 */
+         --color-conv-user-bg: #1e3a5f;
+         --color-conv-user-text: #e8eef6;
+         --color-conv-assistant-bg: #2a3a52;
+         --color-conv-assistant-text: #cbd5e1;
+         --color-thinking-border: rgba(255, 255, 255, 0.12);
+         --color-thinking-bg: rgba(255, 255, 255, 0.04);
+         color-scheme: dark;
+     }
+
+     html {
+         font-size: 100%;
+         overflow-y: scroll;
+         overflow-x: hidden;
+         -webkit-text-size-adjust: 100%;
+         -ms-text-size-adjust: 100%;
+         /* Set here (not just on body) so the viewport canvas/side margins follow the
+            theme. Pandoc's default stylesheet gives <html> a light background, which
+            would otherwise leave light gutters around the dark body strip. */
+         background: var(--color-bg);
+         color: var(--color-text);
+     }
+
+     body {
+         color: var(--color-text);
+         font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+         font-size: 12px;
+         line-height: 1.7;
+         padding: 1em;
+         margin: auto;
+         max-width: 42em;
+         overflow-x: hidden;
+         background: var(--color-bg);
+     }
+
+     a {
+         color: var(--color-link);
+         text-decoration: none;
+     }
+
+     a:visited {
+         color: var(--color-link-visited);
+     }
+
+     a:hover {
+         color: var(--color-link-hover);
+     }
+
+     a:active {
+         color: var(--color-link-active);
+     }
+
+     a:focus {
+         outline: thin dotted;
+     }
+
+     *::-moz-selection {
+         background: var(--color-selection-bg);
+         color: #000;
+     }
+
+     *::selection {
+         background: var(--color-selection-bg);
+         color: #000;
+     }
+
+     a::-moz-selection {
+         background: var(--color-selection-bg);
+         color: var(--color-link);
+     }
+
+     a::selection {
+         background: var(--color-selection-bg);
+         color: var(--color-link);
+     }
+
+     p {
+         margin: 1em 0;
+     }
+
+     img {
+         max-width: 100%;
+     }
+
+     h1,
+     h2,
+     h3,
+     h4,
+     h5,
+     h6 {
+         color: var(--color-heading);
+         line-height: 125%;
+         margin-top: 2em;
+         font-weight: normal;
+         position: relative;
+     }
+
+     /* Heading anchor link styles */
+     .header-anchor {
+         opacity: 0;
+         font-size: 0.8em;
+         vertical-align: middle;
+         position: absolute;
+         margin-left: 0.3em;
+         transition: opacity 0.2s ease-in-out;
+     }
+
+     h2:hover .header-anchor,
+     h3:hover .header-anchor,
+     h4:hover .header-anchor,
+     h5:hover .header-anchor,
+     h6:hover .header-anchor {
+         opacity: 1;
+     }
+
+     h4,
+     h5,
+     h6 {
+         font-weight: bold;
+     }
+
+     h1 {
+         font-size: 2.5em;
+     }
+
+     .title {
+         font-size: 2.5em;
+         color: var(--color-heading);
+         line-height: 125%;
+         margin-top: 2em;
+         font-weight: normal;
+         hyphens: none;
+         -webkit-hyphens: none;
+         -moz-hyphens: none;
+         -ms-hyphens: none;
+         word-break: keep-all;
+     }
+
+     h2 {
+         font-size: 2em;
+     }
+
+     h3 {
+         font-size: 1.5em;
+     }
+
+     h4 {
+         font-size: 1.2em;
+     }
+
+     h5 {
+         font-size: 1em;
+     }
+
+     h6 {
+         font-size: 0.9em;
+     }
+
+     blockquote {
+         color: var(--color-text-muted);
+         margin: 0;
+         padding-left: 3em;
+         border-left: 0.5em var(--color-border-light) solid;
+     }
+
+     hr {
+         display: block;
+         height: 2px;
+         border: 0;
+         border-top: 1px solid var(--color-border-strong);
+         border-bottom: 1px solid var(--color-border-light);
+         margin: 1em 0;
+         padding: 0;
+     }
+
+     pre,
+     code,
+     kbd,
+     samp {
+         color: var(--color-code-text);
+         font-family: monospace, monospace;
+         _font-family: 'courier new', monospace;
+         font-size: 0.85em;
+     }
+
+     pre {
+         white-space: pre;
+         line-height: 1.4;
+         padding: 1em 1.2em;
+         background-color: var(--color-bg-elev);
+         border: 1px solid var(--color-pre-border);
+         border-radius: 4px;
+         overflow-x: auto;
+     }
+
+     /* Override pandoc's .sourceCode { overflow: visible } which kills scrollbars */
+     pre.sourceCode {
+         overflow-x: auto !important;
+     }
+
+     p code, li code {
+         background-color: var(--color-code-inline-bg);
+         padding: 0.15em 0.35em;
+         border-radius: 3px;
+     }
+
+
+     b,
+     strong {
+         font-weight: bold;
+     }
+
+     dfn {
+         font-style: italic;
+     }
+
+     ins {
+         background: #ff9;
+         color: #000;
+         text-decoration: none;
+     }
+
+     mark {
+         background: #ff0;
+         color: #000;
+         font-style: italic;
+         font-weight: bold;
+     }
+
+     sub,
+     sup {
+         font-size: 75%;
+         line-height: 0;
+         position: relative;
+         vertical-align: baseline;
+     }
+
+     sup {
+         top: -0.5em;
+     }
+
+     sub {
+         bottom: -0.25em;
+     }
+
+     ul,
+     ol {
+         margin: 1em 0;
+         padding: 0 0 0 2em;
+     }
+
+     li p:last-child {
+         margin-bottom: 0;
+     }
+
+     ul ul,
+     ol ol {
+         margin: .3em 0;
+     }
+
+     dl {
+         margin-bottom: 1em;
+     }
+
+     dt {
+         font-weight: bold;
+         margin-bottom: .8em;
+     }
+
+     dd {
+         margin: 0 0 .8em 2em;
+     }
+
+     dd:last-child {
+         margin-bottom: 0;
+     }
+
+     img {
+         border: 0;
+         -ms-interpolation-mode: bicubic;
+         vertical-align: middle;
+     }
+
+     figure {
+         display: block;
+         text-align: center;
+         margin: 1em 0;
+     }
+
+     figure img {
+         border: none;
+         margin: 0 auto;
+     }
+
+     figcaption {
+         font-size: 0.8em;
+         font-style: italic;
+         margin: 0 0 .8em;
+     }
+
+     /* for html tables */
+     table {
+         margin-bottom: 2em;
+         border-bottom: 1px solid var(--color-border);
+         border-right: 1px solid var(--color-border);
+         border-spacing: 0;
+         box-shadow: none;
+         border: none;
+         border-collapse: collapse;
+         margin-left: auto;
+         margin-right: auto;
+         width: auto; /* Keeps natural width; wrapper handles overflow */
+         display: table;
+     }
+
+     th {
+         padding: 12px;
+         text-align: center;
+         background-color: var(--color-th-bg);
+         border: 1px solid var(--color-border);
+     }
+
+     td {
+         padding: 12px;
+         text-align: left; /* Keeps data cells left-aligned */
+         border: 1px solid var(--color-border);
+         vertical-align: top;
+     }
+
+     .table-scroll,
+     .table-wrap {
+         max-width: 100%;
+         overflow-x: auto;
+         -webkit-overflow-scrolling: touch;
+         margin: 1.5em auto 2em;
+     }
+
+     .table-scroll table {
+         margin: 0 auto;
+         display: table;
+         width: auto;
+         width: fit-content;
+         width: max-content;
+     }
+
+     .table-wrap table {
+         margin: 0 auto;
+     }
+
+     .table-scroll::-webkit-scrollbar,
+     .table-wrap::-webkit-scrollbar {
+         height: 8px;
+     }
+
+     .table-scroll::-webkit-scrollbar-thumb,
+     .table-wrap::-webkit-scrollbar-thumb {
+         background-color: rgba(0, 0, 0, 0.2);
+         border-radius: 4px;
+     }
+
+     .table-scroll::-webkit-scrollbar-track,
+     .table-wrap::-webkit-scrollbar-track {
+         background: rgba(0, 0, 0, 0.05);
+     }
+
+     div.abstract {
+         font-size: 1em;
+     }
+
+     .errata-reprint-status {
+         display: inline-block;
+         margin: 0.2em 0 0.2em 0.4em;
+         padding: 0.1em 0.45em;
+         border: 1px solid var(--color-border);
+         border-radius: 0.25em;
+         color: var(--color-text-muted);
+         font-size: 0.85em;
+     }
+
+     .errata-reprint-partial {
+         border-style: dashed;
+         border-color: currentColor;
+     }
+
+     #changelog,
+     #acknowledgements,
+     #citation {
+         font-size: 0.9em;
+     }
+
+     .author {
+         font-size: 1.2em;
+         text-align: center;
+     }
+
+     /* Target only mobile screens */
+     @media only screen and (max-width: 479px) {
+         body {
+             font-size: 14px;
+         }
+     }
+
+     @media only screen and (min-width: 480px) {
+         body {
+             font-size: 15px;
+         }
+     }
+
+     @media only screen and (min-width: 768px) {
+         body {
+             font-size: 16px;
+         }
+     }
+
+     @media print {
+         * {
+             background: transparent !important;
+             color: black !important;
+             filter: none !important;
+             -ms-filter: none !important;
+         }
+         body {
+             font-size: 12pt;
+             max-width: 100%;
+         }
+         a,
+         a:visited {
+             text-decoration: underline;
+         }
+         hr {
+             height: 1px;
+             border: 0;
+             border-bottom: 1px solid black;
+         }
+         a[href]:after {
+             content: " (" attr(href) ")";
+         }
+         abbr[title]:after {
+             content: " (" attr(title) ")";
+         }
+         .ir a:after,
+         a[href^="javascript:"]:after,
+         a[href^="#"]:after {
+             content: "";
+         }
+         pre,
+         blockquote {
+             border: 1px solid #999;
+             padding-right: 1em;
+             page-break-inside: avoid;
+         }
+         tr,
+         img {
+             page-break-inside: avoid;
+         }
+         img {
+             max-width: 100% !important;
+         }
+         @page :left {
+             margin: 15mm 20mm 15mm 10mm;
+         }
+         @page :right {
+             margin: 15mm 10mm 15mm 20mm;
+         }
+         p,
+         h2,
+         h3 {
+             orphans: 3;
+             widows: 3;
+         }
+         h2,
+         h3 {
+             page-break-after: avoid;
+         }
+     }
+
+     .dropdown-content {
+       display: none;
+     }
+
+
+
+     thead {
+         background-color: var(--color-thead-bg);
+     }
+
+
+     .dropdown-content.open {
+       display: block;
+       max-height: 2000px;
+     }
+     /* Header Nav Block */
+         .chapter-nav {
+             display: grid;
+             grid-template-columns: repeat(3, 1fr);
+             /* grid-template-rows: auto auto;  */
+             gap: 0.5rem;
+             padding: 0.5rem;
+             max-width: 1200px;
+             text-align: left;
+         }
+         .section {
+             background-color: var(--color-bg-section);
+             padding-top: 5px;
+             padding-right: 12px;
+             padding-bottom: 8px;
+             padding-left: 12px;
+             border-radius: 5px;
+             text-align: left;
+         }
+       .dropdown-content {
+         max-height: 0;
+         overflow: hidden;
+         transition: max-height 0.3s ease-out;
+         background: var(--color-bg-subtle);  /* Unified with section background */
+       }
+       /* dropdown row */
+       .dropdown-button {
+         width: 100%;
+         text-align: left;
+         padding: 0.5rem;
+         background: var(--color-bg-subtle);
+         display: flex;
+         align-items: center;
+         gap: 0.5rem;
+         cursor: pointer;
+         border: none;
+         font-size: 0.9rem;
+         color: inherit;
+       }
+       /* caret button */
+       .dropdown-button .chevron {
+         width: 14px;
+         height: 14px;
+         transition: transform 0.2s;
+       }
+       /* dropdown animation */
+       .dropdown-button[aria-expanded="true"] .chevron {
+         transform: rotate(180deg);
+       }
+       .section h3 {
+         font-weight: bold;
+         font-size: 0.8rem;
+         margin-top: 5px;
+         margin-bottom: 5px;  /* or whatever bottom spacing you prefer */
+       }
+       .section ol, .section ul {
+         margin: 0;
+         padding-left: 20px;
+         text-align: left;
+       }
+       .section li {
+         font-size: 12px;
+         line-height: 1.3;
+         margin-bottom: 3px;
+         text-align: left;
+       }
+       .section a {
+         color: var(--color-section-link);
+         text-decoration: none;
+       }
+       .section a[aria-current="page"] {
+         font-weight: bold;
+       }
+       .section a:hover {
+         text-decoration: underline;
+       }
+
+       /* Mobile Responsiveness */
+       @media screen and (max-width: 768px) {
+         .chapter-nav {
+           grid-template-columns: 1fr;
+         }
+         .section {
+           margin-bottom: 10px;
+         }
+         .section p {
+           font-size: 16px;
+         }
+         .section li {
+           font-size: 14px;
+         }
+       }
+
+     /* Citation tooltips */
+     .citation-tooltip {
+       position: absolute;
+       max-width: 350px;
+       padding: 8px 12px;
+       background: var(--color-tooltip-bg);
+       color: var(--color-tooltip-text);
+       font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+       font-size: 0.85em;
+       line-height: 1.5;
+       border: 1px solid var(--color-border);
+       border-radius: 4px;
+       box-shadow: 0 2px 8px var(--color-shadow);
+       z-index: 1000;
+       pointer-events: none;
+       opacity: 0;
+       transition: opacity 0.15s ease-in;
+     }
+
+     /* Pagefind search styling inside nav */
+     #search {
+         padding: 0.5rem;
+     }
+     #search .pagefind-ui__search-input {
+         font-size: 0.85rem;
+         border: none;
+         border-radius: 5px;
+     }
+     #search .pagefind-ui__form::before {
+         border-radius: 5px;
+     }
+     #search .pagefind-ui__result {
+         text-align: left;
+     }
+     #search .pagefind-ui__message,
+     #search .pagefind-ui__result-link {
+         color: var(--color-heading);
+     }
+     #search .pagefind-ui__result-excerpt {
+         color: var(--color-text);
+         text-align: left;
+     }
+
+     /* Copy code button */
+     .code-wrapper {
+       position: relative;
+     }
+     .math-wrapper {
+       position: relative;
+       display: block;
+     }
+     .copy-code-button {
+       position: absolute;
+       top: 8px;
+       right: 8px;
+       padding: 4px 6px;
+       border: 1px solid var(--color-border);
+       border-radius: 4px;
+       background: var(--color-btn-bg);
+       color: var(--color-text-muted);
+       cursor: pointer;
+       opacity: 0;
+       transition: opacity 0.15s ease-in;
+       line-height: 1;
+       z-index: 1;
+     }
+     .code-wrapper:hover .copy-code-button {
+       opacity: 0.7;
+     }
+     .copy-math-button {
+       position: absolute;
+       top: 50%;
+       right: 0;
+       transform: translateY(-50%);
+       padding: 2px 5px;
+       border: 1px solid transparent;
+       border-radius: 4px;
+       background: var(--color-btn-bg);
+       color: var(--color-text-muted);
+       cursor: pointer;
+       opacity: 0;
+       transition: opacity 0.15s ease-in, color 0.15s ease-in, border-color 0.15s ease-in;
+       line-height: 1;
+       z-index: 2;
+     }
+     .math-wrapper:hover .copy-math-button {
+       opacity: 0.55;
+     }
+     .copy-code-button:hover {
+       opacity: 1 !important;
+       border-color: var(--color-border-strong);
+       color: var(--color-tooltip-text);
+     }
+     .copy-math-button:hover,
+     .copy-math-button:focus-visible {
+       opacity: 1 !important;
+       border-color: var(--color-border-strong);
+       color: var(--color-tooltip-text);
+     }
+     .copy-code-button.copied {
+       opacity: 1 !important;
+       color: #22863a;
+       border-color: #22863a;
+     }
+     .copy-math-button.copied {
+       opacity: 1 !important;
+       color: #22863a;
+       border-color: #22863a;
+     }
+
+     /* View Source link in ToC */
+     .toc-view-source {
+       margin-top: 0.3em;
+       list-style: none;
+     }
+     .toc-view-source a {
+       color: var(--color-text-faint) !important;
+       font-size: 0.9em;
+     }
+
+     /* Conversation chat UI */
+     .conversation {
+         display: flex;
+         flex-direction: column;
+         gap: 0.5em;
+         margin: 1.5em 0;
+     }
+     .conversation-message {
+         position: relative;
+         max-width: 85%;
+         border-radius: 12px;
+         padding: 0.6em 1em;
+     }
+     .conversation-message--user {
+         align-self: flex-end;
+         background: var(--color-conv-user-bg);
+         color: var(--color-conv-user-text);
+     }
+     .conversation-message--assistant {
+         align-self: flex-start;
+         background: var(--color-conv-assistant-bg);
+         color: var(--color-conv-assistant-text);
+     }
+     .conversation-message--system {
+         align-self: center;
+         border: 1px solid var(--color-border);
+         background: transparent;
+         color: var(--color-text-muted);
+         font-style: italic;
+         font-size: 0.9em;
+         max-width: 90%;
+     }
+     .conversation-role {
+         font-size: 0.65em;
+         font-weight: 600;
+         text-transform: uppercase;
+         letter-spacing: 0.05em;
+         margin-bottom: 0.15em;
+         opacity: 0.75;
+     }
+     .conversation-message--user .conversation-role {
+         color: rgba(255, 255, 255, 0.85);
+     }
+     .conversation-content p {
+         margin: 0 0 0.3em;
+     }
+     .conversation-content p:last-child {
+         margin-bottom: 0;
+     }
+     .conversation-content code {
+         font-size: 0.85em;
+     }
+     .conversation-message--user a {
+         color: #8ec8f8;
+     }
+     .conversation-message--user code {
+         background: rgba(255, 255, 255, 0.15);
+         color: #fff;
+     }
+     @media screen and (max-width: 480px) {
+         .conversation-message {
+             max-width: 95%;
+         }
+     }
+     .copy-conversation-button {
+         position: absolute;
+         top: 6px;
+         right: 6px;
+         padding: 4px 6px;
+         border: 1px solid rgba(0,0,0,0.15);
+         border-radius: 4px;
+         background: transparent;
+         color: inherit;
+         cursor: pointer;
+         opacity: 0;
+         transition: opacity 0.15s ease-in;
+         line-height: 1;
+     }
+     .conversation-message:hover .copy-conversation-button {
+         opacity: 0.5;
+     }
+     .copy-conversation-button:hover {
+         opacity: 1 !important;
+     }
+     .copy-conversation-button.copied {
+         opacity: 1 !important;
+         color: #22863a;
+     }
+     .conversation-message--user .copy-conversation-button {
+         border-color: rgba(255,255,255,0.3);
+         color: rgba(255,255,255,0.85);
+     }
+     .conversation-message--user .copy-conversation-button.copied {
+         color: #6fcf97;
+     }
+     /* Thinking token collapsible block */
+     .thinking-block {
+         margin: 0.4em 1.5em 0.4em 0;
+         border: 1px solid var(--color-thinking-border);
+         border-radius: 6px;
+         padding: 0.4em 0.7em;
+         background: var(--color-thinking-bg);
+         font-size: 0.92em;
+     }
+     .thinking-block summary {
+         cursor: pointer;
+         font-weight: 600;
+         font-size: 0.8em;
+         text-transform: uppercase;
+         letter-spacing: 0.04em;
+         color: var(--color-text-faint);
+         user-select: none;
+     }
+     .thinking-content {
+         margin-top: 0.3em;
+         color: var(--color-text-muted);
+         font-style: italic;
+     }
+
+     /* ---------------------------------------------------------------------------
+      * Theme toggle button (light/dark). Fixed to the top-right of the viewport so
+      * it is available on every page. Wired up by theme.js.
+      * ------------------------------------------------------------------------- */
+     .theme-toggle {
+         position: fixed;
+         top: 0.7em;
+         right: 0.7em;
+         z-index: 1100;
+         width: 2.2em;
+         height: 2.2em;
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         padding: 0;
+         border: 1px solid var(--color-border);
+         border-radius: 50%;
+         background: var(--color-btn-bg);
+         color: var(--color-text-muted);
+         cursor: pointer;
+         box-shadow: 0 2px 6px var(--color-shadow);
+         transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+     }
+     .theme-toggle:hover {
+         color: var(--color-heading);
+         border-color: var(--color-border-strong);
+     }
+     .theme-toggle:focus-visible {
+         outline: 2px solid var(--color-link);
+         outline-offset: 2px;
+     }
+     .theme-toggle svg {
+         width: 1.15em;
+         height: 1.15em;
+     }
+     /* Show the moon in light mode (click -> dark), the sun in dark mode. */
+     .theme-toggle .theme-icon-sun {
+         display: none;
+     }
+     .theme-toggle .theme-icon-moon {
+         display: inline;
+     }
+     :root[data-theme="dark"] .theme-toggle .theme-icon-sun {
+         display: inline;
+     }
+     :root[data-theme="dark"] .theme-toggle .theme-icon-moon {
+         display: none;
+     }
+     @media print {
+         .theme-toggle {
+             display: none !important;
+         }
+     }  </style>
+  <script>
+    window.MathJax = window.MathJax || {};
+    window.MathJax.startup = window.MathJax.startup || {};
+    (function() {
+      var originalReady = window.MathJax.startup.ready;
+      window.MathJax.startup.ready = function() {
+        document.querySelectorAll('.math.display').forEach(function(node) {
+          if (!node.dataset.latexSource) {
+            node.dataset.latexSource = node.textContent;
+          }
+        });
+
+        if (typeof originalReady === 'function') {
+          return originalReady();
+        }
+
+        return MathJax.startup.defaultReady();
+      };
+    })();
+  </script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <style>
+    /* Horizontal scroll for wide equations, no vertical scrollbars */
+    .MathJax_Display, .MJXc-display, .math.display, mjx-container[jax="CHTML"][display="true"], mjx-container[jax="SVG"][display="true"] {
+      overflow-x: auto;
+      overflow-y: hidden !important;
+      max-width: 100%;
+      padding: 0.5em 0;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<!-- custom js nav -->
+<script src="nav.js" defer></script>
+<script src="header-anchors.js" defer></script>
+<script src="table-scroll.js" defer></script>
+<script src="citation-tooltips.js" defer></script>
+<script src="copy-code.js" defer></script>
+<script src="view-source.js" defer></script>
+<script src="conversation.js" defer></script>
+<script src="theme.js" defer></script>
+<style>
+  .toc-lecture-link {
+    margin-top: 0.3em;
+    list-style: none;
+  }
+  .toc-lecture-link a {
+    color: #888 !important;
+    font-size: 0.9em;
+    text-decoration: none;
+  }
+  .toc-lecture-link a:hover {
+    color: #555 !important;
+  }
+</style>
+
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-Rr3_iGtVZcPHhxkdbyDIb.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+
+</head>
+<body>
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false">
+  <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+  <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+</button>
+<header id="title-block-header">
+<div class="title" role="heading" aria-level="1"><a href="https://rlhfbook.com/" style="color: inherit; text-decoration: none;">Reinforcement Learning from Human Feedback</a></div>
+<p class="subtitle">A short introduction to RLHF and post-training focused on language models.</p>
+<p class="author">Nathan Lambert</p>
+<navigation-dropdown expanded="false"></navigation-dropdown>
+
+</header>
+<div> <h3> Chapter Contents </h3> </div>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#tool-use-and-function-calling" id="toc-tool-use-and-function-calling">Tool Use and Function Calling</a>
+<ul>
+<li><a href="#tool-use-overview" id="toc-tool-use-overview">Tool-Use Overview</a></li>
+<li><a href="#interweaving-tool-calls-in-generation" id="toc-interweaving-tool-calls-in-generation">Interweaving Tool Calls in Generation</a></li>
+<li><a href="#multistep-tool-reasoning" id="toc-multistep-tool-reasoning">Multistep Tool Reasoning</a></li>
+<li><a href="#model-context-protocol" id="toc-model-context-protocol">Model Context Protocol</a></li>
+<li><a href="#implementation-details" id="toc-implementation-details">Implementation Details</a></li>
+</ul></li>
+<li><a href="#bibliography" id="toc-bibliography">Bibliography</a></li>
+</ul>
+</nav>
+<li class="toc-lecture-link toc-lecture-link-item" hidden>
+  <a href="https://www.youtube.com/watch?v=GMry2DzC304&amp;list=PLL1tdVxB1CpVpEtMHxwuR4uI4Lxjw00_y&amp;index=17" target="_blank" rel="noopener">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    Lecture 11: Tool Use, Function Calling and The Road to Agents
+  </a>
+</li>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var toc = document.getElementById('TOC');
+    if (!toc) return;
+    var topUl = toc.querySelector('ul');
+    if (!topUl) return;
+    document.querySelectorAll('.toc-lecture-link-item').forEach(function(li) {
+      topUl.appendChild(li);
+      li.hidden = false;
+    });
+  });
+</script>
+<div id="content" data-pagefind-body data-pagefind-meta="title:Chapter 13: Tool Use and Function Calling">
+  <!--
+    Copyright (c) 2025-2026 Nathan Lambert.
+    Licensed under CC BY-NC-SA 4.0:
+    https://creativecommons.org/licenses/by-nc-sa/4.0/
+    Full license: https://github.com/natolambert/rlhf-book/blob/main/LICENSE-CHAPTERS
+  -->
+  <h1 id="tool-use-and-function-calling">Tool Use and Function Calling</h1>
+  <p>Language models using tools is a natural way to expand their capabilities, especially for high-precision tasks where external tools contain the information or for agents that need to interact with complex web systems. Tool-use is a skill that language models need to be trained to have, and RLHF and all the other methods presented in this book can refine it. Consider a question from a user such as:</p>
+  <blockquote>
+  <p><strong>User</strong>: Who is the president today?</p>
+  </blockquote>
+  <p>A language model without tools will have a hard time answering this question due to the knowledge cutoff of pretraining data, but this is readily accessible information with one search query. Consider another example:</p>
+  <blockquote>
+  <p><strong>User</strong>: Move all the arXiv papers in my downloads folder to my ~/research/ directory with names indicating the date of the paper.</p>
+  </blockquote>
+  <p>This is a task that the model weights alone cannot even attempt – the use of tools enables language models to address a far broader range of tasks.</p>
+  <p>Before diving deeper, it is useful to distinguish related terms that are often used interchangeably:</p>
+  <ul>
+  <li><strong>Tool use</strong>: the model emits a structured request (tool name and arguments); an orchestrator executes the tool; results are appended to the context; the model continues generating.</li>
+  <li><strong>Function calling</strong>: tool use where the arguments must conform to a declared schema for a set of functions (usually JSON Schema), enabling reliable parsing and validation.</li>
+  <li><strong>Code execution</strong>: a special case of tool use where the “tool” is a code interpreter (e.g., Python); results are returned as tool output.</li>
+  </ul>
+  <h2 id="tool-use-overview">Tool-Use Overview</h2>
+  <p>An AI model uses any external tools by outputting special tokens to trigger a certain endpoint. These can be anything from highly specific tools, such as functions that return the weather at a specific place, to code interpreters or search engines that act as fundamental building blocks of complex behaviors. Our first example showcased where language models need more up-to-date information to complement the fixed nature of their weights trained on past data, but there are also tools such as code execution, which lets language models get around their probabilistic, generative nature and return precise answers. Consider the task of printing an approximation of pi to 50 digits (without reciting it from memory and risking hallucination). A language model with tools can do the following:</p>
+  <pre class="text"><code>&lt;code&gt;
+from decimal import Decimal, getcontext
+getcontext().prec = 60
+
+def compute_pi():
+    # Chudnovsky algorithm for computing pi
+    C = 426880 * Decimal(10005).sqrt()
+    K, M, X, L, S = 0, 1, 1, 13591409, Decimal(13591409)
+    for i in range(1, 100):
+        M = M * (K**3 - 16*K) // ((i)**3)
+        K += 12
+        L += 545140134
+        X *= -262537412640768000
+        S += Decimal(M * L) / X
+    return C / S
+
+print(str(compute_pi())[:52])
+&lt;/code&gt;
+
+&lt;output&gt;
+3.14159265358979323846264338327950288419716939937510
+&lt;/output&gt;</code></pre>
+  <p>This chapter provides an overview of the origins of tool-use in modern language models, its fundamentals and formatting, and current trade-offs in utilizing tools well in leading models.</p>
+  <p>The exact origin of the term “tool use” is not clear, but the origins of the idea far predate the post-ChatGPT world where RLHF proliferated. Early examples circa 2015 attempted to build systems predating modern language models, such as Neural Programmer-Interpreters (NPI) <span class="citation" data-cites="reed2015neural"><a href="#ref-reed2015neural" role="doc-biblioref">[1]</a></span>, “a recurrent and compositional neural network that learns to represent and execute programs.” As language models became more popular, many subfields were using integrations with external capabilities to boost performance. To obtain information outside of just the weights many used retrieval augmented generation <span class="citation" data-cites="lewis2020retrieval"><a href="#ref-lewis2020retrieval" role="doc-biblioref">[2]</a></span> or web browsing <span class="citation" data-cites="nakano2021webgpt"><a href="#ref-nakano2021webgpt" role="doc-biblioref">[3]</a></span>. Soon after, others were exploring language models integrated with programs <span class="citation" data-cites="gao2023pal"><a href="#ref-gao2023pal" role="doc-biblioref">[4]</a></span> or tools <span class="citation" data-cites="parisi2022talm"><a href="#ref-parisi2022talm" role="doc-biblioref">[5]</a></span>.</p>
+  <p>As the field matured, these models gained more complex abilities in addition to the vast improvements to the underlying language modeling. For example, Toolformer could use “a calculator, a Q&amp;A system, two different search engines, a translation system, and a calendar” <span class="citation" data-cites="schick2023toolformerlanguagemodelsteach"><a href="#ref-schick2023toolformerlanguagemodelsteach" role="doc-biblioref">[6]</a></span>. Soon after, Gorilla was trained to use 1645 APIs (from PyTorch Hub, TensorFlow Hub v2, and Hugging Face) and its evaluation APIBench became a foundation of the popular Berkeley Function Calling Leaderboard <span class="citation" data-cites="patil2023gorilla"><a href="#ref-patil2023gorilla" role="doc-biblioref">[7]</a></span>. Since these early models, the diversity of actions called has grown substantially.</p>
+  <p>Tool-use models are now deeply intertwined with regular language model interactions. Model Context Protocol (MCP) emerged as a common formatting used to connect language models to external data sources (or tools) <span class="citation" data-cites="anthropic_mcp_2024"><a href="#ref-anthropic_mcp_2024" role="doc-biblioref">[8]</a></span>. With stronger models and better formats, tool-use language models are used in many situations, including productivity copilots within popular applications such as Microsoft Office or Google Workspace, scientific domains <span class="citation" data-cites="bran2023chemcrow"><a href="#ref-bran2023chemcrow" role="doc-biblioref">[9]</a></span>, medical domains <span class="citation" data-cites="li2024mmedagent"><a href="#ref-li2024mmedagent" role="doc-biblioref">[10]</a></span>, coding agents <span class="citation" data-cites="zhang2024codeagent"><a href="#ref-zhang2024codeagent" role="doc-biblioref">[11]</a></span> such as Claude Code or Cursor, integrations with databases, and many other autonomous workflows.</p>
+  <p>Evaluating tool-use models involves multiple dimensions: exact-match metrics for tool name and argument correctness, schema validity, and end-to-end task completion in simulated environments. Reliability across trials also matters – <span class="math inline">\(\tau\)</span>-bench introduced the pass^k metric (distinct from pass@k) to measure whether an agent succeeds consistently rather than occasionally <span class="citation" data-cites="yao2024taubench"><a href="#ref-yao2024taubench" role="doc-biblioref">[12]</a></span>. ToolLLM and its ToolBench dataset provide a large-scale framework for training and evaluating tool use across 16,000+ real-world APIs <span class="citation" data-cites="qin2023toollm"><a href="#ref-qin2023toollm" role="doc-biblioref">[13]</a></span>, while the Berkeley Function Calling Leaderboard (BFCL) remains a popular benchmark for comparing models on function calling accuracy <span class="citation" data-cites="patil2023gorilla"><a href="#ref-patil2023gorilla" role="doc-biblioref">[7]</a></span>.</p>
+  <h2 id="interweaving-tool-calls-in-generation">Interweaving Tool Calls in Generation</h2>
+  <p>Training data for function calling looks much like other post-training data, with one addition: a system prompt that instructs the model what tools it has available. An example formatted data point with the system prompt and tools available in JSON format is shown below:</p>
+  <div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">system</span>&gt;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>You are a function-calling AI model. You are provided with function signatures within &lt;<span class="kw">functions</span>&gt;&lt;/<span class="kw">functions</span>&gt; XML tags. You may call one or more functions to assist with the user query. Don&#39;t make assumptions about what values to plug into functions.</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">system</span>&gt;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">functions</span>&gt;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    &quot;name&quot;: &quot;search_movies&quot;,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    &quot;description&quot;: &quot;Search for movies by title and return matching results with IDs.&quot;,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    &quot;parameters&quot;: {</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      &quot;type&quot;: &quot;object&quot;,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      &quot;properties&quot;: {</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        &quot;query&quot;: {</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>          &quot;type&quot;: &quot;string&quot;,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>          &quot;description&quot;: &quot;The search string for the movie title.&quot;</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      },</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      &quot;required&quot;: [&quot;query&quot;]</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    &quot;name&quot;: &quot;get_movie_details&quot;,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    &quot;description&quot;: &quot;Fetch detailed information about a movie including cast, runtime, and synopsis.&quot;,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    &quot;parameters&quot;: {</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      &quot;type&quot;: &quot;object&quot;,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      &quot;properties&quot;: {</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        &quot;movie_id&quot;: {</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>          &quot;type&quot;: &quot;string&quot;,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>          &quot;description&quot;: &quot;The unique identifier for the movie.&quot;</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      },</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      &quot;required&quot;: [&quot;movie_id&quot;]</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    &quot;name&quot;: &quot;get_showtimes&quot;,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    &quot;description&quot;: &quot;Get movie showtimes for a given location and date.&quot;,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    &quot;parameters&quot;: {</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>      &quot;type&quot;: &quot;object&quot;,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>      &quot;properties&quot;: {</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        &quot;movie_id&quot;: {</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>          &quot;type&quot;: &quot;string&quot;,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>          &quot;description&quot;: &quot;The unique identifier for the movie.&quot;</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        &quot;zip_code&quot;: {</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>          &quot;type&quot;: &quot;string&quot;,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>          &quot;description&quot;: &quot;ZIP code for theater location.&quot;</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        &quot;date&quot;: {</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>          &quot;type&quot;: &quot;string&quot;,</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>          &quot;description&quot;: &quot;Date for showtimes in YYYY-MM-DD format.&quot;</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>      },</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>      &quot;required&quot;: [&quot;movie_id&quot;, &quot;zip_code&quot;]</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">functions</span>&gt;</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">user</span>&gt;</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">user</span>&gt;</span></code></pre></div>
+  <p>Although the language model is generating a completion, if it is following this example, it would generate the tokens <code>search_movies("Star Wars")</code> to search for Star Wars. This is often encoded inside special formatting tokens, and then the next tokens inserted into the sequence will contain the tool outputs. With this, models can learn to accomplish more challenging tasks than many simple standalone models.</p>
+  <p>A popular form of tool use is code-execution, allowing the model to get precise answers to complex logic or mathematics problems. For example, code-execution within a language model execution can occur during the thinking tokens of a reasoning model. As with function calling, there are tags first for the code to execute (generated by the model) and then a separate tag for output.</p>
+  <pre class="text"><code>&lt;|user|&gt;
+What is the 50th Fibonacci number? (Use the standard F_0=0, F_1=1 indexing.)&lt;/s&gt;
+&lt;|assistant|&gt;
+&lt;think&gt;
+Okay, I will compute the 50th Fibonacci number with a simple loop, then return the result.
+
+&lt;code&gt;
+def fib(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+
+fib(50)
+&lt;/code&gt;
+
+&lt;output&gt;
+12586269025
+&lt;/output&gt;
+&lt;/think&gt;
+&lt;answer&gt;
+The 50th Fibonacci number is 12 586 269 025.
+&lt;/answer&gt;</code></pre>
+  <p>What is happening under the hood is the language model is interleaving tool inputs and outputs with standard autoregressively generated tokens. The orchestration loop that makes this possible looks something like:</p>
+  <div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>messages <span class="op">=</span> [...]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> model(messages, tools<span class="op">=</span>tools)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> response.tool_calls:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> response.text</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> call <span class="kw">in</span> response.tool_calls:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> execute_tool(call.name, call.args)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        messages.append({<span class="st">&quot;role&quot;</span>: <span class="st">&quot;tool&quot;</span>, <span class="st">&quot;tool_call_id&quot;</span>: call.<span class="bu">id</span>, <span class="st">&quot;content&quot;</span>: result})</span></code></pre></div>
+  <figure id="fig:tool-use-generation">
+  <img src="images/tool_use_generation.png" data-dark-src="images/tool_use_generation-dark.png" alt="Figure 1: Tool use interleaves model generation with external execution: the model generates tokens until it emits a tool call (orange), an external system executes the tool and injects the output (purple) into the sequence, then the model continues generating. Models can emit multiple tool calls in a single generation. During training, tool call and output tokens are typically masked from the loss." />
+  <figcaption aria-hidden="true">Figure 1: Tool use interleaves model generation with external execution: the model generates tokens until it emits a tool call (orange), an external system executes the tool and injects the output (purple) into the sequence, then the model continues generating. Models can emit multiple tool calls in a single generation. During training, tool call and output tokens are typically masked from the loss.</figcaption>
+  </figure>
+  <p>Training for tool use is about getting the model to behave predictably with this different token flow—knowing when to emit a tool call, how to format arguments correctly, and how to incorporate results into its response. Open models must be trained to work with a variety of tools that users may connect off the shelf.</p>
+  <h2 id="multistep-tool-reasoning">Multistep Tool Reasoning</h2>
+  <p>OpenAI’s o3 model represented a substantial step-change in how multi-step tool-use can be integrated with language models. This behavior is related to much earlier research trends in the community. For example, ReAct <span class="citation" data-cites="yao2023react"><a href="#ref-yao2023react" role="doc-biblioref">[14]</a></span> showcased how actions and reasoning can be interleaved into one model generation:</p>
+  <blockquote>
+  <p>In this paper, we explore the use of LLMs to generate both reasoning traces and task-specific actions in an interleaved manner, allowing for greater synergy between the two: reasoning traces help the model induce, track, and update action plans as well as handle exceptions, while actions allow it to interface with and gather additional information from external sources such as knowledge bases or environments.</p>
+  </blockquote>
+  <p>With the solidification of tool-use capabilities and the take-off of reasoning models, multi-turn tool-use has grown into an exciting area of research <span class="citation" data-cites="wang2025ragenunderstandingselfevolutionllm"><a href="#ref-wang2025ragenunderstandingselfevolutionllm" role="doc-biblioref">[15]</a></span>. Training these multi-step behaviors with RL resembles classic reinforcement learning more than the per-sample RLHF loop: the agent interacts with an environment and its tools over a full trajectory before any reward is assigned, as shown in fig. <a href="#fig:tool-use-rl">2</a>.</p>
+  <figure id="fig:tool-use-rl">
+  <img src="images/tool_use_rl_loop.png" data-dark-src="images/tool_use_rl_loop-dark.png" alt="Figure 2: Reinforcement learning for multi-step tool use. A prompt is sampled from the training data and the agent (policy \pi_\theta) interacts with the environment and its tools over a trajectory, alternating actions a_t with observations o_t. The completed trajectory is graded or verified to produce a single reward r_T at the end, which drives the policy update. Unlike the per-sample RLHF loop, the reward arrives only after a multi-step rollout – closer to classic RL." />
+  <figcaption aria-hidden="true">Figure 2: Reinforcement learning for multi-step tool use. A prompt is sampled from the training data and the agent (policy <span class="math inline">\(\pi_\theta\)</span>) interacts with the environment and its tools over a trajectory, alternating actions <span class="math inline">\(a_t\)</span> with observations <span class="math inline">\(o_t\)</span>. The completed trajectory is graded or verified to produce a single reward <span class="math inline">\(r_T\)</span> at the end, which drives the policy update. Unlike the per-sample RLHF loop, the reward arrives only after a multi-step rollout – closer to classic RL.</figcaption>
+  </figure>
+  <h2 id="model-context-protocol">Model Context Protocol</h2>
+  <p>Model Context Protocol (MCP) is an open standard for connecting language models to external data sources and information systems <span class="citation" data-cites="anthropic_mcp_2024"><a href="#ref-anthropic_mcp_2024" role="doc-biblioref">[8]</a></span>. At the data layer, MCP uses JSON-RPC 2.0 with discovery and execution methods for its primitives. Rather than requiring specific tool call formatting per external system, MCP enables models to access rich contextual information through a standardized protocol.</p>
+  <p>MCP is a simple addition on top of the tool-use content in this chapter – it is how applications pass context (data + actions) to language models in a predictable JSON schema. MCP servers that the models interact with have core primitives: resources (read-only data blobs), prompts (templated messages/workflows), and tools (functions the model can call). With this, the MCP architecture can be summarized as:</p>
+  <ul>
+  <li>MCP servers wrap a specific data source or capability.</li>
+  <li>MCP clients (e.g., Claude Desktop, IDE plug-ins) aggregate one or more servers.</li>
+  <li>Hosts, e.g. Claude or ChatGPT applications, provide the user/LLM interface; switching model vendors or back-end tools only means swapping the client in the middle.</li>
+  </ul>
+  <p>MCP enables developers of tool-use models to use the same infrastructure to attach their servers or clients to different models, and at the same time models have a predictable format they can use to integrate external components. These together make for a far more predictable development environment for tool-use models in real-world domains.</p>
+  <p>An MCP server exposes tools to clients through a standardized JSON schema:</p>
+  <div class="sourceCode" id="cb5"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;get_weather&quot;</span><span class="fu">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Get current weather for a location&quot;</span><span class="fu">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;inputSchema&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;object&quot;</span><span class="fu">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;properties&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;location&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span><span class="fu">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;City name or coordinates&quot;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;required&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;location&quot;</span><span class="ot">]</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+  <p>A minimal Python MCP server implementing this tool:</p>
+  <div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mcp.server <span class="im">import</span> Server</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mcp.types <span class="im">import</span> Tool, TextContent</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>server <span class="op">=</span> Server(<span class="st">&quot;weather-server&quot;</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">@server.list_tools</span>()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> list_tools():</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [Tool(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">&quot;get_weather&quot;</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">&quot;Get current weather&quot;</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        inputSchema<span class="op">=</span>{</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;type&quot;</span>: <span class="st">&quot;object&quot;</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;properties&quot;</span>: {<span class="st">&quot;location&quot;</span>: {<span class="st">&quot;type&quot;</span>: <span class="st">&quot;string&quot;</span>}},</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;required&quot;</span>: [<span class="st">&quot;location&quot;</span>]</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    )]</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="at">@server.call_tool</span>()</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> call_tool(name: <span class="bu">str</span>, arguments: <span class="bu">dict</span>):</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> name <span class="op">==</span> <span class="st">&quot;get_weather&quot;</span>:</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        weather <span class="op">=</span> fetch_weather(arguments[<span class="st">&quot;location&quot;</span>])</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [TextContent(<span class="bu">type</span><span class="op">=</span><span class="st">&quot;text&quot;</span>, text<span class="op">=</span>weather)]</span></code></pre></div>
+  <h2 id="implementation-details">Implementation Details</h2>
+  <p>There are multiple formatting and masking decisions when implementing a tool-use model:</p>
+  <ul>
+  <li><strong>Python vs. JSON formatting</strong>: In this chapter, we include examples that format tool use as both JSON data structures and Python code. Models tend to select one structure, whereas different providers across the industry use different formats.</li>
+  <li><strong>Masking tool outputs</strong>: An important detail when training tool-use models is that the tokens in the tool output are masked from the model’s training loss. This ensures the model is not learning to predict the output of the system that processes the tool call (as the results are not tokens generated by the model).</li>
+  <li><strong>Multi-turn formatting for tool invocations</strong>: It is common practice when implementing tool-calling models to add more structure to the data-loading format. Standard practice for post-training datasets is a list of messages alternating between user and assistant (and often a system message). The overall structure is the same for tool-use, but the turns of the model are split into subsections of content delimited by each tool call. An example is below.</li>
+  </ul>
+  <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>messages <span class="op">=</span> [</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;content&quot;</span>: <span class="st">&quot;You are a function calling AI model. You are provided with function signatures within &lt;functions&gt;&lt;/functions&gt; XML tags. You may call one or more functions to assist with the user query. Don&#39;t make assumptions about what values to plug into functions.&quot;</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;function_calls&quot;</span>: null,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;functions&quot;</span>: <span class="st">&quot;[{</span><span class="ch">\&quot;</span><span class="st">name</span><span class="ch">\&quot;</span><span class="st">: </span><span class="ch">\&quot;</span><span class="st">live_giveaways_by_type</span><span class="ch">\&quot;</span><span class="st">, </span><span class="ch">\&quot;</span><span class="st">description</span><span class="ch">\&quot;</span><span class="st">: </span><span class="ch">\&quot;</span><span class="st">Retrieve live giveaways from the GamerPower API based on the specified type.</span><span class="ch">\&quot;</span><span class="st">, </span><span class="ch">\&quot;</span><span class="st">parameters</span><span class="ch">\&quot;</span><span class="st">: {</span><span class="ch">\&quot;</span><span class="st">type</span><span class="ch">\&quot;</span><span class="st">: {</span><span class="ch">\&quot;</span><span class="st">description</span><span class="ch">\&quot;</span><span class="st">: </span><span class="ch">\&quot;</span><span class="st">The type of giveaways to retrieve (e.g., game, loot, beta).</span><span class="ch">\&quot;</span><span class="st">, </span><span class="ch">\&quot;</span><span class="st">type</span><span class="ch">\&quot;</span><span class="st">: </span><span class="ch">\&quot;</span><span class="st">str</span><span class="ch">\&quot;</span><span class="st">, </span><span class="ch">\&quot;</span><span class="st">default</span><span class="ch">\&quot;</span><span class="st">: </span><span class="ch">\&quot;</span><span class="st">game</span><span class="ch">\&quot;</span><span class="sc">}}</span><span class="st">}]&quot;</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;role&quot;</span>: <span class="st">&quot;system&quot;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>},</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;content&quot;</span>: <span class="st">&quot;Where can I find live giveaways for beta access and games?&quot;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;function_calls&quot;</span>: null,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;functions&quot;</span>: null,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;role&quot;</span>: <span class="st">&quot;user&quot;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>},</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;content&quot;</span>: null,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;function_calls&quot;</span>: <span class="st">&quot;live_giveaways_by_type(type=&#39;beta&#39;)</span><span class="ch">\n</span><span class="st">live_giveaways_by_type(type=&#39;game&#39;)&quot;</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;functions&quot;</span>: null,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;role&quot;</span>: <span class="st">&quot;assistant&quot;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+  <ul>
+  <li><strong>Tokenization and message format details</strong>: Tool calls in OpenAI messages format often undergo tokenization through chat templates (the code for controlling the format of messages sent to the model), converting structured JSON representations into raw token streams. This process varies across model architectures—some use special tokens to demarcate tool calls, while others maintain structured formatting within the token stream itself. <a href="https://huggingface.co/spaces/huggingfacejs/chat-template-playground?modelId=Qwen/Qwen3-8B">Chat template playgrounds</a> provide an interactive environment to explore how different models convert message formats to token streams.</li>
+  <li><strong>Reasoning token continuity</strong>: As reasoning models have emerged, with their separate token stream of “reasoning” before an answer, different implementations exist for how they’re handled with tool-use in the loop. Some models preserve reasoning tokens between tool-calling steps within a single turn, maintaining context across multiple tool invocations. However, these tokens are typically erased between turns to minimize serving cost (but they aren’t always – this is a design decision).</li>
+  <li><strong>API formatting across providers</strong> (as of May 2026): Different providers use conceptually similar but technically distinct formats. OpenAI’s Chat Completions API uses <code>tool_calls</code> arrays with unique IDs, while the newer Responses API represents calls as <code>function_call</code> items and returns results as <code>function_call_output</code> items keyed by <code>call_id</code>. Anthropic defines tools with <code>input_schema</code> and represents calls and results as <code>tool_use</code> and <code>tool_result</code> content blocks. Gemini exposes function-calling modes such as <code>AUTO</code>, <code>ANY</code>, <code>NONE</code>, and, in supported Gemini and Vertex AI configurations, <code>VALIDATED</code>.</li>
+  <li><strong>Schema conformance and constrained decoding</strong>: Production systems often enforce valid JSON and correct argument types using constrained decoding or “strict mode” options, reducing retries from malformed outputs. Some closed model providers do additional post-training specifically to make structured JSON output reliable, whereas for open models this is handled as an inference flag in systems like vLLM.</li>
+  <li><strong>Tool output context consumption</strong>: Tool outputs can quickly consume the model’s context window, especially with search or retrieval tools that return many results. Systems must decide how to truncate, summarize, or paginate tool outputs to keep context manageable while preserving the information the model needs to continue.</li>
+  </ul>
+  <p>Tying this back to post-training: where does tool-use training data come from, and what objectives are used? Human-written tool traces are expensive to collect, so most modern tool-use corpora are synthetic or bootstrapped—Toolformer-style self-labeling <span class="citation" data-cites="schick2023toolformerlanguagemodelsteach"><a href="#ref-schick2023toolformerlanguagemodelsteach" role="doc-biblioref">[6]</a></span> or large-scale generation as in ToolBench <span class="citation" data-cites="qin2023toollm"><a href="#ref-qin2023toollm" role="doc-biblioref">[13]</a></span>. For training objectives, supervised fine-tuning (SFT) on tool trajectories teaches basic formatting and tool selection. This bootstraps the behavior and is often enough for establishing the foundation of the skill. Preference optimization (e.g., DPO) over trajectories can improve decisions about when to call a tool versus answer directly. For agentic tasks with multi-step tool use, RL with environment feedback (task success, constraint satisfaction) becomes the natural objective – the model learns from whether its tool-augmented actions actually solved the problem.</p>
+  <h1 class="unnumbered" id="bibliography">Bibliography</h1>
+  <div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+  <div id="ref-reed2015neural" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[1] </div><div class="csl-right-inline">S. Reed and N. De Freitas, <span>“Neural programmer-interpreters,”</span> in <em>International conference on learning representations (ICLR)</em>, 2016.</div>
+  </div>
+  <div id="ref-lewis2020retrieval" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[2] </div><div class="csl-right-inline"><span class="nocase">P. Lewis <em>et al.</em></span>, <span>“Retrieval-augmented generation for knowledge-intensive nlp tasks,”</span> <em>Advances in neural information processing systems</em>, vol. 33, pp. 9459–9474, 2020.</div>
+  </div>
+  <div id="ref-nakano2021webgpt" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[3] </div><div class="csl-right-inline"><span class="nocase">R. Nakano <em>et al.</em></span>, <span>“Webgpt: Browser-assisted question-answering with human feedback,”</span> <em>arXiv preprint arXiv:2112.09332</em>, 2021.</div>
+  </div>
+  <div id="ref-gao2023pal" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[4] </div><div class="csl-right-inline">L. Gao <em>et al.</em>, <span>“Pal: Program-aided language models,”</span> in <em>International conference on machine learning</em>, PMLR, 2023, pp. 10764–10799.</div>
+  </div>
+  <div id="ref-parisi2022talm" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[5] </div><div class="csl-right-inline">A. Parisi, Y. Zhao, and N. Fiedel, <span>“Talm: Tool augmented language models,”</span> <em>arXiv preprint arXiv:2205.12255</em>, 2022.</div>
+  </div>
+  <div id="ref-schick2023toolformerlanguagemodelsteach" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[6] </div><div class="csl-right-inline">T. Schick <em>et al.</em>, <span>“Toolformer: Language models can teach themselves to use tools,”</span> in <em>Advances in neural information processing systems (NeurIPS)</em>, 2023.</div>
+  </div>
+  <div id="ref-patil2023gorilla" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[7] </div><div class="csl-right-inline">S. G. Patil, T. Zhang, X. Wang, and J. E. Gonzalez, <span>“Gorilla: Large language model connected with massive APIs,”</span> in <em>Advances in neural information processing systems (NeurIPS)</em>, 2024.</div>
+  </div>
+  <div id="ref-anthropic_mcp_2024" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[8] </div><div class="csl-right-inline">Anthropic, <span>“Model context protocol (MCP).”</span> <a href="https://modelcontextprotocol.io/" class="uri">https://modelcontextprotocol.io/</a>, 2024.</div>
+  </div>
+  <div id="ref-bran2023chemcrow" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[9] </div><div class="csl-right-inline">A. M. Bran, S. Cox, O. Schilter, C. Baldassari, A. D. White, and P. Schwaller, <span>“Chemcrow: Augmenting large-language models with chemistry tools,”</span> <em>arXiv preprint arXiv:2304.05376</em>, 2023.</div>
+  </div>
+  <div id="ref-li2024mmedagent" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[10] </div><div class="csl-right-inline"><span class="nocase">B. Li <em>et al.</em></span>, <span>“Mmedagent: Learning to use medical tools with multi-modal agent,”</span> in <em>Conference on empirical methods in natural language processing (EMNLP)</em>, 2024.</div>
+  </div>
+  <div id="ref-zhang2024codeagent" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[11] </div><div class="csl-right-inline">K. Zhang, J. Li, G. Li, X. Shi, and Z. Jin, <span>“Codeagent: Enhancing code generation with tool-integrated agent systems for real-world repo-level coding challenges,”</span> <em>arXiv preprint arXiv:2401.07339</em>, 2024.</div>
+  </div>
+  <div id="ref-yao2024taubench" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[12] </div><div class="csl-right-inline">S. Yao, N. Shinn, P. Razavi, and K. Narasimhan, <span>“<span class="math inline">\(\tau\)</span>-bench: A benchmark for tool-agent-user interaction in real-world domains.”</span> June 2024. doi: <a href="https://doi.org/10.48550/arXiv.2406.12045">10.48550/arXiv.2406.12045</a>.</div>
+  </div>
+  <div id="ref-qin2023toollm" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[13] </div><div class="csl-right-inline">Y. Qin <em>et al.</em>, <span>“ToolLLM: Facilitating large language models to master 16000+ real-world APIs,”</span> in <em>International conference on learning representations (ICLR)</em>, July 2024. doi: <a href="https://doi.org/10.48550/arXiv.2307.16789">10.48550/arXiv.2307.16789</a>.</div>
+  </div>
+  <div id="ref-yao2023react" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[14] </div><div class="csl-right-inline">S. Yao <em>et al.</em>, <span>“React: Synergizing reasoning and acting in language models,”</span> in <em>International conference on learning representations (ICLR)</em>, 2023.</div>
+  </div>
+  <div id="ref-wang2025ragenunderstandingselfevolutionllm" class="csl-entry" role="listitem">
+  <div class="csl-left-margin">[15] </div><div class="csl-right-inline">Z. Wang <em>et al.</em>, <span>“RAGEN: Understanding self-evolution in LLM agents via multi-turn reinforcement learning.”</span> 2025. Available: <a href="https://arxiv.org/abs/2504.20073">https://arxiv.org/abs/2504.20073</a></div>
+  </div>
+  </div>
+</div>
+
+<div id="chapter-navigation" style="display: flex; justify-content: space-between; padding: 2em 0;">
+    <a href="12-synthetic-data" class="prev-chapter">
+    ← Previous: Synthetic Data &amp; Distillation
+  </a>
+    
+    <a href="14-over-optimization" class="next-chapter">
+    Next: Over-Optimization →
+  </a>
+  </div>
+<section id="citation" style="padding: 0 20px;">
+  <h4 style="text-align: left; font-weight: normal;">Citation</h4>
+  <p>If you found this useful for your research, please cite it!</p>
+  <p>For the web and arXiv version:</p>
+  <pre style="text-align: left; font-size: small; color: #888;">@misc{lambert2025reinforcementlearninghumanfeedback,
+  title = {Reinforcement Learning from Human Feedback},
+  author = {Nathan Lambert},
+  year = {2025},
+  eprint = {2504.12501},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  url = {https://arxiv.org/abs/2504.12501}
+}</pre>
+  <p>For the Manning edition:</p>
+  <pre style="text-align: left; font-size: small; color: #888;">@book{lambert2026reinforcement,
+  author = {Nathan Lambert},
+  title = {Reinforcement Learning from Human Feedback: Alignment and post-training of {LLMs}},
+  year = {2026},
+  publisher = {Manning Publications},
+  isbn = {9781633434301},
+  url = {https://www.manning.com/books/reinforcement-learning-from-human-feedback}
+}</pre>
+</section>
+<footer style="padding: 20px; text-align: center; margin-top: 2em;">
+  <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+    <a href="https://github.com/natolambert/rlhf-book" target="_blank" rel="noopener noreferrer">
+      <img src="/assets/github.svg" data-dark-src="/assets/github-dark.svg" alt="GitHub" style="width: 40px; height: 40px;">
+    </a>
+    <a href="https://arxiv.org/abs/2504.12501" target="_blank" rel="noopener noreferrer">
+      <img src="/assets/arxiv.svg" alt="arXiv" style="width: 40px; height: 40px;">
+    </a>
+    <a href="https://www.manning.com/books/reinforcement-learning-from-human-feedback" target="_blank" rel="noopener noreferrer">
+      <img src="/assets/manning.svg" data-dark-src="/assets/manning-dark.svg" alt="Manning" style="width: 40px; height: 40px;">
+    </a>
+    <a href="https://amzn.to/4cwCDJQ" target="_blank" rel="noopener noreferrer">
+      <img src="/assets/amazon.svg" data-dark-src="/assets/amazon-dark.svg" alt="Amazon" style="width: 40px; height: 40px;">
+    </a>
+    <a href="https://discord.gg/yz5AwK4gBR" target="_blank" rel="noopener noreferrer">
+      <img src="/assets/discord.svg" data-dark-src="/assets/discord-dark.svg" alt="Discord" style="width: 40px; height: 40px;">
+    </a>
+  </div>
+  <p>&copy; 2024-2026 Nathan Lambert &middot; <a href="https://rlhfbook.com" style="color: var(--color-text-faint); text-decoration: none;">rlhfbook.com</a></p>
+</footer></body>
+</html>

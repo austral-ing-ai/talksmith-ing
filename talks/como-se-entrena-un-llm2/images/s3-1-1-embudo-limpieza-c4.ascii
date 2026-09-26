@@ -1,0 +1,27 @@
++-------------------------------------------------+
+| Common Crawl, abril 2019, páginas en inglés     |
+| 1.100 M documentos   |   1,4 billones de tokens |
++-------------------------------------------------+
+                        |
+                        v
++-------------------------------------------------+
+| Reglas de limpieza                              |
+|  - líneas que terminan en . ! ? o comillas      |
+|  - líneas de 5 palabras o más                   |
+|  - páginas de 3 oraciones o más                 |
+|  - sin "lorem ipsum", sin "{", sin la blocklist |
+|  - un solo ejemplar de cada tramo repetido      |
++-------------------------------------------------+
+                        |
+                        v
++-------------------------------------------------+
+| C4.EN                                           |
+| 365 M documentos   |   156.000 M de tokens      |
+|                (11 % de los tokens)             |
++-------------------------------------------------+
+
+<!-- ascii-note:
+intent: embudo de limpieza; el volumen cae de 1,4 billones a 156.000 millones de tokens
+emphasize: el "11 %" en la caja de salida es el único elemento en acento
+labels: documentos (M = millones), tokens
+-->

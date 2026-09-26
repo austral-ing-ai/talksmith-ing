@@ -1,0 +1,31 @@
+<!-- talksmith-ascii-sha256: a7b9ec75b0514eb53ec378aae41c05c9682d5fb1d7fbebb5756410e1cb91f2ac -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 388" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>QLoRA: el modelo base en 4 bits</title>
+<desc>La cuantización a 4 bits se usa para guardar los pesos; para multiplicar se pasan a 16 bits.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="720" height="388" fill="#ffffff"/>
+<rect x="20" y="20" width="310" height="112" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="38" y="50" font-size="17" font-weight="bold" fill="#1F1E1E">Modelo base congelado</text>
+<text x="38" y="78">pesos en 4 bits (NF4)</text>
+<text x="38" y="104">se descuantizan a BF16 al usar</text>
+<rect x="390" y="20" width="310" height="112" rx="8" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<text x="408" y="50" font-size="17" font-weight="bold" fill="#1F1E1E">Adaptadores LoRA</text>
+<text x="408" y="78">en BF16, entrenables</text>
+<text x="408" y="104">en todas las capas lineales</text>
+<path d="M175,132 V185 H320" fill="none" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M545,132 V185 H400" fill="none" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="320" y="170" width="80" height="30" rx="15" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/>
+<text x="360" y="190" text-anchor="middle" font-weight="bold" fill="#1F1E1E">suma</text>
+<text x="360" y="228" text-anchor="middle" font-size="14" font-style="italic">gradientes solo para LoRA</text>
+<line x1="20" y1="250" x2="700" y2="250" stroke="#D8D2CE" stroke-width="1"/>
+<text x="20" y="282" font-size="16" font-weight="bold" fill="#1F1E1E">Memoria para ajustar LLaMA 65B</text>
+<text x="170" y="317" text-anchor="end">16 bits completo</text>
+<rect x="185" y="298" width="420" height="28" fill="#D8D2CE"/>
+<text x="617" y="317" font-weight="bold" fill="#1F1E1E">&gt; 780 GB</text>
+<text x="170" y="359" text-anchor="end" font-weight="bold" fill="#DA1B2E">QLoRA</text>
+<rect x="185" y="340" width="24" height="28" fill="#DA1B2E"/>
+<text x="221" y="359" font-weight="bold" fill="#DA1B2E">45 GB</text>
+<text x="274" y="359" font-size="14">· entra en una GPU de 48 GB</text>
+</svg>

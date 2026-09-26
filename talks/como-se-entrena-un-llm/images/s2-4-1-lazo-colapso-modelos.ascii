@@ -1,0 +1,16 @@
+ generación 0      generación 1      ...      generación n
+ datos humanos --> modelo 0 --> texto --> modelo 1 --> ... --> modelo n
+                                  |                             |
+                                  +--- se publica en la web ----+
+                                        y vuelve al crawl
+
+ lo que pasa en cada vuelta:
+   - desaparecen los eventos poco probables (las colas)
+   - aparecen errores propios del modelo
+   - al final: una distribución angosta, poco parecida a la original
+
+<!-- ascii-note:
+intent: el lazo de realimentación del colapso de modelos
+emphasize: la flecha de vuelta "se publica en la web y vuelve al crawl"
+labels: generación 0, 1, n
+-->

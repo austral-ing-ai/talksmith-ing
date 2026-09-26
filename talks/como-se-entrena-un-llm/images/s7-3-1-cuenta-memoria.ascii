@@ -1,0 +1,17 @@
+ modelo de 13B parámetros, 2 bytes por valor (16 bits)
+
+ inferencia:   pesos 26 GB  x 1,2 (activaciones, KV)       ~  31 GB
+
+ fine-tuning completo con Adam:
+   pesos + activaciones                                   ~  31 GB
+   gradientes (1 valor) + Adam (2 valores) = 13B x 3 x 2   =  78 GB
+                                                          ---------
+                                                          ~ 109 GB
+
+ una GPU de 48 GB no alcanza; tampoco dos
+
+<!-- ascii-note:
+intent: la cuenta de memoria de un fine-tuning completo contra la inferencia
+emphasize: los 78 GB de gradientes y estados del optimizador, que la inferencia no necesita
+labels: GB por componente y total
+-->

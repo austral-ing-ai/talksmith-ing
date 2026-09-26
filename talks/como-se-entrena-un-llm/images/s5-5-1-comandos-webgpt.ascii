@@ -1,0 +1,16 @@
+ WebGPT: comandos que el modelo puede emitir
+   Search <consulta>        Clicked on link <id>     Find in page: <texto>
+   Quote: <texto>           Scrolled down <1,2,3>    Back
+   End: Answer
+
+ cómo se entrena cada parte:
+   SFT (6.209 demostraciones)  -> formato de los comandos y elección de herramienta
+   preferencias (21.548 comp.) -> reward model; elegir la mejor de 64 respuestas
+   RL con el entorno           -> tareas de varios pasos; una recompensa
+                                  al final de la trayectoria
+
+<!-- ascii-note:
+intent: el set de comandos de WebGPT y qué objetivo de entrenamiento enseña cada cosa
+emphasize: la escalera SFT -> preferencias -> RL multi-paso
+labels: cantidades de datos de WebGPT
+-->

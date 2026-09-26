@@ -1,0 +1,15 @@
+ un ejemplo de entrenamiento, ya tokenizado:
+
+ [ ¿Qué ingredientes lleva una pizza? ] [ Harina, agua, levadura, sal, ... ]
+ |<--------------- prompt ------------->|<------------ respuesta ----------->|
+         pérdida = 0 (enmascarado)             pérdida = cross-entropy
+
+ el modelo aprende las dos cosas que muestra la demostración:
+   - qué decir     (el contenido de la respuesta)
+   - cómo decirlo  (formato, tono, largo)
+
+<!-- ascii-note:
+intent: un ejemplo de SFT con la máscara de pérdida sobre el prompt
+emphasize: la división prompt / respuesta y que solo la respuesta suma a la pérdida
+labels: pérdida = 0 en el prompt; cross-entropy en la respuesta
+-->

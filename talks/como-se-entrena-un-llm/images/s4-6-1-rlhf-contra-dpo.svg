@@ -1,0 +1,46 @@
+<!-- talksmith-ascii-sha256: 167f4eb44f803dc5c2bcf1991f554d61fc965ac2477d30e6b5e04166c792c863 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 326" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>DPO: preferencias sin RL</title>
+<desc>El título del paper lo resume: "Your Language Model Is Secretly a Reward Model".</desc>
+<defs>
+<marker id="a" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 1 L9 5 L0 9 Z" fill="#8A8282"/></marker>
+<marker id="r" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0 1 L11 6 L0 11 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="800" height="326" fill="#ffffff"/>
+<g font-size="17" font-weight="bold" fill="#1F1E1E">
+<text x="24" y="52">RLHF</text>
+<text x="24" y="128">DPO</text>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE">
+<rect x="96" y="24" width="140" height="44" rx="6"/>
+<rect x="276" y="24" width="150" height="44" rx="6"/>
+<rect x="466" y="24" width="160" height="44" rx="6"/>
+<rect x="666" y="24" width="110" height="44" rx="6"/>
+<rect x="96" y="100" width="140" height="44" rx="6"/>
+</g>
+<rect x="666" y="100" width="110" height="44" rx="6" fill="#F2EEEE" stroke="#DA1B2E" stroke-width="2"/>
+<g text-anchor="middle" fill="#1F1E1E">
+<text x="166" y="51">preferencias</text>
+<text x="351" y="51">reward model</text>
+<text x="546" y="43" font-weight="bold">PPO</text>
+<text x="546" y="60" font-size="12" font-style="italic" fill="#6E6666">muestrea respuestas</text>
+<text x="721" y="51" font-weight="bold">LLM</text>
+<text x="166" y="127">preferencias</text>
+<text x="721" y="127" font-weight="bold">LLM</text>
+</g>
+<g stroke="#8A8282" stroke-width="1.5" marker-end="url(#a)">
+<line x1="236" y1="46" x2="276" y2="46"/>
+<line x1="426" y1="46" x2="466" y2="46"/>
+<line x1="626" y1="46" x2="666" y2="46"/>
+</g>
+<line x1="236" y1="122" x2="666" y2="122" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#r)"/>
+<text x="451" y="112" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">sin reward model, sin muestreo</text>
+<text x="451" y="140" text-anchor="middle" font-size="13" font-style="italic" fill="#6E6666">pérdida de clasificación sobre los pares</text>
+<rect x="24" y="172" width="752" height="100" rx="8" fill="#F2F2F2" stroke="#D8D2CE"/>
+<text x="44" y="198" font-weight="bold" fill="#1F1E1E">pérdida DPO, por par (x, y_w, y_l):</text>
+<g font-family="'Andale Mono', monospace" font-size="17" fill="#1F1E1E">
+<text x="84" y="230" xml:space="preserve">-log sigmoide( beta * [ log p(y_w|x)/p_ref(y_w|x)</text>
+<text x="84" y="256" xml:space="preserve">                      - log p(y_l|x)/p_ref(y_l|x) ] )</text>
+</g>
+<text x="24" y="302" font-size="13" fill="#6E6666">p: modelo que se entrena · p_ref: modelo SFT de referencia · y_w / y_l: respuesta preferida / rechazada</text>
+</svg>

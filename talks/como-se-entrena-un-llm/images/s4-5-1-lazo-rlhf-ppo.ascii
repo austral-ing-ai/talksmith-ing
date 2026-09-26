@@ -1,0 +1,20 @@
+        +-----------+  prompt   +----------------+
+        | prompts   | --------> |  LLM (política)|
+        +-----------+           +----------------+
+                                        | respuesta
+                                        v
+                              +--------------------+
+                              | modelo de          |
+                              | recompensa         | --> puntaje r
+                              +--------------------+
+                                        |
+   objetivo = r  -  beta * KL( LLM || modelo SFT )
+                                        |
+                                        v
+                          PPO actualiza los pesos del LLM
+
+<!-- ascii-note:
+intent: el lazo de RLHF con PPO y la penalización KL contra el modelo SFT
+emphasize: el término KL que ata el modelo al SFT
+labels: política, reward model, r, beta, KL
+-->

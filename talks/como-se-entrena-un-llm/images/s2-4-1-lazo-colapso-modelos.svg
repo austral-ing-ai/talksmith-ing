@@ -1,0 +1,49 @@
+<!-- talksmith-ascii-sha256: 63af9f903eb0f178447835c2d58ae4aac50df560d48785ee03bcd8775cce1c35 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 326" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>La web se llena de texto generado</title>
+<desc>Leer en voz alta el ejemplo de la generación 9: arrancó hablando de arquitectura perpendicular y terminó enumerando conejos.</desc>
+<defs>
+<marker id="ag" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ar" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="13" markerHeight="13" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="850" height="326" fill="#ffffff"/>
+<g font-size="14" text-anchor="middle" fill="#1F1E1E" font-weight="bold">
+<text x="265" y="32">generación 0</text>
+<text x="545" y="32">generación 1</text>
+<text x="775" y="32">generación n</text>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="20" y="44" width="150" height="48" rx="8"/>
+<rect x="210" y="44" width="110" height="48" rx="8"/>
+<rect x="360" y="44" width="90" height="48" rx="8"/>
+<rect x="490" y="44" width="110" height="48" rx="8"/>
+<rect x="720" y="44" width="110" height="48" rx="8"/>
+</g>
+<g text-anchor="middle">
+<text x="95" y="73">datos humanos</text>
+<text x="265" y="73">modelo 0</text>
+<text x="405" y="73">texto</text>
+<text x="545" y="73">modelo 1</text>
+<text x="660" y="73" font-size="20">…</text>
+<text x="775" y="73">modelo n</text>
+</g>
+<g stroke="#3B3535" stroke-width="1.8" marker-end="url(#ag)">
+<line x1="170" y1="68" x2="210" y2="68"/>
+<line x1="320" y1="68" x2="360" y2="68"/>
+<line x1="450" y1="68" x2="490" y2="68"/>
+<line x1="600" y1="68" x2="636" y2="68"/>
+<line x1="684" y1="68" x2="720" y2="68"/>
+</g>
+<path d="M775,92 L775,134 L405,134 L405,92" fill="none" stroke="#DA1B2E" stroke-width="3" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="590" y="158" text-anchor="middle" font-weight="bold" fill="#DA1B2E">se publica en la web y vuelve al crawl</text>
+<line x1="20" y1="186" x2="830" y2="186" stroke="#D8D2CE" stroke-width="1"/>
+<text x="20" y="220" font-weight="bold" fill="#1F1E1E">Lo que pasa en cada vuelta:</text>
+<g fill="#3B3535">
+<circle cx="30" cy="245" r="3"/>
+<circle cx="30" cy="271" r="3"/>
+<circle cx="30" cy="297" r="3"/>
+</g>
+<text x="44" y="250">desaparecen los eventos poco probables (las colas)</text>
+<text x="44" y="276">aparecen errores propios del modelo</text>
+<text x="44" y="302">al final: una distribución angosta, poco parecida a la original</text>
+</svg>

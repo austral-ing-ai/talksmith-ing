@@ -1,0 +1,15 @@
+url: "https://github.com/chiphuyen/aie-book/blob/main/chapter-summaries.md"
+fetched_at: "2026-09-25T22:39:13Z"
+title: "aie-book/chapter-summaries.md at main · chiphuyen/aie-book · GitHub"
+http_status: 200
+byte_size: 370489
+assets:
+  - { src: "/chiphuyen/aie-book/raw/main/assets/rlhf.png", absolute: "https://github.com/chiphuyen/aie-book/raw/main/assets/rlhf.png", saved_as: "rlhf.png", alt: "" }
+  - { src: "/chiphuyen/aie-book/raw/main/assets/ai-judge.png", absolute: "https://github.com/chiphuyen/aie-book/raw/main/assets/ai-judge.png", saved_as: "ai-judge.png", alt: "" }
+  - { src: "/chiphuyen/aie-book/raw/main/assets/evaluation-process.png", absolute: "https://github.com/chiphuyen/aie-book/raw/main/assets/evaluation-process.png", saved_as: "evaluation-process.png", alt: "" }
+  - { src: "/chiphuyen/aie-book/raw/main/assets/prompt-anatomy.png", absolute: "https://github.com/chiphuyen/aie-book/raw/main/assets/prompt-anatomy.png", saved_as: "prompt-anatomy.png", alt: "" }
+  - { src: "/chiphuyen/aie-book/raw/main/assets/rag-architecture.png", absolute: "https://github.com/chiphuyen/aie-book/raw/main/assets/rag-architecture.png", saved_as: "rag-architecture.png", alt: "" }
+  - { src: "/chiphuyen/aie-book/raw/main/assets/rag-vs-finetune.png", absolute: "https://github.com/chiphuyen/aie-book/raw/main/assets/rag-vs-finetune.png", saved_as: "rag-vs-finetune.png", alt: "" }
+  - { src: "/chiphuyen/aie-book/raw/main/assets/model-perf-dataset.png", absolute: "https://github.com/chiphuyen/aie-book/raw/main/assets/model-perf-dataset.png", saved_as: "model-perf-dataset.png", alt: "" }
+  - { src: "/chiphuyen/aie-book/raw/main/assets/inference-service.png", absolute: "https://github.com/chiphuyen/aie-book/raw/main/assets/inference-service.png", saved_as: "inference-service.png", alt: "" }
+  - { src: "/chiphuyen/aie-book/raw/main/assets/aie-architecture.png", absolute: "https://github.com/chiphuyen/aie-book/raw/main/assets/aie-architecture.png", saved_as: "aie-architecture.png", alt: "" }

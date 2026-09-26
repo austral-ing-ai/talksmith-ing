@@ -1,0 +1,18 @@
+        N (parámetros)        D (tokens)
+             \                   /
+              \                 /
+               v               v
+          +-------------------------+
+          |   C  ~  6 * N * D       |   FLOPs de entrenamiento
+          +-------------------------+
+                      |
+                      v
+          pérdida (cross-entropy) al final
+
+  Chinchilla:  6 * 70e9 * 1,4e12  =  5,9e23 FLOPs
+
+<!-- ascii-note:
+intent: la fórmula que une parámetros, tokens y cómputo, con un ejemplo numérico
+emphasize: la caja de la fórmula; el ejemplo de Chinchilla abajo
+labels: N, D, C
+-->

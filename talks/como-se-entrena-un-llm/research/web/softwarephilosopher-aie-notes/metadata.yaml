@@ -1,0 +1,17 @@
+url: "https://softwarephilosopher.com/2025/12/27/ai-engineering-my-reading-notes/"
+fetched_at: "2026-09-25T22:39:27Z"
+title: "AI Engineering - my reading notes - Software Philosopher"
+http_status: 200
+byte_size: 171474
+assets:
+  - { src: "https://softwarephilosopher.com/wp-content/uploads/2022/03/logo_og_friendly.png", absolute: "https://softwarephilosopher.com/wp-content/uploads/2022/03/logo_og_friendly.png", saved_as: "logo_og_friendly.png", alt: "Software Philosopher" }
+  - { src: "https://softwarephilosopher.com/wp-content/uploads/2025/12/ai_engineering_cover.png", absolute: "https://softwarephilosopher.com/wp-content/uploads/2025/12/ai_engineering_cover.png", saved_as: "ai_engineering_cover.png", alt: "" }
+  - { src: "https://softwarephilosopher.com/wp-content/uploads/2025/12/ai_engineering_finetuning_and_rag-1024x765.png", absolute: "https://softwarephilosopher.com/wp-content/uploads/2025/12/ai_engineering_finetuning_and_rag-1024x765.png", saved_as: "ai_engineering_finetuning_and_rag-1024x765.png", alt: "" }
+  - { src: "https://softwarephilosopher.com/wp-content/uploads/2025/12/ai_engineering_batching-1024x436.png", absolute: "https://softwarephilosopher.com/wp-content/uploads/2025/12/ai_engineering_batching-1024x436.png", saved_as: "ai_engineering_batching-1024x436.png", alt: "" }
+  - { src: "https://softwarephilosopher.com/wp-content/uploads/2025/12/ai_engineering_gateway-1024x545.png", absolute: "https://softwarephilosopher.com/wp-content/uploads/2025/12/ai_engineering_gateway-1024x545.png", saved_as: "ai_engineering_gateway-1024x545.png", alt: "" }
+  - { src: "https://softwarephilosopher.com/wp-content/uploads/2025/12/ai_engineering_system_architecture-1024x510.png", absolute: "https://softwarephilosopher.com/wp-content/uploads/2025/12/ai_engineering_system_architecture-1024x510.png", saved_as: "ai_engineering_system_architecture-1024x510.png", alt: "" }
+  - { src: "https://secure.gravatar.com/avatar/aa7dbe728500849925302e85fb1f1548638eaeafc181dbae720519ec88705f06?s=82&d=mm&r=g", absolute: "https://secure.gravatar.com/avatar/aa7dbe728500849925302e85fb1f1548638eaeafc181dbae720519ec88705f06?s=82&d=mm&r=g", saved_as: "aa7dbe728500849925302e85fb1f1548638eaeafc181dbae720519ec88705f06.bin", alt: "" }
+  - { src: "data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20270%20180%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3C%2Fsvg%3E", absolute: "data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20270%20180%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3C%2Fsvg%3E", skipped: "non-http" }
+  - { src: "data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20270%20180%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3C%2Fsvg%3E", absolute: "data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20270%20180%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3C%2Fsvg%3E", skipped: "non-http" }
+  - { src: "data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20270%20180%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3C%2Fsvg%3E", absolute: "data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20270%20180%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3C%2Fsvg%3E", skipped: "non-http" }
+  - { src: "data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20270%20180%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3C%2Fsvg%3E", absolute: "data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%20270%20180%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3C%2Fsvg%3E", skipped: "non-http" }

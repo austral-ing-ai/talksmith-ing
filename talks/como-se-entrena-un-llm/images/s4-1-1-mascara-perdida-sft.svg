@@ -1,0 +1,55 @@
+<!-- talksmith-ascii-sha256: 19f35e3c1f755b0a450235847f9644d52eb960b8b3f17ddc193fe743284ba750 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 754 298" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>Datos de demostración</title>
+<desc>La función de pérdida es la misma de la clase 8; lo que cambia son los datos y la máscara.</desc>
+<rect x="0" y="0" width="754" height="298" fill="#ffffff"/>
+<text x="30" y="41" font-style="italic">Un ejemplo de entrenamiento, ya tokenizado</text>
+<g fill="#F2EEEE" stroke="#B5ADA9" stroke-dasharray="4 3">
+<rect x="30" y="62" width="54" height="36" rx="5"/>
+<rect x="90" y="62" width="104" height="36" rx="5"/>
+<rect x="200" y="62" width="54" height="36" rx="5"/>
+<rect x="260" y="62" width="46" height="36" rx="5"/>
+<rect x="312" y="62" width="64" height="36" rx="5"/>
+</g>
+<g text-anchor="middle" fill="#6E6666">
+<text x="57" y="85">¿Qué</text>
+<text x="142" y="85">ingredientes</text>
+<text x="227" y="85">lleva</text>
+<text x="283" y="85">una</text>
+<text x="344" y="85">pizza?</text>
+</g>
+<g fill="#FFFFFF" stroke="#DA1B2E" stroke-width="1.6">
+<rect x="400" y="62" width="72" height="36" rx="5"/>
+<rect x="478" y="62" width="60" height="36" rx="5"/>
+<rect x="544" y="62" width="84" height="36" rx="5"/>
+<rect x="634" y="62" width="48" height="36" rx="5"/>
+<rect x="688" y="62" width="36" height="36" rx="5"/>
+</g>
+<g text-anchor="middle" fill="#1F1E1E">
+<text x="436" y="85">Harina,</text>
+<text x="508" y="85">agua,</text>
+<text x="586" y="85">levadura,</text>
+<text x="658" y="85">sal,</text>
+<text x="706" y="85">…</text>
+</g>
+<g fill="none" stroke-width="1.5">
+<path d="M30 106 V114 H376 V106" stroke="#8A8282"/>
+<path d="M400 106 V114 H724 V106" stroke="#DA1B2E"/>
+</g>
+<g text-anchor="middle" font-weight="bold">
+<text x="203" y="136" fill="#3B3535">prompt</text>
+<text x="562" y="136" fill="#DA1B2E">respuesta</text>
+</g>
+<g text-anchor="middle" font-size="14">
+<text x="203" y="158" fill="#6E6666">pérdida = 0 (enmascarado)</text>
+<text x="562" y="158" fill="#DA1B2E">pérdida = cross-entropy</text>
+</g>
+<line x1="30" y1="182" x2="724" y2="182" stroke="#D8D2CE"/>
+<text x="30" y="210" font-weight="bold" fill="#1F1E1E">El modelo aprende las dos cosas que muestra la demostración:</text>
+<g fill="#DA1B2E">
+<rect x="32" y="229" width="7" height="7"/>
+<rect x="32" y="255" width="7" height="7"/>
+</g>
+<text x="48" y="237"><tspan font-weight="bold" fill="#1F1E1E">qué decir</tspan><tspan x="158">— el contenido de la respuesta</tspan></text>
+<text x="48" y="263"><tspan font-weight="bold" fill="#1F1E1E">cómo decirlo</tspan><tspan x="158">— formato, tono, largo</tspan></text>
+</svg>

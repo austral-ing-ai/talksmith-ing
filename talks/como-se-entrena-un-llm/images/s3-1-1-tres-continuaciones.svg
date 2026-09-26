@@ -1,0 +1,34 @@
+<!-- talksmith-ascii-sha256: 978653c13bde5cb50ad439cbdb49706c26380333da1a72bc803c3b405f51a2be -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Optimizado para completar</title>
+<desc>El ejemplo de la pizza: el mismo prompt admite tres continuaciones plausibles para un modelo base y solo una responde.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="760" height="420" fill="#ffffff"/>
+<text x="20" y="34" font-size="13" font-weight="bold" letter-spacing="1">PROMPT</text>
+<rect x="20" y="46" width="720" height="50" rx="8" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="40" y="78" font-size="20" fill="#1F1E1E">“¿Qué ingredientes lleva una pizza?”</text>
+<text x="72" y="130" font-size="15" font-weight="bold" fill="#1F1E1E">Continuaciones plausibles para un modelo base</text>
+<path d="M44 96 V254" fill="none" stroke="#3B3535" stroke-width="1.5"/>
+<path d="M44 176 H72" fill="none" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M44 254 H72" fill="none" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<path d="M44 254 V332 H72" fill="none" stroke="#DA1B2E" stroke-width="1.5" marker-end="url(#ahr)"/>
+<rect x="72" y="144" width="668" height="64" rx="8" fill="#F2EEEE" stroke="#D8D2CE"/>
+<circle cx="102" cy="176" r="16" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<text x="102" y="182" font-size="16" font-weight="bold" text-anchor="middle">a</text>
+<text x="134" y="171" font-size="17" fill="#1F1E1E">“¿Y cuánto tarda en cocinarse? ¿Qué horno conviene?”</text>
+<text x="134" y="194" font-size="14">sigue con más preguntas, como un foro</text>
+<rect x="72" y="222" width="668" height="64" rx="8" fill="#F2EEEE" stroke="#D8D2CE"/>
+<circle cx="102" cy="254" r="16" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<text x="102" y="260" font-size="16" font-weight="bold" text-anchor="middle">b</text>
+<text x="134" y="249" font-size="17" fill="#1F1E1E">“Receta para una familia de seis. Paso 1: …”</text>
+<text x="134" y="272" font-size="14">sigue como una página de recetas</text>
+<rect x="72" y="300" width="668" height="64" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.5"/>
+<circle cx="102" cy="332" r="16" fill="#DA1B2E"/>
+<text x="102" y="338" font-size="16" font-weight="bold" text-anchor="middle" fill="#ffffff">c</text>
+<text x="134" y="327" font-size="17" fill="#1F1E1E">“Harina, agua, levadura, sal, salsa de tomate y mozzarella.”</text>
+<text x="134" y="350" font-size="14" font-weight="bold" fill="#DA1B2E">responde la pregunta</text>
+<text x="72" y="396" font-size="15" font-style="italic">Las tres aparecen en la web; el modelo no sabe que se espera la (c).</text>
+</svg>

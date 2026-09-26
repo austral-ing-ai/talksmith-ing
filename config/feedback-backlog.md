@@ -837,3 +837,27 @@
   feedback: "El deck original no tiene slide de cierre; hay que escribirla."
   resolution: se escribieron cuatro takeaways derivados de la tesis (el mecanismo común, dónde se rompe, la medición y la higiene de fuentes), cada uno apoyado en las fuentes primarias del corpus.
   tags: [takeaway, new-slide, content-addition]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Slide "1. Dos fases de entrenamiento"
+  feedback: "Son realmente dos entapas, PREENTRENAMIENTO y POST ?."
+  resolution: Sí: se adoptó el encuadre de dos fases (pre-training y post-training); el post-training tiene dos pasos, SFT y preferencias, más habilidades, y el fine-tuning es post-training a escala chica. Apertura, tesis y 3.4 quedaron alineadas.
+  tags: [structure, terminology, consistency]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Slide "2. C4: cómo Google depuró Common Crawl"
+  feedback: "Por que los fintrols fincional ?"
+  resolution: La lámina 1.2 pasó a una tabla regla -> qué basura saca, con el motivo que da Raffel para cada regla, y una viñeta con la evidencia: el mismo modelo rinde peor sin filtrar en todas las tareas (y RefinedWeb filtrado supera a corpus curados).
+  tags: [missing-definition, content-addition, sources]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Slide "3. ¿Cuánto más puede crecer?"
+  feedback: "El grafico de crecimiento aca es critico para mostrar la acelereacion."
+  resolution: Se reemplazó la foto del libro por la figura original de Villalobos et al. (recorte del Editor, en images/) y la lámina explica la aceleración: recta en escala logarítmica, 2,4 veces por año, más de 30 veces en cuatro años.
+  tags: [visualization-requested, emphasis, external-source]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Slide "2. Un dataset de SFT"
+  feedback: "Agregar links a los datasets."
+  resolution: Se agregaron links a datasets públicos de SFT (Dolly-15k, OpenAssistant, Alpaca) en 4.2 y al dataset de preferencias HH-RLHF en 4.3; se aclara que el de InstructGPT no se publicó.
+  tags: [source-link, external-source]

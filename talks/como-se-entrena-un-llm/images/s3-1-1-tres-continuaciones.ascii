@@ -1,0 +1,20 @@
+ prompt:  "¿Qué ingredientes lleva una pizza?"
+
+ continuaciones plausibles para un modelo base:
+
+   (a) " ¿Y cuánto tarda en cocinarse? ¿Qué horno conviene?"
+          -> sigue con más preguntas, como un foro
+
+   (b) " Receta para una familia de seis. Paso 1: ..."
+          -> sigue como una página de recetas
+
+   (c) " Harina, agua, levadura, sal, salsa de tomate y mozzarella."
+          -> responde
+
+ las tres aparecen en la web; el modelo no sabe que se espera la (c)
+
+<!-- ascii-note:
+intent: el mismo prompt con tres continuaciones; solo una es una respuesta
+emphasize: la opción (c) como la única que responde; las otras dos son igual de plausibles para el modelo
+labels: (a) (b) (c)
+-->

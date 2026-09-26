@@ -1,0 +1,12 @@
+                         responde bien   responde mal   dice "no sé"
+ puntaje binario              1               0              0
+ con umbral t = 0,9           1              -9              0
+
+ con puntaje binario, adivinar nunca pierde contra "no sé"
+ con umbral, responder conviene solo si la confianza supera t
+
+<!-- ascii-note:
+intent: comparar la grilla binaria con la grilla con penalización por error
+emphasize: la columna "no sé" y el -9 que cambia el incentivo
+labels: t = umbral de confianza; penalización t/(1-t)
+-->

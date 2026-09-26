@@ -1,0 +1,1320 @@
+{
+  "deck": {
+    "title": "Inteligencia Artificial Generativa (AI Gen)",
+    "lang": "es",
+    "institution": "Universidad Austral",
+    "class": "Clase 9: Cómo se entrena un LLM",
+    "presenter": "Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)",
+    "date": "2026-09-30",
+    "logo": null,
+    "sections": [
+      "Dos entrenamientos",
+      "Tamaño y datos",
+      "De dónde salen los tokens",
+      "Post-entrenamiento",
+      "Conductas premiadas",
+      "Ajustar un modelo"
+    ]
+  },
+  "slides": [
+    {
+      "template": "section-agenda",
+      "title": "Dos entrenamientos"
+    },
+    {
+      "template": "value-columns",
+      "section": "Dos entrenamientos",
+      "title": "La misma consigna, dos modelos",
+      "lead": "**GPT-3 175B e InstructGPT 175B recibieron la misma consigna.** \"Serendipity means the occurrence and development of events by chance in a happy or beneficial way. Use the word in a sentence.\"",
+      "columns": [
+        {
+          "header": "GPT-3, solo pre-entrenado",
+          "cells": [
+            "\"Serendipity is the ability to see something good in something bad. Use the word in a sentence. Serendipity means to be happy with what you have. Use the word in a sentence. […]\"",
+            "Continúa el patrón del texto: escribe más consignas."
+          ]
+        },
+        {
+          "header": "InstructGPT, pre-entrenado y post-entrenado",
+          "cells": [
+            "\"Serendipity can be defined as the happy chance occurrence of events leading to a beneficial outcome. For example, when Lori first moved to the city and started her job search, it was serendipity that she stumbled upon the perfect opportunity […]\"",
+            "Cumple la consigna."
+          ]
+        }
+      ],
+      "notes": "Arrancá leyendo la consigna y preguntando qué esperan que conteste un modelo entrenado solo para predecir el token siguiente. La respuesta de GPT-3 tiene sentido: en la web, después de una línea con formato de ejercicio suele venir otro ejercicio igual. InstructGPT tiene la misma arquitectura y el mismo tamaño; la diferencia es un segundo entrenamiento. Dejá planteada la pregunta que ordena la clase: si la red es la misma, lo que cambió es qué se premió al entrenarla. En la clase pasada vieron la pérdida del pre-entrenamiento; hoy se ve qué pasa antes (de dónde salen los datos y cuántos hacen falta) y qué pasa después. Las citas quedan en inglés porque son la salida real de los modelos. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "two_groups=true",
+          "polarity=false",
+          "n_images=0",
+          "is_voiced=false",
+          "hint=template:comparison (id retirado, renombrado a value-columns)"
+        ],
+        "candidates": [
+          "value-columns",
+          "pros-cons",
+          "concept-breakdown"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "pros-cons": "two_groups sin polarity: son dos modelos ante la misma consigna (A vs B neutral), no ventajas contra riesgos",
+          "concept-breakdown": "las dos tarjetas se leen a través (respuesta del modelo · qué hace), fila por fila; el anti-default manda value-columns cuando los ítems se dividen en dos grupos comparados"
+        }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Dos entrenamientos",
+      "title": "Tres etapas, cuatro conjuntos de datos",
+      "lead": "**Cada etapa entrena con otro tipo de dato y optimiza otra cosa. Del pre-entrenamiento al RLHF los datos bajan de más de un billón de tokens a decenas o cientos de miles de ejemplos.**",
+      "media": {
+        "src": "images/rlhf.png",
+        "alt": "Flujo de entrenamiento: pre-entrenamiento sobre texto de internet, SFT con datos de demostración y RLHF con datos de comparación y prompts, con la escala de cada conjunto"
+      },
+      "design": "banded",
+      "notes": "Recorré la figura de izquierda a derecha y marcá solo tres cosas por columna: qué dato entra, qué objetivo se optimiza, qué modelo sale. Pre-entrenamiento: texto de internet, completar texto, modelo base. SFT: pares (prompt, respuesta) escritos por personas, modelo que dialoga. RLHF: comparaciones entre respuestas para entrenar un modelo que puntúa, y después RL para maximizar ese puntaje. La fila de abajo es la que importa para la clase: la escala cae de más de un billón de tokens a entre decenas de miles y un millón de ejemplos. Las secciones 2 y 3 son la columna de la izquierda; la 4 son las otras tres. El \"trillion\" del inglés es un billón en español (10¹²); decilo una vez para toda la clase. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=0",
+          "image_only=false (dos oraciones, ~200 caracteres de texto que guía)"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "image-full": "image_only exige a lo sumo una línea de encuadre de ≤ ~120 caracteres; dos oraciones son prosa que guía, y eso es content-image"
+        }
+      }
+    },
+    {
+      "template": "stat",
+      "section": "Dos entrenamientos",
+      "title": "Dónde va el cómputo",
+      "lead": "**En InstructGPT, el post-entrenamiento usó menos del 2 % del cómputo total.**",
+      "stats": [
+        {
+          "value": "3.640 petaflop/s-días",
+          "caption": "Pre-entrenamiento de GPT-3 175B."
+        },
+        {
+          "value": "4,9 petaflop/s-días",
+          "caption": "SFT del modelo de 175B."
+        },
+        {
+          "value": "60 petaflop/s-días",
+          "caption": "RLHF del modelo de 175B."
+        },
+        {
+          "value": "1,75 %",
+          "caption": "Parte del post-entrenamiento en el total."
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Nota",
+          "body": "El cálculo no incluye el modelo de recompensa (6B) ni el costo de las personas que escribieron y compararon respuestas.",
+          "kind": "note"
+        }
+      ],
+      "notes": "El número parece decir que el post-entrenamiento es un detalle. El 1,75 % corresponde al modelo de 175B; el mismo paper muestra otro dato que retomás en la lámina 4.6: la versión post-entrenada de 1,3B fue preferida por los evaluadores sobre GPT-3 de 175B. Lo caro del post-entrenamiento son las personas: unas 40 contratadas para escribir demostraciones y comparar respuestas, y el paper no dice cuánto costó. La nota al pie es para quien pregunte por qué no se cuenta el modelo de recompensa: es de 6B, chico frente a 175B, y el paper no da su cómputo. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "big_metrics=4",
+          "labeled_items=4",
+          "n_images=0",
+          "hint=template:stat"
+        ],
+        "candidates": [
+          "stat",
+          "concept-breakdown"
+        ],
+        "picked": "stat",
+        "rejected": {
+          "concept-breakdown": "los rótulos son cifras y son la carga de la lámina (big_metrics → stat); además la pista del autor fija stat"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "Tamaño y datos"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Tamaño y datos",
+      "title": "Parámetros, tokens y cómputo",
+      "lead": "**Un pre-entrenamiento se describe con tres números. El tercero sale de los otros dos: C ≈ 6 · N · D.**",
+      "format": "grid",
+      "cards": [
+        {
+          "label": "Parámetros (N)",
+          "body": "Los pesos que el entrenamiento ajusta. Chinchilla tiene 70.000 millones.",
+          "icon": "tune"
+        },
+        {
+          "label": "Tokens de entrenamiento (D)",
+          "body": "Las posiciones de texto sobre las que se calcula la pérdida. Chinchilla vio 1,4 billones.",
+          "icon": "description"
+        },
+        {
+          "label": "Cómputo (C)",
+          "body": "Las operaciones de punto flotante (FLOPs) del entrenamiento: unas 2 por parámetro y por token en el forward, y el doble en el backward. Chinchilla: 6 × 7 × 10¹⁰ × 1,4 × 10¹² ≈ 5,9 × 10²³ FLOPs.",
+          "icon": "memory"
+        }
+      ],
+      "notes": "Enganchá con la última lámina de la clase 8: la pérdida es la cross-entropy del token siguiente y cada posición es un ejemplo, así que D cuenta ejemplos. El 6 tiene una justificación de una línea: en el forward cada parámetro hace una multiplicación y una suma por token; el backward cuesta más o menos el doble porque calcula gradientes respecto de activaciones y de pesos. Hacé la cuenta de Chinchilla en el pizarrón; da 5,9 × 10²³ y el paper dice 5,76 × 10²³. Para dar escala: 1,4 billones de tokens son unos 21 millones de libros, a 67.000 tokens por libro (la equivalencia es de Huyen). Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false",
+          "n_images=0",
+          "body_len=prose"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "stat",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "stat": "las cifras de Chinchilla ilustran cada definición dentro de prosa; la carga son los tres conceptos, no números sueltos",
+          "process": "N, D y C son tres magnitudes paralelas, sin ordinal ni flujo (is_ordered=false)"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Tamaño y datos",
+      "title": "La pérdida baja como una potencia",
+      "lead": "**Kaplan et al. (2020): la pérdida de test baja de forma predecible con N, D y C. La forma del modelo (profundidad o ancho) casi no importa.**",
+      "format": "grid",
+      "cards": [
+        {
+          "label": "Ley de potencia",
+          "body": "L(N) = (N_c / N)^0,076: duplicar los parámetros multiplica la pérdida por 0,95. Vale mientras ni los datos ni el cómputo limiten.",
+          "icon": "trending_down"
+        },
+        {
+          "label": "Receta de 2020",
+          "body": "Con 10 veces más cómputo conviene un modelo unas 5,4 veces más grande y solo 1,9 veces más tokens (N ∝ C^0,73, D ∝ C^0,27).",
+          "icon": "science"
+        },
+        {
+          "label": "Resultado en la práctica",
+          "body": "Los modelos grandes de 2020 y 2021 crecieron en parámetros y se quedaron en unos 300.000 millones de tokens: GPT-3 175B, Jurassic 178B y Gopher 280B, los tres con 300.000 millones.",
+          "icon": "fact_check"
+        }
+      ],
+      "notes": "La idea que tiene que quedar es la predictibilidad: con corridas chicas se ajusta una curva y se sabe de antemano cuánto va a mejorar una corrida cien veces más cara. Eso es lo que justifica gastar millones en un entrenamiento. El 0,95 sirve para dar intuición: duplicar el modelo baja la pérdida un 5 %. La receta de Kaplan resultó incompleta y la lámina siguiente explica por qué; el dato de la tercera viñeta es la evidencia de que la industria la siguió. Lámina de paso: no te detengas en las fórmulas. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false",
+          "n_images=0",
+          "body_len=prose"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "timeline"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "timeline": "los rótulos (Ley de potencia, Receta de 2020, Resultado en la práctica) no son fechas ni períodos: date_labels=false",
+          "process": "no hay ordinal ni pasos: son ley, receta y evidencia, tres ideas paralelas (is_ordered=false)"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Tamaño y datos",
+      "title": "Parámetros y tokens crecen igual",
+      "lead": "**Hoffmann et al. (2022), con el modelo Chinchilla: para un presupuesto fijo, parámetros y tokens deben escalar en la misma proporción. Los modelos de 2021 eran demasiado grandes para los datos que vieron.**",
+      "cards": [
+        {
+          "label": "Mismo cómputo, otro reparto",
+          "body": "Con el presupuesto de Gopher, Chinchilla usa 4 veces menos parámetros (70B frente a 280B) y 4,7 veces más tokens (1,4 billones frente a 300.000 millones).",
+          "icon": "balance"
+        },
+        {
+          "label": "Unos 20 tokens por parámetro",
+          "body": "1,4 billones / 70.000 millones = 20. Para 1B de parámetros la tabla del paper pide 20.200 millones de tokens.",
+          "icon": "calculate"
+        },
+        {
+          "label": "Resultado",
+          "body": "En MMLU, un examen de opción múltiple de 57 materias, Chinchilla saca 67,6 % y Gopher 60,0 %, con el mismo cómputo.",
+          "icon": "emoji_events"
+        }
+      ],
+      "media": {
+        "src": "images/fig-01-p002.png",
+        "alt": "Parámetros óptimos en función del cómputo según tres métodos de Chinchilla y según Kaplan 2020; Gopher, GPT-3 y MT-NLG quedan por encima de la recta óptima y Chinchilla sobre ella"
+      },
+      "design": "split-right",
+      "notes": "En la figura, la recta punteada es Kaplan y las de color son los tres métodos de Chinchilla; las estrellas de GPT-3, Gopher y MT-NLG quedan arriba, o sea, demasiados parámetros para su cómputo. Por qué Kaplan se equivocó, en una frase: usó el mismo calendario de learning rate para todas las corridas y modelos mayormente chicos, así que subestimó lo que rinde entrenar más tiempo un modelo más chico. El 20 es una regla práctica que se deriva de la tabla, no una ley; decilo así. Tiempo objetivo: ~4 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "n_images=1",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "has_table=false",
+          "hint=design:split-right"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "las tres tarjetas no se leen a través: reparto, regla práctica y resultado no comparten un factor por fila",
+          "content-image": "labeled_items ≥ 2 con una imagen compartida: disolver los rótulos en facts está prohibido"
+        }
+      }
+    },
+    {
+      "template": "stat",
+      "section": "Tamaño y datos",
+      "title": "Hoy se entrena de más a propósito",
+      "lead": "**Desde 2023, varios modelos abiertos se entrenan con muchos más tokens por parámetro que el óptimo de Chinchilla, y la distancia es mayor en los modelos chicos: entre 10 y 100 veces. Un modelo chico cuesta menos cada vez que responde, y un modelo se entrena una vez y responde millones de veces.**",
+      "stats": [
+        {
+          "value": "20 tokens por parámetro",
+          "caption": "Chinchilla 70B, óptimo para el cómputo de entrenamiento."
+        },
+        {
+          "value": "Unos 29 tokens por parámetro",
+          "caption": "Llama 2 70B, con 2 billones de tokens: cerca del óptimo."
+        },
+        {
+          "value": "Unos 286 tokens por parámetro",
+          "caption": "Llama 2 7B, con los mismos 2 billones de tokens."
+        },
+        {
+          "value": "214 tokens por parámetro",
+          "caption": "Llama 3 70B, entrenado con 15 billones de tokens."
+        }
+      ],
+      "notes": "Chinchilla optimiza el costo de entrenar. Una empresa que sirve el modelo a millones de usuarios optimiza entrenar más servir, y un modelo más chico es más barato en cada consulta. Por eso se entrena de más un modelo chico. La segunda fila sirve de contraste: el Llama 2 grande vio los mismos 2 billones de tokens que el chico y quedó cerca de Chinchilla; el sobreentrenamiento fuerte está en los modelos chicos. El costo: la demanda de tokens crece más rápido que con la regla de Chinchilla. Llama 3 8B está sobreentrenado cerca de 100 veces según Villalobos, por si alguien pregunta por un caso extremo. De acá sale la pregunta de la sección siguiente: de dónde salen 15 billones de tokens. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "big_metrics=4",
+          "labeled_items=4",
+          "n_images=0",
+          "two_groups=false",
+          "hint=template:stat"
+        ],
+        "candidates": [
+          "stat",
+          "value-columns",
+          "concept-breakdown"
+        ],
+        "picked": "stat",
+        "rejected": {
+          "value-columns": "cada ítem es una sola cifra con su modelo; no hay columnas paralelas que leer a través",
+          "concept-breakdown": "los rótulos son cifras y son la carga (big_metrics → stat); la pista del autor también fija stat"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "De dónde salen los tokens"
+    },
+    {
+      "template": "content-image",
+      "section": "De dónde salen los tokens",
+      "title": "De Common Crawl a C4",
+      "lead": "**Common Crawl archiva la web todos los meses. C4 tomó el crawl de abril de 2019, lo filtró con reglas simples y conservó el 11 % de los tokens en inglés.**",
+      "facts": [
+        {
+          "label": "Sin los filtros el modelo rinde peor",
+          "body": "En GLUE, un conjunto de tareas de comprensión de texto, T5 pre-entrenado con C4 sin filtrar obtiene 81,46; con C4, 83,28."
+        }
+      ],
+      "media": {
+        "src": "images/s3-1-1-embudo-limpieza-c4.png",
+        "alt": "Embudo de limpieza de Common Crawl a C4: de 1,4 billones a 156.000 millones de tokens (11 %)"
+      },
+      "design": "split-right",
+      "notes": "Common Crawl es una organización sin fines de lucro que archiva la web; casi todos los corpus abiertos (C4, RefinedWeb, RedPajama) salen de ahí. C4 es el caso que conviene mostrar porque está documentado: Raffel publicó las reglas y Dodge midió el resultado. Las reglas son heurísticas de ingeniero: si la línea no termina en punto, probablemente es un menú; si hay una llave, probablemente es código. Pedí que piensen qué se pierde con \"sin {\" (todo el código) antes de pasar a la lámina siguiente. El número a retener es el 11 %: de cada nueve tokens en inglés quedó uno. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1",
+          "image_only=false",
+          "big_metrics=false",
+          "has_code=false"
+        ],
+        "candidates": [
+          "content-image",
+          "single-point",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "single-point": "labeled_items == 1 pero una imagen la sostiene: el catálogo manda content-image ('If an image supports it → content-image')",
+          "image-full": "hay prosa que guía (dos oraciones) y un punto rotulado: image_only=false"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "De dónde salen los tokens",
+      "title": "Lo que el filtro se lleva y lo que deja",
+      "lead": "**Las reglas de C4 parecen neutrales. Medidas documento por documento, sacan más de unos grupos que de otros y dejan adentro cosas que nadie buscó.**",
+      "format": "grid",
+      "cards": [
+        {
+          "label": "Dialectos minoritarios",
+          "body": "La blocklist elimina el 42 % de los documentos en inglés afroamericano y el 32 % de los de inglés hispano, frente al 6,2 % del inglés mayoritario.",
+          "icon": "record_voice_over"
+        },
+        {
+          "label": "Temas que no son ofensivos",
+          "body": "De los documentos que la blocklist excluye, el 31 % es contenido sexual; el resto incluye ciencia, medicina, salud y textos legales.",
+          "icon": "block"
+        },
+        {
+          "label": "Sitios sobrerrepresentados",
+          "body": "El sitio con más texto en C4 es patents.google.com, y el 51,3 % de las páginas está alojado en Estados Unidos.",
+          "icon": "public"
+        },
+        {
+          "label": "Benchmarks filtrados al corpus",
+          "body": "Entre el 1,87 % y el 24,88 % de los textos de referencia de benchmarks de generación aparecen literales en C4.",
+          "icon": "quiz"
+        }
+      ],
+      "notes": "La blocklist venía de una lista de palabras pensada para que un buscador no autocompletara groserías. Aplicada a documentos enteros, una sola palabra de la lista saca la página completa, y eso pega más en textos de minorías y en textos sobre orientación sexual escritos con las palabras que usa esa comunidad. Consecuencia para el modelo: rinde peor con textos de y sobre esos grupos. La cuarta tarjeta anticipa la clase de evaluación: si el test está en el corpus, el benchmark mide memoria. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false",
+          "n_images=0",
+          "body_len=prose",
+          "hint=format:grid"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "stat",
+          "value-columns"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "stat": "los porcentajes sostienen cada sesgo dentro de prosa; la carga son los cuatro efectos rotulados, no cifras sueltas",
+          "value-columns": "los cuatro ítems no comparten factor por fila ni se dividen en dos grupos (two_groups=false)"
+        }
+      }
+    },
+    {
+      "template": "stat",
+      "section": "De dónde salen los tokens",
+      "title": "Casi todo en inglés",
+      "lead": "**Common Crawl ya está cargado hacia el inglés, y los corpus armados con él lo están todavía más.**",
+      "stats": [
+        {
+          "value": "Entre 45 % y 46 %",
+          "caption": "Páginas de Common Crawl en inglés."
+        },
+        {
+          "value": "89,70 %",
+          "caption": "Pre-entrenamiento de Llama 2 en inglés."
+        },
+        {
+          "value": "0,13 %",
+          "caption": "Pre-entrenamiento de Llama 2 en español."
+        }
+      ],
+      "notes": "Dos números para mirar juntos: cerca de la mitad de Common Crawl es inglés, pero en Llama 2 el inglés es casi el 90 % y el español una parte en mil. Llama 2 no publica su mezcla de fuentes, así que la lámina no puede decir en qué paso se perdió el resto. Las notas de *AI Engineering* agregan un dato cualitativo: los idiomas con peor MMLU (telugu, marathi, panyabí) están entre los menos representados en Common Crawl. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "big_metrics=3",
+          "labeled_items=3",
+          "n_images=0",
+          "hint=template:stat"
+        ],
+        "candidates": [
+          "stat",
+          "concept-breakdown"
+        ],
+        "picked": "stat",
+        "rejected": {
+          "concept-breakdown": "los rótulos son porcentajes y son la carga de la lámina (big_metrics → stat); la pista del autor fija stat"
+        }
+      }
+    },
+    {
+      "template": "value-columns",
+      "section": "De dónde salen los tokens",
+      "title": "El español paga más tokens",
+      "lead": "**El mismo texto traducido ocupa más tokens fuera del inglés. Con el tokenizer de GPT-4, una frase en español usa 1,55 veces los tokens de su versión en inglés.**",
+      "columns": [
+        {
+          "header": "Idioma",
+          "cells": [
+            "Inglés",
+            "Portugués",
+            "Español",
+            "Francés",
+            "Chino simplificado",
+            "Árabe estándar",
+            "Birmano",
+            "Shan"
+          ]
+        },
+        {
+          "header": "Tokens por cada token en inglés (cl100k_base)",
+          "cells": [
+            "1,00",
+            "1,48",
+            "1,55",
+            "1,60",
+            "1,91",
+            "3,04",
+            "11,70",
+            "15,05"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Tres consecuencias",
+          "body": "Más costo con precios por token, más latencia y menos texto útil en la misma ventana de contexto.",
+          "kind": "important"
+        },
+        {
+          "label": "Tres orígenes",
+          "body": "Una buena parte viene del corpus del tokenizer, dominado por el inglés: sus unidades más frecuentes son fragmentos del inglés. Petrov señala además la escritura (cuántos bytes ocupa cada carácter) y la familia del idioma.",
+          "kind": "note"
+        }
+      ],
+      "notes": "La pregunta que conviene hacerle a la clase: ¿el español cuesta más por el idioma o por los datos? En buena parte por los datos con que se entrenó el tokenizer, aunque Petrov no dice qué proporción explica cada causa. BPE arma el vocabulario con los fragmentos más frecuentes del corpus con que se entrena el tokenizer; si el corpus es casi todo inglés, \"the\" es un token y muchas palabras del español se parten en dos o tres. Petrov lo muestra con tokenizers entrenados para el alemán o el francés: también favorecen al inglés, porque hay mucho inglés mezclado en la web de esos idiomas. El 1,55 es sobre FLORES-200, frases de Wikipedia traducidas. Jun, con mensajes cortos de asistente, ve el español casi igual al inglés; la diferencia depende del tipo de texto. Si alguien pregunta por tokenizers más nuevos, el corpus no tiene mediciones posteriores a 2023; no afirmes que la brecha se cerró. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "has_table=true",
+          "labeled_items=2",
+          "n_images=0",
+          "two_groups=false",
+          "big_metrics=false (8 filas de tabla, no 2–4 cifras sueltas)"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-breakdown",
+          "stat"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-breakdown": "tabla de búsqueda Idioma → tokens con encabezados que cargan significado: el catálogo la manda a value-columns; card-per-row es solo para atributos heterogéneos",
+          "stat": "ocho valores alineados en una columna son una tabla, no 2–4 cifras sueltas; big_metrics no aplica"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "De dónde salen los tokens",
+      "title": "El texto humano público tiene un techo",
+      "lead": "**Los datasets de entrenamiento crecen unas 2,4 veces por año. El texto humano público disponible no crece a ese ritmo, y las dos curvas se cruzan hacia 2028.**",
+      "cards": [
+        {
+          "label": "Stock efectivo",
+          "body": "Unos 4 × 10¹⁴ tokens de texto público indexado, ya descontada la calidad y contando hasta 5 pasadas por el mismo texto.",
+          "icon": "inventory_2"
+        },
+        {
+          "label": "Fecha de cruce",
+          "body": "Mediana en 2028, con un rango de 2026 a 2032. Un año antes si los modelos se sobreentrenan 5 veces.",
+          "icon": "event"
+        }
+      ],
+      "media": {
+        "src": "images/p002-fig-2-9-data-stock-projection.png",
+        "alt": "Proyección del tamaño de los datasets de entrenamiento frente al stock de texto humano público, 2020-2034, con GPT-3, FLAN, PaLM, Falcon-180B, DBRX y Llama 3 marcados"
+      },
+      "design": "split-right",
+      "notes": "La figura se lee así: la franja verde es el stock de texto, con su incertidumbre; la curva azul es el tamaño de los datasets de los modelos notables, proyectada. Las verticales marcan el cruce. Aclará que es una proyección publicada en 2024: el paper dice que el paradigma de texto humano público no llega a la próxima década y también que lo más probable es que se encuentre la forma de seguir. Pagar personas para escribir no alcanza: 10 millones de personas escribiendo 8 horas por día producirían unos 70 billones de palabras por año, el mismo orden que Common Crawl, por cientos de miles de millones de dólares. Si hay tiempo, dos presiones más cerca del techo (el detalle está en Cut material): entre 2023 y 2024 robots.txt pasó a bloquear más del 5 % de los tokens de C4 (Longpre et al. 2024), y el texto generado por modelos, reciclado generación tras generación, borra las colas de la distribución (Shumailov et al.). Los datos sintéticos rinden donde la salida se puede verificar, como matemática y código; ese es el puente a la lámina 5.3. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "n_images=1",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false",
+          "hint=design:split-right"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "stat",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "stat": "cada tarjeta es una cifra con condiciones y rangos en prosa (calidad, 5 pasadas, 2026–2032); la carga es la explicación, no un número suelto",
+          "content-image": "labeled_items ≥ 2 con una imagen compartida: disolver los rótulos en facts está prohibido"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "Post-entrenamiento"
+    },
+    {
+      "template": "code-example",
+      "section": "Post-entrenamiento",
+      "title": "SFT: imitar una demostración",
+      "lead": "**El SFT sigue entrenando el modelo base con la misma pérdida del pre-entrenamiento, sobre pares (prompt, respuesta) escritos por personas. La pérdida se cuenta solo en los tokens de la respuesta.**",
+      "code": "prompt     Write a poem to help me remember the first 10 elements on the\n           periodic table, giving each element its own line.\n\nrespuesta  Hydrogen comes first as element number one.\n           Helium is second for balloons to have fun!\n           In third place is Lithium to hold battery charge,\n           [...]",
+      "language": "text",
+      "explanation": [
+        "**Una fila del dataset de SFT de Llama 2.** La escribió un anotador contratado; el modelo aprende a producir respuestas con esa forma para prompts con esta forma.",
+        "**Clonar una conducta.** OpenAI llama a este paso *behavior cloning*: la persona muestra cómo responder y el modelo copia ese comportamiento."
+      ],
+      "notes": "Lo importante es que no hay algoritmo nuevo: es el mismo entrenamiento de la clase 8 con otros datos. El cambio que conviene subrayar es poner la pérdida en cero sobre el prompt: el modelo no aprende a escribir preguntas de usuario, solo respuestas. Volvé al ejemplo de la apertura: GPT-3 escribía más consignas porque nunca había visto el par consigna-respuesta como tal. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "has_code=true",
+          "labeled_items=2",
+          "n_images=0",
+          "is_ordered=false"
+        ],
+        "candidates": [
+          "code-example",
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "code-example",
+        "rejected": {
+          "content+cards+image": "has_code se evalúa antes que cualquier otra señal: el ejemplo de SFT es la pieza que se lee, y los dos rótulos lo explican",
+          "concept-breakdown": "exige no tener otro contenido dominante; con un bloque de código, has_code → code-example"
+        }
+      }
+    },
+    {
+      "template": "stat",
+      "section": "Post-entrenamiento",
+      "title": "Pocos ejemplos, bien escritos",
+      "lead": "**Las demostraciones se cuentan en decenas de miles, y la calidad pesa más que la cantidad.**",
+      "stats": [
+        {
+          "value": "Unos 13.000 prompts",
+          "caption": "SFT de InstructGPT, con respuestas de unos 40 anotadores seleccionados por examen."
+        },
+        {
+          "value": "27.540 anotaciones",
+          "caption": "SFT de Llama 2. Meta dejó de lado millones de ejemplos de datasets de terceros porque rendían peor."
+        },
+        {
+          "value": "9.209 ejemplos",
+          "caption": "OASST1 superó a un subconjunto de 450.000 ejemplos de FLAN v2 como dato de fine-tuning para chat."
+        }
+      ],
+      "notes": "Con 13.000 ejemplos se cambia la conducta de un modelo que vio 300.000 millones de tokens; eso refuerza la lectura de la lámina 1.3: el post-entrenamiento desbloquea algo que el modelo base ya sabía. Llama 2 agrega un dato de proceso: las muestras que generaba su propio modelo SFT competían con las escritas por anotadores, y por eso movieron el esfuerzo de anotación hacia comparaciones. Es el paso a la lámina siguiente. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "big_metrics=3",
+          "labeled_items=3",
+          "n_images=0",
+          "hint=template:stat"
+        ],
+        "candidates": [
+          "stat",
+          "concept-breakdown"
+        ],
+        "picked": "stat",
+        "rejected": {
+          "concept-breakdown": "los rótulos son cantidades y son la carga (big_metrics → stat); la pista del autor fija stat"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Post-entrenamiento",
+      "title": "Comparar es más fácil que escribir",
+      "lead": "**Una demostración muestra una respuesta buena y nada más. Una comparación entre dos respuestas dice cuál es mejor, cuesta menos y no depende de que el anotador sepa escribir la mejor respuesta.**",
+      "format": "grid",
+      "cards": [
+        {
+          "label": "Techo del anotador",
+          "body": "Con SFT, el modelo queda limitado por lo que escriben los mejores anotadores. Juzgar una respuesta ajena no tiene ese techo.",
+          "icon": "vertical_align_top"
+        },
+        {
+          "label": "Juicio relativo",
+          "body": "Puntuar una respuesta en abstracto da notas inconsistentes entre personas. Elegir la mejor de dos es más estable y más rápido.",
+          "icon": "compare_arrows"
+        },
+        {
+          "label": "Acuerdo parcial",
+          "body": "En InstructGPT, dos anotadores coinciden en el 72,6 % de las comparaciones.",
+          "icon": "handshake"
+        }
+      ],
+      "notes": "La analogía de Llama 2 funciona bien en voz alta: no hace falta ser pintor para decir cuál de dos cuadros es mejor. El 72,6 % es un recordatorio de que la señal es ruidosa: en más de una comparación de cada cuatro, otra persona habría elegido la otra respuesta. Huyen trae un ejemplo del dataset público de Anthropic donde ella prefiere la respuesta marcada como perdedora; sirve si hay tiempo. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false",
+          "n_images=0",
+          "hint=format:row"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "value-columns",
+          "stat"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "value-columns": "el contraste demostración/comparación está en el lead; las tres tarjetas son tres razones paralelas, no dos grupos alineados",
+          "stat": "solo una tarjeta trae una cifra (72,6 %); la carga son razones en prosa"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Post-entrenamiento",
+      "title": "RLHF: puntuar y maximizar el puntaje",
+      "lead": "**Las comparaciones entrenan un modelo de recompensa. Después, el modelo de lenguaje genera respuestas, el de recompensa las puntúa y el aprendizaje por refuerzo sube la probabilidad de las mejor puntuadas.**",
+      "cards": [
+        {
+          "label": "Modelo de recompensa",
+          "body": "Es el modelo SFT con una salida escalar en lugar del vocabulario. Se entrena para que la respuesta preferida puntúe más: pérdida −log σ(r_ganadora − r_perdedora).",
+          "icon": "grade"
+        },
+        {
+          "label": "Penalización por alejarse",
+          "body": "PPO (Proximal Policy Optimization), un algoritmo de aprendizaje por refuerzo, maximiza el puntaje menos una penalización que crece cuanto más se aleja el modelo del SFT (la divergencia KL entre sus distribuciones). Sin ese término, el modelo encuentra respuestas que engañan al modelo de recompensa.",
+          "icon": "anchor"
+        }
+      ],
+      "media": {
+        "src": "images/fig-02-p003.png",
+        "alt": "Los tres pasos de InstructGPT: SFT con demostraciones, modelo de recompensa entrenado con rankings de respuestas, y optimización de la política con PPO contra ese modelo"
+      },
+      "design": "banded",
+      "notes": "Recorré la figura en tres columnas. En el paso 2 marcá que los anotadores ordenan de 4 a 9 respuestas, y cada orden produce todas las comparaciones de a pares. La fórmula de la pérdida es la sigmoide de la diferencia de puntajes: si la ganadora puntúa mucho más, la pérdida es casi cero. En el paso 3, el aprendizaje por refuerzo aparece porque el puntaje llega al final de la respuesta completa y no es derivable respecto de los tokens elegidos. La penalización por alejarse se entiende con reward hacking: el modelo de recompensa es otra red con errores, y si se lo maximiza sin freno el modelo encuentra esos errores. Escala de referencia: Meta juntó 1,4 millones de comparaciones propias para Llama 2. Tiempo objetivo: ~4 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "n_images=1",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "has_table=false",
+          "hint=design:banded"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "process",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "process": "la secuencia de tres pasos está en la figura y en el lead; las dos tarjetas son dos piezas (el modelo de recompensa y el término KL), sin ordinal",
+          "content-image": "labeled_items ≥ 2 con una imagen compartida: disolver los rótulos en facts está prohibido"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Post-entrenamiento",
+      "title": "DPO: la misma meta sin refuerzo",
+      "lead": "**DPO optimiza el mismo objetivo que RLHF directamente sobre los pares de preferencia, con una pérdida de clasificación. No entrena un modelo de recompensa aparte ni genera respuestas durante el entrenamiento.**",
+      "cards": [
+        {
+          "label": "La pérdida",
+          "body": "Sube la probabilidad relativa de la respuesta preferida frente a la rechazada, medida contra el modelo de referencia (el SFT). Son tres líneas de PyTorch.",
+          "icon": "functions"
+        },
+        {
+          "label": "Evidencia y alcance",
+          "body": "En resúmenes de Reddit, 61 % de victorias contra las referencias humanas frente a 57 % de PPO. Los experimentos llegan a 6B de parámetros.",
+          "icon": "fact_check"
+        }
+      ],
+      "media": {
+        "src": "images/fig-01-p002-2.png",
+        "alt": "Comparación de RLHF, con modelo de recompensa y ciclo de muestreo con RL, y DPO, que pasa de los datos de preferencia al modelo final por máxima verosimilitud"
+      },
+      "design": "banded",
+      "notes": "Si el grupo viene fuerte en matemática, la idea en una frase: la política óptima de RLHF tiene forma cerrada en función de la recompensa, así que se puede despejar la recompensa en función de la política y entrenar la política directo con la pérdida del modelo de recompensa. Mostrá las tres líneas de código (están en Sources): la diferencia de log-probabilidades entre preferida y rechazada, menos la misma diferencia en el modelo de referencia, dentro de una log-sigmoide. Aclará el límite: el paper prueba hasta 6B y usa a GPT-4 como juez; no dice qué usan hoy los laboratorios grandes. Llama 2 usó PPO y rejection sampling; DeepSeek-R1 y Qwen3 usan GRPO, que aparece en la sección 5. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "n_images=1",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "hint=design:banded"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "la comparación RLHF vs DPO vive en la figura; las dos tarjetas (pérdida, evidencia) no se leen a través ni comparten factor",
+          "content-image": "labeled_items ≥ 2 con una imagen compartida: disolver los rótulos en facts está prohibido"
+        }
+      }
+    },
+    {
+      "template": "pros-cons",
+      "section": "Post-entrenamiento",
+      "title": "Qué cambia y qué no",
+      "lead": "**El post-entrenamiento cambia cómo responde el modelo. Lo que el modelo sabe y lo que aprendió del corpus quedan casi iguales.**",
+      "pro_label": "Lo que mejora",
+      "con_label": "Lo que no se mueve o empeora",
+      "pros": [
+        "Los evaluadores prefieren InstructGPT de 1,3B a GPT-3 de 175B.",
+        "En tareas donde la respuesta tiene que salir del texto dado, InstructGPT inventa información en el 21 % de los casos y GPT-3 en el 41 %."
+      ],
+      "cons": [
+        "Los sesgos medidos en Winogender y CrowS-Pairs no mejoran.",
+        "Si se le pide un texto tóxico, produce uno más tóxico que el de GPT-3.",
+        "Pierde rendimiento en SQuAD, DROP, HellaSwag y traducción."
+      ],
+      "notes": "Lectura para la clase: el post-entrenamiento es barato y cambia mucho la conducta, pero no borra lo que vino del corpus de la sección 3. Los sesgos siguen; el modelo sigue sabiendo escribir texto tóxico y lo hace mejor cuando se lo piden, porque aprendió a seguir instrucciones. La pregunta de Huyen sirve para abrir la sección siguiente. Hay tres modelos en juego: GPT-3 (solo pre-entrenado), el modelo SFT y InstructGPT (SFT más RLHF con PPO). InstructGPT inventa la mitad que GPT-3, pero inventa más que el modelo SFT. Ninguna de las dos etapas premió decir \"no sé\". El paper también lo dice: el modelo se alinea con las preferencias de unas 40 personas y de los autores, no con valores humanos en general. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "two_groups=true",
+          "polarity=true (Lo que mejora / Lo que no se mueve o empeora)",
+          "n_images=0",
+          "hint=template:comparison (id retirado)"
+        ],
+        "candidates": [
+          "pros-cons",
+          "value-columns",
+          "concept-breakdown"
+        ],
+        "picked": "pros-cons",
+        "rejected": {
+          "value-columns": "two_groups con polarity (mejora frente a no se mueve o empeora): el catálogo manda pros-cons, donde el color es la información; la pista 'comparison' es un id retirado y no fija el template",
+          "concept-breakdown": "dos grupos contrapuestos no son un conjunto de pares paralelos; two_groups desplaza a concept-breakdown"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "Conductas premiadas"
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Conductas premiadas",
+      "title": "Una herramienta es texto con formato",
+      "lead": "**El modelo llama a una herramienta generando tokens con un formato acordado. Un programa externo ejecuta la llamada, pega el resultado en la secuencia y el modelo sigue generando.**",
+      "cards": [
+        {
+          "label": "Los datos de entrenamiento",
+          "body": "Son datos de post-entrenamiento comunes con un agregado: un system prompt que lista las herramientas disponibles y sus esquemas.",
+          "icon": "dataset"
+        },
+        {
+          "label": "La pérdida",
+          "body": "Los tokens de salida de la herramienta se enmascaran. El modelo aprende cuándo llamar y con qué argumentos, no a adivinar el resultado.",
+          "icon": "visibility_off"
+        }
+      ],
+      "media": {
+        "src": "images/tool_use_generation.png",
+        "alt": "Generación intercalada: el modelo escribe tokens, emite una llamada a código, un ejecutor externo inserta la salida y el modelo continúa con la respuesta"
+      },
+      "design": "banded",
+      "notes": "Enganchá con la clase de RAG y MCP: allá vieron el lado del orquestador (el loop que recibe la llamada, ejecuta y devuelve). Acá está el lado del modelo: un modelo base no conoce el formato de llamada de cada proveedor, y los modelos abiertos se entrenan para trabajar con herramientas variadas. Un modelo de chat puede usar una herramienta simple sin entrenamiento específico (Llama 2-Chat con una calculadora, en las notas de la lámina siguiente), pero el formato y la decisión de cuándo llamar se aprenden en el post-entrenamiento. MCP estandarizó cómo se describen las herramientas; el modelo igual tiene que haber visto ejemplos de llamadas en su post-entrenamiento para usarlas bien. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "n_images=1",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "hint=design:banded"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "process",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "process": "el flujo generar → ejecutar → seguir está en el lead y en la figura; las dos tarjetas (datos, pérdida) no son pasos",
+          "content-image": "labeled_items ≥ 2 con una imagen compartida: disolver los rótulos en facts está prohibido"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Conductas premiadas",
+      "title": "Tres señales para herramientas",
+      "lead": "**Las tres formas usan señales distintas: la pérdida del propio modelo, el juicio de personas y el éxito de la tarea.**",
+      "format": "grid",
+      "cards": [
+        {
+          "label": "Autoetiquetado",
+          "body": "El modelo inserta llamadas candidatas en texto común y se conservan solo las que bajan la pérdida de los tokens que siguen. Con ese método, Toolformer (GPT-J de 6,7B) saca 40,4 en ASDiv usando una calculadora; GPT-3 de 175B saca 14,0.",
+          "icon": "label"
+        },
+        {
+          "label": "Demostraciones y selección por recompensa",
+          "body": "Personas resuelven la tarea con comandos de texto (Search, Click, Quote) y el modelo las imita con SFT; con sus comparaciones se entrena un modelo de recompensa que, al responder, elige la mejor de 64 respuestas. WebGPT usó 6.209 demostraciones y 21.548 comparaciones; esa versión fue preferida el 56 % de las veces sobre los propios demostradores.",
+          "icon": "groups"
+        },
+        {
+          "label": "Refuerzo sobre la trayectoria completa",
+          "body": "En tareas de varios pasos, el agente llama herramientas a lo largo de toda la trayectoria y recibe una sola recompensa al final, según si completó la tarea.",
+          "icon": "route"
+        }
+      ],
+      "notes": "Las tres tarjetas son tres respuestas a la pregunta de quién decide que una llamada fue buena. En Toolformer lo decide el propio modelo: una llamada sirve si hace más fácil predecir el texto que sigue. Es barato y no necesita anotadores, pero es ineficiente (un millón de documentos dan unos pocos miles de llamadas útiles a la calculadora). En WebGPT deciden personas, en dos momentos: sus demostraciones entrenan al modelo con SFT, y sus comparaciones entrenan un modelo de recompensa que se usa al responder, para elegir la mejor de 64 salidas. Ese paso no entrena más al modelo. WebGPT también probó RL con PPO y rindió menos: preferido 58 % sobre el modelo SFT, contra 68 % de la selección entre 64. La tercera es lo que se usa para agentes de varios pasos, y se parece más al RL clásico de juegos porque la recompensa llega al final. Dato para quien pregunte: Llama 2-Chat usó una calculadora sin haber sido entrenado explícitamente para eso y superó a Toolformer (67,1 frente a 40,4 en ASDiv). Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false",
+          "n_images=0",
+          "body_len=prose",
+          "hint=format:list (retirado → grid)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "value-columns",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "value-columns": "las tres formas se describen cada una en sus propios términos; no hay filas con un factor compartido que leer a través",
+          "process": "son tres métodos alternativos, no pasos de un flujo; ningún rótulo es ordinal (is_ordered=false)"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Conductas premiadas",
+      "title": "Razonar se premia con un verificador",
+      "lead": "**DeepSeek-R1-Zero se entrenó con RL desde el modelo base, sin ejemplos de razonamiento escritos por personas. La recompensa solo revisaba si la respuesta final era correcta y si el razonamiento estaba entre etiquetas `<think>`.**",
+      "cards": [
+        {
+          "label": "Resultado",
+          "body": "En AIME 2024, una competencia de matemática con respuesta numérica, el acierto en el primer intento (pass@1) pasó de 15,6 % a 77,9 %, y las respuestas se alargaron solas: el modelo aprendió a verificar y a revisar pasos.",
+          "icon": "trending_up"
+        },
+        {
+          "label": "GRPO",
+          "body": "Para cada problema se generan 16 respuestas; cada una se premia según cuánto supera el promedio de su grupo. No hace falta un modelo de valor aparte.",
+          "icon": "group_work"
+        }
+      ],
+      "media": {
+        "src": "images/fig-01-p004.png",
+        "alt": "DeepSeek-R1-Zero durante el RL: la precisión en AIME sube por encima del promedio humano y la longitud promedio de las respuestas crece de unos cientos a más de 10.000 tokens"
+      },
+      "design": "banded",
+      "notes": "Esta lámina conecta con las notas de la 3.5: donde la salida se puede verificar, un programa reemplaza al anotador. Para matemática alcanza comparar el número final; para código, correr los tests. La curva de la derecha es la que conviene señalar: nadie le pidió al modelo que pensara más, y la longitud creció porque pensar más daba más recompensa. Hay un límite que decir en voz alta: el método necesita un verificador confiable, y fuera de matemática y código no lo hay. Por eso R1 final vuelve a usar SFT y preferencias. Costo del post-entrenamiento de R1, para escala: 147.000 horas de GPU H800, unos 294.000 dólares, sin contar el pre-entrenamiento del modelo base. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "n_images=1",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false",
+          "hint=design:banded"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "stat",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "stat": "el 15,6 % → 77,9 % va dentro de una explicación del resultado; la otra tarjeta es un método, no una cifra",
+          "content-image": "labeled_items ≥ 2 con una imagen compartida: disolver los rótulos en facts está prohibido"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Conductas premiadas",
+      "title": "Pensar o no pensar es un modo entrenado",
+      "lead": "**Qwen3 entrena un solo modelo para responder pensando o sin pensar, según una marca en el prompt. El tope de tokens de pensamiento se aplica al generar: el sistema corta el razonamiento al llegar al límite.**",
+      "cards": [
+        {
+          "label": "Interruptor entrenado",
+          "body": "El SFT mezcla ejemplos con `/think`, que traen el razonamiento, y con `/no_think`, que traen un bloque `<think></think>` vacío. Después, el RL premia respetar la marca.",
+          "icon": "toggle_on"
+        },
+        {
+          "label": "Tope al generar",
+          "body": "Al llegar al límite se inserta una frase de cierre y `</think>`, y el modelo responde con lo que pensó hasta ahí. Según el paper, esa capacidad aparece sin entrenarla.",
+          "icon": "timer"
+        }
+      ],
+      "media": {
+        "src": "images/fig-02-p020.png",
+        "alt": "Qwen3-235B-A22B: acierto en AIME'24, AIME'25, LiveCodeBench y GPQA según el tope de tokens de pensamiento, de 1K a 32K, frente al modo sin pensamiento"
+      },
+      "design": "split-right",
+      "notes": "Lo que Qwen3 entrena es el interruptor: ejemplos de SFT de los dos modos y una recompensa por respetar la marca. El tope intermedio es un corte al generar, que el paper describe como no entrenado; funciona porque el modelo ya sabe responder con y sin razonamiento. En la figura, la línea roja es el modo sin pensamiento y la azul crece con el tope; en matemática la subida fuerte está entre 2K y 16K tokens. Si preguntan por los niveles low, medium y high de otros modelos: gpt-oss los configura en el system prompt, pero OpenAI no publicó cómo los entrena; lo único medido es el efecto (en AIME 2025 sin herramientas, gpt-oss-120b pasa de 50,4 % a 80,0 % y a 92,5 %). Más esfuerzo no mejora todo: en gpt-oss-20b, Tau-Bench Airline baja de 42,6 en medium a 38,0 en high. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "n_images=1",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "hint=design:split-right"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "interruptor entrenado y tope al generar son dos mecanismos distintos, no dos lados de un factor compartido; no se leen a través",
+          "content-image": "labeled_items ≥ 2 con una imagen compartida: disolver los rótulos en facts está prohibido"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Conductas premiadas",
+      "title": "Inventar suma puntos en un examen",
+      "lead": "**Con corrección binaria, una respuesta cualquiera tiene más valor esperado que decir \"no sé\". El pre-entrenamiento produce errores sobre datos raros, y la evaluación premia adivinar en lugar de abstenerse.**",
+      "format": "grid",
+      "cards": [
+        {
+          "label": "Síntoma",
+          "body": "Consultado tres veces por el cumpleaños de uno de los autores del paper, DeepSeek-V3 dio tres fechas distintas, todas falsas, aunque la consigna pedía responder solo si lo sabía.",
+          "icon": "cake"
+        },
+        {
+          "label": "Origen en el pre-entrenamiento",
+          "body": "Un dato que aparece una sola vez en el corpus no tiene patrón del que aprender. La tasa de alucinación del modelo base es como mínimo la fracción de datos que aparecen una sola vez.",
+          "icon": "database"
+        },
+        {
+          "label": "Refuerzo en la evaluación",
+          "body": "Nueve de diez benchmarks influyentes califican 1 o 0 y no dan crédito por \"no sé\". Un modelo que adivina supera en esas tablas a uno que admite dudas.",
+          "icon": "rule"
+        }
+      ],
+      "notes": "La analogía del paper es el examen de opción múltiple sin penalización: si no sabés, marcás cualquiera, porque en blanco es cero seguro. La segunda tarjeta explica por qué el modelo base se equivoca justo en datos raros: el cumpleaños de Einstein aparece miles de veces y el de un investigador aparece una vez o ninguna, y no hay regla general de la que deducirlo. La tercera explica por qué el post-entrenamiento no lo arregla: los laboratorios optimizan para las tablas de benchmarks, y esas tablas premian adivinar. Volvé a la lámina 4.6: ninguna etapa premió decir \"no sé\". Un número de contexto si hace falta: en SimpleQA, gpt-oss-120b acierta el 16,8 % de las preguntas y su tasa de alucinación es 78,2 % (Table 9 del model card, `corpus/openai-2025-gpt-oss-model-card.pdf.md`).\n\nLa corrección que propone el paper, para cerrar: declarar en la consigna un umbral de confianza t. Un acierto vale 1, \"no sé\" vale 0 y un error resta t / (1 − t); con t = 0,5 el error resta 1, con t = 0,9 resta 9, y t = 0 es la corrección binaria de hoy. Responder conviene solo si la confianza supera t. Hacé la cuenta con un caso: umbral 0,5 y un modelo con 30 % de confianza. Si responde, el valor esperado es 0,3 × 1 − 0,7 × 1 = −0,4; si dice \"no sé\", 0. Con corrección binaria el mismo modelo gana 0,3 respondiendo, así que responde. Los autores piden aplicarlo a los benchmarks que ya dominan las tablas, y citan exámenes de ingreso que ya penalizan el error (JEE en India, AMC en Estados Unidos). Es una propuesta de 2025 sin prueba empírica en el paper. Enganche con la clase de prompting: pedir en el system prompt que diga \"no sé\" si no está seguro es la versión de usuario de la misma idea; ayuda, pero no cambia lo que el entrenamiento premió. Tiempo objetivo: ~4 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false",
+          "n_images=0",
+          "is_question=false",
+          "hint=format:row"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "single-point"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "síntoma, origen y refuerzo son tres facetas del mismo fenómeno sin ordinal ni pasos (is_ordered=false)",
+          "single-point": "hay tres ítems rotulados, no uno (labeled_items=3)"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "Ajustar un modelo"
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Ajustar un modelo",
+      "title": "Antes de ajustar pesos",
+      "lead": "**Cuando al modelo le falta información, la solución es RAG. Cuando tiene la información y responde con el formato, el estilo o la conducta equivocados, la solución es fine-tuning.**",
+      "cards": [
+        {
+          "label": "Orden habitual",
+          "body": "Primero el prompt, después RAG y al final el fine-tuning. Las dos últimas se combinan.",
+          "icon": "format_list_numbered"
+        },
+        {
+          "label": "Costo del fine-tuning",
+          "body": "Pide datos anotados, conocimiento de entrenamiento e infraestructura para servir el modelo, y puede empeorar tareas que antes andaban.",
+          "icon": "payments"
+        }
+      ],
+      "media": {
+        "src": "images/rag-vs-finetune.png",
+        "alt": "Recorrido típico de adaptación: prompt, ejemplos en el prompt, recuperación simple y compleja (RAG), y fine-tuning, con RAG sobre un modelo ajustado como punto final"
+      },
+      "design": "split-left",
+      "notes": "Esta lámina junta las clases de prompting y de RAG con la de hoy. Un caso para cada lado: un asistente que no conoce los productos de la empresa necesita RAG; un asistente que conoce los datos pero no devuelve JSON válido o no respeta el tono de la marca necesita fine-tuning. Las notas del libro agregan que un modelo base nuevo puede superar al modelo que ajustaron el año pasado, y que el ajuste hay que rehacerlo. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "n_images=1",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "hint=design:split-left"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "el contraste RAG / fine-tuning está en el lead; las dos tarjetas (orden, costo) no son dos lados alineados de un factor",
+          "content-image": "labeled_items ≥ 2 con una imagen compartida: disolver los rótulos en facts está prohibido"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Ajustar un modelo",
+      "title": "LoRA: una corrección de rango bajo",
+      "lead": "**LoRA congela los pesos del modelo. Para cada matriz elegida entrena dos matrices chicas, A y B, y su producto se suma al peso original: W + BA.**",
+      "cards": [
+        {
+          "label": "Menos parámetros entrenables",
+          "body": "En GPT-3 175B, 10.000 veces menos, y la memoria de entrenamiento baja de 1,2 TB a 350 GB.",
+          "icon": "compress"
+        },
+        {
+          "label": "Adaptadores livianos",
+          "body": "Cada adaptación ocupa 35 MB en lugar de 350 GB. Cien adaptaciones del mismo modelo ocupan unos 354 GB; cien copias completas, 35 TB.",
+          "icon": "extension"
+        },
+        {
+          "label": "Sin costo al servir",
+          "body": "BA se suma a W antes de desplegar, así que la inferencia no agrega latencia.",
+          "icon": "bolt"
+        }
+      ],
+      "media": {
+        "src": "images/fig-01-p001.png",
+        "alt": "LoRA: la entrada x pasa por los pesos preentrenados W, congelados, y en paralelo por A (inicializada al azar) y B (inicializada en cero), de rango r; las dos salidas se suman"
+      },
+      "design": "split-right",
+      "notes": "La intuición del paper: el cambio que necesita una tarea nueva vive en un subespacio chico, así que alcanza con una matriz de rango bajo. Hacé la cuenta de parámetros: con rango 1 sobre las matrices de query y value de las 96 capas de GPT-3, 2 × 192 × 12.288 = 4,7 millones de parámetros entrenables, frente a 175.000 millones, y en WikiSQL rinde 73,4 frente a 73,8 del fine-tuning completo. B empieza en cero para que al arrancar el modelo sea exactamente el original. Para modelos actuales, el paper de QLoRA encontró que hay que aplicar LoRA a todas las capas lineales, no solo a query y value; lo retomás en la lámina siguiente. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "n_images=1",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false",
+          "hint=design:split-right"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "stat",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "stat": "las cifras (10.000×, 35 MB, 354 GB) sostienen tres ventajas descritas en prosa; la tercera no tiene cifra: la carga son las ventajas",
+          "content-image": "labeled_items ≥ 2 con una imagen compartida: disolver los rótulos en facts está prohibido"
+        }
+      }
+    },
+    {
+      "template": "stat",
+      "section": "Ajustar un modelo",
+      "title": "QLoRA: un modelo de 65B en una GPU",
+      "lead": "**QLoRA guarda el modelo congelado en 4 bits y entrena adaptadores LoRA encima, en 16 bits. El fine-tuning de un modelo de 65B entra en una sola GPU de 48 GB.**",
+      "stats": [
+        {
+          "value": "Más de 780 GB",
+          "caption": "Memoria para ajustar LLaMA 65B en 16 bits."
+        },
+        {
+          "value": "45,0 GB",
+          "caption": "Memoria medida para el mismo ajuste con QLoRA."
+        },
+        {
+          "value": "24 horas",
+          "caption": "Entrenamiento de Guanaco 65B en una GPU, con el dataset OASST1 de la lámina 4.2."
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Nota",
+          "body": "Para igualar al fine-tuning en 16 bits, LoRA tiene que ir en todas las capas lineales del transformer.",
+          "kind": "note"
+        }
+      ],
+      "notes": "Tres ideas técnicas si alguien pregunta: NF4 es un formato de 4 bits con los niveles repartidos según una normal, que es como se distribuyen los pesos; la doble cuantización comprime también las constantes de escala; los optimizadores paginados mandan estado a la CPU cuando la GPU se llena. El titular que circuló fue \"99,3 % de ChatGPT\"; decí que sale de 80 preguntas juzgadas por GPT-4 y que en un benchmark más grande ChatGPT gana. Lo que sí es sólido es la memoria: un equipo con una GPU de 48 GB ajusta un modelo de 65B. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "big_metrics=3",
+          "labeled_items=3",
+          "n_images=0",
+          "hint=template:stat"
+        ],
+        "candidates": [
+          "stat",
+          "concept-breakdown"
+        ],
+        "picked": "stat",
+        "rejected": {
+          "concept-breakdown": "los rótulos son cifras de memoria y tiempo y son la carga (big_metrics → stat); la pista del autor fija stat"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Ajustar un modelo",
+      "title": "Destilar un modelo grande",
+      "lead": "**Destilar es entrenar un modelo chico con las respuestas de uno grande. Para razonamiento rinde más que entrenar el modelo chico con RL y usa menos horas de GPU, pero necesita cientos de miles de respuestas del maestro.**",
+      "format": "grid",
+      "cards": [
+        {
+          "label": "Destilación de DeepSeek-R1",
+          "body": "Qwen2.5-32B ajustado con 800.000 respuestas de R1 llega a 72,6 % en AIME 2024. El mismo modelo entrenado con RL desde cero llega a 47,0 %.",
+          "icon": "science"
+        },
+        {
+          "label": "Destilación de Qwen3",
+          "body": "En Qwen3-8B, destilar alcanza 74,4 en AIME'24 con 1.800 horas de GPU; RL alcanza 67,6 con 17.920 horas.",
+          "icon": "school"
+        }
+      ],
+      "notes": "Destilar es más barato que RL, no barato en términos absolutos: DeepSeek usó unas 800.000 respuestas de R1, y la destilación de Qwen3-8B consumió 1.800 horas de GPU. El mecanismo es el SFT de la sección 4. Aclará la diferencia entre las dos tarjetas: DeepSeek destila con SFT sobre respuestas; Qwen3 agrega una fase on-policy donde el alumno genera y se lo acerca a las probabilidades (logits) del maestro, así que hace falta acceso a esas probabilidades, algo que da un modelo abierto y no una API que solo devuelve texto. Dos advertencias. La primera: la sección 3 mostró que entrenar con salida de modelos, generación tras generación, borra las colas de la distribución. La segunda es legal: muchos términos de uso prohíben usar la salida de un modelo para entrenar a un competidor, y por eso OASST1 excluyó salidas de GPT. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "two_groups=false",
+          "n_images=0",
+          "hint=format:row"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "value-columns",
+          "stat"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "value-columns": "cada tarjeta es un caso con su propia medida (una da % en AIME 2024 y cantidad de respuestas, la otra puntaje y horas de GPU): no hay un factor compartido que alinee las filas",
+          "stat": "cada cifra viene en pareja con su contraste dentro de una oración; hay seis números, no 2–4 cifras sueltas"
+        }
+      }
+    },
+    {
+      "template": "divider",
+      "title": "Conclusions"
+    },
+    {
+      "template": "process",
+      "section": "Conclusions",
+      "title": "Key takeaways",
+      "lead": "**Cada conducta de un LLM se explica por los datos y la señal con que se entrenó.**",
+      "steps": [
+        {
+          "body": "El pre-entrenamiento predice el token siguiente sobre billones de tokens; en InstructGPT (2022) se llevó el 98 % del cómputo. El post-entrenamiento usa de decenas de miles a un millón de ejemplos y fija la conducta."
+        },
+        {
+          "body": "C ≈ 6 · N · D. Chinchilla pide unos 20 tokens por parámetro; los modelos chicos actuales se entrenan con 10 a 100 veces más. Esos tokens salen de la web filtrada, con sesgos, mucho inglés y un español que usa 1,55 veces los tokens del inglés."
+        },
+        {
+          "body": "El SFT imita demostraciones; RLHF y DPO aprenden de comparaciones; el razonamiento se entrena con RL contra un verificador."
+        },
+        {
+          "body": "Los modelos inventan porque los datos que aparecen una sola vez en el corpus no se aprenden y la corrección binaria premia adivinar."
+        },
+        {
+          "body": "Para un producto, el orden es prompt, RAG y después LoRA, QLoRA o destilación."
+        }
+      ],
+      "notes": "No la leas en voz alta. Decí la frase de arriba y señalá cada punto con una oración propia; cada uno resume una o dos secciones. Si hay que recortar tiempo, esta lámina se puede pasar en un minuto. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5 (líneas numeradas)",
+          "is_ordered=true (lista numerada)",
+          "date_labels=false",
+          "n_images=0",
+          "body_len=prose"
+        ],
+        "candidates": [
+          "process",
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "process",
+        "rejected": {
+          "concept-breakdown": "una lista numerada de ≥2 líneas sin rótulos es process (lista numerada); concept-breakdown necesita un rótulo por concepto",
+          "content-text": "nunca caer a un template más pobre cuando uno más rico coincide; hay cinco ítems enumerados"
+        }
+      }
+    },
+    {
+      "template": "closing-cta",
+      "section": "Conclusions",
+      "title": "Para probar y preguntas",
+      "lead": "**Dos experimentos cortos para hacer con una notebook.**",
+      "items": [
+        {
+          "label": "Costo por idioma",
+          "body": "Tokenizar con tiktoken (cl100k_base) el mismo párrafo en español y en inglés y comparar la cantidad de tokens.",
+          "icon": "translate"
+        },
+        {
+          "label": "Modos de pensamiento",
+          "body": "Pedirle a un modelo Qwen3 chico el mismo problema de matemática con `/think` y con `/no_think`, y comparar la respuesta y la cantidad de tokens.",
+          "icon": "psychology"
+        }
+      ],
+      "notes": "Espacio para preguntas. Los dos experimentos entran en una notebook y conectan con las láminas 3.4 y 5.4; si la cátedra tiene una práctica definida para esta clase, reemplazalos. Tiempo objetivo: ~2 min, más los ~9 min de margen que deja la suma de las láminas (81 min) para preguntas y ejercicios.",
+      "_choice": {
+        "signals": [
+          "is_terminal=true",
+          "is_cta=true (próximos pasos: dos experimentos)",
+          "labeled_items=2",
+          "n_images=0"
+        ],
+        "candidates": [
+          "closing-cta",
+          "concept-breakdown"
+        ],
+        "picked": "closing-cta",
+        "rejected": {
+          "concept-breakdown": "lámina final cuyos ítems son próximos pasos para hacer, no conceptos: is_cta → closing-cta"
+        }
+      }
+    }
+  ],
+  "_source": {
+    "file": "final.md",
+    "sha256": "bece5f9c9c6dc6dfb2d9338dc6bf927c9b1b911dceb15b75f34d58fefa09bb8b",
+    "bytes": 80329
+  }
+}

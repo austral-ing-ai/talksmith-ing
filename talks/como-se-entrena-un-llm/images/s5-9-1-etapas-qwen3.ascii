@@ -1,0 +1,11 @@
+ base --> 1. cold start   --> 2. RL de           --> 3. fusión de modos --> 4. RL general
+          (SFT con CoT         razonamiento           (SFT con /think          (recompensa por
+          largo verificado)    (GRPO, 3.995           y /no_think)             respetar los flags
+                               problemas)                                      y el formato)
+          |<------ aprender a pensar ------>|        |<--- aprender a elegir si piensa --->|
+
+<!-- ascii-note:
+intent: las cuatro etapas de post-training de Qwen3 y qué aprende cada mitad
+emphasize: las etapas 3 y 4, donde se entrena el interruptor
+labels: etapas 1 a 4
+-->

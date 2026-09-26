@@ -1,0 +1,13 @@
+  (prompt, respuesta ganadora)  ---> [  reward model  ] ---> s_w
+  (prompt, respuesta perdedora) ---> [  reward model  ] ---> s_l
+
+                pérdida = -log( sigmoide( s_w - s_l ) )
+
+  si s_w >> s_l  -> pérdida cerca de 0
+  si s_w <  s_l  -> pérdida grande: el modelo ordenó al revés
+
+<!-- ascii-note:
+intent: el mismo modelo puntúa las dos respuestas y la pérdida compara los puntajes
+emphasize: la fórmula de la pérdida y la diferencia s_w - s_l
+labels: s_w (ganadora), s_l (perdedora)
+-->

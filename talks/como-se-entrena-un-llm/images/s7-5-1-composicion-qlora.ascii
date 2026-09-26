@@ -1,0 +1,18 @@
+ +---------------------------------+      +------------------------+
+ | modelo base congelado           |      | adaptadores LoRA       |
+ | pesos en 4 bits (NF4)           |      | en BF16, entrenables   |
+ | se descuantizan a BF16 al usar  |      | en todas las capas     |
+ +---------------------------------+      | lineales               |
+               |                          +------------------------+
+               +------------> suma <----------------+
+                               |
+                   gradientes solo para LoRA
+
+ memoria para LLaMA 65B:   16 bits completo  > 780 GB
+                           QLoRA               45 GB
+
+<!-- ascii-note:
+intent: la composición de QLoRA (base cuantizada + LoRA) y el salto de memoria
+emphasize: el contraste > 780 GB contra 45 GB
+labels: NF4, BF16, 65B
+-->

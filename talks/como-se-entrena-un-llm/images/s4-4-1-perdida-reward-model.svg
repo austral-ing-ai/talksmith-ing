@@ -1,0 +1,52 @@
+<!-- talksmith-ascii-sha256: 661e1a40dd0e31d6c4233da3f2192b67173d90882eac41c4e8ec6b2224dca2e6 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 804 314" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>El reward model</title>
+<desc>La pérdida es una regresión logística sobre la diferencia de puntajes (modelo de Bradley-Terry).</desc>
+<defs>
+<marker id="a" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 1 L9 5 L0 9 Z" fill="#8A8282"/></marker>
+<marker id="r" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 1 L9 5 L0 9 Z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="804" height="314" fill="#ffffff"/>
+<g transform="translate(0,-24)">
+<g fill="#F2EEEE" stroke="#D8D2CE">
+<rect x="24" y="48" width="260" height="44" rx="6"/>
+<rect x="24" y="118" width="260" height="44" rx="6"/>
+</g>
+<g text-anchor="middle" fill="#1F1E1E">
+<text x="154" y="75">(prompt, respuesta ganadora)</text>
+<text x="154" y="145">(prompt, respuesta perdedora)</text>
+</g>
+<rect x="340" y="48" width="160" height="114" rx="8" fill="#F2EEEE" stroke="#8A8282" stroke-width="1.5"/>
+<text x="420" y="102" text-anchor="middle" font-weight="bold" font-size="17" fill="#1F1E1E">reward model</text>
+<text x="420" y="124" text-anchor="middle" font-size="13" font-style="italic" fill="#6E6666">el mismo modelo</text>
+<g stroke="#8A8282" stroke-width="1.5" marker-end="url(#a)">
+<line x1="284" y1="70" x2="340" y2="70"/>
+<line x1="284" y1="140" x2="340" y2="140"/>
+<line x1="500" y1="70" x2="556" y2="70"/>
+<line x1="500" y1="140" x2="556" y2="140"/>
+</g>
+<g fill="#FFFFFF" stroke="#3B3535" stroke-width="1.3">
+<rect x="556" y="52" width="60" height="36" rx="5"/>
+<rect x="556" y="122" width="60" height="36" rx="5"/>
+</g>
+<g font-size="18" font-weight="bold" fill="#1F1E1E">
+<text x="575" y="76">s<tspan dy="5" font-size="12">w</tspan></text>
+<text x="578" y="146">s<tspan dy="5" font-size="12">l</tspan></text>
+</g>
+<path d="M616 70 H642 V140 H616" fill="none" stroke="#DA1B2E" stroke-width="1.5"/>
+<line x1="642" y1="105" x2="670" y2="105" stroke="#DA1B2E" stroke-width="1.5" marker-end="url(#r)"/>
+<rect x="670" y="87" width="110" height="36" rx="5" fill="#F9D2D6" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="702" y="111" font-size="18" font-weight="bold" fill="#DA1B2E">s<tspan dy="5" font-size="12">w</tspan><tspan dy="-5"> - s</tspan><tspan dy="5" font-size="12">l</tspan></text>
+<line x1="725" y1="123" x2="725" y2="190" stroke="#DA1B2E" stroke-width="1.5" marker-end="url(#r)"/>
+<rect x="24" y="190" width="756" height="52" rx="8" fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2"/>
+<text x="243" y="223" font-size="21" fill="#1F1E1E">pérdida = -log( sigmoide( <tspan font-weight="bold" fill="#DA1B2E">s</tspan><tspan dy="5" font-size="14" font-weight="bold" fill="#DA1B2E">w</tspan><tspan dy="-5" font-weight="bold" fill="#DA1B2E"> - s</tspan><tspan dy="5" font-size="14" font-weight="bold" fill="#DA1B2E">l</tspan><tspan dy="-5"> ) )</tspan></text>
+<g stroke-width="1.5">
+<line x1="296" y1="275" x2="336" y2="275" stroke="#8A8282" marker-end="url(#a)"/>
+<line x1="296" y1="307" x2="336" y2="307" stroke="#DA1B2E" marker-end="url(#r)"/>
+</g>
+<text x="40" y="280">si s<tspan dy="4" font-size="11">w</tspan><tspan dy="-4"> mucho mayor que s</tspan><tspan dy="4" font-size="11">l</tspan></text>
+<text x="40" y="312">si s<tspan dy="4" font-size="11">w</tspan><tspan dy="-4"> menor que s</tspan><tspan dy="4" font-size="11">l</tspan></text>
+<text x="348" y="280" fill="#1F1E1E">pérdida cerca de 0</text>
+<text x="348" y="312" fill="#DA1B2E"><tspan font-weight="bold">pérdida grande:</tspan> el modelo ordenó al revés</text>
+</g>
+</svg>

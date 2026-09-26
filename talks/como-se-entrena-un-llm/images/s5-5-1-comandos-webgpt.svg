@@ -1,0 +1,65 @@
+<!-- talksmith-ascii-sha256: 4dc2698eab3e0416df5ad67d8b508d4e1701e3f12cbf4942062def4431067200 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>WebGPT: aprender a buscar</title>
+<desc>WebGPT navega con comandos de texto; se entrena primero con SFT, después con preferencias y, para tareas de varios pasos, con RL donde la recompensa llega al final de la trayectoria.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="760" height="420" fill="#ffffff"/>
+<text x="20" y="33" font-size="17" font-weight="bold" fill="#1F1E1E">Comandos que el modelo puede emitir</text>
+<g fill="#F2F2F2" stroke="#D8D2CE" stroke-width="1.2">
+<rect x="20" y="48" width="232" height="34" rx="6"/>
+<rect x="264" y="48" width="232" height="34" rx="6"/>
+<rect x="508" y="48" width="232" height="34" rx="6"/>
+<rect x="20" y="92" width="232" height="34" rx="6"/>
+<rect x="264" y="92" width="232" height="34" rx="6"/>
+<rect x="508" y="92" width="232" height="34" rx="6"/>
+<rect x="20" y="136" width="232" height="34" rx="6" stroke="#3B3535"/>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="14" fill="#1F1E1E">
+<text x="34" y="70">Search &lt;consulta&gt;</text>
+<text x="278" y="70">Clicked on link &lt;id&gt;</text>
+<text x="522" y="70">Find in page: &lt;texto&gt;</text>
+<text x="34" y="114">Quote: &lt;texto&gt;</text>
+<text x="278" y="114">Scrolled down &lt;1,2,3&gt;</text>
+<text x="522" y="114">Back</text>
+<text x="34" y="158">End: Answer</text>
+</g>
+<text x="264" y="158" font-size="13">cierra la búsqueda y redacta la respuesta</text>
+<text x="20" y="214" font-size="17" font-weight="bold" fill="#1F1E1E">Cómo se entrena cada parte</text>
+<rect x="20" y="296" width="216" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.2"/>
+<rect x="272" y="258" width="216" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.2"/>
+<rect x="524" y="220" width="216" height="60" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.5"/>
+<g text-anchor="middle">
+<text x="128" y="321" font-size="16" font-weight="bold" fill="#1F1E1E">SFT</text>
+<text x="128" y="341" font-size="13">6.209 demostraciones</text>
+<text x="380" y="283" font-size="16" font-weight="bold" fill="#1F1E1E">Preferencias</text>
+<text x="380" y="303" font-size="13">21.548 comparaciones</text>
+<text x="632" y="245" font-size="16" font-weight="bold" fill="#DA1B2E">RL con el entorno</text>
+<text x="632" y="265" font-size="13">tareas de varios pasos</text>
+</g>
+<line x1="236" y1="307" x2="272" y2="307" stroke="#3B3535" stroke-width="1.8" marker-end="url(#ah)"/>
+<line x1="488" y1="269" x2="524" y2="269" stroke="#3B3535" stroke-width="1.8" marker-end="url(#ah)"/>
+<g font-size="13">
+<text x="20" y="378">Formato de los comandos</text>
+<text x="20" y="396">y elección de herramienta</text>
+<text x="272" y="340">Reward model: elige la mejor</text>
+<text x="272" y="358">de 64 respuestas</text>
+<text x="524" y="302">Una sola recompensa al final</text>
+<text x="524" y="320">de la trayectoria</text>
+</g>
+<g stroke="#3B3535" stroke-width="1.5">
+<line x1="530" y1="352" x2="638" y2="352"/>
+<line x1="638" y1="352" x2="682" y2="352" stroke="#DA1B2E" marker-end="url(#ahr)"/>
+</g>
+<g fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5">
+<circle cx="530" cy="352" r="6"/>
+<circle cx="566" cy="352" r="6"/>
+<circle cx="602" cy="352" r="6"/>
+<circle cx="638" cy="352" r="6"/>
+</g>
+<rect x="684" y="341" width="22" height="22" rx="4" fill="#DA1B2E"/>
+<text x="524" y="382" font-size="12">un comando por paso</text>
+<text x="695" y="382" font-size="12" font-weight="bold" fill="#DA1B2E" text-anchor="middle">recompensa</text>
+</svg>

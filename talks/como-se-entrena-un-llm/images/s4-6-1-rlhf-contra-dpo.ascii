@@ -1,0 +1,12 @@
+ RLHF:  preferencias --> reward model --> PPO (muestrea) --> LLM
+ DPO:   preferencias ------------------------------------------> LLM
+
+ pérdida DPO, por par (x, y_w, y_l):
+   -log sigmoide( beta * [ log p(y_w|x)/p_ref(y_w|x)
+                         - log p(y_l|x)/p_ref(y_l|x) ] )
+
+<!-- ascii-note:
+intent: comparar la cadena de RLHF con el atajo de DPO, y la pérdida en una línea
+emphasize: que DPO saca el reward model y el muestreo
+labels: p = modelo que se entrena, p_ref = modelo SFT de referencia
+-->

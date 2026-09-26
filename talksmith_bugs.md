@@ -70,51 +70,34 @@
   plugin_version: visto en 0.87.0; reverificado en 0.88.0 → 0.89.2 y en 0.97.0 — persiste
     (el status vive una sola vez, en el encabezado de la entrada)
 
-- id: BUG-20260901-13
-  status: RESUELTO en 0.100.0. Confirmado primero lo que reportaste: `agents/diagram-illustrator.md`
-    no se habia tocado desde 0.98.1. Ahora el rol lleva un contrato de finalizacion explicito, y las
-    dos mitigaciones que mediste quedaron escritas en la spec. (1) No cierra el turno mientras haya
-    un dispatch pendiente. (2) Escribe el log de cada bloque apenas ese bloque vuelve, en vez de
-    acumular en contexto y escribir al final, asi un turno cortado deja estado parcial coherente en
-    disco y no nada. (3) Arma el reporte listando `images/`, no de memoria: un bloque que no esta en
-    disco se reporta `failed`, no `rendered` — es el chequeo que convierte un corte silencioso en uno
-    visible, y es tu "verifica con ls antes de contestar". (4) No pisa un destino cuyo sello ya
-    coincide con su sidecar, que es la proteccion contra doble escritura del reintento. Y tu otra
-    mitigacion quedo como regla: si el pase ya fue retomado una vez, la ventana baja a 1 y va bloque
-    por bloque. Es el unico lugar donde el 5 fijo cede, y cede por medicion, no por prudencia.
-  date: 2026-09-01
-  talk: talks/prompting
-  step: 6 (Polish) — paso 1
-  where: agents/diagram-illustrator.md — coordinacion del rol
-  what: el rol cierra su turno antes de terminar, de forma reproducible. Ocurrio **dos veces en la
-    misma Talk**, en el mismo punto: extrae los sidecars, prepara los argumentos, anuncia que los
-    renders "estan corriendo en paralelo" y termina el turno. En la primera pasada quedaron 12
-    sidecars y 0 SVG; en la segunda, 4 SVG dibujados pero sin sellar ni referenciar.
-    Al reintentar, ademas, su reescritura piso el trabajo de un agente de render que ya habia
-    terminado y validado el mismo archivo: el patron "dispatch en background + reintento" no tiene
-    proteccion contra doble escritura del mismo destino
-  context: los renders tardan entre 6 y 8 minutos cada uno; el rol cierra antes de que reporten
-  expected: que el rol espere a sus renders y complete sellado, inyeccion de refs y reporte
-  actual: hay que retomarlo por mensaje una o dos veces; los pasos deterministas (annotate, stamp,
-    cleanup) terminan corriendose desde el orquestador
-  suggested-fix (hipotesis, no verificada): que el rol escriba a disco por item apenas cada render
-    vuelve, en vez de acumular y reportar al final; y que antes de escribir un destino verifique si
-    ya existe con sello valido, para no pisar el trabajo de un dispatch previo
+## polish-images: el SKILL.md documenta `--final` y `-o/--output` para `scan`, pero el CLI no los acepta (2026-09-26)
 
-## html-strict: el recuadro de `code-example` colapsa los espacios (2026-09-23)
+- **Contexto:** Talk `talks/como-se-entrena-un-llm2`, Step 6 (Polish), paso 1b (Image-Illustrator), Talksmith 1.0.0.
+- **expected:** según la tabla de flags de `skills/polish-images/SKILL.md` (líneas 65 y 69), `--final` vale para "every subcommand" y `--output` / `-o` para `scan` · `annotate`.
+- **actual:** `polish_images.py scan --help` muestra `usage: polish_images scan [-h] [--format {json,human}] [--language LANGUAGE] final_path`: `final.md` es posicional y la salida va solo a stdout. Pasar `--final`, `-o` u `--output` a `scan` termina con exit 2. El rol se recuperó usando el posicional y redirigiendo stdout.
+- **Repro:** `python3 ${CLAUDE_PLUGIN_ROOT}/skills/polish-images/polish_images.py scan --final talks/<Talk>/final.md -o /tmp/scan.json` → exit 2 (argparse).
+- **suggested_fix:** probablemente convenga alinear uno con otro: agregar `--final` / `-o` a `scan` en el parser (como ya tienen los demás subcomandos), o corregir la tabla del SKILL.md. Vale revisar si `polish-ascii` tiene la misma divergencia, ya que comparte la forma.
 
-- **Contexto:** deck `talks/transformers-a-fondo`, vista `--draft`. Las láminas con matrices y diagramas ASCII en `code-example` pierden la alineación.
-- **Repro:** un `code-example` cuyo `code` tenga columnas alineadas con espacios (`"the  1  0\ncat  0  2"`). En el HTML, las líneas salen unidas con `<br>` dentro de `.codebox` y los espacios múltiples se colapsan a uno.
-- **Causa:** `.codebox` en `skills/md-to-deck/templates/html/theme.css` no declara `white-space: pre` (ni `pre-wrap`), y `code-example.j2` emite texto plano con `<br>`.
-- **Workaround usado:** reemplazar los espacios por U+00A0 al llenar el modelo (`talks/transformers-a-fondo/research/build_model_draft.py`).
-- **Fix sugerido:** agregar `white-space: pre` a `.codebox` (o envolver el contenido en `<pre>`), y considerar achicar la fuente cuando la línea más larga supera el ancho de la caja.
+## Diagram-Illustrator: vuelve a devolver el turno con renders en curso (2026-09-26)
 
-## FILL: partir una lámina solo en `slide-model.json` diverge de la fuente y se pierde al re-renderizar (2026-09-23)
+- **Contexto:** Talk `talks/como-se-entrena-un-llm`, Step 6 (Polish), paso 1, Talksmith 1.0.0 (`agents/diagram-illustrator.md`). 15 bloques ASCII.
+- **expected:** que el rol no cierre el turno mientras haya un dispatch pendiente (el contrato de finalización que se agregó en 0.100.0 para BUG-20260901-13).
+- **actual:** escribió los 15 sidecars, lanzó 5 renders en background y devolvió un reporte "DIAGRAM PASS INCOMPLETE" con 0 renderizados, 5 en curso y 10 sin empezar. El propio reporte dice que se lo "hizo devolver" y que su spec se lo prohíbe. Aviso: el reporte fue honesto (armado desde `ls images/`, no reclamó nada), así que esa parte del fix funciona; lo que no se sostiene es "no cerrar el turno".
+- **Repro:** unknown — visto una vez en esta versión; el trigger parece ser el mismo patrón de dispatch en background con renders de varios minutos.
+- **suggested_fix:** posiblemente el runtime cierre el turno de un subagente cuando todos sus hijos están en background, más allá de lo que diga la spec; valdría la pena que el rol espere a cada hijo en foreground (o con un bucle de espera explícito) en vez de confiar en la instrucción.
 
-- **Contexto:** deck `talks/transformers-a-fondo`, Step 7 (Render), Talksmith 1.0.0. La lámina `## 7. Cuenta de parámetros de un bloque` (`final.md:836`) tiene lead + tabla de 6×4 + 3 viñetas. Al renderizarla entera, el ajuste adaptativo de escala llega al mínimo y **recorta las dos últimas filas de la tabla** sin avisar.
-- **Workaround usado:** durante el FILL se partió a mano en dos láminas (28 y 29) dentro de `output/slide-model.json`. El deck sale bien.
-- **El defecto:** esa partición existe **solo en el modelo derivado**. `final.md` sigue teniendo una sola lámina, así que cualquier re-render desde la fuente vuelve a producir el recorte, y el arreglo hay que rehacerlo a mano en cada FILL. El modelo derivado pasó a contener una decisión editorial que la fuente no expresa — el audit trail queda roto.
-- **expected:** o bien que el render avise cuando recorta contenido en vez de hacerlo en silencio, o bien que exista forma de expresar el corte en `final.md` para que sobreviva al Polish.
-- **actual:** recorte silencioso; la única salida es divergir el modelo de la fuente.
-- **Repro:** renderizar una lámina con `content+cards` cuya tabla tenga ≥6 filas de 4 columnas más 3 viñetas de apoyo; comparar las filas del HTML contra las del Markdown.
-- **Fix sugerido (hipótesis):** que el ajuste de escala emita un evento de stage cuando toca el piso y quede contenido fuera de caja, para que el orquestador lo reporte como lámina a revisar en vez de que se descubra leyendo el deck. Lo de expresar el corte en la fuente es una decisión de diseño aparte; el aviso alcanza para que no pase inadvertido.
+## polish-ascii: `scan` ignora los bloques bajo un H1 no numerado (p. ej. `# Apertura`) (2026-09-26)
+
+- **Contexto:** mismo Talk y paso. `final.md` tiene una sección de apertura sin número (`# Apertura`, como la sección "Repaso" de la clase 8) con un bloque ASCII en las líneas 56–70.
+- **expected:** que `scan` devuelva los 15 bloques ASCII de `final.md`.
+- **actual:** devolvió 14. Solo trata como secciones con láminas a los H1 numerados, `Agenda` y `Conclusions`, así que el bloque de la apertura queda "sin lámina" y se omite en silencio. El rol lo agregó a mano al plan (`sa-1-1`); en la próxima pasada el `scan` lo va a volver a omitir, así que el control de digest no lo cubre.
+- **Repro:** un `final.md` con `# Apertura` (sin número) que contenga `## 1. …` con un bloque ```` ```ascii ````; correr `polish_ascii.py scan` y contar los bloques.
+- **suggested_fix:** probablemente convenga que el scanner compartido (`skills/_shared/_context.py`) trate cualquier H1 que no sea de metadatos (Thesis, Agenda, Open questions, Cut material) como sección con láminas, o que al menos avise cuando encuentra una fence `ascii` fuera de una lámina en lugar de omitirla.
+
+## md-to-deck: el FILL rellena con nombres de plantilla y formatos retirados que el propio borrador pide (2026-09-26)
+
+- **Contexto:** Talk `talks/como-se-entrena-un-llm2`, Step 7 (Render, HTML), Talksmith 1.0.0. El Editor escribió pistas `<!-- template: comparison -->` (dos láminas) y `<!-- format: list -->` (una) en el borrador durante Step 4, siguiendo `agents/editor.md` → *Draft with the slide taxonomy in mind*.
+- **expected:** que las pistas que el Editor puede escribir sean nombres vigentes del catálogo `config/pptx-styles/slide-templates.md`.
+- **actual:** `comparison` y `format: list` están retirados; el FILL tuvo que traducirlos a mano (`comparison` → columnas lado a lado o pros/contras según el contenido; `list` → grilla), porque de otro modo la lámina cae en la plantilla de respaldo. El Editor no tiene cómo saber qué nombres están vigentes.
+- **Repro:** un `draft.md` con `<!-- template: comparison -->` bajo un `##`; correr FILL + `audits/template_diversity.py` y ver la lámina marcada como fallback si no se la traduce.
+- **suggested_fix:** probablemente convenga que la lista de valores válidos de `template:` / `format:` viva en un solo lugar que lean tanto el Editor como el FILL, y que el FILL (o un audit) avise explícitamente "pista retirada: X → usar Y" en lugar de depender de que el LLM lo note.

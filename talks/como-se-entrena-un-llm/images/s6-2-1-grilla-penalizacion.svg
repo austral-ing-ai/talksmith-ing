@@ -1,0 +1,32 @@
+<!-- talksmith-ascii-sha256: 76336656988cf22ce0eac88e03386bd044668ec99a27cbfa3b8e4a024d22d2f8 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 266" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Las evaluaciones premian adivinar</title>
+<desc>Grilla de puntaje: con puntaje binario decir no sé suma 0 igual que errar; con umbral t = 0,9 un error resta 9 y responder conviene solo con confianza alta.</desc>
+<rect width="740" height="266" fill="#ffffff"/>
+<rect x="560" y="20" width="160" height="164" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/>
+<g font-size="17" font-weight="bold" fill="#1F1E1E" text-anchor="middle">
+<text x="320" y="48">responde bien</text>
+<text x="480" y="48">responde mal</text>
+<text x="640" y="48">dice «no sé»</text>
+</g>
+<line x1="20" y1="64" x2="720" y2="64" stroke="#3B3535" stroke-width="1.5"/>
+<line x1="20" y1="122" x2="720" y2="122" stroke="#D8D2CE" stroke-width="1"/>
+<line x1="20" y1="184" x2="720" y2="184" stroke="#3B3535" stroke-width="1.5"/>
+<g font-size="17">
+<text x="30" y="99">Puntaje binario</text>
+<text x="30" y="150">Con umbral t = 0,9</text>
+<text x="30" y="170" font-size="13">un error resta t/(1 − t)</text>
+</g>
+<g font-size="26" text-anchor="middle">
+<text x="320" y="102">1</text>
+<text x="480" y="102">0</text>
+<text x="640" y="102" font-weight="bold">0</text>
+<text x="320" y="163">1</text>
+<text x="640" y="163" font-weight="bold">0</text>
+<text x="480" y="165" font-size="32" font-weight="bold" fill="#DA1B2E">-9</text>
+</g>
+<g font-size="15">
+<text x="20" y="220">Con puntaje binario, adivinar nunca pierde contra «no sé».</text>
+<text x="20" y="244">Con umbral, responder conviene solo si la confianza supera t.</text>
+</g>
+</svg>

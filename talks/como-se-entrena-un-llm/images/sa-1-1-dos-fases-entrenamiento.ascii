@@ -1,0 +1,19 @@
+ +----------------------+        +-------------------------------------+
+ | PRE-TRAINING         |        | POST-TRAINING                       |
+ | texto de la web      |  --->  | SFT + preferencias (RLHF o DPO)     |
+ | billones de tokens   |        | habilidades: herramientas, esfuerzo |
+ | aprende a completar  |        | aprende a responder                 |
+ +----------------------+        +-------------------------------------+
+   secciones 1 a 3                  secciones 3 a 6
+   ~98% del cómputo                 ~2% del cómputo
+   en InstructGPT                   en InstructGPT
+                                           |
+                                           v
+                          FINE-TUNING (sección 7): post-training
+                          a escala chica, hecho por un equipo de producto
+
+<!-- ascii-note:
+intent: mapa de la clase; dos fases en fila y el fine-tuning como post-training a escala chica
+emphasize: la desproporción de cómputo (98% contra 2%) y que fine-tuning cuelga del post-training
+labels: rótulos de secciones debajo de cada caja; cifras de cómputo de InstructGPT
+-->

@@ -1,0 +1,26 @@
+ Common Crawl, abril 2019 (texto extraído, ~20 TB)
+            |
+            v
+ +------------------------------------------------------------------+
+ | regla                                 | qué saca                 |
+ |---------------------------------------|--------------------------|
+ | líneas sin . ! ? o comillas al final  | menús, botones           |
+ | páginas con < 3 oraciones;            | fragmentos sueltos       |
+ |   líneas con < 5 palabras             |                          |
+ | líneas con "Javascript"               | avisos "active Javascript"|
+ | páginas con "lorem ipsum"             | texto de relleno         |
+ | páginas con "{"                       | código                   |
+ | líneas con "cookie policy", etc.      | avisos legales           |
+ | páginas con palabras de lista negra   | contenido ofensivo       |
+ | tramos de 3 oraciones repetidos       | duplicados               |
+ | idioma inglés con prob. >= 0,99       | otros idiomas            |
+ +------------------------------------------------------------------+
+            |
+            v
+ C4: 745 GB  (sin filtros: 6,1 TB)
+
+<!-- ascii-note:
+intent: las reglas de limpieza de C4 como tabla regla -> qué basura ataca
+emphasize: la columna "qué saca"; la lista negra y el filtro de idioma, que se retoman en 1.4 y 1.5
+labels: tamaños de entrada y salida abajo
+-->

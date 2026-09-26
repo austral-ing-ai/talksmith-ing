@@ -1,0 +1,34 @@
+<!-- talksmith-ascii-sha256: b454e9ff78375a839e4e60ee4f1f7db65fe69f4efe8c618ae5feabcf7d19dbf9 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 470" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Dos fases de entrenamiento</title>
+<desc>Arrancar con la cifra: un modelo 100 veces más chico gana porque pasó por post-training.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+<path d="M0,0 L12,7 L0,14 Z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="880" height="470" fill="#ffffff"/>
+<rect x="24" y="24" width="330" height="150" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="2"/>
+<text x="44" y="60" font-size="20" font-weight="bold" fill="#1F1E1E">PRE-TRAINING</text>
+<text x="44" y="94" font-size="17">Texto de la web</text>
+<text x="44" y="122" font-size="17">Billones de tokens</text>
+<text x="44" y="150" font-size="17" font-weight="bold">Aprende a completar</text>
+<line x1="354" y1="99" x2="424" y2="99" stroke="#3B3535" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="424" y="24" width="432" height="150" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="2"/>
+<text x="444" y="60" font-size="20" font-weight="bold" fill="#1F1E1E">POST-TRAINING</text>
+<text x="444" y="94" font-size="17">SFT + preferencias (RLHF o DPO)</text>
+<text x="444" y="122" font-size="17">Habilidades: herramientas, esfuerzo</text>
+<text x="444" y="150" font-size="17" font-weight="bold">Aprende a responder</text>
+<text x="44" y="200" font-size="14">Secciones 1 a 3</text>
+<text x="444" y="200" font-size="14">Secciones 3 a 6</text>
+<line x1="640" y1="174" x2="640" y2="236" stroke="#3B3535" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="424" y="236" width="432" height="92" rx="8" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="2"/>
+<text x="444" y="266" font-size="18" font-weight="bold" fill="#1F1E1E">FINE-TUNING (sección 7)</text>
+<text x="444" y="292" font-size="16">Post-training a escala chica,</text>
+<text x="444" y="314" font-size="16">hecho por un equipo de producto</text>
+<text x="24" y="364" font-size="15" font-weight="bold">Cómputo de entrenamiento en InstructGPT (2022)</text>
+<rect x="24" y="376" width="815.4" height="40" fill="#D8D2CE"/>
+<rect x="839.4" y="376" width="16.6" height="40" fill="#DA1B2E"/>
+<text x="40" y="403" font-size="20" font-weight="bold" fill="#1F1E1E">~98% pre-training</text>
+<text x="856" y="442" font-size="20" font-weight="bold" fill="#DA1B2E" text-anchor="end">~2% post-training</text>
+</svg>
