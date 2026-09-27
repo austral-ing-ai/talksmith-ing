@@ -1,0 +1,14 @@
+url: "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2"
+fetched_at: "2026-09-27T20:48:45Z"
+title: "nvidia/NVIDIA-Nemotron-Nano-9B-v2 · Hugging Face"
+http_status: 200
+byte_size: 392568
+assets:
+  - { src: "/front/assets/huggingface_logo-noborder.svg", absolute: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg", saved_as: "huggingface_logo-noborder.svg", alt: "Hugging Face's logo" }
+  - { src: "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png", absolute: "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png", saved_as: "Vs5FPVCH-VZBipV3qKTuy.png", alt: "" }
+  - { src: "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png", absolute: "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png", saved_as: "Vs5FPVCH-VZBipV3qKTuy.png", alt: "", deduped: True }
+  - { src: "/nvidia/NVIDIA-Nemotron-Nano-9B-v2/resolve/main/accuracy_chart.png", absolute: "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2/resolve/main/accuracy_chart.png", saved_as: "accuracy_chart.png", alt: "" }
+  - { src: "/nvidia/NVIDIA-Nemotron-Nano-9B-v2/resolve/main/acc-vs-budget.png", absolute: "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2/resolve/main/acc-vs-budget.png", saved_as: "acc-vs-budget.png", alt: "" }
+  - { src: "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png", absolute: "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png", saved_as: "Vs5FPVCH-VZBipV3qKTuy.png", alt: "", deduped: True }
+  - { src: "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png", absolute: "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png", saved_as: "Vs5FPVCH-VZBipV3qKTuy.png", alt: "", deduped: True }
+  - { src: "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png", absolute: "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png", saved_as: "Vs5FPVCH-VZBipV3qKTuy.png", alt: "", deduped: True }

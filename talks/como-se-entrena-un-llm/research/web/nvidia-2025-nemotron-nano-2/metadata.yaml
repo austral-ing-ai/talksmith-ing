@@ -1,0 +1,10 @@
+url: "https://arxiv.org/html/2508.14444"
+fetched_at: "2026-09-27T20:48:41Z"
+title: "NVIDIA Nemotron Nano 2: An Accurate and Efficient Hybrid Mamba-Transformer Reasoning Model"
+http_status: 200
+byte_size: 395692
+assets:
+  - { src: "/static/base/1.0.1/images/icons/smileybones-small.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/icons/smileybones-small.svg", saved_as: "smileybones-small.svg", alt: "" }
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "arXiv logo" }
+  - { src: "2508.14444v4/figures/badbudget.png", absolute: "https://arxiv.org/html/2508.14444v4/figures/badbudget.png", saved_as: "badbudget.png", alt: "Refer to caption" }
+  - { src: "2508.14444v4/figures/budget.png", absolute: "https://arxiv.org/html/2508.14444v4/figures/budget.png", saved_as: "budget.png", alt: "Refer to caption" }

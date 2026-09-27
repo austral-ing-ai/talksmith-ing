@@ -11,7 +11,7 @@
 
 # Agenda
 
-**Narrative arc:** La introducción abre con una cifra de OpenAI (2022): un modelo 100 veces más chico gana por su post-training, que usó menos del 2% del cómputo. Después viene el mapa de las tres etapas y una sección por etapa; cada una abre con qué datos entran, qué se optimiza y qué modelo sale. Pre-training (1): la pérdida del siguiente token de la clase 8 aplicada a la web, de dónde salen las cifras de Common Crawl, cómo Google lo depuró para armar C4, la regla de Chinchilla, cuánto más pueden crecer los datasets, qué hace el modelo base y los problemas que arrastra. SFT (2): el mismo GPT-3 antes y después del post-training, demostraciones escritas por personas y un dataset real. Reinforcement Learning from Human Feedback (3): comparaciones, el reward model y cómo se arma su batch de pares, y PPO. Razonamiento con RL (4): el RL con recompensas verificables que entrena el razonamiento, sus niveles de esfuerzo y el interruptor de Qwen3. Herramientas (5): las piezas de una plataforma que expone un LLM por API y el circuito entre el modelo y el agente, y tres herramientas vistas con la misma pregunta (qué genera el modelo, quién ejecuta la llamada, con qué datos se lo entrenó): la calculadora con GSM8K, la búsqueda web que ejecuta el proveedor y cómo se entrena a buscar, y MCP como interfaz para cualquier herramienta. Cuando el modelo inventa (6): por qué un modelo inventa en vez de decir "no sé", por qué las evaluaciones lo premian y qué puede hacer el post-training. El cierre pasa al lado del equipo de producto (7): dónde entra el fine-tuning en el mapa de tres etapas, cuándo conviene frente a un prompt o RAG, cuánta memoria pide y cuánto la bajan LoRA y QLoRA, qué modelos se pueden ajustar hoy en la nube, cómo se hace local con modelos abiertos y qué datos hacen falta.
+**Narrative arc:** La introducción abre con una cifra de OpenAI (2022): un modelo 100 veces más chico gana por su post-training, que usó menos del 2% del cómputo. Después viene el mapa de las tres etapas y una sección por etapa; cada una abre con qué datos entran, qué se optimiza y qué modelo sale. Pre-training (1): la pérdida del siguiente token de la clase 8 aplicada a la web, de dónde salen las cifras de Common Crawl, cómo Google lo depuró para armar C4, la regla de Chinchilla, cuánto más pueden crecer los datasets, qué hace el modelo base y los problemas que arrastra. SFT (2): el mismo GPT-3 antes y después del post-training, demostraciones escritas por personas y un dataset real. Reinforcement Learning from Human Feedback (3): comparaciones, el reward model y cómo se arma su batch de pares, y PPO. Razonamiento con RL (4): el RL con recompensas verificables que entrena el razonamiento, y cómo modelos abiertos aprenden a controlar cuánto piensan (Qwen3, Nemotron Nano 2 y L1). Herramientas (5): las piezas de una plataforma que expone un LLM por API y el circuito entre el modelo y el agente, y tres herramientas vistas con la misma pregunta (qué genera el modelo, quién ejecuta la llamada, con qué datos se lo entrenó): la calculadora con GSM8K, la búsqueda web que ejecuta el proveedor y cómo se entrena a buscar, y MCP como interfaz para cualquier herramienta. Cuando el modelo inventa (6): por qué un modelo inventa en vez de decir "no sé", por qué las evaluaciones lo premian y qué puede hacer el post-training. El cierre pasa al lado del equipo de producto (7): dónde entra el fine-tuning en el mapa de tres etapas, cuándo conviene frente a un prompt o RAG, cuánta memoria pide y cuánto la bajan LoRA y QLoRA, qué modelos se pueden ajustar hoy en la nube, cómo se hace local con modelos abiertos y qué datos hacen falta.
 
 **Sections (in delivery order):**
 
@@ -248,7 +248,7 @@ labels: tamaños de entrada y salida abajo
 
 ### Speaker notes
 
-Responde "¿por qué funcionan los filtros?": cada regla tiene un motivo concreto en el paper, y la evidencia es experimental. El mismo modelo, entrenado con el texto filtrado y sin filtrar, rinde peor sin filtrar en todas las tareas. Un trabajo posterior va en la misma línea. RefinedWeb, que es Common Crawl filtrado y deduplicado, supera a colecciones curadas a mano. Ojo con dos detalles: algunas reglas sacan líneas y otras páginas enteras, y los filtros funcionan en promedio pero tienen costos (la lista negra, en 1.8). Tiempo objetivo: ~2 min.
+Responde "¿por qué funcionan los filtros?": cada regla tiene un motivo concreto en el paper, y la evidencia es experimental. El mismo modelo, entrenado con el texto filtrado y sin filtrar, rinde peor sin filtrar en todas las tareas. Un trabajo posterior va en la misma línea. RefinedWeb, que es Common Crawl filtrado y deduplicado, supera a colecciones curadas a mano. Ojo con dos detalles: algunas reglas sacan líneas y otras páginas enteras, y los filtros funcionan en promedio pero tienen costos (la lista negra, en 1.7). Tiempo objetivo: ~2 min.
 
 ### Presenter feedback
 - [closed] 2026-09-26 — "Por que los fintrols fincional ?"
@@ -515,7 +515,7 @@ Respecto de la etapa anterior cambian los datos, que son pocos, elegidos y escri
 
 ### Speaker notes
 
-Responde la pregunta de las notas "¿se puede encontrar un ejemplo de esto?". La figura es del paper de OpenAI que entrenó este modelo, y los prompts están elegidos a propósito; las salidas no. La explicación del modelo con post-training sobre el código tampoco es del todo correcta, según el propio pie de la figura. El post-training cambia el formato de la respuesta, pero no garantiza que sea correcta. Eso vuelve en la sección 7. Tiempo objetivo: ~1,5 min.
+Responde la pregunta de las notas "¿se puede encontrar un ejemplo de esto?". La figura es del paper de OpenAI que entrenó este modelo, y los prompts están elegidos a propósito; las salidas no. La explicación del modelo con post-training sobre el código tampoco es del todo correcta, según el propio pie de la figura. El post-training cambia el formato de la respuesta, pero no garantiza que sea correcta. Eso vuelve en la sección 6. Tiempo objetivo: ~1,5 min.
 
 ### Presenter feedback
 
@@ -907,7 +907,7 @@ La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen)
 
 # 4. Razonamiento con RL
 
-**Goal of this section:** Mostrar cómo se entrena a un modelo para razonar: RL con recompensas verificables (DeepSeek-R1), niveles de esfuerzo (gpt-oss) y cómo Qwen3 aprende a pensar o no pensar según un flag. Seis láminas: abre con el proceso y los datos del RL con verificador, y con ejemplos de sus prompts.
+**Goal of this section:** Mostrar cómo se entrena a un modelo para razonar: RL con recompensas verificables (DeepSeek-R1), con ejemplos de sus prompts, y cómo tres trabajos abiertos le enseñan a controlar cuánto piensa: el interruptor /think y /no_think de Qwen3, el presupuesto entrenado con razonamientos cortados de Nemotron Nano 2 y el largo exacto con RL de L1. Siete láminas: abre con el proceso y los datos del RL con verificador.
 
 **Presenter feedback:**
 
@@ -1017,40 +1017,13 @@ Cuatro ejemplos, uno por cada tipo de dato del diagrama anterior. Lo que tienen 
 
 ### Speaker notes
 
-Recompensa: exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`). GRPO (Group Relative Policy Optimization) muestrea 16 respuestas por problema y compara cada una con el promedio de su grupo, como en el diagrama de la 4.1. Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT y arranca el RL directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque el modelo puede engañarlo (reward hacking). Una regla que compara con la respuesta correcta no se deja engañar. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para "1 + 1" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa, que es lo que agrega effort. Tiempo objetivo: ~2 min.
+Recompensa: exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`). GRPO (Group Relative Policy Optimization) muestrea 16 respuestas por problema y compara cada una con el promedio de su grupo, como en el diagrama de la 4.1. Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT y arranca el RL directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque el modelo puede engañarlo (reward hacking). Una regla que compara con la respuesta correcta no se deja engañar. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para "1 + 1" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa (el effort). Las láminas que siguen muestran cómo lo entrenan modelos abiertos. Tiempo objetivo: ~2 min.
 
 ### Presenter feedback
 
 ---
 
-## 4. Effort: low, medium, high
-
-<!-- template: content-image -->
-
-### Content
-
-**OpenAI entrena a gpt-oss para respetar tres niveles de razonamiento que se eligen con la línea `reasoning: low` (o `medium`, `high`) en el system prompt. Un nivel más alto alarga el razonamiento y sube la exactitud.**
-
-![Exactitud contra largo medio de razonamiento y respuesta para los niveles low, medium y high de gpt-oss (OpenAI, 2025, fig. 3)](research/corpus/openai-2025-gpt-oss-model-card.pdf/images/fig-03-p008.png)
-
-- **Mismos pesos.** Low, medium y high son el mismo modelo; cambia una línea del system prompt.
-- **AIME 2025, gpt-oss-120b con herramientas.** Low 72,9%, medium 91,6%, high 97,9%.
-- **Cada nivel multiplica el largo** del razonamiento por 3 a 5 veces.
-- **Fuente.** [OpenAI, 2025](https://arxiv.org/abs/2508.10925)
-
-### Sources
-
-- `openai-2025-gpt-oss-model-card.pdf.md` (§2.5.2, verbatim): "We train the models to support three reasoning levels: low, medium, and high. These levels are configured in the system prompt by inserting keywords such as "Reasoning: low". Increasing the reasoning level will cause the model's average CoT length to increase."; Figura 17 (system message con `reasoning: low`); Figura 3, que grafica las filas "con herramientas" de la Tabla 3; Tabla 3 (AIME 2025 con herramientas, 120b: 72,9 / 91,6 / 97,9; sin herramientas: 50,4 / 80,0 / 92,5). Lectura de la Figura 3 en el registro: cada nivel multiplica el largo por ~3–5. El registro marca que la ficha no describe cómo se entrenan los niveles y que el efecto no es monótono en todas las tareas.
-
-### Speaker notes
-
-Es el concepto de effort low, medium, high de las notas. La ficha del modelo dice tres cosas: los niveles se entrenaron, se eligen en el system prompt y más nivel da razonamientos más largos. No describe cómo se entrenaron, ni con qué datos, recompensa por largo o presupuesto por nivel. No hay que atribuirle un método a OpenAI; las dos láminas siguientes muestran uno documentado, el de Qwen3. Sin herramientas los números bajan (50,4 / 80,0 / 92,5) pero el escalón entre niveles se mantiene. Tiempo objetivo: ~2 min.
-
-### Presenter feedback
-
----
-
-## 5. Qwen3: cuatro pasos de post-training
+## 4. Qwen3: cuatro pasos de post-training
 
 ### Content
 
@@ -1076,32 +1049,41 @@ labels: pasos 1 a 4
 ### Sources
 
 - `qwen-2025-qwen3-technical-report.pdf.md`: Figura 1 y §4.1–4.4 (cuatro etapas; el paper llama "cold start" al SFT inicial con cadenas de razonamiento largas; 3.995 pares problema-verificador en la etapa 2); §4.4 Format Following: "it should respond appropriately to the /think and /no_think flags"; Tabla 22 (ThinkFollow 88,7 → 98,9, interno); §4.3 (verbatim): "we manually halt the thinking process and insert the stop-thinking instruction: "Considering the limited time by the user, I have to give the solution based on the thinking directly now.\n</think>.\n\n""; "this ability is not explicitly trained but emerges naturally as a result of applying Thinking Mode Fusion"; Figura 2 (`qwen-2025-qwen3-technical-report.pdf/images/fig-02-p020.png`): AIME'25 ≈30,6 a 1K tokens, ≈81,7 a 32K, sin razonamiento ≈24,7.
-- `openai-2025-gpt-oss-model-card.pdf.md`: tres niveles low/medium/high (para la comparación de las notas).
 
 ### Speaker notes
 
-Los pasos 1 y 2 siguen la receta de DeepSeek-R1. La lámina siguiente muestra los datos del paso 3. El presupuesto es un corte en inferencia. Después de la fusión, el modelo sabe responder con razonamiento completo o sin él, y responder con uno a medias le sale solo. En AIME'25, sin razonamiento da ~25%, con 1.000 tokens ~31% y con 32.000 ~82% (Figura 2 del paper). La comparación con gpt-oss es nuestra: Qwen3 tiene un interruptor y un presupuesto en tokens en lugar de niveles low/medium/high. Los autores reconocen que, después de los pasos 3 y 4, el modo con razonamiento pierde algo en las tareas más difíciles. Tiempo objetivo: ~2 min.
+Los pasos 1 y 2 siguen la receta de DeepSeek-R1. La lámina siguiente muestra los datos del paso 3. El presupuesto es un corte en inferencia. Después de la fusión, el modelo sabe responder con razonamiento completo o sin él, y responder con uno a medias le sale solo. En AIME'25, sin razonamiento da ~25%, con 1.000 tokens ~31% y con 32.000 ~82% (Figura 2 del paper). Los autores reconocen que, después de los pasos 3 y 4, el modo con razonamiento pierde algo en las tareas más difíciles. Tiempo objetivo: ~2 min.
 
 ### Presenter feedback
 
 ---
 
-## 6. Qwen3: SFT con /think y /no_think
+## 5. Qwen3: SFT con /think y /no_think
 
 ### Content
 
 **En el paso 3, Qwen3 entrena un solo modelo con dos modos. El SFT mezcla ejemplos con razonamiento y ejemplos con el bloque de pensamiento vacío, marcados con un flag al final del pedido.**
 
 ```text
-Modo con razonamiento:              Modo sin razonamiento:
-<|im_start|>user                    <|im_start|>user
-{query} /think<|im_end|>            {query} /no_think<|im_end|>
-<|im_start|>assistant               <|im_start|>assistant
-<think>                             <think>
+Modo con razonamiento:
+<|im_start|>user
+{query} /think<|im_end|>
+<|im_start|>assistant
+<think>
 {thinking_content}
-</think>                            </think>
+</think>
 
-{response}<|im_end|>                {response}<|im_end|>
+{response}<|im_end|>
+
+Modo sin razonamiento:
+<|im_start|>user
+{query} /no_think<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+{response}<|im_end|>
 ```
 
 - **Por defecto piensa.** Algunos ejemplos con razonamiento no traen `/think`.
@@ -1115,7 +1097,64 @@ Modo con razonamiento:              Modo sin razonamiento:
 
 ### Speaker notes
 
-Es un dataset de SFT como los de la sección 2, con una convención de formato. El modo sin razonamiento deja el bloque `<think>` vacío para que los dos formatos tengan la misma forma. Los ejemplos con razonamiento salen del propio modelo después del RL de razonamiento (rejection sampling), para no empeorarlo. Tiempo objetivo: ~1,5 min.
+Es un dataset de SFT como los de la sección 2, con una convención de formato. El modo sin razonamiento deja el bloque `<think>` vacío para que los dos formatos tengan la misma forma. Los ejemplos con razonamiento salen del propio modelo después del RL de razonamiento (rejection sampling), para no empeorarlo. Qwen3 no entrena el presupuesto; Nemotron Nano 2, en la lámina siguiente, sí. Tiempo objetivo: ~1,5 min.
+
+### Presenter feedback
+
+---
+
+## 6. Presupuesto de razonamiento: Nemotron Nano 2
+
+### Content
+
+**Nemotron Nano 2 (NVIDIA) deja elegir cuántos tokens piensa. Al llegar al límite, el sistema cierra el razonamiento con `</think>`, y para que el modelo sepa responder desde ahí lo entrenan con razonamientos cortados.**
+
+- **Modo sin razonamiento.** En el primer SFT, cerca del 10% de los prompts va con la respuesta sin razonamiento. Así aprende el modo sin razonamiento, el que activa `/no_think`.
+- **Razonamientos cortados.** En el tercer SFT agregan ejemplos con el razonamiento cortado a 1.000–2.000 tokens y la respuesta final intacta.
+- **En inferencia.** Con `max_thinking_tokens`, el sistema cuenta los tokens de razonamiento e inserta `</think>` en el siguiente salto de línea, o a más tardar 500 tokens después.
+- **Sin ese entrenamiento.** El modelo alargaba la respuesta final para compensar y a veces seguía pensando después del `</think>`. Con los ejemplos cortados, los dos problemas desaparecen.
+- **Fuente.** [NVIDIA, 2025](https://arxiv.org/abs/2508.14444) · [NVIDIA, ficha de Nemotron Nano 9B v2](https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2)
+
+### Sources
+
+- `nvidia-2025-nemotron-nano-2.web.md` (§3.2 Post Training, verbatim): Stage 1 SFT "augmented with a subsample of roughly 10% of prompts paired with outputs stripped of reasoning traces. This exposes the model to "empty" traces, enabling it to produce direct answers in a reasoning-off mode."; Stage 3 SFT "augmented examples across domains where reasoning traces were abruptly truncated to 1–2k tokens while preserving the final answer. This truncation strategy improved robustness under varying inference-time thinking budgets."; RLHF "we generate responses both with and without thinking traces". §3.4 Budget Control Evaluation: "Once the budget is reached, the inference setup attempts to insert a closing `</think>` tag. Rather than inserting it immediately, we let the model finish its current sentence and place the tag at the next newline. In extreme cases where no newline appears, the system enforces closure within 500 tokens past the budget"; fallas: "the model uses more tokens in the final answer to "compensate" for restrictions in the thinking traces. Without truncated training examples in the SFT stage, this compensation effect is prevalent … With truncated training, however, the effect is absent"; "the model can remain in "thinking mode" even after the closing tag `</think>` is inserted … With truncation training, however, the model consistently produces well-formed responses" (Figura 5).
+- `nvidia-nemotron-nano-9b-v2-card.web.md`: `/think` o `/no_think` en el system prompt ("Case 2: `/no_think` is provided, reasoning will be set to `False`"); "`max_thinking_tokens`: This is a threshold that will attempt to end the reasoning trace at the next newline encountered in the reasoning trace. If no newline is encountered within 500 tokens, it will abruptly end the reasoning trace at `max_thinking_tokens + 500`."
+- No documentado: el formato exacto de los ejemplos cortados.
+- Lámina agregada por pedido del presentador (2026-09-27): "No miremos GPT, pero podemos buscar cómo otros modelos open source lo lograron." Otros modelos revisados: Llama-Nemotron (interruptor "detailed thinking on/off", muy parecido a Qwen3), SmolLM3 (receta abierta, solo interruptor), Seed-OSS (presupuesto sin entrenamiento publicado).
+
+### Speaker notes
+
+Qwen3 corta el presupuesto desde afuera y no lo entrena. Nemotron Nano 2, de NVIDIA, usa el mismo corte en inferencia, pero además entrena al modelo para que el corte no lo desordene. Dos ingredientes en el SFT: un 10% de ejemplos sin razonamiento, para el modo /no_think, y ejemplos con el razonamiento cortado a mitad de camino pero con la respuesta final completa. Así el modelo vio, durante el entrenamiento, qué hacer cuando le cierran el razonamiento antes de tiempo. El paper muestra qué pasaba sin esos ejemplos: el modelo escribía una respuesta final más larga para compensar lo que no pudo pensar, y a veces seguía pensando después del cierre forzado. Con los ejemplos cortados, las dos cosas desaparecen. El paper no muestra el formato exacto de esos ejemplos. Tiempo objetivo: ~2 min.
+
+### Presenter feedback
+
+---
+
+## 7. Largo exacto: L1 lo entrena con RL
+
+### Content
+
+**Para que el modelo piense un largo exacto, L1 entrena con la misma pregunta y distintas instrucciones de largo. La recompensa premia acertar y respetar el largo pedido.**
+
+| Instrucción agregada | Largo del razonamiento | ¿Correcta? | Recompensa |
+|---|---|---|---|
+| "… Think for 512 tokens." | 520 tokens | Sí | 1 − 0,0003 × 8 = 0,998 |
+| "… Think for 512 tokens." | 2.000 tokens | Sí | 1 − 0,0003 × 1.488 = 0,554 |
+| "… Think for 3000 tokens." | 2.950 tokens | Sí | 1 − 0,0003 × 50 = 0,985 |
+| "… Think for 3000 tokens." | 600 tokens | No | 0 − 0,0003 × 2.400 = −0,72 |
+
+- **La recompensa.** acierto (1 o 0) − 0,0003 × |largo pedido − largo real|. Pensar de más o de menos resta, aunque la respuesta sea correcta.
+- **Fuente.** [Aggarwal y Welleck, 2025](https://arxiv.org/abs/2503.04697)
+
+### Sources
+
+- `aggarwal-2025-l1-lcpo.web.md` (verbatim): "each prompt x_i is augmented by appending a target length instruction. In particular, we form x_i^new = Concat(x_i, "Think for n_gold,i tokens."), where n_gold,i is sampled uniformly"; "we set n_min = 100 and n_max = 4000. The balancing parameter α in Equation 1 is fixed at 0.0003"; recompensa LCPO-Exact r(y, y_gold, n_gold) = I(y = y_gold) − α·|n_gold − n_y|; "In our experiments we adopt GRPO"; "We conduct training on the DeepScaleR-Preview-Dataset …, a mathematics dataset consisting of 40K question-answer pairs drawn from AIME, AMC, Omni-Math and STILL"; modelo de 1,5B basado en DeepSeek-R1-Distill-Qwen-1.5B (DeepScaleR-1.5B-Preview). La variante LCPO-Max pide un largo máximo en lugar de exacto.
+- Tabla armada para la clase con la fórmula del paper y α = 0,0003: las cuatro respuestas y sus largos son ilustrativos. Cuentas: |512 − 520| = 8 → 1 − 0,0024 = 0,9976 ≈ 0,998; |512 − 2.000| = 1.488 → 1 − 0,4464 = 0,554; |3.000 − 2.950| = 50 → 1 − 0,015 = 0,985; |3.000 − 600| = 2.400 → 0 − 0,72 = −0,72.
+- Lámina agregada por pedido del presentador (2026-09-27; retitulada y sin gpt-oss después de "No miremos GPT"): "¿Effort low, medium, high se entrena con prompts distintos? Es decir, si ponés high, este es el prompt para la pregunta, etc." y "Si eso es así, agregar otro slide que muestre esto para ser claro en el entrenamiento."
+
+### Speaker notes
+
+Nano 2 corta el razonamiento desde afuera y el modelo aprende a seguir desde el corte. L1, de Aggarwal y Welleck (2025), va un paso más: el modelo aprende a pensar la cantidad de tokens que le piden. Toman 40.000 problemas de matemática con su respuesta, le agregan a cada uno la instrucción "Think for N tokens." con un N al azar entre 100 y 4.000, y entrenan con RL (GRPO) un modelo de 1.500 millones de parámetros. La recompensa tiene dos partes: 1 si la respuesta es correcta, menos una penalización proporcional a cuánto se alejó del largo pedido. Leer la tabla: la misma pregunta con 512 tokens pedidos; si el modelo piensa 2.000, acierta pero pierde casi la mitad de la recompensa. Con 3.000 pedidos y solo 600 escritos, además falla, y la recompensa queda negativa. El dato para remarcar: pedírselo a un modelo sin entrenar no sirve, porque piensa cerca de 6.000 tokens pida lo que pida, y un SFT con ejemplos reetiquetados tampoco alcanza. El control aparece con el RL. Es el mismo RL con verificador de la 4.1, con un término más en la recompensa. Tiempo objetivo: ~2 min.
 
 ### Presenter feedback
 
@@ -1905,7 +1944,7 @@ La analogía del paper: los modelos están siempre en modo examen, y en un exame
 
 ### Speaker notes
 
-Contra el modelo con solo SFT, la comparación sale al revés: Chip Huyen lee en el paper de OpenAI (2022) que RLHF empeoró la alucinación, aunque los anotadores igual lo prefieren. El modelo con post-training también aprendió a cubrirse con respuestas largas y vagas (el cañón y la calabaza, Figura 9). Abstenerse de más tampoco sirve. En TruthfulQA, GPT-3 con un prompt de ayuda responde "no tengo comentarios" al 49% de las preguntas. La búsqueda de la sección 7 ayuda, pero no alcanza. Si falla, la calificación binaria sigue premiando adivinar (Kalai et al.). Del lado del producto quedan un prompt, RAG o un fine-tuning; la sección 7 arranca por esa decisión. Tiempo objetivo: ~1,5 min.
+Contra el modelo con solo SFT, la comparación sale al revés: Chip Huyen lee en el paper de OpenAI (2022) que RLHF empeoró la alucinación, aunque los anotadores igual lo prefieren. El modelo con post-training también aprendió a cubrirse con respuestas largas y vagas (el cañón y la calabaza, Figura 9). Abstenerse de más tampoco sirve. En TruthfulQA, GPT-3 con un prompt de ayuda responde "no tengo comentarios" al 49% de las preguntas. La búsqueda de la sección 5 ayuda, pero no alcanza. Si falla, la calificación binaria sigue premiando adivinar (Kalai et al.). Del lado del producto quedan un prompt, RAG o un fine-tuning; la sección 7 arranca por esa decisión. Tiempo objetivo: ~1,5 min.
 
 ### Presenter feedback
 
@@ -1990,7 +2029,7 @@ emphasize: la caja de abajo (el fine-tuning del equipo) y su parecido con SFT y 
 labels: lo hace el proveedor, lo hace el equipo, datos, método, técnica
 -->
 
-- **Lo que cambia.** Los datos son del equipo y son pocos. Los métodos son los mismos de las secciones 2 y 3.
+- **Lo que cambia.** Los datos son del equipo y son pocos. Los métodos son los mismos de las secciones 2, 3 y 4.
 - **Fuente.** [OpenAI, docs de optimización de modelos](https://developers.openai.com/api/docs/guides/model-optimization) · [Microsoft, docs de fine-tuning en Azure Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning)
 
 ### Sources
@@ -2003,7 +2042,7 @@ labels: lo hace el proveedor, lo hace el equipo, datos, método, técnica
 
 ### Speaker notes
 
-Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arriba las paga el proveedor; la de abajo, el equipo. En esa caja el equipo hace lo mismo que ya vieron: SFT con ejemplos propios (sección 2) y, a veces, preferencias o refuerzo (secciones 3 y 4). RFT es el nombre que usan OpenAI y Azure para el refuerzo con un evaluador, parecido al RL con recompensas verificables de la sección 3. Unsloth recomienda partir de un modelo instruct, que ya sabe conversar y pide menos datos. Tiempo objetivo: ~1,5 min.
+Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arriba las paga el proveedor; la de abajo, el equipo. En esa caja el equipo hace lo mismo que ya vieron: SFT con ejemplos propios (sección 2) y, a veces, preferencias o refuerzo (secciones 3 y 4). RFT es el nombre que usan OpenAI y Azure para el refuerzo con un evaluador, parecido al RL con recompensas verificables de la sección 4. Unsloth recomienda partir de un modelo instruct, que ya sabe conversar y pide menos datos. Tiempo objetivo: ~1,5 min.
 
 ### Presenter feedback
 
@@ -2121,7 +2160,7 @@ Conectar con la cuenta de memoria de la lámina 7.3: un 13B con ajuste completo 
 |---|---|---|
 | OpenAI (cerrada a usuarios nuevos) | gpt-4.1, gpt-4.1-mini y gpt-4.1-nano; o4-mini | SFT y DPO; RFT solo en o4-mini |
 | Azure Foundry | Los de OpenAI más gpt-4o, gpt-4o-mini y gpt-5; Llama, Qwen, Ministral y gpt-oss | SFT, DPO o RFT según el modelo, con LoRA |
-| Google Cloud: Gemini | Gemini 3.6 Flash, 3.2 Flash-Lite y la familia 2.5 | SFT con adaptadores |
+| Google Cloud: Gemini | Gemini 3.5 Flash, 3.1 Flash-Lite y la familia 2.5 | SFT con adaptadores |
 | Google Cloud: modelos abiertos | Gemma 3 y 4, Qwen 3, Llama 3 y 4, GLM | SFT completo o LoRA según el modelo; destilación |
 
 - **Fuente.** [OpenAI, docs de optimización de modelos](https://developers.openai.com/api/docs/guides/model-optimization) · [Microsoft, docs de fine-tuning en Azure Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning) · [Google Cloud, docs de tuning de Gemini](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/tuning/supervised-tuning)
@@ -2235,7 +2274,7 @@ La frase de Chip Huyen del capítulo 7: "finetuning is easy, but getting data fo
 | Sigue el formato y el tono pedidos | SFT | Demostraciones de calidad |
 | Prefiere unas respuestas a otras | RLHF o DPO | Datos de comparación |
 | Llama herramientas: calcula, busca, usa MCP | SFT con las llamadas en el texto; preferencias y RL para encadenarlas en tareas de varios pasos | Definiciones claras de cada herramienta (MCP) y un agente que las ejecute |
-| Piensa más o menos según el effort | RL con verificadores; SFT y RL para cambiar de modo (el presupuesto se corta en inferencia) | Elegir el nivel o el presupuesto |
+| Piensa más o menos según el effort | RL con verificadores; SFT y RL para cambiar de modo; razonamientos cortados o RL con largo pedido para respetar un presupuesto | Elegir el modo o el presupuesto |
 | Inventa en vez de decir "no sé" | Pre-training y evaluaciones binarias | Umbrales de confianza; post-training que castiga inventar; RAG ayuda pero no alcanza |
 | No responde en la forma que necesita el producto | Todo lo anterior | Prompt y RAG; si no alcanza, fine-tuning con LoRA o QLoRA, en la nube (Azure, Google) o local |
 
@@ -2305,6 +2344,71 @@ Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su secci
 - **Quiz de repaso.** La Clase 8 abre con un quiz; este borrador no. Decidir si se agrega.
 
 # Cut material
+
+- **Effort: low, medium, high y Effort: el system prompt (ex 4.4 y 4.5, gpt-oss), 2026-09-27.** Cortadas por pedido del presentador: "Sacá gpt-oss" (antes: "No miremos GPT, pero podemos buscar cómo otros modelos open source lo lograron"). OpenAI no publica cómo entrena los niveles; la sección muestra en su lugar Qwen3, Nemotron Nano 2 y L1. Texto completo:
+
+    ## 4. Effort: low, medium, high
+
+    <!-- template: content-image -->
+
+    ### Content
+
+    **OpenAI entrena a gpt-oss para respetar tres niveles de razonamiento que se eligen con la línea `reasoning: low` (o `medium`, `high`) en el system prompt. Un nivel más alto alarga el razonamiento y sube la exactitud.**
+
+    ![Exactitud contra largo medio de razonamiento y respuesta para los niveles low, medium y high de gpt-oss (OpenAI, 2025, fig. 3)](research/corpus/openai-2025-gpt-oss-model-card.pdf/images/fig-03-p008.png)
+
+    - **AIME 2025, gpt-oss-120b con herramientas.** Low 72,9%, medium 91,6%, high 97,9%.
+    - **Cada nivel multiplica el largo** del razonamiento por 3 a 5 veces.
+    - **Fuente.** [OpenAI, 2025](https://arxiv.org/abs/2508.10925)
+
+    ### Sources
+
+    - `openai-2025-gpt-oss-model-card.pdf.md` (§2.5.2, verbatim): "We train the models to support three reasoning levels: low, medium, and high. These levels are configured in the system prompt by inserting keywords such as "Reasoning: low". Increasing the reasoning level will cause the model's average CoT length to increase."; Figura 17 (system message con `reasoning: low`); Figura 3, que grafica las filas "con herramientas" de la Tabla 3; Tabla 3 (AIME 2025 con herramientas, 120b: 72,9 / 91,6 / 97,9; sin herramientas: 50,4 / 80,0 / 92,5). Lectura de la Figura 3 en el registro: cada nivel multiplica el largo por ~3–5. El registro marca que la ficha no describe cómo se entrenan los niveles y que el efecto no es monótono en todas las tareas.
+
+    ### Speaker notes
+
+    Es el concepto de effort low, medium, high de las notas. La ficha del modelo dice tres cosas: los niveles se entrenaron, se eligen en el system prompt y más nivel da razonamientos más largos. No describe cómo se entrenaron, ni con qué datos, recompensa por largo o presupuesto por nivel. No hay que atribuirle un método a OpenAI; después del ejemplo del system prompt, la 4.6 muestra un método publicado (L1) y las dos láminas de Qwen3, otro. Sin herramientas los números bajan (50,4 / 80,0 / 92,5) pero el escalón entre niveles se mantiene. Tiempo objetivo: ~2 min.
+
+    ### Presenter feedback
+
+    ## 5. Effort: el system prompt
+
+    <!-- design: split-left -->
+
+    ### Content
+
+    **Low, medium y high son el mismo modelo: cambia una línea del system prompt. Este es el mensaje de entrada que publica OpenAI para gpt-oss, con el nivel en `low`.**
+
+    ```text
+    <|start|>system<|message|>You are ChatGPT, a large language model trained by OpenAI.
+    Knowledge cutoff: 2024-06
+    Current date: 2025-06-28
+
+    reasoning: low
+
+    # Valid channels: analysis, commentary, final. Channel must be included for every message.
+    Calls to these tools must go to the commentary channel: 'functions'.<|end|>
+    <|start|>developer<|message|>… (instrucciones y herramientas)<|end|>
+    <|start|>user<|message|>What is the weather like in SF?<|end|>
+    <|start|>assistant
+    ```
+
+    - **La línea que cambia.** `reasoning: low`, `reasoning: medium` o `reasoning: high`. El resto del prompt y los pesos quedan iguales.
+    - **Dónde va.** En el mensaje `system` del formato harmony, junto a la fecha de corte, la fecha actual y los canales válidos.
+    - **Qué cambia en la salida.** El razonamiento sale por el canal `analysis` y la respuesta por `final`. Con un nivel más alto, el modelo escribe más en `analysis`.
+    - **Fuente.** [OpenAI, 2025](https://arxiv.org/abs/2508.10925)
+
+    ### Sources
+
+    - `openai-2025-gpt-oss-model-card.pdf.md` (Figura 17, transcripta de la imagen, verbatim salvo el mensaje developer): "<|start|>system<|message|>You are ChatGPT, a large language model trained by OpenAI. Knowledge cutoff: 2024-06 Current date: 2025-06-28 reasoning: low # Valid channels: analysis, commentary, final. Channel must be included for every message. Calls to these tools must go to the commentary channel: 'functions'.<|end|>"; el mensaje developer original trae "Use a friendly tone." y la herramienta `get_current_weather`, acá resumido como "… (instrucciones y herramientas)"; "<|start|>user<|message|>What is the weather like in SF?<|end|> <|start|>assistant". Pie: "Model input in the harmony format specifying a system message with reasoning set to low, a developer message specifying one available function tool for the model, and a user message asking for the weather in SF." §2.5.2 (verbatim): "These levels are configured in the system prompt by inserting keywords such as "Reasoning: low". Increasing the reasoning level will cause the model's average CoT length to increase." Canales: `analysis` (CoT), `commentary` (llamadas a herramientas), `final` (respuesta al usuario).
+    - [verified] en el registro: el texto de §2.5.2 escribe "Reasoning: low" y la Figura 17 `reasoning: low`, en minúscula; la ficha no dice si importa la mayúscula. La lámina copia la figura.
+    - Lámina agregada por pedido del presentador (2026-09-27): "Low, medium y high son el mismo modelo; cambia una línea del system prompt. Mostrar ejemplo en otro slide del system prompt." La viñeta "Mismos pesos" de la lámina anterior pasó al lead de esta.
+
+    ### Speaker notes
+
+    El ejemplo es el de la ficha del modelo, en el formato harmony de OpenAI. Leer de arriba abajo: el mensaje system trae la identidad, la fecha de corte, la fecha de hoy, el nivel de razonamiento y los canales; después vienen el mensaje developer (acá resumido), la pregunta del usuario y el turno del asistente, que el modelo completa. Para pasar a high se cambia una sola palabra; no hay otro modelo ni otro endpoint. El nivel cambia cuánto escribe el modelo en el canal analysis, que es su razonamiento; la respuesta al usuario sale por final. La ficha escribe el nivel con mayúscula en el texto y en minúscula en la figura; copiamos la figura. Tiempo objetivo: ~1,5 min.
+
+    ### Presenter feedback
 
 - **DPO: los dos pasos en uno (ex 3.7), 2026-09-27.** Cortada por pedido del presentador ("¿Es necesario hablar de DPO?" → opción 1: sacarla y dejar una línea en las notas de la 3.6). DPO sigue nombrado en 7.1, 7.5 y la conclusión; las notas de 3.6 lo definen en una oración. Texto completo:
 
