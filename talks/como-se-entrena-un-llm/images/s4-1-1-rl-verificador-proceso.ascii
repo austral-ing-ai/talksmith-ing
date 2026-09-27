@@ -1,0 +1,31 @@
+ DATOS: problemas con respuesta verificable
+ matemática 26K · código 17K · STEM 22K · lógica 15K
+                         |
+                         v
+ +------------------------------------------------------------+
+ | el modelo genera 16 respuestas por problema:               | <-----+
+ |   <think> razonamiento </think> respuesta final            |       |
+ +------------------------------------------------------------+       |
+                         |                                            |
+                         v                                            |
+ +------------------------------------------------------------+       |
+ | VERIFICADOR (reglas, sin personas)                         |       |
+ |   ¿la respuesta es correcta?  coincide / pasa los tests    |       |
+ |   ¿respeta el formato <think>?                             |       |
+ +------------------------------------------------------------+       |
+                         |                                            |
+                         v                                            |
+            16 recompensas: 1, 0, 1, 1, 0, ...                        |
+                         |                                            |
+                         v                                            |
+ +------------------------------------------------------------+       |
+ | GRPO: cada recompensa contra el promedio del grupo;        | ------+
+ | sube la probabilidad de las respuestas mejores que el      |  se repite
+ | promedio y baja la de las peores                           |
+ +------------------------------------------------------------+
+
+<!-- ascii-note:
+intent: el proceso de RL con recompensas verificables de DeepSeek-R1-Zero, de los datos a la actualización del modelo
+emphasize: el VERIFICADOR como reemplazo de las personas (acento rojo); los datos arriba con sus cantidades; el loop de vuelta al modelo
+labels: 16 respuestas por problema; recompensas 1/0; GRPO compara con el promedio del grupo
+-->

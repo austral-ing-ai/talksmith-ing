@@ -1,0 +1,21 @@
+ CAPA            CON UN MODELO ABIERTO (Llama + Ollama)   CON UN PROVEEDOR (búsqueda nativa)
+ +-------------+----------------------------------------+----------------------------------------+
+ | tu app      | manda la pregunta                      | manda la pregunta                      |
+ +-------------+----------------------------------------+----------------------------------------+
+ | quién busca | TU CÓDIGO llama a Brave Search         | LA PLATAFORMA llama a su buscador      |
+ |             | y devuelve los resultados              | y agrega los resultados                |
+ +-------------+----------------------------------------+----------------------------------------+
+ | servidor    | traduce tags <-> JSON                  | traduce tags <-> JSON (no se ve)       |
+ +-------------+----------------------------------------+----------------------------------------+
+ | modelo      | escribe la consulta                    | escribe la consulta                    |
+ |             | lee los resultados y responde          | lee los resultados y responde          |
+ +-------------+----------------------------------------+----------------------------------------+
+ | buscador    | Brave Search                           | el del proveedor                       |
+ +-------------+----------------------------------------+----------------------------------------+
+   en las dos columnas el modelo no busca: escribe la consulta y lee los resultados
+
+<!-- ascii-note:
+intent: las capas de una búsqueda web y quién hace qué, comparando un modelo abierto (tu código busca) con un proveedor que trae la búsqueda incorporada (la plataforma busca)
+emphasize: la fila "quién busca", que es lo único que cambia entre columnas (acento rojo); la fila "modelo" igual en las dos columnas
+labels: filas como capas apiladas de arriba (tu app) a abajo (buscador); dos columnas comparables; la frase final como conclusión
+-->

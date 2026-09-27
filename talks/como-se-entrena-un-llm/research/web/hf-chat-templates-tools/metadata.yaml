@@ -1,0 +1,8 @@
+url: "https://huggingface.co/docs/transformers/main/en/chat_template_tools_and_documents"
+fetched_at: "2026-09-27T18:17:17Z"
+title: "Expanding Chat Templates with Tools and Documents · Hugging Face"
+http_status: 200
+byte_size: 283521
+assets:
+  - { src: "/front/assets/huggingface_logo-noborder.svg", absolute: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg", saved_as: "huggingface_logo-noborder.svg", alt: "Hugging Face's logo" }
+  - { src: "/front/assets/huggingface_logo-noborder.svg", absolute: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg", saved_as: "huggingface_logo-noborder.svg", alt: "Hugging Face's logo", deduped: True }

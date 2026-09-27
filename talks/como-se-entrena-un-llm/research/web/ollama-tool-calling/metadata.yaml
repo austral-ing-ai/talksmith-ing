@@ -1,0 +1,8 @@
+url: "https://docs.ollama.com/capabilities/tool-calling"
+fetched_at: "2026-09-27T16:40:34Z"
+title: "Tool calling - Ollama"
+http_status: 200
+byte_size: 725173
+assets:
+  - { src: "https://mintcdn.com/ollama-9269c548/XefrxzvUktkk84RL/images/logo.png?fit=max&auto=format&n=XefrxzvUktkk84RL&q=85&s=03a38b5749aa7f530044e9b251dc10d8", absolute: "https://mintcdn.com/ollama-9269c548/XefrxzvUktkk84RL/images/logo.png?fit=max&auto=format&n=XefrxzvUktkk84RL&q=85&s=03a38b5749aa7f530044e9b251dc10d8", saved_as: "logo.png", alt: "light logo" }
+  - { src: "https://mintcdn.com/ollama-9269c548/XefrxzvUktkk84RL/images/logo-dark.png?fit=max&auto=format&n=XefrxzvUktkk84RL&q=85&s=c214b467f5623414c31d4e05c66110fb", absolute: "https://mintcdn.com/ollama-9269c548/XefrxzvUktkk84RL/images/logo-dark.png?fit=max&auto=format&n=XefrxzvUktkk84RL&q=85&s=c214b467f5623414c31d4e05c66110fb", saved_as: "logo-dark.png", alt: "dark logo" }

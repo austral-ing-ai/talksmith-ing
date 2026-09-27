@@ -1,0 +1,22 @@
+ ROL         LO QUE VE EL MODELO
+ +-----------+------------------------------------------------------------------+
+ | system    | Environment: ipython                                             |
+ |           | Tools: brave_search, wolfram_alpha                     <|eot_id|> |
+ +-----------+------------------------------------------------------------------+
+ | user      | What is the 100th decimal of pi?                       <|eot_id|> |
+ +-----------+------------------------------------------------------------------+
+ | assistant | <|python_tag|> wolfram_alpha.call(query="100th decimal of pi")   |
+ |           |                                                        <|eom_id|> |  <- paro acá:
+ |           |                                                                  |     falta la herramienta
+ +-----------+------------------------------------------------------------------+
+ | ipython   | {"Result": "7"}                                        <|eot_id|> |  <- lo agrega el agente
+ +-----------+------------------------------------------------------------------+
+ | assistant | The 100th decimal of pi is 7.                          <|eot_id|> |
+ +-----------+------------------------------------------------------------------+
+   cada turno empieza con <|start_header_id|> rol <|end_header_id|>
+
+<!-- ascii-note:
+intent: la conversación de Llama 3.1 con una llamada a Wolfram Alpha, turno por turno, tal como la ve el modelo
+emphasize: el turno del assistant que llama a la herramienta (<|python_tag|> … <|eom_id|>) en rojo con su anotación "paro acá: falta la herramienta"; el turno ipython anotado como agregado por el agente
+labels: columna de rol a la izquierda (system, user, assistant, ipython, assistant); tokens especiales como chips grises chicos; texto de los turnos en monoespaciado; la nota del start_header_id al pie en gris
+-->

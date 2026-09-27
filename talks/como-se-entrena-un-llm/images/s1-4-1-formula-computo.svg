@@ -1,5 +1,5 @@
 <!-- talksmith-ascii-sha256: 62fdce82db65888015caaac8362d469304689c73b3f3a0a833dfab46c34e36ca -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
 <title>Tres perillas y una cuenta</title>
 <desc>La definición de ley de escala de las notas, dicha con la fórmula: C ≈ 6 · N · D, con el ejemplo de Chinchilla.</desc>
 <defs>
@@ -20,9 +20,4 @@
 <line x1="340" y1="225" x2="340" y2="265" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
 <rect x="190" y="265" width="300" height="50" rx="8" fill="#F2EEEE" stroke="#D8D2CE"/>
 <text x="340" y="296" text-anchor="middle" font-size="16">pérdida (cross-entropy) al final</text>
-<rect x="20" y="340" width="640" height="70" rx="10" fill="#FFFFFF" stroke="#D8D2CE"/>
-<rect x="36" y="359" width="110" height="30" rx="15" fill="#F9D2D6"/>
-<text x="91" y="379" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">Chinchilla</text>
-<text x="166" y="372" font-size="16" font-weight="bold" fill="#1F1E1E">6 × 70 mil millones × 1,4 billones ≈ 5,9·10<tspan dy="-7" font-size="11">23</tspan><tspan dy="7"> FLOPs</tspan></text>
-<text x="166" y="396" font-size="13">N = parámetros · D = tokens · FLOPs = operaciones de punto flotante</text>
 </svg>

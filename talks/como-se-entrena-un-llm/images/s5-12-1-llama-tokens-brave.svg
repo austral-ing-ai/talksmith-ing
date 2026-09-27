@@ -1,0 +1,77 @@
+<!-- talksmith-ascii-sha256: c1570ee53c19f4f1047c3df267c78521fdcb39cfd7a9567e7907b7a265a0cf8b -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 567" font-family="Helvetica, Arial, sans-serif" font-size="19" fill="#3B3535">
+<title>Buscar: lo que escribe Llama 3.1</title>
+<desc>La conversación de Llama 3.1 con brave_search, turno por turno: el system prompt trae la fecha de corte y la de hoy, el usuario pide un precio actual, el assistant escribe la consulta entre python_tag y eom_id y se detiene; el agente agrega los resultados con el rol ipython.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto"><path d="M0,1 L12,7 L0,13 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="1080" height="567" fill="#FFFFFF"/>
+<g font-size="15" font-weight="bold" letter-spacing="1">
+<text x="36" y="31">ROL</text>
+<text x="186" y="31">LO QUE VE EL MODELO</text>
+</g>
+<rect x="20" y="44" width="1040" height="460" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="2"/>
+<rect x="21" y="45" width="149" height="458" fill="#F2EEEE"/>
+<rect x="21" y="265" width="149" height="126" fill="#F9D2D6"/>
+<rect x="178" y="128" width="552" height="72" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<g stroke="#D8D2CE" stroke-width="2">
+<line x1="170" y1="44" x2="170" y2="504"/>
+<line x1="20" y1="208" x2="1060" y2="208"/>
+<line x1="20" y1="264" x2="1060" y2="264"/>
+<line x1="20" y1="392" x2="1060" y2="392"/>
+<line x1="20" y1="448" x2="1060" y2="448"/>
+</g>
+<rect x="21.5" y="265.5" width="1037" height="125" fill="none" stroke="#DA1B2E" stroke-width="3"/>
+<g font-size="22" font-weight="bold" fill="#1F1E1E">
+<text x="36" y="80">system</text>
+<text x="36" y="243">user</text>
+<text x="36" y="298" fill="#DA1B2E">assistant</text>
+<text x="36" y="427">ipython</text>
+<text x="36" y="483">assistant</text>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="24" fill="#1F1E1E" xml:space="preserve">
+<text x="186" y="82">Environment: ipython</text>
+<text x="186" y="118">Tools: brave_search, wolfram_alpha</text>
+<text x="186" y="154">Cutting Knowledge Date: December 2023</text>
+<text x="186" y="190">Today Date: 21 September 2024</text>
+<text x="186" y="245">Search the web for the latest price of 1oz gold?</text>
+<text x="372" y="300" fill="#DA1B2E">brave_search.call(</text>
+<text x="372" y="336" fill="#DA1B2E">query="latest price of 1oz gold")</text>
+</g>
+<g font-size="24" font-style="italic" fill="#6E6767">
+<text x="186" y="429">[resultados de la búsqueda]</text>
+<text x="186" y="485">[respuesta con el precio y la fuente]</text>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="918" y="165.5" width="128" height="32" rx="6"/>
+<rect x="918" y="220.5" width="128" height="32" rx="6"/>
+<rect x="918" y="404.5" width="128" height="32" rx="6"/>
+<rect x="918" y="460.5" width="128" height="32" rx="6"/>
+</g>
+<g fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2">
+<rect x="186" y="275.5" width="174" height="32" rx="6"/>
+<rect x="918" y="348.5" width="128" height="32" rx="6"/>
+</g>
+<g font-family="'Andale Mono', monospace" fill="#1F1E1E">
+<text x="925" y="188">&lt;|eot_id|&gt;</text>
+<text x="925" y="243">&lt;|eot_id|&gt;</text>
+<text x="925" y="427">&lt;|eot_id|&gt;</text>
+<text x="925" y="483">&lt;|eot_id|&gt;</text>
+<text x="193" y="298" fill="#DA1B2E">&lt;|python_tag|&gt;</text>
+<text x="925" y="371" fill="#DA1B2E">&lt;|eom_id|&gt;</text>
+</g>
+<text x="186" y="372" font-size="21" font-weight="bold" fill="#DA1B2E">paro acá: falta la búsqueda</text>
+<line x1="486" y1="364.5" x2="918" y2="364.5" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="528" y="406" width="192" height="30" rx="15" fill="#B8E6F5"/>
+<text x="624" y="427" fill="#1F1E1E" text-anchor="middle">lo agrega el agente</text>
+<text x="20" y="540">cada turno empieza con</text>
+<text x="450" y="540" font-style="italic">rol</text>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="234" y="519" width="206" height="28" rx="6"/>
+<rect x="481" y="519" width="185" height="28" rx="6"/>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="17" fill="#1F1E1E">
+<text x="240" y="539">&lt;|start_header_id|&gt;</text>
+<text x="487" y="539">&lt;|end_header_id|&gt;</text>
+</g>
+</svg>

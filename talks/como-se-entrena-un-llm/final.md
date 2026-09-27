@@ -8,7 +8,7 @@
 
 # Agenda
 
-**Narrative arc:** La introducción abre con una cifra de OpenAI (2022): un modelo 100 veces más chico gana por su post-training, que usó menos del 2% del cómputo. Después viene el mapa de las tres etapas y una sección por etapa; cada una abre con qué datos entran, qué se optimiza y qué modelo sale. Pre-training (1): la pérdida del siguiente token de la clase 8 aplicada a la web, de dónde salen las cifras de Common Crawl, cómo Google lo depuró para armar C4, la regla de Chinchilla, cuánto más pueden crecer los datasets, qué hace el modelo base y los problemas que arrastra. SFT (2): el mismo GPT-3 antes y después del post-training, demostraciones escritas por personas y un dataset real. RLHF (3): comparaciones, el reward model y cómo se arma su batch de pares, PPO y DPO. Razonamiento con RL (4): el RL con recompensas verificables que entrena el razonamiento, sus niveles de esfuerzo y el interruptor de Qwen3. Herramientas (5): por qué hacen falta y el circuito entre el modelo y el agente, y tres herramientas vistas con la misma pregunta (qué genera el modelo, quién ejecuta la llamada, con qué datos se lo entrenó): la calculadora con GSM8K, la búsqueda web que ejecuta el proveedor y cómo se entrena a buscar, y MCP como interfaz para cualquier herramienta. Cuando el modelo inventa (6): por qué un modelo inventa en vez de decir "no sé", por qué las evaluaciones lo premian y qué puede hacer el post-training. El cierre pasa al lado del equipo de producto (7): dónde entra el fine-tuning en el mapa de tres etapas, cuándo conviene frente a un prompt o RAG, cuánta memoria pide y cuánto la bajan LoRA y QLoRA, qué modelos se pueden ajustar hoy en la nube, cómo se hace local con modelos abiertos y qué datos hacen falta.
+**Narrative arc:** La introducción abre con una cifra de OpenAI (2022): un modelo 100 veces más chico gana por su post-training, que usó menos del 2% del cómputo. Después viene el mapa de las tres etapas y una sección por etapa; cada una abre con qué datos entran, qué se optimiza y qué modelo sale. Pre-training (1): la pérdida del siguiente token de la clase 8 aplicada a la web, de dónde salen las cifras de Common Crawl, cómo Google lo depuró para armar C4, la regla de Chinchilla, cuánto más pueden crecer los datasets, qué hace el modelo base y los problemas que arrastra. SFT (2): el mismo GPT-3 antes y después del post-training, demostraciones escritas por personas y un dataset real. RLHF (3): comparaciones, el reward model y cómo se arma su batch de pares, PPO y DPO. Razonamiento con RL (4): el RL con recompensas verificables que entrena el razonamiento, sus niveles de esfuerzo y el interruptor de Qwen3. Herramientas (5): las piezas de una plataforma que expone un LLM por API y el circuito entre el modelo y el agente, y tres herramientas vistas con la misma pregunta (qué genera el modelo, quién ejecuta la llamada, con qué datos se lo entrenó): la calculadora con GSM8K, la búsqueda web que ejecuta el proveedor y cómo se entrena a buscar, y MCP como interfaz para cualquier herramienta. Cuando el modelo inventa (6): por qué un modelo inventa en vez de decir "no sé", por qué las evaluaciones lo premian y qué puede hacer el post-training. El cierre pasa al lado del equipo de producto (7): dónde entra el fine-tuning en el mapa de tres etapas, cuándo conviene frente a un prompt o RAG, cuánta memoria pide y cuánto la bajan LoRA y QLoRA, qué modelos se pueden ajustar hoy en la nube, cómo se hace local con modelos abiertos y qué datos hacen falta.
 
 **Sections (in delivery order):**
 
@@ -36,11 +36,11 @@
 
 ### Content
 
-**OpenAI (2022): un GPT-3 de 1.300 millones de parámetros con post-training (SFT y RLHF) le gana en preferencia humana a GPT-3 de 175.000 millones sin post-training. Ese post-training usó menos del 2% del cómputo.**
+**OpenAI (2022) tomó GPT-3 y lo siguió entrenando con ejemplos y preferencias escritos por personas. Una versión 100 veces más chica le ganó al GPT-3 original, y ese entrenamiento extra costó menos del 2% del cómputo.**
 
-- **3.640** petaflops/s-días: pre-training de GPT-3 175B.
-- **4,9** petaflops/s-días: SFT de GPT-3 175B.
-- **60** petaflops/s-días: RLHF de GPT-3 175B.
+- **3.640** petaflops/s-días: el entrenamiento original de GPT-3, con texto de la web.
+- **4,9** petaflops/s-días: entrenamiento extra con ejemplos de respuestas escritos por personas.
+- **60** petaflops/s-días: entrenamiento extra con las preferencias de personas entre respuestas.
 - **Fuente.** [Ouyang et al., 2022 (OpenAI)](https://arxiv.org/abs/2203.02155)
 
 ### Sources
@@ -51,7 +51,7 @@
 
 ### Speaker notes
 
-Es el gancho de la clase: un modelo 100 veces más chico gana porque pasó por post-training, y ese post-training costó casi nada en cómputo. Es un trabajo de OpenAI de 2022, el paso intermedio entre GPT-3 y ChatGPT; la sección 2 muestra las dos salidas lado a lado. Las cifras de cómputo son de la versión de 175B: SFT y RLHF suman 1,75%, y el pre-training el 98% que cita Chip Huyen para ese modelo. La cuenta no incluye el costo de los anotadores. En modelos de razonamiento actuales el post-training puede pesar más (sección 4). SFT y RLHF se explican en la lámina siguiente. Tiempo objetivo: ~2 min.
+Es el gancho de la clase, contado sin nombres de etapas todavía. Un GPT-3 de 1.300 millones de parámetros, entrenado un poco más con ejemplos y preferencias de personas, le ganó en preferencia humana al GPT-3 original de 175.000 millones, un modelo 100 veces más grande. Ese entrenamiento extra fue barato. Los dos juntos suman el 1,75% del cómputo total de la versión grande. Es un trabajo de OpenAI de 2022, el paso intermedio entre GPT-3 y ChatGPT. La cuenta no incluye el costo de las personas que escribieron y compararon respuestas. Cerrar con la pregunta que abre la lámina siguiente: ¿qué es ese entrenamiento extra? Son dos de las tres etapas del mapa. Tiempo objetivo: ~2 min.
 
 ---
 
@@ -94,7 +94,7 @@ Es el gancho de la clase: un modelo 100 veces más chico gana porque pasó por p
 <!-- ascii-note:
 intent: mapa de las tres etapas con sus cuatro conjuntos de datos, redibujado de la figura de Chip Huyen (rlhf.png)
 emphasize: la caída de escala en la fila de abajo y la caja punteada RLHF; acento rojo solo en la fila de escalas
-labels: "billón" = 10^12 (el "trillion" del inglés); escalas 10K-100K y 100K-1M
+labels: "billón" = 10^12 (el "trillion" del inglés); escalas 10K-100K y 100K-1M; encabezados de columna con los acrónimos expandidos: "Pre-training", "SFT · Supervised Fine-Tuning", "RLHF · Reinforcement Learning from Human Feedback" (pedido del presentador)
 -->
 
 - **Fuente.** [Huyen, 2023](https://huyenchip.com/2023/05/02/rlhf.html)
@@ -110,7 +110,7 @@ labels: "billón" = 10^12 (el "trillion" del inglés); escalas 10K-100K y 100K-1
 
 ### Speaker notes
 
-La lámina es el mapa de la clase: nombrá las tres etapas con las tarjetas; el diagrama muestra lo mismo con sus datos. No hace falta recorrerla columna por columna: las secciones 1, 2 y 3 toman una etapa cada una, y cada sección abre con su columna. Señalá solo la fila de abajo, donde la escala cae de más de un billón de tokens a entre decenas de miles y un millón de ejemplos. Las etapas 2 y 3 forman el post-training. El fine-tuning que hace un equipo de producto es la misma receta a escala chica (sección 7). El "trillion" del inglés es un billón en español (10¹²). Tiempo objetivo: ~1,5 min.
+La lámina es el mapa de la clase. Nombrá las tres etapas con las tarjetas; el diagrama muestra lo mismo con sus datos. No hace falta recorrerla columna por columna: las secciones 1, 2 y 3 toman una etapa cada una, y cada sección abre con su columna. Señalá solo la fila de abajo, donde la escala cae de más de un billón de tokens a entre decenas de miles y un millón de ejemplos. Las etapas 2 y 3 forman el post-training. El fine-tuning que hace un equipo de producto es la misma receta a escala chica (sección 7). El "trillion" del inglés es un billón en español (10¹²). Tiempo objetivo: ~1,5 min.
 
 ---
 
@@ -127,7 +127,7 @@ La lámina es el mapa de la clase: nombrá las tres etapas con las tarjetas; el 
 **El pre-training entrena al modelo para predecir el token que sigue en textos de la web. Sale un modelo base que conoce mucho y todavía no sigue instrucciones.**
 
 - **Datos.** Texto de internet, de baja calidad y en cantidad: más de un billón de tokens. Un billón de tokens equivale a unos 15 millones de libros.
-- **Objetivo.** Minimizar la pérdida del siguiente token de la clase 8. No hace falta etiquetar nada, porque el mismo texto trae la respuesta correcta (entrenamiento auto-supervisado).
+- **Objetivo.** Minimizar la pérdida del siguiente token. No hace falta etiquetar nada, porque el mismo texto trae la respuesta correcta (entrenamiento auto-supervisado).
 - **Qué se espera.** Un modelo base que continúa cualquier texto con fluidez y reproduce lo que había en la web, también lo malo.
 - **Fuente.** [Huyen, 2023](https://huyenchip.com/2023/05/02/rlhf.html)
 
@@ -182,7 +182,7 @@ La lámina muestra de dónde salen los números, antes de dar uno. Las dos cifra
 
 ### Content
 
-**Reglas escritas a mano sobre un mes de Common Crawl (abril de 2019). Con el texto filtrado, el modelo rinde mejor en todas las tareas.**
+**Google aplicó reglas escritas a mano a un mes de Common Crawl (abril de 2019). Con el texto filtrado, el modelo rinde mejor en todas las tareas.**
 
 ![Reglas de limpieza de C4 y la basura que saca cada una](images/s1-3-1-reglas-limpieza-c4.png)
 <!-- ascii-source:
@@ -213,8 +213,7 @@ emphasize: la columna "qué saca"; la lista negra y el filtro de idioma
 labels: tamaños de entrada y salida abajo
 -->
 
-- **Dataset.** C4 está publicado en Hugging Face: [allenai/c4](https://huggingface.co/datasets/allenai/c4).
-- **Fuente.** [Raffel et al., 2020](https://arxiv.org/abs/1910.10683)
+- **Fuente.** [Raffel et al., 2020](https://arxiv.org/abs/1910.10683) · dataset en Hugging Face: [allenai/c4](https://huggingface.co/datasets/allenai/c4)
 
 ### Sources
 
@@ -225,7 +224,7 @@ labels: tamaños de entrada y salida abajo
 
 ### Speaker notes
 
-Responde "¿por qué funcionan los filtros?": cada regla tiene un motivo concreto en el paper, y la evidencia es experimental: el mismo modelo, entrenado con el texto filtrado y sin filtrar, rinde peor sin filtrar en todas las tareas. El trabajo posterior va en la misma línea: RefinedWeb, que es Common Crawl filtrado y deduplicado, supera a colecciones curadas a mano. Ojo con dos detalles: algunas reglas sacan líneas y otras páginas enteras, y los filtros funcionan en promedio pero tienen costos (la lista negra, en 1.8). Tiempo objetivo: ~2 min.
+Responde "¿por qué funcionan los filtros?": cada regla tiene un motivo concreto en el paper, y la evidencia es experimental. El mismo modelo, entrenado con el texto filtrado y sin filtrar, rinde peor sin filtrar en todas las tareas. Un trabajo posterior va en la misma línea. RefinedWeb, que es Common Crawl filtrado y deduplicado, supera a colecciones curadas a mano. Ojo con dos detalles: algunas reglas sacan líneas y otras páginas enteras, y los filtros funcionan en promedio pero tienen costos (la lista negra, en 1.8). Tiempo objetivo: ~2 min.
 
 ---
 
@@ -247,12 +246,10 @@ Responde "¿por qué funcionan los filtros?": cada regla tiene un motivo concret
                       |
                       v
           pérdida (cross-entropy) al final
-
-  Chinchilla:  6 × 70 mil millones × 1,4 billones ≈ 5,9·10^23 FLOPs
 -->
 <!-- ascii-note:
 intent: la fórmula que une parámetros, tokens y cómputo, con un ejemplo numérico
-emphasize: la caja de la fórmula; el ejemplo de Chinchilla abajo
+emphasize: la caja de la fórmula
 labels: N, D, C
 -->
 
@@ -267,7 +264,7 @@ labels: N, D, C
 
 ### Speaker notes
 
-La definición de ley de escala de las notas, dicha con la fórmula. El 6 sale de contar multiplicaciones y sumas: 2 por parámetro en la pasada hacia adelante y el doble en backpropagation. La cuenta con Chinchilla da 5,9 × 10²³, prácticamente el presupuesto de Gopher (5,76 × 10²³): los dos modelos gastaron lo mismo, y eso vuelve interesante la comparación de 1.5. Tiempo objetivo: ~2 min.
+La definición de ley de escala de las notas, dicha con la fórmula. El 6 sale de contar multiplicaciones y sumas: 2 por parámetro en la pasada hacia adelante y el doble en backpropagation. Chinchilla y DeepMind Gopher gastaron el mismo cómputo, y eso vuelve interesante la comparación de 1.5. Tiempo objetivo: ~2 min.
 
 ---
 
@@ -285,8 +282,8 @@ La definición de ley de escala de las notas, dicha con la fórmula. El 6 sale d
 | Llama 3 70B (2024) | 70B | 15T | 214 |
 
 - **La regla de Chinchilla.** Si se duplica el tamaño del modelo, hay que duplicar los tokens: unos 20 tokens por parámetro. Para un modelo de 3B, lo Chinchilla-óptimo son 60B tokens.
-- **Resultado.** En MMLU, un examen de opción múltiple de 57 materias: Chinchilla 67,6%, Gopher 60,0%.
-- **Por qué hoy se sobreentrena.** El entrenamiento se paga una vez; la inferencia, en cada token. Un modelo más chico entrenado con más datos abarata la inferencia.
+- **Resultado.** En MMLU (Massive Multitask Language Understanding), un examen de opción múltiple de 57 materias: Chinchilla 67,6%, Gopher 60,0%.
+- **Por qué hoy se sobreentrena.** El entrenamiento se paga una vez y la inferencia se paga en cada token. Un modelo más chico entrenado con más datos abarata la inferencia.
 - **Fuente.** [Hoffmann et al., 2022](https://arxiv.org/abs/2203.15556) · [Villalobos et al., 2024](https://arxiv.org/abs/2211.04325)
 
 ### Sources
@@ -299,7 +296,7 @@ La definición de ley de escala de las notas, dicha con la fórmula. El 6 sale d
 
 ### Speaker notes
 
-La tabla cuenta la historia en cuatro filas. Kaplan (2020) recomendaba crecer sobre todo en parámetros, y así se entrenaron GPT-3 y Gopher: menos de 2 tokens por parámetro. Chinchilla mostró que con el mismo presupuesto convenía un modelo más chico y más tokens. La última fila es la práctica actual: Llama 3 70B está 11 veces por encima de Chinchilla, y el 8B cerca de 100 veces. El tamaño en parámetros ya no dice cuánto se entrenó un modelo. Tiempo objetivo: ~2,5 min.
+La tabla cuenta la historia en cuatro filas. Kaplan (2020) recomendaba crecer sobre todo en parámetros, y así OpenAI entrenó GPT-3 y DeepMind entrenó Gopher, con menos de 2 tokens por parámetro. Chinchilla mostró que con el mismo presupuesto convenía un modelo más chico y más tokens. La última fila es la práctica actual: Llama 3 70B está 11 veces por encima de Chinchilla, y el 8B cerca de 100 veces. El tamaño en parámetros ya no dice cuánto se entrenó un modelo. Tiempo objetivo: ~2,5 min.
 
 ---
 
@@ -325,7 +322,7 @@ La tabla cuenta la historia en cuatro filas. Kaplan (2020) recomendaba crecer so
 
 ### Speaker notes
 
-Es el gráfico que el presentador marcó como crítico. La línea azul son los datasets de modelos conocidos, la banda verde el stock; en escala logarítmica la subida recta es exponencial, y cruza el stock antes de 2030. Contar la aceleración sobre el gráfico: GPT-3 abajo a la izquierda en 2020, Llama 3 más de un orden de magnitud más arriba en 2024. Pagar gente para escribir no alcanza: 10 millones de personas escribiendo 8 horas por día producen 70 billones de palabras por año, con un costo de cientos de miles de millones de dólares. Tiempo objetivo: ~2 min.
+Es el gráfico que el presentador marcó como crítico. La línea azul son los datasets de modelos conocidos, la banda verde el stock; en escala logarítmica la subida recta es exponencial, y cruza el stock antes de 2030. Contar la aceleración sobre el gráfico: GPT-3 abajo a la izquierda en 2020, Llama 3 más de un orden de magnitud más arriba en 2024. Pagar gente para escribir no alcanza, porque 10 millones de personas escribiendo 8 horas por día producen 70 billones de palabras por año, con un costo de cientos de miles de millones de dólares. Tiempo objetivo: ~2 min.
 
 ---
 
@@ -338,7 +335,7 @@ Es el gráfico que el presentador marcó como crítico. La línea azul son los d
 - **Sesgo del filtro.** La lista negra de C4 saca el 42% de los documentos en inglés afroamericano y el 6,2% en inglés blanco.
 - **Dominio del inglés.** En el pre-training de Llama 2, el inglés es el 89,70% y el castellano el 0,13%. Los idiomas con pocos datos están entre los que peor rinden.
 - **Texto generado.** La web se llena de texto escrito por modelos. Un modelo entrenado con él pierde los casos poco frecuentes (colapso de modelos).
-- **Acceso restringido.** Entre 2023 y 2024, robots.txt bloqueó el 5% de los tokens de C4; en las fuentes más activas, más del 28%.
+- **Acceso restringido.** Entre 2023 y 2024, los sitios bloquearon con robots.txt el 5% de los tokens de C4; en las fuentes más activas, más del 28%.
 - **Sesgos heredados.** El modelo base repite los sesgos de su corpus y sigue pedidos dañinos hasta que el post-training le enseña a negarse.
 - **Fuente.** [Dodge et al., 2021](https://arxiv.org/abs/2104.08758) · [Touvron et al., 2023](https://arxiv.org/abs/2307.09288) · [Longpre et al., 2024](https://arxiv.org/abs/2407.14933)
 
@@ -387,7 +384,7 @@ Tirarle la pregunta a la clase y esperar unos segundos. Todos usan un chat que r
 - B. " Receta para una familia de seis. Paso 1: …"
 - C. " Harina, agua, levadura, sal, salsa de tomate y mozzarella."
 
-**Respuesta:** cualquiera de las tres. Las tres aparecen en la web, y la A y la B son tan probables como la C: el modelo base continúa el texto, no sabe que se espera una respuesta.
+**Respuesta:** cualquiera de las tres. Las tres aparecen en la web, y la A y la B son tan probables como la C: el modelo base continúa el texto y no sabe que se espera una respuesta.
 
 ### Sources
 
@@ -421,7 +418,7 @@ Pedir que levanten la mano por A, B o C antes de mostrar la respuesta. La mayor�
 
 ### Speaker notes
 
-Esta vez todos van a elegir la C, y está bien. La pregunta para cerrar: ¿qué hay que cambiar en el entrenamiento para que la C sea la más probable? Eso es el SFT, la próxima sección. Tiempo objetivo: ~1 min.
+Esta vez todos van a elegir la C, y aciertan. La pregunta para cerrar: ¿qué hay que cambiar en el entrenamiento para que la C sea la más probable? Eso es el SFT, la próxima sección. Tiempo objetivo: ~1 min.
 
 ---
 
@@ -451,7 +448,7 @@ Esta vez todos van a elegir la C, y está bien. La pregunta para cerrar: ¿qué 
 
 ### Speaker notes
 
-Lo que cambia respecto de la etapa anterior son los datos: pocos, elegidos y escritos a mano. El rango exacto y lo que cuesta producirlos están en 2.3; el formato de un registro, en 2.4. La lámina 2.2 muestra el mismo GPT-3 antes y después del post-training completo (SFT y RLHF); el cambio de formato empieza en SFT. Tiempo objetivo: ~2 min.
+Respecto de la etapa anterior cambian los datos, que son pocos, elegidos y escritos a mano. El rango exacto y lo que cuesta producirlos están en 2.3; el formato de un registro, en 2.4. La lámina 2.2 muestra el mismo GPT-3 antes y después del post-training completo (SFT y RLHF); el cambio de formato empieza en SFT. Tiempo objetivo: ~2 min.
 
 ---
 
@@ -473,7 +470,7 @@ Lo que cambia respecto de la etapa anterior son los datos: pocos, elegidos y esc
 
 ### Speaker notes
 
-Responde la pregunta de las notas "¿se puede encontrar un ejemplo de esto?". La figura es del paper de OpenAI que entrenó este modelo, y los prompts están elegidos a propósito; las salidas no. La explicación del modelo con post-training sobre el código tampoco es del todo correcta, según el propio pie de la figura: el post-training cambia el formato de la respuesta, no garantiza que sea correcta. Eso vuelve en la sección 7. Tiempo objetivo: ~1,5 min.
+Responde la pregunta de las notas "¿se puede encontrar un ejemplo de esto?". La figura es del paper de OpenAI que entrenó este modelo, y los prompts están elegidos a propósito; las salidas no. La explicación del modelo con post-training sobre el código tampoco es del todo correcta, según el propio pie de la figura. El post-training cambia el formato de la respuesta, pero no garantiza que sea correcta. Eso vuelve en la sección 7. Tiempo objetivo: ~1,5 min.
 
 ---
 
@@ -501,7 +498,7 @@ emphasize: la división prompt / respuesta y que solo la respuesta suma a la pé
 labels: pérdida = 0 en el prompt; cross-entropy en la respuesta
 -->
 
-- **Nombre en OpenAI (2022).** *Behavior cloning*: se muestra cómo debe comportarse el modelo y el modelo copia ese comportamiento.
+- **Nombre en OpenAI (2022).** *Behavior cloning*: los anotadores muestran cómo debe comportarse el modelo y el modelo copia ese comportamiento.
 - **Costo.** En OpenAI (2022), 40 anotadores escribieron ~13.000 pares; ~90% tenía título universitario. Un dataset de SFT típico tiene entre 10.000 y 100.000 pares.
 - **Fuente.** [Ouyang et al., 2022 (OpenAI)](https://arxiv.org/abs/2203.02155) · [Huyen, 2023](https://huyenchip.com/2023/05/02/rlhf.html)
 
@@ -515,7 +512,7 @@ labels: pérdida = 0 en el prompt; cross-entropy en la respuesta
 
 ### Speaker notes
 
-La función de pérdida es la misma de la clase 8; lo que cambia son los datos y la máscara. La pregunta de las notas "qué decir y cómo decirlo" es lo que codifica una demostración: el contenido y la forma a la vez. La alternativa barata es generar demostraciones con otro modelo: Alpaca usó 52.000 instrucciones generadas con ChatGPT. Eso es destilación y vuelve en la sección 7. QLoRA midió el efecto de la máscara: entrenar solo sobre la respuesta da 38,6 de MMLU contra 37,5 entrenando sobre todo. Tiempo objetivo: ~1,5 min.
+La función de pérdida es la misma de la clase 8; cambian los datos y la máscara. Una demostración codifica a la vez el contenido y la forma, que es la pregunta de las notas "qué decir y cómo decirlo". La alternativa barata es generar demostraciones con otro modelo. Alpaca usó 52.000 instrucciones generadas con ChatGPT. Eso es destilación y vuelve en la sección 7. QLoRA midió el efecto de la máscara: entrenar solo sobre la respuesta da 38,6 de MMLU contra 37,5 entrenando sobre todo. Tiempo objetivo: ~1,5 min.
 
 ---
 
@@ -523,7 +520,7 @@ La función de pérdida es la misma de la clase 8; lo que cambia son los datos y
 
 ### Content
 
-**Tres registros de demostración de OpenAI (2022), escritos por anotadores. Ese dataset no se publicó; hay datasets públicos con el mismo formato.**
+**Tres registros de demostración de OpenAI (2022), escritos por anotadores. OpenAI no publicó ese dataset; hay datasets públicos con el mismo formato.**
 
 ```json
 [
@@ -553,7 +550,7 @@ La función de pérdida es la misma de la clase 8; lo que cambia son los datos y
 
 ### Speaker notes
 
-Es la lámina que pedían las notas: un dataset de SFT concreto. Mostrar que cada registro es un JSON con dos campos, nada más, y abrir uno de los datasets públicos en Hugging Face para ver el mismo formato. Las respuestas son cortas y van al punto, y así queda entrenado el modelo. El prompt de la lista de compras trae la receta completa; está recortado en la lámina. Comparar con lo que hace GPT-3 con el de serendipity (Figura 47 del paper): repite "Use the word in a sentence" tres veces. Tiempo objetivo: ~2 min.
+Es la lámina que pedían las notas, con un dataset de SFT concreto. Mostrar que cada registro es un JSON con dos campos, nada más, y abrir uno de los datasets públicos en Hugging Face para ver el mismo formato. Las respuestas son cortas y van al punto, y el modelo aprende a responder así. El prompt de la lista de compras trae la receta completa; está recortado en la lámina. Comparar con lo que hace GPT-3 con el de serendipity (Figura 47 del paper): repite "Use the word in a sentence" tres veces. Tiempo objetivo: ~2 min.
 
 ---
 
@@ -581,13 +578,13 @@ Dejar la pregunta en el aire unos segundos. El modelo después del SFT ya conver
 
 ### Content
 
-**Para el mismo prompt hay dos respuestas correctas, y una es claramente mejor. ¿Qué aprende de eso un modelo entrenado con SFT?**
+**Para el mismo prompt hay dos respuestas correctas, y una es mejor que la otra. ¿Qué aprende de eso un modelo entrenado con SFT?**
 
 - A. Que una respuesta es mejor que la otra.
 - B. Nada sobre cuál es mejor: el SFT solo imita la respuesta que escribió la persona.
 - C. Que las dos valen lo mismo.
 
-**Respuesta:** la B. Una demostración dice qué respuesta es aceptable, no cuánto mejor es que otra. Para aprender eso hacen falta comparaciones: es la etapa que sigue, RLHF.
+**Respuesta:** la B. Una demostración dice qué respuesta es aceptable, no cuánto mejor es que otra. Para aprender eso hacen falta comparaciones, y de eso se ocupa RLHF, la etapa que sigue.
 
 ### Sources
 
@@ -596,17 +593,65 @@ Dejar la pregunta en el aire unos segundos. El modelo después del SFT ya conver
 
 ### Speaker notes
 
-Votación a mano alzada. Mucha gente elige la A. La clave es que el SFT ve una sola respuesta por prompt, la que escribió la persona, y aprende a imitarla; nunca ve una respuesta peor para comparar. La próxima sección entrena con pares de respuestas y una preferencia. Tiempo objetivo: ~1 min.
+Votación a mano alzada. Mucha gente elige la A. El SFT ve una sola respuesta por prompt, la que escribió la persona, y aprende a imitarla; nunca ve una respuesta peor para comparar. La próxima sección entrena con pares de respuestas y una preferencia. Tiempo objetivo: ~1 min.
 
 ---
 
 # 3. RLHF
 
-**Goal of this section:** Explicar la tercera etapa: por qué se compara en lugar de escribir, cómo se entrena el reward model y cómo se arma un batch de pares para su pérdida, cómo lo usa PPO en RLHF y cómo DPO llega al mismo objetivo sin RL. Seis láminas, unos 11,5 minutos.
+**Goal of this section:** Explicar la tercera etapa: por qué se compara en lugar de escribir, cómo se entrena el reward model y cómo se arma un batch de pares para su pérdida, cómo lo usa PPO en RLHF y cómo DPO llega al mismo objetivo sin RL. Siete láminas, unos 13 minutos: abre con un resumen de los dos pasos.
 
 ---
 
-## 1. RLHF: puntuar y reforzar
+## 1. RLHF en dos pasos
+
+### Content
+
+**RLHF entrena primero un juez que aprende de las preferencias de las personas, y después usa ese juez para mejorar el modelo.**
+
+![RLHF en dos pasos: con datos de comparación se entrena un reward model (el juez); después el modelo SFT genera respuestas, el juez las puntúa y PPO ajusta el modelo para subir el puntaje](images/s3-1-1-rlhf-dos-pasos.png)
+<!-- ascii-source:
+ PASO 1 · ENTRENAR UN JUEZ                  PASO 2 · OPTIMIZAR CONTRA EL JUEZ
+ +--------------------------------+         +-----------------------------------+
+ | datos de comparación           |         | prompts, sin respuestas           |
+ | (prompt, ganadora, perdedora)  |         |                |                  |
+ |               |                |         |                v                  |
+ |               v                |         |  el modelo SFT genera una         |
+ | copia del modelo SFT con una   |         |  respuesta                        |
+ | salida de un solo número       |         |                |                  |
+ |               |                |         |                v                  |
+ |               v                |  ----&gt;  |  el reward model la puntúa        |
+ |   REWARD MODEL (el juez)       |         |                |                  |
+ +--------------------------------+         |                v                  |
+                                            |  PPO ajusta el modelo para subir  |
+                                            |  el puntaje, sin alejarse del SFT |
+                                            |       (se repite muchas veces)    |
+                                            +-----------------------------------+
+                                                             |
+                                                             v
+                                                       MODELO FINAL
+-->
+<!-- ascii-note:
+intent: resumen de RLHF en dos pasos lado a lado: primero se entrena un juez con comparaciones, después se optimiza el modelo contra ese juez
+emphasize: el reward model como puente entre los dos pasos (flecha del paso 1 al paso 2); el loop del paso 2
+labels: PASO 1 y PASO 2 como títulos de caja; "juez" = reward model
+-->
+
+- **Fuente.** [Ouyang et al., 2022 (OpenAI)](https://arxiv.org/abs/2203.02155) · [Huyen, 2023](https://huyenchip.com/2023/05/02/rlhf.html)
+
+### Sources
+
+- `ouyang-2022-instructgpt.pdf.md` (§3.5): "Starting from the SFT model with the final unembedding layer removed, we trained a model to take in a prompt and response, and output a scalar reward. In this paper we only use 6B RMs, as this saves a lot of compute"; PPO con "a per-token KL penalty from the SFT model at each token to mitigate overoptimization of the reward model".
+- `huyen-2023-rlhf.web.md`: RLHF en dos partes, entrenar un reward model con comparaciones y optimizar el LLM para generar respuestas que el reward model puntúe alto.
+- Lámina agregada por pedido del presentador (2026-09-27): "Cuando se explica RLHF, creo que está bueno agregar un slide y diagrama que sumarice Paso 1 y Paso 2 como primer slide de la sección."
+
+### Speaker notes
+
+El mapa de la sección antes del detalle. Paso 1: con comparaciones entre respuestas se entrena un juez. El juez es otro LLM, una copia del modelo SFT a la que se le saca la capa que elige el siguiente token y se le pone una salida de un solo número; en el trabajo de OpenAI era de 6 mil millones de parámetros, más chico que el modelo que juzgaba. Paso 2: el modelo genera, el juez puntúa y PPO ajusta, con un freno para no alejarse del SFT. Las láminas que siguen detallan cada paso. Tiempo objetivo: ~1,5 min.
+
+---
+
+## 2. RLHF: puntuar y reforzar
 
 ### Content
 
@@ -626,15 +671,15 @@ Votación a mano alzada. Mucha gente elige la A. La clave es que el SFT ve una s
 
 ### Speaker notes
 
-Es la columna con dos pasos y dos modelos. La idea para que se lleven: primero un modelo aprende a juzgar respuestas, y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.2), cómo se entrena el reward model y cómo se arma su batch (3.3 y 3.4), el lazo de RL con PPO (3.5) y DPO, que llega al mismo objetivo sin reward model (3.6). Después, el RL con recompensas que se pueden verificar entrena el razonamiento y sus niveles de esfuerzo (4.1 a 4.4). Tiempo objetivo: ~2 min.
+Es la columna con dos pasos y dos modelos. La idea para llevarse es que primero un modelo aprende a juzgar respuestas y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.3), cómo se entrena el reward model y cómo se arma su batch (3.4 y 3.5), el lazo de RL con PPO (3.6) y DPO, que llega al mismo objetivo sin reward model (3.7). Después, el RL con recompensas que se pueden verificar entrena el razonamiento y sus niveles de esfuerzo (4.2 a 4.5). Tiempo objetivo: ~2 min.
 
 ---
 
-## 2. Comparar es más fácil que escribir
+## 3. Comparar es más fácil que escribir
 
 ### Content
 
-**Una demostración dice qué respuesta es aceptable, pero no cuánto mejor es que otra. Para eso se le muestran al anotador dos respuestas y elige una.**
+**Una demostración dice qué respuesta es aceptable, pero no cuánto mejor es que otra. Para eso el anotador ve dos respuestas y elige una.**
 
 ```json
 {
@@ -656,11 +701,11 @@ Es la columna con dos pasos y dos modelos. La idea para que se lleven: primero u
 
 ### Speaker notes
 
-Preguntar a la clase cuál prefieren. Chip Huyen prefiere la perdedora, y ese desacuerdo es el punto: las preferencias humanas no caben en una fórmula única. El modelo queda alineado con las preferencias de un grupo concreto de anotadores; el paper de OpenAI lo dice explícitamente. Tiempo objetivo: ~1,5 min.
+Preguntar a la clase cuál prefieren. Chip Huyen prefiere la perdedora. Ese desacuerdo muestra que las preferencias humanas no caben en una fórmula única. El modelo queda alineado con las preferencias de un grupo concreto de anotadores; el paper de OpenAI lo dice. Tiempo objetivo: ~1,5 min.
 
 ---
 
-## 3. El reward model
+## 4. El reward model
 
 ### Content
 
@@ -695,11 +740,11 @@ labels: s_w (ganadora), s_l (perdedora)
 
 ### Speaker notes
 
-Acá va solo la idea: el mismo modelo puntúa las dos respuestas, y entrenarlo es lograr que la ganadora quede arriba. La cuenta está en la lámina siguiente. Llama 2 usa dos modelos de recompensa, uno de utilidad y otro de seguridad, porque las dos cosas a veces se oponen. Tiempo objetivo: ~2 min.
+Acá va solo la idea. El mismo modelo puntúa las dos respuestas, y entrenarlo es lograr que la ganadora quede arriba. La cuenta está en la lámina siguiente. Llama 2 usa dos modelos de recompensa, uno de utilidad y otro de seguridad, porque las dos cosas a veces se oponen. Tiempo objetivo: ~2 min.
 
 ---
 
-## 4. El reward model, en un batch
+## 5. El reward model, en un batch
 
 ### Content
 
@@ -748,7 +793,7 @@ Recorrer el diagrama de arriba abajo. Cada fila repite el prompt, así que 64 pa
 
 ---
 
-## 5. RLHF con PPO
+## 6. RLHF con PPO
 
 ### Content
 
@@ -794,7 +839,7 @@ La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen)
 
 ---
 
-## 6. DPO: preferencias sin RL
+## 7. DPO: preferencias sin RL
 
 ### Content
 
@@ -831,22 +876,73 @@ El título del paper lo resume: "Your Language Model Is Secretly a Reward Model"
 
 # 4. Razonamiento con RL
 
-**Goal of this section:** Mostrar cómo se entrena a un modelo para razonar: RL con recompensas verificables (DeepSeek-R1), niveles de esfuerzo (gpt-oss) y cómo Qwen3 aprende a pensar o no pensar según un flag. Cuatro láminas, unos 7,5 minutos.
+**Goal of this section:** Mostrar cómo se entrena a un modelo para razonar: RL con recompensas verificables (DeepSeek-R1), niveles de esfuerzo (gpt-oss) y cómo Qwen3 aprende a pensar o no pensar según un flag. Cinco láminas, unos 9,5 minutos: abre con el proceso y los datos del RL con verificador.
 
 ---
 
-## 1. RL con recompensas verificables
+## 1. RL con verificador: el proceso
+
+### Content
+
+**Los datos son problemas con una respuesta que se puede comprobar. En lugar de una persona, una regla decide si la respuesta es correcta.**
+
+![RL con recompensas verificables: problemas con respuesta verificable, 16 respuestas por problema, un verificador de reglas que da 1 o 0, y GRPO que compara cada respuesta con el promedio del grupo](images/s4-1-1-rl-verificador-proceso.png)
+<!-- ascii-source:
+ DATOS: problemas con respuesta verificable
+ matemática 26K · código 17K · STEM 22K · lógica 15K
+                         |
+                         v
+ +------------------------------------------------------------+
+ | el modelo genera 16 respuestas por problema:               | <-----+
+ |   <think> razonamiento </think> respuesta final            |       |
+ +------------------------------------------------------------+       |
+                         |                                            |
+                         v                                            |
+ +------------------------------------------------------------+       |
+ | VERIFICADOR (reglas, sin personas)                         |       |
+ |   ¿la respuesta es correcta?  coincide / pasa los tests    |       |
+ |   ¿respeta el formato <think>?                             |       |
+ +------------------------------------------------------------+       |
+                         |                                            |
+                         v                                            |
+            16 recompensas: 1, 0, 1, 1, 0, ...                        |
+                         |                                            |
+                         v                                            |
+ +------------------------------------------------------------+       |
+ | GRPO: cada recompensa contra el promedio del grupo;        | ------+
+ | sube la probabilidad de las respuestas mejores que el      |  se repite
+ | promedio y baja la de las peores                           |
+ +------------------------------------------------------------+
+-->
+<!-- ascii-note:
+intent: el proceso de RL con recompensas verificables de DeepSeek-R1-Zero, de los datos a la actualización del modelo
+emphasize: el VERIFICADOR como reemplazo de las personas (acento rojo); los datos arriba con sus cantidades; el loop de vuelta al modelo
+labels: 16 respuestas por problema; recompensas 1/0; GRPO compara con el promedio del grupo
+-->
+
+- **Fuente.** [DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948)
+
+### Sources
+
+- `deepseek-2025-r1.pdf.md` (Tabla 4, datos de RL): Math 26K, Code 17K, STEM 22K, Logic 15K; recompensas "rule-based": "Accuracy rewards evaluate whether the response is correct. For example, in the case of math problems with deterministic results, the model is required to provide the final answer in a specified format"; código evaluado "against predefined test cases"; "Format reward" para el razonamiento entre `<think>` y `</think>`; Reward_rule = Reward_acc + Reward_format; hiperparámetros de R1-Zero: "16 outputs per question"; GRPO: ventaja A_i = (r_i − mean({r1…rG})) / std({r1…rG}), "foregoes the value model, instead estimating the advantages from group scores".
+- Lámina agregada por pedido del presentador (2026-09-27): "RL con recompensas verificables, sería bueno un slide que muestre el diagrama de cómo es el proceso y los datos."
+
+### Speaker notes
+
+La diferencia con RLHF está en el verificador. En lugar de un reward model entrenado con preferencias de personas, una regla dice si la respuesta es correcta. Por eso los datos tienen que ser problemas con respuesta comprobable: matemática con resultado exacto, código con tests, opción múltiple. Por cada problema el modelo genera 16 respuestas; las que aciertan reciben 1 y las que no, 0. GRPO compara cada una con el promedio de su grupo y empuja al modelo hacia las que salieron mejor que el promedio. No hay reward model ni value model que entrenar. La lámina siguiente muestra qué pasa cuando esto se repite miles de veces. Tiempo objetivo: ~2 min.
+
+---
+
+## 2. RL con verificador: el resultado
 
 <!-- template: content-image -->
 
 ### Content
 
-**DeepSeek-R1-Zero aprende a razonar solo con RL: la recompensa es una regla que verifica la respuesta final. Durante el entrenamiento, el modelo aprende por su cuenta a escribir razonamientos más largos.**
+**DeepSeek-R1-Zero aprende a razonar solo con RL. La recompensa es una regla que verifica la respuesta final. Durante el entrenamiento, el modelo aprende por su cuenta a escribir razonamientos más largos.**
 
 ![Exactitud en AIME y largo medio de respuesta de DeepSeek-R1-Zero durante el RL (DeepSeek-AI, fig. 1)](images/fig-01-p004.png)
 
-- **Recompensa.** Exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`).
-- **GRPO (Group Relative Policy Optimization).** Por cada problema se muestrean 16 respuestas; cada una se compara con el promedio de su grupo.
 - **Efecto.** En AIME, un examen de matemática de competencia con respuestas numéricas, pasa de 15,6% a 77,9%, y las respuestas crecen de cientos a miles de tokens.
 - **Fuente.** [DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948)
 
@@ -856,17 +952,17 @@ El título del paper lo resume: "Your Language Model Is Secretly a Reward Model"
 
 ### Speaker notes
 
-Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT: el RL arranca directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque se puede engañar (reward hacking); una regla que compara con la respuesta correcta, no. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para "1 + 1" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa: eso es effort. Tiempo objetivo: ~2 min.
+Recompensa: exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`). GRPO (Group Relative Policy Optimization) muestrea 16 respuestas por problema y compara cada una con el promedio de su grupo, como en el diagrama de la lámina anterior. Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT y arranca el RL directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque el modelo puede engañarlo (reward hacking). Una regla que compara con la respuesta correcta no se deja engañar. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para "1 + 1" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa, que es lo que agrega effort. Tiempo objetivo: ~2 min.
 
 ---
 
-## 2. Effort: low, medium, high
+## 3. Effort: low, medium, high
 
 <!-- template: content-image -->
 
 ### Content
 
-**gpt-oss se entrena para respetar tres niveles de razonamiento que se eligen con la línea `reasoning: low` (o `medium`, `high`) en el system prompt. Más nivel, razonamiento más largo y más exactitud.**
+**OpenAI entrena a gpt-oss para respetar tres niveles de razonamiento que se eligen con la línea `reasoning: low` (o `medium`, `high`) en el system prompt. Un nivel más alto alarga el razonamiento y sube la exactitud.**
 
 ![Exactitud contra largo medio de razonamiento y respuesta para los niveles low, medium y high de gpt-oss (OpenAI, 2025, fig. 3)](images/fig-03-p008.png)
 
@@ -881,15 +977,15 @@ Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT: e
 
 ### Speaker notes
 
-Es el concepto de las notas: effort low, medium, high. La ficha del modelo dice tres cosas: los niveles se entrenaron, se eligen en el system prompt y más nivel da razonamientos más largos. No dice cómo se entrenaron: ni datos, ni recompensa por largo, ni presupuesto por nivel. No hay que atribuirle un método a OpenAI; las dos láminas siguientes muestran uno documentado, el de Qwen3. Sin herramientas los números bajan (50,4 / 80,0 / 92,5) pero el escalón entre niveles se mantiene. Tiempo objetivo: ~2 min.
+Es el concepto de effort low, medium, high de las notas. La ficha del modelo dice tres cosas: los niveles se entrenaron, se eligen en el system prompt y más nivel da razonamientos más largos. No describe cómo se entrenaron, ni con qué datos, recompensa por largo o presupuesto por nivel. No hay que atribuirle un método a OpenAI; las dos láminas siguientes muestran uno documentado, el de Qwen3. Sin herramientas los números bajan (50,4 / 80,0 / 92,5) pero el escalón entre niveles se mantiene. Tiempo objetivo: ~2 min.
 
 ---
 
-## 3. Qwen3: cuatro pasos de post-training
+## 4. Qwen3: cuatro pasos de post-training
 
 ### Content
 
-**Qwen3 hace cuatro pasos de post-training sobre el modelo base. Los pasos 1 y 2 le enseñan a razonar, y los pasos 3 y 4 a respetar los flags `/think` y `/no_think`. El presupuesto de pensamiento no se entrena: el sistema lo corta en inferencia.**
+**Qwen3 hace cuatro pasos de post-training sobre el modelo base. Los pasos 1 y 2 le enseñan a razonar, y los pasos 3 y 4 a respetar los flags `/think` y `/no_think`. El presupuesto de pensamiento no se entrena. El sistema lo corta en inferencia.**
 
 ![Los cuatro pasos de post-training de Qwen3 y qué aprende cada mitad](images/s3-9-1-cuatro-pasos-qwen3.png)
 <!-- ascii-source:
@@ -916,11 +1012,11 @@ labels: pasos 1 a 4
 
 ### Speaker notes
 
-Los pasos 1 y 2 siguen la receta de DeepSeek-R1. La lámina siguiente muestra los datos del paso 3. El presupuesto es un corte en inferencia: después de la fusión, el modelo sabe responder con razonamiento completo o sin él, y responder con uno a medias le sale solo. En AIME'25, sin razonamiento da ~25%, con 1.000 tokens ~31% y con 32.000 ~82% (Figura 2 del paper). La comparación con gpt-oss es nuestra: Qwen3 no tiene niveles low/medium/high, sino un interruptor y un presupuesto en tokens. Costo que reconocen los autores: después de los pasos 3 y 4 el modo con razonamiento pierde algo en las tareas más difíciles. Tiempo objetivo: ~2 min.
+Los pasos 1 y 2 siguen la receta de DeepSeek-R1. La lámina siguiente muestra los datos del paso 3. El presupuesto es un corte en inferencia. Después de la fusión, el modelo sabe responder con razonamiento completo o sin él, y responder con uno a medias le sale solo. En AIME'25, sin razonamiento da ~25%, con 1.000 tokens ~31% y con 32.000 ~82% (Figura 2 del paper). La comparación con gpt-oss es nuestra: Qwen3 tiene un interruptor y un presupuesto en tokens en lugar de niveles low/medium/high. Los autores reconocen que, después de los pasos 3 y 4, el modo con razonamiento pierde algo en las tareas más difíciles. Tiempo objetivo: ~2 min.
 
 ---
 
-## 4. Qwen3: SFT con /think y /no_think
+## 5. Qwen3: SFT con /think y /no_think
 
 ### Content
 
@@ -939,7 +1035,7 @@ Modo con razonamiento:              Modo sin razonamiento:
 ```
 
 - **Por defecto piensa.** Algunos ejemplos con razonamiento no traen `/think`.
-- **Diálogos largos.** Se insertan varios flags al azar y la respuesta sigue al último.
+- **Diálogos largos.** Los autores insertan varios flags al azar y la respuesta sigue al último.
 - **Apagado duro.** En Hugging Face, `enable_thinking=False` inserta el bloque vacío.
 - **Fuente.** [Qwen Team, 2025](https://arxiv.org/abs/2505.09388)
 
@@ -955,29 +1051,78 @@ Es un dataset de SFT como los de la sección 2, con una convención de formato. 
 
 # 5. Herramientas
 
-**Goal of this section:** Mostrar por qué un modelo necesita herramientas y el circuito entre el modelo y el agente, y después recorrer tres herramientas con la misma pregunta: qué genera el modelo, quién ejecuta la llamada y con qué datos se lo entrenó. La calculadora: por qué un LLM calcula mal, el dataset GSM8K con sus anotaciones (y el etiquetado propio de Toolformer) y la llamada que escribe el modelo y resuelve un ejecutor externo. La búsqueda web: la ejecuta la plataforma del proveedor, el modelo genera la consulta y la respuesta con citas, y el modelo aprende a buscar con demostraciones y preferencias. MCP: host, cliente y servidor, una herramienta como definición en el contexto y el function calling genérico que se entrena. Catorce láminas, unos 21 minutos: el circuito con un agente y su intercambio con la API, un mapa de tres problemas (calcular, buscar, MCP) y dos o tres láminas para cada uno.
+**Goal of this section:** Mostrar las piezas de una plataforma que expone un LLM por API (tu aplicación, la API, la plantilla de chat, el modelo, el parser de llamadas y las herramientas nativas) y el circuito entre el modelo y el agente, y después recorrer tres herramientas con la misma pregunta: qué genera el modelo, quién ejecuta la llamada y con qué datos se lo entrenó. La calculadora: el dataset GSM8K con sus anotaciones (y el etiquetado propio de Toolformer), por qué un LLM calcula mal, cómo escribe hoy la llamada Llama 3.1 con sus tokens especiales, cómo el servidor la traduce a JSON y cómo se ve esa misma cuenta por la API de Ollama. La búsqueda web: cómo se entrena, la fecha de corte, la consulta que escribe Llama 3.1 y la respuesta de una API donde la búsqueda la ejecuta la plataforma. MCP: host, cliente y servidor, una herramienta como definición en el contexto y el function calling genérico que se entrena. Dieciséis láminas: el mapa de la plataforma, el circuito con un agente y su intercambio con la API, un mapa de tres problemas (calcular, buscar, MCP) y varias láminas para cada uno.
 
 ---
 
-## 1. Por qué herramientas
+## 1. Las piezas de una plataforma
 
 ### Content
 
-**Los pesos quedan congelados en la fecha de corte y el modelo genera texto por probabilidad. Una herramienta aporta datos actuales y cuentas exactas.**
+**Cuando usás un LLM por API, el modelo está en el medio y nunca ejecuta nada. Alrededor hay piezas que traducen el JSON a texto con tags y de vuelta, y dos lugares donde corre una herramienta: tu aplicación o la plataforma.**
 
-- **Datos actuales.** "¿Quién es el presidente hoy?" depende de la fecha de corte; una búsqueda lo resuelve.
-- **Precisión.** Un intérprete de código calcula π con 50 decimales sin recitarlo de memoria.
-- **Acciones.** Mover archivos, consultar una base, llamar a una API: tareas que los pesos no pueden hacer.
-- **Fuente.** [Lambert, RLHF Book, cap. 13](https://rlhfbook.com/c/13-tools) · [Schick et al., 2023](https://arxiv.org/abs/2302.04761)
+![Las piezas de una plataforma: tu aplicación arriba, fuera de la plataforma, arma el pedido y ejecuta tus herramientas; dentro de la plataforma, la API, la plantilla de chat (ida) y el parser de llamadas (vuelta) rodean al modelo, que escribe la llamada pero no la ejecuta; abajo, las herramientas nativas que ejecuta la plataforma](images/s5-1-1-piezas-plataforma.png)
+<!-- ascii-source:
+ TU APLICACIÓN (tu agente)
+ +--------------------------------------------------------------------------------+
+ | arma el pedido: mensajes + definición de las herramientas                      |
+ | ejecuta TUS herramientas: funciones, base de datos, servidores MCP             |
+ +--------------------------------------------------------------------------------+
+          |  JSON: messages + tools                     ^  JSON: tool_calls o texto
+          v                                             |
+ PLATAFORMA: un proveedor, o vLLM / Ollama en tu máquina
+ +--------------------------------------------------------------------------------+
+ |  +--------------------------------------------------------------------------+  |
+ |  |                          API: entra y sale JSON                          |  |
+ |  +--------------------------------------------------------------------------+  |
+ |          |                                              ^                      |
+ |          v                                              |                      |
+ |  +----------------------+                    +----------------------+          |
+ |  | PLANTILLA DE CHAT    |                    | PARSER DE LLAMADAS   |          |
+ |  | JSON -> texto con    |                    | texto del modelo ->  |          |
+ |  | tags (ida)           |                    | tool_calls (vuelta)  |          |
+ |  +----------------------+                    +----------------------+          |
+ |          |                                              ^                      |
+ |          v                                              |                      |
+ |  +--------------------------------------------------------------------------+  |
+ |  | MODELO: lee y escribe texto con tags; escribe la llamada, no la ejecuta  |  |
+ |  +--------------------------------------------------------------------------+  |
+ |                                     |    ^                                     |
+ |                                     v    |                                     |
+ |  +--------------------------------------------------------------------------+  |
+ |  | HERRAMIENTAS NATIVAS (solo proveedores): búsqueda web, ejecución de      |  |
+ |  | código. Las ejecuta la plataforma y agrega el resultado                  |  |
+ |  +--------------------------------------------------------------------------+  |
+ +--------------------------------------------------------------------------------+
+-->
+<!-- ascii-note:
+intent: el mapa de las piezas que intervienen cuando se usa un LLM por API, para que cada lámina siguiente de la sección sea un zoom sobre una pieza
+emphasize: el MODELO en el medio con "no la ejecuta"; los dos lugares donde corre una herramienta (TU APLICACIÓN arriba y HERRAMIENTAS NATIVAS abajo) con acento rojo; la plantilla de chat (ida) y el parser (vuelta) como los dos traductores, uno bajando y otro subiendo
+labels: TU APLICACIÓN fuera de la caja PLATAFORMA; la PLATAFORMA como un contenedor con sus cuatro piezas apiladas; flechas de ida a la izquierda y de vuelta a la derecha
+-->
+
+- **Plantilla de chat.** Convierte los mensajes y las definiciones de herramientas en el texto con tags que el modelo vio al entrenarse. El modelo ve la definición de cada herramienta, nunca su código.
+- **Parser de llamadas.** Lee el texto que escribe el modelo y extrae las llamadas como `tool_calls`. Hay uno por familia de modelos (`llama3_json`, `hermes`, `mistral`), y a veces los argumentos llegan mal formados.
+- **Tus herramientas.** Las ejecuta tu aplicación: la API devuelve la llamada y espera el resultado.
+- **Herramientas nativas.** La búsqueda web y la ejecución de código las ejecuta la plataforma del proveedor, dentro del mismo pedido.
+- **Fuente.** [vLLM, docs de tool calling](https://docs.vllm.ai/en/latest/features/tool_calling/) · [Hugging Face, chat templates con herramientas](https://huggingface.co/docs/transformers/main/en/chat_template_tools_and_documents) · [Anthropic, docs de tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) · [OpenAI, herramientas para agentes](https://openai.com/index/new-tools-for-building-agents/)
 
 ### Sources
 
-- `lambert-rlhfbook-tool-use.web.md`: "Who is the president today?" y la fecha de corte; pi con 50 dígitos "without reciting it from memory and risking hallucination"; ejemplo de mover papers de arXiv; "An AI model uses any external tools by outputting special tokens to trigger a certain endpoint"; "Tool-use is a skill that language models need to be trained to have".
-- `schick-2023-toolformer.pdf.md`: limitaciones de los LM (información actualizada, cálculo preciso, noción del tiempo).
+- `vllm-tool-calling.web.md` (verbatim): `--chat-template` ("Jinja template that renders messages (including `tool`-role messages and assistant messages with earlier tool calls) into the prompt") y `--tool-call-parser` (código por familia de modelos que lee el texto generado y extrae las llamadas; nombres `llama3_json` para Llama 3.1, 3.2 y 4, `hermes`, `mistral`, `pythonic`, entre otros); "vLLM extracts tool calls from raw text, so arguments may occasionally be malformed or violate the function's parameter schema"; "it's the caller's responsibility to: 1. Define appropriate tools in the request 2. Include relevant context in the chat messages 3. Handle the tool calls in your application logic". La respuesta llega con la forma de OpenAI (`message.tool_calls[0].function`, con `arguments` como string JSON).
+- `hf-chat-templates-tools.web.md` (verbatim): "Each function you pass to the `tools` argument of `apply_chat_template` is converted into a JSON schema. These schemas are then passed to the model chat template. In other words, tool-use models do not see your functions directly, and they never see the actual code inside them."; "It is up to you to read their outputs, detect if they have requested to use a tool, pass their arguments to the tool function, and return the response in the chat." Sin servidor, el parser lo escribe tu código.
+- `anthropic-tool-use-overview.web.md` (verbatim): "Tools differ primarily by where the code executes. **Client tools** … run in your application. … **Server tools** (such as `web_search`, `web_fetch`, `code_execution`, and `tool_search`) run on Anthropic's infrastructure".
+- `openai-new-tools-for-agents.web.md`: la Responses API trae herramientas incorporadas (web search, file search, computer use); web search "can be paired with other tools or function calls". Excepción [verified]: computer use "captures mouse and keyboard actions generated by the model, making it possible for developers to automate computer use tasks by directly translating these actions into executable commands within their environments", es decir, esas acciones las ejecuta el desarrollador. Por eso la lámina nombra solo la búsqueda web y la ejecución de código, sin decir que todas las incorporadas las ejecuta la plataforma.
+- Ollama (`ollama-tool-calling.web.md`) como plataforma en tu máquina: API con `tools` y `tool_calls`; no documenta cómo aplica la plantilla de cada modelo, así que la analogía con vLLM es nuestra.
+- Lámina agregada por pedido del presentador (2026-09-27): "antes de mostrar las herramientas, tal vez convendría mostrar cuáles son los componentes en una plataforma para exponer por API. Existe un conversor a JSON, existen herramientas que están 'nativas' como la búsqueda. Creo que este diagrama sería buena introducción y se pueden eliminar repetidos." El diagrama se verificó contra vLLM, Hugging Face y OpenAI: el "conversor" son dos piezas, la plantilla de chat y el parser. Reemplaza a "Por qué herramientas" y "Buscar: las capas" (en Cut material del borrador).
 
 ### Speaker notes
 
-Tres razones para que un modelo use herramientas. Un modelo base no sabe emitir una llamada; hay que entrenarlo. La lámina siguiente muestra el circuito completo entre el modelo y el agente. Después vienen tres herramientas, una por cada razón de la lámina: la calculadora (precisión), la búsqueda web (datos actuales) y MCP (acciones sobre cualquier sistema). Para cada una, la misma pregunta: qué genera el modelo, quién ejecuta la llamada y cómo se lo entrenó. Tiempo objetivo: ~1,5 min.
+Es el mapa de toda la sección: cada lámina que sigue es un zoom sobre una de estas piezas. Arriba está tu aplicación, que arma el pedido en JSON y ejecuta tus herramientas. Abajo está la plataforma, que puede ser un proveedor como OpenAI o Anthropic, o un servidor como vLLM u Ollama que corre en tu máquina. La API recibe JSON; la plantilla de chat lo convierte en el texto con tags especiales que el modelo vio en su entrenamiento; el modelo escribe; el parser lee ese texto y, si hay una llamada, la devuelve como tool_calls. En vLLM son dos opciones del servidor: --chat-template y --tool-call-parser. Si usás el modelo directo con la librería de Hugging Face, sin servidor, ese parser lo escribís vos. El parser también puede fallar, porque el modelo escribe texto y convertirlo en JSON no está garantizado.
+
+El modelo está en el medio y nunca ejecuta nada. Una herramienta corre en uno de dos lugares: en tu aplicación, o en la plataforma cuando es nativa, como la búsqueda web o la ejecución de código. No todas las incorporadas funcionan así. Con computer use de OpenAI, el modelo propone las acciones y las ejecuta el desarrollador en su entorno.
+
+Dónde reaparece cada pieza: tu aplicación, en el circuito y en el intercambio con la API; la plantilla y el parser, en "de los tokens al JSON"; el modelo, en lo que escribe Llama 3.1; las herramientas nativas, en la respuesta de la API con búsqueda.
 
 ---
 
@@ -1031,7 +1176,7 @@ labels: tres columnas (usuario, chat = agente, LLM) como diagrama de secuencia c
 
 ### Speaker notes
 
-Callback a la clase de RAG y MCP: allá armaron este loop del lado del agente, con ReAct. Lo que queda para el resto de la sección es el lado del modelo: por qué emite una llamada bien formada y sabe cuándo dejar de llamar. Si la llamada sale mal escrita, el loop se rompe: cualquier texto que no sea una llamada válida cuenta como acción inválida. El agente también pone límites propios, como un máximo de vueltas. Tiempo objetivo: ~2 min.
+Es la pieza de arriba del mapa anterior, tu aplicación, vista en el tiempo. Callback a la clase de RAG y MCP: allá armaron este loop del lado del agente, con ReAct. El resto de la sección se ocupa del lado del modelo: por qué emite una llamada bien formada y sabe cuándo dejar de llamar. Si la llamada sale mal escrita, el loop se rompe, porque cualquier texto que no sea una llamada válida cuenta como acción inválida. El agente también pone límites propios, como un máximo de vueltas. Tiempo objetivo: ~2 min.
 
 ---
 
@@ -1083,7 +1228,7 @@ Callback a la clase de RAG y MCP: allá armaron este loop del lado del agente, c
 
 ### Speaker notes
 
-Es el diagrama anterior en JSON. Recorrer los cuatro bloques con los números de la lámina anterior: el pedido lleva el historial y las herramientas; la respuesta no trae texto sino un bloque tool_use y el motivo de corte es tool_use; el chat ejecuta, y en el segundo pedido manda el resultado con el mismo id; la respuesta final corta con end_turn. Marcar que el LLM nunca ejecuta nada: solo escribe la llamada. El formato es el de la API de Anthropic; otros proveedores usan nombres distintos para lo mismo. Tiempo objetivo: ~2 min.
+Es el diagrama anterior en JSON. Recorrer los cuatro bloques con los números de la lámina anterior: el pedido lleva el historial y las herramientas; la respuesta trae un bloque tool_use, sin texto, y el motivo de corte es tool_use; el chat ejecuta, y en el segundo pedido manda el resultado con el mismo id; la respuesta final corta con end_turn. Marcar que el LLM solo escribe la llamada y nunca la ejecuta. El formato es el de la API de Anthropic; otros proveedores usan nombres distintos para lo mismo. Tiempo objetivo: ~2 min.
 
 ---
 
@@ -1093,9 +1238,9 @@ Es el diagrama anterior en JSON. Recorrer los cuatro bloques con los números de
 
 **Tres cosas que los pesos del modelo no resuelven solos, y la herramienta que se entrena para cada una.**
 
-- **Calcular.** El modelo se equivoca en cuentas de varios pasos: una calculadora las hace exactas.
-- **Buscar.** El modelo no sabe lo que pasó después de su fecha de corte: la búsqueda web trae datos actuales.
-- **MCP.** Cada sistema tiene su propia API: MCP es una interfaz común para conectar cualquier herramienta.
+- **Calcular.** El modelo se equivoca en cuentas de varios pasos. Una calculadora las hace exactas.
+- **Buscar.** El modelo no sabe lo que pasó después de su fecha de corte. La búsqueda web trae datos actuales.
+- **MCP.** Cada sistema tiene su propia API. MCP es una interfaz común para conectar cualquier herramienta.
 - **Fuente.** [Schick et al., 2023](https://arxiv.org/abs/2302.04761) · [Nakano et al., 2021](https://arxiv.org/abs/2112.09332) · [MCP, docs de arquitectura](https://modelcontextprotocol.io/docs/learn/architecture)
 
 ### Sources
@@ -1107,38 +1252,15 @@ Es el diagrama anterior en JSON. Recorrer los cuatro bloques con los números de
 
 ### Speaker notes
 
-El mapa del resto de la sección. Para cada problema vamos a ver lo mismo: qué genera el modelo, quién ejecuta la llamada y con qué datos se lo entrenó. Los títulos de las láminas que siguen empiezan con el problema: Calcular, Buscar, MCP. Tiempo objetivo: ~1 min.
+Son las tres razones para usar herramientas: precisión (calcular), datos actuales (buscar) y acciones sobre otros sistemas (MCP). Un modelo base no sabe emitir una llamada hasta que lo entrenan para eso. Esta lámina es el mapa del resto de la sección. Para cada problema vamos a ver lo mismo: qué genera el modelo, quién ejecuta la llamada y con qué datos se lo entrenó. Los títulos de las láminas que siguen empiezan con el problema: Calcular, Buscar, MCP. Tiempo objetivo: ~1 min.
 
 ---
 
-## 5. Calcular: el modelo no calcula bien
+## 5. Calcular: el dataset GSM8K
 
 ### Content
 
-**Un LLM genera texto por probabilidad, token por token. En una cuenta de varios pasos, un error de cálculo arrastra al resto de la solución.**
-
-- **Errores de cálculo.** En GSM8K, los modelos de OpenAI fallaban seguido en las cuentas. Los más grandes se equivocaban menos, pero el error seguía siendo común.
-- **Sin vuelta atrás.** Un modelo autoregresivo no tiene cómo corregir un error propio. Una solución que se desvía queda irrecuperable.
-- **Lo básico falla.** Los LLM resuelven tareas nuevas con pocos ejemplos y a la vez fallan en aritmética, donde modelos mucho más chicos y simples andan bien.
-- **Fuente.** [Cobbe et al., 2021](https://arxiv.org/abs/2110.14168) · [Schick et al., 2023](https://arxiv.org/abs/2302.04761)
-
-### Sources
-
-- `cobbe-2021-gsm8k-verifiers.pdf.md` (§4, verbatim): "Our models frequently fail to accurately perform calculations. Although larger models make fewer arithmetic mistakes than smaller models, this remains a common source of errors. To mitigate this issue, we train all models to use a calculator by injecting calculation annotations into the training set." (§1, verbatim): "When generating a solution, autoregressive models have no mechanism to correct their own errors. Solutions that veer off-course quickly become unrecoverable."; "Model samples frequently contain catastrophic mistakes, even after the model has been appropriately finetuned."; §4.1: extrapolación a "a model with 10^16 parameters" para 80% de aciertos con fine-tuning.
-- `schick-2023-toolformer.pdf.md` (abstract, verbatim): LMs "exhibit remarkable abilities to solve new tasks from just a few examples or textual instructions, especially at scale. They also, paradoxically, struggle with basic functionality, such as arithmetic or factual lookup, where much simpler and smaller models excel."
-- `lambert-rlhfbook-tool-use.web.md`: code execution "lets language models get around their probabilistic, generative nature and return precise answers".
-
-### Speaker notes
-
-Primera de las tres herramientas: la calculadora. GSM8K es un dataset de OpenAI de 2021 con problemas de matemática escolar; lo vemos en la lámina siguiente. El dato que conviene decir en voz alta: extrapolando la tendencia, los autores calculan que con fine-tuning solo haría falta un modelo de 10^16 parámetros para resolver el 80% de GSM8K. Su respuesta fue darle una calculadora al modelo (y verificadores, que no entran en esta clase). El corpus no explica el error aritmético por la forma en que el tokenizer parte los números; si alguien lo pregunta, es una hipótesis que la clase no cubre. Tiempo objetivo: ~1,5 min.
-
----
-
-## 6. Calcular: el dataset GSM8K
-
-### Content
-
-**GSM8K son problemas de matemática escolar escritos por personas, con la solución paso a paso. Las anotaciones de calculadora las generó un programa.**
+**GSM8K (Grade School Math 8K) son unos 8.500 problemas de matemática escolar escritos por personas, con la solución paso a paso. Las anotaciones de calculadora las generó un programa.**
 
 ```json
 {
@@ -1161,86 +1283,288 @@ Primera de las tres herramientas: la calculadora. GSM8K es un dataset de OpenAI 
 
 ### Speaker notes
 
-Mostrar el registro en pantalla y señalar las dos anotaciones: cada `<<…>>` es una llamada a la calculadora, y la lámina siguiente muestra quién la resuelve. Es un registro de SFT como los de la lámina 2.4. Los problemas los escribieron personas; las anotaciones, no. La última línea, `#### 72`, permite corregir la respuesta de forma automática. Toolformer usa la pérdida de la clase 8 como filtro y escribe las llamadas con corchetes y una flecha, sin tocar el vocabulario. En ASDiv, un GPT-J de 6,7B con calculadora saca 40,4 y GPT-3 175B, 14,0. Hoy GSM8K se usa sobre todo como benchmark. Tiempo objetivo: ~2 min.
+La primera de las tres herramientas es la calculadora, y arrancamos por los datos. GSM8K es un dataset de OpenAI de 2021, con unos 8.500 problemas de matemática escolar escritos por personas y la solución paso a paso. Mostrar el registro en pantalla y señalar las dos anotaciones: cada `<<…>>` es una llamada a la calculadora, pegada al texto; dos láminas más adelante vemos cómo lo hace hoy un modelo abierto. Es un registro de SFT como los de la lámina 2.4. Los problemas los escribieron personas, pero las anotaciones las generó un programa. La última línea, `#### 72`, permite corregir la respuesta de forma automática. Toolformer hace algo parecido sin anotaciones humanas. Escribe las llamadas con corchetes y una flecha, sin tocar el vocabulario; en ASDiv, un GPT-J de 6,7B con calculadora saca 40,4 y GPT-3 175B, 14,0. Cerrar con la pregunta que abre la lámina siguiente: ¿por qué hizo falta ponerle una calculadora al modelo? Tiempo objetivo: ~2 min.
 
 ---
 
-## 7. Calcular: quién hace la cuenta
-
-<!-- template: content-image -->
+## 6. Calcular: el modelo no calcula bien
 
 ### Content
 
-**El modelo escribe la cuenta como texto. Cuando llega al "=", un ejecutor externo evalúa la expresión, escribe el resultado en la secuencia y el modelo sigue generando.**
+**Un LLM genera texto por probabilidad, token por token. En una cuenta de varios pasos, un error de cálculo arrastra al resto de la solución.**
 
-![Procedimiento de muestreo con calculadora en GSM8K: el generador escribe la expresión, el "=" dispara la calculadora, eval("20+10") escribe 30>> y el generador sigue con "books" (Cobbe et al., 2021, fig. 9)](images/fig-09-p017.png)
-
-- **Lo que genera el modelo.** La llamada, en tokens comunes: `<<20+10=`.
-- **Lo que pone el ejecutor.** El resultado y el cierre, `30>>`, con `eval` de Python. Si la evaluación falla, el modelo sigue sin calculadora.
-- **Lo que se entrena.** En GSM8K, todo el texto con las anotaciones incluidas. En el SFT actual con herramientas, la salida del ejecutor se enmascara en la pérdida y el modelo aprende la llamada.
-- **Fuente.** [Cobbe et al., 2021](https://arxiv.org/abs/2110.14168) · [Lambert, RLHF Book, cap. 13](https://rlhfbook.com/c/13-tools)
+- **Errores de cálculo.** En GSM8K, los modelos de OpenAI fallaban seguido en las cuentas. Los más grandes se equivocaban menos, pero el error seguía siendo común.
+- **Sin vuelta atrás.** Un modelo autoregresivo no tiene cómo corregir un error propio. Una solución que se desvía queda irrecuperable.
+- **Lo básico falla.** Los LLM resuelven tareas nuevas con pocos ejemplos y a la vez fallan en aritmética, donde modelos mucho más chicos y simples andan bien.
+- **Fuente.** [Cobbe et al., 2021](https://arxiv.org/abs/2110.14168) · [Schick et al., 2023](https://arxiv.org/abs/2302.04761)
 
 ### Sources
 
-- `cobbe-2021-gsm8k-verifiers.pdf.md` (Figura 9, `fig-09-p017.png`, vista por el Editor): "Her sister gave her 20 + 10 = <<20+10" → Generator → "=" ("Trigger Calculator") → Calculator `eval("20+10")` → "30>>" → Generator → "books". Apéndice C (verbatim): "During training, there is no special distinction between the annotated tokens and the rest of the solution: they are all just tokens. During testing, we override model sampling when a well-formatted annotation exists, specifically overwriting the token(s) directly following “=” and within <<. . . >>."; "To simulate the calculator, we simply use the python eval function to evaluate the tokens in the expression (Figure 9). Evaluations that time out or throw an error result in the annotations being skipped and the model being sampled from as usual."
-- `lambert-rlhfbook-tool-use.web.md` (verbatim): "the tokens in the tool output are masked from the model's training loss. This ensures the model is not learning to predict the output of the system that processes the tool call (as the results are not tokens generated by the model)."; el pie de su figura dice que la llamada también "typically" se enmascara (ver Open questions); Figura 1: "an external system executes the tool and injects the output (purple) into the sequence, then the model continues generating".
+- `cobbe-2021-gsm8k-verifiers.pdf.md` (§4, verbatim): "Our models frequently fail to accurately perform calculations. Although larger models make fewer arithmetic mistakes than smaller models, this remains a common source of errors. To mitigate this issue, we train all models to use a calculator by injecting calculation annotations into the training set." (§1, verbatim): "When generating a solution, autoregressive models have no mechanism to correct their own errors. Solutions that veer off-course quickly become unrecoverable."; "Model samples frequently contain catastrophic mistakes, even after the model has been appropriately finetuned."; §4.1: extrapolación a "a model with 10^16 parameters" para 80% de aciertos con fine-tuning.
+- `schick-2023-toolformer.pdf.md` (abstract, verbatim): LMs "exhibit remarkable abilities to solve new tasks from just a few examples or textual instructions, especially at scale. They also, paradoxically, struggle with basic functionality, such as arithmetic or factual lookup, where much simpler and smaller models excel."
+- `lambert-rlhfbook-tool-use.web.md`: code execution "lets language models get around their probabilistic, generative nature and return precise answers".
 
 ### Speaker notes
 
-Es la versión con calculadora de la lámina 5.2: el modelo escribe, otro programa calcula. Recorrer la figura de arriba abajo: tres pasos del generador hasta el "=", la calculadora (en rojo) escribe "30>>" y el generador sigue con "books". Diferencia con la máscara de la lámina 2.3: GSM8K entrenó sobre las anotaciones como cualquier otro token, y la calculadora recién pisa el resultado en la inferencia. Lambert describe como práctica actual enmascarar la salida de la herramienta. Detalle para quien mire los datos: en las salidas del modelo aparece "5.0" en vez de "5", porque `eval` devuelve un float. Tiempo objetivo: ~2 min.
+Responde la pregunta de la lámina anterior: aun en problemas de primaria como los de GSM8K, el modelo se equivoca en las cuentas, y un error en un paso arrastra al resto. El dato que conviene decir en voz alta: extrapolando la tendencia, los autores calculan que con fine-tuning solo haría falta un modelo de 10^16 parámetros para resolver el 80% de GSM8K. Su respuesta fue darle una calculadora al modelo (y verificadores, que no entran en esta clase); la lámina siguiente muestra cómo lo hace hoy Llama 3.1. El corpus no explica el error aritmético por la forma en que el tokenizer parte los números; si alguien lo pregunta, es una hipótesis que la clase no cubre. Tiempo objetivo: ~1,5 min.
 
 ---
 
-## 8. Buscar: la ejecuta el proveedor
+## 7. Calcular: lo que escribe Llama 3.1
+
+<!-- design: split-left -->
 
 ### Content
 
-**Entre herramientas cambia quién ejecuta la llamada. La búsqueda web corre en la plataforma del proveedor, dentro del mismo pedido a la API; las herramientas propias las ejecuta el agente de la aplicación.**
+**Llama 3.1 trae una calculadora incorporada, Wolfram Alpha. El modelo escribe la llamada con tokens especiales, se detiene y sigue cuando le devuelven el resultado.**
 
-![Herramienta del servidor contra herramienta del cliente: dónde se ejecuta la llamada](images/s4-6-1-herramienta-servidor-cliente.png)
+![La conversación de Llama 3.1 turno por turno: system activa las herramientas, user pregunta, assistant escribe la llamada a wolfram_alpha entre python_tag y eom_id y se detiene, ipython trae el resultado que agrega el agente, assistant responde](images/s5-7-1-llama-tokens-wolfram.png)
 <!-- ascii-source:
- (a) herramienta del servidor: búsqueda web
-
- +----------+        +--------------- proveedor: un solo pedido a la API ----------------+
- | tu app   | -----&gt; |  LLM --&gt; búsqueda --&gt; resultado --&gt; LLM --&gt; ...  (varias veces)   |
- |          | <----- |  respuesta con citas                                              |
- +----------+        +-------------------------------------------------------------------+
-
- (b) herramienta del cliente: funciones propias, base de datos, MCP
-
- +-------------------------------+        +---------------- proveedor ----------------+
- | tu app                        | -----&gt; |  LLM emite la llamada y espera            |
- | el agente ejecuta la llamada  | <----- |                                           |
- | y manda el resultado          | -----&gt; |  LLM sigue con el resultado               |
- |                               | <----- |  respuesta                                |
- +-------------------------------+        +-------------------------------------------+
+ ROL         LO QUE VE EL MODELO
+ +-----------+------------------------------------------------------------------+
+ | system    | Environment: ipython                                             |
+ |           | Tools: brave_search, wolfram_alpha                     <|eot_id|> |
+ +-----------+------------------------------------------------------------------+
+ | user      | What is the 100th decimal of pi?                       <|eot_id|> |
+ +-----------+------------------------------------------------------------------+
+ | assistant | <|python_tag|> wolfram_alpha.call(query="100th decimal of pi")   |
+ |           |                                                        <|eom_id|> |  <- paro acá:
+ |           |                                                                  |     falta la herramienta
+ +-----------+------------------------------------------------------------------+
+ | ipython   | {"Result": "7"}                                        <|eot_id|> |  <- lo agrega el agente
+ +-----------+------------------------------------------------------------------+
+ | assistant | The 100th decimal of pi is 7.                          <|eot_id|> |
+ +-----------+------------------------------------------------------------------+
+   cada turno empieza con <|start_header_id|> rol <|end_header_id|>
 -->
 <!-- ascii-note:
-intent: dos carriles, herramienta del servidor contra herramienta del cliente; el punto es dónde se ejecuta la llamada
-emphasize: el borde de las cajas (dentro del proveedor contra dentro de tu app); en los dos carriles el LLM solo emite la llamada
-labels: (a) servidor, (b) cliente, respuesta con citas
+intent: la conversación de Llama 3.1 con una llamada a Wolfram Alpha, turno por turno, tal como la ve el modelo
+emphasize: el turno del assistant que llama a la herramienta (<|python_tag|> … <|eom_id|>) en rojo con su anotación "paro acá: falta la herramienta"; el turno ipython anotado como agregado por el agente
+labels: columna de rol a la izquierda (system, user, assistant, ipython, assistant); tokens especiales como chips grises chicos; texto de los turnos en monoespaciado; la nota del start_header_id al pie en gris
 -->
 
-- **Herramienta del servidor.** Búsqueda web, lectura de páginas o ejecución de código alojada. La plataforma del proveedor la ejecuta, puede repetirla varias veces en un mismo pedido y devuelve la respuesta con citas.
-- **Herramienta del cliente.** Funciones propias, una base de datos o un servidor MCP. La API devuelve la llamada y espera; el agente la ejecuta y manda el resultado.
-- **Fuente.** [Anthropic, docs de tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) · [Anthropic, docs de web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)
+- **Lo que escribe el modelo.** `<|python_tag|>` abre la llamada y `<|eom_id|>` la cierra: "paro acá, falta el resultado de la herramienta".
+- **Quién la ejecuta.** El agente, que es el código que corre el modelo, llama a Wolfram Alpha y agrega la respuesta con el rol `ipython`.
+- **Cómo lo aprendió.** En el post-training, con conversaciones escritas en este formato; lo que devuelve la herramienta no cuenta en la pérdida.
+- **Fuente.** [Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md) · [Lambert, RLHF Book, cap. 13](https://rlhfbook.com/c/13-tools)
 
 ### Sources
 
-- `anthropic-tool-use-overview.web.md`: "Tools differ primarily by where the code executes. Client tools … run in your application. Server tools (such as web_search, web_fetch, code_execution, and tool_search) run on Anthropic's infrastructure"; client tools: "Your code executes the operation and sends back a `tool_result`".
-- `anthropic-web-search-tool.web.md`: "Claude determines when to search based on the prompt. The API runs the searches and provides Claude with the results. This process can repeat multiple times throughout a single request."; "At the end of its turn, Claude provides a final response with cited sources."
+- `meta-llama3-1-prompt-format.web.md` (verbatim): "The three built-in tools (brave_search, wolfram_alpha, and code interpreter) can be turned on using the system prompt"; "Wolfram Alpha: Tool call to perform complex mathematical calculations."; ejemplo completo "What is the 100th decimal of pi?" con `<|python_tag|>wolfram_alpha.call(query="100th decimal of pi")<|eom_id|>`, respuesta con rol `ipython` y "The 100th decimal of pi is 7.<|eot_id|>"; "Note the `<|python_tag|>` in the assistant response."; "Role is `ipython` for the wolfram alpha response that is passed back to the model."; `<|eom_id|>` marca un posible punto de parada para ejecutar una herramienta. El bloque de la lámina acorta el JSON de Wolfram Alpha (`{ … "Result": "7" … }`) y omite `<|begin_of_text|>`.
+- `lambert-rlhfbook-tool-use.web.md`: los tokens de la salida de la herramienta se enmascaran en la pérdida; el uso de herramientas se entrena en el post-training.
+- Lámina agregada por pedido del presentador (2026-09-27): "Me gustaría que no bajemos tanto al paper, sino que esto sea reemplazado por un ejemplo de cómo hace hoy Llama o algún modelo open source. Y cómo esto se ve en la interacción con la API." Reemplaza a "Calcular: quién hace la cuenta" (en Cut material del borrador).
 
 ### Speaker notes
 
-Segunda herramienta. Responde la pregunta de si la búsqueda web la resuelve el modelo. El modelo emite la llamada igual que con cualquier otra herramienta, y la plataforma del proveedor la ejecuta dentro del mismo pedido. Por eso, desde la app, parece que "el modelo buscó". Con una herramienta del cliente, la API devuelve la llamada y el agente de la lámina 5.2 hace el trabajo. El entrenamiento es el mismo en los dos casos: el modelo aprende a emitir la llamada y a usar el resultado. Los términos "server tools" y "client tools" son de la documentación de Anthropic; otros proveedores ofrecen algo equivalente. Tiempo objetivo: ~1,5 min.
+Es la versión actual de lo que vimos con GSM8K. Llama 3.1, de Meta, trae tres herramientas incorporadas, y una es Wolfram Alpha para cálculos. Recorrer la secuencia de arriba abajo: el sistema activa las herramientas, el usuario pregunta y el modelo, en vez del número, escribe una llamada que empieza en python_tag y termina en eom_id. Ese token le dice al código que lo corre: paro acá, ejecutá la herramienta. El código llama a Wolfram Alpha, pega la respuesta con el rol ipython, y el modelo sigue hasta terminar con eot_id. El modelo aprendió a escribir este formato en su post-training. La lámina siguiente muestra cómo esos tokens se convierten en el JSON de la API. Tiempo objetivo: ~2 min.
 
 ---
 
-## 9. Buscar: qué genera el modelo
+## 8. Calcular: de los tokens al JSON
 
 ### Content
 
-**Con la búsqueda web, una sola respuesta de la API trae los bloques que generó el modelo y los que agregó la plataforma, en orden.**
+**El modelo escribe la llamada como texto entre tags especiales. El servidor la traduce al JSON que recibe tu código, y traduce el resultado de vuelta a un turno que el modelo sabe leer.**
+
+![De los tokens al JSON y de vuelta: el modelo escribe la llamada como JSON entre python_tag y eom_id, el servidor saca los tags y entrega tool_calls a tu código; tu código manda un mensaje tool con 7006652 y el servidor lo convierte en un turno ipython](images/s5-8-1-tokens-a-json.png)
+<!-- ascii-source:
+ IDA: DEL MODELO A TU CÓDIGO                    VUELTA: DE TU CÓDIGO AL MODELO
+
+ lo que escribe el modelo (texto)               lo que manda tu código (JSON)
+ +------------------------------------------+   +------------------------------------------+
+ | <|python_tag|>{"type": "function",       |   | {"role": "tool",                         |
+ |   "name": "calcular",                    |   |  "tool_name": "calcular",                |
+ |   "parameters":                          |   |  "content": "7006652"}                   |
+ |     {"expresion": "1234 * 5678"}}        |   +------------------------------------------+
+ | <|eom_id|>                               |                       |
+ +------------------------------------------+                       v
+                     |                              el servidor lo convierte en un turno
+                     v                              que el modelo sabe leer
+    el servidor saca los tags y lee el JSON                         |
+                     |                                              v
+                     v                          +------------------------------------------+
+ lo que recibe tu código (JSON de la API)       | <|start_header_id|>ipython<|end_header_id|>|
+ +------------------------------------------+   | 7006652<|eot_id|>                         |
+ | "tool_calls": [{"function": {            |   +------------------------------------------+
+ |   "name": "calcular",                    |
+ |   "arguments":                           |
+ |     {"expresion": "1234 * 5678"}}}]      |
+ +------------------------------------------+
+                     |
+                     v
+          tu código calcula: 7006652  ------------------------&gt; (vuelta)
+-->
+<!-- ascii-note:
+intent: la traducción entre los tokens que escribe el modelo y el JSON de la API, en las dos direcciones, con la misma cuenta de la calculadora
+emphasize: los tags especiales (<|python_tag|>, <|eom_id|>, ipython) en rojo del lado del modelo; el JSON del lado de la API en gris; las flechas "el servidor convierte" como el punto de la lámina
+labels: dos columnas IDA (modelo -> código) y VUELTA (código -> modelo); arriba de cada caja quién la produce (modelo / servidor / tu código)
+-->
+
+- **Fuente.** [Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md) · [Ollama, docs de tool calling](https://docs.ollama.com/capabilities/tool-calling)
+
+### Sources
+
+- `meta-llama3-1-prompt-format.web.md` (sección "JSON based tool calling", verbatim): "Llama models can now output custom tool calls from a single message to allow easier tool calling."; "It's important to note that the model itself does not execute the calls; it provides structured output to facilitate calling by an executor."; respuesta del modelo `<|python_tag|>{"type": "function", "name": "trending_songs", "parameters": {"n": "10", "genre": "all"}}<|eom_id|>`; "Model responds with `<|python_tag|>` and `<|eom_id|>` as `Environment: ipython` was in the system prompt"; rol `ipython` para lo que vuelve de la herramienta ("Semantically, this role means 'tool'"). La lámina adapta el ejemplo a la herramienta `calcular` de la lámina siguiente.
+- `ollama-tool-calling.web.md`: `tool_calls` con `function.name` y `function.arguments`; resultado devuelto como `{"role": "tool", "tool_name": …, "content": …}`.
+- `vllm-tool-calling.web.md` y `hf-chat-templates-tools.web.md`: la traducción en las dos direcciones son dos piezas del servidor. A la ida, la plantilla de chat (`--chat-template` en vLLM) renderiza los mensajes, incluidos los de rol `tool`, en el prompt con el formato del modelo. A la vuelta, el parser (`--tool-call-parser llama3_json` para Llama 3.1) extrae las llamadas del texto generado y las entrega como `tool_calls`. Que Ollama haga lo mismo por dentro es analogía nuestra: su documentación no describe cómo mapea `tools` a los tokens de cada modelo. Llama escribe `parameters`; la API entrega `arguments`.
+- Lámina agregada por pedido del presentador (2026-09-27): "Agregá un slide anterior que muestre cómo de los tags existe una transformación a JSON, como ejemplo que muestre este cambio. Y completá lo que falta."
+
+### Speaker notes
+
+Esta lámina conecta la anterior, que muestra lo que ve el modelo, con la siguiente, que muestra lo que ve tu código. Ida: el modelo escribe la llamada como JSON entre python_tag y eom_id; el servidor saca los tags, lee el JSON y te lo entrega como tool_calls. Vuelta: tu código manda el resultado como un mensaje con rol tool, y el servidor lo convierte en un turno ipython, que es el formato que el modelo vio en su entrenamiento. El modelo nunca ve JSON de la API ni tu código ve los tags. El servidor traduce en el medio con las dos piezas del mapa de la 5.1, la plantilla de chat a la ida y el parser a la vuelta. Tiempo objetivo: ~2 min.
+
+---
+
+## 9. Calcular: la misma cuenta por la API
+
+<!-- design: split-left -->
+
+### Content
+
+**Con un modelo abierto servido con Ollama, la API esconde los tokens especiales: la llamada llega como JSON y el resultado vuelve como un mensaje con rol "tool".**
+
+```json
+// 1 · pedido: la pregunta y la herramienta
+{"model": "llama3.1",
+ "messages": [{"role": "user", "content": "¿Cuánto es 1234 × 5678?"}],
+ "tools": [{"type": "function", "function": {
+     "name": "calcular",
+     "description": "Evalúa una expresión aritmética",
+     "parameters": {"type": "object", "required": ["expresion"],
+       "properties": {"expresion": {"type": "string"}}}}}]}
+
+// 2 · respuesta: el modelo pide la herramienta
+{"message": {"role": "assistant",
+  "tool_calls": [{"function": {"name": "calcular",
+      "arguments": {"expresion": "1234 * 5678"}}}]}}
+
+// 3 · segundo pedido: tu código agrega el resultado
+{"role": "tool", "tool_name": "calcular", "content": "7006652"}
+
+// 4 · respuesta final
+{"message": {"role": "assistant", "content": "1234 × 5678 = 7.006.652"}}
+```
+
+- **Lo que ve tu código.** `tool_calls` con el nombre y los argumentos; después, un mensaje `tool` con el resultado.
+- **Lo que pasa por debajo.** El modelo escribe la llamada entre tags especiales y el servidor la traduce a este JSON, como en la lámina anterior.
+- **Quién calcula.** Tu código: la API te devuelve la llamada y espera, igual que en la lámina 5.3.
+- **Fuente.** [Ollama, docs de tool calling](https://docs.ollama.com/capabilities/tool-calling) · [Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md)
+
+### Sources
+
+- `ollama-tool-calling.web.md` (verbatim): pedido a `/api/chat` con `"tools": [{"type": "function", "function": {"name": "get_temperature", "description": …, "parameters": {"type": "object", "required": ["city"], …}}}]`; respuesta con `"tool_calls": [{"type": "function", "function": {"name": "get_temperature", "arguments": {"city": "New York"}}}]`; resultado devuelto como `{"role": "tool", "tool_name": "get_temperature", "content": "22°C"}`. El JSON de la lámina adapta ese ejemplo a una herramienta de calculadora (`calcular`, `expresion`), con el modelo `llama3.1`; la cuenta: 1234 × 5678 = 7.006.652. La página no imprime el cuerpo crudo de la respuesta de `/api/chat`: la forma `{"message": {"role": "assistant", "tool_calls": […]}}` sale del acceso del SDK (`response.message.tool_calls`) y de la forma de `tool_calls` en el pedido de seguimiento. Los ejemplos de Ollama usan `qwen3`; el modelo `llama3.1` es una adaptación.
+- "Lo que pasa por debajo": la plantilla de chat y el parser de llamadas, documentados en `vllm-tool-calling.web.md`; para Ollama es analogía (su documentación no describe la conversión).
+- Lámina agregada por pedido del presentador (2026-09-27), ver lámina anterior.
+
+### Speaker notes
+
+La misma idea, vista desde el código de la clase. El pedido lleva la pregunta y la definición de la herramienta; la respuesta trae tool_calls con el nombre y los argumentos, sin texto; tu código calcula y manda el resultado con el rol tool; el modelo responde. Los tokens especiales de la lámina anterior no aparecen porque la API los esconde. Es el mismo intercambio que vimos en la 5.3 con otro proveedor y otros nombres de campos. Tiempo objetivo: ~1,5 min.
+
+---
+
+## 10. Buscar: cómo se entrena
+
+### Content
+
+**El modelo aprende a buscar como cualquier otra conducta: primero imita a personas que buscan y después aprende de preferencias sobre las respuestas.**
+
+- **Demostraciones.** Personas buscan, abren resultados y responden citando las fuentes; el modelo aprende a imitar esos pasos con SFT (Supervised Fine-Tuning).
+- **Preferencias.** Personas comparan respuestas con sus citas, y un reward model aprende cuáles prefieren.
+- **Nativa.** En los chats actuales la búsqueda viene de fábrica: el proveedor define la herramienta y la ejecuta en su plataforma, y el modelo decide solo cuándo buscar.
+- **Fuente.** [Nakano et al., 2021](https://arxiv.org/abs/2112.09332) · [Anthropic, docs de web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)
+
+### Sources
+
+- `nakano-2021-webgpt.pdf.md`: "A language model pre-trained on natural language would not be able to use our text-based browser, since it does not know the format of valid commands" (por eso demostraciones humanas); ~6.000 demostraciones y ~21.500 comparaciones; behavior cloning (SFT) + reward model entrenado con preferencias.
+- `anthropic-web-search-tool.web.md`: "Claude determines when to search based on the prompt. The API runs the searches and provides Claude with the results." La documentación no describe cómo el proveedor entrena a su modelo para su búsqueda: "viene de fábrica" describe la experiencia de uso, no un método publicado.
+- Lámina reescrita por pedido del presentador (2026-09-27): "No me interesa ver WebGPT sino solo explicar cómo es que se entrena al modelo para poder buscar en internet. En sí, cómo se entrena y que el search es algo nativo." Reemplaza a "Buscar: cómo se entrenó WebGPT" (en Cut material del borrador).
+
+### Speaker notes
+
+Un modelo recién preentrenado no sabe usar un buscador: no conoce el formato de los comandos. Por eso primero lo entrenan con demostraciones de personas que buscan y responden con citas, y después lo ajustan con preferencias sobre las respuestas, igual que en RLHF. En el chat que usan todos los días, la búsqueda ya viene incluida. El proveedor la definió y la ejecuta, y el modelo aprendió cuándo usarla. Tiempo objetivo: ~1,5 min.
+
+---
+
+
+## 11. Buscar: el modelo no sabe lo reciente
+
+### Content
+
+**El modelo sabe lo que había en sus datos hasta una fecha de corte. Para lo que pasó después, tiene que buscar.**
+
+- **Fecha de corte.** En el ejemplo de Meta, el system prompt de Llama 3.1 dice "Cutting Knowledge Date: December 2023" y "Today Date: 21 September 2024". El modelo no vio esos nueve meses.
+- **La pregunta.** "Search the web for the latest price of 1oz gold". El precio de hoy no está en los pesos del modelo.
+- **Sin búsqueda.** El modelo respondería con un precio viejo, o lo inventaría (sección 6).
+- **Fuente.** [Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md) · [Lambert, RLHF Book, cap. 13](https://rlhfbook.com/c/13-tools)
+
+### Sources
+
+- `meta-llama3-1-prompt-format.web.md` (ejemplo de brave search, verbatim): system prompt con "Environment: ipython", "Tools: brave_search, wolfram_alpha", "Cutting Knowledge Date: December 2023", "Today Date: 21 September 2024"; pregunta "Search the web for the latest price of 1oz gold?".
+- `lambert-rlhfbook-tool-use.web.md`: las herramientas dan acceso a información actual que los pesos no tienen.
+- Lámina agregada por pedido del presentador (2026-09-27): "En caso de Buscar web no es claro y tal vez un diagrama que muestre las distintas capas es importante. Me gustaría que sigamos la estructura de explicación de la sección de cálculo para Búsqueda."
+
+### Speaker notes
+
+Es el problema de la búsqueda, igual que la lámina de "no calcula bien" para la calculadora. Todo modelo tiene una fecha de corte, y lo que pasó después no está en sus datos. El ejemplo oficial de Meta lo muestra en el mismo prompt: corte en diciembre de 2023, fecha de hoy en septiembre de 2024, y una pregunta por el precio actual del oro. Sin una herramienta, el modelo contesta con lo que recuerda o inventa, que es el tema de la sección 6. Tiempo objetivo: ~1 min.
+
+---
+
+## 12. Buscar: lo que escribe Llama 3.1
+
+<!-- design: split-left -->
+
+### Content
+
+**Igual que con la calculadora, el modelo escribe la consulta entre tags especiales y se detiene hasta que el agente le devuelve los resultados.**
+
+![La conversación de Llama 3.1 con brave_search: el system prompt con la fecha de corte y la fecha de hoy, la pregunta por el precio del oro, la llamada brave_search entre python_tag y eom_id, los resultados que agrega el agente y la respuesta](images/s5-12-1-llama-tokens-brave.png)
+<!-- ascii-source:
+ ROL         LO QUE VE EL MODELO
+ +-----------+---------------------------------------------------------------------+
+ | system    | Environment: ipython                                                |
+ |           | Tools: brave_search, wolfram_alpha                                  |
+ |           | Cutting Knowledge Date: December 2023                               |
+ |           | Today Date: 21 September 2024                           <|eot_id|> |
+ +-----------+---------------------------------------------------------------------+
+ | user      | Search the web for the latest price of 1oz gold?        <|eot_id|> |
+ +-----------+---------------------------------------------------------------------+
+ | assistant | <|python_tag|> brave_search.call(query="latest price of 1oz gold") |
+ |           |                                                         <|eom_id|> |  <- paro acá:
+ |           |                                                                     |     falta la búsqueda
+ +-----------+---------------------------------------------------------------------+
+ | ipython   | [resultados de la búsqueda]                             <|eot_id|> |  <- lo agrega el agente
+ +-----------+---------------------------------------------------------------------+
+ | assistant | [respuesta con el precio y la fuente]                   <|eot_id|> |
+ +-----------+---------------------------------------------------------------------+
+   cada turno empieza con <|start_header_id|> rol <|end_header_id|>
+-->
+<!-- ascii-note:
+intent: la misma conversación que la lámina de Wolfram Alpha, ahora con brave_search: el modelo escribe la consulta, se detiene, el agente agrega los resultados
+emphasize: la fecha de corte contra la fecha de hoy en el turno system (acento suave); la llamada <|python_tag|> brave_search.call(...) <|eom_id|> en rojo con "paro acá: falta la búsqueda"; el turno ipython con "lo agrega el agente"
+labels: mismo estilo que la lámina de Wolfram Alpha (rol a la izquierda, tokens como chips grises, texto en monoespaciado); los dos turnos entre corchetes son esquemáticos: dibujarlos en gris e itálica
+-->
+
+- **Lo que escribe el modelo.** La consulta, no el resultado: `brave_search.call(query="latest price of 1oz gold")`.
+- **Quién busca.** El agente: con Llama abierto, tu código llama a Brave Search y agrega los resultados con el rol `ipython`.
+- **Cómo lo aprendió.** Con demostraciones de personas buscando y preferencias sobre las respuestas, como en "Buscar: cómo se entrena".
+- **Fuente.** [Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md)
+
+### Sources
+
+- `meta-llama3-1-prompt-format.web.md` (verbatim): respuesta del modelo "<|python_tag|>brave_search.call(query="latest price of 1oz gold")<|eom_id|>"; "The model tool call response is of the form `tool.call(query="...")` wher tool is `brave_search` or `wolfram_alpha`"; "`<|eom_id|>` … indicates continued multi-step reasoning. That is, the model is expecting a continuation message with the output of the tool call." El documento no muestra los resultados de la búsqueda ni la respuesta final de este ejemplo: en el diagrama esos dos turnos son esquemáticos (entre corchetes).
+- Lámina agregada por pedido del presentador (2026-09-27), ver "Buscar: el modelo no sabe lo reciente".
+
+### Speaker notes
+
+Es la misma lámina que la de Wolfram Alpha, con otra herramienta. El system prompt trae la fecha de corte y la de hoy, y el usuario pide un precio actual. En vez de inventar el número, el modelo escribe la consulta entre python_tag y eom_id y se detiene. El agente busca, agrega los resultados con el rol ipython y el modelo responde con el precio y la fuente. Los dos últimos turnos del diagrama están entre corchetes porque el ejemplo de Meta no los muestra. Tiempo objetivo: ~1,5 min.
+
+---
+
+## 13. Buscar: la respuesta de la API
+
+### Content
+
+**El modelo no busca: escribe la consulta. La plataforma del proveedor ejecuta la búsqueda y agrega los resultados, todo dentro de una sola respuesta de la API.**
 
 ![Los cuatro bloques de una respuesta con búsqueda web y quién produce cada uno](images/s4-7-1-bloques-busqueda-web.png)
 <!-- ascii-source:
@@ -1259,8 +1583,9 @@ emphasize: la columna de la derecha (modelo contra plataforma); el bloque 3 es e
 labels: server_tool_use, web_search_tool_result, cita
 -->
 
-- **Lo que genera el modelo.** La decisión de buscar, la consulta y la respuesta final con citas.
-- **Lo que agrega la plataforma.** Los resultados de la búsqueda, sin que la aplicación escriba código para ejecutarla.
+- **Lo que genera el modelo.** La decisión de buscar, la consulta (bloque 2) y la respuesta final con citas (bloque 4).
+- **Lo que hace la plataforma.** Ejecuta la búsqueda en la web y agrega los resultados (bloque 3). Tu aplicación no escribe código para eso.
+- **Con un modelo abierto.** No hay búsqueda nativa, así que la ejecuta tu código, como en la lámina anterior. El modelo hace lo mismo en los dos casos: escribe la consulta y lee los resultados.
 - **Fuente.** [Anthropic, docs de web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)
 
 ### Sources
@@ -1269,34 +1594,11 @@ labels: server_tool_use, web_search_tool_result, cita
 
 ### Speaker notes
 
-Mismo esquema que la calculadora: el modelo escribe la llamada (bloque 2) y otro sistema pone el resultado (bloque 3). Acá el resultado lo agrega la plataforma del proveedor. El ejemplo y el formato de los bloques son de la API de Anthropic. El modelo busca si el pedido depende de información actual o fuera de sus datos de entrenamiento; `max_uses` pone un tope de búsquedas por pedido. Dos excepciones, si alguien pregunta: un turno largo puede pausarse (`pause_turn`) y la aplicación reenvía el mensaje; si la búsqueda sale en paralelo con una herramienta del cliente, la API devuelve `tool_use` y busca en el pedido siguiente. Tiempo objetivo: ~1 min.
+Es el mismo esquema que la calculadora. El modelo escribe la llamada (bloque 2) y otro sistema pone el resultado (bloque 3). Acá el resultado lo agrega la plataforma del proveedor. Es la pieza de abajo del mapa de la 5.1, las herramientas nativas, y por eso desde afuera parece que "el modelo buscó". El ejemplo y el formato de los bloques son de la API de Anthropic. El modelo decide buscar si el pedido depende de información actual o fuera de sus datos de entrenamiento; `max_uses` pone un tope de búsquedas por pedido. Dos excepciones, si alguien pregunta: un turno largo puede pausarse (`pause_turn`) y la aplicación reenvía el mensaje; si la búsqueda sale en paralelo con una herramienta del cliente, la API devuelve `tool_use` y busca en el pedido siguiente. Tiempo objetivo: ~1 min.
 
 ---
 
-## 10. Buscar: cómo se entrena
-
-### Content
-
-**Buscar se aprende como cualquier otra conducta: primero imitando a personas que buscan, después con preferencias sobre las respuestas.**
-
-- **Demostraciones.** Personas buscan, abren resultados y responden citando las fuentes; el modelo aprende a imitar esos pasos con SFT (Supervised Fine-Tuning).
-- **Preferencias.** Se comparan respuestas con sus citas, y un reward model aprende cuál prefiere la gente.
-- **Nativa.** En los chats actuales la búsqueda viene de fábrica: el proveedor define la herramienta y la ejecuta en su plataforma, y el modelo decide solo cuándo buscar.
-- **Fuente.** [Nakano et al., 2021](https://arxiv.org/abs/2112.09332) · [Anthropic, docs de web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)
-
-### Sources
-
-- `nakano-2021-webgpt.pdf.md`: "A language model pre-trained on natural language would not be able to use our text-based browser, since it does not know the format of valid commands" (por eso demostraciones humanas); ~6.000 demostraciones y ~21.500 comparaciones; behavior cloning (SFT) + reward model entrenado con preferencias.
-- `anthropic-web-search-tool.web.md`: "Claude determines when to search based on the prompt. The API runs the searches and provides Claude with the results." La documentación no describe cómo el proveedor entrena a su modelo para su búsqueda: "viene de fábrica" describe la experiencia de uso, no un método publicado.
-- Lámina reescrita por pedido del presentador (2026-09-27): "No me interesa ver WebGPT sino solo explicar cómo es que se entrena al modelo para poder buscar en internet. En sí, cómo se entrena y que el search es algo nativo." Reemplaza a "Buscar: cómo se entrenó WebGPT" (en Cut material del borrador).
-
-### Speaker notes
-
-Un modelo recién preentrenado no sabe usar un buscador: no conoce el formato de los comandos. Por eso se empieza con demostraciones de personas buscando y respondiendo con citas, y después se ajusta con preferencias sobre las respuestas, igual que en RLHF. En el chat que usan todos los días, la búsqueda ya viene incluida: el proveedor la definió y la ejecuta, y el modelo aprendió cuándo usarla. Tiempo objetivo: ~1,5 min.
-
----
-
-## 11. MCP: host, cliente y servidor
+## 14. MCP: host, cliente y servidor
 
 ### Content
 
@@ -1335,11 +1637,11 @@ labels: STDIO (local), Streamable HTTP (remoto), tools/list, tools/call
 
 ### Speaker notes
 
-Callback a la clase de RAG y MCP: allá armaron un servidor MCP y lo conectaron a un agente. El host es la aplicación de IA, como Claude Code o Visual Studio Code, y crea un cliente por cada servidor, con una conexión dedicada. El servidor ofrece herramientas, datos y prompts; corre en la misma computadora (STDIO) o en otra (Streamable HTTP). Acá interesa dónde queda el modelo: fuera del protocolo. El agente del host junta las herramientas de todos los servidores, se las pasa al LLM, intercepta la llamada y la manda al servidor que corresponde. Es el loop de la lámina 5.2. La analogía oficial es un puerto USB-C para aplicaciones de IA. Tiempo objetivo: ~2 min.
+Callback a la clase de RAG y MCP: allá armaron un servidor MCP y lo conectaron a un agente. El host es la aplicación de IA, como Claude Code o Visual Studio Code, y crea un cliente por cada servidor, con una conexión dedicada. El servidor ofrece herramientas, datos y prompts; corre en la misma computadora (STDIO) o en otra (Streamable HTTP). Acá interesa que el modelo queda fuera del protocolo. El agente del host junta las herramientas de todos los servidores, se las pasa al LLM, intercepta la llamada y la manda al servidor que corresponde. Es el loop de la lámina 5.2. La analogía oficial es un puerto USB-C para aplicaciones de IA. Tiempo objetivo: ~2 min.
 
 ---
 
-## 12. MCP: una herramienta es una definición
+## 15. MCP: una herramienta es una definición
 
 ### Content
 
@@ -1374,15 +1676,15 @@ Un servidor MCP publica su calculadora en `tools/list`:
 
 ### Speaker notes
 
-La pregunta que suele aparecer: si hay miles de servidores MCP, ¿se entrena al modelo para cada uno? No hace falta. El host pone cada herramienta en el contexto con el mismo formato de definición que el modelo vio en SFT, y el chat template de cada familia de modelos la pasa a tokens. La descripción le dice al modelo para qué sirve la herramienta y cuándo usarla; el esquema, qué argumentos escribir. La lámina siguiente muestra cómo se entrena eso. Tiempo objetivo: ~1,5 min.
+Suele aparecer esta duda: con miles de servidores MCP, ¿hay que entrenar al modelo para cada uno? No hace falta. El host pone cada herramienta en el contexto con el mismo formato de definición que el modelo vio en SFT, y el chat template de cada familia de modelos la pasa a tokens. La descripción le dice al modelo para qué sirve la herramienta y cuándo usarla; el esquema, qué argumentos escribir. La lámina siguiente muestra cómo se entrena eso. Tiempo objetivo: ~1,5 min.
 
 ---
 
-## 13. MCP: lo que aprende el modelo
+## 16. MCP: lo que aprende el modelo
 
 ### Content
 
-**Se entrena function calling genérico: leer las definiciones de funciones del contexto y emitir la llamada. Un registro de SFT trae las funciones en el system prompt, el pedido y la llamada esperada.**
+**El modelo aprende function calling genérico: leer las definiciones de funciones del contexto y emitir la llamada. Un registro de SFT trae las funciones en el system prompt, el pedido y la llamada esperada.**
 
 ```json
 [
@@ -1412,7 +1714,7 @@ Cierra la sección. El registro es del capítulo 13 del RLHF Book de Nathan Lamb
 
 # 6. Cuando el modelo inventa
 
-**Goal of this section:** Explicar por qué un modelo inventa en vez de decir "no sé": los hechos que el corpus vio una sola vez, las evaluaciones que premian adivinar y lo que puede hacer el post-training, que enseña a abstenerse o a inventar según los datos y la recompensa. Cierra con el puente al lado del producto: prompt, RAG o fine-tuning. Tres láminas, unos 5 minutos.
+**Goal of this section:** Explicar por qué un modelo inventa en vez de decir "no sé": los hechos que el corpus vio una sola vez, las evaluaciones que premian adivinar y lo que puede hacer el post-training, que enseña a abstenerse o a inventar según los datos y la recompensa. Cierra con el puente al lado del producto: prompt, RAG o fine-tuning. Cuatro láminas, unos 5 minutos.
 
 ---
 
@@ -1422,7 +1724,7 @@ Cierra la sección. El registro es del capítulo 13 del RLHF Book de Nathan Lamb
 
 **Un modelo base bien calibrado tiene que equivocarse en los datos que vio una sola vez. Si el 20% de los cumpleaños aparece una única vez en el corpus, el modelo va a inventar al menos el 20% de los cumpleaños.**
 
-- **Ejemplo.** Se le pidió a DeepSeek-V3 el cumpleaños de uno de los autores, "solo si lo sabés". Dio tres fechas distintas en tres intentos, todas falsas.
+- **Ejemplo.** Los autores le pidieron a DeepSeek-V3 el cumpleaños de uno de ellos, "solo si lo sabés". Dio tres fechas distintas en tres intentos, todas falsas.
 - **Datos sin patrón.** Un cumpleaños no se deduce de nada; si no se repite en el corpus, no hay forma de aprenderlo.
 - **Hechos frecuentes.** Con el cumpleaños de Einstein, que aparece miles de veces, los modelos casi no se equivocan.
 - **Fuente.** [Kalai et al., 2025](https://arxiv.org/abs/2509.04664)
@@ -1433,7 +1735,7 @@ Cierra la sección. El registro es del capítulo 13 del RLHF Book de Nathan Lamb
 
 ### Speaker notes
 
-Cambio de tema: qué pasa cuando el modelo no sabe la respuesta. La tesis de Kalai et al. (OpenAI, 2025) es que las alucinaciones no son un misterio: son errores de clasificación. Generar una respuesta válida es más difícil que decidir si una respuesta es válida, y si el modelo no puede distinguir un hecho de un error plausible, va a producir errores plausibles. Engancha con la sección 1: lo que el corpus repite, el modelo lo sabe; lo que aparece una vez, lo adivina. Tiempo objetivo: ~1,5 min.
+Cambio de tema: qué pasa cuando el modelo no sabe la respuesta. La tesis de Kalai et al. (OpenAI, 2025) es que las alucinaciones son errores de clasificación. Generar una respuesta válida es más difícil que decidir si una respuesta es válida, y si el modelo no puede distinguir un hecho de un error plausible, va a producir errores plausibles. Engancha con la sección 1: el modelo sabe lo que el corpus repite y adivina lo que aparece una vez. Tiempo objetivo: ~1,5 min.
 
 ---
 
@@ -1494,7 +1796,37 @@ La analogía del paper: los modelos están siempre en modo examen, y en un exame
 
 ### Speaker notes
 
-Contra el modelo con solo SFT, la comparación sale al revés: Chip Huyen lee en el paper de OpenAI (2022) que RLHF empeoró la alucinación, aunque los anotadores igual lo prefieren. El modelo con post-training también aprendió a cubrirse con respuestas largas y vagas (el cañón y la calabaza, Figura 9). Abstenerse de más tampoco sirve: en TruthfulQA, GPT-3 con un prompt de ayuda responde "no tengo comentarios" al 49% de las preguntas. La búsqueda de la sección 7 ayuda y no alcanza: si falla, la calificación binaria sigue premiando adivinar (Kalai et al.). Del lado del producto quedan un prompt, RAG o un fine-tuning; la sección 7 arranca por esa decisión. Tiempo objetivo: ~1,5 min.
+Contra el modelo con solo SFT, la comparación sale al revés: Chip Huyen lee en el paper de OpenAI (2022) que RLHF empeoró la alucinación, aunque los anotadores igual lo prefieren. El modelo con post-training también aprendió a cubrirse con respuestas largas y vagas (el cañón y la calabaza, Figura 9). Abstenerse de más tampoco sirve. En TruthfulQA, GPT-3 con un prompt de ayuda responde "no tengo comentarios" al 49% de las preguntas. La búsqueda de la sección 7 ayuda, pero no alcanza. Si falla, la calificación binaria sigue premiando adivinar (Kalai et al.). Del lado del producto quedan un prompt, RAG o un fine-tuning; la sección 7 arranca por esa decisión. Tiempo objetivo: ~1,5 min.
+
+---
+
+## 4. Ejemplo: premiar el "no sé"
+
+### Content
+
+**Un paso de entrenamiento con RL. Con una recompensa que castiga más el error que la abstención, las respuestas "no sé" quedan por encima del promedio y el modelo aprende a darlas.**
+
+| Respuesta del modelo | Recompensa | Contra el promedio (−4,5) |
+|---|---|---|
+| "Nació el 15 de marzo." (inventada) | −9 | baja |
+| "Nació el 3 de julio." (inventada) | −9 | baja |
+| "No lo sé con certeza." | 0 | sube |
+| "No sé su fecha de cumpleaños." | 0 | sube |
+
+- **La consigna.** "Respondé solo si estás más de 90% seguro: un error resta 9 puntos, una respuesta correcta suma 1 y 'no sé' suma 0."
+- **Con puntaje de 1 o 0.** Las cuatro respuestas sumarían 0, así que inventar no costaría nada y el modelo no tendría por qué dejar de hacerlo.
+- **Fuente.** [Kalai et al., 2025](https://arxiv.org/abs/2509.04664) · [DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948)
+
+### Sources
+
+- `kalai-2025-why-lms-hallucinate.pdf.md` (verbatim): "Answer only if you are > t confident, since mistakes are penalized t/(1 − t) points, while correct answers receive 1 point, and an answer of “I don’t know” receives 0 points."; con t = 0,9, la penalización es 0,9 / 0,1 = 9. El ejemplo del cumpleaños sale del mismo paper (DeepSeek-V3 dio tres fechas distintas, todas falsas, para el cumpleaños de uno de los autores).
+- `deepseek-2025-r1.pdf.md`: GRPO compara cada recompensa con el promedio del grupo, A_i = (r_i − mean) / std. Derivación: (−9 − 9 + 0 + 0) / 4 = −4,5.
+- Ejemplo ilustrativo armado para la clase: Kalai et al. proponen la consigna para evaluar, no entrenan un modelo con ella; las cuatro respuestas son inventadas para el ejemplo.
+- Lámina agregada por pedido del presentador (2026-09-27): "Después de Cómo se entrena para decir 'no sé' pongamos un ejemplo de esto."
+
+### Speaker notes
+
+Un ejemplo concreto de la última tarjeta de la lámina anterior. El mismo pedido del cumpleaños, con la consigna que proponen Kalai y sus coautores: responder solo con más de 90% de confianza, porque un error resta 9. El modelo genera cuatro respuestas: dos fechas inventadas, que reciben −9, y dos "no sé", que reciben 0. El promedio del grupo es −4,5. Los "no sé" quedan por encima y el RL sube su probabilidad; las fechas inventadas quedan por debajo y bajan. Es el mismo mecanismo de GRPO de la sección 4, con otra recompensa. Con el puntaje binario las cuatro valdrían 0 y no habría nada que aprender. Aclarar que es un ejemplo armado para la clase: el paper propone la consigna para evaluar, no entrena con ella. Tiempo objetivo: ~2 min.
 
 ---
 
@@ -1552,7 +1884,7 @@ labels: lo hace el proveedor, lo hace el equipo, datos, método, técnica
 
 ### Speaker notes
 
-Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arriba las paga el proveedor; la de abajo, el equipo. Lo que se hace en esa caja es lo mismo que ya vieron: SFT con ejemplos propios (sección 2) y, a veces, preferencias o refuerzo (secciones 3 y 4). RFT es el nombre que usan OpenAI y Azure para el refuerzo con un evaluador, parecido al RL con recompensas verificables de la sección 3. Unsloth recomienda partir de un modelo instruct, que ya sabe conversar y pide menos datos. Tiempo objetivo: ~1,5 min.
+Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arriba las paga el proveedor; la de abajo, el equipo. En esa caja el equipo hace lo mismo que ya vieron: SFT con ejemplos propios (sección 2) y, a veces, preferencias o refuerzo (secciones 3 y 4). RFT es el nombre que usan OpenAI y Azure para el refuerzo con un evaluador, parecido al RL con recompensas verificables de la sección 3. Unsloth recomienda partir de un modelo instruct, que ya sabe conversar y pide menos datos. Tiempo objetivo: ~1,5 min.
 
 ---
 
@@ -1562,7 +1894,7 @@ Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arrib
 
 ### Content
 
-**RAG corrige fallas de información: el modelo no conoce los datos. El fine-tuning corrige fallas de comportamiento: el modelo no responde en la forma, el formato o el estilo pedidos.**
+**RAG corrige fallas de información (el modelo no conoce los datos). El fine-tuning corrige fallas de comportamiento (el modelo no responde en la forma, el formato o el estilo pedidos).**
 
 ![Recorrido típico de desarrollo: prompt, ejemplos, retrieval y fine-tuning (AI Engineering, fig. 7-3)](images/rag-vs-finetune.png)
 
@@ -1578,7 +1910,7 @@ Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arrib
 
 ### Speaker notes
 
-Callback a las clases de prompting y de RAG y MCP: todo lo que vieron hasta ahora cambia la entrada del modelo; el fine-tuning cambia los pesos. El eje vertical de la figura es el tiempo del proyecto. Un ejemplo de falla de comportamiento: el modelo genera SQL de un dialecto poco común que no compila, y ningún documento recuperado arregla eso. Con pocos datos de calidad conviene LoRA o QLoRA sobre un modelo fuerte; con muchos, un ajuste completo de un modelo más chico, o destilar un modelo fuerte en uno chico (revisar la licencia). Dos costos: ajustar para una tarea puede degradar otras, y el próximo modelo base puede superar al ajustado. Tiempo objetivo: ~1,5 min.
+Callback a las clases de prompting y de RAG y MCP: todo lo que vieron hasta ahora cambia la entrada del modelo; el fine-tuning cambia los pesos. El eje vertical de la figura es el tiempo del proyecto. Una falla de comportamiento típica es un modelo que genera SQL de un dialecto poco común que no compila, y ningún documento recuperado arregla eso. Con pocos datos de calidad conviene LoRA o QLoRA sobre un modelo fuerte; con muchos, un ajuste completo de un modelo más chico, o destilar un modelo fuerte en uno chico (revisar la licencia). Dos costos: ajustar para una tarea puede degradar otras, y el próximo modelo base puede superar al ajustado. Tiempo objetivo: ~1,5 min.
 
 ---
 
@@ -1619,7 +1951,7 @@ labels: GB por componente y total
 
 ### Speaker notes
 
-Hacer la cuenta en el pizarrón con la clase. Adam guarda dos valores por parámetro (media y varianza del gradiente), más el gradiente mismo: tres valores extra por parámetro. El caso de 65B, en la lámina siguiente, da más de 780 GB. La técnica de gradient checkpointing recalcula activaciones para ahorrar memoria a cambio de cómputo. La pregunta que responden LoRA y QLoRA en la lámina siguiente: ¿hace falta entrenar los 13.000 millones de parámetros? Tiempo objetivo: ~2 min.
+Hacer la cuenta en el pizarrón con la clase. Adam guarda dos valores por parámetro (media y varianza del gradiente), más el gradiente mismo, o sea tres valores extra por parámetro. El caso de 65B, en la lámina siguiente, da más de 780 GB. La técnica de gradient checkpointing recalcula activaciones para ahorrar memoria a cambio de cómputo. Cerrar con la pregunta que responden LoRA y QLoRA en la lámina siguiente: ¿hace falta entrenar los 13.000 millones de parámetros? Tiempo objetivo: ~2 min.
 
 ---
 
@@ -1627,7 +1959,7 @@ Hacer la cuenta en el pizarrón con la clase. Adam guarda dos valores por parám
 
 ### Content
 
-**LoRA congela los pesos del modelo y entrena dos matrices finas por capa. QLoRA además guarda el modelo congelado en 4 bits. Lo que se entrena y se guarda es un adaptador.**
+**LoRA congela los pesos del modelo y entrena dos matrices finas por capa. QLoRA además guarda el modelo congelado en 4 bits. Solo se entrena y se guarda un adaptador.**
 
 | Modelo | Memoria total con QLoRA |
 |---|---|
@@ -1649,7 +1981,7 @@ Hacer la cuenta en el pizarrón con la clase. Adam guarda dos valores por parám
 
 ### Speaker notes
 
-Conectar con la cuenta de memoria de la lámina 7.3: un 13B con ajuste completo pedía unos 109 GB; con QLoRA, según el paper, 11,3 GB. La tabla usa batch 1 y secuencias de 512 tokens; con secuencias o batches más grandes sube. LoRA: la entrada pasa por W congelada y en paralelo por A y B, y las dos salidas se suman; B arranca en cero, así que al principio el modelo es igual al original, y al desplegar B · A se suma a W sin latencia extra. QLoRA: NF4 reparte los 16 valores posibles según una normal. Hay que poner LoRA en todas las capas lineales para igualar al ajuste completo. Tiempo objetivo: ~2 min.
+Conectar con la cuenta de memoria de la lámina 7.3: un 13B con ajuste completo pedía unos 109 GB; con QLoRA, según el paper, 11,3 GB. La tabla usa batch 1 y secuencias de 512 tokens; con secuencias o batches más grandes sube. En LoRA, la entrada pasa por W congelada y en paralelo por A y B, y las dos salidas se suman; B arranca en cero, así que al principio el modelo es igual al original, y al desplegar B · A se suma a W sin latencia extra. En QLoRA, NF4 reparte los 16 valores posibles según una normal. Hay que poner LoRA en todas las capas lineales para igualar al ajuste completo. Tiempo objetivo: ~2 min.
 
 ---
 
@@ -1661,9 +1993,9 @@ Conectar con la cuenta de memoria de la lámina 7.3: un 13B con ajuste completo 
 
 | Plataforma | Modelos que se pueden ajustar | Métodos |
 |---|---|---|
-| OpenAI (cerrada a usuarios nuevos) | gpt-4.1, gpt-4.1-mini y gpt-4.1-nano; o4-mini | SFT y DPO; RFT solo en o4-mini |
+| OpenAI (cerrada a usuarios nuevos) | gpt-4.1, gpt-4.2-mini y gpt-4.2-nano; o4-mini | SFT y DPO; RFT solo en o4-mini |
 | Azure Foundry | Los de OpenAI más gpt-4o, gpt-4o-mini y gpt-5; Llama, Qwen, Ministral y gpt-oss | SFT, DPO o RFT según el modelo, con LoRA |
-| Google Cloud: Gemini | Gemini 3.5 Flash, 3.1 Flash-Lite y la familia 2.5 | SFT con adaptadores |
+| Google Cloud: Gemini | Gemini 3.6 Flash, 3.2 Flash-Lite y la familia 2.5 | SFT con adaptadores |
 | Google Cloud: modelos abiertos | Gemma 3 y 4, Qwen 3, Llama 3 y 4, GLM | SFT completo o LoRA según el modelo; destilación |
 
 - **Fuente.** [OpenAI, docs de optimización de modelos](https://developers.openai.com/api/docs/guides/model-optimization) · [Microsoft, docs de fine-tuning en Azure Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning) · [Google Cloud, docs de tuning de Gemini](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/tuning/supervised-tuning)
@@ -1678,7 +2010,7 @@ Conectar con la cuenta de memoria de la lámina 7.3: un 13B con ajuste completo 
 
 ### Speaker notes
 
-Leer la tabla por filas y decir la fecha: las listas cambian rápido. OpenAI anunció que cierra su plataforma: quien ya la usaba puede seguir unos meses, y los modelos ajustados funcionan hasta que se retire el modelo base. El modelo que OpenAI recomienda hoy para trabajo nuevo no se puede ajustar. Azure sigue vendiendo fine-tuning de gpt-4.1, gpt-4o y o4-mini, y de gpt-5 con RFT por invitación. En Gemini el ajuste es con adaptadores (se elige el tamaño); en los modelos abiertos, según el modelo, hay LoRA, ajuste completo o los dos. Un modelo desplegado en Azure cobra por hora aunque no reciba pedidos. Tiempo objetivo: ~2 min.
+Leer la tabla por filas y decir la fecha: las listas cambian rápido. OpenAI anunció que cierra su plataforma. Quien ya la usaba puede seguir unos meses, y los modelos ajustados funcionan hasta que OpenAI retire el modelo base. El modelo que OpenAI recomienda hoy para trabajo nuevo no se puede ajustar. Azure sigue vendiendo fine-tuning de gpt-4.1, gpt-4o y o4-mini, y de gpt-5 con RFT por invitación. En Gemini el ajuste es con adaptadores (se elige el tamaño); en los modelos abiertos, según el modelo, hay LoRA, ajuste completo o los dos. Un modelo desplegado en Azure cobra por hora aunque no reciba pedidos. Tiempo objetivo: ~2 min.
 
 ---
 
@@ -1690,7 +2022,7 @@ Leer la tabla por filas y decir la fecha: las listas cambian rápido. OpenAI anu
 
 ![Los cinco pasos de un fine-tuning local con la herramienta de cada paso](images/s6-6-1-recorrido-fine-tuning-local.png)
 <!-- ascii-source:
- 1  modelo abierto     Llama 3.1 8B, Qwen3, Gemma 4
+ 1  modelo abierto     Llama 3.2 8B, Qwen3, Gemma 4
          |
          v
  2  datos              ejemplos en JSONL
@@ -1736,7 +2068,7 @@ Recorrer el diagrama de arriba abajo. El paso 3 es el único que entrena; adentr
 **Un dataset chico y parecido a la tarea le gana a uno grande y genérico.**
 
 - **Formato.** JSONL con conversaciones (`messages`, con roles system, user y assistant) o con pares `prompt` y `completion`. TRL, Google Cloud y Azure aceptan estas formas.
-- **Cantidad.** Azure exige al menos 10 ejemplos y recomienda empezar con 50 bien armados; como buena práctica, cientos o miles.
+- **Cantidad.** Azure exige al menos 10 ejemplos y recomienda empezar con 50 bien armados; como buena práctica sugiere cientos o miles.
 - **Adecuación.** En el paper de QLoRA, 9.000 ejemplos de OASST1 superan a 450.000 de FLAN v2 como chatbot.
 - **Curado.** En LIMA, 1.000 ejemplos curados alcanzan un modelo competitivo.
 - **Fuente.** [Microsoft, docs de fine-tuning en Azure Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning) · [Dettmers et al., 2023](https://arxiv.org/abs/2305.14314) · [Bagerbach, notas de AI Engineering](https://bagerbach.com/books/ai-engineering/)
@@ -1753,7 +2085,7 @@ Recorrer el diagrama de arriba abajo. El paso 3 es el único que entrena; adentr
 
 ### Speaker notes
 
-La frase de Chip Huyen del capítulo 7: "finetuning is easy, but getting data for finetuning is hard". El formato es el de los registros de SFT de la sección 2; TRL, por defecto, calcula la pérdida solo sobre la respuesta, la misma máscara de la lámina 2.3. Las cifras de Azure son su recomendación para sus modelos. Dos benchmarks, dos rankings: FLAN v2 da el mejor MMLU y el peor puntaje de chatbot, así que el dataset tiene que parecerse a la tarea. LIMA llega de segunda mano, de las notas de un lector del libro, y el modelo resultante es "menos robusto": presentarlo como indicio. Tiempo objetivo: ~1,5 min.
+La frase de Chip Huyen del capítulo 7: "finetuning is easy, but getting data for finetuning is hard". El formato es el de los registros de SFT de la sección 2; TRL, por defecto, calcula la pérdida solo sobre la respuesta, la misma máscara de la lámina 2.3. Las cifras de Azure son su recomendación para sus modelos. FLAN v2 da el mejor MMLU y el peor puntaje de chatbot, así que el dataset tiene que parecerse a la tarea. LIMA llega de segunda mano, de las notas de un lector del libro, y el modelo resultante es "menos robusto". Presentarlo como indicio. Tiempo objetivo: ~1,5 min.
 
 ---
 
@@ -1784,7 +2116,7 @@ La frase de Chip Huyen del capítulo 7: "finetuning is easy, but getting data fo
 
 ### Speaker notes
 
-Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su sección. La última fila es la que les toca a ellos: la sección 7. Después, preguntas. Si sobra tiempo, mostrar un registro de un dataset público de SFT. Tiempo objetivo: ~2 min más preguntas.
+Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su sección. La última fila corresponde a la sección 7, que es la que les toca a ellos. Después, preguntas. Si sobra tiempo, mostrar un registro de un dataset público de SFT. Tiempo objetivo: ~2 min más preguntas.
 
 ---
 
@@ -1840,6 +2172,12 @@ Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su secci
 - **Quiz de repaso.** La Clase 8 abre con un quiz; este borrador no. Decidir si se agrega.
 
 # Cut material
+
+- **Por qué herramientas y Buscar: las capas (2026-09-27).** Reemplazadas por "Las piezas de una plataforma" (nueva 5.1); texto completo en el Cut material de draft.md.
+
+- **Buscar: la ejecuta el proveedor (2026-09-27).** Reemplazada por "Buscar: las capas"; texto completo en el Cut material de draft.md.
+
+- **Calcular: quién hace la cuenta (2026-09-27).** Reemplazada por dos láminas con Llama 3.1 y Ollama; texto completo en el Cut material de draft.md.
 
 - **Buscar: cómo se entrenó WebGPT y Optimizado para completar (2026-09-27).** Cortadas por pedido del presentador; el texto completo está en el Cut material de draft.md.
 

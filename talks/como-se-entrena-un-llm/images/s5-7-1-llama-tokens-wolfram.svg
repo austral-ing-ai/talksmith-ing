@@ -1,0 +1,71 @@
+<!-- talksmith-ascii-sha256: 9980083c3d691c2251c941583ce6dd12518eacbf12129d39b68b2ed43a8fa50d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 459" font-family="Helvetica, Arial, sans-serif" font-size="19" fill="#3B3535">
+<title>Calcular: lo que escribe Llama 3.1</title>
+<desc>La conversación de Llama 3.1 con una llamada a Wolfram Alpha, turno por turno, tal como la ve el modelo: el assistant escribe la llamada entre python_tag y eom_id y se detiene; el agente agrega el resultado con el rol ipython.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto"><path d="M0,1 L12,7 L0,13 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="1080" height="459" fill="#FFFFFF"/>
+<g font-size="15" font-weight="bold" letter-spacing="1">
+<text x="36" y="31">ROL</text>
+<text x="186" y="31">LO QUE VE EL MODELO</text>
+</g>
+<rect x="20" y="44" width="1040" height="352" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="2"/>
+<rect x="21" y="45" width="149" height="350" fill="#F2EEEE"/>
+<rect x="21" y="193" width="149" height="90" fill="#F9D2D6"/>
+<g stroke="#D8D2CE" stroke-width="2">
+<line x1="170" y1="44" x2="170" y2="396"/>
+<line x1="20" y1="136" x2="1060" y2="136"/>
+<line x1="20" y1="192" x2="1060" y2="192"/>
+<line x1="20" y1="284" x2="1060" y2="284"/>
+<line x1="20" y1="340" x2="1060" y2="340"/>
+</g>
+<rect x="21.5" y="193.5" width="1037" height="89" fill="none" stroke="#DA1B2E" stroke-width="3"/>
+<g font-size="22" font-weight="bold" fill="#1F1E1E">
+<text x="36" y="80">system</text>
+<text x="36" y="171">user</text>
+<text x="36" y="226" fill="#DA1B2E">assistant</text>
+<text x="36" y="318">ipython</text>
+<text x="36" y="374">assistant</text>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="24" fill="#1F1E1E" xml:space="preserve">
+<text x="186" y="82">Environment: ipython</text>
+<text x="186" y="118">Tools: brave_search, wolfram_alpha</text>
+<text x="186" y="173">What is the 100th decimal of pi?</text>
+<text x="372" y="228" fill="#DA1B2E">wolfram_alpha.call(query="100th decimal of pi")</text>
+<text x="186" y="320">{"Result": "7"}</text>
+<text x="186" y="376">The 100th decimal of pi is 7.</text>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="918" y="93.5" width="128" height="32" rx="6"/>
+<rect x="918" y="148.5" width="128" height="32" rx="6"/>
+<rect x="918" y="295.5" width="128" height="32" rx="6"/>
+<rect x="918" y="351.5" width="128" height="32" rx="6"/>
+</g>
+<g fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2">
+<rect x="186" y="203.5" width="174" height="32" rx="6"/>
+<rect x="918" y="239.5" width="128" height="32" rx="6"/>
+</g>
+<g font-family="'Andale Mono', monospace" fill="#1F1E1E">
+<text x="925" y="116">&lt;|eot_id|&gt;</text>
+<text x="925" y="171">&lt;|eot_id|&gt;</text>
+<text x="925" y="318">&lt;|eot_id|&gt;</text>
+<text x="925" y="374">&lt;|eot_id|&gt;</text>
+<text x="193" y="226" fill="#DA1B2E">&lt;|python_tag|&gt;</text>
+<text x="925" y="262" fill="#DA1B2E">&lt;|eom_id|&gt;</text>
+</g>
+<text x="186" y="263" font-size="21" font-weight="bold" fill="#DA1B2E">paro acá: falta la herramienta</text>
+<line x1="496" y1="255.5" x2="918" y2="255.5" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="428" y="297" width="192" height="30" rx="15" fill="#B8E6F5"/>
+<text x="524" y="318" fill="#1F1E1E" text-anchor="middle">lo agrega el agente</text>
+<text x="20" y="432">cada turno empieza con</text>
+<text x="450" y="432" font-style="italic">rol</text>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="234" y="411" width="206" height="28" rx="6"/>
+<rect x="481" y="411" width="185" height="28" rx="6"/>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="17" fill="#1F1E1E">
+<text x="240" y="431">&lt;|start_header_id|&gt;</text>
+<text x="487" y="431">&lt;|end_header_id|&gt;</text>
+</g>
+</svg>

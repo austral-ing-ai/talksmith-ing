@@ -9,10 +9,8 @@
                       v
           pérdida (cross-entropy) al final
 
-  Chinchilla:  6 × 70 mil millones × 1,4 billones ≈ 5,9·10^23 FLOPs
-
 <!-- ascii-note:
 intent: la fórmula que une parámetros, tokens y cómputo, con un ejemplo numérico
-emphasize: la caja de la fórmula; el ejemplo de Chinchilla abajo
+emphasize: la caja de la fórmula
 labels: N, D, C
 -->

@@ -1,0 +1,24 @@
+ ROL         LO QUE VE EL MODELO
+ +-----------+---------------------------------------------------------------------+
+ | system    | Environment: ipython                                                |
+ |           | Tools: brave_search, wolfram_alpha                                  |
+ |           | Cutting Knowledge Date: December 2023                               |
+ |           | Today Date: 21 September 2024                           <|eot_id|> |
+ +-----------+---------------------------------------------------------------------+
+ | user      | Search the web for the latest price of 1oz gold?        <|eot_id|> |
+ +-----------+---------------------------------------------------------------------+
+ | assistant | <|python_tag|> brave_search.call(query="latest price of 1oz gold") |
+ |           |                                                         <|eom_id|> |  <- paro acá:
+ |           |                                                                     |     falta la búsqueda
+ +-----------+---------------------------------------------------------------------+
+ | ipython   | [resultados de la búsqueda]                             <|eot_id|> |  <- lo agrega el agente
+ +-----------+---------------------------------------------------------------------+
+ | assistant | [respuesta con el precio y la fuente]                   <|eot_id|> |
+ +-----------+---------------------------------------------------------------------+
+   cada turno empieza con <|start_header_id|> rol <|end_header_id|>
+
+<!-- ascii-note:
+intent: la misma conversación que la lámina de Wolfram Alpha, ahora con brave_search: el modelo escribe la consulta, se detiene, el agente agrega los resultados
+emphasize: la fecha de corte contra la fecha de hoy en el turno system (acento suave); la llamada <|python_tag|> brave_search.call(...) <|eom_id|> en rojo con "paro acá: falta la búsqueda"; el turno ipython con "lo agrega el agente"
+labels: mismo estilo que la lámina de Wolfram Alpha (rol a la izquierda, tokens como chips grises, texto en monoespaciado); los dos turnos entre corchetes son esquemáticos: dibujarlos en gris e itálica
+-->

@@ -1,0 +1,31 @@
+ IDA: DEL MODELO A TU CÓDIGO                    VUELTA: DE TU CÓDIGO AL MODELO
+
+ lo que escribe el modelo (texto)               lo que manda tu código (JSON)
+ +------------------------------------------+   +------------------------------------------+
+ | <|python_tag|>{"type": "function",       |   | {"role": "tool",                         |
+ |   "name": "calcular",                    |   |  "tool_name": "calcular",                |
+ |   "parameters":                          |   |  "content": "7006652"}                   |
+ |     {"expresion": "1234 * 5678"}}        |   +------------------------------------------+
+ | <|eom_id|>                               |                       |
+ +------------------------------------------+                       v
+                     |                              el servidor lo convierte en un turno
+                     v                              que el modelo sabe leer
+    el servidor saca los tags y lee el JSON                         |
+                     |                                              v
+                     v                          +------------------------------------------+
+ lo que recibe tu código (JSON de la API)       | <|start_header_id|>ipython<|end_header_id|>|
+ +------------------------------------------+   | 7006652<|eot_id|>                         |
+ | "tool_calls": [{"function": {            |   +------------------------------------------+
+ |   "name": "calcular",                    |
+ |   "arguments":                           |
+ |     {"expresion": "1234 * 5678"}}}]      |
+ +------------------------------------------+
+                     |
+                     v
+          tu código calcula: 7006652  ------------------------> (vuelta)
+
+<!-- ascii-note:
+intent: la traducción entre los tokens que escribe el modelo y el JSON de la API, en las dos direcciones, con la misma cuenta de la calculadora
+emphasize: los tags especiales (<|python_tag|>, <|eom_id|>, ipython) en rojo del lado del modelo; el JSON del lado de la API en gris; las flechas "el servidor convierte" como el punto de la lámina
+labels: dos columnas IDA (modelo -> código) y VUELTA (código -> modelo); arriba de cada caja quién la produce (modelo / servidor / tu código)
+-->

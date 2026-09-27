@@ -1,0 +1,62 @@
+<!-- talksmith-ascii-sha256: 57c418dcb909bb3cb9d9cccb078d69f51f1a35a3aa624a043fde8a4fb17161dc -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1575 690" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#3B3535">
+<title>RLHF en dos pasos</title>
+<desc>RLHF en dos pasos: con datos de comparación se entrena un reward model (el juez); después el modelo SFT genera respuestas, el juez las puntúa y PPO ajusta el modelo para subir el puntaje sin alejarse del SFT, en un ciclo que se repite hasta obtener el modelo final.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ahb" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="20" markerHeight="20" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="1575" height="690" fill="#ffffff"/>
+
+<g fill="#ffffff" stroke="#D8D2CE" stroke-width="2">
+<rect x="30" y="30" width="630" height="395" rx="14"/>
+<rect x="820" y="30" width="725" height="515" rx="14"/>
+</g>
+<g font-size="26" font-weight="bold" text-anchor="middle" fill="#1F1E1E">
+<text x="345" y="76">PASO 1 · ENTRENAR UN JUEZ</text>
+<text x="1182" y="76">PASO 2 · OPTIMIZAR CONTRA EL JUEZ</text>
+</g>
+
+<g fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5">
+<rect x="70" y="100" width="550" height="76" rx="8"/>
+<rect x="70" y="212" width="550" height="76" rx="8"/>
+<rect x="850" y="100" width="460" height="60" rx="8"/>
+<rect x="850" y="205" width="460" height="80" rx="8"/>
+<rect x="850" y="435" width="460" height="80" rx="8"/>
+<rect x="930" y="590" width="300" height="70" rx="8" stroke-width="2.5"/>
+</g>
+<rect x="850" y="330" width="460" height="60" rx="8" fill="#F7BBC1" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="70" y="325" width="550" height="70" rx="8" fill="#DA1B2E"/>
+
+<g text-anchor="middle">
+<text x="345" y="132" font-weight="bold" fill="#1F1E1E">Datos de comparación</text>
+<text x="345" y="162">(prompt, ganadora, perdedora)</text>
+<text x="345" y="244">Copia del modelo SFT con una</text>
+<text x="345" y="274">salida de un solo número</text>
+<text x="345" y="369" font-size="27" font-weight="bold" fill="#ffffff">REWARD MODEL (el juez)</text>
+<text x="1080" y="139">Prompts, sin respuestas</text>
+<text x="1080" y="239">El modelo SFT genera</text>
+<text x="1080" y="269">una respuesta</text>
+<text x="1080" y="369" font-weight="bold" fill="#1F1E1E">El reward model la puntúa</text>
+<text x="1080" y="469">PPO ajusta el modelo para subir</text>
+<text x="1080" y="499">el puntaje, sin alejarse del SFT</text>
+<text x="1080" y="634" font-size="26" font-weight="bold" fill="#1F1E1E">MODELO FINAL</text>
+</g>
+
+<g fill="none" stroke="#3B3535" stroke-width="2">
+<line x1="345" y1="176" x2="345" y2="212" marker-end="url(#ah)"/>
+<line x1="345" y1="288" x2="345" y2="325" marker-end="url(#ah)"/>
+<line x1="1080" y1="160" x2="1080" y2="205" marker-end="url(#ah)"/>
+<line x1="1080" y1="285" x2="1080" y2="330" marker-end="url(#ah)"/>
+<line x1="1080" y1="390" x2="1080" y2="435" marker-end="url(#ah)"/>
+<line x1="1080" y1="545" x2="1080" y2="590" marker-end="url(#ah)"/>
+<path d="M1310,475 H1365 V245 H1310" marker-end="url(#ah)"/>
+<line x1="620" y1="360" x2="850" y2="360" stroke-width="3.5" marker-end="url(#ahb)"/>
+</g>
+
+<g font-size="22" font-style="italic">
+<text x="1382" y="352">se repite</text>
+<text x="1382" y="380">muchas veces</text>
+</g>
+<text x="740" y="344" font-size="22" font-weight="bold" text-anchor="middle">el juez</text>
+</svg>

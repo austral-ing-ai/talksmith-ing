@@ -1,0 +1,37 @@
+ TU APLICACIÓN (tu agente)
+ +--------------------------------------------------------------------------------+
+ | arma el pedido: mensajes + definición de las herramientas                      |
+ | ejecuta TUS herramientas: funciones, base de datos, servidores MCP             |
+ +--------------------------------------------------------------------------------+
+          |  JSON: messages + tools                     ^  JSON: tool_calls o texto
+          v                                             |
+ PLATAFORMA: un proveedor, o vLLM / Ollama en tu máquina
+ +--------------------------------------------------------------------------------+
+ |  +--------------------------------------------------------------------------+  |
+ |  |                          API: entra y sale JSON                          |  |
+ |  +--------------------------------------------------------------------------+  |
+ |          |                                              ^                      |
+ |          v                                              |                      |
+ |  +----------------------+                    +----------------------+          |
+ |  | PLANTILLA DE CHAT    |                    | PARSER DE LLAMADAS   |          |
+ |  | JSON -> texto con    |                    | texto del modelo ->  |          |
+ |  | tags (ida)           |                    | tool_calls (vuelta)  |          |
+ |  +----------------------+                    +----------------------+          |
+ |          |                                              ^                      |
+ |          v                                              |                      |
+ |  +--------------------------------------------------------------------------+  |
+ |  | MODELO: lee y escribe texto con tags; escribe la llamada, no la ejecuta  |  |
+ |  +--------------------------------------------------------------------------+  |
+ |                                     |    ^                                     |
+ |                                     v    |                                     |
+ |  +--------------------------------------------------------------------------+  |
+ |  | HERRAMIENTAS NATIVAS (solo proveedores): búsqueda web, ejecución de      |  |
+ |  | código. Las ejecuta la plataforma y agrega el resultado                  |  |
+ |  +--------------------------------------------------------------------------+  |
+ +--------------------------------------------------------------------------------+
+
+<!-- ascii-note:
+intent: el mapa de las piezas que intervienen cuando se usa un LLM por API, para que cada lámina siguiente de la sección sea un zoom sobre una pieza
+emphasize: el MODELO en el medio con "no la ejecuta"; los dos lugares donde corre una herramienta (TU APLICACIÓN arriba y HERRAMIENTAS NATIVAS abajo) con acento rojo; la plantilla de chat (ida) y el parser (vuelta) como los dos traductores, uno bajando y otro subiendo
+labels: TU APLICACIÓN fuera de la caja PLATAFORMA; la PLATAFORMA como un contenedor con sus cuatro piezas apiladas; flechas de ida a la izquierda y de vuelta a la derecha
+-->

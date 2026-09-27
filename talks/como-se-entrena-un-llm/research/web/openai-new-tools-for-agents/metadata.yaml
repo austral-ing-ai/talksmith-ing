@@ -1,0 +1,7 @@
+url: "https://openai.com/index/new-tools-for-building-agents/"
+fetched_at: "2026-09-27T18:17:20Z"
+title: "New tools for building agents | OpenAI"
+http_status: 200
+byte_size: 516982
+assets:
+  - { src: "https://images.ctfassets.net/kftzwdyauwt9/4QaBJvGYlSBY9iYMhWBN6I/c97e4a784aef38012d91e9a9cf2010c7/API_Agents_Hero_16.9.png?w=3840&q=90&fm=webp", absolute: "https://images.ctfassets.net/kftzwdyauwt9/4QaBJvGYlSBY9iYMhWBN6I/c97e4a784aef38012d91e9a9cf2010c7/API_Agents_Hero_16.9.png?w=3840&q=90&fm=webp", saved_as: "API_Agents_Hero_16.9.png", alt: "A sleek, minimal interface displaying a task list for an AI agent, including ‘triage_agent,’ ‘guardrail,’ and ‘update_salesforce_record,’ over a fluid blue abstract background." }

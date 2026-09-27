@@ -28,22 +28,22 @@
       "template": "stat",
       "section": "Introducción",
       "title": "Un modelo 100 veces más chico gana",
-      "lead": "**OpenAI (2022): un GPT-3 de 1.300 millones de parámetros con post-training (SFT y RLHF) le gana en preferencia humana a GPT-3 de 175.000 millones sin post-training. Ese post-training usó menos del 2% del cómputo.**",
+      "lead": "**OpenAI (2022) tomó GPT-3 y lo siguió entrenando con ejemplos y preferencias escritos por personas. Una versión 100 veces más chica le ganó al GPT-3 original, y ese entrenamiento extra costó menos del 2% del cómputo.**",
       "stats": [
         {
           "value": "3.640",
-          "caption": "petaflops/s-días: pre-training de GPT-3 175B."
+          "caption": "petaflops/s-días: el entrenamiento original de GPT-3, con texto de la web."
         },
         {
           "value": "4,9",
-          "caption": "petaflops/s-días: SFT de GPT-3 175B."
+          "caption": "petaflops/s-días: entrenamiento extra con ejemplos de respuestas escritos por personas."
         },
         {
           "value": "60",
-          "caption": "petaflops/s-días: RLHF de GPT-3 175B."
+          "caption": "petaflops/s-días: entrenamiento extra con las preferencias de personas entre respuestas."
         }
       ],
-      "notes": "Es el gancho de la clase: un modelo 100 veces más chico gana porque pasó por post-training, y ese post-training costó casi nada en cómputo. Es un trabajo de OpenAI de 2022, el paso intermedio entre GPT-3 y ChatGPT; la sección 2 muestra las dos salidas lado a lado. Las cifras de cómputo son de la versión de 175B: SFT y RLHF suman 1,75%, y el pre-training el 98% que cita Chip Huyen para ese modelo. La cuenta no incluye el costo de los anotadores. En modelos de razonamiento actuales el post-training puede pesar más (sección 4). SFT y RLHF se explican en la lámina siguiente. Tiempo objetivo: ~2 min.",
+      "notes": "Es el gancho de la clase, contado sin nombres de etapas todavía. Un GPT-3 de 1.300 millones de parámetros, entrenado un poco más con ejemplos y preferencias de personas, le ganó en preferencia humana al GPT-3 original de 175.000 millones, un modelo 100 veces más grande. Ese entrenamiento extra fue barato. Los dos juntos suman el 1,75% del cómputo total de la versión grande. Es un trabajo de OpenAI de 2022, el paso intermedio entre GPT-3 y ChatGPT. La cuenta no incluye el costo de las personas que escribieron y compararon respuestas. Cerrar con la pregunta que abre la lámina siguiente: ¿qué es ese entrenamiento extra? Son dos de las tres etapas del mapa. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -78,7 +78,7 @@
       "section": "Introducción",
       "title": "Tres etapas, cuatro conjuntos de datos",
       "lead": "**Un LLM se entrena en tres etapas: el pre-training aprende de texto de la web, el SFT (Supervised Fine-Tuning) de demostraciones escritas por personas y el RLHF (Reinforcement Learning from Human Feedback) de comparaciones entre respuestas.**",
-      "notes": "La lámina es el mapa de la clase: nombrá las tres etapas con las tarjetas; el diagrama muestra lo mismo con sus datos. No hace falta recorrerla columna por columna: las secciones 1, 2 y 3 toman una etapa cada una, y cada sección abre con su columna. Señalá solo la fila de abajo, donde la escala cae de más de un billón de tokens a entre decenas de miles y un millón de ejemplos. Las etapas 2 y 3 forman el post-training. El fine-tuning que hace un equipo de producto es la misma receta a escala chica (sección 7). El \"trillion\" del inglés es un billón en español (10¹²). Tiempo objetivo: ~1,5 min.",
+      "notes": "La lámina es el mapa de la clase. Nombrá las tres etapas con las tarjetas; el diagrama muestra lo mismo con sus datos. No hace falta recorrerla columna por columna: las secciones 1, 2 y 3 toman una etapa cada una, y cada sección abre con su columna. Señalá solo la fila de abajo, donde la escala cae de más de un billón de tokens a entre decenas de miles y un millón de ejemplos. Las etapas 2 y 3 forman el post-training. El fine-tuning que hace un equipo de producto es la misma receta a escala chica (sección 7). El \"trillion\" del inglés es un billón en español (10¹²). Tiempo objetivo: ~1,5 min.",
       "image": {
         "src": "images/sa-2-1-tres-etapas-cuatro-datos.png",
         "alt": "Las tres etapas del entrenamiento con sus cuatro conjuntos de datos y la escala de cada uno"
@@ -123,7 +123,7 @@
         },
         {
           "label": "Objetivo",
-          "body": "Minimizar la pérdida del siguiente token de la clase 8. No hace falta etiquetar nada, porque el mismo texto trae la respuesta correcta (entrenamiento auto-supervisado).",
+          "body": "Minimizar la pérdida del siguiente token. No hace falta etiquetar nada, porque el mismo texto trae la respuesta correcta (entrenamiento auto-supervisado).",
           "icon": "track_changes"
         },
         {
@@ -242,22 +242,17 @@
       "template": "content-image",
       "section": "Pre-training",
       "title": "C4: cómo Google depuró Common Crawl",
-      "lead": "**Reglas escritas a mano sobre un mes de Common Crawl (abril de 2019). Con el texto filtrado, el modelo rinde mejor en todas las tareas.**",
+      "lead": "**Google aplicó reglas escritas a mano a un mes de Common Crawl (abril de 2019). Con el texto filtrado, el modelo rinde mejor en todas las tareas.**",
       "media": {
         "src": "images/s1-3-1-reglas-limpieza-c4.png",
         "alt": "Reglas de limpieza de C4 y la basura que saca cada una"
       },
       "design": "split-right",
-      "notes": "Responde \"¿por qué funcionan los filtros?\": cada regla tiene un motivo concreto en el paper, y la evidencia es experimental: el mismo modelo, entrenado con el texto filtrado y sin filtrar, rinde peor sin filtrar en todas las tareas. El trabajo posterior va en la misma línea: RefinedWeb, que es Common Crawl filtrado y deduplicado, supera a colecciones curadas a mano. Ojo con dos detalles: algunas reglas sacan líneas y otras páginas enteras, y los filtros funcionan en promedio pero tienen costos (la lista negra, en 1.8). Tiempo objetivo: ~2 min.",
+      "notes": "Responde \"¿por qué funcionan los filtros?\": cada regla tiene un motivo concreto en el paper, y la evidencia es experimental. El mismo modelo, entrenado con el texto filtrado y sin filtrar, rinde peor sin filtrar en todas las tareas. Un trabajo posterior va en la misma línea. RefinedWeb, que es Common Crawl filtrado y deduplicado, supera a colecciones curadas a mano. Ojo con dos detalles: algunas reglas sacan líneas y otras páginas enteras, y los filtros funcionan en promedio pero tienen costos (la lista negra, en 1.8). Tiempo objetivo: ~2 min.",
       "highlights": [
         {
-          "label": "Dataset",
-          "body": "C4 está publicado en Hugging Face: [allenai/c4](https://huggingface.co/datasets/allenai/c4).",
-          "kind": "source"
-        },
-        {
           "label": "Fuente",
-          "body": "[Raffel et al., 2020](https://arxiv.org/abs/1910.10683)",
+          "body": "[Raffel et al., 2020](https://arxiv.org/abs/1910.10683) · dataset en Hugging Face: [allenai/c4](https://huggingface.co/datasets/allenai/c4)",
           "kind": "source"
         }
       ],
@@ -296,7 +291,7 @@
           "body": "Dado un presupuesto C, cuál es el mejor modelo que se puede obtener: qué N y qué D minimizan la pérdida."
         }
       ],
-      "notes": "La definición de ley de escala de las notas, dicha con la fórmula. El 6 sale de contar multiplicaciones y sumas: 2 por parámetro en la pasada hacia adelante y el doble en backpropagation. La cuenta con Chinchilla da 5,9 × 10²³, prácticamente el presupuesto de Gopher (5,76 × 10²³): los dos modelos gastaron lo mismo, y eso vuelve interesante la comparación de 1.5. Tiempo objetivo: ~2 min.",
+      "notes": "La definición de ley de escala de las notas, dicha con la fórmula. El 6 sale de contar multiplicaciones y sumas: 2 por parámetro en la pasada hacia adelante y el doble en backpropagation. Chinchilla y DeepMind Gopher gastaron el mismo cómputo, y eso vuelve interesante la comparación de 1.5. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -336,12 +331,12 @@
         },
         {
           "label": "Resultado",
-          "body": "En MMLU, un examen de opción múltiple de 57 materias: Chinchilla 67,6%, Gopher 60,0%.",
+          "body": "En MMLU (Massive Multitask Language Understanding), un examen de opción múltiple de 57 materias: Chinchilla 67,6%, Gopher 60,0%.",
           "icon": "query_stats"
         },
         {
           "label": "Por qué hoy se sobreentrena",
-          "body": "El entrenamiento se paga una vez; la inferencia, en cada token. Un modelo más chico entrenado con más datos abarata la inferencia.",
+          "body": "El entrenamiento se paga una vez y la inferencia se paga en cada token. Un modelo más chico entrenado con más datos abarata la inferencia.",
           "icon": "savings"
         }
       ],
@@ -386,7 +381,7 @@
         ]
       },
       "design": "split-right",
-      "notes": "La tabla cuenta la historia en cuatro filas. Kaplan (2020) recomendaba crecer sobre todo en parámetros, y así se entrenaron GPT-3 y Gopher: menos de 2 tokens por parámetro. Chinchilla mostró que con el mismo presupuesto convenía un modelo más chico y más tokens. La última fila es la práctica actual: Llama 3 70B está 11 veces por encima de Chinchilla, y el 8B cerca de 100 veces. El tamaño en parámetros ya no dice cuánto se entrenó un modelo. Tiempo objetivo: ~2,5 min.",
+      "notes": "La tabla cuenta la historia en cuatro filas. Kaplan (2020) recomendaba crecer sobre todo en parámetros, y así OpenAI entrenó GPT-3 y DeepMind entrenó Gopher, con menos de 2 tokens por parámetro. Chinchilla mostró que con el mismo presupuesto convenía un modelo más chico y más tokens. La última fila es la práctica actual: Llama 3 70B está 11 veces por encima de Chinchilla, y el 8B cerca de 100 veces. El tamaño en parámetros ya no dice cuánto se entrenó un modelo. Tiempo objetivo: ~2,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -439,7 +434,7 @@
           "body": "**Sobreentrenar adelanta la fecha** uno o dos años."
         }
       ],
-      "notes": "Es el gráfico que el presentador marcó como crítico. La línea azul son los datasets de modelos conocidos, la banda verde el stock; en escala logarítmica la subida recta es exponencial, y cruza el stock antes de 2030. Contar la aceleración sobre el gráfico: GPT-3 abajo a la izquierda en 2020, Llama 3 más de un orden de magnitud más arriba en 2024. Pagar gente para escribir no alcanza: 10 millones de personas escribiendo 8 horas por día producen 70 billones de palabras por año, con un costo de cientos de miles de millones de dólares. Tiempo objetivo: ~2 min.",
+      "notes": "Es el gráfico que el presentador marcó como crítico. La línea azul son los datasets de modelos conocidos, la banda verde el stock; en escala logarítmica la subida recta es exponencial, y cruza el stock antes de 2030. Contar la aceleración sobre el gráfico: GPT-3 abajo a la izquierda en 2020, Llama 3 más de un orden de magnitud más arriba en 2024. Pagar gente para escribir no alcanza, porque 10 millones de personas escribiendo 8 horas por día producen 70 billones de palabras por año, con un costo de cientos de miles de millones de dólares. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -490,7 +485,7 @@
         },
         {
           "label": "Acceso restringido",
-          "body": "Entre 2023 y 2024, robots.txt bloqueó el 5% de los tokens de C4; en las fuentes más activas, más del 28%.",
+          "body": "Entre 2023 y 2024, los sitios bloquearon con robots.txt el 5% de los tokens de C4; en las fuentes más activas, más del 28%.",
           "icon": "block"
         },
         {
@@ -567,7 +562,7 @@
         "\" Harina, agua, levadura, sal, salsa de tomate y mozzarella.\""
       ],
       "answer": "Cualquiera de las tres.",
-      "explanation": "Las tres aparecen en la web, y la A y la B son tan probables como la C: el modelo base continúa el texto, no sabe que se espera una respuesta.",
+      "explanation": "Las tres aparecen en la web, y la A y la B son tan probables como la C: el modelo base continúa el texto y no sabe que se espera una respuesta.",
       "notes": "Pedir que levanten la mano por A, B o C antes de mostrar la respuesta. La mayoría va a elegir la C porque está acostumbrada a un chat. La respuesta es que las tres son continuaciones plausibles; si hay que apostar por una en Common Crawl, probablemente la B, porque hay muchas más páginas de recetas que respuestas cortas. Tiempo objetivo: ~1,5 min.",
       "_choice": {
         "signals": [
@@ -602,7 +597,7 @@
       "correct": "C",
       "answer": "La C.",
       "explanation": "Nada en el pre-training la hace más probable que las otras; eso lo enseña el post-training, que es la sección que sigue.",
-      "notes": "Esta vez todos van a elegir la C, y está bien. La pregunta para cerrar: ¿qué hay que cambiar en el entrenamiento para que la C sea la más probable? Eso es el SFT, la próxima sección. Tiempo objetivo: ~1 min.",
+      "notes": "Esta vez todos van a elegir la C, y aciertan. La pregunta para cerrar: ¿qué hay que cambiar en el entrenamiento para que la C sea la más probable? Eso es el SFT, la próxima sección. Tiempo objetivo: ~1 min.",
       "_choice": {
         "signals": [
           "author hint <!-- template: quiz --> pins the template",
@@ -649,7 +644,7 @@
           "icon": "forum"
         }
       ],
-      "notes": "Lo que cambia respecto de la etapa anterior son los datos: pocos, elegidos y escritos a mano. El rango exacto y lo que cuesta producirlos están en 2.3; el formato de un registro, en 2.4. La lámina 2.2 muestra el mismo GPT-3 antes y después del post-training completo (SFT y RLHF); el cambio de formato empieza en SFT. Tiempo objetivo: ~2 min.",
+      "notes": "Respecto de la etapa anterior cambian los datos, que son pocos, elegidos y escritos a mano. El rango exacto y lo que cuesta producirlos están en 2.3; el formato de un registro, en 2.4. La lámina 2.2 muestra el mismo GPT-3 antes y después del post-training completo (SFT y RLHF); el cambio de formato empieza en SFT. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -699,7 +694,7 @@
           "body": "GPT-3 arma un multiple choice con cuatro opciones; la versión con post-training explica para qué sirve la lista."
         }
       ],
-      "notes": "Responde la pregunta de las notas \"¿se puede encontrar un ejemplo de esto?\". La figura es del paper de OpenAI que entrenó este modelo, y los prompts están elegidos a propósito; las salidas no. La explicación del modelo con post-training sobre el código tampoco es del todo correcta, según el propio pie de la figura: el post-training cambia el formato de la respuesta, no garantiza que sea correcta. Eso vuelve en la sección 7. Tiempo objetivo: ~1,5 min.",
+      "notes": "Responde la pregunta de las notas \"¿se puede encontrar un ejemplo de esto?\". La figura es del paper de OpenAI que entrenó este modelo, y los prompts están elegidos a propósito; las salidas no. La explicación del modelo con post-training sobre el código tampoco es del todo correcta, según el propio pie de la figura. El post-training cambia el formato de la respuesta, pero no garantiza que sea correcta. Eso vuelve en la sección 7. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -734,7 +729,7 @@
       "cards": [
         {
           "label": "Nombre en OpenAI (2022)",
-          "body": "*Behavior cloning*: se muestra cómo debe comportarse el modelo y el modelo copia ese comportamiento.",
+          "body": "*Behavior cloning*: los anotadores muestran cómo debe comportarse el modelo y el modelo copia ese comportamiento.",
           "icon": "badge"
         },
         {
@@ -748,7 +743,7 @@
         "alt": "Un ejemplo de SFT con la máscara de pérdida sobre el prompt"
       },
       "design": "split-right",
-      "notes": "La función de pérdida es la misma de la clase 8; lo que cambia son los datos y la máscara. La pregunta de las notas \"qué decir y cómo decirlo\" es lo que codifica una demostración: el contenido y la forma a la vez. La alternativa barata es generar demostraciones con otro modelo: Alpaca usó 52.000 instrucciones generadas con ChatGPT. Eso es destilación y vuelve en la sección 7. QLoRA midió el efecto de la máscara: entrenar solo sobre la respuesta da 38,6 de MMLU contra 37,5 entrenando sobre todo. Tiempo objetivo: ~1,5 min.",
+      "notes": "La función de pérdida es la misma de la clase 8; cambian los datos y la máscara. Una demostración codifica a la vez el contenido y la forma, que es la pregunta de las notas \"qué decir y cómo decirlo\". La alternativa barata es generar demostraciones con otro modelo. Alpaca usó 52.000 instrucciones generadas con ChatGPT. Eso es destilación y vuelve en la sección 7. QLoRA midió el efecto de la máscara: entrenar solo sobre la respuesta da 38,6 de MMLU contra 37,5 entrenando sobre todo. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -781,13 +776,13 @@
       "template": "code-example",
       "section": "Supervised Fine-Tuning",
       "title": "Un dataset de SFT",
-      "lead": "**Tres registros de demostración de OpenAI (2022), escritos por anotadores. Ese dataset no se publicó; hay datasets públicos con el mismo formato.**",
+      "lead": "**Tres registros de demostración de OpenAI (2022), escritos por anotadores. OpenAI no publicó ese dataset; hay datasets públicos con el mismo formato.**",
       "code": "[\n  {\n    \"prompt\": \"Serendipity means the occurrence and development of events by chance in a happy or beneficial way. Use the word in a sentence.\",\n    \"response\": \"Running into Margaret and being introduced to Tom was a fortunate stroke of serendipity.\"\n  },\n  {\n    \"prompt\": \"Create a shopping list from this recipe:\\nTrim the ends off zucchini. Cut zucchini in half lengthwise; scoop out pulp, leaving 1/2-in. shells. Finely chop pulp. In a skillet, cook beef, zucchini pulp, onion, mushrooms and peppers over medium heat until meat is no longer pink; drain. [...]\",\n    \"response\": \"Zucchini, beef, onion, mushroom, peppers, cheese, ketchup, salt, pepper\"\n  },\n  {\n    \"prompt\": \"ELI5: What's the cause of the \\\"anxiety lump\\\" in our chest during stressful or disheartening experiences?\",\n    \"response\": \"The anxiety lump in your throat is caused by muscular tension keeping your glottis dilated to maximize airflow. [...]\"\n  }\n]",
       "language": "json",
       "explanation": [
         "**Datasets públicos.** [Databricks Dolly-15k](https://huggingface.co/datasets/databricks/databricks-dolly-15k) (~15.000 pares escritos por empleados), [OpenAssistant](https://projects.laion.ai/Open-Assistant/docs/data/datasets) (~88.000 pares de conversaciones) y [Alpaca](https://github.com/tatsu-lab/stanford_alpaca) (52.000 instrucciones generadas con ChatGPT)."
       ],
-      "notes": "Es la lámina que pedían las notas: un dataset de SFT concreto. Mostrar que cada registro es un JSON con dos campos, nada más, y abrir uno de los datasets públicos en Hugging Face para ver el mismo formato. Las respuestas son cortas y van al punto, y así queda entrenado el modelo. El prompt de la lista de compras trae la receta completa; está recortado en la lámina. Comparar con lo que hace GPT-3 con el de serendipity (Figura 47 del paper): repite \"Use the word in a sentence\" tres veces. Tiempo objetivo: ~2 min.",
+      "notes": "Es la lámina que pedían las notas, con un dataset de SFT concreto. Mostrar que cada registro es un JSON con dos campos, nada más, y abrir uno de los datasets públicos en Hugging Face para ver el mismo formato. Las respuestas son cortas y van al punto, y el modelo aprende a responder así. El prompt de la lista de compras trae la receta completa; está recortado en la lámina. Comparar con lo que hace GPT-3 con el de serendipity (Figura 47 del paper): repite \"Use the word in a sentence\" tres veces. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -843,7 +838,7 @@
       "template": "quiz",
       "section": "Supervised Fine-Tuning",
       "title": "Quiz: ¿qué aprende el SFT?",
-      "question": "**Para el mismo prompt hay dos respuestas correctas, y una es claramente mejor. ¿Qué aprende de eso un modelo entrenado con SFT?**",
+      "question": "**Para el mismo prompt hay dos respuestas correctas, y una es mejor que la otra. ¿Qué aprende de eso un modelo entrenado con SFT?**",
       "options": [
         "Que una respuesta es mejor que la otra.",
         "Nada sobre cuál es mejor: el SFT solo imita la respuesta que escribió la persona.",
@@ -851,8 +846,8 @@
       ],
       "correct": "B",
       "answer": "La B.",
-      "explanation": "Una demostración dice qué respuesta es aceptable, no cuánto mejor es que otra. Para aprender eso hacen falta comparaciones: es la etapa que sigue, RLHF.",
-      "notes": "Votación a mano alzada. Mucha gente elige la A. La clave es que el SFT ve una sola respuesta por prompt, la que escribió la persona, y aprende a imitarla; nunca ve una respuesta peor para comparar. La próxima sección entrena con pares de respuestas y una preferencia. Tiempo objetivo: ~1 min.",
+      "explanation": "Una demostración dice qué respuesta es aceptable, no cuánto mejor es que otra. Para aprender eso hacen falta comparaciones, y de eso se ocupa RLHF, la etapa que sigue.",
+      "notes": "Votación a mano alzada. Mucha gente elige la A. El SFT ve una sola respuesta por prompt, la que escribió la persona, y aprende a imitarla; nunca ve una respuesta peor para comparar. La próxima sección entrena con pares de respuestas y una preferencia. Tiempo objetivo: ~1 min.",
       "_choice": {
         "signals": [
           "author hint <!-- template: quiz --> pins the template",
@@ -878,6 +873,38 @@
       "title": "RLHF"
     },
     {
+      "template": "content-image",
+      "section": "RLHF",
+      "title": "RLHF en dos pasos",
+      "lead": "**RLHF entrena primero un juez que aprende de las preferencias de las personas, y después usa ese juez para mejorar el modelo.**",
+      "media": {
+        "src": "images/s3-1-1-rlhf-dos-pasos.png",
+        "alt": "RLHF en dos pasos: con datos de comparación se entrena un reward model (el juez); después el modelo SFT genera respuestas, el juez las puntúa y PPO ajusta el modelo para subir el puntaje"
+      },
+      "design": "split-right",
+      "highlights": [
+        {
+          "label": "Fuente",
+          "body": "[Ouyang et al., 2022 (OpenAI)](https://arxiv.org/abs/2203.02155) · [Huyen, 2023](https://huyenchip.com/2023/05/02/rlhf.html)",
+          "kind": "source"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=0",
+          "one_claim=true"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rationale": "Lead + one diagram that is the content + a source line. image-full renders no highlights, so the Fuente line would be lost; content-image with no facts lets the diagram take the width (same treatment as C4)."
+      },
+      "notes": "El mapa de la sección antes del detalle. Paso 1: con comparaciones entre respuestas se entrena un juez. El juez es otro LLM, una copia del modelo SFT a la que se le saca la capa que elige el siguiente token y se le pone una salida de un solo número; en el trabajo de OpenAI era de 6 mil millones de parámetros, más chico que el modelo que juzgaba. Paso 2: el modelo genera, el juez puntúa y PPO ajusta, con un freno para no alejarse del SFT. Las láminas que siguen detallan cada paso. Tiempo objetivo: ~1,5 min."
+    },
+    {
       "template": "concept-breakdown",
       "section": "RLHF",
       "title": "RLHF: puntuar y reforzar",
@@ -899,7 +926,7 @@
           "icon": "thumb_up"
         }
       ],
-      "notes": "Es la columna con dos pasos y dos modelos. La idea para que se lleven: primero un modelo aprende a juzgar respuestas, y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.2), cómo se entrena el reward model y cómo se arma su batch (3.3 y 3.4), el lazo de RL con PPO (3.5) y DPO, que llega al mismo objetivo sin reward model (3.6). Después, el RL con recompensas que se pueden verificar entrena el razonamiento y sus niveles de esfuerzo (4.1 a 4.4). Tiempo objetivo: ~2 min.",
+      "notes": "Es la columna con dos pasos y dos modelos. La idea para llevarse es que primero un modelo aprende a juzgar respuestas y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.3), cómo se entrena el reward model y cómo se arma su batch (3.4 y 3.5), el lazo de RL con PPO (3.6) y DPO, que llega al mismo objetivo sin reward model (3.7). Después, el RL con recompensas que se pueden verificar entrena el razonamiento y sus niveles de esfuerzo (4.2 a 4.5). Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -934,7 +961,7 @@
       "template": "content+cards+image",
       "section": "RLHF",
       "title": "Comparar es más fácil que escribir",
-      "lead": "**Una demostración dice qué respuesta es aceptable, pero no cuánto mejor es que otra. Para eso se le muestran al anotador dos respuestas y elige una.**",
+      "lead": "**Una demostración dice qué respuesta es aceptable, pero no cuánto mejor es que otra. Para eso el anotador ve dos respuestas y elige una.**",
       "cards": [
         {
           "label": "Por qué comparar",
@@ -957,7 +984,7 @@
         "language": "json"
       },
       "design": "split-right",
-      "notes": "Preguntar a la clase cuál prefieren. Chip Huyen prefiere la perdedora, y ese desacuerdo es el punto: las preferencias humanas no caben en una fórmula única. El modelo queda alineado con las preferencias de un grupo concreto de anotadores; el paper de OpenAI lo dice explícitamente. Tiempo objetivo: ~1,5 min.",
+      "notes": "Preguntar a la clase cuál prefieren. Chip Huyen prefiere la perdedora. Ese desacuerdo muestra que las preferencias humanas no caben en una fórmula única. El modelo queda alineado con las preferencias de un grupo concreto de anotadores; el paper de OpenAI lo dice. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1013,7 +1040,7 @@
         "alt": "El mismo reward model puntúa la respuesta ganadora y la perdedora; entrenar es lograr que la ganadora quede arriba"
       },
       "design": "split-right",
-      "notes": "Acá va solo la idea: el mismo modelo puntúa las dos respuestas, y entrenarlo es lograr que la ganadora quede arriba. La cuenta está en la lámina siguiente. Llama 2 usa dos modelos de recompensa, uno de utilidad y otro de seguridad, porque las dos cosas a veces se oponen. Tiempo objetivo: ~2 min.",
+      "notes": "Acá va solo la idea. El mismo modelo puntúa las dos respuestas, y entrenarlo es lograr que la ganadora quede arriba. La cuenta está en la lámina siguiente. Llama 2 usa dos modelos de recompensa, uno de utilidad y otro de seguridad, porque las dos cosas a veces se oponen. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1199,8 +1226,40 @@
     {
       "template": "content-image",
       "section": "Razonamiento con RL",
-      "title": "RL con recompensas verificables",
-      "lead": "**DeepSeek-R1-Zero aprende a razonar solo con RL: la recompensa es una regla que verifica la respuesta final. Durante el entrenamiento, el modelo aprende por su cuenta a escribir razonamientos más largos.**",
+      "title": "RL con verificador: el proceso",
+      "lead": "**Los datos son problemas con una respuesta que se puede comprobar. En lugar de una persona, una regla decide si la respuesta es correcta.**",
+      "media": {
+        "src": "images/s4-1-1-rl-verificador-proceso.png",
+        "alt": "RL con recompensas verificables: problemas con respuesta verificable, 16 respuestas por problema, un verificador de reglas que da 1 o 0, y GRPO que compara cada respuesta con el promedio del grupo"
+      },
+      "design": "split-right",
+      "highlights": [
+        {
+          "label": "Fuente",
+          "body": "[DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948)",
+          "kind": "source"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=0",
+          "one_claim=true"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rationale": "Lead + one process diagram that is the content + source line; image-full would drop the Fuente line. Same treatment as C4 and RLHF en dos pasos."
+      },
+      "notes": "La diferencia con RLHF está en el verificador. En lugar de un reward model entrenado con preferencias de personas, una regla dice si la respuesta es correcta. Por eso los datos tienen que ser problemas con respuesta comprobable: matemática con resultado exacto, código con tests, opción múltiple. Por cada problema el modelo genera 16 respuestas; las que aciertan reciben 1 y las que no, 0. GRPO compara cada una con el promedio de su grupo y empuja al modelo hacia las que salieron mejor que el promedio. No hay reward model ni value model que entrenar. La lámina siguiente muestra qué pasa cuando esto se repite miles de veces. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "content-image",
+      "section": "Razonamiento con RL",
+      "title": "RL con verificador: el resultado",
+      "lead": "**DeepSeek-R1-Zero aprende a razonar solo con RL. La recompensa es una regla que verifica la respuesta final. Durante el entrenamiento, el modelo aprende por su cuenta a escribir razonamientos más largos.**",
       "media": {
         "src": "images/fig-01-p004.png",
         "alt": "Exactitud en AIME y largo medio de respuesta de DeepSeek-R1-Zero durante el RL (DeepSeek-AI, fig. 1)"
@@ -1208,19 +1267,11 @@
       "design": "split-right",
       "facts": [
         {
-          "label": "Recompensa",
-          "body": "Exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`)."
-        },
-        {
-          "label": "GRPO (Group Relative Policy Optimization)",
-          "body": "Por cada problema se muestrean 16 respuestas; cada una se compara con el promedio de su grupo."
-        },
-        {
           "label": "Efecto",
           "body": "En AIME, un examen de matemática de competencia con respuestas numéricas, pasa de 15,6% a 77,9%, y las respuestas crecen de cientos a miles de tokens."
         }
       ],
-      "notes": "Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT: el RL arranca directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque se puede engañar (reward hacking); una regla que compara con la respuesta correcta, no. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para \"1 + 1\" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa: eso es effort. Tiempo objetivo: ~2 min.",
+      "notes": "Recompensa: exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`). GRPO (Group Relative Policy Optimization) muestrea 16 respuestas por problema y compara cada una con el promedio de su grupo, como en el diagrama de la lámina anterior. Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT y arranca el RL directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque el modelo puede engañarlo (reward hacking). Una regla que compara con la respuesta correcta no se deja engañar. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para \"1 + 1\" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa, que es lo que agrega effort. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1252,7 +1303,7 @@
       "template": "content-image",
       "section": "Razonamiento con RL",
       "title": "Effort: low, medium, high",
-      "lead": "**gpt-oss se entrena para respetar tres niveles de razonamiento que se eligen con la línea `reasoning: low` (o `medium`, `high`) en el system prompt. Más nivel, razonamiento más largo y más exactitud.**",
+      "lead": "**OpenAI entrena a gpt-oss para respetar tres niveles de razonamiento que se eligen con la línea `reasoning: low` (o `medium`, `high`) en el system prompt. Un nivel más alto alarga el razonamiento y sube la exactitud.**",
       "media": {
         "src": "images/fig-03-p008.png",
         "alt": "Exactitud contra largo medio de razonamiento y respuesta para los niveles low, medium y high de gpt-oss (OpenAI, 2025, fig. 3)"
@@ -1271,7 +1322,7 @@
           "body": "**Cada nivel multiplica el largo** del razonamiento por 3 a 5 veces."
         }
       ],
-      "notes": "Es el concepto de las notas: effort low, medium, high. La ficha del modelo dice tres cosas: los niveles se entrenaron, se eligen en el system prompt y más nivel da razonamientos más largos. No dice cómo se entrenaron: ni datos, ni recompensa por largo, ni presupuesto por nivel. No hay que atribuirle un método a OpenAI; las dos láminas siguientes muestran uno documentado, el de Qwen3. Sin herramientas los números bajan (50,4 / 80,0 / 92,5) pero el escalón entre niveles se mantiene. Tiempo objetivo: ~2 min.",
+      "notes": "Es el concepto de effort low, medium, high de las notas. La ficha del modelo dice tres cosas: los niveles se entrenaron, se eligen en el system prompt y más nivel da razonamientos más largos. No describe cómo se entrenaron, ni con qué datos, recompensa por largo o presupuesto por nivel. No hay que atribuirle un método a OpenAI; las dos láminas siguientes muestran uno documentado, el de Qwen3. Sin herramientas los números bajan (50,4 / 80,0 / 92,5) pero el escalón entre niveles se mantiene. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1303,7 +1354,7 @@
       "template": "content+cards+image",
       "section": "Razonamiento con RL",
       "title": "Qwen3: cuatro pasos de post-training",
-      "lead": "**Qwen3 hace cuatro pasos de post-training sobre el modelo base. Los pasos 1 y 2 le enseñan a razonar, y los pasos 3 y 4 a respetar los flags `/think` y `/no_think`. El presupuesto de pensamiento no se entrena: el sistema lo corta en inferencia.**",
+      "lead": "**Qwen3 hace cuatro pasos de post-training sobre el modelo base. Los pasos 1 y 2 le enseñan a razonar, y los pasos 3 y 4 a respetar los flags `/think` y `/no_think`. El presupuesto de pensamiento no se entrena. El sistema lo corta en inferencia.**",
       "cards": [
         {
           "label": "El interruptor se entrena",
@@ -1321,7 +1372,7 @@
         "alt": "Los cuatro pasos de post-training de Qwen3 y qué aprende cada mitad"
       },
       "design": "split-right",
-      "notes": "Los pasos 1 y 2 siguen la receta de DeepSeek-R1. La lámina siguiente muestra los datos del paso 3. El presupuesto es un corte en inferencia: después de la fusión, el modelo sabe responder con razonamiento completo o sin él, y responder con uno a medias le sale solo. En AIME'25, sin razonamiento da ~25%, con 1.000 tokens ~31% y con 32.000 ~82% (Figura 2 del paper). La comparación con gpt-oss es nuestra: Qwen3 no tiene niveles low/medium/high, sino un interruptor y un presupuesto en tokens. Costo que reconocen los autores: después de los pasos 3 y 4 el modo con razonamiento pierde algo en las tareas más difíciles. Tiempo objetivo: ~2 min.",
+      "notes": "Los pasos 1 y 2 siguen la receta de DeepSeek-R1. La lámina siguiente muestra los datos del paso 3. El presupuesto es un corte en inferencia. Después de la fusión, el modelo sabe responder con razonamiento completo o sin él, y responder con uno a medias le sale solo. En AIME'25, sin razonamiento da ~25%, con 1.000 tokens ~31% y con 32.000 ~82% (Figura 2 del paper). La comparación con gpt-oss es nuestra: Qwen3 tiene un interruptor y un presupuesto en tokens en lugar de niveles low/medium/high. Los autores reconocen que, después de los pasos 3 y 4, el modo con razonamiento pierde algo en las tareas más difíciles. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1363,7 +1414,7 @@
         },
         {
           "label": "Diálogos largos",
-          "body": "Se insertan varios flags al azar y la respuesta sigue al último.",
+          "body": "Los autores insertan varios flags al azar y la respuesta sigue al último.",
           "icon": "forum"
         },
         {
@@ -1410,56 +1461,62 @@
       "title": "Herramientas"
     },
     {
-      "template": "concept-breakdown",
+      "template": "content+cards+image",
       "section": "Herramientas",
-      "title": "Por qué herramientas",
-      "lead": "**Los pesos quedan congelados en la fecha de corte y el modelo genera texto por probabilidad. Una herramienta aporta datos actuales y cuentas exactas.**",
+      "title": "Las piezas de una plataforma",
+      "lead": "**Cuando usás un LLM por API, el modelo está en el medio y nunca ejecuta nada. Alrededor hay piezas que traducen el JSON a texto con tags y de vuelta, y dos lugares donde corre una herramienta: tu aplicación o la plataforma.**",
       "cards": [
         {
-          "label": "Datos actuales",
-          "body": "\"¿Quién es el presidente hoy?\" depende de la fecha de corte; una búsqueda lo resuelve.",
-          "icon": "update"
+          "label": "Plantilla de chat",
+          "body": "Convierte los mensajes y las definiciones de herramientas en el texto con tags que el modelo vio al entrenarse. El modelo ve la definición de cada herramienta, nunca su código.",
+          "icon": "input"
         },
         {
-          "label": "Precisión",
-          "body": "Un intérprete de código calcula π con 50 decimales sin recitarlo de memoria.",
-          "icon": "calculate"
+          "label": "Parser de llamadas",
+          "body": "Lee el texto que escribe el modelo y extrae las llamadas como `tool_calls`. Hay uno por familia de modelos (`llama3_json`, `hermes`, `mistral`), y a veces los argumentos llegan mal formados.",
+          "icon": "output"
         },
         {
-          "label": "Acciones",
-          "body": "Mover archivos, consultar una base, llamar a una API: tareas que los pesos no pueden hacer.",
-          "icon": "bolt"
+          "label": "Tus herramientas",
+          "body": "Las ejecuta tu aplicación: la API devuelve la llamada y espera el resultado.",
+          "icon": "terminal"
+        },
+        {
+          "label": "Herramientas nativas",
+          "body": "La búsqueda web y la ejecución de código las ejecuta la plataforma del proveedor, dentro del mismo pedido.",
+          "icon": "cloud"
         }
       ],
-      "format": "editorial",
-      "notes": "Tres razones para que un modelo use herramientas. Un modelo base no sabe emitir una llamada; hay que entrenarlo. La lámina siguiente muestra el circuito completo entre el modelo y el agente. Después vienen tres herramientas, una por cada razón de la lámina: la calculadora (precisión), la búsqueda web (datos actuales) y MCP (acciones sobre cualquier sistema). Para cada una, la misma pregunta: qué genera el modelo, quién ejecuta la llamada y cómo se lo entrenó. Tiempo objetivo: ~1,5 min.",
+      "media": {
+        "src": "images/s5-1-1-piezas-plataforma.png",
+        "alt": "Las piezas de una plataforma: tu aplicación arriba, fuera de la plataforma, arma el pedido y ejecuta tus herramientas; dentro de la plataforma, la API, la plantilla de chat (ida) y el parser de llamadas (vuelta) rodean al modelo, que escribe la llamada pero no la ejecuta; abajo, las herramientas nativas que ejecuta la plataforma"
+      },
+      "design": "split-right",
       "highlights": [
         {
           "label": "Fuente",
-          "body": "[Lambert, RLHF Book, cap. 13](https://rlhfbook.com/c/13-tools) · [Schick et al., 2023](https://arxiv.org/abs/2302.04761)",
+          "body": "[vLLM, docs de tool calling](https://docs.vllm.ai/en/latest/features/tool_calling/) · [Hugging Face, chat templates con herramientas](https://huggingface.co/docs/transformers/main/en/chat_template_tools_and_documents) · [Anthropic, docs de tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) · [OpenAI, herramientas para agentes](https://openai.com/index/new-tools-for-building-agents/)",
           "kind": "source"
         }
       ],
+      "notes": "Es el mapa de toda la sección: cada lámina que sigue es un zoom sobre una de estas piezas. Arriba está tu aplicación, que arma el pedido en JSON y ejecuta tus herramientas. Abajo está la plataforma, que puede ser un proveedor como OpenAI o Anthropic, o un servidor como vLLM u Ollama que corre en tu máquina. La API recibe JSON; la plantilla de chat lo convierte en el texto con tags especiales que el modelo vio en su entrenamiento; el modelo escribe; el parser lee ese texto y, si hay una llamada, la devuelve como tool_calls. En vLLM son dos opciones del servidor: --chat-template y --tool-call-parser. Si usás el modelo directo con la librería de Hugging Face, sin servidor, ese parser lo escribís vos. El parser también puede fallar, porque el modelo escribe texto y convertirlo en JSON no está garantizado.\n\nEl modelo está en el medio y nunca ejecuta nada. Una herramienta corre en uno de dos lugares: en tu aplicación, o en la plataforma cuando es nativa, como la búsqueda web o la ejecución de código. No todas las incorporadas funcionan así. Con computer use de OpenAI, el modelo propone las acciones y las ejecuta el desarrollador en su entorno.\n\nDónde reaparece cada pieza: tu aplicación, en el circuito y en el intercambio con la API; la plantilla y el parser, en \"de los tokens al JSON\"; el modelo, en lo que escribe Llama 3.1; las herramientas nativas, en la respuesta de la API con búsqueda.",
       "_choice": {
         "signals": [
-          "labeled_items=3 (Datos actuales, Precisión, Acciones)",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "has_table=false",
+          "labeled_items=4 (Plantilla de chat, Parser de llamadas, Tus herramientas, Herramientas nativas)",
+          "n_images=1 (platform components diagram)",
+          "is_ordered=false (the flow order is drawn in the diagram; the cards describe components)",
           "two_groups=false",
-          "big_metrics=false",
-          "body_len=prose (two bodies > 80 chars)"
+          "has_table=false"
         ],
         "candidates": [
-          "concept-breakdown",
-          "process",
-          "value-columns"
+          "content+cards+image",
+          "content-image",
+          "concept-breakdown"
         ],
-        "picked": "concept-breakdown",
+        "picked": "content+cards+image",
         "rejected": {
-          "process": "anti-default check: three parallel reasons, no ordinal labels and no flow between them",
-          "value-columns": "the three reasons do not align over a shared factor and are not two groups compared"
+          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; facts would lose the per-concept icons",
+          "concept-breakdown": "the diagram is the map the section refers back to; dropping it loses the slide's point"
         }
       }
     },
@@ -1490,7 +1547,7 @@
         "alt": "El circuito con herramientas: el usuario escribe en un chat, que es el agente; el agente llama al LLM, ejecuta la herramienta que el LLM pide y le devuelve el resultado hasta la respuesta final"
       },
       "design": "split-right",
-      "notes": "Callback a la clase de RAG y MCP: allá armaron este loop del lado del agente, con ReAct. Lo que queda para el resto de la sección es el lado del modelo: por qué emite una llamada bien formada y sabe cuándo dejar de llamar. Si la llamada sale mal escrita, el loop se rompe: cualquier texto que no sea una llamada válida cuenta como acción inválida. El agente también pone límites propios, como un máximo de vueltas. Tiempo objetivo: ~2 min.",
+      "notes": "Es la pieza de arriba del mapa anterior, tu aplicación, vista en el tiempo. Callback a la clase de RAG y MCP: allá armaron este loop del lado del agente, con ReAct. El resto de la sección se ocupa del lado del modelo: por qué emite una llamada bien formada y sabe cuándo dejar de llamar. Si la llamada sale mal escrita, el loop se rompe, porque cualquier texto que no sea una llamada válida cuenta como acción inválida. El agente también pone límites propios, como un máximo de vueltas. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1550,7 +1607,7 @@
         "language": "json"
       },
       "design": "split-left",
-      "notes": "Es el diagrama anterior en JSON. Recorrer los cuatro bloques con los números de la lámina anterior: el pedido lleva el historial y las herramientas; la respuesta no trae texto sino un bloque tool_use y el motivo de corte es tool_use; el chat ejecuta, y en el segundo pedido manda el resultado con el mismo id; la respuesta final corta con end_turn. Marcar que el LLM nunca ejecuta nada: solo escribe la llamada. El formato es el de la API de Anthropic; otros proveedores usan nombres distintos para lo mismo. Tiempo objetivo: ~2 min.",
+      "notes": "Es el diagrama anterior en JSON. Recorrer los cuatro bloques con los números de la lámina anterior: el pedido lleva el historial y las herramientas; la respuesta trae un bloque tool_use, sin texto, y el motivo de corte es tool_use; el chat ejecuta, y en el segundo pedido manda el resultado con el mismo id; la respuesta final corta con end_turn. Marcar que el LLM solo escribe la llamada y nunca la ejecuta. El formato es el de la API de Anthropic; otros proveedores usan nombres distintos para lo mismo. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1588,21 +1645,21 @@
       "cards": [
         {
           "label": "Calcular",
-          "body": "El modelo se equivoca en cuentas de varios pasos: una calculadora las hace exactas.",
+          "body": "El modelo se equivoca en cuentas de varios pasos. Una calculadora las hace exactas.",
           "icon": "calculate"
         },
         {
           "label": "Buscar",
-          "body": "El modelo no sabe lo que pasó después de su fecha de corte: la búsqueda web trae datos actuales.",
+          "body": "El modelo no sabe lo que pasó después de su fecha de corte. La búsqueda web trae datos actuales.",
           "icon": "travel_explore"
         },
         {
           "label": "MCP",
-          "body": "Cada sistema tiene su propia API: MCP es una interfaz común para conectar cualquier herramienta.",
+          "body": "Cada sistema tiene su propia API. MCP es una interfaz común para conectar cualquier herramienta.",
           "icon": "hub"
         }
       ],
-      "notes": "El mapa del resto de la sección. Para cada problema vamos a ver lo mismo: qué genera el modelo, quién ejecuta la llamada y con qué datos se lo entrenó. Los títulos de las láminas que siguen empiezan con el problema: Calcular, Buscar, MCP. Tiempo objetivo: ~1 min.",
+      "notes": "Son las tres razones para usar herramientas: precisión (calcular), datos actuales (buscar) y acciones sobre otros sistemas (MCP). Un modelo base no sabe emitir una llamada hasta que lo entrenan para eso. Esta lámina es el mapa del resto de la sección. Para cada problema vamos a ver lo mismo: qué genera el modelo, quién ejecuta la llamada y con qué datos se lo entrenó. Los títulos de las láminas que siguen empiezan con el problema: Calcular, Buscar, MCP. Tiempo objetivo: ~1 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1638,6 +1695,61 @@
       }
     },
     {
+      "template": "content+cards+image",
+      "section": "Herramientas",
+      "title": "Calcular: el dataset GSM8K",
+      "lead": "**GSM8K (Grade School Math 8K) son unos 8.500 problemas de matemática escolar escritos por personas, con la solución paso a paso. Las anotaciones de calculadora las generó un programa.**",
+      "cards": [
+        {
+          "label": "Dataset público",
+          "body": "[openai/gsm8k](https://huggingface.co/datasets/openai/gsm8k), licencia MIT: 7.473 problemas de entrenamiento y 1.319 de test, con dos versiones (`main` y `socratic`).",
+          "icon": "dataset"
+        },
+        {
+          "label": "Anotación automática",
+          "body": "Una lógica fija y un modelo ajustado insertaron los `<<expresión=resultado>>`. Casi nunca ponen una anotación incorrecta, pero a veces dejan líneas sin anotar.",
+          "icon": "auto_awesome"
+        },
+        {
+          "label": "Toolformer",
+          "body": "Un modelo que se anota solo: inserta llamadas candidatas en texto común, las ejecuta y se queda con las que bajan la pérdida del texto que sigue.",
+          "icon": "build"
+        }
+      ],
+      "media": {
+        "code": "{\n  \"question\": \"Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?\",\n  \"answer\": \"Natalia sold 48/2 = <<48/2=24>>24 clips in May.\\nNatalia sold 48+24 = <<48+24=72>>72 clips altogether in April and May.\\n#### 72\"\n}",
+        "language": "json"
+      },
+      "design": "split-right",
+      "notes": "La primera de las tres herramientas es la calculadora, y arrancamos por los datos. GSM8K es un dataset de OpenAI de 2021, con unos 8.500 problemas de matemática escolar escritos por personas y la solución paso a paso. Mostrar el registro en pantalla y señalar las dos anotaciones: cada `<<…>>` es una llamada a la calculadora, pegada al texto; dos láminas más adelante vemos cómo lo hace hoy un modelo abierto. Es un registro de SFT como los de la lámina 2.4. Los problemas los escribieron personas, pero las anotaciones las generó un programa. La última línea, `#### 72`, permite corregir la respuesta de forma automática. Toolformer hace algo parecido sin anotaciones humanas. Escribe las llamadas con corchetes y una flecha, sin tocar el vocabulario; en ASDiv, un GPT-J de 6,7B con calculadora saca 40,4 y GPT-3 175B, 14,0. Cerrar con la pregunta que abre la lámina siguiente: ¿por qué hizo falta ponerle una calculadora al modelo? Tiempo objetivo: ~2 min.",
+      "highlights": [
+        {
+          "label": "Fuente",
+          "body": "[Cobbe et al., 2021](https://arxiv.org/abs/2110.14168) · [Schick et al., 2023](https://arxiv.org/abs/2302.04761)",
+          "kind": "source"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "has_code=true (one GSM8K record in JSON, the worked example)",
+          "labeled_items=3 (Dataset público, Anotación automática, Toolformer)",
+          "n_images=0",
+          "is_ordered=false",
+          "big_metrics=false (7.473 / 1.319 inside one prose body)"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "code-example",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "code-example": "its explanation column is plain strings and would flatten the three labeled points; content+cards+image covers \"labeled cards on one side AND a supporting example/code on the other\", with the JSON record as media",
+          "concept-breakdown": "would drop the JSON record (content is never dropped); a supporting code sample goes in media beside the cards"
+        }
+      }
+    },
+    {
       "template": "concept-breakdown",
       "section": "Herramientas",
       "title": "Calcular: el modelo no calcula bien",
@@ -1659,7 +1771,7 @@
           "icon": "error"
         }
       ],
-      "notes": "Primera de las tres herramientas: la calculadora. GSM8K es un dataset de OpenAI de 2021 con problemas de matemática escolar; lo vemos en la lámina siguiente. El dato que conviene decir en voz alta: extrapolando la tendencia, los autores calculan que con fine-tuning solo haría falta un modelo de 10^16 parámetros para resolver el 80% de GSM8K. Su respuesta fue darle una calculadora al modelo (y verificadores, que no entran en esta clase). El corpus no explica el error aritmético por la forma en que el tokenizer parte los números; si alguien lo pregunta, es una hipótesis que la clase no cubre. Tiempo objetivo: ~1,5 min.",
+      "notes": "Responde la pregunta de la lámina anterior: aun en problemas de primaria como los de GSM8K, el modelo se equivoca en las cuentas, y un error en un paso arrastra al resto. El dato que conviene decir en voz alta: extrapolando la tendencia, los autores calculan que con fine-tuning solo haría falta un modelo de 10^16 parámetros para resolver el 80% de GSM8K. Su respuesta fue darle una calculadora al modelo (y verificadores, que no entran en esta clase); la lámina siguiente muestra cómo lo hace hoy Llama 3.1. El corpus no explica el error aritmético por la forma en que el tokenizer parte los números; si alguien lo pregunta, es una hipótesis que la clase no cubre. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1693,45 +1805,43 @@
     {
       "template": "content+cards+image",
       "section": "Herramientas",
-      "title": "Calcular: el dataset GSM8K",
-      "lead": "**GSM8K son problemas de matemática escolar escritos por personas, con la solución paso a paso. Las anotaciones de calculadora las generó un programa.**",
+      "title": "Calcular: lo que escribe Llama 3.1",
+      "lead": "**Llama 3.1 trae una calculadora incorporada, Wolfram Alpha. El modelo escribe la llamada con tokens especiales, se detiene y sigue cuando le devuelven el resultado.**",
       "cards": [
         {
-          "label": "Dataset público",
-          "body": "[openai/gsm8k](https://huggingface.co/datasets/openai/gsm8k), licencia MIT: 7.473 problemas de entrenamiento y 1.319 de test, con dos versiones (`main` y `socratic`).",
-          "icon": "dataset"
+          "label": "Lo que escribe el modelo",
+          "body": "`<|python_tag|>` abre la llamada y `<|eom_id|>` la cierra: \"paro acá, falta el resultado de la herramienta\".",
+          "icon": "edit_note"
         },
         {
-          "label": "Anotación automática",
-          "body": "Una lógica fija y un modelo ajustado insertaron los `<<expresión=resultado>>`. Casi nunca ponen una anotación incorrecta, pero a veces dejan líneas sin anotar.",
-          "icon": "auto_awesome"
+          "label": "Quién la ejecuta",
+          "body": "El agente, que es el código que corre el modelo, llama a Wolfram Alpha y agrega la respuesta con el rol `ipython`.",
+          "icon": "terminal"
         },
         {
-          "label": "Toolformer",
-          "body": "Un modelo que se anota solo: inserta llamadas candidatas en texto común, las ejecuta y se queda con las que bajan la pérdida del texto que sigue.",
-          "icon": "build"
+          "label": "Cómo lo aprendió",
+          "body": "En el post-training, con conversaciones escritas en este formato; lo que devuelve la herramienta no cuenta en la pérdida.",
+          "icon": "school"
         }
       ],
       "media": {
-        "code": "{\n  \"question\": \"Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?\",\n  \"answer\": \"Natalia sold 48/2 = <<48/2=24>>24 clips in May.\\nNatalia sold 48+24 = <<48+24=72>>72 clips altogether in April and May.\\n#### 72\"\n}",
-        "language": "json"
+        "src": "images/s5-7-1-llama-tokens-wolfram.png",
+        "alt": "La conversación de Llama 3.1 turno por turno: system activa las herramientas, user pregunta, assistant escribe la llamada a wolfram_alpha entre python_tag y eom_id y se detiene, ipython trae el resultado que agrega el agente, assistant responde"
       },
-      "design": "split-right",
-      "notes": "Mostrar el registro en pantalla y señalar las dos anotaciones: cada `<<…>>` es una llamada a la calculadora, y la lámina siguiente muestra quién la resuelve. Es un registro de SFT como los de la lámina 2.4. Los problemas los escribieron personas; las anotaciones, no. La última línea, `#### 72`, permite corregir la respuesta de forma automática. Toolformer usa la pérdida de la clase 8 como filtro y escribe las llamadas con corchetes y una flecha, sin tocar el vocabulario. En ASDiv, un GPT-J de 6,7B con calculadora saca 40,4 y GPT-3 175B, 14,0. Hoy GSM8K se usa sobre todo como benchmark. Tiempo objetivo: ~2 min.",
+      "design": "split-left",
       "highlights": [
         {
           "label": "Fuente",
-          "body": "[Cobbe et al., 2021](https://arxiv.org/abs/2110.14168) · [Schick et al., 2023](https://arxiv.org/abs/2302.04761)",
+          "body": "[Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md) · [Lambert, RLHF Book, cap. 13](https://rlhfbook.com/c/13-tools)",
           "kind": "source"
         }
       ],
       "_choice": {
         "signals": [
-          "has_code=true (one GSM8K record in JSON, the worked example)",
-          "labeled_items=3 (Dataset público, Anotación automática, Toolformer)",
-          "n_images=0",
+          "has_code=true",
+          "labeled_items=3",
           "is_ordered=false",
-          "big_metrics=false (7.473 / 1.319 inside one prose body)"
+          "n_images=0"
         ],
         "candidates": [
           "content+cards+image",
@@ -1739,179 +1849,98 @@
           "concept-breakdown"
         ],
         "picked": "content+cards+image",
-        "rejected": {
-          "code-example": "its explanation column is plain strings and would flatten the three labeled points; content+cards+image covers \"labeled cards on one side AND a supporting example/code on the other\", with the JSON record as media",
-          "concept-breakdown": "would drop the JSON record (content is never dropped); a supporting code sample goes in media beside the cards"
-        }
-      }
+        "rationale": "Cards beside a diagram (the token conversation redrawn as SVG at the presenter's request): content+cards+image with media = the image, design split-left."
+      },
+      "notes": "Es la versión actual de lo que vimos con GSM8K. Llama 3.1, de Meta, trae tres herramientas incorporadas, y una es Wolfram Alpha para cálculos. Recorrer la secuencia de arriba abajo: el sistema activa las herramientas, el usuario pregunta y el modelo, en vez del número, escribe una llamada que empieza en python_tag y termina en eom_id. Ese token le dice al código que lo corre: paro acá, ejecutá la herramienta. El código llama a Wolfram Alpha, pega la respuesta con el rol ipython, y el modelo sigue hasta terminar con eot_id. El modelo aprendió a escribir este formato en su post-training. La lámina siguiente muestra cómo esos tokens se convierten en el JSON de la API. Tiempo objetivo: ~2 min."
     },
     {
       "template": "content-image",
       "section": "Herramientas",
-      "title": "Calcular: quién hace la cuenta",
-      "lead": "**El modelo escribe la cuenta como texto. Cuando llega al \"=\", un ejecutor externo evalúa la expresión, escribe el resultado en la secuencia y el modelo sigue generando.**",
+      "title": "Calcular: de los tokens al JSON",
+      "lead": "**El modelo escribe la llamada como texto entre tags especiales. El servidor la traduce al JSON que recibe tu código, y traduce el resultado de vuelta a un turno que el modelo sabe leer.**",
       "media": {
-        "src": "images/fig-09-p017.png",
-        "alt": "Procedimiento de muestreo con calculadora en GSM8K: el generador escribe la expresión, el \"=\" dispara la calculadora, eval(\"20+10\") escribe 30>> y el generador sigue con \"books\" (Cobbe et al., 2021, fig. 9)"
+        "src": "images/s5-8-1-tokens-a-json.png",
+        "alt": "De los tokens al JSON y de vuelta: el modelo escribe la llamada como JSON entre python_tag y eom_id, el servidor saca los tags y entrega tool_calls a tu código; tu código manda un mensaje tool con 7006652 y el servidor lo convierte en un turno ipython"
       },
       "design": "split-right",
-      "facts": [
-        {
-          "label": "Lo que genera el modelo",
-          "body": "La llamada, en tokens comunes: `<<20+10=`."
-        },
-        {
-          "label": "Lo que pone el ejecutor",
-          "body": "El resultado y el cierre, `30>>`, con `eval` de Python. Si la evaluación falla, el modelo sigue sin calculadora."
-        },
-        {
-          "label": "Lo que se entrena",
-          "body": "En GSM8K, todo el texto con las anotaciones incluidas. En el SFT actual con herramientas, la salida del ejecutor se enmascara en la pérdida y el modelo aprende la llamada."
-        }
-      ],
-      "notes": "Es la versión con calculadora de la lámina 5.2: el modelo escribe, otro programa calcula. Recorrer la figura de arriba abajo: tres pasos del generador hasta el \"=\", la calculadora (en rojo) escribe \"30>>\" y el generador sigue con \"books\". Diferencia con la máscara de la lámina 2.3: GSM8K entrenó sobre las anotaciones como cualquier otro token, y la calculadora recién pisa el resultado en la inferencia. Lambert describe como práctica actual enmascarar la salida de la herramienta. Detalle para quien mire los datos: en las salidas del modelo aparece \"5.0\" en vez de \"5\", porque `eval` devuelve un float. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
-          "body": "[Cobbe et al., 2021](https://arxiv.org/abs/2110.14168) · [Lambert, RLHF Book, cap. 13](https://rlhfbook.com/c/13-tools)",
+          "body": "[Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md) · [Ollama, docs de tool calling](https://docs.ollama.com/capabilities/tool-calling)",
           "kind": "source"
         }
       ],
       "_choice": {
         "signals": [
-          "author hint <!-- template: content-image --> pins the template",
-          "n_images=1 (paper figure of calculator sampling)",
-          "labeled_items=3 (Lo que genera el modelo, Lo que pone el ejecutor, Lo que se entrena)",
-          "is_ordered=false (the figure shows a sequence; the facts are roles)"
+          "n_images=1",
+          "labeled_items=0",
+          "one_claim=true"
         ],
         "candidates": [
           "content-image",
-          "content+cards+image",
-          "process"
+          "image-full"
         ],
         "picked": "content-image",
-        "rejected": {
-          "content+cards+image": "author pin: the source carries <!-- template: content-image -->, which the schema says pins the template and skips classification. On signals alone the walk would pick content+cards+image (labeled_items >= 2 + one shared image); the pin overrides the catalog's own answer and is kept because it is the presenter's directive",
-          "process": "the labels name roles (what the model writes, what the executor writes, what is trained), not ordered steps; pinned by hint"
-        }
-      }
-    },
-    {
-      "template": "value-columns",
-      "section": "Herramientas",
-      "title": "Buscar: la ejecuta el proveedor",
-      "lead": "**Entre herramientas cambia quién ejecuta la llamada. La búsqueda web corre en la plataforma del proveedor, dentro del mismo pedido a la API; las herramientas propias las ejecuta el agente de la aplicación.**",
-      "columns": [
-        {
-          "header": "",
-          "cells": [
-            "Ejemplos",
-            "Quién la ejecuta"
-          ]
-        },
-        {
-          "header": "Herramienta del servidor",
-          "cells": [
-            "Búsqueda web, lectura de páginas o ejecución de código alojada.",
-            "La plataforma del proveedor la ejecuta, puede repetirla varias veces en un mismo pedido y devuelve la respuesta con citas."
-          ]
-        },
-        {
-          "header": "Herramienta del cliente",
-          "cells": [
-            "Funciones propias, una base de datos o un servidor MCP.",
-            "La API devuelve la llamada y espera; el agente la ejecuta y manda el resultado."
-          ]
-        }
-      ],
-      "media": {
-        "src": "images/s4-6-1-herramienta-servidor-cliente.png",
-        "alt": "Herramienta del servidor contra herramienta del cliente: dónde se ejecuta la llamada"
+        "rationale": "Lead + one diagram that is the content + source line; image-full drops highlights. Same treatment as the other full-width diagrams."
       },
-      "design": "split-right",
-      "notes": "Segunda herramienta. Responde la pregunta de si la búsqueda web la resuelve el modelo. El modelo emite la llamada igual que con cualquier otra herramienta, y la plataforma del proveedor la ejecuta dentro del mismo pedido. Por eso, desde la app, parece que \"el modelo buscó\". Con una herramienta del cliente, la API devuelve la llamada y el agente de la lámina 5.2 hace el trabajo. El entrenamiento es el mismo en los dos casos: el modelo aprende a emitir la llamada y a usar el resultado. Los términos \"server tools\" y \"client tools\" son de la documentación de Anthropic; otros proveedores ofrecen algo equivalente. Tiempo objetivo: ~1,5 min.",
-      "highlights": [
-        {
-          "label": "Fuente",
-          "body": "[Anthropic, docs de tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) · [Anthropic, docs de web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)",
-          "kind": "source"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "labeled_items=2 (Herramienta del servidor, Herramienta del cliente)",
-          "two_groups=true (server tool vs client tool, compared on the same factors: examples and who executes the call; the diagram alt reads \"servidor contra ... cliente\")",
-          "polarity=false (neither side is the downside)",
-          "n_images=1 (server vs client diagram)",
-          "is_ordered=false"
-        ],
-        "candidates": [
-          "value-columns",
-          "content+cards+image",
-          "pros-cons"
-        ],
-        "picked": "value-columns",
-        "rejected": {
-          "content+cards+image": "anti-default check: the two items are two sides of a comparison that read across (examples, then who runs the call) -> value-columns carrying the image; a card per side would collapse the aligned rows into one body each",
-          "pros-cons": "two_groups without polarity: server vs client is a neutral compare, not upside vs downside"
-        }
-      }
+      "notes": "Esta lámina conecta la anterior, que muestra lo que ve el modelo, con la siguiente, que muestra lo que ve tu código. Ida: el modelo escribe la llamada como JSON entre python_tag y eom_id; el servidor saca los tags, lee el JSON y te lo entrega como tool_calls. Vuelta: tu código manda el resultado como un mensaje con rol tool, y el servidor lo convierte en un turno ipython, que es el formato que el modelo vio en su entrenamiento. El modelo nunca ve JSON de la API ni tu código ve los tags. El servidor traduce en el medio con las dos piezas del mapa de la 5.1, la plantilla de chat a la ida y el parser a la vuelta. Tiempo objetivo: ~2 min."
     },
     {
       "template": "content+cards+image",
       "section": "Herramientas",
-      "title": "Buscar: qué genera el modelo",
-      "lead": "**Con la búsqueda web, una sola respuesta de la API trae los bloques que generó el modelo y los que agregó la plataforma, en orden.**",
+      "title": "Calcular: la misma cuenta por la API",
+      "lead": "**Con un modelo abierto servido con Ollama, la API esconde los tokens especiales: la llamada llega como JSON y el resultado vuelve como un mensaje con rol \"tool\".**",
       "cards": [
         {
-          "label": "Lo que genera el modelo",
-          "body": "La decisión de buscar, la consulta y la respuesta final con citas.",
-          "icon": "model_training"
+          "label": "Lo que ve tu código",
+          "body": "`tool_calls` con el nombre y los argumentos; después, un mensaje `tool` con el resultado.",
+          "icon": "data_object"
         },
         {
-          "label": "Lo que agrega la plataforma",
-          "body": "Los resultados de la búsqueda, sin que la aplicación escriba código para ejecutarla.",
-          "icon": "cloud"
+          "label": "Lo que pasa por debajo",
+          "body": "El modelo escribe la llamada entre tags especiales y el servidor la traduce a este JSON, como en la lámina anterior.",
+          "icon": "swap_horiz"
+        },
+        {
+          "label": "Quién calcula",
+          "body": "Tu código: la API te devuelve la llamada y espera, igual que en la lámina 5.3.",
+          "icon": "calculate"
         }
       ],
       "media": {
-        "src": "images/s4-7-1-bloques-busqueda-web.png",
-        "alt": "Los cuatro bloques de una respuesta con búsqueda web y quién produce cada uno"
+        "code": "// 1 · pedido: la pregunta y la herramienta\n{\"model\": \"llama3.1\",\n \"messages\": [{\"role\": \"user\", \"content\": \"¿Cuánto es 1234 × 5678?\"}],\n \"tools\": [{\"type\": \"function\", \"function\": {\n     \"name\": \"calcular\",\n     \"description\": \"Evalúa una expresión aritmética\",\n     \"parameters\": {\"type\": \"object\", \"required\": [\"expresion\"],\n       \"properties\": {\"expresion\": {\"type\": \"string\"}}}}}]}\n\n// 2 · respuesta: el modelo pide la herramienta\n{\"message\": {\"role\": \"assistant\",\n  \"tool_calls\": [{\"function\": {\"name\": \"calcular\",\n      \"arguments\": {\"expresion\": \"1234 * 5678\"}}}]}}\n\n// 3 · segundo pedido: tu código agrega el resultado\n{\"role\": \"tool\", \"tool_name\": \"calcular\", \"content\": \"7006652\"}\n\n// 4 · respuesta final\n{\"message\": {\"role\": \"assistant\", \"content\": \"1234 × 5678 = 7.006.652\"}}",
+        "language": "json"
       },
       "design": "split-left",
-      "notes": "Mismo esquema que la calculadora: el modelo escribe la llamada (bloque 2) y otro sistema pone el resultado (bloque 3). Acá el resultado lo agrega la plataforma del proveedor. El ejemplo y el formato de los bloques son de la API de Anthropic. El modelo busca si el pedido depende de información actual o fuera de sus datos de entrenamiento; `max_uses` pone un tope de búsquedas por pedido. Dos excepciones, si alguien pregunta: un turno largo puede pausarse (`pause_turn`) y la aplicación reenvía el mensaje; si la búsqueda sale en paralelo con una herramienta del cliente, la API devuelve `tool_use` y busca en el pedido siguiente. Tiempo objetivo: ~1 min.",
       "highlights": [
         {
           "label": "Fuente",
-          "body": "[Anthropic, docs de web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)",
+          "body": "[Ollama, docs de tool calling](https://docs.ollama.com/capabilities/tool-calling) · [Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md)",
           "kind": "source"
         }
       ],
       "_choice": {
         "signals": [
-          "labeled_items=2 (Lo que genera el modelo, Lo que agrega la plataforma)",
-          "n_images=1 (four response blocks diagram)",
-          "two_groups=partial (a partition of one response between two producers, one prose line each; no shared factor to align rows)",
-          "is_ordered=false (the block order is in the diagram)",
-          "date_labels=false"
+          "has_code=true",
+          "labeled_items=3",
+          "is_ordered=false",
+          "n_images=0"
         ],
         "candidates": [
           "content+cards+image",
-          "value-columns",
-          "content-image"
+          "code-example",
+          "concept-breakdown"
         ],
         "picked": "content+cards+image",
-        "rejected": {
-          "value-columns": "anti-default check: the two lines are complementary parts of one response, each a single phrase with no shared factors to read across; a one-row grid would add a table without any alignment to show",
-          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; facts would lose the per-concept icons"
-        }
-      }
+        "rationale": "A code panel beside a labeled set: the schema puts code in media and keeps the cards (same as \"El intercambio con la API\"). Author hint design: split-left puts the code on the left."
+      },
+      "notes": "La misma idea, vista desde el código de la clase. El pedido lleva la pregunta y la definición de la herramienta; la respuesta trae tool_calls con el nombre y los argumentos, sin texto; tu código calcula y manda el resultado con el rol tool; el modelo responde. Los tokens especiales de la lámina anterior no aparecen porque la API los esconde. Es el mismo intercambio que vimos en la 5.3 con otro proveedor y otros nombres de campos. Tiempo objetivo: ~1,5 min."
     },
     {
       "template": "concept-breakdown",
       "section": "Herramientas",
       "title": "Buscar: cómo se entrena",
-      "lead": "**Buscar se aprende como cualquier otra conducta: primero imitando a personas que buscan, después con preferencias sobre las respuestas.**",
+      "lead": "**El modelo aprende a buscar como cualquier otra conducta: primero imita a personas que buscan y después aprende de preferencias sobre las respuestas.**",
       "cards": [
         {
           "label": "Demostraciones",
@@ -1920,7 +1949,7 @@
         },
         {
           "label": "Preferencias",
-          "body": "Se comparan respuestas con sus citas, y un reward model aprende cuál prefiere la gente.",
+          "body": "Personas comparan respuestas con sus citas, y un reward model aprende cuáles prefieren.",
           "icon": "thumb_up"
         },
         {
@@ -1929,7 +1958,7 @@
           "icon": "travel_explore"
         }
       ],
-      "notes": "Un modelo recién preentrenado no sabe usar un buscador: no conoce el formato de los comandos. Por eso se empieza con demostraciones de personas buscando y respondiendo con citas, y después se ajusta con preferencias sobre las respuestas, igual que en RLHF. En el chat que usan todos los días, la búsqueda ya viene incluida: el proveedor la definió y la ejecuta, y el modelo aprendió cuándo usarla. Tiempo objetivo: ~1,5 min.",
+      "notes": "Un modelo recién preentrenado no sabe usar un buscador: no conoce el formato de los comandos. Por eso primero lo entrenan con demostraciones de personas que buscan y responden con citas, y después lo ajustan con preferencias sobre las respuestas, igual que en RLHF. En el chat que usan todos los días, la búsqueda ya viene incluida. El proveedor la definió y la ejecuta, y el modelo aprendió cuándo usarla. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1964,6 +1993,168 @@
       }
     },
     {
+      "template": "concept-breakdown",
+      "section": "Herramientas",
+      "title": "Buscar: el modelo no sabe lo reciente",
+      "lead": "**El modelo sabe lo que había en sus datos hasta una fecha de corte. Para lo que pasó después, tiene que buscar.**",
+      "cards": [
+        {
+          "label": "Fecha de corte",
+          "body": "En el ejemplo de Meta, el system prompt de Llama 3.1 dice \"Cutting Knowledge Date: December 2023\" y \"Today Date: 21 September 2024\". El modelo no vio esos nueve meses.",
+          "icon": "event"
+        },
+        {
+          "label": "La pregunta",
+          "body": "\"Search the web for the latest price of 1oz gold\". El precio de hoy no está en los pesos del modelo.",
+          "icon": "help"
+        },
+        {
+          "label": "Sin búsqueda",
+          "body": "El modelo respondería con un precio viejo, o lo inventaría (sección 6).",
+          "icon": "warning"
+        }
+      ],
+      "format": "editorial",
+      "highlights": [
+        {
+          "label": "Fuente",
+          "body": "[Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md) · [Lambert, RLHF Book, cap. 13](https://rlhfbook.com/c/13-tools)",
+          "kind": "source"
+        }
+      ],
+      "notes": "Es el problema de la búsqueda, igual que la lámina de \"no calcula bien\" para la calculadora. Todo modelo tiene una fecha de corte, y lo que pasó después no está en sus datos. El ejemplo oficial de Meta lo muestra en el mismo prompt: corte en diciembre de 2023, fecha de hoy en septiembre de 2024, y una pregunta por el precio actual del oro. Sin una herramienta, el modelo contesta con lo que recuerda o inventa, que es el tema de la sección 6. Tiempo objetivo: ~1 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Fecha de corte, La pregunta, Sin búsqueda)",
+          "is_ordered=false",
+          "n_images=0",
+          "has_table=false",
+          "two_groups=false",
+          "big_metrics=false"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "single-point"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "anti-default check: no ordinal labels; the items are a fact, an example and a consequence, not steps",
+          "single-point": "labeled_items == 3, not 1"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Herramientas",
+      "title": "Buscar: lo que escribe Llama 3.1",
+      "lead": "**Igual que con la calculadora, el modelo escribe la consulta entre tags especiales y se detiene hasta que el agente le devuelve los resultados.**",
+      "cards": [
+        {
+          "label": "Lo que escribe el modelo",
+          "body": "La consulta, no el resultado: `brave_search.call(query=\"latest price of 1oz gold\")`.",
+          "icon": "edit_note"
+        },
+        {
+          "label": "Quién busca",
+          "body": "El agente: con Llama abierto, tu código llama a Brave Search y agrega los resultados con el rol `ipython`.",
+          "icon": "terminal"
+        },
+        {
+          "label": "Cómo lo aprendió",
+          "body": "Con demostraciones de personas buscando y preferencias sobre las respuestas, como en \"Buscar: cómo se entrena\".",
+          "icon": "school"
+        }
+      ],
+      "media": {
+        "src": "images/s5-12-1-llama-tokens-brave.png",
+        "alt": "La conversación de Llama 3.1 con brave_search: el system prompt con la fecha de corte y la fecha de hoy, la pregunta por el precio del oro, la llamada brave_search entre python_tag y eom_id, los resultados que agrega el agente y la respuesta"
+      },
+      "design": "split-left",
+      "highlights": [
+        {
+          "label": "Fuente",
+          "body": "[Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md)",
+          "kind": "source"
+        }
+      ],
+      "notes": "Es la misma lámina que la de Wolfram Alpha, con otra herramienta. El system prompt trae la fecha de corte y la de hoy, y el usuario pide un precio actual. En vez de inventar el número, el modelo escribe la consulta entre python_tag y eom_id y se detiene. El agente busca, agrega los resultados con el rol ipython y el modelo responde con el precio y la fuente. Los dos últimos turnos del diagrama están entre corchetes porque el ejemplo de Meta no los muestra. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "n_images=1 (Llama 3.1 token conversation with brave_search)",
+          "is_ordered=false",
+          "has_code=false (the tokens are drawn as SVG)"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rationale": "Same composition as \"Calcular: lo que escribe Llama 3.1\": cards beside the token diagram, author hint design: split-left.",
+        "rejected": {
+          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image",
+          "concept-breakdown": "would drop the diagram"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Herramientas",
+      "title": "Buscar: la respuesta de la API",
+      "lead": "**El modelo no busca: escribe la consulta. La plataforma del proveedor ejecuta la búsqueda y agrega los resultados, todo dentro de una sola respuesta de la API.**",
+      "cards": [
+        {
+          "label": "Lo que genera el modelo",
+          "body": "La decisión de buscar, la consulta (bloque 2) y la respuesta final con citas (bloque 4).",
+          "icon": "model_training"
+        },
+        {
+          "label": "Lo que hace la plataforma",
+          "body": "Ejecuta la búsqueda en la web y agrega los resultados (bloque 3). Tu aplicación no escribe código para eso.",
+          "icon": "cloud"
+        },
+        {
+          "label": "Con un modelo abierto",
+          "body": "No hay búsqueda nativa, así que la ejecuta tu código, como en la lámina anterior. El modelo hace lo mismo en los dos casos: escribe la consulta y lee los resultados.",
+          "icon": "code"
+        }
+      ],
+      "media": {
+        "src": "images/s4-7-1-bloques-busqueda-web.png",
+        "alt": "Los cuatro bloques de una respuesta con búsqueda web y quién produce cada uno"
+      },
+      "design": "split-left",
+      "notes": "Es el mismo esquema que la calculadora. El modelo escribe la llamada (bloque 2) y otro sistema pone el resultado (bloque 3). Acá el resultado lo agrega la plataforma del proveedor. Es la pieza de abajo del mapa de la 5.1, las herramientas nativas, y por eso desde afuera parece que \"el modelo buscó\". El ejemplo y el formato de los bloques son de la API de Anthropic. El modelo decide buscar si el pedido depende de información actual o fuera de sus datos de entrenamiento; `max_uses` pone un tope de búsquedas por pedido. Dos excepciones, si alguien pregunta: un turno largo puede pausarse (`pause_turn`) y la aplicación reenvía el mensaje; si la búsqueda sale en paralelo con una herramienta del cliente, la API devuelve `tool_use` y busca en el pedido siguiente. Tiempo objetivo: ~1 min.",
+      "highlights": [
+        {
+          "label": "Fuente",
+          "body": "[Anthropic, docs de web search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)",
+          "kind": "source"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Lo que genera el modelo, Lo que hace la plataforma, Con un modelo abierto)",
+          "n_images=1 (four response blocks diagram)",
+          "two_groups=partial (a partition of one response between two producers, one prose line each; no shared factor to align rows)",
+          "is_ordered=false (the block order is in the diagram)",
+          "date_labels=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "anti-default check: the two lines are complementary parts of one response, each a single phrase with no shared factors to read across; a one-row grid would add a table without any alignment to show",
+          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; facts would lose the per-concept icons"
+        }
+      }
+    },
+    {
       "template": "content-image",
       "section": "Herramientas",
       "title": "MCP: host, cliente y servidor",
@@ -1979,7 +2170,7 @@
           "body": "`tools/list` descubre qué herramientas hay; `tools/call` ejecuta una con sus argumentos."
         }
       ],
-      "notes": "Callback a la clase de RAG y MCP: allá armaron un servidor MCP y lo conectaron a un agente. El host es la aplicación de IA, como Claude Code o Visual Studio Code, y crea un cliente por cada servidor, con una conexión dedicada. El servidor ofrece herramientas, datos y prompts; corre en la misma computadora (STDIO) o en otra (Streamable HTTP). Acá interesa dónde queda el modelo: fuera del protocolo. El agente del host junta las herramientas de todos los servidores, se las pasa al LLM, intercepta la llamada y la manda al servidor que corresponde. Es el loop de la lámina 5.2. La analogía oficial es un puerto USB-C para aplicaciones de IA. Tiempo objetivo: ~2 min.",
+      "notes": "Callback a la clase de RAG y MCP: allá armaron un servidor MCP y lo conectaron a un agente. El host es la aplicación de IA, como Claude Code o Visual Studio Code, y crea un cliente por cada servidor, con una conexión dedicada. El servidor ofrece herramientas, datos y prompts; corre en la misma computadora (STDIO) o en otra (Streamable HTTP). Acá interesa que el modelo queda fuera del protocolo. El agente del host junta las herramientas de todos los servidores, se las pasa al LLM, intercepta la llamada y la manda al servidor que corresponde. Es el loop de la lámina 5.2. La analogía oficial es un puerto USB-C para aplicaciones de IA. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2016,7 +2207,7 @@
         "Un servidor MCP publica su calculadora en `tools/list`:",
         "**La calculadora, otra vez.** En GSM8K la llamada iba pegada al texto con `<<…>>`; con MCP la misma calculadora es una función con nombre, descripción y esquema de entrada."
       ],
-      "notes": "La pregunta que suele aparecer: si hay miles de servidores MCP, ¿se entrena al modelo para cada uno? No hace falta. El host pone cada herramienta en el contexto con el mismo formato de definición que el modelo vio en SFT, y el chat template de cada familia de modelos la pasa a tokens. La descripción le dice al modelo para qué sirve la herramienta y cuándo usarla; el esquema, qué argumentos escribir. La lámina siguiente muestra cómo se entrena eso. Tiempo objetivo: ~1,5 min.",
+      "notes": "Suele aparecer esta duda: con miles de servidores MCP, ¿hay que entrenar al modelo para cada uno? No hace falta. El host pone cada herramienta en el contexto con el mismo formato de definición que el modelo vio en SFT, y el chat template de cada familia de modelos la pasa a tokens. La descripción le dice al modelo para qué sirve la herramienta y cuándo usarla; el esquema, qué argumentos escribir. La lámina siguiente muestra cómo se entrena eso. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2047,7 +2238,7 @@
       "template": "code-example",
       "section": "Herramientas",
       "title": "MCP: lo que aprende el modelo",
-      "lead": "**Se entrena function calling genérico: leer las definiciones de funciones del contexto y emitir la llamada. Un registro de SFT trae las funciones en el system prompt, el pedido y la llamada esperada.**",
+      "lead": "**El modelo aprende function calling genérico: leer las definiciones de funciones del contexto y emitir la llamada. Un registro de SFT trae las funciones en el system prompt, el pedido y la llamada esperada.**",
       "code": "[\n  {\"role\": \"system\",\n   \"content\": \"You are a function calling AI model. You are provided with function signatures within <functions></functions> XML tags. ...\",\n   \"functions\": [{\"name\": \"live_giveaways_by_type\",\n                  \"description\": \"Retrieve live giveaways from the GamerPower API based on the specified type.\",\n                  \"parameters\": {\"type\": {\"description\": \"The type of giveaways to retrieve (e.g., game, loot, beta).\", \"type\": \"str\", \"default\": \"game\"}}}]},\n  {\"role\": \"user\", \"content\": \"Where can I find live giveaways for beta access and games?\"},\n  {\"role\": \"assistant\", \"content\": null,\n   \"function_calls\": \"live_giveaways_by_type(type='beta')\\nlive_giveaways_by_type(type='game')\"}\n]",
       "language": "json",
       "explanation": [
@@ -2091,7 +2282,7 @@
       "cards": [
         {
           "label": "Ejemplo",
-          "body": "Se le pidió a DeepSeek-V3 el cumpleaños de uno de los autores, \"solo si lo sabés\". Dio tres fechas distintas en tres intentos, todas falsas.",
+          "body": "Los autores le pidieron a DeepSeek-V3 el cumpleaños de uno de ellos, \"solo si lo sabés\". Dio tres fechas distintas en tres intentos, todas falsas.",
           "icon": "cake"
         },
         {
@@ -2105,7 +2296,7 @@
           "icon": "repeat"
         }
       ],
-      "notes": "Cambio de tema: qué pasa cuando el modelo no sabe la respuesta. La tesis de Kalai et al. (OpenAI, 2025) es que las alucinaciones no son un misterio: son errores de clasificación. Generar una respuesta válida es más difícil que decidir si una respuesta es válida, y si el modelo no puede distinguir un hecho de un error plausible, va a producir errores plausibles. Engancha con la sección 1: lo que el corpus repite, el modelo lo sabe; lo que aparece una vez, lo adivina. Tiempo objetivo: ~1,5 min.",
+      "notes": "Cambio de tema: qué pasa cuando el modelo no sabe la respuesta. La tesis de Kalai et al. (OpenAI, 2025) es que las alucinaciones son errores de clasificación. Generar una respuesta válida es más difícil que decidir si una respuesta es válida, y si el modelo no puede distinguir un hecho de un error plausible, va a producir errores plausibles. Engancha con la sección 1: el modelo sabe lo que el corpus repite y adivina lo que aparece una vez. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2214,7 +2405,7 @@
           "icon": "insights"
         }
       ],
-      "notes": "Contra el modelo con solo SFT, la comparación sale al revés: Chip Huyen lee en el paper de OpenAI (2022) que RLHF empeoró la alucinación, aunque los anotadores igual lo prefieren. El modelo con post-training también aprendió a cubrirse con respuestas largas y vagas (el cañón y la calabaza, Figura 9). Abstenerse de más tampoco sirve: en TruthfulQA, GPT-3 con un prompt de ayuda responde \"no tengo comentarios\" al 49% de las preguntas. La búsqueda de la sección 7 ayuda y no alcanza: si falla, la calificación binaria sigue premiando adivinar (Kalai et al.). Del lado del producto quedan un prompt, RAG o un fine-tuning; la sección 7 arranca por esa decisión. Tiempo objetivo: ~1,5 min.",
+      "notes": "Contra el modelo con solo SFT, la comparación sale al revés: Chip Huyen lee en el paper de OpenAI (2022) que RLHF empeoró la alucinación, aunque los anotadores igual lo prefieren. El modelo con post-training también aprendió a cubrirse con respuestas largas y vagas (el cañón y la calabaza, Figura 9). Abstenerse de más tampoco sirve. En TruthfulQA, GPT-3 con un prompt de ayuda responde \"no tengo comentarios\" al 49% de las preguntas. La búsqueda de la sección 7 ayuda, pero no alcanza. Si falla, la calificación binaria sigue premiando adivinar (Kalai et al.). Del lado del producto quedan un prompt, RAG o un fine-tuning; la sección 7 arranca por esa decisión. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2246,6 +2437,78 @@
       }
     },
     {
+      "template": "value-columns",
+      "section": "Cuando el modelo inventa",
+      "title": "Ejemplo: premiar el \"no sé\"",
+      "lead": "**Un paso de entrenamiento con RL. Con una recompensa que castiga más el error que la abstención, las respuestas \"no sé\" quedan por encima del promedio y el modelo aprende a darlas.**",
+      "columns": [
+        {
+          "header": "Respuesta del modelo",
+          "cells": [
+            "\"Nació el 15 de marzo.\" (inventada)",
+            "\"Nació el 3 de julio.\" (inventada)",
+            "\"No lo sé con certeza.\"",
+            "\"No sé su fecha de cumpleaños.\""
+          ]
+        },
+        {
+          "header": "Recompensa",
+          "cells": [
+            "−9",
+            "−9",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "header": "Contra el promedio (−4,5)",
+          "cells": [
+            "baja",
+            "baja",
+            "sube",
+            "sube"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "label": "La consigna",
+          "body": "\"Respondé solo si estás más de 90% seguro: un error resta 9 puntos, una respuesta correcta suma 1 y 'no sé' suma 0.\"",
+          "kind": "note"
+        },
+        {
+          "label": "Con puntaje de 1 o 0",
+          "body": "Las cuatro respuestas sumarían 0, así que inventar no costaría nada y el modelo no tendría por qué dejar de hacerlo.",
+          "kind": "note"
+        },
+        {
+          "label": "Fuente",
+          "body": "[Kalai et al., 2025](https://arxiv.org/abs/2509.04664) · [DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948)",
+          "kind": "source"
+        }
+      ],
+      "notes": "Un ejemplo concreto de la última tarjeta de la lámina anterior. El mismo pedido del cumpleaños, con la consigna que proponen Kalai y sus coautores: responder solo con más de 90% de confianza, porque un error resta 9. El modelo genera cuatro respuestas: dos fechas inventadas, que reciben −9, y dos \"no sé\", que reciben 0. El promedio del grupo es −4,5. Los \"no sé\" quedan por encima y el RL sube su probabilidad; las fechas inventadas quedan por debajo y bajan. Es el mismo mecanismo de GRPO de la sección 4, con otra recompensa. Con el puntaje binario las cuatro valdrían 0 y no habría nada que aprender. Aclarar que es un ejemplo armado para la clase: el paper propone la consigna para evaluar, no entrena con ella. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "has_table=true (Respuesta del modelo | Recompensa | Contra el promedio, 4 rows)",
+          "labeled_items=2 (La consigna, Con puntaje de 1 o 0) as remarks under the table",
+          "n_images=0",
+          "big_metrics=false",
+          "two_groups=false"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-breakdown",
+          "stat"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-breakdown": "four answers compared over the same two factors (reward, vs group mean) is a table read across",
+          "stat": "the numbers only mean something next to their answer; no headline metric"
+        }
+      }
+    },
+    {
       "template": "section-agenda",
       "title": "Fine-tuning"
     },
@@ -2265,7 +2528,7 @@
           "body": "Los datos son del equipo y son pocos. Los métodos son los mismos de las secciones 2 y 3."
         }
       ],
-      "notes": "Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arriba las paga el proveedor; la de abajo, el equipo. Lo que se hace en esa caja es lo mismo que ya vieron: SFT con ejemplos propios (sección 2) y, a veces, preferencias o refuerzo (secciones 3 y 4). RFT es el nombre que usan OpenAI y Azure para el refuerzo con un evaluador, parecido al RL con recompensas verificables de la sección 3. Unsloth recomienda partir de un modelo instruct, que ya sabe conversar y pide menos datos. Tiempo objetivo: ~1,5 min.",
+      "notes": "Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arriba las paga el proveedor; la de abajo, el equipo. En esa caja el equipo hace lo mismo que ya vieron: SFT con ejemplos propios (sección 2) y, a veces, preferencias o refuerzo (secciones 3 y 4). RFT es el nombre que usan OpenAI y Azure para el refuerzo con un evaluador, parecido al RL con recompensas verificables de la sección 3. Unsloth recomienda partir de un modelo instruct, que ya sabe conversar y pide menos datos. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2295,7 +2558,7 @@
       "template": "content-image",
       "section": "Fine-tuning",
       "title": "Prompt, RAG o fine-tuning",
-      "lead": "**RAG corrige fallas de información: el modelo no conoce los datos. El fine-tuning corrige fallas de comportamiento: el modelo no responde en la forma, el formato o el estilo pedidos.**",
+      "lead": "**RAG corrige fallas de información (el modelo no conoce los datos). El fine-tuning corrige fallas de comportamiento (el modelo no responde en la forma, el formato o el estilo pedidos).**",
       "media": {
         "src": "images/rag-vs-finetune.png",
         "alt": "Recorrido típico de desarrollo: prompt, ejemplos, retrieval y fine-tuning (AI Engineering, fig. 7-3)"
@@ -2311,7 +2574,7 @@
           "body": "Si hacen falta los dos, se empieza por RAG."
         }
       ],
-      "notes": "Callback a las clases de prompting y de RAG y MCP: todo lo que vieron hasta ahora cambia la entrada del modelo; el fine-tuning cambia los pesos. El eje vertical de la figura es el tiempo del proyecto. Un ejemplo de falla de comportamiento: el modelo genera SQL de un dialecto poco común que no compila, y ningún documento recuperado arregla eso. Con pocos datos de calidad conviene LoRA o QLoRA sobre un modelo fuerte; con muchos, un ajuste completo de un modelo más chico, o destilar un modelo fuerte en uno chico (revisar la licencia). Dos costos: ajustar para una tarea puede degradar otras, y el próximo modelo base puede superar al ajustado. Tiempo objetivo: ~1,5 min.",
+      "notes": "Callback a las clases de prompting y de RAG y MCP: todo lo que vieron hasta ahora cambia la entrada del modelo; el fine-tuning cambia los pesos. El eje vertical de la figura es el tiempo del proyecto. Una falla de comportamiento típica es un modelo que genera SQL de un dialecto poco común que no compila, y ningún documento recuperado arregla eso. Con pocos datos de calidad conviene LoRA o QLoRA sobre un modelo fuerte; con muchos, un ajuste completo de un modelo más chico, o destilar un modelo fuerte en uno chico (revisar la licencia). Dos costos: ajustar para una tarea puede degradar otras, y el próximo modelo base puede superar al ajustado. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2355,7 +2618,7 @@
           "body": "Memoria ≈ N parámetros × bytes por valor × 1,2."
         }
       ],
-      "notes": "Hacer la cuenta en el pizarrón con la clase. Adam guarda dos valores por parámetro (media y varianza del gradiente), más el gradiente mismo: tres valores extra por parámetro. El caso de 65B, en la lámina siguiente, da más de 780 GB. La técnica de gradient checkpointing recalcula activaciones para ahorrar memoria a cambio de cómputo. La pregunta que responden LoRA y QLoRA en la lámina siguiente: ¿hace falta entrenar los 13.000 millones de parámetros? Tiempo objetivo: ~2 min.",
+      "notes": "Hacer la cuenta en el pizarrón con la clase. Adam guarda dos valores por parámetro (media y varianza del gradiente), más el gradiente mismo, o sea tres valores extra por parámetro. El caso de 65B, en la lámina siguiente, da más de 780 GB. La técnica de gradient checkpointing recalcula activaciones para ahorrar memoria a cambio de cómputo. Cerrar con la pregunta que responden LoRA y QLoRA en la lámina siguiente: ¿hace falta entrenar los 13.000 millones de parámetros? Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2385,7 +2648,7 @@
       "template": "content+cards+image",
       "section": "Fine-tuning",
       "title": "LoRA y QLoRA en la práctica",
-      "lead": "**LoRA congela los pesos del modelo y entrena dos matrices finas por capa. QLoRA además guarda el modelo congelado en 4 bits. Lo que se entrena y se guarda es un adaptador.**",
+      "lead": "**LoRA congela los pesos del modelo y entrena dos matrices finas por capa. QLoRA además guarda el modelo congelado en 4 bits. Solo se entrena y se guarda un adaptador.**",
       "cards": [
         {
           "label": "LoRA",
@@ -2426,7 +2689,7 @@
         ]
       },
       "design": "split-right",
-      "notes": "Conectar con la cuenta de memoria de la lámina 7.3: un 13B con ajuste completo pedía unos 109 GB; con QLoRA, según el paper, 11,3 GB. La tabla usa batch 1 y secuencias de 512 tokens; con secuencias o batches más grandes sube. LoRA: la entrada pasa por W congelada y en paralelo por A y B, y las dos salidas se suman; B arranca en cero, así que al principio el modelo es igual al original, y al desplegar B · A se suma a W sin latencia extra. QLoRA: NF4 reparte los 16 valores posibles según una normal. Hay que poner LoRA en todas las capas lineales para igualar al ajuste completo. Tiempo objetivo: ~2 min.",
+      "notes": "Conectar con la cuenta de memoria de la lámina 7.3: un 13B con ajuste completo pedía unos 109 GB; con QLoRA, según el paper, 11,3 GB. La tabla usa batch 1 y secuencias de 512 tokens; con secuencias o batches más grandes sube. En LoRA, la entrada pasa por W congelada y en paralelo por A y B, y las dos salidas se suman; B arranca en cero, así que al principio el modelo es igual al original, y al desplegar B · A se suma a W sin latencia extra. En QLoRA, NF4 reparte los 16 valores posibles según una normal. Hay que poner LoRA en todas las capas lineales para igualar al ajuste completo. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2490,7 +2753,7 @@
           ]
         }
       ],
-      "notes": "Leer la tabla por filas y decir la fecha: las listas cambian rápido. OpenAI anunció que cierra su plataforma: quien ya la usaba puede seguir unos meses, y los modelos ajustados funcionan hasta que se retire el modelo base. El modelo que OpenAI recomienda hoy para trabajo nuevo no se puede ajustar. Azure sigue vendiendo fine-tuning de gpt-4.1, gpt-4o y o4-mini, y de gpt-5 con RFT por invitación. En Gemini el ajuste es con adaptadores (se elige el tamaño); en los modelos abiertos, según el modelo, hay LoRA, ajuste completo o los dos. Un modelo desplegado en Azure cobra por hora aunque no reciba pedidos. Tiempo objetivo: ~2 min.",
+      "notes": "Leer la tabla por filas y decir la fecha: las listas cambian rápido. OpenAI anunció que cierra su plataforma. Quien ya la usaba puede seguir unos meses, y los modelos ajustados funcionan hasta que OpenAI retire el modelo base. El modelo que OpenAI recomienda hoy para trabajo nuevo no se puede ajustar. Azure sigue vendiendo fine-tuning de gpt-4.1, gpt-4o y o4-mini, y de gpt-5 con RFT por invitación. En Gemini el ajuste es con adaptadores (se elige el tamaño); en los modelos abiertos, según el modelo, hay LoRA, ajuste completo o los dos. Un modelo desplegado en Azure cobra por hora aunque no reciba pedidos. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2573,7 +2836,7 @@
         },
         {
           "label": "Cantidad",
-          "body": "Azure exige al menos 10 ejemplos y recomienda empezar con 50 bien armados; como buena práctica, cientos o miles.",
+          "body": "Azure exige al menos 10 ejemplos y recomienda empezar con 50 bien armados; como buena práctica sugiere cientos o miles.",
           "icon": "inventory_2"
         },
         {
@@ -2587,7 +2850,7 @@
           "icon": "verified"
         }
       ],
-      "notes": "La frase de Chip Huyen del capítulo 7: \"finetuning is easy, but getting data for finetuning is hard\". El formato es el de los registros de SFT de la sección 2; TRL, por defecto, calcula la pérdida solo sobre la respuesta, la misma máscara de la lámina 2.3. Las cifras de Azure son su recomendación para sus modelos. Dos benchmarks, dos rankings: FLAN v2 da el mejor MMLU y el peor puntaje de chatbot, así que el dataset tiene que parecerse a la tarea. LIMA llega de segunda mano, de las notas de un lector del libro, y el modelo resultante es \"menos robusto\": presentarlo como indicio. Tiempo objetivo: ~1,5 min.",
+      "notes": "La frase de Chip Huyen del capítulo 7: \"finetuning is easy, but getting data for finetuning is hard\". El formato es el de los registros de SFT de la sección 2; TRL, por defecto, calcula la pérdida solo sobre la respuesta, la misma máscara de la lámina 2.3. Las cifras de Azure son su recomendación para sus modelos. FLAN v2 da el mejor MMLU y el peor puntaje de chatbot, así que el dataset tiene que parecerse a la tarea. LIMA llega de segunda mano, de las notas de un lector del libro, y el modelo resultante es \"menos robusto\". Presentarlo como indicio. Tiempo objetivo: ~1,5 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2668,7 +2931,7 @@
           ]
         }
       ],
-      "notes": "Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su sección. La última fila es la que les toca a ellos: la sección 7. Después, preguntas. Si sobra tiempo, mostrar un registro de un dataset público de SFT. Tiempo objetivo: ~2 min más preguntas.",
+      "notes": "Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su sección. La última fila corresponde a la sección 7, que es la que les toca a ellos. Después, preguntas. Si sobra tiempo, mostrar un registro de un dataset público de SFT. Tiempo objetivo: ~2 min más preguntas.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2699,7 +2962,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "36fbd9fa6302bb0b52ba7c7891f8395ba56f1c6d91c552e15bef814e32d93dab",
-    "bytes": 232071
+    "sha256": "6417230315b09e6ad06fee3d1fb80ffef8d1425c76711d6eb59a003bbcf76a55",
+    "bytes": 266178
   }
 }

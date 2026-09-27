@@ -1,0 +1,25 @@
+ PASO 1 · ENTRENAR UN JUEZ                  PASO 2 · OPTIMIZAR CONTRA EL JUEZ
+ +--------------------------------+         +-----------------------------------+
+ | datos de comparación           |         | prompts, sin respuestas           |
+ | (prompt, ganadora, perdedora)  |         |                |                  |
+ |               |                |         |                v                  |
+ |               v                |         |  el modelo SFT genera una         |
+ | copia del modelo SFT con una   |         |  respuesta                        |
+ | salida de un solo número       |         |                |                  |
+ |               |                |         |                v                  |
+ |               v                |  ---->  |  el reward model la puntúa        |
+ |   REWARD MODEL (el juez)       |         |                |                  |
+ +--------------------------------+         |                v                  |
+                                            |  PPO ajusta el modelo para subir  |
+                                            |  el puntaje, sin alejarse del SFT |
+                                            |       (se repite muchas veces)    |
+                                            +-----------------------------------+
+                                                             |
+                                                             v
+                                                       MODELO FINAL
+
+<!-- ascii-note:
+intent: resumen de RLHF en dos pasos lado a lado: primero se entrena un juez con comparaciones, después se optimiza el modelo contra ese juez
+emphasize: el reward model como puente entre los dos pasos (flecha del paso 1 al paso 2); el loop del paso 2
+labels: PASO 1 y PASO 2 como títulos de caja; "juez" = reward model
+-->

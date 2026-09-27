@@ -1,7 +1,7 @@
 <!-- talksmith-ascii-sha256: 1df373be4fff9db93db6f06def05f8f78a5e8c773f85a4807eb5d65cea7dc554 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 686" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>Tres etapas, cuatro conjuntos de datos</title>
-<desc>Mapa de la clase: las tres etapas de entrenamiento de un LLM (pre-training, SFT y RLHF) con sus cuatro conjuntos de datos y la escala de cada uno.</desc>
+<desc>Mapa de la clase: las tres etapas de entrenamiento de un LLM (pre-training, SFT o Supervised Fine-Tuning y RLHF o Reinforcement Learning from Human Feedback) con sus cuatro conjuntos de datos y la escala de cada uno.</desc>
 <defs>
 <marker id="ah" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="13" markerHeight="13" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
 </defs>
@@ -20,8 +20,8 @@
 
 <g font-size="23" font-weight="bold" text-anchor="middle">
 <text x="180" y="120">Pre-training</text>
-<text x="550" y="120">SFT</text>
-<text x="1113" y="120">RLHF · Feedback humano</text>
+<text x="550" y="120" font-size="21">SFT · Supervised Fine-Tuning</text>
+<text x="1113" y="120" font-size="21">RLHF · Reinforcement Learning from Human Feedback</text>
 </g>
 
 <g fill="#ffffff" stroke="#D8D2CE" stroke-width="2">
