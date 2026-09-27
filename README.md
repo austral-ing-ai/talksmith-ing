@@ -33,7 +33,7 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 | 6 | Miércoles 9 de septiembre | RAG, Bases Vectoriales,Inveted Index etc | [RAG y MCP](https://austral-ing-ai.github.io/talksmith-ing/talks/rag-y-mcp/output/html/) |
 | 7 | Miércoles 16 de septiembre | MCP & Tools; LLM - Embeddings, Tokens, word2Vec, Sec, Transformers | [MCP y herramientas, con repaso de RAG](https://austral-ing-ai.github.io/talksmith-ing/talks/rag-mcp-rapida/output/html/) · [De la palabra al transformer](https://austral-ing-ai.github.io/talksmith-ing/talks/palabra-al-transformer/output/html/) |
 | 8 | Miércoles 23 de septiembre | Transformers: atención, el bloque completo y la familia de modelos | [El transformer por dentro](https://austral-ing-ai.github.io/talksmith-ing/talks/transformers-a-fondo/output/html/) |
-| 9 | Miércoles 30 de septiembre | LLM - Advanced Concepts | — |
+| 9 | Miércoles 30 de septiembre | LLM training: pre-training, SFT, RLHF, herramientas y fine-tuning | [Cómo se entrena un LLM](https://austral-ing-ai.github.io/talksmith-ing/talks/como-se-entrena-un-llm/output/html/) |
 | 10 | Miércoles 7 de octubre | LLM - Fine Tunning | — |
 | 11 | Miércoles 21 de octubre |Vision: CNN (Senales & Imagenes)| — |
 | 12 | Miércoles 28 de octubre |Vision: Stable Difussion y Adversarial Networks | — |

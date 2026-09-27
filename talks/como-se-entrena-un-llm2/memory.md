@@ -62,3 +62,4 @@ Move el draft2 como una presentacion nueva de como-se-entrena-un-llm2.
 - Files created/modified: output/slide-model.json, output/html/index.html; index.html raíz reescrito.
 - Pending open questions: arreglar slide 15 (partir la tabla o quitar una fila) → requiere editar draft.md y re-Polish/re-render.
 - 2026-09-26 18:38 — "Las charlas dejalas así." → el presentador acepta ambos decks como están; los pendientes visuales y de contenido quedan registrados en este memory.md, sin re-Polish ni re-render.
+- 2026-09-27 10:24 — Presentador: "Miércoles 30 de septiembre -> Eso es LLM training." → fecha confirmada (2026-09-30, ya en la portada). Número de clase ("Clase 9") sigue sin confirmar.
