@@ -11,7 +11,7 @@
       "Introducción",
       "Pre-training",
       "Supervised Fine-Tuning",
-      "RLHF",
+      "Reinforcement Learning from Human Feedback",
       "Razonamiento con RL",
       "Herramientas",
       "Cuando el modelo inventa",
@@ -691,7 +691,7 @@
         },
         {
           "label": "Pregunta sobre código",
-          "body": "GPT-3 arma un multiple choice con cuatro opciones; la versión con post-training explica para qué sirve la lista."
+          "body": "El prompt pregunta para qué sirve la lista `C` en una función que calcula coeficientes binomiales. GPT-3 no la responde: sigue el texto como en un examen y agrega cuatro opciones, de la A a la D. La versión con post-training responde con una explicación."
         }
       ],
       "notes": "Responde la pregunta de las notas \"¿se puede encontrar un ejemplo de esto?\". La figura es del paper de OpenAI que entrenó este modelo, y los prompts están elegidos a propósito; las salidas no. La explicación del modelo con post-training sobre el código tampoco es del todo correcta, según el propio pie de la figura. El post-training cambia el formato de la respuesta, pero no garantiza que sea correcta. Eso vuelve en la sección 7. Tiempo objetivo: ~1,5 min.",
@@ -870,11 +870,11 @@
     },
     {
       "template": "section-agenda",
-      "title": "RLHF"
+      "title": "Reinforcement Learning from Human Feedback"
     },
     {
       "template": "content-image",
-      "section": "RLHF",
+      "section": "Reinforcement Learning from Human Feedback",
       "title": "RLHF en dos pasos",
       "lead": "**RLHF entrena primero un juez que aprende de las preferencias de las personas, y después usa ese juez para mejorar el modelo.**",
       "media": {
@@ -906,7 +906,7 @@
     },
     {
       "template": "concept-breakdown",
-      "section": "RLHF",
+      "section": "Reinforcement Learning from Human Feedback",
       "title": "RLHF: puntuar y reforzar",
       "lead": "**RLHF (Reinforcement Learning from Human Feedback) usa las preferencias de las personas en dos pasos: entrena un modelo que puntúa respuestas y después ajusta el LLM para que saque puntajes altos.**",
       "cards": [
@@ -926,7 +926,7 @@
           "icon": "thumb_up"
         }
       ],
-      "notes": "Es la columna con dos pasos y dos modelos. La idea para llevarse es que primero un modelo aprende a juzgar respuestas y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.3), cómo se entrena el reward model y cómo se arma su batch (3.4 y 3.5), el lazo de RL con PPO (3.6) y DPO, que llega al mismo objetivo sin reward model (3.7). Después, el RL con recompensas que se pueden verificar entrena el razonamiento y sus niveles de esfuerzo (4.2 a 4.5). Tiempo objetivo: ~2 min.",
+      "notes": "Es la columna con dos pasos y dos modelos. La idea para llevarse es que primero un modelo aprende a juzgar respuestas y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.3), cómo se entrena el reward model y cómo se arma su batch (3.4 y 3.5), y el lazo de RL con PPO (3.6). Después, el RL con recompensas que se pueden verificar entrena el razonamiento y sus niveles de esfuerzo (4.2 a 4.5). Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -959,8 +959,8 @@
     },
     {
       "template": "content+cards+image",
-      "section": "RLHF",
-      "title": "Comparar es más fácil que escribir",
+      "section": "Reinforcement Learning from Human Feedback",
+      "title": "Paso 1: comparar es más fácil que escribir",
       "lead": "**Una demostración dice qué respuesta es aceptable, pero no cuánto mejor es que otra. Para eso el anotador ve dos respuestas y elige una.**",
       "cards": [
         {
@@ -1015,8 +1015,8 @@
     },
     {
       "template": "content+cards+image",
-      "section": "RLHF",
-      "title": "El reward model",
+      "section": "Reinforcement Learning from Human Feedback",
+      "title": "Paso 1: el reward model",
       "lead": "**El reward model (modelo de recompensa) recibe (prompt, respuesta) y devuelve un número. Se entrena para que la respuesta elegida puntúe más que la descartada.**",
       "cards": [
         {
@@ -1071,8 +1071,8 @@
     },
     {
       "template": "content+cards+image",
-      "section": "RLHF",
-      "title": "El reward model, en un batch",
+      "section": "Reinforcement Learning from Human Feedback",
+      "title": "Paso 1: el reward model, en un batch",
       "lead": "**El reward model se entrena con pares: en un batch, cada par entra como dos secuencias y la pérdida premia que la preferida puntúe más.**",
       "cards": [
         {
@@ -1122,8 +1122,8 @@
     },
     {
       "template": "content+cards+image",
-      "section": "RLHF",
-      "title": "RLHF con PPO",
+      "section": "Reinforcement Learning from Human Feedback",
+      "title": "Paso 2: optimizar con PPO",
       "lead": "**En RLHF (Reinforcement Learning from Human Feedback), el LLM genera una respuesta, el reward model la puntúa y PPO (Proximal Policy Optimization) ajusta el LLM para subir ese puntaje sin alejarse demasiado del modelo SFT.**",
       "cards": [
         {
@@ -1142,7 +1142,7 @@
         "alt": "El lazo de RLHF con PPO y la penalización KL contra el modelo SFT"
       },
       "design": "split-right",
-      "notes": "La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen). Ese trabajo además mezcla gradientes de pre-training (PPO-ptx) para no perder rendimiento en tareas clásicas, lo que el paper llama \"impuesto de alineación\". PPO necesita cuatro modelos en memoria (política, referencia, recompensa, valor), y es inestable; eso motiva DPO. Tiempo objetivo: ~2 min.",
+      "notes": "La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen). Ese trabajo además mezcla gradientes de pre-training (PPO-ptx) para no perder rendimiento en tareas clásicas, lo que el paper llama \"impuesto de alineación\". PPO necesita cuatro modelos en memoria (política, referencia, recompensa, valor), y es inestable; por eso existe DPO (Direct Preference Optimization), que llega al mismo objetivo con una pérdida directa sobre los pares de preferencia, sin reward model ni PPO. No lo desarrollamos, pero vuelve en la sección 7: es el método de preferencias que ofrecen las plataformas de fine-tuning. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -1168,54 +1168,6 @@
         "rejected": {
           "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; demoting the labels to facts loses their icons",
           "concept-breakdown": "requires images == 0; the loop diagram disqualifies it"
-        }
-      }
-    },
-    {
-      "template": "content+cards+image",
-      "section": "RLHF",
-      "title": "DPO: preferencias sin RL",
-      "lead": "**DPO (Direct Preference Optimization) optimiza el mismo objetivo que RLHF con una pérdida de clasificación directa sobre los pares de preferencia. No entrena reward model ni genera muestras durante el entrenamiento.**",
-      "cards": [
-        {
-          "label": "La idea",
-          "body": "El propio modelo define una recompensa implícita: cuánto subió la probabilidad de una respuesta respecto del modelo de referencia."
-        },
-        {
-          "label": "Resultado",
-          "body": "En resúmenes, DPO gana 61% contra respuestas de referencia; PPO, 57%."
-        }
-      ],
-      "media": {
-        "src": "images/s3-6-1-rlhf-contra-dpo.png",
-        "alt": "La cadena de RLHF contra el atajo de DPO"
-      },
-      "design": "split-left",
-      "notes": "El título del paper lo resume: \"Your Language Model Is Secretly a Reward Model\". La pérdida tiene la misma forma que la del reward model de 3.4, con los log-ratios del modelo en lugar de los puntajes. En código son cuatro líneas de PyTorch (Apéndice B del paper). Los experimentos llegan a 6B parámetros; el paper no dice qué pasa a escala de frontera. DeepSeek-R1 lista DPO entre los algoritmos que soporta su infraestructura de RL. Tiempo objetivo: ~2 min.",
-      "highlights": [
-        {
-          "label": "Fuente",
-          "body": "[Rafailov et al., 2023](https://arxiv.org/abs/2305.18290)",
-          "kind": "source"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "labeled_items=2 (La idea, Resultado)",
-          "n_images=1 (RLHF chain vs DPO shortcut diagram)",
-          "two_groups=false (the RLHF-vs-DPO contrast is inside the diagram; the two cards are an idea and a result, they do not read across)",
-          "is_ordered=false",
-          "big_metrics=false (61% / 57% inside one prose body)"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "value-columns",
-          "content-image"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "value-columns": "anti-default check: the cards do not read across as two sides of a comparison (La idea / Resultado); the comparison lives in the image",
-          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; facts would lose the icons"
         }
       }
     },
@@ -1253,7 +1205,88 @@
         "picked": "content-image",
         "rationale": "Lead + one process diagram that is the content + source line; image-full would drop the Fuente line. Same treatment as C4 and RLHF en dos pasos."
       },
-      "notes": "La diferencia con RLHF está en el verificador. En lugar de un reward model entrenado con preferencias de personas, una regla dice si la respuesta es correcta. Por eso los datos tienen que ser problemas con respuesta comprobable: matemática con resultado exacto, código con tests, opción múltiple. Por cada problema el modelo genera 16 respuestas; las que aciertan reciben 1 y las que no, 0. GRPO compara cada una con el promedio de su grupo y empuja al modelo hacia las que salieron mejor que el promedio. No hay reward model ni value model que entrenar. La lámina siguiente muestra qué pasa cuando esto se repite miles de veces. Tiempo objetivo: ~2 min."
+      "notes": "La diferencia con RLHF está en el verificador. En lugar de un reward model entrenado con preferencias de personas, una regla dice si la respuesta es correcta. Por eso los datos tienen que ser problemas con respuesta comprobable: matemática con resultado exacto, código con tests, opción múltiple. Por cada problema el modelo genera 16 respuestas; las que aciertan reciben 1 y las que no, 0. GRPO compara cada una con el promedio de su grupo y empuja al modelo hacia las que salieron mejor que el promedio. No hay reward model ni value model que entrenar. La lámina siguiente muestra ejemplos de esos problemas, y la 4.3, qué pasa cuando esto se repite miles de veces. Tiempo objetivo: ~2 min."
+    },
+    {
+      "template": "value-columns",
+      "section": "Razonamiento con RL",
+      "title": "RL con verificador: los prompts",
+      "lead": "**Cada prompt trae una pregunta con una respuesta que un programa puede comprobar. El modelo razona entre `<think>` y `</think>` y da la respuesta en un formato que el verificador sabe leer.**",
+      "columns": [
+        {
+          "header": "Tipo",
+          "cells": [
+            "Matemática (26K)",
+            "Código (17K)",
+            "STEM (22K)",
+            "Lógica (15K)"
+          ]
+        },
+        {
+          "header": "Prompt (ejemplo)",
+          "cells": [
+            "\"¿Cuántos enteros positivos menores que 100 son múltiplos de 3 o de 5?\"",
+            "\"Escribí una función que reciba una lista de enteros y devuelva la suma de los pares.\"",
+            "\"¿Qué gas se libera cuando el zinc reacciona con ácido clorhídrico? A) O₂ B) H₂ C) Cl₂ D) CO₂\"",
+            "\"Ana, Beto y Caro tienen un perro, un gato y un pez, uno cada uno. Ana no tiene el perro y Beto tiene el gato. ¿Quién tiene el perro? A) Ana B) Beto C) Caro\""
+          ]
+        },
+        {
+          "header": "Lo que se espera",
+          "cells": [
+            "Un número: 46",
+            "Un programa",
+            "Una opción: B",
+            "Una opción: C"
+          ]
+        },
+        {
+          "header": "Cómo se verifica",
+          "cells": [
+            "Coincide con la respuesta de referencia",
+            "Pasa los tests ocultos",
+            "Coincide con la opción correcta",
+            "Coincide con la opción correcta"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Formato",
+          "body": "R1-Zero responde con la plantilla `<think> razonamiento </think> <answer> respuesta </answer>`, y una recompensa aparte premia que el razonamiento quede entre las tags.",
+          "kind": "note"
+        },
+        {
+          "label": "Ejemplos",
+          "body": "Los prompts son ilustrativos: el paper describe los tipos y las cantidades, pero no publica los prompts.",
+          "kind": "note"
+        },
+        {
+          "label": "Fuente",
+          "body": "[DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948)",
+          "kind": "source"
+        }
+      ],
+      "notes": "Cuatro ejemplos, uno por cada tipo de dato del diagrama anterior. Lo que tienen en común es que la respuesta se puede comprobar sin una persona: un número que coincide, un programa que pasa los tests, una opción correcta. Por eso no hay preguntas abiertas, como \"escribí un poema\". En matemática, el paper excluye las demostraciones porque no hay regla que las verifique. Leer una fila completa: el prompt, lo que el modelo tiene que devolver y cómo lo chequea la regla. Aclarar que los prompts son nuestros: el paper describe los tipos y las cantidades, no publica los datos. La plantilla de R1-Zero pide el razonamiento entre las tags think y la respuesta entre las tags answer; el contenido del razonamiento no se evalúa, solo la respuesta final y el formato. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "has_table=true (Tipo | Prompt | Lo que se espera | Cómo se verifica, 4 rows)",
+          "labeled_items=2 (Formato, Ejemplos) as remarks under the table",
+          "n_images=0",
+          "has_code=false",
+          "two_groups=false"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-breakdown",
+          "code-example"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-breakdown": "four data types compared over the same three factors (prompt, expected output, verification) is a table read across",
+          "code-example": "the prompts are short natural-language questions, not code"
+        }
+      }
     },
     {
       "template": "content-image",
@@ -1271,7 +1304,7 @@
           "body": "En AIME, un examen de matemática de competencia con respuestas numéricas, pasa de 15,6% a 77,9%, y las respuestas crecen de cientos a miles de tokens."
         }
       ],
-      "notes": "Recompensa: exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`). GRPO (Group Relative Policy Optimization) muestrea 16 respuestas por problema y compara cada una con el promedio de su grupo, como en el diagrama de la lámina anterior. Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT y arranca el RL directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque el modelo puede engañarlo (reward hacking). Una regla que compara con la respuesta correcta no se deja engañar. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para \"1 + 1\" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa, que es lo que agrega effort. Tiempo objetivo: ~2 min.",
+      "notes": "Recompensa: exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`). GRPO (Group Relative Policy Optimization) muestrea 16 respuestas por problema y compara cada una con el promedio de su grupo, como en el diagrama de la 4.1. Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT y arranca el RL directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque el modelo puede engañarlo (reward hacking). Una regla que compara con la respuesta correcta no se deja engañar. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para \"1 + 1\" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa, que es lo que agrega effort. Tiempo objetivo: ~2 min.",
       "highlights": [
         {
           "label": "Fuente",
@@ -2962,7 +2995,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "6417230315b09e6ad06fee3d1fb80ffef8d1425c76711d6eb59a003bbcf76a55",
-    "bytes": 266178
+    "sha256": "406db1b2bb1ac8ee0ee70b0eaa8ae362151af4ddba2a7702e13f923c5f6c07db",
+    "bytes": 268897
   }
 }

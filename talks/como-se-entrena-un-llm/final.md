@@ -8,14 +8,14 @@
 
 # Agenda
 
-**Narrative arc:** La introducción abre con una cifra de OpenAI (2022): un modelo 100 veces más chico gana por su post-training, que usó menos del 2% del cómputo. Después viene el mapa de las tres etapas y una sección por etapa; cada una abre con qué datos entran, qué se optimiza y qué modelo sale. Pre-training (1): la pérdida del siguiente token de la clase 8 aplicada a la web, de dónde salen las cifras de Common Crawl, cómo Google lo depuró para armar C4, la regla de Chinchilla, cuánto más pueden crecer los datasets, qué hace el modelo base y los problemas que arrastra. SFT (2): el mismo GPT-3 antes y después del post-training, demostraciones escritas por personas y un dataset real. RLHF (3): comparaciones, el reward model y cómo se arma su batch de pares, PPO y DPO. Razonamiento con RL (4): el RL con recompensas verificables que entrena el razonamiento, sus niveles de esfuerzo y el interruptor de Qwen3. Herramientas (5): las piezas de una plataforma que expone un LLM por API y el circuito entre el modelo y el agente, y tres herramientas vistas con la misma pregunta (qué genera el modelo, quién ejecuta la llamada, con qué datos se lo entrenó): la calculadora con GSM8K, la búsqueda web que ejecuta el proveedor y cómo se entrena a buscar, y MCP como interfaz para cualquier herramienta. Cuando el modelo inventa (6): por qué un modelo inventa en vez de decir "no sé", por qué las evaluaciones lo premian y qué puede hacer el post-training. El cierre pasa al lado del equipo de producto (7): dónde entra el fine-tuning en el mapa de tres etapas, cuándo conviene frente a un prompt o RAG, cuánta memoria pide y cuánto la bajan LoRA y QLoRA, qué modelos se pueden ajustar hoy en la nube, cómo se hace local con modelos abiertos y qué datos hacen falta.
+**Narrative arc:** La introducción abre con una cifra de OpenAI (2022): un modelo 100 veces más chico gana por su post-training, que usó menos del 2% del cómputo. Después viene el mapa de las tres etapas y una sección por etapa; cada una abre con qué datos entran, qué se optimiza y qué modelo sale. Pre-training (1): la pérdida del siguiente token de la clase 8 aplicada a la web, de dónde salen las cifras de Common Crawl, cómo Google lo depuró para armar C4, la regla de Chinchilla, cuánto más pueden crecer los datasets, qué hace el modelo base y los problemas que arrastra. SFT (2): el mismo GPT-3 antes y después del post-training, demostraciones escritas por personas y un dataset real. Reinforcement Learning from Human Feedback (3): comparaciones, el reward model y cómo se arma su batch de pares, y PPO. Razonamiento con RL (4): el RL con recompensas verificables que entrena el razonamiento, sus niveles de esfuerzo y el interruptor de Qwen3. Herramientas (5): las piezas de una plataforma que expone un LLM por API y el circuito entre el modelo y el agente, y tres herramientas vistas con la misma pregunta (qué genera el modelo, quién ejecuta la llamada, con qué datos se lo entrenó): la calculadora con GSM8K, la búsqueda web que ejecuta el proveedor y cómo se entrena a buscar, y MCP como interfaz para cualquier herramienta. Cuando el modelo inventa (6): por qué un modelo inventa en vez de decir "no sé", por qué las evaluaciones lo premian y qué puede hacer el post-training. El cierre pasa al lado del equipo de producto (7): dónde entra el fine-tuning en el mapa de tres etapas, cuándo conviene frente a un prompt o RAG, cuánta memoria pide y cuánto la bajan LoRA y QLoRA, qué modelos se pueden ajustar hoy en la nube, cómo se hace local con modelos abiertos y qué datos hacen falta.
 
 **Sections (in delivery order):**
 
 - Introducción
 - 1. Pre-training
 - 2. Supervised Fine-Tuning
-- 3. RLHF
+- 3. Reinforcement Learning from Human Feedback
 - 4. Razonamiento con RL
 - 5. Herramientas
 - 6. Cuando el modelo inventa
@@ -461,7 +461,7 @@ Respecto de la etapa anterior cambian los datos, que son pocos, elegidos y escri
 ![GPT-3 175B antes y después del post-training, con el mismo prompt (Ouyang et al., 2022, fig. 8)](images/fig-08-p015.png)
 
 - **Mismo modelo base.** La versión con post-training (SFT y RLHF) es el mismo GPT-3 175B. Escribe el cuento.
-- **Pregunta sobre código.** GPT-3 arma un multiple choice con cuatro opciones; la versión con post-training explica para qué sirve la lista.
+- **Pregunta sobre código.** El prompt pregunta para qué sirve la lista `C` en una función que calcula coeficientes binomiales. GPT-3 no la responde: sigue el texto como en un examen y agrega cuatro opciones, de la A a la D. La versión con post-training responde con una explicación.
 - **Fuente.** [Ouyang et al., 2022 (OpenAI)](https://arxiv.org/abs/2203.02155)
 
 ### Sources
@@ -597,9 +597,9 @@ Votación a mano alzada. Mucha gente elige la A. El SFT ve una sola respuesta po
 
 ---
 
-# 3. RLHF
+# 3. Reinforcement Learning from Human Feedback
 
-**Goal of this section:** Explicar la tercera etapa: por qué se compara en lugar de escribir, cómo se entrena el reward model y cómo se arma un batch de pares para su pérdida, cómo lo usa PPO en RLHF y cómo DPO llega al mismo objetivo sin RL. Siete láminas, unos 13 minutos: abre con un resumen de los dos pasos.
+**Goal of this section:** Explicar la tercera etapa: por qué se compara en lugar de escribir, cómo se entrena el reward model y cómo se arma un batch de pares para su pérdida, cómo lo usa PPO en RLHF (DPO queda como mención en las notas). Seis láminas: abre con un resumen de los dos pasos.
 
 ---
 
@@ -671,11 +671,11 @@ El mapa de la sección antes del detalle. Paso 1: con comparaciones entre respue
 
 ### Speaker notes
 
-Es la columna con dos pasos y dos modelos. La idea para llevarse es que primero un modelo aprende a juzgar respuestas y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.3), cómo se entrena el reward model y cómo se arma su batch (3.4 y 3.5), el lazo de RL con PPO (3.6) y DPO, que llega al mismo objetivo sin reward model (3.7). Después, el RL con recompensas que se pueden verificar entrena el razonamiento y sus niveles de esfuerzo (4.2 a 4.5). Tiempo objetivo: ~2 min.
+Es la columna con dos pasos y dos modelos. La idea para llevarse es que primero un modelo aprende a juzgar respuestas y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.3), cómo se entrena el reward model y cómo se arma su batch (3.4 y 3.5), y el lazo de RL con PPO (3.6). Después, el RL con recompensas que se pueden verificar entrena el razonamiento y sus niveles de esfuerzo (4.2 a 4.5). Tiempo objetivo: ~2 min.
 
 ---
 
-## 3. Comparar es más fácil que escribir
+## 3. Paso 1: comparar es más fácil que escribir
 
 ### Content
 
@@ -705,7 +705,7 @@ Preguntar a la clase cuál prefieren. Chip Huyen prefiere la perdedora. Ese desa
 
 ---
 
-## 4. El reward model
+## 4. Paso 1: el reward model
 
 ### Content
 
@@ -744,7 +744,7 @@ Acá va solo la idea. El mismo modelo puntúa las dos respuestas, y entrenarlo e
 
 ---
 
-## 5. El reward model, en un batch
+## 5. Paso 1: el reward model, en un batch
 
 ### Content
 
@@ -793,7 +793,7 @@ Recorrer el diagrama de arriba abajo. Cada fila repite el prompt, así que 64 pa
 
 ---
 
-## 6. RLHF con PPO
+## 6. Paso 2: optimizar con PPO
 
 ### Content
 
@@ -835,48 +835,13 @@ labels: política, reward model, r, beta, KL
 
 ### Speaker notes
 
-La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen). Ese trabajo además mezcla gradientes de pre-training (PPO-ptx) para no perder rendimiento en tareas clásicas, lo que el paper llama "impuesto de alineación". PPO necesita cuatro modelos en memoria (política, referencia, recompensa, valor), y es inestable; eso motiva DPO. Tiempo objetivo: ~2 min.
-
----
-
-## 7. DPO: preferencias sin RL
-
-### Content
-
-**DPO (Direct Preference Optimization) optimiza el mismo objetivo que RLHF con una pérdida de clasificación directa sobre los pares de preferencia. No entrena reward model ni genera muestras durante el entrenamiento.**
-
-![La cadena de RLHF contra el atajo de DPO](images/s3-6-1-rlhf-contra-dpo.png)
-<!-- ascii-source:
- RLHF:  preferencias --&gt; reward model --&gt; PPO (muestrea) --&gt; LLM
- DPO:   preferencias ------------------------------------------&gt; LLM
-
- pérdida DPO, por par (x, y_w, y_l):
-   -log sigmoide( beta * [ log p(y_w|x)/p_ref(y_w|x)
-                         - log p(y_l|x)/p_ref(y_l|x) ] )
--->
-<!-- ascii-note:
-intent: comparar la cadena de RLHF con el atajo de DPO, y la pérdida en una línea
-emphasize: que DPO saca el reward model y el muestreo
-labels: p = modelo que se entrena, p_ref = modelo SFT de referencia
--->
-
-- **La idea.** El propio modelo define una recompensa implícita: cuánto subió la probabilidad de una respuesta respecto del modelo de referencia.
-- **Resultado.** En resúmenes, DPO gana 61% contra respuestas de referencia; PPO, 57%.
-- **Fuente.** [Rafailov et al., 2023](https://arxiv.org/abs/2305.18290)
-
-### Sources
-
-- `rafailov-2023-dpo.pdf.md`: "solve the standard RLHF problem with only a simple classification loss"; "eliminating the need for sampling from the LM during fine-tuning"; pérdida DPO (Ec. 7); recompensa implícita r̂ = β log(π/π_ref); TL;DR "approximately 61%" contra PPO "57%"; experimentos hasta 6B parámetros.
-
-### Speaker notes
-
-El título del paper lo resume: "Your Language Model Is Secretly a Reward Model". La pérdida tiene la misma forma que la del reward model de 3.4, con los log-ratios del modelo en lugar de los puntajes. En código son cuatro líneas de PyTorch (Apéndice B del paper). Los experimentos llegan a 6B parámetros; el paper no dice qué pasa a escala de frontera. DeepSeek-R1 lista DPO entre los algoritmos que soporta su infraestructura de RL. Tiempo objetivo: ~2 min.
+La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen). Ese trabajo además mezcla gradientes de pre-training (PPO-ptx) para no perder rendimiento en tareas clásicas, lo que el paper llama "impuesto de alineación". PPO necesita cuatro modelos en memoria (política, referencia, recompensa, valor), y es inestable; por eso existe DPO (Direct Preference Optimization), que llega al mismo objetivo con una pérdida directa sobre los pares de preferencia, sin reward model ni PPO. No lo desarrollamos, pero vuelve en la sección 7: es el método de preferencias que ofrecen las plataformas de fine-tuning. Tiempo objetivo: ~2 min.
 
 ---
 
 # 4. Razonamiento con RL
 
-**Goal of this section:** Mostrar cómo se entrena a un modelo para razonar: RL con recompensas verificables (DeepSeek-R1), niveles de esfuerzo (gpt-oss) y cómo Qwen3 aprende a pensar o no pensar según un flag. Cinco láminas, unos 9,5 minutos: abre con el proceso y los datos del RL con verificador.
+**Goal of this section:** Mostrar cómo se entrena a un modelo para razonar: RL con recompensas verificables (DeepSeek-R1), niveles de esfuerzo (gpt-oss) y cómo Qwen3 aprende a pensar o no pensar según un flag. Seis láminas: abre con el proceso y los datos del RL con verificador, y con ejemplos de sus prompts.
 
 ---
 
@@ -929,11 +894,40 @@ labels: 16 respuestas por problema; recompensas 1/0; GRPO compara con el promedi
 
 ### Speaker notes
 
-La diferencia con RLHF está en el verificador. En lugar de un reward model entrenado con preferencias de personas, una regla dice si la respuesta es correcta. Por eso los datos tienen que ser problemas con respuesta comprobable: matemática con resultado exacto, código con tests, opción múltiple. Por cada problema el modelo genera 16 respuestas; las que aciertan reciben 1 y las que no, 0. GRPO compara cada una con el promedio de su grupo y empuja al modelo hacia las que salieron mejor que el promedio. No hay reward model ni value model que entrenar. La lámina siguiente muestra qué pasa cuando esto se repite miles de veces. Tiempo objetivo: ~2 min.
+La diferencia con RLHF está en el verificador. En lugar de un reward model entrenado con preferencias de personas, una regla dice si la respuesta es correcta. Por eso los datos tienen que ser problemas con respuesta comprobable: matemática con resultado exacto, código con tests, opción múltiple. Por cada problema el modelo genera 16 respuestas; las que aciertan reciben 1 y las que no, 0. GRPO compara cada una con el promedio de su grupo y empuja al modelo hacia las que salieron mejor que el promedio. No hay reward model ni value model que entrenar. La lámina siguiente muestra ejemplos de esos problemas, y la 4.3, qué pasa cuando esto se repite miles de veces. Tiempo objetivo: ~2 min.
 
 ---
 
-## 2. RL con verificador: el resultado
+## 2. RL con verificador: los prompts
+
+### Content
+
+**Cada prompt trae una pregunta con una respuesta que un programa puede comprobar. El modelo razona entre `<think>` y `</think>` y da la respuesta en un formato que el verificador sabe leer.**
+
+| Tipo | Prompt (ejemplo) | Lo que se espera | Cómo se verifica |
+|---|---|---|---|
+| Matemática (26K) | "¿Cuántos enteros positivos menores que 100 son múltiplos de 3 o de 5?" | Un número: 46 | Coincide con la respuesta de referencia |
+| Código (17K) | "Escribí una función que reciba una lista de enteros y devuelva la suma de los pares." | Un programa | Pasa los tests ocultos |
+| STEM (22K) | "¿Qué gas se libera cuando el zinc reacciona con ácido clorhídrico? A) O₂ B) H₂ C) Cl₂ D) CO₂" | Una opción: B | Coincide con la opción correcta |
+| Lógica (15K) | "Ana, Beto y Caro tienen un perro, un gato y un pez, uno cada uno. Ana no tiene el perro y Beto tiene el gato. ¿Quién tiene el perro? A) Ana B) Beto C) Caro" | Una opción: C | Coincide con la opción correcta |
+
+- **Formato.** R1-Zero responde con la plantilla `<think> razonamiento </think> <answer> respuesta </answer>`, y una recompensa aparte premia que el razonamiento quede entre las tags.
+- **Ejemplos.** Los prompts son ilustrativos: el paper describe los tipos y las cantidades, pero no publica los prompts.
+- **Fuente.** [DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948)
+
+### Sources
+
+- `deepseek-2025-r1.pdf.md` (Tabla 4 y B.3.1, datos de RL): Math 26K ("Quantitative Reasoning" → "Number/Expression/Equation"; "reward 1 if answer matches reference, else 0"; se excluyen demostraciones), Code 17K (preguntas de competencia "similar to problems found on platforms like Codeforces or LeetCode", "passing a comprehensive set of hidden test cases"; más 8K de corrección de bugs de issues reales de GitHub), STEM 22K ("all STEM questions are multiple-choice, a binary reward is assigned based on whether the correct option is matched"; 15,5% física, 30,7% biología, 46,5% química), Logic 15K (acertijos reales en "multiple-choice format" y sintéticos: "logic puzzles focus on deductive reasoning over complex constraints ... (e.g., the Zebra puzzle)"; "All problems support automatic evaluation"). Tabla 1, plantilla de R1-Zero (verbatim): "The reasoning process and answer are enclosed within <think>...</think> and <answer>...</answer> tags, respectively, i.e., <think> reasoning process here </think> <answer> answer here </answer>." Format reward: "incentivizes encapsulating reasoning within '<think>' and '</think>' tags"; accuracy reward: respuesta final de matemática "in a specified format (box)".
+- Ejemplos armados para la clase, uno por tipo y con la forma que describe el paper; el paper no publica los prompts de RL. Cuentas: múltiplos de 3 o de 5 menores que 100 = 33 + 19 − 6 = 46; zinc + ácido clorhídrico libera hidrógeno (H₂); acertijo: Beto tiene el gato, Ana no tiene el perro, así que Ana tiene el pez y Caro el perro. El ejemplo de lógica es un Zebra puzzle en miniatura.
+- Lámina agregada por pedido del presentador (2026-09-27): "Después del slide RL con recompensas verificables agregar un slide con prompts de lo que se espera."
+
+### Speaker notes
+
+Cuatro ejemplos, uno por cada tipo de dato del diagrama anterior. Lo que tienen en común es que la respuesta se puede comprobar sin una persona: un número que coincide, un programa que pasa los tests, una opción correcta. Por eso no hay preguntas abiertas, como "escribí un poema". En matemática, el paper excluye las demostraciones porque no hay regla que las verifique. Leer una fila completa: el prompt, lo que el modelo tiene que devolver y cómo lo chequea la regla. Aclarar que los prompts son nuestros: el paper describe los tipos y las cantidades, no publica los datos. La plantilla de R1-Zero pide el razonamiento entre las tags think y la respuesta entre las tags answer; el contenido del razonamiento no se evalúa, solo la respuesta final y el formato. Tiempo objetivo: ~2 min.
+
+---
+
+## 3. RL con verificador: el resultado
 
 <!-- template: content-image -->
 
@@ -952,11 +946,11 @@ La diferencia con RLHF está en el verificador. En lugar de un reward model entr
 
 ### Speaker notes
 
-Recompensa: exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`). GRPO (Group Relative Policy Optimization) muestrea 16 respuestas por problema y compara cada una con el promedio de su grupo, como en el diagrama de la lámina anterior. Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT y arranca el RL directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque el modelo puede engañarlo (reward hacking). Una regla que compara con la respuesta correcta no se deja engañar. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para "1 + 1" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa, que es lo que agrega effort. Tiempo objetivo: ~2 min.
+Recompensa: exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`). GRPO (Group Relative Policy Optimization) muestrea 16 respuestas por problema y compara cada una con el promedio de su grupo, como en el diagrama de la 4.1. Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT y arranca el RL directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque el modelo puede engañarlo (reward hacking). Una regla que compara con la respuesta correcta no se deja engañar. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para "1 + 1" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa, que es lo que agrega effort. Tiempo objetivo: ~2 min.
 
 ---
 
-## 3. Effort: low, medium, high
+## 4. Effort: low, medium, high
 
 <!-- template: content-image -->
 
@@ -981,7 +975,7 @@ Es el concepto de effort low, medium, high de las notas. La ficha del modelo dic
 
 ---
 
-## 4. Qwen3: cuatro pasos de post-training
+## 5. Qwen3: cuatro pasos de post-training
 
 ### Content
 
@@ -1016,7 +1010,7 @@ Los pasos 1 y 2 siguen la receta de DeepSeek-R1. La lámina siguiente muestra lo
 
 ---
 
-## 5. Qwen3: SFT con /think y /no_think
+## 6. Qwen3: SFT con /think y /no_think
 
 ### Content
 
@@ -1993,7 +1987,7 @@ Conectar con la cuenta de memoria de la lámina 7.3: un 13B con ajuste completo 
 
 | Plataforma | Modelos que se pueden ajustar | Métodos |
 |---|---|---|
-| OpenAI (cerrada a usuarios nuevos) | gpt-4.1, gpt-4.2-mini y gpt-4.2-nano; o4-mini | SFT y DPO; RFT solo en o4-mini |
+| OpenAI (cerrada a usuarios nuevos) | gpt-4.1, gpt-4.1-mini y gpt-4.1-nano; o4-mini | SFT y DPO; RFT solo en o4-mini |
 | Azure Foundry | Los de OpenAI más gpt-4o, gpt-4o-mini y gpt-5; Llama, Qwen, Ministral y gpt-oss | SFT, DPO o RFT según el modelo, con LoRA |
 | Google Cloud: Gemini | Gemini 3.6 Flash, 3.2 Flash-Lite y la familia 2.5 | SFT con adaptadores |
 | Google Cloud: modelos abiertos | Gemma 3 y 4, Qwen 3, Llama 3 y 4, GLM | SFT completo o LoRA según el modelo; destilación |
@@ -2172,6 +2166,8 @@ Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su secci
 - **Quiz de repaso.** La Clase 8 abre con un quiz; este borrador no. Decidir si se agrega.
 
 # Cut material
+
+- **DPO: los dos pasos en uno (ex 3.7), 2026-09-27.** Cortada por pedido del presentador; una oración en las notas de 3.6 lo define. Texto completo en el Cut material de draft.md.
 
 - **Por qué herramientas y Buscar: las capas (2026-09-27).** Reemplazadas por "Las piezas de una plataforma" (nueva 5.1); texto completo en el Cut material de draft.md.
 
