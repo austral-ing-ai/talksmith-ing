@@ -1,19 +1,28 @@
- usuario: "¿Qué tiempo hace hoy en Córdoba?"
-      |
-      v
- +---------------------+   llamada: get_weather(location="Córdoba")   +-----------------------+
- |        LLM          | -------------------------------------------> |        AGENTE         |
- | decide si llamar,   |                                              | lee la llamada,       |
- | a qué herramienta   | <------------------------------------------- | ejecuta la tool,      |
- | y con qué argumentos|   mensaje "tool" con el resultado, agregado  | agrega el resultado   |
- +---------------------+   al contexto                                | y vuelve a llamar     |
-      |                                                               +-----------------------+
-      |      (el loop se repite mientras el LLM pida herramientas)
-      v
- respuesta sin llamadas  -->  el agente corta el loop y se la da al usuario
+ USUARIO                   CHAT = AGENTE                          LLM (API)
+    |                              |                                  |
+    | 1 "¿Qué tiempo hace          |                                  |
+    |    hoy en Córdoba?"          |                                  |
+    | ---------------------------> | 2 historial + herramientas       |
+    |                              | -------------------------------> |
+    |                              |                                  |
+    |                              | 3 llamada:                       |
+    |                              |   get_weather(location="Córdoba")|
+    |                              | <------------------------------- |
+    |                              |                                  |
+    |          4 ejecuta           |                                  |
+    |    [ herramienta ] <---------+                                  |
+    |    [  del clima  ] --------->| 5 historial + resultado          |
+    |          resultado           | -------------------------------> |
+    |                              |                                  |
+    |                              | 6 respuesta final (sin llamadas) |
+    |                              | <------------------------------- |
+    | 7 muestra la respuesta       |                                  |
+    | <--------------------------- |                                  |
+    |                              |                                  |
+          (los pasos 3 a 5 se repiten mientras el LLM pida herramientas)
 
 <!-- ascii-note:
-intent: el loop entre el modelo y el agente al usar herramientas; qué hace cada uno
-emphasize: la división de trabajo (el LLM genera la llamada; el agente ejecuta, agrega el resultado y corta) y la flecha de vuelta del resultado al contexto
-labels: LLM, AGENTE, mensaje "tool", respuesta final
+intent: el circuito visto desde el usuario: el texto entra a un chat, y el chat es el agente que llama al LLM y ejecuta las herramientas
+emphasize: el chat/agente en el centro como orquestador; el LLM solo recibe texto y devuelve texto (una llamada o la respuesta); la herramienta la ejecuta el agente; el loop de los pasos 3 a 5
+labels: tres columnas (usuario, chat = agente, LLM) como diagrama de secuencia con flechas numeradas 1 a 7; la herramienta como caja debajo del agente
 -->

@@ -1,41 +1,58 @@
-<!-- talksmith-ascii-sha256: bbfb138db52a799adae9a2b4b4f04fafbd14824d1fa1a175bd0bdaeecacefc0e -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 384" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<!-- talksmith-ascii-sha256: 32b7e6cfa71164678a38fef595f7635e0ca076072702e49e4bccdade2b6e3df0 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 508" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
 <title>El circuito con un agente</title>
 <desc>Callback a la clase de RAG y MCP: allá armaron este loop del lado del agente, con ReAct.</desc>
-<defs>
-<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/></marker>
-<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#DA1B2E"/></marker>
-</defs>
-<rect width="920" height="384" fill="#ffffff"/>
-<rect x="20" y="20" width="362" height="40" rx="20" fill="#F2EEEE" stroke="#D8D2CE"/>
-<text x="40" y="46" font-size="15"><tspan font-weight="bold" fill="#1F1E1E">usuario:</tspan> “¿Qué tiempo hace hoy en Córdoba?”</text>
-<line x1="140" y1="60" x2="140" y2="100" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="20" y="100" width="240" height="150" rx="10" fill="#F2EEEE" stroke="#1F1E1E" stroke-width="1.5"/>
-<text x="140" y="132" font-size="20" font-weight="bold" fill="#1F1E1E" text-anchor="middle">LLM</text>
-<g font-size="15" text-anchor="middle">
-<text x="140" y="162">decide si llamar,</text>
-<text x="140" y="184">a qué herramienta</text>
-<text x="140" y="206">y con qué argumentos</text>
-<text x="140" y="236" font-size="13" font-style="italic">la parte que se entrena</text>
-</g>
-<rect x="640" y="100" width="260" height="150" rx="10" fill="#F2EEEE" stroke="#1F1E1E" stroke-width="1.5"/>
-<text x="770" y="132" font-size="20" font-weight="bold" fill="#1F1E1E" text-anchor="middle">AGENTE</text>
-<g font-size="15" text-anchor="middle">
-<text x="770" y="162">lee la llamada,</text>
-<text x="770" y="184">ejecuta la herramienta,</text>
-<text x="770" y="206">agrega el resultado</text>
-<text x="770" y="228">y vuelve a llamar al LLM</text>
-</g>
-<text x="450" y="122" font-size="14" font-weight="bold" fill="#1F1E1E" text-anchor="middle">llamada</text>
-<text x="450" y="141" font-size="13" font-family="'Andale Mono', monospace" text-anchor="middle">get_weather(location="Córdoba")</text>
-<line x1="260" y1="154" x2="640" y2="154" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<line x1="640" y1="204" x2="260" y2="204" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#ahr)"/>
-<text x="450" y="226" font-size="14" font-weight="bold" fill="#1F1E1E" text-anchor="middle">mensaje "tool" con el resultado,</text>
-<text x="450" y="244" font-size="14" text-anchor="middle">agregado al contexto</text>
-<text x="530" y="292" font-size="14" font-style="italic" text-anchor="middle">el loop se repite mientras el LLM pida herramientas</text>
-<line x1="140" y1="250" x2="140" y2="320" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="20" y="320" width="240" height="44" rx="10" fill="#ffffff" stroke="#1F1E1E" stroke-width="1.5"/>
-<text x="140" y="347" font-size="15" font-weight="bold" fill="#1F1E1E" text-anchor="middle">respuesta sin llamadas</text>
-<line x1="260" y1="342" x2="320" y2="342" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<text x="332" y="347" font-size="15">el agente corta el loop y se la da al usuario</text>
+<defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/></marker></defs>
+<rect width="930" height="508" fill="#ffffff"/>
+<line x1="114" y1="80" x2="114" y2="484" stroke="#B8B0AC" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="794" y1="80" x2="794" y2="484" stroke="#B8B0AC" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="444" y1="80" x2="444" y2="484" stroke="#DA1B2E" stroke-width="3"/>
+<rect x="24.0" y="24" width="180" height="56" rx="10" fill="#F2EEEE" stroke="#1F1E1E" stroke-width="1.5"/>
+<text x="114" y="49" font-size="18" font-weight="bold" fill="#1F1E1E" text-anchor="middle">USUARIO</text>
+<text x="114" y="69" font-size="13" text-anchor="middle">escribe en el chat</text>
+<rect x="308.0" y="24" width="272" height="56" rx="10" fill="#DA1B2E"/>
+<text x="444" y="49" font-size="18" font-weight="bold" fill="#FFFFFF" text-anchor="middle">CHAT = AGENTE</text>
+<text x="444" y="69" font-size="13" fill="#FFFFFF" text-anchor="middle">llama al LLM y ejecuta herramientas</text>
+<rect x="682.0" y="24" width="224" height="56" rx="10" fill="#F2EEEE" stroke="#1F1E1E" stroke-width="1.5"/>
+<text x="794" y="49" font-size="18" font-weight="bold" fill="#1F1E1E" text-anchor="middle">LLM (API)</text>
+<text x="794" y="69" font-size="13" text-anchor="middle">recibe texto, devuelve texto</text>
+<rect x="146" y="180" width="736" height="188" rx="8" fill="none" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="7 5"/>
+<rect x="146" y="180" width="150" height="26" rx="6" fill="#F9D2D6" stroke="#3B3535" stroke-width="1.5"/>
+<text x="158" y="198" font-size="14" font-weight="bold" fill="#1F1E1E">loop · pasos 3 a 5</text>
+<text x="158" y="230" font-size="14" font-style="italic">se repite mientras</text>
+<text x="158" y="249" font-size="14" font-style="italic">el LLM pida herramientas</text>
+<circle cx="136" cy="106" r="11" fill="#3B3535"/>
+<text x="136" y="111" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
+<text x="154" y="111">“¿Qué tiempo hace hoy en Córdoba?”</text>
+<line x1="114" y1="124" x2="444" y2="124" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<circle cx="466" cy="144" r="11" fill="#3B3535"/>
+<text x="466" y="149" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
+<text x="484" y="149">historial + herramientas</text>
+<line x1="444" y1="162" x2="794" y2="162" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<circle cx="466" cy="206" r="11" fill="#3B3535"/>
+<text x="466" y="211" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3</text>
+<text x="484" y="211"><tspan font-weight="bold" fill="#1F1E1E">llamada</tspan> (texto, no ejecuta nada):</text>
+<text x="484" y="231" font-size="14" font-family="'Andale Mono', monospace">get_weather(location="Córdoba")</text>
+<line x1="794" y1="244" x2="444" y2="244" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="186" y="272" width="132" height="70" rx="8" fill="#FFFFFF" stroke="#1F1E1E" stroke-width="1.5"/>
+<text x="252.0" y="302" font-weight="bold" fill="#1F1E1E" text-anchor="middle">herramienta</text>
+<text x="252.0" y="322" font-weight="bold" fill="#1F1E1E" text-anchor="middle">del clima</text>
+<circle cx="342" cy="276" r="11" fill="#3B3535"/>
+<text x="342" y="281" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">4</text>
+<text x="360" y="281">ejecuta</text>
+<line x1="444" y1="294" x2="318" y2="294" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="318" y1="322" x2="444" y2="322" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="381.0" y="342" font-size="14" font-style="italic" text-anchor="middle">resultado</text>
+<circle cx="466" cy="318" r="11" fill="#3B3535"/>
+<text x="466" y="323" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">5</text>
+<text x="484" y="323">historial + resultado</text>
+<line x1="444" y1="336" x2="794" y2="336" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<circle cx="466" cy="394" r="11" fill="#3B3535"/>
+<text x="466" y="399" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">6</text>
+<text x="484" y="399">respuesta final (sin llamadas)</text>
+<line x1="794" y1="412" x2="444" y2="412" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<circle cx="136" cy="442" r="11" fill="#3B3535"/>
+<text x="136" y="447" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">7</text>
+<text x="154" y="447">muestra la respuesta</text>
+<line x1="444" y1="460" x2="114" y2="460" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
 </svg>

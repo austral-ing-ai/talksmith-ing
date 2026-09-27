@@ -23,6 +23,6 @@
 <rect x="20" y="340" width="640" height="70" rx="10" fill="#FFFFFF" stroke="#D8D2CE"/>
 <rect x="36" y="359" width="110" height="30" rx="15" fill="#F9D2D6"/>
 <text x="91" y="379" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">Chinchilla</text>
-<text x="166" y="372" font-size="18" font-weight="bold" fill="#1F1E1E">6 · 70·10<tspan dy="-8" font-size="11">9</tspan><tspan dy="8"> · 1,4·10</tspan><tspan dy="-8" font-size="11">12</tspan><tspan dy="8">  ≈  5,9·10</tspan><tspan dy="-8" font-size="11">23</tspan><tspan dy="8"> FLOPs</tspan></text>
-<text x="166" y="396" font-size="13">N = 70 mil millones de parámetros · D = 1,4 billones de tokens</text>
+<text x="166" y="372" font-size="16" font-weight="bold" fill="#1F1E1E">6 × 70 mil millones × 1,4 billones ≈ 5,9·10<tspan dy="-7" font-size="11">23</tspan><tspan dy="7"> FLOPs</tspan></text>
+<text x="166" y="396" font-size="13">N = parámetros · D = tokens · FLOPs = operaciones de punto flotante</text>
 </svg>
