@@ -101,3 +101,29 @@
 - **actual:** `comparison` y `format: list` están retirados; el FILL tuvo que traducirlos a mano (`comparison` → columnas lado a lado o pros/contras según el contenido; `list` → grilla), porque de otro modo la lámina cae en la plantilla de respaldo. El Editor no tiene cómo saber qué nombres están vigentes.
 - **Repro:** un `draft.md` con `<!-- template: comparison -->` bajo un `##`; correr FILL + `audits/template_diversity.py` y ver la lámina marcada como fallback si no se la traduce.
 - **suggested_fix:** probablemente convenga que la lista de valores válidos de `template:` / `format:` viva en un solo lugar que lean tanto el Editor como el FILL, y que el FILL (o un audit) avise explícitamente "pista retirada: X → usar Y" en lugar de depender de que el LLM lo note.
+
+## md-to-deck: el ícono por contenido elige glifos de marca que dibujan letras (p. ej. `dv`) (2026-09-26)
+
+- **Contexto:** Talk `talks/como-se-entrena-un-llm`, Step 7 (Render HTML), Talksmith 1.0.0, `skills/md-to-deck/html_style.py` → `icon_for`. Lámina "RLHF: puntuar y reforzar", tarjeta con label "Datos" y cuerpo sobre comparaciones.
+- **expected:** un ícono pictográfico acorde a la tarjeta.
+- **actual:** el match por contenido eligió el Material Symbol `dv` (Dolby Vision), que se dibuja como las letras "DV"; en la lámina parece texto roto. La misma label "Datos" en las láminas vecinas recibió otros íconos, así que el resultado depende del cuerpo y del set de íconos ya usados en la lámina.
+- **Repro:** unknown en general — reproducible con esta lámina: una `concept-breakdown` con cards `Datos` / `Objetivo` / `Qué se espera` y el cuerpo "Comparaciones entre dos respuestas al mismo prompt, marcadas por anotadores: de 100.000 a un millón…"; renderizar y mirar el primer ícono.
+- **Workaround usado:** `icon: "thumbs_up_down"` explícito en esa tarjeta del modelo y re-render (el modelo sigue fresco; el stamp es del fuente).
+- **suggested_fix:** probablemente convenga excluir del catálogo de match los símbolos que son logotipos o siglas de marca (`dv`, `hdr_*`, `4k`, `hd`, etc.), o exigir un puntaje mínimo más alto para nombres de dos letras.
+
+## strip_feedback: no quita bloques `Presenter feedback` indentados dentro de Cut material (2026-09-26)
+
+- **Contexto:** Talk `talks/como-se-entrena-un-llm`, Step 6 (Polish), Talksmith 1.0.0, `skills/feedback-cycle` → `strip_feedback.py`. El Editor mueve láminas cortadas a `# Cut material` indentadas cuatro espacios (convención propia de `draft.md`, para que ningún parser las lea como láminas).
+- **expected:** que `final.md` no tenga ningún bloque `### Presenter feedback` (orchestrator, Step 6: "strip Presenter feedback").
+- **actual:** quitó 55 bloques del cuerpo pero dejó 17 `### Presenter feedback` indentados (con algunos bullets `[closed]`) dentro de Cut material. No afecta el deck (Cut material no se renderiza), pero `final.md` no queda limpio.
+- **Repro:** un `draft.md` con una lámina cortada indentada que incluya `    ### Presenter feedback` + `    - [closed] …`; correr Polish y buscar `Presenter feedback` en `final.md`.
+- **suggested_fix:** posiblemente convenga que `strip_feedback.py` acepte bloques con indentación uniforme, o que la spec del Editor defina un formato canónico para Cut material (p. ej. sin los bloques de feedback) para que no haga falta tocarlos.
+
+## md-to-deck (HTML): con diseño "banda arriba" y tarjetas debajo, la imagen colapsa a altura cero (2026-09-26)
+
+- **Contexto:** Talk `talks/como-se-entrena-un-llm`, Step 7 (Render HTML), Talksmith 1.0.0. Láminas con imagen + cuerpo de tarjetas/pasos (`process`, `content+cards+image`) y el diseño con la imagen en banda superior.
+- **expected:** la imagen visible arriba y las tarjetas debajo.
+- **actual:** la imagen se renderiza con altura 0 y desaparece; el render no avisa. Con `content-image` y el mismo diseño se ve bien. Reproducido en un render aislado, con y sin aparición progresiva. Afectó a "Tres etapas, cuatro conjuntos de datos", "Qwen3: cuatro pasos" y "Las evaluaciones premian adivinar".
+- **Repro:** una lámina `process` (o `content+cards+image`) con `media` y el diseño de banda superior; renderizar con `build_html.py` y hacer captura: la figura no aparece.
+- **Workaround usado:** poner la imagen al costado del texto en esas láminas.
+- **suggested_fix:** probablemente el contenedor de la banda no tiene altura mínima cuando el cuerpo es flex/grid de tarjetas y el fit-content lo achica a 0; vale revisar la regla CSS de ese diseño y que el fit pass avise cuando una imagen queda con altura 0.

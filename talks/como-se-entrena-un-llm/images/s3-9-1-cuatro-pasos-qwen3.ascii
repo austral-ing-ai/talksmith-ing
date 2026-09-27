@@ -1,0 +1,11 @@
+ base --> 1. SFT inicial        --> 2. RL de            --> 3. fusión de modos --> 4. RL general
+          (razonamientos largos      razonamiento            (SFT con /think          (recompensa por
+          y verificados)             (GRPO, 3.995            y /no_think)             respetar los flags
+                                     problemas)                                       y el formato)
+          |<-------- aprender a razonar -------->|          |<---- aprender a elegir si razona ---->|
+
+<!-- ascii-note:
+intent: los cuatro pasos de post-training de Qwen3 y qué aprende cada mitad
+emphasize: los pasos 3 y 4, donde se entrena el interruptor
+labels: pasos 1 a 4
+-->

@@ -861,3 +861,69 @@
   feedback: "Agregar links a los datasets."
   resolution: Se agregaron links a datasets públicos de SFT (Dolly-15k, OpenAssistant, Alpaca) en 4.2 y al dataset de preferencias HH-RLHF en 4.3; se aclara que el de InstructGPT no se publicó.
   tags: [source-link, external-source]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Slide "3. Qué hay adentro"
+  feedback: "De esto seria bueno un piechart."
+  resolution: Reemplazado por una instrucción posterior del presentador: la lámina 1.3 (con la torta de la mezcla de GPT-3) se cortó al resumir distribución de idiomas y problemas en una sola lámina ('Problemas a tener en cuenta'). La torta queda en Cut material como ascii-cut.
+  tags: [visualization-requested, superseded, cut]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Slide "4. Post-training: SFT y preferencias"
+  feedback: "SFT: Espendi el acronimo lo que significa. Revisar consistencia que esos terminos esten todos en ingles."
+  resolution: La lámina 3.4 se cortó en la reestructuración por etapas (repetía el mapa de la Introducción). SFT queda desarrollado en su primer uso (Introducción 1 y apertura de la sección 2, 'SFT (Supervised Fine-Tuning)') y los nombres de etapas y métodos siguen en inglés en todo el borrador.
+  tags: [terminology, consistency, cut]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Agenda
+  feedback: "Borremos todo lo referenciado a la distribución de los idiomas y los problemas. Creo que queda muy largo y confunde. Sumaricemos todo esto y otros problemas en un slide a temas de tener en cuenta de los problemas existentes."
+  resolution: Se cortaron las láminas de mezcla de datos, lista negra, idiomas, texto generado, restricciones y sesgos heredados (y la 3.4, que repetía el mapa); todo quedó resumido en la nueva 1.8 'Problemas a tener en cuenta', con seis viñetas cortas. El texto completo está en Cut material.
+  tags: [structure, cut, density, merge]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Agenda
+  feedback: "Creo que en vez de hablar datos y la escala eso debería ser una sección que es Pre-Training y agrupar todo en esto. Es decir, las secciones deberían estar alineadas a las 3 etapas y el contenido mayormente agrupado en estas secciones."
+  resolution: Las secciones siguen las tres etapas: 1 Pre-training (datos, C4, escala, Chinchilla, crecimiento, modelo base, problemas), 2 SFT, 3 RLHF y refuerzo (preferencias, RL con recompensas verificables y el modelo que no sabe); cada una abre con la lámina de su etapa. Herramientas (4) y Fine-tuning (5) quedan como secciones propias.
+  tags: [structure, section-order, consistency]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Slide "3. Búsqueda web: la ejecuta el proveedor"
+  feedback: "WebSearch vs otras herramientas está bueno marcarlo porque en caso de WebSearch lo resuelve el modelo? y el resto el agente. Poné un diagrama."
+  resolution: Nueva lámina 4.3 'Búsqueda web: la ejecuta el proveedor' con un diagrama de dos carriles (herramienta del servidor contra herramienta del cliente). El modelo no ejecuta nada en ningún caso: con la búsqueda web la plataforma del proveedor ejecuta la llamada dentro del mismo pedido; con el resto, el agente.
+  tags: [visualization-requested, new-slide, factual-correction]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Agenda
+  feedback: "Podemos no hablar de InstructGPT, no quiero introducir confusión."
+  resolution: InstructGPT ya no se nombra en contenido, títulos, notas, tesis, agenda ni metas: se dice 'GPT-3 con post-training' o 'el trabajo de OpenAI de 2022'. La lámina 2.2 pasó a 'GPT-3 antes y después del post-training'. Los Sources conservan el nombre del archivo y las citas en inglés.
+  tags: [terminology, scope, consistency]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Agenda
+  feedback: "Por las dudas, movamos a tener toda una sección 'Herramientas' y que explique todo lo relacionado a cómo se entrena el modelo para poder llamar tools y cuál es el circuito con un agente para resolver esto."
+  resolution: Las cinco láminas de herramientas salieron de SFT y forman la sección 4 'Herramientas', con una lámina nueva sobre el circuito entre el modelo y el agente (4.2, con diagrama del loop) y otra sobre quién ejecuta cada herramienta (4.3).
+  tags: [structure, new-section, new-slide]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Section "5. Fine-tuning"
+  feedback: "Re-armar toda la sección de fine-tuning de 0 después del slide "La cuenta de memoria", creo que no explica y es confuso. ¿Qué modelos permiten hoy tuning (cloud)? ¿Cómo se hace local?"
+  resolution: Se rehízo todo lo que sigue a 'La cuenta de memoria': 5.4 'Fine-tuning en la nube' (OpenAI, Azure Foundry y Google Cloud a septiembre de 2026, con modelos y métodos), 5.5 'Fine-tuning local: el recorrido' (modelo abierto, JSONL, TRL + PEFT o Unsloth, adaptador, GGUF o vLLM, con diagrama), 5.6 'LoRA y QLoRA en la práctica' (memoria por tamaño de modelo) y 5.7 'Qué pedirle a los datos'. Las viejas LoRA, QLoRA, Calidad y Razones pasaron a Cut material.
+  tags: [structure, rebuild-section, new-slide, current-state]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Section "5. Fine-tuning"
+  feedback: "En la introducción de fine-tuning creo que falta un gráfico como extendido de las 3 etapas donde cuenta qué es lo que se hace en fine-tuning. Es decir, qué se hace de fine-tuning sobre el modelo tuneado."
+  resolution: Nueva 5.1 'Dónde entra el fine-tuning' con un diagrama que extiende el mapa de tres etapas: arriba lo que hace el proveedor, abajo el fine-tuning del equipo (datos en JSONL, SFT y a veces DPO o RFT, LoRA/QLoRA) sobre el modelo ya post-entrenado.
+  tags: [new-slide, diagram, section-opening]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Section "4. Herramientas"
+  feedback: "Vamos a explicar la necesidad de herramientas, y meternos en 3 herramientas: Calc, WebSearch y MCP genérico como para mostrar cómo es que funciona. Esto puede ser al menos 2 o 3 slides por cada uno de estos tools."
+  resolution: La sección 4 quedó en once láminas: necesidad (4.1, 4.2), calculadora (4.3 a 4.6), búsqueda web (4.7 a 4.9, con la nueva 4.8 'Qué genera el modelo al buscar') y MCP (4.10 host, cliente y servidor con diagrama; 4.11 'Entrenar para cualquier herramienta', con el esquema oficial de calculator_arithmetic y el registro de SFT de function calling).
+  tags: [structure, new-slide, diagram]
+- talk: como-se-entrena-un-llm
+  date: 2026-09-26
+  location: Section "4. Herramientas"
+  feedback: "Agregá en herramientas explícitamente algo parecido a "La secuencia intercalada y la máscara" que es la calculadora. Y explicá el problema de que los modelos no saben hacer cálculo. Por un lado lo que genera el modelo (similar al slide 35), que es este external executor, y luego ejemplos (si hay link a dataset aún mejor) de cómo se entrenó para esto."
+  resolution: Tres láminas nuevas de calculadora: 4.3 'Los modelos no calculan bien' (GSM8K y Toolformer), 4.4 'Qué genera el modelo y quién calcula' (Figura 9 de GSM8K: <<20+10= y eval('20+10') escribe 30>>; forma de Toolformer; qué se entrena y qué se enmascara) y 4.5 'Cómo se entrenó: GSM8K' (registro verbatim y link a openai/gsm8k). La genérica 'La secuencia intercalada y la máscara' se fusionó en la 4.4 y quedó en Cut material.
+  tags: [new-slide, dataset-link, example]

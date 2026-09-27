@@ -1,0 +1,10 @@
+url: "https://developers.openai.com/api/docs/guides/model-optimization"
+fetched_at: "2026-09-26T22:38:09Z"
+title: "Model optimization | OpenAI API"
+http_status: 200
+byte_size: 374692
+assets:
+  - { src: "/OpenAI_Developers.svg", absolute: "https://developers.openai.com/OpenAI_Developers.svg", saved_as: "OpenAI_Developers.svg", alt: "OpenAI Developers" }
+  - { src: "https://cdn.openai.com/API/docs/images/blue_card.png", absolute: "https://cdn.openai.com/API/docs/images/blue_card.png", saved_as: "blue_card.png", alt: "Evals" }
+  - { src: "https://cdn.openai.com/API/docs/images/orange_card.png", absolute: "https://cdn.openai.com/API/docs/images/orange_card.png", saved_as: "orange_card.png", alt: "Prompt engineering" }
+  - { src: "https://cdn.openai.com/API/docs/images/purple_card.png", absolute: "https://cdn.openai.com/API/docs/images/purple_card.png", saved_as: "purple_card.png", alt: "Fine-tuning" }

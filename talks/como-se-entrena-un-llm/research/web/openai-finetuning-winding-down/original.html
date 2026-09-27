@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>OpenAI is winding down the fine-tuning API and platform - Discussion Thread - Deprecations - OpenAI Developer Community</title>
+    <meta name="description" content="So if i have fine tuned models on gpt4.1 mini and openai deprecates it does this mean my model will never be used for inference? So i would have wasted money and compute on it? For SFT only gpt4.1 variants are available …">
+    <meta name="generator" content="Discourse 2026.10.0-latest - https://github.com/discourse/discourse version b9f5e76cc179d1e1ac8ad5e05dbe4ec01184d925">
+<link rel="icon" type="image/svg+xml" href="https://us1.discourse-cdn.com/openai1/optimized/4X/0/9/e/09e6028ae29015201ba12d4ade0ec72250797f89_2_32x32.svg">
+<link rel="apple-touch-icon" type="image/png" href="https://us1.discourse-cdn.com/openai1/optimized/4X/e/5/d/e5d0db747b8673d263cea6db3e4736ae59f34731_2_180x180.png">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F5F5">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
+
+<meta name="color-scheme" content="light dark">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+<link rel="canonical" href="https://community.openai.com/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522" />
+
+<meta name="discourse-track-view-session-id" content="aQZoq4AJiHhEI9jgcIRXmtQSRJmq7hrW">
+  <link rel="search" type="application/opensearchdescription+xml" href="https://community.openai.com/opensearch.xml" title="OpenAI Developer Community Search">
+
+    
+    <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/color_definitions_light_4_15_0a85fa4898c4dde63cf9506d0837ccc64b736145.css?__ws=community.openai.com" media="(prefers-color-scheme: light)" rel="stylesheet" class="light-scheme" data-scheme-id="4"/><link href="https://sea2.discourse-cdn.com/openai1/stylesheets/color_definitions_dark-new_9_15_46453af9d0c8546b17c743ecf51d4d4e33d96abd.css?__ws=community.openai.com" media="(prefers-color-scheme: dark)" rel="stylesheet" class="dark-scheme" data-scheme-id="9"/>
+
+<link href="https://sea2.discourse-cdn.com/openai1/stylesheets/common_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="common"  />
+
+
+
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/automation_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="automation"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/chat_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="chat"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/checklist_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="checklist"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-adplugin_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-adplugin"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-ai_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-ai"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-akismet_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-akismet"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-cakeday_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-cakeday"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-chat-integration_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-chat-integration"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-data-explorer_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-data-explorer"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-details_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-details"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-gamification_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-gamification"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-github_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-github"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-lazy-videos_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-lazy-videos"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-local-dates_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-local-dates"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-math_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-math"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-narrative-bot_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-narrative-bot"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-policy_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-policy"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-presence_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-presence"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-reactions_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-reactions"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-solved_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-solved"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-templates_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-templates"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-topic-voting_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-topic-voting"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-user-notes_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-user-notes"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-workflows_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-workflows"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-yearly-review_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="discourse-yearly-review"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/footnote_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="footnote"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/hosted-site_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="hosted-site"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/poll_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="poll"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/spoiler-alert_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="spoiler-alert"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/chat_mobile_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="(width < 40rem)" rel="stylesheet" data-target="chat_mobile"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-ai_mobile_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="(width < 40rem)" rel="stylesheet" data-target="discourse-ai_mobile"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-gamification_mobile_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="(width < 40rem)" rel="stylesheet" data-target="discourse-gamification_mobile"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-reactions_mobile_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="(width < 40rem)" rel="stylesheet" data-target="discourse-reactions_mobile"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/chat_desktop_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="(width >= 40rem)" rel="stylesheet" data-target="chat_desktop"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-ai_desktop_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="(width >= 40rem)" rel="stylesheet" data-target="discourse-ai_desktop"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-gamification_desktop_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="(width >= 40rem)" rel="stylesheet" data-target="discourse-gamification_desktop"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/discourse-reactions_desktop_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="(width >= 40rem)" rel="stylesheet" data-target="discourse-reactions_desktop"  />
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/poll_desktop_642e4bd3e9c2aa6348216724a85aa27e5ac85caa.css?__ws=community.openai.com" media="(width >= 40rem)" rel="stylesheet" data-target="poll_desktop"  />
+
+  <link href="https://sea2.discourse-cdn.com/openai1/stylesheets/common_theme_10_0049ff73e8532f7af8830685697441121c4ef43e.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="common_theme" data-theme-id="10" data-theme-name="category banners"/>
+<link href="https://sea2.discourse-cdn.com/openai1/stylesheets/common_theme_4_fa8febb73704984cef5db3aa5834fbd1259d34cd.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="common_theme" data-theme-id="4" data-theme-name="custom header links"/>
+<link href="https://sea2.discourse-cdn.com/openai1/stylesheets/common_theme_12_c53da637f37092dc359d870c3712cc2274dab3c5.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="common_theme" data-theme-id="12" data-theme-name="discourse-mermaid-theme-component"/>
+<link href="https://sea2.discourse-cdn.com/openai1/stylesheets/common_theme_5_1b404060f545177adcadaaa866a7ecc220d1f72e.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="common_theme" data-theme-id="5" data-theme-name="easy footer"/>
+<link href="https://sea2.discourse-cdn.com/openai1/stylesheets/common_theme_16_1886334d4187a796210287d0269658d60a2e06fe.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="common_theme" data-theme-id="16" data-theme-name="sidebar theme toggle"/>
+<link href="https://sea2.discourse-cdn.com/openai1/stylesheets/common_theme_13_7b7971b6bce1b723b764db3482da1123619c8608.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="common_theme" data-theme-id="13" data-theme-name="hide-footer-chat"/>
+<link href="https://sea2.discourse-cdn.com/openai1/stylesheets/common_theme_9_971fcf7fd02a36a55473401b28701be7f505eb9c.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="common_theme" data-theme-id="9" data-theme-name="quickfixes"/>
+<link href="https://sea2.discourse-cdn.com/openai1/stylesheets/common_theme_15_19e8af00b034d67ffb22a89c48e26c453fa959fd.css?__ws=community.openai.com" media="all" rel="stylesheet" data-target="common_theme" data-theme-id="15" data-theme-name="light mode"/>
+  
+  
+
+    <script type="text/discourse-plugin" version="0.8" nonce="6SG0xLz8XzKVhKx3y6pB5V7X4">
+  const HIDDEN_CATEGORY_IDS = [23, 24, 25, 26];
+  const TARGET_GROUPS = ['trust_level_0']; // Add your group names here
+
+  api.onPageChange(() => {
+    const currentUser = api.getCurrentUser();
+    if (!currentUser) return;
+
+    const inTargetGroup = currentUser.groups.some(g => TARGET_GROUPS.includes(g.name));
+    if (!inTargetGroup) return;
+
+    // Only run inside new topic composer
+    const composer = document.querySelector('.composer.new-topic');
+    if (!composer) return;
+
+    const interval = setInterval(() => {
+      HIDDEN_CATEGORY_IDS.forEach(id => {
+        const row = document.querySelector(`.composer.new-topic .select-kit-row[data-value="${id}"]`);
+        if (row) row.style.display = 'none';
+      });
+    }, 300);
+
+    // Clear once loaded
+    setTimeout(() => clearInterval(interval), 5000);
+  });
+</script>
+
+    <meta id="data-ga-universal-analytics" data-tracking-code="G-62J2E5SERF" data-json="{&quot;cookieDomain&quot;:&quot;auto&quot;}" data-auto-link-domains="">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-62J2E5SERF" nonce="6SG0xLz8XzKVhKx3y6pB5V7X4"></script>
+  <script defer src="https://us1.discourse-cdn.com/openai1/assets/js/google-universal-analytics-v4-43cb071f.js" data-discourse-entrypoint="js/google-universal-analytics-v4" nonce="6SG0xLz8XzKVhKx3y6pB5V7X4"></script>
+
+
+        <link rel="alternate nofollow" type="application/rss+xml" title="RSS feed of &#39;OpenAI is winding down the fine-tuning API and platform - Discussion Thread&#39;" href="https://community.openai.com/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522.rss" />
+    <meta property="og:site_name" content="OpenAI Developer Community" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://us1.discourse-cdn.com/openai1/original/4X/0/4/c/04c8546833f0824a49d21f50e2b08dd44bfd3d05.png" />
+<meta property="og:image" content="https://us1.discourse-cdn.com/openai1/original/4X/0/4/c/04c8546833f0824a49d21f50e2b08dd44bfd3d05.png" />
+<meta property="og:url" content="https://community.openai.com/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522" />
+<meta name="twitter:url" content="https://community.openai.com/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522" />
+<meta property="og:title" content="OpenAI is winding down the fine-tuning API and platform - Discussion Thread" />
+<meta name="twitter:title" content="OpenAI is winding down the fine-tuning API and platform - Discussion Thread" />
+<meta property="og:description" content="So if i have fine tuned models on gpt4.1 mini and openai deprecates it does this mean my model will never be used for inference? So i would have wasted money and compute on it? For SFT only gpt4.1 variants are available and for RL only o4-mini is available so if im not wrong the degree of freedom to test and fine tune is anyway limited.  Also if GPT5.5 onwards models will be good at instruction following what would developers do with the money they have on the API Platform? As inference costs ge..." />
+<meta name="twitter:description" content="So if i have fine tuned models on gpt4.1 mini and openai deprecates it does this mean my model will never be used for inference? So i would have wasted money and compute on it? For SFT only gpt4.1 variants are available and for RL only o4-mini is available so if im not wrong the degree of freedom to test and fine tune is anyway limited.  Also if GPT5.5 onwards models will be good at instruction following what would developers do with the money they have on the API Platform? As inference costs ge..." />
+<meta property="og:article:section" content="API" />
+<meta property="og:article:section:color" content="f4ac36" />
+<meta property="og:article:section" content="Deprecations" />
+<meta property="og:article:section:color" content="3AB54A" />
+<meta name="twitter:label1" value="Reading time" />
+<meta name="twitter:data1" value="1 min 🕑" />
+<meta name="twitter:label2" value="Likes" />
+<meta name="twitter:data2" value="4 ❤" />
+<meta property="article:published_time" content="2026-05-08T17:10:37+00:00" />
+<meta property="og:ignore_canonical" content="true" />
+
+
+    <link rel="alternate" type="text/markdown" href="https://community.openai.com/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522.md">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"QAPage","name":"OpenAI is winding down the fine-tuning API and platform - Discussion Thread","datePublished":"2026-05-08T17:10:37.110Z","mainEntity":{"@type":"Question","answerCount":2,"author":{"@type":"Person","name":"itsarnavsalkade","url":"https://community.openai.com/u/itsarnavsalkade"},"dateModified":"2026-05-08T17:11:26.663Z","datePublished":"2026-05-08T17:10:37.110Z","name":"OpenAI is winding down the fine-tuning API and platform - Discussion Thread","text":"So if i have fine tuned models on gpt4.1 mini and openai deprecates it does this mean my model will never be used for inference? So i would have wasted money and compute on it? For SFT only gpt4.1 variants are available and for RL only o4-mini is available so if im not wrong the degree of freedom to&hellip;","upvoteCount":1,"suggestedAnswer":[{"@type":"Answer","author":{"@type":"Person","name":"_j","url":"https://community.openai.com/u/_j"},"dateModified":"2026-05-08T17:29:25.171Z","datePublished":"2026-05-08T17:29:25.140Z","text":"o4-mini already has a shutoff date later in 2026. That was the first sign that fine-tuning was doomed.\n\ngpt-4.1 series has not appeared in the deprecation list with a shutoff date. I anticipate you will have six months of deprecation notice before shutoff, and like the notice says, model shutoff is &hellip;","upvoteCount":1,"url":"https://community.openai.com/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522/2"},{"@type":"Answer","author":{"@type":"Person","name":"aprendendo.next","url":"https://community.openai.com/u/aprendendo.next"},"dateModified":"2026-05-08T18:53:36.749Z","datePublished":"2026-05-08T18:53:36.715Z","text":"It seems they have given up on ft for now, at least until we get some Stargates up and running with some gpu power to spare…\n\n<a class=\"lightbox\" href=\"https://us1.discourse-cdn.com/openai1/original/4X/2/4/0/240c8016d7f41d5b36f0f6be0cef71c26ee0cdad.png\" data-download-href=\"/uploads/short-url/58TYbN4CUgiZW4WcOdYEumpxrFb.png?dl=1\" title=\"image\">[image]<\/a>\n\n[image]\n\n<a href=\"https://developers.openai.com/api/docs/deprecations\" target=\"_blank\" rel=\"noopener\">Deprecations | OpenAI API<\/a>\n\nFind information about OpenAI API deprecations and recommended replacements.","upvoteCount":2,"url":"https://community.openai.com/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522/3"}]}}</script>
+  </head>
+  <body class="crawler ">
+    
+    <header>
+  <a href="/">OpenAI Developer Community</a>
+</header>
+
+    <div id="main-outlet" class="wrap" role="main">
+        <div id="topic-title">
+    <h1>
+      <a href="/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522">OpenAI is winding down the fine-tuning API and platform - Discussion Thread</a>
+    </h1>
+
+      <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="/c/api/7" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #f4ac36'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>API</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </span>
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="/c/api/deprecations/32" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #3AB54A'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Deprecations</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2" />
+          </span>
+      </div>
+
+  </div>
+
+  
+
+    <div itemscope="itemscope" itemtype="https://schema.org/QAPage">
+      <meta itemprop='name' content='OpenAI is winding down the fine-tuning API and platform - Discussion Thread'>
+      <link itemprop='url' href='https://community.openai.com/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522'>
+      <meta itemprop='datePublished' content='2026-05-08T17:10:37Z'>
+      <meta itemprop='keywords' content=''>
+
+        <div itemprop="mainEntity" itemscope="itemscope" itemtype="https://schema.org/Question">
+          <meta itemprop='answerCount' content='2'><meta itemprop='datePublished' content='2026-05-08T17:10:37Z'><meta itemprop='name' content='OpenAI is winding down the fine-tuning API and platform - Discussion Thread'><meta itemprop='upvoteCount' content='1'>
+
+
+          <div id='post_1' data-qa-question="true" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://community.openai.com/u/itsarnavsalkade'><span itemprop="name">itsarnavsalkade</span></a>
+                  <meta itemprop='url' content='https://community.openai.com/u/itsarnavsalkade'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time  datetime='2026-05-08T17:10:37Z' class='post-time'>
+                    May 8, 2026,  5:10pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-05-08T17:11:26Z'>
+              <span itemprop="position">1</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>So if i have fine tuned models on gpt4.1 mini and openai deprecates it does this mean my model will never be used for inference? So i would have wasted money and compute on it? For SFT only gpt4.1 variants are available and for RL only o4-mini is available so if im not wrong the degree of freedom to test and fine tune is anyway limited.</p>
+<p>Also if GPT5.5 onwards models will be good at instruction following what would developers do with the money they have on the API Platform? As inference costs get cheaper and cheaper due to data center expansions and demands continue to increase will all inference be done using the same models released by OpenAI?</p>
+            </div>
+
+
+
+            
+
+
+          </div>
+          <div id='post_2' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://community.openai.com/u/_j'><span itemprop="name">_j</span></a>
+                  <meta itemprop='url' content='https://community.openai.com/u/_j'>
+                
+              </span>
+
+
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-05-08T17:29:25Z' class='post-time'>
+                    May 8, 2026,  5:29pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-05-08T17:29:25Z'>
+              <span itemprop="position">2</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>o4-mini already has a shutoff date later in 2026. That was the first sign that fine-tuning was doomed.</p>
+<p>gpt-4.1 series has not appeared in the deprecation list with a shutoff date. I anticipate you will have six months of deprecation notice before shutoff, and like the notice says, model shutoff is fine-tuning model shutoff when based on that model.</p>
+<p>You choose which model you use on the API. You run a particular model name you have trained by API specification. To use a fine tuning trained model for inference generation, you specify the job-generated name with your prefix after it is created. Until it is turned off by OpenAI or you delete it.</p>
+<p>OpenAI pricing has not become cheaper for API developers with new release models in 2026, instead, huge hikes. For now, there is a wide variety of models to run an API call against, as long as you accept that there is no aspect of machine learning experimentation and nothing emergent, novel, inspirational, educational to come out of these boring consumer products again.</p>
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='1'><meta itemprop='url' content='https://community.openai.com/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522/2'>
+          </div>
+          <div id='post_3' itemprop="suggestedAnswer" itemscope="itemscope" itemtype="https://schema.org/Answer" class='topic-body crawler-post'>
+            <div class='crawler-post-meta'>
+              <span class="creator" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                <a rel='nofollow' href='https://community.openai.com/u/aprendendo.next'><span itemprop="name">aprendendo.next</span></a>
+                  <meta itemprop='url' content='https://community.openai.com/u/aprendendo.next'>
+                
+              </span>
+
+
+                <link itemprop="image" href="https://us1.discourse-cdn.com/openai1/original/4X/2/4/0/240c8016d7f41d5b36f0f6be0cef71c26ee0cdad.png">
+
+              <span class="crawler-post-infos">
+                  <time itemprop="datePublished" datetime='2026-05-08T18:53:36Z' class='post-time'>
+                    May 8, 2026,  6:53pm
+                  </time>
+                  <meta itemprop='dateModified' content='2026-05-08T18:53:36Z'>
+              <span itemprop="position">3</span>
+              </span>
+            </div>
+            <div class='post' itemprop="text">
+              <p>It seems they have given up on ft for now, at least until we get some Stargates up and running with some gpu power to spare…</p>
+<p><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/openai1/original/4X/2/4/0/240c8016d7f41d5b36f0f6be0cef71c26ee0cdad.png" data-download-href="/uploads/short-url/58TYbN4CUgiZW4WcOdYEumpxrFb.png?dl=1" title="image"><img src="https://us1.discourse-cdn.com/openai1/original/4X/2/4/0/240c8016d7f41d5b36f0f6be0cef71c26ee0cdad.png" alt="image" data-base62-sha1="58TYbN4CUgiZW4WcOdYEumpxrFb" width="690" height="285" data-dominant-color="0B0B0C"><div class="meta"><svg class="fa d-icon d-icon-far-image svg-icon" aria-hidden="true"><use href="#far-image"></use></svg><span class="filename">image</span><span class="informations">893×370 25.7 KB</span><svg class="fa d-icon d-icon-discourse-expand svg-icon" aria-hidden="true"><use href="#discourse-expand"></use></svg></div></a></div></p>
+<aside class="onebox allowlistedgeneric" data-onebox-src="https://developers.openai.com/api/docs/deprecations">
+  <header class="source">
+      <img src="https://us1.discourse-cdn.com/openai1/original/4X/4/e/6/4e6c215b527d954515a2695f3754a6bce3aa56f7.png" class="site-icon" alt="" data-dominant-color="399CF9" width="48" height="48">
+
+      <a href="https://developers.openai.com/api/docs/deprecations" target="_blank" rel="noopener">developers.openai.com</a>
+  </header>
+
+  <article class="onebox-body">
+    <div class="aspect-image" style="--aspect-ratio:690/362;"><img src="https://us1.discourse-cdn.com/openai1/optimized/4X/4/e/c/4eca3743ae0c058f1ba0c2eb01ff8ce9c499a19a_2_690x362.jpeg" class="thumbnail" alt="" data-dominant-color="F58584" width="690" height="362"></div>
+
+<h3><a href="https://developers.openai.com/api/docs/deprecations" target="_blank" rel="noopener">Deprecations | OpenAI API</a></h3>
+
+  <p>Find information about OpenAI API deprecations and recommended replacements.</p>
+
+
+  </article>
+
+  <div class="onebox-metadata">
+    
+    
+  </div>
+
+  <div style="clear: both"></div>
+</aside>
+
+            </div>
+
+
+
+            
+
+<meta itemprop='upvoteCount' content='2'><meta itemprop='url' content='https://community.openai.com/t/openai-is-winding-down-the-fine-tuning-api-and-platform-discussion-thread/1380522/3'>
+          </div>
+
+        </div>
+    </div>
+
+
+    <div id="related-topics" class="more-topics__list " role="complementary" aria-labelledby="related-topics-title">
+  <h3 id="related-topics-title" class="more-topics__list-title">
+    Related topics
+  </h3>
+  <div class="topic-list-container" itemscope itemtype='http://schema.org/ItemList'>
+    <meta itemprop='itemListOrder' content='http://schema.org/ItemListOrderDescending'>
+    <table class='topic-list'>
+      <thead>
+        <tr>
+          <th>Topic</th>
+          <th></th>
+          <th class="replies">Replies</th>
+          <th class="views">Views</th>
+          <th>Activity</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="topic-list-item" id="topic-list-item-1374324">
+            <td class="main-link" itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+              <meta itemprop='position' content='1'>
+              <span class="link-top-line">
+                <a itemprop='url' href='https://community.openai.com/t/with-gpt-4o-being-deprecated-what-does-that-mean-for-gpt-4o-fine-tunes/1374324' class='title raw-link raw-topic-link'>With gpt-4o being deprecated - what does that mean for gpt-4o fine tunes?</a>
+              </span>
+              <div class="link-bottom-line">
+                  <a href='/c/api/deprecations/32' class='badge-wrapper bullet'>
+                    <span class='badge-category-bg' style='background-color: #3AB54A'></span>
+                    <span class='badge-category clear-badge'>
+                      <span class='category-name'>Deprecations</span>
+                    </span>
+                  </a>
+                  <div class="discourse-tags">
+                  </div>
+              </div>
+            </td>
+            <td class="replies">
+              <span class='posts' title='posts'>4</span>
+            </td>
+            <td class="views">
+              <span class='views' title='views'>664</span>
+            </td>
+            <td>
+              February 16, 2026
+            </td>
+          </tr>
+          <tr class="topic-list-item" id="topic-list-item-312822">
+            <td class="main-link" itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+              <meta itemprop='position' content='2'>
+              <span class="link-top-line">
+                <a itemprop='url' href='https://community.openai.com/t/gpt3-model-deprecation-question/312822' class='title raw-link raw-topic-link'>GPT3 Model deprecation question</a>
+              </span>
+              <div class="link-bottom-line">
+                  <a href='/c/api/7' class='badge-wrapper bullet'>
+                    <span class='badge-category-bg' style='background-color: #f4ac36'></span>
+                    <span class='badge-category clear-badge'>
+                      <span class='category-name'>API</span>
+                    </span>
+                  </a>
+                  <div class="discourse-tags">
+                      <a href='https://community.openai.com/tag/gpt-4/10' class='discourse-tag'>gpt-4</a>
+                      ,&nbsp;
+                      <a href='https://community.openai.com/tag/chatgpt/16' class='discourse-tag'>chatgpt</a>
+                      
+                  </div>
+              </div>
+            </td>
+            <td class="replies">
+              <span class='posts' title='posts'>2</span>
+            </td>
+            <td class="views">
+              <span class='views' title='views'>1615</span>
+            </td>
+            <td>
+              July 31, 2023
+            </td>
+          </tr>
+          <tr class="topic-list-item" id="topic-list-item-1379550">
+            <td class="main-link" itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+              <meta itemprop='position' content='3'>
+              <span class="link-top-line">
+                <a itemprop='url' href='https://community.openai.com/t/deprecation-of-fine-tuned-models-but-still-cant-access-newer-ones/1379550' class='title raw-link raw-topic-link'>Deprecation of fine tuned models, but still can&#39;t access newer ones?</a>
+              </span>
+              <div class="link-bottom-line">
+                  <a href='/c/api/deprecations/32' class='badge-wrapper bullet'>
+                    <span class='badge-category-bg' style='background-color: #3AB54A'></span>
+                    <span class='badge-category clear-badge'>
+                      <span class='category-name'>Deprecations</span>
+                    </span>
+                  </a>
+                  <div class="discourse-tags">
+                      <a href='https://community.openai.com/tag/fine-tuning/28' class='discourse-tag'>fine-tuning</a>
+                      ,&nbsp;
+                      <a href='https://community.openai.com/tag/gpt-5/497' class='discourse-tag'>gpt-5</a>
+                      
+                  </div>
+              </div>
+            </td>
+            <td class="replies">
+              <span class='posts' title='posts'>4</span>
+            </td>
+            <td class="views">
+              <span class='views' title='views'>643</span>
+            </td>
+            <td>
+              April 22, 2026
+            </td>
+          </tr>
+          <tr class="topic-list-item" id="topic-list-item-1380479">
+            <td class="main-link" itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+              <meta itemprop='position' content='4'>
+              <span class="link-top-line">
+                <a itemprop='url' href='https://community.openai.com/t/what-will-happen-to-the-fine-tuned-projects-on-open-ai-portal/1380479' class='title raw-link raw-topic-link'>What will happen to the fine tuned projects on Open AI portal</a>
+              </span>
+              <div class="link-bottom-line">
+                  <a href='/c/api/deprecations/32' class='badge-wrapper bullet'>
+                    <span class='badge-category-bg' style='background-color: #3AB54A'></span>
+                    <span class='badge-category clear-badge'>
+                      <span class='category-name'>Deprecations</span>
+                    </span>
+                  </a>
+                  <div class="discourse-tags">
+                      <a href='https://community.openai.com/tag/fine-tuning/28' class='discourse-tag'>fine-tuning</a>
+                      
+                  </div>
+              </div>
+            </td>
+            <td class="replies">
+              <span class='posts' title='posts'>5</span>
+            </td>
+            <td class="views">
+              <span class='views' title='views'>453</span>
+            </td>
+            <td>
+              May 9, 2026
+            </td>
+          </tr>
+          <tr class="topic-list-item" id="topic-list-item-1380481">
+            <td class="main-link" itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+              <meta itemprop='position' content='5'>
+              <span class="link-top-line">
+                <a itemprop='url' href='https://community.openai.com/t/openai-s-self-serve-fine-tuning-availability/1380481' class='title raw-link raw-topic-link'>OpenAI’s self-serve fine-tuning availability</a>
+              </span>
+              <div class="link-bottom-line">
+                  <a href='/c/api/7' class='badge-wrapper bullet'>
+                    <span class='badge-category-bg' style='background-color: #f4ac36'></span>
+                    <span class='badge-category clear-badge'>
+                      <span class='category-name'>API</span>
+                    </span>
+                  </a>
+                  <div class="discourse-tags">
+                      <a href='https://community.openai.com/tag/fine-tuning/28' class='discourse-tag'>fine-tuning</a>
+                      ,&nbsp;
+                      <a href='https://community.openai.com/tag/api/33' class='discourse-tag'>api</a>
+                      
+                  </div>
+              </div>
+            </td>
+            <td class="replies">
+              <span class='posts' title='posts'>0</span>
+            </td>
+            <td class="views">
+              <span class='views' title='views'>472</span>
+            </td>
+            <td>
+              May 8, 2026
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+    </div>
+    <footer class="container wrap">
+  <nav class='crawler-nav'>
+    <ul>
+      <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+        <span itemprop='name'>
+          <a href='/' itemprop="url">Home </a>
+        </span>
+      </li>
+      <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+        <span itemprop='name'>
+          <a href='/categories' itemprop="url">Categories </a>
+        </span>
+      </li>
+      <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+        <span itemprop='name'>
+          <a href='/guidelines' itemprop="url">Guidelines </a>
+        </span>
+      </li>
+        <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+          <span itemprop='name'>
+            <a href='https://openai.com/policies/terms-of-use' itemprop="url">Terms of Service </a>
+          </span>
+        </li>
+        <li itemscope itemtype='http://schema.org/SiteNavigationElement'>
+          <span itemprop='name'>
+            <a href='https://openai.com/policies/privacy-policy' itemprop="url">Privacy Policy </a>
+          </span>
+        </li>
+    </ul>
+  </nav>
+  <p class='powered-by-link'>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+    
+    
+  </body>
+  
+</html>

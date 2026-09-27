@@ -1,0 +1,12 @@
+  (prompt, respuesta ganadora)  ---> [  reward model  ] ---> s_w
+  (prompt, respuesta perdedora) ---> [  reward model  ] ---> s_l
+                                       (mismos pesos)
+
+  bien ordenado:  s_w > s_l
+  al revés:       s_w < s_l
+
+<!-- ascii-note:
+intent: el mismo modelo puntúa las dos respuestas del par; entrenar es lograr que la ganadora quede arriba
+emphasize: la comparación s_w > s_l
+labels: s_w (ganadora), s_l (perdedora)
+-->

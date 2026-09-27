@@ -1,0 +1,73 @@
+<!-- talksmith-ascii-sha256: b61475ad51bacb36ea861bce91d96fc968dae465850caf0cb4c2db63ba5a9809 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="36 3 608 740" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>El reward model, en un batch</title>
+<desc>Cada fila repite el prompt, así que 64 pares son 128 secuencias, y pasan todas en un solo forward.</desc>
+<defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/></marker></defs>
+<rect x="36" y="3" width="608" height="740" fill="#FFFFFF"/>
+<text x="340" y="40" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">64 pares = 128 filas: cada fila repite el prompt de su par</text>
+<rect x="190" y="64" width="300" height="30" rx="4" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="178" y="84" text-anchor="end" font-size="15">fila 0</text>
+<text x="206.0" y="85" font-size="17"><tspan>P</tspan><tspan dy="5" font-size="12">1</tspan><tspan dy="-5"> + A</tspan><tspan dy="5" font-size="12">1</tspan></text>
+<text x="476" y="84" text-anchor="end" font-size="14" font-style="italic">preferida</text>
+<rect x="190" y="96" width="300" height="30" rx="4" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="178" y="116" text-anchor="end" font-size="15">fila 1</text>
+<text x="206.0" y="117" font-size="17"><tspan>P</tspan><tspan dy="5" font-size="12">1</tspan><tspan dy="-5"> + B</tspan><tspan dy="5" font-size="12">1</tspan></text>
+<path d="M500,67 h8 V123 h-8" fill="none" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="518" y="83" width="72" height="24" rx="12" fill="#F9D2D6"/>
+<text x="554" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">par 1</text>
+<rect x="190" y="138" width="300" height="30" rx="4" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="178" y="158" text-anchor="end" font-size="15">fila 2</text>
+<text x="206.0" y="159" font-size="17"><tspan>P</tspan><tspan dy="5" font-size="12">2</tspan><tspan dy="-5"> + A</tspan><tspan dy="5" font-size="12">2</tspan></text>
+<text x="476" y="158" text-anchor="end" font-size="14" font-style="italic">preferida</text>
+<rect x="190" y="170" width="300" height="30" rx="4" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="178" y="190" text-anchor="end" font-size="15">fila 3</text>
+<text x="206.0" y="191" font-size="17"><tspan>P</tspan><tspan dy="5" font-size="12">2</tspan><tspan dy="-5"> + B</tspan><tspan dy="5" font-size="12">2</tspan></text>
+<path d="M500,141 h8 V197 h-8" fill="none" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="518" y="157" width="72" height="24" rx="12" fill="#F9D2D6"/>
+<text x="554" y="174" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">par 2</text>
+<rect x="190" y="244" width="300" height="30" rx="4" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="178" y="264" text-anchor="end" font-size="15">fila 126</text>
+<text x="206.0" y="265" font-size="17"><tspan>P</tspan><tspan dy="5" font-size="12">64</tspan><tspan dy="-5"> + A</tspan><tspan dy="5" font-size="12">64</tspan></text>
+<text x="476" y="264" text-anchor="end" font-size="14" font-style="italic">preferida</text>
+<rect x="190" y="276" width="300" height="30" rx="4" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="178" y="296" text-anchor="end" font-size="15">fila 127</text>
+<text x="206.0" y="297" font-size="17"><tspan>P</tspan><tspan dy="5" font-size="12">64</tspan><tspan dy="-5"> + B</tspan><tspan dy="5" font-size="12">64</tspan></text>
+<path d="M500,247 h8 V303 h-8" fill="none" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="518" y="263" width="72" height="24" rx="12" fill="#F9D2D6"/>
+<text x="554" y="280" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">par 64</text>
+<text x="340" y="228" text-anchor="middle" font-size="20">…</text>
+<text x="554" y="228" text-anchor="middle" font-size="20">…</text>
+<line x1="340" y1="310" x2="340" y2="364" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="352" y="342" font-size="15" font-style="italic">un solo forward</text>
+<text x="340" y="384" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">128 puntajes, uno por fila</text>
+<rect x="91" y="396" width="70" height="36" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="110.0" y="419" font-size="16"><tspan>r(A</tspan><tspan dy="4" font-size="11">1</tspan><tspan dy="-4">)</tspan></text>
+<rect x="163" y="396" width="70" height="36" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="182.0" y="419" font-size="16"><tspan>r(B</tspan><tspan dy="4" font-size="11">1</tspan><tspan dy="-4">)</tspan></text>
+<path d="M93,438 q0,7 7,7 H155.0 q7,0 7,7 q0,-7 7,-7 H224 q7,0 7,-7" fill="none" stroke="#3B3535" stroke-width="1.5"/>
+<text x="162.0" y="472" text-anchor="middle" font-size="14">fila 0 con 1</text>
+<rect x="247" y="396" width="70" height="36" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="266.0" y="419" font-size="16"><tspan>r(A</tspan><tspan dy="4" font-size="11">2</tspan><tspan dy="-4">)</tspan></text>
+<rect x="319" y="396" width="70" height="36" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="338.0" y="419" font-size="16"><tspan>r(B</tspan><tspan dy="4" font-size="11">2</tspan><tspan dy="-4">)</tspan></text>
+<path d="M249,438 q0,7 7,7 H311.0 q7,0 7,7 q0,-7 7,-7 H380 q7,0 7,-7" fill="none" stroke="#3B3535" stroke-width="1.5"/>
+<text x="318.0" y="472" text-anchor="middle" font-size="14">fila 2 con 3</text>
+<rect x="447" y="396" width="70" height="36" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="463.0" y="419" font-size="16"><tspan>r(A</tspan><tspan dy="4" font-size="11">64</tspan><tspan dy="-4">)</tspan></text>
+<rect x="519" y="396" width="70" height="36" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="535.0" y="419" font-size="16"><tspan>r(B</tspan><tspan dy="4" font-size="11">64</tspan><tspan dy="-4">)</tspan></text>
+<path d="M449,438 q0,7 7,7 H511.0 q7,0 7,7 q0,-7 7,-7 H580 q7,0 7,-7" fill="none" stroke="#3B3535" stroke-width="1.5"/>
+<text x="518.0" y="472" text-anchor="middle" font-size="14">fila 126 con 127</text>
+<text x="418" y="420" text-anchor="middle" font-size="20">…</text>
+<line x1="340" y1="482" x2="340" y2="530" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="352" y="511" font-size="15" font-style="italic">reagrupar de a pares</text>
+<rect x="60" y="530" width="560" height="64" rx="8" fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="143.0" y="570" font-size="22" fill="#1F1E1E"><tspan font-weight="bold" fill="#DA1B2E">pérdida del par i</tspan><tspan>  =  −log σ( r(A</tspan><tspan dy="6" font-size="15">i</tspan><tspan dy="-6">) − r(B</tspan><tspan dy="6" font-size="15">i</tspan><tspan dy="-6">) )</tspan></text>
+<line x1="206" y1="594" x2="206" y2="640" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="76" y="640" width="260" height="42" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="206" y="666" text-anchor="middle" font-size="16">promedio de las 64 pérdidas</text>
+<line x1="336" y1="661" x2="404" y2="661" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="404" y="640" width="200" height="42" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="504" y="666" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">un solo backward</text>
+<text x="340" y="716" text-anchor="middle" font-size="13">P: prompt del par · A: respuesta preferida · B: la otra · r: puntaje del reward model</text>
+</svg>

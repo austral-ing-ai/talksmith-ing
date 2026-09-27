@@ -1,0 +1,14 @@
+ una respuesta de la API  (stop_reason: "end_turn", web_search_requests: 1)
+
+ 1  texto                    "I'll search for when Claude Shannon was born."        <- modelo
+ 2  server_tool_use          query: "claude shannon birth date"                    <- modelo
+ 3  web_search_tool_result   resultado de Wikipedia (url, title, page_age)          <- plataforma
+ 4  texto con cita           "Claude Shannon was born on April 30, 1916,           <- modelo
+                              in Petoskey, Michigan"
+                             cita: "Claude Elwood Shannon (April 30, 1916 – ..."
+
+<!-- ascii-note:
+intent: los cuatro bloques de una respuesta con búsqueda web y quién produce cada uno
+emphasize: la columna de la derecha (modelo contra plataforma); el bloque 3 es el único que no genera el modelo
+labels: server_tool_use, web_search_tool_result, cita
+-->

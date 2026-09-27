@@ -1,0 +1,33 @@
+                                                               +  RLHF - - - - - - - - - - - - - - - - - - - - - - - - - - - -+
+ Datos de baja calidad           Datos de alta calidad         : Feedback humano                                              :
+ .------------------------.      .------------------------.    : .------------------------.      .------------------------.   :
+ | Texto                  |      | Datos de               |    : | Datos de               |      | Prompts                |   :
+ | (p. ej. internet)      |      | demostración           |    : | comparación            |      |                        |   :
+ '------------------------'      '------------------------'    : '------------------------'      '------------------------'   :
+              |                               |                :              |                               |               :
+              v                               v                :              v                               v               :
+ +------------------------+      +------------------------+    : +------------------------+      +------------------------+   :
+ | Modelado de            |  +-->| Fine-tuning            |  +-->| Clasificación          |  +-->| Aprendizaje por        |   :
+ | lenguaje               |  |   | supervisado            |  | : |                        |  | +>| refuerzo               |   :
+ +------------------------+  |   +------------------------+  | : +------------------------+  | | +------------------------+   :
+   | optimizado para         |     | ajustado para           | :   | entrenado para dar un   | |   | optimizado para generar  :
+   | completar texto         |     | diálogo                 | :   | puntaje a (prompt,      | |   | respuestas que maximicen :
+   |                         |     |                         | :   | respuesta)              | |   | el puntaje               :
+   v                         |     v                         | :   v                         | |   v                          :
+ +------------------------+  |   +------------------------+  | : +------------------------+  | | +------------------------+   :
+ | LLM preentrenado       |--+   | Modelo SFT             |--+ : | Reward model           |--+ | | Modelo final           |   :
+ +------------------------+      +------------------------+    : +------------------------+    | +------------------------+   :
+                                              |                :                               |                              :
+                                              +------------------------------------------------+                              :
+                                                               :                                                              :
+                                                               + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -+
+
+ >1 billón de tokens             10K-100K (prompt, respuesta)    100K-1M comparaciones           10K-100K prompts
+                                                                 (prompt, respuesta ganadora,
+                                                                 respuesta perdedora)
+
+<!-- ascii-note:
+intent: mapa de las tres etapas con sus cuatro conjuntos de datos, redibujado de la figura de Chip Huyen (rlhf.png)
+emphasize: la caída de escala en la fila de abajo y la caja punteada RLHF; acento rojo solo en la fila de escalas
+labels: "billón" = 10^12 (el "trillion" del inglés); escalas 10K-100K y 100K-1M
+-->

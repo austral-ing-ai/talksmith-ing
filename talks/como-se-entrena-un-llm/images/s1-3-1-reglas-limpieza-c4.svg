@@ -1,0 +1,58 @@
+<!-- talksmith-ascii-sha256: 001ccbf8b24e356514b43b8dc44bab0dfa9b744a49d31e6d75398a43f6e6b769 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>C4: cómo Google depuró Common Crawl</title>
+<desc>Cada regla de limpieza de C4 tiene un motivo concreto: saca un tipo de basura de Common Crawl y deja unos 745 GB de texto en inglés.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" viewBox="0 0 14 14" refX="14" refY="7" orient="auto">
+<path d="M0,1 L14,7 L0,13 Z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="680" height="560" fill="#ffffff"/>
+<rect x="190" y="20" width="300" height="56" rx="8" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="340" y="44" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">Common Crawl · abril 2019</text>
+<text x="340" y="65" text-anchor="middle" font-size="14">texto extraído, ~20 TB</text>
+<line x1="340" y1="76" x2="340" y2="110" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="20" y="354" width="640" height="32" fill="#F9D2D6"/>
+<rect x="20" y="418" width="640" height="32" fill="#F9D2D6"/>
+<rect x="20" y="110" width="360" height="34" fill="#F2EEEE"/>
+<rect x="380" y="110" width="280" height="34" fill="#DA1B2E"/>
+<text x="34" y="132" font-weight="bold" fill="#1F1E1E">regla</text>
+<text x="394" y="132" font-weight="bold" fill="#FFFFFF">qué saca</text>
+<g stroke="#D8D2CE" stroke-width="1">
+<line x1="20" y1="176" x2="660" y2="176"/>
+<line x1="20" y1="226" x2="660" y2="226"/>
+<line x1="20" y1="258" x2="660" y2="258"/>
+<line x1="20" y1="290" x2="660" y2="290"/>
+<line x1="20" y1="322" x2="660" y2="322"/>
+<line x1="20" y1="354" x2="660" y2="354"/>
+<line x1="20" y1="386" x2="660" y2="386"/>
+<line x1="20" y1="418" x2="660" y2="418"/>
+<line x1="380" y1="144" x2="380" y2="450"/>
+</g>
+<rect x="20" y="110" width="640" height="340" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="34" y="165">líneas sin . ! ? o comillas al final</text>
+<text x="34" y="197">páginas con &lt; 3 oraciones;</text>
+<text x="34" y="216">líneas con &lt; 5 palabras</text>
+<text x="34" y="247">líneas con “Javascript”</text>
+<text x="34" y="279">páginas con “lorem ipsum”</text>
+<text x="34" y="311">páginas con “{”</text>
+<text x="34" y="343">líneas con “cookie policy”, etc.</text>
+<text x="34" y="375" font-weight="bold" fill="#1F1E1E">páginas con palabras de lista negra</text>
+<text x="34" y="407">tramos de 3 oraciones repetidos</text>
+<text x="34" y="439" font-weight="bold" fill="#1F1E1E">idioma inglés con prob. ≥ 0,99</text>
+<g font-weight="bold" fill="#1F1E1E">
+<text x="394" y="165">menús, botones</text>
+<text x="394" y="206">fragmentos sueltos</text>
+<text x="394" y="247">avisos “active Javascript”</text>
+<text x="394" y="279">texto de relleno</text>
+<text x="394" y="311">código</text>
+<text x="394" y="343">avisos legales</text>
+<text x="394" y="375">contenido ofensivo</text>
+<text x="394" y="407">duplicados</text>
+<text x="394" y="439">otros idiomas</text>
+</g>
+<line x1="340" y1="450" x2="340" y2="484" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="210" y="484" width="260" height="56" rx="8" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="340" y="508" text-anchor="middle" font-size="19" font-weight="bold" fill="#1F1E1E">C4: 745 GB</text>
+<text x="340" y="529" text-anchor="middle" font-size="14">sin filtros: 6,1 TB</text>
+</svg>

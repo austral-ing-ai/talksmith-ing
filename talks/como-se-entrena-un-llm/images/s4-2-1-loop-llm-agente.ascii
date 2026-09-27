@@ -1,0 +1,19 @@
+ usuario: "¿Qué tiempo hace hoy en Córdoba?"
+      |
+      v
+ +---------------------+   llamada: get_weather(location="Córdoba")   +-----------------------+
+ |        LLM          | -------------------------------------------> |        AGENTE         |
+ | decide si llamar,   |                                              | lee la llamada,       |
+ | a qué herramienta   | <------------------------------------------- | ejecuta la tool,      |
+ | y con qué argumentos|   mensaje "tool" con el resultado, agregado  | agrega el resultado   |
+ +---------------------+   al contexto                                | y vuelve a llamar     |
+      |                                                               +-----------------------+
+      |      (el loop se repite mientras el LLM pida herramientas)
+      v
+ respuesta sin llamadas  -->  el agente corta el loop y se la da al usuario
+
+<!-- ascii-note:
+intent: el loop entre el modelo y el agente al usar herramientas; qué hace cada uno
+emphasize: la división de trabajo (el LLM genera la llamada; el agente ejecuta, agrega el resultado y corta) y la flecha de vuelta del resultado al contexto
+labels: LLM, AGENTE, mensaje "tool", respuesta final
+-->

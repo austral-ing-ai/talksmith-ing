@@ -8,13 +8,12 @@
     "date": "2026-09-30",
     "logo": null,
     "sections": [
-      "Apertura",
-      "Los datos y los idiomas",
-      "La escala",
-      "Del modelo base al chat",
-      "SFT y preferencias",
-      "Herramientas y esfuerzo",
-      "Cuando el modelo no sabe",
+      "Introducción",
+      "Pre-training",
+      "SFT",
+      "RLHF y refuerzo",
+      "Herramientas",
+      "Cuando el modelo inventa",
       "Fine-tuning",
       "Conclusiones"
     ]
@@ -22,45 +21,136 @@
   "slides": [
     {
       "template": "section-agenda",
-      "title": "Apertura"
+      "title": "Introducción"
     },
     {
-      "template": "content-image",
-      "section": "Apertura",
-      "title": "Dos fases de entrenamiento",
-      "lead": "**Un InstructGPT de 1.300 millones de parámetros le gana en preferencia humana a GPT-3 de 175.000 millones. La diferencia es la segunda fase del entrenamiento.**",
-      "media": {
-        "src": "images/sa-1-1-dos-fases-entrenamiento.png",
-        "alt": "Pre-training y post-training en fila, con el fine-tuning como post-training a escala chica"
-      },
-      "design": "banded",
-      "notes": "Arrancar con la cifra: un modelo 100 veces más chico gana porque pasó por post-training. Después el mapa. La clase 8 cerró con la pérdida del siguiente token (−log p del token correcto); esa pérdida es todo el pre-training. Son dos fases: pre y post. El post-training tiene dos pasos (SFT y preferencias) y suma habilidades como herramientas y niveles de esfuerzo. El fine-tuning que hace un equipo es post-training a escala chica. Las cifras de cómputo son de InstructGPT (2022); en modelos de razonamiento actuales el post-training puede pesar más, y el corpus no da esa proporción. Tiempo objetivo: ~2 min.",
+      "template": "stat",
+      "section": "Introducción",
+      "title": "Un modelo 100 veces más chico gana",
+      "lead": "**OpenAI (2022): un GPT-3 de 1.300 millones de parámetros con post-training (SFT y RLHF) le gana en preferencia humana a GPT-3 de 175.000 millones sin post-training. Ese post-training usó menos del 2% del cómputo.**",
+      "stats": [
+        {
+          "value": "3.640",
+          "caption": "petaflops/s-días: pre-training de GPT-3 175B."
+        },
+        {
+          "value": "4,9",
+          "caption": "petaflops/s-días: SFT de GPT-3 175B."
+        },
+        {
+          "value": "60",
+          "caption": "petaflops/s-días: RLHF de GPT-3 175B."
+        }
+      ],
+      "notes": "Es el gancho de la clase: un modelo 100 veces más chico gana porque pasó por post-training, y ese post-training costó casi nada en cómputo. Es un trabajo de OpenAI de 2022, el paso intermedio entre GPT-3 y ChatGPT; la sección 2 muestra las dos salidas lado a lado. Las cifras de cómputo son de la versión de 175B: SFT y RLHF suman 1,75%, y el pre-training el 98% que cita Chip Huyen para ese modelo. La cuenta no incluye el costo de los anotadores. En modelos de razonamiento actuales el post-training puede pesar más (sección 3). SFT y RLHF se explican en la lámina siguiente. Tiempo objetivo: ~2 min.",
       "_choice": {
         "signals": [
-          "n_images=1",
-          "labeled_items=0",
-          "one_claim=false (two sentences, ~30 words)",
-          "image_only=false (lead is two sentences, >120 chars)"
+          "author hint <!-- template: stat --> pins the template",
+          "big_metrics=true (3.640 / 4,9 / 60 petaflops/s-días are the payload)",
+          "labeled_items=3 (labels are the figures)",
+          "n_images=0",
+          "one_metric=false (three figures)",
+          "is_ordered=false",
+          "date_labels=false"
         ],
         "candidates": [
-          "content-image",
-          "image-full",
-          "statement"
+          "stat",
+          "big-number",
+          "concept-breakdown"
         ],
-        "picked": "content-image",
+        "picked": "stat",
         "rejected": {
-          "image-full": "image_only requires no prose beyond one short framing line (<=~120 chars); two sentences is prose that leads -> content-image",
-          "statement": "one_claim caps at ~16 words and allows no image set; this lead is ~30 words plus a diagram"
+          "big-number": "one_metric needs a single hero figure; the slide carries three figures of equal weight (big_metrics 2-4 -> stat)",
+          "concept-breakdown": "anti-default check: the bodies are numbers, the figure is the payload -> stat; also pinned by the author hint"
         }
       }
     },
     {
+      "template": "image-full",
+      "section": "Introducción",
+      "title": "Tres etapas, cuatro conjuntos de datos",
+      "lead": "**Un LLM se entrena en tres etapas: el pre-training aprende de texto de la web, el SFT (Supervised Fine-Tuning) de demostraciones escritas por personas y el RLHF (Reinforcement Learning from Human Feedback) de comparaciones entre respuestas.**",
+      "notes": "La lámina es el mapa de la clase: nombrá las tres etapas con las tarjetas; el diagrama muestra lo mismo con sus datos. No hace falta recorrerla columna por columna: las secciones 1, 2 y 3 toman una etapa cada una, y cada sección abre con su columna. Señalá solo la fila de abajo, donde la escala cae de más de un billón de tokens a entre decenas de miles y un millón de ejemplos. Las etapas 2 y 3 forman el post-training. El fine-tuning que hace un equipo de producto es la misma receta a escala chica (sección 6). El \"trillion\" del inglés es un billón en español (10¹²). Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Pre-training, SFT, RLHF)",
+          "is_ordered=true (a stepwise flow: \"Cada una parte del modelo que dejó la anterior\"; the three stages run in sequence)",
+          "date_labels=false",
+          "n_images=1 (shared stage map)",
+          "two_groups=false",
+          "big_metrics=false",
+          "render note: steps carried as a numbered list with inline bold stage names, because 3 labeled step cards clip beside the split diagram and banded hides the diagram (renderer limitation)"
+        ],
+        "candidates": [
+          "process",
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content+cards+image": "anti-default check: the items imply an order (three training stages, each starting from the previous model) -> process, which carries the shared diagram as media; a shared image is never the reason to pick content+cards+image",
+          "concept-breakdown": "requires images == 0 and an unordered set; the slide has a shared diagram and the stages are sequential"
+        },
+        "orchestrator_override": "Presenter wants the redrawn stage map legible; the diagram is the slide. The three stage lines were folded into the lead in final.md so the image can fill the stage (image-full). Earlier layouts shrank or collapsed it."
+      },
+      "image": {
+        "src": "images/sa-2-1-tres-etapas-cuatro-datos.png",
+        "alt": "Las tres etapas del entrenamiento con sus cuatro conjuntos de datos y la escala de cada uno"
+      }
+    },
+    {
       "template": "section-agenda",
-      "title": "Los datos y los idiomas"
+      "title": "Pre-training"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Pre-training",
+      "title": "Pre-training: completar texto",
+      "lead": "**El pre-training entrena al modelo para predecir el token que sigue en textos de la web. Sale un modelo base que conoce mucho y todavía no sigue instrucciones.**",
+      "cards": [
+        {
+          "label": "Datos",
+          "body": "Texto de internet, de baja calidad y en cantidad: más de un billón de tokens. Un billón de tokens equivale a unos 15 millones de libros.",
+          "icon": "public"
+        },
+        {
+          "label": "Objetivo",
+          "body": "Minimizar la pérdida del siguiente token de la clase 8. No hace falta etiquetar nada, porque el mismo texto trae la respuesta correcta (entrenamiento auto-supervisado).",
+          "icon": "track_changes"
+        },
+        {
+          "label": "Qué se espera",
+          "body": "Un modelo base que continúa cualquier texto con fluidez y reproduce lo que había en la web, también lo malo.",
+          "icon": "output"
+        }
+      ],
+      "notes": "Es la etapa que dejó armada la clase 8: la misma pérdida, aplicada a texto de toda la web. La idea para que se lleven es que el modelo aprende a continuar texto, y contestar preguntas no forma parte de ese objetivo. Las láminas de esta sección desarrollan esta columna: de dónde salen los datos, cuánto hay que escalar, qué le falta al modelo base y qué problemas arrastra. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Datos, Objetivo, Qué se espera)",
+          "is_ordered=false (facets of the stage, not steps)",
+          "date_labels=false",
+          "n_images=0",
+          "has_table=false",
+          "two_groups=false",
+          "big_metrics=false (figures sit inside prose bodies)",
+          "body_len=prose (>80 chars)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "value-columns"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "anti-default check: Datos / Objetivo / Qué se espera are facets of one stage, not steps in a sequence; no ordinal labels, no flow between the items",
+          "value-columns": "the three items do not align row by row over a shared factor and are not two groups compared against each other"
+        }
+      }
     },
     {
       "template": "value-columns",
-      "section": "Los datos y los idiomas",
+      "section": "Pre-training",
       "title": "De dónde salen las cifras de los datos",
       "lead": "**El tamaño de \"la web\" depende de qué se cuente y de quién lo midió. Cada cifra sobre datos de entrenamiento tiene que venir con su fuente y su fecha.**",
       "columns": [
@@ -107,13 +197,14 @@
           "kind": "note"
         }
       ],
-      "notes": "La lámina muestra de dónde salen los números, antes de dar uno. Las dos cifras de Villalobos difieren en más de 3 veces dentro del mismo paper; lo más probable es que una cuente capturas (la misma página guardada varias veces) y la otra URLs distintas. La cifra de \"2 mil millones\" de las notas no aparece en ninguna fuente del corpus; si se quiere mostrar, hay que buscarla en la página de estadísticas de Common Crawl y decir de qué crawl es. El paso de 45 TB a 570 GB da la escala del filtrado para GPT-3; la próxima lámina muestra cómo filtró Google para armar C4. Tiempo objetivo: ~2 min.",
+      "notes": "La lámina muestra de dónde salen los números, antes de dar uno. Las dos cifras de Villalobos difieren en más de 3 veces dentro del mismo paper; lo más probable es que una cuente capturas (la misma página guardada varias veces) y la otra URLs distintas. El paso de 45 TB a 570 GB da la escala del filtrado para GPT-3; la próxima lámina muestra cómo filtró Google para armar C4. Tiempo objetivo: ~1,5 min.",
       "_choice": {
         "signals": [
-          "has_table=true (3 cols x 5 rows)",
-          "labeled_items=2 (Uso, Calidad)",
+          "has_table=true (Cifra | Qué mide | Fuente, 5 rows)",
+          "labeled_items=2 (Uso, Calidad) as remarks under the table",
           "n_images=0",
-          "big_metrics=false (figures are row keys, each with what it measures and its source)"
+          "big_metrics=false (five figures, each qualified by what it measures and who measured it)",
+          "two_groups=false"
         ],
         "candidates": [
           "value-columns",
@@ -122,307 +213,33 @@
         ],
         "picked": "value-columns",
         "rejected": {
-          "concept-breakdown": "card-per-row is only for heterogeneous attributes with no factor read across; here the Fuente header is load-bearing (the slide claims every figure needs its source) -> lookup table whose headers carry meaning stays value-columns; width/row count is never the discriminator",
-          "stat": "big_metrics needs 2-4 standalone figures as the payload; five figures, each qualified by what it measures and its source, is a table, not a stat row"
+          "concept-breakdown": "the figures down the left are the compared things and \"Qué mide\" / \"Fuente\" are shared factors read across every row (the lead says each figure needs its source and date) -> comparable value columns; card-per-row is only for heterogeneous attributes with nothing read across",
+          "stat": "big_metrics is 2-4 standalone figures as the payload; here five figures are compared against what they measure and their source, which is a table"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "Los datos y los idiomas",
+      "section": "Pre-training",
       "title": "C4: cómo Google depuró Common Crawl",
       "lead": "**C4 toma un mes de Common Crawl (abril de 2019) y le aplica reglas escritas a mano. Cada regla ataca un tipo de basura concreto; queda texto en inglés de unos 750 GB.**",
       "media": {
-        "src": "images/s1-2-1-reglas-limpieza-c4.png",
+        "src": "images/s1-3-1-reglas-limpieza-c4.png",
         "alt": "Reglas de limpieza de C4 y la basura que saca cada una"
       },
       "design": "split-right",
       "facts": [
         {
-          "label": "¿Por qué funcionan?",
-          "body": "El modelo entrenado con C4 filtrado rinde mejor en todas las tareas evaluadas que el entrenado con el mismo texto sin filtrar."
+          "body": "**¿Por qué funcionan?** El modelo entrenado con C4 filtrado rinde mejor en todas las tareas evaluadas que el entrenado con el mismo texto sin filtrar."
         }
       ],
-      "notes": "Responde \"¿por qué funcionan los filtros?\": cada regla tiene un motivo concreto en el paper, y la evidencia es experimental: el mismo modelo, entrenado con el texto filtrado y sin filtrar, rinde peor sin filtrar en todas las tareas. El trabajo posterior va en la misma línea: RefinedWeb, que es Common Crawl filtrado y deduplicado, supera a colecciones curadas a mano. Ojo con dos detalles: algunas reglas sacan líneas y otras páginas enteras, y los filtros funcionan en promedio pero tienen costos (la lista negra, en 1.4). Dodge et al. describen los umbrales al revés (5 oraciones y 3 palabras); acá se sigue a Raffel, que construyó C4. Tiempo objetivo: ~2 min.",
+      "notes": "Responde \"¿por qué funcionan los filtros?\": cada regla tiene un motivo concreto en el paper, y la evidencia es experimental: el mismo modelo, entrenado con el texto filtrado y sin filtrar, rinde peor sin filtrar en todas las tareas. El trabajo posterior va en la misma línea: RefinedWeb, que es Common Crawl filtrado y deduplicado, supera a colecciones curadas a mano. Ojo con dos detalles: algunas reglas sacan líneas y otras páginas enteras, y los filtros funcionan en promedio pero tienen costos (la lista negra, en 1.8). Tiempo objetivo: ~2 min.",
       "_choice": {
         "signals": [
-          "n_images=1",
+          "n_images=1 (rules diagram)",
           "labeled_items=1 (¿Por qué funcionan?)",
-          "has_table=false (the rule table is inside the rendered diagram)"
-        ],
-        "candidates": [
-          "content-image",
-          "single-point",
-          "content+cards+image"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "single-point": "labeled_items == 1 with a supporting image -> content-image (catalog: \"If an image supports it -> content-image\")",
-          "content+cards+image": "requires labeled_items >= 2; this slide has one labeled point"
-        }
-      }
-    },
-    {
-      "template": "content+cards+image",
-      "section": "Los datos y los idiomas",
-      "title": "Qué hay adentro",
-      "lead": "**La mezcla de entrenamiento no se parece a la web ni a lo que se le pregunta al modelo. Dentro de C4, el sitio con más tokens es patents.google.com.**",
-      "cards": [
-        {
-          "label": "Dentro de C4",
-          "body": "Patentes, Wikipedia y diarios de EE. UU. encabezan la lista de sitios. 51,3% de las URLs muestreadas están alojadas en EE. UU."
-        },
-        {
-          "label": "Fechas",
-          "body": "92% del texto se escribió entre 2011 y 2019."
-        }
-      ],
-      "media": {
-        "src": "images/s1-3-1-mezcla-datos-gpt3.png",
-        "alt": "Gráfico de torta de la mezcla de datos de GPT-3"
-      },
-      "design": "split-right",
-      "notes": "Es el punto de las notas \"la distribución por categoría no es la misma\", ahora como torta. GPT-3 es el caso con la mezcla publicada; los porcentajes suman 101 por redondeo del paper original. Si se quiere mostrar el detalle de C4, la Figura 2 de Dodge et al. (barras por dominio y por sitio, escala logarítmica) está en el corpus. Muchas patentes vienen traducidas por máquina, un adelanto del texto generado de 2.4. Otro dato para mencionar: entre 1,87% y 24,88% de los textos de referencia de varios benchmarks aparecen tal cual en C4, así que parte del puntaje puede medir memoria. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "labeled_items=2 (Dentro de C4, Fechas)",
-          "n_images=1 (shared pie chart)",
-          "is_ordered=false",
-          "date_labels=false",
-          "two_groups=false",
-          "big_metrics=false (figures inside prose bodies)"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "content-image",
-          "concept-breakdown"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; dissolving the labels into facts loses the per-concept icon",
-          "concept-breakdown": "requires images == 0; the pie chart disqualifies it"
-        }
-      }
-    },
-    {
-      "template": "stat",
-      "section": "Los datos y los idiomas",
-      "title": "Lo que el filtro saca",
-      "lead": "**La lista negra de palabras de C4 saca mucho más texto de algunos grupos que de otros.**",
-      "stats": [
-        {
-          "value": "42%",
-          "caption": "Afroamericano"
-        },
-        {
-          "value": "32%",
-          "caption": "Hispano"
-        },
-        {
-          "value": "6,2%",
-          "caption": "Blanco"
-        },
-        {
-          "value": "7,2%",
-          "caption": "Otros"
-        }
-      ],
-      "highlights": [
-        {
-          "body": "Documentos que saca la lista negra, por dialecto del inglés",
-          "kind": "definition",
-          "position": "top"
-        },
-        {
-          "label": "Qué se pierde",
-          "body": "Menciones de orientación sexual tienen la mayor probabilidad de ser filtradas; muchos documentos excluidos son de medicina, derecho o ciencia.",
-          "kind": "note"
-        },
-        {
-          "label": "Consecuencia",
-          "body": "El modelo rinde peor con texto de minorías y sobre minorías. Los autores recomiendan no usar listas negras.",
-          "kind": "important"
-        }
-      ],
-      "notes": "La lista negra se armó para evitar malas palabras en el autocompletado de un buscador y terminó decidiendo qué inglés aprende un modelo. De cien mil documentos excluidos, solo el 31% cae en grupos de contenido sexual; el resto incluye discusiones legislativas sobre matrimonio igualitario o textos médicos. Los datos definen qué sabe el modelo y a quién le habla bien. Transición: el mismo problema, a escala de idiomas. Tiempo objetivo: ~1,5 min.",
-      "_choice": {
-        "signals": [
-          "has_table=true (2-col lookup, 4 rows)",
-          "big_metrics=true (42%, 32%, 6,2%, 7,2% are the payload)",
-          "labeled_items=2 (Qué se pierde, Consecuencia)",
-          "n_images=0"
-        ],
-        "candidates": [
-          "stat",
-          "value-columns",
-          "concept-breakdown"
-        ],
-        "picked": "stat",
-        "rejected": {
-          "value-columns": "the walk tests big_metrics (2-4 standalone numbers are the payload -> stat) before the column/table rules; the table is a figure per dialect, not parallel columns over shared factors",
-          "concept-breakdown": "the numbers are the payload, not prose points (anti-default check: numbers -> stat)"
-        }
-      }
-    },
-    {
-      "template": "stat",
-      "section": "Los datos y los idiomas",
-      "title": "El inglés domina, y se nota",
-      "lead": "**En el pre-training de Llama 2, el castellano es el 0,13% de los datos. Los idiomas peor representados están entre los que peor rinden, aunque la cantidad no es el único factor.**",
-      "stats": [
-        {
-          "value": "89,70%",
-          "caption": "inglés en el pre-training de Llama 2; 0,13% castellano."
-        },
-        {
-          "value": "~46%",
-          "caption": "de Common Crawl está en inglés."
-        },
-        {
-          "value": ">96%",
-          "caption": "de los datos de post-training de InstructGPT están en inglés."
-        }
-      ],
-      "highlights": [
-        {
-          "label": "MMLU",
-          "body": "(examen de opción múltiple en 57 materias): telugu, marathi y punjabi dan los peores resultados y están entre los menos representados en Common Crawl.",
-          "kind": "note"
-        }
-      ],
-      "notes": "Tres cifras, tres etapas: la web cruda, el pre-training de un modelo concreto y el post-training. El castellano pesa en Llama 2 lo mismo que el sueco (0,15%). Acá entra \"distribución por persona\" de las notas: ordenados por hablantes, el hindi y el bengalí (más de 800 millones de personas) estarían arriba; ordenados por datos, caen. \"Lost language\" lo leemos como los idiomas de pocos recursos que quedan afuera del ciclo: menos datos, peor modelo, menos usuarios, menos datos nuevos. La estructura del idioma y su cultura también pesan. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "author hint <!-- template: stat --> pins the template",
-          "big_metrics=true (89,70%, ~46%, >96%)",
-          "labeled_items=4 (3 figures + MMLU)",
-          "n_images=0"
-        ],
-        "candidates": [
-          "stat",
-          "concept-breakdown"
-        ],
-        "picked": "stat",
-        "rejected": {
-          "concept-breakdown": "pinned by the author hint; independently, three of the four bodies are figures as payload -> stat (anti-default: numbers). The MMLU line is not a figure and is carried as a highlight so the stat row stays numeric"
-        }
-      }
-    },
-    {
-      "template": "content-image",
-      "section": "Los datos y los idiomas",
-      "title": "El mismo texto, más tokens",
-      "lead": "**Con el tokenizer de ChatGPT y GPT-4, el castellano necesita 1,4 veces los tokens del inglés para el mismo mensaje. El birmano, 10,6 veces.**",
-      "media": {
-        "src": "images/efc0e934-0f0f-4dd9-8ea6-4953ea538ce0_871x444.png",
-        "alt": "Mediana de tokens por mensaje, relativa al inglés, con el tokenizer cl100k_base"
-      },
-      "design": "split-right",
-      "facts": [
-        {
-          "label": "Mediana por mensaje",
-          "body": "Inglés 7 tokens, birmano 72."
-        },
-        {
-          "label": "Sobre otro corpus paralelo (FLORES-200)",
-          "body": "Castellano 1,55×, italiano 1,64×, árabe 3,04×, shan 15,05×."
-        }
-      ],
-      "notes": "Las dos fuentes miden cosas parecidas con corpus distintos: MASSIVE son mensajes cortos tipo asistente de voz; FLORES-200 son oraciones de Wikipedia traducidas. Por eso el castellano da 1,4 en una y 1,55 en otra; las dos dicen lo mismo: entre 40% y 55% más tokens. 72/7 da 10,3, consistente con el 10,6 del gráfico, que es la razón por mensaje. Probar en vivo con el tokenizer web de OpenAI una frase en castellano y su traducción. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "author hint <!-- template: content-image --> pins the template",
-          "n_images=1",
-          "labeled_items=2 (Mediana por mensaje, Sobre otro corpus paralelo)",
-          "big_metrics=partial (ratios inside prose)"
-        ],
-        "candidates": [
-          "content-image",
-          "content+cards+image",
-          "stat"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "content+cards+image": "labeled_items=2 + shared image would fire it, but the author hint pins content-image; the two items are supporting facts to the chart",
-          "stat": "pinned by hint; the figures are embedded in comparative prose (several numbers per item), not 2-4 standalone metrics"
-        }
-      }
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Los datos y los idiomas",
-      "title": "¿El idioma o el dataset?",
-      "lead": "**Las dos cosas: el corpus desbalanceado y la escritura de cada idioma. Ni siquiera un modelo que trabaja byte por byte llega a la paridad.**",
-      "cards": [
-        {
-          "label": "Lo que pone el corpus",
-          "body": "Tokenizers entrenados para alemán o francés también le dan al inglés el costo más bajo entre los idiomas distintos del suyo: el texto en esos idiomas trae mucho inglés mezclado."
-        },
-        {
-          "label": "Lo que pone el idioma",
-          "body": "Cada idioma usa más o menos caracteres para decir lo mismo, y UTF-8 usa de 1 a 3 bytes por carácter según la escritura. A nivel de byte quedan diferencias de más de 4 veces."
-        },
-        {
-          "label": "Costo",
-          "body": "Se paga por token: el mismo trabajo en alemán o italiano cuesta ~50% más que en inglés; en odia o shan, más de 12 veces."
-        },
-        {
-          "label": "Latencia y contexto",
-          "body": "El shan tarda casi el doble en procesarse. En birmano entra menos de un décimo del contenido en la misma ventana de contexto."
-        }
-      ],
-      "format": "grid",
-      "notes": "Responde la pregunta de las notas. Petrov et al. no reparten la culpa en porcentajes: muestran las dos causas. La del corpus se ve en que hasta un tokenizer alemán prefiere el inglés a otros idiomas; la del idioma, en que los modelos a nivel de byte siguen desparejos. Su propuesta es entrenar tokenizers multilingües buscando paridad, sabiendo que no se llega del todo. Con un tercio del vocabulario el inglés solo se alarga un 10%, así que hay lugar para repartir. Consecuencia práctica: presupuestar tokens en castellano con un 40–55% de recargo sobre las estimaciones en inglés. Los precios citados son de 2023. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "labeled_items=4",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "two_groups=false (two causes + two consequences, not compared against each other)",
-          "big_metrics=false (numbers inside prose)",
-          "is_question=partial (title asks, lead answers; body is a labeled set, no choices)",
-          "body_len=prose (>80 chars)"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "quiz",
-          "value-columns"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "quiz": "is_question needs the slide to be a prompt + its resolution; here the answer is the lead and the payload is four labeled concepts, which quiz has no field for (answer + one explanation) -> never fall to a plainer template",
-          "value-columns": "the items do not align row by row over a shared factor and are not two symmetric groups compared against each other"
-        }
-      }
-    },
-    {
-      "template": "section-agenda",
-      "title": "La escala"
-    },
-    {
-      "template": "content-image",
-      "section": "La escala",
-      "title": "Tres perillas y una cuenta",
-      "lead": "**El cómputo de entrenamiento se estima como C ≈ 6 · N · D FLOPs: N parámetros, D tokens y 6 operaciones por parámetro y por token (2 hacia adelante, 4 hacia atrás).**",
-      "media": {
-        "src": "images/s2-1-1-formula-computo.png",
-        "alt": "Fórmula que une parámetros, tokens y cómputo, con el ejemplo de Chinchilla"
-      },
-      "design": "split-right",
-      "facts": [
-        {
-          "label": "Ley de escala",
-          "body": "Dado un presupuesto C, cuál es el mejor modelo que se puede obtener: qué N y qué D minimizan la pérdida."
-        }
-      ],
-      "notes": "La definición de ley de escala de las notas, dicha con la fórmula. El 6 sale de contar multiplicaciones y sumas: 2 por parámetro en la pasada hacia adelante y el doble en backpropagation. La cuenta con Chinchilla da 5,9 × 10²³, prácticamente el presupuesto de Gopher (5,76 × 10²³): los dos modelos gastaron lo mismo, y eso vuelve interesante la comparación de 2.2. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=1 (Ley de escala)",
-          "one_metric=false (formula, not a figure)",
-          "has_code=false"
+          "has_table=false (the rule table lives inside the rendered diagram)",
+          "is_question=false (the one question label is a lead-in, not a quiz prompt)"
         ],
         "candidates": [
           "content-image",
@@ -432,13 +249,49 @@
         "picked": "content-image",
         "rejected": {
           "single-point": "labeled_items == 1 with a supporting image -> content-image (\"If an image supports it -> content-image\")",
-          "content+cards+image": "requires labeled_items >= 2; one labeled point here"
+          "content+cards+image": "requires labeled_items >= 2; this slide carries a single labeled point"
+        }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Pre-training",
+      "title": "Tres perillas y una cuenta",
+      "lead": "**El cómputo de entrenamiento se estima como C ≈ 6 · N · D FLOPs: N parámetros, D tokens y 6 operaciones por parámetro y por token (2 hacia adelante, 4 hacia atrás).**",
+      "media": {
+        "src": "images/s1-4-1-formula-computo.png",
+        "alt": "La fórmula que une parámetros, tokens y cómputo, con un ejemplo numérico"
+      },
+      "design": "split-right",
+      "facts": [
+        {
+          "label": "Ley de escala",
+          "body": "Dado un presupuesto C, cuál es el mejor modelo que se puede obtener: qué N y qué D minimizan la pérdida."
+        }
+      ],
+      "notes": "La definición de ley de escala de las notas, dicha con la fórmula. El 6 sale de contar multiplicaciones y sumas: 2 por parámetro en la pasada hacia adelante y el doble en backpropagation. La cuenta con Chinchilla da 5,9 × 10²³, prácticamente el presupuesto de Gopher (5,76 × 10²³): los dos modelos gastaron lo mismo, y eso vuelve interesante la comparación de 1.5. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (formula diagram)",
+          "labeled_items=1 (Ley de escala)",
+          "has_code=false",
+          "one_claim=false (the lead is a formula plus its definition)"
+        ],
+        "candidates": [
+          "content-image",
+          "single-point",
+          "content+cards+image"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "single-point": "labeled_items == 1 with a supporting image -> content-image",
+          "content+cards+image": "requires labeled_items >= 2; only one labeled point here"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "La escala",
+      "section": "Pre-training",
       "title": "Chinchilla: 20 tokens por parámetro",
       "lead": "**Con el mismo cómputo que Gopher, un modelo 4 veces más chico entrenado con casi 5 veces más tokens le gana en casi todas las tareas. Los modelos actuales se entrenan con todavía más tokens.**",
       "columns": [
@@ -483,43 +336,43 @@
         {
           "label": "La regla de Chinchilla",
           "body": "Si se duplica el tamaño del modelo, hay que duplicar los tokens: unos 20 tokens por parámetro. Para un modelo de 3B, lo Chinchilla-óptimo son 60B tokens.",
-          "kind": "definition"
+          "kind": "takeaway"
         },
         {
           "label": "Resultado",
-          "body": "MMLU: Chinchilla 67,6%, Gopher 60,0%.",
+          "body": "En MMLU, un examen de opción múltiple de 57 materias: Chinchilla 67,6%, Gopher 60,0%.",
           "kind": "note"
         },
         {
           "label": "Por qué hoy se sobreentrena",
           "body": "El entrenamiento se paga una vez; la inferencia, en cada token. Un modelo más chico entrenado con más datos abarata la inferencia.",
-          "kind": "takeaway"
+          "kind": "note"
         }
       ],
-      "notes": "La tabla cuenta la historia en cuatro filas. Kaplan (2020) recomendaba crecer sobre todo en parámetros, y así se entrenaron GPT-3 y Gopher: menos de 2 tokens por parámetro. Chinchilla mostró que con el mismo presupuesto convenía un modelo más chico y más tokens. MMLU es el examen de opción múltiple de 1.5. La última fila es la práctica actual: Llama 3 70B está 11 veces por encima de Chinchilla, y el 8B cerca de 100 veces. El tamaño en parámetros ya no dice cuánto se entrenó un modelo. Tiempo objetivo: ~2,5 min.",
+      "notes": "La tabla cuenta la historia en cuatro filas. Kaplan (2020) recomendaba crecer sobre todo en parámetros, y así se entrenaron GPT-3 y Gopher: menos de 2 tokens por parámetro. Chinchilla mostró que con el mismo presupuesto convenía un modelo más chico y más tokens. La última fila es la práctica actual: Llama 3 70B está 11 veces por encima de Chinchilla, y el 8B cerca de 100 veces. El tamaño en parámetros ya no dice cuánto se entrenó un modelo. Tiempo objetivo: ~2,5 min.",
       "_choice": {
         "signals": [
           "has_table=true (Modelo | Parámetros | Tokens | Tokens por parámetro, 4 rows)",
-          "two_groups=false",
           "labeled_items=3 (La regla de Chinchilla, Resultado, Por qué hoy se sobreentrena)",
-          "date_labels=partial (years in the row keys, but the rows compare models over shared factors)",
-          "n_images=0"
+          "n_images=0",
+          "date_labels=false (years sit inside the model names, the rows are models)",
+          "big_metrics=false (a grid of figures over shared factors, not 2-4 standalone metrics)"
         ],
         "candidates": [
           "value-columns",
-          "timeline",
-          "concept-breakdown"
+          "concept-breakdown",
+          "stat"
         ],
         "picked": "value-columns",
         "rejected": {
-          "timeline": "the years qualify the row keys; the payload is the three shared factors read across each model row -> comparable value columns (has_table rule)",
-          "concept-breakdown": "a table of N options over shared factors is value-columns; card-per-row is only for heterogeneous attributes with no factor read across"
+          "concept-breakdown": "has_table: models compared over shared factors (parameters, tokens, ratio) are comparable value columns; card-per-row is only for heterogeneous attributes with nothing read across and would collapse each row into one body. The three labeled lines are remarks on the table and ride along as highlights",
+          "stat": "big_metrics is 2-4 standalone figures as the payload; this is a 4x3 grid of figures over shared factors, i.e. a table"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "La escala",
+      "section": "Pre-training",
       "title": "¿Cuánto más puede crecer?",
       "lead": "**Los datasets crecen unas 2,4 veces por año y alcanzan todo el texto humano público disponible hacia 2028 (rango: 2026 a 2032).**",
       "media": {
@@ -537,8 +390,7 @@
           "body": "Unos 320 billones de tokens, ajustado por calidad y por repetir datos varias épocas."
         },
         {
-          "label": "Sobreentrenar adelanta la fecha",
-          "body": "uno o dos años."
+          "body": "**Sobreentrenar adelanta la fecha** uno o dos años."
         }
       ],
       "notes": "Es el gráfico que el presentador marcó como crítico. La línea azul son los datasets de modelos conocidos, la banda verde el stock; en escala logarítmica la subida recta es exponencial, y cruza el stock antes de 2030. Contar la aceleración sobre el gráfico: GPT-3 abajo a la izquierda en 2020, Llama 3 más de un orden de magnitud más arriba en 2024. Pagar gente para escribir no alcanza: 10 millones de personas escribiendo 8 horas por día producen 70 billones de palabras por año, con un costo de cientos de miles de millones de dólares. Tiempo objetivo: ~2 min.",
@@ -546,44 +398,491 @@
         "signals": [
           "author hint <!-- template: content-image --> pins the template",
           "n_images=1 (projection chart)",
-          "labeled_items=3",
-          "date_labels=false (labels are concepts, not dates)"
+          "labeled_items=3 (Aceleración, Stock efectivo, Sobreentrenar adelanta la fecha)",
+          "big_metrics=false (figures inside prose facts)",
+          "date_labels=false"
         ],
         "candidates": [
           "content-image",
-          "content+cards+image"
+          "content+cards+image",
+          "stat"
         ],
         "picked": "content-image",
         "rejected": {
-          "content+cards+image": "labeled_items=3 + one shared image would fire it, but the author hint pins content-image: the chart leads and the three items are supporting facts read off it"
+          "content+cards+image": "author pin: the source carries <!-- template: content-image -->, which the schema says pins the template and skips classification. On signals alone the walk would pick content+cards+image (labeled_items >= 2 + one shared image); the pin overrides the catalog's own answer and is kept because it is the presenter's directive",
+          "stat": "figures are embedded in explanatory prose (2,4 veces, 320 billones, uno o dos años), not 2-4 standalone metrics; pinned by hint"
+        }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Pre-training",
+      "title": "Optimizado para completar",
+      "lead": "**El modelo base aprendió a continuar texto de la web. Ante una pregunta, responder es una de varias continuaciones posibles.**",
+      "media": {
+        "src": "images/s1-7-1-tres-continuaciones.png",
+        "alt": "El mismo prompt con tres continuaciones; solo una es una respuesta"
+      },
+      "design": "banded",
+      "notes": "El ejemplo de la pizza de las notas, traducido y armado con las continuaciones que da Chip Huyen. Preguntar a la clase cuál de las tres es más probable en Common Crawl: probablemente la (b), porque hay muchas más páginas de recetas que respuestas cortas. El modelo base no es tonto; está haciendo exactamente lo que le pidieron en la clase 8: minimizar la cross-entropy del siguiente token. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (three continuations diagram)",
+          "labeled_items=0",
+          "image_only=false (the framing is two sentences, ~125 chars: prose that leads)",
+          "one_claim=false (two sentences plus a diagram)"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full",
+          "statement"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "image-full": "image_only allows at most one short framing line (<= ~120 chars); \"Two sentences or more is prose that leads, and that is content-image\"",
+          "statement": "one_claim excludes an image set and caps at ~16 words; the lead is two sentences over a diagram"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Pre-training",
+      "title": "Problemas a tener en cuenta",
+      "lead": "**Los datos del pre-training no representan a la web ni a quienes la escriben, y el acceso al texto humano se achica.**",
+      "cards": [
+        {
+          "label": "Sesgo del filtro",
+          "body": "La lista negra de C4 saca el 42% de los documentos en inglés afroamericano y el 6,2% en inglés blanco.",
+          "icon": "filter_alt"
+        },
+        {
+          "label": "Dominio del inglés",
+          "body": "En el pre-training de Llama 2, el inglés es el 89,70% y el castellano el 0,13%. Los idiomas con pocos datos están entre los que peor rinden.",
+          "icon": "translate"
+        },
+        {
+          "label": "Texto generado",
+          "body": "La web se llena de texto escrito por modelos. Un modelo entrenado con él pierde los casos poco frecuentes (colapso de modelos).",
+          "icon": "smart_toy"
+        },
+        {
+          "label": "Acceso restringido",
+          "body": "Entre 2023 y 2024, robots.txt bloqueó el 5% de los tokens de C4; en las fuentes más activas, más del 28%.",
+          "icon": "block"
+        },
+        {
+          "label": "Sesgos heredados",
+          "body": "El modelo base repite los sesgos de su corpus y sigue pedidos dañinos hasta que el post-training le enseña a negarse.",
+          "icon": "balance"
+        }
+      ],
+      "notes": "La lista negra se armó para evitar malas palabras en el autocompletado de un buscador y terminó decidiendo qué inglés aprende un modelo; Dodge et al. recomiendan no usar listas negras. En los idiomas, la cantidad de datos no es el único factor: la estructura del idioma también pesa. Shumailov et al. midieron el colapso de modelos con un modelo de 125M en fine-tuning, así que es una señal y todavía no una medición a escala de frontera. El caso de Llama 2 (un mail de estafa que el modelo escribe después de SFT y rechaza después de RLHF) adelanta las secciones 2 y 3. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5 (Sesgo del filtro, Dominio del inglés, Texto generado, Acceso restringido, Sesgos heredados)",
+          "is_ordered=false",
+          "date_labels=false (2023-2024 sits inside one body)",
+          "n_images=0",
+          "has_table=false",
+          "two_groups=false",
+          "big_metrics=false (percentages are evidence inside prose, several per item)",
+          "body_len=prose"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "stat",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "stat": "anti-default check: the figures (42%, 89,70%, 5%) are evidence inside prose bodies about five distinct problems, not 2-4 standalone metrics",
+          "process": "no ordinal labels and no sequence between the five problems"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "SFT"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "SFT",
+      "title": "SFT: Supervised Fine-Tuning",
+      "lead": "**SFT (Supervised Fine-Tuning) toma el modelo base y lo sigue entrenando con ejemplos de cómo responder. El modelo que sale conversa.**",
+      "cards": [
+        {
+          "label": "Datos",
+          "body": "Demostraciones de alta calidad: un prompt y la respuesta que redactó un anotador. Decenas de miles de pares, contra el billón de tokens del pre-training.",
+          "icon": "edit_note"
+        },
+        {
+          "label": "Objetivo",
+          "body": "Que el modelo imite las demostraciones y, ante un prompt, produzca una respuesta como la del ejemplo.",
+          "icon": "content_copy"
+        },
+        {
+          "label": "Qué se espera",
+          "body": "Un modelo que responde en forma de diálogo, con el formato y el tono de los ejemplos, en vez de continuar el texto del prompt.",
+          "icon": "forum"
+        }
+      ],
+      "notes": "Lo que cambia respecto de la etapa anterior son los datos: pocos, elegidos y escritos a mano. El rango exacto y lo que cuesta producirlos están en 2.3; el formato de un registro, en 2.4. La lámina 2.2 muestra el mismo GPT-3 antes y después del post-training completo (SFT y RLHF); el cambio de formato empieza en SFT. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Datos, Objetivo, Qué se espera)",
+          "is_ordered=false (facets of the stage, not steps)",
+          "date_labels=false",
+          "n_images=0",
+          "has_table=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "body_len=prose (>80 chars)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "value-columns"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "anti-default check: Datos / Objetivo / Qué se espera are facets of one stage, not ordered steps; no ordinal labels, no flow",
+          "value-columns": "the items do not align row by row over a shared factor and are not two groups compared against each other"
+        }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "SFT",
+      "title": "GPT-3 antes y después del post-training",
+      "lead": "**Se le pide a GPT-3 un cuento en francés. En vez de escribirlo, genera más pedidos de cuentos, como si continuara una lista de consignas.**",
+      "media": {
+        "src": "images/fig-08-p015.png",
+        "alt": "GPT-3 175B antes y después del post-training, con el mismo prompt (Ouyang et al., 2022, fig. 8)"
+      },
+      "design": "split-right",
+      "facts": [
+        {
+          "label": "Mismo modelo base",
+          "body": "La versión con post-training (SFT y RLHF) es el mismo GPT-3 175B. Escribe el cuento."
+        },
+        {
+          "label": "Pregunta sobre código",
+          "body": "GPT-3 arma un multiple choice con cuatro opciones; la versión con post-training explica para qué sirve la lista."
+        }
+      ],
+      "notes": "Responde la pregunta de las notas \"¿se puede encontrar un ejemplo de esto?\". La figura es del paper de OpenAI que entrenó este modelo, y los prompts están elegidos a propósito; las salidas no. La explicación del modelo con post-training sobre el código tampoco es del todo correcta, según el propio pie de la figura: el post-training cambia el formato de la respuesta, no garantiza que sea correcta. Eso vuelve en la sección 5. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "author hint <!-- template: content-image --> pins the template",
+          "n_images=1 (paper figure with both outputs)",
+          "labeled_items=2 (Mismo modelo base, Pregunta sobre código)",
+          "two_groups=false (the before/after lives inside the figure; the two lines are separate observations, not symmetric groups)"
+        ],
+        "candidates": [
+          "content-image",
+          "content+cards+image",
+          "value-columns"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "content+cards+image": "author pin: the source carries <!-- template: content-image -->, which the schema says pins the template and skips classification. On signals alone the walk would pick content+cards+image (labeled_items >= 2 + one shared image); the pin overrides the catalog's own answer and is kept because it is the presenter's directive",
+          "value-columns": "the two labeled lines are not two sides of a comparison (both describe the post-trained vs base contrast from different prompts); nothing aligns row by row; pinned by hint"
         }
       }
     },
     {
       "template": "content+cards+image",
-      "section": "La escala",
-      "title": "La web se llena de texto generado",
-      "lead": "**Un modelo que se entrena con texto generado por otro modelo pierde las colas de la distribución. Después de varias generaciones, el texto se degrada.**",
+      "section": "SFT",
+      "title": "Datos de demostración",
+      "lead": "**SFT (Supervised Fine-Tuning) sigue minimizando la cross-entropy del siguiente token, pero sobre pares (prompt, respuesta) escritos por personas. La pérdida cuenta solo los tokens de la respuesta.**",
       "cards": [
         {
-          "label": "Ejemplo real (OPT-125m)",
-          "body": "El mismo texto sobre torres de iglesias, en la generación 9, termina en una lista de \"jackrabbits\" de cola negra, blanca, azul, roja, amarilla."
+          "label": "Nombre en OpenAI (2022)",
+          "body": "*Behavior cloning*: se muestra cómo debe comportarse el modelo y el modelo copia ese comportamiento.",
+          "icon": "badge"
         },
         {
-          "label": "Mitigación",
-          "body": "Conservar un 10% de datos humanos originales reduce la degradación a algo menor."
+          "label": "Costo",
+          "body": "En OpenAI (2022), 40 anotadores escribieron ~13.000 pares; ~90% tenía título universitario. Un dataset de SFT típico tiene entre 10.000 y 100.000 pares.",
+          "icon": "payments"
         }
       ],
       "media": {
-        "src": "images/s2-4-1-lazo-colapso-modelos.png",
-        "alt": "Lazo de realimentación del colapso de modelos"
+        "src": "images/s2-3-1-mascara-perdida-sft.png",
+        "alt": "Un ejemplo de SFT con la máscara de pérdida sobre el prompt"
       },
-      "design": "split-left",
-      "notes": "Leer en voz alta el ejemplo de la generación 9: arrancó hablando de arquitectura perpendicular y terminó enumerando conejos. Shumailov probó con fine-tuning de un modelo de 125M, no con pre-training a escala; es una señal, no una medición de lo que pasa con GPT-5. La consecuencia comercial: quien tiene texto humano anterior a 2022 o datos humanos frescos tiene una ventaja, y eso explica la lámina siguiente. Tiempo objetivo: ~2 min.",
+      "design": "split-right",
+      "notes": "La función de pérdida es la misma de la clase 8; lo que cambia son los datos y la máscara. La pregunta de las notas \"qué decir y cómo decirlo\" es lo que codifica una demostración: el contenido y la forma a la vez. La alternativa barata es generar demostraciones con otro modelo: Alpaca usó 52.000 instrucciones generadas con ChatGPT. Eso es destilación y vuelve en la sección 6. QLoRA midió el efecto de la máscara: entrenar solo sobre la respuesta da 38,6 de MMLU contra 37,5 entrenando sobre todo. Tiempo objetivo: ~1,5 min.",
       "_choice": {
         "signals": [
-          "labeled_items=2 (Ejemplo real (OPT-125m), Mitigación)",
-          "n_images=1 (feedback-loop diagram)",
+          "labeled_items=2 (Nombre en OpenAI (2022), Costo)",
+          "n_images=1 (loss-mask diagram)",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false (40 / ~13.000 / ~90% sit inside a prose body)"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; dissolving the two labels into facts loses their per-concept icons",
+          "concept-breakdown": "requires images == 0; the loss-mask diagram disqualifies it"
+        }
+      }
+    },
+    {
+      "template": "code-example",
+      "section": "SFT",
+      "title": "Un dataset de SFT",
+      "lead": "**Tres registros de demostración de OpenAI (2022), escritos por anotadores. Ese dataset no se publicó; hay datasets públicos con el mismo formato.**",
+      "code": "[\n  {\n    \"prompt\": \"Serendipity means the occurrence and development of events by chance in a happy or beneficial way. Use the word in a sentence.\",\n    \"response\": \"Running into Margaret and being introduced to Tom was a fortunate stroke of serendipity.\"\n  },\n  {\n    \"prompt\": \"Create a shopping list from this recipe:\\nTrim the ends off zucchini. Cut zucchini in half lengthwise; scoop out pulp, leaving 1/2-in. shells. Finely chop pulp. In a skillet, cook beef, zucchini pulp, onion, mushrooms and peppers over medium heat until meat is no longer pink; drain. [...]\",\n    \"response\": \"Zucchini, beef, onion, mushroom, peppers, cheese, ketchup, salt, pepper\"\n  },\n  {\n    \"prompt\": \"ELI5: What's the cause of the \\\"anxiety lump\\\" in our chest during stressful or disheartening experiences?\",\n    \"response\": \"The anxiety lump in your throat is caused by muscular tension keeping your glottis dilated to maximize airflow. [...]\"\n  }\n]",
+      "language": "json",
+      "explanation": [
+        "**Datasets públicos.** [Databricks Dolly-15k](https://huggingface.co/datasets/databricks/databricks-dolly-15k) (~15.000 pares escritos por empleados), [OpenAssistant](https://projects.laion.ai/Open-Assistant/docs/data/datasets) (~88.000 pares de conversaciones) y [Alpaca](https://github.com/tatsu-lab/stanford_alpaca) (52.000 instrucciones generadas con ChatGPT)."
+      ],
+      "notes": "Es la lámina que pedían las notas: un dataset de SFT concreto. Mostrar que cada registro es un JSON con dos campos, nada más, y abrir uno de los datasets públicos en Hugging Face para ver el mismo formato. Las respuestas son cortas y van al punto, y así queda entrenado el modelo. El prompt de la lista de compras trae la receta completa; está recortado en la lámina. Comparar con lo que hace GPT-3 con el de serendipity (Figura 47 del paper): repite \"Use the word in a sentence\" tres veces. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "has_code=true (JSON with three demonstration records, meant to be read)",
+          "labeled_items=1 (Datasets públicos)",
+          "n_images=0",
+          "is_cta=false (not a terminal slide; the links are one supporting line)"
+        ],
+        "candidates": [
+          "code-example",
+          "content+cards+image",
+          "single-point"
+        ],
+        "picked": "code-example",
+        "rejected": {
+          "content+cards+image": "requires labeled_items >= 2 beside the code; a single labeled line is the code panel's explanation, and has_code -> code-example comes first in the walk",
+          "single-point": "has_code is decisive before the enumeration rules; the JSON records are the payload of the slide"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "RLHF y refuerzo"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "RLHF y refuerzo",
+      "title": "RLHF: puntuar y reforzar",
+      "lead": "**RLHF (Reinforcement Learning from Human Feedback) usa las preferencias de las personas en dos pasos: entrena un modelo que puntúa respuestas y después ajusta el LLM para que saque puntajes altos.**",
+      "cards": [
+        {
+          "label": "Datos",
+          "body": "Comparaciones entre dos respuestas al mismo prompt, marcadas por anotadores: de 100.000 a un millón para el primer paso. El segundo usa solo prompts, de 10.000 a 100.000.",
+          "icon": "compare_arrows"
+        },
+        {
+          "label": "Objetivo",
+          "body": "Primero, un reward model (modelo de recompensa) aprende a darle un puntaje a cada par (prompt, respuesta). Después, aprendizaje por refuerzo (RL) ajusta el LLM para maximizar ese puntaje.",
+          "icon": "leaderboard"
+        },
+        {
+          "label": "Qué se espera",
+          "body": "Un modelo que, entre varias respuestas posibles, da la que los anotadores habrían elegido.",
+          "icon": "thumb_up"
+        }
+      ],
+      "notes": "Es la columna con dos pasos y dos modelos. La idea para que se lleven: primero un modelo aprende a juzgar respuestas, y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.2), cómo se entrena el reward model y cómo se arma su batch (3.3 y 3.4), el lazo de RL con PPO (3.5) y DPO, que llega al mismo objetivo sin reward model (3.6). Después, el RL con recompensas que se pueden verificar entrena el razonamiento y sus niveles de esfuerzo (3.7 a 3.10). Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Datos, Objetivo, Qué se espera)",
+          "is_ordered=false (facets of the stage; the two sub-steps live inside the Objetivo body, not as items)",
+          "date_labels=false",
+          "n_images=0",
+          "has_table=false",
+          "two_groups=false",
+          "big_metrics=false (dataset sizes sit inside a prose body)",
+          "body_len=prose (>80 chars)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "stat"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "anti-default check: Datos / Objetivo / Qué se espera are facets of one stage, not ordered steps; the Primero/Después order is inside one card body",
+          "stat": "the ranges (100.000 a un millón, 10.000 a 100.000) are qualifiers inside prose, not 2-4 standalone metrics"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "RLHF y refuerzo",
+      "title": "Comparar es más fácil que escribir",
+      "lead": "**Una demostración dice qué respuesta es aceptable, pero no cuánto mejor es que otra. Para eso se le muestran al anotador dos respuestas y elige una.**",
+      "cards": [
+        {
+          "label": "Por qué comparar",
+          "body": "Dos anotadores le ponen notas distintas a la misma respuesta; elegir entre dos es más consistente.",
+          "icon": "compare"
+        },
+        {
+          "label": "Acuerdo",
+          "body": "Aun así, en OpenAI (2022) los anotadores coincidieron en ~73% de los casos.",
+          "icon": "handshake"
+        },
+        {
+          "label": "Dataset público",
+          "body": "[Anthropic HH-RLHF](https://huggingface.co/datasets/Anthropic/hh-rlhf), ~170.000 comparaciones.",
+          "icon": "dataset"
+        }
+      ],
+      "media": {
+        "code": "{\n  \"prompt\": \"How can I get my dog high?\",\n  \"winning_response\": \"I'm not sure what you mean by that.\",\n  \"losing_response\": \"I don't know that we should get the dog high. I think it's important for a dog to experience the world in a sober state of mind.\"\n}",
+        "language": "json"
+      },
+      "design": "split-right",
+      "notes": "Preguntar a la clase cuál prefieren. Chip Huyen prefiere la perdedora, y ese desacuerdo es el punto: las preferencias humanas no caben en una fórmula única. El modelo queda alineado con las preferencias de un grupo concreto de anotadores; el paper de OpenAI lo dice explícitamente. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "has_code=true (one comparison record in JSON, a supporting example)",
+          "labeled_items=3 (Por qué comparar, Acuerdo, Dataset público)",
+          "n_images=0",
+          "is_ordered=false",
+          "two_groups=false (winning/losing live inside the code sample)",
+          "is_question=false (the notes ask the room; the slide poses no question it answers)"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "code-example",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "code-example": "its explanation column is plain strings (max 3) and would flatten the three labeled points into prose; the catalog's content+cards+image Match covers \"labeled cards on one side AND a supporting image/example/code on the other\", and the schema says a card set beside a code fence keeps its cards with the code as media -> the richer template that keeps both structures",
+          "concept-breakdown": "would have to drop the JSON sample (content is never dropped); a supporting code panel belongs in media beside the cards"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "RLHF y refuerzo",
+      "title": "El reward model",
+      "lead": "**El reward model (modelo de recompensa) recibe (prompt, respuesta) y devuelve un número. Se entrena para que la respuesta elegida puntúe más que la descartada.**",
+      "cards": [
+        {
+          "label": "De dónde sale",
+          "body": "Del modelo SFT, cambiando la capa de salida por una que da un escalar.",
+          "icon": "account_tree"
+        },
+        {
+          "label": "Rankings",
+          "body": "En OpenAI (2022), cada anotador ordena de 4 a 9 respuestas por prompt: de 6 a 36 pares por prompt.",
+          "icon": "format_list_numbered"
+        },
+        {
+          "label": "Escala",
+          "body": "Llama 2: más de 1,4 millones de comparaciones propias de Meta.",
+          "icon": "stacked_bar_chart"
+        }
+      ],
+      "media": {
+        "src": "images/s3-3-1-puntajes-reward-model.png",
+        "alt": "El mismo reward model puntúa la respuesta ganadora y la perdedora; entrenar es lograr que la ganadora quede arriba"
+      },
+      "design": "split-right",
+      "notes": "Acá va solo la idea: el mismo modelo puntúa las dos respuestas, y entrenarlo es lograr que la ganadora quede arriba. La cuenta está en la lámina siguiente. Llama 2 usa dos modelos de recompensa, uno de utilidad y otro de seguridad, porque las dos cosas a veces se oponen. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (De dónde sale, Rankings, Escala)",
+          "n_images=1 (reward model scoring diagram)",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false (4-9, 6-36, 1,4 millones sit inside prose bodies of different kinds)"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "content-image",
+          "stat"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; dissolving the labels into facts loses their icons",
+          "stat": "anti-default check: the figures qualify three different facts (origin, rankings, scale), only two of the three carry numbers; not 2-4 standalone metrics"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "RLHF y refuerzo",
+      "title": "El reward model, en un batch",
+      "lead": "**El reward model se entrena con pares: en un batch, cada par entra como dos secuencias y la pérdida premia que la preferida puntúe más.**",
+      "cards": [
+        {
+          "label": "Orden",
+          "body": "Las filas van de a pares, con la preferida primero, y el código tiene que saber qué puntaje va con cuál.",
+          "icon": "swap_vert"
+        },
+        {
+          "label": "Padding",
+          "body": "A y B casi nunca tienen el mismo largo, así que el código rellena cada fila con tokens de padding hasta el largo máximo del batch. El código toma el puntaje del último token real de cada secuencia, porque la última posición de la fila puede ser padding.",
+          "icon": "padding"
+        }
+      ],
+      "media": {
+        "src": "images/s3-4-1-batch-reward-model.png",
+        "alt": "Cómo se arma un batch de 64 pares de preferencia hasta un solo backward"
+      },
+      "design": "split-left",
+      "notes": "Recorrer el diagrama de arriba abajo. Cada fila repite el prompt, así que 64 pares son 128 secuencias, y pasan todas en un solo forward. Con los 128 puntajes, el código arma los pares; r(Aᵢ) es el s_w de la lámina anterior. σ convierte la diferencia de puntajes en la probabilidad de que A gane, y la pérdida baja cuando esa probabilidad sube. OpenAI (2022) mete todos los pares de un mismo prompt en un solo elemento del batch, porque con los pares mezclados el reward model se sobreajustaba. Usa la misma pérdida y cambia solo la agrupación. El 64 del ejemplo son pares; en OpenAI (2022), un batch de 64 contaba prompts. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2 (Orden, Padding)",
+          "n_images=1 (batch assembly diagram, read top to bottom)",
+          "is_ordered=false (the order lives in the diagram; the two cards are implementation caveats)",
+          "date_labels=false",
+          "two_groups=false",
+          "has_code=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "process",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "process": "anti-default check: the two labeled items are not steps (Orden and Padding are caveats about the batch); the sequence is carried by the diagram, placed first with split-left",
+          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; facts would lose the per-concept icons"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "RLHF y refuerzo",
+      "title": "RLHF con PPO",
+      "lead": "**En RLHF (Reinforcement Learning from Human Feedback), el LLM genera una respuesta, el reward model la puntúa y PPO (Proximal Policy Optimization) ajusta el LLM para subir ese puntaje sin alejarse demasiado del modelo SFT.**",
+      "cards": [
+        {
+          "label": "En términos de RL",
+          "body": "La política es el LLM; cada acción es elegir un token; la recompensa la da el RM.",
+          "icon": "psychology"
+        },
+        {
+          "label": "Por qué el KL",
+          "body": "(divergencia de Kullback-Leibler: cuánto se aleja el modelo del SFT). El RM se equivoca con respuestas que nunca vio; sin freno, el modelo aprende a explotar esos errores (*reward hacking*).",
+          "icon": "anchor"
+        }
+      ],
+      "media": {
+        "src": "images/s3-5-1-lazo-rlhf-ppo.png",
+        "alt": "El lazo de RLHF con PPO y la penalización KL contra el modelo SFT"
+      },
+      "design": "split-right",
+      "notes": "La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen). Ese trabajo además mezcla gradientes de pre-training (PPO-ptx) para no perder rendimiento en tareas clásicas, lo que el paper llama \"impuesto de alineación\". PPO necesita cuatro modelos en memoria (política, referencia, recompensa, valor), y es inestable; eso motiva DPO. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2 (En términos de RL, Por qué el KL)",
+          "n_images=1 (PPO loop diagram)",
           "is_ordered=false",
           "date_labels=false",
           "two_groups=false",
@@ -602,469 +901,8 @@
       }
     },
     {
-      "template": "concept-breakdown",
-      "section": "La escala",
-      "title": "Acuerdos, restricciones y salidas",
-      "lead": "**Los sitios con el mejor texto cierran el acceso a los crawlers de IA, y el texto con permiso pasa a negociarse.**",
-      "cards": [
-        {
-          "label": "Restricciones",
-          "body": "Entre 2023 y 2024, el 5% de los tokens de C4 quedó bloqueado por robots.txt; en las fuentes más activas, más del 28%. Por términos de servicio, el 45% de C4."
-        },
-        {
-          "label": "A quién bloquean",
-          "body": "El crawler de OpenAI está bloqueado en el 25,9% de los dominios principales de C4."
-        },
-        {
-          "label": "Datos propietarios",
-          "body": "Reddit y StackOverflow cambiaron sus términos para impedir el scraping para LLMs. Quien tiene datos propios (libros, transcripciones, historias clínicas) tiene ventaja."
-        },
-        {
-          "label": "Salidas",
-          "body": "Datos sintéticos donde la respuesta se puede verificar (matemática, código), otras modalidades, datos no públicos (con problemas de privacidad) y aprender más de cada dato."
-        }
-      ],
-      "format": "grid",
-      "notes": "Las notas decían \"deals and more deals on different types of data\". El corpus no documenta acuerdos de licencia concretos con montos; si se quieren nombrar (editoriales, foros, bancos de imágenes), hay que sumar una fuente. Longpre da el cuadro de fondo: la web abierta se achica justo cuando más se la necesita. El 45% de términos de servicio y el 28% de fuentes críticas tienen varias formulaciones en el paper; se usa la del abstract. La última viñeta conecta con la sección 5: el razonamiento se entrena con problemas verificables, el dominio donde los datos sintéticos funcionan. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "labeled_items=4 (Restricciones, A quién bloquean, Datos propietarios, Salidas)",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "two_groups=false",
-          "big_metrics=false (percentages inside prose bodies)",
-          "body_len=prose (>80 chars)"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "stat",
-          "process"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "stat": "the figures (5%, 28%, 45%, 25,9%) sit inside prose bodies alongside non-numeric items; numbers are not the payload of every item",
-          "process": "no ordinal labels and no stepwise flow; the four items are parallel facets"
-        }
-      }
-    },
-    {
-      "template": "section-agenda",
-      "title": "Del modelo base al chat"
-    },
-    {
-      "template": "content-image",
-      "section": "Del modelo base al chat",
-      "title": "Optimizado para completar",
-      "lead": "**El modelo base aprendió a continuar texto de la web. Ante una pregunta, responder es una de varias continuaciones posibles.**",
-      "media": {
-        "src": "images/s3-1-1-tres-continuaciones.png",
-        "alt": "El mismo prompt con tres continuaciones; solo una responde"
-      },
-      "design": "split-right",
-      "notes": "El ejemplo de la pizza de las notas, traducido y armado con las continuaciones que da Chip Huyen. Preguntar a la clase cuál de las tres es más probable en Common Crawl: probablemente la (b), porque hay muchas más páginas de recetas que respuestas cortas. El modelo base no es tonto; está haciendo exactamente lo que le pidieron en la clase 8: minimizar la cross-entropy del siguiente token. Tiempo objetivo: ~1,5 min.",
-      "_choice": {
-        "signals": [
-          "n_images=1",
-          "labeled_items=0",
-          "image_only=false (lead is two sentences, ~125 chars)",
-          "is_question=false (the pizza question lives in the diagram, not as the slide's prompt)"
-        ],
-        "candidates": [
-          "content-image",
-          "image-full"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "image-full": "image_only allows at most one short framing line (<=~120 chars); two sentences is prose that leads -> content-image"
-        }
-      }
-    },
-    {
-      "template": "content-image",
-      "section": "Del modelo base al chat",
-      "title": "GPT-3 contra InstructGPT",
-      "lead": "**Se le pide a GPT-3 un cuento en francés. En vez de escribirlo, genera más pedidos de cuentos, como si continuara una lista de consignas.**",
-      "media": {
-        "src": "images/fig-08-p015.png",
-        "alt": "GPT-3 175B contra InstructGPT 175B con el mismo prompt (Ouyang et al., 2022, fig. 8)"
-      },
-      "design": "split-right",
-      "facts": [
-        {
-          "label": "Mismo modelo base",
-          "body": "InstructGPT es GPT-3 con post-training. Escribe el cuento."
-        },
-        {
-          "label": "Pregunta sobre código",
-          "body": "GPT-3 arma un multiple choice con cuatro opciones; InstructGPT explica para qué sirve la lista."
-        }
-      ],
-      "notes": "Responde la pregunta de las notas \"¿se puede encontrar un ejemplo de esto?\". Es de los mismos autores de InstructGPT y los prompts están elegidos a propósito; las salidas no. La explicación de InstructGPT sobre el código tampoco es del todo correcta, según el propio pie de la figura: el post-training cambia el formato de la respuesta, no garantiza que sea correcta. Eso vuelve en la sección 6. Tiempo objetivo: ~1,5 min.",
-      "_choice": {
-        "signals": [
-          "author hint <!-- template: content-image --> pins the template",
-          "n_images=1 (Ouyang fig. 8)",
-          "labeled_items=2 (Mismo modelo base, Pregunta sobre código)",
-          "two_groups=partial (title \"A contra B\"; the comparison lives in the figure, the items are not two symmetric groups)"
-        ],
-        "candidates": [
-          "content-image",
-          "value-columns",
-          "content+cards+image"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "value-columns": "pinned by the author hint; the two text items are not rows over shared factors (one states the relation, the other a second example), the side-by-side comparison is the figure itself",
-          "content+cards+image": "labeled_items=2 + shared image would fire it, but the author hint pins content-image"
-        }
-      }
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Del modelo base al chat",
-      "title": "Hereda lo que hay en los datos",
-      "lead": "**El modelo base reproduce los sesgos de su corpus y sigue cualquier instrucción, también las que una empresa no quiere responder.**",
-      "cards": [
-        {
-          "label": "Sesgo",
-          "body": "Un modelo entrenado sobre C4 asocia \"judío\" con sentimiento positivo y \"árabe\" con negativo; en C4 la brecha de palabras positivas entre ambos es de 7,5 puntos."
-        },
-        {
-          "label": "Estereotipos",
-          "body": "Chinchilla asocia \"recepcionista\" con mujeres y \"sheriff\" con hombres."
-        },
-        {
-          "label": "Pedidos dañinos",
-          "body": "Llama 2 después de SFT escribe un mail de estafa pidiendo 10.000 dólares; después de RLHF lo rechaza."
-        },
-        {
-          "label": "Objetivo desalineado",
-          "body": "Predecir la web no es lo mismo que ser útil, honesto e inofensivo para un cliente."
-        }
-      ],
-      "format": "grid",
-      "notes": "Es el tercer punto de las notas: sesgo, racismo y comportamientos que no se alinean con los objetivos de la empresa. Dodge aclara que no probó un vínculo causal entre las estadísticas del corpus y el sesgo del modelo; las dos cosas van en la misma dirección. El ejemplo de Llama 2 adelanta el efecto del entrenamiento con preferencias: SFT solo no alcanzó para que el modelo se niegue. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "labeled_items=4 (Sesgo, Estereotipos, Pedidos dañinos, Objetivo desalineado)",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "two_groups=false",
-          "big_metrics=false",
-          "body_len=prose (>80 chars)"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "process",
-          "stat"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "process": "no ordinal labels or flow; four parallel inherited behaviours",
-          "stat": "the numbers (7,5 puntos, 10.000 dólares) are details inside prose, not the payload"
-        }
-      }
-    },
-    {
-      "template": "content-image",
-      "section": "Del modelo base al chat",
-      "title": "Post-training: SFT y preferencias",
-      "lead": "**El post-training tiene dos pasos: SFT (Supervised Fine-Tuning) con datos de demostración, y ajuste por preferencias, casi siempre con RLHF (Reinforcement Learning from Human Feedback).**",
-      "media": {
-        "src": "images/p003-fig-2-10-training-workflow-rotated-upright.png",
-        "alt": "Flujo de entrenamiento con pre-training, SFT y RLHF (AI Engineering, fig. 2-10)"
-      },
-      "design": "split-right",
-      "facts": [
-        {
-          "label": "Pre-training",
-          "body": "Datos de baja calidad y a escala; el modelo queda optimizado para completar."
-        },
-        {
-          "label": "SFT",
-          "body": "Datos de demostración (prompt, respuesta) de alta calidad; el modelo aprende a dialogar."
-        },
-        {
-          "label": "RLHF",
-          "body": "Datos de comparación entrenan un *reward model*; el modelo final maximiza ese puntaje."
-        }
-      ],
-      "notes": "La figura del libro tiene tres columnas, pero son dos fases: la primera columna es pre-training y las otras dos son los dos pasos del post-training. Es el mismo esquema de InstructGPT (Figura 2) y de Llama 2 (Figura 4). Los términos quedan en inglés, como en la figura y en los papers: pre-training, post-training, SFT, RLHF, reward model. Chip Huyen usa la imagen del shoggoth: el pre-training produce un monstruo entrenado con todo internet, SFT lo vuelve presentable y RLHF le pone una cara sonriente. Tiempo objetivo: ~1,5 min.",
-      "_choice": {
-        "signals": [
-          "author hint <!-- template: content-image --> pins the template",
-          "n_images=1 (AI Engineering fig. 2-10)",
-          "labeled_items=3 (Pre-training, SFT, RLHF)",
-          "is_ordered=partial (stages of a pipeline)"
-        ],
-        "candidates": [
-          "content-image",
-          "process",
-          "content+cards+image"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "process": "pinned by the author hint; the order is carried by the figure, the three items describe the data of each stage beside it",
-          "content+cards+image": "labeled_items=3 + shared image would fire it, but the author hint pins content-image"
-        }
-      }
-    },
-    {
-      "template": "stat",
-      "section": "Del modelo base al chat",
-      "title": "Cuánto cuesta cada etapa",
-      "lead": "**En InstructGPT, SFT y RLHF juntos usaron menos del 2% del cómputo total.**",
-      "stats": [
-        {
-          "value": "3.640",
-          "caption": "petaflops/s-días: pre-training de GPT-3 175B."
-        },
-        {
-          "value": "4,9",
-          "caption": "petaflops/s-días: SFT de InstructGPT 175B."
-        },
-        {
-          "value": "60",
-          "caption": "petaflops/s-días: RLHF (PPO-ptx) de InstructGPT 175B."
-        }
-      ],
-      "highlights": [
-        {
-          "body": "El InstructGPT de 1.300 millones de parámetros le gana en preferencia humana a GPT-3 de 175.000 millones.",
-          "kind": "takeaway"
-        }
-      ],
-      "notes": "Las notas decían \"solo el 2% del entrenamiento total\" sin fuente. La cuenta con los números de InstructGPT da 1,75% de cómputo para post-training, consistente con el 98% que cita Chip Huyen. No incluye el costo de los anotadores humanos, que el paper no da en dinero. El dato de 1,3B contra 175B es el argumento económico: invertir en post-training rindió más que un modelo 100 veces más grande. Para modelos de razonamiento actuales la proporción puede ser otra (sección 5). Tiempo objetivo: ~1,5 min.",
-      "_choice": {
-        "signals": [
-          "author hint <!-- template: stat --> pins the template",
-          "big_metrics=true (3.640, 4,9, 60 petaflops/s-días)",
-          "labeled_items=3",
-          "n_images=0"
-        ],
-        "candidates": [
-          "stat",
-          "concept-breakdown"
-        ],
-        "picked": "stat",
-        "rejected": {
-          "concept-breakdown": "pinned by the hint; independently the three bodies are figures as payload -> stat (anti-default: numbers)"
-        }
-      }
-    },
-    {
-      "template": "section-agenda",
-      "title": "SFT y preferencias"
-    },
-    {
       "template": "content+cards+image",
-      "section": "SFT y preferencias",
-      "title": "Datos de demostración",
-      "lead": "**SFT (Supervised Fine-Tuning) sigue minimizando la cross-entropy del siguiente token, pero sobre pares (prompt, respuesta) escritos por personas. La pérdida cuenta solo los tokens de la respuesta.**",
-      "cards": [
-        {
-          "label": "Nombre en OpenAI",
-          "body": "*Behavior cloning*: se muestra cómo debe comportarse el modelo y el modelo copia ese comportamiento."
-        },
-        {
-          "label": "Costo",
-          "body": "Para InstructGPT, 40 anotadores escribieron ~13.000 pares; ~90% tenía título universitario. Un dataset de SFT típico tiene entre 10.000 y 100.000 pares."
-        }
-      ],
-      "media": {
-        "src": "images/s4-1-1-mascara-perdida-sft.png",
-        "alt": "Ejemplo de SFT con la pérdida enmascarada sobre el prompt"
-      },
-      "design": "split-right",
-      "notes": "La función de pérdida es la misma de la clase 8; lo que cambia son los datos y la máscara. La pregunta de las notas \"qué decir y cómo decirlo\" es lo que codifica una demostración: el contenido y la forma a la vez. Sobre el costo, las fuentes dan entre 12.725 y 14.500 pares según qué cuenten; es el mismo orden. La alternativa barata es generar demostraciones con otro modelo: Alpaca usó 52.000 instrucciones generadas con ChatGPT. Eso es destilación y vuelve en la sección 7. QLoRA midió el efecto de la máscara: entrenar solo sobre la respuesta da 38,6 de MMLU contra 37,5 entrenando sobre todo. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "labeled_items=2 (Nombre en OpenAI, Costo)",
-          "n_images=1 (loss-mask diagram)",
-          "is_ordered=false",
-          "date_labels=false",
-          "two_groups=false",
-          "big_metrics=false (13.000 pares inside prose)"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "content-image",
-          "concept-breakdown"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; facts would drop the per-concept icons",
-          "concept-breakdown": "requires images == 0; the mask diagram disqualifies it"
-        }
-      }
-    },
-    {
-      "template": "code-example",
-      "section": "SFT y preferencias",
-      "title": "Un dataset de SFT",
-      "lead": "**Tres registros de demostración de InstructGPT, escritos por anotadores contratados. Ese dataset no se publicó; hay datasets públicos con el mismo formato.**",
-      "code": "[\n  {\n    \"prompt\": \"Serendipity means the occurrence and development of events by chance in a happy or beneficial way. Use the word in a sentence.\",\n    \"response\": \"Running into Margaret and being introduced to Tom was a fortunate stroke of serendipity.\"\n  },\n  {\n    \"prompt\": \"Create a shopping list from this recipe:\\nTrim the ends off zucchini. Cut zucchini in half lengthwise; scoop out pulp, leaving 1/2-in. shells. Finely chop pulp. In a skillet, cook beef, zucchini pulp, onion, mushrooms and peppers over medium heat until meat is no longer pink; drain. [...]\",\n    \"response\": \"Zucchini, beef, onion, mushroom, peppers, cheese, ketchup, salt, pepper\"\n  },\n  {\n    \"prompt\": \"ELI5: What's the cause of the \\\"anxiety lump\\\" in our chest during stressful or disheartening experiences?\",\n    \"response\": \"The anxiety lump in your throat is caused by muscular tension keeping your glottis dilated to maximize airflow. [...]\"\n  }\n]",
-      "language": "json",
-      "explanation": [
-        "**Datasets públicos.** [Databricks Dolly-15k](https://huggingface.co/datasets/databricks/databricks-dolly-15k) (~15.000 pares escritos por empleados), [OpenAssistant](https://projects.laion.ai/Open-Assistant/docs/data/datasets) (~88.000 pares de conversaciones) y [Alpaca](https://github.com/tatsu-lab/stanford_alpaca) (52.000 instrucciones generadas con ChatGPT)."
-      ],
-      "notes": "Es la lámina que pedían las notas: un dataset de SFT concreto. Mostrar que cada registro es un JSON con dos campos, nada más, y abrir uno de los datasets públicos en Hugging Face para ver el mismo formato. Las respuestas son cortas y van al punto, y así queda entrenado el modelo. El prompt de la lista de compras trae la receta completa; está recortado en la lámina. Comparar con lo que hace GPT-3 con el de serendipity (Figura 47 del paper): repite \"Use the word in a sentence\" tres veces. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "has_code=true (json fence, three SFT records)",
-          "labeled_items=1 (Datasets públicos)",
-          "is_cta=partial (links to datasets, not terminal)"
-        ],
-        "candidates": [
-          "code-example",
-          "single-point",
-          "closing-cta"
-        ],
-        "picked": "code-example",
-        "rejected": {
-          "single-point": "has_code -> code-example is checked before anything else; the records are meant to be read",
-          "closing-cta": "not a terminal slide; the links are one supporting line to the code"
-        }
-      }
-    },
-    {
-      "template": "content+cards+image",
-      "section": "SFT y preferencias",
-      "title": "Comparar es más fácil que escribir",
-      "lead": "**Una demostración dice qué respuesta es aceptable, pero no cuánto mejor es que otra. Para eso se le muestran al anotador dos respuestas y elige una.**",
-      "cards": [
-        {
-          "label": "Por qué comparar",
-          "body": "Dos anotadores le ponen notas distintas a la misma respuesta; elegir entre dos es más consistente."
-        },
-        {
-          "label": "Acuerdo",
-          "body": "Aun así, los anotadores de InstructGPT coincidieron en ~73% de los casos."
-        },
-        {
-          "label": "Dataset público",
-          "body": "[Anthropic HH-RLHF](https://huggingface.co/datasets/Anthropic/hh-rlhf), ~170.000 comparaciones."
-        }
-      ],
-      "media": {
-        "code": "{\n  \"prompt\": \"How can I get my dog high?\",\n  \"winning_response\": \"I'm not sure what you mean by that.\",\n  \"losing_response\": \"I don't know that we should get the dog high. I think it's important for a dog to experience the world in a sober state of mind.\"\n}",
-        "language": "json"
-      },
-      "design": "split-right",
-      "notes": "Preguntar a la clase cuál prefieren. Chip Huyen prefiere la perdedora, y ese desacuerdo es el punto: las preferencias humanas no caben en una fórmula única. El modelo queda alineado con las preferencias de un grupo concreto de anotadores; el paper de InstructGPT lo dice explícitamente. Tiempo objetivo: ~1,5 min.",
-      "_choice": {
-        "signals": [
-          "has_code=true (json preference record)",
-          "labeled_items=3 (Por qué comparar, Acuerdo, Dataset público)",
-          "n_images=0",
-          "is_ordered=false",
-          "date_labels=false",
-          "two_groups=false",
-          "big_metrics=false (~73%, ~170.000 inside prose)"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "code-example",
-          "concept-breakdown"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "code-example": "never fall to a plainer template: code-example gives the non-code half a 2-3-sentence explanation column, flattening a labeled set of 3; the catalog routes a card set beside a code fence to content+cards+image with the code in media (\"if the supporting half is code or a table, put it in media and keep the cards\")",
-          "concept-breakdown": "would drop the code fence (content is never dropped); a card set with supporting code is the content+cards+image hybrid"
-        }
-      }
-    },
-    {
-      "template": "content+cards+image",
-      "section": "SFT y preferencias",
-      "title": "El reward model",
-      "lead": "**El reward model (modelo de recompensa) recibe (prompt, respuesta) y devuelve un número. Se entrena para que la respuesta elegida puntúe más que la descartada.**",
-      "cards": [
-        {
-          "label": "De dónde sale",
-          "body": "Del modelo SFT, cambiando la capa de salida por una que da un escalar."
-        },
-        {
-          "label": "Rankings",
-          "body": "InstructGPT ordena de 4 a 9 respuestas por prompt: de 6 a 36 pares por prompt."
-        },
-        {
-          "label": "Escala",
-          "body": "Llama 2: más de 1,4 millones de comparaciones propias de Meta."
-        }
-      ],
-      "media": {
-        "src": "images/s4-4-1-perdida-reward-model.png",
-        "alt": "El reward model puntúa las dos respuestas y la pérdida compara los puntajes"
-      },
-      "design": "split-right",
-      "notes": "La pérdida es una regresión logística sobre la diferencia de puntajes (modelo de Bradley-Terry). Llama 2 usa dos modelos de recompensa, uno de utilidad y otro de seguridad, porque las dos cosas a veces se oponen. También los inicializa desde el modelo de chat para que \"sepa lo que sabe el modelo\": un RM que sabe menos que el modelo que juzga termina premiando respuestas inventadas. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "labeled_items=3 (De dónde sale, Rankings, Escala)",
-          "n_images=1 (RM loss diagram)",
-          "is_ordered=false",
-          "date_labels=false",
-          "two_groups=false",
-          "big_metrics=false (figures inside prose)"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "content-image",
-          "stat"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image",
-          "stat": "only two of three items carry figures and they are embedded in prose; numbers are not the payload"
-        }
-      }
-    },
-    {
-      "template": "content+cards+image",
-      "section": "SFT y preferencias",
-      "title": "RLHF con PPO",
-      "lead": "**En RLHF (Reinforcement Learning from Human Feedback), el LLM genera una respuesta, el reward model la puntúa y PPO (Proximal Policy Optimization) ajusta el LLM para subir ese puntaje sin alejarse demasiado del modelo SFT.**",
-      "cards": [
-        {
-          "label": "En términos de RL",
-          "body": "La política es el LLM; cada acción es elegir un token; la recompensa la da el RM."
-        },
-        {
-          "label": "Por qué el KL",
-          "body": "(divergencia de Kullback-Leibler: cuánto se aleja el modelo del SFT). El RM se equivoca con respuestas que nunca vio; sin freno, el modelo aprende a explotar esos errores (*reward hacking*)."
-        }
-      ],
-      "media": {
-        "src": "images/s4-5-1-lazo-rlhf-ppo.png",
-        "alt": "Lazo de RLHF con PPO y la penalización KL contra el modelo SFT"
-      },
-      "design": "split-right",
-      "notes": "La fórmula es la de InstructGPT (y la de la lámina de Chip Huyen). InstructGPT además mezcla gradientes de pre-training (PPO-ptx) para no perder rendimiento en tareas clásicas, lo que el paper llama \"impuesto de alineación\". Chip Huyen dice 40.000 prompts de RL; la Tabla 6 del paper da 31.144 de entrenamiento: el orden coincide, y la lámina no da la cifra. PPO necesita cuatro modelos en memoria (política, referencia, recompensa, valor), y es inestable; eso motiva DPO. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "labeled_items=2 (En términos de RL, Por qué el KL)",
-          "n_images=1 (RLHF/PPO loop)",
-          "is_ordered=false (the loop order is in the diagram, items are not steps)",
-          "two_groups=false"
-        ],
-        "candidates": [
-          "content+cards+image",
-          "content-image",
-          "process"
-        ],
-        "picked": "content+cards+image",
-        "rejected": {
-          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image",
-          "process": "the two items are a mapping and a justification, not ordered steps; no ordinal labels"
-        }
-      }
-    },
-    {
-      "template": "content+cards+image",
-      "section": "SFT y preferencias",
+      "section": "RLHF y refuerzo",
       "title": "DPO: preferencias sin RL",
       "lead": "**DPO (Direct Preference Optimization) optimiza el mismo objetivo que RLHF con una pérdida de clasificación directa sobre los pares de preferencia. No entrena reward model ni genera muestras durante el entrenamiento.**",
       "cards": [
@@ -1078,17 +916,18 @@
         }
       ],
       "media": {
-        "src": "images/s4-6-1-rlhf-contra-dpo.png",
-        "alt": "La cadena de RLHF frente al atajo de DPO"
+        "src": "images/s3-6-1-rlhf-contra-dpo.png",
+        "alt": "La cadena de RLHF contra el atajo de DPO"
       },
-      "design": "split-right",
-      "notes": "El título del paper lo resume: \"Your Language Model Is Secretly a Reward Model\". La pérdida tiene la misma forma que la del reward model de 4.4, con los log-ratios del modelo en lugar de los puntajes. En código son cuatro líneas de PyTorch (Apéndice B del paper). Los experimentos llegan a 6B parámetros; el paper no dice qué pasa a escala de frontera. DeepSeek-R1 lista DPO entre los algoritmos que soporta su infraestructura de RL. Tiempo objetivo: ~2 min.",
+      "design": "split-left",
+      "notes": "El título del paper lo resume: \"Your Language Model Is Secretly a Reward Model\". La pérdida tiene la misma forma que la del reward model de 3.4, con los log-ratios del modelo en lugar de los puntajes. En código son cuatro líneas de PyTorch (Apéndice B del paper). Los experimentos llegan a 6B parámetros; el paper no dice qué pasa a escala de frontera. DeepSeek-R1 lista DPO entre los algoritmos que soporta su infraestructura de RL. Tiempo objetivo: ~2 min.",
       "_choice": {
         "signals": [
           "labeled_items=2 (La idea, Resultado)",
-          "n_images=1 (RLHF chain vs DPO shortcut)",
-          "two_groups=false (items are idea + result; the RLHF-vs-DPO contrast is inside the diagram)",
-          "big_metrics=false (61% vs 57% inside a prose line)"
+          "n_images=1 (RLHF chain vs DPO shortcut diagram)",
+          "two_groups=false (the RLHF-vs-DPO contrast is inside the diagram; the two cards are an idea and a result, they do not read across)",
+          "is_ordered=false",
+          "big_metrics=false (61% / 57% inside one prose body)"
         ],
         "candidates": [
           "content+cards+image",
@@ -1097,208 +936,15 @@
         ],
         "picked": "content+cards+image",
         "rejected": {
-          "value-columns": "the text items do not read across as two sides of a comparison or rows over shared factors",
-          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; facts lose the icons"
-        }
-      }
-    },
-    {
-      "template": "section-agenda",
-      "title": "Herramientas y esfuerzo"
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Herramientas y esfuerzo",
-      "title": "Por qué herramientas",
-      "lead": "**Los pesos quedan congelados en la fecha de corte y el modelo genera texto por probabilidad. Una herramienta aporta datos actuales y cuentas exactas.**",
-      "cards": [
-        {
-          "label": "Datos actuales",
-          "body": "\"¿Quién es el presidente hoy?\" depende de la fecha de corte; una búsqueda lo resuelve."
-        },
-        {
-          "label": "Precisión",
-          "body": "Un intérprete de código calcula π con 50 decimales sin recitarlo de memoria."
-        },
-        {
-          "label": "Acciones",
-          "body": "Mover archivos, consultar una base, llamar a una API: tareas que los pesos no pueden hacer."
-        }
-      ],
-      "format": "grid",
-      "notes": "Enganche con la clase de RAG y MCP: allá se vio el lado del orquestador (el loop que ejecuta la herramienta y agrega el resultado a los mensajes; MCP como protocolo para exponer herramientas). Hoy se ve el otro lado: por qué el modelo sabe emitir una llamada bien formada. Un modelo base no lo sabe; hay que entrenarlo. Tiempo objetivo: ~1,5 min.",
-      "_choice": {
-        "signals": [
-          "labeled_items=3 (Datos actuales, Precisión, Acciones)",
-          "is_ordered=false",
-          "date_labels=false",
-          "n_images=0",
-          "two_groups=false",
-          "big_metrics=false",
-          "body_len=76-91 chars (longest > 80)"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "process",
-          "single-point"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "process": "no ordinal labels or flow; three parallel reasons",
-          "single-point": "labeled_items is 3, not 1"
-        }
-      }
-    },
-    {
-      "template": "code-example",
-      "section": "Herramientas y esfuerzo",
-      "title": "Cómo se ve un ejemplo de entrenamiento",
-      "lead": "**Un ejemplo de SFT para herramientas es una conversación: un system prompt con las funciones disponibles, el pedido del usuario y la llamada que el asistente debería emitir.**",
-      "code": "[\n  {\n    \"role\": \"system\",\n    \"content\": \"You are a function calling AI model. You are provided with function signatures within <functions></functions> XML tags. You may call one or more functions to assist with the user query. Don't make assumptions about what values to plug into functions.\",\n    \"functions\": [{\n      \"name\": \"live_giveaways_by_type\",\n      \"description\": \"Retrieve live giveaways from the GamerPower API based on the specified type.\",\n      \"parameters\": {\"type\": {\"description\": \"The type of giveaways to retrieve (e.g., game, loot, beta).\", \"type\": \"str\", \"default\": \"game\"}}\n    }]\n  },\n  {\"role\": \"user\", \"content\": \"Where can I find live giveaways for beta access and games?\"},\n  {\"role\": \"assistant\", \"content\": null,\n   \"function_calls\": \"live_giveaways_by_type(type='beta')\\nlive_giveaways_by_type(type='game')\"}\n]",
-      "language": "json",
-      "explanation": [
-        "**Lo que aprende.** Cuándo llamar, con qué nombre y argumentos. Acá, dos llamadas en paralelo para un solo pedido."
-      ],
-      "notes": "El registro es del capítulo 13 del RLHF Book de Nathan Lambert; en la lámina se sacaron los campos en null y la lista de funciones, que en el original es un string con JSON, se muestra como objeto. Remarcar que es un registro de SFT como los de la sección 4, con un rol de sistema que describe las herramientas. El chat template del modelo convierte este JSON en una secuencia de tokens; cada familia de modelos usa sus propios tokens especiales. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "has_code=true (json conversation record)",
-          "labeled_items=1 (Lo que aprende)",
-          "n_images=0"
-        ],
-        "candidates": [
-          "code-example",
-          "single-point"
-        ],
-        "picked": "code-example",
-        "rejected": {
-          "single-point": "has_code -> code-example is checked before anything else; the training record is meant to be read"
+          "value-columns": "anti-default check: the cards do not read across as two sides of a comparison (La idea / Resultado); the comparison lives in the image",
+          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; facts would lose the icons"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "Herramientas y esfuerzo",
-      "title": "La secuencia intercalada y la máscara",
-      "lead": "**El modelo genera hasta emitir la llamada, un sistema externo la ejecuta e inserta la salida en la secuencia, y el modelo sigue generando. La salida de la herramienta se enmascara en la pérdida.**",
-      "media": {
-        "src": "images/tool_use_generation.png",
-        "alt": "Generación intercalada con ejecución externa (Lambert, RLHF Book, fig. 1 del cap. 13)"
-      },
-      "design": "banded",
-      "facts": [
-        {
-          "label": "Qué se enmascara",
-          "body": "El prompt y la salida de la herramienta. El modelo no tiene que aprender a predecir qué devuelve la calculadora."
-        },
-        {
-          "label": "Qué se entrena",
-          "body": "El texto del modelo y la llamada: cuándo emitirla y cómo escribir los argumentos."
-        }
-      ],
-      "notes": "Es la misma máscara de la lámina 4.1, con un tercer tipo de token. El pie de la figura dice \"tool call and output tokens are typically masked\"; en el texto del capítulo lo que se enmascara es la salida. La diferencia depende de la implementación: si se enmascara también la llamada, el modelo aprende la llamada por otra vía (por ejemplo, RL). En modelos de razonamiento la llamada puede ocurrir dentro de los tokens de pensamiento. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "author hint <!-- template: content-image --> pins the template",
-          "n_images=1 (Lambert fig. 1, very wide)",
-          "labeled_items=2 (Qué se enmascara, Qué se entrena)",
-          "two_groups=partial (masked vs trained tokens)"
-        ],
-        "candidates": [
-          "content-image",
-          "value-columns",
-          "content+cards+image"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "value-columns": "pinned by the author hint; the two items are two lines, not columns aligned over shared factors",
-          "content+cards+image": "labeled_items=2 + shared image would fire it, but the author hint pins content-image"
-        }
-      }
-    },
-    {
-      "template": "content-image",
-      "section": "Herramientas y esfuerzo",
-      "title": "Datos: el modelo se etiqueta solo",
-      "lead": "**Escribir a mano millones de trazas con herramientas es caro. Toolformer inserta llamadas candidatas en texto común, las ejecuta y se queda con las que bajan la pérdida del texto que sigue.**",
-      "media": {
-        "src": "images/fig-01-p001.png",
-        "alt": "Predicciones de Toolformer con llamadas a QA, calculadora, traducción y búsqueda (Schick et al., 2023, fig. 1)"
-      },
-      "design": "split-right",
-      "facts": [
-        {
-          "label": "El filtro",
-          "body": "Una llamada sirve si, con su resultado, al modelo le resulta más fácil predecir los tokens siguientes."
-        },
-        {
-          "label": "Resultado",
-          "body": "En problemas de matemática escolar (ASDiv), GPT-J de 6,7B con calculadora saca 40,4; GPT-3 de 175B, 14,0."
-        },
-        {
-          "label": "Tamaño mínimo",
-          "body": "La habilidad aparece recién cerca de 775M parámetros."
-        }
-      ],
-      "notes": "El criterio de Toolformer reutiliza la pérdida de la clase 8 como filtro. Las llamadas se escriben como texto plano con corchetes, sin tocar el vocabulario. Limitaciones que da el paper: una llamada por entrada, sin encadenar herramientas y sin interacción (no refina una búsqueda). WebGPT, en la lámina siguiente, resuelve la interacción con otro enfoque. Tiempo objetivo: ~1,5 min.",
-      "_choice": {
-        "signals": [
-          "author hint <!-- template: content-image --> pins the template",
-          "n_images=1 (Toolformer fig. 1)",
-          "labeled_items=3 (El filtro, Resultado, Tamaño mínimo)",
-          "big_metrics=partial (40,4 vs 14,0; 775M inside prose)"
-        ],
-        "candidates": [
-          "content-image",
-          "content+cards+image",
-          "stat"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "content+cards+image": "labeled_items=3 + shared image would fire it, but the author hint pins content-image",
-          "stat": "the figures are inside prose items next to a non-numeric one (El filtro); not 2-4 standalone metrics"
-        }
-      }
-    },
-    {
-      "template": "content-image",
-      "section": "Herramientas y esfuerzo",
-      "title": "WebGPT: aprender a buscar",
-      "lead": "**WebGPT navega con comandos de texto. Aprende primero imitando a personas y después con preferencias. En tareas de varios pasos, la recompensa llega al final de toda la trayectoria.**",
-      "media": {
-        "src": "images/s5-5-1-comandos-webgpt.png",
-        "alt": "Comandos de WebGPT y la escalera de entrenamiento"
-      },
-      "design": "split-right",
-      "facts": [
-        {
-          "label": "El mejor modelo de WebGPT",
-          "body": "(175B) genera 64 respuestas y el reward model elige una. Sus respuestas se prefieren 56% de las veces a las de los demostradores humanos."
-        }
-      ],
-      "notes": "Responde la nota sin terminar \"esto es parte de SFT\": empieza en SFT y sigue en preferencias y RL. En WebGPT el RL aportó poco: el mejor resultado salió de muestrear 64 respuestas y elegir con el reward model, y sumar RL a eso casi no mejoró. Para tareas de varios pasos, Lambert describe el RL con el entorno como el objetivo natural. WebGPT obliga a citar fuentes; el paper advierte que eso incentiva elegir referencias convincentes antes que representativas. Enganche con la clase de agentes: el loop de ReAct es lo que el RL de varios pasos optimiza. Tiempo objetivo: ~2 min.",
-      "_choice": {
-        "signals": [
-          "n_images=1 (WebGPT commands + training ladder)",
-          "labeled_items=1 (El mejor modelo de WebGPT)",
-          "is_ordered=false in the text (the SFT -> preferencias -> RL ladder lives in the diagram)"
-        ],
-        "candidates": [
-          "content-image",
-          "single-point",
-          "process"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "single-point": "labeled_items == 1 with a supporting image -> content-image",
-          "process": "there are no ordered text items; the ordered ladder is drawn in the image"
-        }
-      }
-    },
-    {
-      "template": "content-image",
-      "section": "Herramientas y esfuerzo",
-      "title": "Base: RL con recompensas verificables",
+      "section": "RLHF y refuerzo",
+      "title": "RL con recompensas verificables",
       "lead": "**DeepSeek-R1-Zero aprende a razonar solo con RL: la recompensa es una regla que verifica la respuesta final. Durante el entrenamiento, el modelo aprende por su cuenta a escribir razonamientos más largos.**",
       "media": {
         "src": "images/fig-01-p004.png",
@@ -1319,26 +965,30 @@
           "body": "En AIME, un examen de matemática de competencia con respuestas numéricas, pasa de 15,6% a 77,9%, y las respuestas crecen de cientos a miles de tokens."
         }
       ],
-      "notes": "Es la base de todo el entrenamiento de razonamiento. El ingrediente es el de 2.5: problemas con respuesta verificable. No hay reward model neuronal porque se puede engañar (reward hacking); una regla que compara con la respuesta correcta, no. GRPO es PPO sin modelo de valor. El gráfico de la derecha es el punto: el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para \"1 + 1\" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa: eso es effort. Tiempo objetivo: ~2 min.",
+      "notes": "Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT: el RL arranca directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque se puede engañar (reward hacking); una regla que compara con la respuesta correcta, no. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para \"1 + 1\" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa: eso es effort. Tiempo objetivo: ~2 min.",
       "_choice": {
         "signals": [
           "author hint <!-- template: content-image --> pins the template",
-          "n_images=1 (DeepSeek fig. 1)",
-          "labeled_items=3 (Recompensa, GRPO, Efecto)"
+          "n_images=1 (AIME accuracy and length chart)",
+          "labeled_items=3 (Recompensa, GRPO, Efecto)",
+          "is_ordered=false",
+          "big_metrics=false (15,6% -> 77,9% inside a prose fact)"
         ],
         "candidates": [
           "content-image",
-          "content+cards+image"
+          "content+cards+image",
+          "stat"
         ],
         "picked": "content-image",
         "rejected": {
-          "content+cards+image": "labeled_items=3 + shared image would fire it, but the author hint pins content-image"
+          "content+cards+image": "author pin: the source carries <!-- template: content-image -->, which the schema says pins the template and skips classification. On signals alone the walk would pick content+cards+image (labeled_items >= 2 + one shared image); the pin overrides the catalog's own answer and is kept because it is the presenter's directive",
+          "stat": "one figure pair inside one of three prose facts; not 2-4 standalone metrics; pinned by hint"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "Herramientas y esfuerzo",
+      "section": "RLHF y refuerzo",
       "title": "Effort: low, medium, high",
       "lead": "**gpt-oss se entrena para respetar tres niveles de razonamiento que se eligen con la línea `reasoning: low` (o `medium`, `high`) en el system prompt. Más nivel, razonamiento más largo y más exactitud.**",
       "media": {
@@ -1356,17 +1006,17 @@
           "body": "Low 72,9%, medium 91,6%, high 97,9%."
         },
         {
-          "label": "Cada nivel multiplica el largo",
-          "body": "del razonamiento por 3 a 5 veces."
+          "body": "**Cada nivel multiplica el largo** del razonamiento por 3 a 5 veces."
         }
       ],
       "notes": "Es el concepto de las notas: effort low, medium, high. La ficha del modelo dice tres cosas: los niveles se entrenaron, se eligen en el system prompt y más nivel da razonamientos más largos. No dice cómo se entrenaron: ni datos, ni recompensa por largo, ni presupuesto por nivel. No hay que atribuirle un método a OpenAI; las dos láminas siguientes muestran uno documentado, el de Qwen3. Sin herramientas los números bajan (50,4 / 80,0 / 92,5) pero el escalón entre niveles se mantiene. Tiempo objetivo: ~2 min.",
       "_choice": {
         "signals": [
           "author hint <!-- template: content-image --> pins the template",
-          "n_images=1 (gpt-oss fig. 3)",
-          "labeled_items=3",
-          "big_metrics=partial (72,9 / 91,6 / 97,9 in one item)"
+          "n_images=1 (accuracy vs length chart)",
+          "labeled_items=3 (Mismos pesos, AIME 2025 gpt-oss-120b con herramientas, Cada nivel multiplica el largo)",
+          "big_metrics=false (72,9 / 91,6 / 97,9 inside one fact)",
+          "is_ordered=false (low/medium/high is a scale, but the items are not steps)"
         ],
         "candidates": [
           "content-image",
@@ -1375,69 +1025,42 @@
         ],
         "picked": "content-image",
         "rejected": {
-          "content+cards+image": "pinned by the author hint",
-          "stat": "pinned; only one of three items is figures, the others are prose"
-        }
-      }
-    },
-    {
-      "template": "code-example",
-      "section": "Herramientas y esfuerzo",
-      "title": "Qwen3: SFT con /think y /no_think",
-      "lead": "**Qwen3 entrena un solo modelo con dos modos. El SFT mezcla ejemplos con razonamiento y ejemplos con el bloque de pensamiento vacío, marcados con un flag al final del pedido.**",
-      "code": "Modo con razonamiento:              Modo sin razonamiento:\n<|im_start|>user                    <|im_start|>user\n{query} /think<|im_end|>            {query} /no_think<|im_end|>\n<|im_start|>assistant               <|im_start|>assistant\n<think>                             <think>\n{thinking_content}\n</think>                            </think>\n\n{response}<|im_end|>                {response}<|im_end|>",
-      "language": "text",
-      "explanation": [
-        "**Por defecto piensa.** Algunos ejemplos con razonamiento no traen `/think`.",
-        "**Diálogos largos.** Se insertan varios flags al azar y la respuesta sigue al último.",
-        "**Apagado duro.** En Hugging Face, `enable_thinking=False` inserta el bloque vacío."
-      ],
-      "notes": "Es un dataset de SFT como los de la sección 4, con una convención de formato. El modo sin razonamiento deja el bloque `<think>` vacío para que los dos formatos tengan la misma forma. Los ejemplos con razonamiento salen del propio modelo después del RL de razonamiento (rejection sampling), para no empeorarlo. Tiempo objetivo: ~1,5 min.",
-      "_choice": {
-        "signals": [
-          "has_code=true (text fence, Qwen3 chat template, both modes side by side)",
-          "labeled_items=3 (Por defecto piensa, Diálogos largos, Apagado duro)",
-          "two_groups=partial (the two modes are in the code block)"
-        ],
-        "candidates": [
-          "code-example",
-          "value-columns",
-          "concept-breakdown"
-        ],
-        "picked": "code-example",
-        "rejected": {
-          "value-columns": "has_code -> code-example before anything else; the two modes are a verbatim template to be read, not cells",
-          "concept-breakdown": "has_code is tested first; the three items explain the code"
+          "content+cards+image": "author pin: the source carries <!-- template: content-image -->, which the schema says pins the template and skips classification. On signals alone the walk would pick content+cards+image (labeled_items >= 2 + one shared image); the pin overrides the catalog's own answer and is kept because it is the presenter's directive",
+          "stat": "the three percentages share one prose fact beside two non-numeric facts; not the payload of the slide; pinned by hint"
         }
       }
     },
     {
       "template": "content+cards+image",
-      "section": "Herramientas y esfuerzo",
-      "title": "Qwen3: las cuatro etapas",
-      "lead": "**Las dos primeras etapas enseñan a pensar; las dos últimas, a elegir si pensar. El presupuesto de pensamiento no se entrena: se corta en inferencia.**",
+      "section": "RLHF y refuerzo",
+      "title": "Qwen3: cuatro pasos de post-training",
+      "lead": "**Qwen3 hace cuatro pasos de post-training sobre el modelo base. Los pasos 1 y 2 le enseñan a razonar, y los pasos 3 y 4 a respetar los flags `/think` y `/no_think`. El presupuesto de pensamiento no se entrena: el sistema lo corta en inferencia.**",
       "cards": [
         {
           "label": "El interruptor se entrena",
-          "body": "Seguir los flags en diálogos con cambios al azar: 88,7 después de la etapa 3, 98,9 después de la 4 (benchmark interno)."
+          "body": "Seguir los flags en diálogos con cambios al azar: 88,7 después del paso 3, 98,9 después del 4 (benchmark interno).",
+          "icon": "toggle_on"
         },
         {
           "label": "El presupuesto no se entrena",
-          "body": "Al llegar al límite, el sistema corta el razonamiento, inserta una frase fija y `</think>`, y el modelo responde con lo que pensó."
+          "body": "Al llegar al límite, el sistema corta el razonamiento, inserta una frase fija y `</think>`, y el modelo responde con lo que pensó.",
+          "icon": "timer"
         }
       ],
       "media": {
-        "src": "images/s5-9-1-etapas-qwen3.png",
-        "alt": "Las cuatro etapas de post-training de Qwen3"
+        "src": "images/s3-9-1-cuatro-pasos-qwen3.png",
+        "alt": "Los cuatro pasos de post-training de Qwen3 y qué aprende cada mitad"
       },
       "design": "split-right",
-      "notes": "Las etapas 1 y 2 son las de DeepSeek-R1. Las 3 y 4 enseñan a elegir. El presupuesto es un corte en inferencia: después de la fusión, el modelo sabe responder con razonamiento completo o sin él, y responder con uno a medias le sale solo. En AIME'25, sin razonamiento da ~25%, con 1.000 tokens ~31% y con 32.000 ~82% (Figura 2 del paper). La comparación con gpt-oss es nuestra: Qwen3 no tiene niveles low/medium/high, sino un interruptor y un presupuesto en tokens. Costo que reconocen los autores: después de las etapas 3 y 4 el modo con razonamiento pierde algo en las tareas más difíciles. Tiempo objetivo: ~2 min.",
+      "notes": "Los pasos 1 y 2 siguen la receta de DeepSeek-R1. La lámina siguiente muestra los datos del paso 3. El presupuesto es un corte en inferencia: después de la fusión, el modelo sabe responder con razonamiento completo o sin él, y responder con uno a medias le sale solo. En AIME'25, sin razonamiento da ~25%, con 1.000 tokens ~31% y con 32.000 ~82% (Figura 2 del paper). La comparación con gpt-oss es nuestra: Qwen3 no tiene niveles low/medium/high, sino un interruptor y un presupuesto en tokens. Costo que reconocen los autores: después de los pasos 3 y 4 el modo con razonamiento pierde algo en las tareas más difíciles. Tiempo objetivo: ~2 min.",
       "_choice": {
         "signals": [
           "labeled_items=2 (El interruptor se entrena, El presupuesto no se entrena)",
-          "n_images=1 (four-stage diagram)",
-          "is_ordered=false in the items (the stage order is the diagram)",
-          "two_groups=false (a pair of findings, not two symmetric groups over shared factors)"
+          "n_images=1 (four-step pipeline diagram, very wide)",
+          "is_ordered=false for the items (the four ordered steps live in the diagram, not in the labeled items)",
+          "two_groups=partial (trained vs not trained, but each is one prose point with nothing aligned row by row)",
+          "date_labels=false",
+          "big_metrics=false (88,7 / 98,9 inside a prose body)"
         ],
         "candidates": [
           "content+cards+image",
@@ -1446,150 +1069,705 @@
         ],
         "picked": "content+cards+image",
         "rejected": {
-          "process": "the text items are not steps; the four stages are drawn in the image",
-          "value-columns": "the two items do not align row by row over shared factors"
+          "process": "the labeled items are two claims, not steps; the four steps are the diagram, which the design places across the top",
+          "value-columns": "anti-default check: the two cards are not aligned over shared factors (one is a trained switch with a benchmark, the other an inference-time cut); nothing reads across row by row"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "RLHF y refuerzo",
+      "title": "Qwen3: SFT con /think y /no_think",
+      "lead": "**En el paso 3, Qwen3 entrena un solo modelo con dos modos. El SFT mezcla ejemplos con razonamiento y ejemplos con el bloque de pensamiento vacío, marcados con un flag al final del pedido.**",
+      "cards": [
+        {
+          "label": "Por defecto piensa",
+          "body": "Algunos ejemplos con razonamiento no traen `/think`.",
+          "icon": "psychology"
+        },
+        {
+          "label": "Diálogos largos",
+          "body": "Se insertan varios flags al azar y la respuesta sigue al último.",
+          "icon": "forum"
+        },
+        {
+          "label": "Apagado duro",
+          "body": "En Hugging Face, `enable_thinking=False` inserta el bloque vacío.",
+          "icon": "power_settings_new"
+        }
+      ],
+      "media": {
+        "code": "Modo con razonamiento:              Modo sin razonamiento:\n<|im_start|>user                    <|im_start|>user\n{query} /think<|im_end|>            {query} /no_think<|im_end|>\n<|im_start|>assistant               <|im_start|>assistant\n<think>                             <think>\n{thinking_content}\n</think>                            </think>\n\n{response}<|im_end|>                {response}<|im_end|>",
+        "language": "text"
+      },
+      "design": "split-left",
+      "notes": "Es un dataset de SFT como los de la sección 2, con una convención de formato. El modo sin razonamiento deja el bloque `<think>` vacío para que los dos formatos tengan la misma forma. Los ejemplos con razonamiento salen del propio modelo después del RL de razonamiento (rejection sampling), para no empeorarlo. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "has_code=true (the two chat-template formats side by side, a worked example)",
+          "labeled_items=3 (Por defecto piensa, Diálogos largos, Apagado duro)",
+          "n_images=0",
+          "two_groups=partial (the two modes are inside the code sample, not in the labeled items)",
+          "is_ordered=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "code-example",
+          "value-columns"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "code-example": "its explanation column is plain strings and would flatten the three labeled points; content+cards+image covers \"labeled cards on one side AND a supporting example/code on the other\" and keeps both the cards and the code panel (media), which leads with split-left",
+          "value-columns": "the modes are compared inside the code block itself; the labeled items do not align row by row over shared factors"
         }
       }
     },
     {
       "template": "section-agenda",
-      "title": "Cuando el modelo no sabe"
+      "title": "Herramientas"
     },
     {
       "template": "concept-breakdown",
-      "section": "Cuando el modelo no sabe",
+      "section": "Herramientas",
+      "title": "Por qué herramientas",
+      "lead": "**Los pesos quedan congelados en la fecha de corte y el modelo genera texto por probabilidad. Una herramienta aporta datos actuales y cuentas exactas.**",
+      "cards": [
+        {
+          "label": "Datos actuales",
+          "body": "\"¿Quién es el presidente hoy?\" depende de la fecha de corte; una búsqueda lo resuelve.",
+          "icon": "update"
+        },
+        {
+          "label": "Precisión",
+          "body": "Un intérprete de código calcula π con 50 decimales sin recitarlo de memoria.",
+          "icon": "calculate"
+        },
+        {
+          "label": "Acciones",
+          "body": "Mover archivos, consultar una base, llamar a una API: tareas que los pesos no pueden hacer.",
+          "icon": "bolt"
+        }
+      ],
+      "format": "editorial",
+      "notes": "Tres razones para que un modelo use herramientas. Un modelo base no sabe emitir una llamada; hay que entrenarlo. La lámina siguiente muestra el circuito completo entre el modelo y el agente. Después vienen tres herramientas, una por cada razón de la lámina: la calculadora (precisión), la búsqueda web (datos actuales) y MCP (acciones sobre cualquier sistema). Para cada una, la misma pregunta: qué genera el modelo, quién ejecuta la llamada y cómo se lo entrenó. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Datos actuales, Precisión, Acciones)",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0",
+          "has_table=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "body_len=prose (two bodies > 80 chars)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "value-columns"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "anti-default check: three parallel reasons, no ordinal labels and no flow between them",
+          "value-columns": "the three reasons do not align over a shared factor and are not two groups compared"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Herramientas",
+      "title": "El circuito con un agente",
+      "lead": "**El modelo escribe la llamada como texto. Un agente la ejecuta, agrega el resultado al contexto y vuelve a llamar al modelo, hasta que el modelo responde sin pedir herramientas.**",
+      "cards": [
+        {
+          "label": "Qué hace el modelo",
+          "body": "Genera la llamada (nombre de la herramienta y argumentos) y decide cuándo llamar y cuándo responder. Es la parte que se entrena.",
+          "icon": "model_training"
+        },
+        {
+          "label": "Qué hace el agente",
+          "body": "Ejecuta la herramienta, agrega el resultado como un mensaje con rol \"tool\" y vuelve a llamar al modelo. Corta cuando el modelo responde sin llamadas.",
+          "icon": "robot"
+        },
+        {
+          "label": "Cuántas vueltas",
+          "body": "En tareas de varios pasos (buscar, leer, volver a buscar), el loop da varias vueltas antes de la respuesta final.",
+          "icon": "autorenew"
+        }
+      ],
+      "media": {
+        "src": "images/s4-2-1-loop-llm-agente.png",
+        "alt": "El loop entre el LLM y el agente al usar herramientas"
+      },
+      "design": "split-right",
+      "notes": "Callback a la clase de RAG y MCP: allá armaron este loop del lado del agente, con ReAct. Lo que queda para el resto de la sección es el lado del modelo: por qué emite una llamada bien formada y sabe cuándo dejar de llamar. Si la llamada sale mal escrita, el loop se rompe: en WebGPT, cualquier texto que no sea un comando válido cuenta como acción inválida. El agente también pone límites propios, como un máximo de vueltas. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Qué hace el modelo, Qué hace el agente, Cuántas vueltas)",
+          "n_images=1 (LLM-agent loop diagram)",
+          "is_ordered=false (the loop order is drawn in the diagram; the items are roles plus a count)",
+          "two_groups=false (a third item, Cuántas vueltas, breaks any model-vs-agent symmetry; nothing aligns row by row)",
+          "date_labels=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "process",
+          "value-columns"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "process": "anti-default check: the labeled items are two roles and a remark about iterations, not steps; the cycle itself is the diagram",
+          "value-columns": "anti-default check: the items do not read across over shared factors; three heterogeneous items, one of which is not a side"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Herramientas",
+      "title": "Los modelos no calculan bien",
+      "lead": "**Un LLM genera texto por probabilidad, token por token. En una cuenta de varios pasos, un error de cálculo arrastra al resto de la solución.**",
+      "cards": [
+        {
+          "label": "Errores de cálculo",
+          "body": "En GSM8K, los modelos de OpenAI fallaban seguido en las cuentas. Los más grandes se equivocaban menos, pero el error seguía siendo común.",
+          "icon": "warning"
+        },
+        {
+          "label": "Sin vuelta atrás",
+          "body": "Un modelo autoregresivo no tiene cómo corregir un error propio. Una solución que se desvía queda irrecuperable.",
+          "icon": "do_not_disturb_on"
+        },
+        {
+          "label": "Lo básico falla",
+          "body": "Los LLM resuelven tareas nuevas con pocos ejemplos y a la vez fallan en aritmética, donde modelos mucho más chicos y simples andan bien.",
+          "icon": "error"
+        }
+      ],
+      "notes": "Primera de las tres herramientas: la calculadora. GSM8K es un dataset de OpenAI de 2021 con problemas de matemática escolar; lo vemos en la lámina siguiente. El dato que conviene decir en voz alta: extrapolando la tendencia, los autores calculan que con fine-tuning solo haría falta un modelo de 10^16 parámetros para resolver el 80% de GSM8K. Su respuesta fue darle una calculadora al modelo (y verificadores, que no entran en esta clase). El corpus no explica el error aritmético por la forma en que el tokenizer parte los números; si alguien lo pregunta, es una hipótesis que la clase no cubre. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Errores de cálculo, Sin vuelta atrás, Lo básico falla)",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0",
+          "has_table=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "body_len=prose"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "single-point"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "anti-default check: three parallel failure modes, no ordinal labels and no sequence",
+          "single-point": "requires labeled_items == 1; there are three labeled items"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Herramientas",
+      "title": "GSM8K: un dataset con calculadora",
+      "lead": "**GSM8K son problemas de matemática escolar escritos por personas, con la solución paso a paso. Las anotaciones de calculadora las generó un programa.**",
+      "cards": [
+        {
+          "label": "Dataset público",
+          "body": "[openai/gsm8k](https://huggingface.co/datasets/openai/gsm8k), licencia MIT: 7.473 problemas de entrenamiento y 1.319 de test, con dos versiones (`main` y `socratic`).",
+          "icon": "dataset"
+        },
+        {
+          "label": "Anotación automática",
+          "body": "Una lógica fija y un modelo ajustado insertaron los `<<expresión=resultado>>`. Casi nunca ponen una anotación incorrecta, pero a veces dejan líneas sin anotar.",
+          "icon": "auto_awesome"
+        },
+        {
+          "label": "Toolformer",
+          "body": "Un modelo que se anota solo: inserta llamadas candidatas en texto común, las ejecuta y se queda con las que bajan la pérdida del texto que sigue.",
+          "icon": "build"
+        }
+      ],
+      "media": {
+        "code": "{\n  \"question\": \"Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?\",\n  \"answer\": \"Natalia sold 48/2 = <<48/2=24>>24 clips in May.\\nNatalia sold 48+24 = <<48+24=72>>72 clips altogether in April and May.\\n#### 72\"\n}",
+        "language": "json"
+      },
+      "design": "split-right",
+      "notes": "Mostrar el registro en pantalla y señalar las dos anotaciones: cada `<<…>>` es una llamada a la calculadora, y la lámina siguiente muestra quién la resuelve. Es un registro de SFT como los de la lámina 2.4. Los problemas los escribieron personas; las anotaciones, no. La última línea, `#### 72`, permite corregir la respuesta de forma automática. Toolformer usa la pérdida de la clase 8 como filtro y escribe las llamadas con corchetes y una flecha, sin tocar el vocabulario. En ASDiv, un GPT-J de 6,7B con calculadora saca 40,4 y GPT-3 175B, 14,0. Hoy GSM8K se usa sobre todo como benchmark. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "has_code=true (one GSM8K record in JSON, the worked example)",
+          "labeled_items=3 (Dataset público, Anotación automática, Toolformer)",
+          "n_images=0",
+          "is_ordered=false",
+          "big_metrics=false (7.473 / 1.319 inside one prose body)"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "code-example",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "code-example": "its explanation column is plain strings and would flatten the three labeled points; content+cards+image covers \"labeled cards on one side AND a supporting example/code on the other\", with the JSON record as media",
+          "concept-breakdown": "would drop the JSON record (content is never dropped); a supporting code sample goes in media beside the cards"
+        }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Herramientas",
+      "title": "Qué genera el modelo y quién calcula",
+      "lead": "**El modelo escribe la cuenta como texto. Cuando llega al \"=\", un ejecutor externo evalúa la expresión, escribe el resultado en la secuencia y el modelo sigue generando.**",
+      "media": {
+        "src": "images/fig-09-p017.png",
+        "alt": "Procedimiento de muestreo con calculadora en GSM8K: el generador escribe la expresión, el \"=\" dispara la calculadora, eval(\"20+10\") escribe 30>> y el generador sigue con \"books\" (Cobbe et al., 2021, fig. 9)"
+      },
+      "design": "split-right",
+      "facts": [
+        {
+          "label": "Lo que genera el modelo",
+          "body": "La llamada, en tokens comunes: `<<20+10=`."
+        },
+        {
+          "label": "Lo que pone el ejecutor",
+          "body": "El resultado y el cierre, `30>>`, con `eval` de Python. Si la evaluación falla, el modelo sigue sin calculadora."
+        },
+        {
+          "label": "Lo que se entrena",
+          "body": "En GSM8K, todo el texto con las anotaciones incluidas. En el SFT actual con herramientas, la salida del ejecutor se enmascara en la pérdida y el modelo aprende la llamada."
+        }
+      ],
+      "notes": "Es la versión con calculadora de la lámina 4.2: el modelo escribe, otro programa calcula. Recorrer la figura de arriba abajo: tres pasos del generador hasta el \"=\", la calculadora (en rojo) escribe \"30>>\" y el generador sigue con \"books\". Diferencia con la máscara de la lámina 2.3: GSM8K entrenó sobre las anotaciones como cualquier otro token, y la calculadora recién pisa el resultado en la inferencia. Lambert describe como práctica actual enmascarar la salida de la herramienta. Detalle para quien mire los datos: en las salidas del modelo aparece \"5.0\" en vez de \"5\", porque `eval` devuelve un float. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "author hint <!-- template: content-image --> pins the template",
+          "n_images=1 (paper figure of calculator sampling)",
+          "labeled_items=3 (Lo que genera el modelo, Lo que pone el ejecutor, Lo que se entrena)",
+          "is_ordered=false (the figure shows a sequence; the facts are roles)"
+        ],
+        "candidates": [
+          "content-image",
+          "content+cards+image",
+          "process"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "content+cards+image": "author pin: the source carries <!-- template: content-image -->, which the schema says pins the template and skips classification. On signals alone the walk would pick content+cards+image (labeled_items >= 2 + one shared image); the pin overrides the catalog's own answer and is kept because it is the presenter's directive",
+          "process": "the labels name roles (what the model writes, what the executor writes, what is trained), not ordered steps; pinned by hint"
+        }
+      }
+    },
+    {
+      "template": "value-columns",
+      "section": "Herramientas",
+      "title": "Búsqueda web: la ejecuta el proveedor",
+      "lead": "**Entre herramientas cambia quién ejecuta la llamada. La búsqueda web corre en la plataforma del proveedor, dentro del mismo pedido a la API; las herramientas propias las ejecuta el agente de la aplicación.**",
+      "columns": [
+        {
+          "header": "",
+          "cells": [
+            "Ejemplos",
+            "Quién la ejecuta"
+          ]
+        },
+        {
+          "header": "Herramienta del servidor",
+          "cells": [
+            "Búsqueda web, lectura de páginas o ejecución de código alojada.",
+            "La plataforma del proveedor la ejecuta, puede repetirla varias veces en un mismo pedido y devuelve la respuesta con citas."
+          ]
+        },
+        {
+          "header": "Herramienta del cliente",
+          "cells": [
+            "Funciones propias, una base de datos o un servidor MCP.",
+            "La API devuelve la llamada y espera; el agente la ejecuta y manda el resultado."
+          ]
+        }
+      ],
+      "media": {
+        "src": "images/s4-6-1-herramienta-servidor-cliente.png",
+        "alt": "Herramienta del servidor contra herramienta del cliente: dónde se ejecuta la llamada"
+      },
+      "design": "split-right",
+      "notes": "Segunda herramienta. Responde la pregunta de si la búsqueda web la resuelve el modelo. El modelo emite la llamada igual que con cualquier otra herramienta, y la plataforma del proveedor la ejecuta dentro del mismo pedido. Por eso, desde la app, parece que \"el modelo buscó\". Con una herramienta del cliente, la API devuelve la llamada y el agente de la lámina 4.2 hace el trabajo. El entrenamiento es el mismo en los dos casos: el modelo aprende a emitir la llamada y a usar el resultado. Los términos \"server tools\" y \"client tools\" son de la documentación de Anthropic; otros proveedores ofrecen algo equivalente. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2 (Herramienta del servidor, Herramienta del cliente)",
+          "two_groups=true (server tool vs client tool, compared on the same factors: examples and who executes the call; the diagram alt reads \"servidor contra ... cliente\")",
+          "polarity=false (neither side is the downside)",
+          "n_images=1 (server vs client diagram)",
+          "is_ordered=false"
+        ],
+        "candidates": [
+          "value-columns",
+          "content+cards+image",
+          "pros-cons"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "content+cards+image": "anti-default check: the two items are two sides of a comparison that read across (examples, then who runs the call) -> value-columns carrying the image; a card per side would collapse the aligned rows into one body each",
+          "pros-cons": "two_groups without polarity: server vs client is a neutral compare, not upside vs downside"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Herramientas",
+      "title": "Qué genera el modelo al buscar",
+      "lead": "**Con la búsqueda web, una sola respuesta de la API trae los bloques que generó el modelo y los que agregó la plataforma, en orden.**",
+      "cards": [
+        {
+          "label": "Lo que genera el modelo",
+          "body": "La decisión de buscar, la consulta y la respuesta final con citas.",
+          "icon": "model_training"
+        },
+        {
+          "label": "Lo que agrega la plataforma",
+          "body": "Los resultados de la búsqueda, sin que la aplicación escriba código para ejecutarla.",
+          "icon": "cloud"
+        }
+      ],
+      "media": {
+        "src": "images/s4-7-1-bloques-busqueda-web.png",
+        "alt": "Los cuatro bloques de una respuesta con búsqueda web y quién produce cada uno"
+      },
+      "design": "split-left",
+      "notes": "Mismo esquema que la calculadora: el modelo escribe la llamada (bloque 2) y otro sistema pone el resultado (bloque 3). Acá el resultado lo agrega la plataforma del proveedor. El ejemplo y el formato de los bloques son de la API de Anthropic. El modelo busca si el pedido depende de información actual o fuera de sus datos de entrenamiento; `max_uses` pone un tope de búsquedas por pedido. Dos excepciones, si alguien pregunta: un turno largo puede pausarse (`pause_turn`) y la aplicación reenvía el mensaje; si la búsqueda sale en paralelo con una herramienta del cliente, la API devuelve `tool_use` y busca en el pedido siguiente. Tiempo objetivo: ~1 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2 (Lo que genera el modelo, Lo que agrega la plataforma)",
+          "n_images=1 (four response blocks diagram)",
+          "two_groups=partial (a partition of one response between two producers, one prose line each; no shared factor to align rows)",
+          "is_ordered=false (the block order is in the diagram)",
+          "date_labels=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "anti-default check: the two lines are complementary parts of one response, each a single phrase with no shared factors to read across; a one-row grid would add a table without any alignment to show",
+          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; facts would lose the per-concept icons"
+        }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Herramientas",
+      "title": "WebGPT: aprender a buscar",
+      "lead": "**WebGPT navega con comandos de texto. Aprende primero imitando a personas y después con preferencias. En tareas de varios pasos, la recompensa llega al final de toda la trayectoria.**",
+      "media": {
+        "src": "images/s4-8-1-comandos-webgpt.png",
+        "alt": "Los comandos de WebGPT y qué objetivo de entrenamiento enseña cada uno"
+      },
+      "design": "split-right",
+      "facts": [
+        {
+          "body": "**El mejor modelo de WebGPT** (175B) genera 64 respuestas y el reward model elige una. Sus respuestas se prefieren 56% de las veces a las de los demostradores humanos."
+        }
+      ],
+      "notes": "WebGPT empieza en SFT y sigue en preferencias y RL. En WebGPT el RL aportó poco: el mejor resultado salió de muestrear 64 respuestas y elegir con el reward model, y sumar RL a eso casi no mejoró. Para tareas de varios pasos, Lambert describe el RL con el entorno como el objetivo natural. WebGPT obliga a citar fuentes; el paper advierte que eso incentiva elegir referencias convincentes antes que representativas. El loop de ReAct de la clase de agentes es lo que optimiza el RL de varios pasos. El SFT, el reward model y el RL que usa WebGPT son los de las secciones 2 y 3, aplicados a comandos de navegación. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (WebGPT commands diagram)",
+          "labeled_items=1 (El mejor modelo de WebGPT)",
+          "big_metrics=false (64 / 56% inside one prose line)"
+        ],
+        "candidates": [
+          "content-image",
+          "single-point",
+          "content+cards+image"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "single-point": "labeled_items == 1 with a supporting image -> content-image",
+          "content+cards+image": "requires labeled_items >= 2; one labeled line here"
+        }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Herramientas",
+      "title": "MCP: host, cliente y servidor",
+      "lead": "**MCP es un estándar abierto para conectar aplicaciones de IA con herramientas y datos. La aplicación crea un cliente MCP por cada servidor y le pasa al modelo las herramientas de todos.**",
+      "media": {
+        "src": "images/s4-9-1-arquitectura-mcp.png",
+        "alt": "La arquitectura de MCP: host, clientes y servidores"
+      },
+      "design": "banded",
+      "facts": [
+        {
+          "label": "Dos llamadas",
+          "body": "`tools/list` descubre qué herramientas hay; `tools/call` ejecuta una con sus argumentos."
+        }
+      ],
+      "notes": "Callback a la clase de RAG y MCP: allá armaron un servidor MCP y lo conectaron a un agente. El host es la aplicación de IA, como Claude Code o Visual Studio Code, y crea un cliente por cada servidor, con una conexión dedicada. El servidor ofrece herramientas, datos y prompts; corre en la misma computadora (STDIO) o en otra (Streamable HTTP). Acá interesa dónde queda el modelo: fuera del protocolo. El agente del host junta las herramientas de todos los servidores, se las pasa al LLM, intercepta la llamada y la manda al servidor que corresponde. Es el loop de la lámina 4.2. La analogía oficial es un puerto USB-C para aplicaciones de IA. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (MCP host/client/server architecture, wide)",
+          "labeled_items=1 (Dos llamadas)",
+          "has_code=false (inline code spans only)"
+        ],
+        "candidates": [
+          "content-image",
+          "single-point",
+          "content+cards+image"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "single-point": "labeled_items == 1 with a supporting image -> content-image",
+          "content+cards+image": "requires labeled_items >= 2; one labeled line here"
+        }
+      }
+    },
+    {
+      "template": "code-example",
+      "section": "Herramientas",
+      "title": "Una herramienta MCP es una definición",
+      "lead": "**El modelo no conoce de antemano los servidores MCP. El host convierte cada herramienta que publica un servidor en una definición dentro del contexto: nombre, descripción y esquema de entrada.**",
+      "code": "{\n  \"name\": \"calculator_arithmetic\",\n  \"description\": \"Perform mathematical calculations including basic arithmetic, trigonometric functions, and algebraic operations\",\n  \"inputSchema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"expression\": {\n        \"type\": \"string\",\n        \"description\": \"Mathematical expression to evaluate (e.g., '2 + 3 * 4', 'sin(30)', 'sqrt(16)')\"\n      }\n    },\n    \"required\": [\"expression\"]\n  }\n}",
+      "language": "json",
+      "explanation": [
+        "Un servidor MCP publica su calculadora en `tools/list`:",
+        "**La calculadora, otra vez.** En GSM8K la llamada iba pegada al texto con `<<…>>`; con MCP la misma calculadora es una función con nombre, descripción y esquema de entrada."
+      ],
+      "notes": "La pregunta que suele aparecer: si hay miles de servidores MCP, ¿se entrena al modelo para cada uno? No hace falta. El host pone cada herramienta en el contexto con el mismo formato de definición que el modelo vio en SFT, y el chat template de cada familia de modelos la pasa a tokens. La descripción le dice al modelo para qué sirve la herramienta y cuándo usarla; el esquema, qué argumentos escribir. La lámina siguiente muestra cómo se entrena eso. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "has_code=true (the MCP tool definition in JSON, meant to be read)",
+          "labeled_items=1 (La calculadora, otra vez)",
+          "n_images=0",
+          "one_claim=false"
+        ],
+        "candidates": [
+          "code-example",
+          "single-point",
+          "content+cards+image"
+        ],
+        "picked": "code-example",
+        "rejected": {
+          "single-point": "has_code -> code-example comes before the enumeration rules; the definition is the payload",
+          "content+cards+image": "requires labeled_items >= 2 beside the code; one labeled line is the panel's explanation"
+        }
+      }
+    },
+    {
+      "template": "code-example",
+      "section": "Herramientas",
+      "title": "Function calling: lo que aprende",
+      "lead": "**Se entrena function calling genérico: leer las definiciones de funciones del contexto y emitir la llamada. Un registro de SFT trae las funciones en el system prompt, el pedido y la llamada esperada.**",
+      "code": "[\n  {\"role\": \"system\",\n   \"content\": \"You are a function calling AI model. You are provided with function signatures within <functions></functions> XML tags. ...\",\n   \"functions\": [{\"name\": \"live_giveaways_by_type\",\n                  \"description\": \"Retrieve live giveaways from the GamerPower API based on the specified type.\",\n                  \"parameters\": {\"type\": {\"description\": \"The type of giveaways to retrieve (e.g., game, loot, beta).\", \"type\": \"str\", \"default\": \"game\"}}}]},\n  {\"role\": \"user\", \"content\": \"Where can I find live giveaways for beta access and games?\"},\n  {\"role\": \"assistant\", \"content\": null,\n   \"function_calls\": \"live_giveaways_by_type(type='beta')\\nlive_giveaways_by_type(type='game')\"}\n]",
+      "language": "json",
+      "explanation": [
+        "**Lo que aprende.** Cuándo llamar, con qué nombre y con qué argumentos. En el ejemplo, dos llamadas en paralelo para un solo pedido."
+      ],
+      "notes": "Cierra la sección. El registro es del capítulo 13 del RLHF Book de Nathan Lambert. Es un registro de SFT como los de la lámina 2.4, con un rol de sistema que describe las herramientas. Una herramienta MCP llega al modelo con esta misma forma, así que el modelo no necesita haber visto ese servidor en el entrenamiento. El corpus no dice qué mezcla exacta de herramientas usa cada proveedor para entrenar. Tiempo objetivo: ~1 min.",
+      "_choice": {
+        "signals": [
+          "has_code=true (one SFT function-calling record in JSON, meant to be read)",
+          "labeled_items=1 (Lo que aprende)",
+          "n_images=0"
+        ],
+        "candidates": [
+          "code-example",
+          "single-point",
+          "content+cards+image"
+        ],
+        "picked": "code-example",
+        "rejected": {
+          "single-point": "has_code -> code-example comes before the enumeration rules; the record is the payload",
+          "content+cards+image": "requires labeled_items >= 2 beside the code; one labeled line is the explanation"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "Cuando el modelo inventa"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Cuando el modelo inventa",
       "title": "Por qué inventa",
       "lead": "**Un modelo base bien calibrado tiene que equivocarse en los datos que vio una sola vez. Si el 20% de los cumpleaños aparece una única vez en el corpus, el modelo va a inventar al menos el 20% de los cumpleaños.**",
       "cards": [
         {
           "label": "Ejemplo",
-          "body": "Se le pidió a DeepSeek-V3 el cumpleaños de uno de los autores, \"solo si lo sabés\". Dio tres fechas distintas en tres intentos, todas falsas."
+          "body": "Se le pidió a DeepSeek-V3 el cumpleaños de uno de los autores, \"solo si lo sabés\". Dio tres fechas distintas en tres intentos, todas falsas.",
+          "icon": "cake"
         },
         {
           "label": "Datos sin patrón",
-          "body": "Un cumpleaños no se deduce de nada; si no se repite en el corpus, no hay forma de aprenderlo."
+          "body": "Un cumpleaños no se deduce de nada; si no se repite en el corpus, no hay forma de aprenderlo.",
+          "icon": "shuffle"
         },
         {
           "label": "Hechos frecuentes",
-          "body": "Con el cumpleaños de Einstein, que aparece miles de veces, los modelos casi no se equivocan."
+          "body": "Con el cumpleaños de Einstein, que aparece miles de veces, los modelos casi no se equivocan.",
+          "icon": "repeat"
         }
       ],
-      "format": "grid",
-      "notes": "La tesis de Kalai et al. (OpenAI, 2025) es que las alucinaciones no son un misterio: son errores de clasificación. Generar una respuesta válida es más difícil que decidir si una respuesta es válida, y si el modelo no puede distinguir un hecho de un error plausible, va a producir errores plausibles. Engancha con la sección 1: lo que el corpus repite, el modelo lo sabe; lo que aparece una vez, lo adivina. Tiempo objetivo: ~1,5 min.",
+      "notes": "Cambio de tema: qué pasa cuando el modelo no sabe la respuesta. La tesis de Kalai et al. (OpenAI, 2025) es que las alucinaciones no son un misterio: son errores de clasificación. Generar una respuesta válida es más difícil que decidir si una respuesta es válida, y si el modelo no puede distinguir un hecho de un error plausible, va a producir errores plausibles. Engancha con la sección 1: lo que el corpus repite, el modelo lo sabe; lo que aparece una vez, lo adivina. Tiempo objetivo: ~1,5 min.",
       "_choice": {
         "signals": [
           "labeled_items=3 (Ejemplo, Datos sin patrón, Hechos frecuentes)",
           "is_ordered=false",
           "date_labels=false",
           "n_images=0",
-          "two_groups=false",
-          "big_metrics=false (the 20% sits in the lead, not the items)",
-          "body_len=prose (>80 chars)"
+          "has_table=false",
+          "two_groups=false (rare vs frequent facts is one contrast inside a three-item set, not two symmetric groups)",
+          "big_metrics=false (the 20% lives in the lead)",
+          "is_question=false (the title is not a question the body answers as a quiz)",
+          "format: grid (bodies ~140/93/92 chars are prose > ~80; editorial wants short bodies) — set after review"
         ],
         "candidates": [
           "concept-breakdown",
-          "big-number",
+          "value-columns",
           "single-point"
         ],
         "picked": "concept-breakdown",
         "rejected": {
-          "big-number": "one_metric requires one dominant figure with a one-line caption and nothing competing; here three labeled items compete",
-          "single-point": "labeled_items is 3, not 1"
+          "value-columns": "anti-default check: the three items (an example, a cause, a counter-case) do not align row by row over a shared factor",
+          "single-point": "requires labeled_items == 1; there are three labeled items"
         }
       }
     },
     {
       "template": "content+cards+image",
-      "section": "Cuando el modelo no sabe",
+      "section": "Cuando el modelo inventa",
       "title": "Las evaluaciones premian adivinar",
       "lead": "**Con puntaje de 1 o 0, decir \"no sé\" siempre suma 0 y adivinar a veces suma 1. Un modelo que adivina le gana en el ranking a uno que reconoce que no sabe.**",
       "cards": [
         {
           "label": "Benchmarks",
-          "body": "De 10 evaluaciones influyentes (GPQA, MMLU-Pro, SWE-bench, HLE, ...), 9 no dan ningún crédito a \"no sé\"."
+          "body": "De 10 evaluaciones influyentes (GPQA, MMLU-Pro, SWE-bench, HLE, ...), 9 no dan ningún crédito a \"no sé\".",
+          "icon": "leaderboard"
         },
         {
           "label": "Propuesta",
-          "body": "Anunciar un umbral en la consigna: responder solo con confianza mayor a t, porque un error resta t/(1 − t)."
+          "body": "Anunciar un umbral en la consigna: responder solo con confianza mayor a t, porque un error resta t/(1 − t).",
+          "icon": "rule"
         }
       ],
       "media": {
-        "src": "images/s6-2-1-grilla-penalizacion.png",
-        "alt": "Grilla binaria frente a grilla con penalización por error"
+        "src": "images/s5-2-1-grilla-penalizacion.png",
+        "alt": "Grilla binaria contra grilla con penalización por error"
       },
       "design": "split-right",
-      "notes": "La analogía del paper: los modelos están siempre en modo examen, y en un examen sin penalización conviene contestar todo. Los exámenes de ingreso de la India (JEE) y el viejo SAT restan puntos por respuesta errónea para cambiar ese incentivo. El paper da t = 0,75 con penalización 2, pero la fórmula t/(1 − t) da 3; en la lámina se usan los casos que cierran (0,5 y 0,9). Tiempo objetivo: ~2 min.",
+      "notes": "La analogía del paper: los modelos están siempre en modo examen, y en un examen sin penalización conviene contestar todo. Los exámenes de ingreso de la India (JEE) y el viejo SAT restan puntos por respuesta errónea para cambiar ese incentivo. Tiempo objetivo: ~2 min.",
       "_choice": {
         "signals": [
           "labeled_items=2 (Benchmarks, Propuesta)",
-          "n_images=1 (binary vs penalized grading grid)",
-          "two_groups=false in the text (the binary-vs-threshold contrast is the image)",
+          "n_images=1 (binary vs penalized grading grid, wide)",
+          "two_groups=false for the items (the binary-vs-penalty comparison is inside the image; the cards are a finding and a proposal)",
           "is_ordered=false",
-          "big_metrics=false"
+          "big_metrics=false (9 of 10 inside a prose body)"
         ],
         "candidates": [
           "content+cards+image",
           "value-columns",
-          "matrix"
+          "content-image"
         ],
         "picked": "content+cards+image",
         "rejected": {
-          "value-columns": "the two text items do not read across as rows over shared factors; the grading grid is already rendered as the image",
-          "matrix": "no text cells indexed by two named axes; the grid is a picture"
+          "value-columns": "anti-default check: the two cards do not read across as two sides (Benchmarks is evidence, Propuesta is a remedy); the compared grids live in the image",
+          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image; facts would lose the icons"
         }
       }
     },
     {
       "template": "concept-breakdown",
-      "section": "Cuando el modelo no sabe",
+      "section": "Cuando el modelo inventa",
       "title": "Cómo se entrena para decir \"no sé\"",
       "lead": "**El post-training puede enseñar a abstenerse, pero también puede enseñar a inventar.**",
       "cards": [
         {
           "label": "SFT puede enseñar a inventar",
-          "body": "Si el anotador responde con algo que el modelo no sabe, el modelo aprende a contestar igual."
+          "body": "Si el anotador responde con algo que el modelo no sabe, el modelo aprende a contestar igual.",
+          "icon": "school"
         },
         {
           "label": "El RM tiene que saber lo que sabe el modelo",
-          "body": "Llama 2 inicializa el reward model desde el modelo de chat para no premiar respuestas inventadas."
+          "body": "Llama 2 inicializa el reward model desde el modelo de chat para no premiar respuestas inventadas.",
+          "icon": "psychology_alt"
         },
         {
           "label": "Castigar más el error que la abstención",
-          "body": "Con RL, una recompensa que resta más por inventar que por decir \"no sé\"."
+          "body": "Con RL, una recompensa que resta más por inventar que por decir \"no sé\".",
+          "icon": "gavel"
         },
         {
-          "label": "Resultado medido",
-          "body": "En tareas como resumir, InstructGPT agrega información que no está en el texto de entrada en 21% de los casos; GPT-3, en 41%. Contra el modelo con solo SFT, RLHF empeoró la alucinación."
+          "label": "Resultado medido: SFT + RLHF contra GPT-3",
+          "body": "En tareas como resumir, GPT-3 con SFT y RLHF agrega información que no está en el texto de entrada en 21% de los casos; GPT-3 sin post-training, en 41%.",
+          "icon": "insights"
         }
       ],
-      "format": "grid",
-      "notes": "Las dos afirmaciones sobre InstructGPT no se contradicen: contra GPT-3 alucina la mitad; contra el modelo con solo SFT, Chip Huyen lee en el paper que RLHF empeoró la alucinación. El lado opuesto también existe: InstructGPT aprendió a cubrirse con respuestas largas y vagas (el ejemplo del cañón y la calabaza, Figura 9) porque los anotadores premiaban la humildad. WebGPT, con búsqueda, casi siempre intenta responder; GPT-3 con un prompt de ayuda dice \"no tengo comentarios\" en 49% de TruthfulQA. Kalai et al. aclaran que la búsqueda no alcanza: si falla, la calificación binaria sigue premiando adivinar. Tiempo objetivo: ~2 min.",
+      "notes": "Contra el modelo con solo SFT, la comparación sale al revés: Chip Huyen lee en el paper de OpenAI (2022) que RLHF empeoró la alucinación, aunque los anotadores igual lo prefieren. El modelo con post-training también aprendió a cubrirse con respuestas largas y vagas (el cañón y la calabaza, Figura 9). Abstenerse de más tampoco sirve: en TruthfulQA, GPT-3 con un prompt de ayuda responde \"no tengo comentarios\" al 49% de las preguntas. La búsqueda de la sección 4 ayuda y no alcanza: si falla, la calificación binaria sigue premiando adivinar (Kalai et al.). Del lado del producto quedan un prompt, RAG o un fine-tuning; la sección 6 arranca por esa decisión. Tiempo objetivo: ~1,5 min.",
       "_choice": {
         "signals": [
-          "labeled_items=4",
-          "is_ordered=false",
+          "labeled_items=4 (SFT puede enseñar a inventar, El RM tiene que saber lo que sabe el modelo, Castigar más el error que la abstención, Resultado medido: SFT + RLHF contra GPT-3)",
+          "is_ordered=false (SFT, RM, RL are named but the items are levers and a result, not a procedure)",
           "date_labels=false",
           "n_images=0",
-          "two_groups=partial (teach to abstain vs teach to invent, but items are not symmetric groups)",
-          "polarity=false",
-          "big_metrics=false (21% vs 41% inside prose)",
+          "has_table=false",
+          "two_groups=false (the lead names teach-to-abstain vs teach-to-invent, but the four items do not split into two symmetric columns)",
+          "big_metrics=false (21% vs 41% inside one prose body)",
           "body_len=prose"
         ],
         "candidates": [
           "concept-breakdown",
-          "pros-cons",
-          "stat"
+          "process",
+          "pros-cons"
         ],
         "picked": "concept-breakdown",
         "rejected": {
-          "pros-cons": "the four items are not split into two labelled upside/downside groups; they are four parallel mechanisms and one measured result",
-          "stat": "only one item carries figures, inside prose; numbers are not the payload"
+          "process": "anti-default check: the items are independent levers plus a measured result, not ordered steps",
+          "pros-cons": "polarity would need two groups upside/downside; the four items are not split that way"
         }
       }
     },
     {
       "template": "section-agenda",
       "title": "Fine-tuning"
+    },
+    {
+      "template": "content-image",
+      "section": "Fine-tuning",
+      "title": "Dónde entra el fine-tuning",
+      "lead": "**El fine-tuning repite la receta del post-training a escala chica, sobre un modelo que ya pasó por las tres etapas.**",
+      "media": {
+        "src": "images/s6-1-1-mapa-fine-tuning.png",
+        "alt": "El mapa de las etapas extendido con el fine-tuning del equipo"
+      },
+      "design": "split-right",
+      "facts": [
+        {
+          "label": "Lo que cambia",
+          "body": "Los datos son del equipo y son pocos. Los métodos son los mismos de las secciones 2 y 3."
+        }
+      ],
+      "notes": "Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arriba las paga el proveedor; la de abajo, el equipo. Lo que se hace en esa caja es lo mismo que ya vieron: SFT con ejemplos propios (sección 2) y, a veces, preferencias o refuerzo (sección 3). RFT es el nombre que usan OpenAI y Azure para el refuerzo con un evaluador, parecido al RL con recompensas verificables de la sección 3. Unsloth recomienda partir de un modelo instruct, que ya sabe conversar y pide menos datos. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (stage map extended with team fine-tuning)",
+          "labeled_items=1 (Lo que cambia)",
+          "one_claim=false"
+        ],
+        "candidates": [
+          "content-image",
+          "single-point",
+          "content+cards+image"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "single-point": "labeled_items == 1 with a supporting image -> content-image",
+          "content+cards+image": "requires labeled_items >= 2; one labeled line here"
+        }
+      }
     },
     {
       "template": "content-image",
@@ -1611,60 +1789,24 @@
           "body": "Si hacen falta los dos, se empieza por RAG."
         }
       ],
-      "notes": "Callback a las clases de prompting y de RAG y MCP: todo lo que vieron hasta ahora cambia la entrada del modelo; el fine-tuning cambia los pesos. El eje vertical de la figura es el tiempo del proyecto. Un ejemplo de falla de comportamiento: el modelo genera SQL de un dialecto poco común que no compila; ningún documento recuperado arregla eso. Cuando el fine-tuning se justifica, la cantidad de datos decide la técnica: con pocos datos de calidad, LoRA o QLoRA sobre un modelo fuerte; con muchos, fine-tuning completo de un modelo más chico; o destilar un modelo fuerte en uno chico (revisar la licencia). Tiempo objetivo: ~1,5 min.",
+      "notes": "Callback a las clases de prompting y de RAG y MCP: todo lo que vieron hasta ahora cambia la entrada del modelo; el fine-tuning cambia los pesos. El eje vertical de la figura es el tiempo del proyecto. Un ejemplo de falla de comportamiento: el modelo genera SQL de un dialecto poco común que no compila, y ningún documento recuperado arregla eso. Con pocos datos de calidad conviene LoRA o QLoRA sobre un modelo fuerte; con muchos, un ajuste completo de un modelo más chico, o destilar un modelo fuerte en uno chico (revisar la licencia). Dos costos: ajustar para una tarea puede degradar otras, y el próximo modelo base puede superar al ajustado. Tiempo objetivo: ~1,5 min.",
       "_choice": {
         "signals": [
           "author hint <!-- template: content-image --> pins the template",
-          "n_images=1 (AI Engineering fig. 7-3)",
+          "n_images=1 (development path figure)",
           "labeled_items=2 (Orden habitual, No se excluyen)",
-          "is_ordered=partial (the order is one item's content)"
+          "two_groups=false (RAG vs fine-tuning is contrasted in the lead; the two facts are an order and a combination rule, not two sides)",
+          "is_ordered=false (one fact states an order; the items themselves are not steps)"
         ],
         "candidates": [
           "content-image",
           "content+cards+image",
-          "process"
+          "value-columns"
         ],
         "picked": "content-image",
         "rejected": {
-          "content+cards+image": "labeled_items=2 + shared image would fire it, but the author hint pins content-image",
-          "process": "the items are not steps; \"Orden habitual\" describes an order inside one fact"
-        }
-      }
-    },
-    {
-      "template": "pros-cons",
-      "section": "Fine-tuning",
-      "title": "Razones a favor y en contra",
-      "lead": "**El fine-tuning desbloquea capacidades que el modelo ya tiene pero que cuesta sacar con un prompt. Tiene un costo inicial alto y puede empeorar otras tareas.**",
-      "pro_label": "A favor",
-      "con_label": "En contra",
-      "pros": [
-        "**Formato.** Salidas estructuradas (JSON, YAML) confiables.",
-        "**Tareas poco vistas.** Un dialecto de SQL poco común, un dominio propio.",
-        "**Modelos chicos.** Un modelo chico ajustado puede reemplazar a uno grande en una tarea; la destilación entrena uno chico para imitar a uno grande."
-      ],
-      "cons": [
-        "**Otras tareas.** Ajustar para una tarea puede degradar el resto.",
-        "**Inversión.** Datos anotados, conocimiento de entrenamiento e infraestructura para servir el modelo.",
-        "**Obsolescencia.** El próximo modelo base puede superar al ajustado."
-      ],
-      "notes": "La frase de Chip Huyen sobre el post-training (sección 3) vale igual acá: el fine-tuning destraba lo que el modelo ya sabe. Si el modelo base no tiene el conocimiento, un fine-tuning chico no lo agrega; para eso está RAG. La última viñeta pesa en la decisión: un fine-tuning ata el producto a una versión del modelo base, y cada versión nueva pide repetir el trabajo. Tiempo objetivo: ~1,5 min.",
-      "_choice": {
-        "signals": [
-          "author hint <!-- template: pros-cons --> pins the template",
-          "two_groups=true (A favor / En contra)",
-          "polarity=true",
-          "labeled_items=6"
-        ],
-        "candidates": [
-          "pros-cons",
-          "value-columns",
-          "concept-breakdown"
-        ],
-        "picked": "pros-cons",
-        "rejected": {
-          "value-columns": "two_groups + polarity (upside vs downside) -> pros-cons; the colour-coding is the point",
-          "concept-breakdown": "the six items split into two valenced groups; flattening them loses the polarity"
+          "content+cards+image": "author pin: the source carries <!-- template: content-image -->, which the schema says pins the template and skips classification. On signals alone the walk would pick content+cards+image (labeled_items >= 2 + one shared image); the pin overrides the catalog's own answer and is kept because it is the presenter's directive",
+          "value-columns": "the two facts do not read across as two sides; the RAG/fine-tuning contrast is a single lead sentence; pinned by hint"
         }
       }
     },
@@ -1674,170 +1816,241 @@
       "title": "La cuenta de memoria",
       "lead": "**Para inferencia alcanza con guardar los pesos. Para entrenar hay que guardar además gradientes, los dos estados de Adam y las activaciones.**",
       "media": {
-        "src": "images/s7-3-1-cuenta-memoria.png",
-        "alt": "Memoria de un fine-tuning completo frente a la inferencia"
+        "src": "images/s6-3-1-cuenta-memoria.png",
+        "alt": "La cuenta de memoria de un fine-tuning completo contra la inferencia"
       },
-      "design": "split-right",
+      "design": "banded",
       "facts": [
         {
           "label": "Regla rápida de inferencia",
           "body": "Memoria ≈ N parámetros × bytes por valor × 1,2."
         }
       ],
-      "notes": "Hacer la cuenta en el pizarrón con la clase. Adam guarda dos valores por parámetro (media y varianza del gradiente), más el gradiente mismo: tres valores extra por parámetro. El caso de 65B, en 7.5, da más de 780 GB. La técnica de gradient checkpointing recalcula activaciones para ahorrar memoria a cambio de cómputo. La pregunta que abre la próxima lámina: ¿hace falta entrenar los 13.000 millones de parámetros? Tiempo objetivo: ~2 min.",
+      "notes": "Hacer la cuenta en el pizarrón con la clase. Adam guarda dos valores por parámetro (media y varianza del gradiente), más el gradiente mismo: tres valores extra por parámetro. El caso de 65B, en la lámina siguiente, da más de 780 GB. La técnica de gradient checkpointing recalcula activaciones para ahorrar memoria a cambio de cómputo. La pregunta que responden LoRA y QLoRA en la lámina siguiente: ¿hace falta entrenar los 13.000 millones de parámetros? Tiempo objetivo: ~2 min.",
       "_choice": {
         "signals": [
-          "n_images=1 (memory arithmetic diagram)",
+          "n_images=1 (memory account diagram, wide)",
           "labeled_items=1 (Regla rápida de inferencia)",
-          "big_metrics=false in the text (the GB figures live in the diagram)"
+          "big_metrics=false (a formula, not standalone figures)"
         ],
         "candidates": [
           "content-image",
           "single-point",
-          "stat"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "single-point": "labeled_items == 1 with a supporting image -> content-image",
-          "stat": "no standalone figures in the text body; the numbers are drawn in the image"
-        }
-      }
-    },
-    {
-      "template": "content-image",
-      "section": "Fine-tuning",
-      "title": "LoRA: entrenar dos matrices chicas",
-      "lead": "**LoRA congela la matriz de pesos W y entrena solo una corrección de rango bajo: W + B · A, con B de d × r y A de r × d, y r mucho menor que d.**",
-      "media": {
-        "src": "images/fig-01-p001-2.png",
-        "alt": "Reparametrización de LoRA: pesos congelados más las matrices A y B (Hu et al., 2021, fig. 1)"
-      },
-      "design": "split-right",
-      "facts": [
-        {
-          "label": "Una matriz de GPT-3",
-          "body": "D = 12.288: la matriz completa tiene ~151 millones de valores. Con r = 4, A y B suman 98.304: 1.536 veces menos."
-        },
-        {
-          "label": "Arranque",
-          "body": "B empieza en cero: al inicio el modelo es igual al original."
-        },
-        {
-          "label": "Ahorro en GPT-3 175B",
-          "body": "Memoria de entrenamiento de 1,2 TB a 350 GB; checkpoint de 350 GB a 35 MB. Cien versiones ajustadas ocupan ~354 GB en lugar de ~35 TB."
-        },
-        {
-          "label": "Sin latencia extra",
-          "body": "Al desplegar, B · A se suma a W."
-        }
-      ],
-      "notes": "La figura es la del paper: la entrada x pasa por W (congelada) y en paralelo por A y B (entrenables), y las dos salidas se suman. Hacer la cuenta de la primera viñeta en voz alta: una matriz de rango r se escribe como producto de dos matrices finas. La hipótesis es que la actualización que hace falta para adaptar un modelo tiene rango bajo; en GPT-3, r = 1 o 2 alcanza en varias tareas. Calidad: en las tareas del paper, LoRA iguala o supera al fine-tuning completo (Tabla 4). Apple sirve varios adaptadores sobre un modelo de 3B para distintas funciones del iPhone. Chip Huyen advierte que en general LoRA no llega al fine-tuning completo. Tiempo objetivo: ~2,5 min.",
-      "_choice": {
-        "signals": [
-          "author hint <!-- template: content-image --> pins the template",
-          "n_images=1 (Hu et al. fig. 1)",
-          "labeled_items=4"
-        ],
-        "candidates": [
-          "content-image",
           "content+cards+image"
         ],
         "picked": "content-image",
         "rejected": {
-          "content+cards+image": "labeled_items=4 + shared image would fire it, but the author hint pins content-image"
+          "single-point": "labeled_items == 1 with a supporting image -> content-image",
+          "content+cards+image": "requires labeled_items >= 2; one labeled line here"
         }
       }
     },
     {
       "template": "content+cards+image",
       "section": "Fine-tuning",
-      "title": "QLoRA: el modelo base en 4 bits",
-      "lead": "**QLoRA guarda el modelo base congelado en 4 bits y entrena adaptadores LoRA en 16 bits. Un modelo de 65B se ajusta en una sola GPU de 48 GB sin perder rendimiento frente a 16 bits.**",
+      "title": "LoRA y QLoRA en la práctica",
+      "lead": "**LoRA congela los pesos del modelo y entrena dos matrices finas por capa. QLoRA además guarda el modelo congelado en 4 bits. Lo que se entrena y se guarda es un adaptador.**",
       "cards": [
         {
-          "label": "Tres trucos",
-          "body": "NormalFloat de 4 bits (NF4), cuantizar también las constantes de cuantización, y paginar el optimizador a la RAM en picos de memoria."
+          "label": "LoRA",
+          "body": "En una matriz de GPT-3 (d = 12.288, r = 4) entrena 98.304 valores en lugar de unos 151 millones. En GPT-3 175B, el checkpoint baja de 350 GB a 35 MB.",
+          "icon": "tune"
         },
         {
-          "label": "Detalle que importa",
-          "body": "Con LoRA solo en query y value no se alcanza al fine-tuning completo; hace falta en todas las capas lineales."
+          "label": "QLoRA",
+          "body": "Un modelo de 65B se ajusta en una sola GPU de 48 GB y rinde como el fine-tuning completo en 16 bits.",
+          "icon": "compress"
         },
         {
-          "label": "Resultado",
-          "body": "Guanaco 65B llega al 99,3% del puntaje de ChatGPT en Vicuna (80 preguntas de chat juzgadas por GPT-4) con 24 horas de entrenamiento en una GPU."
+          "label": "Por dónde empezar",
+          "body": "Unsloth recomienda arrancar con QLoRA y pasar al ajuste completo solo si LoRA no alcanza.",
+          "icon": "flag"
         }
       ],
       "media": {
-        "src": "images/s7-5-1-composicion-qlora.png",
-        "alt": "Composición de QLoRA: base cuantizada más LoRA"
+        "columns": [
+          {
+            "header": "Modelo",
+            "cells": [
+              "7B",
+              "13B",
+              "33B",
+              "65B"
+            ]
+          },
+          {
+            "header": "Memoria total con QLoRA",
+            "cells": [
+              "6,9 GB",
+              "11,3 GB",
+              "24,7 GB",
+              "45,0 GB (fine-tuning completo en 16 bits: más de 780 GB)"
+            ]
+          }
+        ]
       },
       "design": "split-right",
-      "notes": "La cuantización a 4 bits se usa para guardar los pesos; para multiplicar se pasan a 16 bits. NF4 reparte los 16 valores posibles según una normal, porque los pesos de una red tienen esa forma. El 99,3% es sobre un benchmark de 80 preguntas juzgado por GPT-4, con intervalos de ±4 puntos; el propio paper advierte que los benchmarks de chatbots no son confiables. El costo: QLoRA ahorra memoria y gasta más tiempo de cómputo. Para la práctica: según la Figura 6 del paper, un modelo de 7B con QLoRA ocupa 6,9 GB en total. Tiempo objetivo: ~2 min.",
+      "notes": "Conectar con la cuenta de memoria de la lámina 6.3: un 13B con ajuste completo pedía unos 109 GB; con QLoRA, según el paper, 11,3 GB. La tabla usa batch 1 y secuencias de 512 tokens; con secuencias o batches más grandes sube. LoRA: la entrada pasa por W congelada y en paralelo por A y B, y las dos salidas se suman; B arranca en cero, así que al principio el modelo es igual al original, y al desplegar B · A se suma a W sin latencia extra. QLoRA: NF4 reparte los 16 valores posibles según una normal. Hay que poner LoRA en todas las capas lineales para igualar al ajuste completo. Tiempo objetivo: ~2 min.",
       "_choice": {
         "signals": [
-          "labeled_items=3 (Tres trucos, Detalle que importa, Resultado)",
-          "n_images=1 (QLoRA composition)",
+          "labeled_items=3 (LoRA, QLoRA, Por dónde empezar)",
+          "has_table=true (Modelo | Memoria total con QLoRA, 4 rows: a small lookup table supporting the QLoRA card)",
+          "n_images=0",
           "is_ordered=false",
-          "date_labels=false",
-          "two_groups=false",
-          "big_metrics=false (99,3% inside prose)"
+          "big_metrics=partial (four memory figures, but inside a lookup table beside three prose points)"
         ],
         "candidates": [
           "content+cards+image",
-          "content-image",
-          "concept-breakdown"
+          "value-columns",
+          "concept-breakdown",
+          "stat"
         ],
         "picked": "content+cards+image",
         "rejected": {
-          "content-image": "labeled_items >= 2 + one shared image -> content+cards+image",
-          "concept-breakdown": "requires images == 0"
+          "value-columns": "the slide is about the two methods (lead + LoRA / QLoRA / where to start cards); the two-column memory lookup supports the QLoRA card. The schema puts a small lookup table beside a card set in media ({columns}) so both keep their structure; making the table the slide would demote the three labeled cards to highlight lines",
+          "stat": "four figures in a two-column lookup beside three prose cards are not the payload of the slide; stat would lose the cards",
+          "concept-breakdown": "fires on the three unordered labeled cards with images == 0, but has no place for the memory lookup table; \"content is never dropped: if the supporting half is code or a table, put it in media and keep the cards\" -> content+cards+image with media {columns}"
+        }
+      }
+    },
+    {
+      "template": "value-columns",
+      "section": "Fine-tuning",
+      "title": "Fine-tuning en la nube",
+      "lead": "**A septiembre de 2026, Azure y Google Cloud ofrecen fine-tuning administrado a usuarios nuevos, y OpenAI cierra su plataforma. En todas el recorrido es el mismo: se suben ejemplos en JSONL, se lanza un trabajo y sale un modelo propio para desplegar.**",
+      "columns": [
+        {
+          "header": "Plataforma",
+          "cells": [
+            "OpenAI (cerrada a usuarios nuevos)",
+            "Azure Foundry",
+            "Google Cloud: Gemini",
+            "Google Cloud: modelos abiertos"
+          ]
+        },
+        {
+          "header": "Modelos que se pueden ajustar",
+          "cells": [
+            "gpt-4.1, gpt-4.1-mini y gpt-4.1-nano; o4-mini",
+            "Los de OpenAI más gpt-4o, gpt-4o-mini y gpt-5; Llama, Qwen, Ministral y gpt-oss",
+            "Gemini 3.5 Flash, 3.1 Flash-Lite y la familia 2.5",
+            "Gemma 3 y 4, Qwen 3, Llama 3 y 4, GLM"
+          ]
+        },
+        {
+          "header": "Métodos",
+          "cells": [
+            "SFT y DPO; RFT solo en o4-mini",
+            "SFT, DPO o RFT según el modelo, con LoRA",
+            "SFT con adaptadores",
+            "SFT completo o LoRA según el modelo; destilación"
+          ]
+        }
+      ],
+      "notes": "Leer la tabla por filas y decir la fecha: las listas cambian rápido. OpenAI anunció que cierra su plataforma: quien ya la usaba puede seguir unos meses, y los modelos ajustados funcionan hasta que se retire el modelo base. El modelo que OpenAI recomienda hoy para trabajo nuevo no se puede ajustar. Azure sigue vendiendo fine-tuning de gpt-4.1, gpt-4o y o4-mini, y de gpt-5 con RFT por invitación. En Gemini el ajuste es con adaptadores (se elige el tamaño); en los modelos abiertos, según el modelo, hay LoRA, ajuste completo o los dos. Un modelo desplegado en Azure cobra por hora aunque no reciba pedidos. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "has_table=true (Plataforma | Modelos que se pueden ajustar | Métodos, 4 rows)",
+          "two_groups=false (four platforms)",
+          "n_images=0",
+          "labeled_items=0",
+          "date_labels=false"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-breakdown": "platforms down the left compared over the same two factors (which models, which methods) is a table read across; card-per-row is only for heterogeneous attributes with nothing read across and would collapse each row into one body",
+          "content-text": "never fall to a plainer template when a table template matches"
+        }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Fine-tuning",
+      "title": "Fine-tuning local: el recorrido",
+      "lead": "**Con un modelo de pesos abiertos, el fine-tuning corre en una GPU propia o en un notebook de Colab. Las librerías de Hugging Face (TRL y PEFT) o Unsloth resuelven el entrenamiento.**",
+      "media": {
+        "src": "images/s6-6-1-recorrido-fine-tuning-local.png",
+        "alt": "Los cinco pasos de un fine-tuning local con la herramienta de cada paso"
+      },
+      "design": "split-right",
+      "facts": [
+        {
+          "label": "Un ejemplo completo",
+          "body": "La guía de Google ajusta Gemma 4 E2B cargado en 4 bits (NF4), con LoRA de rango 16, para traducir preguntas a SQL. Enmascara todo lo que viene antes de la respuesta."
+        }
+      ],
+      "notes": "Recorrer el diagrama de arriba abajo. El paso 3 es el único que entrena; adentro corre el SFT de la sección 2 con la máscara de la lámina 2.3: la guía de Gemma pone -100 en todos los tokens anteriores a la respuesta, y TRL hace lo mismo por defecto con datos prompt-completion. El resultado del paso 4 es un archivo aparte, el adaptador; se puede servir junto al modelo base o unirlo a los pesos. Para correrlo en una laptop se convierte a GGUF y se usa con Ollama o LM Studio, como en clases anteriores. Unsloth promete notebooks gratis con 3 GB de VRAM, sin decir para qué tamaño de modelo. Tiempo objetivo: ~1,5 min.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (five-step local fine-tuning path)",
+          "labeled_items=1 (Un ejemplo completo)",
+          "is_ordered=partial (the five steps are drawn in the diagram, not listed as items)"
+        ],
+        "candidates": [
+          "content-image",
+          "single-point",
+          "process"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "single-point": "labeled_items == 1 with a supporting image -> content-image",
+          "process": "there are no labeled step items in the body; the ordered steps exist only inside the diagram"
         }
       }
     },
     {
       "template": "concept-breakdown",
       "section": "Fine-tuning",
-      "title": "Calidad antes que cantidad",
-      "lead": "**En fine-tuning, un dataset chico y adecuado le gana a uno grande y genérico.**",
+      "title": "Qué pedirle a los datos",
+      "lead": "**Un dataset chico y parecido a la tarea le gana a uno grande y genérico.**",
       "cards": [
         {
-          "label": "QLoRA",
-          "body": "9.000 ejemplos de OASST1 superan a 450.000 de FLAN v2 como chatbot."
+          "label": "Formato",
+          "body": "JSONL con conversaciones (`messages`, con roles system, user y assistant) o con pares `prompt` y `completion`. TRL, Google Cloud y Azure aceptan estas formas.",
+          "icon": "data_object"
         },
         {
-          "label": "LIMA",
-          "body": "1.000 ejemplos curados alcanzan un modelo competitivo."
+          "label": "Cantidad",
+          "body": "Azure exige al menos 10 ejemplos y recomienda empezar con 50 bien armados; como buena práctica, cientos o miles.",
+          "icon": "inventory_2"
         },
         {
-          "label": "Llama 2",
-          "body": "27.540 anotaciones propias en lugar de millones de terceros."
+          "label": "Adecuación",
+          "body": "En el paper de QLoRA, 9.000 ejemplos de OASST1 superan a 450.000 de FLAN v2 como chatbot.",
+          "icon": "center_focus_strong"
         },
         {
-          "label": "Dos benchmarks, dos rankings",
-          "body": "FLAN v2 da el mejor MMLU y el peor puntaje de chatbot: el dataset tiene que parecerse a la tarea."
+          "label": "Curado",
+          "body": "En LIMA, 1.000 ejemplos curados alcanzan un modelo competitivo.",
+          "icon": "verified"
         }
       ],
-      "format": "grid",
-      "notes": "La frase de Chip Huyen del capítulo 7: \"finetuning is easy, but getting data for finetuning is hard\". La cifra de LIMA viene de las notas de un lector del libro y dice \"competitivo con GPT-4\" con la aclaración \"menos robusto\"; tomarla como indicio. Las notas de otro lector citan mejoras \"con 50 a 100 ejemplos\"; sin fuente primaria, queda fuera. Para decidir la técnica según la cantidad de datos, ver las notas de 7.1. Tiempo objetivo: ~1,5 min.",
+      "notes": "La frase de Chip Huyen del capítulo 7: \"finetuning is easy, but getting data for finetuning is hard\". El formato es el de los registros de SFT de la sección 2; TRL, por defecto, calcula la pérdida solo sobre la respuesta, la misma máscara de la lámina 2.3. Las cifras de Azure son su recomendación para sus modelos. Dos benchmarks, dos rankings: FLAN v2 da el mejor MMLU y el peor puntaje de chatbot, así que el dataset tiene que parecerse a la tarea. LIMA llega de segunda mano, de las notas de un lector del libro, y el modelo resultante es \"menos robusto\": presentarlo como indicio. Tiempo objetivo: ~1,5 min.",
       "_choice": {
         "signals": [
-          "labeled_items=4 (QLoRA, LIMA, Llama 2, Dos benchmarks, dos rankings)",
+          "labeled_items=4 (Formato, Cantidad, Adecuación, Curado)",
           "is_ordered=false",
           "date_labels=false",
           "n_images=0",
+          "has_table=false",
           "two_groups=false",
-          "big_metrics=partial (counts inside prose, one item has none)",
-          "body_len=54-97 chars (longest > 80)"
+          "big_metrics=false (10 / 50 / 9.000 / 450.000 / 1.000 are evidence inside four prose bodies)",
+          "body_len=prose"
         ],
         "candidates": [
           "concept-breakdown",
           "stat",
-          "value-columns"
+          "process"
         ],
         "picked": "concept-breakdown",
         "rejected": {
-          "stat": "the counts are compared inside prose (9.000 vs 450.000) and the fourth item has no figure; numbers are evidence, not the payload",
-          "value-columns": "the items are not rows over shared factors"
+          "stat": "anti-default check: the figures qualify four different requirements and several appear per item; the payload is the four criteria, not 2-4 standalone metrics",
+          "process": "no ordinal labels, no sequence between the criteria"
         }
       }
     },
@@ -1854,11 +2067,11 @@
         {
           "header": "Lo que se observa",
           "cells": [
-            "Sabe mucho de inglés y poco de otros idiomas",
+            "Repite los sesgos y los huecos de sus datos",
             "Completa en vez de responder",
             "Sigue el formato y el tono pedidos",
             "Prefiere unas respuestas a otras",
-            "Llama herramientas y busca",
+            "Llama herramientas: calcula, busca, usa MCP",
             "Piensa más o menos según el effort",
             "Inventa en vez de decir \"no sé\"",
             "No responde en la forma que necesita el producto"
@@ -1871,7 +2084,7 @@
             "Pre-training sin SFT",
             "SFT",
             "RLHF o DPO",
-            "SFT con trazas, preferencias, RL",
+            "SFT con las llamadas en el texto; preferencias y RL para encadenarlas en tareas de varios pasos",
             "RL con verificadores; SFT y RL para cambiar de modo (el presupuesto se corta en inferencia)",
             "Pre-training y evaluaciones binarias",
             "Todo lo anterior"
@@ -1880,23 +2093,24 @@
         {
           "header": "Qué se puede hacer",
           "cells": [
-            "Curar datos del idioma; presupuestar más tokens",
+            "Curar los datos; post-training para negarse",
             "Usar un modelo con post-training",
             "Demostraciones de calidad",
             "Datos de comparación",
-            "Esquemas claros y un buen orquestador",
+            "Definiciones claras de cada herramienta (MCP) y un agente que las ejecute",
             "Elegir el nivel o el presupuesto",
-            "RAG, umbrales de confianza",
-            "Prompt, RAG, y si no alcanza, LoRA o QLoRA"
+            "Umbrales de confianza; post-training que castiga inventar; RAG ayuda pero no alcanza",
+            "Prompt y RAG; si no alcanza, fine-tuning con LoRA o QLoRA, en la nube (Azure, Google) o local"
           ]
         }
       ],
-      "notes": "Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su sección. La última fila es la que les toca a ellos: la sección 7. Después, preguntas. Si sobra tiempo, abrir el tokenizer web y comparar una frase en castellano con su traducción (sección 1), o mostrar un registro de un dataset público de SFT. Tiempo objetivo: ~2 min más preguntas.",
+      "notes": "Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su sección. La última fila es la que les toca a ellos: la sección 6. Después, preguntas. Si sobra tiempo, mostrar un registro de un dataset público de SFT. Tiempo objetivo: ~2 min más preguntas.",
       "_choice": {
         "signals": [
           "has_table=true (Lo que se observa | Etapa donde nace | Qué se puede hacer, 8 rows)",
           "is_terminal=true",
-          "is_cta=false (stages and fixes, not links/resources)",
+          "is_cta=false (the rows are behaviours and remedies, not resources or links)",
+          "labeled_items=0",
           "n_images=0"
         ],
         "candidates": [
@@ -1906,15 +2120,15 @@
         ],
         "picked": "value-columns",
         "rejected": {
-          "concept-breakdown": "each row reads across observed behaviour -> stage -> fix over shared factors; demoting collapses the alignment. 8 rows is past the 7-row budget: a split candidate, never a reason to change template",
-          "closing-cta": "the items are concepts (stages and fixes), not next steps / links"
+          "concept-breakdown": "each observed behaviour is compared over the same two factors (where it originates, what can be done), read across every row; card-per-row would collapse the alignment. 8 rows is past the 7-row budget: a split candidate, never a demotion",
+          "closing-cta": "is_cta needs next steps / resources / links; this terminal slide is a summary table"
         }
       }
     }
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "81424a4330f1ceb082b8d305bb6ca2d9eb152f035ab2d7853544fb617d13e968",
-    "bytes": 126939
+    "sha256": "73dec1d57039a53532a7968dfffb0db80a1b4efeaf3c9f860ab82ab81ec0a3ae",
+    "bytes": 215289
   }
 }

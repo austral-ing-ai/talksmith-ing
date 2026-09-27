@@ -1,0 +1,9 @@
+url: "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview"
+fetched_at: "2026-09-26T22:26:07Z"
+title: "Tool use with Claude - Claude Platform Docs"
+http_status: 200
+byte_size: 861790
+assets:
+  - { src: "/images/dashboard-discovery/cursor.svg", absolute: "https://platform.claude.com/images/dashboard-discovery/cursor.svg", saved_as: "cursor.svg", alt: "" }
+  - { src: "/images/dashboard-discovery/bubble.svg", absolute: "https://platform.claude.com/images/dashboard-discovery/bubble.svg", saved_as: "bubble.svg", alt: "" }
+  - { src: "/images/dashboard-discovery/bird.svg", absolute: "https://platform.claude.com/images/dashboard-discovery/bird.svg", saved_as: "bird.svg", alt: "" }

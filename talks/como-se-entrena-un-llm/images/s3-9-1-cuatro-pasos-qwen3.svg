@@ -1,0 +1,48 @@
+<!-- talksmith-ascii-sha256: 21450159d1f70c9c5bc78e876ee72d53919bba55aceefae1e8024a06dc71decd -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1088 224" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Qwen3: cuatro pasos de post-training</title>
+<desc>Los pasos 1 y 2 siguen la receta de DeepSeek-R1.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto"><path d="M0,1 L12,6 L0,11 Z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="1088" height="224" fill="#ffffff"/>
+<rect x="24" y="54" width="96" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="72" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Modelo</text>
+<text x="72" y="99" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">base</text>
+<g stroke="#3B3535" stroke-width="2" fill="none">
+<line x1="120" y1="84" x2="156" y2="84" marker-end="url(#ah)"/>
+<line x1="356" y1="84" x2="392" y2="84" marker-end="url(#ah)"/>
+<line x1="592" y1="84" x2="628" y2="84" marker-end="url(#ah)"/>
+<line x1="828" y1="84" x2="864" y2="84" marker-end="url(#ah)"/>
+</g>
+<rect x="156" y="24" width="200" height="120" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="392" y="24" width="200" height="120" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="628" y="24" width="200" height="120" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.5"/>
+<rect x="864" y="24" width="200" height="120" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.5"/>
+<g text-anchor="middle" font-size="12" font-weight="bold" letter-spacing="1.5">
+<text x="256" y="50">PASO 1</text>
+<text x="492" y="50">PASO 2</text>
+<text x="728" y="50" fill="#DA1B2E">PASO 3</text>
+<text x="964" y="50" fill="#DA1B2E">PASO 4</text>
+</g>
+<g text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">
+<text x="256" y="76">SFT inicial</text>
+<text x="492" y="76">RL de razonamiento</text>
+<text x="728" y="76">Fusión de modos</text>
+<text x="964" y="76">RL general</text>
+</g>
+<g text-anchor="middle" font-size="14">
+<text x="256" y="104">razonamientos largos</text>
+<text x="256" y="123">y verificados</text>
+<text x="492" y="104">GRPO sobre</text>
+<text x="492" y="123">3.995 problemas</text>
+<text x="728" y="104">SFT con ejemplos</text>
+<text x="728" y="123" font-family="'Andale Mono', monospace" font-size="13">/think y /no_think</text>
+<text x="964" y="104">recompensa por respetar</text>
+<text x="964" y="123">los flags y el formato</text>
+</g>
+<path d="M156,160 V170 H592 V160" fill="none" stroke="#3B3535" stroke-width="1.5"/>
+<path d="M628,160 V170 H1064 V160" fill="none" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="374" y="196" text-anchor="middle" font-size="16">aprender a razonar</text>
+<text x="846" y="196" text-anchor="middle" font-size="16" font-weight="bold" fill="#DA1B2E">aprender a elegir si razona</text>
+</svg>

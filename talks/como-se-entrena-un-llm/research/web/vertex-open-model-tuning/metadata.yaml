@@ -1,0 +1,8 @@
+url: "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/tuning/open-model-tuning"
+fetched_at: "2026-09-26T22:38:15Z"
+title: "Supervised and distillation fine-tuning for open models  |  Gemini Enterprise Agent Platform  |  Google Cloud Documentation"
+http_status: 200
+byte_size: 460564
+assets:
+  - { src: "https://www.gstatic.com/devrel-devsite/prod/v5be16d8c9f9402e54c2da2ff24cb75c148f5d2bc84c6f8dfc8b9e16ae456160b/clouddocs/images/lockup_full_color.svg", absolute: "https://www.gstatic.com/devrel-devsite/prod/v5be16d8c9f9402e54c2da2ff24cb75c148f5d2bc84c6f8dfc8b9e16ae456160b/clouddocs/images/lockup_full_color.svg", saved_as: "lockup_full_color.svg", alt: "Google Cloud Documentation" }
+  - { src: "https://www.gstatic.com/images/branding/productlogos/gemini_2025/v1/192px.svg", absolute: "https://www.gstatic.com/images/branding/productlogos/gemini_2025/v1/192px.svg", saved_as: "192px.svg", alt: "" }

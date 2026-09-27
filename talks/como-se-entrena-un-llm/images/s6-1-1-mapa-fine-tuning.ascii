@@ -1,0 +1,26 @@
+ +------------------------ lo hace el proveedor del modelo ------------------------+
+ |                                                                                 |
+ |   pre-training   ------>   SFT   ------>   RLHF / preferencias                  |
+ |   la web                   demostraciones  comparaciones                        |
+ +---------------------------------------------------------------------------------+
+                                        |
+                                        v
+                 modelo del proveedor (base o chat / instruct)
+                                        |
+                                        v
+ +---------------------------- lo hace el equipo ---------------------------------+
+ |                                                                                 |
+ |   el fine-tuning                                                                |
+ |     datos      ejemplos propios, en JSONL                                       |
+ |     método     SFT; a veces preferencias (DPO) o RL con un evaluador (RFT)      |
+ |     técnica    adaptadores LoRA o QLoRA, o ajuste completo                      |
+ +---------------------------------------------------------------------------------+
+                                        |
+                                        v
+                                 modelo propio
+
+<!-- ascii-note:
+intent: extender el mapa de las tres etapas con el fine-tuning del equipo de producto, que corre sobre el modelo ya post-entrenado
+emphasize: la caja de abajo (el fine-tuning del equipo) y su parecido con SFT y preferencias de la caja de arriba
+labels: lo hace el proveedor, lo hace el equipo, datos, método, técnica
+-->

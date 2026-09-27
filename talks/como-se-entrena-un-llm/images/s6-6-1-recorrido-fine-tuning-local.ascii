@@ -1,0 +1,22 @@
+ 1  modelo abierto     Llama 3.1 8B, Qwen3, Gemma 4
+         |
+         v
+ 2  datos              ejemplos en JSONL
+         |
+         v
+ 3  entrenamiento      TRL SFTTrainer + PEFT (LoraConfig), o Unsloth
+                       QLoRA: el modelo base se carga en 4 bits
+         |
+         v
+ 4  resultado          un adaptador LoRA, o el modelo con el adaptador unido
+                       (merge_and_unload)
+         |
+         v
+ 5  servir             GGUF con llama.cpp -> Ollama, LM Studio (una máquina)
+                       vLLM (varios usuarios)
+
+<!-- ascii-note:
+intent: los cinco pasos de un fine-tuning local, de arriba abajo, con la herramienta de cada paso
+emphasize: el paso 3 (entrenamiento) y la bifurcación del paso 5 entre una máquina y varios usuarios
+labels: TRL, PEFT, Unsloth, GGUF, vLLM
+-->

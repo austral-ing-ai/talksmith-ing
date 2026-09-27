@@ -1,0 +1,24 @@
+ 64 pares -> 128 filas: cada fila repite el prompt de su par
+
+   fila   0   P₁  + A₁    (preferida)
+   fila   1   P₁  + B₁
+   fila   2   P₂  + A₂    (preferida)
+   fila   3   P₂  + B₂
+     ...
+   fila 126   P₆₄ + A₆₄   (preferida)
+   fila 127   P₆₄ + B₆₄
+        |
+        v   un solo forward
+   128 puntajes, uno por fila
+        |
+        v   reagrupar por par: fila 0 con 1, 2 con 3, ...
+   pérdida del par i = -log σ( r(Aᵢ) - r(Bᵢ) )
+        |
+        v
+   promedio de las 64 pérdidas  -->  un solo backward
+
+<!-- ascii-note:
+intent: cómo se arma un batch de 64 pares de preferencia y el camino hasta un solo backward
+emphasize: la fórmula de la pérdida por par y el reagrupado de filas de a dos
+labels: Pᵢ = prompt del par i, Aᵢ = respuesta preferida, Bᵢ = la otra, r = puntaje del reward model
+-->

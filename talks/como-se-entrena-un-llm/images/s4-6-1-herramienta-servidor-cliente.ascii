@@ -1,0 +1,21 @@
+ (a) herramienta del servidor: búsqueda web
+
+ +----------+        +--------------- proveedor: un solo pedido a la API ----------------+
+ | tu app   | -----> |  LLM --> búsqueda --> resultado --> LLM --> ...  (varias veces)   |
+ |          | <----- |  respuesta con citas                                              |
+ +----------+        +-------------------------------------------------------------------+
+
+ (b) herramienta del cliente: funciones propias, base de datos, MCP
+
+ +-------------------------------+        +---------------- proveedor ----------------+
+ | tu app                        | -----> |  LLM emite la llamada y espera            |
+ | el agente ejecuta la llamada  | <----- |                                           |
+ | y manda el resultado          | -----> |  LLM sigue con el resultado               |
+ |                               | <----- |  respuesta                                |
+ +-------------------------------+        +-------------------------------------------+
+
+<!-- ascii-note:
+intent: dos carriles, herramienta del servidor contra herramienta del cliente; el punto es dónde se ejecuta la llamada
+emphasize: el borde de las cajas (dentro del proveedor contra dentro de tu app); en los dos carriles el LLM solo emite la llamada
+labels: (a) servidor, (b) cliente, respuesta con citas
+-->

@@ -1,0 +1,41 @@
+<!-- talksmith-ascii-sha256: bbfb138db52a799adae9a2b4b4f04fafbd14824d1fa1a175bd0bdaeecacefc0e -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 384" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>El circuito con un agente</title>
+<desc>Callback a la clase de RAG y MCP: allá armaron este loop del lado del agente, con ReAct.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="920" height="384" fill="#ffffff"/>
+<rect x="20" y="20" width="362" height="40" rx="20" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="40" y="46" font-size="15"><tspan font-weight="bold" fill="#1F1E1E">usuario:</tspan> “¿Qué tiempo hace hoy en Córdoba?”</text>
+<line x1="140" y1="60" x2="140" y2="100" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="20" y="100" width="240" height="150" rx="10" fill="#F2EEEE" stroke="#1F1E1E" stroke-width="1.5"/>
+<text x="140" y="132" font-size="20" font-weight="bold" fill="#1F1E1E" text-anchor="middle">LLM</text>
+<g font-size="15" text-anchor="middle">
+<text x="140" y="162">decide si llamar,</text>
+<text x="140" y="184">a qué herramienta</text>
+<text x="140" y="206">y con qué argumentos</text>
+<text x="140" y="236" font-size="13" font-style="italic">la parte que se entrena</text>
+</g>
+<rect x="640" y="100" width="260" height="150" rx="10" fill="#F2EEEE" stroke="#1F1E1E" stroke-width="1.5"/>
+<text x="770" y="132" font-size="20" font-weight="bold" fill="#1F1E1E" text-anchor="middle">AGENTE</text>
+<g font-size="15" text-anchor="middle">
+<text x="770" y="162">lee la llamada,</text>
+<text x="770" y="184">ejecuta la herramienta,</text>
+<text x="770" y="206">agrega el resultado</text>
+<text x="770" y="228">y vuelve a llamar al LLM</text>
+</g>
+<text x="450" y="122" font-size="14" font-weight="bold" fill="#1F1E1E" text-anchor="middle">llamada</text>
+<text x="450" y="141" font-size="13" font-family="'Andale Mono', monospace" text-anchor="middle">get_weather(location="Córdoba")</text>
+<line x1="260" y1="154" x2="640" y2="154" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="640" y1="204" x2="260" y2="204" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#ahr)"/>
+<text x="450" y="226" font-size="14" font-weight="bold" fill="#1F1E1E" text-anchor="middle">mensaje "tool" con el resultado,</text>
+<text x="450" y="244" font-size="14" text-anchor="middle">agregado al contexto</text>
+<text x="530" y="292" font-size="14" font-style="italic" text-anchor="middle">el loop se repite mientras el LLM pida herramientas</text>
+<line x1="140" y1="250" x2="140" y2="320" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="20" y="320" width="240" height="44" rx="10" fill="#ffffff" stroke="#1F1E1E" stroke-width="1.5"/>
+<text x="140" y="347" font-size="15" font-weight="bold" fill="#1F1E1E" text-anchor="middle">respuesta sin llamadas</text>
+<line x1="260" y1="342" x2="320" y2="342" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="332" y="347" font-size="15">el agente corta el loop y se la da al usuario</text>
+</svg>

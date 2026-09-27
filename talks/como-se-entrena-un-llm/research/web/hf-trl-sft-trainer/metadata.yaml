@@ -1,0 +1,13 @@
+url: "https://huggingface.co/docs/trl/sft_trainer"
+fetched_at: "2026-09-26T22:38:23Z"
+title: "SFT Trainer · Hugging Face"
+http_status: 200
+byte_size: 324959
+assets:
+  - { src: "/front/assets/huggingface_logo-noborder.svg", absolute: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg", saved_as: "huggingface_logo-noborder.svg", alt: "Hugging Face's logo" }
+  - { src: "/front/assets/huggingface_logo-noborder.svg", absolute: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg", saved_as: "huggingface_logo-noborder.svg", alt: "Hugging Face's logo", deduped: True }
+  - { src: "https://img.shields.io/badge/All_models-SFT-blue", absolute: "https://img.shields.io/badge/All_models-SFT-blue", saved_as: "All_models-SFT-blue.bin", alt: "All_models-SFT-blue" }
+  - { src: "https://img.shields.io/badge/smol_course-Chapter_1-yellow", absolute: "https://img.shields.io/badge/smol_course-Chapter_1-yellow", saved_as: "smol_course-Chapter_1-yellow.bin", alt: "smol_course-Chapter_1-yellow" }
+  - { src: "https://huggingface.co/datasets/trl-lib/documentation-images/resolve/main/sft_figure.png", absolute: "https://huggingface.co/datasets/trl-lib/documentation-images/resolve/main/sft_figure.png", saved_as: "sft_figure.png", alt: "sft_figure" }
+  - { src: "https://huggingface.co/datasets/trl-lib/documentation-images/resolve/main/train_on_assistant.png", absolute: "https://huggingface.co/datasets/trl-lib/documentation-images/resolve/main/train_on_assistant.png", saved_as: "train_on_assistant.png", alt: "train_on_assistant" }
+  - { src: "https://huggingface.co/datasets/trl-lib/documentation-images/resolve/main/train_on_completion.png", absolute: "https://huggingface.co/datasets/trl-lib/documentation-images/resolve/main/train_on_completion.png", saved_as: "train_on_completion.png", alt: "train_on_completion" }

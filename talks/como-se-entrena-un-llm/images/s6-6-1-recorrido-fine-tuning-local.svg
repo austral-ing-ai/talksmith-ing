@@ -1,0 +1,72 @@
+<!-- talksmith-ascii-sha256: dc1e8b003e2a537dc3152e253311f762af6ad5fee71e91e6e0813f186db79f0f -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Fine-tuning local: el recorrido</title>
+<desc>Los cinco pasos de un fine-tuning local, de arriba abajo, con la herramienta de cada paso: el paso 3 es el único que entrena y el paso 5 se bifurca entre servir en una máquina o para varios usuarios.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto"><path d="M0,0 L11,5 L0,10 Z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="800" height="520" fill="#ffffff"/>
+<g stroke="#3B3535" stroke-width="1.6" fill="none" marker-end="url(#ah)">
+<line x1="128" y1="80" x2="128" y2="104"/>
+<line x1="128" y1="160" x2="128" y2="184"/>
+<line x1="128" y1="260" x2="128" y2="284"/>
+<line x1="128" y1="360" x2="128" y2="412"/>
+<path d="M232,440 H262 V408 H292"/>
+<path d="M262,440 V472 H292"/>
+</g>
+<g stroke="#D8D2CE" stroke-width="1.2">
+<rect x="24" y="24" width="208" height="56" rx="8" fill="#F2EEEE"/>
+<rect x="24" y="104" width="208" height="56" rx="8" fill="#F2EEEE"/>
+<rect x="24" y="284" width="208" height="76" rx="8" fill="#F2EEEE"/>
+<rect x="24" y="412" width="208" height="56" rx="8" fill="#F2EEEE"/>
+<rect x="252" y="24" width="524" height="56" rx="8" fill="#ffffff"/>
+<rect x="252" y="104" width="524" height="56" rx="8" fill="#ffffff"/>
+<rect x="252" y="284" width="524" height="76" rx="8" fill="#ffffff"/>
+<rect x="292" y="384" width="484" height="48" rx="8" fill="#ffffff"/>
+<rect x="292" y="448" width="484" height="48" rx="8" fill="#ffffff"/>
+<circle cx="50" cy="52" r="13" fill="#ffffff"/>
+<circle cx="50" cy="132" r="13" fill="#ffffff"/>
+<circle cx="50" cy="322" r="13" fill="#ffffff"/>
+<circle cx="50" cy="440" r="13" fill="#ffffff"/>
+</g>
+<rect x="24" y="184" width="208" height="76" rx="8" fill="#DA1B2E"/>
+<rect x="252" y="184" width="524" height="76" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<circle cx="50" cy="212" r="13" fill="#ffffff"/>
+<rect x="306" y="395" width="128" height="26" rx="13" fill="#F9D2D6"/>
+<rect x="306" y="459" width="128" height="26" rx="13" fill="#F9D2D6"/>
+<g font-weight="bold" font-size="13" text-anchor="middle">
+<text x="50" y="57">1</text>
+<text x="50" y="137">2</text>
+<text x="50" y="217" fill="#DA1B2E">3</text>
+<text x="50" y="327">4</text>
+<text x="50" y="445">5</text>
+<text x="370" y="413" fill="#1F1E1E">una máquina</text>
+<text x="370" y="477" fill="#1F1E1E">varios usuarios</text>
+</g>
+<g font-weight="bold" font-size="16" fill="#1F1E1E">
+<text x="74" y="58">Modelo abierto</text>
+<text x="74" y="138">Datos</text>
+<text x="74" y="218" fill="#ffffff">Entrenamiento</text>
+<text x="74" y="328">Resultado</text>
+<text x="74" y="446">Servir</text>
+</g>
+<text x="74" y="240" font-size="12" fill="#ffffff">único paso que entrena</text>
+<g font-size="15">
+<text x="270" y="57">Llama 3.1 8B, Qwen3, Gemma 4</text>
+<text x="270" y="137">ejemplos en JSONL</text>
+<text x="270" y="216">TRL</text>
+<text x="390" y="216">+ PEFT (</text>
+<text x="534" y="216">), o Unsloth</text>
+<text x="270" y="241">QLoRA: el modelo base se carga en 4 bits</text>
+<text x="270" y="316">un adaptador LoRA, o el modelo con el adaptador unido</text>
+<text x="448" y="413">GGUF con llama.cpp</text>
+<text x="627" y="413">Ollama, LM Studio</text>
+<text x="448" y="477">vLLM</text>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="14" fill="#1F1E1E">
+<text x="302" y="216">SFTTrainer</text>
+<text x="450" y="216">LoraConfig</text>
+<text x="270" y="340">(merge_and_unload)</text>
+</g>
+<line x1="595" y1="408" x2="619" y2="408" stroke="#3B3535" stroke-width="1.4" marker-end="url(#ah)"/>
+</svg>

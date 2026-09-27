@@ -1,0 +1,19 @@
+ +------------------------- MCP host: la aplicación de IA -------------------------+
+ |                                                                                 |
+ |  +-------+   llamada    +------------------+     +---------------+              |       +----------------------+
+ |  |  LLM  | -----------> | agente           | --> | cliente MCP A | -------------+-----> | servidor MCP local   |
+ |  |       | <----------- | junta las tools  |     +---------------+    STDIO     |       | (archivos)           |
+ |  +-------+  resultado   | y enruta         |                                   |       +----------------------+
+ |                         |                  |     +---------------+              |       +----------------------+
+ |                         |                  | --> | cliente MCP B | -------------+-----> | servidor MCP remoto  |
+ |                         +------------------+     +---------------+  Streamable  |       | (Sentry)             |
+ |                                                                       HTTP      |       +----------------------+
+ +---------------------------------------------------------------------------------+
+
+   tools/list: qué herramientas ofrece el servidor        tools/call: ejecutar una, con sus argumentos
+
+<!-- ascii-note:
+intent: la arquitectura de MCP; un cliente por servidor dentro del host, y el LLM solo habla con el agente
+emphasize: la relación uno a uno entre cliente y servidor, y el borde del host (el LLM nunca habla directo con un servidor)
+labels: STDIO (local), Streamable HTTP (remoto), tools/list, tools/call
+-->

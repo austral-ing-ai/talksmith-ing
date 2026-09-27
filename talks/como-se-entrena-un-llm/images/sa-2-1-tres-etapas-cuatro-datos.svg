@@ -1,0 +1,112 @@
+<!-- talksmith-ascii-sha256: 1df373be4fff9db93db6f06def05f8f78a5e8c773f85a4807eb5d65cea7dc554 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 686" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
+<title>Tres etapas, cuatro conjuntos de datos</title>
+<desc>Mapa de la clase: las tres etapas de entrenamiento de un LLM (pre-training, SFT y RLHF) con sus cuatro conjuntos de datos y la escala de cada uno.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="13" markerHeight="13" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="1500" height="686" fill="#ffffff"/>
+
+<g font-size="19" text-anchor="middle" fill="#3B3535">
+<text x="180" y="48">Datos de baja calidad</text>
+<text x="925" y="48">Datos de alta calidad</text>
+</g>
+<g fill="none" stroke="#3B3535" stroke-width="1.5">
+<path d="M30,70 V62 H330 V70"/>
+<path d="M400,70 V62 H1450 V70"/>
+</g>
+
+<rect x="757" y="86" width="713" height="450" rx="10" fill="none" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="9 6"/>
+
+<g font-size="23" font-weight="bold" text-anchor="middle">
+<text x="180" y="120">Pre-training</text>
+<text x="550" y="120">SFT</text>
+<text x="1113" y="120">RLHF · Feedback humano</text>
+</g>
+
+<g fill="#ffffff" stroke="#D8D2CE" stroke-width="2">
+<rect x="30" y="138" width="300" height="62" rx="16"/>
+<rect x="400" y="138" width="300" height="62" rx="16"/>
+<rect x="780" y="138" width="300" height="62" rx="16"/>
+<rect x="1150" y="138" width="300" height="62" rx="16"/>
+</g>
+<g font-size="20" text-anchor="middle">
+<text x="180" y="176">Texto (p. ej. internet)</text>
+<text x="550" y="176">Datos de demostración</text>
+<text x="930" y="176">Datos de comparación</text>
+<text x="1300" y="176">Prompts</text>
+</g>
+
+<g fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5">
+<rect x="30" y="240" width="300" height="78"/>
+<rect x="400" y="240" width="300" height="78"/>
+<rect x="780" y="240" width="300" height="78"/>
+<rect x="1150" y="240" width="300" height="78"/>
+</g>
+<g font-size="21" font-weight="bold" text-anchor="middle">
+<text x="180" y="273">Modelado de</text>
+<text x="180" y="299">lenguaje</text>
+<text x="550" y="273">Fine-tuning</text>
+<text x="550" y="299">supervisado</text>
+<text x="930" y="286">Clasificación</text>
+<text x="1300" y="273">Aprendizaje por</text>
+<text x="1300" y="299">refuerzo</text>
+</g>
+
+<g font-size="19" fill="#3B3535">
+<text x="78" y="350">optimizado para</text>
+<text x="78" y="374">completar texto</text>
+<text x="448" y="350">ajustado para</text>
+<text x="448" y="374">diálogo</text>
+<text x="828" y="350">entrenado para dar un</text>
+<text x="828" y="374">puntaje a (prompt,</text>
+<text x="828" y="398">respuesta)</text>
+<text x="1198" y="350">optimizado para generar</text>
+<text x="1198" y="374">respuestas que maximicen</text>
+<text x="1198" y="398">el puntaje</text>
+</g>
+
+<g fill="#ffffff" stroke="#1F1E1E" stroke-width="2">
+<rect x="30" y="420" width="300" height="62"/>
+<rect x="400" y="420" width="300" height="62"/>
+<rect x="780" y="420" width="300" height="62"/>
+<rect x="1150" y="420" width="300" height="62"/>
+</g>
+<g font-size="21" font-weight="bold" text-anchor="middle">
+<text x="180" y="458">LLM preentrenado</text>
+<text x="550" y="458">Modelo SFT</text>
+<text x="930" y="458">Reward model</text>
+<text x="1300" y="458">Modelo final</text>
+</g>
+
+<g fill="none" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)">
+<path d="M180,200 V240"/>
+<path d="M550,200 V240"/>
+<path d="M930,200 V240"/>
+<path d="M1300,200 V240"/>
+<path d="M58,318 V420"/>
+<path d="M428,318 V420"/>
+<path d="M808,318 V420"/>
+<path d="M1178,318 V420"/>
+<path d="M330,451 H365 V279 H400"/>
+<path d="M700,451 H728 V279 H780"/>
+<path d="M1080,451 H1103 V266 H1150"/>
+<path d="M550,482 V514 H1127 V292 H1150"/>
+</g>
+
+<line x1="30" y1="560" x2="1470" y2="560" stroke="#D8D2CE" stroke-width="1.5"/>
+
+<g fill="#DA1B2E" text-anchor="middle">
+<g font-size="23" font-weight="bold">
+<text x="180" y="598">&gt;1 billón de tokens</text>
+<text x="550" y="598">10K-100K</text>
+<text x="930" y="598">100K-1M comparaciones</text>
+<text x="1300" y="598">10K-100K prompts</text>
+</g>
+<g font-size="19">
+<text x="550" y="624">(prompt, respuesta)</text>
+<text x="930" y="624">(prompt, respuesta ganadora,</text>
+<text x="930" y="648">respuesta perdedora)</text>
+</g>
+</g>
+</svg>
