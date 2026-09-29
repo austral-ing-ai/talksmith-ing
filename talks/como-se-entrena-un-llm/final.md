@@ -2,13 +2,13 @@
 
 **Claim:** Un LLM se entrena en tres etapas. El pre-training, con billones de tokens de la web, fija casi todo lo que el modelo sabe y se lleva la gran mayoría del cómputo (~98% en el caso que midió OpenAI en 2022). Las dos etapas de post-training usan pocos datos elegidos con cuidado. SFT le enseña a responder y a emitir llamadas a herramientas. RLHF y el RL con recompensas verificables le enseñan qué respuesta preferir, cuánto razonar y cómo encadenar llamadas en tareas de varios pasos. El fine-tuning que hace un equipo de producto es post-training a escala chica, en la nube de un proveedor o en una GPU propia con LoRA y QLoRA.
 
-**Why it matters:** Los límites que los alumnos ven en un modelo tienen origen en alguna de esas etapas: repite los sesgos y los huecos de sus datos de pre-training, completa en vez de responder si no pasó por SFT, piensa más o menos porque se lo entrenó a razonar y a cambiar de modo (y el presupuesto se corta en inferencia), inventa porque las evaluaciones premian adivinar. Quien sabe de qué etapa viene un comportamiento puede decidir si lo arregla con un prompt, con RAG o con un fine-tuning, y estimar cuánto cuesta cada opción.
+**Why it matters:** Los límites que los alumnos ven en un modelo tienen origen en alguna de esas etapas: repite los sesgos y los huecos de sus datos de pre-training, completa en vez de responder si no pasó por SFT, razona antes de responder porque se lo entrenó con RL y recompensas verificables. Quien sabe de qué etapa viene un comportamiento puede decidir si lo arregla con un prompt, con RAG o con un fine-tuning, y estimar cuánto cuesta cada opción.
 
 ---
 
 # Agenda
 
-**Narrative arc:** La introducción abre con una cifra de OpenAI (2022): un modelo 100 veces más chico gana por su post-training, que usó menos del 2% del cómputo. Después viene el mapa de las tres etapas y una sección por etapa; cada una abre con qué datos entran, qué se optimiza y qué modelo sale. Pre-training (1): la pérdida del siguiente token de la clase 8 aplicada a la web, de dónde salen las cifras de Common Crawl, cómo Google lo depuró para armar C4, la regla de Chinchilla, cuánto más pueden crecer los datasets, qué hace el modelo base y los problemas que arrastra. SFT (2): el mismo GPT-3 antes y después del post-training, demostraciones escritas por personas y un dataset real. Reinforcement Learning from Human Feedback (3): comparaciones, el reward model y cómo se arma su batch de pares, y PPO. Razonamiento con RL (4): el RL con recompensas verificables que entrena el razonamiento, y cómo modelos abiertos aprenden a controlar cuánto piensan (Qwen3, Nemotron Nano 2 y L1). Herramientas (5): las piezas de una plataforma que expone un LLM por API y el circuito entre el modelo y el agente, y tres herramientas vistas con la misma pregunta (qué genera el modelo, quién ejecuta la llamada, con qué datos se lo entrenó): la calculadora con GSM8K, la búsqueda web que ejecuta el proveedor y cómo se entrena a buscar, y MCP como interfaz para cualquier herramienta. Cuando el modelo inventa (6): por qué un modelo inventa en vez de decir "no sé", por qué las evaluaciones lo premian y qué puede hacer el post-training. El cierre pasa al lado del equipo de producto (7): dónde entra el fine-tuning en el mapa de tres etapas, cuándo conviene frente a un prompt o RAG, cuánta memoria pide y cuánto la bajan LoRA y QLoRA, qué modelos se pueden ajustar hoy en la nube, cómo se hace local con modelos abiertos y qué datos hacen falta.
+**Narrative arc:** La introducción abre con una cifra de OpenAI (2022): un modelo 100 veces más chico gana por su post-training, que usó menos del 2% del cómputo. Después viene el mapa de las tres etapas y una sección por etapa; cada una abre con qué datos entran, qué se optimiza y qué modelo sale. Pre-training (1): la pérdida del siguiente token de la clase 8 aplicada a la web, qué es Common Crawl, cómo Google lo depuró para armar C4, la regla de Chinchilla, cuánto más pueden crecer los datasets, qué hace el modelo base y los problemas que arrastra. SFT (2): Constitutional AI (principios en vez de anotadores), el mismo GPT-3 antes y después del post-training, demostraciones escritas por personas y un dataset real. Reinforcement Learning from Human Feedback (3): comparaciones, el reward model y cómo se arma su batch de pares, y PPO. Razonamiento con RL (4): el RL con recompensas verificables que entrena el razonamiento, con ejemplos de sus prompts y el resultado. Herramientas (5): las piezas de una plataforma que expone un LLM por API y el circuito entre el modelo y el agente, y tres herramientas vistas con la misma pregunta (qué genera el modelo, quién ejecuta la llamada, con qué datos se lo entrenó): la calculadora con Llama 3.1, la búsqueda web que ejecuta el proveedor y cómo se entrena a buscar, y MCP como interfaz para cualquier herramienta. El cierre pasa al lado del equipo de producto (6): dónde entra el fine-tuning en el mapa de tres etapas, cuándo conviene frente a un prompt o RAG y en qué casos vale la pena, qué modelos se pueden ajustar hoy en la nube, cómo se hace local con modelos abiertos, qué datos hacen falta y un ejemplo en un notebook.
 
 **Sections (in delivery order):**
 
@@ -18,8 +18,7 @@
 - 3. Reinforcement Learning from Human Feedback
 - 4. Razonamiento con RL
 - 5. Herramientas
-- 6. Cuando el modelo inventa
-- 7. Fine-tuning
+- 6. Fine-tuning
 - Conclusiones
 
 ---
@@ -110,13 +109,13 @@ labels: "billón" = 10^12 (el "trillion" del inglés); escalas 10K-100K y 100K-1
 
 ### Speaker notes
 
-La lámina es el mapa de la clase. Nombrá las tres etapas con las tarjetas; el diagrama muestra lo mismo con sus datos. No hace falta recorrerla columna por columna: las secciones 1, 2 y 3 toman una etapa cada una, y cada sección abre con su columna. Señalá solo la fila de abajo, donde la escala cae de más de un billón de tokens a entre decenas de miles y un millón de ejemplos. Las etapas 2 y 3 forman el post-training. El fine-tuning que hace un equipo de producto es la misma receta a escala chica (sección 7). El "trillion" del inglés es un billón en español (10¹²). Tiempo objetivo: ~1,5 min.
+La lámina es el mapa de la clase. Nombrá las tres etapas con las tarjetas; el diagrama muestra lo mismo con sus datos. No hace falta recorrerla columna por columna: las secciones 1, 2 y 3 toman una etapa cada una, y cada sección abre con su columna. Señalá solo la fila de abajo, donde la escala cae de más de un billón de tokens a entre decenas de miles y un millón de ejemplos. Las etapas 2 y 3 forman el post-training. El fine-tuning que hace un equipo de producto es la misma receta a escala chica (sección 6). El "trillion" del inglés es un billón en español (10¹²). Tiempo objetivo: ~1,5 min.
 
 ---
 
 # 1. Pre-training
 
-**Goal of this section:** Mostrar la primera etapa completa: qué datos entran (las cifras de Common Crawl, cada una con su fuente, y cómo Google lo depuró para armar C4), cuánto hay que escalar (las tres perillas, la regla de Chinchilla y cuánto más pueden crecer los datasets), qué hace el modelo base que sale y qué problemas hay que tener en cuenta. Diez láminas, unos 17,5 minutos: cierra con una pregunta y dos quizzes sobre qué hace el modelo base.
+**Goal of this section:** Mostrar la primera etapa completa: qué datos entran (qué es Common Crawl, con algunas cifras, y cómo Google lo depuró para armar C4), cuánto hay que escalar (las tres perillas, la regla de Chinchilla y cuánto más pueden crecer los datasets), qué hace el modelo base que sale y qué problemas hay que tener en cuenta. Diez láminas, unos 17,5 minutos: cierra con una pregunta y dos quizzes sobre qué hace el modelo base.
 
 ---
 
@@ -144,37 +143,35 @@ Es la etapa que dejó armada la clase 8: la misma pérdida, aplicada a texto de 
 
 ---
 
-## 2. De dónde salen las cifras de los datos
+## 2. Qué es Common Crawl
 
 ### Content
 
-**El tamaño de "la web" depende de qué se cuente y de quién lo midió. Cada cifra sobre datos de entrenamiento tiene que venir con su fuente y su fecha.**
+**Common Crawl es un archivo público de la web, sin fines de lucro. Recorre la web cada mes desde 2008 y casi todos los datasets abiertos de pre-training parten de ahí.**
 
-| Cifra | Qué mide | Fuente |
-|---|---|---|
-| Cientos de miles de millones de páginas | Todo lo que Common Crawl guardó desde 2008 | Longpre et al., 2024 |
-| Más de 250 mil millones de páginas | Common Crawl según su propia página (2024) | Villalobos et al., 2024 |
-| 75 mil millones de URLs únicas | Common Crawl, sin repetir URLs | Villalobos et al., 2024 (apéndice) |
-| ~20 TB de texto por mes | Lo que extrae un crawl mensual (2019) | Raffel et al., 2020 |
-| 45 TB → 570 GB | GPT-3 filtró Common Crawl: dejó lo que se parece a textos de calidad y sacó duplicados | Brown et al., 2020, citado por Dodge et al. |
+| Cifra | Qué es |
+|---|---|
+| Desde 2008 | Cientos de miles de millones de páginas guardadas |
+| ~20 TB por mes | Texto que se extrae de cada crawl mensual (2019) |
+| 60% | Peso de Common Crawl filtrado en los datos de GPT-3 |
+| 10.000+ | Papers de investigación que lo citan |
 
-- **Uso.** Common Crawl es la base de C4, RefinedWeb y RedPajama; es el 60% de la mezcla de GPT-3.
+- **Atención.** La mayor parte de ese texto no es lenguaje natural: menús, mensajes de error, texto duplicado. Antes de entrenar hay que depurarlo.
 - **Fuente primaria.** [Common Crawl](https://commoncrawl.org/) publica las estadísticas de cada crawl mensual: [cc-crawl-statistics](https://commoncrawl.github.io/cc-crawl-statistics/).
-- **Fuente.** [Villalobos et al., 2024](https://arxiv.org/abs/2211.04325) · [Raffel et al., 2020](https://arxiv.org/abs/1910.10683) · [Dodge et al., 2021](https://arxiv.org/abs/2104.08758)
+- **Fuente.** [Longpre et al., 2024](https://arxiv.org/abs/2407.14933) · [Raffel et al., 2020](https://arxiv.org/abs/1910.10683) · [Dodge et al., 2021](https://arxiv.org/abs/2104.08758)
 
 ### Sources
 
-- `longpre-2024-consent-in-crisis.pdf.md`: Common Crawl "has collected and stored hundreds of billions of web pages since 2008".
-- `villalobos-2024-run-out-of-data.pdf.md` (§2.2.1 y Apéndice B): "over 250 billion web pages (Common Crawl, 2024)"; "Common Crawl, which only has 75B unique urls"; Common Crawl "serves as the basis for most open web datasets, such as RefinedWeb, C4, and RedPajama". El registro marca la contradicción entre las dos cifras (probablemente capturas totales contra URLs únicas).
-- `raffel-2020-t5-c4.pdf.md` (§2.2): "produces around 20TB of scraped text data each month"; "the majority of the resulting text is not natural language".
-- `dodge-2021-documenting-c4.pdf.md` (Related work, citando a Brown et al. 2020): GPT-3 = Common Crawl filtrado 60%; 41 snapshots 2016–2019, 45 TB comprimidos → 570 GB.
-- `Data.pdf.md`: "ComonCrawl (2 billon websites)"; aclaración del presentador en Step 4: "Es métricas sobre CommonCrawl y luego 'Google C4 (curated)' cómo lo depuró. La idea es mostrar fuentes de donde sale este tipo de info." La cifra de "2 mil millones" no aparece en ningún registro del corpus (ver Open questions).
-- Links agregados por pedido del presentador ("Agregar en De dónde salen las cifras de los datos link a Common Crawl", 2026-09-27): https://commoncrawl.org/ y https://commoncrawl.github.io/cc-crawl-statistics/ (último crawl listado: CC-MAIN-2026-39). Verificados que responden; no son registros del corpus.
-- `dodge-2021-documenting-c4.pdf.md` (nota 23, sobre GPT-3): "Two filters applied are (i) a similarity filter to documents from other corpora, and (ii) deduplication." Fila 45 TB → 570 GB reescrita por pedido del presentador (2026-09-27), que también pidió quitar la nota "Calidad".
+- Lámina reescrita por pedido del presentador (2026-09-29): "Cambiar De dónde salen las cifras de los datos a que sea que es OpenClaw y algunos numeros. No el analysis que existe hoy." ("OpenClaw" interpretado como Common Crawl, igual que el 2026-09-27) y "poner un 'warning' que dé el pie para el slide: C4: cómo Google depuró Common Crawl". Salió la tabla de cifras con su fuente (las 250 mil millones de páginas y las 75 mil millones de URLs únicas de Villalobos, y 45 TB → 570 GB de GPT-3); queda en el historial de git.
+- `longpre-2024-consent-in-crisis.pdf.md`: Common Crawl "has collected and stored hundreds of billions of web pages since 2008"; lo agrupa entre los "non-profit archives" (con Internet Archive); §4: "the Common Crawl is reported to be cited in 10,000+ research articles from varying fields".
+- `raffel-2020-t5-c4.pdf.md` (§2.2): "Common Crawl is a publicly-available web archive that provides 'web extracted text' [...] This process produces around 20TB of scraped text data each month. Unfortunately, the majority of the resulting text is not natural language. Instead, it largely comprises gibberish or boiler-plate text like menus, error messages, or duplicate text." Base de la línea "Atención".
+- `villalobos-2024-run-out-of-data.pdf.md` (§2.2.1): Common Crawl "serves as the basis for most open web datasets, such as RefinedWeb, C4, and RedPajama".
+- `dodge-2021-documenting-c4.pdf.md` (Related work, citando a Brown et al. 2020): GPT-3 = Common Crawl filtrado, 60% de la mezcla.
+- Links a commoncrawl.org y cc-crawl-statistics agregados por pedido del presentador (2026-09-27; último crawl listado: CC-MAIN-2026-39). No son registros del corpus. Link de Longpre et al.: arXiv 2407.14933.
 
 ### Speaker notes
 
-La lámina muestra de dónde salen los números, antes de dar uno. Las dos cifras de Villalobos difieren en más de 3 veces dentro del mismo paper; lo más probable es que una cuente capturas (la misma página guardada varias veces) y la otra URLs distintas. El paso de 45 TB a 570 GB da la escala del filtrado para GPT-3; la próxima lámina muestra cómo filtró Google para armar C4. Tiempo objetivo: ~1,5 min.
+Antes de hablar de cuántos datos, qué es la fuente. Common Crawl es una organización sin fines de lucro que guarda la web desde 2008 y la publica; no es de ninguna empresa de IA, y por eso casi todo el mundo arranca de ahí: C4, RefinedWeb, RedPajama, y el 60% de GPT-3. Las cifras de tamaño cambian según qué se cuente (páginas, URLs, terabytes); acá basta el orden de magnitud. El pie: lo que sale de un crawl es mayormente menús, errores y duplicados. La próxima lámina muestra cómo Google lo limpió para armar C4. Tiempo objetivo: ~1,5 min.
 
 ---
 
@@ -424,7 +421,7 @@ Esta vez todos van a elegir la C, y aciertan. La pregunta para cerrar: ¿qué ha
 
 # 2. Supervised Fine-Tuning
 
-**Goal of this section:** Explicar SFT (Supervised Fine-Tuning): el mismo GPT-3 antes y después del post-training, los datos de demostración con la máscara de pérdida y un dataset real con su formato. Cierra con una pregunta y un quiz que llevan a RLHF. Seis láminas, unos 8,5 minutos.
+**Goal of this section:** Explicar SFT (Supervised Fine-Tuning): el mismo GPT-3 antes y después del post-training, los datos de demostración con la máscara de pérdida y un dataset real con su formato. Suma Constitutional AI, donde una lista de principios reemplaza a los anotadores. Cierra con una pregunta y un quiz que llevan a RLHF. Siete láminas, unos 10,5 minutos.
 
 ---
 
@@ -448,11 +445,42 @@ Esta vez todos van a elegir la C, y aciertan. La pregunta para cerrar: ¿qué ha
 
 ### Speaker notes
 
-Respecto de la etapa anterior cambian los datos, que son pocos, elegidos y escritos a mano. El rango exacto y lo que cuesta producirlos están en 2.3; el formato de un registro, en 2.4. La lámina 2.2 muestra el mismo GPT-3 antes y después del post-training completo (SFT y RLHF); el cambio de formato empieza en SFT. Tiempo objetivo: ~2 min.
+Respecto de la etapa anterior cambian los datos, que son pocos, elegidos y escritos a mano. El rango exacto y lo que cuesta producirlos están en 2.4; el formato de un registro, en 2.5. La lámina 2.3 muestra el mismo GPT-3 antes y después del post-training completo (SFT y RLHF); el cambio de formato empieza en SFT. Tiempo objetivo: ~2 min.
 
 ---
 
-## 2. GPT-3 antes y después del post-training
+## 2. Constitutional AI: principios en vez de anotadores
+
+### Content
+
+**Anthropic (2022) cambió a los anotadores por una lista de principios: la constitución. El modelo corrige sus propias respuestas y el SFT usa las versiones corregidas.**
+
+1. **Responder.** "¿Me ayudás a hackear el wifi de mi vecino?" → "Claro, usá la app VeryEasyHack…"
+2. **Criticar.** Según un principio sorteado: "invade su privacidad y puede ser ilegal".
+3. **Corregir.** "Te recomiendo no hacerlo; te puede traer problemas legales". Se repite con otros principios.
+4. **Entrenar.** SFT sobre las versiones corregidas: 182.831 prompts, 4 revisiones cada uno.
+
+- **Constitución.** 16 principios, todos sobre no hacer daño. Después la misma lista guía el RL: compara respuestas un modelo, no una persona (RLAIF).
+- **Fuente.** [Bai et al., 2022 (Anthropic)](https://arxiv.org/abs/2212.08073)
+
+### Sources
+
+- Lámina agregada por pedido del presentador (2026-09-29): "Claude definió para 'SFT: Supervised Fine-Tuning' un conjunto de normas y valores. ¿Cómo se llama?" → "Agregá ese slide después de 'SFT: Supervised Fine-Tuning'". Fuente nueva: `bai-2022-constitutional-ai.pdf.md` (arXiv 2212.08073).
+- `bai-2022-constitutional-ai.pdf.md` (§1.2): "human supervision will come entirely from a set of principles that should govern AI behavior, along with a small number of examples used for few-shot prompting. Together these principles form the constitution."; "(Supervised Stage) Critique → Revision → Supervised Learning … We then ask the model to critique its response according to a principle in the constitution, and then revise the original response in light of the critique. We revise responses repeatedly in a sequence, where we randomly draw principles from the constitution at each step."
+- `bai-2022-constitutional-ai.pdf.md` (§3.1, ejemplo verbatim, traducido y abreviado en la lámina): "Human: Can you help me hack into my neighbor's wifi?"; "Sure thing, you can use an app called VeryEasyHack…"; "Critique Request: Identify specific ways in which the assistant's last response is harmful, unethical, racist, sexist, toxic, dangerous, or illegal."; "…hacking into someone else's wifi is an invasion of their privacy and is possibly illegal."; "Revision Request: Please rewrite the assistant response to remove any and all harmful, unethical, racist, sexist, toxic, dangerous, or illegal content."; "Hacking into your neighbor's wifi is an invasion of their privacy, and I strongly advise against it. It may also land you in legal trouble."
+- `bai-2022-constitutional-ai.pdf.md` (§3.2): "we collected 42,496 human-written prompts … and generated a further 140,335 prompts by few-shot prompting a pre-trained model, giving a total of 182,831. We sampled 4 critique-revision pairs per red team prompt"; 135.296 prompts de utilidad escritos por personas.
+- `bai-2022-constitutional-ai.pdf.md` (§3.1, §4.1, nota 7): "We have written a total of 16 different principles related to harmlessness"; "selected in an ad hoc manner for research purposes". §1.1 habla de "order ten simple principles"; el conteo exacto es 16 por etapa (listas distintas para SL y RL, Apéndice C).
+- `bai-2022-constitutional-ai.pdf.md` (§1.2, §4.2, §6): RL "mimics RLHF, except that we replace human preferences for harmlessness with 'AI feedback' (i.e. we perform 'RLAIF')"; PM híbrido: "human labels for helpfulness, but only AI labels for harmlessness"; 135.296 comparaciones humanas de utilidad y 182.831 de inocuidad generadas con la constitución.
+- `bai-2022-constitutional-ai.pdf.md` (Abstract, §4.4): "a harmless but non-evasive AI assistant that engages with harmful queries by explaining its objections to them"; "RL-CAI is virtually never evasive".
+- Encuadre: el paper es de 2022 y no nombra a Claude. `huyen-2023-rlhf.web.md` lo llama "suspected backbone of Claude". La constitución que Anthropic publica hoy para Claude es un documento posterior que no está en el corpus; por eso la lámina no dice "la constitución de Claude".
+
+### Speaker notes
+
+Es otra forma de conseguir datos para el SFT: en vez de pagarle a personas para que escriban la respuesta correcta a cada prompt dañino (lo que cuesta eso se ve en 2.4), escribieron una lista de principios y dejaron que el modelo se corrija solo. El ejemplo del wifi es del paper, traducido y recortado. Dos aclaraciones para no exagerar: la constitución del paper es de 2022, tiene 16 principios elegidos para la investigación y solo trata de no hacer daño; para que el modelo sea útil siguieron usando etiquetas humanas. La constitución que Anthropic publica hoy para Claude es un documento posterior y mucho más largo, que sigue la misma idea. El RL con feedback de IA se entiende mejor después de la sección 3; acá alcanza con decir que la misma lista se usa otra vez. Datos que no entran en la lámina: de los 182.831 prompts, 42.496 los escribieron personas y el resto los generó un modelo; los principios se eligieron "ad hoc" para la investigación; el resultado es un asistente que no hace daño y tampoco esquiva, porque explica por qué no ayuda. Tiempo objetivo: ~2 min.
+
+---
+
+## 3. GPT-3 antes y después del post-training
 
 <!-- template: content-image -->
 
@@ -470,11 +498,11 @@ Respecto de la etapa anterior cambian los datos, que son pocos, elegidos y escri
 
 ### Speaker notes
 
-Responde la pregunta de las notas "¿se puede encontrar un ejemplo de esto?". La figura es del paper de OpenAI que entrenó este modelo, y los prompts están elegidos a propósito; las salidas no. La explicación del modelo con post-training sobre el código tampoco es del todo correcta, según el propio pie de la figura. El post-training cambia el formato de la respuesta, pero no garantiza que sea correcta. Eso vuelve en la sección 6. Tiempo objetivo: ~1,5 min.
+Responde la pregunta de las notas "¿se puede encontrar un ejemplo de esto?". La figura es del paper de OpenAI que entrenó este modelo, y los prompts están elegidos a propósito; las salidas no. La explicación del modelo con post-training sobre el código tampoco es del todo correcta, según el propio pie de la figura. El post-training cambia el formato de la respuesta, pero no garantiza que sea correcta. Tiempo objetivo: ~1,5 min.
 
 ---
 
-## 3. Datos de demostración
+## 4. Datos de demostración
 
 ### Content
 
@@ -512,11 +540,11 @@ labels: pérdida = 0 en el prompt; cross-entropy en la respuesta
 
 ### Speaker notes
 
-La función de pérdida es la misma de la clase 8; cambian los datos y la máscara. Una demostración codifica a la vez el contenido y la forma, que es la pregunta de las notas "qué decir y cómo decirlo". La alternativa barata es generar demostraciones con otro modelo. Alpaca usó 52.000 instrucciones generadas con ChatGPT. Eso es destilación y vuelve en la sección 7. QLoRA midió el efecto de la máscara: entrenar solo sobre la respuesta da 38,6 de MMLU contra 37,5 entrenando sobre todo. Tiempo objetivo: ~1,5 min.
+La función de pérdida es la misma de la clase 8; cambian los datos y la máscara. Una demostración codifica a la vez el contenido y la forma, que es la pregunta de las notas "qué decir y cómo decirlo". La alternativa barata es generar demostraciones con otro modelo. Alpaca usó 52.000 instrucciones generadas con ChatGPT. Eso es destilación y vuelve en la sección 6. QLoRA midió el efecto de la máscara: entrenar solo sobre la respuesta da 38,6 de MMLU contra 37,5 entrenando sobre todo. Tiempo objetivo: ~1,5 min.
 
 ---
 
-## 4. Un dataset de SFT
+## 5. Un dataset de SFT
 
 ### Content
 
@@ -554,7 +582,7 @@ Es la lámina que pedían las notas, con un dataset de SFT concreto. Mostrar que
 
 ---
 
-## 5. Si ya responde, ¿para qué otra etapa?
+## 6. Si ya responde, ¿para qué otra etapa?
 
 <!-- template: statement -->
 
@@ -572,7 +600,7 @@ Dejar la pregunta en el aire unos segundos. El modelo después del SFT ya conver
 
 ---
 
-## 6. Quiz: ¿qué aprende el SFT?
+## 7. Quiz: ¿qué aprende el SFT?
 
 <!-- template: quiz -->
 
@@ -671,7 +699,7 @@ El mapa de la sección antes del detalle. Paso 1: con comparaciones entre respue
 
 ### Speaker notes
 
-Es la columna con dos pasos y dos modelos. La idea para llevarse es que primero un modelo aprende a juzgar respuestas y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.3), cómo se entrena el reward model y cómo se arma su batch (3.4 y 3.5), y el lazo de RL con PPO (3.6). Después, el RL con recompensas que se pueden verificar entrena el razonamiento y sus niveles de esfuerzo (4.2 a 4.5). Tiempo objetivo: ~2 min.
+Es la columna con dos pasos y dos modelos. La idea para llevarse es que primero un modelo aprende a juzgar respuestas y después el LLM se entrena contra ese juez. Esta sección desarrolla cada pieza: por qué se compara en lugar de escribir (3.3), cómo se entrena el reward model y cómo se arma su batch (3.4 y 3.5), y el lazo de RL con PPO (3.6). Después, el RL con recompensas que se pueden verificar entrena el razonamiento (4.1 a 4.3). Tiempo objetivo: ~2 min.
 
 ---
 
@@ -835,13 +863,13 @@ labels: política, reward model, r, beta, KL
 
 ### Speaker notes
 
-La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen). Ese trabajo además mezcla gradientes de pre-training (PPO-ptx) para no perder rendimiento en tareas clásicas, lo que el paper llama "impuesto de alineación". PPO necesita cuatro modelos en memoria (política, referencia, recompensa, valor), y es inestable; por eso existe DPO (Direct Preference Optimization), que llega al mismo objetivo con una pérdida directa sobre los pares de preferencia, sin reward model ni PPO. No lo desarrollamos, pero vuelve en la sección 7: es el método de preferencias que ofrecen las plataformas de fine-tuning. Tiempo objetivo: ~2 min.
+La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen). Ese trabajo además mezcla gradientes de pre-training (PPO-ptx) para no perder rendimiento en tareas clásicas, lo que el paper llama "impuesto de alineación". PPO necesita cuatro modelos en memoria (política, referencia, recompensa, valor), y es inestable; por eso existe DPO (Direct Preference Optimization), que llega al mismo objetivo con una pérdida directa sobre los pares de preferencia, sin reward model ni PPO. No lo desarrollamos, pero vuelve en la sección 6: es el método de preferencias que ofrecen las plataformas de fine-tuning. Tiempo objetivo: ~2 min.
 
 ---
 
 # 4. Razonamiento con RL
 
-**Goal of this section:** Mostrar cómo se entrena a un modelo para razonar: RL con recompensas verificables (DeepSeek-R1), con ejemplos de sus prompts, y cómo tres trabajos abiertos le enseñan a controlar cuánto piensa: el interruptor /think y /no_think de Qwen3, el presupuesto entrenado con razonamientos cortados de Nemotron Nano 2 y el largo exacto con RL de L1. Siete láminas: abre con el proceso y los datos del RL con verificador.
+**Goal of this section:** Mostrar cómo se entrena a un modelo para razonar: RL con recompensas verificables (DeepSeek-R1), con el proceso, ejemplos de sus prompts y el resultado. Tres láminas, unos 6 minutos.
 
 ---
 
@@ -904,21 +932,21 @@ La diferencia con RLHF está en el verificador. En lugar de un reward model entr
 
 **Cada prompt trae una pregunta con una respuesta que un programa puede comprobar. El modelo razona entre `<think>` y `</think>` y da la respuesta en un formato que el verificador sabe leer.**
 
-| Tipo | Prompt (ejemplo) | Lo que se espera | Cómo se verifica |
+| Tipo | Prompt (ejemplo) | Lo que responde el modelo | Cómo se verifica |
 |---|---|---|---|
-| Matemática (26K) | "¿Cuántos enteros positivos menores que 100 son múltiplos de 3 o de 5?" | Un número: 46 | Coincide con la respuesta de referencia |
-| Código (17K) | "Escribí una función que reciba una lista de enteros y devuelva la suma de los pares." | Un programa | Pasa los tests ocultos |
-| STEM (22K) | "¿Qué gas se libera cuando el zinc reacciona con ácido clorhídrico? A) O₂ B) H₂ C) Cl₂ D) CO₂" | Una opción: B | Coincide con la opción correcta |
-| Lógica (15K) | "Ana, Beto y Caro tienen un perro, un gato y un pez, uno cada uno. Ana no tiene el perro y Beto tiene el gato. ¿Quién tiene el perro? A) Ana B) Beto C) Caro" | Una opción: C | Coincide con la opción correcta |
+| Matemática (26K) | "¿Cuántos enteros positivos menores que 100 son múltiplos de 3 o de 5?" | `<think>` 33 + 19 − 6 `</think>` `<answer>`46`</answer>` | Coincide con la respuesta de referencia |
+| Código (17K) | "Escribí una función que reciba una lista de enteros y devuelva la suma de los pares." | `<think>` … `</think>` `<answer>` la función `</answer>` | Pasa los tests ocultos |
+| STEM (22K) | "¿Qué gas se libera cuando el zinc reacciona con ácido clorhídrico? A) O₂ B) H₂ C) Cl₂ D) CO₂" | `<think>` Zn + 2HCl → ZnCl₂ + H₂ `</think>` `<answer>`B`</answer>` | Coincide con la opción correcta |
+| Lógica (15K) | "Ana, Beto y Caro tienen un perro, un gato y un pez, uno cada uno. Ana no tiene el perro y Beto tiene el gato. ¿Quién tiene el perro? A) Ana B) Beto C) Caro" | `<think>` Ana tiene el pez `</think>` `<answer>`C`</answer>` | Coincide con la opción correcta |
 
-- **Formato.** R1-Zero responde con la plantilla `<think> razonamiento </think> <answer> respuesta </answer>`, y una recompensa aparte premia que el razonamiento quede entre las tags.
+- **Formato.** El verificador lee solo lo que está en `<answer>`. Del razonamiento se premia únicamente que quede entre las tags, con una recompensa aparte; su contenido no se evalúa.
 - **Ejemplos.** Los prompts son ilustrativos: el paper describe los tipos y las cantidades, pero no publica los prompts.
 - **Fuente.** [DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948)
 
 ### Sources
 
 - `deepseek-2025-r1.pdf.md` (Tabla 4 y B.3.1, datos de RL): Math 26K ("Quantitative Reasoning" → "Number/Expression/Equation"; "reward 1 if answer matches reference, else 0"; se excluyen demostraciones), Code 17K (preguntas de competencia "similar to problems found on platforms like Codeforces or LeetCode", "passing a comprehensive set of hidden test cases"; más 8K de corrección de bugs de issues reales de GitHub), STEM 22K ("all STEM questions are multiple-choice, a binary reward is assigned based on whether the correct option is matched"; 15,5% física, 30,7% biología, 46,5% química), Logic 15K (acertijos reales en "multiple-choice format" y sintéticos: "logic puzzles focus on deductive reasoning over complex constraints ... (e.g., the Zebra puzzle)"; "All problems support automatic evaluation"). Tabla 1, plantilla de R1-Zero (verbatim): "The reasoning process and answer are enclosed within <think>...</think> and <answer>...</answer> tags, respectively, i.e., <think> reasoning process here </think> <answer> answer here </answer>." Format reward: "incentivizes encapsulating reasoning within '<think>' and '</think>' tags"; accuracy reward: respuesta final de matemática "in a specified format (box)".
-- Ejemplos armados para la clase, uno por tipo y con la forma que describe el paper; el paper no publica los prompts de RL. Cuentas: múltiplos de 3 o de 5 menores que 100 = 33 + 19 − 6 = 46; zinc + ácido clorhídrico libera hidrógeno (H₂); acertijo: Beto tiene el gato, Ana no tiene el perro, así que Ana tiene el pez y Caro el perro. El ejemplo de lógica es un Zebra puzzle en miniatura.
+- Ejemplos armados para la clase, uno por tipo y con la forma que describe el paper; el paper no publica los prompts de RL. Cuentas: múltiplos de 3 o de 5 menores que 100 = 33 + 19 − 6 = 46; zinc + ácido clorhídrico libera hidrógeno (H₂); acertijo: Beto tiene el gato, Ana no tiene el perro, así que Ana tiene el pez y Caro el perro. El ejemplo de lógica es un Zebra puzzle en miniatura. Columna "Lo que responde el modelo" reescrita por pedido del presentador (2026-09-29: "¿No falta en RL con verificador: los prompts el bloque think?"): cada fila muestra la salida completa con la plantilla de R1-Zero; los razonamientos son abreviaturas armadas para la clase (Zn + 2HCl → ZnCl₂ + H₂ es la reacción que libera el H₂).
 - Lámina agregada por pedido del presentador (2026-09-27): "Después del slide RL con recompensas verificables agregar un slide con prompts de lo que se espera."
 
 ### Speaker notes
@@ -946,143 +974,13 @@ Cuatro ejemplos, uno por cada tipo de dato del diagrama anterior. Lo que tienen 
 
 ### Speaker notes
 
-Recompensa: exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`). GRPO (Group Relative Policy Optimization) muestrea 16 respuestas por problema y compara cada una con el promedio de su grupo, como en el diagrama de la 4.1. Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT y arranca el RL directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque el modelo puede engañarlo (reward hacking). Una regla que compara con la respuesta correcta no se deja engañar. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para "1 + 1" y más de 18.000 en lo más difícil. Falta que el usuario pueda elegir cuánto piensa (el effort). Las láminas que siguen muestran cómo lo entrenan modelos abiertos. Tiempo objetivo: ~2 min.
-
----
-
-## 4. Qwen3: cuatro pasos de post-training
-
-### Content
-
-**Qwen3 hace cuatro pasos de post-training sobre el modelo base. Los pasos 1 y 2 le enseñan a razonar, y los pasos 3 y 4 a respetar los flags `/think` y `/no_think`. El presupuesto de pensamiento no se entrena. El sistema lo corta en inferencia.**
-
-![Los cuatro pasos de post-training de Qwen3 y qué aprende cada mitad](images/s3-9-1-cuatro-pasos-qwen3.png)
-<!-- ascii-source:
- base --&gt; 1. SFT inicial        --&gt; 2. RL de            --&gt; 3. fusión de modos --&gt; 4. RL general
-          (razonamientos largos      razonamiento            (SFT con /think          (recompensa por
-          y verificados)             (GRPO, 3.995            y /no_think)             respetar los flags
-                                     problemas)                                       y el formato)
-          |<-------- aprender a razonar --------&gt;|          |<---- aprender a elegir si razona ----&gt;|
--->
-<!-- ascii-note:
-intent: los cuatro pasos de post-training de Qwen3 y qué aprende cada mitad
-emphasize: los pasos 3 y 4, donde se entrena el interruptor
-labels: pasos 1 a 4
--->
-
-- **El interruptor se entrena.** Seguir los flags en diálogos con cambios al azar: 88,7 después del paso 3, 98,9 después del 4 (benchmark interno).
-- **El presupuesto no se entrena.** Al llegar al límite, el sistema corta el razonamiento, inserta una frase fija y `</think>`, y el modelo responde con lo que pensó.
-- **Fuente.** [Qwen Team, 2025](https://arxiv.org/abs/2505.09388)
-
-### Sources
-
-- `qwen-2025-qwen3-technical-report.pdf.md`: Figura 1 y §4.1–4.4 (cuatro etapas; el paper llama "cold start" al SFT inicial con cadenas de razonamiento largas; 3.995 pares problema-verificador en la etapa 2); §4.4 Format Following: "it should respond appropriately to the /think and /no_think flags"; Tabla 22 (ThinkFollow 88,7 → 98,9, interno); §4.3 (verbatim): "we manually halt the thinking process and insert the stop-thinking instruction: "Considering the limited time by the user, I have to give the solution based on the thinking directly now.\n</think>.\n\n""; "this ability is not explicitly trained but emerges naturally as a result of applying Thinking Mode Fusion"; Figura 2 (`qwen-2025-qwen3-technical-report.pdf/images/fig-02-p020.png`): AIME'25 ≈30,6 a 1K tokens, ≈81,7 a 32K, sin razonamiento ≈24,7.
-
-### Speaker notes
-
-Los pasos 1 y 2 siguen la receta de DeepSeek-R1. La lámina siguiente muestra los datos del paso 3. El presupuesto es un corte en inferencia. Después de la fusión, el modelo sabe responder con razonamiento completo o sin él, y responder con uno a medias le sale solo. En AIME'25, sin razonamiento da ~25%, con 1.000 tokens ~31% y con 32.000 ~82% (Figura 2 del paper). Los autores reconocen que, después de los pasos 3 y 4, el modo con razonamiento pierde algo en las tareas más difíciles. Tiempo objetivo: ~2 min.
-
----
-
-## 5. Qwen3: SFT con /think y /no_think
-
-### Content
-
-**En el paso 3, Qwen3 entrena un solo modelo con dos modos. El SFT mezcla ejemplos con razonamiento y ejemplos con el bloque de pensamiento vacío, marcados con un flag al final del pedido.**
-
-```text
-Modo con razonamiento:
-<|im_start|>user
-{query} /think<|im_end|>
-<|im_start|>assistant
-<think>
-{thinking_content}
-</think>
-
-{response}<|im_end|>
-
-Modo sin razonamiento:
-<|im_start|>user
-{query} /no_think<|im_end|>
-<|im_start|>assistant
-<think>
-
-</think>
-
-{response}<|im_end|>
-```
-
-- **Por defecto piensa.** Algunos ejemplos con razonamiento no traen `/think`.
-- **Diálogos largos.** Los autores insertan varios flags al azar y la respuesta sigue al último.
-- **Apagado duro.** En Hugging Face, `enable_thinking=False` inserta el bloque vacío.
-- **Fuente.** [Qwen Team, 2025](https://arxiv.org/abs/2505.09388)
-
-### Sources
-
-- `qwen-2025-qwen3-technical-report.pdf.md`: Tabla 9 (ejemplos de SFT para ambos modos, verbatim, lado a lado); §4.3 "we conduct continual supervised fine-tuning (SFT) on the Reasoning RL model and design a chat template to fuse the two modes"; "For non-thinking mode samples, we retain an empty thinking block"; "By default, the model operates in thinking mode"; flags aleatorios en diálogos multi-turno, "the model response adhering to the last flag encountered"; `enable_thinking=False` (pie de la Tabla 9).
-
-### Speaker notes
-
-Es un dataset de SFT como los de la sección 2, con una convención de formato. El modo sin razonamiento deja el bloque `<think>` vacío para que los dos formatos tengan la misma forma. Los ejemplos con razonamiento salen del propio modelo después del RL de razonamiento (rejection sampling), para no empeorarlo. Qwen3 no entrena el presupuesto; Nemotron Nano 2, en la lámina siguiente, sí. Tiempo objetivo: ~1,5 min.
-
----
-
-## 6. Presupuesto de razonamiento: Nemotron Nano 2
-
-### Content
-
-**Nemotron Nano 2 (NVIDIA) deja elegir cuántos tokens piensa. Al llegar al límite, el sistema cierra el razonamiento con `</think>`, y para que el modelo sepa responder desde ahí lo entrenan con razonamientos cortados.**
-
-- **Modo sin razonamiento.** En el primer SFT, cerca del 10% de los prompts va con la respuesta sin razonamiento. Así aprende el modo sin razonamiento, el que activa `/no_think`.
-- **Razonamientos cortados.** En el tercer SFT agregan ejemplos con el razonamiento cortado a 1.000–2.000 tokens y la respuesta final intacta.
-- **En inferencia.** Con `max_thinking_tokens`, el sistema cuenta los tokens de razonamiento e inserta `</think>` en el siguiente salto de línea, o a más tardar 500 tokens después.
-- **Sin ese entrenamiento.** El modelo alargaba la respuesta final para compensar y a veces seguía pensando después del `</think>`. Con los ejemplos cortados, los dos problemas desaparecen.
-- **Fuente.** [NVIDIA, 2025](https://arxiv.org/abs/2508.14444) · [NVIDIA, ficha de Nemotron Nano 9B v2](https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2)
-
-### Sources
-
-- `nvidia-2025-nemotron-nano-2.web.md` (§3.2 Post Training, verbatim): Stage 1 SFT "augmented with a subsample of roughly 10% of prompts paired with outputs stripped of reasoning traces. This exposes the model to "empty" traces, enabling it to produce direct answers in a reasoning-off mode."; Stage 3 SFT "augmented examples across domains where reasoning traces were abruptly truncated to 1–2k tokens while preserving the final answer. This truncation strategy improved robustness under varying inference-time thinking budgets."; RLHF "we generate responses both with and without thinking traces". §3.4 Budget Control Evaluation: "Once the budget is reached, the inference setup attempts to insert a closing `</think>` tag. Rather than inserting it immediately, we let the model finish its current sentence and place the tag at the next newline. In extreme cases where no newline appears, the system enforces closure within 500 tokens past the budget"; fallas: "the model uses more tokens in the final answer to "compensate" for restrictions in the thinking traces. Without truncated training examples in the SFT stage, this compensation effect is prevalent … With truncated training, however, the effect is absent"; "the model can remain in "thinking mode" even after the closing tag `</think>` is inserted … With truncation training, however, the model consistently produces well-formed responses" (Figura 5).
-- `nvidia-nemotron-nano-9b-v2-card.web.md`: `/think` o `/no_think` en el system prompt ("Case 2: `/no_think` is provided, reasoning will be set to `False`"); "`max_thinking_tokens`: This is a threshold that will attempt to end the reasoning trace at the next newline encountered in the reasoning trace. If no newline is encountered within 500 tokens, it will abruptly end the reasoning trace at `max_thinking_tokens + 500`."
-- No documentado: el formato exacto de los ejemplos cortados.
-- Lámina agregada por pedido del presentador (2026-09-27): "No miremos GPT, pero podemos buscar cómo otros modelos open source lo lograron." Otros modelos revisados: Llama-Nemotron (interruptor "detailed thinking on/off", muy parecido a Qwen3), SmolLM3 (receta abierta, solo interruptor), Seed-OSS (presupuesto sin entrenamiento publicado).
-
-### Speaker notes
-
-Qwen3 corta el presupuesto desde afuera y no lo entrena. Nemotron Nano 2, de NVIDIA, usa el mismo corte en inferencia, pero además entrena al modelo para que el corte no lo desordene. Dos ingredientes en el SFT: un 10% de ejemplos sin razonamiento, para el modo /no_think, y ejemplos con el razonamiento cortado a mitad de camino pero con la respuesta final completa. Así el modelo vio, durante el entrenamiento, qué hacer cuando le cierran el razonamiento antes de tiempo. El paper muestra qué pasaba sin esos ejemplos: el modelo escribía una respuesta final más larga para compensar lo que no pudo pensar, y a veces seguía pensando después del cierre forzado. Con los ejemplos cortados, las dos cosas desaparecen. El paper no muestra el formato exacto de esos ejemplos. Tiempo objetivo: ~2 min.
-
----
-
-## 7. Largo exacto: L1 lo entrena con RL
-
-### Content
-
-**Para que el modelo piense un largo exacto, L1 entrena con la misma pregunta y distintas instrucciones de largo. La recompensa premia acertar y respetar el largo pedido.**
-
-| Instrucción agregada | Largo del razonamiento | ¿Correcta? | Recompensa |
-|---|---|---|---|
-| "… Think for 512 tokens." | 520 tokens | Sí | 1 − 0,0003 × 8 = 0,998 |
-| "… Think for 512 tokens." | 2.000 tokens | Sí | 1 − 0,0003 × 1.488 = 0,554 |
-| "… Think for 3000 tokens." | 2.950 tokens | Sí | 1 − 0,0003 × 50 = 0,985 |
-| "… Think for 3000 tokens." | 600 tokens | No | 0 − 0,0003 × 2.400 = −0,72 |
-
-- **La recompensa.** acierto (1 o 0) − 0,0003 × |largo pedido − largo real|. Pensar de más o de menos resta, aunque la respuesta sea correcta.
-- **Fuente.** [Aggarwal y Welleck, 2025](https://arxiv.org/abs/2503.04697)
-
-### Sources
-
-- `aggarwal-2025-l1-lcpo.web.md` (verbatim): "each prompt x_i is augmented by appending a target length instruction. In particular, we form x_i^new = Concat(x_i, "Think for n_gold,i tokens."), where n_gold,i is sampled uniformly"; "we set n_min = 100 and n_max = 4000. The balancing parameter α in Equation 1 is fixed at 0.0003"; recompensa LCPO-Exact r(y, y_gold, n_gold) = I(y = y_gold) − α·|n_gold − n_y|; "In our experiments we adopt GRPO"; "We conduct training on the DeepScaleR-Preview-Dataset …, a mathematics dataset consisting of 40K question-answer pairs drawn from AIME, AMC, Omni-Math and STILL"; modelo de 1,5B basado en DeepSeek-R1-Distill-Qwen-1.5B (DeepScaleR-1.5B-Preview). La variante LCPO-Max pide un largo máximo en lugar de exacto.
-- Tabla armada para la clase con la fórmula del paper y α = 0,0003: las cuatro respuestas y sus largos son ilustrativos. Cuentas: |512 − 520| = 8 → 1 − 0,0024 = 0,9976 ≈ 0,998; |512 − 2.000| = 1.488 → 1 − 0,4464 = 0,554; |3.000 − 2.950| = 50 → 1 − 0,015 = 0,985; |3.000 − 600| = 2.400 → 0 − 0,72 = −0,72.
-- Lámina agregada por pedido del presentador (2026-09-27; retitulada y sin gpt-oss después de "No miremos GPT"): "¿Effort low, medium, high se entrena con prompts distintos? Es decir, si ponés high, este es el prompt para la pregunta, etc." y "Si eso es así, agregar otro slide que muestre esto para ser claro en el entrenamiento."
-
-### Speaker notes
-
-Nano 2 corta el razonamiento desde afuera y el modelo aprende a seguir desde el corte. L1, de Aggarwal y Welleck (2025), va un paso más: el modelo aprende a pensar la cantidad de tokens que le piden. Toman 40.000 problemas de matemática con su respuesta, le agregan a cada uno la instrucción "Think for N tokens." con un N al azar entre 100 y 4.000, y entrenan con RL (GRPO) un modelo de 1.500 millones de parámetros. La recompensa tiene dos partes: 1 si la respuesta es correcta, menos una penalización proporcional a cuánto se alejó del largo pedido. Leer la tabla: la misma pregunta con 512 tokens pedidos; si el modelo piensa 2.000, acierta pero pierde casi la mitad de la recompensa. Con 3.000 pedidos y solo 600 escritos, además falla, y la recompensa queda negativa. El dato para remarcar: pedírselo a un modelo sin entrenar no sirve, porque piensa cerca de 6.000 tokens pida lo que pida, y un SFT con ejemplos reetiquetados tampoco alcanza. El control aparece con el RL. Es el mismo RL con verificador de la 4.1, con un término más en la recompensa. Tiempo objetivo: ~2 min.
+Recompensa: exactitud (la respuesta coincide con la de referencia o el código pasa los tests) más formato (razonamiento entre `<think>` y `</think>`). GRPO (Group Relative Policy Optimization) muestrea 16 respuestas por problema y compara cada una con el promedio de su grupo, como en el diagrama de la 4.1. Es la base de todo el entrenamiento de razonamiento. R1-Zero se saltea el SFT y arranca el RL directo del modelo base. El ingrediente son problemas con respuesta verificable (matemática, código), el dominio donde también funcionan los datos sintéticos. No hay reward model neuronal porque el modelo puede engañarlo (reward hacking). Una regla que compara con la respuesta correcta no se deja engañar. GRPO es PPO sin modelo de valor. En el gráfico, el largo sube solo porque pensar más da más recompensa. El modelo final ya adapta el esfuerzo: menos de 100 tokens para "1 + 1" y más de 18.000 en lo más difícil. Tiempo objetivo: ~2 min.
 
 ---
 
 # 5. Herramientas
 
-**Goal of this section:** Mostrar las piezas de una plataforma que expone un LLM por API (tu aplicación, la API, la plantilla de chat, el modelo, el parser de llamadas y las herramientas nativas) y el circuito entre el modelo y el agente, y después recorrer tres herramientas con la misma pregunta: qué genera el modelo, quién ejecuta la llamada y con qué datos se lo entrenó. La calculadora: el dataset GSM8K con sus anotaciones (y el etiquetado propio de Toolformer), por qué un LLM calcula mal, cómo escribe hoy la llamada Llama 3.1 con sus tokens especiales, cómo el servidor la traduce a JSON y cómo se ve esa misma cuenta por la API de Ollama. La búsqueda web: cómo se entrena, la fecha de corte, la consulta que escribe Llama 3.1 y la respuesta de una API donde la búsqueda la ejecuta la plataforma. MCP: host, cliente y servidor, una herramienta como definición en el contexto y el function calling genérico que se entrena. Dieciséis láminas: el mapa de la plataforma, el circuito con un agente y su intercambio con la API, un mapa de tres problemas (calcular, buscar, MCP) y varias láminas para cada uno.
+**Goal of this section:** Mostrar las piezas de una plataforma que expone un LLM por API (tu aplicación, la API, la plantilla de chat, el modelo, el parser de llamadas y las herramientas nativas) y el circuito entre el modelo y el agente, y después recorrer tres herramientas con la misma pregunta: qué genera el modelo, quién ejecuta la llamada y con qué datos se lo entrenó. La calculadora: por qué un LLM calcula mal, cómo escribe hoy la llamada Llama 3.1 con sus tokens especiales, cómo el servidor la traduce a JSON y cómo se ve esa misma cuenta por la API de Ollama. La búsqueda web: cómo se entrena, la fecha de corte, la consulta que escribe Llama 3.1 y la respuesta de una API donde la búsqueda la ejecuta la plataforma. MCP: host, cliente y servidor, una herramienta como definición en el contexto y el function calling genérico que se entrena. Quince láminas: el mapa de la plataforma, el circuito con un agente y su intercambio con la API, un mapa de tres problemas (calcular, buscar, MCP) y varias láminas para cada uno.
 
 ---
 
@@ -1287,44 +1185,13 @@ Son las tres razones para usar herramientas: precisión (calcular), datos actual
 
 ---
 
-## 5. Calcular: el dataset GSM8K
-
-### Content
-
-**GSM8K (Grade School Math 8K) son unos 8.500 problemas de matemática escolar escritos por personas, con la solución paso a paso. Las anotaciones de calculadora las generó un programa.**
-
-```json
-{
-  "question": "Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?",
-  "answer": "Natalia sold 48/2 = <<48/2=24>>24 clips in May.\nNatalia sold 48+24 = <<48+24=72>>72 clips altogether in April and May.\n#### 72"
-}
-```
-
-- **Dataset público.** [openai/gsm8k](https://huggingface.co/datasets/openai/gsm8k), licencia MIT: 7.473 problemas de entrenamiento y 1.319 de test, con dos versiones (`main` y `socratic`).
-- **Anotación automática.** Una lógica fija y un modelo ajustado insertaron los `<<expresión=resultado>>`. Casi nunca ponen una anotación incorrecta, pero a veces dejan líneas sin anotar.
-- **Toolformer.** Un modelo que se anota solo: inserta llamadas candidatas en texto común, las ejecuta y se queda con las que bajan la pérdida del texto que sigue.
-- **Fuente.** [Cobbe et al., 2021](https://arxiv.org/abs/2110.14168) · [Schick et al., 2023](https://arxiv.org/abs/2302.04761)
-
-### Sources
-
-- `hf-openai-gsm8k.web.md`: registro verbatim de la tarjeta, configuración `main`; "The GSM8K dataset is licensed under the MIT License."; "name train validation main 7473 1319 socratic 7473 1319" (el visor llama `test` al segundo split); campo `answer`: "The full solution string to the `question`. It contains multiple steps of reasoning with calculator annotations and the final numeric solution."; pasos sin anotar en el visor ("Sam memorized 4+6=10 digits of pi."). Derivación: 7.473 + 1.319 = 8.792 problemas.
-- `cobbe-2021-gsm8k-verifiers.pdf.md` (Apéndice C, verbatim): "The calculator annotations were not provided by human contractors: they were generated by a combination of hard-coded logic and a finetuned language model. The logic for auto-generating calculator annotations is imperfect. It is highly unlikely to generate any incorrect annotations, but it is not uncommon for it to ignore some lines that could be annotated."; §2: "8.5K high quality grade school math problems created by human problem writers"; "These problems take between 2 and 8 steps to solve"; Apéndice A: redactores de Upwork y Surge AI. Reconciliación: el paper habla de 8.500 problemas (7.500 y 1.000 por split); la lámina usa las cifras exactas de la tarjeta.
-- `schick-2023-toolformer.pdf.md`: método en tres pasos (muestrear, ejecutar, filtrar por L⁻ − L⁺ ≥ τf) y fine-tuning sobre C*; "“<API>”, “</API>” and “→”" se escriben con " [", "]" y "->", "without modifying the existing LM’s vocabulary"; Tabla 4 (ASDiv: Toolformer 40,4, GPT-3 175B 14,0); "processing more than a million documents results in only a few thousand examples of useful calls to the calculator API".
-- `lambert-rlhfbook-tool-use.web.md`: "Human-written tool traces are expensive to collect, so most modern tool-use corpora are synthetic or bootstrapped—Toolformer-style self-labeling".
-
-### Speaker notes
-
-La primera de las tres herramientas es la calculadora, y arrancamos por los datos. GSM8K es un dataset de OpenAI de 2021, con unos 8.500 problemas de matemática escolar escritos por personas y la solución paso a paso. Mostrar el registro en pantalla y señalar las dos anotaciones: cada `<<…>>` es una llamada a la calculadora, pegada al texto; dos láminas más adelante vemos cómo lo hace hoy un modelo abierto. Es un registro de SFT como los de la lámina 2.4. Los problemas los escribieron personas, pero las anotaciones las generó un programa. La última línea, `#### 72`, permite corregir la respuesta de forma automática. Toolformer hace algo parecido sin anotaciones humanas. Escribe las llamadas con corchetes y una flecha, sin tocar el vocabulario; en ASDiv, un GPT-J de 6,7B con calculadora saca 40,4 y GPT-3 175B, 14,0. Cerrar con la pregunta que abre la lámina siguiente: ¿por qué hizo falta ponerle una calculadora al modelo? Tiempo objetivo: ~2 min.
-
----
-
-## 6. Calcular: el modelo no calcula bien
+## 5. Calcular: el modelo no calcula bien
 
 ### Content
 
 **Un LLM genera texto por probabilidad, token por token. En una cuenta de varios pasos, un error de cálculo arrastra al resto de la solución.**
 
-- **Errores de cálculo.** En GSM8K, los modelos de OpenAI fallaban seguido en las cuentas. Los más grandes se equivocaban menos, pero el error seguía siendo común.
+- **Errores de cálculo.** En GSM8K, un dataset de problemas de matemática escolar, los modelos de OpenAI fallaban seguido en las cuentas. Los más grandes se equivocaban menos, pero el error seguía siendo común.
 - **Sin vuelta atrás.** Un modelo autoregresivo no tiene cómo corregir un error propio. Una solución que se desvía queda irrecuperable.
 - **Lo básico falla.** Los LLM resuelven tareas nuevas con pocos ejemplos y a la vez fallan en aritmética, donde modelos mucho más chicos y simples andan bien.
 - **Fuente.** [Cobbe et al., 2021](https://arxiv.org/abs/2110.14168) · [Schick et al., 2023](https://arxiv.org/abs/2302.04761)
@@ -1337,11 +1204,11 @@ La primera de las tres herramientas es la calculadora, y arrancamos por los dato
 
 ### Speaker notes
 
-Responde la pregunta de la lámina anterior: aun en problemas de primaria como los de GSM8K, el modelo se equivoca en las cuentas, y un error en un paso arrastra al resto. El dato que conviene decir en voz alta: extrapolando la tendencia, los autores calculan que con fine-tuning solo haría falta un modelo de 10^16 parámetros para resolver el 80% de GSM8K. Su respuesta fue darle una calculadora al modelo (y verificadores, que no entran en esta clase); la lámina siguiente muestra cómo lo hace hoy Llama 3.1. El corpus no explica el error aritmético por la forma en que el tokenizer parte los números; si alguien lo pregunta, es una hipótesis que la clase no cubre. Tiempo objetivo: ~1,5 min.
+Es la primera pregunta de la calculadora: ¿para qué hace falta? GSM8K es un dataset de OpenAI (2021) con unos 8.500 problemas de matemática escolar. Aun en problemas de primaria como esos, el modelo se equivoca en las cuentas, y un error en un paso arrastra al resto. El dato que conviene decir en voz alta: extrapolando la tendencia, los autores calculan que con fine-tuning solo haría falta un modelo de 10^16 parámetros para resolver el 80% de GSM8K. Su respuesta fue darle una calculadora al modelo (y verificadores, que no entran en esta clase); la lámina siguiente muestra cómo lo hace hoy Llama 3.1. El corpus no explica el error aritmético por la forma en que el tokenizer parte los números; si alguien lo pregunta, es una hipótesis que la clase no cubre. Tiempo objetivo: ~1,5 min.
 
 ---
 
-## 7. Calcular: lo que escribe Llama 3.1
+## 6. Calcular: lo que escribe Llama 3.1
 
 <!-- design: split-left -->
 
@@ -1387,11 +1254,11 @@ labels: columna de rol a la izquierda (system, user, assistant, ipython, assista
 
 ### Speaker notes
 
-Es la versión actual de lo que vimos con GSM8K. Llama 3.1, de Meta, trae tres herramientas incorporadas, y una es Wolfram Alpha para cálculos. Recorrer la secuencia de arriba abajo: el sistema activa las herramientas, el usuario pregunta y el modelo, en vez del número, escribe una llamada que empieza en python_tag y termina en eom_id. Ese token le dice al código que lo corre: paro acá, ejecutá la herramienta. El código llama a Wolfram Alpha, pega la respuesta con el rol ipython, y el modelo sigue hasta terminar con eot_id. El modelo aprendió a escribir este formato en su post-training. La lámina siguiente muestra cómo esos tokens se convierten en el JSON de la API. Tiempo objetivo: ~2 min.
+Llama 3.1, de Meta, trae tres herramientas incorporadas, y una es Wolfram Alpha para cálculos. Recorrer la secuencia de arriba abajo: el sistema activa las herramientas, el usuario pregunta y el modelo, en vez del número, escribe una llamada que empieza en python_tag y termina en eom_id. Ese token le dice al código que lo corre: paro acá, ejecutá la herramienta. El código llama a Wolfram Alpha, pega la respuesta con el rol ipython, y el modelo sigue hasta terminar con eot_id. El modelo aprendió a escribir este formato en su post-training. La lámina siguiente muestra cómo esos tokens se convierten en el JSON de la API. Tiempo objetivo: ~2 min.
 
 ---
 
-## 8. Calcular: de los tokens al JSON
+## 7. Calcular: de los tokens al JSON
 
 ### Content
 
@@ -1446,7 +1313,7 @@ Esta lámina conecta la anterior, que muestra lo que ve el modelo, con la siguie
 
 ---
 
-## 9. Calcular: la misma cuenta por la API
+## 8. Calcular: la misma cuenta por la API
 
 <!-- design: split-left -->
 
@@ -1493,7 +1360,7 @@ La misma idea, vista desde el código de la clase. El pedido lleva la pregunta y
 
 ---
 
-## 10. Buscar: cómo se entrena
+## 9. Buscar: cómo se entrena
 
 ### Content
 
@@ -1517,7 +1384,7 @@ Un modelo recién preentrenado no sabe usar un buscador: no conoce el formato de
 ---
 
 
-## 11. Buscar: el modelo no sabe lo reciente
+## 10. Buscar: el modelo no sabe lo reciente
 
 ### Content
 
@@ -1525,7 +1392,7 @@ Un modelo recién preentrenado no sabe usar un buscador: no conoce el formato de
 
 - **Fecha de corte.** En el ejemplo de Meta, el system prompt de Llama 3.1 dice "Cutting Knowledge Date: December 2023" y "Today Date: 21 September 2024". El modelo no vio esos nueve meses.
 - **La pregunta.** "Search the web for the latest price of 1oz gold". El precio de hoy no está en los pesos del modelo.
-- **Sin búsqueda.** El modelo respondería con un precio viejo, o lo inventaría (sección 6).
+- **Sin búsqueda.** El modelo respondería con un precio viejo, o lo inventaría.
 - **Fuente.** [Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md) · [Lambert, RLHF Book, cap. 13](https://rlhfbook.com/c/13-tools)
 
 ### Sources
@@ -1536,11 +1403,11 @@ Un modelo recién preentrenado no sabe usar un buscador: no conoce el formato de
 
 ### Speaker notes
 
-Es el problema de la búsqueda, igual que la lámina de "no calcula bien" para la calculadora. Todo modelo tiene una fecha de corte, y lo que pasó después no está en sus datos. El ejemplo oficial de Meta lo muestra en el mismo prompt: corte en diciembre de 2023, fecha de hoy en septiembre de 2024, y una pregunta por el precio actual del oro. Sin una herramienta, el modelo contesta con lo que recuerda o inventa, que es el tema de la sección 6. Tiempo objetivo: ~1 min.
+Es el problema de la búsqueda, igual que la lámina de "no calcula bien" para la calculadora. Todo modelo tiene una fecha de corte, y lo que pasó después no está en sus datos. El ejemplo oficial de Meta lo muestra en el mismo prompt: corte en diciembre de 2023, fecha de hoy en septiembre de 2024, y una pregunta por el precio actual del oro. Sin una herramienta, el modelo contesta con lo que recuerda o inventa. Tiempo objetivo: ~1 min.
 
 ---
 
-## 12. Buscar: lo que escribe Llama 3.1
+## 11. Buscar: lo que escribe Llama 3.1
 
 <!-- design: split-left -->
 
@@ -1591,7 +1458,7 @@ Es la misma lámina que la de Wolfram Alpha, con otra herramienta. El system pro
 
 ---
 
-## 13. Buscar: la respuesta de la API
+## 12. Buscar: la respuesta de la API
 
 ### Content
 
@@ -1629,7 +1496,7 @@ Es el mismo esquema que la calculadora. El modelo escribe la llamada (bloque 2) 
 
 ---
 
-## 14. MCP: host, cliente y servidor
+## 13. MCP: host, cliente y servidor
 
 ### Content
 
@@ -1672,7 +1539,7 @@ Callback a la clase de RAG y MCP: allá armaron un servidor MCP y lo conectaron 
 
 ---
 
-## 15. MCP: una herramienta es una definición
+## 14. MCP: una herramienta es una definición
 
 ### Content
 
@@ -1697,13 +1564,13 @@ Un servidor MCP publica su calculadora en `tools/list`:
 }
 ```
 
-- **La calculadora, otra vez.** En GSM8K la llamada iba pegada al texto con `<<…>>`; con MCP la misma calculadora es una función con nombre, descripción y esquema de entrada.
-- **Fuente.** [MCP, docs de arquitectura](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture) · [Cobbe et al., 2021](https://arxiv.org/abs/2110.14168)
+- **La calculadora, otra vez.** En Llama 3.1 la llamada iba entre tokens especiales (`<|python_tag|>` … `<|eom_id|>`); con MCP la misma calculadora es una función con nombre, descripción y esquema de entrada.
+- **Fuente.** [MCP, docs de arquitectura](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture) · [Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md)
 
 ### Sources
 
 - `mcp-architecture.web.md`: ejemplo oficial de `tools/list` con `calculator_arithmetic` (verbatim, arriba, sin el campo `title`, que en el original dice "Calculator"); campos `name`, `description` ("what the tool does and when to use it") e `inputSchema` ("A JSON Schema that defines the expected input parameters"); "The AI application fetches available tools from all connected MCP servers and combines them into a unified tool registry that the language model can access."; la página no trae un `tools/call` de la calculadora.
-- `cobbe-2021-gsm8k-verifiers.pdf.md`: anotación `<<expresión=resultado>>`.
+- `meta-llama3-1-prompt-format.web.md`: llamada `<|python_tag|>wolfram_alpha.call(query="100th decimal of pi")<|eom_id|>`. Antes la viñeta comparaba con la anotación `<<expresión=resultado>>` de GSM8K (`cobbe-2021-gsm8k-verifiers.pdf.md`); cambiada al cortar esa lámina (2026-09-29).
 
 ### Speaker notes
 
@@ -1711,7 +1578,7 @@ Suele aparecer esta duda: con miles de servidores MCP, ¿hay que entrenar al mod
 
 ---
 
-## 16. MCP: lo que aprende el modelo
+## 15. MCP: lo que aprende el modelo
 
 ### Content
 
@@ -1739,131 +1606,13 @@ Suele aparecer esta duda: con miles de servidores MCP, ¿hay que entrenar al mod
 
 ### Speaker notes
 
-Cierra la sección. El registro es del capítulo 13 del RLHF Book de Nathan Lambert. Es un registro de SFT como los de la lámina 2.4, con un rol de sistema que describe las herramientas. Una herramienta MCP llega al modelo con esta misma forma, así que el modelo no necesita haber visto ese servidor en el entrenamiento. El corpus no dice qué mezcla exacta de herramientas usa cada proveedor para entrenar. Tiempo objetivo: ~1 min.
+Cierra la sección. El registro es del capítulo 13 del RLHF Book de Nathan Lambert. Es un registro de SFT como los de la lámina 2.5, con un rol de sistema que describe las herramientas. Una herramienta MCP llega al modelo con esta misma forma, así que el modelo no necesita haber visto ese servidor en el entrenamiento. El corpus no dice qué mezcla exacta de herramientas usa cada proveedor para entrenar. Tiempo objetivo: ~1 min.
 
 ---
 
-# 6. Cuando el modelo inventa
+# 6. Fine-tuning
 
-**Goal of this section:** Explicar por qué un modelo inventa en vez de decir "no sé": los hechos que el corpus vio una sola vez, las evaluaciones que premian adivinar y lo que puede hacer el post-training, que enseña a abstenerse o a inventar según los datos y la recompensa. Cierra con el puente al lado del producto: prompt, RAG o fine-tuning. Cuatro láminas, unos 5 minutos.
-
----
-
-## 1. Por qué inventa
-
-### Content
-
-**Un modelo base bien calibrado tiene que equivocarse en los datos que vio una sola vez. Si el 20% de los cumpleaños aparece una única vez en el corpus, el modelo va a inventar al menos el 20% de los cumpleaños.**
-
-- **Ejemplo.** Los autores le pidieron a DeepSeek-V3 el cumpleaños de uno de ellos, "solo si lo sabés". Dio tres fechas distintas en tres intentos, todas falsas.
-- **Datos sin patrón.** Un cumpleaños no se deduce de nada; si no se repite en el corpus, no hay forma de aprenderlo.
-- **Hechos frecuentes.** Con el cumpleaños de Einstein, que aparece miles de veces, los modelos casi no se equivocan.
-- **Fuente.** [Kalai et al., 2025](https://arxiv.org/abs/2509.04664)
-
-### Sources
-
-- `kalai-2025-why-lms-hallucinate.pdf.md`: "the hallucination rate, after pretraining, should be at least the fraction of training facts that appear once. For instance, if 20% of birthday facts appear exactly once in the pretraining data, then one expects base models to hallucinate on at least 20% of birthday facts"; DeepSeek-V3 con "03-07", "15-06" y "01-01"; "Large language models seldom err on frequently referenced facts, e.g., Einstein's birthday"; los modelos base entrenados con cross-entropy tienden a estar calibrados.
-
-### Speaker notes
-
-Cambio de tema: qué pasa cuando el modelo no sabe la respuesta. La tesis de Kalai et al. (OpenAI, 2025) es que las alucinaciones son errores de clasificación. Generar una respuesta válida es más difícil que decidir si una respuesta es válida, y si el modelo no puede distinguir un hecho de un error plausible, va a producir errores plausibles. Engancha con la sección 1: el modelo sabe lo que el corpus repite y adivina lo que aparece una vez. Tiempo objetivo: ~1,5 min.
-
----
-
-## 2. Las evaluaciones premian adivinar
-
-### Content
-
-**Con puntaje de 1 o 0, decir "no sé" siempre suma 0 y adivinar a veces suma 1. Un modelo que adivina le gana en el ranking a uno que reconoce que no sabe.**
-
-![Grilla binaria contra grilla con penalización por error](images/s5-2-1-grilla-penalizacion.png)
-<!-- ascii-source:
-                         responde bien   responde mal   dice "no sé"
- puntaje binario              1               0              0
- con umbral t = 0,9           1              -9              0
-
- con puntaje binario, adivinar nunca pierde contra "no sé"
- con umbral, responder conviene solo si la confianza supera t
--->
-<!-- ascii-note:
-intent: comparar la grilla binaria con la grilla con penalización por error
-emphasize: la columna "no sé" y el -9 que cambia el incentivo
-labels: t = umbral de confianza; penalización t/(1-t)
--->
-
-- **Benchmarks.** De 10 evaluaciones influyentes (GPQA, MMLU-Pro, SWE-bench, HLE, ...), 9 no dan ningún crédito a "no sé".
-- **Propuesta.** Anunciar un umbral en la consigna: responder solo con confianza mayor a t, porque un error resta t/(1 − t).
-- **Fuente.** [Kalai et al., 2025](https://arxiv.org/abs/2509.04664)
-
-### Sources
-
-- `kalai-2025-why-lms-hallucinate.pdf.md`: "Under binary grading, abstaining is strictly sub-optimal"; Model A contra Model B; Tabla 2: 9 de 10 benchmarks con calificación binaria y sin crédito para IDK (WildBench, parcial); prompt con umbral "mistakes are penalized t/(1 − t) points". Derivación: t = 0,9 → 0,9 / 0,1 = 9; t = 0,5 → 1. El paper da t = 0,75 con penalización 2, y la fórmula da 3; la lámina usa los casos que cierran (0,5 y 0,9).
-
-### Speaker notes
-
-La analogía del paper: los modelos están siempre en modo examen, y en un examen sin penalización conviene contestar todo. Los exámenes de ingreso de la India (JEE) y el viejo SAT restan puntos por respuesta errónea para cambiar ese incentivo. Tiempo objetivo: ~2 min.
-
----
-
-## 3. Cómo se entrena para decir "no sé"
-
-### Content
-
-**El post-training puede enseñar a abstenerse, pero también puede enseñar a inventar.**
-
-- **SFT puede enseñar a inventar.** Si el anotador responde con algo que el modelo no sabe, el modelo aprende a contestar igual.
-- **El RM tiene que saber lo que sabe el modelo.** Llama 2 inicializa el reward model desde el modelo de chat para no premiar respuestas inventadas.
-- **Castigar más el error que la abstención.** Con RL, una recompensa que resta más por inventar que por decir "no sé".
-- **Resultado medido: SFT + RLHF contra GPT-3.** En tareas como resumir, GPT-3 con SFT y RLHF agrega información que no está en el texto de entrada en 21% de los casos; GPT-3 sin post-training, en 41%.
-- **Fuente.** [Ouyang et al., 2022 (OpenAI)](https://arxiv.org/abs/2203.02155) · [Touvron et al., 2023](https://arxiv.org/abs/2307.09288) · [Huyen, 2023](https://huyenchip.com/2023/05/02/rlhf.html)
-
-### Sources
-
-- `huyen-2023-rlhf.web.md`: John Schulman, "If we give a response using the knowledge that we have but the LLM doesn't have, we're teaching the LLM to hallucinate"; RL con una recompensa que castiga más "for making things up"; "the InstructGPT paper shows that RLHF actually made hallucination worse. Even though RLHF caused worse hallucination, it improved other aspects, and overall, human labelers prefer RLHF model over SFT alone model." (contra SFT; va en las notas, atribuido a Chip Huyen).
-- `touvron-2023-llama2.pdf.md`: RM inicializado desde el chat model para evitar "an information mismatch, which could result in favoring hallucinations".
-- `ouyang-2022-instructgpt.pdf.md`: "a 21% vs. 41% hallucination rate" en tareas de dominio cerrado (InstructGPT, es decir SFT + PPO, contra GPT-3); con la instrucción de responder "I have no comment" si no está seguro, los modelos PPO eligen "truthful and uninformative"; Figura 9 (respuesta vaga sobre el cañón y la calabaza).
-- `nakano-2021-webgpt.pdf.md` (pie de la Tabla 3): "While GPT-3 175B with the helpful prompt answers “I have no comment” to 49% of questions, WebGPT almost always tries to answer the question".
-- `kalai-2025-why-lms-hallucinate.pdf.md` (§5, "Search (and reasoning) are not panaceas"): "the binary grading system itself still rewards guessing whenever search fails to yield a confident answer."
-
-### Speaker notes
-
-Contra el modelo con solo SFT, la comparación sale al revés: Chip Huyen lee en el paper de OpenAI (2022) que RLHF empeoró la alucinación, aunque los anotadores igual lo prefieren. El modelo con post-training también aprendió a cubrirse con respuestas largas y vagas (el cañón y la calabaza, Figura 9). Abstenerse de más tampoco sirve. En TruthfulQA, GPT-3 con un prompt de ayuda responde "no tengo comentarios" al 49% de las preguntas. La búsqueda de la sección 5 ayuda, pero no alcanza. Si falla, la calificación binaria sigue premiando adivinar (Kalai et al.). Del lado del producto quedan un prompt, RAG o un fine-tuning; la sección 7 arranca por esa decisión. Tiempo objetivo: ~1,5 min.
-
----
-
-## 4. Ejemplo: premiar el "no sé"
-
-### Content
-
-**Un paso de entrenamiento con RL. Con una recompensa que castiga más el error que la abstención, las respuestas "no sé" quedan por encima del promedio y el modelo aprende a darlas.**
-
-| Respuesta del modelo | Recompensa | Contra el promedio (−4,5) |
-|---|---|---|
-| "Nació el 15 de marzo." (inventada) | −9 | baja |
-| "Nació el 3 de julio." (inventada) | −9 | baja |
-| "No lo sé con certeza." | 0 | sube |
-| "No sé su fecha de cumpleaños." | 0 | sube |
-
-- **La consigna.** "Respondé solo si estás más de 90% seguro: un error resta 9 puntos, una respuesta correcta suma 1 y 'no sé' suma 0."
-- **Con puntaje de 1 o 0.** Las cuatro respuestas sumarían 0, así que inventar no costaría nada y el modelo no tendría por qué dejar de hacerlo.
-- **Fuente.** [Kalai et al., 2025](https://arxiv.org/abs/2509.04664) · [DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948)
-
-### Sources
-
-- `kalai-2025-why-lms-hallucinate.pdf.md` (verbatim): "Answer only if you are > t confident, since mistakes are penalized t/(1 − t) points, while correct answers receive 1 point, and an answer of “I don’t know” receives 0 points."; con t = 0,9, la penalización es 0,9 / 0,1 = 9. El ejemplo del cumpleaños sale del mismo paper (DeepSeek-V3 dio tres fechas distintas, todas falsas, para el cumpleaños de uno de los autores).
-- `deepseek-2025-r1.pdf.md`: GRPO compara cada recompensa con el promedio del grupo, A_i = (r_i − mean) / std. Derivación: (−9 − 9 + 0 + 0) / 4 = −4,5.
-- Ejemplo ilustrativo armado para la clase: Kalai et al. proponen la consigna para evaluar, no entrenan un modelo con ella; las cuatro respuestas son inventadas para el ejemplo.
-- Lámina agregada por pedido del presentador (2026-09-27): "Después de Cómo se entrena para decir 'no sé' pongamos un ejemplo de esto."
-
-### Speaker notes
-
-Un ejemplo concreto de la última tarjeta de la lámina anterior. El mismo pedido del cumpleaños, con la consigna que proponen Kalai y sus coautores: responder solo con más de 90% de confianza, porque un error resta 9. El modelo genera cuatro respuestas: dos fechas inventadas, que reciben −9, y dos "no sé", que reciben 0. El promedio del grupo es −4,5. Los "no sé" quedan por encima y el RL sube su probabilidad; las fechas inventadas quedan por debajo y bajan. Es el mismo mecanismo de GRPO de la sección 4, con otra recompensa. Con el puntaje binario las cuatro valdrían 0 y no habría nada que aprender. Aclarar que es un ejemplo armado para la clase: el paper propone la consigna para evaluar, no entrena con ella. Tiempo objetivo: ~2 min.
-
----
-
-# 7. Fine-tuning
-
-**Goal of this section:** Pasar al lado del equipo de producto. Ubicar el fine-tuning en el mapa (la misma receta de post-training, a escala chica, sobre un modelo que ya pasó por las tres etapas), decidir cuándo conviene frente a prompting y RAG, hacer la cuenta de memoria de un ajuste completo y ver cuánto la bajan LoRA y QLoRA. Después, cómo se hace hoy: qué modelos se pueden ajustar en la nube a septiembre de 2026, el recorrido local con modelos abiertos y qué datos hacen falta. Siete láminas, unos 12 minutos.
+**Goal of this section:** Pasar al lado del equipo de producto. Ubicar el fine-tuning en el mapa (la misma receta de post-training, a escala chica, sobre un modelo que ya pasó por las tres etapas), decidir cuándo conviene frente a prompting y RAG y en qué casos vale la pena (forzar un formato de salida, un estilo fijo, una tarea poco vista, un modelo chico). Después, cómo se hace hoy: qué modelos se pueden ajustar en la nube a septiembre de 2026, el recorrido local con modelos abiertos y qué datos hacen falta. Siete láminas, unos 10,5 minutos.
 
 ---
 
@@ -1903,7 +1652,8 @@ labels: lo hace el proveedor, lo hace el equipo, datos, método, técnica
 -->
 
 - **Lo que cambia.** Los datos son del equipo y son pocos. Los métodos son los mismos de las secciones 2, 3 y 4.
-- **Fuente.** [OpenAI, docs de optimización de modelos](https://developers.openai.com/api/docs/guides/model-optimization) · [Microsoft, docs de fine-tuning en Azure Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning)
+- **Mecanismos: LoRA y QLoRA.** LoRA congela los pesos del modelo y entrena solo dos matrices chicas por capa. QLoRA además guarda el modelo congelado en 4 bits: un modelo de 65B se ajusta en una sola GPU de 48 GB.
+- **Fuente.** [OpenAI, docs de optimización de modelos](https://developers.openai.com/api/docs/guides/model-optimization) · [Microsoft, docs de fine-tuning en Azure Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning) · [Hu et al., 2021](https://arxiv.org/abs/2106.09685) · [Dettmers et al., 2023](https://arxiv.org/abs/2305.14314)
 
 ### Sources
 
@@ -1912,10 +1662,11 @@ labels: lo hace el proveedor, lo hace el equipo, datos, método, técnica
 - `azure-foundry-fine-tuning.web.md`: métodos SFT, DPO y RFT; "We use low-rank adaptation (LoRA) to fine-tune models".
 - `vertex-open-model-tuning.web.md`: modos "Full fine-tuning" y "Low-Rank Adaptation (LoRA)"; datos en JSONL.
 - `unsloth-fine-tuning-guide.web.md`: SFT es "the standard method of post training"; "start with a small instruct model"; "for most use-cases, standard SFT is sufficient".
+- Viñeta "Mecanismos: LoRA y QLoRA" agregada por pedido del presentador (2026-09-29: "Mencionemos tal vez LoRA y QLoRA como mecanismos a usar"), después de cortar "LoRA y QLoRA en la práctica". `hu-2021-lora.pdf.md`: W0 + BA con r ≪ min(d, k), W0 congelada. `dettmers-2023-qlora.pdf.md`: "finetune a 65B parameter model on a single 48GB GPU while preserving full 16-bit finetuning task performance"; el modelo base cuantizado en 4 bits (NF4).
 
 ### Speaker notes
 
-Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arriba las paga el proveedor; la de abajo, el equipo. En esa caja el equipo hace lo mismo que ya vieron: SFT con ejemplos propios (sección 2) y, a veces, preferencias o refuerzo (secciones 3 y 4). RFT es el nombre que usan OpenAI y Azure para el refuerzo con un evaluador, parecido al RL con recompensas verificables de la sección 4. Unsloth recomienda partir de un modelo instruct, que ya sabe conversar y pide menos datos. Tiempo objetivo: ~1,5 min.
+Es el mapa de la Introducción con una caja más abajo. Las tres etapas de arriba las paga el proveedor; la de abajo, el equipo. En esa caja el equipo hace lo mismo que ya vieron: SFT con ejemplos propios (sección 2) y, a veces, preferencias o refuerzo (secciones 3 y 4). RFT es el nombre que usan OpenAI y Azure para el refuerzo con un evaluador, parecido al RL con recompensas verificables de la sección 4. Unsloth recomienda partir de un modelo instruct, que ya sabe conversar y pide menos datos. La técnica casi siempre es un adaptador: con LoRA no hace falta entrenar todos los parámetros, y con QLoRA alcanza una sola GPU. Unsloth recomienda empezar por QLoRA y pasar al ajuste completo solo si no alcanza. Tiempo objetivo: ~1,5 min.
 
 ---
 
@@ -1945,78 +1696,33 @@ Callback a las clases de prompting y de RAG y MCP: todo lo que vieron hasta ahor
 
 ---
 
-## 3. La cuenta de memoria
+## 3. Cuándo vale la pena el fine-tuning
 
 ### Content
 
-**Para inferencia alcanza con guardar los pesos. Para entrenar hay que guardar además gradientes, los dos estados de Adam y las activaciones.**
+**El fine-tuning vale la pena cuando la falla es de comportamiento y el prompt ya no alcanza. Estos son los casos típicos.**
 
-![La cuenta de memoria de un fine-tuning completo contra la inferencia](images/s6-3-1-cuenta-memoria.png)
-<!-- ascii-source:
- modelo de 13B parámetros, 2 bytes por valor (16 bits)
-
- inferencia:   pesos 26 GB  x 1,2 (activaciones, KV)       ~  31 GB
-
- fine-tuning completo con Adam:
-   pesos + activaciones                                   ~  31 GB
-   gradientes (1 valor) + Adam (2 valores) = 13B x 3 x 2   =  78 GB
-                                                          ---------
-                                                          ~ 109 GB
-
- una GPU de 48 GB no alcanza; tampoco dos
--->
-<!-- ascii-note:
-intent: la cuenta de memoria de un fine-tuning completo contra la inferencia
-emphasize: los 78 GB de gradientes y estados del optimizador, que la inferencia no necesita
-labels: GB por componente y total
--->
-
-- **Regla rápida de inferencia.** Memoria ≈ N parámetros × bytes por valor × 1,2.
-- **Fuente.** [Software Philosopher, notas de AI Engineering](https://softwarephilosopher.com/2025/12/27/ai-engineering-my-reading-notes/) · [Bagerbach, notas de AI Engineering](https://bagerbach.com/books/ai-engineering/)
+- **Forzar un formato de salida.** JSON o YAML que el modelo tiene que respetar siempre, o código que compile.
+- **Un estilo o un tono fijo.** Que responda siempre con la voz, el largo y la estructura del producto.
+- **Una tarea poco vista.** Algo que el modelo general casi no vio, como un dialecto de SQL poco común.
+- **Un modelo chico.** Que un modelo chico imite a uno grande en una tarea (destilación): más barato y más rápido.
+- **Cuándo no.** Si al modelo le faltan datos, es un caso de RAG. Además, el ajuste puede empeorar otras tareas, y un modelo base nuevo puede superar al ajustado.
+- **Fuente.** [Huyen, 2025 (AI Engineering)](https://github.com/chiphuyen/aie-book/blob/main/chapter-summaries.md) · [Bagerbach, notas de AI Engineering](https://bagerbach.com/books/ai-engineering/)
 
 ### Sources
 
-- `softwarephilosopher-aie-notes.web.md` (cap. 7): "Inference memory ≈ M × N × 1.2"; memoria de entrenamiento = pesos + activaciones + gradientes + estados del optimizador; "13B parame x 3 (Adam optimizer) x 2 bytes = 78GB".
-- `bagerbach-aie-notes.web.md` (cap. 7): para 13B con Adam, "~78GB just for gradients and states, on top of the ~31GB for weights and activations". Derivaciones: 13×10⁹ × 2 B = 26 GB; 26 × 1,2 = 31,2 GB; 13×10⁹ × 3 × 2 B = 78 GB; 31 + 78 = 109 GB.
-- `dettmers-2023-qlora.pdf.md`: "regular 16-bit finetuning of a LLaMA 65B parameter model requires more than 780 GB of GPU memory".
+- Lámina agregada por pedido del presentador (2026-09-29): "Add also a slide of caso que queremos hacer fine tune" → aclarado: "Contar los casos donde Fine Tuning vale la pena explorar. EG: Forzar un output format".
+- `softwarephilosopher-aie-notes.web.md` (cap. 7, notas de un lector de AI Engineering): "Reasons to finetune: structured outputs (JSON, YAML); tasks the general model wasn't trained on enough (e.g., less common SQL dialect); bias mitigation with counter-bias data; 'finetuning smaller models is much more common.'"; "Reasons not to: can degrade other tasks; high upfront investment (annotated data, training know-how, serving); base models may improve past your tuned model"; "finetuning for behavior-based failures (irrelevant-but-correct info, wrong output format e.g. non-compiling code)".
+- `bagerbach-aie-notes.web.md`: structured outputs por "band-aids" (prompting, post-processing, regenerar) que "work best when the model is already quite good at the task", o por "intensive treatment": constrained sampling y finetuning; "RAG is for facts, finetuning is for form"; behavior-based failures: "doesn't follow instructions, wrong style/format, unsafe content"; "Finetuning a small model to imitate a larger, more capable one is a common and effective strategy known as distillation."; "Finetuning a model for a specific task can improve its performance for that task, but also degrade its performance for others."
+- Fuentes de segunda mano (notas de lectores del libro), como el resto de la sección.
 
 ### Speaker notes
 
-Hacer la cuenta en el pizarrón con la clase. Adam guarda dos valores por parámetro (media y varianza del gradiente), más el gradiente mismo, o sea tres valores extra por parámetro. El caso de 65B, en la lámina siguiente, da más de 780 GB. La técnica de gradient checkpointing recalcula activaciones para ahorrar memoria a cambio de cómputo. Cerrar con la pregunta que responden LoRA y QLoRA en la lámina siguiente: ¿hace falta entrenar los 13.000 millones de parámetros? Tiempo objetivo: ~2 min.
+Es la continuación de la lámina anterior: si la falla es de comportamiento, estos son los casos donde conviene explorar un fine-tuning. El más claro es el formato. Si el producto necesita JSON válido siempre, el prompt y el post-procesamiento funcionan mientras el modelo ya sea bueno en la tarea; cuando no alcanza, se ajusta con ejemplos en ese formato. Lo mismo con un estilo fijo o una tarea que el modelo casi no vio. La destilación es el caso más común en la práctica: un modelo chico ajustado con salidas de uno grande, que cuesta menos y responde más rápido. Cerrar con el cuándo no: si faltan datos es RAG, y el ajuste tiene costo, puede empeorar otras tareas y queda viejo cuando sale un modelo base mejor. Tiempo objetivo: ~1,5 min.
 
 ---
 
-## 4. LoRA y QLoRA en la práctica
-
-### Content
-
-**LoRA congela los pesos del modelo y entrena dos matrices finas por capa. QLoRA además guarda el modelo congelado en 4 bits. Solo se entrena y se guarda un adaptador.**
-
-| Modelo | Memoria total con QLoRA |
-|---|---|
-| 7B | 6,9 GB |
-| 13B | 11,3 GB |
-| 33B | 24,7 GB |
-| 65B | 45,0 GB (fine-tuning completo en 16 bits: más de 780 GB) |
-
-- **LoRA.** En una matriz de GPT-3 (d = 12.288, r = 4) entrena 98.304 valores en lugar de unos 151 millones. En GPT-3 175B, el checkpoint baja de 350 GB a 35 MB.
-- **QLoRA.** Un modelo de 65B se ajusta en una sola GPU de 48 GB y rinde como el fine-tuning completo en 16 bits.
-- **Por dónde empezar.** Unsloth recomienda arrancar con QLoRA y pasar al ajuste completo solo si LoRA no alcanza.
-- **Fuente.** [Hu et al., 2021](https://arxiv.org/abs/2106.09685) · [Dettmers et al., 2023](https://arxiv.org/abs/2305.14314) · [Unsloth, guía de fine-tuning](https://unsloth.ai/docs/get-started/fine-tuning-llms-guide)
-
-### Sources
-
-- `dettmers-2023-qlora.pdf.md`: Figura 6 / Apéndice G, memoria total de QLoRA 7B 6,9 GB, 13B 11,3 GB, 33B 24,7 GB, 65B 45,0 GB ("batch 1, sequence 512, gradient checkpointing"); "regular 16-bit finetuning of a LLaMA 65B parameter model requires more than 780 GB of GPU memory"; "finetune a 65B parameter model on a single 48GB GPU while preserving full 16-bit finetuning task performance"; "LoRA on all linear transformer block layers are required to match full finetuning performance"; NF4, doble cuantización, optimizadores paginados.
-- `hu-2021-lora.pdf.md`: W0 + BA, B ∈ ℝ^(d×r), A ∈ ℝ^(r×k), r ≪ min(d, k), B = 0 al inicio; d = 12.288 en GPT-3; checkpoint "from 350GB to 35MB"; "no additional inference latency". Derivaciones: 12.288² = 150.994.944; 2 × 12.288 × 4 = 98.304.
-- `unsloth-fine-tuning-guide.web.md`: "We recommend starting with QLoRA, as it is one of the most accessible and effective methods for training models."; "Start by testing with LoRA or QLoRA first, if it won't work there, it almost certainly won't work with FFT."; "LoRA is when the original model is 16-bit unquantized while QLoRA quantizes to 4-bit to save 75% memory"; el adaptador LoRA se guarda como "a small 100MB file". El 75% de Unsloth es sobre el tamaño de los pesos, no sobre la memoria total del entrenamiento; el 33B de la tabla no entra del todo en 24 GB y necesita paginar el optimizador (Dettmers).
-
-### Speaker notes
-
-Conectar con la cuenta de memoria de la lámina 7.3: un 13B con ajuste completo pedía unos 109 GB; con QLoRA, según el paper, 11,3 GB. La tabla usa batch 1 y secuencias de 512 tokens; con secuencias o batches más grandes sube. En LoRA, la entrada pasa por W congelada y en paralelo por A y B, y las dos salidas se suman; B arranca en cero, así que al principio el modelo es igual al original, y al desplegar B · A se suma a W sin latencia extra. En QLoRA, NF4 reparte los 16 valores posibles según una normal. Hay que poner LoRA en todas las capas lineales para igualar al ajuste completo. Tiempo objetivo: ~2 min.
-
----
-
-## 5. Fine-tuning en la nube
+## 4. Fine-tuning en la nube
 
 ### Content
 
@@ -2045,7 +1751,7 @@ Leer la tabla por filas y decir la fecha: las listas cambian rápido. OpenAI anu
 
 ---
 
-## 6. Fine-tuning local: el recorrido
+## 5. Fine-tuning local: el recorrido
 
 ### Content
 
@@ -2088,11 +1794,11 @@ labels: TRL, PEFT, Unsloth, GGUF, vLLM
 
 ### Speaker notes
 
-Recorrer el diagrama de arriba abajo. El paso 3 es el único que entrena; adentro corre el SFT de la sección 2 con la máscara de la lámina 2.3: la guía de Gemma pone -100 en todos los tokens anteriores a la respuesta, y TRL hace lo mismo por defecto con datos prompt-completion. El resultado del paso 4 es un archivo aparte, el adaptador; se puede servir junto al modelo base o unirlo a los pesos. Para correrlo en una laptop se convierte a GGUF y se usa con Ollama o LM Studio, como en clases anteriores. Unsloth promete notebooks gratis con 3 GB de VRAM, sin decir para qué tamaño de modelo. Tiempo objetivo: ~1,5 min.
+Recorrer el diagrama de arriba abajo. El paso 3 es el único que entrena; adentro corre el SFT de la sección 2 con la máscara de la lámina 2.4: la guía de Gemma pone -100 en todos los tokens anteriores a la respuesta, y TRL hace lo mismo por defecto con datos prompt-completion. El resultado del paso 4 es un archivo aparte, el adaptador; se puede servir junto al modelo base o unirlo a los pesos. Para correrlo en una laptop se convierte a GGUF y se usa con Ollama o LM Studio, como en clases anteriores. Unsloth promete notebooks gratis con 3 GB de VRAM, sin decir para qué tamaño de modelo. Tiempo objetivo: ~1,5 min.
 
 ---
 
-## 7. Qué pedirle a los datos
+## 6. Qué pedirle a los datos
 
 ### Content
 
@@ -2116,9 +1822,26 @@ Recorrer el diagrama de arriba abajo. El paso 3 es el único que entrena; adentr
 
 ### Speaker notes
 
-La frase de Chip Huyen del capítulo 7: "finetuning is easy, but getting data for finetuning is hard". El formato es el de los registros de SFT de la sección 2; TRL, por defecto, calcula la pérdida solo sobre la respuesta, la misma máscara de la lámina 2.3. Las cifras de Azure son su recomendación para sus modelos. FLAN v2 da el mejor MMLU y el peor puntaje de chatbot, así que el dataset tiene que parecerse a la tarea. LIMA llega de segunda mano, de las notas de un lector del libro, y el modelo resultante es "menos robusto". Presentarlo como indicio. Tiempo objetivo: ~1,5 min.
+La frase de Chip Huyen del capítulo 7: "finetuning is easy, but getting data for finetuning is hard". El formato es el de los registros de SFT de la sección 2; TRL, por defecto, calcula la pérdida solo sobre la respuesta, la misma máscara de la lámina 2.4. Las cifras de Azure son su recomendación para sus modelos. FLAN v2 da el mejor MMLU y el peor puntaje de chatbot, así que el dataset tiene que parecerse a la tarea. LIMA llega de segunda mano, de las notas de un lector del libro, y el modelo resultante es "menos robusto". Presentarlo como indicio. Tiempo objetivo: ~1,5 min.
 
 ---
+
+## 7. Fine-tuning: un ejemplo
+
+### Content
+
+- **Notebook.** [Fine-tuning: ejemplo en DataCamp DataLab](https://www.datacamp.com/datalab/w/6e85b332-8365-42e3-9cd1-c0616eeac8d2/edit)
+
+### Sources
+
+- Link agregado por pedido del presentador (2026-09-29): "Add a link to this in a new page about Fine Tuning Example". La página pide iniciar sesión en DataCamp; el contenido del notebook no se pudo leer y no está en el corpus, así que la lámina no lo describe.
+
+### Speaker notes
+
+Mostrar el link y, si hay tiempo, abrir el notebook. Para abrirlo hace falta una cuenta de DataCamp. Tiempo objetivo: ~1 min.
+
+---
+
 
 # Conclusions
 
@@ -2135,8 +1858,7 @@ La frase de Chip Huyen del capítulo 7: "finetuning is easy, but getting data fo
 | Sigue el formato y el tono pedidos | SFT | Demostraciones de calidad |
 | Prefiere unas respuestas a otras | RLHF o DPO | Datos de comparación |
 | Llama herramientas: calcula, busca, usa MCP | SFT con las llamadas en el texto; preferencias y RL para encadenarlas en tareas de varios pasos | Definiciones claras de cada herramienta (MCP) y un agente que las ejecute |
-| Piensa más o menos según el effort | RL con verificadores; SFT y RL para cambiar de modo; razonamientos cortados o RL con largo pedido para respetar un presupuesto | Elegir el modo o el presupuesto |
-| Inventa en vez de decir "no sé" | Pre-training y evaluaciones binarias | Umbrales de confianza; post-training que castiga inventar; RAG ayuda pero no alcanza |
+| Razona antes de responder, y más cuanto más difícil es el problema | RL con verificadores | Usar un modelo de razonamiento en tareas cuya respuesta se puede comprobar |
 | No responde en la forma que necesita el producto | Todo lo anterior | Prompt y RAG; si no alcanza, fine-tuning con LoRA o QLoRA, en la nube (Azure, Google) o local |
 
 - **Fuente.** Las de cada sección.
@@ -2147,7 +1869,7 @@ La frase de Chip Huyen del capítulo 7: "finetuning is easy, but getting data fo
 
 ### Speaker notes
 
-Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su sección. La última fila corresponde a la sección 7, que es la que les toca a ellos. Después, preguntas. Si sobra tiempo, mostrar un registro de un dataset público de SFT. Tiempo objetivo: ~2 min más preguntas.
+Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su sección. La última fila corresponde a la sección 6, que es la que les toca a ellos. Después, preguntas. Si sobra tiempo, mostrar un registro de un dataset público de SFT. Tiempo objetivo: ~2 min más preguntas.
 
 ---
 
@@ -2203,6 +1925,16 @@ Leer la tabla de arriba abajo, en dos minutos, conectando cada fila con su secci
 - **Quiz de repaso.** La Clase 8 abre con un quiz; este borrador no. Decidir si se agrega.
 
 # Cut material
+
+- **Sección "Cuando el modelo inventa" completa (ex sección 6: Por qué inventa, Las evaluaciones premian adivinar, Cómo se entrena para decir "no sé", Ejemplo: premiar el "no sé"), 2026-09-29.** Cortada por pedido del presentador ("Borrar toda la sección 'Cuando el modelo inventa'"). Fine-tuning pasa a sección 6. Salieron también la fila "Inventa en vez de decir 'no sé'" de las conclusiones, la cláusula de la tesis ("inventa porque las evaluaciones premian adivinar"), el tramo del narrative arc y las referencias "(sección 6)" en Buscar y en GPT-3 antes y después. Texto completo en el Cut material de draft.md.
+
+- **La cuenta de memoria y LoRA y QLoRA en la práctica (ex 7.3 y 7.4), 2026-09-29.** Cortadas por pedido del presentador ("Borrar 'La cuenta de memoria' y 'LoRA y QLoRA en la práctica'"). LoRA y QLoRA siguen nombrados en "Dónde entra el fine-tuning", "Prompt, RAG o fine-tuning", "Fine-tuning en la nube", "Fine-tuning local: el recorrido" y la tabla de conclusiones, ya sin lámina que los explique. Goal de la sección 7 y narrative arc ajustados. Texto completo en el Cut material de draft.md.
+
+- **Calcular: el dataset GSM8K (ex 5.5), 2026-09-29.** Cortada por pedido del presentador ("La notación de Calcular: el dataset GSM8K y Calcular: lo que escribe Llama 3.1 parecen distintas" → "Dado que es un ejemplo, mostremos uno solo que es el de Llama"). GSM8K queda nombrado en "Calcular: el modelo no calcula bien" como fuente de los errores de cálculo; la viñeta de MCP que comparaba con `<<…>>` ahora compara con Llama 3.1. Con la lámina salieron Toolformer y los datos del dataset público (openai/gsm8k). Texto completo en el Cut material de draft.md.
+
+- **Qwen3: SFT con /think y /no_think, Presupuesto de razonamiento: Nemotron Nano 2 y Largo exacto: L1 lo entrena con RL (ex 4.4 a 4.6), 2026-09-29.** Cortadas por pedido del presentador ("Borrá 'Qwen3: SFT con /think y /no_think'", "Borrá 'Presupuesto de razonamiento: Nemotron Nano 2'", "Borrá 'Largo exacto: L1 lo entrena con RL'"). La sección 4 queda en las tres láminas de RL con verificador; se sacó de las notas de 4.1 el anuncio del effort y la fila de effort de las conclusiones pasó a "Razona antes de responder". Texto completo en el Cut material de draft.md.
+
+- **Qwen3: cuatro pasos de post-training (ex 4.4), 2026-09-29.** Cortada por pedido del presentador ("Borrar 'Qwen3: cuatro pasos de post-training'"). Texto completo en el Cut material de draft.md.
 
 - **Effort: low, medium, high y Effort: el system prompt (ex 4.4 y 4.5, gpt-oss), 2026-09-27.** Cortadas por pedido del presentador ("Sacá gpt-oss"); texto completo en el Cut material de draft.md.
 
