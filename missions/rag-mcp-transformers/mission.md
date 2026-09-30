@@ -78,7 +78,22 @@ La métrica castiga los dos extremos: traer pocos fragmentos pierde evidencia, y
 
 Armen un agente con **tool calling** sobre `deepseek/deepseek-v4-flash-0731` que conteste las preguntas de pacientes con dos fuentes: el recuperador de la parte 1 y la API del hospital (`python3 api/servidor.py`, en `http://localhost:8765`).
 
-El agente tiene que estar hecho con **LangChain**. El modelo se conecta con `ChatOpenAI` de `langchain-openai`, apuntando a OpenRouter (`base_url="https://openrouter.ai/api/v1"`), y cada herramienta es una tool de LangChain.
+Para el agente recomendamos el **SDK de agentes de OpenAI** (`openai-agents`). Sirve con la API key de OpenRouter y con cualquier modelo, no solo los de OpenAI. El modelo se configura con un cliente que apunta a OpenRouter:
+
+```python
+import os
+
+from openai import AsyncOpenAI
+from agents import Agent, OpenAIChatCompletionsModel, set_tracing_disabled
+
+cliente = AsyncOpenAI(base_url="https://openrouter.ai/api/v1", api_key=os.environ["OPENROUTER_API_KEY"])
+set_tracing_disabled(True)  # el tracing manda datos a OpenAI y sin una key de OpenAI falla
+modelo = OpenAIChatCompletionsModel(model="deepseek/deepseek-v4-flash-0731", openai_client=cliente)
+```
+
+Cada herramienta es una función con el decorador `@function_tool`, y el modelo lee su docstring como descripción.
+
+También pueden usar **LangChain**, con `ChatOpenAI` de `langchain-openai` apuntando a la misma `base_url` y cada herramienta como una tool de LangChain. No usen el SDK de agentes de Claude: con modelos que no son de Anthropic, OpenRouter no garantiza que funcione.
 
 Las herramientas tienen que llevar estos nombres, porque el evaluador los usa para verificar si el agente llamó a las que correspondían:
 
@@ -126,13 +141,13 @@ Muevan las seis herramientas a un **servidor MCP** (`servidor_mcp.py`, transport
 
 Para el servidor tienen que usar FastMCP, que viene adentro del SDK oficial (`from mcp.server.fastmcp import FastMCP`). Cada herramienta es una función con el decorador `@mcp.tool()`, y el modelo lee su docstring como descripción. No instalen el paquete `fastmcp` aparte. El servidor no usa LangChain.
 
-Usen la versión 1.x del SDK, que es la que fija `requirements.txt`. En la 2.x, FastMCP cambió de nombre, y `langchain-mcp-adapters` todavía no la acepta.
+Usen la versión 1.x del SDK, que es la que fija `requirements.txt`. En la 2.x, FastMCP cambió de nombre, y `langchain-mcp-adapters` todavía no acepta esa versión.
 
 ```bash
 python3 agente_mcp.py --preguntas datos/preguntas_agente_dev.jsonl --salida respuestas_mcp.jsonl
 ```
 
-El agente cliente también tiene que estar hecho con LangChain. Las herramientas del servidor se cargan como tools de LangChain con `langchain-mcp-adapters`.
+Hagan el agente cliente con el mismo framework que eligieron en la parte 2. El SDK de OpenAI trae cliente MCP propio: con `MCPServerStdio` (de `agents.mcp`) lanzan el servidor y se lo pasan al agente en `mcp_servers=[...]`. En LangChain, las herramientas del servidor se cargan como tools con `langchain-mcp-adapters`.
 
 Las herramientas tienen que quedar en un solo lugar: `agente_mcp.py` no puede tener código propio para consultar la API ni el recuperador, y tiene que obtener todo del servidor.
 
