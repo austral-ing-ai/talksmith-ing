@@ -1,0 +1,16 @@
+ +--------------------------------------------+
+ |  Agente principal       [ventana propia]   |
+ +--------------------------------------------+
+    | encargo   ^                | encargo  ^
+    v           | hallazgo       v          | hallazgo
+ +----------------+         +----------------+
+ |  Subagente A   |         |  Subagente B   |
+ | [ventana       |  no se  | [ventana       |
+ |  propia]       |   ven   |  propia]       |
+ +----------------+         +----------------+
+
+<!-- ascii-note:
+intent: cada subagente tiene su propia ventana de contexto; recibe un encargo y devuelve un hallazgo, y entre hermanos no hay canal.
+emphasize: el hueco entre Subagente A y Subagente B ("no se ven"), en rojo; las ventanas propias.
+labels: Agente principal, Subagente A, Subagente B, encargo, hallazgo, ventana propia.
+-->

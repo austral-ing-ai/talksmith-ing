@@ -1,0 +1,22 @@
+       SUPERVISOR                  RED ADAPTATIVA
+
+         Usuario                       Usuario
+            |                             |
+            v                             v
+    +---------------+              +-------------+
+    |  Orquestador  |              |  Agente A   |
+    +---------------+              +-------------+
+      |     |     |                  |         |
+      v     v     v                  v         v
+    +---+ +---+ +---+          +---------+   +---------+
+    | A | | B | | C |          | Agente  |<->| Agente  |
+    +---+ +---+ +---+          |    B    |   |    C    |
+                               +---------+   +---------+
+   todo pasa por el centro     cada agente ejecuta,
+                               delega o enriquece
+
+<!-- ascii-note:
+intent: dos topologias lado a lado; una con un nodo central que coordina, otra donde la coordinacion se replica en cada agente.
+emphasize: el Orquestador en rojo a la izquierda; las aristas directas entre agentes a la derecha.
+labels: SUPERVISOR, RED ADAPTATIVA, Usuario, Orquestador, Agente A/B/C.
+-->

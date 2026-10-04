@@ -1,0 +1,21 @@
++------------------------------------------+
+|                 AMBIENTE                 |
++------------------------------------------+
+       |                           ^
+       | percepciones              | acciones
+       v                           |
++--------------+           +--------------+
+|   Sensores   |           |  Actuadores  |
++--------------+           +--------------+
+       |                           ^
+       v                           |
++------------------------------------------+
+|      AGENTE: decide qué acción tomar     |
+|      a partir de lo que percibió         |
++------------------------------------------+
+
+<!-- ascii-note:
+intent: el loop agente-ambiente de la definicion clasica; es el lazo cerrado que todas las demas laminas de la seccion refinan.
+emphasize: la caja AGENTE como unico punto de decision (acento rojo); el lazo cerrado percepciones -> decision -> acciones -> ambiente.
+labels: AMBIENTE, Sensores, Actuadores, AGENTE, percepciones, acciones.
+-->

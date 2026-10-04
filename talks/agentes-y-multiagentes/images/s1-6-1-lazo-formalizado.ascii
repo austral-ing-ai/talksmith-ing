@@ -1,0 +1,24 @@
+     +----------------------------------+
+     |  contexto  c_t                   |
+     |  (o_1, a_1, ..., a_t-1, o_t)     |
+     +----------------------------------+
+                      |
+                      v
+            +-------------------+
+            |  política (LLM)   |
+            |   π(a_t | c_t)    |
+            +-------------------+
+                      |
+                      v   a_t ∈ A
+            +-------------------+
+            |     AMBIENTE      |
+            +-------------------+
+                      |
+                      v   o_t+1 ∈ O
+     se suma al contexto c_t+1 y el loop sigue
+
+<!-- ascii-note:
+intent: el mismo lazo de la lamina 1.2, ahora con la notacion del paper de ReAct; el contexto crece en cada vuelta.
+emphasize: la caja de la politica (LLM) en rojo; la flecha final que devuelve la observacion al contexto.
+labels: contexto c_t, politica pi(a_t | c_t), AMBIENTE, a_t en A, o_t+1 en O.
+-->

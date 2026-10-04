@@ -1,0 +1,20 @@
+    Pregunta
+       |
+       v
+  +-----------+      +-----------+      +--------------+
+  |  Thought  | ---> |  Action   | ---> | Observation  |
+  |  razonar  |      | usar tool |      |  resultado   |
+  +-----------+      +-----------+      +--------------+
+       ^                                        |
+       |                                        |
+       +----------------------------------------+
+       |
+       v   cuando alcanza
+  Respuesta final
+
+<!-- ascii-note:
+intent: el lazo de ReAct, un paso por vez; es la forma base contra la que se comparan los otros cuatro tipos de la seccion.
+emphasize: el lazo cerrado Thought -> Action -> Observation; Thought en rojo porque es lo que ReAct agrega.
+labels: Pregunta, Thought (razonar), Action (usar tool), Observation (resultado), Respuesta final.
+consistency: los cinco diagramas de tipos de agente comparten lienzo, tipografia y tratamiento de cajas; cambia solo la forma.
+-->

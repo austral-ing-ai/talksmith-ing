@@ -1,0 +1,36 @@
+<!-- talksmith-ascii-sha256: 0e567b2faaac8f84f9b5dfc507e1954020260cf3a728306d958cfd21dba29ff7 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>Qué es un subagente</title>
+<desc>Cada subagente tiene su propia ventana de contexto: recibe un encargo del agente principal y devuelve un hallazgo, y no ve lo que hace su hermano.</desc>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="320" fill="#ffffff"/>
+<rect x="20" y="20" width="640" height="70" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="44" y="62" font-size="20" font-weight="bold" fill="#1F1E1E">Agente principal</text>
+<rect x="490" y="37" width="146" height="36" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="563" y="60" text-anchor="middle">ventana propia</text>
+<g stroke="#3B3535" stroke-width="1.8" fill="none" marker-end="url(#ah)">
+<line x1="110" y1="90" x2="110" y2="200"/>
+<line x1="190" y1="200" x2="190" y2="90"/>
+<line x1="490" y1="90" x2="490" y2="200"/>
+<line x1="570" y1="200" x2="570" y2="90"/>
+</g>
+<text x="102" y="150" text-anchor="end">encargo</text>
+<text x="198" y="150">hallazgo</text>
+<text x="482" y="150" text-anchor="end">encargo</text>
+<text x="578" y="150">hallazgo</text>
+<rect x="20" y="200" width="260" height="100" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="150" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Subagente A</text>
+<rect x="77" y="252" width="146" height="34" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="150" y="274" text-anchor="middle">ventana propia</text>
+<rect x="400" y="200" width="260" height="100" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="530" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Subagente B</text>
+<rect x="457" y="252" width="146" height="34" rx="6" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="530" y="274" text-anchor="middle">ventana propia</text>
+<g stroke="#DA1B2E" stroke-width="2.5" stroke-dasharray="6 5">
+<line x1="340" y1="204" x2="340" y2="232"/>
+<line x1="340" y1="268" x2="340" y2="296"/>
+</g>
+<text x="340" y="256" text-anchor="middle" font-size="17" font-weight="bold" fill="#DA1B2E">no se ven</text>
+</svg>

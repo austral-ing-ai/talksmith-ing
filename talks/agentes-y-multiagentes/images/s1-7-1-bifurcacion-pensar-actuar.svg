@@ -1,0 +1,37 @@
+<!-- talksmith-ascii-sha256: 1fb9ebdf344d43920e622d633a555e2a48720a0406709aed1ff4d3f170890473 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 668 436" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Pensar también es una acción</title>
+<desc>La idea entera de ReAct: el modelo elige entre actuar en el ambiente o escribir un razonamiento que queda en el contexto.</desc>
+<defs>
+<marker id="ag" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ar" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="668" height="436" fill="#ffffff"/>
+<rect x="234" y="24" width="200" height="48" rx="24" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="334" y="55" text-anchor="middle" font-family="Menlo, 'Andale Mono', monospace" font-size="20" fill="#1F1E1E">π(â_t | c_t)</text>
+<line x1="334" y1="72" x2="334" y2="96" stroke="#3B3535" stroke-width="1.5"/>
+<line x1="154" y1="96" x2="334" y2="96" stroke="#3B3535" stroke-width="1.5"/>
+<line x1="334" y1="96" x2="514" y2="96" stroke="#DA1B2E" stroke-width="2.5"/>
+<line x1="154" y1="96" x2="154" y2="130" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ag)"/>
+<line x1="514" y1="96" x2="514" y2="130" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#ar)"/>
+<rect x="24" y="130" width="260" height="70" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="154" y="160" text-anchor="middle" font-family="Menlo, 'Andale Mono', monospace" font-size="18" fill="#1F1E1E">â_t ∈ A</text>
+<text x="154" y="186" text-anchor="middle" font-size="15">acción</text>
+<rect x="384" y="130" width="260" height="70" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="514" y="160" text-anchor="middle" font-family="Menlo, 'Andale Mono', monospace" font-size="18" fill="#DA1B2E">â_t ∈ L</text>
+<text x="514" y="186" text-anchor="middle" font-size="15">pensamiento</text>
+<line x1="154" y1="200" x2="154" y2="236" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ag)"/>
+<rect x="24" y="236" width="260" height="66" rx="8" fill="#E6E0DD" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="154" y="264" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">AMBIENTE</text>
+<text x="154" y="288" text-anchor="middle" font-family="Menlo, 'Andale Mono', monospace" font-size="14">search[entity]</text>
+<line x1="154" y1="302" x2="154" y2="338" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ag)"/>
+<line x1="514" y1="200" x2="514" y2="338" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#ar)"/>
+<text x="500" y="262" text-anchor="end" font-size="14" font-style="italic" fill="#DA1B2E">no toca</text>
+<text x="500" y="280" text-anchor="end" font-size="14" font-style="italic" fill="#DA1B2E">el ambiente</text>
+<rect x="24" y="338" width="260" height="74" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="154" y="367" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">hay observación</text>
+<text x="154" y="394" text-anchor="middle" font-family="Menlo, 'Andale Mono', monospace" font-size="13">c_{t+1} = (c_t, a_t, o_{t+1})</text>
+<rect x="384" y="338" width="260" height="74" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="514" y="367" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">no hay observación</text>
+<text x="514" y="394" text-anchor="middle" font-family="Menlo, 'Andale Mono', monospace" font-size="13" fill="#DA1B2E">c_{t+1} = (c_t, â_t)</text>
+</svg>

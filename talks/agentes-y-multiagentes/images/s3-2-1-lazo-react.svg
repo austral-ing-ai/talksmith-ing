@@ -1,0 +1,33 @@
+<!-- talksmith-ascii-sha256: ee1b3abaadb78a650b1f1317c5ac440d3360b2ede47cbb1a746e8bfcb30be8ee -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 678 322" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>ReAct: pensar, actuar, observar</title>
+<desc>El lazo de ReAct: el pensamiento es la acción que no toca el ambiente y la acción es la que sí; se repite un paso por vez hasta tener lo necesario para responder.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="678" height="322" fill="#ffffff"/>
+<g transform="translate(-16,0)">
+<rect x="65" y="24" width="120" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="125" y="45" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Pregunta</text>
+<line x1="125" y1="56" x2="125" y2="100" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="40" y="100" width="170" height="72" rx="10" fill="#DA1B2E"/>
+<text x="125" y="131" text-anchor="middle" font-size="18" font-weight="bold" fill="#FFFFFF">Thought</text>
+<text x="125" y="153" text-anchor="middle" font-size="14" fill="#FFFFFF">razonar</text>
+<rect x="270" y="100" width="170" height="72" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="355" y="131" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Action</text>
+<text x="355" y="153" text-anchor="middle" font-size="14">usar tool</text>
+<rect x="500" y="100" width="170" height="72" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="585" y="131" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Observation</text>
+<text x="585" y="153" text-anchor="middle" font-size="14">resultado</text>
+<line x1="210" y1="136" x2="270" y2="136" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="440" y1="136" x2="500" y2="136" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M585,172 V212 H160 V172" fill="none" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="372" y="234" text-anchor="middle" font-size="13" font-style="italic">siguiente paso</text>
+<line x1="80" y1="172" x2="80" y2="262" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="90" y="244" font-size="13" font-style="italic">cuando alcanza</text>
+<rect x="45" y="262" width="160" height="36" rx="18" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="125" y="285" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Respuesta final</text>
+</g>
+</svg>

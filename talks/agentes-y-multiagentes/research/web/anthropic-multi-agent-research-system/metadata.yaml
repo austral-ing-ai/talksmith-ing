@@ -1,0 +1,11 @@
+url: "https://www.anthropic.com/engineering/multi-agent-research-system"
+fetched_at: "2026-10-04T14:08:29Z"
+title: "How we built our multi-agent research system \\ Anthropic"
+http_status: 200
+byte_size: 167103
+assets:
+  - { src: "https://www-cdn.anthropic.com/images/4zrzovbb/website/094d7021ebd5cf57eabd63b456899c97f5231c88-1000x1000.svg", absolute: "https://www-cdn.anthropic.com/images/4zrzovbb/website/094d7021ebd5cf57eabd63b456899c97f5231c88-1000x1000.svg", saved_as: "094d7021ebd5cf57eabd63b456899c97f5231c88-1000x1000.svg", alt: "" }
+  - { src: "/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F1198befc0b33726c45692ac40f764022f4de1bf2-4584x2579.png&w=3840&q=75", absolute: "https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F1198befc0b33726c45692ac40f764022f4de1bf2-4584x2579.png&w=3840&q=75", saved_as: "image.bin", alt: "" }
+  - { src: "/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F3bde53c9578d74f6e05c3e515e20b910c5a8c20a-4584x4584.png&w=3840&q=75", absolute: "https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F3bde53c9578d74f6e05c3e515e20b910c5a8c20a-4584x4584.png&w=3840&q=75", saved_as: "image-2.bin", alt: "" }
+  - { src: "/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F09a90e0aca54859553e93c18683e7fd33ff16d4c-2654x2148.png&w=3840&q=75", absolute: "https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F09a90e0aca54859553e93c18683e7fd33ff16d4c-2654x2148.png&w=3840&q=75", saved_as: "image-3.bin", alt: "" }
+  - { src: "https://www-cdn.anthropic.com/images/4zrzovbb/website/43abe7e54b56a891e74a8542944dfbd33f07f49c-1000x1000.svg", absolute: "https://www-cdn.anthropic.com/images/4zrzovbb/website/43abe7e54b56a891e74a8542944dfbd33f07f49c-1000x1000.svg", saved_as: "43abe7e54b56a891e74a8542944dfbd33f07f49c-1000x1000.svg", alt: "Interlocking puzzle piece with complex geometric shape and detailed surface texture" }

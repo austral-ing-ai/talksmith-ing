@@ -1,0 +1,25 @@
+ ¿Alcanza una llamada al LLM, con RAG o ejemplos?
+   |-- sí --> una llamada; sin agente
+   no
+   v
+ ¿Los pasos se conocen de antemano?
+   |-- sí --> workflow: pasos fijos en código
+   no
+   v
+ Un agente con buenas tools
+ (ReAct; planificar o reflexionar si la tarea lo pide)
+   |
+   v
+ ¿La información no entra en un contexto, hay equipos
+ dueños de dominios distintos, o el trabajo se reparte
+ en lecturas paralelas que valen ~15x tokens?
+   |-- no --> quedarse con un agente
+   sí
+   v
+ Multiagente: subagents, skills, handoffs o router
+
+<!-- ascii-note:
+intent: arbol de decision que resume la clase; cada pregunta descarta la opcion mas compleja si la simple alcanza.
+emphasize: la hoja "Multiagente" en rojo, al final del camino mas largo; las salidas laterales "si" / "no" que cortan antes.
+labels: las cuatro preguntas y sus salidas.
+-->

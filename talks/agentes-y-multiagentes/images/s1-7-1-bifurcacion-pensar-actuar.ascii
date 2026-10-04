@@ -1,0 +1,21 @@
+                 π(â_t | c_t)
+                       |
+          +------------+-------------+
+          |                          |
+          v                          v
+   â_t ∈ A  (acción)        â_t ∈ L  (pensamiento)
+          |                          |
+          v                          |
+   +-------------+                   |
+   |  AMBIENTE   |                   |
+   +-------------+                   |
+          |                          |
+          v                          v
+   hay observación            no hay observación
+   c_t+1 suma a_t y o_t+1     c_t+1 = (c_t, â_t)
+
+<!-- ascii-note:
+intent: la bifurcacion que define ReAct; una rama toca el ambiente y la otra solo escribe en el contexto.
+emphasize: la rama del pensamiento (L) en rojo, que no pasa por el ambiente.
+labels: pi, accion en A, pensamiento en L, AMBIENTE, c_t+1.
+-->

@@ -1,0 +1,74 @@
+<!-- talksmith-ascii-sha256: 209ce4167b18378753fd72e2a675b68609386b4118e4c42df085d8c2026957ac -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568 634" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#3B3535">
+<title>Compartir el contexto no alcanza</title>
+<desc>El ejemplo de Cognition, contado en voz alta: la tarea es clonar Flappy Bird.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="568" height="634" fill="#ffffff"/>
+<g transform="translate(-96,0)">
+<text x="380" y="36" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">Tarea</text>
+<line x1="380" y1="44" x2="380" y2="76" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+
+<rect x="230" y="76" width="300" height="84" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="380" y="104" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Agente: divide la tarea</text>
+<rect x="358" y="118" width="44" height="26" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="380" y="136" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">G</text>
+
+<path d="M380,160 V185 H230 V214" fill="none" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<path d="M380,160 V185 H530 V214" fill="none" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+
+<rect x="120" y="214" width="220" height="104" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="230" y="242" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Subagente 1</text>
+<rect x="154" y="256" width="44" height="26" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="176" y="274" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">G</text>
+<rect x="208" y="256" width="44" height="26" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="230" y="274" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">B1</text>
+<rect x="262" y="256" width="44" height="26" rx="5" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="284" y="274" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">B2</text>
+<line x1="266" y1="278" x2="302" y2="260" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="284" y="304" text-anchor="middle" font-size="13" fill="#DA1B2E">no lo ve</text>
+
+<rect x="420" y="214" width="220" height="104" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="530" y="242" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Subagente 2</text>
+<rect x="454" y="256" width="44" height="26" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="476" y="274" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">G</text>
+<rect x="508" y="256" width="44" height="26" rx="5" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="530" y="274" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">B1</text>
+<line x1="512" y1="278" x2="548" y2="260" stroke="#DA1B2E" stroke-width="1.5"/>
+<rect x="562" y="256" width="44" height="26" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="584" y="274" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">B2</text>
+<text x="530" y="304" text-anchor="middle" font-size="13" fill="#DA1B2E">no lo ve</text>
+
+<path d="M230,318 V342 H380" fill="none" stroke="#3B3535" stroke-width="1.6"/>
+<path d="M530,318 V342 H380" fill="none" stroke="#3B3535" stroke-width="1.6"/>
+<line x1="380" y1="342" x2="380" y2="368" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+
+<rect x="200" y="368" width="360" height="110" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="380" y="396" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Agente: combina</text>
+<rect x="277" y="410" width="44" height="26" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="299" y="428" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">G</text>
+<rect x="331" y="410" width="44" height="26" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="353" y="428" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">B1</text>
+<rect x="385" y="410" width="44" height="26" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="407" y="428" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">B2</text>
+<rect x="439" y="410" width="44" height="26" rx="5" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="461" y="428" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">P</text>
+<text x="380" y="462" text-anchor="middle" font-size="13" font-style="italic">recién acá se descubre el choque</text>
+
+<line x1="380" y1="478" x2="380" y2="508" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="380" y="528" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">Resultado</text>
+
+<rect x="146" y="556" width="36" height="22" rx="4" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="164" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F1E1E">G</text>
+<text x="190" y="572" font-size="14">contexto del agente</text>
+<rect x="358" y="556" width="36" height="22" rx="4" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="376" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F1E1E">B1</text>
+<rect x="400" y="556" width="36" height="22" rx="4" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="418" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F1E1E">B2</text>
+<text x="444" y="572" font-size="14">trabajo de cada subtarea</text>
+<rect x="146" y="588" width="36" height="22" rx="4" fill="#ffffff" stroke="#3B3535" stroke-width="1.2"/>
+<text x="164" y="604" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F1E1E">P</text>
+<text x="190" y="604" font-size="14">trabajo de combinación</text>
+</g>
+</svg>

@@ -1,0 +1,27 @@
+  Pedido
+    |
+    v
+ +----------------------------------------------+
+ | Planner (LLM): escribe todo el plan          |
+ |   Plan: ...   E1 = Search[...]               |
+ |   Plan: ...   E2 = LLM[... #E1]              |
+ |   Plan: ...   E3 = Search[... #E2]           |
+ +----------------------------------------------+
+    |
+    v
+ +----------------------------------------------+
+ | Worker: ejecuta E1, E2, E3 en orden y        |
+ | reemplaza cada #E por su resultado           |
+ +----------------------------------------------+
+    |
+    v
+ +----------------------------------------------+
+ | Solver (LLM): plan + evidencias -> respuesta |
+ +----------------------------------------------+
+
+<!-- ascii-note:
+intent: tuberia sin lazo; el LLM razona al principio (Planner) y al final (Solver), y el Worker ejecuta sin consultarlo.
+emphasize: las variables #E1 y #E2 dentro del plan, que conectan un paso con el siguiente; la ausencia de flecha de vuelta al Planner.
+labels: Pedido, Planner (LLM), Worker, Solver (LLM), E1-E3.
+consistency: mismo lienzo y tratamiento de cajas que 3.2, 4.1 y 4.4; aca la forma es una tuberia porque no hay lazo.
+-->

@@ -1,0 +1,19 @@
+url: "https://lilianweng.github.io/posts/2023-06-23-agent/"
+fetched_at: "2026-10-04T14:08:37Z"
+title: "LLM Powered Autonomous Agents | Lil'Log"
+http_status: 200
+byte_size: 129902
+assets:
+  - { src: "agent-overview.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/agent-overview.png", saved_as: "agent-overview.png", alt: "" }
+  - { src: "react.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/react.png", saved_as: "react.png", alt: "" }
+  - { src: "reflexion.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/reflexion.png", saved_as: "reflexion.png", alt: "" }
+  - { src: "reflexion-exp.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/reflexion-exp.png", saved_as: "reflexion-exp.png", alt: "" }
+  - { src: "CoH.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/CoH.png", saved_as: "CoH.png", alt: "" }
+  - { src: "algorithm-distillation.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/algorithm-distillation.png", saved_as: "algorithm-distillation.png", alt: "" }
+  - { src: "algorithm-distillation-results.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/algorithm-distillation-results.png", saved_as: "algorithm-distillation-results.png", alt: "" }
+  - { src: "memory.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/memory.png", saved_as: "memory.png", alt: "" }
+  - { src: "mips.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/mips.png", saved_as: "mips.png", alt: "" }
+  - { src: "sea-otter.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/sea-otter.png", saved_as: "sea-otter.png", alt: "" }
+  - { src: "hugging-gpt.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/hugging-gpt.png", saved_as: "hugging-gpt.png", alt: "" }
+  - { src: "api-bank-process.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/api-bank-process.png", saved_as: "api-bank-process.png", alt: "" }
+  - { src: "generative-agents.png", absolute: "https://lilianweng.github.io/posts/2023-06-23-agent/generative-agents.png", saved_as: "generative-agents.png", alt: "" }
