@@ -69,3 +69,71 @@
   seen: 8
   plugin_version: visto en 0.87.0; reverificado en 0.88.0 → 0.89.2 y en 0.97.0 — persiste
     (el status vive una sola vez, en el encabezado de la entrada)
+
+- id: BUG-20261004-01
+  date: 2026-10-04
+  talk: sistemas-multiagente
+  step: 2 (talksmith:ingest, fetch.py)
+  where: skills/ingest/fetch.py — extracción de imágenes (solo <img src>)
+  what: ingest no captura las figuras de papers en HTML de arXiv/ar5iv que vienen como SVG en <object> o fuera de <img>
+  context: captura de 9 papers vía ar5iv.labs.arxiv.org/html/<id> y arxiv.org/html/<id> (multiagent-debate-2023, autogen-2023, metagpt-2023, chatdev-2023, mixture-of-agents-2024, agentless-2024, mast-why-mas-fail-2025, magentic-one-2024, openai-five-2019 — a este último le faltan 37 figuras, entre ellas la Fig. 1); el librarian lo detectó en Step 3
+  expected: SKILL.md de ingest — "Resolves every <img src> to an absolute URL and downloads it into assets/"; el librarian espera tener en assets/ las figuras del paper
+  actual: multiagent-debate-2023 quedó con 1 imagen de 26 figuras; en total el librarian tuvo que bajar a mano 53 figuras desde las URLs de original.html. Agentless, MAST (Fig. 1, 4, 5, 8-11) y Magentic-One (Fig. 3a/b, 4a) quedaron solo con el caption
+  repro: python3 skills/ingest/fetch.py https://ar5iv.labs.arxiv.org/html/2305.14325 --talk-path talks/<T>/ --folder-name x ; contar archivos en research/web/x/assets/ contra las figuras del paper
+  impact: degraded
+  workaround: el librarian descargó las figuras desde las URLs de original.html; las que no tenían URL quedaron solo con caption
+  suggested_fix: SUGGESTION, unverified — probablemente alcance con recorrer también <object data>, <embed src>, <source srcset> y <image href> de SVG inline, y resolver srcset tomando la URL de mayor resolución
+  seen: 1
+  status: open
+  plugin_version: 1.0.0
+
+- id: BUG-20261004-02
+  date: 2026-10-04
+  talk: sistemas-multiagente
+  step: 5.5 (md-to-deck RENDER, text-coverage check)
+  where: skills/md-to-deck/build_html.py — aviso de cobertura de texto (audits/text_coverage.py)
+  what: falso notes-drop cuando un separador de sección y una lámina de contenido comparten título
+  context: render --draft; sección 7 "Cómo fallan" y su lámina 7.1 también titulada "Cómo fallan"; la 7.1 sí lleva sus notas en el modelo
+  expected: el chequeo empareja cada bloque de notas del draft con su lámina de origen
+  actual: "[notes-drop] slide 45 "Cómo fallan" — source has notes, model carries no `notes`" (la 45 es el separador, sin notas por diseño)
+  repro: draft con una sección y una lámina del mismo título, notas solo en la lámina; build_html.py --draft
+  impact: cosmetic
+  workaround: ninguno; aviso ignorado
+  suggested_fix: SUGGESTION, unverified — emparejar por posición o por id de lámina en vez de por título
+  seen: 2
+  status: open
+  plugin_version: 1.0.0
+
+- id: BUG-20261004-03
+  date: 2026-10-04
+  talk: sistemas-multiagente
+  step: 5.5 (md-to-deck FILL)
+  where: catálogo de templates de md-to-deck — quote/statement fijados por el autor y set de tarjetas con dos imágenes
+  what: (a) una lámina con `quote` o `statement` fijado por el autor pierde sus bullets, porque esos templates no renderizan highlights; (b) no hay template para un set de tarjetas con dos imágenes compartidas; (c) el editor escribió `<!-- template: table -->`, que no es un template válido
+  context: draft.md 1.1 (quote + 2 bullets → 3 text-drops), 5.7 (statement + 3 bullets, ~24 palabras sobre un tope de ~16), 5.4 (dos diagramas de Cognition, solo entra uno), 3.9 (hint "table")
+  expected: el editor solo fija templates que pueden contener el cuerpo de la lámina y que existen en el catálogo
+  actual: "[text-drop] draft.md:57 (content) "Agente: percibe y actúa" — "Tampoco software: un termostato o un insecto también entran." [50% of its words are in the model]"
+  repro: lámina con `<!-- template: quote -->` y bullets debajo; FILL + build_html.py --draft
+  impact: degraded
+  workaround: 5.7 bullets plegados en el sub; 3.9 mapeado a value-columns; 5.4 con una sola imagen
+  suggested_fix: SUGGESTION, unverified — que el editor valide los hints contra el catálogo al escribirlos y avise cuando el cuerpo excede lo que el template fijado puede mostrar
+  seen: 1
+  status: open
+  plugin_version: 1.0.0
+
+- id: BUG-20261004-04
+  date: 2026-10-04
+  talk: sistemas-multiagente
+  step: 5.5 (md-to-deck RENDER, formateo de texto)
+  where: skills/md-to-deck/build_html.py — formateador de texto inline (cursiva con *)
+  what: un asterisco escapado (\*) en el texto se interpreta como apertura de cursiva
+  context: notas de la lámina 1.2 con "P\* ... P\*" (secuencia de percepciones P*)
+  expected: \* se renderiza como un asterisco literal, como en Markdown
+  actual: "P\* … P\*" sale como "P\<i>…</i>"
+  repro: una lámina con el texto `P\* y P\*` en el cuerpo o las notas; FILL + build_html.py --draft
+  impact: cosmetic
+  workaround: en el modelo se escribió P* sin barra (un * suelto se renderiza literal)
+  suggested_fix: SUGGESTION, unverified — tratar \* como escape antes de aplicar la regla de cursiva
+  seen: 1
+  status: open
+  plugin_version: 1.0.0

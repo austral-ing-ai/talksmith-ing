@@ -927,3 +927,33 @@
   feedback: "Agregá en herramientas explícitamente algo parecido a "La secuencia intercalada y la máscara" que es la calculadora. Y explicá el problema de que los modelos no saben hacer cálculo. Por un lado lo que genera el modelo (similar al slide 35), que es este external executor, y luego ejemplos (si hay link a dataset aún mejor) de cómo se entrenó para esto."
   resolution: Tres láminas nuevas de calculadora: 4.3 'Los modelos no calculan bien' (GSM8K y Toolformer), 4.4 'Qué genera el modelo y quién calcula' (Figura 9 de GSM8K: <<20+10= y eval('20+10') escribe 30>>; forma de Toolformer; qué se entrena y qué se enmascara) y 4.5 'Cómo se entrenó: GSM8K' (registro verbatim y link a openai/gsm8k). La genérica 'La secuencia intercalada y la máscara' se fusionó en la 4.4 y quedó en Cut material.
   tags: [new-slide, dataset-link, example]
+- talk: sistemas-multiagente
+  date: 2026-10-04
+  location: Slide "2. El trabajo práctico: LLM débil, benchmark, varias arquitecturas"
+  feedback: "adicional no obligatorio, suma puntos"
+  resolution: El agente sin LLM pasó a optativo con puntos extra en la tesis, las notas de 3.1, el objetivo de la sección 6, la lámina 6.2 y esta lámina (viñeta y notas); salió la pregunta abierta sobre requisitos del TP.
+  tags: [tp-requirements, consistency, propagation]
+- talk: sistemas-multiagente
+  date: 2026-10-04
+  location: Slide "2. El trabajo práctico: LLM débil, benchmark, varias arquitecturas"
+  feedback: "un solo agente con todas las tools de base y al menos 3 arquitecturas mas"
+  resolution: La viñeta Arquitecturas pide un agente único con todas las herramientas como línea de base y al menos tres arquitecturas más; la tesis y las notas de esta lámina dicen lo mismo.
+  tags: [tp-requirements, consistency]
+- talk: sistemas-multiagente
+  date: 2026-10-04
+  location: Slide "7. Demo en vivo"
+  feedback: "no me gusta. me interesa mas que el ejemplo sea un repositorio con un sistema que tiene frontend, backend y sistema de “outreach”. se usan subagentes en el prompt inicial para inspeccionar cada repositorio por separado y luego se le pide crear un CLAUDE.md por cada repositorio para tener un agente especializado en cada repositorio. luego se abre cada chat correspondiente a cada agente y se le pide a uno de ellos que se comunique con los otros dos para sincronizarse y trabajar en equipo. importante que al abrir cada uno de los 3 chats lo primero que hagan es renombrar el agente por FRONTEND-AGENT , BACKEND-AGENT y OUTREACH-AGENT. o mejor en vez de frontend, backend, outreach que sea design, code y outreach agents"
+  resolution: Demo rehecha en cuatro pasos sobre un sistema de tres carpetas design/, code/ y outreach/ (propuesta: Pampa Viajes): subagentes Explore nuevos en paralelo inspeccionan cada carpeta, la sesión principal escribe un CLAUDE.md por carpeta, tres sesiones nuevas se renombran con /rename como DESIGN-AGENT, CODE-AGENT y OUTREACH-AGENT, y CODE-AGENT coordina por mensajes entre sesiones una promoción con los otros dos. Notas con prompts, tiempos (6 min), verificaciones del 2026-10-06 y plan B; plantilla cambiada de statement a process; la demo anterior pasó a Cut material.
+  tags: [demo, rebuild-slide, live-demo, template-hint]
+- talk: sistemas-multiagente
+  date: 2026-10-04
+  location: Section "1. Qué es un agente, formalmente"
+  feedback: "estas definiendo que es un agente suponiendo que los alumnos saben que es performance, ambiente, actuadores, sensores, etc. no das definiciones de los terminos elementales de los agentes. das solo el ejemplo de la grilla como instancia de todo eso sin variantes, agrega todo esto que falta al principio a pesar de que implique agregar diapositivas"
+  resolution: La sección 1 pasó de 7 a 13 láminas: seis nuevas definen uno por uno ambiente, sensores, percepción y secuencia (1.2), actuadores y acciones con el lazo en ASCII (1.3), función y programa de agente con el termostato (1.4), omnisciencia y autonomía con el diagrama del agente que aprende y AlphaGo Zero (1.6), PEAS de aspiradora, robot móvil, AlphaGo y taxi lado a lado (1.7) y siete ambientes clasificados en tabla con crucigrama, ajedrez, taxi y asistente con LLM (1.9); 1.5 define la medida de performance, 1.8 vuelve a poner las siete dimensiones con definición y ejemplo, y 1.10 y 1.11 usan los términos ya definidos; tiempo de la sección de 10,5 a 18 min, total 89,5 de 90, compresiones propuestas en Open questions.
+  tags: [missing-definition, definition-before-example, new-slide, example, structure, timing]
+- talk: sistemas-multiagente
+  date: 2026-10-04
+  location: Agenda
+  feedback: "si, aplica lo que sugeris"
+  resolution: Compresión de 5,5 min aplicada: paso 4 de la demo 5.7 reducido a un solo mensaje de CODE-AGENT a los otros dos con nombre, texto y link fijados (demo de 6 a 4,5 min); 4.6 de 2 a 1 min con notas recortadas; 3.9 y 5.2 de 2,5 a 2; Conclusiones 2 de 3 a 2 con notas recortadas; 2.1 y 2.2 de 2 a 1,5. Total del deck: 84 de 90 min; salió la pregunta abierta de tiempos.
+  tags: [timing, compression, demo]
