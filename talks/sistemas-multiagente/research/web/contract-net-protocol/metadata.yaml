@@ -1,0 +1,11 @@
+url: "https://en.wikipedia.org/wiki/Contract_Net_Protocol"
+fetched_at: "2026-10-04T19:23:00Z"
+title: "Contract Net Protocol - Wikipedia"
+http_status: 200
+byte_size: 94406
+assets:
+  - { src: "/static/images/icons/enwiki-25.svg", absolute: "https://en.wikipedia.org/static/images/icons/enwiki-25.svg", saved_as: "enwiki-25.svg", alt: "" }
+  - { src: "/static/images/mobile/copyright/wikipedia-wordmark-en-25.svg", absolute: "https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-en-25.svg", saved_as: "wikipedia-wordmark-en-25.svg", alt: "Wikipedia" }
+  - { src: "/static/images/mobile/copyright/wikipedia-tagline-en-25.svg", absolute: "https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-tagline-en-25.svg", saved_as: "wikipedia-tagline-en-25.svg", alt: "The Free Encyclopedia" }
+  - { src: "//thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/CNP.svg/500px-CNP.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", absolute: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/CNP.svg/500px-CNP.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", saved_as: "500px-CNP.svg.png", alt: "Contract Net Protocol AUML Diagram" }
+  - { src: "//thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Icnp.svg/500px-Icnp.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", absolute: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Icnp.svg/500px-Icnp.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", saved_as: "500px-Icnp.svg.png", alt: "Iterated Contract Net Protocol AUML diagram" }

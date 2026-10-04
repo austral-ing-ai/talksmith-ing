@@ -1,0 +1,124 @@
+url: "https://arxiv.org/html/2407.01489"
+fetched_at: "2026-10-04T19:22:31Z"
+title: "Agentless :Demystifying LLM-based Software Engineering Agents"
+http_status: 200
+byte_size: 371617
+assets:
+  - { src: "/static/base/1.0.1/images/icons/smileybones-small.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/icons/smileybones-small.svg", saved_as: "smileybones-small.svg", alt: "" }
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "arXiv logo" }
+  - { src: "2407.01489v2/resources/grinning-cat_1f63a.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/grinning-cat_1f63a.png", saved_as: "grinning-cat_1f63a.png", alt: "[Uncaptioned image]" }
+  - { src: "2407.01489v2/resources/uiuc.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/uiuc.png", saved_as: "uiuc.png", alt: "[Uncaptioned image]" }
+  - { src: "2407.01489v2/resources/grinning-cat_1f63a.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/grinning-cat_1f63a.png", saved_as: "grinning-cat_1f63a.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/weary-cat_1f640.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/weary-cat_1f640.png", saved_as: "weary-cat_1f640.png", alt: "[Uncaptioned image]" }
+  - { src: "2407.01489v2/resources/cat-with-wry-smile_1f63c.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/cat-with-wry-smile_1f63c.png", saved_as: "cat-with-wry-smile_1f63c.png", alt: "[Uncaptioned image]" }
+  - { src: "2407.01489v2/resources/grinning-cat-with-smiling-eyes_1f638.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/grinning-cat-with-smiling-eyes_1f638.png", saved_as: "grinning-cat-with-smiling-eyes_1f638.png", alt: "[Uncaptioned image]" }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]" }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/grinning-cat_1f63a.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/grinning-cat_1f63a.png", saved_as: "grinning-cat_1f63a.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/question-mark_2753.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/question-mark_2753.png", saved_as: "question-mark_2753.png", alt: "[Uncaptioned image]" }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]" }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]" }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/grinning-cat_1f63a.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/grinning-cat_1f63a.png", saved_as: "grinning-cat_1f63a.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/locked_1f512.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/locked_1f512.png", saved_as: "locked_1f512.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/anthropic.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/anthropic.png", saved_as: "anthropic.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "2407.01489v2/resources/openai.png", absolute: "https://arxiv.org/html/2407.01489v2/resources/openai.png", saved_as: "openai.png", alt: "[Uncaptioned image]", deduped: True }

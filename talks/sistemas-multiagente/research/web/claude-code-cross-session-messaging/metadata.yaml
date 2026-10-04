@@ -1,0 +1,8 @@
+url: "https://code.claude.com/docs/en/cross-session-messaging"
+fetched_at: "2026-10-04T19:33:09Z"
+title: "Message your other Claude Code sessions - Claude Code Docs"
+http_status: 200
+byte_size: 588959
+assets:
+  - { src: "https://mintcdn.com/claude-code/c5r9_6tjPMzFdDDT/logo/light.svg?fit=max&auto=format&n=c5r9_6tjPMzFdDDT&q=85&s=78fd01ff4f4340295a4f66e2ea54903c", absolute: "https://mintcdn.com/claude-code/c5r9_6tjPMzFdDDT/logo/light.svg?fit=max&auto=format&n=c5r9_6tjPMzFdDDT&q=85&s=78fd01ff4f4340295a4f66e2ea54903c", saved_as: "light.svg", alt: "light logo" }
+  - { src: "https://mintcdn.com/claude-code/c5r9_6tjPMzFdDDT/logo/dark.svg?fit=max&auto=format&n=c5r9_6tjPMzFdDDT&q=85&s=1298a0c3b3a1da603b190d0de0e31712", absolute: "https://mintcdn.com/claude-code/c5r9_6tjPMzFdDDT/logo/dark.svg?fit=max&auto=format&n=c5r9_6tjPMzFdDDT&q=85&s=1298a0c3b3a1da603b190d0de0e31712", saved_as: "dark.svg", alt: "dark logo" }

@@ -1,0 +1,9 @@
+url: "https://en.wikipedia.org/wiki/Belief%E2%80%93desire%E2%80%93intention_software_model"
+fetched_at: "2026-10-04T19:23:02Z"
+title: "Belief–desire–intention software model - Wikipedia"
+http_status: 200
+byte_size: 160976
+assets:
+  - { src: "/static/images/icons/enwiki-25.svg", absolute: "https://en.wikipedia.org/static/images/icons/enwiki-25.svg", saved_as: "enwiki-25.svg", alt: "" }
+  - { src: "/static/images/mobile/copyright/wikipedia-wordmark-en-25.svg", absolute: "https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-en-25.svg", saved_as: "wikipedia-wordmark-en-25.svg", alt: "Wikipedia" }
+  - { src: "/static/images/mobile/copyright/wikipedia-tagline-en-25.svg", absolute: "https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-tagline-en-25.svg", saved_as: "wikipedia-tagline-en-25.svg", alt: "The Free Encyclopedia" }

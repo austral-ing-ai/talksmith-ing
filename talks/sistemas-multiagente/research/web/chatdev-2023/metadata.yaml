@@ -1,0 +1,15 @@
+url: "https://ar5iv.labs.arxiv.org/html/2307.07924"
+fetched_at: "2026-10-04T19:21:17Z"
+title: "[2307.07924] ChatDev: Communicative Agents for Software Development"
+http_status: 200
+byte_size: 154438
+assets:
+  - { src: "/html/2307.07924/assets/ChatDev.png", absolute: "https://ar5iv.labs.arxiv.org/html/2307.07924/assets/ChatDev.png", saved_as: "ChatDev.png", alt: "Refer to caption" }
+  - { src: "/html/2307.07924/assets/chat_chain.png", absolute: "https://ar5iv.labs.arxiv.org/html/2307.07924/assets/chat_chain.png", saved_as: "chat_chain.png", alt: "Refer to caption" }
+  - { src: "/html/2307.07924/assets/figs/p4.png", absolute: "https://ar5iv.labs.arxiv.org/html/2307.07924/assets/figs/p4.png", saved_as: "p4.png", alt: "[Uncaptioned image]" }
+  - { src: "/html/2307.07924/assets/figs/p5.png", absolute: "https://ar5iv.labs.arxiv.org/html/2307.07924/assets/figs/p5.png", saved_as: "p5.png", alt: "[Uncaptioned image]" }
+  - { src: "/html/2307.07924/assets/figs/p5.png", absolute: "https://ar5iv.labs.arxiv.org/html/2307.07924/assets/figs/p5.png", saved_as: "p5.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "/html/2307.07924/assets/figs/p4.png", absolute: "https://ar5iv.labs.arxiv.org/html/2307.07924/assets/figs/p4.png", saved_as: "p4.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "/html/2307.07924/assets/figs/p5.png", absolute: "https://ar5iv.labs.arxiv.org/html/2307.07924/assets/figs/p5.png", saved_as: "p5.png", alt: "[Uncaptioned image]", deduped: True }
+  - { src: "/html/2307.07924/assets/utterance_distribution.png", absolute: "https://ar5iv.labs.arxiv.org/html/2307.07924/assets/utterance_distribution.png", saved_as: "utterance_distribution.png", alt: "Refer to caption" }
+  - { src: "/assets/ar5iv.png", absolute: "https://ar5iv.labs.arxiv.org/assets/ar5iv.png", saved_as: "ar5iv.png", alt: "ar5iv homepage" }

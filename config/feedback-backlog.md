@@ -957,3 +957,9 @@
   feedback: "si, aplica lo que sugeris"
   resolution: Compresión de 5,5 min aplicada: paso 4 de la demo 5.7 reducido a un solo mensaje de CODE-AGENT a los otros dos con nombre, texto y link fijados (demo de 6 a 4,5 min); 4.6 de 2 a 1 min con notas recortadas; 3.9 y 5.2 de 2,5 a 2; Conclusiones 2 de 3 a 2 con notas recortadas; 2.1 y 2.2 de 2 a 1,5. Total del deck: 84 de 90 min; salió la pregunta abierta de tiempos.
   tags: [timing, compression, demo]
+- talk: sistemas-multiagente
+  date: 2026-10-04
+  location: Slide "8. Tipos de ambiente"
+  feedback: "partilo en laminas"
+  resolution: Lámina 1.8 partida en dos: 1.8 Tipos de ambiente (observable, agentes, determinismo) y 1.9 Más dimensiones del ambiente (episódico, dinámico, discreto, conocido), cuerpos de hasta ~90 caracteres con definiciones y ejemplos largos en notas; 2 min repartidos en 1 + 1; láminas siguientes de la sección 1 renumeradas (1.10 a 1.14) con sus referencias cruzadas y Open questions.
+  tags: [density, split-slide, overflow]

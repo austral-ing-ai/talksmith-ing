@@ -1,0 +1,24 @@
+url: "https://ar5iv.labs.arxiv.org/html/2308.08155"
+fetched_at: "2026-10-04T19:21:25Z"
+title: "[2308.08155] AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation"
+http_status: 200
+byte_size: 641723
+assets:
+  - { src: "/html/2308.08155/assets/autogen_landing_full.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/autogen_landing_full.png", saved_as: "autogen_landing_full.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/autogen_all.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/autogen_all.png", saved_as: "autogen_all.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/app_horizontal_6.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/app_horizontal_6.png", saved_as: "app_horizontal_6.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/sys_msg.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/sys_msg.png", saved_as: "sys_msg.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/app_math.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/app_math.png", saved_as: "app_math.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/app_retrievechat.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/app_retrievechat.png", saved_as: "app_retrievechat.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/interactive_retrieval_example.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/interactive_retrieval_example.png", saved_as: "interactive_retrieval_example.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/app_alfchat.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/app_alfchat.png", saved_as: "app_alfchat.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/app_alfchat_react.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/app_alfchat_react.png", saved_as: "app_alfchat_react.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/app_optiguide.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/app_optiguide.png", saved_as: "app_optiguide.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/app_groupchat.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/app_groupchat.png", saved_as: "app_groupchat.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/figures/two-agent-vs-group-chat.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/figures/two-agent-vs-group-chat.png", saved_as: "two-agent-vs-group-chat.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/app_chess.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/app_chess.png", saved_as: "app_chess.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/chess_2.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/chess_2.png", saved_as: "chess_2.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/chess_3.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/chess_3.png", saved_as: "chess_3.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/chess_example.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/chess_example.png", saved_as: "chess_example.png", alt: "Refer to caption" }
+  - { src: "/html/2308.08155/assets/app_miniwob.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.08155/assets/app_miniwob.png", saved_as: "app_miniwob.png", alt: "Refer to caption" }
+  - { src: "/assets/ar5iv.png", absolute: "https://ar5iv.labs.arxiv.org/assets/ar5iv.png", saved_as: "ar5iv.png", alt: "ar5iv homepage" }

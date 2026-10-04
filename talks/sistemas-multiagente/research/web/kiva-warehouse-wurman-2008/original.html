@@ -1,0 +1,623 @@
+	<!DOCTYPE html>
+<html lang="en-US" xml:lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		Coordinating Hundreds of Cooperative, Autonomous Vehicles in Warehouses
+							| AI Magazine
+			</title>
+
+	
+<meta name="generator" content="Open Journal Systems 3.2.1.1">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+<meta name="DC.Creator.PersonalName" content="Peter R. Wurman"/>
+<meta name="DC.Creator.PersonalName" content="Raffaello D'Andrea"/>
+<meta name="DC.Creator.PersonalName" content="Mick Mountz"/>
+<meta name="DC.Date.created" scheme="ISO8601" content="2008-03-20"/>
+<meta name="DC.Date.dateSubmitted" scheme="ISO8601" content="2008-01-31"/>
+<meta name="DC.Date.issued" scheme="ISO8601" content="2008-03-15"/>
+<meta name="DC.Date.modified" scheme="ISO8601" content="2017-07-22"/>
+<meta name="DC.Description" xml:lang="en" content="The Kiva warehouse-management system creates a new paradigm for pick-pack-and-ship warehouses that significantly improves worker productivity. The Kiva system uses movable storage shelves that can be lifted by small, autonomous robots. By bringing the product to the worker, productivity is increased by a factor of two or more, while simultaneously improving accountability and flexibility. A Kiva installation for a large distribution center may require 500 or more vehicles. As such, the Kiva system represents the first commercially available, large-scale autonomous robot system. The first permanent installation of a Kiva system was deployed in the summer of 2006."/>
+<meta name="DC.Format" scheme="IMT" content="application/pdf"/>
+<meta name="DC.Identifier" content="2082"/>
+<meta name="DC.Identifier.pageNumber" content="9"/>
+<meta name="DC.Identifier.DOI" content="10.1609/aimag.v29i1.2082"/>
+<meta name="DC.Identifier.URI" content="https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/2082"/>
+<meta name="DC.Language" scheme="ISO639-1" content="en"/>
+<meta name="DC.Rights" content="Copyright (c)  "/>
+<meta name="DC.Rights" content=""/>
+<meta name="DC.Source" content="AI Magazine"/>
+<meta name="DC.Source.ISSN" content="2371-9621"/>
+<meta name="DC.Source.Issue" content="1"/>
+<meta name="DC.Source.Volume" content="29"/>
+<meta name="DC.Source.URI" content="https://ojs.aaai.org/aimagazine/index.php/aimagazine"/>
+<meta name="DC.Title" content="Coordinating Hundreds of Cooperative, Autonomous Vehicles in Warehouses"/>
+<meta name="DC.Type" content="Text.Serial.Journal"/>
+<meta name="DC.Type.articleType" content="Articles"/>
+<meta name="gs_meta_revision" content="1.1"/>
+<meta name="citation_journal_title" content="AI Magazine"/>
+<meta name="citation_journal_abbrev" content="AIMag"/>
+<meta name="citation_issn" content="2371-9621"/> 
+<meta name="citation_author" content="Peter R. Wurman"/>
+<meta name="citation_author_institution" content="North Carolina State University"/>
+<meta name="citation_author" content="Raffaello D'Andrea"/>
+<meta name="citation_author_institution" content="ETH Zurich"/>
+<meta name="citation_author" content="Mick Mountz"/>
+<meta name="citation_author_institution" content="Kiva Systems"/>
+<meta name="citation_title" content="Coordinating Hundreds of Cooperative, Autonomous Vehicles in Warehouses"/>
+<meta name="citation_language" content="en"/>
+<meta name="citation_date" content="2008/03/20"/>
+<meta name="citation_volume" content="29"/>
+<meta name="citation_issue" content="1"/>
+<meta name="citation_firstpage" content="9"/>
+<meta name="citation_lastpage" content="9"/>
+<meta name="citation_doi" content="10.1609/aimag.v29i1.2082"/>
+<meta name="citation_abstract_html_url" content="https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/2082"/>
+<meta name="citation_pdf_url" content="https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/download/2082/1981"/>
+	<link rel="stylesheet" href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/$$$call$$$/page/page/css?name=stylesheet" type="text/css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css?v=3.2.1.1" type="text/css" /><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Noto+Serif:400,400i,700,700i" type="text/css" />
+</head>
+<body class="pkp_page_article pkp_op_view" dir="ltr">
+
+	<div class="pkp_structure_page">
+
+				<header class="pkp_structure_head" id="headerNavigationContainer" role="banner">
+						 <nav class="cmp_skip_to_content" aria-label="Jump to content links">
+	<a href="#pkp_content_main">Skip to main content</a>
+	<a href="#siteNav">Skip to main navigation menu</a>
+		<a href="#pkp_content_footer">Skip to site footer</a>
+</nav>
+
+			<div class="pkp_head_wrapper">
+
+				<div class="pkp_site_name_wrapper">
+					<button class="pkp_site_nav_toggle">
+						<span>Open Menu</span>
+					</button>
+										<div class="pkp_site_name">
+																<a href="						https://ojs.aaai.org/aimagazine/index.php/aimagazine/index
+					" class="is_text">AI Magazine</a>
+										</div>
+				</div>
+
+				
+				<nav class="pkp_site_nav_menu" aria-label="Site Navigation">
+					<a id="siteNav"></a>
+					<div class="pkp_navigation_primary_row">
+						<div class="pkp_navigation_primary_wrapper">
+																				<ul id="navigationPrimary" class="pkp_navigation_primary pkp_nav_list">
+															<li class="">
+				<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/issue/current">
+					Current
+				</a>
+							</li>
+								<li class="">
+				<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/issue/archive">
+					Archives
+				</a>
+							</li>
+								<li class="">
+				<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/announcement">
+					Announcements
+				</a>
+							</li>
+								<li class="">
+				<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/about">
+					About
+				</a>
+									<ul>
+																					<li class="">
+									<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/about">
+										About the Journal
+									</a>
+								</li>
+																												<li class="">
+									<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/about/submissions">
+										Submissions
+									</a>
+								</li>
+																												<li class="">
+									<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/about/editorialTeam">
+										Editorial Team
+									</a>
+								</li>
+																												<li class="">
+									<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/about/privacy">
+										Privacy Statement
+									</a>
+								</li>
+																												<li class="">
+									<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/about/contact">
+										Contact
+									</a>
+								</li>
+																		</ul>
+							</li>
+			</ul>
+
+				
+
+																								
+	<form class="pkp_search pkp_search_desktop" action="https://ojs.aaai.org/aimagazine/index.php/aimagazine/search/search" method="get" role="search" aria-label="Article Search">
+		<input type="hidden" name="csrfToken" value="1d6a56ab12911b0d124af3b124c72d31">
+				
+			<input name="query" value="" type="text" aria-label="Search Query">
+		
+
+		<button type="submit">
+			Search
+		</button>
+		<div class="search_controls" aria-hidden="true">
+			<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/search/search" class="headerSearchPrompt search_prompt" aria-hidden="true">
+				Search
+			</a>
+			<a href="#" class="search_cancel headerSearchCancel" aria-hidden="true"></a>
+			<span class="search_loading" aria-hidden="true"></span>
+		</div>
+	</form>
+													</div>
+					</div>
+					<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
+							<ul id="navigationUser" class="pkp_navigation_user pkp_nav_list">
+															<li class="profile">
+				<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/login">
+					Login
+				</a>
+							</li>
+										</ul>
+
+					</div>
+																		
+	<form class="pkp_search pkp_search_mobile" action="https://ojs.aaai.org/aimagazine/index.php/aimagazine/search/search" method="get" role="search" aria-label="Article Search">
+		<input type="hidden" name="csrfToken" value="1d6a56ab12911b0d124af3b124c72d31">
+				
+			<input name="query" value="" type="text" aria-label="Search Query">
+		
+
+		<button type="submit">
+			Search
+		</button>
+		<div class="search_controls" aria-hidden="true">
+			<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/search/search" class="headerSearchPrompt search_prompt" aria-hidden="true">
+				Search
+			</a>
+			<a href="#" class="search_cancel headerSearchCancel" aria-hidden="true"></a>
+			<span class="search_loading" aria-hidden="true"></span>
+		</div>
+	</form>
+									</nav>
+			</div><!-- .pkp_head_wrapper -->
+		</header><!-- .pkp_structure_head -->
+
+						<div class="pkp_structure_content has_sidebar">
+			<div class="pkp_structure_main" role="main">
+				<a id="pkp_content_main"></a>
+
+<div class="page page_article">
+			<nav class="cmp_breadcrumbs" role="navigation" aria-label="You are here:">
+	<ol>
+		<li>
+			<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/index">
+				Home
+			</a>
+			<span class="separator">/</span>
+		</li>
+		<li>
+			<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/issue/archive">
+				Archives
+			</a>
+			<span class="separator">/</span>
+		</li>
+					<li>
+				<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/issue/view/180">
+					Vol. 29 No. 1: Spring 2008
+				</a>
+				<span class="separator">/</span>
+			</li>
+				<li class="current" aria-current="page">
+			<span aria-current="page">
+									Articles
+							</span>
+		</li>
+	</ol>
+</nav>
+	
+			<article class="obj_article_details">
+
+		
+	<h1 class="page_title">
+		Coordinating Hundreds of Cooperative, Autonomous Vehicles in Warehouses
+	</h1>
+
+	
+	<div class="row">
+		<div class="main_entry">
+
+							<section class="item authors">
+					<h2 class="pkp_screen_reader">Authors</h2>
+					<ul class="authors">
+											<li>
+							<span class="name">
+								Peter R. Wurman
+							</span>
+															<span class="affiliation">
+									North Carolina State University
+								</span>
+																				</li>
+											<li>
+							<span class="name">
+								Raffaello D&#039;Andrea
+							</span>
+															<span class="affiliation">
+									ETH Zurich
+								</span>
+																				</li>
+											<li>
+							<span class="name">
+								Mick Mountz
+							</span>
+															<span class="affiliation">
+									Kiva Systems
+								</span>
+																				</li>
+										</ul>
+				</section>
+			
+																												<section class="item doi">
+						<h2 class="label">
+														DOI:
+						</h2>
+						<span class="value">
+							<a href="https://doi.org/10.1609/aimag.v29i1.2082">
+								https://doi.org/10.1609/aimag.v29i1.2082
+							</a>
+						</span>
+					</section>
+							
+						
+										<section class="item abstract">
+					<h2 class="label">Abstract</h2>
+					The Kiva warehouse-management system creates a new paradigm for pick-pack-and-ship warehouses that significantly improves worker productivity. The Kiva system uses movable storage shelves that can be lifted by small, autonomous robots. By bringing the product to the worker, productivity is increased by a factor of two or more, while simultaneously improving accountability and flexibility. A Kiva installation for a large distribution center may require 500 or more vehicles. As such, the Kiva system represents the first commercially available, large-scale autonomous robot system. The first permanent installation of a Kiva system was deployed in the summer of 2006.
+				</section>
+			
+			
+
+																																																																<section class="item author_bios">
+					<h2 class="label">
+													Author Biographies
+											</h2>
+																		<section class="sub_item">
+								<h3 class="label">
+																																							Peter R. Wurman, <span class="affiliation">North Carolina State University</span>
+																	</h3>
+								<div class="value">
+									Associate Professor Department of Computer Science
+								</div>
+							</section>
+																								<section class="sub_item">
+								<h3 class="label">
+																																							Raffaello D&#039;Andrea, <span class="affiliation">ETH Zurich</span>
+																	</h3>
+								<div class="value">
+									Professor Automatic Control
+								</div>
+							</section>
+																								<section class="sub_item">
+								<h3 class="label">
+																																							Mick Mountz, <span class="affiliation">Kiva Systems</span>
+																	</h3>
+								<div class="value">
+									Chief Executive Officer
+								</div>
+							</section>
+															</section>
+			
+						
+		</div><!-- .main_entry -->
+
+		<div class="entry_details">
+
+										<div class="item cover_image">
+					<div class="sub_item">
+													<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/issue/view/180">
+								<img src="https://ojs.aaai.org/aimagazine/public/journals/1/cover_180_en_US.jpg" alt="">
+							</a>
+											</div>
+				</div>
+			
+										<div class="item galleys">
+					<h2 class="pkp_screen_reader">
+						Downloads
+					</h2>
+					<ul class="value galleys_links">
+													<li>
+								
+	
+							
+
+<a class="obj_galley_link pdf" href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/2082/1981">
+
+		
+	PDF
+
+	</a>
+							</li>
+											</ul>
+				</div>
+						
+						<div class="item published">
+				<section class="sub_item">
+					<h2 class="label">
+						Published
+					</h2>
+					<div class="value">
+																			<span>2008-03-20</span>
+																	</div>
+				</section>
+							</div>
+			
+										<div class="item citation">
+					<section class="sub_item citation_display">
+						<h2 class="label">
+							How to Cite
+						</h2>
+						<div class="value">
+							<div id="citationOutput" role="region" aria-live="polite">
+								<div class="csl-bib-body">
+  <div class="csl-entry">Wurman, P. R., D’Andrea, R., &#38; Mountz, M. (2008). Coordinating Hundreds of Cooperative, Autonomous Vehicles in Warehouses. <i>AI Magazine</i>, <i>29</i>(1), 9. https://doi.org/10.1609/aimag.v29i1.2082</div>
+</div>
+							</div>
+							<div class="citation_formats">
+								<button class="cmp_button citation_formats_button" aria-controls="cslCitationFormats" aria-expanded="false" data-csl-dropdown="true">
+									More Citation Formats
+								</button>
+								<div id="cslCitationFormats" class="citation_formats_list" aria-hidden="true">
+									<ul class="citation_formats_styles">
+																					<li>
+												<a
+													aria-controls="citationOutput"
+													href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/acm-sig-proceedings?submissionId=2082&amp;publicationId=1387"
+													data-load-citation
+													data-json-href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/acm-sig-proceedings?submissionId=2082&amp;publicationId=1387&amp;return=json"
+												>
+													ACM
+												</a>
+											</li>
+																					<li>
+												<a
+													aria-controls="citationOutput"
+													href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/acs-nano?submissionId=2082&amp;publicationId=1387"
+													data-load-citation
+													data-json-href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/acs-nano?submissionId=2082&amp;publicationId=1387&amp;return=json"
+												>
+													ACS
+												</a>
+											</li>
+																					<li>
+												<a
+													aria-controls="citationOutput"
+													href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/apa?submissionId=2082&amp;publicationId=1387"
+													data-load-citation
+													data-json-href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/apa?submissionId=2082&amp;publicationId=1387&amp;return=json"
+												>
+													APA
+												</a>
+											</li>
+																					<li>
+												<a
+													aria-controls="citationOutput"
+													href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/associacao-brasileira-de-normas-tecnicas?submissionId=2082&amp;publicationId=1387"
+													data-load-citation
+													data-json-href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/associacao-brasileira-de-normas-tecnicas?submissionId=2082&amp;publicationId=1387&amp;return=json"
+												>
+													ABNT
+												</a>
+											</li>
+																					<li>
+												<a
+													aria-controls="citationOutput"
+													href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/chicago-author-date?submissionId=2082&amp;publicationId=1387"
+													data-load-citation
+													data-json-href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/chicago-author-date?submissionId=2082&amp;publicationId=1387&amp;return=json"
+												>
+													Chicago
+												</a>
+											</li>
+																					<li>
+												<a
+													aria-controls="citationOutput"
+													href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/harvard-cite-them-right?submissionId=2082&amp;publicationId=1387"
+													data-load-citation
+													data-json-href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/harvard-cite-them-right?submissionId=2082&amp;publicationId=1387&amp;return=json"
+												>
+													Harvard
+												</a>
+											</li>
+																					<li>
+												<a
+													aria-controls="citationOutput"
+													href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/ieee?submissionId=2082&amp;publicationId=1387"
+													data-load-citation
+													data-json-href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/ieee?submissionId=2082&amp;publicationId=1387&amp;return=json"
+												>
+													IEEE
+												</a>
+											</li>
+																					<li>
+												<a
+													aria-controls="citationOutput"
+													href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/modern-language-association?submissionId=2082&amp;publicationId=1387"
+													data-load-citation
+													data-json-href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/modern-language-association?submissionId=2082&amp;publicationId=1387&amp;return=json"
+												>
+													MLA
+												</a>
+											</li>
+																					<li>
+												<a
+													aria-controls="citationOutput"
+													href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/turabian-fullnote-bibliography?submissionId=2082&amp;publicationId=1387"
+													data-load-citation
+													data-json-href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/turabian-fullnote-bibliography?submissionId=2082&amp;publicationId=1387&amp;return=json"
+												>
+													Turabian
+												</a>
+											</li>
+																					<li>
+												<a
+													aria-controls="citationOutput"
+													href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/vancouver?submissionId=2082&amp;publicationId=1387"
+													data-load-citation
+													data-json-href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/get/vancouver?submissionId=2082&amp;publicationId=1387&amp;return=json"
+												>
+													Vancouver
+												</a>
+											</li>
+																			</ul>
+																			<div class="label">
+											Download Citation
+										</div>
+										<ul class="citation_formats_styles">
+																							<li>
+													<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/download/ris?submissionId=2082&amp;publicationId=1387">
+														<span class="fa fa-download"></span>
+														Endnote/Zotero/Mendeley (RIS)
+													</a>
+												</li>
+																							<li>
+													<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/citationstylelanguage/download/bibtex?submissionId=2082&amp;publicationId=1387">
+														<span class="fa fa-download"></span>
+														BibTeX
+													</a>
+												</li>
+																					</ul>
+																	</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			
+										<div class="item issue">
+
+											<section class="sub_item">
+							<h2 class="label">
+								Issue
+							</h2>
+							<div class="value">
+								<a class="title" href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/issue/view/180">
+									Vol. 29 No. 1: Spring 2008
+								</a>
+							</div>
+						</section>
+					
+											<section class="sub_item">
+							<h2 class="label">
+								Section
+							</h2>
+							<div class="value">
+								Articles
+							</div>
+						</section>
+									</div>
+			
+															
+										<div class="item copyright">
+					<h2 class="label">
+						License
+					</h2>
+										<div>This is an open access article under the terms of the Creative Commons Attribution License, which permits use, distribution and reproduction in any medium, provided the original work is properly cited.</div>
+<div> </div>
+<div>Authors who publish with this journal agree to the following terms:</div>
+<ol>
+<li>The author(s) warrants that they are the sole author and owner of the copyright in the above article/paper, except for those portions shown to be in quotations; that the article/paper is original throughout; and that the undersigned right to make the grants set forth above is complete and unencumbered.</li>
+<li>The author(s) agree that if anyone brings any claim or action alleging facts that, if true, constitute a breach of any of the foregoing warranties, the author(s) will hold harmless and indemnify AAAI, their grantees, their licensees, and their distributors against any liability, whether under judgment, decree, or compromise, and any legal fees and expenses arising out of that claim or actions, and the undersigned will cooperate fully in any defense AAAI may make to such claim or action. Moreover, the undersigned agrees to cooperate in any claim or other action seeking to protect or enforce any right the undersigned has granted to AAAI in the article/paper. If any such claim or action fails because of facts that constitute a breach of any of the foregoing warranties, the undersigned agrees to reimburse whomever brings such claim or action for expenses and attorneys’ fees incurred therein.</li>
+<li>Author(s) retain all proprietary rights other than copyright (such as patent rights).</li>
+<li>Author(s) may make personal reuse of all or portions of the above article/paper in other works of their own authorship.</li>
+<li>Author(s) may reproduce, or have reproduced, their article/paper for the author’s personal use, or for company use provided that original work is property cited, and that the copies are not used in a way that implies AAAI endorsement of a product or service of an employer, and that the copies per se are not offered for sale. The foregoing right shall not permit the posting of the article/paper in electronic or digital form on any computer network, except by the author or the author’s employer, and then only on the author’s or the employer’s own web page or ftp site. Such web page or ftp site, in addition to the aforementioned requirements of this Paragraph, must provide an electronic reference or link back to the AAAI electronic server, and shall not post other AAAI copyrighted materials not of the author’s or the employer’s creation (including tables of contents with links to other papers) without AAAI’s written permission.</li>
+<li>Author(s) may make limited distribution of all or portions of their article/paper prior to publication.</li>
+<li>In the case of work performed under U.S. Government contract, AAAI grants the U.S. Government royalty-free permission to reproduce all or portions of the above article/paper, and to authorize others to do so, for U.S. Government purposes.</li>
+<li>In the event the above article/paper is not accepted and published by AAAI, or is withdrawn by the author(s) before acceptance by AAAI, this agreement becomes null and void.</li>
+</ol>
+				</div>
+			
+			
+
+		</div><!-- .entry_details -->
+	</div><!-- .row -->
+
+</article>
+
+	
+
+</div><!-- .page -->
+
+	</div><!-- pkp_structure_main -->
+
+									<div class="pkp_structure_sidebar left" role="complementary" aria-label="Sidebar">
+				<div class="pkp_block block_information">
+	<h2 class="title">Information</h2>
+	<div class="content">
+		<ul>
+							<li>
+					<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/information/readers">
+						For Readers
+					</a>
+				</li>
+										<li>
+					<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/information/authors">
+						For Authors
+					</a>
+				</li>
+								</ul>
+	</div>
+</div>
+<div class="pkp_block block_developed_by">
+	<h2 class="pkp_screen_reader">
+		Developed By
+	</h2>
+
+	<div class="content">
+		<a href="http://pkp.sfu.ca/ojs/">
+			Open Journal Systems
+		</a>
+	</div>
+</div>
+<div class="pkp_block block_hosted_by">
+	<div class="content">
+		<ul><li>
+			<a href="https://pkpservices.sfu.ca/" id="hostedByLogo" target="_blank"><img src="https://ojs.aaai.org/aimagazine/plugins/blocks/hostedBy/icons/pkpps.svg" style="border: 0; margin-bottom: 8px; width: 80%"/></a>
+			<p>
+				Part of the<br />
+				<a href="https://pkpservices.sfu.ca/" id="hostedBy" target="_blank">PKP Publishing Services Network</a>
+			</p>
+		</li></ul>
+</div>
+</div>
+
+			</div><!-- pkp_sidebar.left -->
+			</div><!-- pkp_structure_content -->
+
+<div class="pkp_structure_footer_wrapper" role="contentinfo">
+	<a id="pkp_content_footer"></a>
+
+	<div class="pkp_structure_footer">
+
+					<div class="pkp_footer_content">
+				<p>Copyright © 2021, Association for the Advancement of Artificial Intelligence. All rights reserved.</p>
+			</div>
+		
+		<div class="pkp_brand_footer" role="complementary">
+			<a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/about/aboutThisPublishingSystem">
+				<img alt="More information about the publishing system, Platform and Workflow by OJS/PKP." src="https://ojs.aaai.org/aimagazine/templates/images/ojs_brand.png">
+			</a>
+		</div>
+	</div>
+</div><!-- pkp_structure_footer_wrapper -->
+
+</div><!-- pkp_structure_page -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js?v=3.2.1.1" type="text/javascript"></script><script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js?v=3.2.1.1" type="text/javascript"></script><script src="https://ojs.aaai.org/aimagazine/lib/pkp/js/lib/jquery/plugins/jquery.tag-it.js?v=3.2.1.1" type="text/javascript"></script><script src="https://ojs.aaai.org/aimagazine/plugins/themes/default/js/lib/popper/popper.js?v=3.2.1.1" type="text/javascript"></script><script src="https://ojs.aaai.org/aimagazine/plugins/themes/default/js/lib/bootstrap/util.js?v=3.2.1.1" type="text/javascript"></script><script src="https://ojs.aaai.org/aimagazine/plugins/themes/default/js/lib/bootstrap/dropdown.js?v=3.2.1.1" type="text/javascript"></script><script src="https://ojs.aaai.org/aimagazine/plugins/themes/default/js/main.js?v=3.2.1.1" type="text/javascript"></script><script src="https://ojs.aaai.org/aimagazine/plugins/generic/citationStyleLanguage/js/articleCitation.js?v=3.2.1.1" type="text/javascript"></script>
+
+
+</body>
+</html>

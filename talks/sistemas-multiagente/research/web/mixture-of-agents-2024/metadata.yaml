@@ -1,0 +1,9 @@
+url: "https://arxiv.org/html/2406.04692"
+fetched_at: "2026-10-04T19:21:42Z"
+title: "Mixture-of-Agents Enhances Large Language Model Capabilities"
+http_status: 200
+byte_size: 197117
+assets:
+  - { src: "/static/base/1.0.1/images/icons/smileybones-small.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/icons/smileybones-small.svg", saved_as: "smileybones-small.svg", alt: "" }
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "arXiv logo" }
+  - { src: "2406.04692v1/aggregate_one_round.png", absolute: "https://arxiv.org/html/2406.04692v1/aggregate_one_round.png", saved_as: "aggregate_one_round.png", alt: "Refer to caption" }

@@ -1,0 +1,20 @@
+url: "https://ar5iv.labs.arxiv.org/html/2304.03442"
+fetched_at: "2026-10-04T19:22:19Z"
+title: "[2304.03442] Generative Agents: Interactive Simulacra of Human Behavior"
+http_status: 200
+byte_size: 259872
+assets:
+  - { src: "/html/2304.03442/assets/figures/figure_cover4.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/figure_cover4.png", saved_as: "figure_cover4.png", alt: "A screenshot of the game world populated by generative agents." }
+  - { src: "/html/2304.03442/assets/figures/figure_map5.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/figure_map5.png", saved_as: "figure_map5.png", alt: "The labeled map of the game world." }
+  - { src: "/html/2304.03442/assets/figures/book.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/book.png", saved_as: "book.png", alt: "[Uncaptioned image]" }
+  - { src: "/html/2304.03442/assets/figures/pencil.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/pencil.png", saved_as: "pencil.png", alt: "[Uncaptioned image]" }
+  - { src: "/html/2304.03442/assets/figures/laptop.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/laptop.png", saved_as: "laptop.png", alt: "[Uncaptioned image]" }
+  - { src: "/html/2304.03442/assets/figures/envelope.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/envelope.png", saved_as: "envelope.png", alt: "[Uncaptioned image]" }
+  - { src: "/html/2304.03442/assets/figures/figure_daily_routine3.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/figure_daily_routine3.png", saved_as: "figure_daily_routine3.png", alt: "The Lin family's morning routines." }
+  - { src: "/html/2304.03442/assets/figures/figure_valentine3.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/figure_valentine3.png", saved_as: "figure_valentine3.png", alt: "The Valentine's day party at Hobbs Cafe." }
+  - { src: "/html/2304.03442/assets/figures/figure_architecture2.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/figure_architecture2.png", saved_as: "figure_architecture2.png", alt: "The architecture of generative agents." }
+  - { src: "/html/2304.03442/assets/figures/figure_retrieval2.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/figure_retrieval2.png", saved_as: "figure_retrieval2.png", alt: "On the left, a large list of events such as ``refrigerator is idle''. On the right, the question ``What are you looking forward to the most right now?'', followed by retrieval calculations that rank ``ordering decorations for the party'' and ``researching ideas for the party'' highly. Based on these memories, Isabella responds, ``I'm looking forward to the Valentine's Day party that I'm planning at Hobbs Cafe!''" }
+  - { src: "/html/2304.03442/assets/figures/figure_reflection6.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/figure_reflection6.png", saved_as: "figure_reflection6.png", alt: "The reflection tree." }
+  - { src: "/html/2304.03442/assets/figures/figure_rank_score_comparison4.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/figure_rank_score_comparison4.png", saved_as: "figure_rank_score_comparison4.png", alt: "A bar graph of TrueSkill mu scores. The full architecture outperforms other conditions." }
+  - { src: "/html/2304.03442/assets/figures/figure_info_diff2.png", absolute: "https://ar5iv.labs.arxiv.org/html/2304.03442/assets/figures/figure_info_diff2.png", saved_as: "figure_info_diff2.png", alt: "The path of diffusion for Isabella's Valentine's day party." }
+  - { src: "/assets/ar5iv.png", absolute: "https://ar5iv.labs.arxiv.org/assets/ar5iv.png", saved_as: "ar5iv.png", alt: "ar5iv homepage" }

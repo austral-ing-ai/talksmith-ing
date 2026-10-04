@@ -1,0 +1,18 @@
+url: "https://ar5iv.labs.arxiv.org/html/2308.00352"
+fetched_at: "2026-10-04T19:21:15Z"
+title: "[2308.00352] MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework"
+http_status: 200
+byte_size: 502095
+assets:
+  - { src: "/html/2308.00352/assets/imgs/1-metagpt_overall_update.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/1-metagpt_overall_update.png", saved_as: "1-metagpt_overall_update.png", alt: "Refer to caption" }
+  - { src: "/html/2308.00352/assets/imgs/2-message_sharing.jpg", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/2-message_sharing.jpg", saved_as: "2-message_sharing.jpg", alt: "Refer to caption" }
+  - { src: "/html/2308.00352/assets/imgs/3-metagpt_details.jpg", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/3-metagpt_details.jpg", saved_as: "3-metagpt_details.jpg", alt: "Refer to caption" }
+  - { src: "/html/2308.00352/assets/imgs/5-softwaredev_tasks.jpg", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/5-softwaredev_tasks.jpg", saved_as: "5-softwaredev_tasks.jpg", alt: "Refer to caption" }
+  - { src: "/html/2308.00352/assets/imgs/12-agentstore.jpeg", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/12-agentstore.jpeg", saved_as: "12-agentstore.jpeg", alt: "Refer to caption" }
+  - { src: "/html/2308.00352/assets/imgs/6-quadrant_chart.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/6-quadrant_chart.png", saved_as: "6-quadrant_chart.png", alt: "Refer to caption" }
+  - { src: "/html/2308.00352/assets/imgs/7-data_structures_and_interface_definitions.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/7-data_structures_and_interface_definitions.png", saved_as: "7-data_structures_and_interface_definitions.png", alt: "Refer to caption" }
+  - { src: "/html/2308.00352/assets/imgs/8-program_call_flow.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/8-program_call_flow.png", saved_as: "8-program_call_flow.png", alt: "Refer to caption" }
+  - { src: "/html/2308.00352/assets/imgs/9-drawing_app_demo.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/9-drawing_app_demo.png", saved_as: "9-drawing_app_demo.png", alt: "Refer to caption" }
+  - { src: "/html/2308.00352/assets/imgs/10-system_interface_design_of_recommendation_engine.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/10-system_interface_design_of_recommendation_engine.png", saved_as: "10-system_interface_design_of_recommendation_engine.png", alt: "Refer to caption" }
+  - { src: "/html/2308.00352/assets/imgs/11-program_call_flow_for_recommendation_engine_development.png", absolute: "https://ar5iv.labs.arxiv.org/html/2308.00352/assets/imgs/11-program_call_flow_for_recommendation_engine_development.png", saved_as: "11-program_call_flow_for_recommendation_engine_development.png", alt: "Refer to caption" }
+  - { src: "/assets/ar5iv.png", absolute: "https://ar5iv.labs.arxiv.org/assets/ar5iv.png", saved_as: "ar5iv.png", alt: "ar5iv homepage" }

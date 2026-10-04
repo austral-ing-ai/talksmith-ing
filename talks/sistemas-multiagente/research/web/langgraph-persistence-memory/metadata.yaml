@@ -1,0 +1,8 @@
+url: "https://docs.langchain.com/oss/python/langgraph/persistence"
+fetched_at: "2026-08-14T16:57:50Z"
+title: "Persistence - Docs by LangChain"
+http_status: 200
+byte_size: 810527
+assets:
+  - { src: "https://mintcdn.com/langchain-5e9cc07a/nQm-sjd_MByLhgeW/images/brand/langchain-docs-dark-blue.png?fit=max&auto=format&n=nQm-sjd_MByLhgeW&q=85&s=5babf1a1962208fd7eed942fa2432ecb", absolute: "https://mintcdn.com/langchain-5e9cc07a/nQm-sjd_MByLhgeW/images/brand/langchain-docs-dark-blue.png?fit=max&auto=format&n=nQm-sjd_MByLhgeW&q=85&s=5babf1a1962208fd7eed942fa2432ecb", saved_as: "langchain-docs-dark-blue.png", alt: "light logo" }
+  - { src: "https://mintcdn.com/langchain-5e9cc07a/nQm-sjd_MByLhgeW/images/brand/langchain-docs-light-blue.png?fit=max&auto=format&n=nQm-sjd_MByLhgeW&q=85&s=0bcd2a1f2599ed228bcedf0f535b45b1", absolute: "https://mintcdn.com/langchain-5e9cc07a/nQm-sjd_MByLhgeW/images/brand/langchain-docs-light-blue.png?fit=max&auto=format&n=nQm-sjd_MByLhgeW&q=85&s=0bcd2a1f2599ed228bcedf0f535b45b1", saved_as: "langchain-docs-light-blue.png", alt: "dark logo" }

@@ -96,7 +96,7 @@ La tensión de la clase en una línea: un LLM débil, solo, se pierde entre herr
 
 ### Speaker notes
 
-Cuatro términos para todo lo que entra al agente. El ambiente es lo que está afuera y el agente modifica; los sensores son la puerta de entrada. La percepción es de un instante y la secuencia las acumula todas. La distinción importa enseguida: la función de agente de la próxima lámina toma la secuencia entera, mientras que el programa ve una percepción por vez. P\* lleva la estrella porque una secuencia puede tener cero, una o muchas percepciones. Si alguien pregunta por el agente con LLM: sus percepciones son los mensajes y los resultados de herramientas que le entran al contexto, y lo vamos a ver en la lámina 1.11. Tiempo objetivo: ~1,5 min.
+Cuatro términos para todo lo que entra al agente. El ambiente es lo que está afuera y el agente modifica; los sensores son la puerta de entrada. La percepción es de un instante y la secuencia las acumula todas. La distinción importa enseguida: la función de agente de la próxima lámina toma la secuencia entera, mientras que el programa ve una percepción por vez. P\* lleva la estrella porque una secuencia puede tener cero, una o muchas percepciones. Si alguien pregunta por el agente con LLM: sus percepciones son los mensajes y los resultados de herramientas que le entran al contexto, y lo vamos a ver en la lámina 1.12. Tiempo objetivo: ~1,5 min.
 
 ### Presenter feedback
 
@@ -160,7 +160,7 @@ Actuador y acción se confunden fácil. El actuador es la pieza: el motor, el vo
 
 ### Speaker notes
 
-Esta es la distinción que más se pierde en el uso diario. La función es la descripción completa de qué haría el agente ante cualquier historia; como tabla, para casi cualquier agente sería infinita. El programa es lo que efectivamente corre, y ve solo la percepción de ahora. Si el agente necesita recordar, el programa guarda un estado: eso es el agente con modelo de la lámina 1.10. Ojo con la palabra arquitectura: acá es el hardware o la plataforma donde corre el programa; en el bloque 3 vamos a usar "arquitectura" para la forma en que se conectan varios agentes. Para un agente con LLM, la función es todo lo que el sistema haría ante cualquier conversación; el programa es el código del runner más el modelo. Tiempo objetivo: ~1,5 min.
+Esta es la distinción que más se pierde en el uso diario. La función es la descripción completa de qué haría el agente ante cualquier historia; como tabla, para casi cualquier agente sería infinita. El programa es lo que efectivamente corre, y ve solo la percepción de ahora. Si el agente necesita recordar, el programa guarda un estado: eso es el agente con modelo de la lámina 1.11. Ojo con la palabra arquitectura: acá es el hardware o la plataforma donde corre el programa; en el bloque 3 vamos a usar "arquitectura" para la forma en que se conectan varios agentes. Para un agente con LLM, la función es todo lo que el sistema haría ante cualquier conversación; el programa es el código del runner más el modelo. Tiempo objetivo: ~1,5 min.
 
 ### Presenter feedback
 
@@ -235,7 +235,7 @@ Racional y omnisciente son cosas distintas. Si exigiéramos omnisciencia, ningú
 
 ### Speaker notes
 
-La ficha obliga a pensar el problema antes de escribir código. Leer la tabla por filas. La performance va de un puntaje con penalidades a ganar o perder; el ambiente, de una grilla a una ciudad; los actuadores, de un motor a una piedra sobre un tablero. AlphaGo mide 1 o 0 por partida, y lo que maximiza en cada jugada es la probabilidad de ganar, que es la performance esperada de la lámina 1.5. El termostato tiene la ficha más chica posible: mantener la temperatura, una habitación, la caldera y un sensor de temperatura. El asistente con LLM tiene su ficha en la lámina 1.11. Tiempo objetivo: ~1,5 min.
+La ficha obliga a pensar el problema antes de escribir código. Leer la tabla por filas. La performance va de un puntaje con penalidades a ganar o perder; el ambiente, de una grilla a una ciudad; los actuadores, de un motor a una piedra sobre un tablero. AlphaGo mide 1 o 0 por partida, y lo que maximiza en cada jugada es la probabilidad de ganar, que es la performance esperada de la lámina 1.5. El termostato tiene la ficha más chica posible: mantener la temperatura, una habitación, la caldera y un sensor de temperatura. El asistente con LLM tiene su ficha en la lámina 1.12. Tiempo objetivo: ~1,5 min.
 
 ### Presenter feedback
 
@@ -247,31 +247,56 @@ La ficha obliga a pensar el problema antes de escribir código. Leer la tabla po
 
 ### Content
 
-**El ambiente define cuán difícil es el problema. Russell y Norvig lo clasifican en siete dimensiones.**
+**El ambiente define cuán difícil es el problema. Russell y Norvig lo clasifican en siete dimensiones; arrancamos por tres.**
 
-- **Observable.** Completo si los sensores captan en cada momento todo lo que importa para decidir; parcial si una parte queda oculta. El ajedrez es completo; el taxi no ve detrás de un camión.
-- **Agentes.** Uno solo o varios. Con varios, interactúan de forma colaborativa, competitiva o ambas, y cada uno es parte del ambiente de los demás. El crucigrama es de uno; el ajedrez, competitivo.
-- **Determinismo.** Determinístico si el estado actual y la acción fijan el estado siguiente; estocástico si interviene el azar. Una jugada de ajedrez tiene un solo resultado; al taxi se le puede pinchar una goma.
-- **Episódico o secuencial.** Episódico si cada decisión es independiente de las anteriores; secuencial si una acción tiene consecuencias a largo plazo. Clasificar mails como spam de a uno es episódico; una partida de ajedrez, secuencial.
-- **Estático o dinámico.** Dinámico si el ambiente cambia mientras el agente delibera. El crucigrama espera; el tráfico sigue.
-- **Discreto o continuo.** Discreto si los estados y las acciones son finitos. El ajedrez es discreto; la velocidad del taxi y el giro del volante son continuos.
-- **Conocido o desconocido.** Conocido si el agente sabe las reglas del ambiente, qué produce cada acción. Las reglas del ajedrez se conocen; ante un videojuego nuevo, el agente tiene que descubrir qué hace cada botón.
+- **Observable.** Completo si los sensores ven todo lo que importa. El taxi no ve detrás de un camión.
+- **Agentes.** Uno o varios, que colaboran, compiten o ambas. El ajedrez es competitivo.
+- **Determinismo.** Determinístico si estado y acción fijan el siguiente; si no, estocástico.
 
 ### Sources
 
-- `aig4b-clase-6-agentes-biomedica.pdf.md` (lámina "Tipos de Ambientes"): las siete dimensiones y las definiciones de episódico ("acciones independientes vs. acciones con consecuencias a largo plazo"), dinámico ("el ambiente cambia o no mientras el agente delibera"), discreto ("estados y acciones finitos vs. infinitos") y conocido ("el agente conoce o no las reglas del ambiente"); (lámina "Dificultad de Ambientes") crucigrama, ajedrez y taxi; (Key claims, sistemas multiagente) agentes que interactúan "de forma colaborativa, competitiva, o ambas".
+- `aig4b-clase-6-agentes-biomedica.pdf.md` (lámina "Tipos de Ambientes"): las siete dimensiones; (lámina "Dificultad de Ambientes") crucigrama, ajedrez y taxi; (Key claims, sistemas multiagente) agentes que interactúan "de forma colaborativa, competitiva, o ambas".
 - `wikipedia-intelligent-agent.web.md` (Raw excerpts, "Model-based reflex agents"): parcialmente observable, con "the part of the world which cannot be seen".
-- Las definiciones de observable y determinístico, y los ejemplos de spam, goma pinchada y videojuego, son redacción del editor sobre el capítulo 2 de Russell y Norvig, que no está en el corpus (ver Open questions).
+- Las definiciones de observable y determinístico, y el ejemplo de la goma pinchada, son redacción del editor sobre el capítulo 2 de Russell y Norvig, que no está en el corpus (ver Open questions).
 
 ### Speaker notes
 
-Siete dimensiones, cada una con un ejemplo de cada lado. La que más importa hoy es la cantidad de agentes. Con más de uno, lo que otro agente hace le llega a cada uno como una percepción. Colaborativo es el caso de Pampa Viajes y del trabajo práctico; competitivo es el ajedrez o StarCraft, que vamos a ver al final. Los sistemas con LLM que vamos a estudiar son casi todos colaborativos. Dos que se confunden: parcialmente observable habla de lo que el agente ve ahora; desconocido, de si sabe qué producen sus acciones. Un agente puede conocer las reglas de un juego de cartas y aun así no ver la mano del rival. Tiempo objetivo: ~2 min.
+Siete dimensiones; esta lámina tiene tres y la siguiente, las otras cuatro. Observable completo quiere decir que los sensores captan en cada momento todo lo que importa para decidir; en el ajedrez se ve el tablero entero, el taxi no ve lo que tapa un camión. La que más importa hoy es la cantidad de agentes. Con más de uno, cada agente es parte del ambiente de los demás, y lo que otro hace le llega como una percepción. El crucigrama es de uno solo. Colaborativo es el caso de Pampa Viajes y del trabajo práctico; competitivo es el ajedrez o StarCraft, que vamos a ver al final. Los sistemas con LLM de esta clase son casi todos colaborativos. Determinismo: una jugada de ajedrez tiene un solo resultado; al taxi se le puede pinchar una goma. Tiempo objetivo: ~1 min.
+
+### Presenter feedback
+
+- [closed] 2026-10-04 — "partilo en laminas"
+  Resolution: Lámina 1.8 partida en dos: 1.8 Tipos de ambiente (observable, agentes, determinismo) y 1.9 Más dimensiones del ambiente (episódico, dinámico, discreto, conocido), cuerpos de hasta ~90 caracteres con definiciones y ejemplos largos en notas; 2 min repartidos en 1 + 1; láminas siguientes de la sección 1 renumeradas (1.10 a 1.14) con sus referencias cruzadas y Open questions.
+
+---
+
+## 9. Más dimensiones del ambiente
+<!-- template: concept-breakdown -->
+<!-- format: editorial -->
+
+### Content
+
+**Las otras cuatro miran el tiempo, el tamaño del mundo y cuánto sabe el agente de sus reglas.**
+
+- **Episódico o secuencial.** Secuencial si una acción pesa más adelante. El ajedrez lo es.
+- **Estático o dinámico.** Dinámico si cambia mientras el agente piensa. El tráfico no espera.
+- **Discreto o continuo.** Discreto con estados y acciones finitos. El volante es continuo.
+- **Conocido o desconocido.** Conocido si sabe qué produce cada acción. Un juego nuevo no.
+
+### Sources
+
+- `aig4b-clase-6-agentes-biomedica.pdf.md` (lámina "Tipos de Ambientes"): definiciones de episódico ("acciones independientes vs. acciones con consecuencias a largo plazo"), dinámico ("el ambiente cambia o no mientras el agente delibera"), discreto ("estados y acciones finitos vs. infinitos") y conocido ("el agente conoce o no las reglas del ambiente"); (lámina "Dificultad de Ambientes") crucigrama, ajedrez y taxi.
+- Los ejemplos de spam y del videojuego nuevo son redacción del editor sobre el capítulo 2 de Russell y Norvig, que no está en el corpus (ver Open questions).
+
+### Speaker notes
+
+Episódico quiere decir que cada decisión es independiente de las anteriores: clasificar mails como spam de a uno es episódico, una partida de ajedrez es secuencial. Dinámico, que el mundo cambia mientras el agente delibera; el crucigrama espera, el tráfico sigue. Discreto, que los estados y las acciones son finitos, como en el ajedrez; la velocidad del taxi y el giro del volante son continuos. Conocido, que el agente sabe las reglas, qué produce cada acción; ante un videojuego nuevo tiene que descubrir qué hace cada botón. Dos que se confunden: parcialmente observable habla de lo que el agente ve ahora; desconocido, de si sabe qué producen sus acciones. Un agente puede conocer las reglas de un juego de cartas y aun así no ver la mano del rival. Tiempo objetivo: ~1 min.
 
 ### Presenter feedback
 
 ---
 
-## 9. Cuatro ambientes clasificados
+## 10. Cuatro ambientes clasificados
 <!-- template: value-columns -->
 <!-- design: full -->
 
@@ -292,7 +317,7 @@ Siete dimensiones, cada una con un ejemplo de cada lado. La que más importa hoy
 ### Sources
 
 - `aig4b-clase-6-agentes-biomedica.pdf.md` (lámina "Dificultad de Ambientes"): crucigrama "observable, determinístico, estático. Un solo agente"; ajedrez "observable y determinístico, pero competitivo"; taxi "parcialmente observable, estocástico, dinámico, continuo, multi-agente"; (lámina de sistemas multiagente) taxi "competitivo + colaborativo"; (lámina "Agente basado en LLM como agente inteligente") el agente con LLM en un "entorno digital, simbólico, parcialmente observable, dinámico".
-- Las demás celdas (episódico o secuencial en las cuatro columnas; discreto y conocido en crucigrama y ajedrez; conocido en el taxi; agentes, determinismo, discreto y conocido en el asistente; "sin reloj" en el ajedrez) son clasificación del editor con los criterios de la lámina 1.8 (ver Open questions).
+- Las demás celdas (episódico o secuencial en las cuatro columnas; discreto y conocido en crucigrama y ajedrez; conocido en el taxi; agentes, determinismo, discreto y conocido en el asistente; "sin reloj" en el ajedrez) son clasificación del editor con los criterios de las láminas 1.8 y 1.9 (ver Open questions).
 
 ### Speaker notes
 
@@ -302,7 +327,7 @@ Leer la columna del asistente al final, porque es la que vamos a usar toda la cl
 
 ---
 
-## 10. Arquitecturas clásicas de agente
+## 11. Arquitecturas clásicas de agente
 ### Content
 
 **Russell y Norvig ordenan los agentes según lo que hay entre la percepción y la acción. Cada tipo agrega una pieza al anterior.**
@@ -328,7 +353,7 @@ Contexto rápido; si el tiempo aprieta, se pasa en medio minuto. El diagrama es 
 
 ---
 
-## 11. El agente basado en LLM, con la misma definición
+## 12. El agente basado en LLM, con la misma definición
 
 ### Content
 
@@ -353,13 +378,13 @@ Contexto rápido; si el tiempo aprieta, se pasa en medio minuto. El diagrama es 
 
 ### Speaker notes
 
-Acá se cruzan las dos mitades de la materia. Ya armaron un agente con el SDK de OpenAI y un servidor MCP; lo que hicieron, leído con Russell y Norvig, es un agente cuyos sensores son mensajes y resultados de herramientas y cuyos actuadores son llamadas a herramientas. Cada mensaje o resultado que entra es una percepción, y el historial de la conversación es la secuencia de percepciones. Las acciones son las llamadas que el modelo puede emitir, y el conjunto A lo fija la lista de herramientas. El programa de agente es el runner del SDK más el modelo. El ambiente ya lo clasificamos en la lámina 1.9: es parcialmente observable, porque el agente solo sabe lo que entra en su contexto. Esa frase va a sostener toda la clase, porque un sistema multiagente es, en buena medida, una forma de decidir qué entra en el contexto de cada uno. Tiempo objetivo: ~1 min.
+Acá se cruzan las dos mitades de la materia. Ya armaron un agente con el SDK de OpenAI y un servidor MCP; lo que hicieron, leído con Russell y Norvig, es un agente cuyos sensores son mensajes y resultados de herramientas y cuyos actuadores son llamadas a herramientas. Cada mensaje o resultado que entra es una percepción, y el historial de la conversación es la secuencia de percepciones. Las acciones son las llamadas que el modelo puede emitir, y el conjunto A lo fija la lista de herramientas. El programa de agente es el runner del SDK más el modelo. El ambiente ya lo clasificamos en la lámina 1.10: es parcialmente observable, porque el agente solo sabe lo que entra en su contexto. Esa frase va a sostener toda la clase, porque un sistema multiagente es, en buena medida, una forma de decidir qué entra en el contexto de cada uno. Tiempo objetivo: ~1 min.
 
 ### Presenter feedback
 
 ---
 
-## 12. El ciclo ReAct
+## 13. El ciclo ReAct
 
 ### Content
 
@@ -412,7 +437,7 @@ Lo vieron implícito en el SDK: el runner del Agents SDK hace este lazo por uste
 
 ---
 
-## 13. Workflow o agente: quién decide el próximo paso
+## 14. Workflow o agente: quién decide el próximo paso
 
 ### Content
 
@@ -1618,13 +1643,13 @@ Es un anuncio: la consigna completa, el benchmark, el modelo y las fechas están
 # Open questions
 
 - Lámina 1.7: la sigla PEAS no está en ningún registro con definición textual (`wikipedia-intelligent-agent.web.md` no la menciona; el deck de Biomédica habla de formulaciones "PEAS-like"). Capturar el capítulo 2 de Russell y Norvig si se quiere cita.
-- Lámina 1.10: `wikipedia-intelligent-agent.web.md` dice que Russell y Norvig (2003) agrupan los agentes en cinco clases; algunas ediciones presentan cuatro programas básicos más el agente que aprende. La lámina 1.10 muestra cuatro y el quinto (el agente que aprende) aparece en la 1.6.
+- Lámina 1.11: `wikipedia-intelligent-agent.web.md` dice que Russell y Norvig (2003) agrupan los agentes en cinco clases; algunas ediciones presentan cuatro programas básicos más el agente que aprende. La lámina 1.11 muestra cuatro y el quinto (el agente que aprende) aparece en la 1.6.
 - Lámina 1.4: "el programa corre sobre la arquitectura del agente" (agente = arquitectura + programa) es la formulación del capítulo 2 de Russell y Norvig, que no está en el corpus; `wikipedia-intelligent-agent.web.md` solo dice que el programa "is the actual code that runs on the agent". Las notas advierten el choque con "arquitectura" del bloque 3.
 - Lámina 1.5: que la medida de performance la fija el diseñador, y el motivo de las notas (un agente que se pone su propia nota puede convencerse de que lo hizo bien), descansan en el capítulo 2 de Russell y Norvig. El corpus solo sostiene que la función de recompensa "allows programmers to shape its desired behavior" y que la medida evalúa "any given sequence of environment states".
 - Lámina 1.6: la definición de autonomía (apoyarse en lo que el agente percibe y aprende más que en el conocimiento previo del diseñador, y aprender para compensar un conocimiento inicial incompleto o equivocado) es del capítulo 2 de Russell y Norvig; el corpus sostiene solo que aprender permite "gradually surpass the bounds of their initial knowledge". "Racional no exige omnisciencia" sí está en `wikipedia-intelligent-agent.web.md`. El ejemplo del taxi chocado es ilustrativo, sin fuente.
-- Lámina 1.8: las definiciones de completamente observable y de determinístico, y los ejemplos de spam, goma pinchada y videojuego nuevo, son redacción del editor sobre el capítulo 2 de Russell y Norvig; el deck de Biomédica solo nombra esas dos dimensiones. Capturar el capítulo 2 si se quiere cita textual.
-- Lámina 1.9: del corpus salen solo las celdas de Biomédica (crucigrama observable, determinístico, estático, un agente; ajedrez observable, determinístico, competitivo; taxi parcial, estocástico, dinámico, continuo, multiagente competitivo y colaborativo; asistente parcial y dinámico). El resto es clasificación del editor: la fila episódico o secuencial completa, discreto y conocido en crucigrama y ajedrez, "sin reloj" en ajedrez, conocido en el taxi, y agentes, determinismo, discreto y "en parte" en el asistente. Revisar antes de la clase, sobre todo "uno o varios, colaborativo" y "en parte" del asistente.
-- Láminas 1.2, 1.4 y 1.10: el termostato como agente mínimo está en el lead de `wikipedia-intelligent-agent.web.md`; como ejemplo de agente reflejo simple, la página lo cita a un blog y a IBM (`[open question]` en el registro). Las láminas lo usan como regla condición-acción, sin atribuírselo a Russell y Norvig.
+- Láminas 1.8 y 1.9: las definiciones de completamente observable y de determinístico, y los ejemplos de spam, goma pinchada y videojuego nuevo, son redacción del editor sobre el capítulo 2 de Russell y Norvig; el deck de Biomédica solo nombra esas dos dimensiones. Capturar el capítulo 2 si se quiere cita textual.
+- Lámina 1.10: del corpus salen solo las celdas de Biomédica (crucigrama observable, determinístico, estático, un agente; ajedrez observable, determinístico, competitivo; taxi parcial, estocástico, dinámico, continuo, multiagente competitivo y colaborativo; asistente parcial y dinámico). El resto es clasificación del editor: la fila episódico o secuencial completa, discreto y conocido en crucigrama y ajedrez, "sin reloj" en ajedrez, conocido en el taxi, y agentes, determinismo, discreto y "en parte" en el asistente. Revisar antes de la clase, sobre todo "uno o varios, colaborativo" y "en parte" del asistente.
+- Láminas 1.2, 1.4 y 1.11: el termostato como agente mínimo está en el lead de `wikipedia-intelligent-agent.web.md`; como ejemplo de agente reflejo simple, la página lo cita a un blog y a IBM (`[open question]` en el registro). Las láminas lo usan como regla condición-acción, sin atribuírselo a Russell y Norvig.
 - Láminas 1.3 y 1.7: en Biomédica, la aspiradora tiene un motor de movimiento con cuatro direcciones (izq/der/adelante/atrás) pero solo dos acciones de movimiento (MoverIzquierda, MoverDerecha); las láminas copian la fuente tal cual. La columna del taxi se armó con el auto autónomo de `wikipedia-intelligent-agent.web.md`; los actuadores (acelerador, freno, dirección) se derivan de sus acciones.
 - Lámina 4.7: la celda "el especialista recibe solo lo que el manager le pasa" para agentes como herramientas es inferencia del patrón; `openai-agents-sdk-multi-agent.web.md` no lo dice textual. Verificar en la documentación de tools del SDK o con un log antes de la clase.
 - Lámina 4.4: el −31 % al reemplazar el orquestador de Magentic-One por un GroupChat sale de la Figura 3 del paper, que no se capturó; no se cita. Capturar la figura si se quiere el número.

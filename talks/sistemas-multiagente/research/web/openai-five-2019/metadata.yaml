@@ -1,0 +1,19 @@
+url: "https://ar5iv.labs.arxiv.org/html/1912.06680"
+fetched_at: "2026-10-04T19:22:39Z"
+title: "[1912.06680] Dota 2 with Large Scale Deep Reinforcement Learning"
+http_status: 200
+byte_size: 465894
+assets:
+  - { src: "/html/1912.06680/assets/figures/timescales.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/timescales.png", saved_as: "timescales.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/objectives-OG-game-1.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/objectives-OG-game-1.png", saved_as: "objectives-OG-game-1.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/figures/OG-game-1-tower-1-bot-small.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/OG-game-1-tower-1-bot-small.png", saved_as: "OG-game-1-tower-1-bot-small.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/figures/OG-game-1-tower-2-mid-small.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/OG-game-1-tower-2-mid-small.png", saved_as: "OG-game-1-tower-2-mid-small.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/figures/hero-selection.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/hero-selection.png", saved_as: "hero-selection.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/figures/unit-observations.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/unit-observations.png", saved_as: "unit-observations.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/figures/delay_head.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/delay_head.png", saved_as: "delay_head.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/figures/unit_head.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/unit_head.png", saved_as: "unit_head.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/figures/offset_head.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/offset_head.png", saved_as: "offset_head.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/figures/unit_observations_tree.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/unit_observations_tree.png", saved_as: "unit_observations_tree.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/figures/prelstm.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/prelstm.png", saved_as: "prelstm.png", alt: "Refer to caption" }
+  - { src: "/html/1912.06680/assets/figures/ti-lr.png", absolute: "https://ar5iv.labs.arxiv.org/html/1912.06680/assets/figures/ti-lr.png", saved_as: "ti-lr.png", alt: "Refer to caption" }
+  - { src: "/assets/ar5iv.png", absolute: "https://ar5iv.labs.arxiv.org/assets/ar5iv.png", saved_as: "ar5iv.png", alt: "ar5iv homepage" }

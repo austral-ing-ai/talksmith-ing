@@ -1,0 +1,7 @@
+url: "https://ar5iv.labs.arxiv.org/html/2305.14325"
+fetched_at: "2026-10-04T19:21:37Z"
+title: "[2305.14325] Improving Factuality and Reasoning in Language Models through Multiagent Debate"
+http_status: 200
+byte_size: 138277
+assets:
+  - { src: "/assets/ar5iv.png", absolute: "https://ar5iv.labs.arxiv.org/assets/ar5iv.png", saved_as: "ar5iv.png", alt: "ar5iv homepage" }

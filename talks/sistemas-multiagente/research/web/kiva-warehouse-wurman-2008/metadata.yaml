@@ -1,0 +1,9 @@
+url: "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/2082"
+fetched_at: "2026-10-04T19:23:07Z"
+title: "Coordinating Hundreds of Cooperative, Autonomous Vehicles in Warehouses\n\t\t\t\t\t\t\t| AI Magazine"
+http_status: 200
+byte_size: 27995
+assets:
+  - { src: "https://ojs.aaai.org/aimagazine/public/journals/1/cover_180_en_US.jpg", absolute: "https://ojs.aaai.org/aimagazine/public/journals/1/cover_180_en_US.jpg", saved_as: "cover_180_en_US.jpg", alt: "" }
+  - { src: "https://ojs.aaai.org/aimagazine/plugins/blocks/hostedBy/icons/pkpps.svg", absolute: "https://ojs.aaai.org/aimagazine/plugins/blocks/hostedBy/icons/pkpps.svg", saved_as: "pkpps.svg", alt: "" }
+  - { src: "https://ojs.aaai.org/aimagazine/templates/images/ojs_brand.png", absolute: "https://ojs.aaai.org/aimagazine/templates/images/ojs_brand.png", saved_as: "ojs_brand.png", alt: "More information about the publishing system, Platform and Workflow by OJS/PKP." }

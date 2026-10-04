@@ -1,0 +1,9 @@
+url: "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"
+fetched_at: "2026-10-04T19:20:56Z"
+title: "Effective context engineering for AI agents \\ Anthropic"
+http_status: 200
+byte_size: 163158
+assets:
+  - { src: "https://www-cdn.anthropic.com/images/4zrzovbb/website/33b03d9dd1e6aec266ef22a616aec8f5676223f6-1000x1000.svg", absolute: "https://www-cdn.anthropic.com/images/4zrzovbb/website/33b03d9dd1e6aec266ef22a616aec8f5676223f6-1000x1000.svg", saved_as: "33b03d9dd1e6aec266ef22a616aec8f5676223f6-1000x1000.svg", alt: "" }
+  - { src: "/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2Ffaa261102e46c7f090a2402a49000ffae18c5dd6-2292x1290.png&w=3840&q=75", absolute: "https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2Ffaa261102e46c7f090a2402a49000ffae18c5dd6-2292x1290.png&w=3840&q=75", saved_as: "image.bin", alt: "Prompt engineering vs. context engineering" }
+  - { src: "/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F0442fe138158e84ffce92bed1624dd09f37ac46f-2292x1288.png&w=3840&q=75", absolute: "https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F0442fe138158e84ffce92bed1624dd09f37ac46f-2292x1288.png&w=3840&q=75", saved_as: "image-2.bin", alt: "Calibrating the system prompt in the process of context engineering." }

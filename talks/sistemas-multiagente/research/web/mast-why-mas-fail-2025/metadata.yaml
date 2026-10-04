@@ -1,0 +1,12 @@
+url: "https://arxiv.org/html/2503.13657"
+fetched_at: "2026-10-04T19:22:29Z"
+title: "Why Do Multi-Agent LLM Systems Fail?"
+http_status: 200
+byte_size: 1780024
+assets:
+  - { src: "/static/base/1.0.1/images/icons/smileybones-small.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/icons/smileybones-small.svg", saved_as: "smileybones-small.svg", alt: "" }
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "arXiv logo" }
+  - { src: "2503.13657v3/arxiv_figure_neurips_cropped.png", absolute: "https://arxiv.org/html/2503.13657v3/arxiv_figure_neurips_cropped.png", saved_as: "arxiv_figure_neurips_cropped.png", alt: "Refer to caption" }
+  - { src: "2503.13657v3/phone-agent-narrow.png", absolute: "https://arxiv.org/html/2503.13657v3/phone-agent-narrow.png", saved_as: "phone-agent-narrow.png", alt: "Refer to caption" }
+  - { src: "2503.13657v3/masft_fc_corr.png", absolute: "https://arxiv.org/html/2503.13657v3/masft_fc_corr.png", saved_as: "masft_fc_corr.png", alt: "Refer to caption" }
+  - { src: "2503.13657v3/masft_fm_corr.png", absolute: "https://arxiv.org/html/2503.13657v3/masft_fm_corr.png", saved_as: "masft_fm_corr.png", alt: "Refer to caption" }
