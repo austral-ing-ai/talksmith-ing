@@ -1,0 +1,23 @@
+  contexto: instrucciones + descripción de cada tool
+                        |
+                        v
+                +---------------+
+                |      LLM      |
+                +---------------+
+                  |           ^
+  1. pide la tool |           | 3. el resultado
+  con nombre y    |           |    vuelve al
+  argumentos      v           |    contexto
+                +---------------+
+                |   programa    |
+                |   (ejecuta)   |
+                +---------------+
+                        |
+                        v
+          2. API, base de datos, búsqueda
+
+<!-- ascii-note:
+intent: separar quien decide (el LLM) de quien ejecuta (el programa); el LLM solo emite el pedido.
+emphasize: la caja programa (ejecuta) en rojo, porque es la que la sala suele olvidar; las tres flechas numeradas.
+labels: contexto, LLM, programa (ejecuta), pasos 1-3.
+-->

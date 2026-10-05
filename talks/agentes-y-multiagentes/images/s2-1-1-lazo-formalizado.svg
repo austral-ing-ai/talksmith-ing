@@ -1,0 +1,29 @@
+<!-- talksmith-ascii-sha256: 50a759d96a61cddb092d359b7de2f383cda301e17c43fbc0c7292f480371d87f -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 681 384" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>El agente LLM, formalizado</title>
+<desc>Es la misma figura de la lámina 1.2 escrita con símbolos: el contexto alimenta a la política, la política elige una acción sobre el ambiente, y la observación vuelve a sumarse al contexto.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" viewBox="0 0 14 14" refX="14" refY="7" orient="auto">
+<path d="M0,0 L14,7 L0,14 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="681" height="384" fill="#ffffff"/>
+<rect x="20" y="20" width="440" height="80" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="190.4" y="52" font-size="18" font-weight="bold" fill="#1F1E1E">contexto  c<tspan dy="5.0" font-size="13.0">t</tspan></text>
+<text x="154.9" y="80" font-size="16">(o<tspan dy="4.5" font-size="11.5">1</tspan><tspan dy="-4.5">, a</tspan><tspan dy="4.5" font-size="11.5">1</tspan><tspan dy="-4.5">, … , o</tspan><tspan dy="4.5" font-size="11.5">t</tspan><tspan font-size="11.5" font-family="'Arial Unicode MS', sans-serif">−</tspan><tspan font-size="11.5">1</tspan><tspan dy="-4.5">, a</tspan><tspan dy="4.5" font-size="11.5">t</tspan><tspan font-size="11.5" font-family="'Arial Unicode MS', sans-serif">−</tspan><tspan font-size="11.5">1</tspan><tspan dy="-4.5">, o</tspan><tspan dy="4.5" font-size="11.5">t</tspan><tspan dy="-4.5">)</tspan></text>
+<line x1="240" y1="100" x2="240" y2="152" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="110" y="152" width="260" height="84" rx="10" fill="#DA1B2E"/>
+<text x="181.5" y="187" font-size="18" font-weight="bold" fill="#FFFFFF">política (LLM)</text>
+<text x="209.0" y="215" font-size="17" fill="#FFFFFF"><tspan font-family="'Arial Unicode MS', sans-serif">π</tspan>(a<tspan dy="4.8" font-size="12.2">t</tspan><tspan dy="-4.8"> | c</tspan><tspan dy="4.8" font-size="12.2">t</tspan><tspan dy="-4.8">)</tspan></text>
+<line x1="240" y1="236" x2="240" y2="302" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="252.0" y="274" font-size="15" font-style="italic">a<tspan dy="4.2" font-size="10.8">t</tspan><tspan dy="-4.2"> </tspan><tspan font-family="'Arial Unicode MS', sans-serif">∈</tspan> A</text>
+<rect x="110" y="302" width="260" height="62" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="187.8" y="340" font-size="20" font-weight="bold" fill="#1F1E1E">AMBIENTE</text>
+<path d="M370,333 H520 V60 H460" fill="none" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ahr)"/>
+<text x="536.0" y="176" font-size="17" font-weight="bold" fill="#DA1B2E">o<tspan dy="4.8" font-size="12.2">t+1</tspan><tspan dy="-4.8"> </tspan><tspan font-family="'Arial Unicode MS', sans-serif">∈</tspan> O</text>
+<text x="536.0" y="202" font-size="14">se suma al contexto</text>
+<text x="536.0" y="222" font-size="14">c<tspan dy="3.9" font-size="10.1">t+1</tspan><tspan dy="-3.9"> y el loop sigue</tspan></text>
+</svg>

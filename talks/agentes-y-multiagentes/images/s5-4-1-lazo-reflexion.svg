@@ -1,0 +1,41 @@
+<!-- talksmith-ascii-sha256: d197736402634a22f15538bbffc7174d56a0061d21deb9d3bb93f25ed6f6c505 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 469" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Reflexion: intentar, evaluar, reflexionar</title>
+<desc>Reflexion es el primer tipo con más de un rol de LLM: el Actor produce la trayectoria, el Evaluator decide si salió bien y el Self-Reflection convierte ese veredicto en una crítica escrita que vuelve como memoria para el intento siguiente.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" viewBox="0 0 14 14" refX="14" refY="7" orient="auto">
+<path d="M0,0 L14,7 L0,14 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="650" height="469" fill="#ffffff"/>
+<g transform="translate(-46,4)">
+<text x="130" y="57" text-anchor="end" font-style="italic">intento k</text>
+<line x1="140" y1="52" x2="220" y2="52" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="220" y="20" width="280" height="64" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="360" y="47" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Actor</text>
+<text x="360" y="70" text-anchor="middle">LLM, tipo ReAct</text>
+<line x1="360" y1="84" x2="360" y2="136" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="372" y="115" font-size="13" font-style="italic">trayectoria</text>
+<rect x="220" y="136" width="280" height="64" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="360" y="163" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Evaluator: ¿pasó?</text>
+<text x="360" y="186" text-anchor="middle">tests, heurística o LLM</text>
+<line x1="230" y1="200" x2="230" y2="270" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="240" y="240" font-size="13" font-style="italic">sí</text>
+<rect x="160" y="270" width="140" height="40" rx="20" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="230" y="295" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Respuesta</text>
+<line x1="470" y1="200" x2="470" y2="270" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="480" y="240" font-size="13" font-style="italic">no</text>
+<rect x="340" y="270" width="260" height="64" rx="10" fill="#DA1B2E"/>
+<text x="470" y="297" text-anchor="middle" font-size="18" font-weight="bold" fill="#FFFFFF">Self-Reflection</text>
+<text x="470" y="320" text-anchor="middle" fill="#FFFFFF">LLM, escribe la crítica</text>
+<line x1="470" y1="334" x2="470" y2="376" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="340" y="376" width="260" height="64" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="470" y="403" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Memoria</text>
+<text x="470" y="426" text-anchor="middle">1 a 3 reflexiones previas</text>
+<path d="M600,408 H670 V52 H500" fill="none" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#ahr)"/>
+<text x="660" y="235" text-anchor="end" font-size="13" font-style="italic" font-weight="bold" fill="#DA1B2E">intento k+1</text>
+</g>
+</svg>

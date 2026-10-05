@@ -1,0 +1,20 @@
+            Usuario
+               |
+               v
+        +-------------+
+        |  Agente A   |
+        +-------------+
+          |         |
+          v         v
+    +---------+   +---------+
+    | Agente  |<->| Agente  |
+    |    B    |   |    C    |
+    +---------+   +---------+
+
+  cada agente ejecuta, delega o enriquece
+
+<!-- ascii-note:
+intent: una topologia sin nodo central; la coordinacion se replica en cada agente y el control pasa de uno a otro.
+emphasize: la arista directa entre Agente B y Agente C (acento rojo).
+labels: Usuario, Agente A/B/C, cada agente ejecuta, delega o enriquece.
+-->

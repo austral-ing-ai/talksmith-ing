@@ -963,3 +963,93 @@
   feedback: "partilo en laminas"
   resolution: Lámina 1.8 partida en dos: 1.8 Tipos de ambiente (observable, agentes, determinismo) y 1.9 Más dimensiones del ambiente (episódico, dinámico, discreto, conocido), cuerpos de hasta ~90 caracteres con definiciones y ejemplos largos en notas; 2 min repartidos en 1 + 1; láminas siguientes de la sección 1 renumeradas (1.10 a 1.14) con sus referencias cruzadas y Open questions.
   tags: [density, split-slide, overflow]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "3. Una trayectoria ReAct"
+  feedback: "En el slide 23 (Una trayectoria ReAct), cual es el system prompt ?. Pone otro slide que muestre los tools y el prompt que connecta con el ejemplo"
+  resolution: Dos láminas nuevas después de 4.3: 4.4 muestra la instrucción verbatim del notebook de ReAct con las tres acciones (Search, Lookup, Finish) y aclara que no hay system prompt porque el modelo es de completado; 4.5 dibuja en ASCII el prompt (instrucción + 6 ejemplos + pregunta del Apple Remote) y el corte en Observation con el stop. Las notas de 4.3 apuntan a ellas y las de 4.6 contrastan con el tool calling de chat y nombran samples/react-langgraph/.
+  tags: [new-slide, external-source, ascii-diagram, speaker-notes]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Agenda
+  feedback: "Toma talks/sistemas-multiagente y mergealo en esta presentacion. No estoy esperando 1:1 pero si hay conceptos que no estan incluilos."
+  resolution: Merge por conceptos, no 1:1: 13 láminas nuevas y tres secciones nuevas (2 El agente basado en LLM, 6 Por qué un solo agente no alcanza, 8 Implementaciones reales). Entraron función y programa de agente, arquitecturas clásicas, PEAS, context rot, tools que compiten, las tres palancas, pipeline/pizarra/jerarquía, MetaGPT/ChatDev/AutoGen/Magentic-One, debate y MoA, multiagente sin LLM, MAST y el aislamiento que hay que configurar; cada cifra rastreada a su registro. La clase pasa a ~138 min; lista de cortes en Open questions.
+  tags: [content-addition, structure, new-slide, scope]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "1. Cuatro sistemas publicados"
+  feedback: "Borrar"
+  resolution: Lámina 8.1 'Cuatro sistemas publicados' movida entera a Cut material con sus cifras. La sección 'Implementaciones reales' desaparece: debate y Mixture-of-Agents pasaron a 7.6, y MetaGPT y Magentic-One quedan nombrados, sin cifras, en las notas de 7.4 y 7.1 como ejemplos de topología. La sección 'Cuándo repartir' pasa a ser la 8.
+  tags: [slide-removal, cut, structure]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Section "7. Patrones multiagente"
+  feedback: "En la seccion de distritos patrones de multi-agentes esta mentiendose mucho en LagGrah, skills, Handoffs y no es relevante. Quiero mantener esto a niver de arquitectura de comuncucacion. Revisa todo esto que esta espeializado y borremos todos esos slides."
+  resolution: Sección 7 reescrita como 'Arquitecturas de comunicación', sin frameworks: 7.1 subagente (estrella), 7.2 router, 7.3 red con transferencia de control (handoff como concepto genérico), 7.4 pipeline, pizarra y jerarquía, 7.5 tabla que compara las seis topologías por control, flujo del contexto, costo y latencia, y trazabilidad, y 7.6 debate y Mixture-of-Agents (ex 8.2). Movidas a Cut material: 'Cuatro patrones', Subagents, Skills, Handoffs y Router con las imágenes de LangChain, la tabla requisito→patrón y la tabla de costos. En 'Cuándo repartir' (hoy sección 8), 8.3 quedó genérica, sin OpenAI Agents SDK, LangGraph Swarm ni Claude Code, y la jerarquía perdió el dato de Claude Code. Tesis, agenda, metas, Conclusions y referencias actualizadas; skills salió del árbol de decisión.
+  tags: [scope, structure, slide-removal, generalize-examples]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "3. Muchas tools y un solo prompt"
+  feedback: "Sacar este lside."
+  resolution: Lámina 6.3 'Muchas tools y un solo prompt' movida entera a Cut material; la meta de la sección 6 y las notas de 'Primero, un solo agente' (hoy 6.3) quedaron sin la referencia.
+  tags: [slide-removal, cut]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "2. El contexto se degrada"
+  feedback: "No habla sobre que es el contexto en un modelo. Ya lo hablamos bastante. Revisar que slides tocan esot."
+  resolution: Auditoría del contexto: se define una sola vez, en 2.1 (en la lámina, el texto que el modelo recibe en cada llamada; en notas, finito y pago por token). El quiz 6.1 '¿Qué es el contexto de un modelo?', que lo volvía a definir, pasó a Cut material, y la nota de 1.4 quedó como puntero a 2.1. 'El contexto se degrada' (hoy 6.1) abre la sección con un puntero al c_t de 2.1 y agrega solo lo nuevo, el context rot. 3.4, 7.1, 8.5 y Conclusions usan el término sin redefinirlo.
+  tags: [remove-redundancy, consistency, slide-removal]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "8. Un plan ReWOO"
+  feedback: "Agregar un slide donde se compare cada uno y cuando convine usar cada uno de estos casos."
+  resolution: Sin lámina duplicada: la tabla comparativa del presentador (ex 5.11) pasó a 5.10, justo después de ReWOO, como 'Los cuatro tipos, comparados', con una columna nueva 'Un caso' (la pregunta del Apple Remote de 4.2, actualizar un proyecto a una versión nueva de una biblioteca como ilustración de la cátedra, una función que tiene que pasar tests de 5.6 y las estadísticas de los quarterbacks de 5.9). La fila del orquestador con workers salió de la tabla a Cut material; ese tipo queda en 5.11 y 5.12.
+  tags: [tabular, examples, remove-redundancy, slide-ordering]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "6. ReAct en LangGraph"
+  feedback: "Creo que esta bueni agregar un slide con esto:" Hoy "agente ReAct" se usa en dos sentidos, y por eso confunde: el estricto (el patrón Thought-Action-Observation del paper) y el laxo (cualquier agente que llama tools en loop). LangGraph usa el nombre en el sentido laxo. El artículo de Outcome School que pasaste al principio los mezcla: describe el formato del paper y después implementa el loop de tool calling." Buscar mas pero en este sentido, deja esto al thinkung."
+  resolution: Lámina nueva 4.6 'Dos sentidos de «agente ReAct»': el estricto (prompt de completado con ejemplos, Thought y Action escritos como texto, stop antes de Observation; 4.3 y 4.4) y el laxo (cualquier agente que llama tools en un loop con el tool calling de un modelo de chat; 4.5). La plantilla de agente ReAct de LangGraph enlaza el paper y describe el sentido laxo (corpus/langchain-react-agent-template.web.md); que use tool calling nativo es inferencia del registro y va en notas como tal. El ejemplo de mezcla es el tutorial de Medium del que salen 3.3 y 4.5. El artículo de Outcome School no está en el corpus: no se cita y quedó en Open questions. El contraste chat contra completado y samples/react-langgraph/ pasaron de las notas de 4.5 a las de 4.6.
+  tags: [new-slide, terminology, content-addition, external-source]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "1. Dos preguntas para cada tipo"
+  feedback: "Revisar por que creo que esta descolago sin conexion a este slide."
+  resolution: 'Dos preguntas para cada tipo' pasó a abrir la sección 5 (hoy 5.1) y se reescribió desde ReAct: responde las dos preguntas para ReAct (no planifica de antemano, razona en cada paso) y presenta los tipos que siguen como respuestas distintas. La sección 4 abre con ReAct (4.1); las notas de 4.7 hacen el puente. Referencias de las secciones 4 y 5 renumeradas.
+  tags: [slide-ordering, structure]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "6. La interfaz agente-computadora"
+  feedback: "Borrar."
+  resolution: Lámina 3.6 'La interfaz agente-computadora' movida entera a Cut material; el cierre de la sección 3 y el reloj pasaron a 'Principios para diseñar tools' (hoy 3.4).
+  tags: [slide-removal, cut]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "4. Cómo falla un agente con tools"
+  feedback: "Borrar."
+  resolution: Lámina 3.4 'Cómo falla un agente con tools' movida entera a Cut material; 'Principios para diseñar tools' pasa a 3.4.
+  tags: [slide-removal, cut]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "1. Qué es una tool"
+  feedback: "Esta bueno volver a connectar aca tool a un actuador."
+  resolution: 3.1 dice en la lámina la conexión con Russell & Norvig: cada tool es un actuador del agente LLM y lo que devuelve entra al contexto como percepción; el diagrama rotula la API como actuador. La frase equivalente salió de las notas.
+  tags: [consistency, terminology]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "3. Workflow o agente"
+  feedback: "Creo que falta introcccion antes de llegar a este slide. Tal vez una antes. Se llega a este punto y no es claro por que se habla de un workflow."
+  resolution: Lámina nueva 2.3 'Dos formas de conectar un LLM con tools', con diagrama: el código fija los pasos, o el LLM elige el paso siguiente en el loop de 2.1. 'Workflow o agente' pasa a 2.4 y les pone los nombres de Anthropic; la fila 'Quién decide el camino' salió de la tabla porque la muestra el diagrama de 2.3.
+  tags: [new-slide, structure, ascii-diagram]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "7. La misma ficha, dos agentes"
+  feedback: "Revisar si no se podria agregar un diagama."
+  resolution: La ficha PEAS (hoy 1.8) pasó a un diagrama ASCII: los dos agentes con el lazo de 1.2, sensores y actuadores sobre las flechas, el ambiente arriba y la performance al pie, con los valores de pptx slides 8 y 18. Se respetó el retiro de la tabla; su contenido quedó registrado en Cut material.
+  tags: [ascii-diagram, visualization-requested]
+- talk: agentes-y-multiagentes
+  date: 2026-10-04
+  location: Slide "6. Arquitecturas clásicas de agente"
+  feedback: "Para cada uno de los ejemplos de estas evoluciones agreguemos un ejemplo y cual seria la limitacion. Pongamoslo esto en el contexto de un auto majenado."
+  resolution: Lámina nueva 1.7 'Un auto autónomo en cada arquitectura': tabla con las cinco arquitecturas, qué haría el auto y dónde se queda corto. Las limitaciones de reflejo simple, objetivos y utilidad salen de corpus/wikipedia-intelligent-agent.web.md; los ejemplos del auto y las limitaciones del reflejo con modelo y del agente que aprende son ilustración de la cátedra, marcada en Sources. 1.6 queda con las definiciones (L1, L8) y la ficha PEAS pasa a 1.8.
+  tags: [content-addition, examples, new-slide, slide-split]

@@ -1,0 +1,23 @@
+                 π(â_t | c_t)
+                       |
+          +------------+-------------+
+          |                          |
+          v                          v
+   â_t ∈ A  (acción)        â_t ∈ L  (pensamiento)
+          |                          |
+          v                          |
+   +-------------+                   |
+   |  AMBIENTE   |                   |
+   +-------------+                   |
+          |                          |
+          v                          v
+   hay observación            no hay observación
+   c_{t+1} suma a_t           c_{t+1} = (c_t, â_t)
+   y o_{t+1}
+
+<!-- ascii-note:
+intent: la bifurcacion que define ReAct; una rama toca el ambiente y la otra solo escribe en el contexto.
+emphasize: la rama del pensamiento (L) en rojo, que no pasa por el ambiente.
+labels: pi, accion en A, pensamiento en L, AMBIENTE, c_{t+1}.
+consistency: los cinco diagramas de tipos de agente (4.2, 5.1, 5.4, 5.7 y 5.9) comparten lienzo, tipografia y tratamiento de cajas; cambia solo la forma.
+-->

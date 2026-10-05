@@ -1,0 +1,43 @@
+<!-- talksmith-ascii-sha256: b5c66c0417072c4acba88d0f5019c27b2e7a5b737044c8e0750a7bcbf6b4058d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 658 450" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Plan-and-Execute: planificar primero</title>
+<desc>La diferencia con ReAct está en el momento del razonamiento: Plan-and-Execute piensa todo al inicio, ejecuta, y vuelve a pensar solo al replanificar.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" viewBox="0 0 14 14" refX="14" refY="7" orient="auto">
+<path d="M0,0 L14,7 L0,14 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="658" height="450" fill="#ffffff"/>
+<g transform="translate(-16,0)">
+<rect x="65" y="24" width="120" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="125" y="45" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Pedido</text>
+<line x1="125" y1="56" x2="125" y2="100" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="40" y="100" width="170" height="84" rx="10" fill="#DA1B2E"/>
+<text x="125" y="137" text-anchor="middle" font-size="18" font-weight="bold" fill="#FFFFFF">Planner</text>
+<text x="125" y="160" text-anchor="middle" fill="#FFFFFF">(LLM)</text>
+<line x1="210" y1="118" x2="430" y2="118" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="320" y="106" text-anchor="middle" font-size="13" font-style="italic">lista de pasos</text>
+<rect x="268" y="132" width="104" height="70" rx="6" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="284" y="153" font-size="13">1. paso</text>
+<text x="284" y="172" font-size="13">2. paso</text>
+<text x="284" y="191" font-size="13">3. paso</text>
+<rect x="430" y="100" width="220" height="84" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="540" y="128" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Executor</text>
+<text x="540" y="150" text-anchor="middle">un paso a la vez,</text>
+<text x="540" y="168" text-anchor="middle">con sus tools</text>
+<line x1="540" y1="184" x2="540" y2="250" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="552" y="222" font-size="13" font-style="italic">resultados</text>
+<rect x="430" y="250" width="220" height="84" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="540" y="285" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Re-planner (LLM)</text>
+<text x="540" y="309" text-anchor="middle">¿terminó?</text>
+<path d="M430,292 H125 V184" fill="none" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ahr)"/>
+<text x="278" y="282" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">replanificar</text>
+<line x1="540" y1="334" x2="540" y2="390" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="552" y="366" font-size="13" font-style="italic">sí</text>
+<rect x="450" y="390" width="180" height="36" rx="18" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="540" y="413" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Respuesta al usuario</text>
+</g>
+</svg>

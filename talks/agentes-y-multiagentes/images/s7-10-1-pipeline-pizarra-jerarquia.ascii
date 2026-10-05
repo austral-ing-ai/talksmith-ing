@@ -1,0 +1,21 @@
+     PIPELINE              PIZARRA                    JERARQUIA
+
+    +-------+       +---+           +---+         +-------------+
+    |   A   |       | A |           | B |         | orquestador |
+    +-------+       +---+           +---+         +-------------+
+        |             |  publica      ^  lee         |        |
+        v             v               |              v        v
+    +-------+      +-------------------+         +------+  +------+
+    |   B   |      |  espacio comun    |         | orq. |  | orq. |
+    +-------+      +-------------------+         +------+  +------+
+        |             ^               |           |    |       |
+        v             |  publica      v  lee      v    v       v
+    +-------+       +---+           +---+        +--+ +--+   +--+
+    |   C   |       | C |           | D |        |A | |B |   |C |
+    +-------+       +---+           +---+        +--+ +--+   +--+
+
+<!-- ascii-note:
+intent: tres topologias lado a lado; una cadena fija, un espacio comun sin orquestador donde los agentes publican y leen, y un arbol de orquestadores.
+emphasize: el espacio comun de la pizarra (acento rojo); la forma distinta de cada topologia (cadena, estrella sin centro que decide, arbol).
+labels: PIPELINE, PIZARRA, JERARQUIA, A-D, espacio comun, publica, lee, orquestador, orq.
+-->

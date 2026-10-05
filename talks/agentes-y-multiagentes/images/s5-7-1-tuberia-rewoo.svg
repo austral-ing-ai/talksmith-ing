@@ -1,0 +1,41 @@
+<!-- talksmith-ascii-sha256: f2416f8b13f3affdc94627b8a561e9e0b39aa50f64fbaba4eb077530aecc63d4 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 528" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>ReWOO: planificar con variables</title>
+<desc>La diferencia con Plan-and-Execute es la variable: el plan ya dice de dónde sale cada dato, el Worker solo reemplaza y ejecuta, y el LLM razona dos veces, al planificar y al resolver.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="7" markerHeight="7" viewBox="0 0 8 8" refX="8" refY="4" orient="auto">
+<path d="M0,0 L8,4 L0,8 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="600" height="528" fill="#ffffff"/>
+<rect x="240" y="20" width="120" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="300" y="41" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Pedido</text>
+<line x1="300" y1="52" x2="300" y2="84" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="20" y="84" width="560" height="208" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="300" y="113" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Planner (LLM)</text>
+<text x="300" y="135" text-anchor="middle">escribe todo el plan antes de ejecutar</text>
+<rect x="44" y="152" width="512" height="124" rx="6" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1"/>
+<g font-family="'Andale Mono', monospace" font-size="15" fill="#1F1E1E">
+<text x="64" y="182" xml:space="preserve">Plan: ...   E1 = Search[...]</text>
+<text x="64" y="222" xml:space="preserve">Plan: ...   E2 = LLM[... <tspan fill="#DA1B2E">#E1</tspan>]</text>
+<text x="64" y="262" xml:space="preserve">Plan: ...   E3 = Search[... <tspan fill="#DA1B2E">#E2</tspan>]</text>
+</g>
+<path d="M181,187 V197 H302.5 V209" fill="none" stroke="#DA1B2E" stroke-width="1.5" marker-end="url(#ahr)"/>
+<path d="M181,227 V237 H329.5 V249" fill="none" stroke="#DA1B2E" stroke-width="1.5" marker-end="url(#ahr)"/>
+<text x="388" y="214" font-size="13" font-style="italic">cada #E es la salida</text>
+<text x="388" y="232" font-size="13" font-style="italic">de un paso anterior</text>
+<line x1="300" y1="292" x2="300" y2="328" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="312" y="315" font-size="13" font-style="italic">sin volver al Planner</text>
+<rect x="20" y="328" width="560" height="72" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="300" y="357" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Worker</text>
+<text x="300" y="381" text-anchor="middle">ejecuta E1, E2, E3 en orden y reemplaza cada #E por su resultado</text>
+<line x1="300" y1="400" x2="300" y2="436" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="20" y="436" width="560" height="72" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="300" y="465" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Solver (LLM)</text>
+<text x="302" y="489" text-anchor="end">plan + evidencias</text>
+<line x1="310" y1="484" x2="338" y2="484" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="346" y="489">respuesta</text>
+</svg>

@@ -1,0 +1,27 @@
+              +-----------------------------+
+              |  Orquestador: descompone    |
+              +-----------------------------+
+                  |                     |
+                  v    en paralelo      v
+        +-----------------+   +---------------------+
+        |   Loan Agent    |   | Transaction Manager |
+        |  cotiza saldo   |   |  verifica fondos    |
+        |     (lee)       |   |       (lee)         |
+        +-----------------+   +---------------------+
+                  |                     |
+                  v                     v
+              +-----------------------------+
+              |  Orquestador: valida        | --- no cierra ---> replanifica
+              +-----------------------------+
+                             |
+                             v  cierra
+              +-----------------------------+
+              |  Payment Processor          |
+              |  transfiere (escribe)       |
+              +-----------------------------+
+
+<!-- ascii-note:
+intent: el caso aplica la regla de la lamina anterior; dos lecturas en paralelo, validacion, y la unica escritura sola y al final.
+emphasize: la caja Payment Processor en rojo (la unica que escribe); la bifurcacion en paralelo de las dos lecturas.
+labels: Orquestador (descompone / valida), Loan Agent, Transaction Manager, Payment Processor, lee / escribe, replanifica.
+-->

@@ -7,16 +7,18 @@
    no
    v
  Un agente con buenas tools
- (ReAct; planificar o reflexionar si la tarea lo pide)
+ (ReAct; planificar o reflexionar si la tarea lo pide;
+ skills si tiene muchas especializaciones)
    |
    v
  ¿La información no entra en un contexto, hay equipos
  dueños de dominios distintos, o el trabajo se reparte
- en lecturas paralelas que valen ~15x tokens?
+ en lecturas paralelas que valen ~15× tokens?
    |-- no --> quedarse con un agente
    sí
    v
- Multiagente: subagents, skills, handoffs o router
+ Multiagente: subagents, handoffs, router
+ (o red adaptativa, pipeline, pizarra, jerarquía)
 
 <!-- ascii-note:
 intent: arbol de decision que resume la clase; cada pregunta descarta la opcion mas compleja si la simple alcanza.

@@ -1,0 +1,38 @@
+<!-- talksmith-ascii-sha256: f3075d022150fbf8d5049531601a750bdfaf0b6580facf04e5f237af20c0af73 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 316" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Qué es un subagente</title>
+<desc>Cada subagente lee mucho y devuelve poco: el orquestador le pasa un encargo a cada uno, cada uno trabaja en su propia ventana de contexto y devuelve un hallazgo.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="680" height="316" fill="#ffffff"/>
+<rect x="20" y="20" width="640" height="84" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="340" y="54" text-anchor="middle" font-size="20" font-weight="bold" fill="#1F1E1E">Orquestador</text>
+<rect x="278" y="66" width="124" height="26" rx="13" fill="#DA1B2E"/>
+<text x="340" y="84" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">ventana propia</text>
+<rect x="20" y="200" width="250" height="96" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="145" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Subagente A</text>
+<rect x="83" y="252" width="124" height="26" rx="13" fill="#DA1B2E"/>
+<text x="145" y="270" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">ventana propia</text>
+<rect x="410" y="200" width="250" height="96" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="535" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Subagente B</text>
+<rect x="473" y="252" width="124" height="26" rx="13" fill="#DA1B2E"/>
+<text x="535" y="270" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">ventana propia</text>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="105" y1="104" x2="105" y2="200"/>
+<line x1="185" y1="200" x2="185" y2="104"/>
+<line x1="495" y1="104" x2="495" y2="200"/>
+<line x1="575" y1="200" x2="575" y2="104"/>
+</g>
+<g font-style="italic">
+<text x="97" y="157" text-anchor="end">encargo</text>
+<text x="197" y="157">hallazgo</text>
+<text x="487" y="157" text-anchor="end">encargo</text>
+<text x="587" y="157">hallazgo</text>
+</g>
+<line x1="340" y1="200" x2="340" y2="296" stroke="#D8D2CE" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="302" y="236" width="76" height="24" fill="#ffffff"/>
+<text x="340" y="253" text-anchor="middle" font-size="13" font-style="italic">no se ven</text>
+</svg>

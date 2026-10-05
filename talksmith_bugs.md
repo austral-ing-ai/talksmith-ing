@@ -285,7 +285,7 @@
   impact: minor — produce cambios no deseados o defectos falsos
   suggested_fix: SUGGESTION, unverified — pasarle al critic una lista de términos de arte
     (p. ej. derivada del ascii-note o de un campo del frontmatter), o la prosa del slide
-  seen: 1
+  seen: 2 (2ª pasada de Polish: s2-1-1 re-flag de "loop" porque el ascii-note dice "lazo")
   plugin_version: 1.0.3
 
 - id: BUG-20261004-08
@@ -362,3 +362,70 @@
     de processed siga en el backlog
   seen: 1
   plugin_version: visto en 1.0.3 (las filas son de rondas anteriores; versión de origen desconocida)
+
+- id: BUG-20261004-11
+  status: ABIERTO
+  date: 2026-10-04
+  talk: agentes-y-multiagentes
+  step: 6 (Polish, 2ª pasada)
+  where: skills/polish-ascii (digest de idempotencia + prepare-render-args)
+  what: dos huecos en la idempotencia ante una renumeración de slides:
+    (a) el digest cubre el ascii-note completo, así que un cambio que solo reescribe una
+        referencia de slide en `consistency:` ("ReAct (3.2)" → "ReAct (4.2)") invalida un render
+        cuyo dibujo no cambió;
+    (b) prepare-render-args verifica el digest solo en el output_path planeado; si el basename
+        cambió por renumeración, un SVG válido y estampado con el mismo digest bajo el nombre
+        viejo se ignora
+  context: tras reestructurar el deck, 7 de 16 bloques eran reutilizables; el illustrator los
+    copió a mano a los basenames nuevos y re-estampó
+  expected: reutilización automática de renders cuyo payload dibujado no cambió
+  actual: args de render emitidos para bloques idénticos
+  repro: (a) s5-1-1 payload byte-idéntico a s4-1-1-plan-and-execute.ascii, solo cambia la
+    referencia en el note → prepare-render-args emite args; (b) s3-1-1 con el mismo digest que
+    s2-1-1-llm-pide-programa-ejecuta.svg pero sin archivo en s3-1-1-… → emite args
+  impact: minor — re-renders innecesarios (tiempo y critics)
+  suggested_fix: SUGGESTION, unverified — hashear payload + solo intent/emphasize/labels (o
+    normalizar referencias de slide antes de hashear); y si falta el target, buscar en images/
+    un SVG estampado con el mismo digest y copiarlo
+  seen: 1
+  plugin_version: 1.0.3
+
+- id: BUG-20261004-12
+  status: ABIERTO
+  date: 2026-10-04
+  talk: agentes-y-multiagentes
+  step: 6 (Polish, 2ª pasada)
+  where: skills/polish-ascii/polish_ascii.py (gc --apply; plan anotado)
+  what: (a) `gc --apply` solo borra en duro (f.unlink()); no hay modo que mueva los renders
+    huérfanos a un lugar recuperable (p. ej. _to_delete/, que el .gitignore ya contempla);
+    (b) el plan anotado guarda svg_basename con extensión ".svg", y el chequeo del stage 4′
+    descripto en editor.md arma "<basename>.svg/.png" → doble extensión si se sigue literal
+  context: 12 renders huérfanos tras renumerar; se dejaron en disco
+  expected: gc recuperable; svg_basename sin extensión (o el contrato lo dice)
+  actual: lo descripto
+  repro: polish_ascii.py gc --final final.md --apply; inspeccionar plan.annotated.json
+  impact: minor
+  suggested_fix: SUGGESTION, unverified — flag --move-to <dir> en gc; normalizar svg_basename
+  seen: 1
+  plugin_version: 1.0.3
+
+- id: BUG-20261004-13
+  status: ABIERTO
+  date: 2026-10-04
+  talk: agentes-y-multiagentes
+  step: 5 (Review) — captura de una fuente nueva
+  where: skills/ingest/fetch.py (nombre de archivo de assets)
+  what: fetch.py usa como nombre de archivo una codificación hex de la URL del asset; con un
+    badge de shields.io con un logo data: en base64 el nombre supera el límite del sistema de
+    archivos y el script aborta con OSError, dejando una carpeta parcial (page.md y
+    original.html escritos, sin metadata.yaml) — contradice "do not leave a partial folder behind"
+  context: captura de https://github.com/langchain-ai/react-agent
+  expected: nombre de asset truncado/hasheado; captura completa
+  actual: "OSError: [Errno 63] File name too long: '…/assets/68747470733a2f2f696d672e736869656c64732e696f…bin'"
+  repro: python3 skills/ingest/fetch.py "https://github.com/langchain-ai/react-agent" --talk-path talks/<Talk>/ --folder-name test
+  impact: minor — se completó metadata.yaml a mano
+  workaround: escribir metadata.yaml a mano
+  suggested_fix: SUGGESTION, unverified — hashear (sha1) URLs largas para el nombre del asset y
+    capturar OSError por asset como cualquier otro fallo de descarga
+  seen: 1
+  plugin_version: 1.0.3

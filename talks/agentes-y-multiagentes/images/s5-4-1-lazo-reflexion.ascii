@@ -1,0 +1,28 @@
+                +----------------------------+
+  intento k --> | Actor (LLM, tipo ReAct)    | <------+
+                +----------------------------+        |
+                              |                       |
+                              v trayectoria           |
+                +----------------------------+        |
+                | Evaluator: ¿pasó?          |        |
+                | (tests, heurística o LLM)  |        |
+                +----------------------------+        |
+                   |                     |            |
+                sí v                  no v            |
+            Respuesta      +-----------------------+  |
+                           | Self-Reflection (LLM) |  |
+                           | escribe la crítica    |  |
+                           +-----------------------+  |
+                                       |              |
+                                       v              |
+                           +-----------------------+  |
+                           | memoria: 1 a 3        |--+
+                           | reflexiones previas   | intento k+1
+                           +-----------------------+
+
+<!-- ascii-note:
+intent: el lazo largo de Reflexion, entre intentos completos; tres roles LLM distintos (Actor, Evaluator, Self-Reflection) y una memoria de reflexiones.
+emphasize: la caja Self-Reflection en rojo; la flecha de la memoria que vuelve al Actor para el intento siguiente.
+labels: Actor, Evaluator, Self-Reflection, memoria, intento k / k+1, Respuesta.
+consistency: mismo lienzo y tratamiento de cajas que 4.2 y 5.1.
+-->
