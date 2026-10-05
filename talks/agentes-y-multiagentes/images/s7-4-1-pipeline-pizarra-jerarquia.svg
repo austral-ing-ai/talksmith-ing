@@ -1,0 +1,80 @@
+<!-- talksmith-ascii-sha256: 33821b2fcab12e7e088cf6036f47679f720ad4be2986f2ef369f0f3024cb9208 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 370" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Pipeline, pizarra y jerarquía</title>
+<desc>El pipeline es un workflow en el sentido de la lámina 2.3: el código decide el orden.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="850" height="370" fill="#ffffff"/>
+<g transform="translate(-45,0)">
+<g stroke="#D8D2CE" stroke-width="1.5">
+<line x1="225" y1="24" x2="225" y2="350"/>
+<line x1="590" y1="24" x2="590" y2="350"/>
+</g>
+<g text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E" letter-spacing="1">
+<text x="110" y="34">PIPELINE</text>
+<text x="410" y="34">PIZARRA</text>
+<text x="760" y="34">JERARQUÍA</text>
+</g>
+<g text-anchor="middle" font-size="13" font-style="italic">
+<text x="110" y="56">orden fijo</text>
+<text x="410" y="56">sin orquestador</text>
+<text x="760" y="56">orquestadores en niveles</text>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="65" y="80" width="90" height="50" rx="8"/>
+<rect x="65" y="190" width="90" height="50" rx="8"/>
+<rect x="65" y="300" width="90" height="50" rx="8"/>
+<rect x="300" y="80" width="60" height="50" rx="8"/>
+<rect x="460" y="80" width="60" height="50" rx="8"/>
+<rect x="300" y="300" width="60" height="50" rx="8"/>
+<rect x="460" y="300" width="60" height="50" rx="8"/>
+<rect x="680" y="80" width="160" height="50" rx="8"/>
+<rect x="645" y="190" width="90" height="50" rx="8"/>
+<rect x="785" y="190" width="90" height="50" rx="8"/>
+<rect x="635" y="300" width="50" height="50" rx="8"/>
+<rect x="695" y="300" width="50" height="50" rx="8"/>
+<rect x="805" y="300" width="50" height="50" rx="8"/>
+</g>
+<rect x="270" y="190" width="280" height="50" rx="8" fill="#DA1B2E"/>
+<text x="410" y="221" text-anchor="middle" font-size="18" font-weight="bold" fill="#FFFFFF">espacio común</text>
+<g text-anchor="middle" font-size="20" font-weight="bold" fill="#1F1E1E">
+<text x="110" y="112">A</text>
+<text x="110" y="222">B</text>
+<text x="110" y="332">C</text>
+<text x="330" y="112">A</text>
+<text x="490" y="112">B</text>
+<text x="330" y="332">C</text>
+<text x="490" y="332">D</text>
+<text x="660" y="332">A</text>
+<text x="720" y="332">B</text>
+<text x="830" y="332">C</text>
+</g>
+<g text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">
+<text x="760" y="110">orquestador</text>
+<text x="690" y="220">orq.</text>
+<text x="830" y="220">orq.</text>
+</g>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="110" y1="130" x2="110" y2="190"/>
+<line x1="110" y1="240" x2="110" y2="300"/>
+<line x1="330" y1="130" x2="330" y2="190"/>
+<line x1="490" y1="190" x2="490" y2="130"/>
+<line x1="330" y1="300" x2="330" y2="240"/>
+<line x1="490" y1="240" x2="490" y2="300"/>
+<line x1="730" y1="130" x2="690" y2="190"/>
+<line x1="790" y1="130" x2="830" y2="190"/>
+<line x1="675" y1="240" x2="660" y2="300"/>
+<line x1="705" y1="240" x2="720" y2="300"/>
+<line x1="830" y1="240" x2="830" y2="300"/>
+</g>
+<g font-size="13" font-style="italic">
+<text x="342" y="165">publica</text>
+<text x="502" y="165">lee</text>
+<text x="342" y="275">publica</text>
+<text x="502" y="275">lee</text>
+</g>
+</g>
+</svg>

@@ -1053,3 +1053,27 @@
   feedback: "Para cada uno de los ejemplos de estas evoluciones agreguemos un ejemplo y cual seria la limitacion. Pongamoslo esto en el contexto de un auto majenado."
   resolution: Lámina nueva 1.7 'Un auto autónomo en cada arquitectura': tabla con las cinco arquitecturas, qué haría el auto y dónde se queda corto. Las limitaciones de reflejo simple, objetivos y utilidad salen de corpus/wikipedia-intelligent-agent.web.md; los ejemplos del auto y las limitaciones del reflejo con modelo y del agente que aprende son ilustración de la cátedra, marcada en Sources. 1.6 queda con las definiciones (L1, L8) y la ficha PEAS pasa a 1.8.
   tags: [content-addition, examples, new-slide, slide-split]
+- talk: agentes-y-multiagentes
+  date: 2026-10-05
+  location: Slide "4. El agente racional"
+  feedback: "Agregar "al agente racional como aquel que, para cada secuencia de percepciones posible, elige la acción que se espera que maximice esa medida, dada la evidencia percibida y el conocimiento que trae incorporado. Racional no significa omnisciente ni infalible: significa decidir lo mejor posible con la información disponible. Y como la racionalidad siempre es relativa a una medida de performance, definir bien esa medida es parte central del diseño. Un agente puede ser perfectamente racional y aun así hacer algo indeseable si el criterio de éxito está mal especificado." como quoate antes de "Racionalidad: actuar bien según una medida""
+  resolution: Lámina nueva 1.4 'El agente racional' (plantilla quote) antes de 'Racionalidad: actuar bien según una medida' (hoy 1.5), con el texto del presentador tal cual y una apertura del editor ('Russell y Norvig evalúan a un agente con una medida de performance, y definen al agente racional como aquel que,') porque el fragmento empezaba a mitad de oración y 'esa medida' no tenía antecedente. Sources cita la definición y la no-omnisciencia de corpus/wikipedia-intelligent-agent.web.md y marca como del presentador las dos últimas oraciones. Por L6, 1.5 cambió su lead por 'Qué es racional en cada momento depende de cuatro factores.' y perdió 'Sin ella no hay racionalidad posible.'; la cita 'A rational agent is one that does the right thing...' pasó a las notas de 1.4, y la línea de omnisciencia salió de las notas de 1.7; todo a Cut material. Sección 1 renumerada (1.4–1.8 → 1.5–1.9), referencias, agenda, objetivo y reloj (+1 min, ~122). Riesgo de desborde: ~100 palabras contra ~35 de la plantilla, en Open questions.
+  tags: [content-addition, new-slide, template-selection, remove-redundancy]
+- talk: agentes-y-multiagentes
+  date: 2026-10-05
+  location: Slide "9. Dos agentes, una descripción PEAS"
+  feedback: "Que significa 'La misma ficha sirve para una aspiradora y para un agente LLM.' . Me parece que ficha no es el termino correcto."
+  resolution: 'Ficha' reemplazada por 'descripción PEAS' (la 'PEAS description' de Russell & Norvig): título 1.9 'Dos agentes, una descripción PEAS', lead 'Russell & Norvig describen un agente con cuatro elementos: medida de performance, ambiente (environment), actuadores y sensores (PEAS). La misma descripción vale para una aspiradora y para un agente LLM.', ascii-note, notas de 1.1, 1.3, 1.4 y 1.9, agenda, objetivo de la sección 1 y Open questions. El diagrama no decía 'ficha'. Las 'pilas de fichas' de 8.5 quedan: son otra cosa y ya no hay ambigüedad.
+  tags: [terminology, slide-title, consistency]
+- talk: agentes-y-multiagentes
+  date: 2026-10-05
+  location: Section "2. El agente basado en LLM"
+  feedback: "Borrar 'El agente LLM, formalizado'"
+  resolution: Lámina 2.1 'El agente LLM, formalizado' a Cut material entera, con su diagrama s2-1-1. El contexto quedó definido en una línea en 3.1 (lámina: el texto que el modelo recibe en cada llamada; notas: la secuencia de percepciones de 1.5 con otro nombre, finito y pago por token). Sin la notación o_t, a_t, c_t, π: 4.1 conserva Â = A ∪ L explicado en sus bullets y su diagrama pasa a palabras; 1.6 y 3.1 perdieron la notación en notas; 6.1 dice 'el contexto de un agente'. Vocabulario 'tool' y fecha del paper a las notas de 4.1. Sección 2 renumerada (2.2–2.5 → 2.1–2.4) y referencias corregidas en 1.5, 2.2, 4.4, 4.5, 5.11, 6.1, 7.2, 7.4, 8.2, agenda, objetivo de la sección 2, Conclusions.1 y Open questions; reloj -2 min.
+  tags: [slide-removal, cut, missing-definition, consistency, timing]
+- talk: agentes-y-multiagentes
+  date: 2026-10-05
+  location: Section "4. ReAct"
+  feedback: "Borra 'Qué mostró el paper, y dónde falla'"
+  resolution: Lámina 4.7 'Qué mostró el paper, y dónde falla' a Cut material entera, con sus cifras de HotpotQA (0% contra 56%, 47%, 23%, 29,4 contra 27,4). El 71% contra 45% de ALFWorld sigue en las notas de 4.6, ahora con PaLM-540B y la mejor de 6 corridas; ALFWorld quedó explicado en 4.6 (notas) y en 5.7 (lámina). El puente a la sección 5 (crítica de LangChain) y el cierre de la sección 4 pasaron a las notas de 4.6; 5.1 apunta al cierre de la sección 4. Objetivo de la sección 4, Open questions (cifras históricas, notas largas) y reloj (-2 min) actualizados.
+  tags: [slide-removal, cut, consistency, timing]

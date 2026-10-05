@@ -7,8 +7,8 @@
    no
    v
  Un agente con buenas tools
- (ReAct; planificar o reflexionar si la tarea lo pide;
- skills si tiene muchas especializaciones)
+ (ReAct; planificar o reflexionar
+ si la tarea lo pide)
    |
    v
  ¿La información no entra en un contexto, hay equipos
@@ -17,8 +17,8 @@
    |-- no --> quedarse con un agente
    sí
    v
- Multiagente: subagents, handoffs, router
- (o red adaptativa, pipeline, pizarra, jerarquía)
+ Multiagente: estrella, router, red,
+ pipeline, pizarra o jerarquía
 
 <!-- ascii-note:
 intent: arbol de decision que resume la clase; cada pregunta descarta la opcion mas compleja si la simple alcanza.

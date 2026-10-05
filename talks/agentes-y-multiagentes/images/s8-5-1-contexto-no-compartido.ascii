@@ -1,0 +1,29 @@
+                       Tarea
+                         |
+                         v
+          +------------------------------+
+          | Orquestador: divide la tarea |   [G]
+          +------------------------------+
+                |                  |
+                v                  v
+       +--------------+    +--------------+
+       | Subagente 1  |    | Subagente 2  |
+       +--------------+    +--------------+
+          [G] [B1]            [G] [B2]
+                |                  |
+                v                  v
+          +------------------------------+
+          |  Orquestador: combina        |   [G] [B1] [B2] [P]
+          +------------------------------+
+                         |
+                         v
+                     Resultado
+
+  [G] contexto del orquestador   [B1] [B2] trabajo de cada subtarea
+  [P] trabajo de combinación
+
+<!-- ascii-note:
+intent: cada subagente hereda el contexto del orquestador pero no ve el de su hermano; la pila de fichas junto a cada caja es lo que ese agente puede ver.
+emphasize: que Subagente 1 tiene [G][B1] y NO [B2], y Subagente 2 tiene [G][B2] y NO [B1] (acento rojo en las fichas ausentes); la pila completa aparece recien en la caja que combina.
+labels: leyenda [G] [B1] [B2] [P] al pie.
+-->

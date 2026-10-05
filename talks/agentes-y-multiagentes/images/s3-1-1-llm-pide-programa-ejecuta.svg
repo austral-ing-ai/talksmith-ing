@@ -1,5 +1,5 @@
-<!-- talksmith-ascii-sha256: 6dbc6070cd095ef1fb2e8585fe30a4be23f247995573500004075deb2b18318a -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 478" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<!-- talksmith-ascii-sha256: e8b33d39df42a4cdc882f9d29e787ec5cbebec8a183b2eac3acec764eb3bc634 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 494" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
 <title>Qué es una tool</title>
 <desc>La aclaración que más ordena la sección: el LLM no ejecuta nada.</desc>
 <defs>
@@ -7,7 +7,7 @@
 <path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/>
 </marker>
 </defs>
-<rect x="0" y="0" width="400" height="478" fill="#ffffff"/>
+<rect x="0" y="0" width="400" height="494" fill="#ffffff"/>
 <rect x="30" y="24" width="340" height="56" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="200" y="47" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">contexto</text>
 <text x="200" y="69" text-anchor="middle">instrucciones + descripción de cada tool</text>
@@ -27,6 +27,7 @@
 <text x="200" y="338" text-anchor="middle" font-size="15" fill="#FFFFFF">(ejecuta)</text>
 <line x1="200" y1="352" x2="200" y2="410" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
 <text x="188" y="386" text-anchor="end" font-weight="bold" fill="#1F1E1E">2. ejecuta la tool</text>
-<rect x="70" y="410" width="260" height="44" rx="8" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="200" y="437" text-anchor="middle">API, base de datos, búsqueda</text>
+<rect x="70" y="410" width="260" height="60" rx="8" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="200" y="435" text-anchor="middle">API, base de datos, búsqueda</text>
+<text x="200" y="456" text-anchor="middle" font-style="italic">(el actuador)</text>
 </svg>

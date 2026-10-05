@@ -1,0 +1,16 @@
+          UN AGENTE                       VARIOS AGENTES
+
+ +----------------------------+   +--------+ +--------+ +--------+
+ | prompt general             |   |prompt A| |prompt B| |prompt C|
+ | todas las tools            |   |tools A | |tools B | |tools C |
+ | todo el historial          |   |ctx A   | |ctx B   | |ctx C   |
+ | una tarea por vez          |   +--------+ +--------+ +--------+
+ +----------------------------+       |   en paralelo  |      |
+                                      v          v          v
+                                   resumen    resumen    resumen
+
+<!-- ascii-note:
+intent: contrastar un agente con todo en un solo contexto contra varios agentes con prompt, tools y contexto propios que corren en paralelo y devuelven resumenes.
+emphasize: las tres columnas separadas a la derecha y la etiqueta "en paralelo" (acento rojo); el bloque unico de la izquierda como lo que se parte.
+labels: UN AGENTE, VARIOS AGENTES, prompt general, todas las tools, todo el historial, una tarea por vez, prompt A/B/C, tools A/B/C, ctx A/B/C, resumen.
+-->

@@ -1,0 +1,24 @@
+ +-----------------------------+        +-----------------------------+
+ | AMBIENTE                    |        | AMBIENTE                    |
+ | grilla n×m, parcialmente    |        | digital, simbólico,         |
+ | observable, determinístico  |        | parcialmente observable,    |
+ |                             |        | dinámico                    |
+ +-----------------------------+        +-----------------------------+
+    |                ^                     |                ^
+    | S: suciedad,   | A: motor de         | S: pedido,     | A: texto,
+    |    posición    |    movimiento,      |    contexto,   |    comandos,
+    |                |    motor de         |    resultados  |    llamadas a
+    v                |    succión          v    de tools    |    tools y APIs
+ +-----------------------------+        +-----------------------------+
+ |    Aspiradora autónoma      |        |    LLM con tools            |
+ +-----------------------------+        +-----------------------------+
+ P: +10 limpiar celda sucia             P: calidad, relevancia y
+    −1 moverse                             precisión de las respuestas;
+    −5 aspirar celda limpia                satisfacción del usuario
+    −10 chocar
+
+<!-- ascii-note:
+intent: la descripcion PEAS como dos copias del lazo de la lamina 1.2; mismo esquema, valores distintos para una aspiradora y para un agente LLM.
+emphasize: las flechas S (sensores) y A (actuadores) del lado del agente LLM (acento rojo): son las que lo vuelven agente.
+labels: AMBIENTE arriba, agente abajo, S = sensores, A = actuadores, P = performance al pie; en el LLM, A incluye llamadas a tools y APIs, S incluye resultados de tools.
+-->

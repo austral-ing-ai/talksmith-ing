@@ -189,6 +189,17 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
    pass instead of pushing the picture off the slide. */
 .stage.d-banded>.smedia{order:2;margin-bottom:2.4cqw;min-height:0;flex-shrink:100}
 .stage.d-banded>.cbody{order:3}   /* keeps the base flex:1 1 auto, so the fit pass has a height */
+/* …which is right for a prose caption and wrong for a **structured** body. A card grid or a step
+   list claims its natural height as its flex basis — most of the slide — so the column always
+   overflowed and the 100× shrink sent the whole deficit to the media: the picture collapsed to 0px
+   and vanished, silently, on every banded slide with cards or steps. Such a body is scaled by the
+   fit pass anyway, so it needn't claim anything: both sides start from a zero basis and split the
+   room by weight, the picture fitting its share (`object-fit:contain`) and the body scaling into
+   its own. Same selector the caption box below opts out by. */
+.stage.d-banded:has(>.cbody :is(.cards,.ccicards,.editgrid,.cardrow,.numrow,.steps,.compare,.stats))>.smedia{
+  flex:1 1 0;min-height:10cqw}
+.stage.d-banded:has(>.cbody :is(.cards,.ccicards,.editgrid,.cardrow,.numrow,.steps,.compare,.stats))>.cbody{
+  flex:1.3 1 0;min-height:10cqw}
 .stage.d-banded>.smedia .imgph{width:100%}
 .stage.d-banded>.smedia .imgph :is(img,video,iframe),.stage.d-banded>.smedia .imgph svg{max-height:32cqw}
 /* …and the picture is bounded by the box the flex line actually leaves it, not by that cap alone.
@@ -574,11 +585,12 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
 .explain p{margin:0 0 1.4cqw;font-size:2.5cqw;color:var(--body);line-height:1.35}
 /* ── the code surface (`.codebox`) ────────────────────────────────────────────────────────
    Code is not prose on a card, and the panel stops pretending otherwise: it is a small **editor
-   window** — dark ground, title bar, language badge — in both deck themes and every deck style.
-   That it does not follow the theme is the point. Code is read on a dark editor; black on white
-   reads as a *quotation* of code rather than as code, and the token palette below (VS Code's
-   Dark+) only carries its meaning against a dark ground. `--code-bg` keeps its own job, which is
-   the tint behind *inline* `code` inside a sentence — a different thing at a different size.
+   window** — title bar, language badge, a syntax palette — in both deck themes and every deck
+   style. Its ground **follows the deck theme**: white with VS Code's Light+ palette on a light
+   deck, the dark editor with Dark+ on a dark one. It used to be dark everywhere, on the theory
+   that code reads as code only on a dark editor; projected on a light deck, that black block was
+   the one surface where the text could not be read. `--code-bg` keeps its own job, which is the
+   tint behind *inline* `code` inside a sentence — a different thing at a different size.
    Everything is still a token, so a deck style can repaint the panel without touching markup.
    The `.hljs-*` classes are highlight.js's output vocabulary (vendored, inlined, run in the
    page — see html_style.py "code panels"); this block is the only place their look is decided. */
@@ -586,16 +598,23 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
    room to spare, as a multiple of it. The size below is the size a *full* snippet wants; a short
    one used to be projected at it anyway, leaving a screen of air and an example the back row
    can't read. Raise it for a deck of small snippets, lower it to 1 to pin the panel to the sheet. */
+/* Light+ is the default; the dark deck swaps in Dark+ just below. */
 .codebox{--cb-grow:1.5;
-  --cb-bg:#1E1E1E;--cb-bar:#252526;--cb-fg:#D4D4D4;--cb-hair:#3C3C41;--cb-dim:#8A8A94;
-  --t-com:#6A9955;--t-str:#CE9178;--t-num:#B5CEA8;--t-kw:#569CD6;--t-typ:#4EC9B0;
-  --t-fn:#DCDCAA;--t-var:#9CDCFE;--t-del:#F14C4C;
+  --cb-bg:#FFFFFF;--cb-bar:#F3F3F3;--cb-fg:#1F1F1F;--cb-hair:#D8D8DC;--cb-dim:#6E6E78;
+  --cb-shadow:rgba(0,0,0,.10);--t-strong:#000000;
+  --t-com:#008000;--t-str:#A31515;--t-num:#098658;--t-kw:#0000FF;--t-typ:#267F99;
+  --t-fn:#795E26;--t-var:#001080;--t-del:#CD3131;
   background:var(--cb-bg);color:var(--cb-fg);border-radius:1.6cqw;overflow:hidden;
-  display:flex;flex-direction:column;box-shadow:0 .5cqw 2cqw rgba(0,0,0,.22);
-  /* the hairline is what separates the panel from a *dark* deck, where the ground it sits on is
-     nearly its own colour and the shadow under it is invisible. On a light deck it reads as the
-     window's own edge. */
+  display:flex;flex-direction:column;box-shadow:0 .5cqw 2cqw var(--cb-shadow);
+  /* the hairline is the window's edge: on a light deck it is what separates a white panel from a
+     white slide, and on a dark deck the ground it sits on is nearly the panel's own colour and the
+     shadow under it is invisible. */
   border:.12cqw solid var(--cb-hair)}
+:root[data-deck-theme=dark] .codebox{
+  --cb-bg:#1E1E1E;--cb-bar:#252526;--cb-fg:#D4D4D4;--cb-hair:#3C3C41;--cb-dim:#8A8A94;
+  --cb-shadow:rgba(0,0,0,.22);--t-strong:#FFFFFF;
+  --t-com:#6A9955;--t-str:#CE9178;--t-num:#B5CEA8;--t-kw:#569CD6;--t-typ:#4EC9B0;
+  --t-fn:#DCDCAA;--t-var:#9CDCFE;--t-del:#F14C4C}
 /* The title bar — window dots + the language: an editor's own way of saying "this is code". It
    is **chrome, not content**, so it is sized off `--cb-fs`, the size the code itself ended up at
    (set by `fitCode` after it fits the snippet; the fallback is the authored size, for a page with
@@ -615,7 +634,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
   white-space:pre-wrap;overflow-wrap:anywhere;tab-size:2;overflow:hidden;flex:1 1 auto}
 /* inside the panel `<code>` *is* the panel — none of the inline-chip styling applies to it */
 .cbcode code,.cbcode code.hljs{display:block;background:none;border:0;padding:0;border-radius:0;font-family:inherit;font-size:inherit;color:var(--cb-fg)}
-/* highlight.js token vocabulary → VS Code Dark+ */
+/* highlight.js token vocabulary → VS Code Light+ / Dark+ (the tokens above) */
 .hljs-comment,.hljs-quote{color:var(--t-com);font-style:italic}
 .hljs-keyword,.hljs-literal,.hljs-symbol,.hljs-selector-tag,.hljs-name{color:var(--t-kw)}
 .hljs-built_in,.hljs-type,.hljs-class,.hljs-title.class_,.hljs-title.class_.inherited__{color:var(--t-typ)}
@@ -628,7 +647,7 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
    code spans they sit next to, so a step reads as a step and a `field` reads as a value. */
 .hljs-bullet{color:var(--t-var)}
 .hljs-code{color:var(--t-str)}
-.hljs-strong{color:#fff}
+.hljs-strong{color:var(--t-strong)}
 .hljs-attr,.hljs-attribute,.hljs-variable,.hljs-template-variable,.hljs-property,.hljs-params,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id{color:var(--t-var)}
 .hljs-tag{color:var(--cb-dim)}
 .hljs-deletion{color:var(--t-del)}.hljs-addition{color:var(--t-com)}
@@ -856,15 +875,15 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/agentes-y-multiagentes/output/html/index.html">
         <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Agentes y sistemas multiagente</p>        <p class="dmeta">
-<span>59 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-10-04</span>
+<span>64 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-10-04</span>
         </p>
       </a>
     </li>
     <li>
-      <a class="deck draft" href="talks/sistemas-multiagente/output/html/index.html">
-        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
-<p class="dsub">Sistemas multiagente: especialización, contexto y orquestación</p>        <p class="dmeta">
-<span class="badge">en progreso</span><span>56 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-10-04</span>
+      <a class="deck" href="talks/sistemas-multiagente/output/html/index.html">
+        <p class="dt">sistemas multiagente</p>
+        <p class="dmeta">
+          <span>renderizada 2026-10-04</span>
         </p>
       </a>
     </li>
@@ -872,7 +891,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/como-se-entrena-un-llm/output/html/index.html">
         <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Clase 9: Cómo se entrena un LLM</p>        <p class="dmeta">
-<span>59 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-09-30</span>
+<span>59 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-09-29</span>
         </p>
       </a>
     </li>
@@ -888,23 +907,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/rag-mcp-rapida/output/html/index.html">
         <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Clase 7: MCP y herramientas, con repaso de RAG</p>        <p class="dmeta">
-<span>31 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-09-16</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="deck" href="talks/rag-y-mcp/output/html/index.html">
-        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
-<p class="dsub">RAG y MCP: recuperar contexto y conectar herramientas</p>        <p class="dmeta">
-<span>70 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-09-16</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="deck" href="talks/prompting/output/html/index.html">
-        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
-<p class="dsub">Trabajar con LLMs: prompts, costos y producción</p>        <p class="dmeta">
-<span>71 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-09-16</span>
+<span>31 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-09-23</span>
         </p>
       </a>
     </li>
@@ -912,15 +915,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/palabra-al-transformer/output/html/index.html">
         <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">De la palabra al transformer</p>        <p class="dmeta">
-<span>36 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-09-16</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="deck" href="talks/modelado-redes-neuronales/output/html/index.html">
-        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
-<p class="dsub">Universidad Austral</p><p class="dsub">Modelado de un Multi-Layer Perceptron (MLP)</p>        <p class="dmeta">
-<span>63 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-09-16</span>
+<span>36 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-09-04</span>
         </p>
       </a>
     </li>
@@ -928,15 +923,31 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/intro-redes-neuronales/output/html/index.html">
         <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Introducción a las Redes Neuronales Artificiales (ANN)</p>        <p class="dmeta">
-<span>50 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Marcos Sanchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-09-16</span>
+<span>50 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Marcos Sanchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-09-04</span>
         </p>
       </a>
     </li>
     <li>
-      <a class="deck" href="talks/introduccion/output/html/index.html">
+      <a class="deck" href="talks/modelado-redes-neuronales/output/html/index.html">
         <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
-<p class="dsub">Universidad Austral</p><p class="dsub">Clase 1: Bienvenidos / Introducción</p>        <p class="dmeta">
-<span>61 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-09-02</span>
+<p class="dsub">Universidad Austral</p><p class="dsub">Modelado de un Multi-Layer Perceptron (MLP)</p>        <p class="dmeta">
+<span>63 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-09-04</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a class="deck" href="talks/rag-y-mcp/output/html/index.html">
+        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
+<p class="dsub">RAG y MCP: recuperar contexto y conectar herramientas</p>        <p class="dmeta">
+<span>70 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-09-04</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a class="deck" href="talks/prompting/output/html/index.html">
+        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
+<p class="dsub">Trabajar con LLMs: prompts, costos y producción</p>        <p class="dmeta">
+<span>71 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span>renderizada 2026-09-04</span>
         </p>
       </a>
     </li>
@@ -944,7 +955,15 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/cowork-intro/output/html/index.html">
         <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Clase 2: Agentes de código y la misión Corta</p>        <p class="dmeta">
-<span>33 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-09-02</span>
+<span>33 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-26</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a class="deck" href="talks/introduccion/output/html/index.html">
+        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
+<p class="dsub">Universidad Austral</p><p class="dsub">Clase 1: Bienvenidos / Introducción</p>        <p class="dmeta">
+<span>61 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-26</span>
         </p>
       </a>
     </li>
@@ -952,7 +971,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/claude-desktop-chat/output/html/index.html">
         <p class="dt">Agentes Inteligentes</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Claude Desktop - Chat</p>        <p class="dmeta">
-<span>32 diapositivas</span><span class="sep">·</span><span>Paulo Veiga y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-11</span>
+<span>32 diapositivas</span><span class="sep">·</span><span>Paulo Veiga y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-12</span>
         </p>
       </a>
     </li>
@@ -960,7 +979,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/claude-cowork/output/html/index.html">
         <p class="dt">Agentes Inteligentes</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Claude Cowork</p>        <p class="dmeta">
-<span>31 diapositivas</span><span class="sep">·</span><span>Paulo Veiga y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-11</span>
+<span>31 diapositivas</span><span class="sep">·</span><span>Paulo Veiga y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span>renderizada 2026-08-12</span>
         </p>
       </a>
     </li>

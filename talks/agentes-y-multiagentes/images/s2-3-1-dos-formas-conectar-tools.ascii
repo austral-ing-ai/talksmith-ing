@@ -1,0 +1,27 @@
+     EL CÓDIGO DECIDE                EL LLM DECIDE
+
+        Pedido                          Pedido
+          |                               |
+          v                               v
+    +------------+                 +-------------+
+    | 1. LLM     |                 |     LLM     | <------+
+    +------------+                 | elige el    |        |
+          |                        | próximo paso|        |
+          v                        +-------------+        |
+    +------------+                   |         |          |
+    | 2. tool    |            alcanza|         | pide     |
+    +------------+                   |         v          |
+          |                          |   +-----------+    |
+          v                          |   |   tool    |----+
+    +------------+                   |   +-----------+
+    | 3. LLM     |                   |    resultado al contexto
+    +------------+                   v
+          |                      Respuesta
+          v
+      Respuesta
+
+<!-- ascii-note:
+intent: las mismas piezas (LLM y tools) conectadas de dos formas; a la izquierda el codigo fija la secuencia, a la derecha el LLM elige en un loop.
+emphasize: la caja "LLM elige el proximo paso" (acento rojo) y la flecha que vuelve de la tool al LLM.
+labels: EL CODIGO DECIDE, EL LLM DECIDE, Pedido, pasos 1-3, tool, alcanza / pide, resultado al contexto, Respuesta.
+-->

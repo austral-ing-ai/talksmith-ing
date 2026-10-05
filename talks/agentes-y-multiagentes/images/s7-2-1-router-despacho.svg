@@ -1,0 +1,36 @@
+<!-- talksmith-ascii-sha256: b89088c55dc063d17ac0b8ac1359a1fb4493ee2d253c3604f3d3eea30c7a28f1 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 452" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Router: despacho</title>
+<desc>Es el routing de la lámina 2.4 con un agente en cada salida: el router clasifica el pedido una sola vez y lo despacha al especialista que corresponde.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="680" height="452" fill="#ffffff"/>
+<rect x="280" y="20" width="120" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="340" y="41" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Pedido</text>
+<line x1="340" y1="52" x2="340" y2="96" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="190" y="96" width="300" height="74" rx="10" fill="#DA1B2E"/>
+<text x="340" y="127" text-anchor="middle" font-size="20" font-weight="bold" fill="#FFFFFF">Router</text>
+<text x="340" y="152" text-anchor="middle" fill="#FFFFFF">clasifica el pedido</text>
+<path d="M240,170 V205 H120 V260" fill="none" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<g fill="none" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="6 5">
+<path d="M340,170 V260"/>
+<path d="M440,170 V205 H560 V260"/>
+</g>
+<text x="180" y="197" text-anchor="middle" font-size="13" font-style="italic">elige una salida</text>
+<rect x="20" y="260" width="200" height="86" rx="10" fill="#F2EEEE" stroke="#3B3535" stroke-width="2"/>
+<text x="120" y="296" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Consultas generales</text>
+<text x="120" y="320" text-anchor="middle" font-size="13">prompt y tools propios</text>
+<rect x="240" y="260" width="200" height="86" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="340" y="296" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Reembolso</text>
+<text x="340" y="320" text-anchor="middle" font-size="13">prompt y tools propios</text>
+<rect x="460" y="260" width="200" height="86" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="560" y="296" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Soporte técnico</text>
+<text x="560" y="320" text-anchor="middle" font-size="13">prompt y tools propios</text>
+<line x1="120" y1="346" x2="120" y2="400" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="50" y="400" width="140" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="120" y="421" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Respuesta</text>
+<text x="206" y="421" font-size="13" font-style="italic">sin volver al router</text>
+</svg>

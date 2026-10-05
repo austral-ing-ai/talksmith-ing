@@ -15,9 +15,10 @@
                         |
                         v
           2. API, base de datos, búsqueda
+             (el actuador)
 
 <!-- ascii-note:
 intent: separar quien decide (el LLM) de quien ejecuta (el programa); el LLM solo emite el pedido.
 emphasize: la caja programa (ejecuta) en rojo, porque es la que la sala suele olvidar; las tres flechas numeradas.
-labels: contexto, LLM, programa (ejecuta), pasos 1-3.
+labels: contexto, LLM, programa (ejecuta), pasos 1-3, el actuador.
 -->

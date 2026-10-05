@@ -1,0 +1,59 @@
+<!-- talksmith-ascii-sha256: 9facd32f372c159f1453ffc647a5312d60f62c47f12cf353405c8dcb0522b41c -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 580" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>El prompt completo y el corte</title>
+<desc>Es el loop de ReAct de la lámina 4.2 en código de 2022: un solo texto de completado, el modelo escribe Thought y Action, la generación corta en Observation y el código pega la observación.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" viewBox="0 0 14 14" refX="14" refY="7" orient="auto">
+<path d="M0,0 L14,7 L0,14 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="580" height="580" fill="#ffffff"/>
+<text x="20" y="31" font-style="italic">un solo texto de completado</text>
+<rect x="20" y="42" width="410" height="226" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<g stroke="#D8D2CE" stroke-width="1.5">
+<line x1="20" y1="102" x2="430" y2="102"/>
+<line x1="20" y1="194" x2="430" y2="194"/>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="12" fill="#1F1E1E">
+<text x="34" y="66">Solve a question answering task ... three types:</text>
+<text x="34" y="86">(1) Search[entity] (2) Lookup[keyword] (3) Finish</text>
+<text x="34" y="124">Question: ... Milhouse, who Matt Groening named</text>
+<text x="34" y="142" xml:space="preserve">  after who?</text>
+<text x="34" y="160">Thought 1 / Action 1 / Observation 1 ...</text>
+<text x="34" y="180">Action 3: Finish[Richard Nixon]</text>
+<text x="34" y="216">Question: Aside from the Apple Remote, what other</text>
+<text x="34" y="234" xml:space="preserve">  device can control the program ...?</text>
+<text x="34" y="254">Thought 1:</text>
+</g>
+<text x="416" y="180" text-anchor="end" font-size="12" font-style="italic">(y 5 más)</text>
+<g stroke="#3B3535" stroke-width="1.5" fill="none">
+<path d="M440,50 H446 V94 H440"/>
+<path d="M440,110 H446 V186 H440"/>
+<path d="M440,202 H446 V260 H440"/>
+</g>
+<text x="458" y="68">instrucción</text>
+<text x="458" y="85">(3 tools)</text>
+<text x="458" y="144">6 ejemplos</text>
+<text x="458" y="161">escritos a mano</text>
+<text x="458" y="227">pregunta</text>
+<text x="458" y="244">nueva</text>
+<line x1="225" y1="268" x2="225" y2="312" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="237" y="295" font-style="italic">el LLM continúa el texto</text>
+<rect x="40" y="312" width="370" height="58" rx="6" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1.5"/>
+<g font-family="'Andale Mono', monospace" font-size="12" fill="#1F1E1E">
+<text x="56" y="336">Thought 1: I need to search Apple Remote ...</text>
+<text x="56" y="356">Action 1: Search[Apple Remote]</text>
+</g>
+<line x1="225" y1="370" x2="225" y2="420" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ahr)"/>
+<text x="239" y="400" font-weight="bold" fill="#DA1B2E">se detiene en <tspan font-family="'Andale Mono', monospace" font-size="12">"Observation 1:"</tspan></text>
+<rect x="20" y="420" width="410" height="60" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="34" y="444">el código ejecuta <tspan font-family="'Andale Mono', monospace" font-size="12" fill="#1F1E1E">search[Apple Remote]</tspan> en Wikipedia</text>
+<text x="34" y="466">y agrega <tspan font-family="'Andale Mono', monospace" font-size="12" fill="#1F1E1E">"Observation 1: The Apple Remote is ..."</tspan></text>
+<line x1="225" y1="480" x2="225" y2="524" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="237" y="507" font-style="italic">nueva llamada con <tspan font-family="'Andale Mono', monospace" font-size="12" font-style="normal">"Thought 2:"</tspan></text>
+<rect x="85" y="524" width="280" height="36" rx="18" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="112.5" y="547" font-size="14" fill="#1F1E1E">sigue hasta <tspan font-family="'Andale Mono', monospace" font-size="13">Finish[...]</tspan> o 7 pasos</text>
+</svg>

@@ -1,0 +1,52 @@
+<!-- talksmith-ascii-sha256: 7556ff0b18db96e11e6e577be7470c909429f6e41aab9a156e418a496ddb8c02 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 708 383" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Dos formas de conectar un LLM con tools</title>
+<desc>A la izquierda, el LLM está embebido en pasos fijos; a la derecha, el LLM elige en un loop qué tool usar y cuándo alcanza para responder.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" viewBox="0 0 14 14" refX="14" refY="7" orient="auto">
+<path d="M0,0 L14,7 L0,14 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="708" height="383" fill="#ffffff"/>
+<g transform="translate(-50,-9)">
+<text x="150" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E" letter-spacing="1">EL CÓDIGO DECIDE</text>
+<text x="490" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E" letter-spacing="1">EL LLM DECIDE</text>
+<line x1="275" y1="34" x2="275" y2="372" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="95" y="64" width="110" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="150" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Pedido</text>
+<rect x="75" y="124" width="150" height="44" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="150" y="152" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">1. LLM</text>
+<rect x="75" y="196" width="150" height="44" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="150" y="224" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">2. tool</text>
+<rect x="75" y="268" width="150" height="44" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="150" y="296" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">3. LLM</text>
+<rect x="90" y="340" width="120" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="150" y="361" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Respuesta</text>
+<rect x="375" y="64" width="110" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="430" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Pedido</text>
+<rect x="340" y="124" width="180" height="72" rx="10" fill="#DA1B2E"/>
+<text x="430" y="154" text-anchor="middle" font-size="18" font-weight="bold" fill="#FFFFFF">LLM</text>
+<text x="430" y="178" text-anchor="middle" fill="#FFFFFF">elige el próximo paso</text>
+<rect x="430" y="250" width="140" height="44" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="500" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">tool</text>
+<rect x="320" y="340" width="120" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="380" y="361" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Respuesta</text>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="150" y1="96" x2="150" y2="124"/>
+<line x1="150" y1="168" x2="150" y2="196"/>
+<line x1="150" y1="240" x2="150" y2="268"/>
+<line x1="150" y1="312" x2="150" y2="340"/>
+<line x1="430" y1="96" x2="430" y2="124"/>
+<line x1="380" y1="196" x2="380" y2="340"/>
+<line x1="480" y1="196" x2="480" y2="250"/>
+</g>
+<text x="370" y="272" text-anchor="end" font-size="13" font-style="italic">alcanza</text>
+<text x="490" y="228" font-size="13" font-style="italic">pide</text>
+<path d="M570,272 H640 V160 H520" fill="none" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ahr)"/>
+<text x="652" y="210" font-weight="bold" fill="#DA1B2E">resultado</text>
+<text x="652" y="228" font-weight="bold" fill="#DA1B2E">al contexto</text>
+</g>
+</svg>

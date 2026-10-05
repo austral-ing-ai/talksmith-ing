@@ -1,0 +1,24 @@
+  Pedido
+    |
+    v
+ +----------+   lista de pasos   +--------------------+
+ | Planner  | -----------------> | Executor           |
+ |  (LLM)   |   1. ...           | un paso a la vez,  |
+ +----------+   2. ...           | con sus tools      |
+      ^         3. ...           +--------------------+
+      |                                    |
+      |                                    v resultados
+      |                          +--------------------+
+      +------ replanificar ----- | Re-planner (LLM)   |
+                                 | ¿terminó?          |
+                                 +--------------------+
+                                           |
+                                           v  sí
+                                 Respuesta al usuario
+
+<!-- ascii-note:
+intent: separar el planner de la ejecucion; el LLM grande planifica al inicio y al replanificar, no despues de cada accion.
+emphasize: la caja Planner en rojo; la flecha de replanificar que cierra el lazo largo.
+labels: Pedido, Planner (LLM), lista de pasos, Executor, Re-planner (LLM), Respuesta al usuario.
+consistency: mismo lienzo y tratamiento de cajas que el diagrama de ReAct (4.1).
+-->

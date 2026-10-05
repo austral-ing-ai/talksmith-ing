@@ -1,0 +1,33 @@
+ +------------------------------------------------------+
+ | Solve a question answering task ... three types:     |  instrucción
+ | (1) Search[entity] (2) Lookup[keyword] (3) Finish    |  (3 tools)
+ +------------------------------------------------------+
+ | Question: ... Milhouse, who Matt Groening named      |  6 ejemplos
+ |   after who?                                         |  escritos
+ | Thought 1 / Action 1 / Observation 1 ...             |  a mano
+ | Action 3: Finish[Richard Nixon]          (y 5 más)   |
+ +------------------------------------------------------+
+ | Question: Aside from the Apple Remote, what other    |  pregunta
+ |   device can control the program ...?                |  nueva
+ | Thought 1:                                           |
+ +------------------------------------------------------+
+                           |
+                           |  el LLM continúa el texto
+                           v
+     Thought 1: I need to search Apple Remote ...
+     Action 1: Search[Apple Remote]
+                           |
+                           |  se detiene en "Observation 1:"
+                           v
+     el código ejecuta search[Apple Remote] en Wikipedia
+     y agrega "Observation 1: The Apple Remote is ..."
+                           |
+                           |  nueva llamada con "Thought 2:"
+                           v
+          sigue hasta Finish[...] o 7 pasos
+
+<!-- ascii-note:
+intent: un solo texto de completado armado con tres bloques (instruccion, ejemplos, pregunta); el modelo escribe Thought y Action, la generacion corta en "Observation 1:" y el codigo pega la observacion antes de la llamada siguiente.
+emphasize: el corte "se detiene en Observation 1:" en rojo; los tres bloques del prompt apilados como un unico texto.
+labels: instruccion (3 tools), 6 ejemplos escritos a mano, pregunta nueva, Thought 1, Action 1, Observation 1, Finish o 7 pasos.
+-->

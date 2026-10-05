@@ -429,3 +429,49 @@
     capturar OSError por asset como cualquier otro fallo de descarga
   seen: 1
   plugin_version: 1.0.3
+
+- id: BUG-20261004-14
+  status: ABIERTO
+  date: 2026-10-04
+  talk: agentes-y-multiagentes
+  step: 6 (Polish, 3ª pasada)
+  where: agents/diagram-illustrator.md (cadena "illustrator → block subagent → critic") + polish_ascii.py stamp-renders
+  what: (a) los block subagents general-purpose no tienen la tool Agent, así que no pueden
+    lanzar el diagram-critic que la spec les asigna ("ToolSearch select:Agent → No matching
+    deferred tools found"); el illustrator lanzó el critic él mismo, y un subagente lo corrió
+    headless con `claude -p --agent talksmith:diagram-critic`;
+    (b) stamp-renders no tiene filtro por bloque: estampa todo SVG existente del plan, incluido
+    un render viejo en un basename que está por re-renderizarse, que queda marcado como vigente
+    y nunca se re-renderiza;
+    (c) un critique log copiado a un basename nuevo conserva el H1 viejo
+  context: 19 diagramas tras renumeración; 4 block subagents reportaron el error de (a)
+  expected: critic ciego invocable desde donde la spec lo pone; stamping selectivo
+  actual: lo descripto
+  repro: (a) desde el illustrator, despachar un block subagent general-purpose y pedirle lanzar
+    talksmith:diagram-critic; (b) correr stamp-renders antes de que terminen los renders de
+    s3-1-1 / sc-2-1
+  impact: degraded — el loop de crítica depende de workarounds del coordinador
+  suggested_fix: SUGGESTION, unverified — que el coordinador lance el critic entre el render y
+    la revisión; `stamp-renders --only <ids>` o saltear SVGs más viejos que su sidecar .ascii;
+    reescribir el H1 al copiar un log
+  seen: 1
+  plugin_version: 1.0.3
+
+- id: BUG-20261004-15
+  status: ABIERTO
+  date: 2026-10-04
+  talk: agentes-y-multiagentes
+  step: 7 (Render, 3ª pasada)
+  where: skills/md-to-deck/templates/html/concept-columns.j2 vs config/pptx-styles/slide-templates.md (concept-columns)
+  what: el catálogo dice "§17 icons are not used — a definition column is anchored by its term,
+    not by a glyph", pero el render HTML dibuja un ícono antes de cada término de columna
+  context: slide 7.6 (deck 53): chevron genérico antes de "Debate" y un glifo tipo jeringa antes
+    de "Mixture-of-Agents"
+  expected: columnas sin ícono
+  actual: íconos arbitrarios inferidos
+  repro: renderizar cualquier slide concept-columns sin campo `icon`
+  impact: cosmetic — íconos sin sentido en pantalla
+  suggested_fix: SUGGESTION, unverified — quitar el ícono de concept-columns.j2, o actualizar el
+    catálogo si es intencional
+  seen: 1
+  plugin_version: 1.0.3

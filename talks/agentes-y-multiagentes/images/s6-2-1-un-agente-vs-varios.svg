@@ -1,0 +1,54 @@
+<!-- talksmith-ascii-sha256: 799eb1d3183ee0d12d35745fe7e6520921a50df79421cfa6e886a8538f672be6 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 724 323" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>Qué es un sistema multiagente</title>
+<desc>El agente de las secciones 3 a 5 a la izquierda; su prompt, sus tools y su historial se reparten entre varios agentes que corren en paralelo y devuelven un resumen.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="724" height="323" fill="#ffffff"/>
+<text x="130" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E" letter-spacing="1">UN AGENTE</text>
+<text x="511" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E" letter-spacing="1">VARIOS AGENTES</text>
+<rect x="20" y="52" width="220" height="136" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="40" y="84">prompt general</text>
+<text x="40" y="112">todas las tools</text>
+<text x="40" y="140">todo el historial</text>
+<text x="40" y="168">una tarea por vez</text>
+<rect x="318" y="44" width="386" height="122" rx="12" fill="none" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="6 4"/>
+<line x1="240" y1="105" x2="318" y2="105" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="279" y="94" text-anchor="middle" font-size="13" font-style="italic">se reparte</text>
+<g fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2.5">
+<rect x="330" y="52" width="110" height="106" rx="8"/>
+<rect x="456" y="52" width="110" height="106" rx="8"/>
+<rect x="582" y="52" width="110" height="106" rx="8"/>
+</g>
+<g text-anchor="middle">
+<text x="385" y="84">prompt A</text>
+<text x="385" y="110">tools A</text>
+<text x="385" y="136">ctx A</text>
+<text x="511" y="84">prompt B</text>
+<text x="511" y="110">tools B</text>
+<text x="511" y="136">ctx B</text>
+<text x="637" y="84">prompt C</text>
+<text x="637" y="110">tools C</text>
+<text x="637" y="136">ctx C</text>
+</g>
+<g stroke="#3B3535" stroke-width="2" marker-end="url(#ah)">
+<line x1="385" y1="158" x2="385" y2="226"/>
+<line x1="511" y1="158" x2="511" y2="226"/>
+<line x1="637" y1="158" x2="637" y2="226"/>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="337" y="226" width="96" height="30" rx="15"/>
+<rect x="463" y="226" width="96" height="30" rx="15"/>
+<rect x="589" y="226" width="96" height="30" rx="15"/>
+</g>
+<g text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">
+<text x="385" y="246">resumen</text>
+<text x="511" y="246">resumen</text>
+<text x="637" y="246">resumen</text>
+</g>
+<path d="M337,268 V276 H685 V268" fill="none" stroke="#DA1B2E" stroke-width="2"/>
+<text x="511" y="300" text-anchor="middle" font-size="16" font-weight="bold" fill="#DA1B2E">en paralelo</text>
+</svg>

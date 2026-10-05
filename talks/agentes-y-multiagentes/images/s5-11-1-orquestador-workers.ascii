@@ -1,0 +1,28 @@
+                    Pedido
+                       |
+                       v
+            +----------------------+
+            |  Orquestador (LLM)   |
+            |  decide subtareas    |
+            +----------------------+
+               |         |        |
+               v         v        v
+         +--------+ +--------+ +--------+
+         |Worker 1| |Worker 2| |Worker 3|
+         +--------+ +--------+ +--------+
+               |         |        |
+               v         v        v
+            +----------------------+
+            |  Orquestador:        |
+            |  sintetiza           |
+            +----------------------+
+                       |
+                       v
+                   Respuesta
+
+<!-- ascii-note:
+intent: fan-out / fan-in; las subtareas no estan predefinidas, las decide el orquestador para cada pedido.
+emphasize: el orquestador en rojo arriba y abajo (es el mismo agente); los workers en paralelo.
+labels: Pedido, Orquestador (LLM), Worker 1-3, sintetiza, Respuesta.
+consistency: mismo lienzo y tratamiento de cajas que los otros cuatro tipos (4.1, 5.2, 5.5 y 5.8).
+-->

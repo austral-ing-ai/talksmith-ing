@@ -1,0 +1,67 @@
+<!-- talksmith-ascii-sha256: 30f6de39587a15b18b95ae50db051bf4d3deb3751632445a4f73a940fff33787 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 424" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>La misma descripción PEAS, dos agentes</title>
+<desc>El diagrama responde el quiz del arranque: la descripción PEAS como dos copias del lazo agente-ambiente, una para una aspiradora y otra para un agente LLM.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" viewBox="0 0 14 14" refX="14" refY="7" orient="auto">
+<path d="M0,0 L14,7 L0,14 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="740" height="424" fill="#ffffff"/>
+<rect x="20" y="20" width="330" height="102" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="185" y="46" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E" letter-spacing="1">AMBIENTE</text>
+<text x="38" y="72">grilla n<tspan font-family="'Arial Unicode MS', sans-serif">×</tspan>m, parcialmente observable,</text>
+<text x="38" y="91">determinístico</text>
+<rect x="390" y="20" width="330" height="102" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="555" y="46" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E" letter-spacing="1">AMBIENTE</text>
+<text x="408" y="72">digital, simbólico,</text>
+<text x="408" y="91">parcialmente observable,</text>
+<text x="408" y="110">dinámico</text>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="60" y1="122" x2="60" y2="262"/>
+<line x1="210" y1="262" x2="210" y2="122"/>
+</g>
+<g stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#ahr)">
+<line x1="430" y1="122" x2="430" y2="262"/>
+<line x1="580" y1="262" x2="580" y2="122"/>
+</g>
+<g font-weight="bold" fill="#1F1E1E">
+<text x="72" y="158">S · sensores</text>
+<text x="222" y="158">A · actuadores</text>
+</g>
+<g font-weight="bold" fill="#DA1B2E">
+<text x="442" y="158">S · sensores</text>
+<text x="592" y="158">A · actuadores</text>
+</g>
+<g font-style="italic">
+<text x="72" y="178">suciedad,</text>
+<text x="72" y="195">posición</text>
+<text x="222" y="178">motor de</text>
+<text x="222" y="195">movimiento,</text>
+<text x="222" y="212">motor de succión</text>
+<text x="442" y="178">pedido,</text>
+<text x="442" y="195">contexto,</text>
+<text x="442" y="212">resultados</text>
+<text x="442" y="229">de tools</text>
+<text x="592" y="178">texto,</text>
+<text x="592" y="195">comandos,</text>
+<text x="592" y="212">llamadas a</text>
+<text x="592" y="229">tools y APIs</text>
+</g>
+<rect x="20" y="262" width="330" height="52" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="185" y="294" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">Aspiradora autónoma</text>
+<rect x="390" y="262" width="330" height="52" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="555" y="294" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">LLM con tools</text>
+<g>
+<text x="24" y="342"><tspan font-weight="bold" fill="#1F1E1E">P:</tspan> +10 limpiar celda sucia</text>
+<text x="46" y="362"><tspan font-family="'Arial Unicode MS', sans-serif">−</tspan>1 moverse</text>
+<text x="46" y="382"><tspan font-family="'Arial Unicode MS', sans-serif">−</tspan>5 aspirar celda limpia</text>
+<text x="46" y="402"><tspan font-family="'Arial Unicode MS', sans-serif">−</tspan>10 chocar</text>
+<text x="394" y="342"><tspan font-weight="bold" fill="#1F1E1E">P:</tspan> calidad, relevancia y precisión</text>
+<text x="416" y="362">de las respuestas; satisfacción</text>
+<text x="416" y="382">del usuario</text>
+</g>
+</svg>
