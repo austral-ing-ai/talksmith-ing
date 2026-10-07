@@ -475,3 +475,23 @@
     catálogo si es intencional
   seen: 1
   plugin_version: 1.0.3
+
+- id: BUG-20261007-01
+  status: ABIERTO
+  date: 2026-10-07
+  talk: agentes-y-multiagentes
+  step: 7 (Render, 4ª pasada)
+  where: skills/md-to-deck — plantilla quote (catálogo vs código de ajuste; templates/html/quote)
+  what: (a) el catálogo dice que quote "does not shrink to fit", pero el fit del deck la achica
+    hasta 40%; (b) el achique escala el bloque entero en vez de re-envolver el texto, así que una
+    cita larga queda como una columna angosta con ancho sin usar; (c) quote descarta en silencio
+    el título del slide (el campo se acepta y no se renderiza) y ninguna auditoría lo marca
+  context: slide 1.4 "El agente racional" (~61 palabras)
+  expected: doc y código coherentes; re-wrap al ancho disponible; aviso si un título no se muestra
+  actual: lo descripto
+  repro: renderizar un slide quote con ~60 palabras y un título
+  impact: minor — legible, pero el título no se ve y la cita queda angosta
+  suggested_fix: SUGGESTION, unverified — alinear el catálogo; ajustar con font-size + re-wrap;
+    que field_coverage marque title ignorado en quote
+  seen: 1
+  plugin_version: 1.0.3

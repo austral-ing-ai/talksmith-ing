@@ -1077,3 +1077,39 @@
   feedback: "Borra 'Qué mostró el paper, y dónde falla'"
   resolution: Lámina 4.7 'Qué mostró el paper, y dónde falla' a Cut material entera, con sus cifras de HotpotQA (0% contra 56%, 47%, 23%, 29,4 contra 27,4). El 71% contra 45% de ALFWorld sigue en las notas de 4.6, ahora con PaLM-540B y la mejor de 6 corridas; ALFWorld quedó explicado en 4.6 (notas) y en 5.7 (lámina). El puente a la sección 5 (crítica de LangChain) y el cierre de la sección 4 pasaron a las notas de 4.6; 5.1 apunta al cierre de la sección 4. Objetivo de la sección 4, Open questions (cifras históricas, notas largas) y reloj (-2 min) actualizados.
   tags: [slide-removal, cut, consistency, timing]
+- talk: agentes-y-multiagentes
+  date: 2026-10-07
+  location: Slide "3. Multiagente: orquestador y workers"
+  feedback: "El slide 'Multiagente: orquestador y workers' parece que tendria que ir mas en la seccion Limites de Agente. Se esta introdiciendo y no luego se explica."
+  resolution: Orquestador con workers (ex 5.12/5.13) movido a la sección 6 como 6.3/6.4, justo después de definir sistema multiagente (6.2), y presentado como la forma básica de un sistema multiagente, no como tipo de agente; 'Primero, un solo agente' pasa a 6.5. Sección 5 renombrada 'Otros tres tipos' (5.1 ya no anuncia un quinto tipo; pausa al cierre de 5.11, a los ~66 min). 7.1 retitulada 'Estrella: orquestador y subagentes' con puntero a 6.3 y sin redefinir subagente. Agenda, metas de 4 a 6, Conclusions.1 y referencias (2.3, 6.2, 7.1, 7.6, 8.4, Open questions) actualizadas; recortes a Cut material.
+  tags: [slide-ordering, structure, consistency, remove-redundancy]
+- talk: agentes-y-multiagentes
+  date: 2026-10-07
+  location: Section "6. Sistemas multiagente"
+  feedback: "Creo que la seccion Limites de Agente y Architecturas de Communication serian una sola que seria Sistemas Mutiagentes."
+  resolution: Secciones 6 y 7 fusionadas en '6. Sistemas multiagente' (11 láminas): contexto que se degrada, qué es un sistema multiagente, orquestador con workers y dónde aparece, estrella, router, red, pizarra, pipeline y jerarquía, la tabla comparativa, y 'Primero, un solo agente' como cierre antes de 'Cuándo repartir' (hoy sección 7). Meta nueva, agenda (lista y narrativa), referencias cruzadas, Conclusions y Open questions renumeradas; el feedback de la ex sección 7 pasó a este encabezado. Reloj: la sección 6 cierra a los ~100 min, la 7 a los ~113, total ~118.
+  tags: [structure, slide-ordering, consistency]
+- talk: agentes-y-multiagentes
+  date: 2026-10-07
+  location: Section "6. Sistemas multiagente"
+  feedback: "Borra el slide 'Varios modelos sobre una misma pregunta'"
+  resolution: Lámina 'Varios modelos sobre una misma pregunta' (ex 7.6, debate y Mixture-of-Agents) pasada entera a Cut material con sus cifras, que ninguna otra lámina citaba. Salieron su mención en la agenda y en la meta de la sección, y su ítem de Open questions.
+  tags: [slide-removal, cut, scope]
+- talk: agentes-y-multiagentes
+  date: 2026-10-07
+  location: Slide "8. Pizarra: publicar y leer"
+  feedback: "pizarra como expandilo en su propio slide. Creo que es bastante interesante."
+  resolution: Lámina nueva 6.8 'Pizarra: publicar y leer', después de la red: cards Publicar, Suscribirse y Activarse, diagrama ASCII nuevo (cuatro roles de MetaGPT alrededor de una pizarra, sin flechas entre agentes) y notas con el pool de mensajes de MetaGPT, el teléfono descompuesto y el information overload, todo de corpus/metagpt-2023.web.md. La ex 7.4 queda 'Pipeline y jerarquía' (6.9), sin la card ni el panel de pizarra (diagrama y ascii-note editados); la tabla 6.10 ordena sus filas como las láminas. El origen clásico de la pizarra no está en el corpus (Open questions).
+  tags: [new-slide, slide-split, expand-content, ascii-diagram]
+- talk: agentes-y-multiagentes
+  date: 2026-10-07
+  location: Slide "4. Compartir el contexto no alcanza"
+  feedback: "Este slide 'Compartir el contexto no alcanza' no deberia ir antes en el talk track de la seccion. Revisa"
+  resolution: Lámina movida de 8.5 a 7.4, entre 'El aislamiento hay que configurarlo' (7.3) y el debate (7.5). La sección queda: precio, fallas, aislamiento, lo que el aislamiento corta (el ejemplo de Flappy Bird de Cognition), el debate y la regla de lee o escribe. Así el ejemplo llega antes de la tabla que resume el argumento de Cognition, y 7.6 sigue resolviendo el debate justo después de plantearlo. Notas de 7.3, 7.4 y 7.5 con transiciones nuevas; Open questions y agenda actualizadas.
+  tags: [slide-ordering, structure, speaker-notes]
+- talk: agentes-y-multiagentes
+  date: 2026-10-07
+  location: Slide "5. Estrella: orquestador y subagentes"
+  feedback: "Agregar un ejemplo de como se ve en lagchain un multi-agente."
+  resolution: Sin framework en la lámina (sección de arquitecturas). Ejemplo ejecutable nuevo en samples/multiagente-langgraph/ (orquestador con una tool que delega en subagentes ReAct con contexto vacío, en paralelo) y referencia en las notas de 6.5.
+  tags: [content-addition, code-example, scope]

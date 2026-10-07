@@ -1,0 +1,21 @@
+     PIPELINE               JERARQUIA
+
+    +-------+           +-------------+
+    |   A   |           | orquestador |
+    +-------+           +-------------+
+        |                  |        |
+        v                  v        v
+    +-------+          +------+  +------+
+    |   B   |          | orq. |  | orq. |
+    +-------+          +------+  +------+
+        |               |    |       |
+        v               v    v       v
+    +-------+          +--+ +--+   +--+
+    |   C   |          |A | |B |   |C |
+    +-------+          +--+ +--+   +--+
+
+<!-- ascii-note:
+intent: dos topologias lado a lado; una cadena fija de agentes y un arbol de orquestadores.
+emphasize: el orquestador de arriba de la jerarquia (acento rojo); la forma distinta de cada topologia (cadena, arbol).
+labels: PIPELINE, JERARQUIA, A-C, orquestador, orq.
+-->

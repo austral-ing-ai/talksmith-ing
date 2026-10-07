@@ -15,13 +15,11 @@ date: 2026-10-07
 
 **Why it matters:** Cada una de esas decisiones se paga en llamadas al LLM, tokens, latencia y confiabilidad. Según Anthropic, un sistema multiagente gasta cerca de 15× los tokens de un chat. Quien sabe qué resuelve cada forma puede elegir la más simple que alcanza para su problema.
 
-**Presenter feedback:**
-
 ---
 
 # Agenda
 
-**Narrative arc:** La clase abre con una pregunta que la sala contesta mal con frecuencia: si un LLM es un agente. La sección 1 responde con la definición clásica de Russell & Norvig (sensores, actuadores, ambiente, agente racional y medida de performance, función y programa de agente), recorre las arquitecturas clásicas con un auto autónomo y termina con la descripción PEAS de una aspiradora y de un agente LLM. La sección 2 ubica al agente LLM en la descomposición de Weng y muestra las dos formas de conectar un LLM con tools, workflow y agente, con el criterio para elegir. La sección 3 toma la pieza que convierte a un LLM en algo que actúa, la tool: qué es, cómo entra al contexto del modelo, cómo se ve en código y cómo se diseña. La sección 4 recorre ReAct, el tipo base: el pensamiento como acción, una trayectoria del paper, el prompt de completado que la produce, el grafo en LangGraph y los dos sentidos en que hoy se usa el nombre. La sección 5 fija dos preguntas para comparar tipos, sigue con Plan-and-Execute, Reflexion y ReWOO, y los compara con ReAct en una tabla con un caso por tipo; cierra con el orquestador con workers, que reparte el contexto entre varios loops. Después de la pausa, la sección 6 muestra el límite de un solo agente, el contexto que se degrada, define sistema multiagente con sus tres palancas y frena con la recomendación de empezar por un agente con buenas tools. La sección 7 recorre las arquitecturas de comunicación (estrella, router, red con transferencia de control, pipeline, pizarra y jerarquía), las compara por control, contexto, costo y trazabilidad, y separa de ellas el debate y Mixture-of-Agents. La sección 8 da el criterio para repartir: el precio en tokens, cómo fallan según MAST, el aislamiento que hay que configurar y el debate entre Cognition y Anthropic, que se resuelve preguntando si el trabajo lee o escribe; un caso de Kore.ai aplica esa regla. El cierre deja un árbol de decisión para elegir la arquitectura más simple que alcanza.
+**Narrative arc:** La clase abre con una pregunta que la sala contesta mal con frecuencia: si un LLM es un agente. La sección 1 responde con la definición clásica de Russell & Norvig (sensores, actuadores, ambiente, agente racional y medida de performance, función y programa de agente), recorre las arquitecturas clásicas con un auto autónomo y termina con la descripción PEAS de una aspiradora y de un agente LLM. La sección 2 ubica al agente LLM en la descomposición de Weng y muestra las dos formas de conectar un LLM con tools, workflow y agente, con el criterio para elegir. La sección 3 toma la pieza que convierte a un LLM en algo que actúa, la tool: qué es, cómo entra al contexto del modelo, cómo se ve en código y cómo se diseña. La sección 4 recorre ReAct, el tipo base: el pensamiento como acción, una trayectoria del paper, el prompt de completado que la produce, el grafo en LangGraph y los dos sentidos en que hoy se usa el nombre. La sección 5 fija dos preguntas para comparar tipos, sigue con Plan-and-Execute, Reflexion y ReWOO, y los compara con ReAct en una tabla con un caso por tipo. Después de la pausa, la sección 6 muestra el límite de un solo agente, el contexto que se degrada, define sistema multiagente con sus tres palancas y presenta su forma básica, el orquestador con workers, con tres lugares donde aparece. Sigue con las arquitecturas de comunicación (estrella, router, red con transferencia de control, pizarra, pipeline y jerarquía), las compara por control, contexto, costo y trazabilidad, y frena con la recomendación de empezar por un agente con buenas tools. La sección 7 da el criterio para repartir: el precio en tokens, cómo fallan según MAST, el aislamiento que hay que configurar y el choque que ni el contexto compartido evita, que lleva al debate entre Cognition y Anthropic. El debate se resuelve preguntando si el trabajo lee o escribe, y un caso de Kore.ai aplica esa regla. El cierre deja un árbol de decisión para elegir la arquitectura más simple que alcanza.
 
 **Sections (in delivery order):**
 
@@ -29,22 +27,15 @@ date: 2026-10-07
 - 2. El agente basado en LLM
 - 3. Los agentes tienen tools
 - 4. ReAct
-- 5. Otros cuatro tipos
-- 6. Límites de un agente
-- 7. Arquitecturas de comunicación
-- 8. Cuándo repartir
-
-**Presenter feedback:**
-- [closed] 2026-10-04 — "Toma talks/sistemas-multiagente y mergealo en esta presentacion. No estoy esperando 1:1 pero si hay conceptos que no estan incluilos."
-  Resolution: Merge por conceptos, no 1:1: 13 láminas nuevas y tres secciones nuevas (2 El agente basado en LLM, 6 Por qué un solo agente no alcanza, 8 Implementaciones reales). Entraron función y programa de agente, arquitecturas clásicas, PEAS, context rot, tools que compiten, las tres palancas, pipeline/pizarra/jerarquía, MetaGPT/ChatDev/AutoGen/Magentic-One, debate y MoA, multiagente sin LLM, MAST y el aislamiento que hay que configurar; cada cifra rastreada a su registro. La clase pasa a ~138 min; lista de cortes en Open questions.
+- 5. Otros tres tipos
+- 6. Sistemas multiagente
+- 7. Cuándo repartir
 
 ---
 
 # 1. Qué es un agente
 
 **Goal of this section:** Llegar a la definición clásica de agente de Russell & Norvig: sensores, actuadores, ambiente, racionalidad según una medida de performance que fija el diseño, función y programa de agente, y las arquitecturas clásicas, recorridas con un auto autónomo. La sección cierra con la descripción PEAS de una aspiradora y de un agente LLM. Al salir, la sala distingue un agente de un LLM suelto.
-
-**Presenter feedback:**
 
 ---
 
@@ -77,8 +68,6 @@ La respuesta deja una pregunta abierta a propósito: si un LLM solo no es un age
 
 Tiempo: unos 3 minutos con la votación.
 
-### Presenter feedback
-
 ---
 
 ## 2. La definición de Russell & Norvig
@@ -88,7 +77,8 @@ Tiempo: unos 3 minutos con la votación.
 > "An agent is anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators..."
 > — Russell & Norvig, *Artificial Intelligence: A Modern Approach*
 
-```ascii
+![El loop agente-ambiente de Russell y Norvig](images/s1-2-1-lazo-agente-ambiente.png)
+<!-- ascii-source:
 +------------------------------------------+
 |                 AMBIENTE                 |
 +------------------------------------------+
@@ -104,7 +94,7 @@ Tiempo: unos 3 minutos con la votación.
 |      AGENTE: decide qué acción tomar     |
 |      a partir de lo que percibió         |
 +------------------------------------------+
-```
+-->
 <!-- ascii-note:
 intent: el loop agente-ambiente de la definicion clasica; es el lazo cerrado que todas las demas laminas de la seccion refinan.
 emphasize: la caja AGENTE como unico punto de decision (acento rojo); el lazo cerrado percepciones -> decision -> acciones -> ambiente.
@@ -122,8 +112,6 @@ Leer la cita completa. Es la definición canónica de toda la teoría de agentes
 En español, para quien la quiera anotar: un agente es cualquier entidad que percibe su entorno mediante sensores y actúa sobre él mediante actuadores. Es una traducción del deck del curso, no una cita de una edición en español.
 
 Señalar en el diagrama que la única caja que decide es la del agente. Sensores y actuadores son interfaces. El ambiente es todo lo que no es el agente.
-
-### Presenter feedback
 
 ---
 
@@ -147,8 +135,6 @@ Esta lámina cierra la pregunta del quiz desde el otro lado: la palabra "agente"
 
 La consecuencia práctica para ingeniería: cuando alguien dice "agente" en una reunión de diseño, conviene preguntar qué percibe, qué puede hacer y en qué ambiente. La lámina 1.9 ordena esas preguntas en la descripción PEAS.
 
-### Presenter feedback
-
 ---
 
 ## 4. El agente racional
@@ -157,7 +143,7 @@ La consecuencia práctica para ingeniería: cuando alguien dice "agente" en una 
 
 ### Content
 
-> Russell y Norvig evalúan a un agente con una medida de performance, y definen al agente racional como aquel que, para cada secuencia de percepciones posible, elige la acción que se espera que maximice esa medida, dada la evidencia percibida y el conocimiento que trae incorporado. Racional no significa omnisciente ni infalible: significa decidir lo mejor posible con la información disponible. Y como la racionalidad siempre es relativa a una medida de performance, definir bien esa medida es parte central del diseño. Un agente puede ser perfectamente racional y aun así hacer algo indeseable si el criterio de éxito está mal especificado.
+> Russell y Norvig evalúan a un agente con una medida de performance, y definen al agente racional como aquel que, para cada secuencia de percepciones posible, elige la acción que se espera que maximice esa medida, dada la evidencia percibida y el conocimiento que trae incorporado. Racional no significa omnisciente ni infalible: significa decidir lo mejor posible con la información disponible.
 
 ### Sources
 
@@ -169,6 +155,8 @@ La consecuencia práctica para ingeniería: cuando alguien dice "agente" en una 
 
 ### Speaker notes
 
+Decir en voz alta, como cierre de la cita: "Y como la racionalidad siempre es relativa a una medida de performance, definir bien esa medida es parte central del diseño. Un agente puede ser perfectamente racional y aun así hacer algo indeseable si el criterio de éxito está mal especificado."
+
 **Original:** "A rational agent is one that does the right thing... This notion of desirability is captured by a performance measure that evaluates any given sequence of environment states." — Russell & Norvig.
 
 La racionalidad agrega optimización a la definición de 1.2: percibir y actuar no alcanza, hay que hacerlo bien según un criterio definido.
@@ -178,10 +166,6 @@ Para la omnisciencia sirve un ejemplo de la cátedra. Un auto autónomo frena bi
 La última oración vuelve en la lámina 1.9, donde la aspiradora trae la medida escrita en puntos. Ahí conviene preguntar qué haría un agente racional si la medida solo premiara aspirar. Aspiraría sin parar, también las celdas limpias. La medida de la lámina 1.9 le resta 5 puntos a esa acción.
 
 Tiempo: un minuto.
-
-### Presenter feedback
-- [closed] 2026-10-05 — "Agregar "al agente racional como aquel que, para cada secuencia de percepciones posible, elige la acción que se espera que maximice esa medida, dada la evidencia percibida y el conocimiento que trae incorporado. Racional no significa omnisciente ni infalible: significa decidir lo mejor posible con la información disponible. Y como la racionalidad siempre es relativa a una medida de performance, definir bien esa medida es parte central del diseño. Un agente puede ser perfectamente racional y aun así hacer algo indeseable si el criterio de éxito está mal especificado." como quoate antes de "Racionalidad: actuar bien según una medida""
-  Resolution: Lámina nueva 1.4 'El agente racional' (plantilla quote) antes de 'Racionalidad: actuar bien según una medida' (hoy 1.5), con el texto del presentador tal cual y una apertura del editor ('Russell y Norvig evalúan a un agente con una medida de performance, y definen al agente racional como aquel que,') porque el fragmento empezaba a mitad de oración y 'esa medida' no tenía antecedente. Sources cita la definición y la no-omnisciencia de corpus/wikipedia-intelligent-agent.web.md y marca como del presentador las dos últimas oraciones. Por L6, 1.5 cambió su lead por 'Qué es racional en cada momento depende de cuatro factores.' y perdió 'Sin ella no hay racionalidad posible.'; la cita 'A rational agent is one that does the right thing...' pasó a las notas de 1.4, y la línea de omnisciencia salió de las notas de 1.7; todo a Cut material. Sección 1 renumerada (1.4–1.8 → 1.5–1.9), referencias, agenda, objetivo y reloj (+1 min, ~122). Riesgo de desborde: ~100 palabras contra ~35 de la plantilla, en Open questions.
 
 ---
 
@@ -207,8 +191,6 @@ Los cuatro factores son las piezas de la definición de la lámina anterior: la 
 Guardar el cuarto factor: la lámina 3.1 lo retoma con otro nombre, el contexto.
 
 La medida de performance reaparece en la sección 5 con Reflexion, que solo funciona cuando hay un criterio claro de éxito.
-
-### Presenter feedback
 
 ---
 
@@ -237,8 +219,6 @@ En un agente LLM, el modelo cumple el papel de la función: elige la acción a p
 
 El termostato sale de Wikipedia, que lo cita a un blog y a IBM. Acá se usa como ejemplo de regla condición-acción, sin atribuírselo a Russell & Norvig.
 
-### Presenter feedback
-
 ---
 
 ## 7. Arquitecturas clásicas de agente
@@ -247,7 +227,7 @@ El termostato sale de Wikipedia, que lo cita a un blog y a IBM. Acá se usa como
 
 Russell & Norvig ordenan los agentes según lo que hay entre la percepción y la acción. Cada tipo agrega una pieza al anterior.
 
-![Agente basado en modelo y en utilidad: sensores, estado interno, modelo de cómo evoluciona el mundo y de qué producen las acciones, utilidad de cada estado previsto y actuadores](research/corpus/wikipedia-intelligent-agent.web/images/500px-Model_based_utility_based.png)
+![Agente basado en modelo y en utilidad: sensores, estado interno, modelo de cómo evoluciona el mundo y de qué producen las acciones, utilidad de cada estado previsto y actuadores](images/500px-Model_based_utility_based.png)
 
 - **Reflejo simple** Aplica una regla "si condición, entonces acción" a la percepción actual. Funciona solo si el ambiente es completamente observable.
 - **Reflejo con modelo** Guarda un estado interno con la parte del mundo que no ve.
@@ -268,11 +248,7 @@ El agente que aprende cubre la autonomía: lo que le cargó su diseñador puede 
 
 Lectura de la cátedra: Reflexion (lámina 5.5) se parece al agente que aprende, con un evaluador que hace de crítico. Lo que aprende queda escrito en el contexto; los pesos no cambian.
 
-BDI modela un solo agente con creencias, deseos e intenciones. La coordinación entre varios la resuelven protocolos como Contract Net (lámina 7.4).
-
-### Presenter feedback
-- [closed] 2026-10-04 — "Para cada uno de los ejemplos de estas evoluciones agreguemos un ejemplo y cual seria la limitacion. Pongamoslo esto en el contexto de un auto majenado."
-  Resolution: Lámina nueva 1.7 'Un auto autónomo en cada arquitectura': tabla con las cinco arquitecturas, qué haría el auto y dónde se queda corto. Las limitaciones de reflejo simple, objetivos y utilidad salen de corpus/wikipedia-intelligent-agent.web.md; los ejemplos del auto y las limitaciones del reflejo con modelo y del agente que aprende son ilustración de la cátedra, marcada en Sources. 1.6 queda con las definiciones (L1, L8) y la ficha PEAS pasa a 1.8.
+BDI modela un solo agente con creencias, deseos e intenciones. La coordinación entre varios la resuelven protocolos como Contract Net (lámina 6.9).
 
 ---
 
@@ -306,8 +282,6 @@ El deck del curso ponía al taxi autónomo como el ambiente más difícil de su 
 
 Tiempo: unos 2 minutos.
 
-### Presenter feedback
-
 ---
 
 ## 9. Dos agentes, una descripción PEAS
@@ -316,7 +290,8 @@ Tiempo: unos 2 minutos.
 
 Russell & Norvig describen un agente con cuatro elementos: medida de performance, ambiente (*environment*), actuadores y sensores (PEAS). La misma descripción vale para una aspiradora y para un agente LLM.
 
-```ascii
+![La descripción PEAS de una aspiradora autónoma y de un LLM con tools](images/s1-9-1-descripcion-peas-dos-agentes.png)
+<!-- ascii-source:
  +-----------------------------+        +-----------------------------+
  | AMBIENTE                    |        | AMBIENTE                    |
  | grilla n×m, parcialmente    |        | digital, simbólico,         |
@@ -335,7 +310,7 @@ Russell & Norvig describen un agente con cuatro elementos: medida de performance
     −1 moverse                             precisión de las respuestas;
     −5 aspirar celda limpia                satisfacción del usuario
     −10 chocar
-```
+-->
 <!-- ascii-note:
 intent: la descripcion PEAS como dos copias del lazo de la lamina 1.2; mismo esquema, valores distintos para una aspiradora y para un agente LLM.
 emphasize: las flechas S (sensores) y A (actuadores) del lado del agente LLM (acento rojo): son las que lo vuelven agente.
@@ -355,27 +330,17 @@ Leer primero el lado de la aspiradora y pedirle a la sala que complete el del LL
 
 Notar el ambiente del agente LLM: parcialmente observable y dinámico. Por eso el agente tiene que observar después de cada acción. Una base de datos cambia mientras el agente piensa, y una búsqueda devuelve solo una parte del mundo.
 
-El deck del curso clasifica los ambientes en siete dimensiones (slide 12). Una importa para esta clase: si en el ambiente actúa un solo agente o varios. Las secciones 6 a 8 tratan el caso en que varios agentes LLM se reparten una misma tarea.
+El deck del curso clasifica los ambientes en siete dimensiones (slide 12). Una importa para esta clase: si en el ambiente actúa un solo agente o varios. Las secciones 6 y 7 tratan el caso en que varios agentes LLM se reparten una misma tarea.
 
 Las acciones de la aspiradora en el deck original: Aspirar, MoverIzquierda, MoverDerecha, Esperar.
 
 Cierre de la sección 1. Tiempo acumulado: unos 17 minutos.
-
-### Presenter feedback
-- [closed] 2026-10-04 — "Revisar si no se podria agregar un diagama."
-  Resolution: La ficha PEAS (hoy 1.8) pasó a un diagrama ASCII: los dos agentes con el lazo de 1.2, sensores y actuadores sobre las flechas, el ambiente arriba y la performance al pie, con los valores de pptx slides 8 y 18. Se respetó el retiro de la tabla; su contenido quedó registrado en Cut material.
-- [closed] 2026-10-05 — "Que significa 'La misma ficha sirve para una aspiradora y para un agente LLM.' . Me parece que ficha no es el termino correcto."
-  Resolution: 'Ficha' reemplazada por 'descripción PEAS' (la 'PEAS description' de Russell & Norvig): título 1.9 'Dos agentes, una descripción PEAS', lead 'Russell & Norvig describen un agente con cuatro elementos: medida de performance, ambiente (environment), actuadores y sensores (PEAS). La misma descripción vale para una aspiradora y para un agente LLM.', ascii-note, notas de 1.1, 1.3, 1.4 y 1.9, agenda, objetivo de la sección 1 y Open questions. El diagrama no decía 'ficha'. Las 'pilas de fichas' de 8.5 quedan: son otra cosa y ya no hay ambigüedad.
 
 ---
 
 # 2. El agente basado en LLM
 
 **Goal of this section:** Leer al agente basado en LLM con la definición de la sección 1 y con la descomposición de Weng (LLM, planificación y tools). Mostrar las dos formas de conectar un LLM con tools, workflow y agente. Al salir, la sala distingue un agente de un workflow y sabe cuándo conviene construir uno.
-
-**Presenter feedback:**
-- [closed] 2026-10-05 — "Borrar 'El agente LLM, formalizado'"
-  Resolution: Lámina 2.1 'El agente LLM, formalizado' a Cut material entera, con su diagrama s2-1-1. El contexto quedó definido en una línea en 3.1 (lámina: el texto que el modelo recibe en cada llamada; notas: la secuencia de percepciones de 1.5 con otro nombre, finito y pago por token). Sin la notación o_t, a_t, c_t, π: 4.1 conserva Â = A ∪ L explicado en sus bullets y su diagrama pasa a palabras; 1.6 y 3.1 perdieron la notación en notas; 6.1 dice 'el contexto de un agente'. Vocabulario 'tool' y fecha del paper a las notas de 4.1. Sección 2 renumerada (2.2–2.5 → 2.1–2.4) y referencias corregidas en 1.5, 2.2, 4.4, 4.5, 5.11, 6.1, 7.2, 7.4, 8.2, agenda, objetivo de la sección 2, Conclusions.1 y Open questions; reloj -2 min.
 
 ---
 
@@ -403,8 +368,6 @@ Anthropic dice algo parecido con otro nombre: su bloque básico es el "augmented
 
 El post es de junio de 2023. Sus ejemplos (AutoGPT, BabyAGI) son la primera ola de agentes; el marco de tres componentes sigue vigente.
 
-### Presenter feedback
-
 ---
 
 ## 2. Dos formas de conectar un LLM con tools
@@ -413,7 +376,8 @@ El post es de junio de 2023. Sus ejemplos (AutoGPT, BabyAGI) son la primera ola 
 
 Con el mismo LLM y las mismas tools, el próximo paso lo puede decidir el código o el modelo.
 
-```ascii
+![Dos formas de conectar un LLM con tools: el código decide o el LLM decide](images/s2-2-1-dos-formas-conectar-tools.png)
+<!-- ascii-source:
      EL CÓDIGO DECIDE                EL LLM DECIDE
 
         Pedido                          Pedido
@@ -435,7 +399,7 @@ Con el mismo LLM y las mismas tools, el próximo paso lo puede decidir el códig
           |                      Respuesta
           v
       Respuesta
-```
+-->
 <!-- ascii-note:
 intent: las mismas piezas (LLM y tools) conectadas de dos formas; a la izquierda el codigo fija la secuencia, a la derecha el LLM elige en un loop.
 emphasize: la caja "LLM elige el proximo paso" (acento rojo) y la flecha que vuelve de la tool al LLM.
@@ -453,8 +417,6 @@ labels: EL CODIGO DECIDE, EL LLM DECIDE, Pedido, pasos 1-3, tool, alcanza / pide
 A la izquierda, el LLM está embebido en pasos fijos. El código lo llama, toma su salida y pasa al paso siguiente, que puede ser una tool o otra llamada al LLM. A la derecha, el LLM elige en un loop qué tool usar, en qué orden y cuándo tiene suficiente para responder.
 
 Los dos usan un LLM y tools, y por eso la palabra "agente" se estira tanto en el uso diario. Anthropic les puso nombre a las dos formas.
-
-### Presenter feedback
 
 ---
 
@@ -482,13 +444,9 @@ Anthropic llama *agentic systems* a las dos formas: workflow a la primera, agent
 
 Un sistema real mezcla las dos columnas. Puede tener un routing determinista entre agentes que por dentro son autónomos.
 
-Marcar que orchestrator-workers aparece acá como workflow. La lámina 5.11 lo retoma como quinto tipo de agente.
+Marcar que orchestrator-workers aparece acá como workflow. La lámina 6.3 lo retoma como la forma básica de un sistema multiagente.
 
 La captura es una versión revisada del post de diciembre de 2024; por eso la cita dice "2024 (revisado)".
-
-### Presenter feedback
-- [closed] 2026-10-04 — "Creo que falta introcccion antes de llegar a este slide. Tal vez una antes. Se llega a este punto y no es claro por que se habla de un workflow."
-  Resolution: Lámina nueva 2.3 'Dos formas de conectar un LLM con tools', con diagrama: el código fija los pasos, o el LLM elige el paso siguiente en el loop de 2.1. 'Workflow o agente' pasa a 2.4 y les pone los nombres de Anthropic; la fila 'Quién decide el camino' salió de la tabla porque la muestra el diagrama de 2.3.
 
 ---
 
@@ -520,15 +478,11 @@ El cuarto criterio prepara Reflexion en la sección 5: un agente que se autocorr
 
 Cierre de la sección 2. Tiempo acumulado: unos 25 minutos.
 
-### Presenter feedback
-
 ---
 
 # 3. Los agentes tienen tools
 
 **Goal of this section:** Fijar qué es una tool como concepto, independiente del protocolo que la transporte: una función descripta en el contexto que el LLM pide y el programa ejecuta. Al salir, la sala puede escribir una tool y conoce los principios que hacen buena a una tool. MCP queda fuera de la sección; la clase de RAG y MCP ya lo cubrió.
-
-**Presenter feedback:**
 
 ---
 
@@ -540,7 +494,8 @@ Una tool es una función que el agente puede pedir. Su nombre, su descripción y
 
 Con la definición de Russell & Norvig, cada tool es un actuador del agente LLM, y lo que devuelve entra al contexto como una percepción nueva.
 
-```ascii
+![El LLM pide la tool y el programa la ejecuta](images/s3-1-1-llm-pide-programa-ejecuta.png)
+<!-- ascii-source:
   contexto: instrucciones + descripción de cada tool
                         |
                         v
@@ -559,7 +514,7 @@ Con la definición de Russell & Norvig, cada tool es un actuador del agente LLM,
                         v
           2. API, base de datos, búsqueda
              (el actuador)
-```
+-->
 <!-- ascii-note:
 intent: separar quien decide (el LLM) de quien ejecuta (el programa); el LLM solo emite el pedido.
 emphasize: la caja programa (ejecuta) en rojo, porque es la que la sala suele olvidar; las tres flechas numeradas.
@@ -584,10 +539,6 @@ El contexto es la secuencia de percepciones de la lámina 1.5 con otro nombre: i
 
 Si alguien pregunta por MCP: es una forma estándar de exponer tools y se vio en la clase de RAG y MCP. Lo que sigue vale para cualquier tool, venga o no de un servidor MCP.
 
-### Presenter feedback
-- [closed] 2026-10-04 — "Esta bueno volver a connectar aca tool a un actuador."
-  Resolution: 3.1 dice en la lámina la conexión con Russell & Norvig: cada tool es un actuador del agente LLM y lo que devuelve entra al contexto como percepción; el diagrama rotula la API como actuador. La frase equivalente salió de las notas.
-
 ---
 
 ## 2. Un contrato con un sistema no determinístico
@@ -608,8 +559,6 @@ Ante la pregunta "¿Llevo paraguas hoy?", un agente puede llamar a la tool del c
 Una función tradicional es un contrato entre dos sistemas determinísticos: misma entrada, misma salida, y quien la llama sabe cuándo llamarla. Con un agente, el que llama es no determinístico. Puede llamarla cuando no corresponde, no llamarla cuando sí, o pasarle argumentos que un programador nunca pasaría.
 
 La conclusión de Anthropic es de diseño: una tool se escribe pensando en un agente que la llama, con otros criterios que una API para desarrolladores. Y agrega una observación que a la sala le va a resultar útil: las tools más cómodas para un agente suelen ser también las más fáciles de entender para una persona.
-
-### Presenter feedback
 
 ---
 
@@ -652,8 +601,6 @@ Dos defectos del ejemplo que sirven para enseñar. Primero, `calculator` corre `
 
 El ejemplo es de un tutorial en Medium (julio de 2025) sobre LangGraph. La lámina 4.5 muestra el grafo que convierte estas tools en un agente ReAct.
 
-### Presenter feedback
-
 ---
 
 ## 4. Principios para diseñar tools
@@ -684,17 +631,11 @@ Sobre las descripciones: según el mismo post, pequeños ajustes en la descripci
 
 Cierre de la sección 3. Tiempo acumulado: unos 33 minutos.
 
-### Presenter feedback
-
 ---
 
 # 4. ReAct
 
-**Goal of this section:** Recorrer el primer tipo de agente, ReAct: su definición con diagrama, una trayectoria del paper, el prompt y el código que la producen, el grafo en LangGraph y los dos sentidos en que hoy se usa el nombre. ReAct es la base contra la que se comparan los otros cuatro tipos.
-
-**Presenter feedback:**
-- [closed] 2026-10-05 — "Borra 'Qué mostró el paper, y dónde falla'"
-  Resolution: Lámina 4.7 'Qué mostró el paper, y dónde falla' a Cut material entera, con sus cifras de HotpotQA (0% contra 56%, 47%, 23%, 29,4 contra 27,4). El 71% contra 45% de ALFWorld sigue en las notas de 4.6, ahora con PaLM-540B y la mejor de 6 corridas; ALFWorld quedó explicado en 4.6 (notas) y en 5.7 (lámina). El puente a la sección 5 (crítica de LangChain) y el cierre de la sección 4 pasaron a las notas de 4.6; 5.1 apunta al cierre de la sección 4. Objetivo de la sección 4, Open questions (cifras históricas, notas largas) y reloj (-2 min) actualizados.
+**Goal of this section:** Recorrer el primer tipo de agente, ReAct: su definición con diagrama, una trayectoria del paper, el prompt y el código que la producen, el grafo en LangGraph y los dos sentidos en que hoy se usa el nombre. ReAct es la base contra la que se comparan los otros tres tipos.
 
 ---
 
@@ -707,7 +648,8 @@ ReAct (Yao et al., 2022) suma el lenguaje al espacio de acciones del agente, `Â
 - **Acción en A** Toca el ambiente, por ejemplo `search[entity]`, y vuelve una observación.
 - **Pensamiento en L** Texto que escribe el modelo. No toca el ambiente ni produce observación; solo se suma al contexto.
 
-```ascii
+![ReAct: la bifurcación entre pensar y actuar](images/s4-1-1-bifurcacion-pensar-actuar.png)
+<!-- ascii-source:
        el LLM elige el próximo paso según el contexto
                        |
           +------------+-------------+
@@ -724,7 +666,7 @@ ReAct (Yao et al., 2022) suma el lenguaje al espacio de acciones del agente, `Â
    hay observación            no hay observación
    el contexto suma la        el contexto suma
    acción y la observación    solo el pensamiento
-```
+-->
 <!-- ascii-note:
 intent: la bifurcacion que define ReAct; una rama toca el ambiente y la otra solo escribe en el contexto.
 emphasize: la rama del pensamiento (L) en rojo, que no pasa por el ambiente.
@@ -742,15 +684,13 @@ consistency: los cinco diagramas de tipos de agente (4.1, 5.2, 5.5, 5.8 y 5.11) 
 
 La idea entera de ReAct entra en esta lámina. El modelo puede hacer algo en el mundo o escribir un razonamiento, y el razonamiento queda en el contexto para la próxima decisión. El paper lo resume en dos direcciones: razonar para actuar y actuar para razonar.
 
-El deck del curso la presenta como la arquitectura más simple para agentes basados en LLM. Es la base contra la que se comparan los otros cuatro tipos.
+El deck del curso la presenta como la arquitectura más simple para agentes basados en LLM. Es la base contra la que se comparan los otros tres tipos.
 
 Un matiz del paper: en tareas de razonamiento cada paso lleva su pensamiento ("dense thought"). En tareas de decisión con muchas acciones, el modelo escribe un pensamiento solo donde hace falta.
 
 Vocabulario, para decirlo en voz alta: el paper nunca usa la palabra "tool". Habla de acciones en A, y en HotpotQA son tres sobre una API de Wikipedia (search, lookup y finish). Hoy a cada una se la llamaría tool.
 
 Fecha del paper: primera versión de arXiv en octubre de 2022, publicado en ICLR 2023.
-
-### Presenter feedback
 
 ---
 
@@ -794,11 +734,6 @@ Ese último caso es el más instructivo: las búsquedas eran correctas y el agen
 
 Las dos láminas siguientes muestran el prompt y el código que producen esta trayectoria.
 
-### Presenter feedback
-
-- [closed] 2026-10-04 — "En el slide 23 (Una trayectoria ReAct), cual es el system prompt ?. Pone otro slide que muestre los tools y el prompt que connecta con el ejemplo"
-  Resolution: Dos láminas nuevas después de 4.3: 4.4 muestra la instrucción verbatim del notebook de ReAct con las tres acciones (Search, Lookup, Finish) y aclara que no hay system prompt porque el modelo es de completado; 4.5 dibuja en ASCII el prompt (instrucción + 6 ejemplos + pregunta del Apple Remote) y el corte en Observation con el stop. Las notas de 4.3 apuntan a ellas y las de 4.6 contrastan con el tool calling de chat y nombran samples/react-langgraph/.
-
 ---
 
 ## 3. Las tools y la instrucción
@@ -833,8 +768,6 @@ La instrucción describe tres tools en su forma más cruda: nombre y efecto en u
 
 Lookup aparece en el segundo ejemplo del prompt, sobre Milhouse, el personaje de Los Simpson: `Lookup[named after]` encuentra que le pusieron el nombre por Richard Nixon.
 
-### Presenter feedback
-
 ---
 
 ## 4. El prompt completo y el corte
@@ -843,7 +776,8 @@ Lookup aparece en el segundo ejemplo del prompt, sobre Milhouse, el personaje de
 
 Cada paso es una llamada de completado. El modelo escribe Thought y Action; la generación se detiene antes de Observation, y el código ejecuta la acción y escribe el resultado.
 
-```ascii
+![El prompt completo de ReAct y el punto de corte](images/s4-4-1-prompt-completo-corte.png)
+<!-- ascii-source:
  +------------------------------------------------------+
  | Solve a question answering task ... three types:     |  instrucción
  | (1) Search[entity] (2) Lookup[keyword] (3) Finish    |  (3 tools)
@@ -871,7 +805,7 @@ Cada paso es una llamada de completado. El modelo escribe Thought y Action; la g
                            |  nueva llamada con "Thought 2:"
                            v
           sigue hasta Finish[...] o 7 pasos
-```
+-->
 <!-- ascii-note:
 intent: un solo texto de completado armado con tres bloques (instruccion, ejemplos, pregunta); el modelo escribe Thought y Action, la generacion corta en "Observation 1:" y el codigo pega la observacion antes de la llamada siguiente.
 emphasize: el corte "se detiene en Observation 1:" en rojo; los tres bloques del prompt apilados como un unico texto.
@@ -892,8 +826,6 @@ Sin el stop, el modelo seguiría el formato de los ejemplos y escribiría él mi
 Rótulos: la figura del paper abrevia Act y Obs, y su sección 3.1 escribe las acciones en minúscula (`search[entity]`). El notebook usa Action y Observation, y el código pasa la primera letra de la acción a minúscula antes de ejecutarla.
 
 El prompt crece en cada vuelta: es el contexto de la lámina 3.1.
-
-### Presenter feedback
 
 ---
 
@@ -939,10 +871,6 @@ Dos cambios respecto del artículo, por honestidad: el original anota `is_done` 
 
 Falta la condición de parada de la lámina 2.4, un máximo de iteraciones además de la decisión del modelo. Es un buen ejercicio para la práctica.
 
-### Presenter feedback
-- [closed] 2026-10-04 — "Creo que esta bueni agregar un slide con esto:" Hoy "agente ReAct" se usa en dos sentidos, y por eso confunde: el estricto (el patrón Thought-Action-Observation del paper) y el laxo (cualquier agente que llama tools en loop). LangGraph usa el nombre en el sentido laxo. El artículo de Outcome School que pasaste al principio los mezcla: describe el formato del paper y después implementa el loop de tool calling." Buscar mas pero en este sentido, deja esto al thinkung."
-  Resolution: Lámina nueva 4.6 'Dos sentidos de «agente ReAct»': el estricto (prompt de completado con ejemplos, Thought y Action escritos como texto, stop antes de Observation; 4.3 y 4.4) y el laxo (cualquier agente que llama tools en un loop con el tool calling de un modelo de chat; 4.5). La plantilla de agente ReAct de LangGraph enlaza el paper y describe el sentido laxo (corpus/langchain-react-agent-template.web.md); que use tool calling nativo es inferencia del registro y va en notas como tal. El ejemplo de mezcla es el tutorial de Medium del que salen 3.3 y 4.5. El artículo de Outcome School no está en el corpus: no se cita y quedó en Open questions. El contraste chat contra completado y samples/react-langgraph/ pasaron de las notas de 4.5 a las de 4.6.
-
 ---
 
 ## 6. Dos sentidos de «agente ReAct»
@@ -980,15 +908,11 @@ La crítica de LangChain abre la sección 5: ReAct hace una llamada al LLM por c
 
 Cierre de la sección 4. Tiempo acumulado: unos 47 minutos.
 
-### Presenter feedback
-
 ---
 
-# 5. Otros cuatro tipos
+# 5. Otros tres tipos
 
-**Goal of this section:** Fijar dos preguntas para comparar tipos de agente y recorrer de a uno los otros cuatro tipos que más se comparan: Plan-and-Execute, Reflexion, ReWOO y multiagente con orquestador y workers. Cada tipo tiene su lámina de definición con diagrama y después una de ejemplo. Los tres primeros responden distinto a las dos preguntas de la lámina 5.1 y se comparan con ReAct en una tabla con un caso por tipo; el orquestador con workers reparte el contexto y lleva a las secciones 6 a 8.
-
-**Presenter feedback:**
+**Goal of this section:** Fijar dos preguntas para comparar tipos de agente y recorrer de a uno los otros tres tipos que más se comparan: Plan-and-Execute, Reflexion y ReWOO. Cada tipo tiene una lámina de definición con diagrama, una de ejemplo y una de pros y contras. Los tres responden distinto a las dos preguntas de la lámina 5.1 y se comparan con ReAct en una tabla con un caso por tipo.
 
 ---
 
@@ -1001,24 +925,15 @@ ReAct no planifica de antemano y vuelve a razonar antes de cada acción. Plan-an
 1. **Cuándo se planifica** Nunca de antemano, al inicio o entre intentos completos.
 2. **Cuántas veces vuelve a razonar el LLM** En cada paso, al replanificar o solo al final.
 
-El quinto tipo, orquestador con workers, mueve otra variable: cómo se reparte el contexto entre varios loops.
-
 ### Sources
 
 - `corpus/langchain-planning-agents.web.md` — dos límites de ReAct: una llamada al LLM por cada tool y un subproblema planificado por vez ("it isn't forced to 'reason' about the whole task"); Plan-and-Execute y ReWOO como respuestas.
-- `corpus/anthropic-building-effective-agents.web.md` · `corpus/anthropic-multi-agent-research-system.web.md` — orchestrator-workers y subagentes con ventanas propias (quinto tipo, lámina 5.11).
 
 ### Speaker notes
 
 Las dos preguntas salen de la crítica de LangChain a ReAct con la que cerró la sección 4. La primera línea de la lámina las contesta para ReAct.
 
-Pedirle a la sala que retenga las dos preguntas. La tabla de la lámina 5.10 se lee con ellas, y ahí están las respuestas de cada tipo.
-
-El quinto tipo queda fuera de las dos preguntas a propósito: su variable es el eje de las secciones 6 a 8.
-
-### Presenter feedback
-- [closed] 2026-10-04 — "Revisar por que creo que esta descolago sin conexion a este slide."
-  Resolution: 'Dos preguntas para cada tipo' pasó a abrir la sección 5 (hoy 5.1) y se reescribió desde ReAct: responde las dos preguntas para ReAct (no planifica de antemano, razona en cada paso) y presenta los tipos que siguen como respuestas distintas. La sección 4 abre con ReAct (4.1); las notas de 4.7 hacen el puente. Referencias de las secciones 4 y 5 renumeradas.
+Pedirle a la sala que retenga las dos preguntas. La tabla de la lámina 5.11 se lee con ellas, y ahí están las respuestas de cada tipo.
 
 ---
 
@@ -1028,12 +943,13 @@ El quinto tipo queda fuera de las dos preguntas a propósito: su variable es el 
 
 Un planner escribe el plan completo al inicio. Un executor resuelve cada paso con sus tools, y un re-planner decide si termina o planifica de nuevo.
 
-```ascii
+![Plan-and-Execute: planner, executor y re-planner](images/s5-2-1-plan-and-execute.png)
+<!-- ascii-source:
   Pedido
     |
     v
  +----------+   lista de pasos   +--------------------+
- | Planner  | -----------------> | Executor           |
+ | Planner  | -----------------&gt; | Executor           |
  |  (LLM)   |   1. ...           | un paso a la vez,  |
  +----------+   2. ...           | con sus tools      |
       ^         3. ...           +--------------------+
@@ -1046,7 +962,7 @@ Un planner escribe el plan completo al inicio. Un executor resuelve cada paso co
                                            |
                                            v  sí
                                  Respuesta al usuario
-```
+-->
 <!-- ascii-note:
 intent: separar el planner de la ejecucion; el LLM grande planifica al inicio y al replanificar, no despues de cada accion.
 emphasize: la caja Planner en rojo; la flecha de replanificar que cierra el lazo largo.
@@ -1066,15 +982,13 @@ En el diagrama de LangChain, cada executor es un agente de una sola tarea que ha
 
 La idea viene de dos fuentes que el post cita: el paper Plan-and-Solve de Wang et al. y el proyecto BabyAGI de Yohei Nakajima.
 
-### Presenter feedback
-
 ---
 
 ## 3. Un plan para la misma pregunta
 
 ### Content
 
-La pregunta de la lámina 4.2, resuelta con Plan-and-Execute. La cátedra armó este plan para comparar los dos tipos.
+La pregunta de la lámina 4.2, resuelta con Plan-and-Execute.
 
 ```text
 Planner:     1. Buscar Apple Remote y anotar el programa para el que se diseñó.
@@ -1103,8 +1017,6 @@ Señalar dónde quedó el razonamiento. El planner piensa una vez, al principio,
 
 En la trayectoria ReAct de la lámina 4.2, el mismo LLM escribió un pensamiento antes de cada una de las cuatro acciones. Acá el LLM que planifica interviene dos veces: al armar el plan y al decidir que terminó. Es el ahorro que LangChain promete en la lámina siguiente.
 
-### Presenter feedback
-
 ---
 
 ## 4. Qué gana y qué cuesta planificar
@@ -1115,8 +1027,8 @@ En la trayectoria ReAct de la lámina 4.2, el mismo LLM escribió un pensamiento
 
 ### Ventajas, según LangChain
 
-- **Más rápido** El LLM grande no se consulta después de cada acción.
-- **Más barato** Los pasos pueden ir a modelos más chicos; el grande solo planifica, replanifica y responde.
+- **Más rápido** El modelo que planifica no se consulta después de cada acción.
+- **Más barato** Los pasos pueden ejecutarse con modelos más chicos y baratos; el modelo más capaz queda para planificar, replanificar y responder.
 - **Mejor resultado** El planner tiene que pensar todos los pasos antes de empezar.
 
 ### Límites
@@ -1130,13 +1042,11 @@ En la trayectoria ReAct de la lámina 4.2, el mismo LLM escribió un pensamiento
 
 ### Speaker notes
 
-Decir con qué peso llegan las ventajas: el post de LangChain las afirma y no las mide. Son razonables por construcción (menos llamadas al modelo grande), pero no hay un número detrás.
+Decir con qué peso llegan las ventajas: el post de LangChain las afirma y no las mide. Son razonables por construcción (menos llamadas al modelo que planifica), pero no hay un número detrás.
 
 El segundo límite prepara ReWOO, que agrega lo que falta: variables que conectan los pasos, para que el plan se ejecute sin volver al LLM.
 
-Cuándo conviene, según la tabla de la lámina 5.10: tareas largas y predecibles, donde se pueden ahorrar llamadas al LLM.
-
-### Presenter feedback
+Cuándo conviene, según la tabla de la lámina 5.11: tareas largas y predecibles, donde se pueden ahorrar llamadas al LLM.
 
 ---
 
@@ -1146,9 +1056,10 @@ Cuándo conviene, según la tabla de la lámina 5.10: tareas largas y predecible
 
 Reflexion ejecuta, evalúa el resultado y, si falló, escribe una crítica en lenguaje natural que guarda como memoria para el intento siguiente. No toca los pesos del modelo.
 
-```ascii
+![Reflexion: actor, evaluador y auto-reflexión entre intentos](images/s5-5-1-lazo-reflexion.png)
+<!-- ascii-source:
                 +----------------------------+
-  intento k --> | Actor (LLM, tipo ReAct)    | <------+
+  intento k --&gt; | Actor (LLM, tipo ReAct)    | <------+
                 +----------------------------+        |
                               |                       |
                               v trayectoria           |
@@ -1168,7 +1079,7 @@ Reflexion ejecuta, evalúa el resultado y, si falló, escribe una crítica en le
                            | memoria: 1 a 3        |--+
                            | reflexiones previas   | intento k+1
                            +-----------------------+
-```
+-->
 <!-- ascii-note:
 intent: el lazo largo de Reflexion, entre intentos completos; tres roles LLM distintos (Actor, Evaluator, Self-Reflection) y una memoria de reflexiones.
 emphasize: la caja Self-Reflection en rojo; la flecha de la memoria que vuelve al Actor para el intento siguiente.
@@ -1187,8 +1098,6 @@ Reflexion es el primer tipo con más de un rol de LLM. El Actor produce la traye
 Los autores lo llaman refuerzo verbal: en lugar de actualizar pesos como en reinforcement learning, el agente guarda en su contexto una frase que le dice qué cambiar. El paper lo describe como un gradiente semántico.
 
 Un detalle para quien lea el paper: el pseudocódigo del Algorithm 1 dice "while not pass or t < max trials", que como está escrito nunca terminaría bien. La prosa aclara que el loop sigue hasta que el Evaluator aprueba, con un máximo de intentos.
-
-### Presenter feedback
 
 ---
 
@@ -1223,36 +1132,42 @@ Que los tests los genere el agente es parte del método. Por eso el paper puede 
 
 La misma figura del paper tiene dos ejemplos más, uno de decisión en ALFWorld (el agente creyó que la sartén estaba en una hornalla equivocada) y uno de preguntas (supuso que dos escritores compartían varias profesiones).
 
-### Presenter feedback
-
 ---
 
-## 7. Qué mostró Reflexion
+## 7. Qué gana y qué cuesta reflexionar
 
-<!-- template: stat -->
+<!-- template: pros-cons -->
 
 ### Content
 
-Resultados del paper (2023). HumanEval mide si el modelo escribe una función correcta a partir de su descripción; pass@1 es el acierto con la primera solución entregada.
+### Ventajas, según el paper
 
-- **91,0% contra 80,1%** pass@1 en HumanEval Python: Reflexion contra GPT-4, el mejor resultado publicado en ese momento.
-- **130 de 134** tareas de ALFWorld, un juego de texto con tareas domésticas, resueltas con ReAct + Reflexion en 12 intentos.
-- **52% contra 60%** pass@1 en Rust al quitar los tests autogenerados: sin tests que evalúen el intento, la reflexión queda por debajo del modelo base.
+- **Aprende sin reentrenar** La crítica de cada intento entra en el siguiente, sin tocar los pesos del modelo.
+- **Brilla cuando hay cómo evaluar** Con tests o una validación clara, mejora mucho respecto de intentar una sola vez.
+- **Se apoya en ReAct** El actor sigue siendo un agente ReAct; Reflexion le suma un evaluador y la autocrítica.
+
+### Límites
+
+- **Depende del evaluador** Sin un criterio confiable de éxito, puede quedar peor que no reflexionar.
+- **Pide un modelo capaz** Los modelos chicos no logran corregirse.
+- **No ayuda a explorar** En tareas que piden explorar mucho, no mejora.
+- **Cuesta más llamadas** Cada intento es otra corrida completa.
 
 ### Sources
 
-- `corpus/shinn-2023-reflexion.pdf.md` — pass@1 definido como "accuracy of a single submitted solution"; HumanEval: "measure function body generation accuracy given natural language descriptions"; Table 1 (HumanEval PY: SOTA GPT-4 80,1, Reflexion 91,0); Sección 4.1 (130/134 tareas de ALFWorld, 12 intentos); Table 3 (HumanEval Rust, 50 problemas más difíciles, GPT-4: base 0,60; sin generación de tests 0,52; sin self-reflection 0,60; Reflexion completo 0,68); Table 4 (starchat-beta 0,26 → 0,26). Las fracciones de pass@1 se muestran como porcentaje (0,52 = 52%) para usar el mismo formato que la primera cifra.
+- `corpus/shinn-2023-reflexion.pdf.md` — mecanismo: refuerzo verbal, sin actualizar pesos; pass@1 definido como "accuracy of a single submitted solution"; HumanEval: "measure function body generation accuracy given natural language descriptions"; Table 1 (HumanEval PY: SOTA GPT-4 80,1, Reflexion 91,0); Sección 4.1 (130/134 tareas de ALFWorld, 12 intentos); Table 3 (HumanEval Rust, 50 problemas más difíciles, GPT-4: base 0,60; sin generación de tests 0,52; sin self-reflection 0,60; Reflexion completo 0,68); Table 4 (starchat-beta 0,26 → 0,26); WebShop sin mejora, corte después de 4 intentos. Las fracciones de pass@1 se muestran como porcentaje (0,52 = 52%).
 - `corpus/yao-2022-react.pdf.md` — ALFWorld descripto como "text-based household game" (134 juegos de evaluación).
+- Formato pros-cons paralelo a la lámina 5.3 (Plan-and-Execute), a pedido del presentador (2026-10-07), que reemplaza "Qué mostró Reflexion"; mismas cifras, reordenadas como ventajas y límites. Lámina llevada a alto nivel a pedido del presentador (2026-10-07): las cifras pasaron a las notas.
 
 ### Speaker notes
 
-Fechar las cifras: son de 2023 y el "estado del arte" de la primera es el de ese momento. No son benchmarks actuales.
+Las cifras quedan para la conversación, no para la lámina. Son de 2023 y hay que fecharlas.
 
-La tercera cifra es la que justifica la fila de Reflexion en la tabla de la lámina 5.10 ("cuando hay un criterio claro de éxito"). En la ablación de Rust, Reflexion completo llega a 68%. Sin tests autogenerados cae a 52%, por debajo del modelo base (60%). Sin la reflexión, se queda en 60%. Las dos piezas hacen falta, y la que más pesa es tener algo que diga si salió bien.
+Ventaja de evaluar: en HumanEval (problemas de programación con tests), Reflexion llegó a 91,0% de pass@1 contra 80,1% de GPT-4, el mejor resultado publicado en ese momento. En ALFWorld, un juego de texto con tareas domésticas, resolvió 130 de 134 tareas en 12 intentos.
 
-Un límite que el paper reporta: con un modelo chico (starchat-beta), Reflexion no mejora nada, 26% antes y 26% después. La autocorrección aparece en modelos más capaces. Y en WebShop, una tarea que pide explorar mucho, Reflexion no logró mejorar y los autores cortaron después de 4 intentos.
+El primer límite es el que justifica la fila de Reflexion en la tabla de la lámina 5.11 ("cuando hay un criterio claro de éxito"). En la ablación de Rust, Reflexion completo llega a 68%. Sin tests autogenerados cae a 52%, por debajo del modelo base (60%). Sin la reflexión, se queda en 60%. Las dos piezas hacen falta, y la que más pesa es tener algo que diga si salió bien.
 
-### Presenter feedback
+Los otros dos acotan dónde aplica: con un modelo chico (starchat-beta) queda en 26% antes y después, y en WebShop, que pide explorar mucho, no mejoró y los autores cortaron a los 4 intentos.
 
 ---
 
@@ -1262,7 +1177,8 @@ Un límite que el paper reporta: con un modelo chico (starchat-beta), Reflexion 
 
 ReWOO (Reasoning WithOut Observations) escribe el plan completo con variables y ejecuta todas las tools sin volver a razonar entre medio.
 
-```ascii
+![ReWOO: planner, worker y solver en tubería](images/s5-8-1-tuberia-rewoo.png)
+<!-- ascii-source:
   Pedido
     |
     v
@@ -1283,7 +1199,7 @@ ReWOO (Reasoning WithOut Observations) escribe el plan completo con variables y 
  +----------------------------------------------+
  | Solver (LLM): plan + evidencias -> respuesta |
  +----------------------------------------------+
-```
+-->
 <!-- ascii-note:
 intent: tuberia sin lazo; el LLM razona al principio (Planner) y al final (Solver), y el Worker ejecuta sin consultarlo.
 emphasize: las variables #E1 y #E2 dentro del plan, que conectan un paso con el siguiente; la ausencia de flecha de vuelta al Planner.
@@ -1302,8 +1218,6 @@ La diferencia con Plan-and-Execute es la variable. En Plan-and-Execute cada paso
 El costo de esa eficiencia: si una búsqueda devuelve algo inesperado, nadie replanifica. Por eso el nombre, razonar sin observaciones.
 
 Mención: LLMCompiler (Kim et al.) lleva la idea un paso más allá. El planner emite un grafo de tareas con dependencias (un DAG) y un scheduler ejecuta cada tarea apenas sus dependencias están listas, en paralelo. LangChain dice que el paper reporta una aceleración de 3,6×; no está verificado en el corpus, así que conviene decirlo como cifra del paper y no como medición propia.
-
-### Presenter feedback
 
 ---
 
@@ -1336,15 +1250,48 @@ Señalar dos cosas en el plan. Primero, `#E1`, `#E2` y `#E3` son las variables: 
 
 El plan entero sale de una sola llamada al planner. Después vienen cinco ejecuciones y una llamada final al solver. Con ReAct, la misma tarea habría pasado por el LLM antes de cada una de las cinco acciones.
 
-Cuándo conviene, según la tabla de la lámina 5.10: cuando el objetivo es bajar costo y latencia, y el plan se puede escribir completo de antemano.
-
-### Presenter feedback
-- [closed] 2026-10-04 — "Agregar un slide donde se compare cada uno y cuando convine usar cada uno de estos casos."
-  Resolution: Sin lámina duplicada: la tabla comparativa del presentador (ex 5.11) pasó a 5.10, justo después de ReWOO, como 'Los cuatro tipos, comparados', con una columna nueva 'Un caso' (la pregunta del Apple Remote de 4.2, actualizar un proyecto a una versión nueva de una biblioteca como ilustración de la cátedra, una función que tiene que pasar tests de 5.6 y las estadísticas de los quarterbacks de 5.9). La fila del orquestador con workers salió de la tabla a Cut material; ese tipo queda en 5.11 y 5.12.
+Cuándo conviene, según la tabla de la lámina 5.11: cuando el objetivo es bajar costo y latencia, y el plan se puede escribir completo de antemano.
 
 ---
 
-## 10. Los cuatro tipos, comparados
+## 10. Qué gana y qué cuesta planificar con variables
+
+<!-- template: pros-cons -->
+
+### Content
+
+### Ventajas
+
+- **Menos llamadas al LLM** Dos llamadas, una para planificar y otra para responder, en vez de una por paso.
+- **Menos tokens** No reenvía la trayectoria acumulada en cada paso, como hace ReAct.
+- **Pasos en paralelo** Los pasos que no dependen entre sí pueden ejecutarse a la vez.
+- **Planner más chico** Como no ve observaciones, el planner se puede pasar a un modelo más chico.
+
+### Límites
+
+- **No se adapta** Todas las decisiones se toman de entrada; el plan no cambia según lo que se encontró.
+- **Frágil ante sorpresas** Si una búsqueda no devuelve nada, no hay paso que lo corrija.
+- **Pide tareas predecibles** No sirve cuando el camino se decide sobre la marcha.
+
+### Sources
+
+- Resumen del presentador (chat, 2026-10-07) sobre ReWOO (Xu et al., 2023): llamadas por paso en ReAct, crecimiento de tokens, planner/worker/solver, variables, ejecución en paralelo de pasos independientes, destilación del planner y la limitación de no adaptarse. El presentador pidió verificar sus cifras antes de usarlas; no están en el corpus y quedan fuera de la lámina.
+- `corpus/langchain-planning-agents.web.md` — ReWOO: "removes the need to always use an LLM for each task while still allowing tasks to depend on previous task results" mediante "variable assignment in the planner's output"; worker que reemplaza variables; Solver que integra los resultados. Las ventajas de velocidad y costo son afirmadas por el post, no medidas ([open question] del registro).
+- Formato pros-cons paralelo a las láminas 5.4 y 5.7, a pedido del presentador (2026-10-07).
+
+### Speaker notes
+
+El problema que ataca es de costo. En ReAct cada paso es una llamada al LLM que reenvía todo el prompt: instrucción, ejemplos y trayectoria acumulada. Con N pasos hay N llamadas, y como el prefijo se repite cada vez, los tokens crecen mucho más rápido que los pasos.
+
+ReWOO separa el razonamiento de las observaciones: el planner escribe el plan completo sin ver ningún resultado, el worker ejecuta las tools y reemplaza cada variable por su valor, y el solver redacta la respuesta. Las variables funcionan como las de un programa: el plan es un pequeño script que el modelo escribe y el código interpreta.
+
+La limitación es la contracara del diseño. Las variables dejan que un paso use el dato de uno anterior, pero no que el plan cambie según lo que se encontró. Por eso Plan-and-Execute (lámina 5.2) agrega un re-planner.
+
+El paper (Xu et al., 2023) reporta un ahorro grande de tokens en HotpotQA y un planner destilado a un modelo chico. No citar cifras hasta verificarlas contra el paper.
+
+---
+
+## 11. Los cuatro tipos, comparados
 
 ### Content
 
@@ -1369,100 +1316,15 @@ La columna de casos sirve para la pregunta inversa: dada una tarea, qué tipo. S
 
 Los tipos se combinan. El executor de Plan-and-Execute es un pequeño ReAct, y el Actor de Reflexion también.
 
-### Presenter feedback
+Cierre de la sección 5. Tiempo acumulado: unos 66 minutos.
+
+**Pausa de 10 minutos acá.** Es el corte natural entre los tipos de agente y los sistemas multiagente. Retomar a los 76 minutos con la lámina 6.1.
 
 ---
 
-## 11. Multiagente: orquestador y workers
+# 6. Sistemas multiagente
 
-### Content
-
-Un orquestador descompone la tarea en tiempo de ejecución, delega cada subtarea en un worker y sintetiza los resultados. Anthropic lo cuenta entre los workflows. Cuando cada worker es un agente con su propio loop de tools, el worker es un subagente, y el conjunto es la forma básica de un sistema multiagente, que define la lámina 6.2.
-
-```ascii
-                    Pedido
-                       |
-                       v
-            +----------------------+
-            |  Orquestador (LLM)   |
-            |  decide subtareas    |
-            +----------------------+
-               |         |        |
-               v         v        v
-         +--------+ +--------+ +--------+
-         |Worker 1| |Worker 2| |Worker 3|
-         +--------+ +--------+ +--------+
-               |         |        |
-               v         v        v
-            +----------------------+
-            |  Orquestador:        |
-            |  sintetiza           |
-            +----------------------+
-                       |
-                       v
-                   Respuesta
-```
-<!-- ascii-note:
-intent: fan-out / fan-in; las subtareas no estan predefinidas, las decide el orquestador para cada pedido.
-emphasize: el orquestador en rojo arriba y abajo (es el mismo agente); los workers en paralelo.
-labels: Pedido, Orquestador (LLM), Worker 1-3, sintetiza, Respuesta.
-consistency: mismo lienzo y tratamiento de cajas que los otros cuatro tipos (4.1, 5.2, 5.5 y 5.8).
--->
-
-### Sources
-
-- `corpus/anthropic-building-effective-agents.web.md` — orchestrator-workers: "a central LLM dynamically breaks down tasks, delegates them to worker LLMs, and synthesizes their results"; las subtareas no están predefinidas, las determina el orquestador según el pedido.
-- `corpus/anthropic-multi-agent-research-system.web.md` — patrón orchestrator-worker del sistema de Research: un agente que planifica crea subagentes, cada uno con su propia ventana, que buscan en paralelo.
-- `corpus/AIG4B-Clase-6-Agent.pptx.md` — slide 33: espectro workflows deterministas (prompt chaining, paralelización) / dirigidos por LLM (routing, orchestrator-worker, evaluator-optimizer) / agentes autónomos (solo en notas).
-
-### Speaker notes
-
-La diferencia con Reflexion: ahí los tres roles se turnaban sobre una misma tarea. Acá el orquestador reparte la tarea en pedazos y cada worker es un agente con su propio loop.
-
-La diferencia con la paralelización de la lámina 2.3, según Anthropic: en la paralelización las subtareas están escritas en el código; en orchestrator-workers el orquestador las decide para cada pedido. Anthropic clasifica a los dos como workflows.
-
-El deck del curso (slide 33) dibujaba un espectro con tres puntos: workflows deterministas, workflows dirigidos por LLM (ahí ubicaba al orquestador con workers) y agentes autónomos. Esta clase lo cuenta como tipo de agente con esa lectura: cuando cada worker tiene su propio loop, el sistema entero es un conjunto de agentes.
-
-Desde esta lámina, worker y subagente nombran lo mismo. La lámina 6.2 define sistema multiagente y la sección 7 recorre cómo se comunican los agentes.
-
-### Presenter feedback
-
----
-
-## 12. Dónde aparece el orquestador con workers
-
-### Content
-
-- **Código en muchos archivos** Un agente de código que tiene que cambiar varios archivos reparte los cambios según el pedido.
-- **Búsqueda en muchas fuentes** Una tarea de investigación junta y analiza información de fuentes distintas.
-- **Claude Research** Un orquestador planifica la investigación y crea subagentes que buscan en paralelo.
-
-`Anthropic, 2024 (revisado) · jun-2025`
-
-### Sources
-
-- `corpus/anthropic-building-effective-agents.web.md` — ejemplos de orchestrator-workers: productos de código que cambian múltiples archivos; tareas de búsqueda que juntan información de múltiples fuentes.
-- `corpus/anthropic-multi-agent-research-system.web.md` — la función Research de Claude: lead agent que planifica y crea subagentes paralelos.
-
-### Speaker notes
-
-Los dos primeros ejemplos son de Anthropic en el post de workflows. El tercero es su propio producto. La sección 8 vuelve a él con sus cifras: el 90,2% y el 15× de tokens.
-
-Dejar planteada la pregunta que la sección 8 contesta: ¿qué pasa cuando dos subagentes cambian el mismo archivo? Para buscar no importa; para escribir código sí.
-
-Cierre de la sección 5. Tiempo acumulado: unos 70 minutos.
-
-**Pausa de 10 minutos acá.** Es el corte natural entre los tipos de agente y las arquitecturas multiagente. Retomar a los 80 minutos con la lámina 6.1.
-
-### Presenter feedback
-
----
-
-# 6. Límites de un agente
-
-**Goal of this section:** Retomar después de la pausa con el límite de un agente único: el contexto se degrada a medida que crece. Definir sistema multiagente con las tres palancas que mueve, y frenar con la recomendación de LangChain de empezar por un agente con buenas tools.
-
-**Presenter feedback:**
+**Goal of this section:** Retomar después de la pausa con el límite de un agente único: el contexto se degrada a medida que crece. Definir sistema multiagente con las tres palancas que mueve y presentar su forma básica, el orquestador con workers, con tres lugares donde aparece. Recorrer después las topologías al nivel de la comunicación, sin frameworks: quién le habla a quién, quién tiene el control y por dónde circula el contexto. Estrella, router, red, pizarra, pipeline y jerarquía tienen cada una su diagrama, y una tabla las compara por control, contexto, costo y trazabilidad. La sección cierra con la recomendación de LangChain de empezar por un agente con buenas tools.
 
 ---
 
@@ -1497,10 +1359,6 @@ El post no da números; cita un estudio de Chroma que no está en el material de
 
 Anthropic propone tres técnicas contra esto: compactar la conversación, tomar notas fuera del contexto y repartir el trabajo entre subagentes. Esta clase sigue la tercera.
 
-### Presenter feedback
-- [closed] 2026-10-04 — "No habla sobre que es el contexto en un modelo. Ya lo hablamos bastante. Revisar que slides tocan esot."
-  Resolution: Auditoría del contexto: se define una sola vez, en 2.1 (en la lámina, el texto que el modelo recibe en cada llamada; en notas, finito y pago por token). El quiz 6.1 '¿Qué es el contexto de un modelo?', que lo volvía a definir, pasó a Cut material, y la nota de 1.4 quedó como puntero a 2.1. 'El contexto se degrada' (hoy 6.1) abre la sección con un puntero al c_t de 2.1 y agrega solo lo nuevo, el context rot. 3.4, 7.1, 8.5 y Conclusions usan el término sin redefinirlo.
-
 ---
 
 ## 2. Qué es un sistema multiagente
@@ -1513,7 +1371,8 @@ Un sistema multiagente son varios agentes que interactúan, de forma colaborativ
 - **Aislamiento de contexto** Cada agente trabaja en su propia ventana y devuelve un resumen. Un subagente puede gastar decenas de miles de tokens y devolver a menudo entre 1.000 y 2.000.
 - **Paralelismo** Las subtareas independientes corren a la vez. El sistema gasta más tokens en menos tiempo.
 
-```ascii
+![Un agente con todo en un contexto contra varios agentes](images/s6-2-1-un-agente-vs-varios.png)
+<!-- ascii-source:
           UN AGENTE                       VARIOS AGENTES
 
  +----------------------------+   +--------+ +--------+ +--------+
@@ -1524,7 +1383,7 @@ Un sistema multiagente son varios agentes que interactúan, de forma colaborativ
  +----------------------------+       |   en paralelo  |      |
                                       v          v          v
                                    resumen    resumen    resumen
-```
+-->
 <!-- ascii-note:
 intent: contrastar un agente con todo en un solo contexto contra varios agentes con prompt, tools y contexto propios que corren en paralelo y devuelven resumenes.
 emphasize: las tres columnas separadas a la derecha y la etiqueta "en paralelo" (acento rojo); el bloque unico de la izquierda como lo que se parte.
@@ -1544,19 +1403,375 @@ labels: UN AGENTE, VARIOS AGENTES, prompt general, todas las tools, todo el hist
 
 **Original:** "A multi-agent system consists of multiple agents (LLMs autonomously using tools in a loop) working together" — [Anthropic, jun-2025](https://www.anthropic.com/engineering/multi-agent-research-system).
 
-La definición de la lámina es la del deck del curso; la de Anthropic es su versión con LLMs. MAST, el paper sobre fallas de la sección 8, agrega la palabra que importa para lo que sigue: agentes que interactúan a través de una orquestación.
+La definición de la lámina es la del deck del curso; la de Anthropic es su versión con LLMs. MAST, el paper sobre fallas de la sección 7, agrega la palabra que importa para lo que sigue: agentes que interactúan a través de una orquestación.
 
-Las tres palancas son el vocabulario para leer las topologías de la sección 7. Un pipeline especializa y no paraleliza. Una red en la que los agentes se pasan el control especializa y, por defecto, no aísla (lámina 8.3). La estrella de orquestador y subagentes mueve las tres.
+Las tres palancas son el vocabulario para leer las topologías de esta sección. Un pipeline especializa y no paraleliza. Una red en la que los agentes se pasan el control especializa y, por defecto, no aísla (lámina 7.3). El orquestador con workers de la lámina siguiente mueve las tres.
 
-LangChain agrega un cuarto motivo, que no es técnico: el desarrollo distribuido, con equipos distintos dueños de agentes distintos. Aparece en la lámina siguiente.
+LangChain agrega un cuarto motivo, que no es técnico: el desarrollo distribuido, con equipos distintos dueños de agentes distintos. Aparece en la lámina 6.11.
 
 Volver al diagrama de la izquierda: es el agente de las secciones 3 a 5. Su prompt, sus tools y su historial se reparten entre los agentes de la derecha.
 
-### Presenter feedback
+---
+
+## 3. Multiagente: orquestador y workers
+
+### Content
+
+La forma básica de un sistema multiagente tiene un orquestador y varios workers. El orquestador descompone la tarea en tiempo de ejecución, delega cada subtarea en un worker y sintetiza los resultados. Cuando cada worker es un agente con su propio loop de tools, el worker es un subagente.
+
+![Orquestador que reparte subtareas a workers en paralelo](images/s5-11-1-orquestador-workers.png)
+<!-- ascii-source:
+                    Pedido
+                       |
+                       v
+            +----------------------+
+            |  Orquestador (LLM)   |
+            |  decide subtareas    |
+            +----------------------+
+               |         |        |
+               v         v        v
+         +--------+ +--------+ +--------+
+         |Worker 1| |Worker 2| |Worker 3|
+         +--------+ +--------+ +--------+
+               |         |        |
+               v         v        v
+            +----------------------+
+            |  Orquestador:        |
+            |  sintetiza           |
+            +----------------------+
+                       |
+                       v
+                   Respuesta
+-->
+<!-- ascii-note:
+intent: fan-out / fan-in; las subtareas no estan predefinidas, las decide el orquestador para cada pedido.
+emphasize: el orquestador en rojo arriba y abajo (es el mismo agente); los workers en paralelo.
+labels: Pedido, Orquestador (LLM), Worker 1-3, sintetiza, Respuesta.
+consistency: mismo lienzo y tratamiento de cajas que los otros cuatro tipos (4.1, 5.2, 5.5 y 5.8).
+-->
+
+### Sources
+
+- `corpus/anthropic-building-effective-agents.web.md` — orchestrator-workers: "a central LLM dynamically breaks down tasks, delegates them to worker LLMs, and synthesizes their results"; las subtareas no están predefinidas, las determina el orquestador según el pedido.
+- `corpus/anthropic-multi-agent-research-system.web.md` — patrón orchestrator-worker del sistema de Research: un agente que planifica crea subagentes, cada uno con su propia ventana, que buscan en paralelo.
+- `corpus/AIG4B-Clase-6-Agent.pptx.md` — slide 33: espectro workflows deterministas (prompt chaining, paralelización) / dirigidos por LLM (routing, orchestrator-worker, evaluator-optimizer) / agentes autónomos (solo en notas).
+
+### Speaker notes
+
+Comparar con Reflexion (5.5): ahí tres roles se turnaban sobre una misma tarea. Acá el orquestador parte la tarea y cada worker trabaja en su pedazo con su propio loop.
+
+La diferencia con la paralelización de la lámina 2.3, según Anthropic: en la paralelización las subtareas están escritas en el código; en orchestrator-workers el orquestador las decide para cada pedido. Anthropic clasifica a los dos como workflows.
+
+El deck del curso (slide 33) dibujaba un espectro con tres puntos: workflows deterministas, workflows dirigidos por LLM (ahí ubicaba al orquestador con workers) y agentes autónomos. Esta clase lo lee desde la definición de la lámina anterior: cuando cada worker tiene su propio loop, el sistema entero es un conjunto de agentes.
+
+Desde esta lámina, worker y subagente nombran lo mismo. La lámina 6.5 vuelve a esta forma como topología, la estrella, y la compara con las otras.
 
 ---
 
-## 3. Primero, un solo agente
+## 4. Dónde aparece el orquestador con workers
+
+### Content
+
+- **Código en muchos archivos** Un agente de código que tiene que cambiar varios archivos reparte los cambios según el pedido.
+- **Búsqueda en muchas fuentes** Una tarea de investigación junta y analiza información de fuentes distintas.
+- **Claude Research** Un orquestador planifica la investigación y crea subagentes que buscan en paralelo.
+
+`Anthropic, 2024 (revisado) · jun-2025`
+
+### Sources
+
+- `corpus/anthropic-building-effective-agents.web.md` — ejemplos de orchestrator-workers: productos de código que cambian múltiples archivos; tareas de búsqueda que juntan información de múltiples fuentes.
+- `corpus/anthropic-multi-agent-research-system.web.md` — la función Research de Claude: lead agent que planifica y crea subagentes paralelos.
+
+### Speaker notes
+
+Los dos primeros ejemplos son de Anthropic en el post de workflows. El tercero es su propio producto. La sección 7 vuelve a él con sus cifras: el 90,2% y el 15× de tokens.
+
+Dejar planteada la pregunta que la sección 7 contesta: ¿qué pasa cuando dos subagentes cambian el mismo archivo? Para buscar no importa; para escribir código sí.
+
+---
+
+## 5. Estrella: orquestador y subagentes
+
+### Content
+
+El orquestador con workers de la lámina 6.3, visto como comunicación, es una estrella: cada subagente habla solo con el orquestador.
+
+- **Encargo** El orquestador decide qué entra en la ventana de cada subagente, desde un pedido de dos líneas hasta todo lo que sabía.
+- **Hermanos** Mientras trabaja, un subagente no ve lo que hace otro.
+- **Decisión** Una tool se ejecuta y devuelve un resultado. Un subagente decide qué hacer con su encargo.
+
+![Cada subagente con su propia ventana de contexto](images/s7-1-1-subagentes-ventana-propia.png)
+<!-- ascii-source:
+ +--------------------------------------------+
+ |  Orquestador            [ventana propia]   |
+ +--------------------------------------------+
+    | encargo   ^                | encargo  ^
+    v           | hallazgo       v          | hallazgo
+ +----------------+         +----------------+
+ |  Subagente A   |         |  Subagente B   |
+ | [ventana       |  no se  | [ventana       |
+ |  propia]       |   ven   |  propia]       |
+ +----------------+         +----------------+
+-->
+<!-- ascii-note:
+intent: cada agente tiene su propia ventana de contexto; el orquestador le pasa un encargo a cada subagente y recibe un hallazgo.
+emphasize: las tres etiquetas [ventana propia] (acento rojo); el hueco "no se ven" entre hermanos queda como rotulo secundario.
+labels: Orquestador, Subagente A, Subagente B, encargo, hallazgo, ventana propia, no se ven.
+-->
+
+### Sources
+
+- `corpus/orquestacion-de-agentes-clase.md.md` — lámina 2.1 "Qué es un subagente" y quiz 1.4: definición, ventana de contexto propia, fan-out / fan-in, "hallazgos destilados, no su historial completo"; "una herramienta se ejecuta y devuelve, un subagente decide".
+- `corpus/magentic-one-2024.web.md` — Orchestrator con WebSurfer, FileSurfer, Coder y ComputerTerminal ("deterministically executes code and shell commands, no LLM") (notas).
+- `corpus/anthropic-multi-agent-research-system.web.md` — "The essence of search is compression": los subagentes trabajan en paralelo con sus propias ventanas y condensan lo importante para el agente principal.
+
+### Speaker notes
+
+**Original:** "The essence of search is compression" — [Anthropic, jun-2025](https://www.anthropic.com/engineering/multi-agent-research-system). Cada subagente lee mucho y devuelve poco; la lámina 6.2 ya dio el orden de magnitud.
+
+La pregunta donde la sala se confunde es si los subagentes comparten el contexto. Cada uno tiene su propia ventana, siempre. Lo que cambia es cuánto pone adentro el agente que lo crea. La lámina 7.4 muestra que ni pasarle todo alcanza.
+
+Un sistema publicado con esta forma es Magentic-One: un orquestador con cuatro workers (navegador, archivos, código y terminal), y el de la terminal ejecuta código sin LLM.
+
+Cómo se ve en código: `samples/multiagente-langgraph/` en el repo de la materia arma esta estrella en LangGraph. El orquestador tiene una sola tool, `delegar_investigacion`, y cada llamada corre un subagente ReAct que arranca con el contexto vacío y devuelve solo su respuesta. Si el orquestador pide dos subagentes en el mismo turno, corren en paralelo. Mostrarlo en pantalla si hay tiempo; la lámina se queda sin framework a propósito.
+
+---
+
+## 6. Router: despacho
+
+### Content
+
+Un router clasifica el pedido y lo despacha al especialista que corresponde, o a varios en paralelo. Decide una vez, al inicio, y no vuelve a razonar sobre lo que devuelven.
+
+![Router: clasifica el pedido y lo despacha a un especialista](images/s7-2-1-router-despacho.png)
+<!-- ascii-source:
+                    Pedido
+                       |
+                       v
+           +-----------------------+
+           |   Router: clasifica   |
+           +-----------------------+
+             |          :         :
+             v          :         :
+      +-----------+ +-----------+ +-----------+
+      | Consultas | | Reembolso | | Soporte   |
+      | generales | |           | | técnico   |
+      +-----------+ +-----------+ +-----------+
+             |
+             v
+         Respuesta
+-->
+<!-- ascii-note:
+intent: un despacho de una sola decision; el router elige la salida y el especialista elegido responde, sin volver al router.
+emphasize: la caja Router (acento rojo) y la unica flecha continua; las salidas no elegidas punteadas.
+labels: Pedido, Router: clasifica, Consultas generales, Reembolso, Soporte tecnico, Respuesta.
+-->
+
+### Sources
+
+- `corpus/anthropic-building-effective-agents.web.md` — routing: "classifies an input and directs it to a specialized followup task"; "separation of concerns"; conviene con "distinct categories that are better handled separately, and where classification can be handled accurately"; ejemplo de atención al cliente (consultas generales, reembolsos, soporte técnico).
+- `corpus/langchain-multi-agent-architectures.web.md` — la variante que despacha a varios agentes en paralelo y sintetiza (solo el concepto, sin el framework).
+
+### Speaker notes
+
+Es el routing de la lámina 2.3 con un agente en cada salida. El ejemplo del diagrama es el de Anthropic: un servicio de atención al cliente separa consultas generales, reembolsos y soporte técnico, y cada salida tiene su prompt y sus tools.
+
+La diferencia con la estrella está en cuántas veces se decide. El router decide una vez al inicio. El orquestador de la lámina 6.5 puede leer lo que devolvió un subagente y decidir a quién llamar después.
+
+Según Anthropic, conviene cuando las categorías están bien separadas y se pueden clasificar con precisión. Si el router clasifica mal, el pedido llega al especialista equivocado y nadie lo corrige.
+
+---
+
+## 7. Red: el control pasa de agente en agente
+
+### Content
+
+En una red no hay un nodo que coordine. Cada agente atiende su parte y, cuando el pedido sale de su dominio, le transfiere el control a otro con un handoff, una acción más del agente, como llamar a una tool. El que recibe pasa a ser el agente activo y sigue la conversación con el usuario.
+
+![Red: el control pasa de agente en agente, sin nodo central](images/s7-3-1-red-control-agentes.png)
+<!-- ascii-source:
+            Usuario
+               |
+               v
+        +-------------+
+        |  Agente A   |
+        +-------------+
+          |         |
+          v         v
+    +---------+   +---------+
+    | Agente  |<->| Agente  |
+    |    B    |   |    C    |
+    +---------+   +---------+
+
+  cada agente ejecuta, delega o enriquece
+  y le pasa el control al siguiente
+-->
+<!-- ascii-note:
+intent: una topologia sin nodo central; el control pasa de un agente a otro y el que lo recibe sigue la conversacion con el usuario.
+emphasize: la arista directa entre Agente B y Agente C (acento rojo).
+labels: Usuario, Agente A/B/C, cada agente ejecuta, delega o enriquece y le pasa el control al siguiente.
+-->
+
+### Sources
+
+- `corpus/koreai-orchestration-patterns.web.md` — adaptive agent network: "eliminates centralized control, enabling agents to collaborate and transfer tasks directly based on expertise and context"; cada agente decide "whether to execute, delegate, or enrich the task before passing it forward"; ejemplo de nómina (notas).
+- `corpus/openai-agents-sdk-handoffs.web.md` — el handoff como tool para el LLM; el agente que recibe toma la conversación (solo el concepto, sin el framework).
+- `corpus/AIG4B-Clase-6-Agent.pptx.md` — slide 32: Network, "Más flexible pero menos predecible" (notas).
+- `corpus/generative-agents-2023.web.md` — 25 agentes en Smallville; la invitación a la fiesta pasa de 1 agente (4%) a 13 (52%) en dos días simulados; 5 de los 12 invitados asisten (notas).
+
+### Speaker notes
+
+Un ejemplo de Kore.ai para contarlo en voz alta. Un empleado escribe que no puede ver su recibo de sueldo. Un agente de bienvenida clasifica el pedido y se lo pasa al asistente de IT con el contexto armado. IT encuentra que la autenticación funciona y que falló la sincronización con la base de nómina, y le pasa el caso, con lo que averiguó, al asistente de finanzas. Ninguno le vuelve a preguntar nada al usuario.
+
+Un handoff puede ser cambiar de agente o cambiar el system prompt y las tools del agente actual. Para el modelo, es una tool que en vez de traer datos mueve el control. Qué historial recibe el agente que toma el control es una decisión de diseño; la lámina 7.3 muestra el valor por defecto.
+
+Juntar la red de Kore.ai con el handoff es lectura de la cátedra: Kore.ai describe agentes que se transfieren tareas, y el handoff es el mecanismo con que un agente LLM lo hace.
+
+Un ejemplo sin pizarra ni orquestador es Generative Agents: 25 agentes en un pueblo simulado que se pasan información conversando. En dos días simulados, la invitación a una fiesta pasó de 1 agente (4%) a 13 (52%), y 5 de los 12 invitados fueron.
+
+---
+
+## 8. Pizarra: publicar y leer
+
+### Content
+
+En una pizarra, cada agente publica su resultado en un espacio compartido y lee de ahí lo que necesita. Los agentes no se mandan mensajes entre sí.
+
+- **Publicar** Cada agente deja en la pizarra un documento con formato fijo: un requerimiento, un diseño, código o tests.
+- **Suscribirse** Cada rol declara qué le interesa y lee solo eso. Lo demás no entra en su contexto.
+- **Activarse** Un agente actúa cuando ya está publicado todo lo que necesita, sin un orquestador que le asigne el trabajo.
+
+![Pizarra: los agentes publican y leen documentos en un espacio compartido](images/s6-8-1-pizarra-publicar-leer.png)
+<!-- ascii-source:
+  +------------+   +------------+   +------------+   +------------+
+  |  Producto  |   | Arquitecto |   | Ingeniero  |   |     QA     |
+  +------------+   +------------+   +------------+   +------------+
+      |                |     ^          |     ^          |     ^
+      v                v     |          v     |          v     |
+  +---------------------------------------------------------------+
+  |                            PIZARRA                            |
+  |   PRD              diseño           código           tests    |
+  +---------------------------------------------------------------+
+
+   v publica       ^ lee lo que pide su rol
+   cada agente actúa cuando ya está publicado lo que necesita
+-->
+<!-- ascii-note:
+intent: una pizarra al estilo de MetaGPT; cuatro de sus cinco roles (sin el Project Manager) publican documentos en un espacio comun y leen de ahi lo que pide su rol; no hay flechas entre agentes.
+emphasize: la caja PIZARRA (acento rojo) como unico punto de contacto; ninguna flecha une a dos agentes. Lecturas: Arquitecto lee PRD, Ingeniero lee diseño, QA lee código.
+labels: Producto, Arquitecto, Ingeniero, QA, PIZARRA, PRD, diseño, código, tests, v publica, ^ lee lo que pide su rol, cada agente actúa cuando ya está publicado lo que necesita.
+consistency: mismo tratamiento de cajas que la estrella (6.5) y la red (6.7).
+-->
+
+`Hong et al. (MetaGPT), 2023`
+
+### Sources
+
+- `corpus/metagpt-2023.web.md` — §3.2, Publish-Subscribe Mechanism: "a shared message pool that allows all agents to exchange messages directly"; "Any agent can directly retrieve required information from the shared pool, eliminating the need to inquire about other agents and await their responses"; suscripción por perfil de rol para evitar "information overload"; "an agent activates its action only after receiving all its prerequisite dependencies". Comunicación por documentos y diagramas "rather than dialogue", motivada por el teléfono descompuesto. Cinco roles (Product Manager, Architect, Project Manager, Engineer, QA Engineer) y sus documentos: PRD, diseño del sistema, tareas, código y tests. El Architect lee sobre todo los PRD del Product Manager (notas). La Figura 2 (izquierda) dibuja el pool compartido.
+- `corpus/sistemas-multiagente-clase.md.md` — lámina 3.7 del deck hermano, "Red y pizarra compartida": agentes pares que publican y leen en un espacio común (estructura reutilizada, sin el caso Pampa Viajes; sus datos remiten al registro de MetaGPT).
+- El diagrama es de la cátedra, sobre el mecanismo de MetaGPT, con cuatro de sus cinco roles.
+
+### Speaker notes
+
+**Original:** "Any agent can directly retrieve required information from the shared pool, eliminating the need to inquire about other agents and await their responses." — [Hong et al., *MetaGPT*](https://arxiv.org/abs/2308.00352).
+
+En la red de la lámina anterior, el agente activo le pasa el control a otro. En la pizarra cada agente mira el espacio común y arranca cuando encuentra lo que le hace falta.
+
+El ejemplo es MetaGPT, que simula una empresa de software con cinco roles: producto, arquitectura, gestión del proyecto, desarrollo y QA. Sus agentes publican en un pool de mensajes compartido el PRD, el diseño, las tareas, el código y los tests. El arquitecto se suscribe a los PRD y casi no mira lo que publica QA. El diagrama deja afuera al rol de gestión del proyecto.
+
+Los autores eligieron documentos con formato fijo por el teléfono descompuesto: en lenguaje libre, después de varias rondas entre agentes, el mensaje original llega deformado.
+
+El paper justifica la suscripción con lo que llama *information overload*: es el problema de contexto de la lámina 6.1, ahora en un espacio compartido.
+
+---
+
+## 9. Pipeline y jerarquía
+
+### Content
+
+Dos topologías más: una cadena fija y un árbol.
+
+![Pipeline y jerarquía: dos formas de encadenar agentes](images/s6-9-1-pipeline-jerarquia.png)
+<!-- ascii-source:
+     PIPELINE               JERARQUIA
+
+    +-------+           +-------------+
+    |   A   |           | orquestador |
+    +-------+           +-------------+
+        |                  |        |
+        v                  v        v
+    +-------+          +------+  +------+
+    |   B   |          | orq. |  | orq. |
+    +-------+          +------+  +------+
+        |               |    |       |
+        v               v    v       v
+    +-------+          +--+ +--+   +--+
+    |   C   |          |A | |B |   |C |
+    +-------+          +--+ +--+   +--+
+-->
+<!-- ascii-note:
+intent: dos topologias lado a lado; una cadena fija de agentes y un arbol de orquestadores.
+emphasize: el orquestador de arriba de la jerarquia (acento rojo); la forma distinta de cada topologia (cadena, arbol).
+labels: PIPELINE, JERARQUIA, A-C, orquestador, orq.
+-->
+
+- **Pipeline** El código fija el orden, y la salida de un agente es la entrada del siguiente.
+- **Jerarquía** Un orquestador coordina a otros orquestadores, y cada uno coordina su equipo. Contract Net ya lo permitía en 1980.
+
+### Sources
+
+- `corpus/chatdev-2023.web.md` — chat chain por fases (diseño, código, pruebas); "By sharing only the solutions of each subtask rather than the entire communication history" (notas).
+- `corpus/contract-net-protocol.web.md` — "introduced in 1980 by Reid G. Smith"; manager, propuestas y adjudicación; "a manager assigns tasks to contractors, who in turn decompose into lower-level task and assign them to the lower level"; "This task can then be divided and subcontracted". El registro deja abierto si el origen es 1980 o el trabajo de Smith de 1977–1978.
+- `corpus/AIG4B-Clase-6-Agent.pptx.md` — slide 32: Hierarchical.
+- `corpus/anthropic-building-effective-agents.web.md` — prompt chaining como workflow (notas).
+- `corpus/sistemas-multiagente-clase.md.md` — láminas 3.3 y 3.8 del deck hermano (pipeline, jerárquica); se tomó la estructura, sin el caso Pampa Viajes.
+
+### Speaker notes
+
+El pipeline es un workflow en el sentido de la lámina 2.3: el código decide el orden. Es el prompt chaining de Anthropic con un agente en cada paso. ChatDev es un ejemplo publicado: encadena fases de diseño, código y pruebas, y entre fases pasa solo la solución, sin el historial de la conversación.
+
+Contract Net funciona así: un agente anuncia una tarea, los contratistas ofertan y el que anunció adjudica. Un contratista puede subdividir la tarea y subcontratar, y así se arma la jerarquía.
+
+Lo que cuesta cada una está en la tabla de la lámina siguiente.
+
+---
+
+## 10. Las topologías, comparadas
+
+### Content
+
+| Topología | Quién tiene el control | Cómo circula el contexto | Costo y latencia | Trazabilidad |
+|---|---|---|---|---|
+| Estrella | El orquestador, en cada vuelta | Encargo de ida, hallazgo comprimido de vuelta | Un salto por el centro en cada delegación | Todo pasa por un lugar |
+| Router | El router, una vez al inicio | El pedido va al especialista elegido | Una clasificación antes de empezar | Una decisión por pedido |
+| Red | El agente activo, que lo transfiere | Viaja con el control: historial entero o resumen | Sin saltos por un centro | Nadie tiene la foto completa |
+| Pizarra | Ninguno: cada agente reacciona a lo publicado, y hay que decidir quién termina | Un espacio común que todos leen y escriben | Leer todo lo publicado satura; se filtra por rol | Lo publicado queda en el espacio común |
+| Pipeline | El código | La salida de un agente es la entrada del siguiente | Etapas en serie | Orden fijo; un error temprano se arrastra |
+| Jerarquía | Un árbol de orquestadores | Resúmenes que suben nivel por nivel | Cada nivel suma llamadas y latencia | Cada resumen pierde información |
+
+### Sources
+
+- `corpus/koreai-orchestration-patterns.web.md` — forma con orquestador central (Supervisor): "reasoning transparency, quality assurance, and traceability"; el control centralizado agrega "milliseconds or seconds of delay"; red sin control central para "low-latency, high-interactivity environments"; la desaconseja donde "traceability/debugging is paramount" (filas Estrella y Red; Use / Avoid en notas).
+- `corpus/anthropic-building-effective-agents.web.md` — orchestrator-workers, routing y prompt chaining (filas Estrella, Router y Pipeline).
+- `corpus/anthropic-multi-agent-research-system.web.md` — subagentes que condensan lo importante para el agente principal (fila Estrella).
+- `corpus/metagpt-2023.web.md` — pool de mensajes compartido; la suscripción por rol filtra lo irrelevante para evitar "information overload" (fila Pizarra).
+- `corpus/sistemas-multiagente-clase.md.md` — láminas 3.3, 3.7 y 3.8 del deck hermano: pipeline predecible donde un error temprano se arrastra; pizarra donde hay que decidir quién termina; jerarquía donde cada nivel agrega llamadas, latencia y un resumen que pierde información.
+- Las celdas de trazabilidad de Router y Pizarra y la de costo de Router son lectura de la cátedra. La tabla no tiene cifras: el costo de cada topología depende del caso.
+
+### Speaker notes
+
+Leer por columna. Las dos primeras son las preguntas de la sección: quién tiene el control y por dónde pasa el contexto. Las dos últimas son lo que se paga por cada respuesta.
+
+Kore.ai lo dice para las dos formas que describe. La forma con orquestador central conviene cuando la trazabilidad y la calidad importan más que el tiempo real, y la desaconseja en voz, con mucha escala o con un presupuesto de tokens ajustado. La red conviene en asistentes conversacionales, soporte y voz, y la desaconseja cuando la trazabilidad es prioridad o no está claro qué agente es dueño de la tarea.
+
+Las topologías se combinan. Un router puede despachar a orquestadores, y MetaGPT, el ejemplo de la pizarra, ordena sus cinco roles como un pipeline, de producto a QA.
+
+Ninguna fila trae un número. El precio general del multiagente, unas 15 veces los tokens de un chat, está en la lámina 7.1.
+
+---
+
+## 11. Primero, un solo agente
 
 ### Content
 
@@ -1576,302 +1791,19 @@ LangChain recomienda empezar con un solo agente y buenas tools. Dos restriccione
 
 **Original:** "Start with a single agent and good prompt engineering. Add tools before adding agents. Graduate to multi-agent patterns only when you hit clear limits." — [LangChain, ene-2026](https://www.langchain.com/blog/choosing-the-right-multi-agent-architecture).
 
-Cerrar la sección con este freno es deliberado: las secciones 7 y 8 son para cuando un agente no alcanza. LangChain lo escribe en cursiva, el multiagente *puede* ser la opción correcta.
+La sección cierra con este freno a propósito, después de recorrer todas las topologías. LangChain lo escribe en cursiva: el multiagente *puede* ser la opción correcta. La sección 7 da el criterio para saber cuándo un agente no alcanza.
 
 Las dos restricciones son distintas en naturaleza. La primera es técnica (el contexto es finito). La segunda es organizacional (equipos distintos), y es la que más se parece a una decisión de arquitectura de software clásica: separar módulos por equipo dueño.
 
 La primera restricción es la que mostró la lámina 6.1. La documentación de LangChain la cierra con otra frase: "a single agent with the right (sometimes dynamic) tools and prompt can often achieve similar results". La carga de la prueba la tiene el multiagente.
 
-Cierre de la sección 6. Tiempo acumulado: unos 85 minutos.
-
-### Presenter feedback
+Cierre de la sección 6. Tiempo acumulado: unos 100 minutos.
 
 ---
 
-# 7. Arquitecturas de comunicación
+# 7. Cuándo repartir
 
-**Goal of this section:** Recorrer las topologías multiagente al nivel de la comunicación, sin frameworks: quién le habla a quién, quién tiene el control y por dónde circula el contexto. Estrella (orquestador y subagentes), router, red con transferencia de control, pipeline, pizarra y jerarquía, cada una con su diagrama, y una tabla que las compara por control, contexto, costo y trazabilidad. La sección cierra separando de estas topologías a las arquitecturas que ponen varios LLM sin tools sobre una misma pregunta.
-
-**Presenter feedback:**
-- [closed] 2026-10-04 — "En la seccion de distritos patrones de multi-agentes esta mentiendose mucho en LagGrah, skills, Handoffs y no es relevante. Quiero mantener esto a niver de arquitectura de comuncucacion. Revisa todo esto que esta espeializado y borremos todos esos slides."
-  Resolution: Sección 7 reescrita como 'Arquitecturas de comunicación', sin frameworks: 7.1 subagente (estrella), 7.2 router, 7.3 red con transferencia de control (handoff como concepto genérico), 7.4 pipeline, pizarra y jerarquía, 7.5 tabla que compara las seis topologías por control, flujo del contexto, costo y latencia, y trazabilidad, y 7.6 debate y Mixture-of-Agents (ex 8.2). Movidas a Cut material: 'Cuatro patrones', Subagents, Skills, Handoffs y Router con las imágenes de LangChain, la tabla requisito→patrón y la tabla de costos. En 'Cuándo repartir' (hoy sección 8), 8.3 quedó genérica, sin OpenAI Agents SDK, LangGraph Swarm ni Claude Code, y la jerarquía perdió el dato de Claude Code. Tesis, agenda, metas, Conclusions y referencias actualizadas; skills salió del árbol de decisión.
-
----
-
-## 1. Qué es un subagente
-
-### Content
-
-Un subagente es el worker de la lámina 5.11: un agente que otro agente crea para una parte del trabajo, con su propia ventana de contexto. Con un orquestador en el centro, la comunicación tiene forma de estrella.
-
-- **Encargo** El agente que lo crea decide qué entra en esa ventana, desde un pedido de dos líneas hasta todo lo que sabía.
-- **Hermanos** Mientras trabaja, un subagente no ve lo que hace otro.
-- **Decisión** Una tool se ejecuta y devuelve un resultado. Un subagente decide qué hacer con su encargo.
-
-```ascii
- +--------------------------------------------+
- |  Orquestador            [ventana propia]   |
- +--------------------------------------------+
-    | encargo   ^                | encargo  ^
-    v           | hallazgo       v          | hallazgo
- +----------------+         +----------------+
- |  Subagente A   |         |  Subagente B   |
- | [ventana       |  no se  | [ventana       |
- |  propia]       |   ven   |  propia]       |
- +----------------+         +----------------+
-```
-<!-- ascii-note:
-intent: cada agente tiene su propia ventana de contexto; el orquestador le pasa un encargo a cada subagente y recibe un hallazgo.
-emphasize: las tres etiquetas [ventana propia] (acento rojo); el hueco "no se ven" entre hermanos queda como rotulo secundario.
-labels: Orquestador, Subagente A, Subagente B, encargo, hallazgo, ventana propia, no se ven.
--->
-
-### Sources
-
-- `corpus/orquestacion-de-agentes-clase.md.md` — lámina 2.1 "Qué es un subagente" y quiz 1.4: definición, ventana de contexto propia, fan-out / fan-in, "hallazgos destilados, no su historial completo"; "una herramienta se ejecuta y devuelve, un subagente decide".
-- `corpus/magentic-one-2024.web.md` — Orchestrator con WebSurfer, FileSurfer, Coder y ComputerTerminal ("deterministically executes code and shell commands, no LLM") (notas).
-- `corpus/anthropic-multi-agent-research-system.web.md` — "The essence of search is compression": los subagentes trabajan en paralelo con sus propias ventanas y condensan lo importante para el agente principal.
-
-### Speaker notes
-
-**Original:** "The essence of search is compression" — [Anthropic, jun-2025](https://www.anthropic.com/engineering/multi-agent-research-system). Cada subagente lee mucho y devuelve poco; la lámina 6.2 ya dio el orden de magnitud.
-
-La pregunta donde la sala se confunde es si los subagentes comparten el contexto. Cada uno tiene su propia ventana, siempre. Lo que cambia es cuánto pone adentro el agente que lo crea. La lámina 8.5 muestra que ni pasarle todo alcanza.
-
-En la estrella, los subagentes solo hablan con el orquestador. Un sistema publicado con esta forma es Magentic-One: un orquestador con cuatro workers (navegador, archivos, código y terminal), y el de la terminal ejecuta código sin LLM.
-
-### Presenter feedback
-- Agregar un ejemplo de como se ve en lagchain un multi-agente.
-
----
-
-## 2. Router: despacho
-
-### Content
-
-Un router clasifica el pedido y lo despacha al especialista que corresponde, o a varios en paralelo. Decide una vez, al inicio, y no vuelve a razonar sobre lo que devuelven.
-
-```ascii
-                    Pedido
-                       |
-                       v
-           +-----------------------+
-           |   Router: clasifica   |
-           +-----------------------+
-             |          :         :
-             v          :         :
-      +-----------+ +-----------+ +-----------+
-      | Consultas | | Reembolso | | Soporte   |
-      | generales | |           | | técnico   |
-      +-----------+ +-----------+ +-----------+
-             |
-             v
-         Respuesta
-```
-<!-- ascii-note:
-intent: un despacho de una sola decision; el router elige la salida y el especialista elegido responde, sin volver al router.
-emphasize: la caja Router (acento rojo) y la unica flecha continua; las salidas no elegidas punteadas.
-labels: Pedido, Router: clasifica, Consultas generales, Reembolso, Soporte tecnico, Respuesta.
--->
-
-### Sources
-
-- `corpus/anthropic-building-effective-agents.web.md` — routing: "classifies an input and directs it to a specialized followup task"; "separation of concerns"; conviene con "distinct categories that are better handled separately, and where classification can be handled accurately"; ejemplo de atención al cliente (consultas generales, reembolsos, soporte técnico).
-- `corpus/langchain-multi-agent-architectures.web.md` — la variante que despacha a varios agentes en paralelo y sintetiza (solo el concepto, sin el framework).
-
-### Speaker notes
-
-Es el routing de la lámina 2.3 con un agente en cada salida. El ejemplo del diagrama es el de Anthropic: un servicio de atención al cliente separa consultas generales, reembolsos y soporte técnico, y cada salida tiene su prompt y sus tools.
-
-La diferencia con la estrella está en cuántas veces se decide. El router decide una vez al inicio. El orquestador de la lámina 7.1 puede leer lo que devolvió un subagente y decidir a quién llamar después.
-
-Según Anthropic, conviene cuando las categorías están bien separadas y se pueden clasificar con precisión. Si el router clasifica mal, el pedido llega al especialista equivocado y nadie lo corrige.
-
-### Presenter feedback
-
----
-
-## 3. Red: el control pasa de agente en agente
-
-### Content
-
-En una red no hay un nodo que coordine. Cada agente atiende su parte y, cuando el pedido sale de su dominio, le transfiere el control a otro con un handoff, una acción más del agente, como llamar a una tool. El que recibe pasa a ser el agente activo y sigue la conversación con el usuario.
-
-```ascii
-            Usuario
-               |
-               v
-        +-------------+
-        |  Agente A   |
-        +-------------+
-          |         |
-          v         v
-    +---------+   +---------+
-    | Agente  |<->| Agente  |
-    |    B    |   |    C    |
-    +---------+   +---------+
-
-  cada agente ejecuta, delega o enriquece
-  y le pasa el control al siguiente
-```
-<!-- ascii-note:
-intent: una topologia sin nodo central; el control pasa de un agente a otro y el que lo recibe sigue la conversacion con el usuario.
-emphasize: la arista directa entre Agente B y Agente C (acento rojo).
-labels: Usuario, Agente A/B/C, cada agente ejecuta, delega o enriquece y le pasa el control al siguiente.
--->
-
-### Sources
-
-- `corpus/koreai-orchestration-patterns.web.md` — adaptive agent network: "eliminates centralized control, enabling agents to collaborate and transfer tasks directly based on expertise and context"; cada agente decide "whether to execute, delegate, or enrich the task before passing it forward"; ejemplo de nómina (notas).
-- `corpus/openai-agents-sdk-handoffs.web.md` — el handoff como tool para el LLM; el agente que recibe toma la conversación (solo el concepto, sin el framework).
-- `corpus/AIG4B-Clase-6-Agent.pptx.md` — slide 32: Network, "Más flexible pero menos predecible" (notas).
-- `corpus/generative-agents-2023.web.md` — 25 agentes en Smallville; la invitación a la fiesta pasa de 1 agente (4%) a 13 (52%) en dos días simulados; 5 de los 12 invitados asisten (notas).
-
-### Speaker notes
-
-Un ejemplo de Kore.ai para contarlo en voz alta. Un empleado escribe que no puede ver su recibo de sueldo. Un agente de bienvenida clasifica el pedido y se lo pasa al asistente de IT con el contexto armado. IT encuentra que la autenticación funciona y que falló la sincronización con la base de nómina, y le pasa el caso, con lo que averiguó, al asistente de finanzas. Ninguno le vuelve a preguntar nada al usuario.
-
-Un handoff puede ser cambiar de agente o cambiar el system prompt y las tools del agente actual. Para el modelo, es una tool que en vez de traer datos mueve el control. Qué historial recibe el agente que toma el control es una decisión de diseño; la lámina 8.3 muestra el valor por defecto.
-
-Juntar la red de Kore.ai con el handoff es lectura de la cátedra: Kore.ai describe agentes que se transfieren tareas, y el handoff es el mecanismo con que un agente LLM lo hace.
-
-Un ejemplo sin pizarra ni orquestador es Generative Agents: 25 agentes en un pueblo simulado que se pasan información conversando. En dos días simulados, la invitación a una fiesta pasó de 1 agente (4%) a 13 (52%), y 5 de los 12 invitados fueron.
-
-### Presenter feedback
-
----
-
-## 4. Pipeline, pizarra y jerarquía
-
-### Content
-
-Tres topologías más: una cadena fija, un espacio común y un árbol.
-
-```ascii
-     PIPELINE              PIZARRA                    JERARQUIA
-
-    +-------+       +---+           +---+         +-------------+
-    |   A   |       | A |           | B |         | orquestador |
-    +-------+       +---+           +---+         +-------------+
-        |             |  publica      ^  lee         |        |
-        v             v               |              v        v
-    +-------+      +-------------------+         +------+  +------+
-    |   B   |      |  espacio comun    |         | orq. |  | orq. |
-    +-------+      +-------------------+         +------+  +------+
-        |             ^               |           |    |       |
-        v             |  publica      v  lee      v    v       v
-    +-------+       +---+           +---+        +--+ +--+   +--+
-    |   C   |       | C |           | D |        |A | |B |   |C |
-    +-------+       +---+           +---+        +--+ +--+   +--+
-```
-<!-- ascii-note:
-intent: tres topologias lado a lado; una cadena fija, un espacio comun sin orquestador donde los agentes publican y leen, y un arbol de orquestadores.
-emphasize: el espacio comun de la pizarra (acento rojo); la forma distinta de cada topologia (cadena, estrella sin centro que decide, arbol).
-labels: PIPELINE, PIZARRA, JERARQUIA, A-D, espacio comun, publica, lee, orquestador, orq.
--->
-
-- **Pipeline** El código fija el orden, y la salida de un agente es la entrada del siguiente.
-- **Pizarra** Cada agente publica en un espacio común y actúa cuando aparece lo que necesita, sin un orquestador que reparta.
-- **Jerarquía** Un orquestador coordina a otros orquestadores, y cada uno coordina su equipo. Contract Net ya lo permitía en 1980.
-
-### Sources
-
-- `corpus/metagpt-2023.web.md` — "assembly-line paradigm" de cinco roles; "Publish-subscribe via a shared message pool": los agentes publican mensajes estructurados y se suscriben según su rol (notas).
-- `corpus/chatdev-2023.web.md` — chat chain por fases (diseño, código, pruebas); "By sharing only the solutions of each subtask rather than the entire communication history" (notas).
-- `corpus/contract-net-protocol.web.md` — "introduced in 1980 by Reid G. Smith"; manager, propuestas y adjudicación; "a manager assigns tasks to contractors, who in turn decompose into lower-level task and assign them to the lower level"; "This task can then be divided and subcontracted". El registro deja abierto si el origen es 1980 o el trabajo de Smith de 1977–1978.
-- `corpus/AIG4B-Clase-6-Agent.pptx.md` — slide 32: Hierarchical.
-- `corpus/anthropic-building-effective-agents.web.md` — prompt chaining como workflow (notas).
-- `corpus/sistemas-multiagente-clase.md.md` — láminas 3.3, 3.7 y 3.8 del deck hermano (pipeline, red y pizarra, jerárquica); se tomó la estructura, sin el caso Pampa Viajes.
-
-### Speaker notes
-
-El pipeline es un workflow en el sentido de la lámina 2.3: el código decide el orden. Es el prompt chaining de Anthropic con un agente en cada paso. ChatDev es un ejemplo publicado: encadena fases de diseño, código y pruebas, y entre fases pasa solo la solución, sin el historial de la conversación.
-
-MetaGPT combina las dos primeras. Encadena cinco roles, de producto a QA, como una línea de montaje, y sus agentes no conversan: publican documentos en un pool de mensajes y cada rol se suscribe a lo suyo.
-
-Contract Net funciona así: un agente anuncia una tarea, los contratistas ofertan y el que anunció adjudica. Un contratista puede subdividir la tarea y subcontratar, y así se arma la jerarquía.
-
-Lo que cuesta cada una está en la tabla de la lámina siguiente.
-
-### Presenter feedback
-
----
-
-## 5. Las topologías, comparadas
-
-### Content
-
-| Topología | Quién tiene el control | Cómo circula el contexto | Costo y latencia | Trazabilidad |
-|---|---|---|---|---|
-| Estrella | El orquestador, en cada vuelta | Encargo de ida, hallazgo comprimido de vuelta | Un salto por el centro en cada delegación | Todo pasa por un lugar |
-| Router | El router, una vez al inicio | El pedido va al especialista elegido | Una clasificación antes de empezar | Una decisión por pedido |
-| Red | El agente activo, que lo transfiere | Viaja con el control: historial entero o resumen | Sin saltos por un centro | Nadie tiene la foto completa |
-| Pipeline | El código | La salida de un agente es la entrada del siguiente | Etapas en serie | Orden fijo; un error temprano se arrastra |
-| Pizarra | Ninguno: cada agente reacciona a lo publicado, y hay que decidir quién termina | Un espacio común que todos leen y escriben | Leer todo lo publicado satura; se filtra por rol | Lo publicado queda en el espacio común |
-| Jerarquía | Un árbol de orquestadores | Resúmenes que suben nivel por nivel | Cada nivel suma llamadas y latencia | Cada resumen pierde información |
-
-### Sources
-
-- `corpus/koreai-orchestration-patterns.web.md` — forma con orquestador central (Supervisor): "reasoning transparency, quality assurance, and traceability"; el control centralizado agrega "milliseconds or seconds of delay"; red sin control central para "low-latency, high-interactivity environments"; la desaconseja donde "traceability/debugging is paramount" (filas Estrella y Red; Use / Avoid en notas).
-- `corpus/anthropic-building-effective-agents.web.md` — orchestrator-workers, routing y prompt chaining (filas Estrella, Router y Pipeline).
-- `corpus/anthropic-multi-agent-research-system.web.md` — subagentes que condensan lo importante para el agente principal (fila Estrella).
-- `corpus/metagpt-2023.web.md` — pool de mensajes compartido; la suscripción por rol filtra lo irrelevante para evitar "information overload" (fila Pizarra).
-- `corpus/sistemas-multiagente-clase.md.md` — láminas 3.3, 3.7 y 3.8 del deck hermano: pipeline predecible donde un error temprano se arrastra; pizarra donde hay que decidir quién termina; jerarquía donde cada nivel agrega llamadas, latencia y un resumen que pierde información.
-- Las celdas de trazabilidad de Router y Pizarra y la de costo de Router son lectura de la cátedra. La tabla no tiene cifras: el costo de cada topología depende del caso.
-
-### Speaker notes
-
-Leer por columna. Las dos primeras son las preguntas de la sección: quién tiene el control y por dónde pasa el contexto. Las dos últimas son lo que se paga por cada respuesta.
-
-Kore.ai lo dice para las dos formas que describe. La forma con orquestador central conviene cuando la trazabilidad y la calidad importan más que el tiempo real, y la desaconseja en voz, con mucha escala o con un presupuesto de tokens ajustado. La red conviene en asistentes conversacionales, soporte y voz, y la desaconseja cuando la trazabilidad es prioridad o no está claro qué agente es dueño de la tarea.
-
-Las topologías se combinan. Un router puede despachar a orquestadores, y MetaGPT encadena roles en un pipeline que se comunica por una pizarra.
-
-Ninguna fila trae un número. El precio general del multiagente, unas 15 veces los tokens de un chat, está en la lámina 8.1.
-
-### Presenter feedback
-
----
-
-## 6. Varios modelos sobre una misma pregunta
-
-### Content
-
-Debate y Mixture-of-Agents ponen varios LLM sobre la misma pregunta, sin tools. Los papers llaman agente a cada instancia. Con la definición de esta clase ninguna actúa sobre un ambiente, así que tampoco forman un sistema multiagente.
-
-- **Debate** Varias instancias del mismo modelo responden, leen las respuestas de las otras y corrigen la suya durante varias rondas. Con 3 instancias y 2 rondas, la aritmética pasa de 67,0% a 81,8% de acierto.
-- **Mixture-of-Agents** Capas de modelos que proponen respuestas; cada capa lee todas las de la anterior y un agregador escribe la final. Solo con modelos abiertos llega a 65,1% en AlpacaEval 2.0, contra 57,5% de GPT-4o.
-
-Las dos pagan en llamadas y en latencia: MoA no empieza a responder hasta que terminan todas las capas.
-
-`Du et al., 2023 · Wang et al., 2024`
-
-### Sources
-
-- `corpus/multiagent-debate-2023.web.md` — procedimiento de debate; Table 1 (3 agentes, 2 rondas): Arithmetic 67,0 → 81,8, GSM8K 77,0 → 85,0 (Single Agent contra Multi-Agent Debate); `gpt-3.5-turbo-0301`; 100 problemas por tarea; debates que convergen a una respuesta incorrecta (notas).
-- `corpus/mixture-of-agents-2024.web.md` — arquitectura en capas, proponentes y agregador; Table 2(a): MoA 65,1% de LC win rate contra 57,5% de GPT-4 Omni (05/13); LC win rate definido como el win rate de AlpacaEval 2.0 controlado por largo, contra `gpt-4-1106-preview`, con un juez basado en GPT-4; latencia del primer token como limitación; cita a Wang et al. 2024b (un agente con un prompt fuerte alcanza calidad comparable, notas). El registro marca que el §1 del paper dice 65,8%, valor que no aparece en ninguna tabla; la lámina usa el de la tabla.
-
-### Speaker notes
-
-La lámina sirve de contraste con la 1.1 y la 1.9, y con el resto de la sección. Un LLM sin tools ni ambiente no es un agente, y varias llamadas a LLMs sobre una misma pregunta mejoran la respuesta gastando más llamadas. Los papers usan la palabra agente en ese sentido amplio.
-
-El debate tiene un caso interesante: a veces todos arrancan mal y llegan bien. También el contrario, debates que convergen con confianza a una respuesta incorrecta. En GSM8K, un set de problemas de matemática, la mejora fue de 77,0% a 85,0%. Son muestras chicas, cien problemas por tarea, con gpt-3.5-turbo de 2023.
-
-AlpacaEval 2.0 compara las respuestas contra las de un modelo de referencia, con un juez basado en GPT-4 y una corrección por largo. El mismo paper de MoA cita un trabajo que encontró que un solo agente con un prompt fuerte y buenos ejemplos alcanza una calidad comparable. Vuelve la advertencia de la lámina 6.3.
-
-En el lenguaje de esta sección, el debate es una red en la que todos leen a todos en cada ronda, y MoA es un pipeline de capas.
-
-Cierre de la sección 7. Tiempo acumulado: unos 100 minutos.
-
-### Presenter feedback
-
----
-
-# 8. Cuándo repartir
-
-**Goal of this section:** Dar el criterio para decidir si conviene repartir el trabajo entre varios agentes. La sección pone precio en tokens al paralelismo, muestra cómo fallan los sistemas multiagente según MAST y que el aislamiento hay que configurarlo, y resuelve el debate entre Cognition y Anthropic con una pregunta sobre el trabajo: si lee o si escribe. Cierra con un caso que aplica esa regla.
-
-**Presenter feedback:**
+**Goal of this section:** Dar el criterio para decidir si conviene repartir el trabajo entre varios agentes. La sección pone precio en tokens al paralelismo, muestra cómo fallan los sistemas multiagente según MAST, que el aislamiento hay que configurarlo y que ni pasarle a cada subagente todo el contexto evita que sus decisiones choquen. Con eso plantea el debate entre Cognition y Anthropic y lo resuelve con una pregunta sobre el trabajo: si lee o si escribe. Cierra con un caso que aplica esa regla.
 
 ---
 
@@ -1902,8 +1834,6 @@ La tercera cifra trae una lectura incómoda que Anthropic escribe en su propio p
 Ejercicio para la sala: tomar el costo de una tarea como chat, multiplicarlo por 15 y preguntarse si la tarea lo vale. El precio por millón de tokens del proveedor hay que traerlo actualizado el día de la clase; el corpus no tiene una lista de precios.
 
 Son cifras de Anthropic sobre su propio sistema. Se citan como lo que reporta, no como evidencia independiente.
-
-### Presenter feedback
 
 ---
 
@@ -1936,8 +1866,6 @@ Dos conclusiones del paper. Las fallas entre agentes no se arreglan con un proto
 
 Agentless, en una línea, como recordatorio de la lámina 2.3: un pipeline fijo, sin agente que decida el próximo paso, resolvió el 32% de SWE-bench Lite (issues reales de GitHub) a 0,70 dólares por problema, más que todos los agentes de código abierto de ese momento.
 
-### Presenter feedback
-
 ---
 
 ## 3. El aislamiento hay que configurarlo
@@ -1962,15 +1890,68 @@ Cuando un agente le pasa el control o el trabajo a otro, el que recibe suele her
 
 La palanca de aislamiento de la lámina 6.2 es la que los frameworks no dan solos. Para verificarlo, revisar en los logs qué contexto recibe cada agente: si ve el historial de todos, no está aislado, aunque tenga su propio prompt.
 
-El primer caso es el handoff de la red de la lámina 7.3: el agente que recibe toma la conversación entera. La copia del agente es más barata que un subagente nuevo porque comparte el caché del prompt, y por eso mismo hereda todo. Los valores por defecto cambian entre versiones; hay que revisarlos en la documentación del framework que se use.
+El primer caso es el handoff de la red de la lámina 6.7: el agente que recibe toma la conversación entera. La copia del agente es más barata que un subagente nuevo porque comparte el caché del prompt, y por eso mismo hereda todo. Los valores por defecto cambian entre versiones; hay que revisarlos en la documentación del framework que se use.
 
-La lámina siguiente trae la posición contraria. Cognition pide compartir la traza completa entre agentes, justo lo que este aislamiento corta.
-
-### Presenter feedback
+La lámina siguiente muestra qué se pierde al aislar, con un ejemplo de Cognition.
 
 ---
 
-## 4. El debate: ¿construir multiagentes?
+## 4. Compartir el contexto no alcanza
+
+### Content
+
+Aun con todo el contexto del orquestador, cada subagente sigue sin ver el trabajo de su hermano. Los dos toman decisiones que el otro no conoce, y el choque aparece al combinar.
+
+![Cada subagente hereda el contexto del orquestador pero no el de su hermano](images/s8-5-1-contexto-no-compartido.png)
+<!-- ascii-source:
+                       Tarea
+                         |
+                         v
+          +------------------------------+
+          | Orquestador: divide la tarea |   [G]
+          +------------------------------+
+                |                  |
+                v                  v
+       +--------------+    +--------------+
+       | Subagente 1  |    | Subagente 2  |
+       +--------------+    +--------------+
+          [G] [B1]            [G] [B2]
+                |                  |
+                v                  v
+          +------------------------------+
+          |  Orquestador: combina        |   [G] [B1] [B2] [P]
+          +------------------------------+
+                         |
+                         v
+                     Resultado
+
+  [G] contexto del orquestador   [B1] [B2] trabajo de cada subtarea
+  [P] trabajo de combinación
+-->
+<!-- ascii-note:
+intent: cada subagente hereda el contexto del orquestador pero no ve el de su hermano; la pila de fichas junto a cada caja es lo que ese agente puede ver.
+emphasize: que Subagente 1 tiene [G][B1] y NO [B2], y Subagente 2 tiene [G][B2] y NO [B1] (acento rojo en las fichas ausentes); la pila completa aparece recien en la caja que combina.
+labels: leyenda [G] [B1] [B2] [P] al pie.
+-->
+
+`Cognition, jun-2025`
+
+### Sources
+
+- `corpus/cognition-dont-build-multi-agents.web.md` — ejemplo Flappy Bird; con contexto compartido, el pájaro y el fondo salen en "completely different visual styles" porque los subagentes no ven el trabajo del otro; principios 1 y 2.
+- `corpus/orquestacion-de-agentes-clase.md.md` — lámina 2.3 "Compartir el contexto no alcanza", diagrama de pilas de fichas (fuente ASCII reutilizada y traducida).
+
+### Speaker notes
+
+El ejemplo de Cognition, contado en voz alta: la tarea es clonar Flappy Bird. Un subagente hace el fondo con los caños verdes, el otro hace el pájaro. Sin contexto compartido, el primero entiende mal y hace un fondo estilo Super Mario Bros, y el segundo hace un pájaro que no se mueve como el de Flappy Bird. Con todo el contexto compartido, igual salen en estilos visuales distintos, porque ninguno vio lo que decidía el otro.
+
+Leer las pilas de fichas: el subagente 1 tiene el contexto del orquestador y su propio trabajo, nada del hermano; el subagente 2, al revés. La pila completa aparece recién en la caja que combina, que es donde se descubre el problema.
+
+De este ejemplo Cognition saca su conclusión, no construir multiagentes. La lámina siguiente la pone al lado de la de Anthropic.
+
+---
+
+## 5. El debate: ¿construir multiagentes?
 
 ### Content
 
@@ -1996,63 +1977,7 @@ Leer los principios de Cognition en su versión original: "Share context, and sh
 
 Sobre el 90,2% de Anthropic: el post no aclara si es una mejora relativa o en puntos porcentuales, ni el tamaño de la eval. Se cita tal como está escrito, entre comillas, y no como "90% más preciso". La configuración era Claude Opus 4 como orquestador y Claude Sonnet 4 como subagentes; son modelos de mediados de 2025.
 
-Las dos son empresas que venden el producto que describen. Aun así el desacuerdo es real, y las dos láminas siguientes muestran que se resuelve con una variable concreta. LangChain, siete meses después, toma una posición intermedia: empezar con un agente y repartir solo cuando aparece un límite claro (lámina 6.3).
-
-### Presenter feedback
-
----
-
-## 5. Compartir el contexto no alcanza
-
-### Content
-
-Aun con todo el contexto del orquestador, cada subagente sigue sin ver el trabajo de su hermano. Los dos toman decisiones que el otro no conoce, y el choque aparece al combinar.
-
-```ascii
-                       Tarea
-                         |
-                         v
-          +------------------------------+
-          | Orquestador: divide la tarea |   [G]
-          +------------------------------+
-                |                  |
-                v                  v
-       +--------------+    +--------------+
-       | Subagente 1  |    | Subagente 2  |
-       +--------------+    +--------------+
-          [G] [B1]            [G] [B2]
-                |                  |
-                v                  v
-          +------------------------------+
-          |  Orquestador: combina        |   [G] [B1] [B2] [P]
-          +------------------------------+
-                         |
-                         v
-                     Resultado
-
-  [G] contexto del orquestador   [B1] [B2] trabajo de cada subtarea
-  [P] trabajo de combinación
-```
-<!-- ascii-note:
-intent: cada subagente hereda el contexto del orquestador pero no ve el de su hermano; la pila de fichas junto a cada caja es lo que ese agente puede ver.
-emphasize: que Subagente 1 tiene [G][B1] y NO [B2], y Subagente 2 tiene [G][B2] y NO [B1] (acento rojo en las fichas ausentes); la pila completa aparece recien en la caja que combina.
-labels: leyenda [G] [B1] [B2] [P] al pie.
--->
-
-`Cognition, jun-2025`
-
-### Sources
-
-- `corpus/cognition-dont-build-multi-agents.web.md` — ejemplo Flappy Bird; con contexto compartido, el pájaro y el fondo salen en "completely different visual styles" porque los subagentes no ven el trabajo del otro; principios 1 y 2.
-- `corpus/orquestacion-de-agentes-clase.md.md` — lámina 2.3 "Compartir el contexto no alcanza", diagrama de pilas de fichas (fuente ASCII reutilizada y traducida).
-
-### Speaker notes
-
-El ejemplo de Cognition, contado en voz alta: la tarea es clonar Flappy Bird. Un subagente hace el fondo con los caños verdes, el otro hace el pájaro. Sin contexto compartido, el primero entiende mal y hace un fondo estilo Super Mario Bros, y el segundo hace un pájaro que no se mueve como el de Flappy Bird. Con todo el contexto compartido, igual salen en estilos visuales distintos, porque ninguno vio lo que decidía el otro.
-
-Leer las pilas de fichas: el subagente 1 tiene el contexto del orquestador y su propio trabajo, nada del hermano; el subagente 2, al revés. La pila completa aparece recién en la caja que combina, que es donde se descubre el problema.
-
-### Presenter feedback
+Las dos son empresas que venden el producto que describen. Aun así el desacuerdo es real, y la lámina siguiente muestra que se resuelve con una variable concreta. LangChain, siete meses después, toma una posición intermedia: empezar con un agente y repartir solo cuando aparece un límite claro (lámina 6.11).
 
 ---
 
@@ -2082,8 +2007,6 @@ Si preguntan por el caso intermedio, repartir escritura sobre archivos distintos
 
 Para dimensionar, las reglas de esfuerzo que Anthropic le enseña a su orquestador: una búsqueda simple es un agente con 3 a 10 llamadas a tools; una comparación directa, 2 a 4 subagentes con 10 a 15 llamadas cada uno; una investigación compleja, más de 10 subagentes. Un error temprano de su sistema fue crear 50 subagentes para preguntas simples.
 
-### Presenter feedback
-
 ---
 
 ## 7. Un caso: cómo se descompone
@@ -2092,7 +2015,8 @@ Para dimensionar, las reglas de esfuerzo que Anthropic le enseña a su orquestad
 
 Pedido: "Pagá el crédito del auto con la plata de mi caja de ahorro".
 
-```ascii
+![Un caso de descomposición en subagentes](images/s8-7-1-caso-descomposicion.png)
+<!-- ascii-source:
               +-----------------------------+
               |  Orquestador: descompone    |
               +-----------------------------+
@@ -2106,7 +2030,7 @@ Pedido: "Pagá el crédito del auto con la plata de mi caja de ahorro".
                   |                     |
                   v                     v
               +-----------------------------+
-              |  Orquestador: valida        | --- no cierra ---> replanifica
+              |  Orquestador: valida        | --- no cierra ---&gt; replanifica
               +-----------------------------+
                              |
                              v  cierra
@@ -2114,7 +2038,7 @@ Pedido: "Pagá el crédito del auto con la plata de mi caja de ahorro".
               |  Payment Processor          |
               |  transfiere (escribe)       |
               +-----------------------------+
-```
+-->
 <!-- ascii-note:
 intent: el caso aplica la regla de la lamina anterior; dos lecturas en paralelo, validacion, y la unica escritura sola y al final.
 emphasize: la caja Payment Processor en rojo (la unica que escribe); la bifurcacion en paralelo de las dos lecturas.
@@ -2132,7 +2056,7 @@ labels: Orquestador (descompone / valida), Loan Agent, Transaction Manager, Paym
 
 **Original:** "Pay off my car loan using my savings account." — [Kore.ai](https://www.kore.ai/blog/choosing-the-right-orchestration-pattern-for-multi-agent-systems).
 
-Kore.ai lo presenta con un orquestador central: la estrella de la lámina 7.1. Reparte dos lecturas en paralelo, que no se pisan, y deja la única escritura, la transferencia, sola y al final, después de validar. Es la regla de la lámina anterior aplicada.
+Kore.ai lo presenta con un orquestador central: la estrella de la lámina 6.5. Reparte dos lecturas en paralelo, que no se pisan, y deja la única escritura, la transferencia, sola y al final, después de validar. Es la regla de la lámina anterior aplicada.
 
 El orquestador descompone el pedido en cuatro acciones: cotizar el saldo, verificar los fondos, transferir y confirmar. El Loan Agent cotiza saldo, interés y penalidades. El Transaction Manager verifica saldo, límites diarios y umbrales de fraude. Si algo no cierra, el orquestador replanifica.
 
@@ -2140,9 +2064,7 @@ Cada agente recibe solo los datos que necesita, enmascarados o seudonimizados, y
 
 Es material de un proveedor, sin implementación ni cliente citado. Sirve como ejercicio de descomposición.
 
-Cierre de la sección 8. Tiempo acumulado: unos 113 minutos; con las conclusiones, unos 118.
-
-### Presenter feedback
+Cierre de la sección 7. Tiempo acumulado: unos 113 minutos; con las conclusiones, unos 118.
 
 ---
 
@@ -2154,8 +2076,8 @@ Cierre de la sección 8. Tiempo acumulado: unos 113 minutos; con las conclusione
 
 1. **Agente** Percibe su ambiente y actúa sobre él. Un LLM se vuelve agente cuando elige acciones en un loop según lo que observa.
 2. **Tools** Funciones descriptas en el contexto que el LLM pide y el programa ejecuta. Se diseñan para quien las llama, que no es determinístico.
-3. **Tipos de agente** Cuatro cambian cuándo se planifica y cuántas veces vuelve a razonar el LLM: ReAct paso a paso, Plan-and-Execute y ReWOO con plan previo, Reflexion con crítica entre intentos. El quinto, orquestador con workers, es la forma básica del multiagente.
-4. **Multiagente** Reparte el contexto entre varios loops para especializar, aislar y paralelizar. La topología fija quién tiene el control y por dónde circula el contexto. Conviene cuando la información no entra en uno y el trabajo lee más de lo que escribe.
+3. **Tipos de agente** Cambian cuándo se planifica y cuántas veces vuelve a razonar el LLM: ReAct paso a paso, Plan-and-Execute y ReWOO con plan previo, Reflexion con crítica entre intentos.
+4. **Multiagente** Su forma básica, un orquestador con workers, reparte el contexto entre varios loops para especializar, aislar y paralelizar. La topología fija quién tiene el control y por dónde circula el contexto. Conviene cuando la información no entra en uno y el trabajo lee más de lo que escribe.
 5. **Empezar simple** Un agente con buenas tools antes que varios agentes.
 
 ### Sources
@@ -2163,7 +2085,7 @@ Cierre de la sección 8. Tiempo acumulado: unos 113 minutos; con las conclusione
 - `corpus/AIG4B-Clase-6-Agent.pptx.md` · `corpus/wikipedia-intelligent-agent.web.md` · `corpus/lilianweng-llm-powered-agents.web.md` · `corpus/anthropic-building-effective-agents.web.md` — definición de agente y agente basado en LLM (secciones 1 y 2).
 - `corpus/anthropic-writing-tools-for-agents.web.md` — tools (sección 3).
 - `corpus/yao-2022-react.pdf.md` · `corpus/langchain-planning-agents.web.md` · `corpus/shinn-2023-reflexion.pdf.md` · `corpus/react-repo-hotpotqa-prompt.md.md` — tipos (secciones 4 y 5).
-- `corpus/koreai-orchestration-patterns.web.md` · `corpus/anthropic-context-engineering.web.md` · `corpus/anthropic-multi-agent-research-system.web.md` · `corpus/cognition-dont-build-multi-agents.web.md` · `corpus/langchain-multi-agent-architectures.web.md` · `corpus/mast-why-mas-fail-2025.web.md` — multiagente, sus tres palancas y "Add tools before adding agents" (secciones 6 a 8).
+- `corpus/koreai-orchestration-patterns.web.md` · `corpus/anthropic-context-engineering.web.md` · `corpus/anthropic-multi-agent-research-system.web.md` · `corpus/cognition-dont-build-multi-agents.web.md` · `corpus/langchain-multi-agent-architectures.web.md` · `corpus/mast-why-mas-fail-2025.web.md` — multiagente, sus tres palancas y "Add tools before adding agents" (secciones 6 y 7).
 
 ### Speaker notes
 
@@ -2171,21 +2093,20 @@ Una idea por bloque de la clase, más la regla que las ordena. Leerlas en voz al
 
 La quinta es la que conviene repetir: las tres fuentes más serias de la clase (Anthropic, LangChain y, desde la otra vereda, Cognition) coinciden en empezar por lo más simple que alcanza.
 
-### Presenter feedback
-
 ---
 
 ## 2. Cómo elegir la arquitectura
 
 ### Content
 
-```ascii
+![Árbol de decisión para elegir la arquitectura](images/sc-2-1-arbol-decision.png)
+<!-- ascii-source:
  ¿Alcanza una llamada al LLM, con RAG o ejemplos?
-   |-- sí --> una llamada; sin agente
+   |-- sí --&gt; una llamada; sin agente
    no
    v
  ¿Los pasos se conocen de antemano?
-   |-- sí --> workflow: pasos fijos en código
+   |-- sí --&gt; workflow: pasos fijos en código
    no
    v
  Un agente con buenas tools
@@ -2196,12 +2117,12 @@ La quinta es la que conviene repetir: las tres fuentes más serias de la clase (
  ¿La información no entra en un contexto, hay equipos
  dueños de dominios distintos, o el trabajo se reparte
  en lecturas paralelas que valen ~15× tokens?
-   |-- no --> quedarse con un agente
+   |-- no --&gt; quedarse con un agente
    sí
    v
  Multiagente: estrella, router, red,
  pipeline, pizarra o jerarquía
-```
+-->
 <!-- ascii-note:
 intent: arbol de decision que resume la clase; cada pregunta descarta la opcion mas compleja si la simple alcanza.
 emphasize: la hoja "Multiagente" en rojo, al final del camino mas largo; las salidas laterales "si" / "no" que cortan antes.
@@ -2220,9 +2141,7 @@ Recorrer el árbol con un caso que proponga la sala. Lo habitual es que la mayor
 
 La tercera pregunta junta las dos restricciones de LangChain con el criterio de Anthropic. Si ninguna se cumple, repartir solo agrega llamadas y tokens.
 
-Si se llega a la última hoja, volver a la tabla de la lámina 7.5 para elegir la topología y a la 8.6 para decidir si el trabajo se puede repartir sin que los agentes se pisen.
-
-### Presenter feedback
+Si se llega a la última hoja, volver a la tabla de la lámina 6.10 para elegir la topología y a la 7.6 para decidir si el trabajo se puede repartir sin que los agentes se pisen.
 
 ---
 
@@ -2252,21 +2171,21 @@ Para la definición clásica, el libro de Russell & Norvig, *Artificial Intellig
 
 Dejar tiempo para preguntas.
 
-### Presenter feedback
-
 ---
 
 # Open questions
 
-- Slide 5.10: la tabla del presentador pasó a ir justo después de ReWOO y quedó con los cuatro tipos de un solo agente. La fila "Multiagente (orquestador + workers)", que había escrito el editor, salió a Cut material; ese tipo queda en 5.11 y 5.12. La columna nueva "Un caso" usa tres ejemplos de la clase (4.2, 5.6, 5.9) y uno de la cátedra para Plan-and-Execute (actualizar un proyecto a una versión nueva de una biblioteca), porque el corpus no trae un caso publicado de ese tipo. Confirmar o reemplazar el caso.
+- Slide 5.10 (nueva, 2026-10-07): el resumen del presentador sobre ReWOO trae cifras ("del orden de 5 veces menos tokens en HotpotQA", planner destilado de GPT-3.5 a un modelo de 7B) que él mismo pidió verificar. No están en el corpus (el paper de Xu et al., arXiv 2305.18323, no fue capturado); quedan fuera de la lámina y de las notas hasta verificarlas.
+
+- Slide 5.11: la tabla del presentador pasó a ir justo después de ReWOO y quedó con los cuatro tipos de un solo agente. La fila "Multiagente (orquestador + workers)", que había escrito el editor, salió a Cut material; el orquestador con workers está en 6.3 y 6.4. La columna nueva "Un caso" usa tres ejemplos de la clase (4.2, 5.6, 5.9) y uno de la cátedra para Plan-and-Execute (actualizar un proyecto a una versión nueva de una biblioteca), porque el corpus no trae un caso publicado de ese tipo. Confirmar o reemplazar el caso.
 - Slide 5.3: el ejemplo de Plan-and-Execute es una construcción de la cátedra sobre la pregunta de HotpotQA de 4.2; el corpus no tiene una traza publicada de este tipo. Está marcado así en la lámina, en Sources y en notas. Confirmar que el presentador lo quiere o proponer otro caso.
-- Slide 5.11: Anthropic clasifica orchestrator-workers como workflow. La lámina agrega que, cuando cada worker es un agente con su propio loop, el worker es un subagente y el conjunto es la forma básica de un sistema multiagente (definido en 6.2); las notas lo cuentan como tipo de agente con la lectura del espectro del deck del curso (slide 33), atribuida a la cátedra.
-- Slide 8.4: "outperformed single-agent Claude Opus 4 by 90.2%" (`corpus/anthropic-multi-agent-research-system.web.md`) no aclara si es mejora relativa o en puntos porcentuales. Se cita verbatim, en inglés y entre comillas.
+- Slide 6.3: Anthropic clasifica orchestrator-workers como workflow. La lámina lo presenta como la forma básica de un sistema multiagente (definido en 6.2, la lámina anterior) y agrega que, cuando cada worker es un agente con su propio loop, el worker es un subagente; las notas lo leen con el espectro del deck del curso (slide 33), lectura atribuida a la cátedra.
+- Slide 7.5: "outperformed single-agent Claude Opus 4 by 90.2%" (`corpus/anthropic-multi-agent-research-system.web.md`) no aclara si es mejora relativa o en puntos porcentuales. Se cita verbatim, en inglés y entre comillas.
 - Slide 5.8: la aceleración de "3,6×" de LLMCompiler que menciona `corpus/langchain-planning-agents.web.md` no está verificada contra el paper. Quedó solo en notas, atribuida al paper.
 - Slide 5.7: las cifras de Reflexion (GPT-4 como estado del arte de 2023) están fechadas en lámina y en notas. Las de ReAct salieron con la lámina 4.7 en la ronda 5; el 71% contra 45% de ALFWorld queda solo en las notas de 4.6, con PaLM-540B y la mejor de 6 corridas. Confirmar que el presentador quiere mostrar cifras de modelos históricos.
-- Slide 7.3: juntar la red de Kore.ai (agentes que se transfieren tareas sin nodo central) con el handoff como mecanismo es lectura de la cátedra (el registro de Kore.ai lo marca así); las notas lo dicen.
-- Slide 8.4: los nombres de modelo (Claude Opus 4, Claude Sonnet 4) son de junio de 2025. Van en notas como datos fechados.
-- Slide 8.4: el debate Cognition vs Anthropic fue cortado del deck previo a pedido del presentador ("Ni lo mencionemos"); en esta clase se incluye por indicación del orquestador. El presentador puede cortarlo en Review (8.4 y 8.5 se sostienen juntas; 8.6 funciona sola).
+- Slide 6.7: juntar la red de Kore.ai (agentes que se transfieren tareas sin nodo central) con el handoff como mecanismo es lectura de la cátedra (el registro de Kore.ai lo marca así); las notas lo dicen.
+- Slide 7.5: los nombres de modelo (Claude Opus 4, Claude Sonnet 4) son de junio de 2025. Van en notas como datos fechados.
+- Slide 7.5: el debate Cognition vs Anthropic fue cortado del deck previo a pedido del presentador ("Ni lo mencionemos"); en esta clase se incluye por indicación del orquestador. El presentador puede cortarlo en Review (7.4 y 7.5 se sostienen juntas; 7.6 funciona sola).
 - Slide 3.1: la sección no repite el circuito de tool calling que la clase de entrenamiento de LLMs pudo haber mostrado (SFT que enseña a emitir llamadas a tools). Si el presentador quiere el puente explícito, no hay registro en este corpus que lo respalde.
 - Slides 4.3 y 4.4 (prompt de ReAct): la instrucción y el loop salen del notebook `hotpotqa.ipynb` de github.com/ysymyth/ReAct, que corre GPT-3 text-davinci-002; las tablas principales del paper son con PaLM-540B. Quedan abiertos en `corpus/react-repo-hotpotqa-prompt.md.md` el texto exacto que devuelve `env.reset()` (la lámina 4.4 muestra "Question:" siguiendo el formato de los ejemplos) y si el repositorio es el código oficial (el paper apunta a react-lm.github.io).
 - Slide 1.4: la cita del presentador tiene unas 100 palabras y la plantilla `quote` es de pantalla completa, pensada para unas 35, sin ajuste de tamaño: en el render puede salirse de la lámina. Opciones: dejar en la lámina la primera oración (la definición) y pasar las otras tres a las notas, o partirla en dos citas. Confirmar.
@@ -2275,28 +2194,55 @@ Dejar tiempo para preguntas.
 - Slide 1.9: la sigla PEAS y su expansión vienen del capítulo 2 de Russell & Norvig, que no está en el corpus; los registros del deck del curso hablan de formulaciones "PEAS-like". Capturar el capítulo 2 si se quiere cita.
 - Slide 1.7: `corpus/wikipedia-intelligent-agent.web.md` dice que Russell & Norvig agrupan los agentes en cinco clases; algunas ediciones presentan cuatro programas más el agente que aprende. La lámina muestra los cinco como lista; las notas lo aclaran.
 - Slide 1.6: el termostato como regla condición-acción sale de Wikipedia, que lo cita a un blog y a IBM; se usa sin atribuírselo a Russell & Norvig.
-- Slides 7.1 y 7.4: con la lámina "Cuatro sistemas publicados" cortada, Magentic-One (estrella), ChatDev (pipeline) y MetaGPT (pipeline con pizarra) quedan solo en las notas, nombrados con su mecanismo y sin cifras. La clasificación de ChatDev según MAST salió con la lámina.
-- Slide 7.6: debate y Mixture-of-Agents quedan como contraste (varios LLM sin tools, que con la definición de la clase no forman un sistema multiagente). Los papers llaman "agentes" a cada instancia; la lámina lo dice. Confirmar que el presentador quiere conservar la lámina con ese encuadre.
-- Slide 8.3: los tres comportamientos por defecto (handoff con historial completo, historial compartido entre agentes, copia del agente que hereda la conversación) salen de la documentación de tres frameworks capturada el 2026-10-04 y cambian entre versiones. La lámina los describe sin nombrar los frameworks; Sources los nombra. Re-verificar antes del 2026-10-07.
-- Slide 8.2: el rango 41%–86,7% de MAST está en el texto del paper, pero viene de la Figura 5, que no se capturó. Los totales por categoría (44,2 / 32,35 / 23,5) son sumas de los modos de §4 y suman 100,05% por redondeo.
+- Slides 6.5, 6.8 y 6.9: con la lámina "Cuatro sistemas publicados" cortada, Magentic-One (estrella, 6.5) y ChatDev (pipeline, 6.9) quedan solo en las notas, nombrados con su mecanismo y sin cifras. MetaGPT pasó a ser el ejemplo de la lámina de pizarra (6.8, ronda 12), también sin cifras. La clasificación de ChatDev según MAST salió con la lámina.
+- Slide 7.3: los tres comportamientos por defecto (handoff con historial completo, historial compartido entre agentes, copia del agente que hereda la conversación) salen de la documentación de tres frameworks capturada el 2026-10-04 y cambian entre versiones. La lámina los describe sin nombrar los frameworks; Sources los nombra. Re-verificar antes del 2026-10-07.
+- Slide 7.2: el rango 41%–86,7% de MAST está en el texto del paper, pero viene de la Figura 5, que no se capturó. Los totales por categoría (44,2 / 32,35 / 23,5) son sumas de los modos de §4 y suman 100,05% por redondeo.
 - Slide 2.1: la frase "la memoria queda fuera de esta clase" bajó a la línea de fuente al pie de la lámina (L9). Si el render la muestra como cita y no como nota, pasarla a las notas del orador.
 - Slide 4.6: el presentador menciona "el artículo de Outcome School que pasaste al principio" como ejemplo de un texto que mezcla los dos sentidos de «agente ReAct». Ese artículo no está en el corpus, así que la lámina no lo cita y usa en su lugar el tutorial de Medium de las láminas 3.3 y 4.5, que hace la misma mezcla. Pasar el link para capturarlo con el librarian si se lo quiere nombrar.
 - Slide 4.6: que la plantilla de agente ReAct de LangGraph use tool calling nativo es inferencia de `corpus/langchain-react-agent-template.web.md` ([open question] del registro: el README lo sugiere y no lo dice). La lámina afirma solo lo que dice el README; las notas lo marcan. Capturar `src/react_agent/graph.py` lo resuelve.
-- Slide 7.1: el bullet del presentador "Agregar un ejemplo de como se ve en lagchain un multi-agente." quedó sin estampar. Choca con el pedido del chat de la ronda 3 (sección 7 a nivel de arquitectura de comunicación, sin LangGraph ni otros frameworks). Decidir: descartarlo, o hacer una excepción (por ejemplo, un ejemplo de código en notas o una lámina en la sección 4 junto a 4.5).
+- Slide 6.5: el bullet del presentador "Agregar un ejemplo de como se ve en lagchain un multi-agente." quedó sin estampar. Choca con el pedido del chat de la ronda 3 (topologías a nivel de arquitectura de comunicación, sin LangGraph ni otros frameworks). Decidir: descartarlo, o hacer una excepción (por ejemplo, un ejemplo de código en notas o una lámina en la sección 4 junto a 4.5).
 - Slide 1.8: el auto autónomo recorrido por las cinco arquitecturas es construcción de la cátedra. Wikipedia usa el auto para definir percepción, acción y función objetivo; las limitaciones de reflejo simple, reflejo con modelo, objetivos y utilidad salen del registro, y la del agente que aprende es lectura de la cátedra. Confirmar los ejemplos.
 - Slide 2.2: el diagrama de las dos formas de conectar un LLM con tools es de la cátedra, sobre las definiciones de Anthropic; marcado en Sources.
-- Slide 7.5: las celdas de trazabilidad de Router y Pizarra y la de costo de Router son lectura de la cátedra; el resto sale de Kore.ai, Anthropic, MetaGPT y el deck hermano. La tabla no lleva cifras.
+- Slide 6.8 (nueva, ronda 12): la lámina de pizarra se apoya solo en MetaGPT, donde las suscripciones y las dependencias deciden quién actúa. El corpus no trae el origen de la arquitectura de pizarra anterior a los LLM ni la variante con un controlador que elige qué agente escribe; capturar una fuente si se quiere contar esa historia. El diagrama es de la cátedra. La Figura 2 de MetaGPT (`research/corpus/metagpt-2023.web/images/2-message_sharing.jpg`) dibuja el pool compartido con publish/subscribe en su panel izquierdo y podría reemplazarlo, pero su panel derecho (la programación iterativa del Engineer) es otro tema.
+- Slide 6.10: las celdas de trazabilidad de Router y Pizarra y la de costo de Router son lectura de la cátedra; el resto sale de Kore.ai, Anthropic, MetaGPT y el deck hermano. La tabla no lleva cifras.
 - Slide 6.1: el quiz "¿Qué es el contexto de un modelo?" que abría la segunda mitad se cortó por repetir la definición del contexto (desde la ronda 5, en 3.1). Si el presentador quiere un quiz después de la pausa, conviene uno sobre algo nuevo (por ejemplo, qué pasa cuando el contexto crece).
 - Merge con `talks/sistemas-multiagente` (deck hermano, `corpus/sistemas-multiagente-clase.md.md`): se tomaron conceptos, no láminas, y cada cifra se rastreó al registro que el deck hermano cita. No se usó su caso ficticio Pampa Viajes: esta clase ya tiene sus casos (la pregunta de HotpotQA, el crédito de Kore.ai), y recorrer siete arquitecturas con un caso propio costaba unas diez láminas. Su lámina 1.12 dibuja la acción de ReAct como llamada a tool; esta clase explica el original de completado con stop (4.3 y 4.4) y el tool calling moderno en 4.5 y 4.6. Su diagrama de handoffs que termina en un agente de presupuesto sin LLM no se trajo.
-- Candidatos del deck hermano que quedaron fuera y el presentador puede sumar: MCP (fuera de alcance por el briefing); memoria de agentes (Mem0, Zep, persistencia de LangGraph, memoria de LangChain; fuera de alcance); el trabajo práctico de su Conclusiones 2; la demo en vivo con Claude Code (DESIGN-AGENT, CODE-AGENT, OUTREACH-AGENT); equipos de agentes y mensajes entre sesiones de Claude Code; su sección 5, "El agente principal que delega bajo demanda" (lo esencial, el sistema de Anthropic y Cognition, ya está en 8.1 y 8.4–8.6); la tabla de siete dimensiones del ambiente con cuatro ambientes clasificados (esta clase cortó "Tipos de ambiente" en Step 4); la descripción PEAS de cuatro agentes (robot móvil, AlphaGo, taxi); omnisciencia y autonomía como lámina propia (la omnisciencia quedó en la cita de 1.4 y la autonomía en las notas de 1.7); Generative Agents como lámina propia (quedó en las notas de 7.3); la tabla del Agents SDK de OpenAI (salió con las láminas de patrones de LangChain en la ronda 3); "Dónde coinciden" Anthropic y Cognition (lo cubre 8.6).
+- Candidatos del deck hermano que quedaron fuera y el presentador puede sumar: MCP (fuera de alcance por el briefing); memoria de agentes (Mem0, Zep, persistencia de LangGraph, memoria de LangChain; fuera de alcance); el trabajo práctico de su Conclusiones 2; la demo en vivo con Claude Code (DESIGN-AGENT, CODE-AGENT, OUTREACH-AGENT); equipos de agentes y mensajes entre sesiones de Claude Code; su sección 5, "El agente principal que delega bajo demanda" (lo esencial, el sistema de Anthropic y Cognition, ya está en 7.1 y 7.4–7.6); la tabla de siete dimensiones del ambiente con cuatro ambientes clasificados (esta clase cortó "Tipos de ambiente" en Step 4); la descripción PEAS de cuatro agentes (robot móvil, AlphaGo, taxi); omnisciencia y autonomía como lámina propia (la omnisciencia quedó en la cita de 1.4 y la autonomía en las notas de 1.7); Generative Agents como lámina propia (quedó en las notas de 6.7); la tabla del Agents SDK de OpenAI (salió con las láminas de patrones de LangChain en la ronda 3); "Dónde coinciden" Anthropic y Cognition (lo cubre 7.6).
 
 **Composer, revisión scope=full del 2026-10-04: [minor] diferidos a Step 5 que siguen abiertos** (locators en la numeración actual; los de 4.1/5.11, 4.1 contra 3.1, 7.2 contra 7.3, en la numeración de entonces, y Timing quedaron resueltos en la ronda de consistencia):
 
 - [minor] Títulos de más de 40 caracteres: 1.5 (42), 3.2 (44) y 5.5 (41). Sugerencia: quedarse con la cláusula de la derecha.
-- [minor] Notas de más de ~120 palabras en 2.3, 3.1, 4.6, 8.4 y 8.6 (sobre todo apartes del tipo "si preguntan"). Sugerencia: recortar los apartes o partir la lámina si son dos ideas.
+- [minor] Notas de más de ~120 palabras en 2.3, 3.1, 4.6, 7.5 y 7.6 (sobre todo apartes del tipo "si preguntan"). Sugerencia: recortar los apartes o partir la lámina si son dos ideas.
 - [minor] Conclusions.3: el mazo termina en una lista de lecturas, y la imagen de cierre es el árbol de conclusions.2. Sugerencia: intercambiarlas o pasar la lista a las notas o a un handout.
 
 # Cut material
+
+### Ronda 7 (2026-10-07) — 5.7 "Qué mostró Reflexion" reemplazada por pros-cons a pedido del presentador
+
+#### 5.7 Qué mostró Reflexion (original)
+
+<!-- template: stat -->
+
+### Content
+
+Resultados del paper (2023). HumanEval mide si el modelo escribe una función correcta a partir de su descripción; pass@1 es el acierto con la primera solución entregada.
+
+- **91,0% contra 80,1%** pass@1 en HumanEval Python: Reflexion contra GPT-4, el mejor resultado publicado en ese momento.
+- **130 de 134** tareas de ALFWorld, un juego de texto con tareas domésticas, resueltas con ReAct + Reflexion en 12 intentos.
+- **52% contra 60%** pass@1 en Rust al quitar los tests autogenerados: sin tests que evalúen el intento, la reflexión queda por debajo del modelo base.
+
+### Sources
+
+- `corpus/shinn-2023-reflexion.pdf.md` — pass@1 definido como "accuracy of a single submitted solution"; HumanEval: "measure function body generation accuracy given natural language descriptions"; Table 1 (HumanEval PY: SOTA GPT-4 80,1, Reflexion 91,0); Sección 4.1 (130/134 tareas de ALFWorld, 12 intentos); Table 3 (HumanEval Rust, 50 problemas más difíciles, GPT-4: base 0,60; sin generación de tests 0,52; sin self-reflection 0,60; Reflexion completo 0,68); Table 4 (starchat-beta 0,26 → 0,26). Las fracciones de pass@1 se muestran como porcentaje (0,52 = 52%) para usar el mismo formato que la primera cifra.
+- `corpus/yao-2022-react.pdf.md` — ALFWorld descripto como "text-based household game" (134 juegos de evaluación).
+
+### Speaker notes
+
+Fechar las cifras: son de 2023 y el "estado del arte" de la primera es el de ese momento. No son benchmarks actuales.
+
+La tercera cifra es la que justifica la fila de Reflexion en la tabla de la lámina 5.10 ("cuando hay un criterio claro de éxito"). En la ablación de Rust, Reflexion completo llega a 68%. Sin tests autogenerados cae a 52%, por debajo del modelo base (60%). Sin la reflexión, se queda en 60%. Las dos piezas hacen falta, y la que más pesa es tener algo que diga si salió bien.
+
+Un límite que el paper reporta: con un modelo chico (starchat-beta), Reflexion no mejora nada, 26% antes y 26% después. La autocorrección aparece en modelos más capaces. Y en WebShop, una tarea que pide explorar mucho, Reflexion no logró mejorar y los autores cortaron después de 4 intentos.
 
 - **pptx slides 9–11 (Robot móvil, AlphaGo, AlphaGo → AlphaZero)** — ejemplos de formulación PEAS. La lámina 1.7 usa la aspiradora y el agente LLM, que alcanzan para mostrar la plantilla; los otros tres repetían la misma forma.
 - **pptx slide 13 (Dificultad de ambientes: crucigrama / ajedrez / taxi)** — estaba en las notas de la lámina "Tipos de ambiente", que se cortó (ver abajo).
@@ -2802,3 +2748,38 @@ Dejar tiempo para preguntas.
 - **Lámina 1.9, título y lead (ronda 5, «ficha» no es el término)** — Título "La misma ficha, dos agentes"; lead "Russell & Norvig especifican un agente con la ficha PEAS: performance, ambiente (*environment*), actuadores y sensores. La misma ficha sirve para una aspiradora y para un agente LLM." Reemplazados por "Dos agentes, una descripción PEAS" y la descripción con los cuatro elementos. Notas de 1.9: "La plantilla obliga a pensar en ambiente y performance, que son los casilleros que se suelen olvidar al diseñar un agente."
 - **Lámina 4.1, notación retirada (ronda 5, sin la lámina 2.1 la notación quedaba sin definir)** — Bullet "Agrega razonamiento al contexto: `c_{t+1} = (c_t, â_t)`."; lead "ReAct amplía el espacio de acciones con el lenguaje, `Â = A ∪ L`, ..."; diagrama con `π(â_t | c_t)` arriba, ramas `â_t ∈ A (acción)` / `â_t ∈ L (pensamiento)` y pies `c_{t+1} suma a_t y o_{t+1}` / `c_{t+1} = (c_t, â_t)`. Queda `Â = A ∪ L` con A y L explicados en los bullets; el diagrama dice lo mismo en palabras.
 - **Notas retiradas por la ronda 5** — 3.1: "En la notación de la lámina 2.1, pedir la tool es la acción a_t, y su resultado es la observación o_{t+1}." 1.6: "Para el agente LLM, la lámina 2.1 escribe la función como una política π(a_t | c_t) sobre el contexto." 6.1 (lámina): "El contexto c_t de la lámina 2.1 crece en cada vuelta" → "El contexto de un agente crece en cada vuelta".
+- **Ronda 11 (2026-10-07), orquestador con workers movido de 5.12/5.13 a 6.3/6.4** — 5.1 (lámina): "El quinto tipo, orquestador con workers, mueve otra variable: cómo se reparte el contexto entre varios loops."; 5.1 (Sources): "`corpus/anthropic-building-effective-agents.web.md` · `corpus/anthropic-multi-agent-research-system.web.md` — orchestrator-workers y subagentes con ventanas propias (quinto tipo, lámina 5.11)."; 5.1 (notas): "El quinto tipo queda fuera de las dos preguntas a propósito: su variable es el eje de las secciones 6 a 8."; ex 5.12 (notas): "Esta clase lo cuenta como tipo de agente con esa lectura"; Conclusions.1, ítem 3: "El quinto, orquestador con workers, es la forma básica del multiagente." (pasó al ítem 4). Motivo: la sección 5 queda con tipos de un solo agente y el orquestador con workers se presenta después de definir sistema multiagente.
+- **Lámina 7.1, definición repetida (ronda 11)** — Título "Qué es un subagente"; lead "Un subagente es el worker de la lámina 5.11: un agente que otro agente crea para una parte del trabajo, con su propia ventana de contexto. Con un orquestador en el centro, la comunicación tiene forma de estrella." Motivo: 6.3 ya define subagente y 6.2 la ventana propia; 7.1 apunta a 6.3 y agrega encargo, hermanos y decisión.
+
+**Ronda 12 (2026-10-07), pedidos del chat: secciones 6 y 7 fusionadas en «Sistemas multiagente», pizarra con lámina propia, una lámina borrada y «Compartir el contexto no alcanza» adelantada.**
+
+- **Lámina 7.6 "Varios modelos sobre una misma pregunta" (cortada entera en la ronda 12, pedido del presentador "Borra el slide 'Varios modelos sobre una misma pregunta'")** — Salen con ella el debate y Mixture-of-Agents y sus cifras (aritmética 67,0% → 81,8% y GSM8K 77,0% → 85,0% con debate; MoA 65,1% contra 57,5% de GPT-4o en AlpacaEval 2.0), que ninguna otra lámina citaba. Los registros `corpus/multiagent-debate-2023.web.md` y `corpus/mixture-of-agents-2024.web.md` quedan en el corpus. Lámina completa:
+    **6. Varios modelos sobre una misma pregunta**
+
+    **Content**
+
+    Debate y Mixture-of-Agents ponen varios LLM sobre la misma pregunta, sin tools. Los papers llaman agente a cada instancia. Con la definición de esta clase ninguna actúa sobre un ambiente, así que tampoco forman un sistema multiagente.
+
+    - **Debate** Varias instancias del mismo modelo responden, leen las respuestas de las otras y corrigen la suya durante varias rondas. Con 3 instancias y 2 rondas, la aritmética pasa de 67,0% a 81,8% de acierto.
+    - **Mixture-of-Agents** Capas de modelos que proponen respuestas; cada capa lee todas las de la anterior y un agregador escribe la final. Solo con modelos abiertos llega a 65,1% en AlpacaEval 2.0, contra 57,5% de GPT-4o.
+
+    Las dos pagan en llamadas y en latencia: MoA no empieza a responder hasta que terminan todas las capas.
+
+    `Du et al., 2023 · Wang et al., 2024`
+
+    **Sources**
+
+    - `corpus/multiagent-debate-2023.web.md` — procedimiento de debate; Table 1 (3 agentes, 2 rondas): Arithmetic 67,0 → 81,8, GSM8K 77,0 → 85,0 (Single Agent contra Multi-Agent Debate); `gpt-3.5-turbo-0301`; 100 problemas por tarea; debates que convergen a una respuesta incorrecta (notas).
+    - `corpus/mixture-of-agents-2024.web.md` — arquitectura en capas, proponentes y agregador; Table 2(a): MoA 65,1% de LC win rate contra 57,5% de GPT-4 Omni (05/13); LC win rate definido como el win rate de AlpacaEval 2.0 controlado por largo, contra `gpt-4-1106-preview`, con un juez basado en GPT-4; latencia del primer token como limitación; cita a Wang et al. 2024b (un agente con un prompt fuerte alcanza calidad comparable, notas). El registro marca que el §1 del paper dice 65,8%, valor que no aparece en ninguna tabla; la lámina usa el de la tabla.
+
+    **Speaker notes**
+
+    La lámina sirve de contraste con la 1.1 y la 1.9, y con el resto de la sección. Un LLM sin tools ni ambiente no es un agente, y varias llamadas a LLMs sobre una misma pregunta mejoran la respuesta gastando más llamadas. Los papers usan la palabra agente en ese sentido amplio.
+
+    El debate tiene un caso interesante: a veces todos arrancan mal y llegan bien. También el contrario, debates que convergen con confianza a una respuesta incorrecta. En GSM8K, un set de problemas de matemática, la mejora fue de 77,0% a 85,0%. Son muestras chicas, cien problemas por tarea, con gpt-3.5-turbo de 2023.
+
+    AlpacaEval 2.0 compara las respuestas contra las de un modelo de referencia, con un juez basado en GPT-4 y una corrección por largo. El mismo paper de MoA cita un trabajo que encontró que un solo agente con un prompt fuerte y buenos ejemplos alcanza una calidad comparable. Vuelve la advertencia de la lámina 6.5.
+
+    En el lenguaje de esta sección, el debate es una red en la que todos leen a todos en cada ronda, y MoA es un pipeline de capas.
+
+    Cierre de la sección 7. Tiempo acumulado: unos 100 minutos.

@@ -1,0 +1,53 @@
+<!-- talksmith-ascii-sha256: 32e2a0fad24d267c7b224a70b8434a7cb6cc620fa3cc01e9e8582e018d6e3f28 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 328" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Pipeline y jerarquía</title>
+<desc>El pipeline es un workflow: el código decide el orden y la salida de un agente es la entrada del siguiente; en la jerarquía un orquestador coordina a otros orquestadores.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="680" height="328" fill="#ffffff"/>
+<line x1="238" y1="24" x2="238" y2="304" stroke="#D8D2CE" stroke-width="1.5"/>
+<g text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">
+<text x="86" y="40">Pipeline</text>
+<text x="490" y="40">Jerarquía</text>
+</g>
+<g text-anchor="middle" font-size="13" font-style="italic">
+<text x="86" y="60">el código fija el orden</text>
+<text x="490" y="60">un árbol de orquestadores</text>
+</g>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="86" y1="128" x2="86" y2="168"/>
+<line x1="86" y1="216" x2="86" y2="256"/>
+<path d="M490,128 V148 H400 V168"/>
+<path d="M490,128 V148 H600 V168"/>
+<path d="M400,216 V236 H360 V256"/>
+<path d="M400,216 V236 H440 V256"/>
+<line x1="600" y1="216" x2="600" y2="256"/>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="31" y="80" width="110" height="48" rx="10"/>
+<rect x="31" y="168" width="110" height="48" rx="10"/>
+<rect x="31" y="256" width="110" height="48" rx="10"/>
+<rect x="345" y="168" width="110" height="48" rx="10"/>
+<rect x="545" y="168" width="110" height="48" rx="10"/>
+<rect x="328" y="256" width="64" height="48" rx="10"/>
+<rect x="408" y="256" width="64" height="48" rx="10"/>
+<rect x="568" y="256" width="64" height="48" rx="10"/>
+</g>
+<rect x="405" y="80" width="170" height="48" rx="10" fill="#DA1B2E"/>
+<text x="490" y="110" text-anchor="middle" font-size="17" font-weight="bold" fill="#FFFFFF">orquestador</text>
+<g text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">
+<text x="86" y="110">A</text>
+<text x="86" y="198">B</text>
+<text x="86" y="286">C</text>
+<text x="360" y="286">A</text>
+<text x="440" y="286">B</text>
+<text x="600" y="286">C</text>
+</g>
+<g text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">
+<text x="400" y="197">orquestador</text>
+<text x="600" y="197">orquestador</text>
+</g>
+</svg>

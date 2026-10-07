@@ -1,0 +1,19 @@
+  +------------+   +------------+   +------------+   +------------+
+  |  Producto  |   | Arquitecto |   | Ingeniero  |   |     QA     |
+  +------------+   +------------+   +------------+   +------------+
+      |                |     ^          |     ^          |     ^
+      v                v     |          v     |          v     |
+  +---------------------------------------------------------------+
+  |                            PIZARRA                            |
+  |   PRD              diseño           código           tests    |
+  +---------------------------------------------------------------+
+
+   v publica       ^ lee lo que pide su rol
+   cada agente actúa cuando ya está publicado lo que necesita
+
+<!-- ascii-note:
+intent: una pizarra al estilo de MetaGPT; cuatro de sus cinco roles (sin el Project Manager) publican documentos en un espacio comun y leen de ahi lo que pide su rol; no hay flechas entre agentes.
+emphasize: la caja PIZARRA (acento rojo) como unico punto de contacto; ninguna flecha une a dos agentes. Lecturas: Arquitecto lee PRD, Ingeniero lee diseño, QA lee código.
+labels: Producto, Arquitecto, Ingeniero, QA, PIZARRA, PRD, diseño, código, tests, v publica, ^ lee lo que pide su rol, cada agente actúa cuando ya está publicado lo que necesita.
+consistency: mismo tratamiento de cajas que la estrella (6.5) y la red (6.7).
+-->
