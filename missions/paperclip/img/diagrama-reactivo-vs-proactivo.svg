@@ -1,0 +1,52 @@
+<svg viewBox="0 0 760 492" xmlns="http://www.w3.org/2000/svg">
+  <style>text{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}</style>
+  <rect width="760" height="492" fill="#ffffff"/>
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#4b5563"/></marker>
+  </defs>
+
+  <!-- LEFT: reactivo -->
+  <rect x="24" y="54" width="344" height="358" rx="14" fill="#fbf1f1" stroke="#e6c3c3" stroke-width="1.5"/>
+  <circle cx="52" cy="82" r="6" fill="#dc2626"/>
+  <text x="66" y="86" font-size="13" font-weight="700" fill="#1f2937">PASO 1 · REACTIVO (frágil)</text>
+
+  <rect x="46" y="100" width="300" height="40" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="196" y="124" text-anchor="middle" font-size="12.5" fill="#1f2937">Vos detectás el cambio</text>
+  <line x1="196" y1="140" x2="196" y2="156" stroke="#4b5563" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="46" y="156" width="300" height="40" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="196" y="180" text-anchor="middle" font-size="12.5" fill="#1f2937">Le pedís al CMO, a mano</text>
+  <line x1="196" y1="196" x2="196" y2="212" stroke="#4b5563" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="46" y="212" width="300" height="40" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="196" y="236" text-anchor="middle" font-size="12.5" fill="#1f2937">Blog improvisado</text>
+
+  <text x="46" y="286" font-size="11" fill="#6b7280">• depende de que VOS lo veas</text>
+  <text x="46" y="306" font-size="11" fill="#6b7280">• sin goal ni proyecto propio</text>
+  <text x="46" y="326" font-size="11" fill="#6b7280">• sin evaluación de riesgo previa</text>
+  <text x="46" y="346" font-size="11" fill="#6b7280">• encuadre de un tema sensible, suelto</text>
+
+  <!-- RIGHT: proactivo -->
+  <rect x="392" y="54" width="344" height="358" rx="14" fill="#f1f5fb" stroke="#1d4ed8" stroke-width="1.5"/>
+  <circle cx="420" cy="82" r="6" fill="#16a34a"/>
+  <text x="434" y="86" font-size="13" font-weight="700" fill="#1f2937">PASO 2–3 · PROACTIVO (con dueño)</text>
+
+  <rect x="414" y="100" width="300" height="40" rx="9" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.6"/>
+  <text x="564" y="124" text-anchor="middle" font-size="12.5" fill="#1f2937">Heartbeat corre solo (semanal)</text>
+  <line x1="564" y1="140" x2="564" y2="156" stroke="#4b5563" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="414" y="156" width="300" height="40" rx="9" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.6"/>
+  <text x="564" y="180" text-anchor="middle" font-size="12.5" fill="#1f2937">El Director evalúa el riesgo</text>
+  <line x1="564" y1="196" x2="564" y2="212" stroke="#4b5563" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="414" y="212" width="300" height="40" rx="9" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.6"/>
+  <text x="564" y="236" text-anchor="middle" font-size="12.5" fill="#1f2937">Nota de riesgo → task al CMO</text>
+
+  <text x="414" y="286" font-size="11" fill="#475569">• se dispara solo cada semana</text>
+  <text x="414" y="306" font-size="11" fill="#475569">• goal + proyecto propios</text>
+  <text x="414" y="326" font-size="11" fill="#475569">• evaluación de materialidad + CLO</text>
+  <text x="414" y="346" font-size="11" fill="#475569">• encuadre y guardrails del Director</text>
+
+  <!-- convergence -->
+  <line x1="196" y1="412" x2="318" y2="440" stroke="#4b5563" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="564" y1="412" x2="442" y2="440" stroke="#4b5563" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="236" y="442" width="288" height="42" rx="10" fill="#eef2f7" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="380" y="460" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">Mismo pipeline, misma compuerta humana</text>
+  <text x="380" y="476" text-anchor="middle" font-size="10.5" fill="#4b5563">Content Reviewer aprueba y se publica</text>
+</svg>

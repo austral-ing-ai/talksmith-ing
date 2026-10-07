@@ -1,0 +1,66 @@
+<svg viewBox="0 0 760 574" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    svg{--tp:#1f2937;--ts:#4b5563;--tm:#94a3b8;--ac:#1d4ed8;--s1:#eef2f7;--s2:#ffffff;--bs:#cbd5e1;}
+    text{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}
+  </style>
+  <rect width="760" height="574" fill="#ffffff"/>
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#4b5563"/></marker>
+    <marker id="ahA" markerWidth="10" markerHeight="10" refX="7.5" refY="4.2" orient="auto"><path d="M0,0 L9,4.2 L0,8.4 z" fill="#1d4ed8"/></marker>
+    <marker id="ahD" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker>
+  </defs>
+
+  <rect x="34" y="70" width="602" height="312" rx="14" fill="#eef2f7"/>
+  <rect x="34" y="402" width="602" height="128" rx="14" fill="#eef2f7"/>
+  <text x="50" y="90" font-size="10.5" letter-spacing="1.2" fill="#94a3b8">DOMINIO DEL DIRECTOR · NUEVO (lo crea el participante)</text>
+  <text x="50" y="422" font-size="10.5" letter-spacing="1.2" fill="#94a3b8">DOMINIO DE MARKETING · YA EXISTE</text>
+
+  <rect x="180" y="18" width="320" height="44" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="340" y="37" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Goal de compañía</text>
+  <text x="340" y="53" text-anchor="middle" font-size="11" fill="#4b5563">Posicionamiento orgánico de marca</text>
+  <line x1="340" y1="62" x2="340" y2="100" stroke="#4b5563" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="180" y="102" width="320" height="44" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <text x="340" y="121" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Goal nuevo</text>
+  <text x="340" y="137" text-anchor="middle" font-size="11" fill="#4b5563">Anticipación regulatoria</text>
+  <line x1="340" y1="146" x2="340" y2="168" stroke="#4b5563" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="180" y="170" width="320" height="44" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <text x="340" y="189" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Proyecto: Radar Regulatorio</text>
+  <text x="340" y="205" text-anchor="middle" font-size="11" fill="#4b5563">dueño: Director de RR.II.</text>
+  <line x1="340" y1="214" x2="340" y2="236" stroke="#4b5563" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="180" y="238" width="320" height="44" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="340" y="257" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2937">Heartbeat semanal</text>
+  <text x="340" y="273" text-anchor="middle" font-size="11" fill="#4b5563">investiga + evalúa materialidad</text>
+  <line x1="340" y1="282" x2="340" y2="304" stroke="#4b5563" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="180" y="306" width="320" height="46" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="340" y="325" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">¿Riesgo material? → Nota de riesgo</text>
+  <text x="340" y="341" text-anchor="middle" font-size="11" fill="#4b5563">task en Radar Regulatorio</text>
+  <text x="516" y="326" font-size="10.5" fill="#94a3b8">No →</text>
+  <text x="516" y="340" font-size="10.5" fill="#94a3b8">log "sin acción"</text>
+
+  <line x1="340" y1="352" x2="340" y2="432" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ahA)"/>
+  <rect x="352" y="372" width="156" height="22" rx="11" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="430" y="387" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1d4ed8">◆ costura (handoff)</text>
+
+  <rect x="180" y="434" width="320" height="44" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="340" y="453" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Task «blog» → CMO</text>
+  <text x="340" y="469" text-anchor="middle" font-size="11" fill="#4b5563">en el proyecto de marca existente</text>
+  <line x1="340" y1="478" x2="340" y2="500" stroke="#4b5563" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="180" y="502" width="320" height="42" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="340" y="520" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">Pipeline → gates → publica</text>
+  <text x="340" y="535" text-anchor="middle" font-size="10.5" fill="#4b5563">brief · draft · Content Reviewer (humano)</text>
+
+  <path d="M500,523 C662,523 700,300 700,122 C700,62 620,40 502,40" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ahD)"/>
+  <text x="714" y="290" text-anchor="middle" font-size="10.5" fill="#94a3b8" transform="rotate(90 714 290)">cierra el círculo · marca posicionada</text>
+
+  <rect x="34" y="548" width="16" height="16" rx="4" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <text x="56" y="560" font-size="10.5" fill="#4b5563">lo crea el participante</text>
+  <rect x="212" y="548" width="16" height="16" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="234" y="560" font-size="10.5" fill="#4b5563">ya existe</text>
+  <line x1="360" y1="556" x2="392" y2="556" stroke="#1d4ed8" stroke-width="3"/>
+  <text x="398" y="560" font-size="10.5" fill="#4b5563">costura = handoff entre agentes</text>
+</svg>
