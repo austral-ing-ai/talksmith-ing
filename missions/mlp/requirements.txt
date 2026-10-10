@@ -12,4 +12,4 @@ ipykernel==7.3.0
 
 # Servidor de Jupyter. Hace falta solo si vas a correr `jupyter lab` desde la
 # terminal; VS Code no lo necesita porque trae su propio cliente de notebooks.
-jupyterlab==4.6.3
+jupyterlab==4.6.4
