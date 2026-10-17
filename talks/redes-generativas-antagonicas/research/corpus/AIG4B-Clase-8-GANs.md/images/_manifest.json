@@ -1,0 +1,799 @@
+[
+ {
+  "slide": 1,
+  "file": "slide-01-1.png",
+  "shape": "Image 0",
+  "w_emu": 1728248,
+  "h_emu": 1428353,
+  "md5": "da36ed562462",
+  "role": "figura",
+  "primera_aparicion": "slide-01-1.png"
+ },
+ {
+  "slide": 5,
+  "file": "slide-05-1.png",
+  "shape": "Image 0",
+  "w_emu": 378014,
+  "h_emu": 378023,
+  "svg_original": "slide-05-1.svg",
+  "md5": "83d4a4a65428",
+  "role": "icono",
+  "primera_aparicion": "slide-05-1.png"
+ },
+ {
+  "slide": 5,
+  "file": "slide-05-2.png",
+  "shape": "Image 1",
+  "w_emu": 378014,
+  "h_emu": 378023,
+  "svg_original": "slide-05-2.svg",
+  "md5": "04f55d5be015",
+  "role": "icono",
+  "primera_aparicion": "slide-05-2.png"
+ },
+ {
+  "slide": 5,
+  "file": "slide-05-3.png",
+  "shape": "Image 2",
+  "w_emu": 378014,
+  "h_emu": 378023,
+  "svg_original": "slide-05-3.svg",
+  "md5": "5cf490d51dc5",
+  "role": "icono",
+  "primera_aparicion": "slide-05-3.png"
+ },
+ {
+  "slide": 5,
+  "file": "slide-05-4.png",
+  "shape": "Image 3",
+  "w_emu": 236234,
+  "h_emu": 189012,
+  "md5": "5cf11256c25a",
+  "role": "icono",
+  "primera_aparicion": "slide-05-4.png"
+ },
+ {
+  "slide": 6,
+  "file": "slide-06-1.png",
+  "shape": "Image 0",
+  "w_emu": 191884,
+  "h_emu": 153491,
+  "md5": "cfcd21912d6a",
+  "role": "icono",
+  "primera_aparicion": "slide-06-1.png"
+ },
+ {
+  "slide": 7,
+  "file": "slide-07-1.png",
+  "shape": "Image 0",
+  "w_emu": 3534282,
+  "h_emu": 3090069,
+  "svg_original": "slide-07-1.svg",
+  "md5": "1da2badb98a9",
+  "role": "figura",
+  "primera_aparicion": "slide-07-1.png",
+  "repetida_en": [
+   "slide-07-2.png",
+   "slide-07-3.png"
+  ]
+ },
+ {
+  "slide": 7,
+  "file": "slide-07-2.png",
+  "shape": "Image 1",
+  "w_emu": 3534381,
+  "h_emu": 3090069,
+  "svg_original": "slide-07-2.svg",
+  "md5": "1da2badb98a9",
+  "role": "figura",
+  "primera_aparicion": "slide-07-1.png",
+  "repetida_en": [
+   "slide-07-1.png",
+   "slide-07-3.png"
+  ]
+ },
+ {
+  "slide": 7,
+  "file": "slide-07-3.png",
+  "shape": "Image 2",
+  "w_emu": 3534381,
+  "h_emu": 3090069,
+  "svg_original": "slide-07-3.svg",
+  "md5": "1da2badb98a9",
+  "role": "figura",
+  "primera_aparicion": "slide-07-1.png",
+  "repetida_en": [
+   "slide-07-1.png",
+   "slide-07-2.png"
+  ]
+ },
+ {
+  "slide": 12,
+  "file": "slide-12-1.png",
+  "shape": "Image 0",
+  "w_emu": 4394685,
+  "h_emu": 6592193,
+  "md5": "58bc3feff4d3",
+  "role": "figura",
+  "primera_aparicion": "slide-12-1.png"
+ },
+ {
+  "slide": 12,
+  "file": "slide-12-2.png",
+  "shape": "Image 1",
+  "w_emu": 221451,
+  "h_emu": 177205,
+  "md5": "32398c505a2f",
+  "role": "icono",
+  "primera_aparicion": "slide-12-2.png"
+ },
+ {
+  "slide": 13,
+  "file": "slide-13-1.png",
+  "shape": "Image 0",
+  "w_emu": 236234,
+  "h_emu": 189012,
+  "md5": "ff599dd0c03d",
+  "role": "icono",
+  "primera_aparicion": "slide-13-1.png"
+ },
+ {
+  "slide": 14,
+  "file": "slide-14-1.png",
+  "shape": "Image 0",
+  "w_emu": 4772005,
+  "h_emu": 3228380,
+  "md5": "8d4939712475",
+  "role": "figura",
+  "primera_aparicion": "slide-14-1.png"
+ },
+ {
+  "slide": 15,
+  "file": "slide-15-1.jpg",
+  "shape": "Image 0",
+  "w_emu": 9238424,
+  "h_emu": 3158827,
+  "md5": "23ea9f7b64ed",
+  "role": "figura",
+  "primera_aparicion": "slide-15-1.jpg"
+ },
+ {
+  "slide": 16,
+  "file": "slide-16-1.png",
+  "shape": "Image 0",
+  "w_emu": 183550,
+  "h_emu": 183555,
+  "svg_original": "slide-16-1.svg",
+  "md5": "3cba66a73cc5",
+  "role": "icono",
+  "primera_aparicion": "slide-16-1.png"
+ },
+ {
+  "slide": 16,
+  "file": "slide-16-2.png",
+  "shape": "Image 1",
+  "w_emu": 183550,
+  "h_emu": 183555,
+  "svg_original": "slide-16-2.svg",
+  "md5": "e58a721f52c9",
+  "role": "icono",
+  "primera_aparicion": "slide-16-2.png"
+ },
+ {
+  "slide": 16,
+  "file": "slide-16-3.png",
+  "shape": "Image 2",
+  "w_emu": 183550,
+  "h_emu": 183555,
+  "svg_original": "slide-16-3.svg",
+  "md5": "ccf184f80fb6",
+  "role": "icono",
+  "primera_aparicion": "slide-16-3.png"
+ },
+ {
+  "slide": 16,
+  "file": "slide-16-4.png",
+  "shape": "Image 3",
+  "w_emu": 183550,
+  "h_emu": 183555,
+  "svg_original": "slide-16-4.svg",
+  "md5": "615bc1625257",
+  "role": "icono",
+  "primera_aparicion": "slide-16-4.png"
+ },
+ {
+  "slide": 16,
+  "file": "slide-16-5.png",
+  "shape": "Image 4",
+  "w_emu": 183550,
+  "h_emu": 183555,
+  "svg_original": "slide-16-5.svg",
+  "md5": "7d6fbf7923be",
+  "role": "icono",
+  "primera_aparicion": "slide-16-5.png"
+ },
+ {
+  "slide": 18,
+  "file": "slide-18-1.png",
+  "shape": "Image 0",
+  "w_emu": 4420878,
+  "h_emu": 4420989,
+  "md5": "83197ceb8665",
+  "role": "figura",
+  "primera_aparicion": "slide-18-1.png"
+ },
+ {
+  "slide": 18,
+  "file": "slide-18-2.png",
+  "shape": "Image 1",
+  "w_emu": 188908,
+  "h_emu": 151110,
+  "md5": "0c85f9b96e39",
+  "role": "icono",
+  "primera_aparicion": "slide-18-2.png"
+ },
+ {
+  "slide": 19,
+  "file": "slide-19-1.jpg",
+  "shape": "Image 0",
+  "w_emu": 8149426,
+  "h_emu": 2422624,
+  "md5": "2fd0c6f9b1cd",
+  "role": "figura",
+  "primera_aparicion": "slide-19-1.jpg"
+ },
+ {
+  "slide": 20,
+  "file": "slide-20-1.png",
+  "shape": "Image 0",
+  "w_emu": 5079278,
+  "h_emu": 4198045,
+  "md5": "e6ae24ae0e29",
+  "role": "figura",
+  "primera_aparicion": "slide-20-1.png"
+ },
+ {
+  "slide": 21,
+  "file": "slide-21-1.jpg",
+  "shape": "Image 0",
+  "w_emu": 7064595,
+  "h_emu": 3788569,
+  "md5": "764b5ca0e5ce",
+  "role": "figura",
+  "primera_aparicion": "slide-21-1.jpg"
+ },
+ {
+  "slide": 22,
+  "file": "slide-22-1.png",
+  "shape": "Image 0",
+  "w_emu": 4874495,
+  "h_emu": 3846314,
+  "md5": "f27e1debebbe",
+  "role": "figura",
+  "primera_aparicion": "slide-22-1.png"
+ },
+ {
+  "slide": 23,
+  "file": "slide-23-1.png",
+  "shape": "Image 0",
+  "w_emu": 5627150,
+  "h_emu": 3276699,
+  "md5": "207cb8db1f95",
+  "role": "figura",
+  "primera_aparicion": "slide-23-1.png"
+ },
+ {
+  "slide": 24,
+  "file": "slide-24-1.png",
+  "shape": "Image 0",
+  "w_emu": 7064595,
+  "h_emu": 8565753,
+  "md5": "a4905ae9910f",
+  "role": "figura",
+  "primera_aparicion": "slide-24-1.png"
+ },
+ {
+  "slide": 25,
+  "file": "slide-25-1.png",
+  "shape": "Image 0",
+  "w_emu": 2437248,
+  "h_emu": 437059,
+  "md5": "9152efcef61e",
+  "role": "icono",
+  "primera_aparicion": "slide-25-1.png"
+ },
+ {
+  "slide": 25,
+  "file": "slide-25-2.jpg",
+  "shape": "Image 1",
+  "w_emu": 5231178,
+  "h_emu": 2055118,
+  "md5": "e55bf4cbf5fa",
+  "role": "figura",
+  "primera_aparicion": "slide-25-2.jpg"
+ },
+ {
+  "slide": 26,
+  "file": "slide-26-1.jpg",
+  "shape": "Image 0",
+  "w_emu": 4163015,
+  "h_emu": 2298303,
+  "md5": "519efc92af11",
+  "role": "figura",
+  "primera_aparicion": "slide-26-1.jpg"
+ },
+ {
+  "slide": 26,
+  "file": "slide-26-2.jpg",
+  "shape": "Image 1",
+  "w_emu": 4163015,
+  "h_emu": 2168227,
+  "md5": "8941822990e1",
+  "role": "figura",
+  "primera_aparicion": "slide-26-2.jpg"
+ },
+ {
+  "slide": 27,
+  "file": "slide-27-1.png",
+  "shape": "Image 0",
+  "w_emu": 8151509,
+  "h_emu": 4584005,
+  "md5": "3d171d9a493b",
+  "role": "figura",
+  "primera_aparicion": "slide-27-1.png"
+ },
+ {
+  "slide": 28,
+  "file": "slide-28-1.jpg",
+  "shape": "Image 0",
+  "w_emu": 7064595,
+  "h_emu": 3867944,
+  "md5": "66698f76f730",
+  "role": "figura",
+  "primera_aparicion": "slide-28-1.jpg"
+ },
+ {
+  "slide": 29,
+  "file": "slide-29-1.png",
+  "shape": "Image 0",
+  "w_emu": 221451,
+  "h_emu": 177205,
+  "md5": "f457230fc854",
+  "role": "icono",
+  "primera_aparicion": "slide-29-1.png",
+  "repetida_en": [
+   "slide-41-1.png"
+  ]
+ },
+ {
+  "slide": 30,
+  "file": "slide-30-1.png",
+  "shape": "Image 0",
+  "w_emu": 5076896,
+  "h_emu": 328017,
+  "md5": "1f507a7898d8",
+  "role": "icono",
+  "primera_aparicion": "slide-30-1.png"
+ },
+ {
+  "slide": 30,
+  "file": "slide-30-2.png",
+  "shape": "Image 1",
+  "w_emu": 5076896,
+  "h_emu": 328017,
+  "md5": "dd056ffd647b",
+  "role": "icono",
+  "primera_aparicion": "slide-30-2.png"
+ },
+ {
+  "slide": 30,
+  "file": "slide-30-3.png",
+  "shape": "Image 2",
+  "w_emu": 251017,
+  "h_emu": 200819,
+  "md5": "799f5042662a",
+  "role": "icono",
+  "primera_aparicion": "slide-30-3.png"
+ },
+ {
+  "slide": 31,
+  "file": "slide-31-1.png",
+  "shape": "Image 0",
+  "w_emu": 1685089,
+  "h_emu": 4453037,
+  "md5": "0c14f78a31e3",
+  "role": "figura",
+  "primera_aparicion": "slide-31-1.png"
+ },
+ {
+  "slide": 31,
+  "file": "slide-31-2.png",
+  "shape": "Image 1",
+  "w_emu": 1676259,
+  "h_emu": 4316611,
+  "md5": "109a030d5541",
+  "role": "figura",
+  "primera_aparicion": "slide-31-2.png"
+ },
+ {
+  "slide": 32,
+  "file": "slide-32-1.png",
+  "shape": "Image 0",
+  "w_emu": 205080,
+  "h_emu": 205085,
+  "svg_original": "slide-32-1.svg",
+  "md5": "5fb859946c9f",
+  "role": "icono",
+  "primera_aparicion": "slide-32-1.png",
+  "repetida_en": [
+   "slide-32-2.png",
+   "slide-32-3.png"
+  ]
+ },
+ {
+  "slide": 32,
+  "file": "slide-32-2.png",
+  "shape": "Image 1",
+  "w_emu": 205080,
+  "h_emu": 205085,
+  "svg_original": "slide-32-2.svg",
+  "md5": "5fb859946c9f",
+  "role": "icono",
+  "primera_aparicion": "slide-32-1.png",
+  "repetida_en": [
+   "slide-32-1.png",
+   "slide-32-3.png"
+  ]
+ },
+ {
+  "slide": 32,
+  "file": "slide-32-3.png",
+  "shape": "Image 2",
+  "w_emu": 205080,
+  "h_emu": 205085,
+  "svg_original": "slide-32-3.svg",
+  "md5": "5fb859946c9f",
+  "role": "icono",
+  "primera_aparicion": "slide-32-1.png",
+  "repetida_en": [
+   "slide-32-1.png",
+   "slide-32-2.png"
+  ]
+ },
+ {
+  "slide": 32,
+  "file": "slide-32-4.jpg",
+  "shape": "Image 3",
+  "w_emu": 7064595,
+  "h_emu": 3605907,
+  "md5": "b9a8f722df12",
+  "role": "figura",
+  "primera_aparicion": "slide-32-4.jpg"
+ },
+ {
+  "slide": 35,
+  "file": "slide-35-1.jpg",
+  "shape": "Image 0",
+  "w_emu": 7064595,
+  "h_emu": 3813969,
+  "md5": "b0982770eea1",
+  "role": "figura",
+  "primera_aparicion": "slide-35-1.jpg"
+ },
+ {
+  "slide": 36,
+  "file": "slide-36-1.png",
+  "shape": "Image 0",
+  "w_emu": 10868745,
+  "h_emu": 203795,
+  "md5": "1dae08e7963a",
+  "role": "icono",
+  "primera_aparicion": "slide-36-1.png"
+ },
+ {
+  "slide": 36,
+  "file": "slide-36-2.jpg",
+  "shape": "Image 1",
+  "w_emu": 7064595,
+  "h_emu": 3850283,
+  "md5": "ee64175ba93e",
+  "role": "figura",
+  "primera_aparicion": "slide-36-2.jpg"
+ },
+ {
+  "slide": 37,
+  "file": "slide-37-1.png",
+  "shape": "Image 0",
+  "w_emu": 10868745,
+  "h_emu": 302816,
+  "md5": "caa3e66df2fc",
+  "role": "icono",
+  "primera_aparicion": "slide-37-1.png"
+ },
+ {
+  "slide": 37,
+  "file": "slide-37-2.png",
+  "shape": "Image 1",
+  "w_emu": 125905,
+  "h_emu": 100707,
+  "md5": "ce5363e17f80",
+  "role": "icono",
+  "primera_aparicion": "slide-37-2.png"
+ },
+ {
+  "slide": 37,
+  "file": "slide-37-3.jpg",
+  "shape": "Image 2",
+  "w_emu": 7064595,
+  "h_emu": 4010620,
+  "md5": "caa8402c0924",
+  "role": "figura",
+  "primera_aparicion": "slide-37-3.jpg"
+ },
+ {
+  "slide": 39,
+  "file": "slide-39-1.png",
+  "shape": "Image 0",
+  "w_emu": 5378315,
+  "h_emu": 2037060,
+  "svg_original": "slide-39-1.svg",
+  "md5": "61635b15436c",
+  "role": "figura",
+  "primera_aparicion": "slide-39-1.png",
+  "repetida_en": [
+   "slide-39-2.png"
+  ]
+ },
+ {
+  "slide": 39,
+  "file": "slide-39-2.png",
+  "shape": "Image 1",
+  "w_emu": 5378315,
+  "h_emu": 2037060,
+  "svg_original": "slide-39-2.svg",
+  "md5": "61635b15436c",
+  "role": "figura",
+  "primera_aparicion": "slide-39-1.png",
+  "repetida_en": [
+   "slide-39-1.png"
+  ]
+ },
+ {
+  "slide": 39,
+  "file": "slide-39-3.png",
+  "shape": "Image 2",
+  "w_emu": 5378315,
+  "h_emu": 1782763,
+  "svg_original": "slide-39-3.svg",
+  "md5": "d51c2a57431e",
+  "role": "figura",
+  "primera_aparicion": "slide-39-3.png",
+  "repetida_en": [
+   "slide-39-4.png"
+  ]
+ },
+ {
+  "slide": 39,
+  "file": "slide-39-4.png",
+  "shape": "Image 3",
+  "w_emu": 5378315,
+  "h_emu": 1782763,
+  "svg_original": "slide-39-4.svg",
+  "md5": "d51c2a57431e",
+  "role": "figura",
+  "primera_aparicion": "slide-39-3.png",
+  "repetida_en": [
+   "slide-39-3.png"
+  ]
+ },
+ {
+  "slide": 40,
+  "file": "slide-40-1.png",
+  "shape": "Image 0",
+  "w_emu": 191884,
+  "h_emu": 153491,
+  "md5": "e76d2e867d80",
+  "role": "icono",
+  "primera_aparicion": "slide-40-1.png"
+ },
+ {
+  "slide": 41,
+  "file": "slide-41-1.png",
+  "shape": "Image 0",
+  "w_emu": 221451,
+  "h_emu": 177205,
+  "md5": "f457230fc854",
+  "role": "icono",
+  "primera_aparicion": "slide-29-1.png",
+  "repetida_en": [
+   "slide-29-1.png"
+  ]
+ },
+ {
+  "slide": 41,
+  "file": "slide-41-2.jpg",
+  "shape": "Image 1",
+  "w_emu": 3910212,
+  "h_emu": 1952625,
+  "md5": "2e65bd439cdf",
+  "role": "figura",
+  "primera_aparicion": "slide-41-2.jpg"
+ },
+ {
+  "slide": 42,
+  "file": "slide-42-1.png",
+  "shape": "Image 0",
+  "w_emu": 239210,
+  "h_emu": 239216,
+  "svg_original": "slide-42-1.svg",
+  "md5": "5a53771face2",
+  "role": "icono",
+  "primera_aparicion": "slide-42-1.png"
+ },
+ {
+  "slide": 42,
+  "file": "slide-42-2.png",
+  "shape": "Image 1",
+  "w_emu": 239210,
+  "h_emu": 239216,
+  "svg_original": "slide-42-2.svg",
+  "md5": "f9069c30f5d4",
+  "role": "icono",
+  "primera_aparicion": "slide-42-2.png"
+ },
+ {
+  "slide": 42,
+  "file": "slide-42-3.png",
+  "shape": "Image 2",
+  "w_emu": 239210,
+  "h_emu": 239216,
+  "svg_original": "slide-42-3.svg",
+  "md5": "2ab6f9357755",
+  "role": "icono",
+  "primera_aparicion": "slide-42-3.png"
+ },
+ {
+  "slide": 43,
+  "file": "slide-43-1.png",
+  "shape": "Image 0",
+  "w_emu": 4405798,
+  "h_emu": 6608862,
+  "md5": "a3d34d6f1a85",
+  "role": "figura",
+  "primera_aparicion": "slide-43-1.png"
+ },
+ {
+  "slide": 43,
+  "file": "slide-43-2.png",
+  "shape": "Image 1",
+  "w_emu": 332176,
+  "h_emu": 332184,
+  "svg_original": "slide-43-2.svg",
+  "md5": "ef38a99b2034",
+  "role": "icono",
+  "primera_aparicion": "slide-43-2.png"
+ },
+ {
+  "slide": 43,
+  "file": "slide-43-3.png",
+  "shape": "Image 2",
+  "w_emu": 332176,
+  "h_emu": 332184,
+  "svg_original": "slide-43-3.svg",
+  "md5": "7d4620fcf240",
+  "role": "icono",
+  "primera_aparicion": "slide-43-3.png"
+ },
+ {
+  "slide": 43,
+  "file": "slide-43-4.png",
+  "shape": "Image 3",
+  "w_emu": 332176,
+  "h_emu": 332184,
+  "svg_original": "slide-43-4.svg",
+  "md5": "aa8963e0a585",
+  "role": "icono",
+  "primera_aparicion": "slide-43-4.png"
+ },
+ {
+  "slide": 45,
+  "file": "slide-45-1.png",
+  "shape": "Image 0",
+  "w_emu": 4418497,
+  "h_emu": 6627912,
+  "md5": "4fbd2e41693a",
+  "role": "figura",
+  "primera_aparicion": "slide-45-1.png"
+ },
+ {
+  "slide": 46,
+  "file": "slide-46-1.png",
+  "shape": "Image 0",
+  "w_emu": 236234,
+  "h_emu": 189012,
+  "md5": "8f730d27e95e",
+  "role": "icono",
+  "primera_aparicion": "slide-46-1.png"
+ },
+ {
+  "slide": 47,
+  "file": "slide-47-1.png",
+  "shape": "Image 0",
+  "w_emu": 221451,
+  "h_emu": 177205,
+  "md5": "b88b9e7ffbb1",
+  "role": "icono",
+  "primera_aparicion": "slide-47-1.png"
+ },
+ {
+  "slide": 49,
+  "file": "slide-49-1.png",
+  "shape": "Image 0",
+  "w_emu": 4418497,
+  "h_emu": 6627912,
+  "md5": "91e9ca7f5f90",
+  "role": "figura",
+  "primera_aparicion": "slide-49-1.png"
+ },
+ {
+  "slide": 49,
+  "file": "slide-49-2.png",
+  "shape": "Image 1",
+  "w_emu": 3098524,
+  "h_emu": 2971602,
+  "svg_original": "slide-49-2.svg",
+  "md5": "8c183a35acf1",
+  "role": "figura",
+  "primera_aparicion": "slide-49-2.png",
+  "repetida_en": [
+   "slide-49-3.png"
+  ]
+ },
+ {
+  "slide": 49,
+  "file": "slide-49-3.png",
+  "shape": "Image 2",
+  "w_emu": 3098524,
+  "h_emu": 2971602,
+  "svg_original": "slide-49-3.svg",
+  "md5": "8c183a35acf1",
+  "role": "figura",
+  "primera_aparicion": "slide-49-2.png",
+  "repetida_en": [
+   "slide-49-2.png"
+  ]
+ },
+ {
+  "slide": 50,
+  "file": "slide-50-1.png",
+  "shape": "Image 0",
+  "w_emu": 266793,
+  "h_emu": 266799,
+  "svg_original": "slide-50-1.svg",
+  "md5": "04caaba764be",
+  "role": "icono",
+  "primera_aparicion": "slide-50-1.png"
+ },
+ {
+  "slide": 50,
+  "file": "slide-50-2.png",
+  "shape": "Image 1",
+  "w_emu": 266793,
+  "h_emu": 266799,
+  "svg_original": "slide-50-2.svg",
+  "md5": "3b6c3d7f7004",
+  "role": "icono",
+  "primera_aparicion": "slide-50-2.png"
+ },
+ {
+  "slide": 50,
+  "file": "slide-50-3.png",
+  "shape": "Image 2",
+  "w_emu": 266793,
+  "h_emu": 266799,
+  "svg_original": "slide-50-3.svg",
+  "md5": "bc76b27307ab",
+  "role": "icono",
+  "primera_aparicion": "slide-50-3.png"
+ }
+]

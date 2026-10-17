@@ -1,0 +1,9 @@
+url: "https://arxiv.org/abs/1609.04802"
+fetched_at: "2026-08-14T17:02:50Z"
+title: "[1609.04802] Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network"
+http_status: 200
+byte_size: 46590
+assets:
+  - { src: "/static/base/1.0.1/images/arxiv-logo-primary-light.svg", absolute: "https://arxiv.org/static/base/1.0.1/images/arxiv-logo-primary-light.svg", saved_as: "arxiv-logo-primary-light.svg", alt: "archive" }
+  - { src: "/static/browse/0.3.4/images/icons/social/bibsonomy.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/bibsonomy.png", saved_as: "bibsonomy.png", alt: "BibSonomy" }
+  - { src: "/static/browse/0.3.4/images/icons/social/reddit.png", absolute: "https://arxiv.org/static/browse/0.3.4/images/icons/social/reddit.png", saved_as: "reddit.png", alt: "Reddit" }

@@ -16,3 +16,4 @@ talks/*/images/.critique/
 .icons/
 .claude/settings.local.json
 talks/*/images/.critique/
+talks/*/images/.trash/

@@ -1,0 +1,9 @@
+url: "https://www.serrano.academy/deep-learning/gans-lab"
+fetched_at: "2026-08-14T17:03:00Z"
+title: "Labs - Generative Adversarial Networks — Luis Serrano Academy"
+http_status: 200
+byte_size: 392744
+assets:
+  - { src: "//images.squarespace-cdn.com/content/v1/6745040be27e5c17afdd5a8f/fff47953-58a1-4c16-9238-3f5d73cf941f/SERRANO.ACADEMY.+3.png?format=1500w", absolute: "https://images.squarespace-cdn.com/content/v1/6745040be27e5c17afdd5a8f/fff47953-58a1-4c16-9238-3f5d73cf941f/SERRANO.ACADEMY.+3.png?format=1500w", saved_as: "SERRANO.ACADEMY.+3.png", alt: "Luis Serrano Academy" }
+  - { src: "//images.squarespace-cdn.com/content/v1/6745040be27e5c17afdd5a8f/fff47953-58a1-4c16-9238-3f5d73cf941f/SERRANO.ACADEMY.+3.png?format=1500w", absolute: "https://images.squarespace-cdn.com/content/v1/6745040be27e5c17afdd5a8f/fff47953-58a1-4c16-9238-3f5d73cf941f/SERRANO.ACADEMY.+3.png?format=1500w", saved_as: "SERRANO.ACADEMY.+3.png", alt: "Luis Serrano Academy", deduped: True }
+  - { src: "https://images.squarespace-cdn.com/content/v1/6745040be27e5c17afdd5a8f/16bbb875-b926-47a4-ab32-235c551aaecc/gans-better.jpg", absolute: "https://images.squarespace-cdn.com/content/v1/6745040be27e5c17afdd5a8f/16bbb875-b926-47a4-ab32-235c551aaecc/gans-better.jpg", saved_as: "gans-better.jpg", alt: "" }

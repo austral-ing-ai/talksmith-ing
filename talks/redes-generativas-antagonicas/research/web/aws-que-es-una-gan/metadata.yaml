@@ -1,0 +1,8 @@
+url: "https://aws.amazon.com/es/what-is/gan/"
+fetched_at: "2026-08-14T17:03:00Z"
+title: "¿Qué es una GAN? - Explicación sobre las redes generativas antagónicas - AWS"
+http_status: 200
+byte_size: 409730
+assets:
+  - { src: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2021/11/11/ML-6149-image005-500.jpg", absolute: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2021/11/11/ML-6149-image005-500.jpg", saved_as: "ML-6149-image005-500.jpg", alt: "" }
+  - { src: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2021/11/11/ML-6149-image025.jpg", absolute: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2021/11/11/ML-6149-image025.jpg", saved_as: "ML-6149-image025.jpg", alt: "" }

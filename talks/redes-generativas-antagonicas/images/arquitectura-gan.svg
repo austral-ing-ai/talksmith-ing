@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Arquitectura de una GAN</title>
+<desc>Redibujo vectorial del diagrama del slide 14 del pptx original (AIG4B Clase 8): cuatro globos alrededor del centro Arquitectura GAN. Clasificación (salida: real o falso), Generador (recibe ruido aleatorio), Discriminador (recibe reales y generadas) y Salida sintética (imágenes generadas).</desc>
+<rect x="0" y="0" width="640" height="440" fill="#ffffff"/>
+
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5" stroke-linejoin="round">
+<path d="M26,12 H228 Q242,12 242,26 V106 L252,147 L212,136 H26 Q12,136 12,122 V26 Q12,12 26,12 Z"/>
+<path d="M26,12 H228 Q242,12 242,26 V106 L252,147 L212,136 H26 Q12,136 12,122 V26 Q12,12 26,12 Z" transform="translate(640,0) scale(-1,1)"/>
+<path d="M26,12 H228 Q242,12 242,26 V106 L252,147 L212,136 H26 Q12,136 12,122 V26 Q12,12 26,12 Z" transform="translate(0,440) scale(1,-1)"/>
+<path d="M26,12 H228 Q242,12 242,26 V106 L252,147 L212,136 H26 Q12,136 12,122 V26 Q12,12 26,12 Z" transform="translate(640,440) scale(-1,-1)"/>
+</g>
+
+<circle cx="320" cy="220" r="82" fill="#DA1B2E"/>
+<text x="320" y="214" text-anchor="middle" font-size="19" font-weight="bold" fill="#ffffff">Arquitectura</text>
+<text x="320" y="244" text-anchor="middle" font-size="28" font-weight="bold" fill="#ffffff">GAN</text>
+
+<g text-anchor="middle">
+<text x="127" y="68" font-size="21" font-weight="bold" fill="#1F1E1E">Clasificación</text>
+<text x="127" y="96" font-size="15">Salida: real o falso</text>
+
+<text x="513" y="68" font-size="21" font-weight="bold" fill="#1F1E1E">Generador</text>
+<text x="513" y="96" font-size="15">Recibe ruido aleatorio</text>
+
+<text x="127" y="360" font-size="21" font-weight="bold" fill="#1F1E1E">Discriminador</text>
+<text x="127" y="388" font-size="15">Recibe reales y generadas</text>
+
+<text x="513" y="360" font-size="21" font-weight="bold" fill="#1F1E1E">Salida sintética</text>
+<text x="513" y="388" font-size="15">Imágenes generadas</text>
+</g>
+</svg>
