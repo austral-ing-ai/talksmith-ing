@@ -6,7 +6,7 @@ description: Slides are grouped into Sections. Each Section contains one or more
 presenter: Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)
 audience: Estudiantes de grado de Ingeniería de Software con base técnica fuerte. Clase presencial en vivo.
 duration: 120 min (clase doble)
-date: 2026-10-28
+date: 2026-10-21
 ---
 
 # Thesis

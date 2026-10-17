@@ -35,8 +35,9 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 | 8 | Miércoles 23 de septiembre | Transformers: atención, el bloque completo y la familia de modelos | [El transformer por dentro](https://austral-ing-ai.github.io/talksmith-ing/talks/transformers-a-fondo/output/html/) |
 | 9 | Miércoles 30 de septiembre | LLM training: pre-training, SFT, RLHF, herramientas y fine-tuning | [Cómo se entrena un LLM](https://austral-ing-ai.github.io/talksmith-ing/talks/como-se-entrena-un-llm/output/html/) |
 | 10 | Miércoles 7 de octubre | Agentes: sistemas multiagente, especialización, contexto y orquestación | [Agentes y sistemas multiagente](https://austral-ing-ai.github.io/talksmith-ing/talks/agentes-y-multiagentes/output/html/) |
-| 11 | Miércoles 21 de octubre | Vision: CNN (Senales & Imagenes) | — |
-| 12 | Miércoles 28 de octubre | Vision: Stable Difussion y Adversarial Networks | [Redes generativas antagónicas (GANs)](https://austral-ing-ai.github.io/talksmith-ing/talks/redes-generativas-antagonicas/output/html/) |
+| — | Miércoles 14 de octubre | Sin clase | — |
+| 11 | Miércoles 21 de octubre | Vision: Stable Difussion y Adversarial Networks | [Redes generativas antagónicas (GANs)](https://austral-ing-ai.github.io/talksmith-ing/talks/redes-generativas-antagonicas/output/html/) |
+| 12 | Miércoles 28 de octubre | Vision: CNN (Senales & Imagenes) | — |
 | 13 | Miércoles 4 de noviembre | Seguridad y Etica | — |
 | 14 | Miércoles 11 de noviembre | A definir | — |
 

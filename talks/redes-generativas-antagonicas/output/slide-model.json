@@ -4,14 +4,14 @@
     "institution": "",
     "class": "Redes generativas antagónicas (GANs)",
     "presenter": "Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)",
-    "date": "2026-10-28",
+    "date": "2026-10-21",
     "lang": "es",
     "logo": null,
     "sections": [
       "Panorama de la ia generativa de visión",
       "Introducción a las gans",
       "El ejemplo de slanted land",
-      "Tipos de gans y aplicaciones en biomedicina",
+      "Tipos de GANs y aplicaciones",
       "Limitaciones y cierre"
     ]
   },
@@ -30,8 +30,8 @@
           "body": "En qué se distingue conceptualmente de otros tipos de IA visual."
         },
         {
-          "label": "¿Por qué importa en Biomedicina?",
-          "body": "Qué problemas reales resuelve en el contexto clínico e investigador."
+          "label": "¿Por qué importa en ingeniería?",
+          "body": "Qué problemas de datos resuelve al construir sistemas con modelos de visión."
         },
         {
           "label": "¿Qué modelos existen?",
@@ -62,7 +62,7 @@
       "template": "value-columns",
       "section": "Panorama de la ia generativa de visión",
       "title": "¿Qué es la IA Generativa de Visión?",
-      "lead": "**Todo parte de una distinción fundamental. Históricamente, la IA visual se diseñó para analizar lo que ya existe — clasificar radiografías, detectar tumores, medir estructuras. Eso es la IA discriminativa: aprende a distinguir entre categorías. La IA generativa hace algo cualitativamente distinto: aprende a crear contenido visual nuevo que no existía antes.**",
+      "lead": "**La IA visual se diseñó primero para analizar imágenes que ya existen: clasificarlas, detectar objetos o medir estructuras. Eso es la IA discriminativa, que aprende a distinguir entre categorías. La IA generativa aprende a crear contenido visual que no existía antes.**",
       "columns": [
         {
           "header": "Aspecto",
@@ -71,27 +71,27 @@
             "Pregunta típica",
             "Lo que aprende",
             "Salida",
-            "Ejemplo en medicina"
+            "Ejemplo"
           ]
         },
         {
           "header": "IA Discriminativa",
           "cells": [
             "Analiza y clasifica lo que ya existe",
-            "\"¿Esto es un tumor maligno o benigno?\"",
+            "\"¿Este dígito es un 7?\"",
             "A distinguir entre categorías",
             "Una etiqueta o un número",
-            "Clasificador de histología"
+            "Clasificador de dígitos de MNIST"
           ]
         },
         {
           "header": "IA Generativa",
           "cells": [
             "Crea contenido nuevo que no existía",
-            "\"Genera una imagen de un tumor maligno\"",
+            "\"Genera un 7\"",
             "La estructura interna de los datos",
             "Una imagen, un sonido, un texto",
-            "Generador de imágenes histológicas sintéticas"
+            "cGAN que genera el dígito pedido"
           ]
         }
       ],
@@ -115,49 +115,53 @@
       }
     },
     {
-      "template": "concept-columns",
+      "template": "concept-breakdown",
       "section": "Panorama de la ia generativa de visión",
-      "title": "¿Por qué importa en Biomedicina?",
-      "lead": "**Entrenar un buen modelo de diagnóstico por imágenes requiere miles — a veces decenas de miles — de imágenes etiquetadas por expertos. En la práctica, esto enfrenta tres barreras que casi siempre aparecen juntas:**",
-      "columns": [
+      "title": "¿Por qué importa en ingeniería?",
+      "lead": "**Entrenar un buen modelo de visión requiere miles, a veces decenas de miles, de imágenes etiquetadas. Conseguirlas choca con tres barreras que suelen aparecer juntas:**",
+      "icons": "none",
+      "format": "grid",
+      "cards": [
         {
           "label": "Escasez",
-          "body": "Ciertas patologías son tan raras que simplemente no existen suficientes casos documentados para entrenar modelos robustos."
+          "body": "Los casos raros (una enfermedad poco frecuente, una pieza defectuosa en una línea de producción) tienen tan pocos ejemplos documentados que no alcanzan para entrenar un modelo robusto."
         },
         {
           "label": "Privacidad",
-          "body": "Los datos de pacientes están protegidos por regulaciones estrictas: HIPAA, GDPR y legislaciones locales limitan el acceso y la distribución."
+          "body": "Los datos de usuarios y de pacientes están protegidos por regulaciones estrictas: GDPR, HIPAA en salud y legislaciones locales limitan el acceso y la distribución."
         },
         {
           "label": "Coste",
-          "body": "Etiquetar imágenes médicas requiere tiempo de especialistas altamente cualificados — un recurso escaso y caro."
+          "body": "Etiquetar imágenes requiere horas de especialistas del dominio, un recurso escaso y caro."
         }
       ],
       "highlights": [
         {
           "label": "Lo que la IA Generativa hace posible",
-          "body": "**Aumentación de datos sintéticos, síntesis de casos raros, traducción entre modalidades (MRI→CT), anonimización con realismo clínico y restauración de imágenes con artefactos. Una U-Net entrenada combinando imágenes reales y sintéticas de MRI logró un Dice score de 0.9524 frente a 0.9459 entrenando solo con datos reales.**",
+          "body": "**Aumentación de datos sintéticos, síntesis de casos raros, traducción entre modalidades (MRI→CT), anonimización que conserva el realismo de la imagen y restauración de imágenes con artefactos. Con una GAN, Salimans et al. (2016) entrenaron clasificadores con pocas etiquetas y alcanzaron el estado del arte semi-supervisado en MNIST, CIFAR-10 y SVHN.**",
           "kind": "takeaway"
         }
       ],
+      "notes": "Las tres barreras son el problema de datos de cualquier modelo de visión que llega a producción. Un detector de defectos tiene miles de fotos de piezas buenas y muy pocas de piezas falladas. Un sistema que procesa fotos de usuarios carga con el GDPR. El etiquetado necesita gente que entienda el dominio, y esas horas cuestan. Una GAN ataca las tres barreras con el mismo recurso: genera datos de entrenamiento para otros modelos (aumento de datos) y completa información faltante, dos de los casos de uso que lista AWS.\n\nEl ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos generados: en el clasificador que se entrena con ellos. Su problema es el de la barrera de coste. Hay muchas imágenes sin etiquetar y pocas etiquetadas, y la GAN permite aprovechar las primeras. El detalle del mecanismo está en la sección 4, en la fortaleza de datos sintéticos.",
       "_choice": {
         "signals": [
           "has_table=true (Escasez | Privacidad | Coste over one description row)",
           "labeled_items=3",
           "is_ordered=false",
           "date_labels=false",
+          "two_groups=false",
           "n_images=0",
-          "body_len=prose (~110–140 chars)"
+          "body_len=prose (≤ ~190 chars, one paragraph each)"
         ],
         "candidates": [
-          "concept-columns",
           "concept-breakdown",
+          "concept-columns",
           "value-columns"
         ],
-        "picked": "concept-columns",
+        "picked": "concept-breakdown",
         "rejected": {
-          "concept-breakdown": "presenter directive (no per-item icons): concept-breakdown / content+cards+image content-match a Material icon onto every card; concept-columns carries the same label + body panels with no glyph",
-          "value-columns": "one description per barrier, nothing read across a shared factor"
+          "concept-columns": "catalog concept-columns Not: 'label + a single line per item, with no sub-structure (→ concept-breakdown)' — each barrier is a label and one paragraph, no feature list or closing line; the presenter's no-icons directive is now `icons: \"none\"`, not a reason to change template",
+          "value-columns": "has_table rule: the headers are three peers with one description each; no shared factor reads across a row"
         }
       }
     },
@@ -219,7 +223,7 @@
       "columns": [
         {
           "label": "GANs — Generative Adversarial Networks",
-          "body": "Dos redes que compiten: una genera, la otra evalúa. Motor de los deepfakes, StyleGAN y la síntesis de imágenes médicas.",
+          "body": "Dos redes que compiten: una genera, la otra evalúa. Motor de los deepfakes, de StyleGAN y de la generación de datos sintéticos (imágenes médicas, entre otras).",
           "example": "Pregunta: ¿Cómo generar imágenes realistas que \"engañen\" a un evaluador?"
         },
         {
@@ -230,7 +234,7 @@
         {
           "label": "SAM — Segment Anything Model (Meta, 2023)",
           "body": "No genera imágenes — las entiende. Puede segmentar cualquier objeto en cualquier imagen con precisión quirúrgica. Es prompteable: se guía con puntos, cajas o máscaras.",
-          "example": "Pregunta: ¿Cómo identificar y aislar estructuras en imágenes médicas de forma automatizada e interactiva?"
+          "example": "Pregunta: ¿Cómo identificar y aislar cualquier objeto de una imagen de forma automatizada e interactiva?"
         }
       ],
       "_choice": {
@@ -239,7 +243,7 @@
           "each item = description + a closing 'Pregunta:' line",
           "is_ordered=false",
           "date_labels=false",
-          "n_images=0 (the 3 card frames are deck-omit waived)"
+          "n_images=0 (no image refs; only commented-out vector originals)"
         ],
         "candidates": [
           "concept-columns",
@@ -248,8 +252,8 @@
         ],
         "picked": "concept-columns",
         "rejected": {
-          "concept-breakdown": "a card holds a label and one body; each model here carries a description plus its own closing question, which concept-columns keeps as a distinct closing line instead of merging it into the body",
-          "figures": "the three images were empty decorative card frames (waived) — there is no per-item content image"
+          "concept-breakdown": "catalog concept-columns Match: each term carries its own sub-structure (a description plus a closing 'Pregunta:' line, the `example` slot); a concept-breakdown card holds a label and one body only",
+          "figures": "labeled_items ≥ 2 with a per-item content image → figures; there is no image ref on the slide at all"
         }
       }
     },
@@ -267,7 +271,7 @@
             "Control",
             "Fortaleza",
             "Limitación",
-            "Caso en biomedicina"
+            "Caso de uso típico"
           ]
         },
         {
@@ -278,7 +282,7 @@
             "Moderado",
             "Velocidad + realismo",
             "Inestabilidad, mode collapse",
-            "Síntesis histológica, MRI→CT"
+            "Super-resolución (SRGAN), traducción de imágenes (Pix2Pix, CycleGAN)"
           ]
         },
         {
@@ -289,7 +293,7 @@
             "Alto (guiado por texto)",
             "Diversidad + controlabilidad",
             "Lento, costoso computacionalmente",
-            "Generación desde descripciones clínicas"
+            "Imágenes desde texto (Stable Diffusion, DALL·E, Midjourney)"
           ]
         },
         {
@@ -300,7 +304,7 @@
             "Alto (guiado por puntos o cajas)",
             "Precisión de segmentación",
             "No genera contenido nuevo",
-            "Segmentación de tumores, órganos, células"
+            "Segmentar cualquier objeto y asistir el etiquetado de datasets"
           ]
         }
       ],
@@ -368,7 +372,7 @@
             "De dónde vienen las GANs y cómo evolucionaron",
             "Cómo funcionan por dentro — sin fórmulas, con intuición",
             "Para qué sirven y dónde tienen límites",
-            "Cómo se aplican concretamente en Biomedicina"
+            "Dónde se aplican: productos visuales, datos sintéticos e imágenes médicas"
           ]
         }
       ],
@@ -652,7 +656,7 @@
       ],
       "highlights": [
         {
-          "body": "[Basado en el tutorial de Rowel Atienza — ver video:](https://www.youtube.com/watch?v=8L11aMN5KY8&t=16s)",
+          "body": "[Basado en «A Friendly Introduction to Generative Adversarial Networks», de Luis Serrano (ver video)](https://www.youtube.com/watch?v=8L11aMN5KY8&t=16s)",
           "kind": "source"
         }
       ],
@@ -663,22 +667,22 @@
       },
       "_choice": {
         "signals": [
-          "n_images=1 (atmospheric illustration)",
-          "prose=3 bullets",
+          "n_images=1 (slide-18-1.png, 2048 px illustration, manifest role figura → content)",
+          "prose=3 paragraph bullets lead the slide",
           "has_table=true (2 headers, one row)",
-          "labeled_items=2",
+          "labeled_items=2 (the table) + the 'El problema urgente' lead-in",
           "is_ordered=false",
-          "the problem statement rides as the last fact: as a bottom band it left the fact column too little height"
+          "date_labels=false"
         ],
         "candidates": [
           "content-image",
-          "concept-columns",
-          "content+cards+image"
+          "content+cards+image",
+          "concept-columns"
         ],
         "picked": "content-image",
         "rejected": {
-          "concept-columns": "rendered crushed: three prose bullets + two highlight bands + the two columns did not fit beside the illustration (fit pass shrank the columns illegible); one fact column holds all of it",
-          "content+cards+image": "draws per-item icons the presenter asked to remove"
+          "content+cards+image": "its Match is a labeled set with a shared image; here the prose leads (three paragraphs, the problem statement among them) and the two-cell table is a sub-point → `n_images` 1–3 supporting prose → content-image; labeled facts keep both table labels",
+          "concept-columns": "needs 2–4 terms as the slide's body and has no image slot beside them; the slide's image and its three prose paragraphs would have nowhere to go"
         }
       }
     },
@@ -1643,21 +1647,23 @@
     },
     {
       "template": "section-agenda",
-      "title": "Tipos de gans y aplicaciones en biomedicina"
+      "title": "Tipos de GANs y aplicaciones"
     },
     {
-      "template": "concept-columns",
-      "section": "Tipos de gans y aplicaciones en biomedicina",
+      "template": "concept-breakdown",
+      "section": "Tipos de GANs y aplicaciones",
       "title": "Tipos de GANs: el punto de partida",
       "lead": "Todo lo que describimos corresponde a la Vanilla GAN — el modelo original de Goodfellow (2014). Pero ese modelo base tiene limitaciones importantes, y surgieron variantes especializadas que resuelven problemas concretos.",
-      "columns": [
+      "icons": "none",
+      "format": "grid",
+      "cards": [
         {
           "label": "Vanilla GAN · Goodfellow et al. 2014",
           "body": "Generador produce imágenes desde ruido aleatorio. Sin control sobre el resultado. Inestable y de baja calidad visual. Uso: punto de partida teórico."
         },
         {
           "label": "Conditional GAN (cGAN) · Mirza & Osindero, 2014",
-          "body": "Generador y Discriminador reciben etiquetas de clase como condición. \"Genera una imagen histológica de carcinoma ductal.\" Uso: síntesis por patología, aumentación controlada."
+          "body": "Generador y Discriminador reciben etiquetas de clase como condición. \"Genera un 7\" (dígitos de MNIST en el paper original). Uso: síntesis por clase y aumentación controlada."
         },
         {
           "label": "DCGAN · Radford et al., 2015",
@@ -1665,31 +1671,32 @@
         },
         {
           "label": "SRGAN · Ledig et al., 2017",
-          "body": "Especializado en ampliar imágenes de baja a alta resolución. Infiere detalles finos que no estaban en la imagen original. Uso: mejora de imágenes médicas de menor calidad."
+          "body": "Especializado en ampliar imágenes de baja a alta resolución. Infiere detalles finos que no estaban en la imagen original. Uso: ampliar fotos e imágenes de menor calidad, médicas incluidas (factor 4× en el paper original)."
         }
       ],
       "_choice": {
         "signals": [
-          "labeled_items=4",
-          "n_images=0 (the four slide-39 images were empty table frames, deleted at the presenter's request)",
+          "labeled_items=4 (bold variant names + a 2-col table of two more)",
           "is_ordered=false",
-          "date_labels=false"
+          "date_labels=false (the years are attributions, the labels are model names)",
+          "n_images=0 (no image refs; vector originals only in comments)",
+          "body_len=prose (one paragraph each, no sub-structure)"
         ],
         "candidates": [
-          "concept-columns",
           "concept-breakdown",
+          "concept-columns",
           "value-columns"
         ],
-        "picked": "concept-columns",
+        "picked": "concept-breakdown",
         "rejected": {
-          "concept-breakdown": "draws an inferred icon per card; presenter asked for no icons",
-          "value-columns": "each variant is explained on its own terms; no shared factor reads across"
+          "concept-columns": "catalog concept-columns Not: 'label + a single line per item, with no sub-structure (→ concept-breakdown)'; the no-icons directive is `icons: \"none\"`",
+          "value-columns": "Columns discriminator: each variant is explained on its own terms; no shared factor reads across a row"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "Tipos de gans y aplicaciones en biomedicina",
+      "section": "Tipos de GANs y aplicaciones",
       "title": "El salto que lo cambió todo: StyleGAN (2018)",
       "lead": "El problema que nadie había resuelto en cuatro años: las GANs generaban imágenes, pero no podías pedirle \"genera una cara joven, con pelo castaño y expresión neutral\". El Generador mezclaba todos los atributos juntos sin control.",
       "highlights": [
@@ -1748,7 +1755,7 @@
     },
     {
       "template": "concept-columns",
-      "section": "Tipos de gans y aplicaciones en biomedicina",
+      "section": "Tipos de GANs y aplicaciones",
       "title": "StyleGAN: arquitectura",
       "lead": "**Dos redes en lugar de una** — StyleGAN separa el proceso en dos redes:",
       "columns": [
@@ -1804,7 +1811,7 @@
     },
     {
       "template": "concept-columns",
-      "section": "Tipos de gans y aplicaciones en biomedicina",
+      "section": "Tipos de GANs y aplicaciones",
       "title": "StyleGAN: Innovaciones Clave (Resumen)",
       "lead": "StyleGAN (NVIDIA) redefine la generación de imágenes al modificar únicamente el Generador, manteniendo el Discriminador estándar. Sus tres innovaciones arquitectónicas permiten control fino sobre el estilo y alta calidad visual.",
       "columns": [
@@ -1848,18 +1855,19 @@
       }
     },
     {
-      "template": "content-image",
-      "section": "Tipos de gans y aplicaciones en biomedicina",
+      "template": "content+cards+image",
+      "section": "Tipos de GANs y aplicaciones",
       "title": "Fortaleza 1: Generación de imágenes realistas",
       "lead": "El resultado más sorprendente de las GANs: imágenes que el ojo humano no puede distinguir de las reales. Después de millones de rondas de entrenamiento, el Generador aprendió la estructura profunda de cómo lucen esas imágenes — proporciones, distribución de luz, imperfecciones que hacen que algo parezca real.",
-      "facts": [
+      "icons": "none",
+      "cards": [
         {
           "label": "ThisPersonDoesNotExist.com",
           "body": "Cada recarga genera un rostro humano completamente inventado con StyleGAN. Ninguno existe en el mundo real."
         },
         {
-          "label": "Imágenes médicas sintéticas",
-          "body": "GANs entrenadas con resonancias magnéticas generan imágenes de cerebro que neurorradiólogos no pueden distinguir de las reales en estudios ciegos."
+          "label": "Test de Turing visual (Salimans et al., 2016)",
+          "body": "Jueces humanos no distinguen las muestras de MNIST de los dígitos reales. Con CIFAR-10 se equivocan en el 21,3 % de los casos."
         },
         {
           "label": "Videojuegos y entretenimiento",
@@ -1871,30 +1879,33 @@
         "src": "images/slide-43-1.png",
         "alt": "Ilustración: rostro"
       },
+      "notes": "El 21,3 % es la tasa de error de los jueces humanos, y no un porcentaje de realismo del modelo. Si las muestras fueran indistinguibles, los jueces acertarían al azar y el error llegaría al 50 %. Con CIFAR-10 los jueces se equivocaron una de cada cinco veces, así que todavía detectaban la mayoría de las falsificaciones. Con MNIST, en cambio, no las distinguían.\n\nEs el único estudio ciego con jueces humanos y un número publicado en el corpus de la clase, junto con el MOS de SRGAN. Sirve como modelo de cómo validar el realismo de un generador: jueces ciegos, una tarea definida y una tasa de error reportada.",
       "_choice": {
         "signals": [
-          "labeled_items=3",
-          "n_images=1 (atmospheric illustration)",
+          "labeled_items=3 (bold heading + one bullet each)",
+          "n_images=1 (slide-43-1.png, 1406×2108, manifest role figura → content)",
           "is_ordered=false",
-          "date_labels=false"
+          "date_labels=false",
+          "big_metrics=false (21,3 % sits inside a sentence; the prose is the payload)",
+          "two_groups=false"
         ],
         "candidates": [
+          "content+cards+image",
           "content-image",
-          "concept-columns",
-          "content+cards+image"
+          "concept-breakdown"
         ],
-        "picked": "content-image",
+        "picked": "content+cards+image",
         "rejected": {
-          "concept-columns": "rendered clipped: three columns beside the illustration left ~170px each and a label overflowed ('ThisPersonDoesNotExist.com'); labeled facts keep every label whole",
-          "content+cards+image": "draws per-item icons the presenter asked to remove"
+          "content-image": "catalog: 'labeled_items ≥ 2 and one shared supporting image → content+cards+image … do not dissolve the labels into content-image facts'",
+          "concept-breakdown": "requires images == 0; would drop the shared illustration"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "Tipos de gans y aplicaciones en biomedicina",
+      "section": "Tipos de GANs y aplicaciones",
       "title": "Fortaleza 2: Transformación de imágenes (Image Translation)",
-      "lead": "Las GANs pueden transformar una imagen en otra preservando la estructura subyacente. Aplicación clínica clave: MRI → CT sin necesitar al mismo paciente escaneado dos veces — reduce costes, tiempo y exposición a radiación.",
+      "lead": "Las GANs pueden transformar una imagen en otra y conservar la estructura subyacente. Pix2Pix aprende de pares de imágenes alineadas. CycleGAN aprende sin pares, y para muchas tareas no hay pares disponibles. En medicina, la misma técnica convierte MRI en CT sin escanear dos veces al paciente, lo que reduce costes, tiempo y exposición a radiación.",
       "columns": [
         {
           "header": "Input",
@@ -1922,7 +1933,7 @@
           "header": "Modelo",
           "cells": [
             "Pix2Pix",
-            "CycleGAN",
+            "Pix2Pix",
             "CycleGAN",
             "SRGAN",
             "DeOldify / CycleGAN",
@@ -1947,18 +1958,10 @@
     },
     {
       "template": "content-image",
-      "section": "Tipos de gans y aplicaciones en biomedicina",
+      "section": "Tipos de GANs y aplicaciones",
       "title": "Fortaleza 3: Completado de imágenes (Image Inpainting)",
       "lead": "Las GANs pueden reconstruir regiones faltantes de forma coherente con el contexto. La red recibe una imagen con una región enmascarada e infiere el contenido más probable basándose en colores, texturas y estructuras adyacentes. No copia píxeles cercanos — entiende el contenido semántico de la escena completa.",
       "facts": [
-        {
-          "label": "Artefactos de movimiento en MRI",
-          "body": "Reconstruye la imagen original estimada eliminando las distorsiones causadas por el movimiento del paciente durante la adquisición."
-        },
-        {
-          "label": "Biopsias con burbujas o pliegues",
-          "body": "Completa el tejido faltante en preparaciones histológicas con defectos de proceso o manipulación."
-        },
         {
           "label": "Tomografías con dosis reducida",
           "body": "Recupera la información sacrificada en protocolos de baja radiación, protegiendo al paciente sin perder calidad diagnóstica."
@@ -1971,31 +1974,33 @@
       },
       "_choice": {
         "signals": [
-          "labeled_items=3",
-          "n_images=1 (atmospheric illustration)",
-          "is_ordered=false",
-          "date_labels=false"
+          "labeled_items=1 (Tomografías con dosis reducida)",
+          "n_images=1 (slide-45-1.png, 1408×2112, manifest role figura → content)",
+          "prose lead = 3 sentences",
+          "image_only=false (prose past one framing line)"
         ],
         "candidates": [
           "content-image",
-          "concept-columns",
-          "content+cards+image"
+          "single-point",
+          "image-full"
         ],
         "picked": "content-image",
         "rejected": {
-          "concept-columns": "rendered clipped: three columns beside the illustration left ~170px each and a label overflowed ('ThisPersonDoesNotExist.com'); labeled facts keep every label whole",
-          "content+cards+image": "draws per-item icons the presenter asked to remove"
+          "single-point": "catalog: 'labeled_items == 1 … If an image supports it → content-image'",
+          "image-full": "image_only requires no prose beyond one ≤ ~120-char framing line; the lead is three sentences"
         }
       }
     },
     {
-      "template": "concept-columns",
-      "section": "Tipos de gans y aplicaciones en biomedicina",
+      "template": "concept-breakdown",
+      "section": "Tipos de GANs y aplicaciones",
       "title": "Fortaleza 4: Generación de datos sintéticos para entrenamiento",
-      "columns": [
+      "icons": "none",
+      "format": "grid",
+      "cards": [
         {
-          "label": "El cuello de botella en IA médica",
-          "body": "**Enfermedades raras → pocos casos documentados. Datos de pacientes → protegidos por regulaciones estrictas. Etiquetado → requiere especialistas, es caro y lento.**"
+          "label": "El cuello de botella: los datos de entrenamiento",
+          "body": "**Casos raros → pocos ejemplos documentados. Datos personales o de pacientes → protegidos por regulaciones estrictas. Etiquetado → requiere especialistas, es caro y lento.**"
         },
         {
           "label": "La solución con GANs",
@@ -2004,40 +2009,37 @@
       ],
       "highlights": [
         {
-          "body": "**Una GAN entrenada con biopsias histológicas de tumores de mama generó imágenes indistinguibles de las reales para patólogos. Combinando datos reales y sintéticos, la precisión del clasificador mejoró un 30%.**",
+          "body": "**Salimans et al. (2016) entrenaron una GAN junto con un clasificador que tenía pocas etiquetas. Con ese método alcanzaron el estado del arte en clasificación semi-supervisada en MNIST, CIFAR-10 y SVHN.**",
           "kind": "example"
-        },
-        {
-          "label": "Bonus",
-          "body": "**Los datos sintéticos no corresponden a ningún paciente real → no están sujetos a restricciones de privacidad (HIPAA, GDPR).**",
-          "kind": "note"
         }
       ],
+      "notes": "Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos datos sin etiquetar. Es la barrera de coste de la slide 1.3: etiquetar cuesta horas de especialistas, y las imágenes sin etiquetar sobran. Salimans et al. (2016) lo atacaron con una GAN y lograron el estado del arte en MNIST, CIFAR-10 y SVHN.\n\nEn el paper, el Discriminador funciona también como clasificador: además de las clases del dataset, aprende una clase extra para las imágenes que produce el Generador. Así, las imágenes generadas entran al entrenamiento del clasificador. Este mecanismo está en el cuerpo del paper (sección de aprendizaje semi-supervisado) y no en la captura del corpus, que solo tiene el abstract.",
       "_choice": {
         "signals": [
-          "labeled_items=2 (El cuello de botella en IA médica / La solución con GANs)",
-          "n_images=0",
+          "labeled_items=2 (two bold headings, each with one bullet)",
+          "is_ordered=false",
           "two_groups=false",
-          "polarity=false",
-          "is_ordered=false"
+          "polarity=false (problem → solution, not upside/downside)",
+          "n_images=0",
+          "the Salimans bullet is the supporting example → highlights"
         ],
         "candidates": [
-          "concept-columns",
           "concept-breakdown",
+          "concept-columns",
           "pros-cons"
         ],
-        "picked": "concept-columns",
+        "picked": "concept-breakdown",
         "rejected": {
-          "concept-breakdown": "presenter directive (no per-item icons): concept-breakdown / content+cards+image content-match a Material icon onto every card; concept-columns carries the same label + body panels with no glyph",
-          "pros-cons": "a problem and its solution are not the upside and downside of one decision — no polarity"
+          "concept-columns": "catalog concept-columns Not: 'label + a single line per item, with no sub-structure (→ concept-breakdown)'; the no-icons directive is `icons: \"none\"`",
+          "pros-cons": "needs polarity; a problem and its solution are not the upside and downside of one decision"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "Tipos de gans y aplicaciones en biomedicina",
+      "section": "Tipos de GANs y aplicaciones",
       "title": "El dataset importa: lo que le das es lo que obtenés",
-      "lead": "Una GAN solo puede generar lo que aprendió. Si el dataset mezcla clases sin etiquetas, el Generador produce híbridos incoherentes — inútiles para entrenar clasificadores. En Biomedicina, el dataset debe ser homogéneo dentro de cada clase — o usar una Conditional GAN.",
+      "lead": "Una GAN solo puede generar lo que aprendió. Si el dataset mezcla clases sin etiquetas, el Generador produce híbridos incoherentes, inútiles para entrenar clasificadores. Cada clase del dataset tiene que ser homogénea, o hace falta una Conditional GAN.",
       "columns": [
         {
           "header": "Tipo de dataset",
@@ -2046,7 +2048,8 @@
             "Solo imágenes de perros",
             "Gatos + perros sin etiqueta",
             "Gatos + perros con etiqueta (cGAN)"
-          ]
+          ],
+          "factor": true
         },
         {
           "header": "Lo que genera la GAN",
@@ -2060,7 +2063,7 @@
       ],
       "highlights": [
         {
-          "body": "En aplicaciones médicas reales, asegurate de que el dataset de entrenamiento esté limpio, bien etiquetado y sea homogéneo dentro de cada clase patológica antes de empezar a entrenar.",
+          "body": "Antes de entrenar hay que validar el dataset como cualquier entrada de un pipeline de datos: limpio, bien etiquetado y homogéneo dentro de cada clase.",
           "kind": "important"
         }
       ],
@@ -2068,7 +2071,8 @@
         "signals": [
           "has_table=true (lookup: tipo de dataset → lo que genera)",
           "labeled_items=0",
-          "n_images=0 (marker icon waived)"
+          "n_images=0",
+          "factor column: 2-column lookup whose first column holds the row keys → columns[0].factor=true"
         ],
         "candidates": [
           "value-columns",
@@ -2092,7 +2096,7 @@
         {
           "label": "Mode Collapse — el más común y frustrante",
           "body": "El Generador descubre un \"truco\": produce siempre el mismo tipo de imagen que engaña al Discriminador, en lugar de aprender toda la variedad posible.",
-          "text": "Analogía: el falsificador que solo falsifica un tipo de billete. En medicina: una GAN para síntesis de tumores que solo genera un tipo de morfología produce datos sintéticos inútiles."
+          "text": "Analogía: el falsificador que solo falsifica un tipo de billete. Con MNIST, una GAN colapsada genera siempre el mismo dígito, y ese dataset sintético no sirve para entrenar un clasificador de los diez."
         },
         {
           "label": "Inestabilidad en el entrenamiento",
@@ -2108,7 +2112,7 @@
         "signals": [
           "has_table=true (2 columns × 1 row; Mode Collapse cell has a second paragraph after <br>)",
           "labeled_items=2 (table headers)",
-          "n_images=1 (atmospheric illustration; card frames waived)",
+          "n_images=1 (slide-49-1.png, 1408×2112, manifest role figura → content; no other image refs)",
           "two_groups=false",
           "polarity=false (both are downsides)",
           "body_len=prose (~300 chars, 3 sentences per column)"
@@ -2120,7 +2124,7 @@
         ],
         "picked": "concept-columns",
         "rejected": {
-          "content+cards+image": "Columns discriminator: columns that share no row structure, each explaining its own term → concept-columns; the Mode Collapse column carries its own sub-structure (explanation + analogy), past a card's ~2-sentence budget — and the card template draws per-item icons the presenter asked to remove",
+          "content+cards+image": "Columns discriminator: columns that share no row structure, each explaining its own term → concept-columns; the Mode Collapse column carries its own sub-structure (explanation + an analogy paragraph), which a card's label + one body cannot hold",
           "value-columns": "nothing lines up across a shared row factor"
         }
       }
@@ -2187,7 +2191,7 @@
         },
         {
           "label": "Fortalezas y limitaciones",
-          "body": "Cuatro capacidades concretas en Biomedicina y los problemas reales antes de usar GANs en producción."
+          "body": "Cuatro capacidades concretas (generar, traducir y completar imágenes, y ampliar datasets) y los problemas a resolver antes de usar GANs en producción."
         }
       ],
       "_choice": {
@@ -2213,7 +2217,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "b369b199bab4b44e5f287475e42027e2b8e096d827a83b2e7e41d23537bb217d",
-    "bytes": 51005
+    "sha256": "095e544e6baf7cf81110d438ffa960872e3f82273139e1bb5c1171e0f31b9704",
+    "bytes": 58167
   }
 }

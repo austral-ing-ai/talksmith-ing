@@ -36,6 +36,9 @@ ol { list-style: none; margin: 0; padding: 0; }
   padding: 16px; margin-bottom: 8px; background: var(--card);
   border: 1px solid var(--line); border-radius: 10px;
 }
+.clase.libre { background: transparent; border-style: dashed; padding: 10px 16px; }
+.clase.libre .tema { color: var(--muted); font-weight: 400; margin: 0; }
+.clase.libre .num { color: var(--pend); }
 .num { font-size: 1.6rem; font-weight: 600; color: var(--accent); text-align: center; line-height: 1.2; }
 .fecha { margin: 0; color: var(--muted); font-size: .9rem; }
 .tema { margin: 2px 0 8px; font-weight: 600; }
@@ -148,20 +151,27 @@ kbd { border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-si
           <div class="decks"><a class="deck" href="talks/agentes-y-multiagentes/output/html/index.html">Agentes y sistemas multiagente</a></div>
         </div>
       </li>
+      <li class="clase libre">
+        <div class="num">—</div>
+        <div class="info">
+          <p class="fecha">Miércoles 14 de octubre</p>
+          <p class="tema">Sin clase</p>
+        </div>
+      </li>
       <li class="clase">
         <div class="num">11</div>
         <div class="info">
           <p class="fecha">Miércoles 21 de octubre</p>
-          <p class="tema">Vision: CNN (Senales &amp; Imagenes)</p>
-          <div class="decks"><span class="pend">Próximamente</span></div>
+          <p class="tema">Vision: Stable Difussion y Adversarial Networks</p>
+          <div class="decks"><a class="deck" href="talks/redes-generativas-antagonicas/output/html/index.html">Redes generativas antagónicas (GANs)</a></div>
         </div>
       </li>
       <li class="clase">
         <div class="num">12</div>
         <div class="info">
           <p class="fecha">Miércoles 28 de octubre</p>
-          <p class="tema">Vision: Stable Difussion y Adversarial Networks</p>
-          <div class="decks"><a class="deck" href="talks/redes-generativas-antagonicas/output/html/index.html">Redes generativas antagónicas (GANs)</a></div>
+          <p class="tema">Vision: CNN (Senales &amp; Imagenes)</p>
+          <div class="decks"><span class="pend">Próximamente</span></div>
         </div>
       </li>
       <li class="clase">

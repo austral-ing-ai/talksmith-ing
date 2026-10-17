@@ -60,6 +60,15 @@ def main() -> None:
 
     clases = []
     for numero, fecha, tema, presentacion in tabla(readme, "## Clases"):
+        if tema.lower().startswith("sin clase"):
+            clases.append(f"""      <li class="clase libre">
+        <div class="num">—</div>
+        <div class="info">
+          <p class="fecha">{html.escape(fecha)}</p>
+          <p class="tema">Sin clase</p>
+        </div>
+      </li>""")
+            continue
         clases.append(f"""      <li class="clase">
         <div class="num">{html.escape(numero)}</div>
         <div class="info">
@@ -115,6 +124,9 @@ ol {{ list-style: none; margin: 0; padding: 0; }}
   padding: 16px; margin-bottom: 8px; background: var(--card);
   border: 1px solid var(--line); border-radius: 10px;
 }}
+.clase.libre {{ background: transparent; border-style: dashed; padding: 10px 16px; }}
+.clase.libre .tema {{ color: var(--muted); font-weight: 400; margin: 0; }}
+.clase.libre .num {{ color: var(--pend); }}
 .num {{ font-size: 1.6rem; font-weight: 600; color: var(--accent); text-align: center; line-height: 1.2; }}
 .fecha {{ margin: 0; color: var(--muted); font-size: .9rem; }}
 .tema {{ margin: 2px 0 8px; font-weight: 600; }}

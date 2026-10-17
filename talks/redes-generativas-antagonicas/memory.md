@@ -91,3 +91,8 @@
 - Key inputs: draft.md (16:40:48), final.md previo.
 - Files created/modified: final.md. draft.md y output/ sin tocar.
 - Pending open questions: tarjeta de deepfakes (sin fuente); 1.5 ¿esta materia cubre SAM?; output/slide-model.json desactualizado (re-fill Step 7).
+
+## 2026-10-17 — Frontmatter — fecha de la clase
+- Status: complete
+- What was decided: el presentador movió la clase (el 14/10 no hubo clase): GANs pasa al miércoles 21 de octubre (clase 11). `date:` 2026-10-28 → 2026-10-21 en draft.md y final.md; README.md e index.html ya actualizados por la otra sesión.
+- Files created/modified: draft.md, final.md (frontmatter)
