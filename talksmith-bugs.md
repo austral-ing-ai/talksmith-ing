@@ -70,3 +70,73 @@
   seen: 10
   plugin_version: visto en 0.87.0; reverificado en 0.88.0 → 0.89.2 y en 0.97.0 — persiste
     (el status vive una sola vez, en el encabezado de la entrada)
+
+- id: BUG-20261017-10
+  status: open
+  date: 2026-10-17
+  talk: redes-generativas-antagonicas
+  step: 7 (Render)
+  where: skills/md-to-deck/templates/html/theme.css (~línea 295, .cards con 3 hijos) vs schemas/slide-model.md y catálogo ("3 → a row")
+  what: un set de 3 tarjetas se dibuja 2+1 (la tercera ocupa todo el ancho abajo), contra lo que
+    dicen el schema y el catálogo
+  repro: deck GANs, slide 5 "¿Por qué importa en ingeniería?" (concept-breakdown con 3 ítems)
+  impact: cosmetic
+  suggested_fix: SUGGESTION, unverified — `.cards:has(>.ccard:nth-child(3):last-child){grid-template-columns:repeat(3,1fr)}` y quitar el span de la tercera
+  seen: 1
+  plugin_version: 1.3.1
+
+- id: BUG-20261017-11
+  status: open
+  date: 2026-10-17
+  talk: redes-generativas-antagonicas
+  step: 7 (Render)
+  where: skills/md-to-deck/templates/html/theme.css (.numrow{grid-template-columns:repeat(3,1fr)}) — template `process`
+  what: los pasos numerados usan una grilla fija de 3 columnas: 4 pasos → 3+1 y 5 pasos → 3+2,
+    con celdas vacías (misma clase de defecto que `.figs` corregido en 1.3.0)
+  repro: deck GANs slide 33 "Backpropagation: el procedimiento paso a paso" (4 pasos); slides 16 y 51 (5 pasos)
+  impact: cosmetic
+  suggested_fix: SUGGESTION, unverified — columnas por cantidad (4 → 2×2 o 4 en fila, 5 → 5 en fila o 3+2 centrado)
+  seen: 1
+  plugin_version: 1.3.1
+
+- id: BUG-20261017-12
+  status: open
+  date: 2026-10-17
+  talk: redes-generativas-antagonicas
+  step: 7 (Render)
+  where: skills/md-to-deck/audits/template_diversity.py (mensaje [format-flat])
+  what: el mensaje nombra todavía el formato retirado `list` ("(grid/row/list/editorial)")
+  repro: cualquier deck donde todos los concept-breakdown usen grid
+  impact: cosmetic (doc)
+  suggested_fix: SUGGESTION, unverified — quitar `list` del mensaje
+  seen: 1
+  plugin_version: 1.3.1
+
+- id: BUG-20261017-13
+  status: open
+  date: 2026-10-17
+  talk: redes-generativas-antagonicas
+  step: 7 (Render)
+  where: skills/md-to-deck/build_html.py + html_style.py (marca data-dense / "too small to read")
+  what: el aviso de "demasiado chico para leer" no aparece en un render solo-HTML: build_html.py no
+    imprime nada y la marca data-dense existe solo en la página viva y en los exports PDF/.pptx.
+    Además el porcentaje cambia según cuántos ítems estén revelados (slide 5: 54% sin revelar, 59% con todo)
+  repro: render HTML de un deck con slides densos y buscar el aviso en la salida de build_html.py
+  impact: degraded — hubo que inspeccionar el DOM slide por slide para encontrar 17 slides afectados
+  suggested_fix: SUGGESTION, unverified — medir con todos los fragments visibles y listar los slides en la salida del build
+  seen: 1
+  plugin_version: 1.3.1
+
+- id: BUG-20261017-14
+  status: open
+  date: 2026-10-17
+  talk: redes-generativas-antagonicas
+  step: 7 (Render)
+  where: skills/md-to-deck/html_style.py (fit pass: título y lead excluidos del achique)
+  what: el encabezado (título + lead) nunca se achica; en diseños de columna angosta un título que
+    se parte en dos líneas más un lead largo dejan al cuerpo al 45% de su tamaño
+  repro: deck GANs slides 18 y 43
+  impact: degraded — son los slides más ilegibles del deck
+  suggested_fix: SUGGESTION, unverified — incluir el lead (o un tope de alto del encabezado) en el fit
+  seen: 1
+  plugin_version: 1.3.1

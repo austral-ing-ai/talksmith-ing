@@ -8,21 +8,22 @@
     "lang": "es",
     "logo": null,
     "sections": [
-      "Panorama de la ia generativa de visión",
-      "Introducción a las gans",
-      "El ejemplo de slanted land",
-      "Tipos de GANs y aplicaciones",
+      "IA generativa de visión",
+      "Introducción a las GANs",
+      "Slanted Land",
+      "Tipos y aplicaciones",
       "Limitaciones y cierre"
     ]
   },
   "slides": [
     {
       "template": "section-agenda",
-      "title": "Panorama de la ia generativa de visión"
+      "title": "IA generativa de visión",
+      "section": "IA generativa de visión"
     },
     {
       "template": "process",
-      "section": "Panorama de la ia generativa de visión",
+      "section": "IA generativa de visión",
       "title": "IA Generativa de Visión",
       "steps": [
         {
@@ -54,13 +55,13 @@
         "picked": "process",
         "rejected": {
           "concept-breakdown": "is_ordered (ordinal labels 01/02/03) → process; concept-breakdown requires an unordered set",
-          "value-columns": "the table is transposed: each column is one item (question + description), nothing reads across a row as a shared factor"
+          "value-columns": "transposed one-item-per-column table: each column is one item (question + description), nothing reads across a row as a shared factor"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "Panorama de la ia generativa de visión",
+      "section": "IA generativa de visión",
       "title": "¿Qué es la IA Generativa de Visión?",
       "lead": "**La IA visual se diseñó primero para analizar imágenes que ya existen: clasificarlas, detectar objetos o medir estructuras. Eso es la IA discriminativa, que aprende a distinguir entre categorías. La IA generativa aprende a crear contenido visual que no existía antes.**",
       "columns": [
@@ -97,8 +98,8 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true",
-          "two_groups=true (factor | A | B)",
+          "has_table=true (Aspecto | A | B)",
+          "two_groups=true",
           "polarity=false",
           "n_images=0"
         ],
@@ -109,18 +110,17 @@
         ],
         "picked": "value-columns",
         "rejected": {
-          "pros-cons": "no polarity — discriminativa vs generativa is a neutral A-vs-B, not upside/downside",
-          "concept-breakdown": "the cells align row by row over a shared factor column; card-per-row would lose the alignment"
+          "pros-cons": "two_groups without polarity (discriminativa vs generativa is a neutral A vs B, not upside/downside)",
+          "concept-breakdown": "has_table with comparable value columns over a shared factor → value-columns; demoting collapses rows into card bodies"
         }
       }
     },
     {
       "template": "concept-breakdown",
-      "section": "Panorama de la ia generativa de visión",
+      "section": "IA generativa de visión",
       "title": "¿Por qué importa en ingeniería?",
-      "lead": "**Entrenar un buen modelo de visión requiere miles, a veces decenas de miles, de imágenes etiquetadas. Conseguirlas choca con tres barreras que suelen aparecer juntas:**",
       "icons": "none",
-      "format": "grid",
+      "lead": "**Entrenar un buen modelo de visión requiere miles, a veces decenas de miles, de imágenes etiquetadas. Conseguirlas choca con tres barreras que suelen aparecer juntas:**",
       "cards": [
         {
           "label": "Escasez",
@@ -137,37 +137,35 @@
       ],
       "highlights": [
         {
-          "label": "Lo que la IA Generativa hace posible",
-          "body": "**Aumentación de datos sintéticos, síntesis de casos raros, traducción entre modalidades (MRI→CT), anonimización que conserva el realismo de la imagen y restauración de imágenes con artefactos. Con una GAN, Salimans et al. (2016) entrenaron clasificadores con pocas etiquetas y alcanzaron el estado del arte semi-supervisado en MNIST, CIFAR-10 y SVHN.**",
+          "body": "**Lo que la IA Generativa hace posible: aumentación de datos sintéticos, síntesis de casos raros, traducción entre modalidades (MRI→CT), anonimización que conserva el realismo de la imagen y restauración de imágenes con artefactos. Con una GAN, Salimans et al. (2016) entrenaron clasificadores con pocas etiquetas y alcanzaron el estado del arte semi-supervisado en MNIST, CIFAR-10 y SVHN.**",
           "kind": "takeaway"
         }
       ],
-      "notes": "Las tres barreras son el problema de datos de cualquier modelo de visión que llega a producción. Un detector de defectos tiene miles de fotos de piezas buenas y muy pocas de piezas falladas. Un sistema que procesa fotos de usuarios carga con el GDPR. El etiquetado necesita gente que entienda el dominio, y esas horas cuestan. Una GAN ataca las tres barreras con el mismo recurso: genera datos de entrenamiento para otros modelos (aumento de datos) y completa información faltante, dos de los casos de uso que lista AWS.\n\nEl ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos generados: en el clasificador que se entrena con ellos. Su problema es el de la barrera de coste. Hay muchas imágenes sin etiquetar y pocas etiquetadas, y la GAN permite aprovechar las primeras. El detalle del mecanismo está en la sección 4, en la fortaleza de datos sintéticos.",
       "_choice": {
         "signals": [
-          "has_table=true (Escasez | Privacidad | Coste over one description row)",
+          "has_table=true (one row: header = label, cell = body)",
           "labeled_items=3",
           "is_ordered=false",
           "date_labels=false",
-          "two_groups=false",
-          "n_images=0",
-          "body_len=prose (≤ ~190 chars, one paragraph each)"
+          "big_metrics=false",
+          "n_images=0"
         ],
         "candidates": [
           "concept-breakdown",
-          "concept-columns",
-          "value-columns"
+          "value-columns",
+          "content-text"
         ],
         "picked": "concept-breakdown",
         "rejected": {
-          "concept-columns": "catalog concept-columns Not: 'label + a single line per item, with no sub-structure (→ concept-breakdown)' — each barrier is a label and one paragraph, no feature list or closing line; the presenter's no-icons directive is now `icons: \"none\"`, not a reason to change template",
-          "value-columns": "has_table rule: the headers are three peers with one description each; no shared factor reads across a row"
+          "value-columns": "a one-row table whose columns are heterogeneous items (each header labels its own body); nothing reads across a row → card-per-item",
+          "content-text": "never fall to a plainer template when a labeled set (3 labeled barriers) fits"
         }
-      }
+      },
+      "notes": "Las tres barreras son el problema de datos de cualquier modelo de visión que llega a producción. Un detector de defectos tiene miles de fotos de piezas buenas y muy pocas de piezas falladas. Un sistema que procesa fotos de usuarios carga con el GDPR. El etiquetado necesita gente que entienda el dominio, y esas horas cuestan. Una GAN ataca las tres barreras con el mismo recurso: genera datos de entrenamiento para otros modelos (aumento de datos) y completa información faltante, dos de los casos de uso que lista AWS.\n\nEl ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos generados: en el clasificador que se entrena con ellos. Su problema es el de la barrera de coste. Hay muchas imágenes sin etiquetar y pocas etiquetadas, y la GAN permite aprovechar las primeras. El detalle del mecanismo está en la sección 4, en la fortaleza de datos sintéticos."
     },
     {
       "template": "timeline",
-      "section": "Panorama de la ia generativa de visión",
+      "section": "IA generativa de visión",
       "title": "Línea de tiempo: el camino hasta hoy",
       "lead": "Tres eras, un campo en aceleración constante. Este curso arranca con el hito más influyente de la segunda era.",
       "milestones": [
@@ -203,21 +201,23 @@
           "labeled_items=4",
           "date_labels=true (1950s–2000s, 2014–2020, 2020–hoy, 2023–hoy)",
           "is_ordered=true",
-          "n_images=0 (callout marker waived)"
+          "n_images=0"
         ],
         "candidates": [
           "timeline",
-          "process"
+          "process",
+          "concept-breakdown"
         ],
         "picked": "timeline",
         "rejected": {
-          "process": "date_labels is checked before is_ordered: the labels are periods → timeline"
+          "process": "date_labels is checked before is_ordered: period labels make it a timeline",
+          "concept-breakdown": "the set is ordered and dated; concept-breakdown requires an unordered set"
         }
       }
     },
     {
       "template": "concept-columns",
-      "section": "Panorama de la ia generativa de visión",
+      "section": "IA generativa de visión",
       "title": "Los modelos que veremos en el curso",
       "lead": "Tres familias de redes generativas — tres bloques temáticos dedicados. Cada modelo responde una pregunta diferente: al final del curso, sabremos cuándo usar cada uno.",
       "columns": [
@@ -239,27 +239,26 @@
       ],
       "_choice": {
         "signals": [
-          "labeled_items=3 (bold model names)",
-          "each item = description + a closing 'Pregunta:' line",
+          "labeled_items=3 (bold headings, each with a description + a 'Pregunta:' line)",
           "is_ordered=false",
-          "date_labels=false",
-          "n_images=0 (no image refs; only commented-out vector originals)"
+          "has_table=false",
+          "n_images=0 (the 3 card frames were removed; only comments remain)"
         ],
         "candidates": [
           "concept-columns",
           "concept-breakdown",
-          "figures"
+          "value-columns"
         ],
         "picked": "concept-columns",
         "rejected": {
-          "concept-breakdown": "catalog concept-columns Match: each term carries its own sub-structure (a description plus a closing 'Pregunta:' line, the `example` slot); a concept-breakdown card holds a label and one body only",
-          "figures": "labeled_items ≥ 2 with a per-item content image → figures; there is no image ref on the slide at all"
+          "concept-breakdown": "each term carries a description plus its own closing 'Pregunta' line — sub-structure a label+one-body card has no room for",
+          "value-columns": "nothing reads across: each column explains its own term, no shared factor rows"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "Panorama de la ia generativa de visión",
+      "section": "IA generativa de visión",
       "title": "Tabla comparativa rápida",
       "lead": "Esta tabla no es para memorizar — es para consultar cuando tengas un problema real y necesites decidir qué herramienta usar.",
       "columns": [
@@ -310,48 +309,53 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true",
-          "factor | A | B | C",
+          "has_table=true (Criterio | 3 options, 6 rows)",
+          "two_groups=false (three options over shared factors)",
           "n_images=0"
         ],
         "candidates": [
           "value-columns",
-          "concept-breakdown"
+          "concept-breakdown",
+          "matrix"
         ],
         "picked": "value-columns",
         "rejected": {
-          "concept-breakdown": "three options judged over shared factors (velocidad, control, …) read across a row → value-columns; width is never a reason to demote"
+          "concept-breakdown": "N options over shared factors → value-columns; width is never a reason to demote",
+          "matrix": "one axis (criterio) — a matrix needs two named axes"
         }
       }
     },
     {
       "template": "section-agenda",
-      "title": "Introducción a las gans"
+      "title": "Introducción a las GANs",
+      "section": "Introducción a las GANs"
     },
     {
       "template": "statement",
-      "section": "Introducción a las gans",
+      "section": "Introducción a las GANs",
       "title": "Generative Adversarial Networks (GANs)",
       "_choice": {
         "signals": [
-          "one_claim=true (title only, 4 words)",
+          "one_claim=true (title only, empty body)",
           "labeled_items=0",
           "n_images=0",
-          "has_code=false"
+          "is_divider=false (H2)"
         ],
         "candidates": [
           "statement",
+          "divider",
           "content-text"
         ],
         "picked": "statement",
         "rejected": {
-          "content-text": "there is no prose to panel; a single short line with no enumeration is one_claim → statement"
+          "divider": "is_divider needs an H1 or a 〔divisor〕 marker; this is an H2 content slide",
+          "content-text": "no prose at all; a single ≤16-word line is statement"
         }
       }
     },
     {
       "template": "concept-columns",
-      "section": "Introducción a las gans",
+      "section": "Introducción a las GANs",
       "title": "Punto de partida",
       "lead": "**\"¿Cómo enseñarle a una máquina a crear algo que nunca ha visto?\"**",
       "highlights": [
@@ -378,26 +382,30 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true (2 columns, 1 row)",
-          "two_groups=false",
-          "is_question=false (rhetorical framing, answered only implicitly)",
+          "has_table=true (2 columns, 1 cell each)",
+          "labeled_items=2",
+          "two_groups=false (the columns share no rows: a paragraph vs a 4-item list)",
+          "is_question=false (rhetorical, no answer on the slide)",
+          "is_voiced=partial (the question is framing, not the slide)",
           "n_images=0"
         ],
         "candidates": [
           "concept-columns",
           "value-columns",
-          "quiz"
+          "concept-breakdown",
+          "quote"
         ],
         "picked": "concept-columns",
         "rejected": {
-          "value-columns": "the two columns share no row structure (one paragraph vs a four-line list); reading across says nothing",
-          "quiz": "the opening question frames the slide; the body is two parallel blocks, not a prompt + its revealed answer"
+          "value-columns": "reading across a row says nothing — each column has its own shape",
+          "concept-breakdown": "the second column is a 4-item list; a card has one body only",
+          "quote": "the quoted question frames a 2-column body; quote renders no body and would drop it"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "Introducción a las gans",
+      "section": "Introducción a las GANs",
       "title": "El origen: una noche en un bar (2014)",
       "facts": [
         {
@@ -425,11 +433,10 @@
       },
       "_choice": {
         "signals": [
-          "n_images=1 (atmospheric illustration; the check marker is waived)",
+          "n_images=1 (atmospheric illustration)",
           "labeled_items=0",
-          "prose=2 bullets",
-          "one_metric=true but not the whole slide (70K+)",
-          "is_voiced=true (LeCun, secondary line)"
+          "one_metric=false (70K+ is a side figure, not the slide)",
+          "is_voiced=partial (LeCun line is a remark)"
         ],
         "candidates": [
           "content-image",
@@ -438,14 +445,14 @@
         ],
         "picked": "content-image",
         "rejected": {
-          "big-number": "70K+ supports the story, it is not the whole slide — carried as a highlight so the narrative leads",
-          "quote": "the LeCun line is one remark among the story, not the slide — kept as a quote-kind highlight"
+          "big-number": "one_metric requires the figure to be the whole slide; here prose leads",
+          "quote": "the LeCun line closes a narrative slide; quote renders no facts and would drop them"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "Introducción a las gans",
+      "section": "Introducción a las GANs",
       "title": "Modelo Mental Para Entenderlo",
       "lead": "**Un experimento mental: el mundo de los rostros. Imaginad una sociedad donde existen miles de rostros reales con características reconocibles. En esa sociedad aparecen dos personajes con objetivos opuestos:**",
       "columns": [
@@ -472,34 +479,28 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true",
-          "two_groups=true (Falsificador vs Detective)",
+          "has_table=true (2 columns)",
+          "two_groups=true (Falsificador vs Detective, rows Objetivo / Método·Ventaja)",
           "polarity=false",
-          "n_images=0 (callout marker waived)"
+          "n_images=0"
         ],
         "candidates": [
           "value-columns",
-          "concept-columns",
-          "pros-cons"
+          "pros-cons",
+          "concept-columns"
         ],
         "picked": "value-columns",
         "rejected": {
-          "concept-columns": "the cells align row by row (Objetivo vs Objetivo, then method vs advantage) — two sides compared, which is value-columns",
-          "pros-cons": "two opposed roles, not upside vs downside — no polarity"
+          "pros-cons": "two_groups without polarity — opponents, not upside/downside",
+          "concept-columns": "the cells align row by row (Objetivo ↔ Objetivo), so it reads across"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "Introducción a las gans",
-      "lead": "**Arquitectura de una GAN**",
-      "highlights": [
-        {
-          "body": "Lo que acabamos de describir con el falsificador y el detective tiene una arquitectura técnica precisa. Cada elemento de la analogía corresponde a un componente real de la red:",
-          "kind": "note",
-          "position": "top"
-        }
-      ],
+      "section": "Introducción a las GANs",
+      "title": "Arquitectura de una GAN",
+      "lead": "Lo que acabamos de describir con el falsificador y el detective tiene una arquitectura técnica precisa. Cada elemento de la analogía corresponde a un componente real de la red:",
       "columns": [
         {
           "header": "Analogía",
@@ -539,35 +540,40 @@
       },
       "_choice": {
         "signals": [
-          "has_table=true (Analogía → Componente técnico → Función, 5 rows; factor column + 2 value columns)",
-          "n_images=1 (images/arquitectura-gan.svg, the architecture diagram)",
-          "labeled_items=0"
+          "untitled in source; bold first line 'Arquitectura de una GAN' is the on-screen heading",
+          "has_table=true (Analogía | Componente | Función, 5 rows)",
+          "n_images=1 (diagram)"
         ],
         "candidates": [
           "value-columns",
           "content+cards+image",
-          "concept-breakdown"
+          "content-image"
         ],
         "picked": "value-columns",
         "rejected": {
-          "content+cards+image": "a table with one shared image stays value-columns with media; flattening rows into cards loses the column alignment",
-          "concept-breakdown": "requires images == 0, and the rows read across a shared structure"
+          "content+cards+image": "a table with one shared image keeps value-columns + media; collapsing rows into cards loses the alignment",
+          "content-image": "the table's columns would dissolve into facts"
         }
       }
     },
     {
       "template": "image-full",
-      "section": "Introducción a las gans",
+      "section": "Introducción a las GANs",
       "title": "Arquitectura de una \"Vanilla\" GAN",
-      "lead": "**[¿Qué es una GAN? - Explicación sobre las redes generativas antagónicas - AWS](https://aws.amazon.com/es/what-is/gan/)**",
       "image": {
         "src": "images/vanilla-gan-arquitectura.svg",
         "alt": "Arquitectura de una Vanilla GAN"
       },
+      "highlights": [
+        {
+          "body": "**[¿Qué es una GAN? - Explicación sobre las redes generativas antagónicas - AWS](https://aws.amazon.com/es/what-is/gan/)**",
+          "kind": "source"
+        }
+      ],
       "_choice": {
         "signals": [
+          "image_only=true (one diagram + one citation link)",
           "n_images=1",
-          "image_only=true (one short framing line: the source link)",
           "labeled_items=0"
         ],
         "candidates": [
@@ -576,13 +582,13 @@
         ],
         "picked": "image-full",
         "rejected": {
-          "content-image": "requires prose that leads; a single ≤120-char framing line is the image-full lead"
+          "content-image": "the only text is a citation (a source highlight), not prose that leads — image_only → image-full"
         }
       }
     },
     {
       "template": "process",
-      "section": "Introducción a las gans",
+      "section": "Introducción a las GANs",
       "title": "Entrenamiento paso a paso",
       "lead": "Cuatro pasos que se repiten miles de veces — así es como una GAN aprende a engañar.",
       "steps": [
@@ -610,37 +616,51 @@
       "_choice": {
         "signals": [
           "labeled_items=5",
-          "is_ordered=true (Paso 1…5)",
+          "is_ordered=true (Paso 1…Paso 5)",
           "date_labels=false",
-          "n_images=0 (5 step icons waived)"
+          "n_images=0"
         ],
         "candidates": [
           "process",
-          "figures",
+          "timeline",
           "concept-breakdown"
         ],
         "picked": "process",
         "rejected": {
-          "figures": "the per-step images were decorative PPTX icons (waived) — no content image per item",
-          "concept-breakdown": "is_ordered (Paso N) → process; concept-breakdown requires an unordered set"
+          "timeline": "labels are step ordinals, not dates/periods",
+          "concept-breakdown": "is_ordered (Paso N) → process"
         }
       }
     },
     {
       "template": "section-agenda",
-      "title": "El ejemplo de slanted land"
+      "title": "Slanted Land",
+      "section": "Slanted Land"
     },
     {
-      "template": "content-image",
-      "section": "El ejemplo de slanted land",
+      "template": "content+cards+image",
+      "section": "Slanted Land",
       "title": "El Problema: ¡Bienvenidos a Slanted Land! 🌀",
-      "facts": [
+      "icons": "none",
+      "lead": "Imagina un mundo peculiar llamado Slanted Land, donde absolutamente todo se inclina: los árboles, las casas, las personas e incluso la pizza que comen los gatos. En este universo, la norma es la inclinación.",
+      "highlights": [
         {
-          "body": "Imagina un mundo peculiar llamado Slanted Land, donde absolutamente todo se inclina: los árboles, las casas, las personas e incluso la pizza que comen los gatos. En este universo, la norma es la inclinación."
+          "body": "Los habitantes de Slanted Land solo conocen rostros con una ligera inclinación. Para ellos, un rostro completamente recto sería una anomalía, algo totalmente extraño e incomprensible.",
+          "kind": "note",
+          "position": "top"
         },
         {
-          "body": "Los habitantes de Slanted Land solo conocen rostros con una ligera inclinación. Para ellos, un rostro completamente recto sería una anomalía, algo totalmente extraño e incomprensible."
+          "label": "El problema urgente",
+          "body": "La app de citas de Slanted Land, TiltedTinder, necesita generar fotos de perfil para sus usuarios. Pero solo tienen 4 fotos reales en toda su base de datos. Con tan pocos datos, nadie encuentra pareja. ¡La supervivencia romántica de toda una civilización inclinada depende de nuestra GAN! 💘",
+          "kind": "important",
+          "position": "top"
         },
+        {
+          "body": "[Basado en «A Friendly Introduction to Generative Adversarial Networks», de Luis Serrano (ver video)](https://www.youtube.com/watch?v=8L11aMN5KY8&t=16s)",
+          "kind": "source"
+        }
+      ],
+      "cards": [
         {
           "label": "Universo Inclinado",
           "body": "Todo, desde la gravedad hasta las cejas de sus habitantes, está en un ángulo distintivo."
@@ -648,16 +668,6 @@
         {
           "label": "Rostros \"Normales\"",
           "body": "Solo existen los rostros inclinados; un rostro recto les resulta completamente alienígena."
-        },
-        {
-          "label": "El problema urgente",
-          "body": "La app de citas de Slanted Land, TiltedTinder, necesita generar fotos de perfil para sus usuarios. Pero solo tienen 4 fotos reales en toda su base de datos. Con tan pocos datos, nadie encuentra pareja. ¡La supervivencia romántica de toda una civilización inclinada depende de nuestra GAN! 💘"
-        }
-      ],
-      "highlights": [
-        {
-          "body": "[Basado en «A Friendly Introduction to Generative Adversarial Networks», de Luis Serrano (ver video)](https://www.youtube.com/watch?v=8L11aMN5KY8&t=16s)",
-          "kind": "source"
         }
       ],
       "design": "column-right",
@@ -667,30 +677,29 @@
       },
       "_choice": {
         "signals": [
-          "n_images=1 (slide-18-1.png, 2048 px illustration, manifest role figura → content)",
-          "prose=3 paragraph bullets lead the slide",
-          "has_table=true (2 headers, one row)",
-          "labeled_items=2 (the table) + the 'El problema urgente' lead-in",
-          "is_ordered=false",
-          "date_labels=false"
+          "has_table=true (one row: 2 labeled items)",
+          "labeled_items=2",
+          "two_groups=false (two facets of one world, nothing compared)",
+          "n_images=1 (atmospheric illustration)"
         ],
         "candidates": [
-          "content-image",
           "content+cards+image",
-          "concept-columns"
+          "content-image",
+          "value-columns"
         ],
-        "picked": "content-image",
+        "picked": "content+cards+image",
         "rejected": {
-          "content+cards+image": "its Match is a labeled set with a shared image; here the prose leads (three paragraphs, the problem statement among them) and the two-cell table is a sub-point → `n_images` 1–3 supporting prose → content-image; labeled facts keep both table labels",
-          "concept-columns": "needs 2–4 terms as the slide's body and has no image slot beside them; the slide's image and its three prose paragraphs would have nowhere to go"
+          "content-image": "labeled set ≥2 + one shared image → content+cards+image; never dissolve labels into facts",
+          "value-columns": "one row, two facets — no shared factor to read across"
         }
       }
     },
     {
-      "template": "content-image",
-      "section": "El ejemplo de slanted land",
+      "template": "content+cards+image",
+      "section": "Slanted Land",
       "title": "El mundo de Slanted Land",
-      "facts": [
+      "icons": "none",
+      "cards": [
         {
           "label": "Imágenes 2×2 píxeles",
           "body": "Cada imagen se representa como una pantalla con 4 celdas — cada celda tiene un valor entre 0 (blanco) y 1 (negro)."
@@ -707,47 +716,41 @@
       "design": "banded",
       "media": {
         "src": "images/slide-19-1.jpg",
-        "alt": ""
+        "alt": "Slanted people, 2x2 screens, 1-layer neural network"
       },
       "_choice": {
         "signals": [
-          "has_table=true (3 headers over one description row)",
+          "has_table=true (one row: 3 labeled items)",
           "labeled_items=3",
-          "n_images=1 (wide strip, one panel per item)",
-          "is_ordered=false"
+          "is_ordered=false",
+          "n_images=1 (wide 3-panel strip matching the 3 items)"
         ],
         "candidates": [
-          "content-image",
-          "concept-columns",
-          "content+cards+image"
+          "content+cards+image",
+          "figures",
+          "concept-breakdown"
         ],
-        "picked": "content-image",
+        "picked": "content+cards+image",
         "rejected": {
-          "concept-columns": "concept-columns under a banded design collapses the image (renderer: `.conccols` is missing from the banded structured-body selector), and the card templates draw per-item icons the presenter asked to remove",
-          "content+cards+image": "concept-columns under a banded design collapses the image (renderer: `.conccols` is missing from the banded structured-body selector), and the card templates draw per-item icons the presenter asked to remove"
+          "figures": "one shared image (a single 3-panel strip), not one image file per item",
+          "concept-breakdown": "requires images == 0; would drop the shared picture"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "El ejemplo de slanted land",
-      "lead": "**Los datos reales: caras con patrón**",
+      "section": "Slanted Land",
+      "title": "Los datos reales: caras con patrón",
+      "lead": "Las \"caras\" de Slanted Land, codificadas como píxeles, tienen un patrón consistente:",
       "facts": [
         {
-          "label": "Esquinas oscuras en la diagonal principal (arriba-izquierda y abajo-derecha)",
-          "body": "Valor alto"
+          "body": "Esquinas oscuras en la diagonal principal (arriba-izquierda y abajo-derecha): valor alto"
         },
         {
-          "label": "Esquinas claras en la diagonal secundaria (arriba-derecha y abajo-izquierda)",
-          "body": "Valor bajo"
+          "body": "Esquinas claras en la diagonal secundaria (arriba-derecha y abajo-izquierda): valor bajo"
         }
       ],
       "highlights": [
-        {
-          "body": "Las \"caras\" de Slanted Land, codificadas como píxeles, tienen un patrón consistente:",
-          "kind": "note",
-          "position": "top"
-        },
         {
           "body": "Ese patrón diagonal es la \"firma\" de una cara real. El Discriminador tiene que aprenderlo para poder distinguirla del ruido.",
           "kind": "takeaway"
@@ -756,28 +759,30 @@
       "design": "split-right",
       "media": {
         "src": "images/slide-20-1.png",
-        "alt": ""
+        "alt": "Caras inclinadas y sus patrones de 2×2 píxeles"
       },
       "_choice": {
         "signals": [
-          "labeled_items=0 (plain `- text: value` bullets, no bold lead)",
-          "n_images=1 (pixel-pattern diagram)",
-          "is_ordered=false",
-          "two_groups=false"
+          "untitled in source; bold first line is the on-screen heading",
+          "labeled_items=0 (plain bullets, no bold lead)",
+          "n_images=1",
+          "image_only=false (prose leads)"
         ],
         "candidates": [
           "content-image",
-          "content+cards+image"
+          "concept-breakdown",
+          "image-full"
         ],
         "picked": "content-image",
         "rejected": {
-          "content+cards+image": "needs labeled_items ≥ 2 by the signal contract (bold-lead bullets); these are plain colon lines — and the card template draws per-item icons the presenter asked to remove"
+          "concept-breakdown": "no labeled items, and requires images == 0",
+          "image-full": "two facts + a takeaway lead the image — prose required → content-image"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "El ejemplo de slanted land",
+      "section": "Slanted Land",
       "title": "Caras vs. ruido: los dos tipos de imágenes",
       "columns": [
         {
@@ -796,71 +801,78 @@
       "design": "split-right",
       "media": {
         "src": "images/slide-21-1.jpg",
-        "alt": ""
+        "alt": "Caras y ruido como matrices de 2×2"
       },
       "_choice": {
         "signals": [
-          "has_table=true",
+          "has_table=true (2 columns)",
           "two_groups=true (caras vs ruido)",
           "polarity=false",
           "n_images=1"
         ],
         "candidates": [
           "value-columns",
-          "content+cards+image",
-          "pros-cons"
+          "pros-cons",
+          "content+cards+image"
         ],
         "picked": "value-columns",
         "rejected": {
-          "content+cards+image": "the title says 'A vs B': two sides of a comparison keep value-columns, carrying the image as media",
-          "pros-cons": "real vs fake is a neutral A/B, not upside vs downside"
+          "pros-cons": "a neutral A vs B, not upside/downside",
+          "content+cards+image": "two sides of a comparison read across → value-columns carrying the image (anti-default check)"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "El ejemplo de slanted land",
-      "lead": "**Construyendo el Discriminador** — **¿qué píxeles importan?**",
-      "facts": [
+      "section": "Slanted Land",
+      "title": "Construyendo el Discriminador",
+      "lead": "**¿qué píxeles importan?**",
+      "highlights": [
         {
-          "body": "El Discriminador aprende que en las caras de Slanted Land:"
+          "body": "El Discriminador aprende que en las caras de Slanted Land:",
+          "kind": "note",
+          "position": "top"
         },
+        {
+          "body": "Asigna estos pesos a cada posición: +1 para las que caracterizan una cara, −1 para las que no la caracterizan.",
+          "kind": "takeaway"
+        }
+      ],
+      "facts": [
         {
           "body": "Los píxeles de la diagonal principal son grandes → reciben peso positivo (+1)"
         },
         {
           "body": "Los píxeles de la diagonal secundaria son pequeños → reciben peso negativo (−1)"
-        },
-        {
-          "body": "Asigna estos pesos a cada posición: +1 para las que caracterizan una cara, −1 para las que no la caracterizan."
         }
       ],
       "design": "split-right",
       "media": {
         "src": "images/slide-22-1.png",
-        "alt": ""
+        "alt": "Faces: Big/small; Noise: any"
       },
       "_choice": {
         "signals": [
-          "labeled_items=0 (plain bullets)",
-          "n_images=1",
-          "body is prose leading the diagram"
+          "untitled in source; bold first line is the on-screen heading",
+          "labeled_items=0",
+          "two_groups=false",
+          "n_images=1"
         ],
         "candidates": [
           "content-image",
-          "process",
-          "content-text"
+          "value-columns",
+          "image-full"
         ],
         "picked": "content-image",
         "rejected": {
-          "process": "two unlabeled lines are not a 3–8 item enumeration, and they accompany a diagram",
-          "content-text": "an image is present; prose + one supporting image is content-image"
+          "value-columns": "two parallel bullets, not columns over a shared factor",
+          "image-full": "prose leads the image"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "El ejemplo de slanted land",
+      "section": "Slanted Land",
       "title": "Construyendo el Discriminador",
       "lead": "**Calculo del Score**",
       "highlights": [
@@ -889,39 +901,33 @@
       "design": "split-right",
       "media": {
         "src": "images/slide-23-1.png",
-        "alt": ""
+        "alt": "Pesos +/− sobre la cara y el ruido"
       },
       "_choice": {
         "signals": [
-          "has_table=true",
+          "has_table=true (2 columns × 2 rows)",
           "two_groups=true (cara vs ruido)",
-          "rows align (cálculo, veredicto)",
           "n_images=1"
         ],
         "candidates": [
           "value-columns",
           "content+cards+image",
-          "stat"
+          "pros-cons"
         ],
         "picked": "value-columns",
         "rejected": {
-          "content+cards+image": "the cells align row by row across the two cases; a shared image is carried as media, never a reason to collapse to cards",
-          "stat": "the numbers are worked calculations, not standalone headline metrics"
+          "content+cards+image": "aligned rows (cálculo, veredicto) read across → value-columns with media",
+          "pros-cons": "no polarity"
         }
       }
     },
     {
-      "template": "content-image",
-      "section": "El ejemplo de slanted land",
-      "lead": "**Discriminador Como red neuronal**",
-      "highlights": [
-        {
-          "body": "Para la cara prototipo: σ(1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) − 1) = σ(1)",
-          "kind": "definition",
-          "position": "top"
-        }
-      ],
-      "facts": [
+      "template": "content+cards+image",
+      "section": "Slanted Land",
+      "title": "Discriminador Como red neuronal",
+      "icons": "none",
+      "lead": "Para la cara prototipo: σ(1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) − 1) = σ(1)",
+      "cards": [
         {
           "label": "Entradas (x)",
           "body": "x₁=1, x₂=0, x₃=0, x₄=1"
@@ -946,61 +952,41 @@
       "design": "split-right",
       "media": {
         "src": "images/slide-24-1.png",
-        "alt": ""
+        "alt": "Red del Discriminador con pesos y bias"
       },
       "_choice": {
         "signals": [
-          "has_table=true ×2 (Entradas | Pesos | Bias; Suma ponderada | Sigmoid), one row each",
-          "n_images=1 (network diagram)",
-          "labeled_items=5 (table headers)",
-          "is_ordered=false"
+          "untitled in source; bold first line is the on-screen heading",
+          "has_table=true (two one-row tables: header = label, cell = value)",
+          "labeled_items=5",
+          "two_groups=false",
+          "n_images=1"
         ],
         "candidates": [
-          "content-image",
+          "content+cards+image",
           "value-columns",
-          "content+cards+image"
+          "content-image"
         ],
-        "picked": "content-image",
+        "picked": "content+cards+image",
         "rejected": {
-          "value-columns": "two separate one-row tables with different headers — no single factor grid holds both, and media is taken by the diagram",
-          "content+cards+image": "presenter directive (no per-item icons): concept-breakdown / content+cards+image content-match a Material icon onto every card; concept-columns carries the same label + body panels with no glyph"
+          "value-columns": "label/value tables of heterogeneous attributes — nothing reads across a row",
+          "content-image": "labeled set ≥2 + one shared image → content+cards+image; never dissolve labels into facts"
         }
       }
     },
     {
-      "template": "content-image",
-      "section": "El ejemplo de slanted land",
+      "template": "content+cards+image",
+      "section": "Slanted Land",
       "title": "Función Sigmoid: la activación del Discriminador",
+      "icons": "none",
       "lead": "**La función sigmoid convierte cualquier número real en una probabilidad entre 0 y 1. Es la función de activación que usa el Discriminador para emitir su veredicto.**",
-      "design": "banded",
-      "media": {
-        "src": "images/slide-25-1.png",
-        "alt": "σ(x) = 1 / (1 + e^−x)"
-      },
-      "_choice": {
-        "signals": [
-          "n_images=1 on this part (formula slide-25-1.png; the graph goes to the next slide — one media slot per slide)",
-          "labeled_items=0 (one fully-bold bullet)",
-          "image_only=false (lead is 2 sentences, ~163 chars > 120)",
-          "one_claim=false (>16 words)"
-        ],
-        "candidates": [
-          "content-image",
-          "image-full",
-          "single-point"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "image-full": "image_only fails: two sentences is prose that leads → content-image",
-          "single-point": "single-point Match: 'If an image supports it → content-image'"
+      "highlights": [
+        {
+          "body": "σ(x) = 1 / (1 + e⁻ˣ)",
+          "kind": "definition"
         }
-      }
-    },
-    {
-      "template": "content-image",
-      "section": "El ejemplo de slanted land",
-      "title": "Función Sigmoid: la activación del Discriminador",
-      "facts": [
+      ],
+      "cards": [
         {
           "label": "Rango acotado",
           "body": "Devuelve valores entre 0 y 1; se lee como probabilidad."
@@ -1023,38 +1009,50 @@
         "src": "images/slide-25-2.jpg",
         "alt": "Curva sigmoid: σ(1) ≈ 0.73"
       },
+      "_omitted": [
+        {
+          "src": "images/slide-25-1.png",
+          "reason": "formula"
+        }
+      ],
       "_choice": {
         "signals": [
-          "has_table=true (4 property headers over one description row)",
+          "has_table=true (one row: 4 labeled properties)",
           "labeled_items=4",
-          "n_images=1 on this part (the sigmoid graph)",
           "is_ordered=false",
-          "body_len=short"
+          "n_images=1 (sigmoid curve)",
+          "formula strip slide-25-1.png (5.6:1, 138 px) transcribed as text"
         ],
         "candidates": [
-          "content-image",
-          "concept-columns",
-          "content+cards+image"
+          "content+cards+image",
+          "value-columns",
+          "content-image"
         ],
-        "picked": "content-image",
+        "picked": "content+cards+image",
         "rejected": {
-          "concept-columns": "concept-columns under a banded design collapses the image (renderer: `.conccols` is missing from the banded structured-body selector), and the card templates draw per-item icons the presenter asked to remove",
-          "content+cards+image": "concept-columns under a banded design collapses the image (renderer: `.conccols` is missing from the banded structured-body selector), and the card templates draw per-item icons the presenter asked to remove"
+          "value-columns": "one row of heterogeneous properties — nothing reads across",
+          "content-image": "labeled set ≥2 + one shared image → content+cards+image"
         }
       }
     },
     {
-      "template": "content-image",
-      "section": "El ejemplo de slanted land",
+      "template": "value-columns",
+      "section": "Slanted Land",
       "title": "Pongamos todo junto del Discriminador",
-      "facts": [
+      "columns": [
         {
-          "label": "Cuando la cara prototipo pasa por la red completa",
-          "body": "**σ(1) = 0.73 → \"Estoy un 73% seguro de que esto es real\"** · **Como 0.73 > 0.5, clasifica correctamente la imagen como real ✓**"
+          "header": "Cuando la cara prototipo pasa por la red completa",
+          "cells": [
+            "**σ(1) = 0.73 → \"Estoy un 73% seguro de que esto es real\"**",
+            "**Como 0.73 > 0.5, clasifica correctamente la imagen como real ✓**"
+          ]
         },
         {
-          "label": "Cuando la imagen de ruido pasa por la misma red",
-          "body": "**σ(-0.5) = 0.37 → \"Estoy solo un 37% seguro de que esto sea real\"** · **Como 0.37 < 0.5, clasifica correctamente la imagen como falsa ✓**"
+          "header": "Cuando la imagen de ruido pasa por la misma red",
+          "cells": [
+            "**σ(-0.5) = 0.37 → \"Estoy solo un 37% seguro de que esto sea real\"**",
+            "**Como 0.37 < 0.5, clasifica correctamente la imagen como falsa ✓**"
+          ]
         }
       ],
       "design": "split-left",
@@ -1072,25 +1070,27 @@
       },
       "_choice": {
         "signals": [
-          "labeled_items=2",
-          "two_groups=true (cara vs ruido)",
-          "n_images=2 (one per case, same order as the facts)"
+          "labeled_items=2 (two bold colon lead-ins, each heading two bold result lines)",
+          "two_groups=true (cara prototipo vs imagen de ruido)",
+          "polarity=false",
+          "rows align: σ output ↔ σ output, threshold verdict ↔ verdict",
+          "n_images=2 (one network pass per case, shared as a pair)"
         ],
         "candidates": [
+          "value-columns",
           "content-image",
-          "figures",
-          "value-columns"
+          "figures"
         ],
-        "picked": "content-image",
+        "picked": "value-columns",
         "rejected": {
-          "figures": "figures.j2 uses a fixed 3-column grid; two figures leave a third of the slide empty (presenter flagged it)",
-          "value-columns": "one media slot per design; the 1.2.0 media set lives on content-image too, and the two cases read as labeled facts, not a table"
+          "content-image": "two_groups → value-columns (neutral compare) is tested before 'n_images 1–3 supporting prose → content-image'; facts would lose the row pairing (critic reclassify)",
+          "figures": "the two pictures are kept as a media pair beside the grid (media {images:[…]}, split-left as the presenter approved); figures would force per-item cards in a grid"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "El ejemplo de slanted land",
+      "section": "Slanted Land",
       "title": "El Generador: el objetivo opuesto",
       "lead": "Las dos redes leen el mismo número, D(·), pero quieren resultados contrarios.",
       "columns": [
@@ -1126,33 +1126,27 @@
           "kind": "note"
         }
       ],
-      "notes": "El Generador nunca ve una cara real. Aprende solo a través del gradiente que le devuelve el Discriminador por D(G(z)), y por eso su objetivo se define sobre la salida de D. El paper original lo formula así: G se entrena para maximizar la probabilidad de que D se equivoque (Goodfellow et al., 2014).\n\nEl número z es aleatorio para que cada valor produzca una imagen distinta. El conjunto de valores posibles de z forma el espacio latente. Más adelante en la clase, StyleGAN transforma z en un vector de estilo w para controlar los rasgos de la imagen generada.\n\nEn Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. Es la estructura inversa del Discriminador, que recibe 4 píxeles y devuelve 1 número. En una GAN de imágenes reales el esquema es el mismo, pero parte de un vector de ruido y llega a imágenes de hasta 1024×1024 (StyleGAN) con capas de upsampling y convoluciones transpuestas.",
       "_choice": {
         "signals": [
-          "has_table=true (Factor | Discriminador (D) | Generador (G), 3 rows: Entrada / Salida / Quiere)",
-          "two_groups=true (D vs G)",
-          "polarity=false (two networks with opposite goals, neither is the upside)",
-          "labeled_items=1 (the bold 'En redes reales' closing line → highlight)",
-          "n_images=0",
-          "directive=<!-- template: value-columns -->"
+          "author pin: <!-- template: value-columns -->",
+          "has_table=true (Factor | D | G)",
+          "two_groups=true",
+          "n_images=0"
         ],
         "candidates": [
           "value-columns",
-          "pros-cons",
-          "concept-columns",
-          "matrix"
+          "pros-cons"
         ],
         "picked": "value-columns",
         "rejected": {
-          "pros-cons": "catalog: pros-cons is a valenced upside/downside pair; D and G are two opposed roles compared on the same factors, with no polarity",
-          "concept-columns": "catalog: concept-columns columns share no row structure; here every cell answers the shared factor of its row (Entrada, Salida, Quiere) — aligned cells over shared factors → value-columns",
-          "matrix": "catalog: matrix needs two named axes; the left column is one shared factor axis, not a second axis whose position changes a cell's meaning"
+          "pros-cons": "pinned value-columns; and no polarity"
         }
-      }
+      },
+      "notes": "El Generador nunca ve una cara real. Aprende solo a través del gradiente que le devuelve el Discriminador por D(G(z)), y por eso su objetivo se define sobre la salida de D. El paper original lo formula así: G se entrena para maximizar la probabilidad de que D se equivoque (Goodfellow et al., 2014).\n\nEl número z es aleatorio para que cada valor produzca una imagen distinta. El conjunto de valores posibles de z forma el espacio latente. Más adelante en la clase, StyleGAN transforma z en un vector de estilo w para controlar los rasgos de la imagen generada.\n\nEn Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. Es la estructura inversa del Discriminador, que recibe 4 píxeles y devuelve 1 número. En una GAN de imágenes reales el esquema es el mismo, pero parte de un vector de ruido y llega a imágenes de hasta 1024×1024 (StyleGAN) con capas de upsampling y convoluciones transpuestas."
     },
     {
       "template": "content-image",
-      "section": "El ejemplo de slanted land",
+      "section": "Slanted Land",
       "title": "Construyendo el Generador",
       "lead": "**El Generador en acción: z = 0.7 → imagen**",
       "facts": [
@@ -1166,29 +1160,27 @@
       "design": "split-right",
       "media": {
         "src": "images/slide-28-1.jpg",
-        "alt": ""
+        "alt": "Generador: z = 0.7 → imagen 2×2"
       },
       "_choice": {
         "signals": [
           "labeled_items=0",
           "n_images=1",
-          "prose leads the diagram"
+          "image_only=false (two prose facts)"
         ],
         "candidates": [
           "content-image",
-          "content-text",
           "image-full"
         ],
         "picked": "content-image",
         "rejected": {
-          "content-text": "an image is present → content-image",
-          "image-full": "two paragraphs exceed the single framing line image_only allows"
+          "image-full": "two sentences of prose lead the image → content-image"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "El ejemplo de slanted land",
+      "section": "Slanted Land",
       "title": "Proceso de Entrenamiento",
       "lead": "En los slides anteriores definimos los pesos del Discriminador y el Generador a mano (+1, −1, Bias). En la práctica, la red debe aprender esos pesos sola. Para eso necesitamos una forma de medir cuánto se equivocó — esa es la función de error.",
       "highlights": [
@@ -1216,26 +1208,26 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true",
-          "two_groups=true (target 1 vs target 0)",
-          "rows align (fórmula, uso)",
-          "n_images=0 (marker icon waived)"
+          "has_table=true (2 columns, rows: fórmula / cuándo se usa)",
+          "two_groups=true (objetivo 1 vs objetivo 0)",
+          "polarity=false",
+          "n_images=0"
         ],
         "candidates": [
           "value-columns",
-          "concept-columns",
-          "pros-cons"
+          "pros-cons",
+          "concept-columns"
         ],
         "picked": "value-columns",
         "rejected": {
-          "concept-columns": "the two columns align row by row (formula, then when it is used)",
-          "pros-cons": "target 1 vs target 0 are two cases of one formula, not upside vs downside — no polarity"
+          "pros-cons": "no polarity",
+          "concept-columns": "cells align row by row (Error ↔ Error, uso ↔ uso)"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "El ejemplo de slanted land",
+      "section": "Slanted Land",
       "title": "Log-loss: los dos casos del Discriminador",
       "columns": [
         {
@@ -1265,48 +1257,50 @@
       ],
       "highlights": [
         {
-          "label": "La propiedad clave",
-          "body": "**El error es grande cuando la predicción está lejos del objetivo, y pequeño cuando está cerca. Esto guía el aprendizaje en la dirección correcta.**",
+          "body": "**La propiedad clave: el error es grande cuando la predicción está lejos del objetivo, y pequeño cuando está cerca. Esto guía el aprendizaje en la dirección correcta.**",
           "kind": "takeaway"
         }
       ],
-      "notes": "Log-loss es la entropía cruzada binaria. Para una etiqueta y (1 = real, 0 = falsa) y una predicción p, el error vale −[y·ln(p) + (1 − y)·ln(1 − p)]. Con y = 1 sobrevive solo el primer término, −ln(p). Con y = 0 sobrevive solo el segundo, −ln(1 − p). Las dos columnas de la slide son esos dos términos.\n\nEl logaritmo castiga sin tope la confianza equivocada, porque −ln(p) crece hacia infinito cuando p se acerca a 0. Por eso pasar de una predicción de 0.9 a una de 0.1 lleva el error de 0.1 a 2.3. Su derivada también es grande justo cuando el modelo se equivoca, así que el ajuste de pesos es más fuerte donde más hace falta. Un error lineal como 1 − p no tiene ninguna de las dos propiedades.\n\nLas dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imágenes reales y −ln(1 − D(G(z))) con imágenes falsas. El Generador se entrena con el objetivo contrario, que D se equivoque: en la práctica minimiza −ln(D(G(z))), que crece cuando D detecta la falsificación. El paper original formaliza esta tensión como un juego minimax entre G y D (Goodfellow et al., 2014).",
       "_choice": {
         "signals": [
-          "has_table=true (Factor | Imagen real (objetivo 1) | Imagen falsa (objetivo 0), 3 rows: Error / Acierta / Falla)",
-          "two_groups=true (target 1 vs target 0)",
-          "polarity=false (the two columns are the two terms of one formula; Acierta/Falla is a row factor, not a column valence)",
-          "big_metrics=false (0.1 / 2.3 are worked values inside aligned cells, not headline numbers)",
-          "labeled_items=1 (bold 'La propiedad clave' closing line → takeaway)",
-          "n_images=0",
-          "directive=<!-- template: value-columns -->"
+          "author pin: <!-- template: value-columns -->",
+          "has_table=true (Factor | real | falsa)",
+          "two_groups=true",
+          "n_images=0"
         ],
         "candidates": [
           "value-columns",
-          "matrix",
-          "pros-cons",
-          "stat"
+          "pros-cons"
         ],
         "picked": "value-columns",
         "rejected": {
-          "matrix": "catalog: matrix needs two named axes whose position gives a cell its meaning; the row labels (Error, Acierta, Falla) are one shared factor column — 'Error' is not a tick on any outcome axis",
-          "pros-cons": "catalog: pros-cons is a valenced upside/downside pair of groups; real vs falsa are two cases of the same loss, neither column is the upside",
-          "stat": "catalog: stat is for numbers as the payload with captions; here the numbers only make sense read across their row against the formula above them"
+          "pros-cons": "pinned value-columns; and no polarity"
         }
-      }
+      },
+      "notes": "Log-loss es la entropía cruzada binaria. Para una etiqueta y (1 = real, 0 = falsa) y una predicción p, el error vale −[y·ln(p) + (1 − y)·ln(1 − p)]. Con y = 1 sobrevive solo el primer término, −ln(p). Con y = 0 sobrevive solo el segundo, −ln(1 − p). Las dos columnas de la slide son esos dos términos.\n\nEl logaritmo castiga sin tope la confianza equivocada, porque −ln(p) crece hacia infinito cuando p se acerca a 0. Por eso pasar de una predicción de 0.9 a una de 0.1 lleva el error de 0.1 a 2.3. Su derivada también es grande justo cuando el modelo se equivoca, así que el ajuste de pesos es más fuerte donde más hace falta. Un error lineal como 1 − p no tiene ninguna de las dos propiedades.\n\nLas dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imágenes reales y −ln(1 − D(G(z))) con imágenes falsas. El Generador se entrena con el objetivo contrario, que D se equivoque: en la práctica minimiza −ln(D(G(z))), que crece cuando D detecta la falsificación. El paper original formaliza esta tensión como un juego minimax entre G y D (Goodfellow et al., 2014)."
     },
     {
-      "template": "content-image",
-      "section": "El ejemplo de slanted land",
+      "template": "value-columns",
+      "section": "Slanted Land",
       "title": "Loss Function Visualmente",
-      "facts": [
+      "columns": [
         {
-          "label": "🔍 Discriminador — imagen real",
-          "body": "Predicción = 1 (imagen real). Error = −ln(predicción). Predicción baja → alto error. Predicción alta → bajo error. El Discriminador quiere acercarse a 1 cuando ve imágenes reales."
+          "header": "🔍 Discriminador — imagen real",
+          "cells": [
+            "Predicción = 1 (imagen real).",
+            "Error = −ln(predicción).",
+            "Predicción baja → alto error. Predicción alta → bajo error.",
+            "El Discriminador quiere acercarse a 1 cuando ve imágenes reales."
+          ]
         },
         {
-          "label": "🎨 Generador — imagen falsa",
-          "body": "Predicción = 0 (imagen falsa). Error = −ln(1−predicción). Predicción alta → alto error. El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador."
+          "header": "🎨 Generador — imagen falsa",
+          "cells": [
+            "Predicción = 0 (imagen falsa).",
+            "Error = −ln(1−predicción).",
+            "Predicción alta → alto error.",
+            "El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador."
+          ]
         }
       ],
       "design": "split-left",
@@ -1316,24 +1310,27 @@
       },
       "_choice": {
         "signals": [
-          "two labeled facts",
-          "n_images=1 (both plots composed side by side, left = Discriminador, right = Generador)"
+          "untitled in source; bold first line is the on-screen heading",
+          "two_groups=true (Discriminador/imagen real vs Generador/imagen falsa)",
+          "polarity=false",
+          "rows align: objetivo, error, cuándo hay error alto, qué quiere",
+          "n_images=1 (both plots composed into one image, −ln(x) left / −ln(1−x) right)"
         ],
         "candidates": [
-          "content-image",
           "value-columns",
-          "figures"
+          "content-image",
+          "content+cards+image"
         ],
-        "picked": "content-image",
+        "picked": "value-columns",
         "rejected": {
-          "figures": "fixed 3-column grid leaves a third of the slide empty with 2 figures",
-          "value-columns": "banded strip shrinks the plots to illegible and styles column 1 as a factor column"
+          "content-image": "two_groups → value-columns is tested before the image rules; facts would lose the side-by-side reading (critic reclassify); the image stays as media, split-left",
+          "content+cards+image": "the two sides read across row by row → value-columns carrying the image (anti-default check)"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "El ejemplo de slanted land",
+      "section": "Slanted Land",
       "title": "Backpropagation: del error al ajuste de pesos",
       "lead": "Una vez calculado el error, la red lo \"propaga hacia atrás\" para ajustar cada peso:",
       "facts": [
@@ -1360,25 +1357,28 @@
       },
       "_choice": {
         "signals": [
-          "labeled_items=0 (3 short unlabeled lines; their arrow icons are waived)",
-          "n_images=1 (backprop diagram)",
-          "is_ordered=false"
+          "labeled_items=0 (5 plain bullets: a colon-ended lead, 3 lines, a closing line)",
+          "is_ordered=false (no ordinals, no flow)",
+          "date_labels=false",
+          "two_groups=false",
+          "n_images=1",
+          "image_only=false"
         ],
         "candidates": [
           "content-image",
           "process",
-          "figures"
+          "content-text"
         ],
         "picked": "content-image",
         "rejected": {
-          "process": "the three lines are properties of one adjustment, not steps — numbering them would imply a sequence; prose facts beside the diagram is content-image",
-          "figures": "the per-line images were decorative icons (waived)"
+          "process": "the lines carry no order and are not a numbered list; the walk sends 1–3 images supporting prose to content-image",
+          "content-text": "never fall to a plainer template: an image is present → content-image"
         }
       }
     },
     {
       "template": "process",
-      "section": "El ejemplo de slanted land",
+      "section": "Slanted Land",
       "title": "Backpropagation: el procedimiento paso a paso",
       "steps": [
         {
@@ -1400,24 +1400,27 @@
       ],
       "_choice": {
         "signals": [
+          "has_table=true (01/02/03 headers)",
           "labeled_items=4",
-          "is_ordered=true (01–04)",
+          "is_ordered=true (01…04)",
           "date_labels=false",
           "n_images=0"
         ],
         "candidates": [
           "process",
+          "timeline",
           "concept-breakdown"
         ],
         "picked": "process",
         "rejected": {
-          "concept-breakdown": "ordinal labels 01–04 → is_ordered → process"
+          "timeline": "ordinals, not dates",
+          "concept-breakdown": "is_ordered → process"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "El ejemplo de slanted land",
+      "section": "Slanted Land",
       "title": "Backpropagation: ejemplo con Slanted Land",
       "lead": "**Con el error del Discriminador = 1.14 y output D(G(z)) = 0.68, calculamos el ajuste concreto usando la derivada ∂E/∂wᵢ = −[1 − D(x)] · xᵢ:**",
       "columns": [
@@ -1465,7 +1468,7 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true (factor column + 4 value columns, 2 rows)",
+          "has_table=true (Píxel | 4 value columns, 2 rows)",
           "n_images=0",
           "big_metrics=false"
         ],
@@ -1475,21 +1478,15 @@
         ],
         "picked": "value-columns",
         "rejected": {
-          "concept-breakdown": "the rows are computed values read across shared columns; width is a split budget, never a reason to demote"
+          "concept-breakdown": "a factor table read across rows → value-columns; width is never a reason to demote"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "El ejemplo de slanted land",
-      "lead": "**El ciclo completo: Generador y Discriminador juntos**",
-      "highlights": [
-        {
-          "body": "Con z = 0.7, el Generador produce una imagen → el Discriminador la evalúa → output: 0.68. Este único número conecta los dos errores:",
-          "kind": "note",
-          "position": "top"
-        }
-      ],
+      "section": "Slanted Land",
+      "title": "El ciclo completo: Generador y Discriminador juntos",
+      "lead": "Con z = 0.7, el Generador produce una imagen → el Discriminador la evalúa → output: 0.68. Este único número conecta los dos errores:",
       "columns": [
         {
           "header": "Error del Discriminador",
@@ -1507,57 +1504,37 @@
       "design": "split-right",
       "media": {
         "src": "images/slide-35-1.jpg",
-        "alt": ""
+        "alt": "Generador y Discriminador conectados: output 0.68"
       },
       "_choice": {
         "signals": [
-          "has_table=true",
+          "untitled in source; bold first line is the on-screen heading",
+          "has_table=true (2 columns)",
           "two_groups=true (error D vs error G)",
           "polarity=false",
           "n_images=1"
         ],
         "candidates": [
           "value-columns",
-          "content+cards+image",
-          "pros-cons"
+          "pros-cons",
+          "content+cards+image"
         ],
         "picked": "value-columns",
         "rejected": {
-          "content+cards+image": "two sides of one comparison read across; the image rides as media",
-          "pros-cons": "the two errors are not upside vs downside"
-        }
-      }
-    },
-    {
-      "template": "image-full",
-      "section": "El ejemplo de slanted land",
-      "title": "El error del Discriminador",
-      "lead": "El Discriminador recibió una imagen falsa pero le asignó un score de 0.68 (quería dar 0):",
-      "image": {
-        "src": "images/slide-36-1.png",
-        "alt": "Error_D = −ln(1 − 0.68) = −ln(0.32) ≈ 1.14"
-      },
-      "_choice": {
-        "signals": [
-          "n_images=1 on this part (worked calculation slide-36-1.png)",
-          "labeled_items=0",
-          "image_only=true (one framing line ≈ 90 chars, ending in ':')"
-        ],
-        "candidates": [
-          "image-full",
-          "content-image"
-        ],
-        "picked": "image-full",
-        "rejected": {
-          "content-image": "image_only → image-full: one framing line is the image-full lead; no prose leads"
+          "pros-cons": "no polarity",
+          "content+cards+image": "two sides of a comparison → value-columns carrying the image"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "El ejemplo de slanted land",
+      "section": "Slanted Land",
       "title": "El error del Discriminador",
+      "lead": "El Discriminador recibió una imagen falsa pero le asignó un score de 0.68 (quería dar 0):",
       "facts": [
+        {
+          "body": "Error_D = −ln(1 − 0.68) = −ln(0.32) ≈ 1.14"
+        },
         {
           "body": "Un error considerable. El Discriminador va a ajustar sus pesos para clasificar mejor estas imágenes en la próxima iteración — volviéndose más exigente y difícil de engañar."
         }
@@ -1567,12 +1544,17 @@
         "src": "images/slide-36-2.jpg",
         "alt": "Generador y Discriminador: output 0.68, Error = −ln(1−0.68)"
       },
+      "_omitted": [
+        {
+          "src": "images/slide-36-1.png",
+          "reason": "formula"
+        }
+      ],
       "_choice": {
         "signals": [
-          "n_images=1 on this part (network diagram slide-36-2.jpg)",
           "labeled_items=0",
-          "image_only=false (two sentences, ~165 chars)",
-          "body_len=prose"
+          "n_images=1 (diagram)",
+          "formula strip slide-36-1.png (52:1, 66 px) transcribed as text where it sits"
         ],
         "candidates": [
           "content-image",
@@ -1580,44 +1562,28 @@
         ],
         "picked": "content-image",
         "rejected": {
-          "image-full": "image_only allows one ≤ ~120-char framing line; two sentences is prose that leads → content-image"
-        }
-      }
-    },
-    {
-      "template": "image-full",
-      "section": "El ejemplo de slanted land",
-      "lead": "**Para los curiosos: la derivada del error** — La derivada del error del Discriminador respecto a sus pesos permite calcular exactamente cuánto ajustar cada uno:",
-      "image": {
-        "src": "images/slide-37-1.png",
-        "alt": "∂E/∂wᵢ = −[1 − D(x)] xᵢ"
-      },
-      "_choice": {
-        "signals": [
-          "n_images=1 on this part (derivative slide-37-1.png, aspect 36:1)",
-          "labeled_items=0",
-          "image_only=true for this part (kicker + one framing line; the explanation rides with the diagram on the next slide)"
-        ],
-        "candidates": [
-          "image-full",
-          "content-image"
-        ],
-        "picked": "image-full",
-        "rejected": {
-          "content-image": "as content-image + banded the prose caption claimed the height and the 36:1 formula collapsed to a sliver; with the explanation on the diagram half this part is image_only → image-full"
+          "image-full": "prose + the formula lead the diagram → content-image"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "El ejemplo de slanted land",
-      "lead": "Slide opcional — para quien quiera profundizar en la matemática.",
+      "section": "Slanted Land",
+      "title": "Para los curiosos: la derivada del error",
+      "lead": "La derivada del error del Discriminador respecto a sus pesos permite calcular exactamente cuánto ajustar cada uno:",
       "facts": [
+        {
+          "body": "∂E/∂wᵢ = −[1 − D(x)] · xᵢ"
+        },
         {
           "body": "Este cálculo es lo que backpropagation ejecuta automáticamente en cada iteración, para todas las capas y todos los pesos de la red. La regla de la cadena lo hace computacionalmente eficiente incluso con millones de parámetros."
         }
       ],
       "highlights": [
+        {
+          "body": "Slide opcional — para quien quiera profundizar en la matemática.",
+          "kind": "note"
+        },
         {
           "body": "Fuente: A Friendly Introduction to Generative Adversarial Networks — Luis Serrano Academy.",
           "kind": "source"
@@ -1628,12 +1594,18 @@
         "src": "images/slide-37-3.jpg",
         "alt": "Discriminador: predicción, función de error y derivadas"
       },
+      "_omitted": [
+        {
+          "src": "images/slide-37-1.png",
+          "reason": "formula"
+        }
+      ],
       "_choice": {
         "signals": [
-          "n_images=1 on this part (derivation diagram slide-37-3.jpg)",
+          "untitled in source; bold first line is the on-screen heading",
           "labeled_items=0",
-          "prose=1 explanation paragraph + framing line + citation",
-          "image_only=false"
+          "n_images=1 (derivation diagram)",
+          "formula strip slide-37-1.png (36:1, 96 px) transcribed as text where it sits"
         ],
         "candidates": [
           "content-image",
@@ -1641,21 +1613,21 @@
         ],
         "picked": "content-image",
         "rejected": {
-          "image-full": "image_only fails: the explanation paragraph is prose beyond one framing line"
+          "image-full": "two sentences of prose + formula lead the diagram → content-image"
         }
       }
     },
     {
       "template": "section-agenda",
-      "title": "Tipos de GANs y aplicaciones"
+      "title": "Tipos y aplicaciones",
+      "section": "Tipos y aplicaciones"
     },
     {
       "template": "concept-breakdown",
-      "section": "Tipos de GANs y aplicaciones",
+      "section": "Tipos y aplicaciones",
       "title": "Tipos de GANs: el punto de partida",
-      "lead": "Todo lo que describimos corresponde a la Vanilla GAN — el modelo original de Goodfellow (2014). Pero ese modelo base tiene limitaciones importantes, y surgieron variantes especializadas que resuelven problemas concretos.",
       "icons": "none",
-      "format": "grid",
+      "lead": "Todo lo que describimos corresponde a la Vanilla GAN — el modelo original de Goodfellow (2014). Pero ese modelo base tiene limitaciones importantes, y surgieron variantes especializadas que resuelven problemas concretos.",
       "cards": [
         {
           "label": "Vanilla GAN · Goodfellow et al. 2014",
@@ -1676,27 +1648,29 @@
       ],
       "_choice": {
         "signals": [
-          "labeled_items=4 (bold variant names + a 2-col table of two more)",
+          "labeled_items=4 (2 bold headings + a 2-column table)",
+          "has_table=true (1 row, no factor column)",
           "is_ordered=false",
-          "date_labels=false (the years are attributions, the labels are model names)",
-          "n_images=0 (no image refs; vector originals only in comments)",
-          "body_len=prose (one paragraph each, no sub-structure)"
+          "date_labels=false (the years are paper citations inside model names, not period labels; the variants are parallel types)",
+          "n_images=0 (frames removed)"
         ],
         "candidates": [
           "concept-breakdown",
-          "concept-columns",
-          "value-columns"
+          "value-columns",
+          "timeline",
+          "concept-columns"
         ],
         "picked": "concept-breakdown",
         "rejected": {
-          "concept-columns": "catalog concept-columns Not: 'label + a single line per item, with no sub-structure (→ concept-breakdown)'; the no-icons directive is `icons: \"none\"`",
-          "value-columns": "Columns discriminator: each variant is explained on its own terms; no shared factor reads across a row"
+          "value-columns": "has_table=true but the 2-column table is one row with no factor column — reading across a row says nothing, so it is not a table (card per item)",
+          "timeline": "labels name model types; the year is a citation, *when* is not what the slide carries",
+          "concept-columns": "each item is a label + one body (no sub-structure) → concept-breakdown"
         }
       }
     },
     {
       "template": "value-columns",
-      "section": "Tipos de GANs y aplicaciones",
+      "section": "Tipos y aplicaciones",
       "title": "El salto que lo cambió todo: StyleGAN (2018)",
       "lead": "El problema que nadie había resuelto en cuatro años: las GANs generaban imágenes, pero no podías pedirle \"genera una cara joven, con pelo castaño y expresión neutral\". El Generador mezclaba todos los atributos juntos sin control.",
       "highlights": [
@@ -1708,7 +1682,7 @@
         {
           "label": "Style mixing",
           "body": "StyleGAN permite tomar la estructura de una cara (pose, forma) y el estilo de otra (color de pelo, edad) para generar una cara completamente nueva con coherencia total. Esto no era posible en ninguna GAN anterior.",
-          "kind": "example"
+          "kind": "takeaway"
         }
       ],
       "columns": [
@@ -1739,9 +1713,9 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true (componente → qué hace → qué controla)",
-          "labeled_items=0",
-          "n_images=0 (marker icon waived)"
+          "has_table=true (Componente | Qué hace | Qué controla, 3 rows)",
+          "n_images=0",
+          "date_labels=false"
         ],
         "candidates": [
           "value-columns",
@@ -1749,38 +1723,45 @@
         ],
         "picked": "value-columns",
         "rejected": {
-          "concept-breakdown": "the columns read across shared headers (qué hace / qué controla); card-per-row would collapse them into one body"
+          "concept-breakdown": "the columns are shared factors (qué hace / qué controla) read across each component → value-columns"
         }
       }
     },
     {
-      "template": "concept-columns",
-      "section": "Tipos de GANs y aplicaciones",
+      "template": "content+cards+image",
+      "section": "Tipos y aplicaciones",
       "title": "StyleGAN: arquitectura",
-      "lead": "**Dos redes en lugar de una** — StyleGAN separa el proceso en dos redes:",
-      "columns": [
-        {
-          "label": "Mapping Network",
-          "body": "Transforma el ruido z en un vector de estilo w (512 dimensiones)"
-        },
-        {
-          "label": "Synthesis Network",
-          "body": "Genera la imagen progresivamente, inyectando el estilo w en cada capa"
-        }
-      ],
+      "icons": "none",
+      "lead": "**Dos redes en lugar de una**",
       "highlights": [
         {
+          "body": "Caras fotorrealistas generadas por StyleGAN (NVIDIA, 2019)",
+          "kind": "note",
+          "position": "top"
+        },
+        {
+          "body": "StyleGAN separa el proceso en dos redes:",
+          "kind": "note",
+          "position": "top"
+        },
+        {
           "body": "Esto permite controlar atributos separados en cada nivel de resolución: pose y forma en capas bajas, textura y color en capas altas.",
-          "kind": "takeaway"
+          "kind": "note"
         },
         {
           "label": "La clave",
           "body": "El estilo se inyecta en cada capa mediante AdaIN (Adaptive Instance Normalization), no solo al inicio. Esto da control granular sobre cada aspecto visual.",
-          "kind": "important"
+          "kind": "takeaway"
+        }
+      ],
+      "cards": [
+        {
+          "label": "🔀 Mapping Network",
+          "body": "Transforma el ruido z en un vector de estilo w (512 dimensiones)"
         },
         {
-          "body": "Caras fotorrealistas generadas por StyleGAN (NVIDIA, 2019)",
-          "kind": "source"
+          "label": "🎨 Synthesis Network",
+          "body": "Genera la imagen progresivamente, inyectando el estilo w en cada capa"
         }
       ],
       "design": "split-right",
@@ -1790,31 +1771,30 @@
       },
       "_choice": {
         "signals": [
-          "labeled_items=2 (🔀 Mapping Network: …, 🎨 Synthesis Network: …)",
-          "n_images=1 (architecture diagram)",
+          "labeled_items=2 (emoji + 'Label:' lead-ins)",
           "is_ordered=false",
-          "two_groups=false"
+          "two_groups=false",
+          "n_images=1 (architecture diagram)"
         ],
         "candidates": [
-          "concept-columns",
           "content+cards+image",
-          "concept-breakdown",
-          "value-columns"
+          "content-image",
+          "concept-columns"
         ],
-        "picked": "concept-columns",
+        "picked": "content+cards+image",
         "rejected": {
-          "content+cards+image": "presenter directive (no per-item icons): concept-breakdown / content+cards+image content-match a Material icon onto every card; concept-columns carries the same label + body panels with no glyph",
-          "concept-breakdown": "presenter directive (no per-item icons): concept-breakdown / content+cards+image content-match a Material icon onto every card; concept-columns carries the same label + body panels with no glyph",
-          "value-columns": "two components of one architecture, nothing compared across a shared factor"
+          "content-image": "labeled set ≥2 + one shared image → content+cards+image; never dissolve labels into facts",
+          "concept-columns": "each network is a label + one line, no sub-structure"
         }
       }
     },
     {
-      "template": "concept-columns",
-      "section": "Tipos de GANs y aplicaciones",
+      "template": "concept-breakdown",
+      "section": "Tipos y aplicaciones",
       "title": "StyleGAN: Innovaciones Clave (Resumen)",
+      "icons": "none",
       "lead": "StyleGAN (NVIDIA) redefine la generación de imágenes al modificar únicamente el Generador, manteniendo el Discriminador estándar. Sus tres innovaciones arquitectónicas permiten control fino sobre el estilo y alta calidad visual.",
-      "columns": [
+      "cards": [
         {
           "label": "Progressive Growing",
           "body": "Entrena comenzando con imágenes de 4×4 píxeles y agrega capas progresivamente hasta 1024×1024. Mejora la estabilidad del entrenamiento y la calidad final."
@@ -1836,30 +1816,29 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true (3 innovations over one description row)",
+          "has_table=true (one row: 3 labeled innovations)",
           "labeled_items=3",
           "is_ordered=false",
-          "n_images=0",
-          "body_len=prose (~150–200 chars)"
+          "n_images=0"
         ],
         "candidates": [
-          "concept-columns",
           "concept-breakdown",
-          "value-columns"
+          "value-columns",
+          "concept-columns"
         ],
-        "picked": "concept-columns",
+        "picked": "concept-breakdown",
         "rejected": {
-          "concept-breakdown": "presenter directive (no per-item icons): concept-breakdown / content+cards+image content-match a Material icon onto every card; concept-columns carries the same label + body panels with no glyph",
-          "value-columns": "one description per innovation, nothing read across a shared factor"
+          "value-columns": "one row of heterogeneous items — nothing reads across",
+          "concept-columns": "each innovation is a label + one body, no sub-structure"
         }
       }
     },
     {
       "template": "content+cards+image",
-      "section": "Tipos de GANs y aplicaciones",
+      "section": "Tipos y aplicaciones",
       "title": "Fortaleza 1: Generación de imágenes realistas",
-      "lead": "El resultado más sorprendente de las GANs: imágenes que el ojo humano no puede distinguir de las reales. Después de millones de rondas de entrenamiento, el Generador aprendió la estructura profunda de cómo lucen esas imágenes — proporciones, distribución de luz, imperfecciones que hacen que algo parezca real.",
       "icons": "none",
+      "lead": "El resultado más sorprendente de las GANs: imágenes que el ojo humano no puede distinguir de las reales. Después de millones de rondas de entrenamiento, el Generador aprendió la estructura profunda de cómo lucen esas imágenes — proporciones, distribución de luz, imperfecciones que hacen que algo parezca real.",
       "cards": [
         {
           "label": "ThisPersonDoesNotExist.com",
@@ -1879,15 +1858,12 @@
         "src": "images/slide-43-1.png",
         "alt": "Ilustración: rostro"
       },
-      "notes": "El 21,3 % es la tasa de error de los jueces humanos, y no un porcentaje de realismo del modelo. Si las muestras fueran indistinguibles, los jueces acertarían al azar y el error llegaría al 50 %. Con CIFAR-10 los jueces se equivocaron una de cada cinco veces, así que todavía detectaban la mayoría de las falsificaciones. Con MNIST, en cambio, no las distinguían.\n\nEs el único estudio ciego con jueces humanos y un número publicado en el corpus de la clase, junto con el MOS de SRGAN. Sirve como modelo de cómo validar el realismo de un generador: jueces ciegos, una tarea definida y una tasa de error reportada.",
       "_choice": {
         "signals": [
-          "labeled_items=3 (bold heading + one bullet each)",
-          "n_images=1 (slide-43-1.png, 1406×2108, manifest role figura → content)",
+          "labeled_items=3 (bold headings + paragraph)",
           "is_ordered=false",
-          "date_labels=false",
-          "big_metrics=false (21,3 % sits inside a sentence; the prose is the payload)",
-          "two_groups=false"
+          "big_metrics=false",
+          "n_images=1 (atmospheric illustration)"
         ],
         "candidates": [
           "content+cards+image",
@@ -1896,14 +1872,15 @@
         ],
         "picked": "content+cards+image",
         "rejected": {
-          "content-image": "catalog: 'labeled_items ≥ 2 and one shared supporting image → content+cards+image … do not dissolve the labels into content-image facts'",
-          "concept-breakdown": "requires images == 0; would drop the shared illustration"
+          "content-image": "labeled set ≥2 + one shared image → content+cards+image",
+          "concept-breakdown": "requires images == 0"
         }
-      }
+      },
+      "notes": "El 21,3 % es la tasa de error de los jueces humanos, y no un porcentaje de realismo del modelo. Si las muestras fueran indistinguibles, los jueces acertarían al azar y el error llegaría al 50 %. Con CIFAR-10 los jueces se equivocaron una de cada cinco veces, así que todavía detectaban la mayoría de las falsificaciones. Con MNIST, en cambio, no las distinguían.\n\nEs el único estudio ciego con jueces humanos y un número publicado en el corpus de la clase, junto con el MOS de SRGAN. Sirve como modelo de cómo validar el realismo de un generador: jueces ciegos, una tarea definida y una tasa de error reportada."
     },
     {
       "template": "value-columns",
-      "section": "Tipos de GANs y aplicaciones",
+      "section": "Tipos y aplicaciones",
       "title": "Fortaleza 2: Transformación de imágenes (Image Translation)",
       "lead": "Las GANs pueden transformar una imagen en otra y conservar la estructura subyacente. Pix2Pix aprende de pares de imágenes alineadas. CycleGAN aprende sin pares, y para muchas tareas no hay pares disponibles. En medicina, la misma técnica convierte MRI en CT sin escanear dos veces al paciente, lo que reduce costes, tiempo y exposición a radiación.",
       "columns": [
@@ -1943,7 +1920,7 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true (input → output → modelo, 6 rows)",
+          "has_table=true (Input | Output | Modelo, 6 rows)",
           "n_images=0"
         ],
         "candidates": [
@@ -1952,13 +1929,13 @@
         ],
         "picked": "value-columns",
         "rejected": {
-          "concept-breakdown": "each row maps input → output → model and reads across; the columns are shared factors, so card-per-row would lose the alignment"
+          "concept-breakdown": "a lookup table (Input → Output, Modelo) whose headers are load-bearing → value-columns"
         }
       }
     },
     {
       "template": "content-image",
-      "section": "Tipos de GANs y aplicaciones",
+      "section": "Tipos y aplicaciones",
       "title": "Fortaleza 3: Completado de imágenes (Image Inpainting)",
       "lead": "Las GANs pueden reconstruir regiones faltantes de forma coherente con el contexto. La red recibe una imagen con una región enmascarada e infiere el contenido más probable basándose en colores, texturas y estructuras adyacentes. No copia píxeles cercanos — entiende el contenido semántico de la escena completa.",
       "facts": [
@@ -1970,33 +1947,28 @@
       "design": "column-right",
       "media": {
         "src": "images/slide-45-1.png",
-        "alt": ""
+        "alt": "Ilustración: cruz médica"
       },
       "_choice": {
         "signals": [
-          "labeled_items=1 (Tomografías con dosis reducida)",
-          "n_images=1 (slide-45-1.png, 1408×2112, manifest role figura → content)",
-          "prose lead = 3 sentences",
-          "image_only=false (prose past one framing line)"
+          "labeled_items=1",
+          "n_images=1 (atmospheric illustration)"
         ],
         "candidates": [
           "content-image",
-          "single-point",
-          "image-full"
+          "single-point"
         ],
         "picked": "content-image",
         "rejected": {
-          "single-point": "catalog: 'labeled_items == 1 … If an image supports it → content-image'",
-          "image-full": "image_only requires no prose beyond one ≤ ~120-char framing line; the lead is three sentences"
+          "single-point": "labeled_items == 1 with a supporting image → content-image with the point as a caption fact"
         }
       }
     },
     {
       "template": "concept-breakdown",
-      "section": "Tipos de GANs y aplicaciones",
+      "section": "Tipos y aplicaciones",
       "title": "Fortaleza 4: Generación de datos sintéticos para entrenamiento",
       "icons": "none",
-      "format": "grid",
       "cards": [
         {
           "label": "El cuello de botella: los datos de entrenamiento",
@@ -2013,43 +1985,41 @@
           "kind": "example"
         }
       ],
-      "notes": "Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos datos sin etiquetar. Es la barrera de coste de la slide 1.3: etiquetar cuesta horas de especialistas, y las imágenes sin etiquetar sobran. Salimans et al. (2016) lo atacaron con una GAN y lograron el estado del arte en MNIST, CIFAR-10 y SVHN.\n\nEn el paper, el Discriminador funciona también como clasificador: además de las clases del dataset, aprende una clase extra para las imágenes que produce el Generador. Así, las imágenes generadas entran al entrenamiento del clasificador. Este mecanismo está en el cuerpo del paper (sección de aprendizaje semi-supervisado) y no en la captura del corpus, que solo tiene el abstract.",
       "_choice": {
         "signals": [
-          "labeled_items=2 (two bold headings, each with one bullet)",
-          "is_ordered=false",
-          "two_groups=false",
-          "polarity=false (problem → solution, not upside/downside)",
-          "n_images=0",
-          "the Salimans bullet is the supporting example → highlights"
+          "labeled_items=2 (bold subheads, each with a paragraph)",
+          "two_groups=true? (problem → solution, not a compare over shared factors)",
+          "polarity=false",
+          "n_images=0"
         ],
         "candidates": [
           "concept-breakdown",
-          "concept-columns",
-          "pros-cons"
+          "pros-cons",
+          "value-columns"
         ],
         "picked": "concept-breakdown",
         "rejected": {
-          "concept-columns": "catalog concept-columns Not: 'label + a single line per item, with no sub-structure (→ concept-breakdown)'; the no-icons directive is `icons: \"none\"`",
-          "pros-cons": "needs polarity; a problem and its solution are not the upside and downside of one decision"
+          "pros-cons": "problem/solution is not upside/downside of one option",
+          "value-columns": "nothing aligns row by row; two labeled concepts"
         }
-      }
+      },
+      "notes": "Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos datos sin etiquetar. Es la barrera de coste de la slide 1.3: etiquetar cuesta horas de especialistas, y las imágenes sin etiquetar sobran. Salimans et al. (2016) lo atacaron con una GAN y lograron el estado del arte en MNIST, CIFAR-10 y SVHN.\n\nEn el paper, el Discriminador funciona también como clasificador: además de las clases del dataset, aprende una clase extra para las imágenes que produce el Generador. Así, las imágenes generadas entran al entrenamiento del clasificador. Este mecanismo está en el cuerpo del paper (sección de aprendizaje semi-supervisado) y no en la captura del corpus, que solo tiene el abstract."
     },
     {
       "template": "value-columns",
-      "section": "Tipos de GANs y aplicaciones",
+      "section": "Tipos y aplicaciones",
       "title": "El dataset importa: lo que le das es lo que obtenés",
       "lead": "Una GAN solo puede generar lo que aprendió. Si el dataset mezcla clases sin etiquetas, el Generador produce híbridos incoherentes, inútiles para entrenar clasificadores. Cada clase del dataset tiene que ser homogénea, o hace falta una Conditional GAN.",
       "columns": [
         {
           "header": "Tipo de dataset",
+          "factor": true,
           "cells": [
             "Solo imágenes de gatos",
             "Solo imágenes de perros",
             "Gatos + perros sin etiqueta",
             "Gatos + perros con etiqueta (cGAN)"
-          ],
-          "factor": true
+          ]
         },
         {
           "header": "Lo que genera la GAN",
@@ -2064,29 +2034,30 @@
       "highlights": [
         {
           "body": "Antes de entrenar hay que validar el dataset como cualquier entrada de un pipeline de datos: limpio, bien etiquetado y homogéneo dentro de cada clase.",
-          "kind": "important"
+          "kind": "takeaway"
         }
       ],
       "_choice": {
         "signals": [
-          "has_table=true (lookup: tipo de dataset → lo que genera)",
-          "labeled_items=0",
-          "n_images=0",
-          "factor column: 2-column lookup whose first column holds the row keys → columns[0].factor=true"
+          "has_table=true (2-column lookup: Tipo de dataset → Lo que genera)",
+          "n_images=0"
         ],
         "candidates": [
           "value-columns",
-          "concept-breakdown"
+          "concept-breakdown",
+          "pros-cons"
         ],
         "picked": "value-columns",
         "rejected": {
-          "concept-breakdown": "a two-column lookup whose headers carry meaning stays value-columns; card-per-row would drop the headers"
+          "concept-breakdown": "a lookup table whose two headers are load-bearing → value-columns (factor column set)",
+          "pros-cons": "not two valenced groups"
         }
       }
     },
     {
       "template": "section-agenda",
-      "title": "Limitaciones y cierre"
+      "title": "Limitaciones y cierre",
+      "section": "Limitaciones y cierre"
     },
     {
       "template": "concept-columns",
@@ -2110,12 +2081,10 @@
       },
       "_choice": {
         "signals": [
-          "has_table=true (2 columns × 1 row; Mode Collapse cell has a second paragraph after <br>)",
-          "labeled_items=2 (table headers)",
-          "n_images=1 (slide-49-1.png, 1408×2112, manifest role figura → content; no other image refs)",
-          "two_groups=false",
-          "polarity=false (both are downsides)",
-          "body_len=prose (~300 chars, 3 sentences per column)"
+          "has_table=true (2 columns, 1 cell each)",
+          "labeled_items=2",
+          "two_groups=false (two problems, no shared rows: col 1 has a definition + an analogy paragraph, col 2 one paragraph)",
+          "n_images=1 (atmospheric illustration)"
         ],
         "candidates": [
           "concept-columns",
@@ -2124,16 +2093,17 @@
         ],
         "picked": "concept-columns",
         "rejected": {
-          "content+cards+image": "Columns discriminator: columns that share no row structure, each explaining its own term → concept-columns; the Mode Collapse column carries its own sub-structure (explanation + an analogy paragraph), which a card's label + one body cannot hold",
-          "value-columns": "nothing lines up across a shared row factor"
+          "content+cards+image": "column 1 carries a second paragraph (the analogy) — sub-structure a single card body cannot hold; concept-columns takes the shared image via design",
+          "value-columns": "nothing reads across a row"
         }
       }
     },
     {
-      "template": "concept-columns",
+      "template": "concept-breakdown",
       "section": "Limitaciones y cierre",
       "title": "Limitaciones (2 de 2): evaluación, coste y sesgo",
-      "columns": [
+      "icons": "none",
+      "cards": [
         {
           "label": "Dificultad para evaluar la calidad",
           "body": "No existe una métrica universal. Las más usadas — FID e Inception Score (IS) — son aproximaciones imperfectas que no reemplazan la evaluación humana experta."
@@ -2149,21 +2119,20 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true (3 limitations over one description row)",
+          "has_table=true (one row: 3 labeled limitations)",
           "labeled_items=3",
           "is_ordered=false",
-          "n_images=0",
-          "body_len=prose (~150–170 chars)"
+          "n_images=0"
         ],
         "candidates": [
-          "concept-columns",
           "concept-breakdown",
-          "value-columns"
+          "value-columns",
+          "concept-columns"
         ],
-        "picked": "concept-columns",
+        "picked": "concept-breakdown",
         "rejected": {
-          "concept-breakdown": "presenter directive (no per-item icons): concept-breakdown / content+cards+image content-match a Material icon onto every card; concept-columns carries the same label + body panels with no glyph",
-          "value-columns": "one description per limitation, nothing read across a shared factor"
+          "value-columns": "one row of heterogeneous items — nothing reads across",
+          "concept-columns": "each item is a label + one body"
         }
       }
     },
@@ -2196,9 +2165,9 @@
       ],
       "_choice": {
         "signals": [
-          "has_table=true (two tables headed 01–05)",
+          "has_table=true (01…05 headers)",
           "labeled_items=5",
-          "is_ordered=true (01…05, the narrative order)",
+          "is_ordered=true (01…05, the narrative order of the class)",
           "is_cta=false",
           "n_images=0"
         ],
@@ -2209,15 +2178,15 @@
         ],
         "picked": "process",
         "rejected": {
-          "concept-breakdown": "ordinal headers 01–05 → is_ordered → process",
-          "closing-cta": "the items recap concepts, not next steps / resources / links"
+          "concept-breakdown": "is_ordered (01…05) → process",
+          "closing-cta": "the items are a recap of concepts, not next steps / resources / links"
         }
       }
     }
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "095e544e6baf7cf81110d438ffa960872e3f82273139e1bb5c1171e0f31b9704",
-    "bytes": 58167
+    "sha256": "eff252cdda955c3afdc343b1ee5e79cc30953b283fc6e32126afdd5f91ce170b",
+    "bytes": 58093
   }
 }

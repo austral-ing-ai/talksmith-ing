@@ -1,6 +1,6 @@
 # memory.md — redes-generativas-antagonicas
 
-**Current step:** 7 — Render in_progress (re-FILL completo con 1.3.0)
+**Current step:** 7 — Render complete
 **Topic:** Redes generativas antagónicas (GANs) — clase importada tal cual desde AIG4B (Clase 8, Biomedicina)
 **Folder:** talks/redes-generativas-antagonicas/
 **Started:** 2026-10-17
@@ -102,3 +102,7 @@
 - Asks log:
   - Presenter: "Regenera le mapping de draft a polish" → re-derive final.md from draft.md and rebuild output/slide-model.json from scratch with Talksmith 1.3.0 (no reuse of the old model).
 - What was decided: cp draft.md → final.md; 0 ASCII, 0 generate-image; rescue-open 2; strip_feedback 60; 26 image refs → images/ (0 missing). Result byte-identical to the previous final.md. Previous model backed up to scratchpad/gan-model.before-refill.json.
+- 2026-10-17 — Presenter: "Revisar de acortar en nombre de las secciones." → sections renamed in draft/final (H1 + Agenda): 1 IA generativa de visión · 2 Introducción a las GANs · 3 Slanted Land · 4 Tipos y aplicaciones · 5 Limitaciones y cierre (also fixes imported lowercase 'ia'/'gans'). Plugin now 1.3.1 (section-agenda type scales; too-small-to-read warning).
+- 2026-10-17 — Render closed (Talksmith 1.3.1 scripts; FILL done fresh from final.md, 1.3.0/1.3.1 catalog): 45 content slides + 5 section agendas + cover = 51 deck pages; new section names in deck.sections and every slide. No icons anywhere (icons: "none" on all card slides; 0 icon glyphs in the HTML). 3 formula strips (slide-25-1, 36-1, 37-1) transcribed as text and omitted (`_omitted: formula`); 0 thumbnails. Classification critique: 45 critics → 41 confirm, 2 reclassify applied (3.9 «Pongamos todo junto» and 3.14 «Loss Function Visualmente» → aligned 2-column grid, keeping the split-left picture pair / composed plot, Discriminador left · Generador right), 2 weak-trace rewritten (3.15, 4.1). Audits: all 7 ok (no untitled-slide warnings: the bold first line is the on-screen title). Render fresh. Screenshot fixes: 3.1 Slanted Land was clipped (problem line moved into the top band, now fits); 3.8 Sigmoid formula moved to the bottom band (legible). Too-small-to-read (split candidates, not split): deck slides 5, 6, 8, 14, 16, 18, 19, 24, 25, 33, 39, 40, 41, 43, 44, 47, 49.
+- Status: complete
+- Files created/modified: output/slide-model.json, output/html/index.html, talksmith-index.html (repo index.html is hand-written, left alone)

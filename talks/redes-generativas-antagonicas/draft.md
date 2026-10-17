@@ -27,17 +27,17 @@ date: 2026-10-21
 
 **Sections (in delivery order):**
 
-- 1. Panorama de la ia generativa de visión
-- 2. Introducción a las gans
-- 3. El ejemplo de slanted land
-- 4. Tipos de GANs y aplicaciones
+- 1. IA generativa de visión
+- 2. Introducción a las GANs
+- 3. Slanted Land
+- 4. Tipos y aplicaciones
 - 5. Limitaciones y cierre
 
 **Presenter feedback:**
 
 ---
 
-# 1. Panorama de la ia generativa de visión
+# 1. IA generativa de visión
 
 **Goal of this section:**
 
@@ -258,7 +258,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ---
 
-# 2. Introducción a las gans
+# 2. Introducción a las GANs
 
 **Goal of this section:**
 
@@ -458,7 +458,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ---
 
-# 3. El ejemplo de slanted land
+# 3. Slanted Land
 
 **Goal of this section:**
 
@@ -1033,7 +1033,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-# 4. Tipos de GANs y aplicaciones
+# 4. Tipos y aplicaciones
 
 **Goal of this section:**
 
