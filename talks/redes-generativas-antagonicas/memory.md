@@ -1,6 +1,6 @@
 # memory.md — redes-generativas-antagonicas
 
-**Current step:** 6 — Polish complete (final.md re-derivado; output/ desactualizado hasta re-renderizar Step 7)
+**Current step:** 7 — Render in_progress (re-FILL completo con 1.3.0)
 **Topic:** Redes generativas antagónicas (GANs) — clase importada tal cual desde AIG4B (Clase 8, Biomedicina)
 **Folder:** talks/redes-generativas-antagonicas/
 **Started:** 2026-10-17
@@ -96,3 +96,9 @@
 - Status: complete
 - What was decided: el presentador movió la clase (el 14/10 no hubo clase): GANs pasa al miércoles 21 de octubre (clase 11). `date:` 2026-10-28 → 2026-10-21 en draft.md y final.md; README.md e index.html ya actualizados por la otra sesión.
 - Files created/modified: draft.md, final.md (frontmatter)
+
+## 2026-10-17 — Step 6 (Polish) + Step 7 (Render) — regeneración draft → final → modelo con 1.3.0
+- Status: in_progress
+- Asks log:
+  - Presenter: "Regenera le mapping de draft a polish" → re-derive final.md from draft.md and rebuild output/slide-model.json from scratch with Talksmith 1.3.0 (no reuse of the old model).
+- What was decided: cp draft.md → final.md; 0 ASCII, 0 generate-image; rescue-open 2; strip_feedback 60; 26 image refs → images/ (0 missing). Result byte-identical to the previous final.md. Previous model backed up to scratchpad/gan-model.before-refill.json.
