@@ -54,7 +54,7 @@ date: 2026-10-21
 | 01 | 02 | 03 |
 |---|---|---|
 | ¿Qué hace diferente a la IA generativa? | ¿Por qué importa en ingeniería? | ¿Qué modelos existen? |
-| En qué se distingue conceptualmente de otros tipos de IA visual. | Qué problemas de datos resuelve al construir sistemas con modelos de visión. | Un mapa de GANs, Diffusion Networks y SAM — y cuándo usar cada uno. |
+| En qué se distingue conceptualmente de otros tipos de IA visual. | Qué problemas de datos resuelve al construir sistemas con modelos de visión. | Un mapa de GANs, Diffusion Networks y CNN — y cuándo usar cada uno. |
 
 ### Sources
 
@@ -189,7 +189,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ### Content
 
-- Tres familias de redes generativas — tres bloques temáticos dedicados. Cada modelo responde una pregunta diferente: al final del curso, sabremos cuándo usar cada uno.
+- Tres familias de redes — tres bloques temáticos dedicados. Cada modelo responde una pregunta diferente: al final del curso, sabremos cuándo usar cada uno.
 
 <!-- original vectorial: research/corpus/AIG4B-Clase-8-GANs.md/images/slide-07-1.svg -->
 
@@ -201,7 +201,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 **Diffusion Networks**
 
-**SAM — Segment Anything Model (Meta, 2023)**
+**CNN — Redes neuronales convolucionales**
 
 - Aprenden a reconstruir una imagen desde el ruido, paso a paso. Motor de Stable Diffusion, DALL·E y Midjourney.
 - Pregunta: ¿Cómo generar imágenes diversas y controlables a partir de una descripción?
@@ -209,13 +209,13 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 - Dos redes que compiten: una genera, la otra evalúa. Motor de los deepfakes, de StyleGAN y de la generación de datos sintéticos (imágenes médicas, entre otras).
 - Pregunta: ¿Cómo generar imágenes realistas que "engañen" a un evaluador?
 
-- No genera imágenes — las entiende. Puede segmentar cualquier objeto en cualquier imagen con precisión quirúrgica. Es prompteable: se guía con puntos, cajas o máscaras.
-- Pregunta: ¿Cómo identificar y aislar cualquier objeto de una imagen de forma automatizada e interactiva?
+- No generan imágenes — las analizan. Aprenden filtros que detectan bordes, texturas y formas, y los combinan capa a capa. Son la base del Discriminador de una GAN como DCGAN.
+- Pregunta: ¿Cómo reconoce una red qué hay en una imagen?
 
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 7)
-- `sam-kirillov-2023.web.md` (modelo promptable, transfiere zero-shot a imágenes y tareas nuevas)
+- `dcgan-radford-2015.web.md` (las CNN en visión supervisada y como base de DCGAN). El resto de la descripción de CNN es redacción de la cátedra (reemplaza a SAM a pedido del presentador, 2026-10-17: el curso ve CNN en la clase 12).
 
 ### Speaker notes
 
@@ -234,20 +234,20 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 - Esta tabla no es para memorizar — es para consultar cuando tengas un problema real y necesites decidir qué herramienta usar.
 
-| Criterio | GANs | Diffusion Networks | SAM |
+| Criterio | GANs | Diffusion Networks | CNN |
 |---|---|---|---|
-| ¿Para qué sirve? | Generar imágenes realistas, transformar modalidades, aumentar datos | Generar imágenes desde texto o guías visuales con alta diversidad | Segmentar y aislar estructuras en imágenes existentes |
+| ¿Para qué sirve? | Generar imágenes realistas, transformar modalidades, aumentar datos | Generar imágenes desde texto o guías visuales con alta diversidad | Reconocer qué hay en una imagen: clasificar, detectar y segmentar |
 | Velocidad | Muy rápida (una pasada) | Lenta (muchos pasos iterativos) | Muy rápida |
-| Control | Moderado | Alto (guiado por texto) | Alto (guiado por puntos o cajas) |
-| Fortaleza | Velocidad + realismo | Diversidad + controlabilidad | Precisión de segmentación |
+| Control | Moderado | Alto (guiado por texto) | No aplica (no genera contenido) |
+| Fortaleza | Velocidad + realismo | Diversidad + controlabilidad | Detectar patrones locales con pocos parámetros (filtros compartidos) |
 | Limitación | Inestabilidad, mode collapse | Lento, costoso computacionalmente | No genera contenido nuevo |
-| Caso de uso típico | Super-resolución (SRGAN), traducción de imágenes (Pix2Pix, CycleGAN) | Imágenes desde texto (Stable Diffusion, DALL·E, Midjourney) | Segmentar cualquier objeto y asistir el etiquetado de datasets |
+| Caso de uso típico | Super-resolución (SRGAN), traducción de imágenes (Pix2Pix, CycleGAN) | Imágenes desde texto (Stable Diffusion, DALL·E, Midjourney) | Clasificación de imágenes, detección de objetos; Discriminador de DCGAN |
 
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 8; Stable Diffusion, DALL·E y Midjourney como motores de difusión, slides 6–7)
 - `srgan-ledig-2017.web.md`, `pix2pix-isola-2017.web.md`, `cyclegan-zhu-2017.web.md` (casos de las GANs)
-- `sam-kirillov-2023.web.md` (modelo promptable; el modelo ayudó a etiquetar SA-1B dentro de un bucle de recolección de datos)
+- `dcgan-radford-2015.web.md` (CNN como base de DCGAN). Columna CNN redactada por la cátedra (reemplaza a SAM a pedido del presentador, 2026-10-17).
 
 ### Speaker notes
 
@@ -477,14 +477,10 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 - Imagina un mundo peculiar llamado Slanted Land, donde absolutamente todo se inclina: los árboles, las casas, las personas e incluso la pizza que comen los gatos. En este universo, la norma es la inclinación.
 - Los habitantes de Slanted Land solo conocen rostros con una ligera inclinación. Para ellos, un rostro completamente recto sería una anomalía, algo totalmente extraño e incomprensible.
 
-- El problema urgente: la app de citas de Slanted Land, TiltedTinder, necesita generar fotos de perfil para sus usuarios. Pero solo tienen 4 fotos reales en toda su base de datos. Con tan pocos datos, nadie encuentra pareja. ¡La supervivencia romántica de toda una civilización inclinada depende de nuestra GAN! 💘
-
 | Universo Inclinado | Rostros "Normales" |
 |---|---|
 | Todo, desde la gravedad hasta las cejas de sus habitantes, está en un ángulo distintivo. | Solo existen los rostros inclinados; un rostro recto les resulta completamente alienígena. |
 
-<!-- enlace de la forma: https://www.youtube.com/watch?v=8L11aMN5KY8&t=16s -->
-- [Basado en «A Friendly Introduction to Generative Adversarial Networks», de Luis Serrano (ver video)](https://www.youtube.com/watch?v=8L11aMN5KY8&t=16s)
 
 ### Sources
 
@@ -499,8 +495,32 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
   Resolution: Crédito corregido: el tutorial y el video son de Luis Serrano («A Friendly Introduction to Generative Adversarial Networks»), no de Rowel Atienza (inconsistencia #1). Fuente serrano-gans-lab agregada.
 
 ---
+## 2. El problema urgente
 
-## 2. El mundo de Slanted Land
+<!-- slide 18 del pptx original (segunda mitad; partida a pedido del presentador, 2026-10-17) -->
+
+### Content
+
+- La app de citas de Slanted Land, TiltedTinder, necesita generar fotos de perfil para sus usuarios. Pero solo tienen 4 fotos reales en toda su base de datos. Con tan pocos datos, nadie encuentra pareja. ¡La supervivencia romántica de toda una civilización inclinada depende de nuestra GAN! 💘
+
+<!-- enlace de la forma: https://www.youtube.com/watch?v=8L11aMN5KY8&t=16s -->
+- [Basado en «A Friendly Introduction to Generative Adversarial Networks», de Luis Serrano (ver video)](https://www.youtube.com/watch?v=8L11aMN5KY8&t=16s)
+
+### Sources
+
+- `AIG4B-Clase-8-GANs.md.md` (slide 18). Párrafo «El problema urgente» del slide original, separado en su propia lámina para descargar la anterior; el rótulo pasa a ser el título.
+- `serrano-gans-lab.web.md` (Slanted Land es el mundo didáctico de Serrano)
+
+### Speaker notes
+
+### Presenter feedback
+
+- [closed] 2026-10-17 — "Hace un split del sdlide \"El Problema: ¡Bienvenidos a Slanted Land! 🌀 en 2 para que no quede tan cargao"
+  Resolution: Partida en dos: 3.1 conserva el mundo, los habitantes, las dos tarjetas y la ilustración; 3.2 «El problema urgente» lleva TiltedTinder y el crédito a Serrano. Texto sin cambios.
+
+---
+
+## 3. El mundo de Slanted Land
 
 <!-- slide 19 del pptx original -->
 
@@ -522,7 +542,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ---
 
-## 3. (sin título)
+## 4. (sin título)
 
 <!-- slide 20 del pptx original -->
 
@@ -549,7 +569,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ---
 
-## 4. Caras vs. ruido: los dos tipos de imágenes
+## 5. Caras vs. ruido: los dos tipos de imágenes
 
 <!-- slide 21 del pptx original -->
 
@@ -571,7 +591,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ---
 
-## 5. (sin título)
+## 6. (sin título)
 
 <!-- slide 22 del pptx original -->
 
@@ -600,7 +620,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ---
 
-## 6. Construyendo el Discriminador
+## 7. Construyendo el Discriminador
 
 <!-- slide 23 del pptx original -->
 
@@ -627,7 +647,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ---
 
-## 7. (sin título)
+## 8. (sin título)
 
 <!-- slide 24 del pptx original -->
 
@@ -660,7 +680,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ---
 
-## 8. Función Sigmoid: la activación del Discriminador
+## 9. Función Sigmoid: la activación del Discriminador
 
 <!-- slide 25 del pptx original -->
 
@@ -686,7 +706,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ---
 
-## 9. Pongamos todo junto del Discriminador
+## 10. Pongamos todo junto del Discriminador
 
 <!-- slide 26 del pptx original -->
 
@@ -714,7 +734,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ---
 
-## 10. El Generador: el objetivo opuesto
+## 11. El Generador: el objetivo opuesto
 
 <!-- template: value-columns -->
 
@@ -753,7 +773,7 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 
 ---
 
-## 11. Construyendo el Generador
+## 12. Construyendo el Generador
 
 <!-- slide 28 del pptx original -->
 
@@ -776,7 +796,7 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 
 ---
 
-## 12. Proceso de Entrenamiento
+## 13. Proceso de Entrenamiento
 
 <!-- slide 29 del pptx original -->
 
@@ -802,7 +822,7 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 
 ---
 
-## 13. Log-loss: los dos casos del Discriminador
+## 14. Log-loss: los dos casos del Discriminador
 
 <!-- template: value-columns -->
 
@@ -839,7 +859,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 14. (sin título)
+## 15. (sin título)
 
 <!-- slide 31 del pptx original -->
 
@@ -867,7 +887,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 15. Backpropagation: del error al ajuste de pesos
+## 16. Backpropagation: del error al ajuste de pesos
 
 <!-- slide 32 del pptx original -->
 
@@ -898,7 +918,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 16. Backpropagation: el procedimiento paso a paso
+## 17. Backpropagation: el procedimiento paso a paso
 
 <!-- slide 33 del pptx original -->
 
@@ -930,7 +950,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 17. Backpropagation: ejemplo con Slanted Land
+## 18. Backpropagation: ejemplo con Slanted Land
 
 <!-- slide 34 del pptx original -->
 
@@ -955,7 +975,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 18. (sin título)
+## 19. (sin título)
 
 <!-- slide 35 del pptx original -->
 
@@ -981,7 +1001,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 19. El error del Discriminador
+## 20. El error del Discriminador
 
 <!-- slide 36 del pptx original -->
 
@@ -1005,7 +1025,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 20. (sin título)
+## 21. (sin título)
 
 <!-- slide 37 del pptx original -->
 

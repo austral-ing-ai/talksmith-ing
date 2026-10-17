@@ -36,7 +36,7 @@
         },
         {
           "label": "¿Qué modelos existen?",
-          "body": "Un mapa de GANs, Diffusion Networks y SAM — y cuándo usar cada uno."
+          "body": "Un mapa de GANs, Diffusion Networks y CNN — y cuándo usar cada uno."
         }
       ],
       "_choice": {
@@ -219,7 +219,7 @@
       "template": "concept-columns",
       "section": "IA generativa de visión",
       "title": "Los modelos que veremos en el curso",
-      "lead": "Tres familias de redes generativas — tres bloques temáticos dedicados. Cada modelo responde una pregunta diferente: al final del curso, sabremos cuándo usar cada uno.",
+      "lead": "Tres familias de redes — tres bloques temáticos dedicados. Cada modelo responde una pregunta diferente: al final del curso, sabremos cuándo usar cada uno.",
       "columns": [
         {
           "label": "GANs — Generative Adversarial Networks",
@@ -232,9 +232,9 @@
           "example": "Pregunta: ¿Cómo generar imágenes diversas y controlables a partir de una descripción?"
         },
         {
-          "label": "SAM — Segment Anything Model (Meta, 2023)",
-          "body": "No genera imágenes — las entiende. Puede segmentar cualquier objeto en cualquier imagen con precisión quirúrgica. Es prompteable: se guía con puntos, cajas o máscaras.",
-          "example": "Pregunta: ¿Cómo identificar y aislar cualquier objeto de una imagen de forma automatizada e interactiva?"
+          "label": "CNN — Redes neuronales convolucionales",
+          "body": "No generan imágenes — las analizan. Aprenden filtros que detectan bordes, texturas y formas, y los combinan capa a capa. Son la base del Discriminador de una GAN como DCGAN.",
+          "example": "Pregunta: ¿Cómo reconoce una red qué hay en una imagen?"
         }
       ],
       "_choice": {
@@ -296,14 +296,14 @@
           ]
         },
         {
-          "header": "SAM",
+          "header": "CNN",
           "cells": [
-            "Segmentar y aislar estructuras en imágenes existentes",
+            "Reconocer qué hay en una imagen: clasificar, detectar y segmentar",
             "Muy rápida",
-            "Alto (guiado por puntos o cajas)",
-            "Precisión de segmentación",
+            "No aplica (no genera contenido)",
+            "Detectar patrones locales con pocos parámetros (filtros compartidos)",
             "No genera contenido nuevo",
-            "Segmentar cualquier objeto y asistir el etiquetado de datasets"
+            "Clasificación de imágenes, detección de objetos; Discriminador de DCGAN"
           ]
         }
       ],
@@ -648,16 +648,6 @@
           "body": "Los habitantes de Slanted Land solo conocen rostros con una ligera inclinación. Para ellos, un rostro completamente recto sería una anomalía, algo totalmente extraño e incomprensible.",
           "kind": "note",
           "position": "top"
-        },
-        {
-          "label": "El problema urgente",
-          "body": "La app de citas de Slanted Land, TiltedTinder, necesita generar fotos de perfil para sus usuarios. Pero solo tienen 4 fotos reales en toda su base de datos. Con tan pocos datos, nadie encuentra pareja. ¡La supervivencia romántica de toda una civilización inclinada depende de nuestra GAN! 💘",
-          "kind": "important",
-          "position": "top"
-        },
-        {
-          "body": "[Basado en «A Friendly Introduction to Generative Adversarial Networks», de Luis Serrano (ver video)](https://www.youtube.com/watch?v=8L11aMN5KY8&t=16s)",
-          "kind": "source"
         }
       ],
       "cards": [
@@ -691,6 +681,37 @@
         "rejected": {
           "content-image": "labeled set ≥2 + one shared image → content+cards+image; never dissolve labels into facts",
           "value-columns": "one row, two facets — no shared factor to read across"
+        }
+      }
+    },
+    {
+      "template": "single-point",
+      "section": "Slanted Land",
+      "title": "El problema urgente",
+      "point": {
+        "label": "",
+        "body": "La app de citas de Slanted Land, TiltedTinder, necesita generar fotos de perfil para sus usuarios. Pero solo tienen 4 fotos reales en toda su base de datos. Con tan pocos datos, nadie encuentra pareja. ¡La supervivencia romántica de toda una civilización inclinada depende de nuestra GAN! 💘",
+        "icon": "none"
+      },
+      "highlights": [
+        {
+          "body": "[Basado en «A Friendly Introduction to Generative Adversarial Networks», de Luis Serrano (ver video)](https://www.youtube.com/watch?v=8L11aMN5KY8&t=16s)",
+          "kind": "source"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=1",
+          "one_claim=false (paragraph > 16 words)",
+          "n_images=0"
+        ],
+        "candidates": [
+          "single-point",
+          "statement"
+        ],
+        "picked": "single-point",
+        "rejected": {
+          "statement": "the paragraph runs well past the ~16-word cap; statement would shrink its large type"
         }
       }
     },
@@ -2186,7 +2207,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "eff252cdda955c3afdc343b1ee5e79cc30953b283fc6e32126afdd5f91ce170b",
-    "bytes": 58093
+    "sha256": "daee46a0b97dbc2a3c58a0d10899b4f828037e8404c2c1cc957055cff3a01789",
+    "bytes": 58676
   }
 }
