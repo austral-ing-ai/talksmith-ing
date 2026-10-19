@@ -51,8 +51,6 @@ Este hospital tiene tres particularidades, y por ellas un modelo que responde co
 
 Cada grupo construye el agente completo sobre un modelo libre chico que entrena el propio grupo: cura el historial y lo convierte en datos de entrenamiento, arma su buscador sobre las normas, optimiza el prompt, entrena el modelo y lo deja listo para producción. Lo que más pesa en la nota es el modelo final: cuántos casos de un test secreto resuelve y cuánto cuesta y tarda cada caso.
 
-Todo el código de la misión tiene que estar escrito en **Python**.
-
 La entrega es el **viernes 20 de noviembre de 2026**. El tamaño de los grupos lo comunica la cátedra.
 
 ## La ficha
@@ -193,7 +191,7 @@ Se entregan tres cosas. Entre las tres tienen que alcanzar para que la cátedra 
 
 ### 1. Repositorio de GitHub
 
-Todo el código del grupo, en Python. La estructura la decide el grupo, pero tienen que estar estos archivos:
+Todo el código del grupo. La estructura la decide el grupo, pero tienen que estar estos archivos:
 
 | Archivo | Qué tiene |
 |---|---|
