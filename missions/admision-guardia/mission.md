@@ -10,7 +10,10 @@
 | **Materia** | Inteligencia Artificial Generativa (AI Gen) |
 | **Entrega** | Repositorio de GitHub + modelo en Hugging Face y corridas en W&B + presentación en Loom |
 | **Fecha de entrega** | **Viernes 20 de noviembre de 2026** |
+| **Kit** | [`missions/admision-guardia/`](.) — normas, casos de práctica, historial y el paquete `admision`. Cómo instalarlo y correrlo está en su [README](README.md) |
 | **Envío** | Mail a Paulo Veiga y Marco, con todos los integrantes del grupo en copia |
+
+> **Este enunciado dice qué hacer. Cómo correrlo está en el [README del kit](README.md)**, en esta misma carpeta: cómo [instalarlo](README.md#instalarlo), el [contrato de `entrega.py`](README.md#el-contrato-de-la-entrega), cómo [correr los casos de práctica](README.md#correr-la-práctica), cómo [corre la cátedra su entrega](README.md#cómo-corre-la-cátedra-su-entrega) y cómo [evaluar el buscador](README.md#evaluar-el-buscador). Léanlo antes de escribir código.
 
 ---
 
@@ -71,9 +74,11 @@ El agente tiene cinco herramientas: `leer_triage`, `preguntar` (al paciente o a 
 
 ## Qué hay en esta carpeta
 
+El kit está en [`missions/admision-guardia/`](.), la misma carpeta que este enunciado.
+
 | Ruta | Qué es |
 |---|---|
-| `README.md` | Cómo se instala y se usa lo que hay acá, y el contrato de la entrega: lo que la cátedra va a llamar para correr su agente |
+| [`README.md`](README.md) | **El manual del kit:** cómo se instala, el contrato de `entrega.py` (lo que la cátedra llama para correr su agente), los comandos para correr la práctica y evaluar el buscador, y cómo corre la cátedra la entrega |
 | `normas/original/` | Las 20 secciones de las normas del hospital, una por archivo, y `parametros.yaml` con sus valores |
 | `normas/b/`, `normas/c/` | Las mismas normas con otros números, como va a hacer el test de la cátedra |
 | `practica/` | 50 casos de práctica y la ficha esperada de cada uno con cada versión de las normas |
@@ -164,7 +169,15 @@ cd missions/admision-guardia
 uv sync
 ```
 
-Lean el `README.md` de esta carpeta: ahí está el contrato de la entrega (un `entrega.py` con `construir_buscador` y `construir_agente`) y cómo se corren los casos de práctica.
+Lean el [README del kit](README.md) antes de escribir código. Ahí está todo lo que hace falta para correrlo:
+
+- cómo [usar el kit desde el repositorio del grupo](README.md#instalarlo), sin copiar `admision/`;
+- el [contrato de la entrega](README.md#el-contrato-de-la-entrega): un `entrega.py` con `construir_buscador` y `construir_agente`, y qué tiene que devolver cada uno;
+- cómo [correr los casos de práctica](README.md#correr-la-práctica) y qué deja cada corrida;
+- cómo [corre la cátedra su entrega](README.md#cómo-corre-la-cátedra-su-entrega) con el test secreto;
+- cómo [evaluar el buscador](README.md#evaluar-el-buscador) y [generar casos](README.md#generar-casos).
+
+Para probar que el kit anda, corran los 50 casos de práctica con el agente de ejemplo de la cátedra, como indica el README.
 
 Trabajen con la herramienta de programación con IA que prefieran (Claude Code, Codex, Gemini CLI, Cursor u otra).
 
@@ -184,7 +197,7 @@ Todo el código del grupo, en Python. La estructura la decide el grupo, pero tie
 
 | Archivo | Qué tiene |
 |---|---|
-| `entrega.py` | `construir_buscador` y `construir_agente`, según el contrato del `README.md` de esta carpeta. Es lo único que llama la cátedra: de acá salen el punto de control de Hugging Face, el prompt optimizado y el buscador del grupo. |
+| `entrega.py` | `construir_buscador` y `construir_agente`, según el [contrato del README del kit](README.md#el-contrato-de-la-entrega). Es lo único que llama la cátedra: de acá salen el punto de control de Hugging Face, el prompt optimizado y el buscador del grupo. |
 | `pyproject.toml` y `uv.lock` | Las dependencias con sus versiones exactas: `uv sync` alcanza para levantar el entorno en la cuenta de la cátedra. |
 | `historial_clasificado.csv` | La clasificación de la Parte 1: dos columnas, `id,tipo`, y una fila por cada una de las 2.000 filas del historial; `tipo` es `correcta`, `error` o `ruido`. La cátedra la compara con la clasificación verdadera. |
 | `costumbres.md` | Cada costumbre que descubrieron, explicada, con los ids de las filas que la respaldan. La cátedra controla si son las costumbres verdaderas. |
