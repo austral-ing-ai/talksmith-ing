@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 975" width="1290" height="975" font-family="Helvetica, Arial, sans-serif">
+<title>Caras vs. ruido</title>
+<desc>Escala de grises de 0 (blanco) a 1 (negro). Fila Faces: cuatro grillas 2×2 con la diagonal principal oscura. Fila Noise: cuatro grillas 2×2 con valores sin patrón.</desc>
+<defs><linearGradient id="g01" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#000000"/></linearGradient></defs>
+<rect width="1290" height="975" fill="#ffffff"/>
+<rect x="400" y="24" width="490" height="70" fill="url(#g01)" stroke="#1F1E1E" stroke-width="2"/>
+<text x="400.0" y="158.0" font-size="60" fill="#1F1E1E" text-anchor="middle" font-weight="normal">0</text>
+<text x="890.0" y="158.0" font-size="60" fill="#1F1E1E" text-anchor="middle" font-weight="normal">1</text>
+<text x="25.0" y="254.0" font-size="64" fill="#1F1E1E" text-anchor="start" font-weight="normal">Faces</text>
+<rect x="25.0" y="280.0" width="140" height="140" fill="#404040"/>
+<text x="95.0" y="369.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<rect x="165.0" y="280.0" width="140" height="140" fill="#ffffff"/>
+<text x="235.0" y="369.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="25.0" y="420.0" width="140" height="140" fill="#ffffff"/>
+<text x="95.0" y="509.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="165.0" y="420.0" width="140" height="140" fill="#404040"/>
+<text x="235.0" y="509.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<line x1="165" y1="280" x2="165" y2="560" stroke="#1F1E1E" stroke-width="2.5"/>
+<line x1="25" y1="420" x2="305" y2="420" stroke="#1F1E1E" stroke-width="2.5"/>
+<rect x="25" y="280" width="280" height="280" fill="none" stroke="#1F1E1E" stroke-width="4.9"/>
+<rect x="345.0" y="280.0" width="140" height="140" fill="#000000"/>
+<text x="415.0" y="369.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="485.0" y="280.0" width="140" height="140" fill="#bfbfbf"/>
+<text x="555.0" y="369.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
+<rect x="345.0" y="420.0" width="140" height="140" fill="#bfbfbf"/>
+<text x="415.0" y="509.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
+<rect x="485.0" y="420.0" width="140" height="140" fill="#404040"/>
+<text x="555.0" y="509.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<line x1="485" y1="280" x2="485" y2="560" stroke="#1F1E1E" stroke-width="2.5"/>
+<line x1="345" y1="420" x2="625" y2="420" stroke="#1F1E1E" stroke-width="2.5"/>
+<rect x="345" y="280" width="280" height="280" fill="none" stroke="#1F1E1E" stroke-width="4.9"/>
+<rect x="665.0" y="280.0" width="140" height="140" fill="#000000"/>
+<text x="735.0" y="369.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="805.0" y="280.0" width="140" height="140" fill="#ffffff"/>
+<text x="875.0" y="369.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="665.0" y="420.0" width="140" height="140" fill="#ffffff"/>
+<text x="735.0" y="509.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="805.0" y="420.0" width="140" height="140" fill="#000000"/>
+<text x="875.0" y="509.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<line x1="805" y1="280" x2="805" y2="560" stroke="#1F1E1E" stroke-width="2.5"/>
+<line x1="665" y1="420" x2="945" y2="420" stroke="#1F1E1E" stroke-width="2.5"/>
+<rect x="665" y="280" width="280" height="280" fill="none" stroke="#1F1E1E" stroke-width="4.9"/>
+<rect x="985.0" y="280.0" width="140" height="140" fill="#404040"/>
+<text x="1055.0" y="369.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<rect x="1125.0" y="280.0" width="140" height="140" fill="#ffffff"/>
+<text x="1195.0" y="369.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="985.0" y="420.0" width="140" height="140" fill="#bfbfbf"/>
+<text x="1055.0" y="509.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
+<rect x="1125.0" y="420.0" width="140" height="140" fill="#404040"/>
+<text x="1195.0" y="509.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<line x1="1125" y1="280" x2="1125" y2="560" stroke="#1F1E1E" stroke-width="2.5"/>
+<line x1="985" y1="420" x2="1265" y2="420" stroke="#1F1E1E" stroke-width="2.5"/>
+<rect x="985" y="280" width="280" height="280" fill="none" stroke="#1F1E1E" stroke-width="4.9"/>
+<text x="25.0" y="649.0" font-size="64" fill="#1F1E1E" text-anchor="start" font-weight="normal">Noise</text>
+<rect x="25.0" y="675.0" width="140" height="140" fill="#bfbfbf"/>
+<text x="95.0" y="764.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
+<rect x="165.0" y="675.0" width="140" height="140" fill="#ffffff"/>
+<text x="235.0" y="764.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="25.0" y="815.0" width="140" height="140" fill="#000000"/>
+<text x="95.0" y="904.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="165.0" y="815.0" width="140" height="140" fill="#404040"/>
+<text x="235.0" y="904.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<line x1="165" y1="675" x2="165" y2="955" stroke="#1F1E1E" stroke-width="2.5"/>
+<line x1="25" y1="815" x2="305" y2="815" stroke="#1F1E1E" stroke-width="2.5"/>
+<rect x="25" y="675" width="280" height="280" fill="none" stroke="#1F1E1E" stroke-width="4.9"/>
+<rect x="345.0" y="675.0" width="140" height="140" fill="#bfbfbf"/>
+<text x="415.0" y="764.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
+<rect x="485.0" y="675.0" width="140" height="140" fill="#000000"/>
+<text x="555.0" y="764.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="345.0" y="815.0" width="140" height="140" fill="#808080"/>
+<text x="415.0" y="904.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.5</text>
+<rect x="485.0" y="815.0" width="140" height="140" fill="#404040"/>
+<text x="555.0" y="904.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<line x1="485" y1="675" x2="485" y2="955" stroke="#1F1E1E" stroke-width="2.5"/>
+<line x1="345" y1="815" x2="625" y2="815" stroke="#1F1E1E" stroke-width="2.5"/>
+<rect x="345" y="675" width="280" height="280" fill="none" stroke="#1F1E1E" stroke-width="4.9"/>
+<rect x="665.0" y="675.0" width="140" height="140" fill="#404040"/>
+<text x="735.0" y="764.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<rect x="805.0" y="675.0" width="140" height="140" fill="#808080"/>
+<text x="875.0" y="764.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.5</text>
+<rect x="665.0" y="815.0" width="140" height="140" fill="#404040"/>
+<text x="735.0" y="904.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<rect x="805.0" y="815.0" width="140" height="140" fill="#ffffff"/>
+<text x="875.0" y="904.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<line x1="805" y1="675" x2="805" y2="955" stroke="#1F1E1E" stroke-width="2.5"/>
+<line x1="665" y1="815" x2="945" y2="815" stroke="#1F1E1E" stroke-width="2.5"/>
+<rect x="665" y="675" width="280" height="280" fill="none" stroke="#1F1E1E" stroke-width="4.9"/>
+<rect x="985.0" y="675.0" width="140" height="140" fill="#000000"/>
+<text x="1055.0" y="764.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="1125.0" y="675.0" width="140" height="140" fill="#000000"/>
+<text x="1195.0" y="764.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="985.0" y="815.0" width="140" height="140" fill="#ffffff"/>
+<text x="1055.0" y="904.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="1125.0" y="815.0" width="140" height="140" fill="#404040"/>
+<text x="1195.0" y="904.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<line x1="1125" y1="675" x2="1125" y2="955" stroke="#1F1E1E" stroke-width="2.5"/>
+<line x1="985" y1="815" x2="1265" y2="815" stroke="#1F1E1E" stroke-width="2.5"/>
+<rect x="985" y="675" width="280" height="280" fill="none" stroke="#1F1E1E" stroke-width="4.9"/>
+</svg>

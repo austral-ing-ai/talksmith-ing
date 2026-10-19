@@ -452,11 +452,11 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 |---|---|---|
 | Cada imagen se representa como una pantalla con 4 celdas — cada celda tiene un valor entre 0 (blanco) y 1 (negro). | Son imágenes de personas inclinadas. El Generador va a aprender a producir imágenes que se parezcan a esas personas. | La arquitectura más simple posible — ideal para entender los fundamentos sin complejidad adicional. |
 
-![](images/slide-19-1.jpg)
+![Gente de Slanted Land dibujada a mano (figuras de palitos muy inclinadas), una pantalla de 2×2 píxeles y una red neuronal de una capa](images/slanted-mundo.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 19)
+- `AIG4B-Clase-8-GANs.md.md` (slide 19). Imagen redibujada como SVG (images/slanted-mundo.svg, generada con tools/sketch/slanted_mundo.py).
 
 ### Speaker notes
 
@@ -497,11 +497,11 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 |---|---|
 | Valores altos en la diagonal principal, bajos en la secundaria. Patrón estructurado y reconocible. | Valores sin patrón, distribuidos aleatoriamente. Sin estructura diagonal. El Discriminador debe aprender a distinguirlos a partir de esos valores numéricos. |
 
-![](images/slide-21-1.jpg)
+![Escala de grises de 0 (blanco) a 1 (negro) y dos filas de grillas 2×2: caras con la diagonal principal oscura y ruido sin patrón](images/caras-vs-ruido.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 21)
+- `AIG4B-Clase-8-GANs.md.md` (slide 21). Imagen redibujada como SVG (images/caras-vs-ruido.svg, generada con tools/sketch/caras_vs_ruido.py).
 
 ### Speaker notes
 
@@ -524,11 +524,11 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 - Asigna estos pesos a cada posición: +1 para las que caracterizan una cara, −1 para las que no la caracterizan.
 
-![](images/slide-22-1.png)
+![Grillas Faces y Noise: en la cara, pesos Big sobre la diagonal principal y small sobre la secundaria; en el ruido, pesos any en las cuatro esquinas](images/pesos-big-small.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 22)
+- `AIG4B-Clase-8-GANs.md.md` (slide 22). Imagen redibujada como SVG (images/pesos-big-small.svg, generada con tools/sketch/pesos_big_small.py).
 
 ### Speaker notes
 
@@ -549,11 +549,11 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 | 1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) = 2 | 0.25×(+1) + 1×(−1) + 0.5×(−1) + 0.75×(+1) = −0.5 |
 | Score > 1 → Real ✓ | Score < 1 → Falsa ✓Score > 1 → Real ✓ |
 
-![](images/slide-23-1.png)
+![Grillas Faces y Noise con peso + en las esquinas de la diagonal principal y peso − en las de la diagonal secundaria](images/pesos-mas-menos.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 23)
+- `AIG4B-Clase-8-GANs.md.md` (slide 23). Imagen redibujada como SVG (images/pesos-mas-menos.svg, generada con tools/sketch/pesos_mas_menos.py).
 
 ### Speaker notes
 
@@ -577,11 +577,11 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 |---|---|
 | 1(+1)+0(−1)+0(−1)+1(+1)+1(−1) = 1 | σ(1) ≈ 0.73 → imagen real |
 
-![](images/slide-24-1.png)
+![Red del Discriminador: los cuatro píxeles de la cara prototipo entran a cuatro neuronas, conectadas a la salida con pesos +1, −1, −1, +1, más un bias con peso −1](images/discriminador-red.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 24)
+- `AIG4B-Clase-8-GANs.md.md` (slide 24). Imagen redibujada como SVG (images/discriminador-red.svg, generada con tools/sketch/discriminador_red.py).
 
 ### Speaker notes
 
@@ -597,7 +597,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 ![](images/slide-25-1.png)
 
-![](images/slide-25-2.jpg)
+![Curva sigmoid σ(x) = 1/(1+e^−x): en x = 1 vale 0.73](images/sigmoide.svg)
 
 | Rango acotado | Diferenciable | Monótona creciente | Punto medio en 0 |
 |---|---|---|---|
@@ -606,6 +606,7 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 25)
+- Imagen redibujada como SVG (images/sigmoide.svg, generada con tools/sketch/sigmoide.py).
 
 ### Speaker notes
 
@@ -625,13 +626,13 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 - **σ(-0.5) = 0.37 → "Estoy solo un 37% seguro de que esto sea real"**
 - **Como 0.37 < 0.5, clasifica correctamente la imagen como falsa ✓**
 
-![](images/slide-26-1.jpg)
+![La cara prototipo pasa por la red del Discriminador y sale σ(1) = 0.73, marcado en el gráfico de la sigmoide](images/discriminador-cara.svg)
 
-![](images/slide-26-2.jpg)
+![La imagen de ruido pasa por la misma red y sale σ(−0.5) = 0.37](images/discriminador-ruido.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 26)
+- `AIG4B-Clase-8-GANs.md.md` (slide 26). Imagen redibujada como SVG (images/discriminador-cara.svg, generada con tools/sketch/discriminador_cara.py). Imagen redibujada como SVG (images/discriminador-ruido.svg, generada con tools/sketch/discriminador_ruido.py).
 
 ### Speaker notes
 
@@ -682,11 +683,11 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 - Con z = 0.7 como entrada y los pesos aprendidos, el Generador produce una imagen que reproduce el patrón diagonal de las caras reales. El Generador aprendió a engañar al Discriminador.
 - El resultado muestra el patrón diagonal característico de las caras de Slanted Land: valores altos en la diagonal principal, bajos en la secundaria. El Generador internalizó la estructura del dataset real.
 
-![](images/slide-28-1.jpg)
+![Red del Generador: z = 0.7 y el bias, con pesos ±1, alimentan cuatro sigmoides que producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)](images/generador-red.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 28)
+- `AIG4B-Clase-8-GANs.md.md` (slide 28). Imagen redibujada como SVG (images/generador-red.svg, generada con tools/sketch/generador_red.py).
 
 ### Speaker notes
 
@@ -757,7 +758,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 - 🎨 Generador — imagen falsa
 
-![Las dos funciones de pérdida: −ln(x) para el Discriminador con imagen real y −ln(1−x) para el Generador con imagen falsa](images/slide-31-graficos.png)
+![Las dos funciones de pérdida: −ln(x) para el Discriminador con imagen real y −ln(1−x) para el Generador con imagen falsa](images/loss-curvas.svg)
 
 - Predicción = 0 (imagen falsa). Error = −ln(1−predicción). Predicción alta → alto error. El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador.
 
@@ -765,7 +766,8 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 31). Los dos gráficos del pptx (slide-31-1.png, slide-31-2.png) recortados a su contenido y unidos lado a lado en images/slide-31-graficos.png.
+- `AIG4B-Clase-8-GANs.md.md` (slide 31). Los dos gráficos del pptx, lado a lado.
+- Imagen redibujada como SVG (images/loss-curvas.svg, generada con tools/sketch/loss_curvas.py).
 
 ### Speaker notes
 
@@ -787,11 +789,12 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 - Este proceso ocurre simultáneamente en el Generador y el Discriminador en cada iteración.
 
-![](images/slide-32-4.jpg)
+![Backpropagation: red 2-3-3-1 donde una flecha roja sobre cada peso indica si sube o baja para reducir el error](images/backprop-red.svg)
 
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 32)
+- Imagen redibujada como SVG (images/backprop-red.svg, generada con tools/sketch/backprop_red.py).
 
 ### Speaker notes
 
@@ -864,11 +867,11 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 |---|---|
 | Recibió 0.68 cuando quería dar 0 → se equivocó. Debe ajustar sus pesos para detectar mejor. | Recibió 0.68 cuando quería que diera 1 → casi lo engañó, pero no del todo. Debe ajustar para engañar más. |
 
-![](images/slide-35-1.jpg)
+![Generador y Discriminador encadenados: el Generador produce la imagen (0.25, 1 / 0.5, 0.75) y el Discriminador le asigna 0.68](images/generador-y-discriminador.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 35)
+- `AIG4B-Clase-8-GANs.md.md` (slide 35). Imagen redibujada como SVG (images/generador-y-discriminador.svg, generada con tools/sketch/generador_y_discriminador.py).
 
 ### Speaker notes
 
@@ -886,11 +889,12 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 - Un error considerable. El Discriminador va a ajustar sus pesos para clasificar mejor estas imágenes en la próxima iteración — volviéndose más exigente y difícil de engañar.
 
-![](images/slide-36-2.jpg)
+![Generador y Discriminador: la imagen 2x2 generada recibe 0.68; quería 0, Error = −ln(1−0.68)](images/error-discriminador.svg)
 
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 36)
+- Imagen redibujada como SVG (images/error-discriminador.svg, generada con tools/sketch/error_discriminador.py).
 
 ### Speaker notes
 
@@ -912,11 +916,12 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 - Slide opcional — para quien quiera profundizar en la matemática. Fuente: A Friendly Introduction to Generative Adversarial Networks — Luis Serrano Academy.
 
-![](images/slide-37-3.jpg)
+![Red del Discriminador con pesos w1 a w4 y bias b, y las derivadas del error respecto de cada peso y del bias](images/derivada-error.svg)
 
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 37)
+- Imagen redibujada como SVG (images/derivada-error.svg, generada con tools/sketch/derivada_error.py).
 
 ### Speaker notes
 
@@ -1003,7 +1008,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 - StyleGAN separa el proceso en dos redes:
 
-![](images/slide-41-2.jpg)
+![Arquitectura de StyleGAN: la Mapping Network produce w, la Synthesis Network inyecta el estilo con Ada IN y ruido, y un ProGan Discriminator la evalúa](images/stylegan-arquitectura.svg)
 
 - 🔀 Mapping Network: transforma el ruido z en un vector de estilo w (512 dimensiones)
 - 🎨 Synthesis Network: genera la imagen progresivamente, inyectando el estilo w en cada capa
@@ -1015,6 +1020,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 41)
+- Imagen redibujada como SVG (images/stylegan-arquitectura.svg, generada con tools/sketch/stylegan_arquitectura.py).
 
 ### Speaker notes
 
@@ -1287,7 +1293,7 @@ En el paper, el Discriminador funciona también como clasificador: además de la
 - Autor: Paulo Veiga/Marcos Sanchez Sorondo
 - Última Modificación: Abril, 2026
 
-![](images/slide-01-1.png)
+![](research/corpus/AIG4B-Clase-8-GANs.md/images/slide-01-1.png)
 
 ### Sources
 

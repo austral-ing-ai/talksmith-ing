@@ -736,8 +736,8 @@
       ],
       "design": "banded",
       "media": {
-        "src": "images/slide-19-1.jpg",
-        "alt": "Slanted people, 2x2 screens, 1-layer neural network"
+        "src": "images/slanted-mundo.svg",
+        "alt": "Gente de Slanted Land dibujada a mano (figuras de palitos muy inclinadas), una pantalla de 2×2 píxeles y una red neuronal de una capa"
       },
       "_choice": {
         "signals": [
@@ -821,8 +821,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-21-1.jpg",
-        "alt": "Caras y ruido como matrices de 2×2"
+        "src": "images/caras-vs-ruido.svg",
+        "alt": "Escala de grises de 0 (blanco) a 1 (negro) y dos filas de grillas 2×2: caras con la diagonal principal oscura y ruido sin patrón"
       },
       "_choice": {
         "signals": [
@@ -869,8 +869,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-22-1.png",
-        "alt": "Faces: Big/small; Noise: any"
+        "src": "images/pesos-big-small.svg",
+        "alt": "Grillas Faces y Noise: en la cara, pesos Big sobre la diagonal principal y small sobre la secundaria; en el ruido, pesos any en las cuatro esquinas"
       },
       "_choice": {
         "signals": [
@@ -921,8 +921,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-23-1.png",
-        "alt": "Pesos +/− sobre la cara y el ruido"
+        "src": "images/pesos-mas-menos.svg",
+        "alt": "Grillas Faces y Noise con peso + en las esquinas de la diagonal principal y peso − en las de la diagonal secundaria"
       },
       "_choice": {
         "signals": [
@@ -972,8 +972,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-24-1.png",
-        "alt": "Red del Discriminador con pesos y bias"
+        "src": "images/discriminador-red.svg",
+        "alt": "Red del Discriminador: los cuatro píxeles de la cara prototipo entran a cuatro neuronas, conectadas a la salida con pesos +1, −1, −1, +1, más un bias con peso −1"
       },
       "_choice": {
         "signals": [
@@ -1027,8 +1027,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-25-2.jpg",
-        "alt": "Curva sigmoid: σ(1) ≈ 0.73"
+        "src": "images/sigmoide.svg",
+        "alt": "Curva sigmoid σ(x) = 1/(1+e^−x): en x = 1 vale 0.73"
       },
       "_omitted": [
         {
@@ -1080,12 +1080,12 @@
       "media": {
         "images": [
           {
-            "src": "images/slide-26-1.jpg",
-            "alt": "La cara prototipo pasando por la red del Discriminador"
+            "src": "images/discriminador-cara.svg",
+            "alt": "La cara prototipo pasa por la red del Discriminador y sale σ(1) = 0.73, marcado en el gráfico de la sigmoide"
           },
           {
-            "src": "images/slide-26-2.jpg",
-            "alt": "La imagen de ruido pasando por la misma red"
+            "src": "images/discriminador-ruido.svg",
+            "alt": "La imagen de ruido pasa por la misma red y sale σ(−0.5) = 0.37"
           }
         ]
       },
@@ -1180,8 +1180,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-28-1.jpg",
-        "alt": "Generador: z = 0.7 → imagen 2×2"
+        "src": "images/generador-red.svg",
+        "alt": "Red del Generador: z = 0.7 y el bias, con pesos ±1, alimentan cuatro sigmoides que producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)"
       },
       "_choice": {
         "signals": [
@@ -1326,7 +1326,7 @@
       ],
       "design": "split-left",
       "media": {
-        "src": "images/slide-31-graficos.png",
+        "src": "images/loss-curvas.svg",
         "alt": "Las dos funciones de pérdida: −ln(x) para el Discriminador con imagen real y −ln(1−x) para el Generador con imagen falsa"
       },
       "_choice": {
@@ -1373,8 +1373,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-32-4.jpg",
-        "alt": "Red neuronal con el error propagado hacia atrás"
+        "src": "images/backprop-red.svg",
+        "alt": "Backpropagation: red 2-3-3-1 donde una flecha roja sobre cada peso indica si sube o baja para reducir el error"
       },
       "_choice": {
         "signals": [
@@ -1524,8 +1524,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-35-1.jpg",
-        "alt": "Generador y Discriminador conectados: output 0.68"
+        "src": "images/generador-y-discriminador.svg",
+        "alt": "Generador y Discriminador encadenados: el Generador produce la imagen (0.25, 1 / 0.5, 0.75) y el Discriminador le asigna 0.68"
       },
       "_choice": {
         "signals": [
@@ -1562,8 +1562,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-36-2.jpg",
-        "alt": "Generador y Discriminador: output 0.68, Error = −ln(1−0.68)"
+        "src": "images/error-discriminador.svg",
+        "alt": "Generador y Discriminador: la imagen 2x2 generada recibe 0.68; quería 0, Error = −ln(1−0.68)"
       },
       "_omitted": [
         {
@@ -1612,8 +1612,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-37-3.jpg",
-        "alt": "Discriminador: predicción, función de error y derivadas"
+        "src": "images/derivada-error.svg",
+        "alt": "Red del Discriminador con pesos w1 a w4 y bias b, y las derivadas del error respecto de cada peso y del bias"
       },
       "_omitted": [
         {
@@ -1787,8 +1787,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-41-2.jpg",
-        "alt": "Arquitectura de StyleGAN: mapping network y synthesis network"
+        "src": "images/stylegan-arquitectura.svg",
+        "alt": "Arquitectura de StyleGAN: la Mapping Network produce w, la Synthesis Network inyecta el estilo con Ada IN y ruido, y un ProGan Discriminator la evalúa"
       },
       "_choice": {
         "signals": [
@@ -2207,7 +2207,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "fefd7010ed2bcb4a86dde1ea2db41dafb81616b3f41b11244e08a0df8d9a3869",
-    "bytes": 58977
+    "sha256": "302e5f5a529dcb8ff81db986c72040e869d36856a4510b9172d43a42823fe063",
+    "bytes": 62227
   }
 }

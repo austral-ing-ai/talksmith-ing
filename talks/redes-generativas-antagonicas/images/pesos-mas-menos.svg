@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 690" width="1440" height="690" font-family="Helvetica, Arial, sans-serif">
+<title>Pesos más y menos</title>
+<desc>Grillas Faces (1, 0 / 0, 1) y Noise (0.25, 1 / 0.5, 0.75), cada una con un peso + en rojo en las esquinas de la diagonal principal y un peso - en azul en las de la secundaria.</desc>
+<defs><marker id="ah-DA1B2E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="ah-1F5FAD-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker></defs>
+<rect width="1440" height="690" fill="#ffffff"/>
+<text x="352.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Faces</text>
+<rect x="192.0" y="190.0" width="160" height="160" fill="#000000"/>
+<text x="272.0" y="291.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="352.0" y="190.0" width="160" height="160" fill="#ffffff"/>
+<text x="432.0" y="291.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="192.0" y="350.0" width="160" height="160" fill="#ffffff"/>
+<text x="272.0" y="451.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="352.0" y="350.0" width="160" height="160" fill="#000000"/>
+<text x="432.0" y="451.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<line x1="352" y1="190" x2="352" y2="510" stroke="#1F1E1E" stroke-width="2.8"/>
+<line x1="192" y1="350" x2="512" y2="350" stroke="#1F1E1E" stroke-width="2.8"/>
+<rect x="192" y="190" width="320" height="320" fill="none" stroke="#1F1E1E" stroke-width="5.6"/>
+<rect x="17" y="25" width="130" height="110" fill="#DA1B2E"/>
+<rect x="52.0" y="75.0" width="60" height="10" fill="#ffffff"/>
+<rect x="77.0" y="50.0" width="10" height="60" fill="#ffffff"/>
+<path d="M147.0,80.0 C177.0,80.0 190.0,140.0 190.0,171.0" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-DA1B2E-30)"/>
+<rect x="557" y="25" width="130" height="110" fill="#1F5FAD"/>
+<rect x="598.0" y="75.0" width="48" height="10" fill="#ffffff"/>
+<path d="M557.0,80.0 C527.0,80.0 514.0,140.0 514.0,171.0" stroke="#1F5FAD" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F5FAD-30)"/>
+<rect x="17" y="560" width="130" height="110" fill="#1F5FAD"/>
+<rect x="58.0" y="610.0" width="48" height="10" fill="#ffffff"/>
+<path d="M147.0,615.0 C177.0,615.0 190.0,560.0 190.0,529.0" stroke="#1F5FAD" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F5FAD-30)"/>
+<rect x="557" y="560" width="130" height="110" fill="#DA1B2E"/>
+<rect x="592.0" y="610.0" width="60" height="10" fill="#ffffff"/>
+<rect x="617.0" y="585.0" width="10" height="60" fill="#ffffff"/>
+<path d="M557.0,615.0 C527.0,615.0 514.0,560.0 514.0,529.0" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-DA1B2E-30)"/>
+<text x="1088.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Noise</text>
+<rect x="928.0" y="190.0" width="160" height="160" fill="#bfbfbf"/>
+<text x="1008.0" y="291.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
+<rect x="1088.0" y="190.0" width="160" height="160" fill="#000000"/>
+<text x="1168.0" y="291.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="928.0" y="350.0" width="160" height="160" fill="#808080"/>
+<text x="1008.0" y="451.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">0.5</text>
+<rect x="1088.0" y="350.0" width="160" height="160" fill="#404040"/>
+<text x="1168.0" y="451.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<line x1="1088" y1="190" x2="1088" y2="510" stroke="#1F1E1E" stroke-width="2.8"/>
+<line x1="928" y1="350" x2="1248" y2="350" stroke="#1F1E1E" stroke-width="2.8"/>
+<rect x="928" y="190" width="320" height="320" fill="none" stroke="#1F1E1E" stroke-width="5.6"/>
+<rect x="753" y="25" width="130" height="110" fill="#DA1B2E"/>
+<rect x="788.0" y="75.0" width="60" height="10" fill="#ffffff"/>
+<rect x="813.0" y="50.0" width="10" height="60" fill="#ffffff"/>
+<path d="M883.0,80.0 C913.0,80.0 926.0,140.0 926.0,171.0" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-DA1B2E-30)"/>
+<rect x="1293" y="25" width="130" height="110" fill="#1F5FAD"/>
+<rect x="1334.0" y="75.0" width="48" height="10" fill="#ffffff"/>
+<path d="M1293.0,80.0 C1263.0,80.0 1250.0,140.0 1250.0,171.0" stroke="#1F5FAD" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F5FAD-30)"/>
+<rect x="753" y="560" width="130" height="110" fill="#1F5FAD"/>
+<rect x="794.0" y="610.0" width="48" height="10" fill="#ffffff"/>
+<path d="M883.0,615.0 C913.0,615.0 926.0,560.0 926.0,529.0" stroke="#1F5FAD" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F5FAD-30)"/>
+<rect x="1293" y="560" width="130" height="110" fill="#DA1B2E"/>
+<rect x="1328.0" y="610.0" width="60" height="10" fill="#ffffff"/>
+<rect x="1353.0" y="585.0" width="10" height="60" fill="#ffffff"/>
+<path d="M1293.0,615.0 C1263.0,615.0 1250.0,560.0 1250.0,529.0" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-DA1B2E-30)"/>
+</svg>

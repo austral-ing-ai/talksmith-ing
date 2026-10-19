@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1370 940" width="1370" height="940" font-family="Helvetica, Arial, sans-serif">
+<title>Discriminador como red</title>
+<desc>La grilla 2×2 de la cara prototipo (1, 0 / 0, 1) alimenta cuatro neuronas de entrada, conectadas a una neurona de salida con pesos +1 (rojo), -1, -1 (azul) y +1 (rojo); un nodo Bias de valor 1 aporta con peso -1 (verde).</desc>
+<defs><marker id="ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="ah-DA1B2E-34" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="34" markerHeight="34" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="ah-1F5FAD-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="ah-2E8540-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker></defs>
+<rect width="1370" height="940" fill="#ffffff"/>
+<rect x="60.0" y="280.0" width="170" height="170" fill="#000000"/>
+<text x="145.0" y="387.3" font-size="62" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="230.0" y="280.0" width="170" height="170" fill="#ffffff"/>
+<text x="315.0" y="387.3" font-size="62" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="60.0" y="450.0" width="170" height="170" fill="#ffffff"/>
+<text x="145.0" y="557.3" font-size="62" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="230.0" y="450.0" width="170" height="170" fill="#000000"/>
+<text x="315.0" y="557.3" font-size="62" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<line x1="230" y1="280" x2="230" y2="620" stroke="#1F1E1E" stroke-width="3.0"/>
+<line x1="60" y1="450" x2="400" y2="450" stroke="#1F1E1E" stroke-width="3.0"/>
+<rect x="60" y="280" width="340" height="340" fill="none" stroke="#1F1E1E" stroke-width="6.0"/>
+<path d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
+<path d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
+<path d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
+<path d="M315.0,628.0 C305.0,820.0 520.0,630.0 723.2,645.1" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
+<path d="M818.6,108.6 L1233.2,415.4" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#ah-DA1B2E-34)"/>
+<rect x="902.3" y="172.0" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="945.4" y="225.5" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
+<path d="M825.2,286.3 L1227.5,431.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#ah-1F5FAD-26)"/>
+<rect x="904.9" y="300.1" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="948.1" y="353.5" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
+<path d="M828.0,459.0 L1224.2,451.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#ah-1F5FAD-26)"/>
+<rect x="906.1" y="426.2" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="949.2" y="479.7" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
+<path d="M824.6,632.2 L1226.0,471.6" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#ah-DA1B2E-34)"/>
+<rect x="904.7" y="552.5" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="947.8" y="605.9" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
+<path d="M817.1,829.6 L1236.9,485.4" stroke="#2E8540" stroke-width="4" fill="none" marker-end="url(#ah-2E8540-26)"/>
+<rect x="923.0" y="677.0" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="966.1" y="730.4" font-size="64" fill="#2E8540" text-anchor="middle" font-weight="normal">-1</text>
+<circle cx="780.0" cy="80.0" r="48" fill="#3B3535"/>
+<circle cx="780.0" cy="270.0" r="48" fill="#3B3535"/>
+<circle cx="780.0" cy="460.0" r="48" fill="#3B3535"/>
+<circle cx="780.0" cy="650.0" r="48" fill="#3B3535"/>
+<circle cx="780.0" cy="860.0" r="48" fill="#3B3535"/>
+<text x="780.0" y="876.6" font-size="46" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<text x="710.0" y="882.0" font-size="62" fill="#1F1E1E" text-anchor="end" font-weight="normal">Bias</text>
+<circle cx="1280.0" cy="450.0" r="48" fill="#3B3535"/>
+</svg>
