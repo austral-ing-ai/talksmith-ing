@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kit-tp-admision"
+version = "1.1.0"
+description = "Kit del TP final de IA Generativa: la ficha de admisión de guardia"
+requires-python = ">=3.12"
+dependencies = ["pyyaml>=6.0"]
+
+[tool.setuptools]
+packages = ["admision"]
