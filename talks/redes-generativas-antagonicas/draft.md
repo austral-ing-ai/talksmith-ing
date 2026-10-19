@@ -557,11 +557,11 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 - Ese patrón diagonal es la "firma" de una cara real. El Discriminador tiene que aprenderlo para poder distinguirla del ruido.
 
-![](research/corpus/AIG4B-Clase-8-GANs.md/images/slide-20-1.png)
+![Cuatro caras de Slanted Land dibujadas a mano, todas inclinadas, y debajo de cada una su versión en 2×2 píxeles](images/caras-patron.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 20)
+- `AIG4B-Clase-8-GANs.md.md` (slide 20). Imagen redibujada como SVG (images/caras-patron.svg, generada con tools/sketch/caras_patron.py): caras a mano y grillas 2×2 con los valores de la tabla «Faces» del pptx (slide 21).
 
 ### Speaker notes
 

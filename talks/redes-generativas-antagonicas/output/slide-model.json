@@ -779,8 +779,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/slide-20-1.png",
-        "alt": "Caras inclinadas y sus patrones de 2×2 píxeles"
+        "src": "images/caras-patron.svg",
+        "alt": "Cuatro caras de Slanted Land dibujadas a mano, todas inclinadas, y debajo de cada una su versión en 2×2 píxeles"
       },
       "_choice": {
         "signals": [
@@ -2207,7 +2207,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "daee46a0b97dbc2a3c58a0d10899b4f828037e8404c2c1cc957055cff3a01789",
-    "bytes": 58676
+    "sha256": "fefd7010ed2bcb4a86dde1ea2db41dafb81616b3f41b11244e08a0df8d9a3869",
+    "bytes": 58977
   }
 }
