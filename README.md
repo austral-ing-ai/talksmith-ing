@@ -50,4 +50,5 @@ Las entregas de los trabajos prácticos se realizan en la clase indicada.
 | 1 | 2 | Viernes 15 de agosto | [Corta, del caos a producción](missions/clase2/mission.md) |
 | 2 | 3 | Viernes Sep 4 | [¿Cuánto vale esta casa?](missions/mlp/mission.md) |
 | 3 | 10 | Viernes 9 de octubre | [RAG, MCP y Transformers en el Hospital Arroyo Claro](missions/rag-mcp-transformers/mission.md) |
+| 4 (final) | — | Viernes 20 de noviembre | [El agente de admisión de guardia](missions/admision-guardia/mission.md) |
 

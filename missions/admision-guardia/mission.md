@@ -1,4 +1,40 @@
 # Misión: el agente de admisión de guardia
+## Trabajo final — Inteligencia Artificial Generativa
+**Universidad Austral · Ingeniería de Software · Noviembre 2026**
+
+---
+
+| | |
+|---|---|
+| **Proyecto** | El agente de admisión de guardia — completa la ficha de admisión de cada paciente que ingresa por la guardia |
+| **Materia** | Inteligencia Artificial Generativa (AI Gen) |
+| **Entrega** | Repositorio de GitHub + modelo en Hugging Face y corridas en W&B + presentación en Loom |
+| **Fecha de entrega** | **Viernes 20 de noviembre de 2026** |
+| **Envío** | Mail a Paulo Veiga y Marco, con todos los integrantes del grupo en copia |
+
+---
+
+## Tabla de contenidos
+
+1. [La idea](#la-idea)
+2. [La ficha](#la-ficha)
+3. [Qué hay en esta carpeta](#qué-hay-en-esta-carpeta)
+4. [Modelo y cómputo](#modelo-y-cómputo)
+5. [Parte 1: curado e ingeniería de datos](#parte-1-curado-e-ingeniería-de-datos)
+6. [Parte 2: buscador propio (RAG)](#parte-2-buscador-propio-rag)
+7. [Parte 3: optimización de prompt, antes de entrenar](#parte-3-optimización-de-prompt-antes-de-entrenar)
+8. [Parte 4: entrenamiento](#parte-4-entrenamiento)
+9. [Parte 5: recursos y producción](#parte-5-recursos-y-producción)
+10. [Auditabilidad](#auditabilidad)
+11. [Antes de empezar](#antes-de-empezar)
+12. [La entrega](#la-entrega)
+   - [1. Repositorio de GitHub](#1-repositorio-de-github)
+   - [2. Modelo y corridas](#2-modelo-y-corridas)
+   - [3. Presentación en Loom](#3-presentación-en-loom)
+   - [Cómo se envía](#cómo-se-envía)
+13. [Cómo se corrige](#cómo-se-corrige)
+
+---
 
 ## La idea
 
@@ -14,7 +50,7 @@ Cada grupo construye el agente completo sobre un modelo libre chico que entrena 
 
 Todo el código de la misión tiene que estar escrito en **Python**.
 
-La fecha de entrega y el tamaño de los grupos los comunica la cátedra.
+La entrega es el **viernes 20 de noviembre de 2026**. El tamaño de los grupos lo comunica la cátedra.
 
 ## La ficha
 
@@ -134,13 +170,93 @@ Trabajen con la herramienta de programación con IA que prefieran (Claude Code, 
 
 ## La entrega
 
-- **El repositorio de código del grupo:** agente, buscador, curado, generación de conversaciones, optimización de prompt, entrenamiento y evaluación, con el `entrega.py` que pide el contrato.
-- **El modelo final y sus puntos de control**, en un repositorio privado de Hugging Face compartido con la cátedra.
-- **El proyecto de W&B**, compartido con la cátedra.
-- **El historial clasificado y las costumbres**, en dos archivos:
-  - `historial_clasificado.csv`, con dos columnas, `id,tipo`, y una fila por cada fila del historial (las 2.000); `tipo` es `correcta`, `error` o `ruido`;
-  - `costumbres.md`, en texto libre: cada costumbre que descubrieron, explicada, con los ids de las filas que la respaldan. La cátedra controla también si las costumbres que describen son las verdaderas.
-- **El informe** (`INFORME.md`): la comparación entre solo prompt, solo entrenamiento y las dos cosas juntas, los costos, la proyección a producción y los trabajos futuros.
+Se entregan tres cosas. Entre las tres tienen que alcanzar para que la cátedra corra su agente con el test secreto **sin volver a entrenar** y pueda auditar cada número que reportan.
+
+| Qué | Dónde | Para qué la usa la cátedra |
+|---|---|---|
+| **Repositorio** | GitHub privado, con acceso para la cátedra | Corre su `entrega.py` con el test secreto y corrige el historial clasificado, las costumbres y el informe |
+| **Modelo y corridas** | Repositorio privado de Hugging Face y proyecto de W&B, los dos compartidos con la cátedra | Carga el punto de control final y revisa cada entrenamiento |
+| **Presentación** | Video en Loom, de 15 a 20 minutos | Escucha cómo llegaron al modelo final y por qué tomaron cada decisión |
+
+### 1. Repositorio de GitHub
+
+Todo el código del grupo, en Python. La estructura la decide el grupo, pero tienen que estar estos archivos:
+
+| Archivo | Qué tiene |
+|---|---|
+| `entrega.py` | `construir_buscador` y `construir_agente`, según el contrato del `README.md` de esta carpeta. Es lo único que llama la cátedra: de acá salen el punto de control de Hugging Face, el prompt optimizado y el buscador del grupo. |
+| `pyproject.toml` y `uv.lock` | Las dependencias con sus versiones exactas: `uv sync` alcanza para levantar el entorno en la cuenta de la cátedra. |
+| `historial_clasificado.csv` | La clasificación de la Parte 1: dos columnas, `id,tipo`, y una fila por cada una de las 2.000 filas del historial; `tipo` es `correcta`, `error` o `ruido`. La cátedra la compara con la clasificación verdadera. |
+| `costumbres.md` | Cada costumbre que descubrieron, explicada, con los ids de las filas que la respaldan. La cátedra controla si son las costumbres verdaderas. |
+| `INFORME.md` | El desarrollo completo, parte por parte (ver abajo). |
+| `README.md` | Cómo correr todo con lo publicado (ver abajo). |
+
+Más el código de cada parte: el curado, la generación de conversaciones, el buscador, la optimización de prompt, el entrenamiento y la evaluación. No incluyan `admision/` modificado: la cátedra corre con su copia.
+
+#### El informe
+
+Un apartado por parte de la misión, con cada pasada del desarrollo y no solo la final, incluidos los experimentos que no funcionaron:
+
+- **Parte 1, curado:** cómo clasificaron el historial, cuántas filas quedaron de cada tipo, cómo encontraron las costumbres y cuántas conversaciones de entrenamiento armaron, reales y sintéticas.
+- **Parte 2, buscador:** el resultado de `admision.evaluar_rag` al lado de la referencia BM25 (recall de evidencia 0,875, precisión 0,492, 580 tokens por consulta, 51 de 60 consultas completas) y cuánto rinde el agente con su buscador.
+- **Parte 3, prompt:** con el modelo sin entrenar, los casos resueltos y el largo del prompt en tokens, antes y después de optimizar.
+- **Parte 4, entrenamiento:** la estrategia y una tabla de casos resueltos sobre los 50 de práctica, con las normas original, b y c, para el modelo sin entrenar, solo prompt, solo entrenamiento y las dos cosas juntas, al lado de la referencia de la cátedra (12, 15 y 12 sin entrenar; 25, 24 y 25 con fine-tuning supervisado).
+- **Parte 5, recursos:** tiempo de entrenamiento, VRAM usada, costo y tiempo por caso en la A100 de 40 GB, casos que procesan a la vez, cuántos casos simultáneos tolera en producción, la proyección de consumo, cómo escalarían y los trabajos futuros.
+
+Cada número del informe dice qué comando, qué punto de control y qué prompt lo producen.
+
+#### El README
+
+Cualquier persona con el repositorio tiene que poder seguirlo línea por línea, **con el punto de control publicado y sin entrenar**:
+
+1. **Entorno:** `uv sync` y un `.env.example` con las variables que hacen falta (por ejemplo, el token de Hugging Face y la clave de W&B), sin valores reales.
+2. **Un caso:** el comando de `admision.correr` con su `entrega.py` sobre un caso de práctica, y qué se ve: la conversación, las búsquedas en las normas, la ficha registrada y los 9 controles.
+3. **El buscador:** el comando de `admision.evaluar_rag` sobre `rag/consultas_dev.jsonl`.
+4. **La evaluación completa:** el comando que corre los 50 casos de práctica con las normas original, b y c y produce la tabla del informe.
+5. **De dónde sale cada archivo:** qué script genera `historial_clasificado.csv`, las conversaciones de entrenamiento, el prompt optimizado y cada entrenamiento, con su configuración y su semilla.
+6. **Un diagrama** de cómo se conectan el agente, sus cinco herramientas, el buscador y el modelo.
+
+Volver a entrenar se documenta con su comando, pero no puede hacer falta para verificar nada (ver [Auditabilidad](#auditabilidad)).
+
+### 2. Modelo y corridas
+
+- **Hugging Face:** el punto de control final, que es el que carga `entrega.py`, y cada punto de control que aparece en el informe, con su versión. Todos entran y corren en una A100 de 40 GB.
+- **W&B:** todas las corridas de entrenamiento, también las que no funcionaron. Cada corrida dice qué archivo de conversaciones, qué configuración, qué semilla y qué punto de control de Hugging Face le corresponden.
+
+### 3. Presentación en Loom
+
+Una presentación grabada en Loom, de **15 a 20 minutos**. El orden sigue al de [cómo se corrige](#cómo-se-corrige): primero el resultado, después cómo llegaron.
+
+| # | Sección | Qué se espera |
+|---|---|---|
+| 1 | **El modelo final** | Cuántos de los 50 casos de práctica resuelve con cada versión de las normas, cuánto cuesta y tarda cada caso, y cómo se compara con la referencia de la cátedra. |
+| 2 | **Demo** | El agente corriendo con las normas b o c, no con las originales, sobre al menos dos casos de práctica: uno que activa un circuito tiempo-dependiente y uno que se decide por una costumbre. Se ven las llamadas a las herramientas, lo que trae el buscador, la ficha y los 9 controles. |
+| 3 | **El historial** | Cómo separaron errores de ruido, qué costumbres encontraron, con filas de ejemplo, y cómo armaron las conversaciones de entrenamiento. |
+| 4 | **Buscador y prompt** | Cuánta evidencia trae el buscador y cuánto contexto ocupa, y qué ganaron al optimizar el prompt, en casos y en largo. |
+| 5 | **Entrenamiento** | La estrategia, las corridas que no funcionaron y por qué, y la comparación entre solo prompt, solo entrenamiento y las dos cosas juntas. |
+| 6 | **Recursos y producción** | VRAM, casos que procesan a la vez, cuántos casos simultáneos tolera en producción, costo proyectado y cómo escalarían si sube la demanda. Cierren con los trabajos futuros. |
+
+### Cómo se envía
+
+La entrega se envía **por mail a Paulo Veiga y a Marco**, antes del **viernes 20 de noviembre de 2026**, con **todos los integrantes del grupo en copia**. Un solo mail por grupo:
+
+```text
+Para:     Paulo Veiga, Marco Sorondo
+CC:       todos los integrantes del grupo
+Asunto:   [AI Gen] TP final — Agente de admisión de guardia — Grupo <número>
+
+Integrantes:
+- <Nombre y apellido> — <mail> — <usuario de GitHub>
+- ...
+
+Repositorio de GitHub:   <link>
+Commit entregado:        <hash del commit o tag>
+Modelo en Hugging Face:  <link> — versión del punto de control final: <revisión>
+Proyecto de W&B:         <link>
+Presentación en Loom:    <link>
+```
+
+El commit y la versión del punto de control fijan qué se corrige: la cátedra corre exactamente esa versión de `entrega.py` con ese punto de control. Todos los links tienen que estar activos y accesibles al momento de la corrección.
 
 Pueden hacer una **pre-entrega** cuando tengan todo y seguir mejorando hasta la entrega final.
 
