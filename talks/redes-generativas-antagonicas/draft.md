@@ -43,29 +43,34 @@ date: 2026-10-21
 
 **Presenter feedback:**
 
+- [closed] 2026-10-20 — "Borrar el slide «¿Por qué importa en ingeniería?». No es más relevante."
+  Resolution: Slide 1.3 borrada y entera en Cut material; las slides 1.4–1.6 pasan a 1.3–1.5; las notas de 4.8 ya no citan la slide 1.3; la open question de «Los modelos que veremos» pasa a 1.4.
+
 ---
 
 ## 1. IA Generativa de Visión
 
-<!-- slide 3 del pptx original -->
+<!-- slide 3 del pptx original, convertida en la definición -->
 
 ### Content
 
-| 01 | 02 | 03 |
-|---|---|---|
-| ¿Qué hace diferente a la IA generativa? | ¿Por qué importa en ingeniería? | ¿Qué modelos existen? |
-| En qué se distingue conceptualmente de otros tipos de IA visual. | Qué problemas de datos resuelve al construir sistemas con modelos de visión. | Un mapa de GANs, Diffusion Networks y CNN — y cuándo usar cada uno. |
+**IA generativa de visión:** modelos que aprenden la distribución de un conjunto de imágenes, o sea su estructura interna, y con ella crean imágenes nuevas: no estaban en los datos, pero podrían haber estado.
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 3)
+- `AIG4B-Clase-8-GANs.md.md` (slide 4: «Crea contenido nuevo que no existía»; aprende la estructura interna de los datos)
+- `gan-goodfellow-2014.web.md` (el generador «captura la distribución de los datos»)
 
 ### Speaker notes
+
+Esta es la definición que vamos a usar toda la clase. Dos palabras para retener: distribución, que es lo que aprende, e imágenes nuevas, que es lo que produce. La próxima slide la contrasta con la IA visual que ya conocen, la discriminativa.
 
 ### Presenter feedback
 
 - [closed] 2026-10-17 — "Revisá y reformulá en el draft que la audiencia no es biomédica sino ingenieros. Revisá si los ejemplos son relevantes todavía."
   Resolution: Columna 02 «¿Por qué importa en Biomedicina?» → «¿Por qué importa en ingeniería?», con subtítulo sobre los problemas de datos al construir sistemas con modelos de visión.
+- [closed] 2026-10-20 — "Convirtamos IA Generativa de Visión en un slide que sea la definición."
+  Resolution: Las tres columnas (anticipo de la sección) → la definición de IA generativa de visión, con fuente en la slide 4 del pptx y en Goodfellow et al. (2014); notas nuevas. Texto original en Cut material.
 
 ---
 
@@ -101,51 +106,13 @@ date: 2026-10-21
 
 ---
 
-## 3. ¿Por qué importa en ingeniería?
-
-<!-- slide 5 del pptx original -->
-
-### Content
-
-- **Entrenar un buen modelo de visión requiere miles, a veces decenas de miles, de imágenes etiquetadas. Conseguirlas choca con tres barreras que suelen aparecer juntas:**
-
-
-
-
-| Escasez | Privacidad | Coste |
-|---|---|---|
-| Los casos raros (una enfermedad poco frecuente, una pieza defectuosa en una línea de producción) tienen tan pocos ejemplos documentados que no alcanzan para entrenar un modelo robusto. | Los datos de usuarios y de pacientes están protegidos por regulaciones estrictas: GDPR, HIPAA en salud y legislaciones locales limitan el acceso y la distribución. | Etiquetar imágenes requiere horas de especialistas del dominio, un recurso escaso y caro. |
-
-- **Lo que la IA Generativa hace posible: aumentación de datos sintéticos, síntesis de casos raros, traducción entre modalidades (MRI→CT), anonimización que conserva el realismo de la imagen y restauración de imágenes con artefactos. Con una GAN, Salimans et al. (2016) entrenaron clasificadores con pocas etiquetas y alcanzaron el estado del arte semi-supervisado en MNIST, CIFAR-10 y SVHN.**
-
-### Sources
-
-- `AIG4B-Clase-8-GANs.md.md` (slide 5)
-- `aws-que-es-una-gan.web.md` (casos de uso: generar datos de entrenamiento para otros modelos, completar información faltante)
-- `inception-score-salimans-2016.web.md` (estado del arte en clasificación semi-supervisada en MNIST, CIFAR-10 y SVHN)
-
-### Speaker notes
-
-Las tres barreras son el problema de datos de cualquier modelo de visión que llega a producción. Un detector de defectos tiene miles de fotos de piezas buenas y muy pocas de piezas falladas. Un sistema que procesa fotos de usuarios carga con el GDPR. El etiquetado necesita gente que entienda el dominio, y esas horas cuestan. Una GAN ataca las tres barreras con el mismo recurso: genera datos de entrenamiento para otros modelos (aumento de datos) y completa información faltante, dos de los casos de uso que lista AWS.
-
-El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos generados: en el clasificador que se entrena con ellos. Su problema es el de la barrera de coste. Hay muchas imágenes sin etiquetar y pocas etiquetadas, y la GAN permite aprovechar las primeras. El detalle del mecanismo está en la sección 4, en la fortaleza de datos sintéticos.
-
-### Presenter feedback
-
-- [closed] 2026-10-17 — "Revisá y reformulá en el draft que la audiencia no es biomédica sino ingenieros. Revisá si los ejemplos son relevantes todavía."
-  Resolution: Título «¿Por qué importa en ingeniería?»; lead y celdas Escasez/Privacidad/Coste escritas para cualquier modelo de visión (casos raros, GDPR y HIPAA, etiquetado por especialistas); «realismo clínico» → «realismo de la imagen»; notas nuevas con el ángulo de pipeline y la lectura del Dice. Cifra de la U-Net intacta.
-- [closed] 2026-10-17 — "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
-  Resolution: Cifra de la U-Net (Dice 0.9524 vs 0.9459, sin estudio citado) → Salimans et al. (2016), estado del arte semi-supervisado en MNIST, CIFAR-10 y SVHN; notas actualizadas. Texto original en Cut material.
-
----
-
-## 4. Línea de tiempo: el camino hasta hoy
+## 3. Línea de tiempo: el camino hasta hoy
 
 <!-- slide 6 del pptx original -->
 
 ### Content
 
-- Tres eras, un campo en aceleración constante. Este curso arranca con el hito más influyente de la segunda era.
+- Un campo en aceleración constante. Este curso arranca con el hito más influyente de la era de las GANs.
 
 **1**
 
@@ -155,35 +122,47 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 **2**
 
+- **Redes convolucionales (CNN) · 2012–hoy**
+
+- Redes que aprenden filtros para analizar imágenes y dominan la visión supervisada. También entran en la IA generativa: con CNN más rápidas y profundas, la super-resolución aumenta la resolución de una imagen, y DCGAN (2015) las usa para generar.
+
+**3**
+
 - **Era de las GANs · 2014–2020**
 
 - Ian Goodfellow publica la GAN original. Primera generación fotorrealista de imágenes. El campo explota en variantes y aplicaciones.
 
-- **Era de la Difusión · 2020–hoy**
+**4**
 
-**3**
+- **Era de la Difusión · 2020–hoy**
 
 - DALL·E, Stable Diffusion, Midjourney. Control por texto, generación de vídeo, modelos de base masivos.
 
-**4**
+**5**
 
 - **SAM & Modelos de Segmentación · 2023–hoy**
 
 - Meta lanza Segment Anything Model (SAM). Segmentación interactiva de cualquier objeto en cualquier imagen. Prompteable con puntos, cajas o máscaras — sin reentrenamiento.
 
-- Este curso empieza con el hito más influyente de la segunda era: las Generative Adversarial Networks.
+- Este curso empieza con el hito más influyente de la era de las GANs: las Generative Adversarial Networks.
 
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 6)
+- `srgan-ledig-2017.web.md` (la super-resolución con «CNN más rápidas y profundas», antes de SRGAN)
+- `dcgan-radford-2015.web.md` (DCGAN lleva las CNN del aprendizaje supervisado a la generación)
+- 2012 como inicio de la era de las CNN (AlexNet gana ImageNet): conocimiento general, no está en el corpus
 
 ### Speaker notes
 
 ### Presenter feedback
 
+- [closed] 2026-10-20 — "Falta en «Línea de tiempo: el camino hasta hoy» CNN, confirma pero entra en generativa como una forma de aumentar resolución etc."
+  Resolution: Confirmado con el corpus (abstracts de SRGAN y DCGAN). Hito nuevo «Redes convolucionales (CNN) · 2012–hoy» entre la era estadística y la de las GANs; marcadores 1–5; lead y cierre ya no dicen «segunda era». Para que no se contradiga: en 1.4 la columna CNN ya no dice «No generan imágenes», y en 1.5 la columna CNN suma super-resolución y DCGAN.
+
 ---
 
-## 5. Los modelos que veremos en el curso
+## 4. Los modelos que veremos en el curso
 
 <!-- slide 7 del pptx original -->
 
@@ -199,22 +178,36 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 **GANs — Generative Adversarial Networks**
 
+- Dos redes que compiten: una genera, la otra evalúa.
+- Casos:
+  - Deepfakes
+  - StyleGAN
+  - Generación de datos sintéticos (imágenes médicas, entre otras)
+- Pregunta: ¿Cómo generar imágenes realistas que "engañen" a un evaluador?
+
 **Diffusion Networks**
+
+- Aprenden a reconstruir una imagen desde el ruido, paso a paso.
+- Casos:
+  - Stable Diffusion
+  - DALL·E
+  - Midjourney
+- Pregunta: ¿Cómo generar imágenes diversas y controlables a partir de una descripción?
 
 **CNN — Redes neuronales convolucionales**
 
-- Aprenden a reconstruir una imagen desde el ruido, paso a paso. Motor de Stable Diffusion, DALL·E y Midjourney.
-- Pregunta: ¿Cómo generar imágenes diversas y controlables a partir de una descripción?
-
-- Dos redes que compiten: una genera, la otra evalúa. Motor de los deepfakes, de StyleGAN y de la generación de datos sintéticos (imágenes médicas, entre otras).
-- Pregunta: ¿Cómo generar imágenes realistas que "engañen" a un evaluador?
-
-- No generan imágenes — las analizan. Aprenden filtros que detectan bordes, texturas y formas, y los combinan capa a capa. Son la base del Discriminador de una GAN como DCGAN.
-- Pregunta: ¿Cómo reconoce una red qué hay en una imagen?
+- Aprenden filtros que detectan bordes, texturas y formas, y los combinan capa a capa. Nacieron para analizar imágenes, y en la IA generativa son la pieza de base.
+- Casos:
+  - Clasificar imágenes, y detectar y segmentar objetos
+  - Super-resolución: aumentar la resolución de una imagen (SRGAN le suma una GAN para el detalle fino)
+  - El Generador y el Discriminador de DCGAN: el Generador sube de resolución con convoluciones transpuestas
+- Pregunta: ¿Cómo ve una red una imagen, para reconocer qué hay o para mejorarla?
 
 ### Sources
 
+- `srgan-ledig-2017.web.md` (super-resolución con CNN)
 - `AIG4B-Clase-8-GANs.md.md` (slide 7)
+- `aws-que-es-una-gan.web.md` (DCGAN: el generador usa convoluciones transpuestas)
 - `dcgan-radford-2015.web.md` (las CNN en visión supervisada y como base de DCGAN). El resto de la descripción de CNN es redacción de la cátedra (reemplaza a SAM a pedido del presentador, 2026-10-17: el curso ve CNN en la clase 12).
 
 ### Speaker notes
@@ -223,10 +216,12 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 - [closed] 2026-10-17 — "Revisá y reformulá en el draft que la audiencia no es biomédica sino ingenieros. Revisá si los ejemplos son relevantes todavía."
   Resolution: GANs: «la síntesis de imágenes médicas» → «la generación de datos sintéticos (imágenes médicas, entre otras)»; la pregunta de SAM pasa a «aislar cualquier objeto de una imagen» (sam-kirillov-2023).
+- [closed] 2026-10-20 — "Fijate también en el slide «CNN — Redes neuronales convolucionales». Y agregá los casos."
+  Resolution: Cada columna pasa a definición + «Casos» + pregunta. CNN: casos de análisis (clasificar, detectar, segmentar) y generativos (super-resolución con SRGAN; Generador y Discriminador de DCGAN, con convoluciones transpuestas); pregunta → «¿Cómo ve una red una imagen, para reconocer qué hay o para mejorarla?». GANs y Difusión: el «Motor de …» de cada una pasa a la lista de casos, mismas palabras.
 
 ---
 
-## 6. Tabla comparativa rápida
+## 5. Tabla comparativa rápida
 
 <!-- slide 8 del pptx original -->
 
@@ -236,12 +231,12 @@ El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos g
 
 | Criterio | GANs | Diffusion Networks | CNN |
 |---|---|---|---|
-| ¿Para qué sirve? | Generar imágenes realistas, transformar modalidades, aumentar datos | Generar imágenes desde texto o guías visuales con alta diversidad | Reconocer qué hay en una imagen: clasificar, detectar y segmentar |
+| ¿Para qué sirve? | Generar imágenes realistas, transformar modalidades, aumentar datos | Generar imágenes desde texto o guías visuales con alta diversidad | Reconocer qué hay en una imagen (clasificar, detectar, segmentar) y transformarla, por ejemplo aumentar su resolución |
 | Velocidad | Muy rápida (una pasada) | Lenta (muchos pasos iterativos) | Muy rápida |
-| Control | Moderado | Alto (guiado por texto) | No aplica (no genera contenido) |
+| Control | Moderado | Alto (guiado por texto) | Bajo: la misma entrada da siempre la misma salida |
 | Fortaleza | Velocidad + realismo | Diversidad + controlabilidad | Detectar patrones locales con pocos parámetros (filtros compartidos) |
-| Limitación | Inestabilidad, mode collapse | Lento, costoso computacionalmente | No genera contenido nuevo |
-| Caso de uso típico | Super-resolución (SRGAN), traducción de imágenes (Pix2Pix, CycleGAN) | Imágenes desde texto (Stable Diffusion, DALL·E, Midjourney) | Clasificación de imágenes, detección de objetos; Discriminador de DCGAN |
+| Limitación | Inestabilidad, mode collapse | Lento, costoso computacionalmente | Sola no inventa detalle: al aumentar la resolución minimizando el error cuadrático, la imagen sale sin detalle fino (por eso SRGAN le suma una GAN) |
+| Caso de uso típico | Super-resolución (SRGAN), traducción de imágenes (Pix2Pix, CycleGAN) | Imágenes desde texto (Stable Diffusion, DALL·E, Midjourney) | Clasificación de imágenes, detección de objetos, super-resolución; Generador y Discriminador de DCGAN |
 
 ### Sources
 
@@ -1327,7 +1322,7 @@ Es el único estudio ciego con jueces humanos y un número publicado en el corpu
 
 ### Speaker notes
 
-Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos datos sin etiquetar. Es la barrera de coste de la slide 1.3: etiquetar cuesta horas de especialistas, y las imágenes sin etiquetar sobran. Salimans et al. (2016) lo atacaron con una GAN y lograron el estado del arte en MNIST, CIFAR-10 y SVHN.
+Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos datos sin etiquetar. Ataca el costo de etiquetar: etiquetar cuesta horas de especialistas, y las imágenes sin etiquetar sobran. Salimans et al. (2016) lo atacaron con una GAN y lograron el estado del arte en MNIST, CIFAR-10 y SVHN.
 
 En el paper, el Discriminador funciona también como clasificador: además de las clases del dataset, aprende una clase extra para las imágenes que produce el Generador. Así, las imágenes generadas entran al entrenamiento del clasificador. Este mecanismo está en el cuerpo del paper (sección de aprendizaje semi-supervisado) y no en la captura del corpus, que solo tiene el abstract.
 
@@ -1467,7 +1462,7 @@ En el paper, el Discriminador funciona también como clasificador: además de la
 - Tesis y objetivo de cada sección quedaron vacíos: el deck original no los declara.
 - Ver `research/corpus/AIG4B-Clase-8-GANs.md.md` → *Inconsistencies / open questions* para los problemas detectados en el material original.
 - Idea pendiente (2026-10-17): una tarjeta sobre deepfakes como riesgo de seguridad y su detección (p. ej. FaceForensics++, Rössler et al., 2019). No está en el corpus, así que necesita una captura antes de entrar al deck.
-- 1.5 «Los modelos que veremos en el curso» describe el plan del curso original (GANs, Diffusion, SAM). Confirmar si esta materia cubre SAM.
+- 1.4 «Los modelos que veremos en el curso» describe el plan del curso original (GANs, Diffusion, SAM). Confirmar si esta materia cubre SAM.
 
 # Cut material
 
@@ -1790,10 +1785,51 @@ Motivo: idéntico al takeaway de 3.13, que se conserva.
 
 Motivo: la audiencia es de Ingeniería de Software. El presentador eligió los reemplazos ★ del editor, solo con fuentes del corpus. Varias cifras quitadas no tenían estudio citado (corpus, inconsistencias #5 y #24).
 
+#### 1.1 IA Generativa de Visión (slide 3 del pptx)
+
+Motivo: la slide pasó a ser la definición; el anticipo de la sección en tres columnas sale.
+
+| 01 | 02 | 03 |
+|---|---|---|
+| ¿Qué hace diferente a la IA generativa? | ¿Por qué importa en ingeniería? | ¿Qué modelos existen? |
+| En qué se distingue conceptualmente de otros tipos de IA visual. | Qué problemas de datos resuelve al construir sistemas con modelos de visión. | Un mapa de GANs, Diffusion Networks y CNN — y cuándo usar cada uno. |
+
 #### 1.2 ¿Qué es la IA Generativa de Visión? (slide 4 del pptx)
 
 | Pregunta típica | "¿Esto es un tumor maligno o benigno?" | "Genera una imagen de un tumor maligno" |
 | Ejemplo en medicina | Clasificador de histología | Generador de imágenes histológicas sintéticas |
+
+#### 1.3 ¿Por qué importa en ingeniería? (slide entera, slide 5 del pptx)
+
+Motivo: el presentador la sacó por no ser más relevante (2026-10-20).
+
+<!-- slide 5 del pptx original -->
+
+### Content
+
+- **Entrenar un buen modelo de visión requiere miles, a veces decenas de miles, de imágenes etiquetadas. Conseguirlas choca con tres barreras que suelen aparecer juntas:**
+
+
+
+
+| Escasez | Privacidad | Coste |
+|---|---|---|
+| Los casos raros (una enfermedad poco frecuente, una pieza defectuosa en una línea de producción) tienen tan pocos ejemplos documentados que no alcanzan para entrenar un modelo robusto. | Los datos de usuarios y de pacientes están protegidos por regulaciones estrictas: GDPR, HIPAA en salud y legislaciones locales limitan el acceso y la distribución. | Etiquetar imágenes requiere horas de especialistas del dominio, un recurso escaso y caro. |
+
+- **Lo que la IA Generativa hace posible: aumentación de datos sintéticos, síntesis de casos raros, traducción entre modalidades (MRI→CT), anonimización que conserva el realismo de la imagen y restauración de imágenes con artefactos. Con una GAN, Salimans et al. (2016) entrenaron clasificadores con pocas etiquetas y alcanzaron el estado del arte semi-supervisado en MNIST, CIFAR-10 y SVHN.**
+
+### Sources
+
+- `AIG4B-Clase-8-GANs.md.md` (slide 5)
+- `aws-que-es-una-gan.web.md` (casos de uso: generar datos de entrenamiento para otros modelos, completar información faltante)
+- `inception-score-salimans-2016.web.md` (estado del arte en clasificación semi-supervisada en MNIST, CIFAR-10 y SVHN)
+
+### Speaker notes
+
+Las tres barreras son el problema de datos de cualquier modelo de visión que llega a producción. Un detector de defectos tiene miles de fotos de piezas buenas y muy pocas de piezas falladas. Un sistema que procesa fotos de usuarios carga con el GDPR. El etiquetado necesita gente que entienda el dominio, y esas horas cuestan. Una GAN ataca las tres barreras con el mismo recurso: genera datos de entrenamiento para otros modelos (aumento de datos) y completa información faltante, dos de los casos de uso que lista AWS.
+
+El ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos generados: en el clasificador que se entrena con ellos. Su problema es el de la barrera de coste. Hay muchas imágenes sin etiquetar y pocas etiquetadas, y la GAN permite aprovechar las primeras. El detalle del mecanismo está en la sección 4, en la fortaleza de datos sintéticos.
+
 
 #### 1.3 ¿Por qué importa en ingeniería? (slide 5 del pptx)
 

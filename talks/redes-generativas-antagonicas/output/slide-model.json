@@ -22,41 +22,29 @@
       "section": "IA generativa de visión"
     },
     {
-      "template": "process",
+      "template": "single-point",
       "section": "IA generativa de visión",
       "title": "IA Generativa de Visión",
-      "steps": [
-        {
-          "label": "¿Qué hace diferente a la IA generativa?",
-          "body": "En qué se distingue conceptualmente de otros tipos de IA visual."
-        },
-        {
-          "label": "¿Por qué importa en ingeniería?",
-          "body": "Qué problemas de datos resuelve al construir sistemas con modelos de visión."
-        },
-        {
-          "label": "¿Qué modelos existen?",
-          "body": "Un mapa de GANs, Diffusion Networks y CNN — y cuándo usar cada uno."
-        }
-      ],
+      "point": {
+        "label": "IA generativa de visión:",
+        "body": "modelos que aprenden la distribución de un conjunto de imágenes, o sea su estructura interna, y con ella crean imágenes nuevas: no estaban en los datos, pero podrían haber estado.",
+        "icon": "none"
+      },
+      "notes": "Esta es la definición que vamos a usar toda la clase. Dos palabras para retener: distribución, que es lo que aprende, e imágenes nuevas, que es lo que produce. La próxima slide la contrasta con la IA visual que ya conocen, la discriminativa.",
       "_choice": {
         "signals": [
-          "has_table=true",
-          "labeled_items=3",
-          "is_ordered=true (headers 01/02/03)",
-          "date_labels=false",
+          "has_table=false",
+          "labeled_items=1 (bold label + definition)",
+          "is_voiced=false",
           "n_images=0"
         ],
         "candidates": [
-          "process",
-          "concept-breakdown",
-          "value-columns"
+          "single-point",
+          "statement",
+          "quote"
         ],
-        "picked": "process",
-        "rejected": {
-          "concept-breakdown": "is_ordered (ordinal labels 01/02/03) → process; concept-breakdown requires an unordered set",
-          "value-columns": "transposed one-item-per-column table: each column is one item (question + description), nothing reads across a row as a shared factor"
-        }
+        "picked": "single-point",
+        "why": "one labeled point (a definition) and nothing else; not a quote (no speaker) and a statement would drop the body"
       }
     },
     {
@@ -116,58 +104,10 @@
       }
     },
     {
-      "template": "concept-breakdown",
-      "section": "IA generativa de visión",
-      "title": "¿Por qué importa en ingeniería?",
-      "icons": "none",
-      "lead": "**Entrenar un buen modelo de visión requiere miles, a veces decenas de miles, de imágenes etiquetadas. Conseguirlas choca con tres barreras que suelen aparecer juntas:**",
-      "cards": [
-        {
-          "label": "Escasez",
-          "body": "Los casos raros (una enfermedad poco frecuente, una pieza defectuosa en una línea de producción) tienen tan pocos ejemplos documentados que no alcanzan para entrenar un modelo robusto."
-        },
-        {
-          "label": "Privacidad",
-          "body": "Los datos de usuarios y de pacientes están protegidos por regulaciones estrictas: GDPR, HIPAA en salud y legislaciones locales limitan el acceso y la distribución."
-        },
-        {
-          "label": "Coste",
-          "body": "Etiquetar imágenes requiere horas de especialistas del dominio, un recurso escaso y caro."
-        }
-      ],
-      "highlights": [
-        {
-          "body": "**Lo que la IA Generativa hace posible: aumentación de datos sintéticos, síntesis de casos raros, traducción entre modalidades (MRI→CT), anonimización que conserva el realismo de la imagen y restauración de imágenes con artefactos. Con una GAN, Salimans et al. (2016) entrenaron clasificadores con pocas etiquetas y alcanzaron el estado del arte semi-supervisado en MNIST, CIFAR-10 y SVHN.**",
-          "kind": "takeaway"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "has_table=true (one row: header = label, cell = body)",
-          "labeled_items=3",
-          "is_ordered=false",
-          "date_labels=false",
-          "big_metrics=false",
-          "n_images=0"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "value-columns",
-          "content-text"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "value-columns": "a one-row table whose columns are heterogeneous items (each header labels its own body); nothing reads across a row → card-per-item",
-          "content-text": "never fall to a plainer template when a labeled set (3 labeled barriers) fits"
-        }
-      },
-      "notes": "Las tres barreras son el problema de datos de cualquier modelo de visión que llega a producción. Un detector de defectos tiene miles de fotos de piezas buenas y muy pocas de piezas falladas. Un sistema que procesa fotos de usuarios carga con el GDPR. El etiquetado necesita gente que entienda el dominio, y esas horas cuestan. Una GAN ataca las tres barreras con el mismo recurso: genera datos de entrenamiento para otros modelos (aumento de datos) y completa información faltante, dos de los casos de uso que lista AWS.\n\nEl ejemplo de Salimans et al. muestra dónde se mide el beneficio de los datos generados: en el clasificador que se entrena con ellos. Su problema es el de la barrera de coste. Hay muchas imágenes sin etiquetar y pocas etiquetadas, y la GAN permite aprovechar las primeras. El detalle del mecanismo está en la sección 4, en la fortaleza de datos sintéticos."
-    },
-    {
       "template": "timeline",
       "section": "IA generativa de visión",
       "title": "Línea de tiempo: el camino hasta hoy",
-      "lead": "Tres eras, un campo en aceleración constante. Este curso arranca con el hito más influyente de la segunda era.",
+      "lead": "Un campo en aceleración constante. Este curso arranca con el hito más influyente de la era de las GANs.",
       "milestones": [
         {
           "marker": "1",
@@ -176,23 +116,28 @@
         },
         {
           "marker": "2",
+          "label": "Redes convolucionales (CNN) · 2012–hoy",
+          "body": "Redes que aprenden filtros para analizar imágenes y dominan la visión supervisada. También entran en la IA generativa: con CNN más rápidas y profundas, la super-resolución aumenta la resolución de una imagen, y DCGAN (2015) las usa para generar."
+        },
+        {
+          "marker": "3",
           "label": "Era de las GANs · 2014–2020",
           "body": "Ian Goodfellow publica la GAN original. Primera generación fotorrealista de imágenes. El campo explota en variantes y aplicaciones."
         },
         {
-          "marker": "3",
+          "marker": "4",
           "label": "Era de la Difusión · 2020–hoy",
           "body": "DALL·E, Stable Diffusion, Midjourney. Control por texto, generación de vídeo, modelos de base masivos."
         },
         {
-          "marker": "4",
+          "marker": "5",
           "label": "SAM & Modelos de Segmentación · 2023–hoy",
           "body": "Meta lanza Segment Anything Model (SAM). Segmentación interactiva de cualquier objeto en cualquier imagen. Prompteable con puntos, cajas o máscaras — sin reentrenamiento."
         }
       ],
       "highlights": [
         {
-          "body": "Este curso empieza con el hito más influyente de la segunda era: las Generative Adversarial Networks.",
+          "body": "Este curso empieza con el hito más influyente de la era de las GANs: las Generative Adversarial Networks.",
           "kind": "takeaway"
         }
       ],
@@ -223,18 +168,36 @@
       "columns": [
         {
           "label": "GANs — Generative Adversarial Networks",
-          "body": "Dos redes que compiten: una genera, la otra evalúa. Motor de los deepfakes, de StyleGAN y de la generación de datos sintéticos (imágenes médicas, entre otras).",
+          "body": "Dos redes que compiten: una genera, la otra evalúa.",
+          "text_label": "Casos",
+          "text": [
+            "Deepfakes",
+            "StyleGAN",
+            "Generación de datos sintéticos (imágenes médicas, entre otras)"
+          ],
           "example": "Pregunta: ¿Cómo generar imágenes realistas que \"engañen\" a un evaluador?"
         },
         {
           "label": "Diffusion Networks",
-          "body": "Aprenden a reconstruir una imagen desde el ruido, paso a paso. Motor de Stable Diffusion, DALL·E y Midjourney.",
+          "body": "Aprenden a reconstruir una imagen desde el ruido, paso a paso.",
+          "text_label": "Casos",
+          "text": [
+            "Stable Diffusion",
+            "DALL·E",
+            "Midjourney"
+          ],
           "example": "Pregunta: ¿Cómo generar imágenes diversas y controlables a partir de una descripción?"
         },
         {
           "label": "CNN — Redes neuronales convolucionales",
-          "body": "No generan imágenes — las analizan. Aprenden filtros que detectan bordes, texturas y formas, y los combinan capa a capa. Son la base del Discriminador de una GAN como DCGAN.",
-          "example": "Pregunta: ¿Cómo reconoce una red qué hay en una imagen?"
+          "body": "Aprenden filtros que detectan bordes, texturas y formas, y los combinan capa a capa. Nacieron para analizar imágenes, y en la IA generativa son la pieza de base.",
+          "text_label": "Casos",
+          "text": [
+            "Clasificar imágenes, y detectar y segmentar objetos",
+            "Super-resolución: aumentar la resolución de una imagen (SRGAN le suma una GAN para el detalle fino)",
+            "El Generador y el Discriminador de DCGAN: el Generador sube de resolución con convoluciones transpuestas"
+          ],
+          "example": "Pregunta: ¿Cómo ve una red una imagen, para reconocer qué hay o para mejorarla?"
         }
       ],
       "_choice": {
@@ -298,12 +261,12 @@
         {
           "header": "CNN",
           "cells": [
-            "Reconocer qué hay en una imagen: clasificar, detectar y segmentar",
+            "Reconocer qué hay en una imagen (clasificar, detectar, segmentar) y transformarla, por ejemplo aumentar su resolución",
             "Muy rápida",
-            "No aplica (no genera contenido)",
+            "Bajo: la misma entrada da siempre la misma salida",
             "Detectar patrones locales con pocos parámetros (filtros compartidos)",
-            "No genera contenido nuevo",
-            "Clasificación de imágenes, detección de objetos; Discriminador de DCGAN"
+            "Sola no inventa detalle: al aumentar la resolución minimizando el error cuadrático, la imagen sale sin detalle fino (por eso SRGAN le suma una GAN)",
+            "Clasificación de imágenes, detección de objetos, super-resolución; Generador y Discriminador de DCGAN"
           ]
         }
       ],
@@ -2024,7 +1987,7 @@
           "value-columns": "nothing aligns row by row; two labeled concepts"
         }
       },
-      "notes": "Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos datos sin etiquetar. Es la barrera de coste de la slide 1.3: etiquetar cuesta horas de especialistas, y las imágenes sin etiquetar sobran. Salimans et al. (2016) lo atacaron con una GAN y lograron el estado del arte en MNIST, CIFAR-10 y SVHN.\n\nEn el paper, el Discriminador funciona también como clasificador: además de las clases del dataset, aprende una clase extra para las imágenes que produce el Generador. Así, las imágenes generadas entran al entrenamiento del clasificador. Este mecanismo está en el cuerpo del paper (sección de aprendizaje semi-supervisado) y no en la captura del corpus, que solo tiene el abstract."
+      "notes": "Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos datos sin etiquetar. Ataca el costo de etiquetar: etiquetar cuesta horas de especialistas, y las imágenes sin etiquetar sobran. Salimans et al. (2016) lo atacaron con una GAN y lograron el estado del arte en MNIST, CIFAR-10 y SVHN.\n\nEn el paper, el Discriminador funciona también como clasificador: además de las clases del dataset, aprende una clase extra para las imágenes que produce el Generador. Así, las imágenes generadas entran al entrenamiento del clasificador. Este mecanismo está en el cuerpo del paper (sección de aprendizaje semi-supervisado) y no en la captura del corpus, que solo tiene el abstract."
     },
     {
       "template": "value-columns",
@@ -2207,7 +2170,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "302e5f5a529dcb8ff81db986c72040e869d36856a4510b9172d43a42823fe063",
-    "bytes": 62227
+    "sha256": "7840a0e4c3873931266bbe38b105ec5ef7eac0b75ed3151ade7435a99a31393d",
+    "bytes": 64416
   }
 }

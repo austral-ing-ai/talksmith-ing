@@ -143,6 +143,7 @@ a.deck:hover {{ background: var(--accent); color: var(--card); }}
 }}
 .tpnum {{ font-weight: 600; color: var(--accent); grid-row: span 2; }}
 .tpfecha {{ color: var(--muted); font-size: .9rem; }}
+.tpdeck {{ display: flex; flex-wrap: wrap; gap: 4px 16px; }}
 .tp a.deck {{ border: 0; padding: 0; }}
 .tp a.deck:hover {{ background: none; text-decoration: underline; color: var(--accent); }}
 .ayuda {{ color: var(--muted); font-size: .9rem; margin-top: 40px; }}

@@ -41,7 +41,7 @@
 
 ## La idea
 
-El Hospital General de Prueba (ficticio) quiere un agente que complete la ficha de admisión de cada paciente que ingresa por la guardia. El agente es un programa que usa un modelo de lenguaje. No toma decisiones clínicas: lee la nota de triage (la nota de enfermería que clasifica la urgencia del paciente), pregunta lo que falta, verifica la cobertura, consulta las normas del hospital y registra la ficha.
+El Hospital General de Prueba (ficticio) quiere un agente que complete la ficha de admisión de cada paciente que ingresa por la guardia. El agente no toma decisiones clínicas: lee la nota de triage (la nota de enfermería que clasifica la urgencia del paciente), pregunta lo que falta, verifica la cobertura, consulta las normas del hospital y registra la ficha.
 
 Este hospital tiene tres particularidades, y por ellas un modelo que responde con lo que ya sabe se equivoca:
 
@@ -90,10 +90,10 @@ No modifiquen `admision/`: la cátedra corre la entrega con su propia copia.
 
 ## Modelo y cómputo
 
-- **Modelo:** Gemma 4 E4B (`google/gemma-4-E4B-it` en Hugging Face, el sitio donde se publican modelos; es el que vimos en clase) o cualquier otro modelo libre y entrenable de **a lo sumo 8.000 millones de parámetros**. Los parámetros son los números que se ajustan al entrenar, y el tamaño de un modelo se mide en cantidad de parámetros: 8.000 millones ocupan 16 GB de memoria en bf16, un formato numérico de 16 bits por parámetro.
-- **Cómputo:** en Modal o en Hugging Face, servicios en la nube para correr GPU (Hugging Face sirve además para guardar modelos). Guarden puntos de control (copias guardadas del modelo) durante el entrenamiento, para retomar si algo se corta y para documentar cada corrida.
+- **Modelo:** Gemma 4 E4B (`google/gemma-4-E4B-it` en Hugging Face, el que vimos en clase) o cualquier otro modelo libre y entrenable de **a lo sumo 8.000 millones de parámetros**, que en bf16 ocupan 16 GB.
+- **Cómputo:** en Modal o en Hugging Face. Guarden puntos de control durante el entrenamiento, para retomar si algo se corta y para documentar cada corrida.
 - **GPU:** una A100 de 40 GB, **no la de 80 GB**, tanto para su entrenamiento como para la corrida de la cátedra. El entrenamiento, el agente y el buscador tienen que entrar y funcionar ahí.
-- **No hay tiempo máximo**, ni para su entrenamiento ni para la corrida de la cátedra. Entrenar mucho tiempo sin sobreajustar (aprender de memoria los ejemplos de entrenamiento y fallar con casos nuevos) se ve como una ventaja. Igual, lo que cuesta y tarda cada caso del test cuenta en la nota.
+- **No hay tiempo máximo**, ni para su entrenamiento ni para la corrida de la cátedra. Entrenar mucho tiempo sin sobreajustar se ve como una ventaja. Igual, lo que cuesta y tarda cada caso del test cuenta en la nota.
 - **En operación, el agente no llama a ningún servicio externo.** Los modelos grandes, también los pagos, se pueden usar para programar y para generar datos, no dentro del agente.
 - **Las dependencias van fijadas en el repositorio**, con sus versiones exactas, porque la cátedra corre el agente en su propia cuenta.
 
@@ -109,7 +109,9 @@ No modifiquen `admision/`: la cátedra corre la entrega con su propia copia.
 
 ## Parte 2: buscador propio (RAG)
 
-Construyan su buscador, o sea el programa que le trae al agente los fragmentos de las normas que necesita (esa técnica se llama RAG). Las normas incluyen secciones de otras áreas del hospital que no deciden la ficha pero se le parecen, así que el buscador tiene que elegir bien.
+Construyan su propio RAG sobre las normas. **El RAG es complementario al entrenamiento:** el entrenamiento le enseña al modelo el oficio (cómo se completa la ficha, qué preguntar, las costumbres del hospital), y el RAG le trae en cada caso el conocimiento que cambia. Las normas cambian: en el test de la cátedra tienen otros números. Por eso lo que cambia va en el buscador, no en los pesos: un modelo que aprendió de memoria los números de las normas de práctica falla en el test, y uno que los busca no.
+
+Las normas incluyen secciones de otras áreas del hospital que no deciden la ficha pero se le parecen, así que el buscador tiene que elegir bien.
 
 - **Lo que cuenta es cuánto le sirve al agente**: los casos que resuelve y lo que cuesta cada caso con ese buscador.
 - **Antes de empezar el agente**, evalúen el buscador por separado y documenten el resultado:
@@ -118,27 +120,27 @@ Construyan su buscador, o sea el programa que le trae al agente los fragmentos d
   uv run python -m admision.evaluar_rag --entrega entrega.py --normas normas/original --consultas rag/consultas_dev.jsonl
   ```
 
-  Mide tres cosas: qué parte de la evidencia necesaria trae (recall de evidencia), qué parte de lo que trae sirve (precisión) y cuántos tokens trae (un token es un trozo de texto, más o menos una sílaba; la evaluación cuenta 4 caracteres por token). Esta evaluación es obligatoria, pero no es la nota.
-- **Referencia:** el buscador de la cátedra es BM25, un buscador clásico que puntúa cada sección de las normas por las palabras que comparte con la consulta, con una sección entera por fragmento. Con las consultas de esta carpeta, las normas originales y las dos secciones que trae `buscar_normativa`, da recall de evidencia 0,875, precisión 0,492, 580 tokens por consulta y 51 de 60 consultas con toda su evidencia.
+  Mide tres cosas: qué parte de la evidencia necesaria trae (recall de evidencia), qué parte de lo que trae sirve (precisión) y cuántos tokens trae (la evaluación cuenta 4 caracteres por token). Esta evaluación es obligatoria, pero no es la nota.
+- **Referencia:** el buscador de la cátedra es BM25, con una sección entera de las normas por fragmento. Con las consultas de esta carpeta, las normas originales y las dos secciones que trae `buscar_normativa`, da recall de evidencia 0,875, precisión 0,492, 580 tokens por consulta y 51 de 60 consultas con toda su evidencia.
 - Pueden ajustar el buscador mirando cómo rinde el agente, aunque eso empeore la evaluación aparte.
-- Lo que trae el buscador ocupa contexto (el texto que el modelo puede leer a la vez). En la referencia de la cátedra, más de la mitad de cada conversación es texto de las búsquedas. Traer menos permite procesar más casos a la vez y entrenar con menos tokens.
+- Lo que trae el buscador ocupa contexto. En la referencia de la cátedra, más de la mitad de cada conversación es texto de las búsquedas. Traer menos permite procesar más casos a la vez y entrenar con menos tokens.
 
 ## Parte 3: optimización de prompt, antes de entrenar
 
 Es obligatoria y va **antes** del entrenamiento.
 
-- Optimicen el mensaje de sistema (el texto fijo de instrucciones que recibe el modelo en cada llamada) y el formato de los mensajes al modelo, con el modelo sin entrenar. Sugerimos DSPy, una librería que optimiza prompts de forma automática, por ejemplo con su optimizador GEPA.
-- Valoramos la calidad del resultado y también el largo del prompt. El prompt se repite en cada llamada al modelo: cuesta cómputo y ocupa VRAM (la memoria de la GPU) al usar el modelo y al entrenarlo. En la referencia de la cátedra, el mensaje de sistema es la quinta parte de cada conversación.
+- Optimicen el mensaje de sistema y el formato de los mensajes al modelo, con el modelo sin entrenar. Sugerimos DSPy, por ejemplo con su optimizador GEPA.
+- Valoramos la calidad del resultado y también el largo del prompt. El prompt se repite en cada llamada al modelo: cuesta cómputo y ocupa VRAM al usar el modelo y al entrenarlo. En la referencia de la cátedra, el mensaje de sistema es la quinta parte de cada conversación.
 - **Nunca optimicen sobre el test.** El test solo sirve para evaluar.
 - Después entrenen con el prompt optimizado.
 
 ## Parte 4: entrenamiento
 
-Cualquier estrategia de post-entrenamiento, o sea cualquier entrenamiento posterior al preentrenamiento original del modelo. Por ejemplo:
+Cualquier estrategia de post-entrenamiento. Por ejemplo:
 
-- fine-tuning (seguir entrenando un modelo ya hecho con ejemplos propios), como el fine-tuning supervisado (SFT): entrenar con ejemplos de conversaciones correctas;
-- DPO: entrenar con pares de respuestas a la misma pregunta, una buena y una mala, para que el modelo prefiera la buena;
-- aprendizaje por refuerzo: el modelo prueba, recibe un puntaje por lo que hizo y aprende a subirlo.
+- fine-tuning supervisado (SFT), con las conversaciones que armaron en la Parte 1;
+- DPO, con pares de respuestas al mismo paso del caso, una buena y una mala;
+- aprendizaje por refuerzo, con los 9 controles de la ficha como puntaje.
 
 ## Parte 5: recursos y producción
 
@@ -153,7 +155,7 @@ Antes y después de llegar a un resultado satisfactorio:
 
 **No aceptamos entregas, números ni afirmaciones que no sean 100% auditables y reproducibles, ni entregas que obliguen a volver a entrenar para verificarlas.**
 
-- **Cada entrenamiento** deja el archivo exacto de conversaciones que usó, la configuración, la semilla (el número que fija los sorteos al azar), la corrida en Weights & Biases (W&B, una herramienta para registrar cada corrida de entrenamiento) y cada punto de control en Hugging Face, con su versión.
+- **Cada entrenamiento** deja el archivo exacto de conversaciones que usó, la configuración, la semilla, la corrida en Weights & Biases (W&B) y cada punto de control en Hugging Face, con su versión.
 - **Cada número reportado** deja todas las conversaciones de la evaluación, con cada mensaje que entró al modelo y cada uno que salió, el resultado caso por caso y qué punto de control y qué prompt se usaron. `admision.correr` ya lo escribe así.
 - **Todo archivo generado** (datos, conversaciones, resultados) sale de un script del repositorio, y el README o el informe dice qué script genera cada uno.
 - **Se documenta cada pasada del desarrollo**, no solo la final, incluidos los experimentos que no funcionaron.

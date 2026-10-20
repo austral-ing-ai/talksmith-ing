@@ -9,7 +9,7 @@ ingested_at: 2026-08-14
 ## Provenance
 
 - Original location: `research/articles/AIG4B-Clase-8-GANs.md` (+ carpeta de medios `research/articles/AIG4B-Clase-8-GANs-media/`)
-- Format: markdown — extracción 1:1 de un deck PowerPoint de 51 slides (`AIG4B-Clase-8-GANs.pptx`, en la raíz del Talk)
+- Format: markdown — extracción 1:1 de un deck PowerPoint de 51 slides (`AIG4B-Clase-8-GANs.pptx`; el archivo ya no está en el repositorio, esta extracción lo reemplaza)
 - Author / source (if known): la slide 1 dice literalmente **«Autor: Paulo Veiga/Marcos Sanchez Sorondo»**. No hay más atribución de autoría en ninguna otra slide. La única marca institucional del deck es el **logo de la Universidad Austral** (imagen `slide-01-1.png`); el texto del deck nunca nombra a la universidad.
 - Date of original (if known): la slide 1 dice **«Última Modificación: Abril, 2026»**. No hay fecha de creación.
 - Curso: *Inteligencia Artificial Generativa Aplicada en Biomedicina* (título de la slide 1). Clase 8 de la serie.
