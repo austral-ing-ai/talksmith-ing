@@ -175,7 +175,7 @@ Lean el [README del kit](README.md) antes de escribir código. Ahí está todo l
 - cómo [corre la cátedra su entrega](README.md#cómo-corre-la-cátedra-su-entrega) con el test secreto;
 - cómo [evaluar el buscador](README.md#evaluar-el-buscador) y [generar casos](README.md#generar-casos).
 
-Para probar que el kit anda, corran los 50 casos de práctica con el agente de ejemplo de la cátedra, como indica el README.
+El kit no trae un `entrega.py` listo: el primer paso es armar uno mínimo, con un buscador simple, el agente de ejemplo (`admision/ejemplo.py`) y el modelo sin entrenar, y correr con él los 50 casos de práctica como indica el README. Esa es su línea de base.
 
 Trabajen con la herramienta de programación con IA que prefieran (Claude Code, Codex, Gemini CLI, Cursor u otra).
 
