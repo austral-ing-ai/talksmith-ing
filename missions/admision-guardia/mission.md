@@ -91,7 +91,7 @@ No modifiquen `admision/`: la cátedra corre la entrega con su propia copia.
 ## Modelo y cómputo
 
 - **Modelo:** Gemma 4 E4B (`google/gemma-4-E4B-it` en Hugging Face, el que vimos en clase) o cualquier otro modelo libre y entrenable de **a lo sumo 8.000 millones de parámetros**, que en bf16 ocupan 16 GB.
-- **Cómputo:** en Modal o en Hugging Face. Guarden puntos de control durante el entrenamiento, para retomar si algo se corta y para documentar cada corrida.
+- **Cómputo:** usen [Modal](https://modal.com). Cada integrante del grupo tiene **30 USD de crédito gratis por mes** con su cuenta en el plan Starter. Una A100 de 40 GB cuesta unos 2,10 USD por hora, así que alcanza para unas 14 horas de GPU por persona por mes: planifiquen las corridas largas. Hugging Face queda para guardar los modelos. Guarden puntos de control durante el entrenamiento, para retomar si algo se corta y para documentar cada corrida.
 - **GPU:** una A100 de 40 GB, **no la de 80 GB**, tanto para su entrenamiento como para la corrida de la cátedra. El entrenamiento, el agente y el buscador tienen que entrar y funcionar ahí.
 - **No hay tiempo máximo**, ni para su entrenamiento ni para la corrida de la cátedra. Entrenar mucho tiempo sin sobreajustar se ve como una ventaja. Igual, lo que cuesta y tarda cada caso del test cuenta en la nota.
 - **En operación, el agente no llama a ningún servicio externo.** Los modelos grandes, también los pagos, se pueden usar para programar y para generar datos, no dentro del agente.
