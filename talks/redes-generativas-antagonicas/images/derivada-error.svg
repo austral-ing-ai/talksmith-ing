@@ -1,10 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 1913 1010" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 1913 1050" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>Derivada del error del Discriminador</title>
 <desc>Redibujo del slide 37: red del Discriminador (imagen 2x2, entradas x1 a x4, pesos w1 a w4, bias b, sigmoid) y las fórmulas: predicción D(x), función de pérdida E = -ln(D(x)) y sus derivadas respecto de cada peso y del bias.</desc>
 <defs><marker id="ak" markerUnits="userSpaceOnUse" markerWidth="26" markerHeight="22" viewBox="0 0 26 22" refX="25" refY="11.0" orient="auto"><path d="M0,0 L26,11.0 L0,22 z" fill="#1F1E1E"/></marker><marker id="ar" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="18" viewBox="0 0 22 18" refX="21" refY="9.0" orient="auto"><path d="M0,0 L22,9.0 L0,18 z" fill="#B8231B"/></marker><marker id="ab" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="18" viewBox="0 0 22 18" refX="21" refY="9.0" orient="auto"><path d="M0,0 L22,9.0 L0,18 z" fill="#1F5BAA"/></marker></defs>
-<rect x="20" y="0" width="1913" height="1010" fill="#ffffff"/>
-<g transform="translate(0 75) scale(0.75)">
-<text x="510" y="138" font-size="100" text-anchor="middle" fill="#1F1E1E">Discriminator</text>
+<rect x="20" y="0" width="1913" height="1050" fill="#ffffff"/>
+<text x="382.5" y="178.5" font-size="75" text-anchor="middle" fill="#1F1E1E">Discriminador</text>
+<line x1="40" y1="290" x2="910" y2="290" stroke="#D9D4CF" stroke-width="3"/>
+<text x="156" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="156" y="270" font-size="26" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
+<text x="482" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="482" y="270" font-size="26" fill="#6B6560" text-anchor="middle">4 píxeles + bias</text>
+<text x="658" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="658" y="270" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="834" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="834" y="270" font-size="26" fill="#6B6560" text-anchor="middle">D(x)</text>
+<g transform="translate(0 205) scale(0.75)">
+
 <path d="M138,446 C150,330 215,262 300,250 C420,232 520,240 597,258" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#ak)"/>
 <path d="M340,444 C380,405 420,392 470,397 C520,402 560,418 600,437" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#ak)"/>
 <path d="M135,686 C165,760 215,812 300,815 C420,818 530,760 604,694" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#ak)"/>
@@ -60,7 +70,7 @@
 <text x="1112" y="668" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="68" text-anchor="middle" fill="#ffffff">σ</text>
 </g>
 <g transform="translate(-345 -45) scale(1.1)">
-<text x="1540" y="96" font-size="38" text-anchor="middle" fill="#1F1E1E">Prediction</text>
+<text x="1540" y="96" font-size="38" text-anchor="middle" fill="#1F1E1E">Predicción</text>
 <text x="1216.3" y="150.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F1E1E">D</text>
 <text x="1248.1" y="150.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">(</text>
 <text x="1262.7" y="150.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F1E1E">x</text>
@@ -89,14 +99,14 @@
 <text x="1791.2" y="150.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">+</text>
 <text x="1827.1" y="150.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F5BAA">b</text>
 <text x="1849.1" y="150.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">)</text>
-<text x="1540" y="222" font-size="38" text-anchor="middle" fill="#1F1E1E">Loss function (error) from images</text>
+<text x="1540" y="222" font-size="38" text-anchor="middle" fill="#1F1E1E">Función de pérdida (error) de las imágenes</text>
 <text x="1413.2" y="274.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F1E1E">E</text>
 <text x="1451.1" y="274.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">= − ln(</text>
 <text x="1571.6" y="274.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F1E1E">D</text>
 <text x="1603.3" y="274.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">(</text>
 <text x="1618.0" y="274.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F1E1E">x</text>
 <text x="1637.5" y="274.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">))</text>
-<text x="1540" y="352" font-size="38" text-anchor="middle" fill="#1F1E1E">Derivatives</text>
+<text x="1540" y="352" font-size="38" text-anchor="middle" fill="#1F1E1E">Derivadas</text>
 <path d="M1192.6,433.1 h68.8" stroke="#B8231B" stroke-width="2.2"/>
 <text x="1202.8" y="422.6" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#B8231B">∂</text>
 <text x="1224.5" y="422.6" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#B8231B">E</text>

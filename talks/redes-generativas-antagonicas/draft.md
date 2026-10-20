@@ -529,7 +529,7 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 19). Imagen redibujada como SVG (images/slanted-mundo.svg, generada con tools/sketch/slanted_mundo.py).
+- `AIG4B-Clase-8-GANs.md.md` (slide 19). Imagen redibujada como SVG (images/slanted-mundo.svg).
 
 ### Speaker notes
 
@@ -556,7 +556,7 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 20). Imagen redibujada como SVG (images/caras-patron.svg, generada con tools/sketch/caras_patron.py): caras a mano y grillas 2×2 con los valores de la tabla «Faces» del pptx (slide 21).
+- `AIG4B-Clase-8-GANs.md.md` (slide 20). Imagen redibujada como SVG (images/caras-patron.svg): caras a mano y grillas 2×2 con los valores de la tabla «Faces» del pptx (slide 21).
 
 ### Speaker notes
 
@@ -578,7 +578,7 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 21). Imagen redibujada como SVG (images/caras-vs-ruido.svg, generada con tools/sketch/caras_vs_ruido.py).
+- `AIG4B-Clase-8-GANs.md.md` (slide 21). Imagen redibujada como SVG (images/caras-vs-ruido.svg).
 
 ### Speaker notes
 
@@ -603,11 +603,11 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 - Asigna estos pesos a cada posición: +1 para las que caracterizan una cara, −1 para las que no la caracterizan.
 
-![Grillas Faces y Noise: en la cara, pesos Big sobre la diagonal principal y small sobre la secundaria; en el ruido, pesos any en las cuatro esquinas](images/pesos-big-small.svg)
+![Grillas Caras y Ruido: en la cara, pesos grandes sobre la diagonal principal y chicos sobre la secundaria; en el ruido, pesos cualquiera en las cuatro esquinas](images/pesos-big-small.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 22). Imagen redibujada como SVG (images/pesos-big-small.svg, generada con tools/sketch/pesos_big_small.py).
+- `AIG4B-Clase-8-GANs.md.md` (slide 22). Imagen redibujada como SVG (images/pesos-big-small.svg).
 
 ### Speaker notes
 
@@ -630,11 +630,11 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 | 1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) = 2 | 0.25×(+1) + 1×(−1) + 0.5×(−1) + 0.75×(+1) = −0.5 |
 | Score > 1 → Real ✓ | Score < 1 → Falsa ✓Score > 1 → Real ✓ |
 
-![Grillas Faces y Noise con peso + en las esquinas de la diagonal principal y peso − en las de la diagonal secundaria](images/pesos-mas-menos.svg)
+![Grillas Caras y Ruido con peso + en las esquinas de la diagonal principal y peso − en las de la diagonal secundaria](images/pesos-mas-menos.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 23). Imagen redibujada como SVG (images/pesos-mas-menos.svg, generada con tools/sketch/pesos_mas_menos.py).
+- `AIG4B-Clase-8-GANs.md.md` (slide 23). Imagen redibujada como SVG (images/pesos-mas-menos.svg).
 
 ### Speaker notes
 
@@ -660,11 +660,11 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 |---|---|
 | 1(+1)+0(−1)+0(−1)+1(+1)+1(−1) = 1 | σ(1) ≈ 0.73 → imagen real |
 
-![Red del Discriminador: los cuatro píxeles de la cara prototipo entran a cuatro neuronas, conectadas a la salida con pesos +1, −1, −1, +1, más un bias con peso −1](images/discriminador-red.svg)
+![Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada con los cuatro píxeles y el bias, ninguna capa oculta y la neurona de salida σ; pesos +1, −1, −1, +1 y bias con peso −1](images/discriminador-red.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 24). Imagen redibujada como SVG (images/discriminador-red.svg, generada con tools/sketch/discriminador_red.py).
+- `AIG4B-Clase-8-GANs.md.md` (slide 24). Imagen redibujada como SVG (images/discriminador-red.svg).
 
 ### Speaker notes
 
@@ -672,6 +672,10 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 - [closed] 2026-10-17 — "Check with the editor how can this be improved (notación: z reservado para el ruido del Generador)"
   Resolution: Píxeles de entrada renombrados z₁…z₄ → x₁…x₄ y encabezado «Entradas (z)» → «Entradas (x)». z queda solo para el ruido latente (3.10, 3.11) y coincide con xᵢ de 3.17. La figura slide-24-1.png es del video y no se puede editar.
+
+- [closed] 2026-10-20 — "El gráfico de la red neuronal «Discriminador como red neuronal» sería bueno que se alinee con la clase de MLP. Dividiendo entre input, hidden layer, output."
+  Resolution: discriminador-red.svg con encabezados IMAGEN / ENTRADA / OCULTA / SALIDA como en la clase de MLP; la capa oculta va como columna vacía y punteada («ninguna»), porque esta red no tiene: la cuenta σ(1) = 0,73 de la slide sigue valiendo. σ dentro de la neurona de salida. Texto alternativo actualizado.
+  Follow-up 2026-10-20 (presentador: «sí»): la misma fila de capas en discriminador-cara, discriminador-ruido, generador-red, generador-y-discriminador, error-discriminador y derivada-error. Banda punteada de la capa oculta solo en los dos discriminadores con la sigmoide; en los otros, «OCULTA · ninguna» va como encabezado, porque entre las capas se cruzan conexiones y rótulos de pesos.
 
 ---
 
@@ -694,7 +698,7 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 25)
-- Imagen redibujada como SVG (images/sigmoide.svg, generada con tools/sketch/sigmoide.py).
+- Imagen redibujada como SVG (images/sigmoide.svg).
 
 ### Speaker notes
 
@@ -722,7 +726,7 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 26). Imagen redibujada como SVG (images/discriminador-cara.svg, generada con tools/sketch/discriminador_cara.py). Imagen redibujada como SVG (images/discriminador-ruido.svg, generada con tools/sketch/discriminador_ruido.py).
+- `AIG4B-Clase-8-GANs.md.md` (slide 26). Imagen redibujada como SVG (images/discriminador-cara.svg). Imagen redibujada como SVG (images/discriminador-ruido.svg).
 
 ### Speaker notes
 
@@ -784,7 +788,7 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 28). Imagen redibujada como SVG (images/generador-red.svg, generada con tools/sketch/generador_red.py).
+- `AIG4B-Clase-8-GANs.md.md` (slide 28). Imagen redibujada como SVG (images/generador-red.svg).
 
 ### Speaker notes
 
@@ -876,7 +880,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 31). Los dos gráficos del pptx, lado a lado.
-- Imagen redibujada como SVG (images/loss-curvas.svg, generada con tools/sketch/loss_curvas.py).
+- Imagen redibujada como SVG (images/loss-curvas.svg).
 
 ### Speaker notes
 
@@ -908,7 +912,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 32)
-- Imagen redibujada como SVG (images/backprop-red.svg, generada con tools/sketch/backprop_red.py).
+- Imagen redibujada como SVG (images/backprop-red.svg).
 
 ### Speaker notes
 
@@ -991,7 +995,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 35). Imagen redibujada como SVG (images/generador-y-discriminador.svg, generada con tools/sketch/generador_y_discriminador.py).
+- `AIG4B-Clase-8-GANs.md.md` (slide 35). Imagen redibujada como SVG (images/generador-y-discriminador.svg).
 
 ### Speaker notes
 
@@ -1016,7 +1020,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 36)
-- Imagen redibujada como SVG (images/error-discriminador.svg, generada con tools/sketch/error_discriminador.py).
+- Imagen redibujada como SVG (images/error-discriminador.svg).
 
 ### Speaker notes
 
@@ -1045,7 +1049,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 37)
-- Imagen redibujada como SVG (images/derivada-error.svg, generada con tools/sketch/derivada_error.py).
+- Imagen redibujada como SVG (images/derivada-error.svg).
 
 ### Speaker notes
 
@@ -1160,7 +1164,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 41)
-- Imagen redibujada como SVG (images/stylegan-arquitectura.svg, generada con tools/sketch/stylegan_arquitectura.py).
+- Imagen redibujada como SVG (images/stylegan-arquitectura.svg).
 
 ### Speaker notes
 

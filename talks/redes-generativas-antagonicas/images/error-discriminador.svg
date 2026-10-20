@@ -1,10 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 6 2016 962" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 6 2016 1112" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>El error del Discriminador</title>
 <desc>Redibujo del slide 36: el Generador (rojo) toma z y un Bias y produce una imagen 2x2 (0.25, 1, 0.5, 0.75); el Discriminador (azul) la recibe con su propio Bias y su sigmoid da 0.68. Quería 0: Error = -ln(1-0.68).</desc>
 <defs><marker id="ar" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="16" viewBox="0 0 20 16" refX="19" refY="8.0" orient="auto"><path d="M0,0 L20,8.0 L0,16 z" fill="#DA1B2E"/></marker><marker id="ab" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="16" viewBox="0 0 20 16" refX="19" refY="8.0" orient="auto"><path d="M0,0 L20,8.0 L0,16 z" fill="#1F5BAA"/></marker><marker id="ak" markerUnits="userSpaceOnUse" markerWidth="24" markerHeight="20" viewBox="0 0 24 20" refX="23" refY="10.0" orient="auto"><path d="M0,0 L24,10.0 L0,20 z" fill="#1F1E1E"/></marker></defs>
-<rect x="18" y="6" width="2016" height="962" fill="#ffffff"/>
-<text x="543" y="92" font-size="72" text-anchor="middle" fill="#DA1B2E">Generator</text>
-<text x="1465" y="84" font-size="72" text-anchor="middle" fill="#1F5BAA">Discriminator</text>
+<rect x="18" y="6" width="2016" height="1112" fill="#ffffff"/>
+<text x="543" y="92" font-size="72" text-anchor="middle" fill="#DA1B2E">Generador</text>
+<text x="1465" y="84" font-size="72" text-anchor="middle" fill="#1F5BAA">Discriminador</text>
+<line x1="40" y1="214" x2="2010" y2="214" stroke="#D9D4CF" stroke-width="3"/>
+<text x="340" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="340" y="194" font-size="26" fill="#6B6560" text-anchor="middle">z + bias</text>
+<text x="542" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="542" y="194" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="745" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="745" y="194" font-size="26" fill="#6B6560" text-anchor="middle">4 píxeles</text>
+<text x="1022" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="1022" y="194" font-size="26" fill="#6B6560" text-anchor="middle">generada</text>
+<text x="1300" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="1300" y="194" font-size="26" fill="#6B6560" text-anchor="middle">píxeles + bias</text>
+<text x="1484" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="1484" y="194" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="1668" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="1668" y="194" font-size="26" fill="#6B6560" text-anchor="middle">real o falsa</text>
+<g transform="translate(0,150)">
+
+
 <path d="M60,287 H283 M60,270 V304 M283,270 V304" stroke="#1F1E1E" stroke-width="5" fill="none"/>
 <circle cx="108" cy="287" r="19" fill="#3A9A45"/>
 <text x="170" y="258" font-size="54" text-anchor="middle">z</text>
@@ -52,6 +70,7 @@
 <text x="1300" y="940" font-size="56" text-anchor="middle">Bias</text>
 <circle cx="1668" cy="497" r="62" fill="#3B3535"/><text x="1668" y="519.4" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="80" text-anchor="middle" fill="#ffffff">σ</text>
 <text x="1855" y="530" font-size="92" text-anchor="middle">0.68</text>
-<text x="1763" y="262" font-size="60" text-anchor="middle" fill="#1F5BAA">Want 0</text>
+<text x="1763" y="262" font-size="60" text-anchor="middle" fill="#1F5BAA">Queremos 0</text>
 <text x="1765" y="340" font-size="60" text-anchor="middle" fill="#1F5BAA">Error = -ln(1-0.68)</text>
+</g>
 </svg>

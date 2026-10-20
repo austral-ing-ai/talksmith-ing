@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -8 1238 634" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>Arquitectura de StyleGAN</title>
-<desc>Redibujo del slide 41: el vector latente pasa por la Mapping Network (Normalise y 8 capas FC) y da w en W; cada bloque A lleva ese estilo a una capa Ada IN de la Synthesis Network g, que parte de una constante 4X4X512, suma ruido por los bloques B y sube de resolución hasta 1024 X 1024. El ProGan Discriminator compara esa salida con imágenes reales reducidas (Downscaling); la Loss vuelve como Training.</desc>
+<desc>Redibujo del slide 41: el vector latente pasa por la red de mapeo (Normalizar y 8 capas FC) y da w en W; cada bloque A lleva ese estilo a una capa Ada IN de la red de síntesis g, que parte de una constante 4X4X512, suma ruido por los bloques B y sube de resolución hasta 1024 X 1024. El Discriminador de ProGAN compara esa salida con imágenes reales reducidas; la pérdida vuelve como señal de entrenamiento.</desc>
 <defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="10" viewBox="0 0 11 10" refX="11" refY="5" orient="auto"><path d="M0,0 L11,5 L0,10 z" fill="#1F1E1E"/></marker></defs>
 <rect x="-4" y="-8" width="1238" height="634" fill="#ffffff"/>
 <rect x="44" y="62" width="784" height="548" fill="none" stroke="#3B3535" stroke-width="1.6"/>
-<text x="30" y="540" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E" transform="rotate(-90 30 540)">Generator</text>
+<text x="30" y="540" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E" transform="rotate(-90 30 540)">Generador</text>
 <rect x="42" y="8" width="644" height="42" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="364" y="38" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Random Vector (Latent Code) (512 X 1)</text>
+<text x="364" y="38" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Vector aleatorio (código latente) (512 X 1)</text>
 <path d="M168,50 V72" stroke="#1F1E1E" stroke-width="1.8"/>
 <rect x="95" y="72" width="150" height="38" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="170" y="99" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Normalise</text>
-<text x="52" y="138" font-size="22" text-anchor="start" fill="#3B3535">Mapping</text>
-<text x="52" y="164" font-size="22" text-anchor="start" fill="#3B3535">Network</text>
+<text x="170" y="99" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Normalizar</text>
+<text x="52" y="138" font-size="22" text-anchor="start" fill="#3B3535">Red de</text>
+<text x="52" y="164" font-size="22" text-anchor="start" fill="#3B3535">mapeo</text>
 <text x="52" y="190" font-size="22" text-anchor="start" fill="#3B3535">f</text>
 <path d="M170,110 V184" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#ah)"/>
 <rect x="100" y="186" width="148" height="296" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
@@ -28,7 +28,7 @@
 <text x="138" y="565" font-family="'Times New Roman', Times, serif" font-style="italic" font-weight="bold" font-size="28" fill="#ffffff">w</text>
 <path d="M181,546 H173 A8,9 0 0 0 173,564 H181 M165,555 H180" stroke="#ffffff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
 <text x="188" y="565" font-family="'Times New Roman', Times, serif" font-style="italic" font-weight="bold" font-size="28" fill="#ffffff">W</text>
-<text x="466" y="84" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Synthesis Network 'g'</text>
+<text x="466" y="84" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Red de síntesis 'g'</text>
 <rect x="350" y="92" width="236" height="192" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <rect x="350" y="288" width="236" height="222" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <path d="M466,128 V250 M466,320 V476" stroke="#1F1E1E" stroke-width="1.6"/>
@@ -36,7 +36,7 @@
 <rect x="358" y="154" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="175.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Ada IN</text>
 <rect x="358" y="196" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="217.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Conv 3X3</text>
 <rect x="358" y="250" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="271.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Ada IN</text>
-<rect x="358" y="292" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="313.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Upsample</text>
+<rect x="358" y="292" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="313.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Sobremuestreo</text>
 <rect x="358" y="330" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="351.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Const (4X4X512)</text>
 <rect x="358" y="384" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="405.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Ada IN</text>
 <rect x="358" y="422" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="443.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Conv 3X3</text>
@@ -61,7 +61,7 @@
 <rect x="291" y="474" width="36" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="309" y="498" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">A</text>
 <path d="M326,490 H357" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#ah)"/>
-<text x="778" y="110" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Noise</text>
+<text x="778" y="110" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Ruido</text>
 <path d="M800,120 V141 H799" stroke="#1F1E1E" stroke-width="1.6" fill="none"/>
 <path d="M800,141 H668" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#ah)"/>
 <rect x="628" y="125" width="40" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
@@ -88,7 +88,7 @@
 <path d="M466,550 V566" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#ah)"/>
 <rect x="352" y="568" width="232" height="38" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="468" y="595" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">1024 X 1024</text>
-<text x="1020" y="176" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">ProGan Discriminator</text>
+<text x="1020" y="176" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Discriminador de ProGAN</text>
 <rect x="933" y="188" width="146" height="216" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <rect x="940" y="195" width="30" height="200" rx="2" fill="#3B3535"/>
 <text x="962" y="295" font-size="19" font-weight="bold" text-anchor="middle" fill="#ffffff" transform="rotate(-90 962 295)">(1024 X 1024)</text>
@@ -103,10 +103,10 @@
 <rect x="872" y="512" width="62" height="44" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
 <path d="M876,550 L892,532 L904,544 L914,536 L930,550 z" fill="#3B3535"/><circle cx="917" cy="522" r="5" fill="#3B3535"/>
 <path d="M890,482 V320 H931" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#ah)"/>
-<text x="877" y="400" font-size="22" font-weight="bold" text-anchor="middle" fill="#1F1E1E" transform="rotate(-90 877 400)">Downscaling</text>
+<text x="877" y="400" font-size="22" font-weight="bold" text-anchor="middle" fill="#1F1E1E" transform="rotate(-90 877 400)">Reducción</text>
 <rect x="1124" y="266" width="94" height="56" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="1171" y="303" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Loss</text>
+<text x="1171" y="303" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Pérdida</text>
 <path d="M1196,266 V132 H831" stroke="#1F1E1E" stroke-width="1.8" fill="none" stroke-dasharray="7 6" marker-end="url(#ah)"/>
 <path d="M1171,322 V516 H1006 V407" stroke="#1F1E1E" stroke-width="1.8" fill="none" stroke-dasharray="7 6" marker-end="url(#ah)"/>
-<text x="1092" y="503" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Training</text>
+<text x="1092" y="503" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Entrenamiento</text>
 </svg>

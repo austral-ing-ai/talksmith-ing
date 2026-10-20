@@ -40,12 +40,12 @@
 <path d="M382.5,660 V606.8" stroke="#2E7D32" stroke-width="5"/>
 <text x="316.0" y="317.8" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan> = − ln(<tspan font-style="italic">x</tspan>)</text>
 <text x="154.5" y="410.2" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan></text>
-<rect x="45.0" y="730.0" width="161.4" height="48" fill="#DA1B2E"/>
-<text x="125.7" y="764.0" text-anchor="middle" font-size="30" fill="#ffffff">High error</text>
-<path d="M206.4,754.0 C267.2,754.0 287.5,734.0 287.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#ah-DA1B2E)"/>
-<rect x="95.0" y="810.0" width="154.7" height="48" fill="#2E7D32"/>
-<text x="172.4" y="844.0" text-anchor="middle" font-size="30" fill="#ffffff">Low error</text>
-<path d="M249.7,834.0 C349.3,834.0 382.5,814.0 382.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#ah-2E7D32)"/>
+<rect x="45.0" y="730.0" width="151.4" height="48" fill="#DA1B2E"/>
+<text x="120.7" y="764.0" text-anchor="middle" font-size="30" fill="#ffffff">Error alto</text>
+<path d="M196.4,754.0 C264.7,754.0 287.5,734.0 287.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#ah-DA1B2E)"/>
+<rect x="95.0" y="810.0" width="159.7" height="48" fill="#2E7D32"/>
+<text x="174.9" y="844.0" text-anchor="middle" font-size="30" fill="#ffffff">Error bajo</text>
+<path d="M254.7,834.0 C350.6,834.0 382.5,814.0 382.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#ah-2E7D32)"/>
 <path d="M694.5,660 H989.0" stroke="#1F1E1E" stroke-width="2.4"/>
 <path d="M780,715.5 V49.5" stroke="#1F1E1E" stroke-width="2.4" marker-end="url(#ah)"/>
 <path d="M732.5,654 V666" stroke="#1F1E1E" stroke-width="2.4"/>
@@ -79,10 +79,10 @@
 <path d="M922.5,660 V403.5" stroke="#DA1B2E" stroke-width="5"/>
 <text x="464.4" y="160.5" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan> = − ln(1 − <tspan font-style="italic">x</tspan>)</text>
 <text x="694.5" y="410.2" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan></text>
-<rect x="575.0" y="730.0" width="154.7" height="48" fill="#2E7D32"/>
-<text x="652.4" y="764.0" text-anchor="middle" font-size="30" fill="#ffffff">Low error</text>
-<path d="M729.7,754.0 C803.1,754.0 827.5,734.0 827.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#ah-2E7D32)"/>
-<rect x="690.0" y="815.0" width="161.4" height="48" fill="#DA1B2E"/>
-<text x="770.7" y="849.0" text-anchor="middle" font-size="30" fill="#ffffff">High error</text>
-<path d="M770.7,815.0 C770.7,785.0 922.5,790.0 922.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#ah-DA1B2E)"/>
+<rect x="575.0" y="730.0" width="159.7" height="48" fill="#2E7D32"/>
+<text x="654.9" y="764.0" text-anchor="middle" font-size="30" fill="#ffffff">Error bajo</text>
+<path d="M734.7,754.0 C804.3,754.0 827.5,734.0 827.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#ah-2E7D32)"/>
+<rect x="690.0" y="815.0" width="151.4" height="48" fill="#DA1B2E"/>
+<text x="765.7" y="849.0" text-anchor="middle" font-size="30" fill="#ffffff">Error alto</text>
+<path d="M765.7,815.0 C765.7,785.0 922.5,790.0 922.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#ah-DA1B2E)"/>
 </svg>

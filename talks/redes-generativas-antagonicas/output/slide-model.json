@@ -833,7 +833,7 @@
       "design": "split-right",
       "media": {
         "src": "images/pesos-big-small.svg",
-        "alt": "Grillas Faces y Noise: en la cara, pesos Big sobre la diagonal principal y small sobre la secundaria; en el ruido, pesos any en las cuatro esquinas"
+        "alt": "Grillas Caras y Ruido: en la cara, pesos grandes sobre la diagonal principal y chicos sobre la secundaria; en el ruido, pesos cualquiera en las cuatro esquinas"
       },
       "_choice": {
         "signals": [
@@ -885,7 +885,7 @@
       "design": "split-right",
       "media": {
         "src": "images/pesos-mas-menos.svg",
-        "alt": "Grillas Faces y Noise con peso + en las esquinas de la diagonal principal y peso − en las de la diagonal secundaria"
+        "alt": "Grillas Caras y Ruido con peso + en las esquinas de la diagonal principal y peso − en las de la diagonal secundaria"
       },
       "_choice": {
         "signals": [
@@ -936,7 +936,7 @@
       "design": "split-right",
       "media": {
         "src": "images/discriminador-red.svg",
-        "alt": "Red del Discriminador: los cuatro píxeles de la cara prototipo entran a cuatro neuronas, conectadas a la salida con pesos +1, −1, −1, +1, más un bias con peso −1"
+        "alt": "Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada con los cuatro píxeles y el bias, ninguna capa oculta y la neurona de salida σ; pesos +1, −1, −1, +1 y bias con peso −1"
       },
       "_choice": {
         "signals": [
@@ -2170,7 +2170,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "7840a0e4c3873931266bbe38b105ec5ef7eac0b75ed3151ade7435a99a31393d",
-    "bytes": 64416
+    "sha256": "9c9d1cba5e89edb37d88ec4795c30a2b2521d4683f21a265f0fe1d6712e09be0",
+    "bytes": 63737
   }
 }

@@ -1289,10 +1289,10 @@ html.print-pdf .cbfull{display:none}
 <circle cx="1380.0" cy="200.0" r="42" fill="#3B3535"/>
 <circle cx="1380.0" cy="315.0" r="42" fill="#3B3535"/>
 <circle cx="1590.0" cy="200.0" r="48" fill="#3B3535"/>
-<text x="400.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Slanted people</text>
-<text x="1030.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">2x2 screens</text>
-<text x="1480.0" y="440.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">1-layer</text>
-<text x="1480.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Neural network</text>
+<text x="400.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Gente inclinada</text>
+<text x="1030.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Pantallas de 2x2</text>
+<text x="1480.0" y="440.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Red neuronal</text>
+<text x="1480.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">de 1 capa</text>
 </svg></div></div></div>
 </section><section class="slide" data-kind="content-image"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Los datos reales: caras con patrón</h2><p class="lead">Las "caras" de Slanted Land, codificadas como píxeles, tienen un patrón consistente:</p></div><div class="cbody"><div class="cfit"><div class="citext">
@@ -1404,13 +1404,13 @@ html.print-pdf .cbfull{display:none}
 </div></div>
 <div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 975" width="1290" height="975" font-family="Helvetica, Arial, sans-serif">
 <title>Caras vs. ruido</title>
-<desc>Escala de grises de 0 (blanco) a 1 (negro). Fila Faces: cuatro grillas 2×2 con la diagonal principal oscura. Fila Noise: cuatro grillas 2×2 con valores sin patrón.</desc>
+<desc>Escala de grises de 0 (blanco) a 1 (negro). Fila Caras: cuatro grillas 2×2 con la diagonal principal oscura. Fila Ruido: cuatro grillas 2×2 con valores sin patrón.</desc>
 <defs><linearGradient id="e5-g01" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#000000"/></linearGradient></defs>
 <rect width="1290" height="975" fill="#ffffff"/>
 <rect x="400" y="24" width="490" height="70" fill="url(#e5-g01)" stroke="#1F1E1E" stroke-width="2"/>
 <text x="400.0" y="158.0" font-size="60" fill="#1F1E1E" text-anchor="middle" font-weight="normal">0</text>
 <text x="890.0" y="158.0" font-size="60" fill="#1F1E1E" text-anchor="middle" font-weight="normal">1</text>
-<text x="25.0" y="254.0" font-size="64" fill="#1F1E1E" text-anchor="start" font-weight="normal">Faces</text>
+<text x="25.0" y="254.0" font-size="64" fill="#1F1E1E" text-anchor="start" font-weight="normal">Caras</text>
 <rect x="25.0" y="280.0" width="140" height="140" fill="#404040"/>
 <text x="95.0" y="369.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
 <rect x="165.0" y="280.0" width="140" height="140" fill="#ffffff"/>
@@ -1455,7 +1455,7 @@ html.print-pdf .cbfull{display:none}
 <line x1="1125" y1="280" x2="1125" y2="560" stroke="#1F1E1E" stroke-width="2.5"/>
 <line x1="985" y1="420" x2="1265" y2="420" stroke="#1F1E1E" stroke-width="2.5"/>
 <rect x="985" y="280" width="280" height="280" fill="none" stroke="#1F1E1E" stroke-width="4.9"/>
-<text x="25.0" y="649.0" font-size="64" fill="#1F1E1E" text-anchor="start" font-weight="normal">Noise</text>
+<text x="25.0" y="649.0" font-size="64" fill="#1F1E1E" text-anchor="start" font-weight="normal">Ruido</text>
 <rect x="25.0" y="675.0" width="140" height="140" fill="#bfbfbf"/>
 <text x="95.0" y="764.4" font-size="54" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
 <rect x="165.0" y="675.0" width="140" height="140" fill="#ffffff"/>
@@ -1505,69 +1505,69 @@ html.print-pdf .cbfull{display:none}
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Construyendo el Discriminador</h2><p class="lead"><b>¿qué píxeles importan?</b></p></div><div class="cbody"><div class="cfit"><div class="highlights hl-top"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p>El Discriminador aprende que en las caras de Slanted Land:</p></div></div><div class="citext">
 <ul class="cifacts"><li>Los píxeles de la diagonal principal son grandes → reciben peso positivo (+1)</li><li>Los píxeles de la diagonal secundaria son pequeños → reciben peso negativo (−1)</li></ul></div>
 </div></div>
-<div class="highlights hl-bottom fragment fade-up"><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p>Asigna estos pesos a cada posición: +1 para las que caracterizan una cara, −1 para las que no la caracterizan.</p></div></div><div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 690" width="1440" height="690" font-family="Helvetica, Arial, sans-serif">
-<title>Pesos Big y small</title>
-<desc>Grilla Faces (1, 0 / 0, 1) con etiquetas Big en rojo sobre la diagonal principal y small en azul sobre la secundaria; grilla Noise (0.25, 1 / 0.5, 0.75) con etiquetas any en verde en las cuatro esquinas.</desc>
+<div class="highlights hl-bottom fragment fade-up"><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p>Asigna estos pesos a cada posición: +1 para las que caracterizan una cara, −1 para las que no la caracterizan.</p></div></div><div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1740 690" width="1740" height="690" font-family="Helvetica, Arial, sans-serif">
+<title>Pesos grande y chico</title>
+<desc>Grilla Caras (1, 0 / 0, 1) con etiquetas Grande en rojo sobre la diagonal principal y chico en azul sobre la secundaria; grilla Ruido (0.25, 1 / 0.5, 0.75) con etiquetas cualquiera en verde en las cuatro esquinas.</desc>
 <defs><marker id="e6-ah-DA1B2E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e6-ah-1F5FAD-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="e6-ah-2E8540-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker></defs>
-<rect width="1440" height="690" fill="#ffffff"/>
-<text x="352.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Faces</text>
-<rect x="192.0" y="190.0" width="160" height="160" fill="#000000"/>
-<text x="272.0" y="291.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
-<rect x="352.0" y="190.0" width="160" height="160" fill="#ffffff"/>
-<text x="432.0" y="291.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
-<rect x="192.0" y="350.0" width="160" height="160" fill="#ffffff"/>
-<text x="272.0" y="451.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
-<rect x="352.0" y="350.0" width="160" height="160" fill="#000000"/>
-<text x="432.0" y="451.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
-<line x1="352" y1="190" x2="352" y2="510" stroke="#1F1E1E" stroke-width="2.8"/>
-<line x1="192" y1="350" x2="512" y2="350" stroke="#1F1E1E" stroke-width="2.8"/>
-<rect x="192" y="190" width="320" height="320" fill="none" stroke="#1F1E1E" stroke-width="5.6"/>
-<rect x="17" y="25" width="130" height="110" fill="#DA1B2E"/>
-<text x="82.0" y="103.0" font-size="64" fill="#ffffff" text-anchor="middle" font-weight="normal">Big</text>
-<path d="M147.0,80.0 C177.0,80.0 190.0,140.0 190.0,171.0" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-DA1B2E-30)"/>
-<rect x="557" y="25" width="130" height="110" fill="#1F5FAD"/>
-<text x="622.0" y="95.8" font-size="44" fill="#ffffff" text-anchor="middle" font-weight="normal">small</text>
-<path d="M557.0,80.0 C527.0,80.0 514.0,140.0 514.0,171.0" stroke="#1F5FAD" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-1F5FAD-30)"/>
-<rect x="17" y="560" width="130" height="110" fill="#1F5FAD"/>
-<text x="82.0" y="630.8" font-size="44" fill="#ffffff" text-anchor="middle" font-weight="normal">small</text>
-<path d="M147.0,615.0 C177.0,615.0 190.0,560.0 190.0,529.0" stroke="#1F5FAD" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-1F5FAD-30)"/>
-<rect x="557" y="560" width="130" height="110" fill="#DA1B2E"/>
-<text x="622.0" y="638.0" font-size="64" fill="#ffffff" text-anchor="middle" font-weight="normal">Big</text>
-<path d="M557.0,615.0 C527.0,615.0 514.0,560.0 514.0,529.0" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-DA1B2E-30)"/>
-<text x="1088.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Noise</text>
-<rect x="928.0" y="190.0" width="160" height="160" fill="#bfbfbf"/>
-<text x="1008.0" y="291.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
-<rect x="1088.0" y="190.0" width="160" height="160" fill="#000000"/>
-<text x="1168.0" y="291.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
-<rect x="928.0" y="350.0" width="160" height="160" fill="#808080"/>
-<text x="1008.0" y="451.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">0.5</text>
-<rect x="1088.0" y="350.0" width="160" height="160" fill="#404040"/>
-<text x="1168.0" y="451.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
-<line x1="1088" y1="190" x2="1088" y2="510" stroke="#1F1E1E" stroke-width="2.8"/>
-<line x1="928" y1="350" x2="1248" y2="350" stroke="#1F1E1E" stroke-width="2.8"/>
-<rect x="928" y="190" width="320" height="320" fill="none" stroke="#1F1E1E" stroke-width="5.6"/>
-<rect x="753" y="25" width="130" height="110" fill="#2E8540"/>
-<text x="818.0" y="96.6" font-size="46" fill="#ffffff" text-anchor="middle" font-weight="normal">any</text>
-<path d="M883.0,80.0 C913.0,80.0 926.0,140.0 926.0,171.0" stroke="#2E8540" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-2E8540-30)"/>
-<rect x="1293" y="25" width="130" height="110" fill="#2E8540"/>
-<text x="1358.0" y="96.6" font-size="46" fill="#ffffff" text-anchor="middle" font-weight="normal">any</text>
-<path d="M1293.0,80.0 C1263.0,80.0 1250.0,140.0 1250.0,171.0" stroke="#2E8540" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-2E8540-30)"/>
-<rect x="753" y="560" width="130" height="110" fill="#2E8540"/>
-<text x="818.0" y="631.6" font-size="46" fill="#ffffff" text-anchor="middle" font-weight="normal">any</text>
-<path d="M883.0,615.0 C913.0,615.0 926.0,560.0 926.0,529.0" stroke="#2E8540" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-2E8540-30)"/>
-<rect x="1293" y="560" width="130" height="110" fill="#2E8540"/>
-<text x="1358.0" y="631.6" font-size="46" fill="#ffffff" text-anchor="middle" font-weight="normal">any</text>
-<path d="M1293.0,615.0 C1263.0,615.0 1250.0,560.0 1250.0,529.0" stroke="#2E8540" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-2E8540-30)"/>
+<rect width="1740" height="690" fill="#ffffff"/>
+<text x="430.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Caras</text>
+<rect x="270.0" y="190.0" width="160" height="160" fill="#000000"/>
+<text x="350.0" y="291.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="430.0" y="190.0" width="160" height="160" fill="#ffffff"/>
+<text x="510.0" y="291.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="270.0" y="350.0" width="160" height="160" fill="#ffffff"/>
+<text x="350.0" y="451.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="430.0" y="350.0" width="160" height="160" fill="#000000"/>
+<text x="510.0" y="451.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<line x1="430" y1="190" x2="430" y2="510" stroke="#1F1E1E" stroke-width="2.8"/>
+<line x1="270" y1="350" x2="590" y2="350" stroke="#1F1E1E" stroke-width="2.8"/>
+<rect x="270" y="190" width="320" height="320" fill="none" stroke="#1F1E1E" stroke-width="5.6"/>
+<rect x="10" y="25" width="215" height="110" fill="#DA1B2E"/>
+<text x="117.5" y="100.2" font-size="56" fill="#ffffff" text-anchor="middle" font-weight="normal">Grande</text>
+<path d="M225.0,80.0 C255.0,80.0 268.0,140.0 268.0,171.0" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-DA1B2E-30)"/>
+<rect x="635" y="25" width="215" height="110" fill="#1F5FAD"/>
+<text x="742.5" y="95.1" font-size="42" fill="#ffffff" text-anchor="middle" font-weight="normal">chico</text>
+<path d="M635.0,80.0 C605.0,80.0 592.0,140.0 592.0,171.0" stroke="#1F5FAD" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-1F5FAD-30)"/>
+<rect x="10" y="560" width="215" height="110" fill="#1F5FAD"/>
+<text x="117.5" y="630.1" font-size="42" fill="#ffffff" text-anchor="middle" font-weight="normal">chico</text>
+<path d="M225.0,615.0 C255.0,615.0 268.0,560.0 268.0,529.0" stroke="#1F5FAD" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-1F5FAD-30)"/>
+<rect x="635" y="560" width="215" height="110" fill="#DA1B2E"/>
+<text x="742.5" y="635.2" font-size="56" fill="#ffffff" text-anchor="middle" font-weight="normal">Grande</text>
+<path d="M635.0,615.0 C605.0,615.0 592.0,560.0 592.0,529.0" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-DA1B2E-30)"/>
+<text x="1310.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Ruido</text>
+<rect x="1150.0" y="190.0" width="160" height="160" fill="#bfbfbf"/>
+<text x="1230.0" y="291.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
+<rect x="1310.0" y="190.0" width="160" height="160" fill="#000000"/>
+<text x="1390.0" y="291.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="1150.0" y="350.0" width="160" height="160" fill="#808080"/>
+<text x="1230.0" y="451.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">0.5</text>
+<rect x="1310.0" y="350.0" width="160" height="160" fill="#404040"/>
+<text x="1390.0" y="451.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">0.75</text>
+<line x1="1310" y1="190" x2="1310" y2="510" stroke="#1F1E1E" stroke-width="2.8"/>
+<line x1="1150" y1="350" x2="1470" y2="350" stroke="#1F1E1E" stroke-width="2.8"/>
+<rect x="1150" y="190" width="320" height="320" fill="none" stroke="#1F1E1E" stroke-width="5.6"/>
+<rect x="890" y="25" width="215" height="110" fill="#2E8540"/>
+<text x="997.5" y="94.4" font-size="40" fill="#ffffff" text-anchor="middle" font-weight="normal">cualquiera</text>
+<path d="M1105.0,80.0 C1135.0,80.0 1148.0,140.0 1148.0,171.0" stroke="#2E8540" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-2E8540-30)"/>
+<rect x="1515" y="25" width="215" height="110" fill="#2E8540"/>
+<text x="1622.5" y="94.4" font-size="40" fill="#ffffff" text-anchor="middle" font-weight="normal">cualquiera</text>
+<path d="M1515.0,80.0 C1485.0,80.0 1472.0,140.0 1472.0,171.0" stroke="#2E8540" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-2E8540-30)"/>
+<rect x="890" y="560" width="215" height="110" fill="#2E8540"/>
+<text x="997.5" y="629.4" font-size="40" fill="#ffffff" text-anchor="middle" font-weight="normal">cualquiera</text>
+<path d="M1105.0,615.0 C1135.0,615.0 1148.0,560.0 1148.0,529.0" stroke="#2E8540" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-2E8540-30)"/>
+<rect x="1515" y="560" width="215" height="110" fill="#2E8540"/>
+<text x="1622.5" y="629.4" font-size="40" fill="#ffffff" text-anchor="middle" font-weight="normal">cualquiera</text>
+<path d="M1515.0,615.0 C1485.0,615.0 1472.0,560.0 1472.0,529.0" stroke="#2E8540" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e6-ah-2E8540-30)"/>
 </svg></div></div></div>
 </section><section class="slide" data-kind="value-columns"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Construyendo el Discriminador</h2><p class="lead"><b>Calculo del Score</b></p></div><div class="cbody"><div class="cfit"><div class="highlights hl-top"><div class="highlight definition"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M560-574v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-610q-38 0-73 9.5T560-574Zm0 220v-49q33-13.5 67.5-20.25T700-430q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-390q-38 0-73 9t-67 27Zm0-110v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-500q-38 0-73 9.5T560-464ZM248-300q53.57 0 104.28 12.5Q403-275 452-250v-427q-45-30-97.62-46.5Q301.76-740 248-740q-38 0-74.5 9.5T100-707v434q31-14 70.5-20.5T248-300Zm264 50q50-25 98-37.5T712-300q38 0 78.5 6t69.5 16v-429q-34-17-71.82-25-37.82-8-76.18-8-54 0-104.5 16.5T512-677v427Zm-30 90q-51-38-111-58.5T248-239q-36.54 0-71.77 9T106-208q-23.1 11-44.55-3Q40-225 40-251v-463q0-15 7-27.5T68-761q42-20 87.39-29.5 45.4-9.5 92.61-9.5 63 0 122.5 17T482-731q51-35 109.5-52T712-800q46.87 0 91.93 9.5Q849-781 891-761q14 7 21.5 19.5T920-714v463q0 27.89-22.5 42.45Q875-194 853-208q-34-14-69.23-22.5Q748.54-239 712-239q-63 0-121 21t-109 58ZM276-489Z"/></svg></span><p>El score de una imagen = suma ponderada de sus valores de píxel × pesos aprendidos:</p></div></div><div class="compare" style="--cc:2"><div class="chead"><span>Cara prototipo</span><span>Imagen de ruido</span></div><div class="crow"><span>1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) = 2</span><span>0.25×(+1) + 1×(−1) + 0.5×(−1) + 0.75×(+1) = −0.5</span></div><div class="crow"><span>Score &gt; 1 → Real ✓</span><span>Score &lt; 1 → Falsa ✓Score &gt; 1 → Real ✓</span></div></div>
 </div></div>
 <div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 690" width="1440" height="690" font-family="Helvetica, Arial, sans-serif">
 <title>Pesos más y menos</title>
-<desc>Grillas Faces (1, 0 / 0, 1) y Noise (0.25, 1 / 0.5, 0.75), cada una con un peso + en rojo en las esquinas de la diagonal principal y un peso - en azul en las de la secundaria.</desc>
+<desc>Grillas Caras (1, 0 / 0, 1) y Ruido (0.25, 1 / 0.5, 0.75), cada una con un peso + en rojo en las esquinas de la diagonal principal y un peso - en azul en las de la secundaria.</desc>
 <defs><marker id="e7-ah-DA1B2E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e7-ah-1F5FAD-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker></defs>
 <rect width="1440" height="690" fill="#ffffff"/>
-<text x="352.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Faces</text>
+<text x="352.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Caras</text>
 <rect x="192.0" y="190.0" width="160" height="160" fill="#000000"/>
 <text x="272.0" y="291.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
 <rect x="352.0" y="190.0" width="160" height="160" fill="#ffffff"/>
@@ -1593,7 +1593,7 @@ html.print-pdf .cbfull{display:none}
 <rect x="592.0" y="610.0" width="60" height="10" fill="#ffffff"/>
 <rect x="617.0" y="585.0" width="10" height="60" fill="#ffffff"/>
 <path d="M557.0,615.0 C527.0,615.0 514.0,560.0 514.0,529.0" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e7-ah-DA1B2E-30)"/>
-<text x="1088.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Noise</text>
+<text x="1088.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Ruido</text>
 <rect x="928.0" y="190.0" width="160" height="160" fill="#bfbfbf"/>
 <text x="1008.0" y="291.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
 <rect x="1088.0" y="190.0" width="160" height="160" fill="#000000"/>
@@ -1623,11 +1623,22 @@ html.print-pdf .cbfull{display:none}
 </section><section class="slide" data-kind="content+cards+image"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Discriminador Como red neuronal</h2><p class="lead">Para la cara prototipo: σ(1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) − 1) = σ(1)</p></div><div class="cbody"><div class="cfit"><div class="ccicards">
 <div class="ccard sm fragment fade-up"><h3>Entradas (x)</h3><p>x₁=1, x₂=0, x₃=0, x₄=1</p></div><div class="ccard sm fragment fade-up"><h3>Pesos (w)</h3><p>w₁=+1, w₂=−1, w₃=−1, w₄=+1</p></div><div class="ccard sm fragment fade-up"><h3>Bias</h3><p>valor fijo = 1, peso = −1</p></div><div class="ccard sm fragment fade-up"><h3>Suma ponderada</h3><p>1(+1)+0(−1)+0(−1)+1(+1)+1(−1) = 1</p></div><div class="ccard sm fragment fade-up"><h3>Sigmoid</h3><p>σ(1) ≈ 0.73 → imagen real</p></div></div></div></div>
-<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1370 940" width="1370" height="940" font-family="Helvetica, Arial, sans-serif">
-<title>Discriminador como red</title>
-<desc>La grilla 2×2 de la cara prototipo (1, 0 / 0, 1) alimenta cuatro neuronas de entrada, conectadas a una neurona de salida con pesos +1 (rojo), -1, -1 (azul) y +1 (rojo); un nodo Bias de valor 1 aporta con peso -1 (verde).</desc>
+<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420 1110" width="1420" height="1110" font-family="Helvetica, Arial, sans-serif">
+<title>Discriminador como red: entrada, oculta y salida</title>
+<desc>La grilla 2×2 de la cara prototipo (1, 0 / 0, 1) alimenta las cuatro neuronas de la capa de entrada, conectadas directamente a la neurona de salida (σ), sin capa oculta, con pesos +1 (rojo), -1, -1 (azul) y +1 (rojo); un nodo Bias de valor 1 aporta con peso -1 (verde).</desc>
 <defs><marker id="e8-ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="e8-ah-DA1B2E-34" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="34" markerHeight="34" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e8-ah-1F5FAD-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="e8-ah-2E8540-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker></defs>
-<rect width="1370" height="940" fill="#ffffff"/>
+<rect width="1420" height="1110" fill="#ffffff"/>
+<rect x="1022" y="140" width="96" height="950" rx="18" fill="#F4F2F0" stroke="#6B6560" stroke-width="3" stroke-dasharray="14 10"/>
+<line x1="40" y1="128" x2="1380" y2="128" stroke="#D9D4CF" stroke-width="3"/>
+<text x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
+<text x="780" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="780" y="106" font-size="34" fill="#6B6560" text-anchor="middle">4 píxeles + bias</text>
+<text x="1070" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="1070" y="106" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="1280" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="1280" y="106" font-size="34" fill="#6B6560" text-anchor="middle">real o falsa</text>
+<g transform="translate(0,150)">
 <rect x="60.0" y="280.0" width="170" height="170" fill="#000000"/>
 <text x="145.0" y="387.3" font-size="62" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
 <rect x="230.0" y="280.0" width="170" height="170" fill="#ffffff"/>
@@ -1666,6 +1677,8 @@ html.print-pdf .cbfull{display:none}
 <text x="780.0" y="876.6" font-size="46" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
 <text x="710.0" y="882.0" font-size="62" fill="#1F1E1E" text-anchor="end" font-weight="normal">Bias</text>
 <circle cx="1280.0" cy="450.0" r="48" fill="#3B3535"/>
+<text x="1280.0" y="468.0" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
+</g>
 </svg></div></div></div>
 </section><section class="slide" data-kind="content+cards+image"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Función Sigmoid: la activación del Discriminador</h2><p class="lead"><b>La función sigmoid convierte cualquier número real en una probabilidad entre 0 y 1. Es la función de activación que usa el Discriminador para emitir su veredicto.</b></p></div><div class="cbody"><div class="cfit"><div class="ccicards">
@@ -1695,11 +1708,22 @@ html.print-pdf .cbfull{display:none}
 </section><section class="slide" data-kind="value-columns"><div class="stage d-split side-left">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Pongamos todo junto del Discriminador</h2></div><div class="cbody"><div class="cfit"><div class="compare" style="--cc:2"><div class="chead"><span>Cuando la cara prototipo pasa por la red completa</span><span>Cuando la imagen de ruido pasa por la misma red</span></div><div class="crow"><span><b>σ(1) = 0.73 → "Estoy un 73% seguro de que esto es real"</b></span><span><b>σ(-0.5) = 0.37 → "Estoy solo un 37% seguro de que esto sea real"</b></span></div><div class="crow"><span><b>Como 0.73 &gt; 0.5, clasifica correctamente la imagen como real ✓</b></span><span><b>Como 0.37 &lt; 0.5, clasifica correctamente la imagen como falsa ✓</b></span></div></div>
 </div></div>
-<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1910 940" width="1910" height="940" font-family="Helvetica, Arial, sans-serif">
+<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1910 1090" width="1910" height="1090" font-family="Helvetica, Arial, sans-serif">
 <title>Discriminador con la cara</title>
 <desc>La cara prototipo (1, 0 / 0, 1) pasa por la red del Discriminador, con pesos +1, -1, -1, +1 y bias -1; la salida es σ(1) = 0.73. Arriba, el gráfico de la sigmoide σ(x) = 1 / (1 + e^-x) marca el punto (1, 0.73).</desc>
 <defs><marker id="e10-ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="e10-ah-DA1B2E-34" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="34" markerHeight="34" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e10-ah-1F5FAD-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="e10-ah-2E8540-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker><marker id="e10-ah-3B3535-22" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="22" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker><marker id="e10-ah-3B3535-22s" viewBox="0 0 10 10" refX="3" refY="5" markerWidth="22" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#3B3535"/></marker></defs>
-<rect width="1910" height="940" fill="#ffffff"/>
+<rect x="0" y="0" width="1910" height="1090" fill="#ffffff"/>
+<line x1="40" y1="128" x2="1870" y2="128" stroke="#D9D4CF" stroke-width="3"/>
+<text x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
+<text x="780" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="780" y="106" font-size="34" fill="#6B6560" text-anchor="middle">4 píxeles + bias</text>
+<text x="1060" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="1060" y="106" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="1280" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="1280" y="106" font-size="34" fill="#6B6560" text-anchor="middle">real o falsa</text>
+<g transform="translate(0,150)">
+<rect x="1020" y="-10" width="80" height="950" rx="18" fill="#F4F2F0" stroke="#6B6560" stroke-width="3" stroke-dasharray="14 10"/>
 <rect x="60.0" y="280.0" width="170" height="170" fill="#000000"/>
 <text x="145.0" y="387.3" font-size="62" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
 <rect x="230.0" y="280.0" width="170" height="170" fill="#ffffff"/>
@@ -1738,6 +1762,7 @@ html.print-pdf .cbfull{display:none}
 <text x="780.0" y="876.6" font-size="46" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
 <text x="710.0" y="882.0" font-size="62" fill="#1F1E1E" text-anchor="end" font-weight="normal">Bias</text>
 <circle cx="1280.0" cy="450.0" r="48" fill="#3B3535"/>
+<text x="1280.0" y="468" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
 <text x="1360.0" y="480.0" font-size="84" fill="#1F1E1E" text-anchor="start" font-weight="normal">σ(1) = 0.73</text>
 <path d="M1138,324 L1867,324" stroke="#3B3535" stroke-width="3" marker-end="url(#e10-ah-3B3535-22)" marker-start="url(#e10-ah-3B3535-22s)"/>
 <path d="M1580,336 L1580,44" stroke="#3B3535" stroke-width="3" marker-end="url(#e10-ah-3B3535-22)"/>
@@ -1755,11 +1780,23 @@ html.print-pdf .cbfull{display:none}
 <line x1="1286" y1="190" x2="1444" y2="190" stroke="#3B3535" stroke-width="3"/>
 <text x="1286.0" y="244.0" font-size="46" fill="#3B3535" text-anchor="start" font-weight="normal" font-style="italic">1 + e</text>
 <text x="1400.0" y="222.0" font-size="34" fill="#3B3535" text-anchor="start" font-weight="normal" font-style="italic">-x</text>
-</svg></div><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1910 940" width="1910" height="940" font-family="Helvetica, Arial, sans-serif">
+</g>
+</svg></div><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1910 1090" width="1910" height="1090" font-family="Helvetica, Arial, sans-serif">
 <title>Discriminador con ruido</title>
 <desc>La imagen de ruido (0.25, 1 / 0.5, 0.75) pasa por la red del Discriminador, con pesos +1, -1, -1, +1 y bias -1; la salida es σ(-0.5) = 0.37.</desc>
 <defs><marker id="e11-ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="e11-ah-DA1B2E-34" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="34" markerHeight="34" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e11-ah-1F5FAD-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="e11-ah-2E8540-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker></defs>
-<rect width="1910" height="940" fill="#ffffff"/>
+<rect x="0" y="0" width="1910" height="1090" fill="#ffffff"/>
+<line x1="40" y1="128" x2="1870" y2="128" stroke="#D9D4CF" stroke-width="3"/>
+<text x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
+<text x="780" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="780" y="106" font-size="34" fill="#6B6560" text-anchor="middle">4 píxeles + bias</text>
+<text x="1060" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="1060" y="106" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="1280" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="1280" y="106" font-size="34" fill="#6B6560" text-anchor="middle">real o falsa</text>
+<g transform="translate(0,150)">
+<rect x="1020" y="-10" width="80" height="950" rx="18" fill="#F4F2F0" stroke="#6B6560" stroke-width="3" stroke-dasharray="14 10"/>
 <rect x="60.0" y="280.0" width="170" height="170" fill="#bfbfbf"/>
 <text x="145.0" y="387.3" font-size="62" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
 <rect x="230.0" y="280.0" width="170" height="170" fill="#000000"/>
@@ -1798,7 +1835,9 @@ html.print-pdf .cbfull{display:none}
 <text x="780.0" y="876.6" font-size="46" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
 <text x="710.0" y="882.0" font-size="62" fill="#1F1E1E" text-anchor="end" font-weight="normal">Bias</text>
 <circle cx="1280.0" cy="450.0" r="48" fill="#3B3535"/>
+<text x="1280.0" y="468" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
 <text x="1360.0" y="480.0" font-size="84" fill="#1F1E1E" text-anchor="start" font-weight="normal">σ(-0.5) = 0.37</text>
+</g>
 </svg></div></div></div>
 </section><section class="slide" data-kind="value-columns"><div class="stage d-full">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">El Generador: el objetivo opuesto</h2><p class="lead">Las dos redes leen el mismo número, D(·), pero quieren resultados contrarios.</p></div><div class="cbody"><div class="cfit"><div class="compare fac" style="--cc:3"><div class="chead"><span>Factor</span><span>Discriminador (D)</span><span>Generador (G)</span></div><div class="crow"><span>Entrada</span><span>Una imagen x de 4 píxeles</span><span>Un número aleatorio z, entre 0 y 1</span></div><div class="crow"><span>Salida</span><span>Un número, D(x)</span><span>Una imagen G(z) de 2×2</span></div><div class="crow"><span>Quiere</span><span>D(x) → 1 si la imagen es real; D(G(z)) → 0 si es falsa</span><span>D(G(z)) → 1</span></div></div>
@@ -1808,12 +1847,23 @@ html.print-pdf .cbfull{display:none}
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Construyendo el Generador</h2><p class="lead"><b>El Generador en acción: z = 0.7 → imagen</b></p></div><div class="cbody"><div class="cfit"><div class="citext">
 <ul class="cifacts"><li>Con z = 0.7 como entrada y los pesos aprendidos, el Generador produce una imagen que reproduce el patrón diagonal de las caras reales. El Generador aprendió a engañar al Discriminador.</li><li>El resultado muestra el patrón diagonal característico de las caras de Slanted Land: valores altos en la diagonal principal, bajos en la secundaria. El Generador internalizó la estructura del dataset real.</li></ul></div>
 </div></div>
-<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1940 1050" width="1940" height="1050" font-family="Helvetica, Arial, sans-serif">
+<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1940 1200" width="1940" height="1200" font-family="Helvetica, Arial, sans-serif">
 <title>Generador</title>
 <desc>El Generador recibe z = 0.7 (deslizador de 0 a 1) y un Bias de valor 1, los conecta con pesos +1, -1, -1, +1 a cuatro neuronas sigmoide: σ(1.7) = 0.85, σ(-1.7) = 0.15, σ(-1.7) = 0.15 y σ(1.7) = 0.85, que forman la imagen 2×2 (0.85, 0.15 / 0.15, 0.85).</desc>
 <defs><marker id="e12-ah-DA1B2E-32" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="32" markerHeight="32" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e12-ah-1F5FAD-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="e12-ah-1F1E1E-56" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="56" markerHeight="56" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="e12-ah-1F1E1E-28" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="28" markerHeight="28" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker></defs>
-<rect width="1940" height="1050" fill="#ffffff"/>
-<text x="90.0" y="110.0" font-size="92" fill="#1F1E1E" text-anchor="start" font-weight="normal">Generator</text>
+<rect x="0" y="0" width="1940" height="1200" fill="#ffffff"/>
+<text x="90.0" y="110.0" font-size="92" fill="#1F1E1E" text-anchor="start" font-weight="normal">Generador</text>
+<line x1="40" y1="242" x2="1900" y2="242" stroke="#D9D4CF" stroke-width="3"/>
+<text x="420" y="178" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="420" y="220" font-size="34" fill="#6B6560" text-anchor="middle">z + bias</text>
+<text x="670" y="178" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="670" y="220" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="920" y="178" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="920" y="220" font-size="34" fill="#6B6560" text-anchor="middle">4 píxeles</text>
+<text x="1740" y="178" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="1740" y="220" font-size="34" fill="#6B6560" text-anchor="middle">generada, 2×2</text>
+<g transform="translate(0,150)">
+
 <line x1="40" y1="430" x2="260" y2="430" stroke="#1F1E1E" stroke-width="5"/>
 <line x1="40" y1="412" x2="40" y2="448" stroke="#1F1E1E" stroke-width="5"/>
 <line x1="260" y1="412" x2="260" y2="448" stroke="#1F1E1E" stroke-width="5"/>
@@ -1873,6 +1923,7 @@ html.print-pdf .cbfull{display:none}
 <path d="M960.0,400.0 C1120.0,260.0 1700.0,280.0 1815.3,453.0" stroke="#1F1E1E" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-28)"/>
 <path d="M960.0,680.0 C1150.0,830.0 1560.0,880.0 1653.4,805.2" stroke="#1F1E1E" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-28)"/>
 <path d="M955.0,906.0 C1200.0,1110.0 1700.0,1010.0 1811.7,814.6" stroke="#1F1E1E" stroke-width="13" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-56)"/>
+</g>
 </svg></div></div></div>
 </section><section class="slide" data-kind="value-columns"><div class="stage d-full">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Proceso de Entrenamiento</h2><p class="lead">En los slides anteriores definimos los pesos del Discriminador y el Generador a mano (+1, −1, Bias). En la práctica, la red debe aprender esos pesos sola. Para eso necesitamos una forma de medir cuánto se equivocó — esa es la función de error.</p></div><div class="cbody"><div class="cfit"><div class="highlights hl-top"><div class="highlight definition"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M560-574v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-610q-38 0-73 9.5T560-574Zm0 220v-49q33-13.5 67.5-20.25T700-430q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-390q-38 0-73 9t-67 27Zm0-110v-48q33-14 67.5-21t72.5-7q26 0 51 4t49 10v44q-24-9-48.5-13.5T700-500q-38 0-73 9.5T560-464ZM248-300q53.57 0 104.28 12.5Q403-275 452-250v-427q-45-30-97.62-46.5Q301.76-740 248-740q-38 0-74.5 9.5T100-707v434q31-14 70.5-20.5T248-300Zm264 50q50-25 98-37.5T712-300q38 0 78.5 6t69.5 16v-429q-34-17-71.82-25-37.82-8-76.18-8-54 0-104.5 16.5T512-677v427Zm-30 90q-51-38-111-58.5T248-239q-36.54 0-71.77 9T106-208q-23.1 11-44.55-3Q40-225 40-251v-463q0-15 7-27.5T68-761q42-20 87.39-29.5 45.4-9.5 92.61-9.5 63 0 122.5 17T482-731q51-35 109.5-52T712-800q46.87 0 91.93 9.5Q849-781 891-761q14 7 21.5 19.5T920-714v463q0 27.89-22.5 42.45Q875-194 853-208q-34-14-69.23-22.5Q748.54-239 712-239q-63 0-121 21t-109 58ZM276-489Z"/></svg></span><p>Para que ambas redes aprendan, necesitamos medir exactamente cuánto se equivocaron. La función que hace eso en las GANs se llama log-loss (binary cross-entropy):</p></div></div><div class="compare" style="--cc:2"><div class="chead"><span>Cuando queremos que la predicción sea 1</span><span>Cuando queremos que la predicción sea 0</span></div><div class="crow"><span>Error = −ln(predicción)</span><span>Error = −ln(1 − predicción)</span></div><div class="crow"><span>Se usa cuando la imagen es real y el Discriminador debe acercarse a 1.</span><span>Se usa cuando la imagen es falsa y el Discriminador debe acercarse a 0.</span></div></div>
@@ -1927,12 +1978,12 @@ html.print-pdf .cbfull{display:none}
 <path d="M382.5,660 V606.8" stroke="#2E7D32" stroke-width="5"/>
 <text x="316.0" y="317.8" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan> = − ln(<tspan font-style="italic">x</tspan>)</text>
 <text x="154.5" y="410.2" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan></text>
-<rect x="45.0" y="730.0" width="161.4" height="48" fill="#DA1B2E"/>
-<text x="125.7" y="764.0" text-anchor="middle" font-size="30" fill="#ffffff">High error</text>
-<path d="M206.4,754.0 C267.2,754.0 287.5,734.0 287.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#e13-ah-DA1B2E)"/>
-<rect x="95.0" y="810.0" width="154.7" height="48" fill="#2E7D32"/>
-<text x="172.4" y="844.0" text-anchor="middle" font-size="30" fill="#ffffff">Low error</text>
-<path d="M249.7,834.0 C349.3,834.0 382.5,814.0 382.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#e13-ah-2E7D32)"/>
+<rect x="45.0" y="730.0" width="151.4" height="48" fill="#DA1B2E"/>
+<text x="120.7" y="764.0" text-anchor="middle" font-size="30" fill="#ffffff">Error alto</text>
+<path d="M196.4,754.0 C264.7,754.0 287.5,734.0 287.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#e13-ah-DA1B2E)"/>
+<rect x="95.0" y="810.0" width="159.7" height="48" fill="#2E7D32"/>
+<text x="174.9" y="844.0" text-anchor="middle" font-size="30" fill="#ffffff">Error bajo</text>
+<path d="M254.7,834.0 C350.6,834.0 382.5,814.0 382.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#e13-ah-2E7D32)"/>
 <path d="M694.5,660 H989.0" stroke="#1F1E1E" stroke-width="2.4"/>
 <path d="M780,715.5 V49.5" stroke="#1F1E1E" stroke-width="2.4" marker-end="url(#e13-ah)"/>
 <path d="M732.5,654 V666" stroke="#1F1E1E" stroke-width="2.4"/>
@@ -1966,12 +2017,12 @@ html.print-pdf .cbfull{display:none}
 <path d="M922.5,660 V403.5" stroke="#DA1B2E" stroke-width="5"/>
 <text x="464.4" y="160.5" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan> = − ln(1 − <tspan font-style="italic">x</tspan>)</text>
 <text x="694.5" y="410.2" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan></text>
-<rect x="575.0" y="730.0" width="154.7" height="48" fill="#2E7D32"/>
-<text x="652.4" y="764.0" text-anchor="middle" font-size="30" fill="#ffffff">Low error</text>
-<path d="M729.7,754.0 C803.1,754.0 827.5,734.0 827.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#e13-ah-2E7D32)"/>
-<rect x="690.0" y="815.0" width="161.4" height="48" fill="#DA1B2E"/>
-<text x="770.7" y="849.0" text-anchor="middle" font-size="30" fill="#ffffff">High error</text>
-<path d="M770.7,815.0 C770.7,785.0 922.5,790.0 922.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#e13-ah-DA1B2E)"/>
+<rect x="575.0" y="730.0" width="159.7" height="48" fill="#2E7D32"/>
+<text x="654.9" y="764.0" text-anchor="middle" font-size="30" fill="#ffffff">Error bajo</text>
+<path d="M734.7,754.0 C804.3,754.0 827.5,734.0 827.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#e13-ah-2E7D32)"/>
+<rect x="690.0" y="815.0" width="151.4" height="48" fill="#DA1B2E"/>
+<text x="765.7" y="849.0" text-anchor="middle" font-size="30" fill="#ffffff">Error alto</text>
+<path d="M765.7,815.0 C765.7,785.0 922.5,790.0 922.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#e13-ah-DA1B2E)"/>
 </svg></div></div></div>
 </section><section class="slide" data-kind="content-image"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Backpropagation: del error al ajuste de pesos</h2><p class="lead">Una vez calculado el error, la red lo "propaga hacia atrás" para ajustar cada peso:</p></div><div class="cbody"><div class="cfit"><div class="citext">
@@ -2030,9 +2081,9 @@ html.print-pdf .cbfull{display:none}
 <path d="M1452,329 V62" stroke="#1F1E1E" stroke-width="2.5" marker-end="url(#e14-ahs)"/>
 <path d="M1448,325 H1878" stroke="#1F1E1E" stroke-width="2.5" marker-end="url(#e14-ahs)"/>
 <path d="M1456.0,110.0 L1462.6,120.3 L1469.2,130.3 L1475.8,139.9 L1482.4,149.1 L1489.0,158.1 L1495.6,166.6 L1502.2,174.8 L1508.8,182.7 L1515.4,190.2 L1522.0,197.4 L1528.6,204.3 L1535.2,210.7 L1541.8,216.9 L1548.4,222.7 L1555.0,228.1 L1561.6,233.2 L1568.2,237.9 L1574.8,242.3 L1581.4,246.4 L1588.0,250.1 L1594.6,253.4 L1601.2,256.5 L1607.8,259.1 L1614.4,261.4 L1621.0,263.4 L1627.6,265.0 L1634.2,266.3 L1640.8,267.2 L1647.4,267.8 L1654.0,268.0 L1660.6,267.9 L1667.2,267.4 L1673.8,266.5 L1680.4,265.2 L1687.0,263.6 L1693.6,261.6 L1700.2,259.2 L1706.8,256.4 L1713.4,253.2 L1720.0,249.7 L1726.6,245.8 L1733.2,241.5 L1739.8,236.9 L1746.4,231.8 L1753.0,226.4 L1759.6,220.6 L1766.2,214.5 L1772.8,207.9 L1779.4,201.0 L1786.0,193.7 L1792.6,186.0 L1799.2,178.0 L1805.8,169.6 L1812.4,160.8 L1819.0,151.6 L1825.6,142.0 L1832.2,132.1 L1838.8,121.8 L1845.4,111.1 L1852.0,100.0" stroke="#1F1E1E" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-<text x="1648" y="383" font-size="50" text-anchor="middle">Error plot</text>
-<text x="1700" y="602" font-size="82" text-anchor="middle">Prediction</text>
-<text x="1700" y="708" font-size="44" text-anchor="middle">Error</text>
+<text x="1648" y="383" font-size="50" text-anchor="middle">Gráfico del error</text>
+<text x="1690" y="602" font-size="72" text-anchor="middle">Predicción</text>
+<text x="1690" y="708" font-size="44" text-anchor="middle">Error</text>
 </svg></div></div></div>
 </section><section class="slide" data-kind="process"><div class="stage d-full">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Backpropagation: el procedimiento paso a paso</h2></div><div class="cbody"><div class="cfit"><div class="numrow">
@@ -2050,13 +2101,31 @@ html.print-pdf .cbfull{display:none}
 </section><section class="slide" data-kind="value-columns"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">El ciclo completo: Generador y Discriminador juntos</h2><p class="lead">Con z = 0.7, el Generador produce una imagen → el Discriminador la evalúa → output: 0.68. Este único número conecta los dos errores:</p></div><div class="cbody"><div class="cfit"><div class="compare" style="--cc:2"><div class="chead"><span>Error del Discriminador</span><span>Error del Generador</span></div><div class="crow"><span>Recibió 0.68 cuando quería dar 0 → se equivocó. Debe ajustar sus pesos para detectar mejor.</span><span>Recibió 0.68 cuando quería que diera 1 → casi lo engañó, pero no del todo. Debe ajustar para engañar más.</span></div></div>
 </div></div>
-<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2010 1030" width="2010" height="1030" font-family="Helvetica, Arial, sans-serif">
+<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2010 1180" width="2010" height="1180" font-family="Helvetica, Arial, sans-serif">
 <title>Generador y Discriminador</title>
 <desc>A la izquierda, el Generador (en rojo): z, elegido con un deslizador de 0 a 1, y un Bias de valor 1 conectados a cuatro neuronas σ. En el centro, la imagen 2×2 que produce (0.25, 1 / 0.5, 0.75). A la derecha, el Discriminador (en azul): cuatro neuronas de entrada y un Bias conectados a una neurona σ que da 0.68.</desc>
 <defs><marker id="e15-ah-DA1B2E-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e15-ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="e15-ah-1F5FAD-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker></defs>
-<rect width="2010" height="1030" fill="#ffffff"/>
-<text x="540.0" y="100.0" font-size="86" fill="#DA1B2E" text-anchor="middle" font-weight="normal">Generator</text>
-<text x="1480.0" y="92.0" font-size="86" fill="#1F5FAD" text-anchor="middle" font-weight="normal">Discriminator</text>
+<rect x="0" y="0" width="2010" height="1180" fill="#ffffff"/>
+<text x="540.0" y="100.0" font-size="86" fill="#DA1B2E" text-anchor="middle" font-weight="normal">Generador</text>
+<text x="1480.0" y="92.0" font-size="86" fill="#1F5FAD" text-anchor="middle" font-weight="normal">Discriminador</text>
+<line x1="30" y1="222" x2="1980" y2="222" stroke="#D9D4CF" stroke-width="3"/>
+<text x="345" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="345" y="202" font-size="26" fill="#6B6560" text-anchor="middle">z + bias</text>
+<text x="547" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="547" y="202" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="750" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="750" y="202" font-size="26" fill="#6B6560" text-anchor="middle">4 píxeles</text>
+<text x="1030" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="1030" y="202" font-size="26" fill="#6B6560" text-anchor="middle">generada</text>
+<text x="1320" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="1320" y="202" font-size="26" fill="#6B6560" text-anchor="middle">píxeles + bias</text>
+<text x="1505" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="1505" y="202" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="1690" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="1690" y="202" font-size="26" fill="#6B6560" text-anchor="middle">real o falsa</text>
+<g transform="translate(0,150)">
+
+
 <line x1="40" y1="315" x2="270" y2="315" stroke="#1F1E1E" stroke-width="5"/>
 <line x1="40" y1="297" x2="40" y2="333" stroke="#1F1E1E" stroke-width="5"/>
 <line x1="270" y1="297" x2="270" y2="333" stroke="#1F1E1E" stroke-width="5"/>
@@ -2115,18 +2184,37 @@ html.print-pdf .cbfull{display:none}
 <circle cx="1690.0" cy="530.0" r="68" fill="#3B3535"/>
 <text x="1690.0" y="558.8" font-size="80" fill="#ffffff" text-anchor="middle" font-weight="normal" font-style="italic">σ</text>
 <text x="1782.0" y="567.0" font-size="104" fill="#1F1E1E" text-anchor="start" font-weight="normal">0.68</text>
+</g>
 </svg></div></div></div>
 </section><section class="slide" data-kind="content-image"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">El error del Discriminador</h2><p class="lead">El Discriminador recibió una imagen falsa pero le asignó un score de 0.68 (quería dar 0):</p></div><div class="cbody"><div class="cfit"><div class="citext">
 <ul class="cifacts"><li>Error_D = −ln(1 − 0.68) = −ln(0.32) ≈ 1.14</li><li>Un error considerable. El Discriminador va a ajustar sus pesos para clasificar mejor estas imágenes en la próxima iteración — volviéndose más exigente y difícil de engañar.</li></ul></div>
 </div></div>
-<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="18 6 2016 962" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
+<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="18 6 2016 1112" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>El error del Discriminador</title>
 <desc>Redibujo del slide 36: el Generador (rojo) toma z y un Bias y produce una imagen 2x2 (0.25, 1, 0.5, 0.75); el Discriminador (azul) la recibe con su propio Bias y su sigmoid da 0.68. Quería 0: Error = -ln(1-0.68).</desc>
 <defs><marker id="e16-ar" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="16" viewBox="0 0 20 16" refX="19" refY="8.0" orient="auto"><path d="M0,0 L20,8.0 L0,16 z" fill="#DA1B2E"/></marker><marker id="e16-ab" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="16" viewBox="0 0 20 16" refX="19" refY="8.0" orient="auto"><path d="M0,0 L20,8.0 L0,16 z" fill="#1F5BAA"/></marker><marker id="e16-ak" markerUnits="userSpaceOnUse" markerWidth="24" markerHeight="20" viewBox="0 0 24 20" refX="23" refY="10.0" orient="auto"><path d="M0,0 L24,10.0 L0,20 z" fill="#1F1E1E"/></marker></defs>
-<rect x="18" y="6" width="2016" height="962" fill="#ffffff"/>
-<text x="543" y="92" font-size="72" text-anchor="middle" fill="#DA1B2E">Generator</text>
-<text x="1465" y="84" font-size="72" text-anchor="middle" fill="#1F5BAA">Discriminator</text>
+<rect x="18" y="6" width="2016" height="1112" fill="#ffffff"/>
+<text x="543" y="92" font-size="72" text-anchor="middle" fill="#DA1B2E">Generador</text>
+<text x="1465" y="84" font-size="72" text-anchor="middle" fill="#1F5BAA">Discriminador</text>
+<line x1="40" y1="214" x2="2010" y2="214" stroke="#D9D4CF" stroke-width="3"/>
+<text x="340" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="340" y="194" font-size="26" fill="#6B6560" text-anchor="middle">z + bias</text>
+<text x="542" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="542" y="194" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="745" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="745" y="194" font-size="26" fill="#6B6560" text-anchor="middle">4 píxeles</text>
+<text x="1022" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="1022" y="194" font-size="26" fill="#6B6560" text-anchor="middle">generada</text>
+<text x="1300" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="1300" y="194" font-size="26" fill="#6B6560" text-anchor="middle">píxeles + bias</text>
+<text x="1484" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="1484" y="194" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="1668" y="157" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="1668" y="194" font-size="26" fill="#6B6560" text-anchor="middle">real o falsa</text>
+<g transform="translate(0,150)">
+
+
 <path d="M60,287 H283 M60,270 V304 M283,270 V304" stroke="#1F1E1E" stroke-width="5" fill="none"/>
 <circle cx="108" cy="287" r="19" fill="#3A9A45"/>
 <text x="170" y="258" font-size="54" text-anchor="middle">z</text>
@@ -2174,20 +2262,31 @@ html.print-pdf .cbfull{display:none}
 <text x="1300" y="940" font-size="56" text-anchor="middle">Bias</text>
 <circle cx="1668" cy="497" r="62" fill="#3B3535"/><text x="1668" y="519.4" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="80" text-anchor="middle" fill="#ffffff">σ</text>
 <text x="1855" y="530" font-size="92" text-anchor="middle">0.68</text>
-<text x="1763" y="262" font-size="60" text-anchor="middle" fill="#1F5BAA">Want 0</text>
+<text x="1763" y="262" font-size="60" text-anchor="middle" fill="#1F5BAA">Queremos 0</text>
 <text x="1765" y="340" font-size="60" text-anchor="middle" fill="#1F5BAA">Error = -ln(1-0.68)</text>
+</g>
 </svg></div></div></div>
 </section><section class="slide" data-kind="content-image"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Para los curiosos: la derivada del error</h2><p class="lead">La derivada del error del Discriminador respecto a sus pesos permite calcular exactamente cuánto ajustar cada uno:</p></div><div class="cbody"><div class="cfit"><div class="citext">
 <ul class="cifacts"><li>∂E/∂wᵢ = −[1 − D(x)] · xᵢ</li><li>Este cálculo es lo que backpropagation ejecuta automáticamente en cada iteración, para todas las capas y todos los pesos de la red. La regla de la cadena lo hace computacionalmente eficiente incluso con millones de parámetros.</li></ul></div>
 </div></div>
-<div class="highlights hl-bottom fragment fade-up"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p>Slide opcional — para quien quiera profundizar en la matemática.</p></div></div><div class="highlights hl-source"><div class="highlight source"><p>Fuente: A Friendly Introduction to Generative Adversarial Networks — Luis Serrano Academy.</p></div></div><div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 1913 1010" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
+<div class="highlights hl-bottom fragment fade-up"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p>Slide opcional — para quien quiera profundizar en la matemática.</p></div></div><div class="highlights hl-source"><div class="highlight source"><p>Fuente: A Friendly Introduction to Generative Adversarial Networks — Luis Serrano Academy.</p></div></div><div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 1913 1050" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>Derivada del error del Discriminador</title>
 <desc>Redibujo del slide 37: red del Discriminador (imagen 2x2, entradas x1 a x4, pesos w1 a w4, bias b, sigmoid) y las fórmulas: predicción D(x), función de pérdida E = -ln(D(x)) y sus derivadas respecto de cada peso y del bias.</desc>
 <defs><marker id="e17-ak" markerUnits="userSpaceOnUse" markerWidth="26" markerHeight="22" viewBox="0 0 26 22" refX="25" refY="11.0" orient="auto"><path d="M0,0 L26,11.0 L0,22 z" fill="#1F1E1E"/></marker><marker id="e17-ar" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="18" viewBox="0 0 22 18" refX="21" refY="9.0" orient="auto"><path d="M0,0 L22,9.0 L0,18 z" fill="#B8231B"/></marker><marker id="e17-ab" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="18" viewBox="0 0 22 18" refX="21" refY="9.0" orient="auto"><path d="M0,0 L22,9.0 L0,18 z" fill="#1F5BAA"/></marker></defs>
-<rect x="20" y="0" width="1913" height="1010" fill="#ffffff"/>
-<g transform="translate(0 75) scale(0.75)">
-<text x="510" y="138" font-size="100" text-anchor="middle" fill="#1F1E1E">Discriminator</text>
+<rect x="20" y="0" width="1913" height="1050" fill="#ffffff"/>
+<text x="382.5" y="178.5" font-size="75" text-anchor="middle" fill="#1F1E1E">Discriminador</text>
+<line x1="40" y1="290" x2="910" y2="290" stroke="#D9D4CF" stroke-width="3"/>
+<text x="156" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="156" y="270" font-size="26" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
+<text x="482" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="482" y="270" font-size="26" fill="#6B6560" text-anchor="middle">4 píxeles + bias</text>
+<text x="658" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="658" y="270" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="834" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="834" y="270" font-size="26" fill="#6B6560" text-anchor="middle">D(x)</text>
+<g transform="translate(0 205) scale(0.75)">
+
 <path d="M138,446 C150,330 215,262 300,250 C420,232 520,240 597,258" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
 <path d="M340,444 C380,405 420,392 470,397 C520,402 560,418 600,437" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
 <path d="M135,686 C165,760 215,812 300,815 C420,818 530,760 604,694" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
@@ -2243,7 +2342,7 @@ html.print-pdf .cbfull{display:none}
 <text x="1112" y="668" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="68" text-anchor="middle" fill="#ffffff">σ</text>
 </g>
 <g transform="translate(-345 -45) scale(1.1)">
-<text x="1540" y="96" font-size="38" text-anchor="middle" fill="#1F1E1E">Prediction</text>
+<text x="1540" y="96" font-size="38" text-anchor="middle" fill="#1F1E1E">Predicción</text>
 <text x="1216.3" y="150.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F1E1E">D</text>
 <text x="1248.1" y="150.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">(</text>
 <text x="1262.7" y="150.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F1E1E">x</text>
@@ -2272,14 +2371,14 @@ html.print-pdf .cbfull{display:none}
 <text x="1791.2" y="150.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">+</text>
 <text x="1827.1" y="150.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F5BAA">b</text>
 <text x="1849.1" y="150.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">)</text>
-<text x="1540" y="222" font-size="38" text-anchor="middle" fill="#1F1E1E">Loss function (error) from images</text>
+<text x="1540" y="222" font-size="38" text-anchor="middle" fill="#1F1E1E">Función de pérdida (error) de las imágenes</text>
 <text x="1413.2" y="274.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F1E1E">E</text>
 <text x="1451.1" y="274.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">= − ln(</text>
 <text x="1571.6" y="274.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F1E1E">D</text>
 <text x="1603.3" y="274.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">(</text>
 <text x="1618.0" y="274.0" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#1F1E1E">x</text>
 <text x="1637.5" y="274.0" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#1F1E1E">))</text>
-<text x="1540" y="352" font-size="38" text-anchor="middle" fill="#1F1E1E">Derivatives</text>
+<text x="1540" y="352" font-size="38" text-anchor="middle" fill="#1F1E1E">Derivadas</text>
 <path d="M1192.6,433.1 h68.8" stroke="#B8231B" stroke-width="2.2"/>
 <text x="1202.8" y="422.6" font-family="'Times New Roman', Times, serif" font-size="44.0" fill="#B8231B">∂</text>
 <text x="1224.5" y="422.6" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="44.0" fill="#B8231B">E</text>
@@ -2418,18 +2517,18 @@ html.print-pdf .cbfull{display:none}
 <div class="ccard sm fragment fade-up"><h3>🔀 Mapping Network</h3><p>Transforma el ruido z en un vector de estilo w (512 dimensiones)</p></div><div class="ccard sm fragment fade-up"><h3>🎨 Synthesis Network</h3><p>Genera la imagen progresivamente, inyectando el estilo w en cada capa</p></div></div></div></div>
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p>Esto permite controlar atributos separados en cada nivel de resolución: pose y forma en capas bajas, textura y color en capas altas.</p></div><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p><b>La clave</b>: El estilo se inyecta en cada capa mediante AdaIN (Adaptive Instance Normalization), no solo al inicio. Esto da control granular sobre cada aspecto visual.</p></div></div><div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -8 1238 634" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>Arquitectura de StyleGAN</title>
-<desc>Redibujo del slide 41: el vector latente pasa por la Mapping Network (Normalise y 8 capas FC) y da w en W; cada bloque A lleva ese estilo a una capa Ada IN de la Synthesis Network g, que parte de una constante 4X4X512, suma ruido por los bloques B y sube de resolución hasta 1024 X 1024. El ProGan Discriminator compara esa salida con imágenes reales reducidas (Downscaling); la Loss vuelve como Training.</desc>
+<desc>Redibujo del slide 41: el vector latente pasa por la red de mapeo (Normalizar y 8 capas FC) y da w en W; cada bloque A lleva ese estilo a una capa Ada IN de la red de síntesis g, que parte de una constante 4X4X512, suma ruido por los bloques B y sube de resolución hasta 1024 X 1024. El Discriminador de ProGAN compara esa salida con imágenes reales reducidas; la pérdida vuelve como señal de entrenamiento.</desc>
 <defs><marker id="e18-ah" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="10" viewBox="0 0 11 10" refX="11" refY="5" orient="auto"><path d="M0,0 L11,5 L0,10 z" fill="#1F1E1E"/></marker></defs>
 <rect x="-4" y="-8" width="1238" height="634" fill="#ffffff"/>
 <rect x="44" y="62" width="784" height="548" fill="none" stroke="#3B3535" stroke-width="1.6"/>
-<text x="30" y="540" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E" transform="rotate(-90 30 540)">Generator</text>
+<text x="30" y="540" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E" transform="rotate(-90 30 540)">Generador</text>
 <rect x="42" y="8" width="644" height="42" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="364" y="38" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Random Vector (Latent Code) (512 X 1)</text>
+<text x="364" y="38" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Vector aleatorio (código latente) (512 X 1)</text>
 <path d="M168,50 V72" stroke="#1F1E1E" stroke-width="1.8"/>
 <rect x="95" y="72" width="150" height="38" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="170" y="99" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Normalise</text>
-<text x="52" y="138" font-size="22" text-anchor="start" fill="#3B3535">Mapping</text>
-<text x="52" y="164" font-size="22" text-anchor="start" fill="#3B3535">Network</text>
+<text x="170" y="99" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Normalizar</text>
+<text x="52" y="138" font-size="22" text-anchor="start" fill="#3B3535">Red de</text>
+<text x="52" y="164" font-size="22" text-anchor="start" fill="#3B3535">mapeo</text>
 <text x="52" y="190" font-size="22" text-anchor="start" fill="#3B3535">f</text>
 <path d="M170,110 V184" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
 <rect x="100" y="186" width="148" height="296" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
@@ -2446,7 +2545,7 @@ html.print-pdf .cbfull{display:none}
 <text x="138" y="565" font-family="'Times New Roman', Times, serif" font-style="italic" font-weight="bold" font-size="28" fill="#ffffff">w</text>
 <path d="M181,546 H173 A8,9 0 0 0 173,564 H181 M165,555 H180" stroke="#ffffff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
 <text x="188" y="565" font-family="'Times New Roman', Times, serif" font-style="italic" font-weight="bold" font-size="28" fill="#ffffff">W</text>
-<text x="466" y="84" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Synthesis Network 'g'</text>
+<text x="466" y="84" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Red de síntesis 'g'</text>
 <rect x="350" y="92" width="236" height="192" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <rect x="350" y="288" width="236" height="222" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <path d="M466,128 V250 M466,320 V476" stroke="#1F1E1E" stroke-width="1.6"/>
@@ -2454,7 +2553,7 @@ html.print-pdf .cbfull{display:none}
 <rect x="358" y="154" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="175.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Ada IN</text>
 <rect x="358" y="196" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="217.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Conv 3X3</text>
 <rect x="358" y="250" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="271.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Ada IN</text>
-<rect x="358" y="292" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="313.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Upsample</text>
+<rect x="358" y="292" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="313.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Sobremuestreo</text>
 <rect x="358" y="330" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="351.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Const (4X4X512)</text>
 <rect x="358" y="384" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="405.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Ada IN</text>
 <rect x="358" y="422" width="216" height="28" rx="2" fill="#3B3535"/><text x="466.0" y="443.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">Conv 3X3</text>
@@ -2479,7 +2578,7 @@ html.print-pdf .cbfull{display:none}
 <rect x="291" y="474" width="36" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="309" y="498" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">A</text>
 <path d="M326,490 H357" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
-<text x="778" y="110" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Noise</text>
+<text x="778" y="110" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Ruido</text>
 <path d="M800,120 V141 H799" stroke="#1F1E1E" stroke-width="1.6" fill="none"/>
 <path d="M800,141 H668" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
 <rect x="628" y="125" width="40" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
@@ -2506,7 +2605,7 @@ html.print-pdf .cbfull{display:none}
 <path d="M466,550 V566" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
 <rect x="352" y="568" width="232" height="38" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="468" y="595" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">1024 X 1024</text>
-<text x="1020" y="176" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">ProGan Discriminator</text>
+<text x="1020" y="176" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Discriminador de ProGAN</text>
 <rect x="933" y="188" width="146" height="216" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <rect x="940" y="195" width="30" height="200" rx="2" fill="#3B3535"/>
 <text x="962" y="295" font-size="19" font-weight="bold" text-anchor="middle" fill="#ffffff" transform="rotate(-90 962 295)">(1024 X 1024)</text>
@@ -2521,12 +2620,12 @@ html.print-pdf .cbfull{display:none}
 <rect x="872" y="512" width="62" height="44" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
 <path d="M876,550 L892,532 L904,544 L914,536 L930,550 z" fill="#3B3535"/><circle cx="917" cy="522" r="5" fill="#3B3535"/>
 <path d="M890,482 V320 H931" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
-<text x="877" y="400" font-size="22" font-weight="bold" text-anchor="middle" fill="#1F1E1E" transform="rotate(-90 877 400)">Downscaling</text>
+<text x="877" y="400" font-size="22" font-weight="bold" text-anchor="middle" fill="#1F1E1E" transform="rotate(-90 877 400)">Reducción</text>
 <rect x="1124" y="266" width="94" height="56" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="1171" y="303" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Loss</text>
+<text x="1171" y="303" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Pérdida</text>
 <path d="M1196,266 V132 H831" stroke="#1F1E1E" stroke-width="1.8" fill="none" stroke-dasharray="7 6" marker-end="url(#e18-ah)"/>
 <path d="M1171,322 V516 H1006 V407" stroke="#1F1E1E" stroke-width="1.8" fill="none" stroke-dasharray="7 6" marker-end="url(#e18-ah)"/>
-<text x="1092" y="503" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Training</text>
+<text x="1092" y="503" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Entrenamiento</text>
 </svg></div></div></div>
 </section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
 <div class="shead"><span class="pill">Tipos y aplicaciones</span><h2 class="stitle">StyleGAN: Innovaciones Clave (Resumen)</h2><p class="lead">StyleGAN (NVIDIA) redefine la generación de imágenes al modificar únicamente el Generador, manteniendo el Discriminador estándar. Sus tres innovaciones arquitectónicas permiten control fino sobre el estilo y alta calidad visual.</p></div><div class="cbody"><div class="cfit"><div class="cards">

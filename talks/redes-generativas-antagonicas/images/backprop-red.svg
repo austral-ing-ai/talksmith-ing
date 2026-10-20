@@ -51,7 +51,7 @@
 <path d="M1452,329 V62" stroke="#1F1E1E" stroke-width="2.5" marker-end="url(#ahs)"/>
 <path d="M1448,325 H1878" stroke="#1F1E1E" stroke-width="2.5" marker-end="url(#ahs)"/>
 <path d="M1456.0,110.0 L1462.6,120.3 L1469.2,130.3 L1475.8,139.9 L1482.4,149.1 L1489.0,158.1 L1495.6,166.6 L1502.2,174.8 L1508.8,182.7 L1515.4,190.2 L1522.0,197.4 L1528.6,204.3 L1535.2,210.7 L1541.8,216.9 L1548.4,222.7 L1555.0,228.1 L1561.6,233.2 L1568.2,237.9 L1574.8,242.3 L1581.4,246.4 L1588.0,250.1 L1594.6,253.4 L1601.2,256.5 L1607.8,259.1 L1614.4,261.4 L1621.0,263.4 L1627.6,265.0 L1634.2,266.3 L1640.8,267.2 L1647.4,267.8 L1654.0,268.0 L1660.6,267.9 L1667.2,267.4 L1673.8,266.5 L1680.4,265.2 L1687.0,263.6 L1693.6,261.6 L1700.2,259.2 L1706.8,256.4 L1713.4,253.2 L1720.0,249.7 L1726.6,245.8 L1733.2,241.5 L1739.8,236.9 L1746.4,231.8 L1753.0,226.4 L1759.6,220.6 L1766.2,214.5 L1772.8,207.9 L1779.4,201.0 L1786.0,193.7 L1792.6,186.0 L1799.2,178.0 L1805.8,169.6 L1812.4,160.8 L1819.0,151.6 L1825.6,142.0 L1832.2,132.1 L1838.8,121.8 L1845.4,111.1 L1852.0,100.0" stroke="#1F1E1E" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-<text x="1648" y="383" font-size="50" text-anchor="middle">Error plot</text>
-<text x="1700" y="602" font-size="82" text-anchor="middle">Prediction</text>
-<text x="1700" y="708" font-size="44" text-anchor="middle">Error</text>
+<text x="1648" y="383" font-size="50" text-anchor="middle">Gráfico del error</text>
+<text x="1690" y="602" font-size="72" text-anchor="middle">Predicción</text>
+<text x="1690" y="708" font-size="44" text-anchor="middle">Error</text>
 </svg>

@@ -1,8 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1370 940" width="1370" height="940" font-family="Helvetica, Arial, sans-serif">
-<title>Discriminador como red</title>
-<desc>La grilla 2×2 de la cara prototipo (1, 0 / 0, 1) alimenta cuatro neuronas de entrada, conectadas a una neurona de salida con pesos +1 (rojo), -1, -1 (azul) y +1 (rojo); un nodo Bias de valor 1 aporta con peso -1 (verde).</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420 1110" width="1420" height="1110" font-family="Helvetica, Arial, sans-serif">
+<title>Discriminador como red: entrada, oculta y salida</title>
+<desc>La grilla 2×2 de la cara prototipo (1, 0 / 0, 1) alimenta las cuatro neuronas de la capa de entrada, conectadas directamente a la neurona de salida (σ), sin capa oculta, con pesos +1 (rojo), -1, -1 (azul) y +1 (rojo); un nodo Bias de valor 1 aporta con peso -1 (verde).</desc>
 <defs><marker id="ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="ah-DA1B2E-34" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="34" markerHeight="34" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="ah-1F5FAD-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="ah-2E8540-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker></defs>
-<rect width="1370" height="940" fill="#ffffff"/>
+<rect width="1420" height="1110" fill="#ffffff"/>
+<rect x="1022" y="140" width="96" height="950" rx="18" fill="#F4F2F0" stroke="#6B6560" stroke-width="3" stroke-dasharray="14 10"/>
+<line x1="40" y1="128" x2="1380" y2="128" stroke="#D9D4CF" stroke-width="3"/>
+<text x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
+<text x="780" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="780" y="106" font-size="34" fill="#6B6560" text-anchor="middle">4 píxeles + bias</text>
+<text x="1070" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="1070" y="106" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="1280" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="1280" y="106" font-size="34" fill="#6B6560" text-anchor="middle">real o falsa</text>
+<g transform="translate(0,150)">
 <rect x="60.0" y="280.0" width="170" height="170" fill="#000000"/>
 <text x="145.0" y="387.3" font-size="62" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
 <rect x="230.0" y="280.0" width="170" height="170" fill="#ffffff"/>
@@ -41,4 +52,6 @@
 <text x="780.0" y="876.6" font-size="46" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
 <text x="710.0" y="882.0" font-size="62" fill="#1F1E1E" text-anchor="end" font-weight="normal">Bias</text>
 <circle cx="1280.0" cy="450.0" r="48" fill="#3B3535"/>
+<text x="1280.0" y="468.0" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
+</g>
 </svg>

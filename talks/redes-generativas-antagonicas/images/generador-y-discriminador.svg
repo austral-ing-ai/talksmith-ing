@@ -1,10 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2010 1030" width="2010" height="1030" font-family="Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2010 1180" width="2010" height="1180" font-family="Helvetica, Arial, sans-serif">
 <title>Generador y Discriminador</title>
 <desc>A la izquierda, el Generador (en rojo): z, elegido con un deslizador de 0 a 1, y un Bias de valor 1 conectados a cuatro neuronas σ. En el centro, la imagen 2×2 que produce (0.25, 1 / 0.5, 0.75). A la derecha, el Discriminador (en azul): cuatro neuronas de entrada y un Bias conectados a una neurona σ que da 0.68.</desc>
 <defs><marker id="ah-DA1B2E-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="ah-1F5FAD-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker></defs>
-<rect width="2010" height="1030" fill="#ffffff"/>
-<text x="540.0" y="100.0" font-size="86" fill="#DA1B2E" text-anchor="middle" font-weight="normal">Generator</text>
-<text x="1480.0" y="92.0" font-size="86" fill="#1F5FAD" text-anchor="middle" font-weight="normal">Discriminator</text>
+<rect x="0" y="0" width="2010" height="1180" fill="#ffffff"/>
+<text x="540.0" y="100.0" font-size="86" fill="#DA1B2E" text-anchor="middle" font-weight="normal">Generador</text>
+<text x="1480.0" y="92.0" font-size="86" fill="#1F5FAD" text-anchor="middle" font-weight="normal">Discriminador</text>
+<line x1="30" y1="222" x2="1980" y2="222" stroke="#D9D4CF" stroke-width="3"/>
+<text x="345" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="345" y="202" font-size="26" fill="#6B6560" text-anchor="middle">z + bias</text>
+<text x="547" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="547" y="202" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="750" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="750" y="202" font-size="26" fill="#6B6560" text-anchor="middle">4 píxeles</text>
+<text x="1030" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="1030" y="202" font-size="26" fill="#6B6560" text-anchor="middle">generada</text>
+<text x="1320" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="1320" y="202" font-size="26" fill="#6B6560" text-anchor="middle">píxeles + bias</text>
+<text x="1505" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="1505" y="202" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text x="1690" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="1690" y="202" font-size="26" fill="#6B6560" text-anchor="middle">real o falsa</text>
+<g transform="translate(0,150)">
+
+
 <line x1="40" y1="315" x2="270" y2="315" stroke="#1F1E1E" stroke-width="5"/>
 <line x1="40" y1="297" x2="40" y2="333" stroke="#1F1E1E" stroke-width="5"/>
 <line x1="270" y1="297" x2="270" y2="333" stroke="#1F1E1E" stroke-width="5"/>
@@ -63,4 +81,5 @@
 <circle cx="1690.0" cy="530.0" r="68" fill="#3B3535"/>
 <text x="1690.0" y="558.8" font-size="80" fill="#ffffff" text-anchor="middle" font-weight="normal" font-style="italic">σ</text>
 <text x="1782.0" y="567.0" font-size="104" fill="#1F1E1E" text-anchor="start" font-weight="normal">0.68</text>
+</g>
 </svg>

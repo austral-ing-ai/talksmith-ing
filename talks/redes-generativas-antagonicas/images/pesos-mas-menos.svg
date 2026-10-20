@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 690" width="1440" height="690" font-family="Helvetica, Arial, sans-serif">
 <title>Pesos más y menos</title>
-<desc>Grillas Faces (1, 0 / 0, 1) y Noise (0.25, 1 / 0.5, 0.75), cada una con un peso + en rojo en las esquinas de la diagonal principal y un peso - en azul en las de la secundaria.</desc>
+<desc>Grillas Caras (1, 0 / 0, 1) y Ruido (0.25, 1 / 0.5, 0.75), cada una con un peso + en rojo en las esquinas de la diagonal principal y un peso - en azul en las de la secundaria.</desc>
 <defs><marker id="ah-DA1B2E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="ah-1F5FAD-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker></defs>
 <rect width="1440" height="690" fill="#ffffff"/>
-<text x="352.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Faces</text>
+<text x="352.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Caras</text>
 <rect x="192.0" y="190.0" width="160" height="160" fill="#000000"/>
 <text x="272.0" y="291.6" font-size="60" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
 <rect x="352.0" y="190.0" width="160" height="160" fill="#ffffff"/>
@@ -29,7 +29,7 @@
 <rect x="592.0" y="610.0" width="60" height="10" fill="#ffffff"/>
 <rect x="617.0" y="585.0" width="10" height="60" fill="#ffffff"/>
 <path d="M557.0,615.0 C527.0,615.0 514.0,560.0 514.0,529.0" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-DA1B2E-30)"/>
-<text x="1088.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Noise</text>
+<text x="1088.0" y="140.0" font-size="80" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Ruido</text>
 <rect x="928.0" y="190.0" width="160" height="160" fill="#bfbfbf"/>
 <text x="1008.0" y="291.6" font-size="60" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
 <rect x="1088.0" y="190.0" width="160" height="160" fill="#000000"/>

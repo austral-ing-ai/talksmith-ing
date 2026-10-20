@@ -62,8 +62,8 @@
 <circle cx="1380.0" cy="200.0" r="42" fill="#3B3535"/>
 <circle cx="1380.0" cy="315.0" r="42" fill="#3B3535"/>
 <circle cx="1590.0" cy="200.0" r="48" fill="#3B3535"/>
-<text x="400.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Slanted people</text>
-<text x="1030.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">2x2 screens</text>
-<text x="1480.0" y="440.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">1-layer</text>
-<text x="1480.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Neural network</text>
+<text x="400.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Gente inclinada</text>
+<text x="1030.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Pantallas de 2x2</text>
+<text x="1480.0" y="440.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Red neuronal</text>
+<text x="1480.0" y="505.0" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">de 1 capa</text>
 </svg>
