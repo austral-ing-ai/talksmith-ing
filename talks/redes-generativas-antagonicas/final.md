@@ -698,12 +698,11 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 
 ### Content
 
-- En los slides anteriores definimos los pesos del Discriminador y el Generador a mano (pesos +1 y −1, y sesgos). En la práctica, la red debe aprender esos pesos sola. Para eso necesitamos una forma de medir cuánto se equivocó — esa es la función de error.
-- Para que ambas redes aprendan, necesitamos medir exactamente cuánto se equivocaron. La función que hace eso en las GANs se llama log-loss (binary cross-entropy):
+Hasta acá pusimos los pesos a mano (+1 y −1, y los sesgos). En la práctica, cada red los aprende sola, repitiendo tres pasos:
 
-| Cuando queremos que la predicción sea 1 | Cuando queremos que la predicción sea 0 |
-|---|---|
-| Error = −ln(predicción)<br>Se usa cuando la imagen es real y el Discriminador debe acercarse a 1. | Error = −ln(1 − predicción)<br>Se usa cuando la imagen es falsa y el Discriminador debe acercarse a 0. |
+1. **Predecir.** El Discriminador mira una imagen y da un score entre 0 y 1.
+2. **Medir el error.** Compara el score con el objetivo: 1 si la imagen es real, 0 si es falsa. La función que mide cuánto se equivocó se llama binary cross-entropy.
+3. **Ajustar los pesos.** Backpropagation mueve cada peso en la dirección que baja el error. El Generador hace lo mismo con el objetivo contrario: que el Discriminador se equivoque.
 
 ### Sources
 
@@ -711,37 +710,33 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 
 ### Speaker notes
 
+Es la bisagra entre los pesos puestos a mano y el entrenamiento. Las dos fórmulas de binary cross-entropy, −ln(D(x)) con imagen real y −ln(1 − D(G(z))) con imagen falsa, están en la slide siguiente con números; las curvas, en las dos que siguen; backpropagation, a partir de 3.17.
+
 ---
 
-## 14. Log-loss: los dos casos del Discriminador
-
-<!-- template: value-columns -->
+## 14. Binary cross-entropy: los dos casos del Discriminador
 
 <!-- slide 30 del pptx original -->
 
 ### Content
 
-| Factor | Imagen real (objetivo 1) | Imagen falsa (objetivo 0) |
-|---|---|---|
-| Error | −ln(D(x)) | −ln(1 − D(G(z))) |
-| Acierta | D = 0.9 → −ln(0.9) ≈ 0.1 | D = 0.1 → −ln(1 − 0.1) = −ln(0.9) ≈ 0.1 |
-| Falla | D = 0.1 → −ln(0.1) ≈ 2.3 | D = 0.9 → −ln(1 − 0.9) = −ln(0.1) ≈ 2.3 |
+![Dos rectas de 0 a 1 con el objetivo marcado. Imagen real, objetivo 1, error = −ln(D(x)): D = 0.9 acierta con error ≈ 0.1 y D = 0.1 falla con error ≈ 2.3. Imagen falsa, objetivo 0, error = −ln(1 − D(G(z))): D = 0.1 acierta con error ≈ 0.1 y D = 0.9 falla con error ≈ 2.3](images/bce-dos-casos.svg)
 
 - **La propiedad clave: el error es grande cuando la predicción está lejos del objetivo, y pequeño cuando está cerca. Esto guía el aprendizaje en la dirección correcta.**
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 30)
+- `AIG4B-Clase-8-GANs.md.md` (slide 30). Los valores de la tabla del pptx, dibujados como diagrama nuevo (images/bce-dos-casos.svg).
 - Cálculos: −ln(0.9) = 0.105 ≈ 0.1; −ln(0.1) = 2.303 ≈ 2.3 (mismos valores que la slide 30 original)
 - `gan-goodfellow-2014.web.md` (juego minimax entre G y D)
 
 ### Speaker notes
 
-Log-loss es la entropía cruzada binaria. Para una etiqueta y (1 = real, 0 = falsa) y una predicción p, el error vale −[y·ln(p) + (1 − y)·ln(1 − p)]. Con y = 1 sobrevive solo el primer término, −ln(p). Con y = 0 sobrevive solo el segundo, −ln(1 − p). Las dos columnas de la slide son esos dos términos.
+La binary cross-entropy (en algunos textos, log-loss) es la misma de la clase de diseño de redes. Para una etiqueta y (1 = real, 0 = falsa) y una predicción p, el error vale −[y·ln(p) + (1 − y)·ln(1 − p)]. Con y = 1 sobrevive solo el primer término, −ln(p). Con y = 0 sobrevive solo el segundo, −ln(1 − p). Los dos paneles de la slide son esos dos términos.
 
 El logaritmo castiga sin tope la confianza equivocada, porque −ln(p) crece hacia infinito cuando p se acerca a 0. Por eso pasar de una predicción de 0.9 a una de 0.1 lleva el error de 0.1 a 2.3. Su derivada también es grande justo cuando el modelo se equivoca, así que el ajuste de pesos es más fuerte donde más hace falta. Un error lineal como 1 − p no tiene ninguna de las dos propiedades.
 
-Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imágenes reales y −ln(1 − D(G(z))) con imágenes falsas. El Generador se entrena con el objetivo contrario, que D se equivoque: en la práctica minimiza −ln(D(G(z))), que crece cuando D detecta la falsificación. El paper original formaliza esta tensión como un juego minimax entre G y D (Goodfellow et al., 2014).
+Los dos paneles son el error del Discriminador. D minimiza −ln(D(x)) con imágenes reales y −ln(1 − D(G(z))) con imágenes falsas. El Generador se entrena con el objetivo contrario, que D se equivoque: en la práctica minimiza −ln(D(G(z))), que crece cuando D detecta la falsificación. El paper original formaliza esta tensión como un juego minimax entre G y D (Goodfellow et al., 2014).
 
 ---
 
@@ -828,7 +823,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 |---|---|---|
 | Calcular el error | Derivar la sensibilidad de cada peso | Actualizar en la dirección opuesta al gradiente |
 
-- **La función log-loss da un número que mide qué tan lejos estuvo la red de la respuesta correcta.**
+- **La binary cross-entropy da un número que mide qué tan lejos estuvo la red de la respuesta correcta.**
 
 - **Con la regla de la cadena se calcula ∂E/∂w para cada peso: si subo este peso un poco, ¿el error sube o baja?**
 
@@ -1274,7 +1269,7 @@ En el paper, el Discriminador funciona también como clasificador: además de la
 | 04 | 05 |
 |---|---|
 | La lógica matemática | Fortalezas y limitaciones |
-| El juego minimax como marco conceptual, log-loss y backpropagation. | Cuatro capacidades concretas (generar, traducir y completar imágenes, y ampliar datasets) y los problemas a resolver antes de usar GANs en producción. |
+| El juego minimax como marco conceptual, binary cross-entropy y backpropagation. | Cuatro capacidades concretas (generar, traducir y completar imágenes, y ampliar datasets) y los problemas a resolver antes de usar GANs en producción. |
 
 ### Sources
 
@@ -1294,6 +1289,29 @@ En el paper, el Discriminador funciona también como clasificador: además de la
 - Section "Cut material" — "El deck original no tiene slide de cierre; hay que escribirla."
 
 # Cut material
+
+#### 3.14 Binary cross-entropy: los dos casos (slide 30 del pptx) — tabla reemplazada por diagrama
+
+Motivo: el presentador pidió mostrarlo con un diagrama simple (2026-10-21); los números están en images/bce-dos-casos.svg.
+
+| Factor | Imagen real (objetivo 1) | Imagen falsa (objetivo 0) |
+|---|---|---|
+| Error | −ln(D(x)) | −ln(1 − D(G(z))) |
+| Acierta | D = 0.9 → −ln(0.9) ≈ 0.1 | D = 0.1 → −ln(1 − 0.1) = −ln(0.9) ≈ 0.1 |
+| Falla | D = 0.1 → −ln(0.1) ≈ 2.3 | D = 0.9 → −ln(1 − 0.9) = −ln(0.1) ≈ 2.3 |
+
+
+#### 3.13 Proceso de Entrenamiento (slide 29 del pptx) — versión anterior
+
+Motivo: los dos párrafos de arriba repetían la misma idea y la tabla repetía las fórmulas de 3.14; el presentador pidió explicarlo de otra manera (2026-10-21).
+
+- En los slides anteriores definimos los pesos del Discriminador y el Generador a mano (pesos +1 y −1, y sesgos). En la práctica, la red debe aprender esos pesos sola. Para eso necesitamos una forma de medir cuánto se equivocó — esa es la función de error.
+- Para que ambas redes aprendan, necesitamos medir exactamente cuánto se equivocaron. La función que hace eso en las GANs se llama log-loss (binary cross-entropy):
+
+| Cuando queremos que la predicción sea 1 | Cuando queremos que la predicción sea 0 |
+|---|---|
+| Error = −ln(predicción)<br>Se usa cuando la imagen es real y el Discriminador debe acercarse a 1. | Error = −ln(1 − predicción)<br>Se usa cuando la imagen es falsa y el Discriminador debe acercarse a 0. |
+
 
 ### Importación (2026-10-17): slides del PPTX que el render regenera — portada (slide 1) y agenda repetida (slides 2, 9, 17, 38, 48); más el placeholder vacío de Conclusions
 

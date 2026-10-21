@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 720" width="1500" height="720" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
+<title>Binary cross-entropy: el error crece con la distancia al objetivo</title>
+<desc>Dos rectas de 0 a 1. Imagen real, objetivo 1, error = −ln(D(x)): con D = 0.9 el error es ≈ 0.1 (barra verde corta), con D = 0.1 es ≈ 2.3 (barra roja alta). Imagen falsa, objetivo 0, error = −ln(1 − D(G(z))): con D = 0.1 el error es ≈ 0.1, con D = 0.9 es ≈ 2.3.</desc>
+<rect width="1500" height="720" fill="#ffffff"/>
+<text x="360.0" y="62" font-size="46" font-weight="bold" text-anchor="middle">Imagen real · objetivo 1</text>
+<text x="360.0" y="118" font-size="44" text-anchor="middle" font-family="Times New Roman, Times, serif">error = −ln(D(x))</text>
+<line x1="40" y1="150" x2="680" y2="150" stroke="#D9D4CF" stroke-width="3"/>
+<text x="640" y="200" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OBJETIVO</text>
+<line x1="640" y1="216" x2="640" y2="570" stroke="#6B6560" stroke-width="3" stroke-dasharray="10 9"/>
+<line x1="80" y1="570" x2="640" y2="570" stroke="#1F1E1E" stroke-width="4"/>
+<line x1="80" y1="558" x2="80" y2="582" stroke="#1F1E1E" stroke-width="4"/>
+<text x="80" y="622" font-size="34" fill="#6B6560" text-anchor="middle">0</text>
+<line x1="360.0" y1="558" x2="360.0" y2="582" stroke="#1F1E1E" stroke-width="4"/>
+<text x="360.0" y="622" font-size="34" fill="#6B6560" text-anchor="middle">0.5</text>
+<line x1="640" y1="558" x2="640" y2="582" stroke="#1F1E1E" stroke-width="4"/>
+<text x="640" y="622" font-size="34" fill="#6B6560" text-anchor="middle">1</text>
+<rect x="549.0" y="535.4" width="70" height="12.6" fill="#2E7D32"/>
+<text x="619" y="517.4" font-size="40" fill="#2E7D32" text-anchor="end" font-weight="bold">error ≈ 0.1</text>
+<text x="619" y="471.4" font-size="32" fill="#2E7D32" text-anchor="end">acierta</text>
+<circle cx="584.0" cy="570" r="15" fill="#2E7D32"/>
+<text x="584.0" y="674" font-size="36" text-anchor="middle" font-weight="bold" fill="#2E7D32">D = 0.9</text>
+<rect x="101.0" y="271.7" width="70" height="276.3" fill="#DA1B2E"/>
+<text x="136.0" y="253.7" font-size="40" fill="#DA1B2E" text-anchor="middle" font-weight="bold">error ≈ 2.3</text>
+<text x="136.0" y="207.7" font-size="32" fill="#DA1B2E" text-anchor="middle">falla</text>
+<circle cx="136.0" cy="570" r="15" fill="#DA1B2E"/>
+<text x="136.0" y="674" font-size="36" text-anchor="middle" font-weight="bold" fill="#DA1B2E">D = 0.1</text>
+<text x="1160.0" y="62" font-size="46" font-weight="bold" text-anchor="middle">Imagen falsa · objetivo 0</text>
+<text x="1160.0" y="118" font-size="44" text-anchor="middle" font-family="Times New Roman, Times, serif">error = −ln(1 − D(G(z)))</text>
+<line x1="840" y1="150" x2="1480" y2="150" stroke="#D9D4CF" stroke-width="3"/>
+<text x="880" y="200" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OBJETIVO</text>
+<line x1="880" y1="216" x2="880" y2="570" stroke="#6B6560" stroke-width="3" stroke-dasharray="10 9"/>
+<line x1="880" y1="570" x2="1440" y2="570" stroke="#1F1E1E" stroke-width="4"/>
+<line x1="880" y1="558" x2="880" y2="582" stroke="#1F1E1E" stroke-width="4"/>
+<text x="880" y="622" font-size="34" fill="#6B6560" text-anchor="middle">0</text>
+<line x1="1160.0" y1="558" x2="1160.0" y2="582" stroke="#1F1E1E" stroke-width="4"/>
+<text x="1160.0" y="622" font-size="34" fill="#6B6560" text-anchor="middle">0.5</text>
+<line x1="1440" y1="558" x2="1440" y2="582" stroke="#1F1E1E" stroke-width="4"/>
+<text x="1440" y="622" font-size="34" fill="#6B6560" text-anchor="middle">1</text>
+<rect x="901.0" y="535.4" width="70" height="12.6" fill="#2E7D32"/>
+<text x="901" y="517.4" font-size="40" fill="#2E7D32" text-anchor="start" font-weight="bold">error ≈ 0.1</text>
+<text x="901" y="471.4" font-size="32" fill="#2E7D32" text-anchor="start">acierta</text>
+<circle cx="936.0" cy="570" r="15" fill="#2E7D32"/>
+<text x="936.0" y="674" font-size="36" text-anchor="middle" font-weight="bold" fill="#2E7D32">D = 0.1</text>
+<rect x="1349.0" y="271.7" width="70" height="276.3" fill="#DA1B2E"/>
+<text x="1384.0" y="253.7" font-size="40" fill="#DA1B2E" text-anchor="middle" font-weight="bold">error ≈ 2.3</text>
+<text x="1384.0" y="207.7" font-size="32" fill="#DA1B2E" text-anchor="middle">falla</text>
+<circle cx="1384.0" cy="570" r="15" fill="#DA1B2E"/>
+<text x="1384.0" y="674" font-size="36" text-anchor="middle" font-weight="bold" fill="#DA1B2E">D = 0.9</text>
+</svg>

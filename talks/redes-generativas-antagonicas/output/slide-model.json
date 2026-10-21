@@ -1165,105 +1165,68 @@
       }
     },
     {
-      "template": "value-columns",
+      "template": "process",
       "section": "Slanted Land",
       "title": "Proceso de Entrenamiento",
-      "lead": "En los slides anteriores definimos los pesos del Discriminador y el Generador a mano (pesos +1 y −1, y sesgos). En la práctica, la red debe aprender esos pesos sola. Para eso necesitamos una forma de medir cuánto se equivocó — esa es la función de error.",
-      "highlights": [
+      "lead": "Hasta acá pusimos los pesos a mano (+1 y −1, y los sesgos). En la práctica, cada red los aprende sola, repitiendo tres pasos:",
+      "steps": [
         {
-          "body": "Para que ambas redes aprendan, necesitamos medir exactamente cuánto se equivocaron. La función que hace eso en las GANs se llama log-loss (binary cross-entropy):",
-          "kind": "definition",
-          "position": "top"
-        }
-      ],
-      "columns": [
-        {
-          "header": "Cuando queremos que la predicción sea 1",
-          "cells": [
-            "Error = −ln(predicción)",
-            "Se usa cuando la imagen es real y el Discriminador debe acercarse a 1."
-          ]
+          "label": "Predecir",
+          "body": "El Discriminador mira una imagen y da un score entre 0 y 1."
         },
         {
-          "header": "Cuando queremos que la predicción sea 0",
-          "cells": [
-            "Error = −ln(1 − predicción)",
-            "Se usa cuando la imagen es falsa y el Discriminador debe acercarse a 0."
-          ]
+          "label": "Medir el error",
+          "body": "Compara el score con el objetivo: 1 si la imagen es real, 0 si es falsa. La función que mide cuánto se equivocó se llama binary cross-entropy."
+        },
+        {
+          "label": "Ajustar los pesos",
+          "body": "Backpropagation mueve cada peso en la dirección que baja el error. El Generador hace lo mismo con el objetivo contrario: que el Discriminador se equivoque."
         }
       ],
+      "notes": "Es la bisagra entre los pesos puestos a mano y el entrenamiento. Las dos fórmulas de binary cross-entropy, −ln(D(x)) con imagen real y −ln(1 − D(G(z))) con imagen falsa, están en la slide siguiente con números; las curvas, en las dos que siguen; backpropagation, a partir de 3.17.",
       "_choice": {
         "signals": [
-          "has_table=true (2 columns, rows: fórmula / cuándo se usa)",
-          "two_groups=true (objetivo 1 vs objetivo 0)",
-          "polarity=false",
-          "n_images=0"
+          "is_ordered=true (1. 2. 3.)",
+          "labeled_items=3",
+          "n_images=0",
+          "a loop that repeats"
         ],
         "candidates": [
-          "value-columns",
-          "pros-cons",
-          "concept-columns"
+          "process",
+          "concept-breakdown"
         ],
-        "picked": "value-columns",
+        "picked": "process",
         "rejected": {
-          "pros-cons": "no polarity",
-          "concept-columns": "cells align row by row (Error ↔ Error, uso ↔ uso)"
+          "concept-breakdown": "the three items happen in order, every round"
         }
       }
     },
     {
-      "template": "value-columns",
+      "template": "content-image",
       "section": "Slanted Land",
-      "title": "Log-loss: los dos casos del Discriminador",
-      "columns": [
-        {
-          "header": "Factor",
-          "cells": [
-            "Error",
-            "Acierta",
-            "Falla"
-          ]
-        },
-        {
-          "header": "Imagen real (objetivo 1)",
-          "cells": [
-            "−ln(D(x))",
-            "D = 0.9 → −ln(0.9) ≈ 0.1",
-            "D = 0.1 → −ln(0.1) ≈ 2.3"
-          ]
-        },
-        {
-          "header": "Imagen falsa (objetivo 0)",
-          "cells": [
-            "−ln(1 − D(G(z)))",
-            "D = 0.1 → −ln(1 − 0.1) = −ln(0.9) ≈ 0.1",
-            "D = 0.9 → −ln(1 − 0.9) = −ln(0.1) ≈ 2.3"
-          ]
-        }
-      ],
-      "highlights": [
-        {
-          "body": "**La propiedad clave: el error es grande cuando la predicción está lejos del objetivo, y pequeño cuando está cerca. Esto guía el aprendizaje en la dirección correcta.**",
-          "kind": "takeaway"
-        }
-      ],
+      "title": "Binary cross-entropy: los dos casos del Discriminador",
+      "lead": "**La propiedad clave: el error es grande cuando la predicción está lejos del objetivo, y pequeño cuando está cerca. Esto guía el aprendizaje en la dirección correcta.**",
+      "design": "banded",
+      "media": {
+        "src": "images/bce-dos-casos.svg",
+        "alt": "Dos rectas de 0 a 1 con el objetivo marcado. Imagen real, objetivo 1, error = −ln(D(x)): D = 0.9 acierta con error ≈ 0.1 y D = 0.1 falla con error ≈ 2.3. Imagen falsa, objetivo 0, error = −ln(1 − D(G(z))): D = 0.1 acierta con error ≈ 0.1 y D = 0.9 falla con error ≈ 2.3"
+      },
+      "notes": "La binary cross-entropy (en algunos textos, log-loss) es la misma de la clase de diseño de redes. Para una etiqueta y (1 = real, 0 = falsa) y una predicción p, el error vale −[y·ln(p) + (1 − y)·ln(1 − p)]. Con y = 1 sobrevive solo el primer término, −ln(p). Con y = 0 sobrevive solo el segundo, −ln(1 − p). Los dos paneles de la slide son esos dos términos.\n\nEl logaritmo castiga sin tope la confianza equivocada, porque −ln(p) crece hacia infinito cuando p se acerca a 0. Por eso pasar de una predicción de 0.9 a una de 0.1 lleva el error de 0.1 a 2.3. Su derivada también es grande justo cuando el modelo se equivoca, así que el ajuste de pesos es más fuerte donde más hace falta. Un error lineal como 1 − p no tiene ninguna de las dos propiedades.\n\nLos dos paneles son el error del Discriminador. D minimiza −ln(D(x)) con imágenes reales y −ln(1 − D(G(z))) con imágenes falsas. El Generador se entrena con el objetivo contrario, que D se equivoque: en la práctica minimiza −ln(D(G(z))), que crece cuando D detecta la falsificación. El paper original formaliza esta tensión como un juego minimax entre G y D (Goodfellow et al., 2014).",
       "_choice": {
         "signals": [
-          "author pin: <!-- template: value-columns -->",
-          "has_table=true (Factor | real | falsa)",
-          "two_groups=true",
-          "n_images=0"
+          "n_images=1 (a wide two-panel diagram)",
+          "one takeaway line",
+          "table replaced by a diagram (presenter, 2026-10-21)"
         ],
         "candidates": [
-          "value-columns",
-          "pros-cons"
+          "content-image",
+          "image-full"
         ],
-        "picked": "value-columns",
+        "picked": "content-image",
         "rejected": {
-          "pros-cons": "pinned value-columns; and no polarity"
+          "image-full": "image-full drops every highlight but the source, so the takeaway would not show; banded keeps the diagram wide with the line under it"
         }
-      },
-      "notes": "Log-loss es la entropía cruzada binaria. Para una etiqueta y (1 = real, 0 = falsa) y una predicción p, el error vale −[y·ln(p) + (1 − y)·ln(1 − p)]. Con y = 1 sobrevive solo el primer término, −ln(p). Con y = 0 sobrevive solo el segundo, −ln(1 − p). Las dos columnas de la slide son esos dos términos.\n\nEl logaritmo castiga sin tope la confianza equivocada, porque −ln(p) crece hacia infinito cuando p se acerca a 0. Por eso pasar de una predicción de 0.9 a una de 0.1 lleva el error de 0.1 a 2.3. Su derivada también es grande justo cuando el modelo se equivoca, así que el ajuste de pesos es más fuerte donde más hace falta. Un error lineal como 1 − p no tiene ninguna de las dos propiedades.\n\nLas dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imágenes reales y −ln(1 − D(G(z))) con imágenes falsas. El Generador se entrena con el objetivo contrario, que D se equivoque: en la práctica minimiza −ln(D(G(z))), que crece cuando D detecta la falsificación. El paper original formaliza esta tensión como un juego minimax entre G y D (Goodfellow et al., 2014)."
+      }
     },
     {
       "template": "content-image",
@@ -1384,7 +1347,7 @@
       "steps": [
         {
           "label": "Calcular el error",
-          "body": "**La función log-loss da un número que mide qué tan lejos estuvo la red de la respuesta correcta.**"
+          "body": "**La binary cross-entropy da un número que mide qué tan lejos estuvo la red de la respuesta correcta.**"
         },
         {
           "label": "Derivar la sensibilidad de cada peso",
@@ -2158,7 +2121,7 @@
         },
         {
           "label": "La lógica matemática",
-          "body": "El juego minimax como marco conceptual, log-loss y backpropagation."
+          "body": "El juego minimax como marco conceptual, binary cross-entropy y backpropagation."
         },
         {
           "label": "Fortalezas y limitaciones",
@@ -2188,7 +2151,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "83629500de3ccf0abddd9b68ff13a7b1c469cfd9e04cef8adaf40ce800548893",
-    "bytes": 65524
+    "sha256": "2948fb866ad10b625b396cde0da502ec4f5606b9a3ffbd8b7b2e4713e5ca075a",
+    "bytes": 67306
   }
 }
