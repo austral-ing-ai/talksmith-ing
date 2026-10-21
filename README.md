@@ -16,6 +16,11 @@
 - **Exámenes extraordinarios:** lunes 12 a viernes 16 de octubre.
 - **Recuperatorio:** lunes 16 a jueves 19 de noviembre.
 - **Exámenes finales de diciembre:** lunes 23 de noviembre a viernes 18 de diciembre.
+- **Entrega de la práctica** ([TP final](missions/admision-guardia/mission.md)): viernes 20 de noviembre; correcciones: viernes 27 de noviembre.
+- **Re-entrega de la práctica:** viernes 4 de diciembre; correcciones: martes 8 de diciembre.
+- **Examen final:**
+  - Primera fecha: viernes 4 de diciembre.
+  - Segunda fecha: jueves 10 de diciembre.
 
 ## Clases
 

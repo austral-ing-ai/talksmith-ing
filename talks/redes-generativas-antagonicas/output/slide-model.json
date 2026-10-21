@@ -525,7 +525,7 @@
       "title": "Arquitectura de una \"Vanilla\" GAN",
       "image": {
         "src": "images/vanilla-gan-arquitectura.svg",
-        "alt": "Arquitectura de una Vanilla GAN"
+        "alt": "Arquitectura de una Vanilla GAN: el Discriminador recibe muestras reales y falsas y da un veredicto, P(real) entre 0 y 1. La pérdida de G usa los veredictos sobre las generadas y actualiza G; la pérdida de D usa los veredictos sobre reales y generadas y actualiza D"
       },
       "highlights": [
         {
@@ -1293,54 +1293,6 @@
       }
     },
     {
-      "template": "content-image",
-      "section": "Slanted Land",
-      "title": "Backpropagation: del error al ajuste de pesos",
-      "lead": "Una vez calculado el error, la red lo \"propaga hacia atrás\" para ajustar cada peso:",
-      "facts": [
-        {
-          "body": "Pesos con alta contribución al error → se ajustan más"
-        },
-        {
-          "body": "Pesos con baja contribución al error → se ajustan poco"
-        },
-        {
-          "body": "La dirección del ajuste apunta siempre a reducir el error"
-        }
-      ],
-      "highlights": [
-        {
-          "body": "Este proceso ocurre simultáneamente en el Generador y el Discriminador en cada iteración.",
-          "kind": "takeaway"
-        }
-      ],
-      "design": "split-right",
-      "media": {
-        "src": "images/backprop-red.svg",
-        "alt": "Backpropagation: red 2-3-3-1 donde una flecha roja sobre cada peso indica si sube o baja para reducir el error"
-      },
-      "_choice": {
-        "signals": [
-          "labeled_items=0 (5 plain bullets: a colon-ended lead, 3 lines, a closing line)",
-          "is_ordered=false (no ordinals, no flow)",
-          "date_labels=false",
-          "two_groups=false",
-          "n_images=1",
-          "image_only=false"
-        ],
-        "candidates": [
-          "content-image",
-          "process",
-          "content-text"
-        ],
-        "picked": "content-image",
-        "rejected": {
-          "process": "the lines carry no order and are not a numbered list; the walk sends 1–3 images supporting prose to content-image",
-          "content-text": "never fall to a plainer template: an image is present → content-image"
-        }
-      }
-    },
-    {
       "template": "process",
       "section": "Slanted Land",
       "title": "Backpropagation: el procedimiento paso a paso",
@@ -1447,46 +1399,29 @@
       }
     },
     {
-      "template": "value-columns",
+      "template": "content-image",
       "section": "Slanted Land",
       "title": "El ciclo completo: Generador y Discriminador juntos",
-      "lead": "Con z = 0.7, el Generador produce una imagen → el Discriminador la evalúa → output: 0.68. Este único número conecta los dos errores:",
-      "columns": [
-        {
-          "header": "Error del Discriminador",
-          "cells": [
-            "Recibió 0.68 cuando quería dar 0 → se equivocó. Debe ajustar sus pesos para detectar mejor."
-          ]
-        },
-        {
-          "header": "Error del Generador",
-          "cells": [
-            "Recibió 0.68 cuando quería que diera 1 → casi lo engañó, pero no del todo. Debe ajustar para engañar más."
-          ]
-        }
-      ],
-      "design": "split-right",
+      "lead": "En cada vuelta entra un lote: m imágenes reales y m generadas. El Discriminador da un veredicto por imagen, y con esos veredictos se hacen dos pasos de backpropagation, uno por red: el del Discriminador usa los errores de las reales y de las generadas; el del Generador, solo los de las generadas.",
+      "design": "banded",
       "media": {
-        "src": "images/generador-y-discriminador.svg",
-        "alt": "Generador y Discriminador encadenados: el Generador produce la imagen (0.25, 1 / 0.5, 0.75) y el Discriminador le asigna 0.68"
+        "src": "images/ciclo-lote.svg",
+        "alt": "Un lote de 3 imágenes reales y 3 generadas. Paso del Discriminador: objetivos 1 y 0, un veredicto y un error por imagen (0.11, 0.22, 0.36, 1.14, 0.51, 0.80); se promedian en 0.52 y con ese número se hace un paso de backpropagation que actualiza solo el Discriminador. Paso del Generador: solo las 3 generadas, con objetivo 1; errores 0.39, 0.92 y 0.60, promedio 0.63, un paso de backpropagation que actualiza solo el Generador. Después, el siguiente lote"
       },
+      "notes": "Las cuentas de las slides anteriores eran con una sola imagen para que se vieran los números. En el entrenamiento real entra un lote: varias imágenes reales y varias generadas a la vez, y el error que se propaga es el promedio del lote. Con esos veredictos hay dos pasos. En el del Discriminador, las reales tienen objetivo 1 y las generadas objetivo 0, y se actualiza solo el Discriminador. En el del Generador se usan solo las generadas, ahora con objetivo 1, porque el Generador quiere que el Discriminador se las crea; el error vuelve atravesando al Discriminador sin cambiarlo y se actualiza solo el Generador. Los veredictos del dibujo son ilustrativos; los errores sí están calculados: −ln(veredicto) si el objetivo es 1 y −ln(1 − veredicto) si es 0. Lo que hay que mirar es la forma: un error por imagen, un solo promedio por lote y un solo paso de backpropagation con ese promedio. En la práctica los lotes son de decenas de imágenes, no de seis.",
       "_choice": {
         "signals": [
           "untitled in source; bold first line is the on-screen heading",
-          "has_table=true (2 columns)",
-          "two_groups=true (error D vs error G)",
-          "polarity=false",
-          "n_images=1"
+          "n_images=1 (wide process diagram)",
+          "one lead sentence"
         ],
         "candidates": [
-          "value-columns",
-          "pros-cons",
-          "content+cards+image"
+          "content-image",
+          "image-full"
         ],
-        "picked": "value-columns",
+        "picked": "content-image",
         "rejected": {
-          "pros-cons": "no polarity",
-          "content+cards+image": "two sides of a comparison → value-columns carrying the image"
+          "image-full": "image-full drops the lead; banded keeps the diagram wide with the sentence"
         }
       }
     },
@@ -1633,6 +1568,31 @@
       }
     },
     {
+      "template": "image-full",
+      "section": "Tipos y aplicaciones",
+      "title": "Tipos de GANs: cómo se ven sus imágenes",
+      "lead": "Las imágenes con que cada paper mostró su modelo:",
+      "image": {
+        "src": "images/tipos-gan-grilla.png",
+        "alt": "Grilla de 2×2: Vanilla GAN (2014), caras borrosas en blanco y negro; Conditional GAN (2014), una fila de dígitos por etiqueta; DCGAN (2015), dormitorios en color; SRGAN (2017), una ilustración ampliada 4× con bicúbica y con SRGAN"
+      },
+      "notes": "Los cuatro papers: Vanilla GAN, Goodfellow et al., 2014; Conditional GAN, Mirza y Osindero, 2014; DCGAN, Radford et al., 2015; SRGAN, Ledig et al., 2017. Es la misma lista de la slide anterior, ahora con lo que cada uno produce. Qué muestra cada imagen. Vanilla GAN: Caras generadas en blanco y negro y a baja resolución. La columna de la derecha, en amarillo, es la foto real más parecida del entrenamiento: no la copió. Conditional GAN: Dígitos de MNIST generados con una etiqueta: cada fila es un «generá un 0», «generá un 1»… hasta el 9. DCGAN: Dormitorios generados con capas convolucionales (dataset LSUN): ya son imágenes en color y con escenas reconocibles. SRGAN: La misma ilustración ampliada 4×: a la izquierda con interpolación bicúbica, a la derecha con SRGAN, que inventa el detalle fino. Conviene recorrerla como una línea de tiempo: de caras grises y borrosas en 2014 a dormitorios en color en 2015, y después a usos concretos, como pedir una clase o ampliar una imagen. En la de la Vanilla GAN, la columna amarilla es la forma en que el paper muestra que el modelo no memorizó: pone al lado la foto real más parecida. En la de SRGAN, mirar el detalle del pelo y de las plumas: la bicúbica lo pierde y la SRGAN lo inventa.",
+      "_choice": {
+        "signals": [
+          "one composed 2×2 picture with its own labels",
+          "one lead line"
+        ],
+        "candidates": [
+          "image-full",
+          "figures"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "figures": "the figures template left the four pictures as thumbnails"
+        }
+      }
+    },
+    {
       "template": "value-columns",
       "section": "Tipos y aplicaciones",
       "title": "El salto que lo cambió todo: StyleGAN (2018)",
@@ -1693,63 +1653,27 @@
       "notes": "Durante cuatro años las GANs generaron imágenes cada vez mejores, pero no se les podía pedir \"una cara joven, con pelo castaño y expresión neutral\": el Generador mezclaba todos los atributos y no había forma de tocar uno sin mover los demás.\n\nLa causa está en cómo entra el ruido. En una GAN clásica el vector de ruido entra directamente en la primera capa, y todo (forma, color, textura) sale de ese mismo vector entrelazado. StyleGAN lo separa en capas independientes: la red de mapeo convierte el ruido en un vector de estilo w, ese estilo se inyecta en cada capa de síntesis mediante AdaIN, y un ruido aleatorio por capa aporta los detalles finos. Las capas de baja resolución deciden la pose y la forma; las de alta resolución, la textura y el color.\n\nEsa separación es lo que hace posible el *style mixing*: tomar la estructura de una cara (pose, forma) y el estilo de otra (color de pelo, edad) para generar una cara completamente nueva y coherente. Ninguna GAN anterior podía hacerlo."
     },
     {
-      "template": "content+cards+image",
+      "template": "image-full",
       "section": "Tipos y aplicaciones",
       "title": "StyleGAN: arquitectura",
-      "icons": "none",
-      "lead": "**Dos redes en lugar de una**",
-      "highlights": [
-        {
-          "body": "Caras fotorrealistas generadas por StyleGAN (NVIDIA, 2019)",
-          "kind": "note",
-          "position": "top"
-        },
-        {
-          "body": "StyleGAN separa el proceso en dos redes:",
-          "kind": "note",
-          "position": "top"
-        },
-        {
-          "body": "Esto permite controlar atributos separados en cada nivel de resolución: pose y forma en capas bajas, textura y color en capas altas.",
-          "kind": "note"
-        },
-        {
-          "label": "La clave",
-          "body": "El estilo se inyecta en cada capa mediante AdaIN (Adaptive Instance Normalization), no solo al inicio. Esto da control granular sobre cada aspecto visual.",
-          "kind": "takeaway"
-        }
-      ],
-      "cards": [
-        {
-          "label": "Mapping Network",
-          "body": "Transforma el ruido z en un vector de estilo w (512 dimensiones)"
-        },
-        {
-          "label": "Synthesis Network",
-          "body": "Genera la imagen progresivamente, inyectando el estilo w en cada capa"
-        }
-      ],
-      "design": "split-right",
-      "media": {
-        "src": "images/stylegan-arquitectura.svg",
-        "alt": "Arquitectura de StyleGAN: la Mapping Network produce w, la Synthesis Network inyecta el estilo con Ada IN y ruido, y un ProGan Discriminator la evalúa"
+      "lead": "Dos redes en lugar de una: la red de mapeo convierte el ruido z en un estilo w, y la red de síntesis arma la imagen de 4×4 a 1024×1024 inyectando ese estilo en cada bloque.",
+      "image": {
+        "src": "images/stylegan-simple.svg",
+        "alt": "StyleGAN: el ruido z pasa por la red de mapeo (8 capas) y se convierte en el estilo w; la red de síntesis arma la imagen en bloques de 4×4 a 1024×1024, el estilo w entra en cada bloque por AdaIN y cada bloque recibe su propio ruido; las capas bajas deciden la pose y la forma, las altas la textura y el color"
       },
+      "notes": "La clave: el estilo se inyecta en cada capa mediante AdaIN (Adaptive Instance Normalization), no solo al inicio. Esto da control granular sobre cada aspecto visual. En una GAN clásica el ruido entra una sola vez, en la primera capa, y todo sale mezclado de ahí. StyleGAN lo separa: la red de mapeo, 8 capas densas, convierte el ruido z en un vector de estilo w de 512 números, y la red de síntesis arranca de un bloque constante de 4×4 y lo va agrandando hasta 1024×1024. En cada bloque el estilo w entra por AdaIN, que reescala las activaciones con valores que salen de w, y se suma un ruido propio del bloque que pone los detalles finos. Por eso los bloques chicos deciden la pose y la forma de la cara y los grandes la textura y el color: se puede tomar la estructura de una cara y el estilo de otra. El diagrama del paper tiene más piezas (las capas convolucionales 3×3, el sobremuestreo, las transformaciones A y B y el Discriminador de ProGAN con que se entrena); está en Cut material.",
       "_choice": {
         "signals": [
-          "labeled_items=2 (emoji + 'Label:' lead-ins)",
-          "is_ordered=false",
-          "two_groups=false",
-          "n_images=1 (architecture diagram)"
+          "one wide diagram that carries the content",
+          "one lead line"
         ],
         "candidates": [
-          "content+cards+image",
-          "content-image",
-          "concept-columns"
+          "image-full",
+          "content-image"
         ],
-        "picked": "content+cards+image",
+        "picked": "image-full",
         "rejected": {
-          "content-image": "labeled set ≥2 + one shared image → content+cards+image; never dissolve labels into facts",
-          "concept-columns": "each network is a label + one line, no sub-structure"
+          "content-image": "banded shrank the diagram to half the width; the text was unreadable"
         }
       }
     },
@@ -1799,6 +1723,52 @@
       }
     },
     {
+      "template": "stat",
+      "section": "Tipos y aplicaciones",
+      "title": "ThisPersonDoesNotExist.com en números",
+      "lead": "Cada vez que se recarga thispersondoesnotexist.com (Phillip Wang, febrero de 2019), StyleGAN de NVIDIA genera una cara nueva a partir de un vector de 512 números. Lo que hay detrás:",
+      "stats": [
+        {
+          "value": "70.000",
+          "caption": "fotos de caras reales de Flickr (dataset FFHQ), de 1024 × 1024 píxeles"
+        },
+        {
+          "value": "26,2 millones",
+          "caption": "de parámetros en el Generador de StyleGAN"
+        },
+        {
+          "value": "25 millones",
+          "caption": "de imágenes vistas por el Discriminador durante el entrenamiento: cada foto pasa cientos de veces"
+        },
+        {
+          "value": "≈ USD 1.000",
+          "caption": "para entrenarla hoy: una semana en 8 GPUs V100 alquiladas (entre USD 200 y 3.900 según dónde)"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "body": "**En Slanted Land el Discriminador tenía 5 números: 4 pesos y un sesgo.**"
+        }
+      ],
+      "notes": "La comparación que importa es con Slanted Land: allá el Discriminador tenía 5 números y el Generador 8; acá el Generador tiene 26,2 millones. La idea es la misma, el lote, el veredicto, el promedio y los dos pasos; lo que cambia es la escala. Una métrica para tener a mano es el FID, que compara la distribución de las imágenes generadas con la de las reales (más bajo es mejor): StyleGAN llegó a 4,40 en FFHQ y StyleGAN2 a 2,84. StyleGAN2 entrenó con lotes de 32 imágenes, así que 25 millones de imágenes son unos 780.000 pasos de entrenamiento; le llevó 9 días en las mismas 8 GPUs, y el proyecto entero, con todos los experimentos, consumió 132 MWh de electricidad. El sitio arrancó en 2019 con StyleGAN; no encontré una fuente confiable sobre qué versión usa hoy. Cuánto costaría hoy: la corrida final fueron 6 días y 14 horas en 8 V100, o sea unas 1.264 horas de GPU. En AWS (p3.16xlarge, USD 24,48 la hora por las 8 GPUs) son unos USD 3.900; en Lambda (USD 0,79 por GPU por hora), unos USD 1.000; en los mercados de GPUs usadas como Vast.ai o RunPod (USD 0,08 a 0,19 por GPU por hora), entre USD 100 y 240. Es solo la corrida final: el proyecto entero, con todos los experimentos, cuesta muchas veces más (StyleGAN2 informa 132 MWh para todo el proyecto, contra 0,68 MWh de su modelo final). Precios de octubre de 2026.",
+      "_choice": {
+        "signals": [
+          "four headline numbers with captions",
+          "one lead sentence",
+          "one takeaway"
+        ],
+        "candidates": [
+          "stat",
+          "big-number"
+        ],
+        "picked": "stat",
+        "rejected": {
+          "big-number": "four numbers, not one"
+        }
+      }
+    },
+    {
       "template": "content+cards+image",
       "section": "Tipos y aplicaciones",
       "title": "Fortaleza 1: Generación de imágenes realistas",
@@ -1844,10 +1814,48 @@
       "notes": "El 21,3 % es la tasa de error de los jueces humanos, y no un porcentaje de realismo del modelo. Si las muestras fueran indistinguibles, los jueces acertarían al azar y el error llegaría al 50 %. Con CIFAR-10 los jueces se equivocaron una de cada cinco veces, así que todavía detectaban la mayoría de las falsificaciones. Con MNIST, en cambio, no las distinguían.\n\nEs el único estudio ciego con jueces humanos y un número publicado en el corpus de la clase, junto con el MOS de SRGAN. Sirve como modelo de cómo validar el realismo de un generador: jueces ciegos, una tarea definida y una tasa de error reportada."
     },
     {
-      "template": "value-columns",
+      "template": "figures",
       "section": "Tipos y aplicaciones",
       "title": "Fortaleza 2: Transformación de imágenes (Image Translation)",
-      "lead": "Las GANs pueden transformar una imagen en otra y conservar la estructura subyacente. Pix2Pix aprende de pares de imágenes alineadas. CycleGAN aprende sin pares, y para muchas tareas no hay pares disponibles. En medicina, la misma técnica convierte MRI en CT sin escanear dos veces al paciente, lo que reduce costes, tiempo y exposición a radiación.",
+      "lead": "Las GANs pueden transformar una imagen en otra y conservar la estructura subyacente.",
+      "figures": [
+        {
+          "image": {
+            "src": "images/translation-pix2pix.png",
+            "alt": "Pares de entrada y salida de Pix2Pix: etiquetas a calle, etiquetas a fachada, blanco y negro a color, foto aérea a mapa, día a noche y boceto de una cartera a foto"
+          },
+          "label": "Pix2Pix: aprende de pares de imágenes alineadas",
+          "body": "El mismo modelo, entrenado con distintos datos: de etiquetas a una calle, de foto aérea a mapa, de día a noche, de boceto a foto, de blanco y negro a color."
+        },
+        {
+          "image": {
+            "src": "images/translation-cyclegan.png",
+            "alt": "Traducciones de CycleGAN: Monet a foto y foto a Monet, cebra a caballo y caballo a cebra, verano a invierno y vuelta, y una foto pintada al estilo de Monet, Van Gogh, Cézanne y Ukiyo-e"
+          },
+          "label": "CycleGAN: aprende sin pares, y para muchas tareas no hay pares disponibles",
+          "body": "De caballo a cebra y de cebra a caballo, de foto a pintura de Monet, de verano a invierno, a partir de dos colecciones de imágenes sueltas."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "two figures, each with label and caption",
+          "one lead line"
+        ],
+        "candidates": [
+          "figures",
+          "content-image"
+        ],
+        "picked": "figures",
+        "rejected": {
+          "content-image": "two pictures that each need their own label"
+        }
+      }
+    },
+    {
+      "template": "value-columns",
+      "section": "Tipos y aplicaciones",
+      "title": "Image Translation: modelos y librerías",
+      "lead": "En medicina, la misma técnica convierte MRI en CT sin escanear dos veces al paciente, lo que reduce costes, tiempo y exposición a radiación.",
       "columns": [
         {
           "header": "Input",
@@ -1881,21 +1889,30 @@
             "DeOldify / CycleGAN",
             "CycleGAN médico"
           ]
+        },
+        {
+          "header": "Librería o referencia",
+          "cells": [
+            "[pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)",
+            "[pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)",
+            "[pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)",
+            "[Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN), sucesor práctico de SRGAN",
+            "[DeOldify](https://github.com/jantic/DeOldify) (archivado en 2024)",
+            "[Wolterink et al., 2017](https://arxiv.org/abs/1708.01155) (paper)"
+          ]
         }
       ],
+      "notes": "Los links son para que los alumnos lo prueben: el repositorio de Pix2Pix y CycleGAN trae datasets y modelos preentrenados (caballo ↔ cebra, día ↔ noche). Real-ESRGAN es lo que se usa hoy para ampliar fotos; DeOldify sigue funcionando pero ya no se mantiene.",
       "_choice": {
         "signals": [
-          "has_table=true (Input | Output | Modelo, 6 rows)",
-          "n_images=0"
+          "has_table=true (4 columns, 6 rows)",
+          "rows align across columns"
         ],
         "candidates": [
-          "value-columns",
-          "concept-breakdown"
+          "value-columns"
         ],
         "picked": "value-columns",
-        "rejected": {
-          "concept-breakdown": "a lookup table (Input → Output, Modelo) whose headers are load-bearing → value-columns"
-        }
+        "rejected": {}
       }
     },
     {
@@ -1905,14 +1922,18 @@
       "lead": "Las GANs pueden reconstruir regiones faltantes de forma coherente con el contexto. La red recibe una imagen con una región enmascarada e infiere el contenido más probable basándose en colores, texturas y estructuras adyacentes. No copia píxeles cercanos — entiende el contenido semántico de la escena completa.",
       "facts": [
         {
+          "label": "En la imagen",
+          "body": "a la izquierda, la foto con zonas borradas en blanco; a la derecha, lo que completó la GAN, sin retoques (DeepFill, Yu et al., 2018)."
+        },
+        {
           "label": "Tomografías con dosis reducida",
           "body": "Recupera la información sacrificada en protocolos de baja radiación, protegiendo al paciente sin perder calidad diagnóstica."
         }
       ],
-      "design": "column-right",
+      "design": "split-right",
       "media": {
-        "src": "images/slide-45-1.png",
-        "alt": "Ilustración: cruz médica"
+        "src": "images/inpainting-deepfill.jpg",
+        "alt": "Dos ejemplos de DeepFill: un paisaje con cascada y un retrato con zonas borradas en blanco, a la izquierda, y las mismas imágenes completadas por la GAN, a la derecha"
       },
       "_choice": {
         "signals": [
@@ -1928,47 +1949,6 @@
           "single-point": "labeled_items == 1 with a supporting image → content-image with the point as a caption fact"
         }
       }
-    },
-    {
-      "template": "concept-breakdown",
-      "section": "Tipos y aplicaciones",
-      "title": "Fortaleza 4: Generación de datos sintéticos para entrenamiento",
-      "icons": "none",
-      "cards": [
-        {
-          "label": "El cuello de botella: los datos de entrenamiento",
-          "body": "**Casos raros → pocos ejemplos documentados. Datos personales o de pacientes → protegidos por regulaciones estrictas. Etiquetado → requiere especialistas, es caro y lento.**"
-        },
-        {
-          "label": "La solución con GANs",
-          "body": "**Entrenar con las pocas imágenes reales disponibles y generar miles de imágenes sintéticas adicionales para ampliar el dataset.**"
-        }
-      ],
-      "highlights": [
-        {
-          "body": "**Salimans et al. (2016) entrenaron una GAN junto con un clasificador que tenía pocas etiquetas. Con ese método alcanzaron el estado del arte en clasificación semi-supervisada en MNIST, CIFAR-10 y SVHN.**",
-          "kind": "example"
-        }
-      ],
-      "_choice": {
-        "signals": [
-          "labeled_items=2 (bold subheads, each with a paragraph)",
-          "two_groups=true? (problem → solution, not a compare over shared factors)",
-          "polarity=false",
-          "n_images=0"
-        ],
-        "candidates": [
-          "concept-breakdown",
-          "pros-cons",
-          "value-columns"
-        ],
-        "picked": "concept-breakdown",
-        "rejected": {
-          "pros-cons": "problem/solution is not upside/downside of one option",
-          "value-columns": "nothing aligns row by row; two labeled concepts"
-        }
-      },
-      "notes": "Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos datos sin etiquetar. Ataca el costo de etiquetar: etiquetar cuesta horas de especialistas, y las imágenes sin etiquetar sobran. Salimans et al. (2016) lo atacaron con una GAN y lograron el estado del arte en MNIST, CIFAR-10 y SVHN.\n\nEn el paper, el Discriminador funciona también como clasificador: además de las clases del dataset, aprende una clase extra para las imágenes que produce el Generador. Así, las imágenes generadas entran al entrenamiento del clasificador. Este mecanismo está en el cuerpo del paper (sección de aprendizaje semi-supervisado) y no en la captura del corpus, que solo tiene el abstract."
     },
     {
       "template": "value-columns",
@@ -2125,7 +2105,7 @@
         },
         {
           "label": "Fortalezas y limitaciones",
-          "body": "Cuatro capacidades concretas (generar, traducir y completar imágenes, y ampliar datasets) y los problemas a resolver antes de usar GANs en producción."
+          "body": "Tres capacidades concretas (generar, traducir y completar imágenes) y los problemas a resolver antes de usar GANs en producción."
         }
       ],
       "_choice": {
@@ -2151,7 +2131,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "2948fb866ad10b625b396cde0da502ec4f5606b9a3ffbd8b7b2e4713e5ca075a",
-    "bytes": 67306
+    "sha256": "6c73e81de1209e720cd662d0963dccfde6de2fea616779397a9f65f3a599ff27",
+    "bytes": 81107
   }
 }

@@ -336,7 +336,7 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 ### Content
 
-![Arquitectura de una Vanilla GAN](images/vanilla-gan-arquitectura.svg)
+![Arquitectura de una Vanilla GAN: el Discriminador recibe muestras reales y falsas y da un veredicto, P(real) entre 0 y 1. La pérdida de G usa los veredictos sobre las generadas y actualiza G; la pérdida de D usa los veredictos sobre reales y generadas y actualiza D](images/vanilla-gan-arquitectura.svg)
 
 <!-- enlace de la forma: https://aws.amazon.com/es/what-is/gan/ -->
 - **[¿Qué es una GAN? - Explicación sobre las redes generativas antagónicas - AWS](https://aws.amazon.com/es/what-is/gan/)**
@@ -786,34 +786,7 @@ Los dos paneles son el error del Discriminador. D minimiza −ln(D(x)) con imág
 
 ---
 
-## 17. Backpropagation: del error al ajuste de pesos
-
-<!-- slide 32 del pptx original -->
-
-### Content
-
-- Una vez calculado el error, la red lo "propaga hacia atrás" para ajustar cada peso:
-
-- Pesos con alta contribución al error → se ajustan más
-
-- Pesos con baja contribución al error → se ajustan poco
-
-- La dirección del ajuste apunta siempre a reducir el error
-
-- Este proceso ocurre simultáneamente en el Generador y el Discriminador en cada iteración.
-
-![Backpropagation: red 2-3-3-1 donde una flecha roja sobre cada peso indica si sube o baja para reducir el error](images/backprop-red.svg)
-
-### Sources
-
-- `AIG4B-Clase-8-GANs.md.md` (slide 32)
-- Imagen redibujada como SVG (images/backprop-red.svg).
-
-### Speaker notes
-
----
-
-## 18. Backpropagation: el procedimiento paso a paso
+## 17. Backpropagation: el procedimiento paso a paso
 
 <!-- slide 33 del pptx original -->
 
@@ -843,7 +816,7 @@ Los dos paneles son el error del Discriminador. D minimiza −ln(D(x)) con imág
 
 ---
 
-## 19. Backpropagation: ejemplo con Slanted Land
+## 18. Backpropagation: ejemplo con Slanted Land
 
 <!-- slide 34 del pptx original -->
 
@@ -866,7 +839,7 @@ Los dos paneles son el error del Discriminador. D minimiza −ln(D(x)) con imág
 
 ---
 
-## 20. (sin título)
+## 19. (sin título)
 
 <!-- slide 35 del pptx original -->
 
@@ -874,23 +847,23 @@ Los dos paneles son el error del Discriminador. D minimiza −ln(D(x)) con imág
 
 **El ciclo completo: Generador y Discriminador juntos**
 
-- Con z = 0.7, el Generador produce una imagen → el Discriminador la evalúa → output: 0.68. Este único número conecta los dos errores:
+- En cada vuelta entra un lote: m imágenes reales y m generadas. El Discriminador da un veredicto por imagen, y con esos veredictos se hacen dos pasos de backpropagation, uno por red: el del Discriminador usa los errores de las reales y de las generadas; el del Generador, solo los de las generadas.
 
-| Error del Discriminador | Error del Generador |
-|---|---|
-| Recibió 0.68 cuando quería dar 0 → se equivocó. Debe ajustar sus pesos para detectar mejor. | Recibió 0.68 cuando quería que diera 1 → casi lo engañó, pero no del todo. Debe ajustar para engañar más. |
-
-![Generador y Discriminador encadenados: el Generador produce la imagen (0.25, 1 / 0.5, 0.75) y el Discriminador le asigna 0.68](images/generador-y-discriminador.svg)
+![Un lote de 3 imágenes reales y 3 generadas. Paso del Discriminador: objetivos 1 y 0, un veredicto y un error por imagen (0.11, 0.22, 0.36, 1.14, 0.51, 0.80); se promedian en 0.52 y con ese número se hace un paso de backpropagation que actualiza solo el Discriminador. Paso del Generador: solo las 3 generadas, con objetivo 1; errores 0.39, 0.92 y 0.60, promedio 0.63, un paso de backpropagation que actualiza solo el Generador. Después, el siguiente lote](images/ciclo-lote.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 35). Imagen redibujada como SVG (images/generador-y-discriminador.svg).
+- `AIG4B-Clase-8-GANs.md.md` (slide 35), reemplazada por un diagrama nuevo (images/ciclo-lote.svg).
+- Google for Developers, *GAN Training* y *The Generator* (developers.google.com/machine-learning/gan): entrenamiento alternado y qué pesos actualiza cada paso. Fuente web, no está en el corpus.
+- PyTorch, *DCGAN Tutorial*: lotes de reales y generadas, etiquetas real = 1 / generada = 0, y etiqueta real para el paso del Generador. Fuente web, no está en el corpus.
 
 ### Speaker notes
 
+Las cuentas de las slides anteriores eran con una sola imagen para que se vieran los números. En el entrenamiento real entra un lote: varias imágenes reales y varias generadas a la vez, y el error que se propaga es el promedio del lote. Con esos veredictos hay dos pasos. En el del Discriminador, las reales tienen objetivo 1 y las generadas objetivo 0, y se actualiza solo el Discriminador. En el del Generador se usan solo las generadas, ahora con objetivo 1, porque el Generador quiere que el Discriminador se las crea; el error vuelve atravesando al Discriminador sin cambiarlo y se actualiza solo el Generador. Los veredictos del dibujo son ilustrativos; los errores sí están calculados: −ln(veredicto) si el objetivo es 1 y −ln(1 − veredicto) si es 0. Lo que hay que mirar es la forma: un error por imagen, un solo promedio por lote y un solo paso de backpropagation con ese promedio. En la práctica los lotes son de decenas de imágenes, no de seis.
+
 ---
 
-## 21. El error del Discriminador
+## 20. El error del Discriminador
 
 <!-- slide 36 del pptx original -->
 
@@ -913,7 +886,7 @@ Los dos paneles son el error del Discriminador. D minimiza −ln(D(x)) con imág
 
 ---
 
-## 22. (sin título)
+## 21. (sin título)
 
 <!-- slide 37 del pptx original -->
 
@@ -984,7 +957,31 @@ Los dos paneles son el error del Discriminador. D minimiza −ln(D(x)) con imág
 
 ---
 
-## 2. El salto que lo cambió todo: StyleGAN (2018)
+## 2. Tipos de GANs: cómo se ven sus imágenes
+
+<!-- slide nueva, no está en el pptx: pedido del presentador (2026-10-21) -->
+
+### Content
+
+Las imágenes con que cada paper mostró su modelo:
+
+![Grilla de 2×2: Vanilla GAN (2014), caras borrosas en blanco y negro; Conditional GAN (2014), una fila de dígitos por etiqueta; DCGAN (2015), dormitorios en color; SRGAN (2017), una ilustración ampliada 4× con bicúbica y con SRGAN](images/tipos-gan-grilla.png)
+
+### Sources
+
+- Goodfellow et al. (2014), *Generative Adversarial Nets*, figura 2b (arxiv.org/abs/1406.2661), vía ar5iv.
+- Mirza y Osindero (2014), *Conditional Generative Adversarial Nets*, figura 2 (arxiv.org/abs/1411.1784), vía ar5iv.
+- Radford, Metz y Chintala (2015), *Unsupervised Representation Learning with DCGANs*, figura 3 (arxiv.org/abs/1511.06434), vía ar5iv.
+- Ledig et al. (2017), *Photo-Realistic Single Image Super-Resolution Using a GAN*, figura 2: bicúbica y SRGAN lado a lado (arxiv.org/abs/1609.04802), vía ar5iv.
+- Los cuatro papers están en el corpus (`gan-goodfellow-2014`, `cgan-mirza-osindero-2014`, `dcgan-radford-2015`, `srgan-ledig-2017`), pero solo el abstract; las figuras se bajaron de ar5iv.
+
+### Speaker notes
+
+Los cuatro papers: Vanilla GAN, Goodfellow et al., 2014; Conditional GAN, Mirza y Osindero, 2014; DCGAN, Radford et al., 2015; SRGAN, Ledig et al., 2017. Es la misma lista de la slide anterior, ahora con lo que cada uno produce. Qué muestra cada imagen. Vanilla GAN: Caras generadas en blanco y negro y a baja resolución. La columna de la derecha, en amarillo, es la foto real más parecida del entrenamiento: no la copió. Conditional GAN: Dígitos de MNIST generados con una etiqueta: cada fila es un «generá un 0», «generá un 1»… hasta el 9. DCGAN: Dormitorios generados con capas convolucionales (dataset LSUN): ya son imágenes en color y con escenas reconocibles. SRGAN: La misma ilustración ampliada 4×: a la izquierda con interpolación bicúbica, a la derecha con SRGAN, que inventa el detalle fino. Conviene recorrerla como una línea de tiempo: de caras grises y borrosas en 2014 a dormitorios en color en 2015, y después a usos concretos, como pedir una clase o ampliar una imagen. En la de la Vanilla GAN, la columna amarilla es la forma en que el paper muestra que el modelo no memorizó: pone al lado la foto real más parecida. En la de SRGAN, mirar el detalle del pelo y de las plumas: la bicúbica lo pierde y la SRGAN lo inventa.
+
+---
+
+## 3. El salto que lo cambió todo: StyleGAN (2018)
 
 <!-- slide 40 del pptx original -->
 
@@ -1014,37 +1011,29 @@ Esa separación es lo que hace posible el *style mixing*: tomar la estructura de
 
 ---
 
-## 3. StyleGAN: arquitectura
+## 4. StyleGAN: arquitectura
 
 <!-- slide 41 del pptx original -->
 
 ### Content
 
-**Dos redes en lugar de una**
+Dos redes en lugar de una: la red de mapeo convierte el ruido z en un estilo w, y la red de síntesis arma la imagen de 4×4 a 1024×1024 inyectando ese estilo en cada bloque.
 
-- Caras fotorrealistas generadas por StyleGAN (NVIDIA, 2019)
-
-- StyleGAN separa el proceso en dos redes:
-
-![Arquitectura de StyleGAN: la Mapping Network produce w, la Synthesis Network inyecta el estilo con Ada IN y ruido, y un ProGan Discriminator la evalúa](images/stylegan-arquitectura.svg)
-
-- Mapping Network: transforma el ruido z en un vector de estilo w (512 dimensiones)
-- Synthesis Network: genera la imagen progresivamente, inyectando el estilo w en cada capa
-
-- Esto permite controlar atributos separados en cada nivel de resolución: pose y forma en capas bajas, textura y color en capas altas.
-
-- La clave: el estilo se inyecta en cada capa mediante AdaIN (Adaptive Instance Normalization), no solo al inicio. Esto da control granular sobre cada aspecto visual.
+![StyleGAN: el ruido z pasa por la red de mapeo (8 capas) y se convierte en el estilo w; la red de síntesis arma la imagen en bloques de 4×4 a 1024×1024, el estilo w entra en cada bloque por AdaIN y cada bloque recibe su propio ruido; las capas bajas deciden la pose y la forma, las altas la textura y el color](images/stylegan-simple.svg)
 
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 41)
-- Imagen redibujada como SVG (images/stylegan-arquitectura.svg).
+- Diagrama nuevo y simplificado (images/stylegan-simple.svg), con las piezas que describe la slide; el redibujo fiel de la figura del paper (stylegan-arquitectura.svg) pasó a Cut material.
+- Karras, Laine y Aila (2019), arxiv.org/abs/1812.04948: red de mapeo de 8 capas, w de 512 dimensiones, síntesis desde una constante de 4×4, AdaIN y ruido por capa. Fuente web, no está en el corpus.
 
 ### Speaker notes
 
+La clave: el estilo se inyecta en cada capa mediante AdaIN (Adaptive Instance Normalization), no solo al inicio. Esto da control granular sobre cada aspecto visual. En una GAN clásica el ruido entra una sola vez, en la primera capa, y todo sale mezclado de ahí. StyleGAN lo separa: la red de mapeo, 8 capas densas, convierte el ruido z en un vector de estilo w de 512 números, y la red de síntesis arranca de un bloque constante de 4×4 y lo va agrandando hasta 1024×1024. En cada bloque el estilo w entra por AdaIN, que reescala las activaciones con valores que salen de w, y se suma un ruido propio del bloque que pone los detalles finos. Por eso los bloques chicos deciden la pose y la forma de la cara y los grandes la textura y el color: se puede tomar la estructura de una cara y el estilo de otra. El diagrama del paper tiene más piezas (las capas convolucionales 3×3, el sobremuestreo, las transformaciones A y B y el Discriminador de ProGAN con que se entrena); está en Cut material.
+
 ---
 
-## 4. StyleGAN: Innovaciones Clave (Resumen)
+## 5. StyleGAN: Innovaciones Clave (Resumen)
 
 <!-- slide 42 del pptx original -->
 
@@ -1066,7 +1055,37 @@ Esa separación es lo que hace posible el *style mixing*: tomar la estructura de
 
 ---
 
-## 5. Fortaleza 1: Generación de imágenes realistas
+## 6. ThisPersonDoesNotExist.com en números
+
+<!-- slide nueva, no está en el pptx: pedido del presentador (2026-10-21) -->
+
+### Content
+
+Cada vez que se recarga thispersondoesnotexist.com (Phillip Wang, febrero de 2019), StyleGAN de NVIDIA genera una cara nueva a partir de un vector de 512 números. Lo que hay detrás:
+
+| 70.000 | 26,2 millones | 25 millones | ≈ USD 1.000 |
+|---|---|---|---|
+| fotos de caras reales de Flickr (dataset FFHQ), de 1024 × 1024 píxeles | de parámetros en el Generador de StyleGAN | de imágenes vistas por el Discriminador durante el entrenamiento: cada foto pasa cientos de veces | para entrenarla hoy: una semana en 8 GPUs V100 alquiladas (entre USD 200 y 3.900 según dónde) |
+
+- **En Slanted Land el Discriminador tenía 5 números: 4 pesos y un sesgo.**
+
+### Sources
+
+- Karras, Laine y Aila, *A Style-Based Generator Architecture for GANs* (2019), arxiv.org/abs/1812.04948: 26,2 M de parámetros en el Generador, FFHQ de 70.000 imágenes, 25 M de imágenes de entrenamiento, una semana en un DGX-1 con 8 V100, FID 4,40. Fuente web, no está en el corpus.
+- NVlabs/stylegan (github.com/NVlabs/stylegan): tiempos de entrenamiento a 1024 × 1024 (6 días 14 horas con 8 GPUs; 41 días 4 horas con una). Fuente web.
+- NVlabs/ffhq-dataset (github.com/NVlabs/ffhq-dataset): 70.000 PNG de 1024 × 1024 tomados de Flickr. Fuente web.
+- Karras et al., *Analyzing and Improving the Image Quality of StyleGAN* (2020), arxiv.org/abs/1912.04958: FID 2,84, lotes de 32, 9 días de entrenamiento, 132 MWh para todo el proyecto. Fuente web.
+- TechXplore, *The highly realistic nobody* (febrero de 2019): el sitio es de Phillip Wang y usa StyleGAN de NVIDIA; genera cada cara a partir de un vector de 512 dimensiones. Fuente web.
+
+- Precios de GPU en la nube, octubre de 2026: AWS p3.16xlarge a USD 24,48 la hora en us-east-1 (instances.vantage.sh/aws/ec2/p3.16xlarge); V100 a USD 0,79 por GPU por hora en Lambda y entre USD 0,08 y 0,19 en Vast.ai y RunPod (computeprices.com/gpus/v100, gpus.io/en/gpus/teslav100). Fuentes web de agregadores, no del corpus.
+
+### Speaker notes
+
+La comparación que importa es con Slanted Land: allá el Discriminador tenía 5 números y el Generador 8; acá el Generador tiene 26,2 millones. La idea es la misma, el lote, el veredicto, el promedio y los dos pasos; lo que cambia es la escala. Una métrica para tener a mano es el FID, que compara la distribución de las imágenes generadas con la de las reales (más bajo es mejor): StyleGAN llegó a 4,40 en FFHQ y StyleGAN2 a 2,84. StyleGAN2 entrenó con lotes de 32 imágenes, así que 25 millones de imágenes son unos 780.000 pasos de entrenamiento; le llevó 9 días en las mismas 8 GPUs, y el proyecto entero, con todos los experimentos, consumió 132 MWh de electricidad. El sitio arrancó en 2019 con StyleGAN; no encontré una fuente confiable sobre qué versión usa hoy. Cuánto costaría hoy: la corrida final fueron 6 días y 14 horas en 8 V100, o sea unas 1.264 horas de GPU. En AWS (p3.16xlarge, USD 24,48 la hora por las 8 GPUs) son unos USD 3.900; en Lambda (USD 0,79 por GPU por hora), unos USD 1.000; en los mercados de GPUs usadas como Vast.ai o RunPod (USD 0,08 a 0,19 por GPU por hora), entre USD 100 y 240. Es solo la corrida final: el proyecto entero, con todos los experimentos, cuesta muchas veces más (StyleGAN2 informa 132 MWh para todo el proyecto, contra 0,68 MWh de su modelo final). Precios de octubre de 2026.
+
+---
+
+## 7. Fortaleza 1: Generación de imágenes realistas
 
 <!-- slide 43 del pptx original -->
 
@@ -1101,25 +1120,30 @@ Es el único estudio ciego con jueces humanos y un número publicado en el corpu
 
 ---
 
-## 6. Fortaleza 2: Transformación de imágenes (Image Translation)
+## 8. Fortaleza 2: Transformación de imágenes (Image Translation)
 
 <!-- slide 44 del pptx original -->
 
 ### Content
 
-- Las GANs pueden transformar una imagen en otra y conservar la estructura subyacente. Pix2Pix aprende de pares de imágenes alineadas. CycleGAN aprende sin pares, y para muchas tareas no hay pares disponibles. En medicina, la misma técnica convierte MRI en CT sin escanear dos veces al paciente, lo que reduce costes, tiempo y exposición a radiación.
+Las GANs pueden transformar una imagen en otra y conservar la estructura subyacente.
 
-| Input | Output | Modelo |
-|---|---|---|
-| Boceto de un edificio | Foto del edificio terminado | Pix2Pix |
-| Foto de día | La misma foto de noche | Pix2Pix |
-| Imagen de un caballo | La misma imagen con una cebra | CycleGAN |
-| Imagen de baja resolución | Alta resolución (super-resolución) | SRGAN |
-| Imagen en blanco y negro | La misma imagen en color | DeOldify / CycleGAN |
-| MRI de cerebro | Imagen equivalente de CT | CycleGAN médico |
+**Pix2Pix: aprende de pares de imágenes alineadas**
+
+![Pares de entrada y salida de Pix2Pix: etiquetas a calle, etiquetas a fachada, blanco y negro a color, foto aérea a mapa, día a noche y boceto de una cartera a foto](images/translation-pix2pix.png)
+
+- El mismo modelo, entrenado con distintos datos: de etiquetas a una calle, de foto aérea a mapa, de día a noche, de boceto a foto, de blanco y negro a color.
+
+**CycleGAN: aprende sin pares, y para muchas tareas no hay pares disponibles**
+
+![Traducciones de CycleGAN: Monet a foto y foto a Monet, cebra a caballo y caballo a cebra, verano a invierno y vuelta, y una foto pintada al estilo de Monet, Van Gogh, Cézanne y Ukiyo-e](images/translation-cyclegan.png)
+
+- De caballo a cebra y de cebra a caballo, de foto a pintura de Monet, de verano a invierno, a partir de dos colecciones de imágenes sueltas.
+
 
 ### Sources
 
+- Isola et al. (2017), figura 1 (arxiv.org/abs/1611.07004), y Zhu et al. (2017), figura 1 (arxiv.org/abs/1703.10593), vía ar5iv.
 - `AIG4B-Clase-8-GANs.md.md` (slide 44)
 - `cyclegan-zhu-2017.web.md` (la traducción imagen a imagen usa pares alineados; para muchas tareas no hay datos apareados)
 - `pix2pix-isola-2017.web.md` (cGAN de propósito general para traducción imagen a imagen)
@@ -1128,15 +1152,47 @@ Es el único estudio ciego con jueces humanos y un número publicado en el corpu
 
 ---
 
-## 7. Fortaleza 3: Completado de imágenes (Image Inpainting)
+## 9. Image Translation: modelos y librerías
+
+<!-- segunda mitad de la slide 44 del pptx: la tabla, con links -->
+
+### Content
+
+En medicina, la misma técnica convierte MRI en CT sin escanear dos veces al paciente, lo que reduce costes, tiempo y exposición a radiación.
+
+| Input | Output | Modelo | Librería o referencia |
+|---|---|---|---|
+| Boceto de un edificio | Foto del edificio terminado | Pix2Pix | [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) |
+| Foto de día | La misma foto de noche | Pix2Pix | [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) |
+| Imagen de un caballo | La misma imagen con una cebra | CycleGAN | [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) |
+| Imagen de baja resolución | Alta resolución (super-resolución) | SRGAN | [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN), sucesor práctico de SRGAN |
+| Imagen en blanco y negro | La misma imagen en color | DeOldify / CycleGAN | [DeOldify](https://github.com/jantic/DeOldify) (archivado en 2024) |
+| MRI de cerebro | Imagen equivalente de CT | CycleGAN médico | [Wolterink et al., 2017](https://arxiv.org/abs/1708.01155) (paper) |
+
+### Sources
+
+- `AIG4B-Clase-8-GANs.md.md` (slide 44): la tabla.
+- `cyclegan-zhu-2017.web.md` (repositorio de código: github.com/junyanz/pytorch-CycleGAN-and-pix2pix, el mismo para Pix2Pix y CycleGAN)
+- Repositorios verificados el 2026-10-21: Real-ESRGAN (github.com/xinntao/Real-ESRGAN, extiende ESRGAN) y DeOldify (github.com/jantic/DeOldify, archivado el 19 de octubre de 2024). Fuentes web.
+- Wolterink et al. (2017), *Deep MR to CT Synthesis using Unpaired Data* (arxiv.org/abs/1708.01155): GAN con consistencia de ciclo, sin pares. Fuente web.
+
+### Speaker notes
+
+Los links son para que los alumnos lo prueben: el repositorio de Pix2Pix y CycleGAN trae datasets y modelos preentrenados (caballo ↔ cebra, día ↔ noche). Real-ESRGAN es lo que se usa hoy para ampliar fotos; DeOldify sigue funcionando pero ya no se mantiene.
+
+---
+
+## 10. Fortaleza 3: Completado de imágenes (Image Inpainting)
 
 <!-- slide 45 del pptx original -->
 
 ### Content
 
-![](images/slide-45-1.png)
-
 - Las GANs pueden reconstruir regiones faltantes de forma coherente con el contexto. La red recibe una imagen con una región enmascarada e infiere el contenido más probable basándose en colores, texturas y estructuras adyacentes. No copia píxeles cercanos — entiende el contenido semántico de la escena completa.
+
+- **En la imagen:** a la izquierda, la foto con zonas borradas en blanco; a la derecha, lo que completó la GAN, sin retoques (DeepFill, Yu et al., 2018).
+
+![Dos ejemplos de DeepFill: un paisaje con cascada y un retrato con zonas borradas en blanco, a la izquierda, y las mismas imágenes completadas por la GAN, a la derecha](images/inpainting-deepfill.jpg)
 
 - **Tomografías con dosis reducida**
 
@@ -1144,42 +1200,14 @@ Es el único estudio ciego con jueces humanos y un número publicado en el corpu
 
 ### Sources
 
+- Yu et al. (2018), *Generative Image Inpainting with Contextual Attention* (DeepFill), figura 1 (arxiv.org/abs/1801.07892), vía ar5iv: se entrena con dos discriminadores WGAN, uno para la imagen entera y otro para la zona completada. Fuente web, no está en el corpus.
 - `AIG4B-Clase-8-GANs.md.md` (slide 45)
 
 ### Speaker notes
 
 ---
 
-## 8. Fortaleza 4: Generación de datos sintéticos para entrenamiento
-
-<!-- slide 46 del pptx original -->
-
-### Content
-
-**El cuello de botella: los datos de entrenamiento**
-
-**La solución con GANs**
-
-- **Entrenar con las pocas imágenes reales disponibles y generar miles de imágenes sintéticas adicionales para ampliar el dataset.**
-
-- **Casos raros → pocos ejemplos documentados. Datos personales o de pacientes → protegidos por regulaciones estrictas. Etiquetado → requiere especialistas, es caro y lento.**
-
-- **Salimans et al. (2016) entrenaron una GAN junto con un clasificador que tenía pocas etiquetas. Con ese método alcanzaron el estado del arte en clasificación semi-supervisada en MNIST, CIFAR-10 y SVHN.**
-
-### Sources
-
-- `AIG4B-Clase-8-GANs.md.md` (slide 46)
-- `inception-score-salimans-2016.web.md` (aprendizaje semi-supervisado con GANs: estado del arte en MNIST, CIFAR-10 y SVHN)
-
-### Speaker notes
-
-Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos datos sin etiquetar. Ataca el costo de etiquetar: etiquetar cuesta horas de especialistas, y las imágenes sin etiquetar sobran. Salimans et al. (2016) lo atacaron con una GAN y lograron el estado del arte en MNIST, CIFAR-10 y SVHN.
-
-En el paper, el Discriminador funciona también como clasificador: además de las clases del dataset, aprende una clase extra para las imágenes que produce el Generador. Así, las imágenes generadas entran al entrenamiento del clasificador. Este mecanismo está en el cuerpo del paper (sección de aprendizaje semi-supervisado) y no en la captura del corpus, que solo tiene el abstract.
-
----
-
-## 9. El dataset importa: lo que le das es lo que obtenés
+## 11. El dataset importa: lo que le das es lo que obtenés
 
 <!-- slide 47 del pptx original -->
 
@@ -1269,7 +1297,7 @@ En el paper, el Discriminador funciona también como clasificador: además de la
 | 04 | 05 |
 |---|---|
 | La lógica matemática | Fortalezas y limitaciones |
-| El juego minimax como marco conceptual, binary cross-entropy y backpropagation. | Cuatro capacidades concretas (generar, traducir y completar imágenes, y ampliar datasets) y los problemas a resolver antes de usar GANs en producción. |
+| El juego minimax como marco conceptual, binary cross-entropy y backpropagation. | Tres capacidades concretas (generar, traducir y completar imágenes) y los problemas a resolver antes de usar GANs en producción. |
 
 ### Sources
 
@@ -1289,6 +1317,99 @@ En el paper, el Discriminador funciona también como clasificador: además de la
 - Section "Cut material" — "El deck original no tiene slide de cierre; hay que escribirla."
 
 # Cut material
+
+#### 4.11 Fortaleza 4: Generación de datos sintéticos para entrenamiento (slide 46 del pptx)
+
+Motivo: el presentador la sacó (2026-10-21).
+
+<!-- slide 46 del pptx original -->
+
+### Content
+
+**El cuello de botella: los datos de entrenamiento**
+
+**La solución con GANs**
+
+- **Entrenar con las pocas imágenes reales disponibles y generar miles de imágenes sintéticas adicionales para ampliar el dataset.**
+
+- **Casos raros → pocos ejemplos documentados. Datos personales o de pacientes → protegidos por regulaciones estrictas. Etiquetado → requiere especialistas, es caro y lento.**
+
+- **Salimans et al. (2016) entrenaron una GAN junto con un clasificador que tenía pocas etiquetas. Con ese método alcanzaron el estado del arte en clasificación semi-supervisada en MNIST, CIFAR-10 y SVHN.**
+
+### Sources
+
+- `AIG4B-Clase-8-GANs.md.md` (slide 46)
+- `inception-score-salimans-2016.web.md` (aprendizaje semi-supervisado con GANs: estado del arte en MNIST, CIFAR-10 y SVHN)
+
+### Speaker notes
+
+Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos datos sin etiquetar. Ataca el costo de etiquetar: etiquetar cuesta horas de especialistas, y las imágenes sin etiquetar sobran. Salimans et al. (2016) lo atacaron con una GAN y lograron el estado del arte en MNIST, CIFAR-10 y SVHN.
+
+En el paper, el Discriminador funciona también como clasificador: además de las clases del dataset, aprende una clase extra para las imágenes que produce el Generador. Así, las imágenes generadas entran al entrenamiento del clasificador. Este mecanismo está en el cuerpo del paper (sección de aprendizaje semi-supervisado) y no en la captura del corpus, que solo tiene el abstract.
+
+
+#### 4.4 StyleGAN: arquitectura (slide 41 del pptx) — versión anterior
+
+Motivo: no se podía leer (2026-10-21). La imagen images/stylegan-arquitectura.svg, redibujo fiel de la figura del paper, se borró del deck.
+
+**Dos redes en lugar de una**
+
+- Caras fotorrealistas generadas por StyleGAN (NVIDIA, 2019)
+
+- StyleGAN separa el proceso en dos redes:
+
+![Arquitectura de StyleGAN: la Mapping Network produce w, la Synthesis Network inyecta el estilo con Ada IN y ruido, y un ProGan Discriminator la evalúa](images/stylegan-arquitectura.svg)
+
+- Mapping Network: transforma el ruido z en un vector de estilo w (512 dimensiones)
+- Synthesis Network: genera la imagen progresivamente, inyectando el estilo w en cada capa
+
+- Esto permite controlar atributos separados en cada nivel de resolución: pose y forma en capas bajas, textura y color en capas altas.
+
+- La clave: el estilo se inyecta en cada capa mediante AdaIN (Adaptive Instance Normalization), no solo al inicio. Esto da control granular sobre cada aspecto visual.
+
+
+#### 3.19 El ciclo completo (slide 35 del pptx) — versión de un solo veredicto
+
+Motivo: el presentador la encontró muy simplificada (2026-10-21); reemplazada por el diagrama de lotes. La imagen images/generador-y-discriminador.svg se borró.
+
+**El ciclo completo: Generador y Discriminador juntos**
+
+- Con z = 0.7, el Generador produce una imagen → el Discriminador la evalúa → output: 0.68. Este único número conecta los dos errores:
+
+| Error del Discriminador | Error del Generador |
+|---|---|
+| Recibió 0.68 cuando quería dar 0 → se equivocó. Debe ajustar sus pesos para detectar mejor. | Recibió 0.68 cuando quería que diera 1 → casi lo engañó, pero no del todo. Debe ajustar para engañar más. |
+
+![Generador y Discriminador encadenados: el Generador produce la imagen (0.25, 1 / 0.5, 0.75) y el Discriminador le asigna 0.68](images/generador-y-discriminador.svg)
+
+
+#### 3.17 Backpropagation: del error al ajuste de pesos (slide 32 del pptx)
+
+Motivo: el presentador la sacó (2026-10-21). La imagen images/backprop-red.svg también se borró.
+
+<!-- slide 32 del pptx original -->
+
+### Content
+
+- Una vez calculado el error, la red lo "propaga hacia atrás" para ajustar cada peso:
+
+- Pesos con alta contribución al error → se ajustan más
+
+- Pesos con baja contribución al error → se ajustan poco
+
+- La dirección del ajuste apunta siempre a reducir el error
+
+- Este proceso ocurre simultáneamente en el Generador y el Discriminador en cada iteración.
+
+![Backpropagation: red 2-3-3-1 donde una flecha roja sobre cada peso indica si sube o baja para reducir el error](images/backprop-red.svg)
+
+### Sources
+
+- `AIG4B-Clase-8-GANs.md.md` (slide 32)
+- Imagen redibujada como SVG (images/backprop-red.svg).
+
+### Speaker notes
+
 
 #### 3.14 Binary cross-entropy: los dos casos (slide 30 del pptx) — tabla reemplazada por diagrama
 

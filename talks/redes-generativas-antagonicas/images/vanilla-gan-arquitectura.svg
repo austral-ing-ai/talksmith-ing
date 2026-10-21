@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 990 370" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
 <title>Arquitectura de una Vanilla GAN</title>
-<desc>Redibujo vectorial del diagrama del slide 15 del pptx original (AIG4B Clase 8), con las mismas piezas: el ruido z entra al Generador (G), que produce una muestra falsa; los datos reales aportan una muestra real; el Discriminador (D) recibe ambas y decide si es real o falsa; esa decisión da la pérdida de G y la pérdida de D, que vuelven para actualizar cada red.</desc>
+<desc>Redibujo vectorial del diagrama del slide 15 del pptx original (AIG4B Clase 8), con las mismas piezas: el ruido z entra al Generador (G), que produce una muestra falsa; los datos reales aportan una muestra real; el Discriminador (D) recibe ambas y decide si es real o falsa; esa decisión da la pérdida de G y la pérdida de D, que vuelven para actualizar cada red. La salida del D es un veredicto, la probabilidad de que la imagen sea real; no es una bifurcación: la pérdida de G usa los veredictos sobre las generadas y la de D los veredictos sobre reales y generadas.</desc>
 <defs>
 <marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
 <path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
@@ -27,8 +27,8 @@
 <path d="M280,266 L350,266"/>
 <path d="M460,262 L510,220"/>
 <path d="M690,195 L728,195"/>
-<path d="M821,164 L878,118"/>
-<path d="M821,226 L878,272"/>
+<path d="M790,158 V108 H877"/>
+<path d="M790,232 V286 H877"/>
 </g>
 
 <rect x="30" y="100" width="50" height="50" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
@@ -69,9 +69,10 @@
 <text x="600" y="191" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F1E1E">Discriminador</text>
 <text x="600" y="218" text-anchor="middle" font-size="19" font-weight="bold" fill="#1F1E1E">(D)</text>
 
-<path d="M790,133 L852,195 L790,257 L728,195 z" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
-<text x="790" y="191" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">¿Real o</text>
-<text x="790" y="210" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">falsa?</text>
+<rect x="728" y="158" width="124" height="74" rx="10" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
+<text x="790" y="184" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Veredicto</text>
+<text x="790" y="204" text-anchor="middle" font-size="15" fill="#1F1E1E">P(real)</text>
+<text x="790" y="222" text-anchor="middle" font-size="13" fill="#6B6560">entre 0 y 1</text>
 
 <g fill="#ffffff" stroke="#3B3535" stroke-width="1.5">
 <path d="M878,72 h74 l16,16 v56 h-90 z"/>
@@ -84,5 +85,11 @@
 <text x="923" y="130">de G</text>
 <text x="923" y="290">Pérdida</text>
 <text x="923" y="308">de D</text>
+</g>
+
+
+<g font-size="14" font-style="italic" fill="#1F1E1E" text-anchor="end">
+<text x="872" y="100">veredictos sobre generadas</text>
+<text x="872" y="304">veredictos sobre reales y generadas</text>
 </g>
 </svg>
