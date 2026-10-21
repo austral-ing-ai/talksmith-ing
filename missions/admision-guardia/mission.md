@@ -12,6 +12,9 @@
 | **Fecha de entrega** | **Viernes 20 de noviembre de 2026** |
 | **Kit** | [`missions/admision-guardia/`](.) — normas, casos de práctica, historial y el paquete `admision`. Cómo instalarlo y correrlo está en su [README](README.md) |
 | **Envío** | Mail a Paulo Veiga y Marco, con todos los integrantes del grupo en copia |
+| **Video del enunciado** | [Parte 1](https://www.loom.com/share/2c56572757124aaf8e2a1e1398efe27d) · [Parte 2](https://www.loom.com/share/12f6cb81c76440cd8a86563dcc02b2f2) (Loom) |
+
+> **Video de presentación del TP:** [Parte 1](https://www.loom.com/share/2c56572757124aaf8e2a1e1398efe27d) y [Parte 2](https://www.loom.com/share/12f6cb81c76440cd8a86563dcc02b2f2). Mírenlo antes de leer el resto.
 
 > **Este enunciado dice qué hacer. Cómo correrlo está en el [README del kit](README.md)**, en esta misma carpeta: cómo [instalarlo](README.md#instalarlo), el [contrato de `entrega.py`](README.md#el-contrato-de-la-entrega), cómo [correr los casos de práctica](README.md#correr-la-práctica), cómo [corre la cátedra su entrega](README.md#cómo-corre-la-cátedra-su-entrega) y cómo [evaluar el buscador](README.md#evaluar-el-buscador). Léanlo antes de escribir código.
 

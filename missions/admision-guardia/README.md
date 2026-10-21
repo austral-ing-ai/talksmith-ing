@@ -1,6 +1,6 @@
 # Kit del TP final: la ficha de admisión de guardia
 
-El enunciado (qué hay que hacer, qué se entrega y cómo se corrige) está en [mission.md](mission.md). Esto explica qué trae el kit y cómo se usa.
+El enunciado (qué hay que hacer, qué se entrega y cómo se corrige) está en [mission.md](mission.md), y el video que lo presenta en dos partes: [Parte 1](https://www.loom.com/share/2c56572757124aaf8e2a1e1398efe27d) y [Parte 2](https://www.loom.com/share/12f6cb81c76440cd8a86563dcc02b2f2). Esto explica qué trae el kit y cómo se usa.
 
 ## Qué trae
 

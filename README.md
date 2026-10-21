@@ -55,5 +55,5 @@ Las entregas de los trabajos prácticos se realizan en la clase indicada.
 | 1 | 2 | Viernes 15 de agosto | [Corta, del caos a producción](missions/clase2/mission.md) |
 | 2 | 3 | Viernes Sep 4 | [¿Cuánto vale esta casa?](missions/mlp/mission.md) |
 | 3 | 10 | Viernes 9 de octubre | [RAG, MCP y Transformers en el Hospital Arroyo Claro](missions/rag-mcp-transformers/mission.md) |
-| 4 (final) | — | Viernes 20 de noviembre | [El agente de admisión de guardia](missions/admision-guardia/mission.md) · [Kit y cómo correrlo](https://github.com/austral-ing-ai/talksmith-ing/tree/main/missions/admision-guardia) |
+| 4 (final) | — | Viernes 20 de noviembre | [El agente de admisión de guardia](missions/admision-guardia/mission.md) · [Kit y cómo correrlo](https://github.com/austral-ing-ai/talksmith-ing/tree/main/missions/admision-guardia) · Video: [Parte 1](https://www.loom.com/share/2c56572757124aaf8e2a1e1398efe27d), [Parte 2](https://www.loom.com/share/12f6cb81c76440cd8a86563dcc02b2f2) |
 
