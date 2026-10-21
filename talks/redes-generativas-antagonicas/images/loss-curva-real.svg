@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 22 1000 866" font-family="Helvetica, Arial, sans-serif" font-size="32" fill="#3B3535">
-<title>Funciones de pérdida</title>
-<desc>Redibujo del slide 31: a la izquierda y = -ln(x), a la derecha y = -ln(1 - x), ambas sobre [0, 1]. Barras roja (High error) y verde (Low error) en x = 0.25 y x = 0.75.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 22 545 866" font-family="Helvetica, Arial, sans-serif" font-size="32" fill="#3B3535">
+<title>Pérdida con imagen real: y = −ln(x)</title>
+<desc>Curva y = −ln(x) sobre [0, 1]. Barra roja (Error alto) en x = 0.25 y barra verde (Error bajo) en x = 0.75: con una imagen real, predecir bajo cuesta mucho.</desc>
 <defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#1F1E1E"/></marker><marker id="ah-DA1B2E" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#DA1B2E"/></marker><marker id="ah-2E7D32" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#2E7D32"/></marker></defs>
-<rect x="10" y="22" width="1000" height="866" fill="#ffffff"/>
+<rect x="10" y="22" width="545" height="866" fill="#ffffff"/>
+
 <path d="M31.0,660 H449.0" stroke="#1F1E1E" stroke-width="2.4"/>
 <path d="M240,715.5 V49.5" stroke="#1F1E1E" stroke-width="2.4" marker-end="url(#ah)"/>
 <path d="M50.0,650 V670" stroke="#1F1E1E" stroke-width="2.4"/>
@@ -46,43 +47,4 @@
 <rect x="95.0" y="810.0" width="159.7" height="48" fill="#2E7D32"/>
 <text x="174.9" y="844.0" text-anchor="middle" font-size="30" fill="#ffffff">Error bajo</text>
 <path d="M254.7,834.0 C350.6,834.0 382.5,814.0 382.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#ah-2E7D32)"/>
-<path d="M694.5,660 H989.0" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M780,715.5 V49.5" stroke="#1F1E1E" stroke-width="2.4" marker-end="url(#ah)"/>
-<path d="M732.5,654 V666" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M827.5,654 V666" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M875.0,654 V666" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M922.5,654 V666" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M970.0,650 V670" stroke="#1F1E1E" stroke-width="2.4"/>
-<text x="800.0" y="704" text-anchor="middle">0</text>
-<text x="970.0" y="704" text-anchor="middle">1</text>
-<path d="M774,623.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M774,586.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M774,549.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M774,512.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M770,475.0 H790" stroke="#1F1E1E" stroke-width="2.4"/>
-<text x="758" y="485.0" text-anchor="end">1</text>
-<path d="M774,438.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M774,401.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M774,364.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M774,327.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M770,290.0 H790" stroke="#1F1E1E" stroke-width="2.4"/>
-<text x="758" y="300.0" text-anchor="end">2</text>
-<path d="M774,253.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M774,216.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M774,179.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M774,142.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M770,105.0 H790" stroke="#1F1E1E" stroke-width="2.4"/>
-<text x="758" y="115.0" text-anchor="end">3</text>
-<path d="M774,68.0 H786" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M723.0,708.5 L723.8,707.9 L724.6,707.3 L725.4,706.7 L726.2,706.1 L727.0,705.5 L727.8,704.9 L728.6,704.3 L729.4,703.7 L730.2,703.1 L731.0,702.4 L731.8,701.8 L732.6,701.2 L733.4,700.6 L734.2,700.0 L735.0,699.3 L735.8,698.7 L736.6,698.1 L737.4,697.4 L738.2,696.8 L739.0,696.1 L739.8,695.5 L740.6,694.9 L741.4,694.2 L742.2,693.6 L743.0,692.9 L743.8,692.3 L744.6,691.6 L745.4,691.0 L746.2,690.3 L747.0,689.6 L747.8,689.0 L748.6,688.3 L749.4,687.6 L750.2,687.0 L751.0,686.3 L751.8,685.6 L752.6,684.9 L753.4,684.2 L754.2,683.6 L755.0,682.9 L755.8,682.2 L756.6,681.5 L757.4,680.8 L758.2,680.1 L759.0,679.4 L759.8,678.7 L760.6,678.0 L761.4,677.3 L762.2,676.6 L763.0,675.9 L763.8,675.1 L764.6,674.4 L765.4,673.7 L766.2,673.0 L767.0,672.2 L767.8,671.5 L768.6,670.8 L769.4,670.0 L770.2,669.3 L771.0,668.6 L771.8,667.8 L772.6,667.1 L773.4,666.3 L774.2,665.6 L775.0,664.8 L775.8,664.0 L776.6,663.3 L777.4,662.5 L778.2,661.7 L779.0,661.0 L779.8,660.2 L780.6,659.4 L781.4,658.6 L782.2,657.8 L783.0,657.1 L783.8,656.3 L784.6,655.5 L785.4,654.7 L786.2,653.9 L787.0,653.1 L787.8,652.2 L788.6,651.4 L789.4,650.6 L790.2,649.8 L791.0,649.0 L791.8,648.1 L792.6,647.3 L793.4,646.5 L794.2,645.6 L795.0,644.8 L795.8,643.9 L796.6,643.1 L797.4,642.2 L798.2,641.4 L799.0,640.5 L799.8,639.6 L800.6,638.8 L801.4,637.9 L802.2,637.0 L803.0,636.1 L803.8,635.2 L804.6,634.4 L805.4,633.5 L806.2,632.6 L807.0,631.6 L807.8,630.7 L808.6,629.8 L809.4,628.9 L810.2,628.0 L811.0,627.1 L811.8,626.1 L812.6,625.2 L813.4,624.2 L814.2,623.3 L815.0,622.3 L815.8,621.4 L816.6,620.4 L817.4,619.5 L818.2,618.5 L819.0,617.5 L819.8,616.5 L820.6,615.5 L821.4,614.5 L822.2,613.5 L823.0,612.5 L823.8,611.5 L824.6,610.5 L825.4,609.5 L826.2,608.5 L827.0,607.4 L827.8,606.4 L828.6,605.3 L829.4,604.3 L830.2,603.2 L831.0,602.2 L831.8,601.1 L832.6,600.0 L833.4,599.0 L834.2,597.9 L835.0,596.8 L835.8,595.7 L836.6,594.6 L837.4,593.5 L838.2,592.3 L839.0,591.2 L839.8,590.1 L840.6,588.9 L841.4,587.8 L842.2,586.6 L843.0,585.5 L843.8,584.3 L844.6,583.1 L845.4,582.0 L846.2,580.8 L847.0,579.6 L847.8,578.4 L848.6,577.1 L849.4,575.9 L850.2,574.7 L851.0,573.4 L851.8,572.2 L852.6,570.9 L853.4,569.7 L854.2,568.4 L855.0,567.1 L855.8,565.8 L856.6,564.5 L857.4,563.2 L858.2,561.9 L859.0,560.6 L859.8,559.2 L860.6,557.9 L861.4,556.5 L862.2,555.2 L863.0,553.8 L863.8,552.4 L864.6,551.0 L865.4,549.6 L866.2,548.2 L867.0,546.7 L867.8,545.3 L868.6,543.8 L869.4,542.4 L870.2,540.9 L871.0,539.4 L871.8,537.9 L872.6,536.4 L873.4,534.9 L874.2,533.3 L875.0,531.8 L875.8,530.2 L876.6,528.6 L877.4,527.0 L878.2,525.4 L879.0,523.8 L879.8,522.2 L880.6,520.5 L881.4,518.9 L882.2,517.2 L883.0,515.5 L883.8,513.8 L884.6,512.1 L885.4,510.3 L886.2,508.6 L887.0,506.8 L887.8,505.0 L888.6,503.2 L889.4,501.4 L890.2,499.5 L891.0,497.7 L891.8,495.8 L892.6,493.9 L893.4,492.0 L894.2,490.0 L895.0,488.0 L895.8,486.1 L896.6,484.1 L897.4,482.0 L898.2,480.0 L899.0,477.9 L899.8,475.8 L900.6,473.7 L901.4,471.6 L902.2,469.4 L903.0,467.2 L903.8,465.0 L904.6,462.7 L905.4,460.4 L906.2,458.1 L907.0,455.8 L907.8,453.4 L908.6,451.0 L909.4,448.6 L910.2,446.2 L911.0,443.7 L911.8,441.1 L912.6,438.6 L913.4,436.0 L914.2,433.3 L915.0,430.7 L915.8,428.0 L916.6,425.2 L917.4,422.4 L918.2,419.6 L919.0,416.7 L919.8,413.8 L920.6,410.8 L921.4,407.8 L922.2,404.7 L923.0,401.6 L923.8,398.4 L924.6,395.2 L925.4,391.9 L926.2,388.6 L927.0,385.2 L927.8,381.7 L928.6,378.1 L929.4,374.5 L930.2,370.8 L931.0,367.1 L931.8,363.3 L932.6,359.3 L933.4,355.3 L934.2,351.3 L935.0,347.1 L935.8,342.8 L936.6,338.4 L937.4,333.9 L938.2,329.3 L939.0,324.6 L939.8,319.8 L940.6,314.8 L941.4,309.7 L942.2,304.5 L943.0,299.1 L943.8,293.5 L944.6,287.8 L945.4,281.9 L946.2,275.7 L947.0,269.4 L947.8,262.9 L948.6,256.1 L949.4,249.0 L950.2,241.7 L951.0,234.1 L951.8,226.1 L952.6,217.8 L953.4,209.1 L954.2,200.0 L955.0,190.4 L955.8,180.2 L956.6,169.5 L957.4,158.1 L958.2,146.0 L959.0,133.0 L959.8,119.1 L960.6,104.0 L961.4,87.5 L962.2,69.5 L963.0,49.5" stroke="#1F1E1E" stroke-width="3" fill="none" stroke-linejoin="round"/>
-<path d="M827.5,660 V606.8" stroke="#2E7D32" stroke-width="5"/>
-<path d="M922.5,660 V403.5" stroke="#DA1B2E" stroke-width="5"/>
-<text x="464.4" y="160.5" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan> = − ln(1 − <tspan font-style="italic">x</tspan>)</text>
-<text x="694.5" y="410.2" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan></text>
-<rect x="575.0" y="730.0" width="159.7" height="48" fill="#2E7D32"/>
-<text x="654.9" y="764.0" text-anchor="middle" font-size="30" fill="#ffffff">Error bajo</text>
-<path d="M734.7,754.0 C804.3,754.0 827.5,734.0 827.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#ah-2E7D32)"/>
-<rect x="690.0" y="815.0" width="151.4" height="48" fill="#DA1B2E"/>
-<text x="765.7" y="849.0" text-anchor="middle" font-size="30" fill="#ffffff">Error alto</text>
-<path d="M765.7,815.0 C765.7,785.0 922.5,790.0 922.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#ah-DA1B2E)"/>
 </svg>

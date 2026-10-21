@@ -870,22 +870,22 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ## 15. (sin título)
 
-<!-- slide 31 del pptx original -->
+<!-- slide 31 del pptx original, mitad izquierda -->
 
 ### Content
 
-**Loss Function Visualmente**
+- **Loss Function: Discriminador — imagen real**
 
-- 🔍 Discriminador — imagen real: curva de la izquierda, −ln(x)
+- Predicción = 1 (imagen real).
+- Error = −ln(predicción).
+- Predicción baja → alto error. Predicción alta → bajo error.
+- El Discriminador quiere acercarse a 1 cuando ve imágenes reales.
 
-- 🎨 Generador — imagen falsa: curva de la derecha, −ln(1 − x)
-
-![Las dos funciones de pérdida: −ln(x) para el Discriminador con imagen real y −ln(1−x) para el Generador con imagen falsa](images/loss-curvas.svg)
+![Curva y = −ln(x): con una imagen real, predecir bajo (0.25) da error alto y predecir alto (0.75) da error bajo](images/loss-curva-real.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 31). Los dos gráficos del pptx, lado a lado.
-- Imagen redibujada como SVG (images/loss-curvas.svg).
+- `AIG4B-Clase-8-GANs.md.md` (slide 31), mitad izquierda. Imagen redibujada como SVG (images/loss-curva-real.svg).
 
 ### Speaker notes
 
@@ -893,27 +893,29 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 - [closed] 2026-10-20 — "El slide Loss Function Visualmente conviene partirlo en 2 y que se lleve la parte que explica."
   Resolution: 3.15 queda solo con el gráfico y dos rótulos que dicen qué curva es cada una (izquierda −ln(x), derecha −ln(1 − x)). La explicación pasa a la slide nueva 3.16, «Loss Function: qué dice cada curva», como tabla de dos columnas, mismas palabras. 3.16–3.21 pasan a 3.17–3.22.
+  Follow-up 2026-10-20 (presentador): mejor partir por curva. 3.15 «Loss Function: Discriminador — imagen real» con su curva (loss-curva-real.svg, −ln(x)) y su texto; 3.16 «Loss Function: Generador — imagen falsa» con la suya (loss-curva-falsa.svg, −ln(1 − x)) y su texto. Sin los íconos 🔍 y 🎨. loss-curvas.svg queda partida en dos y se borra.
+  Íconos: también salen 🔀 y 🎨 de las tarjetas Mapping / Synthesis Network de «StyleGAN: arquitectura» (4.3); quedan los ✓/✗, que son veredictos.
 
 ---
 
 ## 16. (sin título)
 
-<!-- slide 31 del pptx original, segunda mitad: la explicación de las curvas -->
+<!-- slide 31 del pptx original, mitad derecha -->
 
 ### Content
 
-- **Loss Function: qué dice cada curva**
+- **Loss Function: Generador — imagen falsa**
 
-| 🔍 Discriminador — imagen real | 🎨 Generador — imagen falsa |
-|---|---|
-| Predicción = 1 (imagen real). | Predicción = 0 (imagen falsa). |
-| Error = −ln(predicción). | Error = −ln(1−predicción). |
-| Predicción baja → alto error. Predicción alta → bajo error. | Predicción alta → alto error. |
-| El Discriminador quiere acercarse a 1 cuando ve imágenes reales. | El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador. |
+- Predicción = 0 (imagen falsa).
+- Error = −ln(1−predicción).
+- Predicción alta → alto error.
+- El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador.
+
+![Curva y = −ln(1 − x): con una imagen falsa, predecir bajo (0.25) da error bajo y predecir alto (0.75) da error alto](images/loss-curva-falsa.svg)
 
 ### Sources
 
-- `AIG4B-Clase-8-GANs.md.md` (slide 31). Texto de la slide 3.15, separado del gráfico.
+- `AIG4B-Clase-8-GANs.md.md` (slide 31), mitad derecha. Imagen redibujada como SVG (images/loss-curva-falsa.svg).
 
 ### Speaker notes
 
@@ -1193,8 +1195,8 @@ Esa separación es lo que hace posible el *style mixing*: tomar la estructura de
 
 ![Arquitectura de StyleGAN: la Mapping Network produce w, la Synthesis Network inyecta el estilo con Ada IN y ruido, y un ProGan Discriminator la evalúa](images/stylegan-arquitectura.svg)
 
-- 🔀 Mapping Network: transforma el ruido z en un vector de estilo w (512 dimensiones)
-- 🎨 Synthesis Network: genera la imagen progresivamente, inyectando el estilo w en cada capa
+- Mapping Network: transforma el ruido z en un vector de estilo w (512 dimensiones)
+- Synthesis Network: genera la imagen progresivamente, inyectando el estilo w en cada capa
 
 - Esto permite controlar atributos separados en cada nivel de resolución: pose y forma en capas bajas, textura y color en capas altas.
 

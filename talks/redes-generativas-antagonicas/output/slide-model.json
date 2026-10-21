@@ -1268,71 +1268,64 @@
     {
       "template": "content-image",
       "section": "Slanted Land",
-      "title": "Loss Function Visualmente",
+      "title": "Loss Function: Discriminador — imagen real",
       "facts": [
-        "🔍 Discriminador — imagen real: curva de la izquierda, −ln(x)",
-        "🎨 Generador — imagen falsa: curva de la derecha, −ln(1 − x)"
+        "Predicción = 1 (imagen real).",
+        "Error = −ln(predicción).",
+        "Predicción baja → alto error. Predicción alta → bajo error.",
+        "El Discriminador quiere acercarse a 1 cuando ve imágenes reales."
       ],
       "design": "split-right",
       "media": {
-        "src": "images/loss-curvas.svg",
-        "alt": "Las dos funciones de pérdida: −ln(x) para el Discriminador con imagen real y −ln(1−x) para el Generador con imagen falsa"
+        "src": "images/loss-curva-real.svg",
+        "alt": "Curva y = −ln(x): con una imagen real, predecir bajo (0.25) da error alto y predecir alto (0.75) da error bajo"
       },
       "_choice": {
         "signals": [
           "untitled in source; bold first line is the on-screen heading",
-          "n_images=1",
-          "two short labels naming each curve",
-          "explanation moved to the next slide (presenter, 2026-10-20)"
+          "n_images=1 (one curve)",
+          "four short facts about that curve",
+          "split per curve (presenter, 2026-10-20)"
         ],
         "candidates": [
           "content-image",
-          "image-full"
+          "content+cards+image"
         ],
         "picked": "content-image",
         "rejected": {
-          "image-full": "the two labels are content, not a caption"
+          "content+cards+image": "the facts are unlabeled lines, not a labeled set"
         }
       }
     },
     {
-      "template": "value-columns",
+      "template": "content-image",
       "section": "Slanted Land",
-      "title": "Loss Function: qué dice cada curva",
-      "columns": [
-        {
-          "header": "🔍 Discriminador — imagen real",
-          "cells": [
-            "Predicción = 1 (imagen real).",
-            "Error = −ln(predicción).",
-            "Predicción baja → alto error. Predicción alta → bajo error.",
-            "El Discriminador quiere acercarse a 1 cuando ve imágenes reales."
-          ]
-        },
-        {
-          "header": "🎨 Generador — imagen falsa",
-          "cells": [
-            "Predicción = 0 (imagen falsa).",
-            "Error = −ln(1−predicción).",
-            "Predicción alta → alto error.",
-            "El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador."
-          ]
-        }
+      "title": "Loss Function: Generador — imagen falsa",
+      "facts": [
+        "Predicción = 0 (imagen falsa).",
+        "Error = −ln(1−predicción).",
+        "Predicción alta → alto error.",
+        "El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador."
       ],
+      "design": "split-right",
+      "media": {
+        "src": "images/loss-curva-falsa.svg",
+        "alt": "Curva y = −ln(1 − x): con una imagen falsa, predecir bajo (0.25) da error bajo y predecir alto (0.75) da error alto"
+      },
       "_choice": {
         "signals": [
           "untitled in source; bold first line is the on-screen heading",
-          "two_groups=true",
-          "rows align: objetivo, error, cuándo hay error alto, qué quiere",
-          "n_images=0"
+          "n_images=1 (one curve)",
+          "four short facts about that curve",
+          "split per curve (presenter, 2026-10-20)"
         ],
         "candidates": [
-          "value-columns",
-          "pros-cons"
+          "content-image",
+          "content+cards+image"
         ],
-        "picked": "value-columns",
+        "picked": "content-image",
         "rejected": {
-          "pros-cons": "the two sides are two cases, not for/against"
+          "content+cards+image": "the facts are unlabeled lines, not a labeled set"
         }
       }
     },
@@ -1765,11 +1758,11 @@
       ],
       "cards": [
         {
-          "label": "🔀 Mapping Network",
+          "label": "Mapping Network",
           "body": "Transforma el ruido z en un vector de estilo w (512 dimensiones)"
         },
         {
-          "label": "🎨 Synthesis Network",
+          "label": "Synthesis Network",
           "body": "Genera la imagen progresivamente, inyectando el estilo w en cada capa"
         }
       ],
@@ -2195,7 +2188,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "b4caf15149588072367fbe7c79cf895d93a0f3d9312d225dba8982cb05856a11",
-    "bytes": 65608
+    "sha256": "83629500de3ccf0abddd9b68ff13a7b1c469cfd9e04cef8adaf40ce800548893",
+    "bytes": 65524
   }
 }

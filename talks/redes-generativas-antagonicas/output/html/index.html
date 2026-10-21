@@ -1979,14 +1979,15 @@ html.print-pdf .cbfull{display:none}
 </div></div>
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p><b>La propiedad clave: el error es grande cuando la predicción está lejos del objetivo, y pequeño cuando está cerca. Esto guía el aprendizaje en la dirección correcta.</b></p></div></div></div>
 <aside class="notes"><p>Log-loss es la entropía cruzada binaria. Para una etiqueta y (1 = real, 0 = falsa) y una predicción p, el error vale −[y·ln(p) + (1 − y)·ln(1 − p)]. Con y = 1 sobrevive solo el primer término, −ln(p). Con y = 0 sobrevive solo el segundo, −ln(1 − p). Las dos columnas de la slide son esos dos términos.</p><p>El logaritmo castiga sin tope la confianza equivocada, porque −ln(p) crece hacia infinito cuando p se acerca a 0. Por eso pasar de una predicción de 0.9 a una de 0.1 lleva el error de 0.1 a 2.3. Su derivada también es grande justo cuando el modelo se equivoca, así que el ajuste de pesos es más fuerte donde más hace falta. Un error lineal como 1 − p no tiene ninguna de las dos propiedades.</p><p>Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imágenes reales y −ln(1 − D(G(z))) con imágenes falsas. El Generador se entrena con el objetivo contrario, que D se equivoque: en la práctica minimiza −ln(D(G(z))), que crece cuando D detecta la falsificación. El paper original formaliza esta tensión como un juego minimax entre G y D (Goodfellow et al., 2014).</p></aside></section><section class="slide" data-kind="content-image"><div class="stage d-split side-right">
-<div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Loss Function Visualmente</h2></div><div class="cbody"><div class="cfit"><div class="citext">
-<ul class="cifacts"><li>🔍 Discriminador — imagen real: curva de la izquierda, −ln(x)</li><li>🎨 Generador — imagen falsa: curva de la derecha, −ln(1 − x)</li></ul></div>
+<div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Loss Function: Discriminador — imagen real</h2></div><div class="cbody"><div class="cfit"><div class="citext">
+<ul class="cifacts"><li>Predicción = 1 (imagen real).</li><li>Error = −ln(predicción).</li><li>Predicción baja → alto error. Predicción alta → bajo error.</li><li>El Discriminador quiere acercarse a 1 cuando ve imágenes reales.</li></ul></div>
 </div></div>
-<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="10 22 1000 866" font-family="Helvetica, Arial, sans-serif" font-size="32" fill="#3B3535">
-<title>Funciones de pérdida</title>
-<desc>Redibujo del slide 31: a la izquierda y = -ln(x), a la derecha y = -ln(1 - x), ambas sobre [0, 1]. Barras roja (High error) y verde (Low error) en x = 0.25 y x = 0.75.</desc>
+<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="10 22 545 866" font-family="Helvetica, Arial, sans-serif" font-size="32" fill="#3B3535">
+<title>Pérdida con imagen real: y = −ln(x)</title>
+<desc>Curva y = −ln(x) sobre [0, 1]. Barra roja (Error alto) en x = 0.25 y barra verde (Error bajo) en x = 0.75: con una imagen real, predecir bajo cuesta mucho.</desc>
 <defs><marker id="e13-ah" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#1F1E1E"/></marker><marker id="e13-ah-DA1B2E" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#DA1B2E"/></marker><marker id="e13-ah-2E7D32" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#2E7D32"/></marker></defs>
-<rect x="10" y="22" width="1000" height="866" fill="#ffffff"/>
+<rect x="10" y="22" width="545" height="866" fill="#ffffff"/>
+
 <path d="M31.0,660 H449.0" stroke="#1F1E1E" stroke-width="2.4"/>
 <path d="M240,715.5 V49.5" stroke="#1F1E1E" stroke-width="2.4" marker-end="url(#e13-ah)"/>
 <path d="M50.0,650 V670" stroke="#1F1E1E" stroke-width="2.4"/>
@@ -2030,8 +2031,17 @@ html.print-pdf .cbfull{display:none}
 <rect x="95.0" y="810.0" width="159.7" height="48" fill="#2E7D32"/>
 <text x="174.9" y="844.0" text-anchor="middle" font-size="30" fill="#ffffff">Error bajo</text>
 <path d="M254.7,834.0 C350.6,834.0 382.5,814.0 382.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#e13-ah-2E7D32)"/>
-<path d="M694.5,660 H989.0" stroke="#1F1E1E" stroke-width="2.4"/>
-<path d="M780,715.5 V49.5" stroke="#1F1E1E" stroke-width="2.4" marker-end="url(#e13-ah)"/>
+</svg></div></div></div>
+</section><section class="slide" data-kind="content-image"><div class="stage d-split side-right">
+<div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Loss Function: Generador — imagen falsa</h2></div><div class="cbody"><div class="cfit"><div class="citext">
+<ul class="cifacts"><li>Predicción = 0 (imagen falsa).</li><li>Error = −ln(1−predicción).</li><li>Predicción alta → alto error.</li><li>El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador.</li></ul></div>
+</div></div>
+<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="440 22 570 866" font-family="Helvetica, Arial, sans-serif" font-size="32" fill="#3B3535">
+<title>Pérdida con imagen falsa: y = −ln(1 − x)</title>
+<desc>Curva y = −ln(1 − x) sobre [0, 1]. Barra verde (Error bajo) en x = 0.25 y barra roja (Error alto) en x = 0.75: con una imagen falsa, predecir alto cuesta mucho.</desc>
+<defs><marker id="e14-ah" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#1F1E1E"/></marker><marker id="e14-ah-DA1B2E" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#DA1B2E"/></marker><marker id="e14-ah-2E7D32" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#2E7D32"/></marker></defs>
+<rect x="440" y="22" width="570" height="866" fill="#ffffff"/><path d="M694.5,660 H989.0" stroke="#1F1E1E" stroke-width="2.4"/>
+<path d="M780,715.5 V49.5" stroke="#1F1E1E" stroke-width="2.4" marker-end="url(#e14-ah)"/>
 <path d="M732.5,654 V666" stroke="#1F1E1E" stroke-width="2.4"/>
 <path d="M827.5,654 V666" stroke="#1F1E1E" stroke-width="2.4"/>
 <path d="M875.0,654 V666" stroke="#1F1E1E" stroke-width="2.4"/>
@@ -2065,15 +2075,11 @@ html.print-pdf .cbfull{display:none}
 <text x="694.5" y="410.2" font-family="'Times New Roman', Times, serif" font-size="42" fill="#1F1E1E" xml:space="preserve"><tspan font-style="italic">y</tspan></text>
 <rect x="575.0" y="730.0" width="159.7" height="48" fill="#2E7D32"/>
 <text x="654.9" y="764.0" text-anchor="middle" font-size="30" fill="#ffffff">Error bajo</text>
-<path d="M734.7,754.0 C804.3,754.0 827.5,734.0 827.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#e13-ah-2E7D32)"/>
+<path d="M734.7,754.0 C804.3,754.0 827.5,734.0 827.5,674.0" stroke="#2E7D32" stroke-width="3" fill="none" marker-end="url(#e14-ah-2E7D32)"/>
 <rect x="690.0" y="815.0" width="151.4" height="48" fill="#DA1B2E"/>
 <text x="765.7" y="849.0" text-anchor="middle" font-size="30" fill="#ffffff">Error alto</text>
-<path d="M765.7,815.0 C765.7,785.0 922.5,790.0 922.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#e13-ah-DA1B2E)"/>
+<path d="M765.7,815.0 C765.7,785.0 922.5,790.0 922.5,674.0" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#e14-ah-DA1B2E)"/>
 </svg></div></div></div>
-</section><section class="slide" data-kind="value-columns"><div class="stage d-full">
-<div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Loss Function: qué dice cada curva</h2></div><div class="cbody"><div class="cfit"><div class="compare" style="--cc:2"><div class="chead"><span>🔍 Discriminador — imagen real</span><span>🎨 Generador — imagen falsa</span></div><div class="crow"><span>Predicción = 1 (imagen real).</span><span>Predicción = 0 (imagen falsa).</span></div><div class="crow"><span>Error = −ln(predicción).</span><span>Error = −ln(1−predicción).</span></div><div class="crow"><span>Predicción baja → alto error. Predicción alta → bajo error.</span><span>Predicción alta → alto error.</span></div><div class="crow"><span>El Discriminador quiere acercarse a 1 cuando ve imágenes reales.</span><span>El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador.</span></div></div>
-</div></div>
-</div>
 </section><section class="slide" data-kind="content-image"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Backpropagation: del error al ajuste de pesos</h2><p class="lead">Una vez calculado el error, la red lo "propaga hacia atrás" para ajustar cada peso:</p></div><div class="cbody"><div class="cfit"><div class="citext">
 <ul class="cifacts"><li>Pesos con alta contribución al error → se ajustan más</li><li>Pesos con baja contribución al error → se ajustan poco</li><li>La dirección del ajuste apunta siempre a reducir el error</li></ul></div>
@@ -2081,26 +2087,26 @@ html.print-pdf .cbfull{display:none}
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p>Este proceso ocurre simultáneamente en el Generador y el Discriminador en cada iteración.</p></div></div><div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="302 30 1605 923" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>Backpropagation</title>
 <desc>Redibujo del slide 32: red 2-3-3-1 con nodos azules; cada peso lleva una flecha roja que indica si se ajusta hacia arriba o hacia abajo; el error de la predicción se ve en la curva en U del recuadro Error plot.</desc>
-<defs><marker id="e14-ah" markerUnits="userSpaceOnUse" markerWidth="24" markerHeight="20" viewBox="0 0 24 20" refX="23" refY="10" orient="auto"><path d="M0,0 L24,10 L0,20 z" fill="#1F1E1E"/></marker><marker id="e14-ahs" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#1F1E1E"/></marker></defs>
+<defs><marker id="e15-ah" markerUnits="userSpaceOnUse" markerWidth="24" markerHeight="20" viewBox="0 0 24 20" refX="23" refY="10" orient="auto"><path d="M0,0 L24,10 L0,20 z" fill="#1F1E1E"/></marker><marker id="e15-ahs" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="14" viewBox="0 0 16 14" refX="15" refY="7" orient="auto"><path d="M0,0 L16,7 L0,14 z" fill="#1F1E1E"/></marker></defs>
 <rect x="302" y="30" width="1605" height="923" fill="#ffffff"/>
-<path d="M421.5,392.7 L669.5,277.3" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M422.0,432.3 L669.0,540.7" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M406.1,451.9 L684.9,838.1" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M406.7,668.5 L684.3,295.5" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M422.0,687.7 L669.0,579.3" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M420.8,728.7 L670.2,855.3" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M761.0,257.0 L1032.0,257.0" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M750.0,287.6 L1043.0,529.4" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M737.5,298.3 L1055.5,835.7" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M750.0,529.4 L1043.0,287.6" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M761.0,560.0 L1032.0,560.0" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M749.3,591.4 L1043.7,845.6" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M737.5,835.7 L1055.5,298.3" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M749.3,845.6 L1043.7,591.4" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M761.0,877.0 L1032.0,877.0" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M1114.7,290.2 L1362.3,526.8" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M1128.0,560.0 L1349.0,560.0" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
-<path d="M1113.9,843.1 L1363.1,593.9" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e14-ah)"/>
+<path d="M421.5,392.7 L669.5,277.3" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M422.0,432.3 L669.0,540.7" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M406.1,451.9 L684.9,838.1" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M406.7,668.5 L684.3,295.5" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M422.0,687.7 L669.0,579.3" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M420.8,728.7 L670.2,855.3" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M761.0,257.0 L1032.0,257.0" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M750.0,287.6 L1043.0,529.4" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M737.5,298.3 L1055.5,835.7" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M750.0,529.4 L1043.0,287.6" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M761.0,560.0 L1032.0,560.0" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M749.3,591.4 L1043.7,845.6" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M737.5,835.7 L1055.5,298.3" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M749.3,845.6 L1043.7,591.4" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M761.0,877.0 L1032.0,877.0" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M1114.7,290.2 L1362.3,526.8" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M1128.0,560.0 L1349.0,560.0" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
+<path d="M1113.9,843.1 L1363.1,593.9" stroke="#1F1E1E" stroke-width="4" marker-end="url(#e15-ah)"/>
 <path d="M505,321.9 L537,353.9 L517,353.9 L517,385.9 L493,385.9 L493,353.9 L473,353.9 z" fill="#DA1B2E"/>
 <path d="M595,540.2 L627,508.2 L607,508.2 L607,476.2 L583,476.2 L583,508.2 L563,508.2 z" fill="#DA1B2E"/>
 <path d="M567,642.8 L599,674.8 L579,674.8 L579,706.8 L555,706.8 L555,674.8 L535,674.8 z" fill="#DA1B2E"/>
@@ -2128,8 +2134,8 @@ html.print-pdf .cbfull{display:none}
 <circle cx="1080" cy="560" r="46" fill="#3A7BBF"/>
 <circle cx="1080" cy="877" r="46" fill="#3A7BBF"/>
 <circle cx="1397" cy="560" r="46" fill="#3A7BBF"/>
-<path d="M1452,329 V62" stroke="#1F1E1E" stroke-width="2.5" marker-end="url(#e14-ahs)"/>
-<path d="M1448,325 H1878" stroke="#1F1E1E" stroke-width="2.5" marker-end="url(#e14-ahs)"/>
+<path d="M1452,329 V62" stroke="#1F1E1E" stroke-width="2.5" marker-end="url(#e15-ahs)"/>
+<path d="M1448,325 H1878" stroke="#1F1E1E" stroke-width="2.5" marker-end="url(#e15-ahs)"/>
 <path d="M1456.0,110.0 L1462.6,120.3 L1469.2,130.3 L1475.8,139.9 L1482.4,149.1 L1489.0,158.1 L1495.6,166.6 L1502.2,174.8 L1508.8,182.7 L1515.4,190.2 L1522.0,197.4 L1528.6,204.3 L1535.2,210.7 L1541.8,216.9 L1548.4,222.7 L1555.0,228.1 L1561.6,233.2 L1568.2,237.9 L1574.8,242.3 L1581.4,246.4 L1588.0,250.1 L1594.6,253.4 L1601.2,256.5 L1607.8,259.1 L1614.4,261.4 L1621.0,263.4 L1627.6,265.0 L1634.2,266.3 L1640.8,267.2 L1647.4,267.8 L1654.0,268.0 L1660.6,267.9 L1667.2,267.4 L1673.8,266.5 L1680.4,265.2 L1687.0,263.6 L1693.6,261.6 L1700.2,259.2 L1706.8,256.4 L1713.4,253.2 L1720.0,249.7 L1726.6,245.8 L1733.2,241.5 L1739.8,236.9 L1746.4,231.8 L1753.0,226.4 L1759.6,220.6 L1766.2,214.5 L1772.8,207.9 L1779.4,201.0 L1786.0,193.7 L1792.6,186.0 L1799.2,178.0 L1805.8,169.6 L1812.4,160.8 L1819.0,151.6 L1825.6,142.0 L1832.2,132.1 L1838.8,121.8 L1845.4,111.1 L1852.0,100.0" stroke="#1F1E1E" stroke-width="4.5" fill="none" stroke-linecap="round"/>
 <text x="1648" y="383" font-size="50" text-anchor="middle">Gráfico del error</text>
 <text x="1690" y="602" font-size="72" text-anchor="middle">Predicción</text>
@@ -2154,7 +2160,7 @@ html.print-pdf .cbfull{display:none}
 <div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2010 1000" width="2010" height="1000" font-family="Helvetica, Arial, sans-serif">
 <title>Generador y Discriminador</title>
 <desc>A la izquierda, el Generador (en rojo): z, elegido con un deslizador de 0 a 1, y un Bias de valor 1 conectados a cuatro neuronas σ. En el centro, la imagen 2×2 que produce (0.25, 1 / 0.5, 0.75). A la derecha, el Discriminador (en azul): cuatro neuronas de entrada y un Bias conectados a una neurona σ que da 0.68.</desc>
-<defs><marker id="e15-ah-DA1B2E-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e15-ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="e15-ah-1F5FAD-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker></defs>
+<defs><marker id="e16-ah-DA1B2E-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e16-ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="e16-ah-1F5FAD-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker></defs>
 <rect x="0" y="0" width="2010" height="1000" fill="#ffffff"/>
 <text x="540.0" y="100.0" font-size="86" fill="#DA1B2E" text-anchor="middle" font-weight="normal">Generador</text>
 <text x="1480.0" y="92.0" font-size="86" fill="#1F5FAD" text-anchor="middle" font-weight="normal">Discriminador</text>
@@ -2183,10 +2189,10 @@ html.print-pdf .cbfull{display:none}
 <text x="270.0" y="393.9" font-size="58" fill="#1F1E1E" text-anchor="middle" font-weight="normal">1</text>
 <circle cx="90.6" cy="315" r="19" fill="#2E8540"/>
 <text x="158.0" y="268.0" font-size="66" fill="#1F1E1E" text-anchor="middle" font-weight="normal">z</text>
-<path d="M394.3,313.6 L693.8,213.7" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#e15-ah-DA1B2E-24)"/>
-<path d="M396.8,334.1 L691.0,357.3" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#e15-ah-DA1B2E-24)"/>
-<path d="M391.6,353.0 L696.9,503.8" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#e15-ah-DA1B2E-24)"/>
-<path d="M383.5,364.9 L706.1,657.2" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#e15-ah-DA1B2E-24)"/>
+<path d="M394.3,313.6 L693.8,213.7" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#e16-ah-DA1B2E-24)"/>
+<path d="M396.8,334.1 L691.0,357.3" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#e16-ah-DA1B2E-24)"/>
+<path d="M391.6,353.0 L696.9,503.8" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#e16-ah-DA1B2E-24)"/>
+<path d="M383.5,364.9 L706.1,657.2" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#e16-ah-DA1B2E-24)"/>
 
 
 
@@ -2215,14 +2221,14 @@ html.print-pdf .cbfull{display:none}
 <line x1="1030" y1="330" x2="1030" y2="630" stroke="#1F1E1E" stroke-width="2.6"/>
 <line x1="880" y1="480" x2="1180" y2="480" stroke="#1F1E1E" stroke-width="2.6"/>
 <rect x="880" y="330" width="300" height="300" fill="none" stroke="#1F1E1E" stroke-width="5.3"/>
-<path d="M955.0,322.0 C940.0,40.0 1150.0,110.0 1263.3,172.8" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e15-ah-1F1E1E-30)"/>
-<path d="M1105.0,322.0 C1120.0,170.0 1270.0,170.0 1296.3,306.0" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e15-ah-1F1E1E-30)"/>
-<path d="M955.0,638.0 C990.0,820.0 1200.0,720.0 1285.5,580.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e15-ah-1F1E1E-30)"/>
-<path d="M1105.0,638.0 C1095.0,860.0 1180.0,830.0 1265.6,721.8" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e15-ah-1F1E1E-30)"/>
-<path d="M1358.5,229.9 L1634.3,479.5" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e15-ah-1F5FAD-24)"/>
-<path d="M1367.3,383.5 L1621.5,498.9" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e15-ah-1F5FAD-24)"/>
-<path d="M1372.0,530.0 L1614.8,530.0" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e15-ah-1F5FAD-24)"/>
-<path d="M1367.4,675.6 L1621.5,560.9" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e15-ah-1F5FAD-24)"/>
+<path d="M955.0,322.0 C940.0,40.0 1150.0,110.0 1263.3,172.8" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e16-ah-1F1E1E-30)"/>
+<path d="M1105.0,322.0 C1120.0,170.0 1270.0,170.0 1296.3,306.0" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e16-ah-1F1E1E-30)"/>
+<path d="M955.0,638.0 C990.0,820.0 1200.0,720.0 1285.5,580.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e16-ah-1F1E1E-30)"/>
+<path d="M1105.0,638.0 C1095.0,860.0 1180.0,830.0 1265.6,721.8" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e16-ah-1F1E1E-30)"/>
+<path d="M1358.5,229.9 L1634.3,479.5" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e16-ah-1F5FAD-24)"/>
+<path d="M1367.3,383.5 L1621.5,498.9" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e16-ah-1F5FAD-24)"/>
+<path d="M1372.0,530.0 L1614.8,530.0" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e16-ah-1F5FAD-24)"/>
+<path d="M1367.4,675.6 L1621.5,560.9" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e16-ah-1F5FAD-24)"/>
 
 <circle cx="1320.0" cy="195.0" r="49.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="1320.0" y="209" font-size="40" fill="#1F1E1E" text-anchor="middle">x₁</text>
 <circle cx="1320.0" cy="362.0" r="49.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="1320.0" y="376" font-size="40" fill="#1F1E1E" text-anchor="middle">x₂</text>
@@ -2243,7 +2249,7 @@ html.print-pdf .cbfull{display:none}
 <div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="18 6 2016 900" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>El error del Discriminador</title>
 <desc>Redibujo del slide 36: el Generador (rojo) toma z y un Bias y produce una imagen 2x2 (0.25, 1, 0.5, 0.75); el Discriminador (azul) la recibe con su propio Bias y su sigmoid da 0.68. Quería 0: Error = -ln(1-0.68).</desc>
-<defs><marker id="e16-ar" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="16" viewBox="0 0 20 16" refX="19" refY="8.0" orient="auto"><path d="M0,0 L20,8.0 L0,16 z" fill="#DA1B2E"/></marker><marker id="e16-ab" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="16" viewBox="0 0 20 16" refX="19" refY="8.0" orient="auto"><path d="M0,0 L20,8.0 L0,16 z" fill="#1F5BAA"/></marker><marker id="e16-ak" markerUnits="userSpaceOnUse" markerWidth="24" markerHeight="20" viewBox="0 0 24 20" refX="23" refY="10.0" orient="auto"><path d="M0,0 L24,10.0 L0,20 z" fill="#1F1E1E"/></marker></defs>
+<defs><marker id="e17-ar" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="16" viewBox="0 0 20 16" refX="19" refY="8.0" orient="auto"><path d="M0,0 L20,8.0 L0,16 z" fill="#DA1B2E"/></marker><marker id="e17-ab" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="16" viewBox="0 0 20 16" refX="19" refY="8.0" orient="auto"><path d="M0,0 L20,8.0 L0,16 z" fill="#1F5BAA"/></marker><marker id="e17-ak" markerUnits="userSpaceOnUse" markerWidth="24" markerHeight="20" viewBox="0 0 24 20" refX="23" refY="10.0" orient="auto"><path d="M0,0 L24,10.0 L0,20 z" fill="#1F1E1E"/></marker></defs>
 <rect x="18" y="6" width="2016" height="900" fill="#ffffff"/>
 <text x="543" y="92" font-size="72" text-anchor="middle" fill="#DA1B2E">Generador</text>
 <text x="1465" y="84" font-size="72" text-anchor="middle" fill="#1F5BAA">Discriminador</text>
@@ -2270,13 +2276,13 @@ html.print-pdf .cbfull{display:none}
 <text x="170" y="258" font-size="54" text-anchor="middle">z</text>
 <text x="62" y="360" font-size="54" text-anchor="middle">0</text>
 <text x="273" y="360" font-size="54" text-anchor="middle">1</text>
-<path d="M381.7,291.1 L702.3,184.2" stroke="#DA1B2E" stroke-width="4" marker-end="url(#e16-ar)"/>
+<path d="M381.7,291.1 L702.3,184.2" stroke="#DA1B2E" stroke-width="4" marker-end="url(#e17-ar)"/>
 
-<path d="M383.9,308.0 L700.1,329.9" stroke="#DA1B2E" stroke-width="4" marker-end="url(#e16-ar)"/>
+<path d="M383.9,308.0 L700.1,329.9" stroke="#DA1B2E" stroke-width="4" marker-end="url(#e17-ar)"/>
 
-<path d="M379.8,323.8 L704.3,477.7" stroke="#DA1B2E" stroke-width="4" marker-end="url(#e16-ar)"/>
+<path d="M379.8,323.8 L704.3,477.7" stroke="#DA1B2E" stroke-width="4" marker-end="url(#e17-ar)"/>
 
-<path d="M373.1,334.0 L711.2,630.3" stroke="#DA1B2E" stroke-width="4" marker-end="url(#e16-ar)"/>
+<path d="M373.1,334.0 L711.2,630.3" stroke="#DA1B2E" stroke-width="4" marker-end="url(#e17-ar)"/>
 
 <circle cx="340" cy="305" r="41.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="340" y="322.3" font-size="48" text-anchor="middle" fill="#1F1E1E">z</text>
 
@@ -2295,14 +2301,14 @@ html.print-pdf .cbfull{display:none}
 <text x="1096.5" y="480" font-size="54" text-anchor="middle" fill="#ffffff">0.75</text>
 <rect x="873" y="300" width="298" height="214" fill="none" stroke="#000000" stroke-width="7"/>
 <path d="M1022,300 V514 M873,407 H1171" stroke="#000000" stroke-width="5"/>
-<path d="M935,296 C960,180 1050,100 1140,102 C1190,104 1230,120 1257,145" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e16-ak)"/>
-<path d="M1080,292 C1100,230 1130,186 1170,187 C1220,190 1250,250 1265,300" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e16-ak)"/>
-<path d="M940,532 C960,610 1010,690 1100,678 C1170,668 1240,600 1272,532" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e16-ak)"/>
-<path d="M1097,532 C1095,620 1110,720 1170,722 C1210,723 1240,710 1262,697" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e16-ak)"/>
-<path d="M1332.9,199.2 L1620.9,455.2" stroke="#1F5BAA" stroke-width="4" marker-end="url(#e16-ab)"/>
-<path d="M1340.2,350.9 L1610.5,471.4" stroke="#1F5BAA" stroke-width="4" marker-end="url(#e16-ab)"/>
-<path d="M1344.0,497.0 L1605.0,497.0" stroke="#1F5BAA" stroke-width="4" marker-end="url(#e16-ab)"/>
-<path d="M1340.2,642.2 L1610.4,522.5" stroke="#1F5BAA" stroke-width="4" marker-end="url(#e16-ab)"/>
+<path d="M935,296 C960,180 1050,100 1140,102 C1190,104 1230,120 1257,145" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
+<path d="M1080,292 C1100,230 1130,186 1170,187 C1220,190 1250,250 1265,300" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
+<path d="M940,532 C960,610 1010,690 1100,678 C1170,668 1240,600 1272,532" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
+<path d="M1097,532 C1095,620 1110,720 1170,722 C1210,723 1240,710 1262,697" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
+<path d="M1332.9,199.2 L1620.9,455.2" stroke="#1F5BAA" stroke-width="4" marker-end="url(#e17-ab)"/>
+<path d="M1340.2,350.9 L1610.5,471.4" stroke="#1F5BAA" stroke-width="4" marker-end="url(#e17-ab)"/>
+<path d="M1344.0,497.0 L1605.0,497.0" stroke="#1F5BAA" stroke-width="4" marker-end="url(#e17-ab)"/>
+<path d="M1340.2,642.2 L1610.4,522.5" stroke="#1F5BAA" stroke-width="4" marker-end="url(#e17-ab)"/>
 
 <circle cx="1300" cy="170" r="41.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="1300" y="183.3" font-size="38" fill="#1F1E1E" text-anchor="middle">x₁</text>
 <circle cx="1300" cy="333" r="41.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="1300" y="346.3" font-size="38" fill="#1F1E1E" text-anchor="middle">x₂</text>
@@ -2323,7 +2329,7 @@ html.print-pdf .cbfull{display:none}
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p>Slide opcional — para quien quiera profundizar en la matemática.</p></div></div><div class="highlights hl-source"><div class="highlight source"><p>Fuente: A Friendly Introduction to Generative Adversarial Networks — Luis Serrano Academy.</p></div></div><div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 1913 1050" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>Derivada del error del Discriminador</title>
 <desc>Redibujo del slide 37: red del Discriminador (imagen 2x2, entradas x1 a x4, pesos w1 a w4, bias b, sigmoid) y las fórmulas: predicción D(x), función de pérdida E = -ln(D(x)) y sus derivadas respecto de cada peso y del bias.</desc>
-<defs><marker id="e17-ak" markerUnits="userSpaceOnUse" markerWidth="26" markerHeight="22" viewBox="0 0 26 22" refX="25" refY="11.0" orient="auto"><path d="M0,0 L26,11.0 L0,22 z" fill="#1F1E1E"/></marker><marker id="e17-ar" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="18" viewBox="0 0 22 18" refX="21" refY="9.0" orient="auto"><path d="M0,0 L22,9.0 L0,18 z" fill="#B8231B"/></marker><marker id="e17-ab" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="18" viewBox="0 0 22 18" refX="21" refY="9.0" orient="auto"><path d="M0,0 L22,9.0 L0,18 z" fill="#1F5BAA"/></marker></defs>
+<defs><marker id="e18-ak" markerUnits="userSpaceOnUse" markerWidth="26" markerHeight="22" viewBox="0 0 26 22" refX="25" refY="11.0" orient="auto"><path d="M0,0 L26,11.0 L0,22 z" fill="#1F1E1E"/></marker><marker id="e18-ar" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="18" viewBox="0 0 22 18" refX="21" refY="9.0" orient="auto"><path d="M0,0 L22,9.0 L0,18 z" fill="#B8231B"/></marker><marker id="e18-ab" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="18" viewBox="0 0 22 18" refX="21" refY="9.0" orient="auto"><path d="M0,0 L22,9.0 L0,18 z" fill="#1F5BAA"/></marker></defs>
 <rect x="20" y="0" width="1913" height="1050" fill="#ffffff"/>
 <text x="382.5" y="178.5" font-size="75" text-anchor="middle" fill="#1F1E1E">Discriminador</text>
 <line x1="40" y1="290" x2="910" y2="290" stroke="#D9D4CF" stroke-width="3"/>
@@ -2337,10 +2343,10 @@ html.print-pdf .cbfull{display:none}
 <text x="834" y="270" font-size="26" fill="#6B6560" text-anchor="middle">D(x)</text>
 <g transform="translate(0 205) scale(0.75)">
 
-<path d="M138,446 C150,330 215,262 300,250 C420,232 520,240 597,258" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
-<path d="M340,444 C380,405 420,392 470,397 C520,402 560,418 600,437" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
-<path d="M135,686 C165,760 215,812 300,815 C420,818 530,760 604,694" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
-<path d="M315,686 C318,770 380,830 460,842 C520,850 560,855 597,860" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e17-ak)"/>
+<path d="M138,446 C150,330 215,262 300,250 C420,232 520,240 597,258" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e18-ak)"/>
+<path d="M340,444 C380,405 420,392 470,397 C520,402 560,418 600,437" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e18-ak)"/>
+<path d="M135,686 C165,760 215,812 300,815 C420,818 530,760 604,694" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e18-ak)"/>
+<path d="M315,686 C318,770 380,830 460,842 C520,850 560,855 597,860" stroke="#1F1E1E" stroke-width="5" fill="none" marker-end="url(#e18-ak)"/>
 <rect x="262.7" y="229.6" width="54.6" height="50.4" fill="#ffffff"/>
 <text x="268.7" y="268.5" font-size="48" fill="#1F1E1E">x</text>
 <text x="294.7" y="276.2" font-size="29.8" fill="#1F1E1E">1</text>
@@ -2362,19 +2368,19 @@ html.print-pdf .cbfull{display:none}
 <rect x="208" y="560" width="150" height="108" fill="#000000"/>
 <text x="283" y="632" font-size="52" text-anchor="middle" fill="#ffffff">1</text>
 <rect x="58" y="452" width="300" height="216" fill="none" stroke="#000000" stroke-width="8"/>
-<path d="M677.9,296.4 L1076.3,620.9" stroke="#B8231B" stroke-width="4" marker-end="url(#e17-ar)"/>
+<path d="M677.9,296.4 L1076.3,620.9" stroke="#B8231B" stroke-width="4" marker-end="url(#e18-ar)"/>
 <rect x="754.4" y="358.9" width="65.2" height="50.4" fill="#ffffff"/>
 <text x="760.4" y="397.8" font-size="48" fill="#B8231B">w</text>
 <text x="797.1" y="405.4" font-size="29.8" fill="#B8231B">1</text>
-<path d="M684.8,478.7 L1069.3,632.9" stroke="#B8231B" stroke-width="4" marker-end="url(#e17-ar)"/>
+<path d="M684.8,478.7 L1069.3,632.9" stroke="#B8231B" stroke-width="4" marker-end="url(#e18-ar)"/>
 <rect x="729.4" y="483.3" width="65.2" height="50.4" fill="#ffffff"/>
 <text x="735.4" y="522.2" font-size="48" fill="#B8231B">w</text>
 <text x="772.1" y="529.9" font-size="29.8" fill="#B8231B">2</text>
-<path d="M688.0,660.8 L1066.0,651.2" stroke="#B8231B" stroke-width="4" marker-end="url(#e17-ar)"/>
+<path d="M688.0,660.8 L1066.0,651.2" stroke="#B8231B" stroke-width="4" marker-end="url(#e18-ar)"/>
 <rect x="727.4" y="632.6" width="65.2" height="50.4" fill="#ffffff"/>
 <text x="733.4" y="671.5" font-size="48" fill="#B8231B">w</text>
 <text x="770.1" y="679.2" font-size="29.8" fill="#B8231B">3</text>
-<path d="M684.0,843.5 L1070.1,668.9" stroke="#B8231B" stroke-width="4" marker-end="url(#e17-ar)"/>
+<path d="M684.0,843.5 L1070.1,668.9" stroke="#B8231B" stroke-width="4" marker-end="url(#e18-ar)"/>
 <rect x="755.4" y="770.1" width="65.2" height="50.4" fill="#ffffff"/>
 <text x="761.4" y="808.9" font-size="48" fill="#B8231B">w</text>
 <text x="798.1" y="816.6" font-size="29.8" fill="#B8231B">4</text>
@@ -2564,11 +2570,11 @@ html.print-pdf .cbfull{display:none}
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p><b>Style mixing</b>: StyleGAN permite tomar la estructura de una cara (pose, forma) y el estilo de otra (color de pelo, edad) para generar una cara completamente nueva con coherencia total. Esto no era posible en ninguna GAN anterior.</p></div></div></div>
 <aside class="notes"><p>Durante cuatro años las GANs generaron imágenes cada vez mejores, pero no se les podía pedir "una cara joven, con pelo castaño y expresión neutral": el Generador mezclaba todos los atributos y no había forma de tocar uno sin mover los demás.</p><p>La causa está en cómo entra el ruido. En una GAN clásica el vector de ruido entra directamente en la primera capa, y todo (forma, color, textura) sale de ese mismo vector entrelazado. StyleGAN lo separa en capas independientes: la red de mapeo convierte el ruido en un vector de estilo w, ese estilo se inyecta en cada capa de síntesis mediante AdaIN, y un ruido aleatorio por capa aporta los detalles finos. Las capas de baja resolución deciden la pose y la forma; las de alta resolución, la textura y el color.</p><p>Esa separación es lo que hace posible el <i>style mixing</i>: tomar la estructura de una cara (pose, forma) y el estilo de otra (color de pelo, edad) para generar una cara completamente nueva y coherente. Ninguna GAN anterior podía hacerlo.</p></aside></section><section class="slide" data-kind="content+cards+image"><div class="stage d-split side-right">
 <div class="shead"><span class="pill">Tipos y aplicaciones</span><h2 class="stitle">StyleGAN: arquitectura</h2><p class="lead"><b>Dos redes en lugar de una</b></p></div><div class="cbody"><div class="cfit"><div class="highlights hl-top"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p>Caras fotorrealistas generadas por StyleGAN (NVIDIA, 2019)</p></div><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p>StyleGAN separa el proceso en dos redes:</p></div></div><div class="ccicards">
-<div class="ccard sm fragment fade-up"><h3>🔀 Mapping Network</h3><p>Transforma el ruido z en un vector de estilo w (512 dimensiones)</p></div><div class="ccard sm fragment fade-up"><h3>🎨 Synthesis Network</h3><p>Genera la imagen progresivamente, inyectando el estilo w en cada capa</p></div></div></div></div>
+<div class="ccard sm fragment fade-up"><h3>Mapping Network</h3><p>Transforma el ruido z en un vector de estilo w (512 dimensiones)</p></div><div class="ccard sm fragment fade-up"><h3>Synthesis Network</h3><p>Genera la imagen progresivamente, inyectando el estilo w en cada capa</p></div></div></div></div>
 <div class="highlights hl-bottom fragment fade-up"><div class="highlight note"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M180-180h400v-200h200v-400H180v600Zm0 60q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v420L600-120H180Zm120-300v-60h170v60H300Zm0-160v-60h360v60H300ZM180-180v-600 600Z"/></svg></span><p>Esto permite controlar atributos separados en cada nivel de resolución: pose y forma en capas bajas, textura y color en capas altas.</p></div><div class="highlight takeaway"><span class="ic"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-120v-680h343l19 86h238v370H544l-18.93-85H260v309h-60Zm300-452Zm95 168h145v-250H511l-19-86H260v251h316l19 85Z"/></svg></span><p><b>La clave</b>: El estilo se inyecta en cada capa mediante AdaIN (Adaptive Instance Normalization), no solo al inicio. Esto da control granular sobre cada aspecto visual.</p></div></div><div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -8 1238 634" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>Arquitectura de StyleGAN</title>
 <desc>Redibujo del slide 41: el vector latente pasa por la red de mapeo (Normalizar y 8 capas FC) y da w en W; cada bloque A lleva ese estilo a una capa Ada IN de la red de síntesis g, que parte de una constante 4X4X512, suma ruido por los bloques B y sube de resolución hasta 1024 X 1024. El Discriminador de ProGAN compara esa salida con imágenes reales reducidas; la pérdida vuelve como señal de entrenamiento.</desc>
-<defs><marker id="e18-ah" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="10" viewBox="0 0 11 10" refX="11" refY="5" orient="auto"><path d="M0,0 L11,5 L0,10 z" fill="#1F1E1E"/></marker></defs>
+<defs><marker id="e19-ah" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="10" viewBox="0 0 11 10" refX="11" refY="5" orient="auto"><path d="M0,0 L11,5 L0,10 z" fill="#1F1E1E"/></marker></defs>
 <rect x="-4" y="-8" width="1238" height="634" fill="#ffffff"/>
 <rect x="44" y="62" width="784" height="548" fill="none" stroke="#3B3535" stroke-width="1.6"/>
 <text x="30" y="540" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E" transform="rotate(-90 30 540)">Generador</text>
@@ -2580,7 +2586,7 @@ html.print-pdf .cbfull{display:none}
 <text x="52" y="138" font-size="22" text-anchor="start" fill="#3B3535">Red de</text>
 <text x="52" y="164" font-size="22" text-anchor="start" fill="#3B3535">mapeo</text>
 <text x="52" y="190" font-size="22" text-anchor="start" fill="#3B3535">f</text>
-<path d="M170,110 V184" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M170,110 V184" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <rect x="100" y="186" width="148" height="296" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <rect x="108" y="194" width="132" height="28" rx="2" fill="#3B3535"/><text x="174.0" y="215.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">FC</text>
 <rect x="108" y="230" width="132" height="28" rx="2" fill="#3B3535"/><text x="174.0" y="251.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">FC</text>
@@ -2590,7 +2596,7 @@ html.print-pdf .cbfull{display:none}
 <rect x="108" y="374" width="132" height="28" rx="2" fill="#3B3535"/><text x="174.0" y="395.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">FC</text>
 <rect x="108" y="410" width="132" height="28" rx="2" fill="#3B3535"/><text x="174.0" y="431.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">FC</text>
 <rect x="108" y="446" width="132" height="28" rx="2" fill="#3B3535"/><text x="174.0" y="467.56" font-size="21" font-weight="bold" text-anchor="middle" fill="#ffffff">FC</text>
-<path d="M174,482 V530" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M174,482 V530" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <rect x="100" y="532" width="148" height="48" rx="6" fill="#DA1B2E"/>
 <text x="138" y="565" font-family="'Times New Roman', Times, serif" font-style="italic" font-weight="bold" font-size="28" fill="#ffffff">w</text>
 <path d="M181,546 H173 A8,9 0 0 0 173,564 H181 M165,555 H180" stroke="#ffffff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
@@ -2615,44 +2621,44 @@ html.print-pdf .cbfull{display:none}
 <path d="M248,556 L284,168 H292" stroke="#1F1E1E" stroke-width="1.6" fill="none"/>
 <rect x="291" y="152" width="36" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="309" y="176" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">A</text>
-<path d="M326,168 H357" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M326,168 H357" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <path d="M248,556 L284,264 H292" stroke="#1F1E1E" stroke-width="1.6" fill="none"/>
 <rect x="291" y="248" width="36" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="309" y="272" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">A</text>
-<path d="M326,264 H357" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M326,264 H357" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <path d="M248,556 L284,398 H292" stroke="#1F1E1E" stroke-width="1.6" fill="none"/>
 <rect x="291" y="382" width="36" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="309" y="406" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">A</text>
-<path d="M326,398 H357" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M326,398 H357" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <path d="M248,556 L284,490 H292" stroke="#1F1E1E" stroke-width="1.6" fill="none"/>
 <rect x="291" y="474" width="36" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="309" y="498" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">A</text>
-<path d="M326,490 H357" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M326,490 H357" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <text x="778" y="110" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Ruido</text>
 <path d="M800,120 V141 H799" stroke="#1F1E1E" stroke-width="1.6" fill="none"/>
-<path d="M800,141 H668" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M800,141 H668" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <rect x="628" y="125" width="40" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="648" y="149" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">B</text>
-<path d="M628,141 H476" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M628,141 H476" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <path d="M792,120 V237 H791" stroke="#1F1E1E" stroke-width="1.6" fill="none"/>
-<path d="M792,237 H668" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M792,237 H668" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <rect x="628" y="221" width="40" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="648" y="245" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">B</text>
-<path d="M628,237 H476" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M628,237 H476" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <path d="M784,120 V371 H783" stroke="#1F1E1E" stroke-width="1.6" fill="none"/>
-<path d="M784,371 H668" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M784,371 H668" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <rect x="628" y="355" width="40" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="648" y="379" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">B</text>
-<path d="M628,371 H476" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M628,371 H476" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <path d="M776,120 V463 H775" stroke="#1F1E1E" stroke-width="1.6" fill="none"/>
-<path d="M776,463 H668" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M776,463 H668" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <rect x="628" y="447" width="40" height="32" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="648" y="471" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">B</text>
-<path d="M628,463 H476" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
-<path d="M466,510 V522" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M628,463 H476" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
+<path d="M466,510 V522" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <rect x="352" y="524" width="232" height="26" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="468" y="543" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">....</text>
-<path d="M466,550 V566" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M466,550 V566" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <rect x="352" y="568" width="232" height="38" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="468" y="595" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">1024 X 1024</text>
 <text x="1020" y="176" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Discriminador de ProGAN</text>
@@ -2664,17 +2670,17 @@ html.print-pdf .cbfull{display:none}
 <rect x="1022" y="195" width="11" height="200" rx="2" fill="#3B3535"/>
 <rect x="1060" y="195" width="11" height="200" rx="2" fill="#3B3535"/>
 <text x="1041" y="290" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">...</text>
-<path d="M828,297 H931" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M828,297 H931" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <rect x="848" y="482" width="108" height="94" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <rect x="882" y="504" width="62" height="44" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
 <rect x="872" y="512" width="62" height="44" fill="#ffffff" stroke="#3B3535" stroke-width="1.6"/>
 <path d="M876,550 L892,532 L904,544 L914,536 L930,550 z" fill="#3B3535"/><circle cx="917" cy="522" r="5" fill="#3B3535"/>
-<path d="M890,482 V320 H931" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e18-ah)"/>
+<path d="M890,482 V320 H931" stroke="#1F1E1E" stroke-width="1.8" fill="none" marker-end="url(#e19-ah)"/>
 <text x="877" y="400" font-size="22" font-weight="bold" text-anchor="middle" fill="#1F1E1E" transform="rotate(-90 877 400)">Reducción</text>
 <rect x="1124" y="266" width="94" height="56" rx="4" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="1171" y="303" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Pérdida</text>
-<path d="M1196,266 V132 H831" stroke="#1F1E1E" stroke-width="1.8" fill="none" stroke-dasharray="7 6" marker-end="url(#e18-ah)"/>
-<path d="M1171,322 V516 H1006 V407" stroke="#1F1E1E" stroke-width="1.8" fill="none" stroke-dasharray="7 6" marker-end="url(#e18-ah)"/>
+<path d="M1196,266 V132 H831" stroke="#1F1E1E" stroke-width="1.8" fill="none" stroke-dasharray="7 6" marker-end="url(#e19-ah)"/>
+<path d="M1171,322 V516 H1006 V407" stroke="#1F1E1E" stroke-width="1.8" fill="none" stroke-dasharray="7 6" marker-end="url(#e19-ah)"/>
 <text x="1092" y="503" font-size="23" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Entrenamiento</text>
 </svg></div></div></div>
 </section><section class="slide" data-kind="concept-breakdown"><div class="stage d-full">
