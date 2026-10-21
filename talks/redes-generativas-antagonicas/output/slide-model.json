@@ -2127,11 +2127,55 @@
           "closing-cta": "the items are a recap of concepts, not next steps / resources / links"
         }
       }
+    },
+    {
+      "template": "content-image",
+      "section": "Limitaciones y cierre",
+      "title": "Práctica: entrenar una GAN",
+      "lead": "El repositorio pytorch-gans implementa en PyTorch las tres GANs de la clase. Escaneen el QR y sigan la sección Training:",
+      "facts": [
+        {
+          "label": "Vanilla GAN",
+          "body": "python train_vanilla_gan.py: entrena con MNIST, que se descarga solo."
+        },
+        {
+          "label": "Conditional GAN",
+          "body": "python train_cgan.py: genera el dígito que le piden, del 0 al 9."
+        },
+        {
+          "label": "DCGAN",
+          "body": "python train_dcgan.py: entrena con caras de CelebA."
+        },
+        {
+          "label": "Link",
+          "body": "github.com/gordicaleksa/pytorch-gans#training"
+        }
+      ],
+      "design": "split-right",
+      "media": {
+        "src": "images/qr-pytorch-gans.svg",
+        "alt": "Código QR que lleva a github.com/gordicaleksa/pytorch-gans#training"
+      },
+      "notes": "Es la práctica de la clase. El repositorio es de Aleksa Gordić, con licencia MIT. Cada script guarda checkpoints en models/checkpoints, el modelo final en models/binaries, imágenes de prueba en data/debug_imagery y los logs de TensorBoard en runs, así que se puede ver cómo mejora el Generador durante el entrenamiento. El tamaño del lote se ajusta con --batch_size según la memoria de la GPU. La Vanilla GAN con MNIST es la que arranca más rápido y la más parecida a Slanted Land.",
+      "_choice": {
+        "signals": [
+          "labeled facts (three scripts and the link)",
+          "one image (a QR code)"
+        ],
+        "candidates": [
+          "content-image",
+          "closing-cta"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "closing-cta": "the QR has to be on the slide, and closing-cta takes no media"
+        }
+      }
     }
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "6c73e81de1209e720cd662d0963dccfde6de2fea616779397a9f65f3a599ff27",
-    "bytes": 81107
+    "sha256": "3137a86d1e2e9ae3f4aac591eab4d00b530dc9de8d84408b86a592765c015c72",
+    "bytes": 82552
   }
 }

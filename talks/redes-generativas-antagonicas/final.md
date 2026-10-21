@@ -1307,6 +1307,32 @@ Los links son para que los alumnos lo prueben: el repositorio de Pix2Pix y Cycle
 
 ---
 
+## 4. Práctica: entrenar una GAN
+
+<!-- slide nueva, no está en el pptx: pedido del presentador (2026-10-21) -->
+
+### Content
+
+El repositorio pytorch-gans implementa en PyTorch las tres GANs de la clase. Escaneen el QR y sigan la sección Training:
+
+- **Vanilla GAN:** python train_vanilla_gan.py: entrena con MNIST, que se descarga solo.
+- **Conditional GAN:** python train_cgan.py: genera el dígito que le piden, del 0 al 9.
+- **DCGAN:** python train_dcgan.py: entrena con caras de CelebA.
+- **Link:** github.com/gordicaleksa/pytorch-gans#training
+
+![Código QR que lleva a github.com/gordicaleksa/pytorch-gans#training](images/qr-pytorch-gans.svg)
+
+### Sources
+
+- Gordić, *pytorch-gans* (github.com/gordicaleksa/pytorch-gans), sección Training: Vanilla GAN, cGAN y DCGAN en PyTorch, licencia MIT. Verificado el 2026-10-21. Fuente web, no está en el corpus.
+- Código QR generado con segno (images/qr-pytorch-gans.svg).
+
+### Speaker notes
+
+Es la práctica de la clase. El repositorio es de Aleksa Gordić, con licencia MIT. Cada script guarda checkpoints en models/checkpoints, el modelo final en models/binaries, imágenes de prueba en data/debug_imagery y los logs de TensorBoard en runs, así que se puede ver cómo mejora el Generador durante el entrenamiento. El tamaño del lote se ajusta con --batch_size según la memoria de la GPU. La Vanilla GAN con MNIST es la que arranca más rápido y la más parecida a Slanted Land.
+
+---
+
 # Open questions
 
 - Tesis y objetivo de cada sección quedaron vacíos: el deck original no los declara.
