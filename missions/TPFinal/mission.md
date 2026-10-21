@@ -10,7 +10,7 @@
 | **Materia** | Inteligencia Artificial Generativa (AI Gen) |
 | **Entrega** | Repositorio de GitHub + modelo en Hugging Face y corridas en W&B + presentación en Loom |
 | **Fecha de entrega** | **Viernes 20 de noviembre de 2026** |
-| **Kit** | [`missions/admision-guardia/`](.) — normas, casos de práctica, historial y el paquete `admision`. Cómo instalarlo y correrlo está en su [README](README.md) |
+| **Kit** | [`missions/TPFinal/`](.) — normas, casos de práctica, historial y el paquete `admision`. Cómo instalarlo y correrlo está en su [README](README.md) |
 | **Envío** | Mail a Paulo Veiga y Marco, con todos los integrantes del grupo en copia |
 | **Video del enunciado** | [Parte 1](https://www.loom.com/share/2c56572757124aaf8e2a1e1398efe27d) · [Parte 2](https://www.loom.com/share/12f6cb81c76440cd8a86563dcc02b2f2) (Loom) |
 
@@ -75,7 +75,7 @@ El agente tiene cinco herramientas: `leer_triage`, `preguntar` (al paciente o a 
 
 ## Qué hay en esta carpeta
 
-El kit está en [`missions/admision-guardia/`](.), la misma carpeta que este enunciado.
+El kit está en [`missions/TPFinal/`](.), la misma carpeta que este enunciado.
 
 | Ruta | Qué es |
 |---|---|
@@ -168,7 +168,7 @@ Antes y después de llegar a un resultado satisfactorio:
 ## Antes de empezar
 
 ```bash
-cd missions/admision-guardia
+cd missions/TPFinal
 uv sync
 ```
 
