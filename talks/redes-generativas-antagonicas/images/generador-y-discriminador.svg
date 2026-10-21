@@ -1,25 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2010 1180" width="2010" height="1180" font-family="Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2010 1000" width="2010" height="1000" font-family="Helvetica, Arial, sans-serif">
 <title>Generador y Discriminador</title>
 <desc>A la izquierda, el Generador (en rojo): z, elegido con un deslizador de 0 a 1, y un Bias de valor 1 conectados a cuatro neuronas σ. En el centro, la imagen 2×2 que produce (0.25, 1 / 0.5, 0.75). A la derecha, el Discriminador (en azul): cuatro neuronas de entrada y un Bias conectados a una neurona σ que da 0.68.</desc>
 <defs><marker id="ah-DA1B2E-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="ah-1F5FAD-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker></defs>
-<rect x="0" y="0" width="2010" height="1180" fill="#ffffff"/>
+<rect x="0" y="0" width="2010" height="1000" fill="#ffffff"/>
 <text x="540.0" y="100.0" font-size="86" fill="#DA1B2E" text-anchor="middle" font-weight="normal">Generador</text>
 <text x="1480.0" y="92.0" font-size="86" fill="#1F5FAD" text-anchor="middle" font-weight="normal">Discriminador</text>
 <line x1="30" y1="222" x2="1980" y2="222" stroke="#D9D4CF" stroke-width="3"/>
 <text x="345" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
-<text x="345" y="202" font-size="26" fill="#6B6560" text-anchor="middle">z + bias</text>
+<text x="345" y="202" font-size="26" fill="#6B6560" text-anchor="middle">z, sin cálculo</text>
 <text x="547" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
 <text x="547" y="202" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
 <text x="750" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
-<text x="750" y="202" font-size="26" fill="#6B6560" text-anchor="middle">4 píxeles</text>
+<text x="750" y="202" font-size="26" fill="#6B6560" text-anchor="middle">4 neuronas</text>
 <text x="1030" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
 <text x="1030" y="202" font-size="26" fill="#6B6560" text-anchor="middle">generada</text>
 <text x="1320" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
-<text x="1320" y="202" font-size="26" fill="#6B6560" text-anchor="middle">píxeles + bias</text>
+<text x="1320" y="202" font-size="26" fill="#6B6560" text-anchor="middle">sin cálculo</text>
 <text x="1505" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
 <text x="1505" y="202" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
 <text x="1690" y="165" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
-<text x="1690" y="202" font-size="26" fill="#6B6560" text-anchor="middle">real o falsa</text>
+<text x="1690" y="202" font-size="26" fill="#6B6560" text-anchor="middle">1 neurona</text>
 <g transform="translate(0,150)">
 
 
@@ -34,15 +34,15 @@
 <path d="M396.8,334.1 L691.0,357.3" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#ah-DA1B2E-24)"/>
 <path d="M391.6,353.0 L696.9,503.8" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#ah-DA1B2E-24)"/>
 <path d="M383.5,364.9 L706.1,657.2" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#ah-DA1B2E-24)"/>
-<path d="M381.8,563.2 L708.1,236.9" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#ah-DA1B2E-24)"/>
-<path d="M389.8,573.7 L699.0,392.0" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#ah-DA1B2E-24)"/>
-<path d="M396.2,591.1 L691.7,540.1" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#ah-DA1B2E-24)"/>
-<path d="M395.6,612.1 L692.4,683.2" stroke="#DA1B2E" stroke-width="3.5" fill="none" marker-end="url(#ah-DA1B2E-24)"/>
-<circle cx="345.0" cy="330.0" r="52" fill="#3B3535"/>
-<text x="345.0" y="349.4" font-size="54" fill="#ffffff" text-anchor="middle" font-weight="normal">z</text>
-<circle cx="345.0" cy="600.0" r="52" fill="#3B3535"/>
-<text x="345.0" y="617.3" font-size="48" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
-<text x="345.0" y="726.0" font-size="64" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Bias</text>
+
+
+
+
+<circle cx="345.0" cy="330.0" r="49.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/>
+<text x="345.0" y="349.4" font-size="54" fill="#1F1E1E" text-anchor="middle" font-weight="normal">z</text>
+
+
+
 <circle cx="750.0" cy="195.0" r="52" fill="#3B3535"/>
 <text x="750.0" y="217.3" font-size="62" fill="#ffffff" text-anchor="middle" font-weight="normal" font-style="italic">σ</text>
 <circle cx="750.0" cy="362.0" r="52" fill="#3B3535"/>
@@ -70,14 +70,14 @@
 <path d="M1367.3,383.5 L1621.5,498.9" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#ah-1F5FAD-24)"/>
 <path d="M1372.0,530.0 L1614.8,530.0" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#ah-1F5FAD-24)"/>
 <path d="M1367.4,675.6 L1621.5,560.9" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#ah-1F5FAD-24)"/>
-<path d="M1358.4,832.9 L1634.5,580.7" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#ah-1F5FAD-24)"/>
-<circle cx="1320.0" cy="195.0" r="52" fill="#3B3535"/>
-<circle cx="1320.0" cy="362.0" r="52" fill="#3B3535"/>
-<circle cx="1320.0" cy="530.0" r="52" fill="#3B3535"/>
-<circle cx="1320.0" cy="697.0" r="52" fill="#3B3535"/>
-<circle cx="1320.0" cy="868.0" r="52" fill="#3B3535"/>
-<text x="1320.0" y="885.3" font-size="48" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
-<text x="1320.0" y="994.0" font-size="64" fill="#1F1E1E" text-anchor="middle" font-weight="normal">Bias</text>
+
+<circle cx="1320.0" cy="195.0" r="49.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="1320.0" y="209" font-size="40" fill="#1F1E1E" text-anchor="middle">x₁</text>
+<circle cx="1320.0" cy="362.0" r="49.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="1320.0" y="376" font-size="40" fill="#1F1E1E" text-anchor="middle">x₂</text>
+<circle cx="1320.0" cy="530.0" r="49.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="1320.0" y="544" font-size="40" fill="#1F1E1E" text-anchor="middle">x₃</text>
+<circle cx="1320.0" cy="697.0" r="49.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="1320.0" y="711" font-size="40" fill="#1F1E1E" text-anchor="middle">x₄</text>
+
+
+
 <circle cx="1690.0" cy="530.0" r="68" fill="#3B3535"/>
 <text x="1690.0" y="558.8" font-size="80" fill="#ffffff" text-anchor="middle" font-weight="normal" font-style="italic">σ</text>
 <text x="1782.0" y="567.0" font-size="104" fill="#1F1E1E" text-anchor="start" font-weight="normal">0.68</text>

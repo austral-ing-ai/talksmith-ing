@@ -542,7 +542,7 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 | Cara prototipo | Imagen de ruido |
 |---|---|
 | 1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) = 2 | 0.25×(+1) + 1×(−1) + 0.5×(−1) + 0.75×(+1) = −0.5 |
-| Score > 1 → Real ✓ | Score < 1 → Falsa ✓Score > 1 → Real ✓ |
+| Score > 1 → Real ✓ | Score < 1 → Falsa ✓ |
 
 ![Grillas Caras y Ruido con peso + en las esquinas de la diagonal principal y peso − en las de la diagonal secundaria](images/pesos-mas-menos.svg)
 
@@ -551,6 +551,8 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 - `AIG4B-Clase-8-GANs.md.md` (slide 23). Imagen redibujada como SVG (images/pesos-mas-menos.svg).
 
 ### Speaker notes
+
+El umbral 1 de esta slide es el que en la siguiente entra a la neurona como sesgo: restarle 1 al score (b = −1) y comparar σ con 0,5 es lo mismo que preguntar si el score supera 1.
 
 ---
 
@@ -562,23 +564,25 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 - **Discriminador Como red neuronal**
 
-- Para la cara prototipo: σ(1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) − 1) = σ(1)
+- La entrada no calcula: x₁…x₄ son los píxeles. El cálculo lo hace la primera capa, que acá es una sola neurona. Para la cara prototipo: σ(1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) − 1) = σ(1)
 
-| Entradas (x) | Pesos (w) | Bias |
+| Entradas (x) | Pesos (w) | Sesgo (b) |
 |---|---|---|
-| x₁=1, x₂=0, x₃=0, x₄=1 | w₁=+1, w₂=−1, w₃=−1, w₄=+1 | valor fijo = 1, peso = −1 |
+| x₁=1, x₂=0, x₃=0, x₄=1 | w₁=+1, w₂=−1, w₃=−1, w₄=+1 | b = −1, parte de la neurona de salida |
 
 | Suma ponderada | Sigmoid |
 |---|---|
-| 1(+1)+0(−1)+0(−1)+1(+1)+1(−1) = 1 | σ(1) ≈ 0.73 → imagen real |
+| 1(+1)+0(−1)+0(−1)+1(+1) + b = 2 − 1 = 1 | σ(1) ≈ 0.73 → imagen real |
 
-![Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada con los cuatro píxeles y el bias, ninguna capa oculta y la neurona de salida σ; pesos +1, −1, −1, +1 y bias con peso −1](images/discriminador-red.svg)
+![Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada x₁…x₄ sin cálculo, ninguna capa oculta y una sola neurona de salida σ que calcula w·x + b; pesos +1, −1, −1, +1 y sesgo b = −1](images/discriminador-red.svg)
 
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 24). Imagen redibujada como SVG (images/discriminador-red.svg).
 
 ### Speaker notes
+
+Es el mismo dibujo de la clase de MLP: la entrada no calcula, x₁…x₄ son los píxeles; la primera capa hace w·x + b y la activación. Acá esa capa es una sola neurona, así que no es un MLP: no tiene capa oculta. Ojo con la letra: en GANs z es el ruido que entra al Generador, no la pre-activación de la clase de MLP.
 
 ---
 
@@ -618,12 +622,12 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 - **Como 0.73 > 0.5, clasifica correctamente la imagen como real ✓**
 
 - **Cuando la imagen de ruido pasa por la misma red:**
-- **σ(-0.5) = 0.37 → "Estoy solo un 37% seguro de que esto sea real"**
-- **Como 0.37 < 0.5, clasifica correctamente la imagen como falsa ✓**
+- **σ(−1.5) = 0.18 → "Estoy solo un 18% seguro de que esto sea real"**
+- **Como 0.18 < 0.5, clasifica correctamente la imagen como falsa ✓**
 
 ![La cara prototipo pasa por la red del Discriminador y sale σ(1) = 0.73, marcado en el gráfico de la sigmoide](images/discriminador-cara.svg)
 
-![La imagen de ruido pasa por la misma red y sale σ(−0.5) = 0.37](images/discriminador-ruido.svg)
+![La imagen de ruido pasa por la misma red: 0.25 − 1 − 0.5 + 0.75 + b = −1.5, y sale σ(−1.5) = 0.18, marcado en el gráfico de la sigmoide](images/discriminador-ruido.svg)
 
 ### Sources
 
@@ -678,7 +682,7 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 - Con z = 0.7 como entrada y los pesos aprendidos, el Generador produce una imagen que reproduce el patrón diagonal de las caras reales. El Generador aprendió a engañar al Discriminador.
 - El resultado muestra el patrón diagonal característico de las caras de Slanted Land: valores altos en la diagonal principal, bajos en la secundaria. El Generador internalizó la estructura del dataset real.
 
-![Red del Generador: z = 0.7 y el bias, con pesos ±1, alimentan cuatro sigmoides que producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)](images/generador-red.svg)
+![Red del Generador: z = 0.7 entra sin cálculo; cada una de las cuatro neuronas σ suma su peso ±1 y su sesgo ±1, y entre las cuatro producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)](images/generador-red.svg)
 
 ### Sources
 
@@ -694,7 +698,7 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 
 ### Content
 
-- En los slides anteriores definimos los pesos del Discriminador y el Generador a mano (+1, −1, Bias). En la práctica, la red debe aprender esos pesos sola. Para eso necesitamos una forma de medir cuánto se equivocó — esa es la función de error.
+- En los slides anteriores definimos los pesos del Discriminador y el Generador a mano (pesos +1 y −1, y sesgos). En la práctica, la red debe aprender esos pesos sola. Para eso necesitamos una forma de medir cuánto se equivocó — esa es la función de error.
 - Para que ambas redes aprendan, necesitamos medir exactamente cuánto se equivocaron. La función que hace eso en las GANs se llama log-loss (binary cross-entropy):
 
 | Cuando queremos que la predicción sea 1 | Cuando queremos que la predicción sea 0 |
@@ -749,15 +753,11 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 **Loss Function Visualmente**
 
-- 🔍 Discriminador — imagen real
+- 🔍 Discriminador — imagen real: curva de la izquierda, −ln(x)
 
-- 🎨 Generador — imagen falsa
+- 🎨 Generador — imagen falsa: curva de la derecha, −ln(1 − x)
 
 ![Las dos funciones de pérdida: −ln(x) para el Discriminador con imagen real y −ln(1−x) para el Generador con imagen falsa](images/loss-curvas.svg)
-
-- Predicción = 0 (imagen falsa). Error = −ln(1−predicción). Predicción alta → alto error. El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador.
-
-- Predicción = 1 (imagen real). Error = −ln(predicción). Predicción baja → alto error. Predicción alta → bajo error. El Discriminador quiere acercarse a 1 cuando ve imágenes reales.
 
 ### Sources
 
@@ -768,7 +768,30 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 16. Backpropagation: del error al ajuste de pesos
+## 16. (sin título)
+
+<!-- slide 31 del pptx original, segunda mitad: la explicación de las curvas -->
+
+### Content
+
+- **Loss Function: qué dice cada curva**
+
+| 🔍 Discriminador — imagen real | 🎨 Generador — imagen falsa |
+|---|---|
+| Predicción = 1 (imagen real). | Predicción = 0 (imagen falsa). |
+| Error = −ln(predicción). | Error = −ln(1−predicción). |
+| Predicción baja → alto error. Predicción alta → bajo error. | Predicción alta → alto error. |
+| El Discriminador quiere acercarse a 1 cuando ve imágenes reales. | El Generador quiere que el Discriminador le asigne score alto (cercano a 1) — lo opuesto al objetivo del Discriminador. |
+
+### Sources
+
+- `AIG4B-Clase-8-GANs.md.md` (slide 31). Texto de la slide 3.15, separado del gráfico.
+
+### Speaker notes
+
+---
+
+## 17. Backpropagation: del error al ajuste de pesos
 
 <!-- slide 32 del pptx original -->
 
@@ -795,7 +818,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 17. Backpropagation: el procedimiento paso a paso
+## 18. Backpropagation: el procedimiento paso a paso
 
 <!-- slide 33 del pptx original -->
 
@@ -825,7 +848,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 18. Backpropagation: ejemplo con Slanted Land
+## 19. Backpropagation: ejemplo con Slanted Land
 
 <!-- slide 34 del pptx original -->
 
@@ -848,7 +871,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 19. (sin título)
+## 20. (sin título)
 
 <!-- slide 35 del pptx original -->
 
@@ -872,7 +895,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 20. El error del Discriminador
+## 21. El error del Discriminador
 
 <!-- slide 36 del pptx original -->
 
@@ -895,7 +918,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ---
 
-## 21. (sin título)
+## 22. (sin título)
 
 <!-- slide 37 del pptx original -->
 
@@ -911,7 +934,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 - Slide opcional — para quien quiera profundizar en la matemática. Fuente: A Friendly Introduction to Generative Adversarial Networks — Luis Serrano Academy.
 
-![Red del Discriminador con pesos w1 a w4 y bias b, y las derivadas del error respecto de cada peso y del bias](images/derivada-error.svg)
+![Red del Discriminador con entradas x₁…x₄ sin cálculo, pesos w1 a w4 y sesgo b en la neurona de salida, y las derivadas del error respecto de cada peso y del sesgo](images/derivada-error.svg)
 
 ### Sources
 
@@ -972,8 +995,7 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 
 ### Content
 
-- El problema que nadie había resuelto en cuatro años: las GANs generaban imágenes, pero no podías pedirle "genera una cara joven, con pelo castaño y expresión neutral". El Generador mezclaba todos los atributos juntos sin control.
-- ¿Qué cambió exactamente en StyleGAN? En una GAN clásica, el ruido entra directamente y todo (forma, color, textura) sale del mismo vector mezclado. StyleGAN lo separa en capas independientes:
+- Las GANs ya generaban imágenes, pero sin control: forma, color y textura salían mezcladas. StyleGAN las separa en capas.
 
 | Componente | Qué hace | Qué controla |
 |---|---|---|
@@ -981,13 +1003,19 @@ Las dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imá
 | Síntesis por capas (AdaIN) | Inyecta el estilo en distintas capas de la red | Cada capa controla una escala diferente de detalle |
 | Ruido estocástico por capa | Añade variación aleatoria capa a capa | Controla variaciones finas: poros, pelo suelto, arrugas |
 
-- Style mixing: StyleGAN permite tomar la estructura de una cara (pose, forma) y el estilo de otra (color de pelo, edad) para generar una cara completamente nueva con coherencia total. Esto no era posible en ninguna GAN anterior.
+- Style mixing: la estructura de una cara y el estilo de otra, combinados en una cara nueva.
 
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 40)
 
 ### Speaker notes
+
+Durante cuatro años las GANs generaron imágenes cada vez mejores, pero no se les podía pedir "una cara joven, con pelo castaño y expresión neutral": el Generador mezclaba todos los atributos y no había forma de tocar uno sin mover los demás.
+
+La causa está en cómo entra el ruido. En una GAN clásica el vector de ruido entra directamente en la primera capa, y todo (forma, color, textura) sale de ese mismo vector entrelazado. StyleGAN lo separa en capas independientes: la red de mapeo convierte el ruido en un vector de estilo w, ese estilo se inyecta en cada capa de síntesis mediante AdaIN, y un ruido aleatorio por capa aporta los detalles finos. Las capas de baja resolución deciden la pose y la forma; las de alta resolución, la textura y el color.
+
+Esa separación es lo que hace posible el *style mixing*: tomar la estructura de una cara (pose, forma) y el estilo de otra (color de pelo, edad) para generar una cara completamente nueva y coherente. Ninguna GAN anterior podía hacerlo.
 
 ---
 

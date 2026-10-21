@@ -8,7 +8,7 @@
 <text x="156" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
 <text x="156" y="270" font-size="26" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
 <text x="482" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
-<text x="482" y="270" font-size="26" fill="#6B6560" text-anchor="middle">4 píxeles + bias</text>
+<text x="482" y="270" font-size="26" fill="#6B6560" text-anchor="middle">x₁…x₄, sin cálculo</text>
 <text x="658" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
 <text x="658" y="270" font-size="26" fill="#6B6560" text-anchor="middle">ninguna</text>
 <text x="834" y="234" font-size="30" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
@@ -56,17 +56,17 @@
 <rect x="755.4" y="770.1" width="65.2" height="50.4" fill="#ffffff"/>
 <text x="761.4" y="808.9" font-size="48" fill="#B8231B">w</text>
 <text x="798.1" y="816.6" font-size="29.8" fill="#B8231B">4</text>
-<path d="M676.8,1033.3 L1077.5,680.4" stroke="#1F5BAA" stroke-width="4" marker-end="url(#ab)"/>
-<rect x="786.0" y="888.0" width="44.0" height="56.7" fill="#ffffff"/>
-<text x="792.0" y="931.7" font-size="54" fill="#1F5BAA">b</text>
-<circle cx="643" cy="268" r="45" fill="#3B3535"/>
-<circle cx="643" cy="462" r="45" fill="#3B3535"/>
-<circle cx="643" cy="662" r="45" fill="#3B3535"/>
-<circle cx="643" cy="862" r="45" fill="#3B3535"/>
-<circle cx="643" cy="1063" r="45" fill="#3B3535"/>
-<text x="643" y="1077" font-size="38" text-anchor="middle" fill="#ffffff">1</text>
-<text x="522" y="1082" font-size="50" text-anchor="middle" fill="#1F1E1E">Bias</text>
-<circle cx="1112" cy="650" r="45" fill="#3B3535"/>
+
+
+
+<circle cx="643" cy="268" r="42.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/>
+<circle cx="643" cy="462" r="42.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/>
+<circle cx="643" cy="662" r="42.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/>
+<circle cx="643" cy="862" r="42.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/>
+
+
+
+<circle cx="1112" cy="650" r="45" fill="#3B3535"/><text x="1112" y="770" font-size="54" fill="#1F5BAA" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">+ b</text>
 <text x="1112" y="668" font-family="'Times New Roman', Times, serif" font-style="italic" font-size="68" text-anchor="middle" fill="#ffffff">σ</text>
 </g>
 <g transform="translate(-345 -45) scale(1.1)">

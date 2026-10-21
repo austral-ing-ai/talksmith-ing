@@ -878,7 +878,7 @@
           "header": "Imagen de ruido",
           "cells": [
             "0.25×(+1) + 1×(−1) + 0.5×(−1) + 0.75×(+1) = −0.5",
-            "Score < 1 → Falsa ✓Score > 1 → Real ✓"
+            "Score < 1 → Falsa ✓"
           ]
         }
       ],
@@ -903,14 +903,15 @@
           "content+cards+image": "aligned rows (cálculo, veredicto) read across → value-columns with media",
           "pros-cons": "no polarity"
         }
-      }
+      },
+      "notes": "El umbral 1 de esta slide es el que en la siguiente entra a la neurona como sesgo: restarle 1 al score (b = −1) y comparar σ con 0,5 es lo mismo que preguntar si el score supera 1."
     },
     {
       "template": "content+cards+image",
       "section": "Slanted Land",
       "title": "Discriminador Como red neuronal",
       "icons": "none",
-      "lead": "Para la cara prototipo: σ(1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) − 1) = σ(1)",
+      "lead": "La entrada no calcula: x₁…x₄ son los píxeles. El cálculo lo hace la primera capa, que acá es una sola neurona. Para la cara prototipo: σ(1×(+1) + 0×(−1) + 0×(−1) + 1×(+1) − 1) = σ(1)",
       "cards": [
         {
           "label": "Entradas (x)",
@@ -921,12 +922,12 @@
           "body": "w₁=+1, w₂=−1, w₃=−1, w₄=+1"
         },
         {
-          "label": "Bias",
-          "body": "valor fijo = 1, peso = −1"
+          "label": "Sesgo (b)",
+          "body": "b = −1, parte de la neurona de salida"
         },
         {
           "label": "Suma ponderada",
-          "body": "1(+1)+0(−1)+0(−1)+1(+1)+1(−1) = 1"
+          "body": "1(+1)+0(−1)+0(−1)+1(+1) + b = 2 − 1 = 1"
         },
         {
           "label": "Sigmoid",
@@ -936,7 +937,7 @@
       "design": "split-right",
       "media": {
         "src": "images/discriminador-red.svg",
-        "alt": "Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada con los cuatro píxeles y el bias, ninguna capa oculta y la neurona de salida σ; pesos +1, −1, −1, +1 y bias con peso −1"
+        "alt": "Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada x₁…x₄ sin cálculo, ninguna capa oculta y una sola neurona de salida σ que calcula w·x + b; pesos +1, −1, −1, +1 y sesgo b = −1"
       },
       "_choice": {
         "signals": [
@@ -956,7 +957,8 @@
           "value-columns": "label/value tables of heterogeneous attributes — nothing reads across a row",
           "content-image": "labeled set ≥2 + one shared image → content+cards+image; never dissolve labels into facts"
         }
-      }
+      },
+      "notes": "Es el mismo dibujo de la clase de MLP: la entrada no calcula, x₁…x₄ son los píxeles; la primera capa hace w·x + b y la activación. Acá esa capa es una sola neurona, así que no es un MLP: no tiene capa oculta. Ojo con la letra: en GANs z es el ruido que entra al Generador, no la pre-activación de la clase de MLP."
     },
     {
       "template": "content+cards+image",
@@ -1034,8 +1036,8 @@
         {
           "header": "Cuando la imagen de ruido pasa por la misma red",
           "cells": [
-            "**σ(-0.5) = 0.37 → \"Estoy solo un 37% seguro de que esto sea real\"**",
-            "**Como 0.37 < 0.5, clasifica correctamente la imagen como falsa ✓**"
+            "**σ(−1.5) = 0.18 → \"Estoy solo un 18% seguro de que esto sea real\"**",
+            "**Como 0.18 < 0.5, clasifica correctamente la imagen como falsa ✓**"
           ]
         }
       ],
@@ -1048,7 +1050,7 @@
           },
           {
             "src": "images/discriminador-ruido.svg",
-            "alt": "La imagen de ruido pasa por la misma red y sale σ(−0.5) = 0.37"
+            "alt": "La imagen de ruido pasa por la misma red: 0.25 − 1 − 0.5 + 0.75 + b = −1.5, y sale σ(−1.5) = 0.18, marcado en el gráfico de la sigmoide"
           }
         ]
       },
@@ -1144,7 +1146,7 @@
       "design": "split-right",
       "media": {
         "src": "images/generador-red.svg",
-        "alt": "Red del Generador: z = 0.7 y el bias, con pesos ±1, alimentan cuatro sigmoides que producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)"
+        "alt": "Red del Generador: z = 0.7 entra sin cálculo; cada una de las cuatro neuronas σ suma su peso ±1 y su sesgo ±1, y entre las cuatro producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)"
       },
       "_choice": {
         "signals": [
@@ -1166,7 +1168,7 @@
       "template": "value-columns",
       "section": "Slanted Land",
       "title": "Proceso de Entrenamiento",
-      "lead": "En los slides anteriores definimos los pesos del Discriminador y el Generador a mano (+1, −1, Bias). En la práctica, la red debe aprender esos pesos sola. Para eso necesitamos una forma de medir cuánto se equivocó — esa es la función de error.",
+      "lead": "En los slides anteriores definimos los pesos del Discriminador y el Generador a mano (pesos +1 y −1, y sesgos). En la práctica, la red debe aprender esos pesos sola. Para eso necesitamos una forma de medir cuánto se equivocó — esa es la función de error.",
       "highlights": [
         {
           "body": "Para que ambas redes aprendan, necesitamos medir exactamente cuánto se equivocaron. La función que hace eso en las GANs se llama log-loss (binary cross-entropy):",
@@ -1264,9 +1266,39 @@
       "notes": "Log-loss es la entropía cruzada binaria. Para una etiqueta y (1 = real, 0 = falsa) y una predicción p, el error vale −[y·ln(p) + (1 − y)·ln(1 − p)]. Con y = 1 sobrevive solo el primer término, −ln(p). Con y = 0 sobrevive solo el segundo, −ln(1 − p). Las dos columnas de la slide son esos dos términos.\n\nEl logaritmo castiga sin tope la confianza equivocada, porque −ln(p) crece hacia infinito cuando p se acerca a 0. Por eso pasar de una predicción de 0.9 a una de 0.1 lleva el error de 0.1 a 2.3. Su derivada también es grande justo cuando el modelo se equivoca, así que el ajuste de pesos es más fuerte donde más hace falta. Un error lineal como 1 − p no tiene ninguna de las dos propiedades.\n\nLas dos columnas son el error del Discriminador. D minimiza −ln(D(x)) con imágenes reales y −ln(1 − D(G(z))) con imágenes falsas. El Generador se entrena con el objetivo contrario, que D se equivoque: en la práctica minimiza −ln(D(G(z))), que crece cuando D detecta la falsificación. El paper original formaliza esta tensión como un juego minimax entre G y D (Goodfellow et al., 2014)."
     },
     {
-      "template": "value-columns",
+      "template": "content-image",
       "section": "Slanted Land",
       "title": "Loss Function Visualmente",
+      "facts": [
+        "🔍 Discriminador — imagen real: curva de la izquierda, −ln(x)",
+        "🎨 Generador — imagen falsa: curva de la derecha, −ln(1 − x)"
+      ],
+      "design": "split-right",
+      "media": {
+        "src": "images/loss-curvas.svg",
+        "alt": "Las dos funciones de pérdida: −ln(x) para el Discriminador con imagen real y −ln(1−x) para el Generador con imagen falsa"
+      },
+      "_choice": {
+        "signals": [
+          "untitled in source; bold first line is the on-screen heading",
+          "n_images=1",
+          "two short labels naming each curve",
+          "explanation moved to the next slide (presenter, 2026-10-20)"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "image-full": "the two labels are content, not a caption"
+        }
+      }
+    },
+    {
+      "template": "value-columns",
+      "section": "Slanted Land",
+      "title": "Loss Function: qué dice cada curva",
       "columns": [
         {
           "header": "🔍 Discriminador — imagen real",
@@ -1287,28 +1319,20 @@
           ]
         }
       ],
-      "design": "split-left",
-      "media": {
-        "src": "images/loss-curvas.svg",
-        "alt": "Las dos funciones de pérdida: −ln(x) para el Discriminador con imagen real y −ln(1−x) para el Generador con imagen falsa"
-      },
       "_choice": {
         "signals": [
           "untitled in source; bold first line is the on-screen heading",
-          "two_groups=true (Discriminador/imagen real vs Generador/imagen falsa)",
-          "polarity=false",
+          "two_groups=true",
           "rows align: objetivo, error, cuándo hay error alto, qué quiere",
-          "n_images=1 (both plots composed into one image, −ln(x) left / −ln(1−x) right)"
+          "n_images=0"
         ],
         "candidates": [
           "value-columns",
-          "content-image",
-          "content+cards+image"
+          "pros-cons"
         ],
         "picked": "value-columns",
         "rejected": {
-          "content-image": "two_groups → value-columns is tested before the image rules; facts would lose the side-by-side reading (critic reclassify); the image stays as media, split-left",
-          "content+cards+image": "the two sides read across row by row → value-columns carrying the image (anti-default check)"
+          "pros-cons": "the two sides are two cases, not for/against"
         }
       }
     },
@@ -1576,7 +1600,7 @@
       "design": "split-right",
       "media": {
         "src": "images/derivada-error.svg",
-        "alt": "Red del Discriminador con pesos w1 a w4 y bias b, y las derivadas del error respecto de cada peso y del bias"
+        "alt": "Red del Discriminador con entradas x₁…x₄ sin cálculo, pesos w1 a w4 y sesgo b en la neurona de salida, y las derivadas del error respecto de cada peso y del sesgo"
       },
       "_omitted": [
         {
@@ -1709,7 +1733,8 @@
         "rejected": {
           "concept-breakdown": "the columns are shared factors (qué hace / qué controla) read across each component → value-columns"
         }
-      }
+      },
+      "notes": "Durante cuatro años las GANs generaron imágenes cada vez mejores, pero no se les podía pedir \"una cara joven, con pelo castaño y expresión neutral\": el Generador mezclaba todos los atributos y no había forma de tocar uno sin mover los demás.\n\nLa causa está en cómo entra el ruido. En una GAN clásica el vector de ruido entra directamente en la primera capa, y todo (forma, color, textura) sale de ese mismo vector entrelazado. StyleGAN lo separa en capas independientes: la red de mapeo convierte el ruido en un vector de estilo w, ese estilo se inyecta en cada capa de síntesis mediante AdaIN, y un ruido aleatorio por capa aporta los detalles finos. Las capas de baja resolución deciden la pose y la forma; las de alta resolución, la textura y el color.\n\nEsa separación es lo que hace posible el *style mixing*: tomar la estructura de una cara (pose, forma) y el estilo de otra (color de pelo, edad) para generar una cara completamente nueva y coherente. Ninguna GAN anterior podía hacerlo."
     },
     {
       "template": "content+cards+image",
@@ -2170,7 +2195,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "9c9d1cba5e89edb37d88ec4795c30a2b2521d4683f21a265f0fe1d6712e09be0",
-    "bytes": 63737
+    "sha256": "b4caf15149588072367fbe7c79cf895d93a0f3d9312d225dba8982cb05856a11",
+    "bytes": 65608
   }
 }
