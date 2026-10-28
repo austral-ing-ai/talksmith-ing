@@ -26,7 +26,7 @@
 
 **[Índice de todas las presentaciones](https://austral-ing-ai.github.io/talksmith-ing/)** — se abren en el navegador, sin descargar nada. Las flechas avanzan, `Esc` muestra el índice de diapositivas, `F` pantalla completa y `s` las notas del orador.
 
-La materia contempla 14 clases, los miércoles. No se programa clase durante el período de exámenes extraordinarios.
+La materia contempla 13 clases, los miércoles. No se programa clase durante el período de exámenes extraordinarios ni el miércoles 11 de noviembre, que es feriado.
 
 | Clase | Fecha | Tema / actividad | Presentación |
 |---:|---|---|---|
@@ -44,7 +44,7 @@ La materia contempla 14 clases, los miércoles. No se programa clase durante el 
 | 11 | Miércoles 21 de octubre | Vision: Stable Difussion y Adversarial Networks | [Redes generativas antagónicas (GANs)](https://austral-ing-ai.github.io/talksmith-ing/talks/redes-generativas-antagonicas/output/html/) |
 | 12 | Miércoles 28 de octubre | Vision: CNN (Senales & Imagenes) | — |
 | 13 | Miércoles 4 de noviembre | Seguridad y Etica | — |
-| 14 | Miércoles 11 de noviembre | A definir | — |
+| — | Miércoles 11 de noviembre | Sin clase (feriado) | — |
 
 ## Calendario de entregas — trabajos prácticos
 

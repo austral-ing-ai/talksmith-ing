@@ -65,7 +65,7 @@ def main() -> None:
         <div class="num">—</div>
         <div class="info">
           <p class="fecha">{html.escape(fecha)}</p>
-          <p class="tema">Sin clase</p>
+          <p class="tema">{html.escape(tema)}</p>
         </div>
       </li>""")
             continue
