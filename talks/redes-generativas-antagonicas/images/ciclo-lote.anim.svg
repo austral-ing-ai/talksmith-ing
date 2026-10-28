@@ -18,22 +18,22 @@
 .ts-anim-ciclo-lote .o6{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 2.38s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .db1{animation:ts-anim-ciclo-lote-in 0.50s ease-out 2.72s both;}
 .ts-anim-ciclo-lote .t1{animation:ts-anim-ciclo-lote-show 0.70s linear 3.06s both;}
-.ts-anim-ciclo-lote .t1 .ball{offset-path:path("M292,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.06s both}
+.ts-anim-ciclo-lote .t1 .ball{offset-path:path("M292,230 H320 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.06s both}
 .ts-anim-ciclo-lote .v1{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 3.57s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .t2{animation:ts-anim-ciclo-lote-show 0.70s linear 3.31s both;}
-.ts-anim-ciclo-lote .t2 .ball{offset-path:path("M397,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.31s both}
+.ts-anim-ciclo-lote .t2 .ball{offset-path:path("M397,230 H425 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.31s both}
 .ts-anim-ciclo-lote .v2{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 3.82s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .t3{animation:ts-anim-ciclo-lote-show 0.70s linear 3.57s both;}
-.ts-anim-ciclo-lote .t3 .ball{offset-path:path("M502,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.57s both}
+.ts-anim-ciclo-lote .t3 .ball{offset-path:path("M502,230 H530 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.57s both}
 .ts-anim-ciclo-lote .v3{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 4.08s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .t4{animation:ts-anim-ciclo-lote-show 0.70s linear 3.82s both;}
-.ts-anim-ciclo-lote .t4 .ball{offset-path:path("M607,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.82s both}
+.ts-anim-ciclo-lote .t4 .ball{offset-path:path("M607,230 H635 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.82s both}
 .ts-anim-ciclo-lote .v4{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 4.33s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .t5{animation:ts-anim-ciclo-lote-show 0.70s linear 4.08s both;}
-.ts-anim-ciclo-lote .t5 .ball{offset-path:path("M712,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 4.08s both}
+.ts-anim-ciclo-lote .t5 .ball{offset-path:path("M712,230 H740 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 4.08s both}
 .ts-anim-ciclo-lote .v5{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 4.59s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .t6{animation:ts-anim-ciclo-lote-show 0.70s linear 4.33s both;}
-.ts-anim-ciclo-lote .t6 .ball{offset-path:path("M817,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 4.33s both}
+.ts-anim-ciclo-lote .t6 .ball{offset-path:path("M817,230 H845 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 4.33s both}
 .ts-anim-ciclo-lote .v6{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 4.84s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .b1{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 5.35s both;transform-box:fill-box;transform-origin:50% 100%;}
 .ts-anim-ciclo-lote .n1{animation:ts-anim-ciclo-lote-in 0.40s ease-out 5.61s both;}
@@ -68,6 +68,7 @@
 .ts-anim-ciclo-lote .act1{animation:ts-anim-ciclo-lote-in 0.40s ease-out 9.86s both;}
 .ts-anim-ciclo-lote .u1{animation:ts-anim-ciclo-lote-showlong 2.72s linear 9.27s both;}
 .ts-anim-ciclo-lote .u1 .ball{offset-path:path("M1192,346 H1591 V262 H860 V321 H828");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 2.72s linear 9.27s both}
+.ts-anim-ciclo-lote .r1{animation:ts-anim-ciclo-lote-route 3.91s linear 9.27s both;}
 .ts-anim-ciclo-lote .fl1{animation:ts-anim-ciclo-lote-flash 1.19s ease-out 11.99s both;}
 .ts-anim-ciclo-lote .frame2{animation:ts-anim-ciclo-lote-in 0.50s ease-out 13.09s both;}
 .ts-anim-ciclo-lote .real2{animation:ts-anim-ciclo-lote-in 0.60s ease-out 13.52s both;}
@@ -79,13 +80,13 @@
 .ts-anim-ciclo-lote .p3{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 15.5s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .db2{animation:ts-anim-ciclo-lote-in 0.50s ease-out 15.72s both;}
 .ts-anim-ciclo-lote .s1{animation:ts-anim-ciclo-lote-show 0.70s linear 16.06s both;}
-.ts-anim-ciclo-lote .s1 .ball{offset-path:path("M607,652 V741");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 16.06s both}
+.ts-anim-ciclo-lote .s1 .ball{offset-path:path("M607,650 H635 V741");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 16.06s both}
 .ts-anim-ciclo-lote .w1{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 16.57s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .s2{animation:ts-anim-ciclo-lote-show 0.70s linear 16.32s both;}
-.ts-anim-ciclo-lote .s2 .ball{offset-path:path("M712,652 V741");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 16.32s both}
+.ts-anim-ciclo-lote .s2 .ball{offset-path:path("M712,650 H740 V741");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 16.32s both}
 .ts-anim-ciclo-lote .w2{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 16.83s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .s3{animation:ts-anim-ciclo-lote-show 0.70s linear 16.57s both;}
-.ts-anim-ciclo-lote .s3 .ball{offset-path:path("M817,652 V741");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 16.57s both}
+.ts-anim-ciclo-lote .s3 .ball{offset-path:path("M817,650 H845 V741");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 16.57s both}
 .ts-anim-ciclo-lote .w3{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 17.09s both;transform-box:fill-box;transform-origin:center;}
 .ts-anim-ciclo-lote .c1{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 17.51s both;transform-box:fill-box;transform-origin:50% 100%;}
 .ts-anim-ciclo-lote .m1{animation:ts-anim-ciclo-lote-in 0.40s ease-out 17.76s both;}
@@ -108,6 +109,7 @@
 .ts-anim-ciclo-lote .act2{animation:ts-anim-ciclo-lote-in 0.40s ease-out 21.08s both;}
 .ts-anim-ciclo-lote .u2{animation:ts-anim-ciclo-lote-showlong 2.72s linear 20.48s both;}
 .ts-anim-ciclo-lote .u2 .ball{offset-path:path("M1192,766 H1591 V684 H860 V628 H812");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 2.72s linear 20.48s both}
+.ts-anim-ciclo-lote .r2{animation:ts-anim-ciclo-lote-route 3.91s linear 20.48s both;}
 .ts-anim-ciclo-lote .fl2{animation:ts-anim-ciclo-lote-flash 1.19s ease-out 23.2s both;}
 .ts-anim-ciclo-lote .loop{animation:ts-anim-ciclo-lote-in 0.60s ease-out 24.31s both;}
 .ts-anim-ciclo-lote .lt{animation:ts-anim-ciclo-lote-showlong 2.21s linear 24.56s both;}
@@ -120,6 +122,7 @@
 @keyframes ts-anim-ciclo-lote-show{0%{opacity:0}12%,85%{opacity:1}100%{opacity:0}}
 @keyframes ts-anim-ciclo-lote-showlong{0%{opacity:0}4%,94%{opacity:1}100%{opacity:0}}
 @keyframes ts-anim-ciclo-lote-move{from{offset-distance:0%}to{offset-distance:100%}}
+@keyframes ts-anim-ciclo-lote-route{0%,24%{opacity:0}30%,92%{opacity:1}100%{opacity:0}}
 @keyframes ts-anim-ciclo-lote-flash{0%{opacity:0}18%{opacity:1}40%{opacity:.25}62%{opacity:1}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.ts-anim-ciclo-lote *{animation:none}}
 </style>
@@ -143,14 +146,15 @@
 <rect x="44" y="96" width="1656" height="400" rx="16" fill="#ffffff" stroke="#1F5FAD" stroke-width="4"/>
 <text x="70" y="144" font-size="32" fill="#1F5FAD" text-anchor="start" font-weight="bold">Paso del Discriminador</text>
 <text x="490" y="144" font-size="26" fill="#6B6560" text-anchor="start"></text>
-<text x="70" y="216" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">imagen</text>
-<text x="70" y="278" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">objetivo</text>
-<text x="70" y="378" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">veredicto</text>
-<text x="70" y="428" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">error</text>
+<text x="70" y="216" font-size="24" fill="#6B6560" text-anchor="start">imagen</text>
+<text x="70" y="278" font-size="24" fill="#6B6560" text-anchor="start">objetivo</text>
+<text x="70" y="378" font-size="24" fill="#6B6560" text-anchor="start">veredicto</text>
+<text x="70" y="428" font-size="24" fill="#6B6560" text-anchor="start">error</text>
 </g>
 <!-- narration tokens ride under the images, bars and boxes, so a box swallows the token it receives -->
 <g class="t1" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="t2" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="t3" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="t4" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="t5" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="t6" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
 <g class="f1" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="f2" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="f3" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="f4" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="f5" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="f6" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<path class="r1" opacity="0" d="M1591,284 V262 H860 V321 H848" stroke="#1F5FAD" stroke-width="3" fill="none" marker-end="url(#a1F5FAD)"/>
 <g class="u1" opacity="0"><g class="ball"><circle r="9" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g>
 <g>
 <g class="i1">
@@ -251,7 +255,7 @@
 <g>
 <g class="avg1">
 <path d="M248,452 V460 H817 V452" stroke="#6B6560" stroke-width="3" fill="none"/>
-<text x="532.5" y="490" font-size="22" fill="#6B6560" text-anchor="middle" font-style="italic">se promedian</text>
+<text x="532.5" y="490" font-size="22" fill="#6B6560" text-anchor="middle">se promedian</text>
 </g>
 <g class="box1">
 <path d="M817,460 H1055 V412" stroke="#6B6560" stroke-width="3" fill="none" marker-end="url(#a6B6560)"/>
@@ -278,13 +282,14 @@
 <rect x="44" y="516" width="1656" height="400" rx="16" fill="#ffffff" stroke="#DA1B2E" stroke-width="4"/>
 <text x="70" y="564" font-size="32" fill="#DA1B2E" text-anchor="start" font-weight="bold">Paso del Generador</text>
 <text x="490" y="564" font-size="26" fill="#6B6560" text-anchor="start"></text>
-<text x="70" y="636" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">imagen</text>
-<text x="70" y="698" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">objetivo</text>
-<text x="70" y="798" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">veredicto</text>
-<text x="70" y="848" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">error</text>
+<text x="70" y="636" font-size="24" fill="#6B6560" text-anchor="start">imagen</text>
+<text x="70" y="698" font-size="24" fill="#6B6560" text-anchor="start">objetivo</text>
+<text x="70" y="798" font-size="24" fill="#6B6560" text-anchor="start">veredicto</text>
+<text x="70" y="848" font-size="24" fill="#6B6560" text-anchor="start">error</text>
 </g>
 <g class="s1" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="s2" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="s3" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
 <g class="h1" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="h2" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="h3" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<path class="r2" opacity="0" d="M1591,704 V684 H860 V628 H830" stroke="#DA1B2E" stroke-width="3" fill="none" marker-end="url(#aDA1B2E)"/>
 <g class="u2" opacity="0"><g class="ball"><circle r="9" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
 <g class="real2">
 <rect x="240" y="598" width="30" height="30" fill="#000000" opacity="0.25"/>
@@ -327,7 +332,7 @@
 <rect x="765" y="598" width="60" height="60" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
 </g>
 <text class="p3" x="795" y="698" font-size="30" fill="#DA1B2E" text-anchor="middle" font-weight="bold">1</text>
-<text class="real2" x="375.0" y="698" font-size="24" fill="#C9C3BE" text-anchor="middle" font-style="italic">las reales no entran</text>
+<text class="real2" x="375.0" y="698" font-size="24" fill="#C9C3BE" text-anchor="middle">las reales no entran</text>
 <g class="db2">
 <rect x="535" y="721" width="310" height="40" rx="8" fill="#F2EEEE" stroke="#1F1E1E" stroke-width="2"/>
 <text x="690.0" y="750" font-size="22" fill="#1F1E1E" text-anchor="middle" font-weight="bold">Discriminador (no cambia)</text>
@@ -345,7 +350,7 @@
 <g>
 <g class="avg2">
 <path d="M563,872 V880 H817 V872" stroke="#6B6560" stroke-width="3" fill="none"/>
-<text x="690.0" y="910" font-size="22" fill="#6B6560" text-anchor="middle" font-style="italic">se promedian</text>
+<text x="690.0" y="910" font-size="22" fill="#6B6560" text-anchor="middle">se promedian</text>
 </g>
 <g class="box2">
 <path d="M817,880 H1055 V832" stroke="#6B6560" stroke-width="3" fill="none" marker-end="url(#a6B6560)"/>
@@ -369,7 +374,7 @@
 <rect class="fl2" opacity="0" x="546" y="589" width="288" height="78" rx="10" fill="none" stroke="#DA1B2E" stroke-width="6"/>
 <g class="loop">
 <path d="M1600,916 V968 H22 V81 H224" stroke="#6B6560" stroke-width="3" fill="none" stroke-dasharray="12 9" marker-end="url(#a6B6560)"/>
-<text x="860" y="952" font-size="24" fill="#6B6560" text-anchor="middle" font-style="italic">siguiente lote: nuevas imágenes reales y nuevos ruidos z, miles de veces</text>
+<text x="860" y="952" font-size="24" fill="#6B6560" text-anchor="middle">siguiente lote: nuevas imágenes reales y nuevos ruidos z, miles de veces</text>
 </g>
 <g class="lt" opacity="0"><g class="ball"><circle r="9" fill="#6B6560" stroke="#ffffff" stroke-width="2"/></g></g>
 <rect class="fl3" opacity="0" x="226" y="46" width="616" height="48" rx="10" fill="none" stroke="#6B6560" stroke-width="5"/>
