@@ -336,7 +336,18 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 ### Content
 
-![Arquitectura de una Vanilla GAN: el Discriminador recibe muestras reales y falsas y da un veredicto, P(real) entre 0 y 1. La pérdida de G usa los veredictos sobre las generadas y actualiza G; la pérdida de D usa los veredictos sobre reales y generadas y actualiza D](images/vanilla-gan-arquitectura.svg)
+![Arquitectura de una Vanilla GAN: el Discriminador recibe muestras reales y falsas y da un veredicto, P(real) entre 0 y 1. La pérdida de G usa los veredictos sobre las generadas y actualiza G; la pérdida de D usa los veredictos sobre reales y generadas y actualiza D](images/vanilla-gan-arquitectura.anim.png)
+
+<!-- image-note:
+intent: el ciclo de una GAN: el Generador falsifica, el Discriminador juzga muestras reales y falsas, y cada pérdida vuelve a actualizar su red.
+animation:
+  1. «Ruido z» entra al «Generador (G)», que produce la «Muestra falsa».
+  2. De «Datos reales» sale la «Muestra real».
+  3. Las dos muestras llegan al «Discriminador (D)».
+  4. D da su «Veredicto · P(real) · entre 0 y 1».
+  5. Los veredictos van a «Pérdida de G» («veredictos sobre generadas») y a «Pérdida de D» («veredictos sobre reales y generadas»).
+  6. Las flechas punteadas «actualiza G» y «actualiza D» vuelven a cada red, y el diagrama queda completo.
+-->
 
 <!-- enlace de la forma: https://aws.amazon.com/es/what-is/gan/ -->
 - **[¿Qué es una GAN? - Explicación sobre las redes generativas antagónicas - AWS](https://aws.amazon.com/es/what-is/gan/)**
@@ -407,7 +418,6 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 | Universo Inclinado | Rostros "Normales" |
 |---|---|
 | Todo, desde la gravedad hasta las cejas de sus habitantes, está en un ángulo distintivo. | Solo existen los rostros inclinados; un rostro recto les resulta completamente alienígena. |
-
 
 ### Sources
 
@@ -576,6 +586,15 @@ El umbral 1 de esta slide es el que en la siguiente entra a la neurona como sesg
 
 ![Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada x₁…x₄ sin cálculo, ninguna capa oculta y una sola neurona de salida σ que calcula w·x + b; pesos +1, −1, −1, +1 y sesgo b = −1](images/discriminador-red.svg)
 
+<!-- image-note:
+intent: el Discriminador como red de una sola neurona: la imagen entra píxel a píxel y la neurona de salida hace todo el cálculo.
+animation:
+  1. «IMAGEN 2×2 píxeles»: la cara prototipo (1, 0 / 0, 1).
+  2. Cada píxel pasa a su entrada x₁…x₄ («sin cálculo»).
+  3. Los pesos +1, −1, −1, +1 llegan a la neurona σ («SALIDA, 1 neurona»).
+  4. La neurona σ se ilumina y aparecen «w·x + b» y «b = −1», y el diagrama queda completo.
+-->
+
 ### Sources
 
 - `AIG4B-Clase-8-GANs.md.md` (slide 24). Imagen redibujada como SVG (images/discriminador-red.svg).
@@ -627,7 +646,27 @@ Es el mismo dibujo de la clase de MLP: la entrada no calcula, x₁…x₄ son lo
 
 ![La cara prototipo pasa por la red del Discriminador y sale σ(1) = 0.73, marcado en el gráfico de la sigmoide](images/discriminador-cara.svg)
 
-![La imagen de ruido pasa por la misma red: 0.25 − 1 − 0.5 + 0.75 + b = −1.5, y sale σ(−1.5) = 0.18, marcado en el gráfico de la sigmoide](images/discriminador-ruido.svg)
+<!-- image-note:
+intent: la pasada hacia adelante de la cara prototipo por el Discriminador, hasta su veredicto en la curva sigmoide.
+animation:
+  1. La imagen 2×2 (1, 0 / 0, 1).
+  2. Los píxeles entran como x₁…x₄.
+  3. Los pesos +1, −1, −1, +1 llevan cada entrada a σ, que calcula «w·x + b» con «b = −1».
+  4. Sale «σ(1) = 0.73».
+  5. El punto 0.73 se marca en la curva «σ(x) = 1/(1 + e^−x)», y el diagrama queda completo.
+-->
+
+![La imagen de ruido pasa por la misma red: 0.25 − 1 − 0.5 + 0.75 + b = −1.5, y sale σ(−1.5) = 0.18, marcado en el gráfico de la sigmoide](images/discriminador-ruido.anim.png)
+
+<!-- image-note:
+intent: la misma pasada hacia adelante con la imagen de ruido, hasta su veredicto en la curva sigmoide.
+animation:
+  1. La imagen 2×2 (0.25, 1 / 0.5, 0.75).
+  2. Los píxeles entran como x₁…x₄.
+  3. Los pesos +1, −1, −1, +1 llevan cada entrada a σ, que calcula «w·x + b» con «b = −1».
+  4. Sale «σ(−1.5) = 0.18».
+  5. El punto 0.18 se marca en la curva «σ(x) = 1/(1 + e^−x)», y el diagrama queda completo.
+-->
 
 ### Sources
 
@@ -682,7 +721,16 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 - Con z = 0.7 como entrada y los pesos aprendidos, el Generador produce una imagen que reproduce el patrón diagonal de las caras reales. El Generador aprendió a engañar al Discriminador.
 - El resultado muestra el patrón diagonal característico de las caras de Slanted Land: valores altos en la diagonal principal, bajos en la secundaria. El Generador internalizó la estructura del dataset real.
 
-![Red del Generador: z = 0.7 entra sin cálculo; cada una de las cuatro neuronas σ suma su peso ±1 y su sesgo ±1, y entre las cuatro producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)](images/generador-red.svg)
+![Red del Generador: z = 0.7 entra sin cálculo; cada una de las cuatro neuronas σ suma su peso ±1 y su sesgo ±1, y entre las cuatro producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)](images/generador-red.anim.png)
+
+<!-- image-note:
+intent: la pasada hacia adelante del Generador: un solo número z se convierte en una imagen 2×2 con el patrón de las caras.
+animation:
+  1. «z = 0.7» en el deslizador de 0 a 1.
+  2. z entra «sin cálculo».
+  3. Los pesos +1, −1, −1, +1 llegan a las cuatro σ.
+  4. Las σ dan 0.85, 0.15, 0.15, 0.85: la «IMAGEN generada, 2×2», y el diagrama queda completo.
+-->
 
 ### Sources
 
@@ -849,7 +897,19 @@ Los dos paneles son el error del Discriminador. D minimiza −ln(D(x)) con imág
 
 - En cada vuelta entra un lote: m imágenes reales y m generadas. El Discriminador da un veredicto por imagen, y con esos veredictos se hacen dos pasos de backpropagation, uno por red: el del Discriminador usa los errores de las reales y de las generadas; el del Generador, solo los de las generadas.
 
-![Un lote de 3 imágenes reales y 3 generadas. Paso del Discriminador: objetivos 1 y 0, un veredicto y un error por imagen (0.11, 0.22, 0.36, 1.14, 0.51, 0.80); se promedian en 0.52 y con ese número se hace un paso de backpropagation que actualiza solo el Discriminador. Paso del Generador: solo las 3 generadas, con objetivo 1; errores 0.39, 0.92 y 0.60, promedio 0.63, un paso de backpropagation que actualiza solo el Generador. Después, el siguiente lote](images/ciclo-lote.svg)
+![Un lote de 3 imágenes reales y 3 generadas. Paso del Discriminador: objetivos 1 y 0, un veredicto y un error por imagen (0.11, 0.22, 0.36, 1.14, 0.51, 0.80); se promedian en 0.52 y con ese número se hace un paso de backpropagation que actualiza solo el Discriminador. Paso del Generador: solo las 3 generadas, con objetivo 1; errores 0.39, 0.92 y 0.60, promedio 0.63, un paso de backpropagation que actualiza solo el Generador. Después, el siguiente lote](images/ciclo-lote.anim.png)
+
+<!-- image-note:
+intent: un lote de entrenamiento: un error por imagen, un promedio por paso y un paso de backpropagation que actualiza una sola red.
+animation:
+  1. El lote: 3 «reales (del dataset)» con objetivo 1 y 3 «generadas por G con 3 ruidos z» con objetivo 0.
+  2. El «Discriminador» da un veredicto por imagen (0.9, 0.8, 0.7, 0.68, 0.4, 0.55).
+  3. Cada imagen tiene su error (0.11, 0.22, 0.36, 1.14, 0.51, 0.80).
+  4. «se promedian» → «error del lote (6 imágenes)» 0.52 → «un paso de backpropagation» → «actualiza solo el D».
+  5. «Paso del Generador»: solo las 3 generadas, con objetivo 1 («las reales no entran»); «Discriminador (no cambia)»; errores 0.39, 0.92, 0.60.
+  6. «se promedian» → «error del lote (3 imágenes)» 0.63 → «un paso de backpropagation» → «actualiza solo el G».
+  7. La flecha punteada «siguiente lote…» vuelve al comienzo, y el diagrama queda completo.
+-->
 
 ### Sources
 
@@ -875,7 +935,17 @@ Las cuentas de las slides anteriores eran con una sola imagen para que se vieran
 
 - Un error considerable. El Discriminador va a ajustar sus pesos para clasificar mejor estas imágenes en la próxima iteración — volviéndose más exigente y difícil de engañar.
 
-![Generador y Discriminador: la imagen 2x2 generada recibe 0.68; quería 0, Error = −ln(1−0.68)](images/error-discriminador.svg)
+![Generador y Discriminador: la imagen 2x2 generada recibe 0.68; quería 0, Error = −ln(1−0.68)](images/error-discriminador.anim.png)
+
+<!-- image-note:
+intent: Generador y Discriminador encadenados: la imagen falsa recibe 0.68 cuando el objetivo era 0, y de ahí sale el error.
+animation:
+  1. «Generador»: z entra «sin cálculo» y sus pesos llegan a las cuatro σ.
+  2. Sale la «IMAGEN generada» 0.25, 1 / 0.5, 0.75.
+  3. Al «Discriminador»: cada píxel entra como x₁…x₄ y va a su σ.
+  4. Sale «0.68».
+  5. «Queremos 0» y «Error = -ln(1-0.68)», y el diagrama queda completo.
+-->
 
 ### Sources
 
@@ -987,7 +1057,8 @@ Los cuatro papers: Vanilla GAN, Goodfellow et al., 2014; Conditional GAN, Mirza 
 
 ### Content
 
-- Las GANs ya generaban imágenes, pero sin control: forma, color y textura salían mezcladas. StyleGAN las separa en capas.
+- El problema que nadie había resuelto en cuatro años: las GANs generaban imágenes, pero no podías pedirle "genera una cara joven, con pelo castaño y expresión neutral". El Generador mezclaba todos los atributos juntos sin control.
+- ¿Qué cambió exactamente en StyleGAN? En una GAN clásica, el ruido entra directamente y todo (forma, color, textura) sale del mismo vector mezclado. StyleGAN lo separa en capas independientes:
 
 | Componente | Qué hace | Qué controla |
 |---|---|---|
@@ -995,7 +1066,7 @@ Los cuatro papers: Vanilla GAN, Goodfellow et al., 2014; Conditional GAN, Mirza 
 | Síntesis por capas (AdaIN) | Inyecta el estilo en distintas capas de la red | Cada capa controla una escala diferente de detalle |
 | Ruido estocástico por capa | Añade variación aleatoria capa a capa | Controla variaciones finas: poros, pelo suelto, arrugas |
 
-- Style mixing: la estructura de una cara y el estilo de otra, combinados en una cara nueva.
+- Style mixing: StyleGAN permite tomar la estructura de una cara (pose, forma) y el estilo de otra (color de pelo, edad) para generar una cara completamente nueva con coherencia total. Esto no era posible en ninguna GAN anterior.
 
 ### Sources
 
@@ -1019,7 +1090,17 @@ Esa separación es lo que hace posible el *style mixing*: tomar la estructura de
 
 Dos redes en lugar de una: la red de mapeo convierte el ruido z en un estilo w, y la red de síntesis arma la imagen de 4×4 a 1024×1024 inyectando ese estilo en cada bloque.
 
-![StyleGAN: el ruido z pasa por la red de mapeo (8 capas) y se convierte en el estilo w; la red de síntesis arma la imagen en bloques de 4×4 a 1024×1024, el estilo w entra en cada bloque por AdaIN y cada bloque recibe su propio ruido; las capas bajas deciden la pose y la forma, las altas la textura y el color](images/stylegan-simple.svg)
+![StyleGAN: el ruido z pasa por la red de mapeo (8 capas) y se convierte en el estilo w; la red de síntesis arma la imagen en bloques de 4×4 a 1024×1024, el estilo w entra en cada bloque por AdaIN y cada bloque recibe su propio ruido; las capas bajas deciden la pose y la forma, las altas la textura y el color](images/stylegan-simple.anim.png)
+
+<!-- image-note:
+intent: el recorrido de StyleGAN: el ruido se vuelve estilo y el estilo entra en cada bloque de la red de síntesis, de 4×4 a 1024×1024.
+animation:
+  1. «ruido z» (512 números) entra a «1 · RED DE MAPEO» (8 capas).
+  2. Sale el «estilo w» (512 números).
+  3. «2 · RED DE SÍNTESIS» arma bloques 4×4, 8×8, 16×16, …, 1024×1024.
+  4. «el estilo w entra en cada bloque (AdaIN)» y cada bloque recibe su «ruido por bloque».
+  5. «capas bajas: pose y forma» / «capas altas: textura y color» → «la cara final», y el diagrama queda completo.
+-->
 
 ### Sources
 
@@ -1139,7 +1220,6 @@ Las GANs pueden transformar una imagen en otra y conservar la estructura subyace
 ![Traducciones de CycleGAN: Monet a foto y foto a Monet, cebra a caballo y caballo a cebra, verano a invierno y vuelta, y una foto pintada al estilo de Monet, Van Gogh, Cézanne y Ukiyo-e](images/translation-cyclegan.png)
 
 - De caballo a cebra y de cebra a caballo, de foto a pintura de Monet, de verano a invierno, a partir de dos colecciones de imágenes sueltas.
-
 
 ### Sources
 
@@ -1373,7 +1453,6 @@ Aprendizaje semi-supervisado significa entrenar con pocas etiquetas y muchos dat
 
 En el paper, el Discriminador funciona también como clasificador: además de las clases del dataset, aprende una clase extra para las imágenes que produce el Generador. Así, las imágenes generadas entran al entrenamiento del clasificador. Este mecanismo está en el cuerpo del paper (sección de aprendizaje semi-supervisado) y no en la captura del corpus, que solo tiene el abstract.
 
-
 #### 4.4 StyleGAN: arquitectura (slide 41 del pptx) — versión anterior
 
 Motivo: no se podía leer (2026-10-21). La imagen images/stylegan-arquitectura.svg, redibujo fiel de la figura del paper, se borró del deck.
@@ -1393,7 +1472,6 @@ Motivo: no se podía leer (2026-10-21). La imagen images/stylegan-arquitectura.s
 
 - La clave: el estilo se inyecta en cada capa mediante AdaIN (Adaptive Instance Normalization), no solo al inicio. Esto da control granular sobre cada aspecto visual.
 
-
 #### 3.19 El ciclo completo (slide 35 del pptx) — versión de un solo veredicto
 
 Motivo: el presentador la encontró muy simplificada (2026-10-21); reemplazada por el diagrama de lotes. La imagen images/generador-y-discriminador.svg se borró.
@@ -1407,7 +1485,6 @@ Motivo: el presentador la encontró muy simplificada (2026-10-21); reemplazada p
 | Recibió 0.68 cuando quería dar 0 → se equivocó. Debe ajustar sus pesos para detectar mejor. | Recibió 0.68 cuando quería que diera 1 → casi lo engañó, pero no del todo. Debe ajustar para engañar más. |
 
 ![Generador y Discriminador encadenados: el Generador produce la imagen (0.25, 1 / 0.5, 0.75) y el Discriminador le asigna 0.68](images/generador-y-discriminador.svg)
-
 
 #### 3.17 Backpropagation: del error al ajuste de pesos (slide 32 del pptx)
 
@@ -1436,7 +1513,6 @@ Motivo: el presentador la sacó (2026-10-21). La imagen images/backprop-red.svg 
 
 ### Speaker notes
 
-
 #### 3.14 Binary cross-entropy: los dos casos (slide 30 del pptx) — tabla reemplazada por diagrama
 
 Motivo: el presentador pidió mostrarlo con un diagrama simple (2026-10-21); los números están en images/bce-dos-casos.svg.
@@ -1446,7 +1522,6 @@ Motivo: el presentador pidió mostrarlo con un diagrama simple (2026-10-21); los
 | Error | −ln(D(x)) | −ln(1 − D(G(z))) |
 | Acierta | D = 0.9 → −ln(0.9) ≈ 0.1 | D = 0.1 → −ln(1 − 0.1) = −ln(0.9) ≈ 0.1 |
 | Falla | D = 0.1 → −ln(0.1) ≈ 2.3 | D = 0.9 → −ln(1 − 0.9) = −ln(0.1) ≈ 2.3 |
-
 
 #### 3.13 Proceso de Entrenamiento (slide 29 del pptx) — versión anterior
 
@@ -1458,7 +1533,6 @@ Motivo: los dos párrafos de arriba repetían la misma idea y la tabla repetía 
 | Cuando queremos que la predicción sea 1 | Cuando queremos que la predicción sea 0 |
 |---|---|
 | Error = −ln(predicción)<br>Se usa cuando la imagen es real y el Discriminador debe acercarse a 1. | Error = −ln(1 − predicción)<br>Se usa cuando la imagen es falsa y el Discriminador debe acercarse a 0. |
-
 
 ### Importación (2026-10-17): slides del PPTX que el render regenera — portada (slide 1) y agenda repetida (slides 2, 9, 17, 38, 48); más el placeholder vacío de Conclusions
 
@@ -1481,7 +1555,7 @@ Motivo: los dos párrafos de arriba repetían la misma idea y la tabla repetía 
 - Autor: Paulo Veiga/Marcos Sanchez Sorondo
 - Última Modificación: Abril, 2026
 
-![](research/corpus/AIG4B-Clase-8-GANs.md/images/slide-01-1.png)
+![](images/slide-01-1.png)
 
 ### Sources
 
