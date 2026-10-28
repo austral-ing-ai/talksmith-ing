@@ -553,7 +553,24 @@ Fusión de "UNET: nacida en biomedicina", "La arquitectura en U" y "La clave: sk
 
 ---
 
-## 5. Por qué funciona tan bien en medicina
+## 5. Cómo se entrena un modelo de segmentación
+
+### Content
+
+![Un paso de entrenamiento de una U-Net de juguete: forward, cross-entropy por píxel, backward por decoder, skips y encoder, y épocas en las que la máscara pasa de mancha a silueta](images/segmentacion-entrenamiento.gif)
+
+### Sources
+
+- `unet-ronneberger-2015.web.md`
+- `fcn-long-2015.web.md`
+
+### Speaker notes
+
+Una U-Net de juguete real en numpy (14.265 pesos, gradiente verificado contra diferencias finitas) sobre el mismo gato a 64×64 con su máscara anotada a mano. Forward: en la época 5 la probabilidad p todavía es una mancha tenue. Pérdida: cross-entropy en cada píxel, ℓ = −[y·log p + (1−y)·log(1−p)]; en un píxel de borde con y = 1 y p = 0,22 da 1,52, en uno de fondo con y = 0 y p = 0,13 da 0,14, y L es el promedio de los 4.096 píxeles (0,264). El mapa de pérdida por píxel muestra dónde se equivoca: en los bordes y en las partes finas. Backward: el gradiente vuelve por el decoder, los skips y el encoder. Actualización con η = 0,05. En las épocas siguientes la máscara pasa de mancha a silueta, L baja de 0,67 a 0,04 y el IoU sube de 0,16 a 0,93; la pérdida que queda se concentra en los bordes. FCN se entrena igual: misma pérdida por píxel, otra arquitectura. La U-Net original se entrenó con apenas 30 imágenes anotadas.
+
+---
+
+## 6. Por qué funciona tan bien en medicina
 
 ### Content
 
