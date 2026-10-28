@@ -2275,6 +2275,31 @@
       }
     },
     {
+      "template": "image-full",
+      "section": "Stable Diffusion por dentro",
+      "title": "Cómo se entrena Stable Diffusion",
+      "image": {
+        "src": "images/sd-entrenamiento.gif",
+        "alt": "Un paso de entrenamiento de Stable Diffusion: CLIP y el VAE congelados, ruido sorteado en un timestep, la U-Net predice el ruido y solo ella se actualiza"
+      },
+      "notes": "Un paso de entrenamiento con un modelo de juguete en numpy (4 pares, entrenado de verdad). El par (imagen, texto) pasa por CLIP y por el VAE encoder, que están congelados: no se entrenan. Se sortean un timestep t (acá t = 517) y un ruido ε, y se arma z_t = √ᾱ_t·z0 + √(1−ᾱ_t)·ε con el schedule real de SD (0,51·z0 + 0,86·ε). La U-Net, la única que se entrena, recibe (z_t, t, embedding) y devuelve ε̂. La pérdida es L = ‖ε − ε̂‖². El gradiente vuelve solo a la U-Net y se corta en CLIP y en el VAE. Después vienen pasos con t chico (casi limpio) y t grande (casi ruido), y un paso con el texto vacío: así aprende también la predicción sin condición, que es lo que usa la classifier-free guidance en inferencia. Al final, el mismo par con el mismo t y el mismo ε da L de 0,81 a 0,014. Escala real: SD 1.x se entrenó sobre pares de LAION y su U-Net tiene ~860 M parámetros.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own training animation)",
+          "image_only=true",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "no body text on the slide; the animation needs full width to stay legible"
+        }
+      }
+    },
+    {
       "template": "concept-breakdown",
       "section": "Stable Diffusion por dentro",
       "title": "Los hiperparámetros que importan",
@@ -2587,7 +2612,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "b9912c0c42f4cf14771f0c909443a0b35da5b3d75bbc98508ddabbcdf87a4d83",
-    "bytes": 70899
+    "sha256": "54ac6c16fda9c9f594be36d6384aa77fd4d15bbc58bf04596f737746af47590d",
+    "bytes": 72214
   }
 }

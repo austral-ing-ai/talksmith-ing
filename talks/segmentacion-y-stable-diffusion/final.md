@@ -1128,7 +1128,25 @@ Todo lo que vimos (U-Net, embeddings de texto, condición) confluye en este pipe
 
 ---
 
-## 9. Los hiperparámetros que importan
+## 9. Cómo se entrena Stable Diffusion
+
+### Content
+
+![Un paso de entrenamiento de Stable Diffusion: CLIP y el VAE congelados, ruido sorteado en un timestep, la U-Net predice el ruido y solo ella se actualiza](images/sd-entrenamiento.gif)
+
+### Sources
+
+- `latent-diffusion-rombach-2022.web.md`
+- `laion-5b-schuhmann-2022.web.md`
+- `classifier-free-guidance-ho-2022.web.md`
+
+### Speaker notes
+
+Un paso de entrenamiento con un modelo de juguete en numpy (4 pares, entrenado de verdad). El par (imagen, texto) pasa por CLIP y por el VAE encoder, que están congelados: no se entrenan. Se sortean un timestep t (acá t = 517) y un ruido ε, y se arma z_t = √ᾱ_t·z0 + √(1−ᾱ_t)·ε con el schedule real de SD (0,51·z0 + 0,86·ε). La U-Net, la única que se entrena, recibe (z_t, t, embedding) y devuelve ε̂. La pérdida es L = ‖ε − ε̂‖². El gradiente vuelve solo a la U-Net y se corta en CLIP y en el VAE. Después vienen pasos con t chico (casi limpio) y t grande (casi ruido), y un paso con el texto vacío: así aprende también la predicción sin condición, que es lo que usa la classifier-free guidance en inferencia. Al final, el mismo par con el mismo t y el mismo ε da L de 0,81 a 0,014. Escala real: SD 1.x se entrenó sobre pares de LAION y su U-Net tiene ~860 M parámetros.
+
+---
+
+## 10. Los hiperparámetros que importan
 
 ### Content
 
@@ -1147,7 +1165,7 @@ Todo lo que vimos (U-Net, embeddings de texto, condición) confluye en este pipe
 
 ---
 
-## 10. Limitaciones de Stable Diffusion
+## 11. Limitaciones de Stable Diffusion
 
 ### Content
 
