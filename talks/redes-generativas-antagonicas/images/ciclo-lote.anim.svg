@@ -1,0 +1,376 @@
+<svg class="ts-anim-ciclo-lote" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 990" width="1720" height="990" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
+<title>Un lote de entrenamiento: un error por imagen, un promedio, un paso de backpropagation por red</title>
+<desc>Paso del Discriminador: un lote de 3 imágenes reales (objetivo 1) y 3 generadas (objetivo 0); el Discriminador da un veredicto por imagen, cada imagen tiene su error (0.11, 0.22, 0.36, 1.14, 0.51, 0.80), el promedio del lote es 0.52 y con ese número se hace backpropagation, que actualiza solo el Discriminador. Paso del Generador: solo las 3 generadas, ahora con objetivo 1; errores 0.39, 0.92, 0.60; promedio 0.63; backpropagation; actualiza solo el Generador. Después, el siguiente lote.</desc>
+<style>/* talksmith-animation */
+.ts-anim-ciclo-lote .frame1{animation:ts-anim-ciclo-lote-in 0.50s ease-out 0.17s both;}
+.ts-anim-ciclo-lote .head{animation:ts-anim-ciclo-lote-in 0.50s ease-out 0.42s both;}
+.ts-anim-ciclo-lote .i1{animation:ts-anim-ciclo-lote-in 0.40s ease-out 0.85s both;}
+.ts-anim-ciclo-lote .o1{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 1.87s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .i2{animation:ts-anim-ciclo-lote-in 0.40s ease-out 0.98s both;}
+.ts-anim-ciclo-lote .o2{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 1.97s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .i3{animation:ts-anim-ciclo-lote-in 0.40s ease-out 1.1s both;}
+.ts-anim-ciclo-lote .o3{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 2.07s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .i4{animation:ts-anim-ciclo-lote-in 0.40s ease-out 1.23s both;}
+.ts-anim-ciclo-lote .o4{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 2.18s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .i5{animation:ts-anim-ciclo-lote-in 0.40s ease-out 1.36s both;}
+.ts-anim-ciclo-lote .o5{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 2.28s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .i6{animation:ts-anim-ciclo-lote-in 0.40s ease-out 1.49s both;}
+.ts-anim-ciclo-lote .o6{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 2.38s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .db1{animation:ts-anim-ciclo-lote-in 0.50s ease-out 2.72s both;}
+.ts-anim-ciclo-lote .t1{animation:ts-anim-ciclo-lote-show 0.70s linear 3.06s both;}
+.ts-anim-ciclo-lote .t1 .ball{offset-path:path("M292,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.06s both}
+.ts-anim-ciclo-lote .v1{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 3.57s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .t2{animation:ts-anim-ciclo-lote-show 0.70s linear 3.31s both;}
+.ts-anim-ciclo-lote .t2 .ball{offset-path:path("M397,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.31s both}
+.ts-anim-ciclo-lote .v2{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 3.82s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .t3{animation:ts-anim-ciclo-lote-show 0.70s linear 3.57s both;}
+.ts-anim-ciclo-lote .t3 .ball{offset-path:path("M502,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.57s both}
+.ts-anim-ciclo-lote .v3{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 4.08s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .t4{animation:ts-anim-ciclo-lote-show 0.70s linear 3.82s both;}
+.ts-anim-ciclo-lote .t4 .ball{offset-path:path("M607,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 3.82s both}
+.ts-anim-ciclo-lote .v4{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 4.33s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .t5{animation:ts-anim-ciclo-lote-show 0.70s linear 4.08s both;}
+.ts-anim-ciclo-lote .t5 .ball{offset-path:path("M712,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 4.08s both}
+.ts-anim-ciclo-lote .v5{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 4.59s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .t6{animation:ts-anim-ciclo-lote-show 0.70s linear 4.33s both;}
+.ts-anim-ciclo-lote .t6 .ball{offset-path:path("M817,232 V321");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 4.33s both}
+.ts-anim-ciclo-lote .v6{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 4.84s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .b1{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 5.35s both;transform-box:fill-box;transform-origin:50% 100%;}
+.ts-anim-ciclo-lote .n1{animation:ts-anim-ciclo-lote-in 0.40s ease-out 5.61s both;}
+.ts-anim-ciclo-lote .b2{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 5.54s both;transform-box:fill-box;transform-origin:50% 100%;}
+.ts-anim-ciclo-lote .n2{animation:ts-anim-ciclo-lote-in 0.40s ease-out 5.8s both;}
+.ts-anim-ciclo-lote .b3{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 5.73s both;transform-box:fill-box;transform-origin:50% 100%;}
+.ts-anim-ciclo-lote .n3{animation:ts-anim-ciclo-lote-in 0.40s ease-out 5.98s both;}
+.ts-anim-ciclo-lote .b4{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 5.92s both;transform-box:fill-box;transform-origin:50% 100%;}
+.ts-anim-ciclo-lote .n4{animation:ts-anim-ciclo-lote-in 0.40s ease-out 6.17s both;}
+.ts-anim-ciclo-lote .b5{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 6.1s both;transform-box:fill-box;transform-origin:50% 100%;}
+.ts-anim-ciclo-lote .n5{animation:ts-anim-ciclo-lote-in 0.40s ease-out 6.36s both;}
+.ts-anim-ciclo-lote .b6{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 6.29s both;transform-box:fill-box;transform-origin:50% 100%;}
+.ts-anim-ciclo-lote .n6{animation:ts-anim-ciclo-lote-in 0.40s ease-out 6.54s both;}
+.ts-anim-ciclo-lote .avg1{animation:ts-anim-ciclo-lote-in 0.50s ease-out 6.97s both;}
+.ts-anim-ciclo-lote .box1{animation:ts-anim-ciclo-lote-in 0.50s ease-out 7.22s both;}
+.ts-anim-ciclo-lote .f1{animation:ts-anim-ciclo-lote-showlong 1.27s linear 7.48s both;}
+.ts-anim-ciclo-lote .f1 .ball{offset-path:path("M270,440 V460 H1055 V398");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 1.27s ease-in-out 7.48s both}
+.ts-anim-ciclo-lote .f2{animation:ts-anim-ciclo-lote-showlong 1.27s linear 7.53s both;}
+.ts-anim-ciclo-lote .f2 .ball{offset-path:path("M375,440 V460 H1055 V398");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 1.27s ease-in-out 7.53s both}
+.ts-anim-ciclo-lote .f3{animation:ts-anim-ciclo-lote-showlong 1.27s linear 7.58s both;}
+.ts-anim-ciclo-lote .f3 .ball{offset-path:path("M480,440 V460 H1055 V398");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 1.27s ease-in-out 7.58s both}
+.ts-anim-ciclo-lote .f4{animation:ts-anim-ciclo-lote-showlong 1.27s linear 7.63s both;}
+.ts-anim-ciclo-lote .f4 .ball{offset-path:path("M585,440 V460 H1055 V398");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 1.27s ease-in-out 7.63s both}
+.ts-anim-ciclo-lote .f5{animation:ts-anim-ciclo-lote-showlong 1.27s linear 7.68s both;}
+.ts-anim-ciclo-lote .f5 .ball{offset-path:path("M690,440 V460 H1055 V398");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 1.27s ease-in-out 7.68s both}
+.ts-anim-ciclo-lote .f6{animation:ts-anim-ciclo-lote-showlong 1.27s linear 7.74s both;}
+.ts-anim-ciclo-lote .f6 .ball{offset-path:path("M795,440 V460 H1055 V398");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 1.27s ease-in-out 7.74s both}
+.ts-anim-ciclo-lote .val1{animation:ts-anim-ciclo-lote-pop 0.60s ease-out 8.76s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .ab1{animation:ts-anim-ciclo-lote-in 0.30s ease-out 9.27s both;}
+.ts-anim-ciclo-lote .bp1{animation:ts-anim-ciclo-lote-in 0.40s ease-out 9.35s both;}
+.ts-anim-ciclo-lote .ac1{animation:ts-anim-ciclo-lote-in 0.30s ease-out 9.78s both;}
+.ts-anim-ciclo-lote .act1{animation:ts-anim-ciclo-lote-in 0.40s ease-out 9.86s both;}
+.ts-anim-ciclo-lote .u1{animation:ts-anim-ciclo-lote-showlong 2.72s linear 9.27s both;}
+.ts-anim-ciclo-lote .u1 .ball{offset-path:path("M1192,346 H1591 V262 H860 V321 H828");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 2.72s linear 9.27s both}
+.ts-anim-ciclo-lote .fl1{animation:ts-anim-ciclo-lote-flash 1.19s ease-out 11.99s both;}
+.ts-anim-ciclo-lote .frame2{animation:ts-anim-ciclo-lote-in 0.50s ease-out 13.09s both;}
+.ts-anim-ciclo-lote .real2{animation:ts-anim-ciclo-lote-in 0.60s ease-out 13.52s both;}
+.ts-anim-ciclo-lote .g1{animation:ts-anim-ciclo-lote-drop 0.94s ease-in-out 13.86s both;}
+.ts-anim-ciclo-lote .p1{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 15.3s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .g2{animation:ts-anim-ciclo-lote-drop 0.94s ease-in-out 14.03s both;}
+.ts-anim-ciclo-lote .p2{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 15.4s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .g3{animation:ts-anim-ciclo-lote-drop 0.94s ease-in-out 14.19s both;}
+.ts-anim-ciclo-lote .p3{animation:ts-anim-ciclo-lote-pop 0.50s ease-out 15.5s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .db2{animation:ts-anim-ciclo-lote-in 0.50s ease-out 15.72s both;}
+.ts-anim-ciclo-lote .s1{animation:ts-anim-ciclo-lote-show 0.70s linear 16.06s both;}
+.ts-anim-ciclo-lote .s1 .ball{offset-path:path("M607,652 V741");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 16.06s both}
+.ts-anim-ciclo-lote .w1{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 16.57s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .s2{animation:ts-anim-ciclo-lote-show 0.70s linear 16.32s both;}
+.ts-anim-ciclo-lote .s2 .ball{offset-path:path("M712,652 V741");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 16.32s both}
+.ts-anim-ciclo-lote .w2{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 16.83s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .s3{animation:ts-anim-ciclo-lote-show 0.70s linear 16.57s both;}
+.ts-anim-ciclo-lote .s3 .ball{offset-path:path("M817,652 V741");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move .70s ease-in 16.57s both}
+.ts-anim-ciclo-lote .w3{animation:ts-anim-ciclo-lote-pop 0.45s ease-out 17.09s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .c1{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 17.51s both;transform-box:fill-box;transform-origin:50% 100%;}
+.ts-anim-ciclo-lote .m1{animation:ts-anim-ciclo-lote-in 0.40s ease-out 17.76s both;}
+.ts-anim-ciclo-lote .c2{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 17.7s both;transform-box:fill-box;transform-origin:50% 100%;}
+.ts-anim-ciclo-lote .m2{animation:ts-anim-ciclo-lote-in 0.40s ease-out 17.95s both;}
+.ts-anim-ciclo-lote .c3{animation:ts-anim-ciclo-lote-grow 0.60s ease-out 17.88s both;transform-box:fill-box;transform-origin:50% 100%;}
+.ts-anim-ciclo-lote .m3{animation:ts-anim-ciclo-lote-in 0.40s ease-out 18.14s both;}
+.ts-anim-ciclo-lote .avg2{animation:ts-anim-ciclo-lote-in 0.50s ease-out 18.27s both;}
+.ts-anim-ciclo-lote .box2{animation:ts-anim-ciclo-lote-in 0.50s ease-out 18.53s both;}
+.ts-anim-ciclo-lote .h1{animation:ts-anim-ciclo-lote-showlong 1.19s linear 18.79s both;}
+.ts-anim-ciclo-lote .h1 .ball{offset-path:path("M585,860 V880 H1055 V818");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 1.19s ease-in-out 18.79s both}
+.ts-anim-ciclo-lote .h2{animation:ts-anim-ciclo-lote-showlong 1.19s linear 18.84s both;}
+.ts-anim-ciclo-lote .h2 .ball{offset-path:path("M690,860 V880 H1055 V818");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 1.19s ease-in-out 18.84s both}
+.ts-anim-ciclo-lote .h3{animation:ts-anim-ciclo-lote-showlong 1.19s linear 18.89s both;}
+.ts-anim-ciclo-lote .h3 .ball{offset-path:path("M795,860 V880 H1055 V818");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 1.19s ease-in-out 18.89s both}
+.ts-anim-ciclo-lote .val2{animation:ts-anim-ciclo-lote-pop 0.60s ease-out 19.97s both;transform-box:fill-box;transform-origin:center;}
+.ts-anim-ciclo-lote .ab2{animation:ts-anim-ciclo-lote-in 0.30s ease-out 20.48s both;}
+.ts-anim-ciclo-lote .bp2{animation:ts-anim-ciclo-lote-in 0.40s ease-out 20.57s both;}
+.ts-anim-ciclo-lote .ac2{animation:ts-anim-ciclo-lote-in 0.30s ease-out 20.99s both;}
+.ts-anim-ciclo-lote .act2{animation:ts-anim-ciclo-lote-in 0.40s ease-out 21.08s both;}
+.ts-anim-ciclo-lote .u2{animation:ts-anim-ciclo-lote-showlong 2.72s linear 20.48s both;}
+.ts-anim-ciclo-lote .u2 .ball{offset-path:path("M1192,766 H1591 V684 H860 V628 H812");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 2.72s linear 20.48s both}
+.ts-anim-ciclo-lote .fl2{animation:ts-anim-ciclo-lote-flash 1.19s ease-out 23.2s both;}
+.ts-anim-ciclo-lote .loop{animation:ts-anim-ciclo-lote-in 0.60s ease-out 24.31s both;}
+.ts-anim-ciclo-lote .lt{animation:ts-anim-ciclo-lote-showlong 2.21s linear 24.56s both;}
+.ts-anim-ciclo-lote .lt .ball{offset-path:path("M1600,916 V968 H22 V81 H224");offset-rotate:0deg;animation:ts-anim-ciclo-lote-move 2.21s ease-in-out 24.56s both}
+.ts-anim-ciclo-lote .fl3{animation:ts-anim-ciclo-lote-flash 1.19s ease-out 26.77s both;}
+@keyframes ts-anim-ciclo-lote-in{from{opacity:0}}
+@keyframes ts-anim-ciclo-lote-pop{0%{opacity:0;transform:scale(.4)}60%{opacity:1;transform:scale(1.15)}100%{transform:none}}
+@keyframes ts-anim-ciclo-lote-grow{from{transform:scaleY(0)}}
+@keyframes ts-anim-ciclo-lote-drop{0%{opacity:0;transform:translateY(-420px)}20%{opacity:1;transform:translateY(-420px)}100%{transform:none}}
+@keyframes ts-anim-ciclo-lote-show{0%{opacity:0}12%,85%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-ciclo-lote-showlong{0%{opacity:0}4%,94%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-ciclo-lote-move{from{offset-distance:0%}to{offset-distance:100%}}
+@keyframes ts-anim-ciclo-lote-flash{0%{opacity:0}18%{opacity:1}40%{opacity:.25}62%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-ciclo-lote *{animation:none}}
+</style>
+<defs>
+<marker id="a1F1E1E" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="16" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker>
+<marker id="aDA1B2E" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="16" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+<marker id="a1F5FAD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="16" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker>
+<marker id="a6B6560" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="16" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6B6560"/></marker>
+</defs>
+<rect width="1720" height="990" fill="#ffffff"/>
+<g class="head">
+<text x="532.5" y="30" font-size="24" fill="#6B6560" text-anchor="middle" font-weight="bold">UN LOTE (batch) DE ENTRENAMIENTO: 3 reales + 3 generadas</text>
+<g>
+<text x="375" y="64" font-size="22" fill="#1F5FAD" text-anchor="middle" font-weight="bold">reales (del dataset)</text>
+<text x="690" y="64" font-size="22" fill="#DA1B2E" text-anchor="middle" font-weight="bold">generadas por G con 3 ruidos z</text>
+<path d="M230,86 V76 H520 V86" stroke="#1F5FAD" stroke-width="3" fill="none"/>
+<path d="M545,86 V76 H835 V86" stroke="#DA1B2E" stroke-width="3" fill="none"/>
+</g>
+</g>
+<g class="frame1">
+<rect x="44" y="96" width="1656" height="400" rx="16" fill="#ffffff" stroke="#1F5FAD" stroke-width="4"/>
+<text x="70" y="144" font-size="32" fill="#1F5FAD" text-anchor="start" font-weight="bold">Paso del Discriminador</text>
+<text x="490" y="144" font-size="26" fill="#6B6560" text-anchor="start"></text>
+<text x="70" y="216" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">imagen</text>
+<text x="70" y="278" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">objetivo</text>
+<text x="70" y="378" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">veredicto</text>
+<text x="70" y="428" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">error</text>
+</g>
+<!-- narration tokens ride under the images, bars and boxes, so a box swallows the token it receives -->
+<g class="t1" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="t2" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="t3" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="t4" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="t5" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="t6" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="f1" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="f2" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="f3" opacity="0"><g class="ball"><circle r="8" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g><g class="f4" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="f5" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="f6" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="u1" opacity="0"><g class="ball"><circle r="9" fill="#1F5FAD" stroke="#ffffff" stroke-width="2"/></g></g>
+<g>
+<g class="i1">
+<rect x="240" y="178" width="30" height="30" fill="#000000"/>
+<rect x="270" y="178" width="30" height="30" fill="#ffffff"/>
+<rect x="240" y="208" width="30" height="30" fill="#ffffff"/>
+<rect x="270" y="208" width="30" height="30" fill="#000000"/>
+<rect x="240" y="178" width="60" height="60" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
+</g>
+<text class="o1" x="270" y="278" font-size="30" fill="#1F5FAD" text-anchor="middle" font-weight="bold">1</text>
+<g class="i2">
+<rect x="345" y="178" width="30" height="30" fill="#191919"/>
+<rect x="375" y="178" width="30" height="30" fill="#e5e5e5"/>
+<rect x="345" y="208" width="30" height="30" fill="#ffffff"/>
+<rect x="375" y="208" width="30" height="30" fill="#000000"/>
+<rect x="345" y="178" width="60" height="60" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
+</g>
+<text class="o2" x="375" y="278" font-size="30" fill="#1F5FAD" text-anchor="middle" font-weight="bold">1</text>
+<g class="i3">
+<rect x="450" y="178" width="30" height="30" fill="#000000"/>
+<rect x="480" y="178" width="30" height="30" fill="#ffffff"/>
+<rect x="450" y="208" width="30" height="30" fill="#e5e5e5"/>
+<rect x="480" y="208" width="30" height="30" fill="#191919"/>
+<rect x="450" y="178" width="60" height="60" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
+</g>
+<text class="o3" x="480" y="278" font-size="30" fill="#1F5FAD" text-anchor="middle" font-weight="bold">1</text>
+<g class="i4">
+<rect x="555" y="178" width="30" height="30" fill="#bfbfbf"/>
+<rect x="585" y="178" width="30" height="30" fill="#000000"/>
+<rect x="555" y="208" width="30" height="30" fill="#7f7f7f"/>
+<rect x="585" y="208" width="30" height="30" fill="#3f3f3f"/>
+<rect x="555" y="178" width="60" height="60" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
+</g>
+<text class="o4" x="585" y="278" font-size="30" fill="#DA1B2E" text-anchor="middle" font-weight="bold">0</text>
+<g class="i5">
+<rect x="660" y="178" width="30" height="30" fill="#7f7f7f"/>
+<rect x="690" y="178" width="30" height="30" fill="#999999"/>
+<rect x="660" y="208" width="30" height="30" fill="#666666"/>
+<rect x="690" y="208" width="30" height="30" fill="#7f7f7f"/>
+<rect x="660" y="178" width="60" height="60" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
+</g>
+<text class="o5" x="690" y="278" font-size="30" fill="#DA1B2E" text-anchor="middle" font-weight="bold">0</text>
+<g class="i6">
+<rect x="765" y="178" width="30" height="30" fill="#323232"/>
+<rect x="795" y="178" width="30" height="30" fill="#b2b2b2"/>
+<rect x="765" y="208" width="30" height="30" fill="#cccccc"/>
+<rect x="795" y="208" width="30" height="30" fill="#4c4c4c"/>
+<rect x="765" y="178" width="60" height="60" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
+</g>
+<text class="o6" x="795" y="278" font-size="30" fill="#DA1B2E" text-anchor="middle" font-weight="bold">0</text>
+</g>
+<g>
+<g class="db1">
+<rect x="220" y="301" width="625" height="40" rx="8" fill="#F2EEEE" stroke="#1F1E1E" stroke-width="2"/>
+<text x="532.5" y="330" font-size="22" fill="#1F1E1E" text-anchor="middle" font-weight="bold">Discriminador</text>
+</g>
+<text class="v1" x="270" y="378" font-size="30" fill="#1F1E1E" text-anchor="middle">0.9</text>
+</g>
+<g>
+<rect class="b1" x="252" y="431.9" width="36" height="16.1" fill="#1F5FAD"/>
+<text class="n1" x="294" y="453.9314347853636" font-size="22" fill="#1F5FAD" text-anchor="start">0.11</text>
+</g>
+<g>
+<text class="v2" x="375" y="378" font-size="30" fill="#1F1E1E" text-anchor="middle">0.8</text>
+</g>
+<g>
+<rect class="b2" x="357" y="427.4" width="36" height="20.6" fill="#1F5FAD"/>
+<text class="n2" x="399" y="449.3831658370401" font-size="22" fill="#1F5FAD" text-anchor="start">0.22</text>
+</g>
+<g>
+<text class="v3" x="480" y="378" font-size="30" fill="#1F1E1E" text-anchor="middle">0.7</text>
+</g>
+<g>
+<rect class="b3" x="462" y="422.2" width="36" height="25.8" fill="#1F5FAD"/>
+<text class="n3" x="504" y="444.2267637854549" font-size="22" fill="#1F5FAD" text-anchor="start">0.36</text>
+</g>
+<g>
+<text class="v4" x="585" y="378" font-size="30" fill="#1F1E1E" text-anchor="middle">0.68</text>
+</g>
+<g>
+<rect class="b4" x="567" y="392.0" width="36" height="56.0" fill="#DA1B2E"/>
+<text class="n4" x="609" y="414.0" font-size="22" fill="#DA1B2E" text-anchor="start">1.14</text>
+</g>
+<g>
+<text class="v5" x="690" y="378" font-size="30" fill="#1F1E1E" text-anchor="middle">0.4</text>
+</g>
+<g>
+<rect class="b5" x="672" y="416.3" width="36" height="31.7" fill="#DA1B2E"/>
+<text class="n5" x="714" y="438.27413447416177" font-size="22" fill="#DA1B2E" text-anchor="start">0.51</text>
+</g>
+<g>
+<text class="v6" x="795" y="378" font-size="30" fill="#1F1E1E" text-anchor="middle">0.55</text>
+</g>
+<g>
+<rect class="b6" x="777" y="405.2" width="36" height="42.8" fill="#DA1B2E"/>
+<text class="n6" x="819" y="427.1651031112834" font-size="22" fill="#DA1B2E" text-anchor="start">0.80</text>
+</g>
+<g>
+<g class="avg1">
+<path d="M248,452 V460 H817 V452" stroke="#6B6560" stroke-width="3" fill="none"/>
+<text x="532.5" y="490" font-size="22" fill="#6B6560" text-anchor="middle" font-style="italic">se promedian</text>
+</g>
+<g class="box1">
+<path d="M817,460 H1055 V412" stroke="#6B6560" stroke-width="3" fill="none" marker-end="url(#a6B6560)"/>
+<rect x="920" y="284" width="270" height="124" rx="12" fill="#ffffff" stroke="#1F1E1E" stroke-width="3"/>
+<text x="1055" y="320" font-size="21" fill="#6B6560" text-anchor="middle">error del lote (6 imágenes)</text>
+</g>
+<text class="val1" x="1055" y="380" font-size="52" fill="#1F1E1E" text-anchor="middle" font-weight="bold">0.52</text>
+<path class="ab1" d="M1192,346 H1238" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#a1F5FAD)"/>
+<g class="bp1">
+<rect x="1246" y="284" width="210" height="124" rx="12" fill="#ffffff" stroke="#1F5FAD" stroke-width="3"/>
+<text x="1351" y="334" font-size="24" fill="#1F5FAD" text-anchor="middle" font-weight="bold">un paso de</text>
+<text x="1351" y="368" font-size="24" fill="#1F5FAD" text-anchor="middle" font-weight="bold">backpropagation</text>
+</g>
+<path class="ac1" d="M1458,346 H1498" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#a1F5FAD)"/>
+<g class="act1">
+<rect x="1506" y="284" width="170" height="124" rx="12" fill="#1F5FAD"/>
+<text x="1591" y="338" font-size="26" fill="#ffffff" text-anchor="middle" font-weight="bold">actualiza</text>
+<text x="1591" y="374" font-size="26" fill="#ffffff" text-anchor="middle" font-weight="bold">solo el D</text>
+</g>
+</g>
+<rect class="fl1" opacity="0" x="213" y="294" width="639" height="54" rx="12" fill="none" stroke="#1F5FAD" stroke-width="6"/>
+<g>
+<g class="frame2">
+<rect x="44" y="516" width="1656" height="400" rx="16" fill="#ffffff" stroke="#DA1B2E" stroke-width="4"/>
+<text x="70" y="564" font-size="32" fill="#DA1B2E" text-anchor="start" font-weight="bold">Paso del Generador</text>
+<text x="490" y="564" font-size="26" fill="#6B6560" text-anchor="start"></text>
+<text x="70" y="636" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">imagen</text>
+<text x="70" y="698" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">objetivo</text>
+<text x="70" y="798" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">veredicto</text>
+<text x="70" y="848" font-size="24" fill="#6B6560" text-anchor="start" font-style="italic">error</text>
+</g>
+<g class="s1" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="s2" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="s3" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="h1" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="h2" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g><g class="h3" opacity="0"><g class="ball"><circle r="8" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="u2" opacity="0"><g class="ball"><circle r="9" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="real2">
+<rect x="240" y="598" width="30" height="30" fill="#000000" opacity="0.25"/>
+<rect x="270" y="598" width="30" height="30" fill="#ffffff" opacity="0.25"/>
+<rect x="240" y="628" width="30" height="30" fill="#ffffff" opacity="0.25"/>
+<rect x="270" y="628" width="30" height="30" fill="#000000" opacity="0.25"/>
+<rect x="240" y="598" width="60" height="60" fill="none" stroke="#C9C3BE" stroke-width="2.5"/>
+<rect x="345" y="598" width="30" height="30" fill="#191919" opacity="0.25"/>
+<rect x="375" y="598" width="30" height="30" fill="#e5e5e5" opacity="0.25"/>
+<rect x="345" y="628" width="30" height="30" fill="#ffffff" opacity="0.25"/>
+<rect x="375" y="628" width="30" height="30" fill="#000000" opacity="0.25"/>
+<rect x="345" y="598" width="60" height="60" fill="none" stroke="#C9C3BE" stroke-width="2.5"/>
+<rect x="450" y="598" width="30" height="30" fill="#000000" opacity="0.25"/>
+<rect x="480" y="598" width="30" height="30" fill="#ffffff" opacity="0.25"/>
+<rect x="450" y="628" width="30" height="30" fill="#e5e5e5" opacity="0.25"/>
+<rect x="480" y="628" width="30" height="30" fill="#191919" opacity="0.25"/>
+<rect x="450" y="598" width="60" height="60" fill="none" stroke="#C9C3BE" stroke-width="2.5"/>
+</g>
+<g class="g1">
+<rect x="555" y="598" width="30" height="30" fill="#bfbfbf"/>
+<rect x="585" y="598" width="30" height="30" fill="#000000"/>
+<rect x="555" y="628" width="30" height="30" fill="#7f7f7f"/>
+<rect x="585" y="628" width="30" height="30" fill="#3f3f3f"/>
+<rect x="555" y="598" width="60" height="60" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
+</g>
+<text class="p1" x="585" y="698" font-size="30" fill="#DA1B2E" text-anchor="middle" font-weight="bold">1</text>
+<g class="g2">
+<rect x="660" y="598" width="30" height="30" fill="#7f7f7f"/>
+<rect x="690" y="598" width="30" height="30" fill="#999999"/>
+<rect x="660" y="628" width="30" height="30" fill="#666666"/>
+<rect x="690" y="628" width="30" height="30" fill="#7f7f7f"/>
+<rect x="660" y="598" width="60" height="60" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
+</g>
+<text class="p2" x="690" y="698" font-size="30" fill="#DA1B2E" text-anchor="middle" font-weight="bold">1</text>
+<g class="g3">
+<rect x="765" y="598" width="30" height="30" fill="#323232"/>
+<rect x="795" y="598" width="30" height="30" fill="#b2b2b2"/>
+<rect x="765" y="628" width="30" height="30" fill="#cccccc"/>
+<rect x="795" y="628" width="30" height="30" fill="#4c4c4c"/>
+<rect x="765" y="598" width="60" height="60" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
+</g>
+<text class="p3" x="795" y="698" font-size="30" fill="#DA1B2E" text-anchor="middle" font-weight="bold">1</text>
+<text class="real2" x="375.0" y="698" font-size="24" fill="#C9C3BE" text-anchor="middle" font-style="italic">las reales no entran</text>
+<g class="db2">
+<rect x="535" y="721" width="310" height="40" rx="8" fill="#F2EEEE" stroke="#1F1E1E" stroke-width="2"/>
+<text x="690.0" y="750" font-size="22" fill="#1F1E1E" text-anchor="middle" font-weight="bold">Discriminador (no cambia)</text>
+</g>
+<text class="w1" x="585" y="798" font-size="30" fill="#1F1E1E" text-anchor="middle">0.68</text>
+<rect class="c1" x="567" y="841.1" width="36" height="26.9" fill="#DA1B2E"/>
+<text class="m1" x="609" y="863.1073910921442" font-size="22" fill="#DA1B2E" text-anchor="start">0.39</text>
+<text class="w2" x="690" y="798" font-size="30" fill="#1F1E1E" text-anchor="middle">0.4</text>
+<rect class="c2" x="672" y="820.6" width="36" height="47.4" fill="#DA1B2E"/>
+<text class="m2" x="714" y="842.6168341629599" font-size="22" fill="#DA1B2E" text-anchor="start">0.92</text>
+<text class="w3" x="795" y="798" font-size="30" fill="#1F1E1E" text-anchor="middle">0.55</text>
+<rect class="c3" x="777" y="832.9" width="36" height="35.1" fill="#DA1B2E"/>
+<text class="m3" x="819" y="854.9141332489653" font-size="22" fill="#DA1B2E" text-anchor="start">0.60</text>
+</g>
+<g>
+<g class="avg2">
+<path d="M563,872 V880 H817 V872" stroke="#6B6560" stroke-width="3" fill="none"/>
+<text x="690.0" y="910" font-size="22" fill="#6B6560" text-anchor="middle" font-style="italic">se promedian</text>
+</g>
+<g class="box2">
+<path d="M817,880 H1055 V832" stroke="#6B6560" stroke-width="3" fill="none" marker-end="url(#a6B6560)"/>
+<rect x="920" y="704" width="270" height="124" rx="12" fill="#ffffff" stroke="#1F1E1E" stroke-width="3"/>
+<text x="1055" y="740" font-size="21" fill="#6B6560" text-anchor="middle">error del lote (3 imágenes)</text>
+</g>
+<text class="val2" x="1055" y="800" font-size="52" fill="#1F1E1E" text-anchor="middle" font-weight="bold">0.63</text>
+<path class="ab2" d="M1192,766 H1238" stroke="#DA1B2E" stroke-width="4" fill="none" marker-end="url(#aDA1B2E)"/>
+<g class="bp2">
+<rect x="1246" y="704" width="210" height="124" rx="12" fill="#ffffff" stroke="#DA1B2E" stroke-width="3"/>
+<text x="1351" y="754" font-size="24" fill="#DA1B2E" text-anchor="middle" font-weight="bold">un paso de</text>
+<text x="1351" y="788" font-size="24" fill="#DA1B2E" text-anchor="middle" font-weight="bold">backpropagation</text>
+</g>
+<path class="ac2" d="M1458,766 H1498" stroke="#DA1B2E" stroke-width="4" fill="none" marker-end="url(#aDA1B2E)"/>
+<g class="act2">
+<rect x="1506" y="704" width="170" height="124" rx="12" fill="#DA1B2E"/>
+<text x="1591" y="758" font-size="26" fill="#ffffff" text-anchor="middle" font-weight="bold">actualiza</text>
+<text x="1591" y="794" font-size="26" fill="#ffffff" text-anchor="middle" font-weight="bold">solo el G</text>
+</g>
+</g>
+<rect class="fl2" opacity="0" x="546" y="589" width="288" height="78" rx="10" fill="none" stroke="#DA1B2E" stroke-width="6"/>
+<g class="loop">
+<path d="M1600,916 V968 H22 V81 H224" stroke="#6B6560" stroke-width="3" fill="none" stroke-dasharray="12 9" marker-end="url(#a6B6560)"/>
+<text x="860" y="952" font-size="24" fill="#6B6560" text-anchor="middle" font-style="italic">siguiente lote: nuevas imágenes reales y nuevos ruidos z, miles de veces</text>
+</g>
+<g class="lt" opacity="0"><g class="ball"><circle r="9" fill="#6B6560" stroke="#ffffff" stroke-width="2"/></g></g>
+<rect class="fl3" opacity="0" x="226" y="46" width="616" height="48" rx="10" fill="none" stroke="#6B6560" stroke-width="5"/>
+</svg>

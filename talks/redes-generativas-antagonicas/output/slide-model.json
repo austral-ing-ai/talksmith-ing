@@ -524,7 +524,7 @@
       "section": "Introducción a las GANs",
       "title": "Arquitectura de una \"Vanilla\" GAN",
       "image": {
-        "src": "images/vanilla-gan-arquitectura.svg",
+        "src": "images/vanilla-gan-arquitectura.anim.png",
         "alt": "Arquitectura de una Vanilla GAN: el Discriminador recibe muestras reales y falsas y da un veredicto, P(real) entre 0 y 1. La pérdida de G usa los veredictos sobre las generadas y actualiza G; la pérdida de D usa los veredictos sobre reales y generadas y actualiza D"
       },
       "highlights": [
@@ -1049,7 +1049,7 @@
             "alt": "La cara prototipo pasa por la red del Discriminador y sale σ(1) = 0.73, marcado en el gráfico de la sigmoide"
           },
           {
-            "src": "images/discriminador-ruido.svg",
+            "src": "images/discriminador-ruido.anim.png",
             "alt": "La imagen de ruido pasa por la misma red: 0.25 − 1 − 0.5 + 0.75 + b = −1.5, y sale σ(−1.5) = 0.18, marcado en el gráfico de la sigmoide"
           }
         ]
@@ -1145,7 +1145,7 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/generador-red.svg",
+        "src": "images/generador-red.anim.png",
         "alt": "Red del Generador: z = 0.7 entra sin cálculo; cada una de las cuatro neuronas σ suma su peso ±1 y su sesgo ±1, y entre las cuatro producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)"
       },
       "_choice": {
@@ -1405,7 +1405,7 @@
       "lead": "En cada vuelta entra un lote: m imágenes reales y m generadas. El Discriminador da un veredicto por imagen, y con esos veredictos se hacen dos pasos de backpropagation, uno por red: el del Discriminador usa los errores de las reales y de las generadas; el del Generador, solo los de las generadas.",
       "design": "banded",
       "media": {
-        "src": "images/ciclo-lote.svg",
+        "src": "images/ciclo-lote.anim.png",
         "alt": "Un lote de 3 imágenes reales y 3 generadas. Paso del Discriminador: objetivos 1 y 0, un veredicto y un error por imagen (0.11, 0.22, 0.36, 1.14, 0.51, 0.80); se promedian en 0.52 y con ese número se hace un paso de backpropagation que actualiza solo el Discriminador. Paso del Generador: solo las 3 generadas, con objetivo 1; errores 0.39, 0.92 y 0.60, promedio 0.63, un paso de backpropagation que actualiza solo el Generador. Después, el siguiente lote"
       },
       "notes": "Las cuentas de las slides anteriores eran con una sola imagen para que se vieran los números. En el entrenamiento real entra un lote: varias imágenes reales y varias generadas a la vez, y el error que se propaga es el promedio del lote. Con esos veredictos hay dos pasos. En el del Discriminador, las reales tienen objetivo 1 y las generadas objetivo 0, y se actualiza solo el Discriminador. En el del Generador se usan solo las generadas, ahora con objetivo 1, porque el Generador quiere que el Discriminador se las crea; el error vuelve atravesando al Discriminador sin cambiarlo y se actualiza solo el Generador. Los veredictos del dibujo son ilustrativos; los errores sí están calculados: −ln(veredicto) si el objetivo es 1 y −ln(1 − veredicto) si es 0. Lo que hay que mirar es la forma: un error por imagen, un solo promedio por lote y un solo paso de backpropagation con ese promedio. En la práctica los lotes son de decenas de imágenes, no de seis.",
@@ -1440,7 +1440,7 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/error-discriminador.svg",
+        "src": "images/error-discriminador.anim.png",
         "alt": "Generador y Discriminador: la imagen 2x2 generada recibe 0.68; quería 0, Error = −ln(1−0.68)"
       },
       "_omitted": [
@@ -1658,7 +1658,7 @@
       "title": "StyleGAN: arquitectura",
       "lead": "Dos redes en lugar de una: la red de mapeo convierte el ruido z en un estilo w, y la red de síntesis arma la imagen de 4×4 a 1024×1024 inyectando ese estilo en cada bloque.",
       "image": {
-        "src": "images/stylegan-simple.svg",
+        "src": "images/stylegan-simple.anim.png",
         "alt": "StyleGAN: el ruido z pasa por la red de mapeo (8 capas) y se convierte en el estilo w; la red de síntesis arma la imagen en bloques de 4×4 a 1024×1024, el estilo w entra en cada bloque por AdaIN y cada bloque recibe su propio ruido; las capas bajas deciden la pose y la forma, las altas la textura y el color"
       },
       "notes": "La clave: el estilo se inyecta en cada capa mediante AdaIN (Adaptive Instance Normalization), no solo al inicio. Esto da control granular sobre cada aspecto visual. En una GAN clásica el ruido entra una sola vez, en la primera capa, y todo sale mezclado de ahí. StyleGAN lo separa: la red de mapeo, 8 capas densas, convierte el ruido z en un vector de estilo w de 512 números, y la red de síntesis arranca de un bloque constante de 4×4 y lo va agrandando hasta 1024×1024. En cada bloque el estilo w entra por AdaIN, que reescala las activaciones con valores que salen de w, y se suma un ruido propio del bloque que pone los detalles finos. Por eso los bloques chicos deciden la pose y la forma de la cara y los grandes la textura y el color: se puede tomar la estructura de una cara y el estilo de otra. El diagrama del paper tiene más piezas (las capas convolucionales 3×3, el sobremuestreo, las transformaciones A y B y el Discriminador de ProGAN con que se entrena); está en Cut material.",
@@ -2175,7 +2175,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "3137a86d1e2e9ae3f4aac591eab4d00b530dc9de8d84408b86a592765c015c72",
-    "bytes": 82552
+    "sha256": "90ff07298a1a339c063c893fe9469b34c9f5fa92067ec7cf037eb9df35f7d348",
+    "bytes": 87432
   }
 }
