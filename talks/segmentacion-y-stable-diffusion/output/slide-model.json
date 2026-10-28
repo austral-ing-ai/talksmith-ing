@@ -1,0 +1,2543 @@
+{
+  "deck": {
+    "title": "Inteligencia Artificial Generativa (AI Gen)",
+    "institution": "",
+    "class": "Modelos Generativos de Señales, Imágenes y Multimodalidad",
+    "presenter": "Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)",
+    "date": "2026-10-28",
+    "lang": "es",
+    "logo": null,
+    "sections": [
+      "Qué es una convolución",
+      "Segmentación: qué es y para qué sirve",
+      "De FCN a U-Net",
+      "SAM: segmentar lo que le señalás",
+      "Generación condicionada por texto",
+      "Stable Diffusion por dentro",
+      "TilTedTinder v2 y notebook"
+    ]
+  },
+  "slides": [
+    {
+      "template": "section-agenda",
+      "title": "Qué es una convolución",
+      "section": "Qué es una convolución"
+    },
+    {
+      "template": "image-full",
+      "section": "Qué es una convolución",
+      "title": "Una red neuronal clásica solo acepta entradas de largo fijo",
+      "image": {
+        "src": "images/s1-1-1-mlp-entrada-fija.png",
+        "alt": "Una red densa recibe un vector de largo fijo"
+      },
+      "notes": "Arrancar por lo que ya saben: el TP de precios de casas fue exactamente esto. La red funciona porque cada fila del dataset trae las mismas columnas. MNIST sirve de puente: es una imagen, pero todas miden 28×28, así que aplanarla a 784 números no rompe nada. La pregunta que abre la sección es qué pasa cuando la entrada no trae siempre la misma cantidad de números.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, wide 2.6:1)",
+          "image_only=true on this slide (split out for legibility, same convention as the rest of the deck)",
+          "labeled_items=0",
+          "presenter split: the source unit is two slides, this image alone at full width, then the text slide with the same title"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image",
+          "content+cards+image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "Match: 'the prose is required' — this half carries no lead/facts beyond at most one short framing line, so image_only → image-full",
+          "content+cards+image": "needs labeled_items ≥ 2; this half has 0 (the prose and any labeled items are on the companion text slide, by presenter split)"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué es una convolución",
+      "title": "Una red neuronal clásica solo acepta entradas de largo fijo",
+      "lead": "Una red densa (MLP) recibe un vector con una cantidad fija de números. Esa cantidad queda fija al definir la primera capa, porque cada entrada tiene sus propios pesos. Tareas que una red así resuelve bien:",
+      "cards": [
+        {
+          "label": "Precio de una casa",
+          "body": "Los atributos de la propiedad (metros cuadrados, barrio, ambientes) entran como un vector y sale un número. Es el caso del TP de MLP."
+        },
+        {
+          "label": "Dígitos manuscritos (MNIST)",
+          "body": "La imagen de 28×28 se aplana en 784 números y salen 10 probabilidades, una por dígito."
+        },
+        {
+          "label": "Riesgo crediticio",
+          "body": "Los datos de una solicitud entran normalizados y sale la probabilidad de que el cliente no pague."
+        }
+      ],
+      "notes": "Arrancar por lo que ya saben: el TP de precios de casas fue exactamente esto. La red funciona porque cada fila del dataset trae las mismas columnas. MNIST sirve de puente: es una imagen, pero todas miden 28×28, así que aplanarla a 784 números no rompe nada. La pregunta que abre la sección es qué pasa cuando la entrada no trae siempre la misma cantidad de números.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (bold lead per example)",
+          "is_ordered=false (three independent tasks)",
+          "n_images=0 on this slide (diagram on the previous one)",
+          "lead line frames the set",
+          "n_images=0 here because the source unit image sits on the preceding image-full slide (presenter split), not because it was dropped",
+          "format row (visual review): grid puts 3 cards as 2 + 1 full-width, lopsided and with small type; one row of 3 uses the width evenly"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "value-columns"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "is_ordered=false: the examples are peers, not steps",
+          "value-columns": "no shared factors across rows; each example is one prose body"
+        }
+      },
+      "format": "row"
+    },
+    {
+      "template": "image-full",
+      "section": "Qué es una convolución",
+      "title": "El detector de voz: cada audio dura distinto",
+      "image": {
+        "src": "images/s1-2-1-recortar-rellenar-audio.png",
+        "alt": "Recortar el audio largo y rellenar el corto para un MLP"
+      },
+      "notes": "Funciona en una demo y es poco elegante. Elegir L es una decisión arbitraria: si es corto perdés información, si es largo la mayoría de los audios son relleno. Y aunque se resuelva el largo, queda lo que la arquitectura densa no modela de un audio, que viene en la lámina siguiente.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, wide 2.8:1)",
+          "image_only=true on this slide",
+          "labeled_items=0",
+          "presenter split: the source unit is two slides, this image alone at full width, then the text slide with the same title"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image",
+          "content+cards+image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "Match: 'the prose is required' — this half carries no lead/facts beyond at most one short framing line, so image_only → image-full",
+          "content+cards+image": "needs labeled_items ≥ 2; this half has 0 (the prose and any labeled items are on the companion text slide, by presenter split)"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué es una convolución",
+      "title": "El detector de voz: cada audio dura distinto",
+      "lead": "Querés una red que escuche una grabación y diga si alguien está hablando. Un audio de 5 s tiene más muestras que uno de 2 s, y la red densa espera siempre la misma cantidad. Con un MLP tenés que elegir un largo L y forzar todos los audios a ese largo:",
+      "cards": [
+        {
+          "label": "Recortar los audios largos",
+          "body": "Si la voz estaba en el tramo que cortaste, esa parte nunca entra a la red."
+        },
+        {
+          "label": "Rellenar con ceros los cortos",
+          "body": "La red recibe silencio artificial y tiene que aprender a ignorarlo."
+        }
+      ],
+      "notes": "Funciona en una demo y es poco elegante. Elegir L es una decisión arbitraria: si es corto perdés información, si es largo la mayoría de los audios son relleno. Y aunque se resuelva el largo, queda lo que la arquitectura densa no modela de un audio, que viene en la lámina siguiente.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2 (Recortar / Rellenar con ceros)",
+          "is_ordered=false (two alternatives)",
+          "n_images=0 on this slide",
+          "two_groups=false (no shared rows)",
+          "n_images=0 here because the source unit image sits on the preceding image-full slide (presenter split), not because it was dropped"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content+cards+image",
+          "concept-columns",
+          "pros-cons"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "pros-cons": "both items are drawbacks of the same workaround, not pros vs cons",
+          "concept-columns": "Match: 'label + a single line per item, with no sub-structure → concept-breakdown'",
+          "content+cards+image": "images == 0 on this half (image on the preceding slide)"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué es una convolución",
+      "title": "El sesgo inductivo equivocado",
+      "lead": "Aun con el largo resuelto, una capa densa trata al audio como una lista de números sin orden.",
+      "cards": [
+        {
+          "label": "Sin vecindad",
+          "body": "Cada muestra se conecta con cada neurona con pesos independientes. Si mezclás el orden de las entradas (la misma mezcla en todos los ejemplos) y reentrenás, la red aprende igual de bien. En su arquitectura la muestra t no está al lado de la t+1."
+        },
+        {
+          "label": "Sin invariancia a traslación",
+          "body": "Un \"hola\" al principio del audio y el mismo \"hola\" al final pasan por pesos distintos. La red tiene que aprender el patrón una vez por cada posición."
+        },
+        {
+          "label": "Demasiados parámetros",
+          "body": "Cada entrada suma una fila de pesos. Una imagen RGB de 224×224 son 150.528 números, y una primera capa densa de 256 neuronas ya tiene unos 38,5 millones de pesos."
+        }
+      ],
+      "notes": "Sesgo inductivo es lo que la arquitectura asume antes de ver un solo dato. La capa densa no asume nada sobre el orden, y para tablas eso está bien: las columnas de una planilla se pueden reordenar. En audio e imágenes el orden es la información. Lo que queremos es una capa que sepa que lo vecino está relacionado y que un patrón es el mismo esté donde esté.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (bold lead per limitation)",
+          "is_ordered=false",
+          "n_images=0",
+          "big_metrics=partial (38,5 M is inside one item, not the payload)",
+          "n_images=0 here because the source unit image sits on the preceding image-full slide (presenter split), not because it was dropped",
+          "format row (visual review): grid puts 3 cards as 2 + 1 full-width, lopsided and with small type; one row of 3 uses the width evenly"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "stat",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "stat": "the figure supports one of three limitations; the slide is the three limitations",
+          "content-text": "labeled set → cards (universal invariant)"
+        }
+      },
+      "format": "row"
+    },
+    {
+      "template": "value-columns",
+      "section": "Qué es una convolución",
+      "title": "El problema aparece en cualquier señal, y en las imágenes",
+      "lead": "La limitación no depende de la tarea. Con audio y señales:",
+      "columns": [
+        {
+          "header": "Tarea",
+          "factor": true,
+          "cells": [
+            "Clasificación",
+            "Regresión",
+            "Filtrado",
+            "Upscaling",
+            "Generación"
+          ]
+        },
+        {
+          "header": "Ejemplo",
+          "cells": [
+            "¿hay voz en esta grabación?",
+            "estimar la frecuencia cardíaca desde un ECG",
+            "sacarle el ruido a una grabación",
+            "llevar un audio a una frecuencia de muestreo más alta",
+            "sintetizar voz"
+          ]
+        },
+        {
+          "header": "Qué sale",
+          "cells": [
+            "una etiqueta",
+            "un número",
+            "una señal del mismo largo",
+            "una señal con más muestras",
+            "una señal nueva"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "label": "Imágenes",
+          "body": "Las imágenes tienen el mismo problema en dos dimensiones: alto y ancho cambian de una foto a otra, y cada píxel trae sus canales (3 en RGB). Un MLP obliga a llevarlas todas a un tamaño y aplanarlas."
+        }
+      ],
+      "notes": "En filtrado y upscaling la salida también es una señal, así que el largo variable aparece dos veces: en la entrada y en la salida. Con imágenes, el ejemplo de MNIST funcionaba porque el dataset ya viene con todas las imágenes del mismo tamaño; una foto de celular y una tomografía no.",
+      "_choice": {
+        "signals": [
+          "has_table=true (Tarea | Ejemplo | Qué sale, 5 rows)",
+          "labeled_items=0",
+          "n_images=0",
+          "one closing sentence that generalizes to images",
+          "n_images=0 here because the source unit image sits on the preceding image-full slide (presenter split), not because it was dropped"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-breakdown",
+          "matrix"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-breakdown": "rows share two factors (Ejemplo, Qué sale); cards would lose the alignment",
+          "matrix": "no two axes with 2–3 ticks; it is a 5-row comparison table"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Qué es una convolución",
+      "title": "La solución: un kernel que se desliza",
+      "lead": "Un kernel de 9 pesos iguales a 1/9 (un promedio móvil) filtra un audio ruidoso.",
+      "image": {
+        "src": "images/conv1d-filtrado.gif",
+        "alt": "Un kernel de suavizado se desliza sobre un audio ruidoso y arma la salida filtrada punto por punto"
+      },
+      "notes": "Dejar correr la animación una vez en silencio y después narrarla. La operación es una suma ponderada, la misma que hace una neurona; la diferencia es que la neurona del kernel combina solo los valores de una ventana y se reutiliza en cada posición. Eso le da a la capa justo lo que le faltaba a la densa: vecindad y el mismo patrón en cualquier lugar.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (animated GIF, 16:9)",
+          "image_only=true on this slide (the animation is the payload; the reading guide is on the next slide)",
+          "one-line caption naming the kernel",
+          "presenter split: the source unit is two slides, this image alone at full width, then the text slide with the same title"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image",
+          "content+cards+image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "Match: 'the prose is required' — this half carries no lead/facts beyond at most one short framing line, so image_only → image-full",
+          "content+cards+image": "needs labeled_items ≥ 2; this half has 0 (the prose and any labeled items are on the companion text slide, by presenter split)"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué es una convolución",
+      "title": "La solución: un kernel que se desliza",
+      "lead": "Un **kernel** es un vector chico de pesos que recorre la señal. En cada posición multiplica sus pesos por el tramo que tiene debajo, suma y escribe un número en la salida. Después avanza una muestra y repite. En la animación, un kernel de 9 pesos iguales a 1/9 (un promedio móvil) filtra un audio ruidoso:",
+      "cards": [
+        {
+          "label": "Arriba",
+          "body": "La ventana del kernel avanza sobre el audio con ruido."
+        },
+        {
+          "label": "Abajo",
+          "body": "Cada punto de la salida aparece cuando el kernel pasa por esa posición."
+        },
+        {
+          "label": "Al final",
+          "body": "La salida conserva la forma de la onda con menos ruido."
+        }
+      ],
+      "format": "row",
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "label": "Pesos compartidos",
+          "body": "Usa los mismos pesos en todas las posiciones. Por eso detecta un patrón esté donde esté, y la cantidad de pesos no depende del largo del audio."
+        }
+      ],
+      "notes": "Dejar correr la animación una vez en silencio y después narrarla. La operación es una suma ponderada, la misma que hace una neurona; la diferencia es que la neurona del kernel combina solo los valores de una ventana y se reutiliza en cada posición. Eso le da a la capa justo lo que le faltaba a la densa: vecindad y el mismo patrón en cualquier lugar.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Arriba / Abajo / Al final, all short)",
+          "is_ordered=weak (panels of one animation, read together)",
+          "n_images=0 on this slide (animation on the previous one)",
+          "lead = definition; one consequence line → highlight",
+          "n_images=0 here because the source unit image sits on the preceding image-full slide (presenter split), not because it was dropped"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "Arriba/Abajo are regions of the figure, not steps in time",
+          "content-text": "labeled set → cards (universal invariant)"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Qué es una convolución",
+      "title": "Mismo mecanismo, otra tarea: detectar voz",
+      "image": {
+        "src": "images/conv1d-detector-voz.gif",
+        "alt": "El kernel recorre el audio y su salida, la energía local, cruza un umbral donde hay voz"
+      },
+      "notes": "Los dos ejemplos usan kernels diseñados a mano para que se vea qué hace cada uno. En una CNN real la red arranca con kernels al azar y el descenso por gradiente los ajusta; muchas veces terminan pareciéndose a estos filtros clásicos, pero nadie se los dicta.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (animated GIF, 16:9)",
+          "image_only=true on this slide",
+          "labeled_items=0",
+          "presenter split: the source unit is two slides, this image alone at full width, then the text slide with the same title"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image",
+          "content+cards+image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "Match: 'the prose is required' — this half carries no lead/facts beyond at most one short framing line, so image_only → image-full",
+          "content+cards+image": "needs labeled_items ≥ 2; this half has 0 (the prose and any labeled items are on the companion text slide, by presenter split)"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué es una convolución",
+      "title": "Mismo mecanismo, otra tarea: detectar voz",
+      "lead": "Con otro kernel, una ventana larga sobre la señal al cuadrado, la misma operación mide la energía local del audio: cuánta señal hay alrededor de cada instante. Donde la energía pasa un umbral, el detector marca voz.",
+      "cards": [
+        {
+          "label": "Tramos con voz",
+          "body": "La salida sube; en los silencios baja."
+        },
+        {
+          "label": "Umbral",
+          "body": "La línea horizontal; lo que queda por encima se marca como voz."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "label": "Pesos aprendidos",
+          "body": "En una red convolucional nadie elige los pesos del kernel a mano. Los aprende el entrenamiento, igual que los de una capa densa."
+        }
+      ],
+      "notes": "Los dos ejemplos usan kernels diseñados a mano para que se vea qué hace cada uno. En una CNN real la red arranca con kernels al azar y el descenso por gradiente los ajusta; muchas veces terminan pareciéndose a estos filtros clásicos, pero nadie se los dicta.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2 (Tramos con voz / Umbral)",
+          "is_ordered=false",
+          "n_images=0 on this slide",
+          "closing line about learned weights → highlight",
+          "n_images=0 here because the source unit image sits on the preceding image-full slide (presenter split), not because it was dropped"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content+cards+image",
+          "concept-columns",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "concept-columns": "Match: 'label + a single line per item, with no sub-structure → concept-breakdown'",
+          "content-text": "labeled set → cards (universal invariant)",
+          "content+cards+image": "images == 0 on this half (image on the preceding slide)"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Qué es una convolución",
+      "title": "El largo variable deja de ser un problema",
+      "image": {
+        "src": "images/conv1d-largo-variable.png",
+        "alt": "El mismo kernel aplicado a un audio de 2 s y a uno de 5 s: cada salida tiene el largo de su entrada"
+      },
+      "notes": "Este es el punto de la sección en una lámina: la cantidad de pesos depende del tamaño del kernel y no del largo de la entrada. El pooling global es lo que conecta la parte convolucional, que acepta cualquier largo, con la parte densa, que requiere uno fijo.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (figure, 16:9)",
+          "image_only=true on this slide",
+          "labeled_items=0",
+          "presenter split: the source unit is two slides, this image alone at full width, then the text slide with the same title"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image",
+          "content+cards+image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "Match: 'the prose is required' — this half carries no lead/facts beyond at most one short framing line, so image_only → image-full",
+          "content+cards+image": "needs labeled_items ≥ 2; this half has 0 (the prose and any labeled items are on the companion text slide, by presenter split)"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué es una convolución",
+      "title": "El largo variable deja de ser un problema",
+      "cards": [
+        {
+          "label": "Cualquier largo",
+          "body": "El kernel funciona con cualquier duración de audio: se desliza hasta que la señal se termina. Sobre 2 s produce una salida corta, sobre 5 s una más larga, con los mismos pesos."
+        },
+        {
+          "label": "Pooling global",
+          "body": "Para clasificar la grabación entera, la red resume esa salida en un vector de largo fijo, por ejemplo con un pooling global que toma el promedio o el máximo. Recién ahí entra una capa densa."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "label": "En la figura",
+          "body": "Los dos audios usan el mismo kernel, y cada salida tiene el largo de su entrada."
+        }
+      ],
+      "notes": "Este es el punto de la sección en una lámina: la cantidad de pesos depende del tamaño del kernel y no del largo de la entrada. El pooling global es lo que conecta la parte convolucional, que acepta cualquier largo, con la parte densa, que requiere uno fijo.",
+      "_choice": {
+        "signals": [
+          "two parallel ideas (any length / global pooling), each a short paragraph",
+          "labeled_items=1 (En la figura) → highlight, not a card",
+          "is_ordered=weak",
+          "n_images=0 on this slide",
+          "n_images=0 here because the source unit image sits on the preceding image-full slide (presenter split), not because it was dropped"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "single-point",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "single-point": "there are two ideas of equal weight, not one",
+          "process": "two items; the pooling is a consequence, not a pipeline of 3+ steps"
+        }
+      }
+    },
+    {
+      "template": "concept-columns",
+      "section": "Qué es una convolución",
+      "title": "Dos soluciones al largo variable",
+      "columns": [
+        {
+          "label": "Convolución",
+          "body": "Un kernel chico recorre la entrada con los mismos pesos en cada posición.",
+          "text": [
+            "Lo que detecta en un lugar lo detecta en cualquier otro (invariancia a traslación).",
+            "Cada salida combina solo valores cercanos. Ese sesgo inductivo fuerte, la localidad, le permite aprender con menos datos.",
+            "Para relacionar puntos lejanos hay que apilar capas."
+          ]
+        },
+        {
+          "label": "Atención (transformer)",
+          "body": "Cada posición se combina con todas las demás desde la primera capa, con pesos que calcula la atención.",
+          "emphasis": true,
+          "text": [
+            "La atención sola no codifica el orden; el orden lo ponen los positional embeddings, que el transformer trae de serie.",
+            "Su sesgo inductivo es débil, por eso requiere más datos y a cambio captura dependencias lejanas.",
+            "El costo crece con el cuadrado del largo."
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "body": "Elegir una arquitectura es elegir un sesgo inductivo."
+        }
+      ],
+      "notes": "En \"De la palabra al transformer\" vieron la atención con texto: la representación de cada token sale de una suma ponderada de todos los demás, con pesos que dependen de qué tan parecidos son. Esa misma atención acepta cualquier cantidad de posiciones, igual que el kernel, así que también resuelve el largo variable. Lo que cambia es lo que cada arquitectura fija antes del entrenamiento. La convolución solo combina vecinos; en la atención esa estructura no está fijada y los pesos la tienen que capturar del entrenamiento, por eso hacen falta muchos más datos. El costo se siente rápido: con una secuencia del doble de largo, la atención compara cuatro veces más pares. La clase vuelve a cruzar las dos ideas en CLIP, en SAM y en la U-Net de Stable Diffusion.",
+      "_choice": {
+        "signals": [
+          "two parallel terms (convolución / atención), each a short definition plus 3 features of different shape",
+          "no shared row-by-row factor (the features are not aligned pairs)",
+          "a closing one-line claim → takeaway highlight",
+          "n_images=0",
+          "presenter brief: two symmetric full-width columns"
+        ],
+        "candidates": [
+          "concept-columns",
+          "value-columns",
+          "pros-cons",
+          "concept-breakdown"
+        ],
+        "picked": "concept-columns",
+        "rejected": {
+          "value-columns": "the two sides share no row structure to align cell by cell",
+          "pros-cons": "neither side is the pro or the con; they are two alternatives with their own trade-offs",
+          "concept-breakdown": "each side carries a definition plus several features; flattening them into cards drops the per-column bullets"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Qué es una convolución",
+      "title": "Convolución en imágenes",
+      "image": {
+        "src": "images/conv2d-kernel.gif",
+        "alt": "Un kernel detector de bordes de 3×3 recorre una grilla de 7×7 y arma un feature map de 5×5"
+      },
+      "notes": "\"Valores grandes\" en valor absoluto: según el lado del borde, el detector da positivo o negativo. El 896 contra 38,5 millones explica por qué las CNN entrenan con imágenes grandes y una red densa no.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (animated GIF, 16:9)",
+          "image_only=true on this slide",
+          "labeled_items=0",
+          "presenter split: the source unit is two slides, this image alone at full width, then the text slide with the same title"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image",
+          "content+cards+image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "Match: 'the prose is required' — this half carries no lead/facts beyond at most one short framing line, so image_only → image-full",
+          "content+cards+image": "needs labeled_items ≥ 2; this half has 0 (the prose and any labeled items are on the companion text slide, by presenter split)"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué es una convolución",
+      "title": "Convolución en imágenes",
+      "lead": "En una imagen el kernel es una grilla chica, por ejemplo de 3×3, que recorre la imagen a lo alto y a lo ancho. En cada posición multiplica sus 9 pesos por los 9 píxeles que cubre y suma.",
+      "cards": [
+        {
+          "label": "Una celda por posición",
+          "body": "Cada lugar donde se apoya el kernel produce una celda del feature map."
+        },
+        {
+          "label": "Tamaño",
+          "body": "Sobre una grilla de 7×7, un kernel de 3×3 sin relleno cabe en 5 posiciones por fila y por columna, y la salida es de 5×5."
+        },
+        {
+          "label": "Bordes",
+          "body": "Los valores grandes aparecen donde el kernel cruza un borde."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "label": "Parámetros",
+          "body": "Sobre una imagen RGB el kernel abarca los 3 canales a la vez: 3×3×3 = 27 pesos. Una capa `nn.Conv2d(3, 32, 3)` con 32 kernels tiene 896 parámetros, contra los 38,5 millones de la capa densa."
+        }
+      ],
+      "notes": "\"Valores grandes\" en valor absoluto: según el lado del borde, el detector da positivo o negativo. El 896 contra 38,5 millones explica por qué las CNN entrenan con imágenes grandes y una red densa no.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Una celda por posición / Tamaño / Bordes)",
+          "is_ordered=false",
+          "n_images=0 on this slide",
+          "big_metrics=partial (896 vs 38,5 M in one sentence → highlight)",
+          "n_images=0 here because the source unit image sits on the preceding image-full slide (presenter split), not because it was dropped",
+          "format row (visual review): grid puts 3 cards as 2 + 1 full-width, lopsided and with small type; one row of 3 uses the width evenly"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "stat",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "stat": "the parameter count is one supporting sentence; the slide is the three readings of the animation",
+          "process": "the three items are observations, not ordered steps"
+        }
+      },
+      "format": "row"
+    },
+    {
+      "template": "image-full",
+      "section": "Qué es una convolución",
+      "title": "Distintos kernels, distintos rasgos",
+      "image": {
+        "src": "images/conv2d-bordes.png",
+        "alt": "Dos kernels sobre la misma imagen: uno resalta bordes verticales y el otro horizontales"
+      },
+      "notes": "Con 32 kernels en una capa salen 32 feature maps, uno por rasgo. La capa siguiente combina esos mapas, y por eso puede detectar algo más complejo que un borde.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (figure, 16:9, three panels)",
+          "image_only=true on this slide",
+          "labeled_items=0",
+          "presenter split: the source unit is two slides, this image alone at full width, then the text slide with the same title"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image",
+          "content+cards+image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "Match: 'the prose is required' — this half carries no lead/facts beyond at most one short framing line, so image_only → image-full",
+          "content+cards+image": "needs labeled_items ≥ 2; this half has 0 (the prose and any labeled items are on the companion text slide, by presenter split)"
+        }
+      }
+    },
+    {
+      "template": "process",
+      "section": "Qué es una convolución",
+      "title": "Distintos kernels, distintos rasgos",
+      "steps": [
+        {
+          "body": "Cada kernel detecta un rasgo. En la figura, uno resalta los bordes verticales y otro los horizontales de la misma imagen."
+        },
+        {
+          "body": "Una CNN apila capas convolucionales y aprende sus kernels. Las primeras capas detectan bordes, las siguientes texturas, después partes y al final objetos."
+        },
+        {
+          "body": "Esa pila es el encoder de FCN y de la U-Net, que aparecen en la sección de segmentación."
+        }
+      ],
+      "notes": "Con 32 kernels en una capa salen 32 feature maps, uno por rasgo. La capa siguiente combina esos mapas, y por eso puede detectar algo más complejo que un borde.",
+      "_choice": {
+        "signals": [
+          "labeled_items=0 (three unlabeled lines)",
+          "is_ordered=true (one kernel → a stack of layers → that stack is the encoder)",
+          "n_images=0 on this slide",
+          "n_images=0 here because the source unit image sits on the preceding image-full slide (presenter split), not because it was dropped"
+        ],
+        "candidates": [
+          "process",
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "process",
+        "rejected": {
+          "concept-breakdown": "no labels to put on cards; inventing them adds words the source doesn't have",
+          "content-text": "a plain enumeration of 3–8 unlabeled lines is a numbered process list per the catalog"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Qué es una convolución",
+      "title": "Embeddings más allá del texto",
+      "image": {
+        "src": "images/s1-11-1-embeddings-modalidades.png",
+        "alt": "Imagen, texto y audio pasan por encoders distintos y salen como vectores"
+      },
+      "notes": "Lo vieron con palabras y tokens; acá la idea se generaliza. Cuando lleguemos a CLIP, la novedad va a ser entrenar los dos encoders para que caigan en el mismo espacio. El latente del VAE es un pariente: no está entrenado para que lo cercano signifique lo mismo, pero también comprime la imagen en algo mucho más chico.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram)",
+          "image_only=true on this slide",
+          "labeled_items=0",
+          "presenter split: the source unit is two slides, this image alone at full width, then the text slide with the same title"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image",
+          "content+cards+image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "Match: 'the prose is required' — this half carries no lead/facts beyond at most one short framing line, so image_only → image-full",
+          "content+cards+image": "needs labeled_items ≥ 2; this half has 0 (the prose and any labeled items are on the companion text slide, by presenter split)"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Qué es una convolución",
+      "title": "Embeddings más allá del texto",
+      "cards": [
+        {
+          "label": "Un vector por entrada",
+          "body": "El encoder de una CNN termina en un vector de largo fijo que resume el contenido de la imagen. Un encoder de texto hace lo mismo con una oración, y uno de audio con una grabación."
+        },
+        {
+          "label": "Embedding",
+          "body": "Una representación densa aprendida donde la geometría del espacio codifica el significado: vectores cercanos, contenidos parecidos. Sirve para cualquier modalidad, con o sin transformers."
+        },
+        {
+          "label": "Vuelve dos veces en esta clase",
+          "body": "CLIP pone imágenes y textos en el mismo espacio, y el VAE de Stable Diffusion comprime la imagen en un latente donde trabaja la difusión."
+        }
+      ],
+      "notes": "Lo vieron con palabras y tokens; acá la idea se generaliza. Cuando lleguemos a CLIP, la novedad va a ser entrenar los dos encoders para que caigan en el mismo espacio. El latente del VAE es un pariente: no está entrenado para que lo cercano signifique lo mismo, pero también comprime la imagen en algo mucho más chico.",
+      "_choice": {
+        "signals": [
+          "three parallel ideas (what the encoder outputs / what an embedding is / where it returns)",
+          "is_ordered=false",
+          "n_images=0 on this slide",
+          "n_images=0 here because the source unit image sits on the preceding image-full slide (presenter split), not because it was dropped",
+          "format row (visual review): grid puts 3 cards as 2 + 1 full-width, lopsided and with small type; one row of 3 uses the width evenly"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "concept-columns"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "the three ideas are not steps",
+          "concept-columns": "bodies are single paragraphs with no per-column extra text; three cards fill the row evenly"
+        }
+      },
+      "format": "row",
+      "highlights": [
+        {
+          "kind": "note",
+          "label": "Con transformers",
+          "body": "El encoder de texto de CLIP es un transformer, y un ViT trata la imagen como una secuencia de parches."
+        }
+      ]
+    },
+    {
+      "template": "section-agenda",
+      "title": "Segmentación: qué es y para qué sirve",
+      "section": "Segmentación: qué es y para qué sirve"
+    },
+    {
+      "template": "value-columns",
+      "section": "Segmentación: qué es y para qué sirve",
+      "title": "¿Qué es segmentar?",
+      "lead": "En visión por computadora, hay tres preguntas distintas que podemos hacerle a una imagen — y segmentar es la más fina de todas.",
+      "columns": [
+        {
+          "header": "Tarea",
+          "factor": true,
+          "cells": [
+            "Clasificación",
+            "Detección",
+            "Segmentación"
+          ]
+        },
+        {
+          "header": "Pregunta",
+          "cells": [
+            "¿Qué hay en esta imagen?",
+            "¿Dónde está y qué es?",
+            "¿Qué representa cada píxel?"
+          ]
+        },
+        {
+          "header": "Salida",
+          "cells": [
+            "Una etiqueta (ej: \"perro\")",
+            "Cajas con etiquetas",
+            "Una etiqueta por píxel — una \"máscara\""
+          ]
+        }
+      ],
+      "design": "split-right",
+      "media": {
+        "src": "images/slide-04-1.jpg",
+        "alt": "Clasificación, segmentación semántica, detección y segmentación de instancias sobre la misma foto"
+      },
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "label": "Frase clave",
+          "body": "Segmentar es darle un significado **pixel por pixel** a la imagen."
+        }
+      ],
+      "notes": "La figura muestra las cuatro salidas sobre la misma foto del perro y las ovejas: en la semántica las tres ovejas comparten color, en la de instancias cada una tiene el suyo. Eso adelanta la lámina siguiente.",
+      "_choice": {
+        "signals": [
+          "has_table=true (Tarea | Pregunta | Salida, 3 rows)",
+          "n_images=1",
+          "labeled_items=0",
+          "two_groups=false"
+        ],
+        "candidates": [
+          "value-columns",
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "content-image": "has_table: the rows read across shared factors (Pregunta, Salida); flattening them to facts loses the alignment",
+          "concept-breakdown": "requires images == 0, and a table of comparable value columns is value-columns, not card-per-row"
+        }
+      }
+    },
+    {
+      "template": "content+cards+image",
+      "section": "Segmentación: qué es y para qué sirve",
+      "title": "Tipos de segmentación",
+      "lead": "Tres niveles de granularidad, según qué tan finamente queramos diferenciar lo que vemos:",
+      "cards": [
+        {
+          "label": "Semántica",
+          "body": "Etiqueta cada píxel con su clase, sin distinguir individuos. Todos los píxeles de \"auto\" reciben la misma etiqueta, aunque haya cinco autos."
+        },
+        {
+          "label": "De instancias",
+          "body": "Distingue cada objeto individual. \"Auto 1\", \"auto 2\", \"auto 3\"... aunque sean de la misma clase."
+        },
+        {
+          "label": "Panóptica",
+          "body": "Combina ambas — clasifica cada píxel y distingue instancias. Es la versión más completa."
+        }
+      ],
+      "design": "split-right",
+      "media": {
+        "src": "images/slide-05-1.jpg",
+        "alt": "Escena urbana: imagen, segmentación semántica, de instancias y panóptica"
+      },
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false (granularity levels, not steps)",
+          "date_labels=false",
+          "n_images=1 (shared)"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "content-image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "content-image": "a labeled set of ≥2 concepts with one shared image is content+cards+image; facts would lose the per-concept icons",
+          "concept-breakdown": "requires images == 0; keeping it would drop the shared figure"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Segmentación: qué es y para qué sirve",
+      "title": "Dónde se usa",
+      "cards": [
+        {
+          "label": "Autos autónomos",
+          "body": "Separar carretera, peatones, semáforos y otros vehículos."
+        },
+        {
+          "label": "Imagen satelital",
+          "body": "Medir cobertura forestal, urbanización y cuerpos de agua."
+        },
+        {
+          "label": "Videoconferencia y edición de fotos",
+          "body": "Separar a la persona del fondo en tiempo real; el \"Seleccionar sujeto\" de Photoshop."
+        },
+        {
+          "label": "Neuroimagen y oncología",
+          "body": "Delinear tumores y lesiones; medir volumen tumoral para planificar radioterapia."
+        },
+        {
+          "label": "Cardiología",
+          "body": "Delimitar ventrículos para calcular la fracción de eyección."
+        },
+        {
+          "label": "Patología, oftalmología y dermatología",
+          "body": "Contar núcleos y mitosis, segmentar vasos retinianos, delimitar lesiones."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "body": "En medicina la máscara es lo que se mide, se documenta y se compara entre estudios."
+        }
+      ],
+      "notes": "Fusión de \"Aplicaciones genéricas\" y \"Aplicaciones en medicina\". En biomedicina segmentar suele ser el paso clínico y no un paso intermedio: la máscara final es la respuesta. Agricultura de precisión (plagas, estrés hídrico) quedó fuera de la lámina; se puede mencionar de palabra.",
+      "_choice": {
+        "signals": [
+          "labeled_items=6",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "n_images=0",
+          "body_len=short"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "the application domains are parallel peers with no order; process needs is_ordered or an unlabeled enumeration"
+        }
+      }
+    },
+    {
+      "template": "content-image",
+      "section": "Segmentación: qué es y para qué sirve",
+      "title": "Cómo se ve una salida",
+      "facts": [
+        {
+          "label": "Visualización típica",
+          "body": "Imagen original (MRI cardíaca) → **máscara binaria** (blanco = estructura, negro = fondo) → overlay sobre la imagen → mapa de probabilidad por píxel."
+        },
+        {
+          "label": "Internamente",
+          "body": "La máscara es una **matriz** del mismo tamaño que la imagen, donde cada celda dice a qué clase pertenece ese píxel. Para 2 clases es 0/1; para N clases es 0..N-1."
+        }
+      ],
+      "design": "split-right",
+      "media": {
+        "src": "images/slide-07-2.jpg",
+        "alt": "Segmentación cardíaca: MRI, máscara binaria, overlay y mapa de probabilidad, cuatro casos"
+      },
+      "notes": "Cada fila es un paciente: el corte de eje corto del ventrículo izquierdo, la máscara en media luna, la predicción en verde encima de la MRI y el mapa de calor de probabilidad. La figura vieja de esta lámina (cortes de cerebro con cajas rojas) mostraba detección, no segmentación.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "labeled_items=1 (colon lead-in 'Visualización típica:')",
+          "is_ordered=false",
+          "body_len=prose"
+        ],
+        "candidates": [
+          "content-image",
+          "content+cards+image",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "content+cards+image": "the two lines are not a parallel labeled set (only one carries a label); they are prose that walks the figure",
+          "image-full": "image_only=false: two prose sentences lead, beyond one framing line"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "De FCN a U-Net",
+      "section": "De FCN a U-Net"
+    },
+    {
+      "template": "concept-columns",
+      "section": "De FCN a U-Net",
+      "title": "La intuición: clasificar cada píxel",
+      "subtitle": "Si segmentar es asignar una etiqueta a cada píxel, la idea más directa es tratar cada píxel como un mini-problema de clasificación.",
+      "columns": [
+        {
+          "label": "Lo que ya sabemos: CNN clásica",
+          "body": "Clasifica la imagen entera.",
+          "text": [
+            "Comprime la imagen con convoluciones + pooling.",
+            "Al final, una capa densa entrega una clase."
+          ]
+        },
+        {
+          "label": "La idea de FCN",
+          "body": "Fully Convolutional Network (Long et al., 2015).",
+          "emphasis": true,
+          "text": [
+            "Saca la capa densa final.",
+            "La reemplaza por capas convolucionales que producen una salida espacial del mismo tamaño que la entrada."
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "label": "Una sola frase",
+          "body": "\"Convertí un clasificador de imágenes en un **clasificador de píxeles**\"."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "two parallel terms (CNN clásica vs FCN) each explained by a short definition plus 2 features",
+          "no shared row structure across the two",
+          "n_images=0",
+          "presenter feedback 2026-10-28: content-text left an empty third column, asymmetric layout"
+        ],
+        "candidates": [
+          "concept-columns",
+          "value-columns",
+          "content-text"
+        ],
+        "picked": "concept-columns",
+        "rejected": {
+          "value-columns": "the two columns share no row-by-row factor to align",
+          "content-text": "two panels in a three-column grid leave an empty column and the lead sits off-axis (BUG-20261028-05); the content is really a before/after pair of concepts"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "De FCN a U-Net",
+      "title": "FCN por dentro",
+      "image": {
+        "src": "images/s3-2-1-fcn-tres-pasos.png",
+        "alt": "FCN en tres pasos: encoder convolucional, conv 1x1 en lugar de la capa densa y upsampling a una máscara H x W"
+      },
+      "notes": "Diagrama propio en lugar de la figura isométrica del paper de Long, Shelhamer y Darrell (dos gatos en un sofá).",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, split out of the source slide for legibility)",
+          "image_only=true on this slide",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the slide's prose stays on the companion slide; this one is the image alone, so image_only → image-full"
+        }
+      }
+    },
+    {
+      "template": "process",
+      "section": "De FCN a U-Net",
+      "title": "FCN por dentro",
+      "steps": [
+        {
+          "label": "Encoder convolucional",
+          "body": "La imagen se comprime capa a capa; cada capa detecta patrones más abstractos (bordes, texturas, estructuras, objetos)."
+        },
+        {
+          "label": "Convoluciones 1×1",
+          "body": "En lugar de la capa densa: se mantienen las dimensiones espaciales. Sale un mapa chico con probabilidades por clase."
+        },
+        {
+          "label": "Upsampling",
+          "body": "Convoluciones traspuestas estiran ese mapa hasta el tamaño original."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "label": "Resultado",
+          "body": "Una máscara con una etiqueta por píxel. Fue el primer modelo de segmentación end-to-end con deep learning."
+        }
+      ],
+      "notes": "Diagrama propio en lugar de la figura isométrica del paper de Long, Shelhamer y Darrell (dos gatos en un sofá).",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (+1 'Resultado:' summary)",
+          "is_ordered=true (encoder → 1×1 → upsampling is the data flow)",
+          "date_labels=false",
+          "n_images=1 (own diagram)"
+        ],
+        "candidates": [
+          "process",
+          "content+cards+image",
+          "content-image"
+        ],
+        "picked": "process",
+        "rejected": {
+          "content+cards+image": "is_ordered: the three stages are a pipeline in order; the image does not outrank is_ordered (process carries media)",
+          "content-image": "the labeled steps would dissolve into facts and lose their numbering",
+          "(design banded)": "visual review: beside text the diagram rendered at ~40% width with ~8 px labels, illegible in the room; it moved to its own full-width slide right before this one"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "De FCN a U-Net",
+      "title": "El problema de FCN",
+      "lead": "Durante el encoder, la red comprime mucho: una imagen de **512×512** puede terminar como un mapa de **16×16**. Cuando hacemos upsampling para volver al tamaño original, la información espacial fina ya se perdió.",
+      "cards": [
+        {
+          "label": "Síntoma",
+          "body": "Los contornos quedan **borrosos** o redondeados. El borde exacto de un tumor o el contorno de un núcleo celular desaparecen."
+        },
+        {
+          "label": "En medicina",
+          "body": "Si estás midiendo el volumen de un tumor para decidir radioterapia, un borde 2 píxeles más adentro o más afuera cambia el cálculo y puede cambiar la decisión clínica."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "label": "La pregunta",
+          "body": "¿Cómo recuperamos los detalles finos que el encoder descartó?"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=2 (colon lead-ins 'Síntoma:', 'En medicina:')",
+          "is_ordered=false",
+          "is_question=false (the closing question is left open for the next slide)",
+          "n_images=0",
+          "big_metrics=false (512×512 / 16×16 are inside a sentence)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "single-point",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "single-point": "labeled_items == 2, not 1",
+          "content-text": "never fall to a plainer template when a labeled set is present",
+          "quiz": "the question is not answered on the slide; a rhetorical question does not count"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "De FCN a U-Net",
+      "title": "U-Net: la U y sus atajos",
+      "image": {
+        "src": "images/s3-4-1-unet-skip-connections.png",
+        "alt": "U-Net: encoder a la izquierda, bottleneck abajo, decoder a la derecha y skip connections horizontales entre niveles"
+      },
+      "notes": "Fusión de \"UNET: nacida en biomedicina\", \"La arquitectura en U\" y \"La clave: skip connections\". El bottleneck es la representación más comprimida y abstracta. Sin skip connections, U-Net sería un FCN más elegante: los detalles que el encoder vio antes de comprimir viajan por el atajo y el decoder los recupera, y por eso los contornos salen precisos. Es uno de los papers más citados de la última década en visión; diez años después sigue siendo la base por defecto para segmentación médica.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, split out of the source slide for legibility)",
+          "image_only=true on this slide",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the slide's prose stays on the companion slide; this one is the image alone, so image_only → image-full"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "De FCN a U-Net",
+      "title": "U-Net: la U y sus atajos",
+      "lead": "Ronneberger, Fischer y Brox (Universidad de Friburgo, 2015) la diseñaron para segmentar **células en microscopía electrónica**, con muy pocas imágenes etiquetadas.",
+      "cards": [
+        {
+          "label": "Encoder",
+          "body": "Convoluciones + max pooling. En cada nivel la resolución se reduce a la mitad y los canales se duplican. Las features codifican cada vez mejor \"qué hay\" y pierden \"dónde está\"."
+        },
+        {
+          "label": "Decoder",
+          "body": "Convoluciones traspuestas. La resolución se duplica en cada nivel y \"dónde\" se reconstruye."
+        },
+        {
+          "label": "Skip connections",
+          "body": "La salida de cada nivel del encoder se concatena con la entrada del decoder en el mismo nivel. El decoder recibe qué es (desde abajo) y dónde está exactamente (desde el atajo)."
+        }
+      ],
+      "notes": "Fusión de \"UNET: nacida en biomedicina\", \"La arquitectura en U\" y \"La clave: skip connections\". El bottleneck es la representación más comprimida y abstracta. Sin skip connections, U-Net sería un FCN más elegante: los detalles que el encoder vio antes de comprimir viajan por el atajo y el decoder los recupera, y por eso los contornos salen precisos. Es uno de los papers más citados de la última década en visión; diez años después sigue siendo la base por defecto para segmentación médica.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false (three parts of one architecture, not steps)",
+          "two_groups=false",
+          "n_images=1 (own diagram)",
+          "n_images=0 on this slide (diagram on the previous slide)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "the labeled items are parallel parts/directions, not an ordered procedure; with images == 0 the labeled set is concept-breakdown",
+          "content+cards+image (first fill)": "visual review: beside text the diagram rendered at ~40% width with ~8 px labels, illegible in the room; it moved to its own full-width slide right before this one"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "De FCN a U-Net",
+      "title": "Por qué funciona tan bien en medicina",
+      "cards": [
+        {
+          "label": "Funciona con pocos datos",
+          "body": "Las skip connections actúan como un regularizador estructural. U-Net puede entrenarse con cientos de imágenes, no miles, y aún así generalizar bien. Crítico cuando etiquetar requiere un radiólogo."
+        },
+        {
+          "label": "Contornos precisos",
+          "body": "Los detalles finos sobreviven el viaje por la U. En medicina, el borde es el dato."
+        },
+        {
+          "label": "Es modular y adaptable",
+          "body": "La misma arquitectura funciona para MRI de cerebro, células de patología, retina, ecografía cardíaca... cambia el dataset, no la red."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "big_metrics=false",
+          "n_images=0",
+          "body_len=prose"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "the three reasons are unordered peers; no ordinal, no flow"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "SAM: segmentar lo que le señalás",
+      "section": "SAM: segmentar lo que le señalás"
+    },
+    {
+      "template": "image-full",
+      "section": "SAM: segmentar lo que le señalás",
+      "title": "SAM: segmentación promptable",
+      "image": {
+        "src": "images/s4-1-1-sam-promptable.png",
+        "alt": "SAM: el image encoder corre una vez; cada prompt se codifica y el mask decoder produce la máscara"
+      },
+      "notes": "Fusión de \"SAM: ¿qué hace y por qué fue revolucionario?\" y \"mejoras conceptuales internas\". SAM trajo a segmentación el paradigma \"foundation model + prompt en inferencia\" que ya había explotado en NLP con los LLMs. Frase para llevarse: SAM no está entrenado para una tarea sino para separar objetos en general, y vos le indicás con el prompt cuál querés. El reparto de cómputo del deck original (image encoder ~95%) no tiene fuente publicada: decir \"la gran mayoría\". Sin SA-1B, SAM no funcionaría: el secreto está tanto en el modelo como en los datos.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, split out of the source slide for legibility)",
+          "image_only=true on this slide",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the slide's prose stays on the companion slide; this one is the image alone, so image_only → image-full"
+        }
+      }
+    },
+    {
+      "template": "content-text",
+      "section": "SAM: segmentar lo que le señalás",
+      "title": "SAM: segmentación promptable",
+      "notes": "Fusión de \"SAM: ¿qué hace y por qué fue revolucionario?\" y \"mejoras conceptuales internas\". SAM trajo a segmentación el paradigma \"foundation model + prompt en inferencia\" que ya había explotado en NLP con los LLMs. Frase para llevarse: SAM no está entrenado para una tarea sino para separar objetos en general, y vos le indicás con el prompt cuál querés. El reparto de cómputo del deck original (image encoder ~95%) no tiene fuente publicada: decir \"la gran mayoría\". Sin SA-1B, SAM no funcionaría: el secreto está tanto en el modelo como en los datos.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram)",
+          "labeled_items=1 (only **SA-1B** is a bold lead; 'El truco:' is a plain colon lead-in)",
+          "prose lines=3",
+          "is_ordered=false",
+          "image_only=false",
+          "n_images=0 on this slide (diagram on the previous slide)",
+          "labeled_items<=1"
+        ],
+        "candidates": [
+          "content-text",
+          "single-point",
+          "process"
+        ],
+        "picked": "content-text",
+        "rejected": {
+          "single-point": "two or more supporting statements of comparable weight, not one labeled point",
+          "process": "long prose lines explaining a mechanism, not 3–8 short enumeration lines",
+          "content-image (first fill)": "visual review: beside text the diagram rendered at ~40% width with ~8 px labels, illegible in the room; it moved to its own full-width slide right before this one"
+        }
+      },
+      "big": "SAM (Segment Anything Model, Meta, 2023) es el opuesto de la U-Net: un **foundation model** masivo que segmenta cualquier cosa en cualquier imagen, sin reentrenamiento.",
+      "panels": [
+        "Recibe una imagen + una pista (un click, una caja, una máscara aproximada o, desde SAM 3, texto) y devuelve la máscara del objeto que querés.",
+        "**El truco:** La imagen se codifica **una sola vez**. Después podés probar decenas de prompts sobre esa misma imagen; solo se reejecuta el decoder liviano.",
+        "**SA-1B:** 1.000 millones de máscaras sobre 11 millones de imágenes, armado con un data engine donde el propio SAM ayudaba a anotar."
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "label": "Encoder",
+          "body": "Su encoder de imagen es un ViT, un transformer sobre parches de imagen."
+        }
+      ]
+    },
+    {
+      "template": "image-full",
+      "section": "SAM: segmentar lo que le señalás",
+      "title": "SAM 2: memoria para video",
+      "image": {
+        "src": "images/s4-2-1-sam2-memoria-video.png",
+        "alt": "SAM 2: la máscara de cada frame se guarda en el memory bank y condiciona el frame siguiente"
+      },
+      "notes": "La figura vieja de la lámina de SAM 1 era en realidad esta arquitectura de SAM 2; por eso ahora va acá, redibujada. El post de Meta sobre SAM 3 confirma que el memory bank y el memory encoder de SAM 2 son la base del tracker de SAM 3.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, split out of the source slide for legibility)",
+          "image_only=true on this slide",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the slide's prose stays on the companion slide; this one is the image alone, so image_only → image-full"
+        }
+      }
+    },
+    {
+      "template": "concept-columns",
+      "section": "SAM: segmentar lo que le señalás",
+      "title": "SAM 2: memoria para video",
+      "subtitle": "SAM 2 (julio 2024) extiende SAM al video con un módulo de memoria que mantiene la segmentación coherente entre frames.",
+      "columns": [
+        {
+          "label": "Guardar",
+          "body": "Después de cada frame.",
+          "text": [
+            "Cada máscara que sale pasa por un memory encoder.",
+            "El resultado se guarda en un memory bank."
+          ]
+        },
+        {
+          "label": "Recordar",
+          "body": "En el frame siguiente.",
+          "emphasis": true,
+          "text": [
+            "La memory attention combina las features del image encoder con lo que quedó guardado.",
+            "Así la máscara sigue al mismo objeto aunque se mueva."
+          ]
+        }
+      ],
+      "notes": "La figura vieja de la lámina de SAM 1 era en realidad esta arquitectura de SAM 2; por eso ahora va acá, redibujada. El post de Meta sobre SAM 3 confirma que el memory bank y el memory encoder de SAM 2 son la base del tracker de SAM 3.",
+      "_choice": {
+        "signals": [
+          "two facets of one mechanism (write to memory / read from memory)",
+          "n_images=0",
+          "presenter feedback 2026-10-28: two panels in content-text leave an empty third column"
+        ],
+        "candidates": [
+          "concept-columns",
+          "content-text",
+          "process"
+        ],
+        "picked": "concept-columns",
+        "rejected": {
+          "content-text": "two panels in a three-column grid leave an empty column (BUG-20261028-05)",
+          "process": "two items only; the pair is two facets of one mechanism, not an ordered sequence of 3+ steps"
+        }
+      }
+    },
+    {
+      "template": "timeline",
+      "section": "SAM: segmentar lo que le señalás",
+      "title": "SAM 3 y 3.1: texto y muchos objetos",
+      "milestones": [
+        {
+          "label": "SAM 1 · Abril 2023",
+          "body": "Foundation model para imágenes. Prompts visuales: puntos, cajas, máscaras."
+        },
+        {
+          "label": "SAM 2 · Julio 2024",
+          "body": "Extiende SAM al video — módulo de memoria que mantiene la segmentación coherente entre frames."
+        },
+        {
+          "label": "SAM 3 · Noviembre 2025",
+          "body": "Suma prompts de texto y vocabulario abierto. Permite pedir \"todos los hepatocitos\" en lenguaje natural."
+        },
+        {
+          "label": "SAM 3.1 · Marzo 2026",
+          "body": "Object Multiplex: tracking conjunto multi-objeto con memoria compartida, sin sacrificar precisión."
+        }
+      ],
+      "design": "split-right",
+      "media": {
+        "src": "images/slide-21-1.jpg",
+        "alt": "Página de Meta \"Evolution of SAM\": SAM 3 con el prompt de texto \"Penguin\", SAM 2 y SAM 1"
+      },
+      "highlights": [
+        {
+          "kind": "note",
+          "body": "En la práctica clínica U-Net y SAM conviven. U-Net, cuando la salida tiene que ser **medible y reproducible**. SAM, en **anotación asistida**: un radiólogo clickea, SAM propone la máscara."
+        }
+      ],
+      "notes": "Patrón: cada versión generaliza más, de imagen a video, de prompts visuales a texto, de un objeto a muchos. Es la misma trayectoria que vivieron los LLMs. La captura de Meta muestra SAM 1 a SAM 3; SAM 3.1 es posterior a esa página. El \"10× o más\" de aceleración en anotación que traía el deck no tiene fuente: no lo digas como dato.",
+      "_choice": {
+        "signals": [
+          "has_table=true (Versión | Lanzamiento | Capacidad nueva, 4 rows)",
+          "date_labels=true (Abril 2023 … Marzo 2026)",
+          "is_ordered=true",
+          "n_images=1"
+        ],
+        "candidates": [
+          "timeline",
+          "value-columns",
+          "content+cards+image"
+        ],
+        "picked": "timeline",
+        "rejected": {
+          "value-columns": "the columns are heterogeneous attributes of each version, nothing compares across a row; the dates are the axis, and date_labels is checked first → timeline",
+          "content+cards+image": "date_labels outranks the shared image; timeline carries the image as media"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "SAM: segmentar lo que le señalás",
+      "title": "U-Net es modular: adelanto",
+      "lead": "U-Net no es solo para segmentación. Encoder que comprime + decoder que reconstruye + skip connections sirve para cualquier tarea donde la entrada y la salida tengan el **mismo tamaño espacial** y haya que preservar detalles finos.",
+      "format": "row",
+      "cards": [
+        {
+          "label": "Restauración de imágenes",
+          "body": "Denoising, deblurring, super-resolución."
+        },
+        {
+          "label": "Image-to-image translation",
+          "body": "MRI → CT, día → noche."
+        },
+        {
+          "label": "El corazón de **Stable Diffusion**",
+          "body": "Dentro de un rato la vamos a usar para quitar ruido paso a paso de una imagen."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (each line is a named use + its parenthetical examples)",
+          "is_ordered=false",
+          "n_images=0",
+          "body_len=short (≤ 80)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "single-point"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "the three uses are parallel peers with a name each, not an unlabeled enumeration or an order",
+          "single-point": "three items, not one"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "Generación condicionada por texto",
+      "section": "Generación condicionada por texto"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Generación condicionada por texto",
+      "title": "TilTedTinder: el nuevo desafío",
+      "lead": "En la clase pasada, una **Vanilla GAN** le llenó la base de datos a TilTedTinder, la app de citas de Slanted Land, con rostros inclinados nuevos a partir de solo 4 fotos reales. Un año después la app tiene miles de usuarios, y cada uno describe lo que le atrae:",
+      "cards": [
+        {
+          "label": "\"Me atraen las personas inclinadas, altas, con anteojos y pelo rizado.\"",
+          "body": ""
+        },
+        {
+          "label": "\"Prefiero caras inclinadas, jóvenes, con sonrisa y barba corta.\"",
+          "body": ""
+        },
+        {
+          "label": "\"Me gustan las inclinadas, mayores, con expresión seria y rasgos angulosos.\"",
+          "body": ""
+        }
+      ],
+      "icons": "none",
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "body": "Pasamos de \"generá una persona inclinada cualquiera\" a \"generá una persona inclinada con **estos atributos descritos en texto libre**\"."
+        }
+      ],
+      "notes": "Fusión de \"Recordando Slanted Land\" y \"El nuevo desafío\". Slanted Land: un mundo donde todo está inclinado y un rostro recto resulta incomprensible. La idea de negocio: que el usuario escriba lo que le atrae en lenguaje natural y la app le muestre candidatos generados a medida.",
+      "_choice": {
+        "signals": [
+          "labeled_items=0",
+          "anaphora=3 parallel quoted preferences",
+          "is_voiced=partial (three user lines, none dominant)",
+          "n_images=0",
+          "one_claim=false"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "quote",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "quote": "no single dominant voiced line: three parallel user quotes framed by the presenter's own context and takeaway, which quote cannot render",
+          "content-text": "never fall to a plainer template: three short parallel fragments are a label-only card set",
+          "process": "the three quotes are peer examples, an anaphora of short parallel fragments; numbering them would invent an order (catalog: anaphora → label-only concept-breakdown cards, not process)"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Generación condicionada por texto",
+      "title": "Por qué la GAN no alcanza",
+      "cards": [
+        {
+          "label": "Vanilla GAN",
+          "body": "Aprende una única cosa, \"producir algo que parezca un rostro inclinado\". No tiene ningún canal para recibir descripciones."
+        },
+        {
+          "label": "Conditional GAN",
+          "body": "Condiciona por etiquetas predefinidas (\"alto\", \"con anteojos\"). Las preferencias reales son frases con matices que no encajan en categorías cerradas."
+        },
+        {
+          "label": "StyleGAN",
+          "body": "Da control de estilo, pero no semántico. No podés pedirle \"expresión melancólica al atardecer\"."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "label": "La nueva tarea, text-to-image",
+          "body": "Escribís un prompt en lenguaje natural y el modelo genera una imagen que coincide. Permite combinar conceptos que el modelo nunca vio juntos (\"un astronauta montando un caballo\")."
+        }
+      ],
+      "notes": "Fusión de \"¿Por qué la GAN del año pasado no alcanza?\" y \"Una nueva tarea: del ruido a las palabras\". Text-to-image da control expresivo (el lenguaje cubre muchos más matices que una etiqueta) y no hace falta programar para usarlo. La arquitectura que lo resuelve es Stable Diffusion: el resto de la clase es entenderla para que el equipo de TilTedTinder construya su sistema.",
+      "_choice": {
+        "signals": [
+          "labeled_items=4 (3 GAN variants + the new task)",
+          "is_ordered=false",
+          "two_groups=false (three failing options + the answer, not two symmetric sides)",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "value-columns",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "value-columns": "no shared factor read across rows; each card explains its own limitation",
+          "process": "the GAN variants are not ordered steps"
+        }
+      }
+    },
+    {
+      "template": "timeline",
+      "section": "Generación condicionada por texto",
+      "title": "Text-to-image en cinco años",
+      "milestones": [
+        {
+          "label": "2021",
+          "body": "**DALL·E 1** (OpenAI): primera demo viral."
+        },
+        {
+          "label": "2022",
+          "body": "DALL·E 2, Imagen (Google), Midjourney: salto enorme en realismo."
+        },
+        {
+          "label": "Agosto 2022",
+          "body": "**Stable Diffusion 1.4**: primer modelo open source serio, con pesos publicados, que corre en una GPU de consumo."
+        },
+        {
+          "label": "2023",
+          "body": "DALL·E 3, SDXL, Midjourney v5/v6: siguen mejor prompts complejos."
+        },
+        {
+          "label": "2024",
+          "body": "FLUX, Stable Diffusion 3, Sora: texto a imagen se vuelve commodity; texto a video empieza a funcionar."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "body": "Hoy vemos las tripas de Stable Diffusion porque abrió el ecosistema y porque su arquitectura ya la conocemos en parte."
+        }
+      ],
+      "notes": "2025-2026: modelos más grandes, mejor edición controlada, integración con segmentación (SAM) y 3D (SAM 3D). La infografía del deck original se sacó porque contradecía estas fechas (DALL-E en abril 2022, Midjourney en julio 2023).",
+      "_choice": {
+        "signals": [
+          "labeled_items=5",
+          "date_labels=true (2021 … 2024)",
+          "is_ordered=true",
+          "n_images=0"
+        ],
+        "candidates": [
+          "timeline",
+          "process",
+          "concept-breakdown"
+        ],
+        "picked": "timeline",
+        "rejected": {
+          "process": "date_labels is checked before is_ordered: dated milestones are a timeline",
+          "concept-breakdown": "the items are ordered by date, not unordered peers"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Generación condicionada por texto",
+      "title": "CLIP: el puente texto ↔ imagen",
+      "image": {
+        "src": "images/s5-4-1-clip-contrastivo.png",
+        "alt": "CLIP: matriz de similitudes entre embeddings de imagen y de texto, con los pares reales en la diagonal"
+      },
+      "notes": "Absorbe lo esencial de la lámina vieja sobre cómo una red neuronal representa texto (tokenización, embeddings, encoder contextual: \"banco de plaza\" vs \"banco financiero\"). Resultado del entrenamiento: la frase \"una foto de un perro corriendo en la playa\" aterriza en el mismo vecindario que una foto real de eso. CLIP proyecta el texto a un espacio que la U-Net usa como entrada.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, split out of the source slide for legibility)",
+          "image_only=true on this slide",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the slide's prose stays on the companion slide; this one is the image alone, so image_only → image-full"
+        }
+      }
+    },
+    {
+      "template": "concept-columns",
+      "section": "Generación condicionada por texto",
+      "title": "CLIP: el puente texto ↔ imagen",
+      "subtitle": "Una red no procesa palabras: el texto se tokeniza, cada token pasa a un vector y un encoder Transformer produce un embedding de la oración completa.",
+      "columns": [
+        {
+          "label": "Dos encoders, un espacio",
+          "body": "CLIP (OpenAI, 2021).",
+          "text": [
+            "Entrena en paralelo un encoder de imagen y otro de texto.",
+            "Sus salidas viven en el mismo espacio vectorial."
+          ]
+        },
+        {
+          "label": "Entrenamiento contrastivo",
+          "body": "400 millones de pares (imagen, descripción) de internet.",
+          "emphasis": true,
+          "text": [
+            "Los pares reales quedan cerca.",
+            "Los mal apareados quedan lejos."
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "body": "Ese embedding de texto es la entrada con la que la U-Net de Stable Diffusion se condiciona."
+        }
+      ],
+      "notes": "Absorbe lo esencial de la lámina vieja sobre cómo una red neuronal representa texto (tokenización, embeddings, encoder contextual: \"banco de plaza\" vs \"banco financiero\"). Resultado del entrenamiento: la frase \"una foto de un perro corriendo en la playa\" aterriza en el mismo vecindario que una foto real de eso. CLIP proyecta el texto a un espacio que la U-Net usa como entrada.",
+      "_choice": {
+        "signals": [
+          "two concepts (architecture / training signal) each with a short definition and 2 features",
+          "n_images=0",
+          "presenter feedback 2026-10-28: two panels in content-text leave an empty third column"
+        ],
+        "candidates": [
+          "concept-columns",
+          "content-text",
+          "process"
+        ],
+        "picked": "concept-columns",
+        "rejected": {
+          "content-text": "two panels in a three-column grid leave an empty column (BUG-20261028-05)",
+          "process": "two items only; the pair is two facets of one mechanism, not an ordered sequence of 3+ steps"
+        }
+      }
+    },
+    {
+      "template": "value-columns",
+      "section": "Generación condicionada por texto",
+      "title": "La idea de condición",
+      "columns": [
+        {
+          "header": "Generación incondicional",
+          "factor": false,
+          "cells": [
+            "Ruido aleatorio → red → imagen. La red genera lo que aprendió, sin guía."
+          ]
+        },
+        {
+          "header": "Generación condicionada",
+          "cells": [
+            "Ruido aleatorio + condición → red → imagen que respeta la condición."
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "example",
+          "body": "La condición puede ser una etiqueta de clase (cGAN), una imagen de referencia (Pix2Pix) o un **embedding de texto** (Stable Diffusion)."
+        },
+        {
+          "kind": "takeaway",
+          "body": "La condición dirige **cada paso** de la generación. Si dice \"perro en la playa\", la red empuja el ruido en cada iteración hacia algo que se parezca a eso."
+        },
+        {
+          "kind": "note",
+          "body": "En Stable Diffusion, el embedding de CLIP se inyecta en la U-Net mediante **cross-attention**."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "has_table=true (2 columns, 1 row)",
+          "two_groups=true (incondicional vs condicionada)",
+          "polarity=false (neutral A vs B, not upside/downside)",
+          "n_images=0"
+        ],
+        "candidates": [
+          "value-columns",
+          "pros-cons",
+          "concept-columns"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "pros-cons": "two_groups without polarity: the sides are two modes, not advantages vs risks",
+          "concept-columns": "the cells align over a shared factor (ruido → red → imagen); reading across compares the same pipeline"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "Stable Diffusion por dentro",
+      "section": "Stable Diffusion por dentro"
+    },
+    {
+      "template": "image-full",
+      "section": "Stable Diffusion por dentro",
+      "title": "La idea de difusión: agregar y quitar ruido",
+      "image": {
+        "src": "images/s6-1-1-difusion-forward-reverse.png",
+        "alt": "Difusión: forward agrega ruido de x0 a xT; reverse lo quita con un predictor de ruido condicionado en c"
+      },
+      "notes": "Diferencia con las GANs: no hay dos redes compitiendo. Una sola red aprende a desruidizar, es más estable de entrenar, no tiene mode collapse y da más diversidad. Imagen para decir: Stable Diffusion talla la imagen, arranca de un bloque de ruido y saca lo que sobra hasta dejar la figura.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, split out of the source slide for legibility)",
+          "image_only=true on this slide",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the slide's prose stays on the companion slide; this one is the image alone, so image_only → image-full"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Stable Diffusion por dentro",
+      "title": "La idea de difusión: agregar y quitar ruido",
+      "lead": "Difusión viene de la física: una gota de tinta en un vaso de agua se dispersa hasta volverse uniforme.",
+      "cards": [
+        {
+          "label": "Forward (entrenamiento)",
+          "body": "A una imagen real le agregamos un poco de ruido gaussiano en cada paso, durante miles de pasos, hasta que queda ruido puro."
+        },
+        {
+          "label": "Reverse (inferencia)",
+          "body": "La red hace el camino inverso. Arranca de ruido puro y quita ruido paso a paso, guiada por la condición c."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "body": "La red aprende una sola cosa: dado un latente ruidoso y un timestep, **predecir qué ruido fue agregado**. Con esa predicción, el ruido se puede restar."
+        }
+      ],
+      "notes": "Diferencia con las GANs: no hay dos redes compitiendo. Una sola red aprende a desruidizar, es más estable de entrenar, no tiene mode collapse y da más diversidad. Imagen para decir: Stable Diffusion talla la imagen, arranca de un bloque de ruido y saca lo que sobra hasta dejar la figura.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2 (Forward, Reverse)",
+          "two_groups=true but mirrored directions, not a factor table",
+          "is_ordered=false",
+          "n_images=1 (own diagram)",
+          "n_images=0 on this slide (diagram on the previous slide)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "the labeled items are parallel parts/directions, not an ordered procedure; with images == 0 the labeled set is concept-breakdown",
+          "content+cards+image (first fill)": "visual review: beside text the diagram rendered at ~40% width with ~8 px labels, illegible in the room; it moved to its own full-width slide right before this one"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Stable Diffusion por dentro",
+      "title": "Del ruido a la imagen",
+      "lead": "El proceso inverso sobre una imagen real: de ruido puro (x_T) a la muestra limpia (x_0).",
+      "image": {
+        "src": "images/slide-34-1.jpg",
+        "alt": "Proceso inverso: ocho pasos de ruido puro a la foto nítida de un golden retriever"
+      },
+      "notes": "La figura lleva el logo de Calibraint, su autor; el deck original no la atribuía.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true (one framing line ≤ 120 chars)",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "image_only: one short framing line is the image-full lead, not prose that leads"
+        }
+      }
+    },
+    {
+      "template": "stat",
+      "section": "Stable Diffusion por dentro",
+      "title": "Latent diffusion: difundir en un espacio comprimido",
+      "lead": "Rombach et al. (CompVis, 2021) propusieron difundir en un **espacio latente** comprimido.",
+      "stats": [
+        {
+          "value": "786.432",
+          "caption": "valores en una imagen de 512×512 RGB: la difusión directa sobre píxeles (DALL·E 2, Imagen) es cara, y cada uno de los 50 a 1000 pasos de denoising los procesa todos"
+        },
+        {
+          "value": "16.384",
+          "caption": "valores en el latente: una imagen de 512×512×3 se comprime a 64×64×4"
+        },
+        {
+          "value": "48×",
+          "caption": "menos valores por paso"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "body": "Funciona porque las imágenes naturales son redundantes: los píxeles vecinos se parecen. Una compresión 8× por lado preserva la estructura."
+        },
+        {
+          "kind": "takeaway",
+          "label": "Resultado",
+          "body": "Stable Diffusion corre en una GPU de consumo (8-16 GB) en pocos segundos."
+        }
+      ],
+      "notes": "Fusión de \"Por qué la difusión pura es lenta y costosa\" y \"Latent Diffusion: la idea genial\". Cuenta: 786.432 / 16.384 = 48. Sobre píxeles hacían falta GPUs muy grandes y minutos por imagen: inviable para consumo, deployment masivo o un equipo chico que quiere iterar. El paper es \"High-Resolution Image Synthesis with Latent Diffusion Models\": preprint de diciembre de 2021, publicado en CVPR 2022. Por eso se llama Stable Diffusion.",
+      "_choice": {
+        "signals": [
+          "big_metrics=true (786.432, 16.384, 48×)",
+          "labeled_items=0",
+          "is_ordered=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "stat",
+          "process",
+          "content-text"
+        ],
+        "picked": "stat",
+        "rejected": {
+          "process": "the payload is the size contrast (786.432 vs 16.384, 48×): the numbers are the slide, not prose points to number",
+          "content-text": "never fall to prose when 2–4 standalone figures carry the slide"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Stable Diffusion por dentro",
+      "title": "Las tres piezas de Stable Diffusion",
+      "image": {
+        "src": "images/s6-4-1-tres-piezas-sd.png",
+        "alt": "Las tres piezas de Stable Diffusion: codificador de texto, U-Net en el latente y VAE, con las dimensiones de cada tensor"
+      },
+      "notes": "El prompt entra a CLIP, que produce un embedding. La U-Net usa ese embedding para guiar el denoising en el espacio latente. Cuando termina, el decoder del VAE transforma el latente final en una imagen visible. Texto y tabla salen de la captura del deck original.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, split out of the source slide for legibility)",
+          "image_only=true on this slide",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the slide's prose stays on the companion slide; this one is the image alone, so image_only → image-full"
+        }
+      }
+    },
+    {
+      "template": "value-columns",
+      "section": "Stable Diffusion por dentro",
+      "title": "Las tres piezas de Stable Diffusion",
+      "columns": [
+        {
+          "header": "Componente",
+          "factor": true,
+          "cells": [
+            "VAE (Variational Autoencoder)",
+            "UNET",
+            "CLIP Text Encoder"
+          ]
+        },
+        {
+          "header": "Qué hace",
+          "cells": [
+            "Comprime imagen ↔ latente",
+            "Denoiser condicional en espacio latente",
+            "Prompt de texto → embedding"
+          ]
+        },
+        {
+          "header": "Tamaño aprox.",
+          "cells": [
+            "~80M params",
+            "~860M params",
+            "~123M params"
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "note",
+          "body": "Dos de estas piezas ya las vimos: la U-Net en segmentación y CLIP en text-to-image. Falta el VAE."
+        }
+      ],
+      "notes": "El prompt entra a CLIP, que produce un embedding. La U-Net usa ese embedding para guiar el denoising en el espacio latente. Cuando termina, el decoder del VAE transforma el latente final en una imagen visible. Texto y tabla salen de la captura del deck original.",
+      "_choice": {
+        "signals": [
+          "has_table=true (Componente | Qué hace | Tamaño, 3 rows)",
+          "n_images=1 (own diagram)",
+          "labeled_items=0",
+          "big_metrics=partial (sizes are one column of the table)"
+        ],
+        "candidates": [
+          "value-columns",
+          "content+cards+image",
+          "stat"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "content+cards+image": "a table with one shared diagram stays value-columns with media; cards would collapse each row into one body",
+          "stat": "the sizes are one column of a comparison, not the standalone payload",
+          "(design banded)": "visual review: beside text the diagram rendered at ~40% width with ~8 px labels, illegible in the room; it moved to its own full-width slide right before this one"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Stable Diffusion por dentro",
+      "title": "Componente 1: el VAE",
+      "image": {
+        "src": "images/s6-5-1-vae-latente.png",
+        "alt": "VAE: el encoder comprime la imagen a un latente 64x64x4 y el decoder la reconstruye"
+      },
+      "notes": "El VAE es un compresor inteligente: convierte el problema de \"generar 800K píxeles\" en el de \"generar 16K números latentes\". Lo variacional: el latente es una distribución, no un punto fijo (la campana gaussiana de la figura vieja).",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, split out of the source slide for legibility)",
+          "image_only=true on this slide",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the slide's prose stays on the companion slide; this one is the image alone, so image_only → image-full"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Stable Diffusion por dentro",
+      "title": "Componente 1: el VAE",
+      "cards": [
+        {
+          "label": "Encoder",
+          "body": "Toma la imagen 512×512×3 y la mapea a un latente 64×64×4. Compresión ~48×."
+        },
+        {
+          "label": "Decoder",
+          "body": "Toma un latente 64×64×4 y reconstruye una imagen 512×512×3."
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "important",
+          "body": "En el entrenamiento de SD se usa el encoder, para llevar las imágenes del dataset al latente. En inferencia **solo se usa el decoder**."
+        },
+        {
+          "kind": "note",
+          "body": "Se entrena antes y por separado de la U-Net, con un objetivo simple: `decoder(encoder(imagen)) ≈ imagen`. Después sus pesos quedan congelados."
+        }
+      ],
+      "notes": "El VAE es un compresor inteligente: convierte el problema de \"generar 800K píxeles\" en el de \"generar 16K números latentes\". Lo variacional: el latente es una distribución, no un punto fijo (la campana gaussiana de la figura vieja).",
+      "_choice": {
+        "signals": [
+          "labeled_items=2 (Encoder, Decoder)",
+          "prose lines=2 (comments on use and training)",
+          "is_ordered=false",
+          "n_images=1 (own diagram, 3.1:1)",
+          "n_images=0 on this slide (diagram on the previous slide)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "the labeled items are parallel parts/directions, not an ordered procedure; with images == 0 the labeled set is concept-breakdown",
+          "content+cards+image (first fill)": "visual review: beside text the diagram rendered at ~40% width with ~8 px labels, illegible in the room; it moved to its own full-width slide right before this one"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Stable Diffusion por dentro",
+      "title": "Componente 2: la U-Net, de vuelta",
+      "image": {
+        "src": "images/s6-6-1-unet-cross-attention.png",
+        "alt": "U-Net de Stable Diffusion: tres entradas, el ruido predicho como salida y el prompt entrando por cross-attention en cada nivel"
+      },
+      "notes": "La conexión que cierra el círculo: la arquitectura que en 2015 segmentaba células al microscopio hoy es el corazón de la generación de imágenes más usada. U-Net es un patrón arquitectónico reutilizable. El ciclo de cada paso se ve en el pipeline, dos láminas más adelante.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, split out of the source slide for legibility)",
+          "image_only=true on this slide",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the slide's prose stays on the companion slide; this one is the image alone, so image_only → image-full"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Stable Diffusion por dentro",
+      "title": "Componente 2: la U-Net, de vuelta",
+      "lead": "La misma estructura que vimos en segmentación: encoder + decoder en U + skip connections.",
+      "cards": [
+        {
+          "label": "Cambia la tarea",
+          "body": "U-Net de segmentación: entra una imagen, sale una máscara. U-Net de SD: entran **latente ruidoso, timestep y embedding del prompt**; sale la **predicción del ruido** presente en el latente."
+        },
+        {
+          "label": "Cross-attention",
+          "body": "En cada nivel de la U, bajando y subiendo, un bloque calcula pesos entre las features de la imagen y cada token del embedding de CLIP, y suma la información de los tokens ponderada por esos pesos."
+        }
+      ],
+      "notes": "La conexión que cierra el círculo: la arquitectura que en 2015 segmentaba células al microscopio hoy es el corazón de la generación de imágenes más usada. U-Net es un patrón arquitectónico reutilizable. El ciclo de cada paso se ve en el pipeline, dos láminas más adelante.",
+      "_choice": {
+        "signals": [
+          "first line = lead (same structure as segmentation)",
+          "labeled_items=2 (sentence lead-in 'Cambia la tarea.' promoted to label + bold lead **Cross-attention**)",
+          "two_groups=false (seg-vs-SD contrast lives inside one item)",
+          "is_ordered=false",
+          "n_images=1 (own diagram)",
+          "n_images=0 on this slide (diagram on the previous slide)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "the labeled items are parallel parts/directions, not an ordered procedure; with images == 0 the labeled set is concept-breakdown",
+          "content+cards+image (first fill)": "visual review: beside text the diagram rendered at ~40% width with ~8 px labels, illegible in the room; it moved to its own full-width slide right before this one"
+        }
+      },
+      "highlights": [
+        {
+          "kind": "note",
+          "body": "El cross-attention con el prompt es atención de transformer metida dentro de una red convolucional."
+        }
+      ]
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Stable Diffusion por dentro",
+      "title": "Componente 3: el CLIP Text Encoder",
+      "lead": "SD 1.x usa el text encoder de **CLIP ViT-L/14** (~123M parámetros), congelado: el equipo de SD no lo reentrena, lo toma prestado de OpenAI.",
+      "cards": [
+        {
+          "label": "Entrada",
+          "body": "El prompt (ej: \"un astronauta montando un caballo\"), tokenizado a **77 tokens** (con padding si la frase es corta, truncado si es larga)."
+        },
+        {
+          "label": "Salida",
+          "body": "Una matriz de embeddings de **77 × 768**, que se enchufa a la U-Net en cada bloque de cross-attention."
+        }
+      ],
+      "stats": [
+        {
+          "value": "~123M",
+          "caption": "parámetros, congelado"
+        },
+        {
+          "value": "77",
+          "caption": "tokens por prompt"
+        },
+        {
+          "value": "77 × 768",
+          "caption": "embedding que entra a la U-Net"
+        }
+      ],
+      "notes": "Los 123M son del text encoder, no del CLIP completo (que suma el image encoder ViT-L/14); SD solo usa la parte de texto. Tomarlo ya entrenado ahorra cómputo y aprovecha que CLIP ya relacionaba texto e imagen.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2 ('Entrada:', 'Salida:')",
+          "is_ordered=weak (input → output, two items)",
+          "big_metrics=supporting (123M, 77, 77×768 inside prose)",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "stat"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "two items (input/output) of one component are a labeled pair, not a procedure; process wants a sequence of steps",
+          "stat": "the figures support the explanation; they go in the stat band, not as the whole slide"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Stable Diffusion por dentro",
+      "title": "Pipeline completo de inferencia",
+      "image": {
+        "src": "images/s6-8-1-pipeline-inferencia.png",
+        "alt": "Pipeline de inferencia: la U-Net predice ruido, el scheduler lo resta unas 50 veces y el VAE decodifica la imagen"
+      },
+      "notes": "Todo lo que vimos (U-Net, embeddings de texto, condición) confluye en este pipeline. Stable Diffusion no es un modelo monolítico: son tres piezas modulares orquestadas por un loop iterativo.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own diagram, split out of the source slide for legibility)",
+          "image_only=true on this slide",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the slide's prose stays on the companion slide; this one is the image alone, so image_only → image-full"
+        }
+      }
+    },
+    {
+      "template": "process",
+      "section": "Stable Diffusion por dentro",
+      "title": "Pipeline completo de inferencia",
+      "steps": [
+        {
+          "label": "Prompt",
+          "body": "Tokenizer → CLIP Text Encoder → embedding de texto (77 × 768)."
+        },
+        {
+          "label": "Latente inicial",
+          "body": "Un tensor aleatorio de 64×64×4 desde una normal, controlado por la seed. Es el bloque de mármol que vamos a tallar."
+        },
+        {
+          "label": "Bucle de denoising",
+          "body": "(~50 pasos): la U-Net recibe (latente, t, embedding) y predice el ruido; el scheduler lo resta."
+        },
+        {
+          "label": "Decodificar",
+          "body": "Latente final 64×64×4 → VAE Decoder → imagen 512×512×3."
+        }
+      ],
+      "notes": "Todo lo que vimos (U-Net, embeddings de texto, condición) confluye en este pipeline. Stable Diffusion no es un modelo monolítico: son tres piezas modulares orquestadas por un loop iterativo.",
+      "_choice": {
+        "signals": [
+          "labeled_items=4 (numbered 1.–4.)",
+          "is_ordered=true",
+          "date_labels=false",
+          "n_images=1 (own diagram)"
+        ],
+        "candidates": [
+          "process",
+          "content+cards+image",
+          "timeline"
+        ],
+        "picked": "process",
+        "rejected": {
+          "content+cards+image": "is_ordered (numbered steps) outranks the shared image; process carries the diagram as media",
+          "timeline": "date_labels=false: the labels are stages, not dates",
+          "(design split-right)": "visual review: beside text the diagram rendered at ~40% width with ~8 px labels, illegible in the room; it moved to its own full-width slide right before this one; the labeled steps were also squeezed into narrow columns"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Stable Diffusion por dentro",
+      "title": "Los hiperparámetros que importan",
+      "cards": [
+        {
+          "label": "num_inference_steps",
+          "body": "Cuántos pasos de denoising. Default 50. Por debajo de 20 la calidad se degrada; por encima de 100 las mejoras son marginales.",
+          "icon": "stairs"
+        },
+        {
+          "label": "guidance_scale",
+          "body": "(classifier-free guidance): qué tan estricto seguir el prompt. Default 7.5. Bajo (1-3) más diverso y menos fiel; medio (7-9) el punto justo; alto (15+) muy fiel pero saturado.",
+          "icon": "tune"
+        },
+        {
+          "label": "seed",
+          "body": "Controla el ruido inicial. Misma seed + mismo prompt = misma imagen.",
+          "icon": "casino"
+        },
+        {
+          "label": "height y width",
+          "body": "Múltiplos de 8, porque el VAE comprime 8×. Default 512×512.",
+          "icon": "aspect_ratio"
+        }
+      ],
+      "highlights": [
+        {
+          "kind": "takeaway",
+          "label": "Para iterar",
+          "body": "Fijá la seed y el guidance, y mové el prompt. Así aislás el efecto de cada cambio de texto."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "is_ordered=false",
+          "big_metrics=false (defaults are inside prose bodies)",
+          "two_groups=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "value-columns",
+          "stat"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "value-columns": "the four parameters do not share factor rows (each body has a different shape: ranges, rule, multiple of 8)",
+          "stat": "the numbers are inside prose explanations; no standalone figure is the payload"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "Stable Diffusion por dentro",
+      "title": "Limitaciones de Stable Diffusion",
+      "cards": [
+        {
+          "label": "Manos y anatomía",
+          "body": "Dedos de más o fundidos, ojos asimétricos, articulaciones raras."
+        },
+        {
+          "label": "Texto dentro de la imagen",
+          "body": "Carteles y etiquetas salen como caracteres pseudo-aleatorios. Mejoró en SD 3 y FLUX."
+        },
+        {
+          "label": "Conteo y composición",
+          "body": "\"Tres manzanas\" puede salir con dos o cinco; \"un perro a la izquierda y un gato a la derecha\" es frágil."
+        },
+        {
+          "label": "Sesgos del dataset",
+          "body": "LAION-5B refleja sesgos demográficos, culturales y estéticos de internet. Importa en aplicaciones médicas y sociales."
+        },
+        {
+          "label": "Costo de inferencia",
+          "body": "Sigue siendo caro para deployment masivo en tiempo real."
+        }
+      ],
+      "notes": "Stable Diffusion es una herramienta muy poderosa pero falible. Saber dónde falla es tan importante como saber qué puede hacer.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5",
+          "is_ordered=false",
+          "polarity=false (only downsides, no upside group)",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "pros-cons"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "pros-cons": "needs two_groups with polarity; this is a single group of limitations"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "TilTedTinder v2 y notebook",
+      "section": "TilTedTinder v2 y notebook"
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "TilTedTinder v2 y notebook",
+      "title": "De preferencias a prompts",
+      "lead": "Ya tenemos las piezas: el usuario escribe un prompt, CLIP lo convierte en un embedding, la U-Net talla la imagen paso a paso y el VAE la decodifica.",
+      "cards": [
+        {
+          "label": "Usuario A",
+          "body": "\"Me atraen las personas inclinadas, altas, con anteojos y pelo rizado.\""
+        },
+        {
+          "label": "Usuario B",
+          "body": "\"Prefiero caras inclinadas, jóvenes, con sonrisa y barba corta.\""
+        },
+        {
+          "label": "Usuario C",
+          "body": "\"Inclinadas, mayores, expresión seria, rasgos angulosos.\""
+        }
+      ],
+      "format": "row",
+      "notes": "Fusión del recap (\"El desafío que dejamos pendiente\") y \"De preferencias a prompts\". La imagen final depende de la estructura del prompt tanto como del modelo: escribir prompts es una habilidad propia. Si el usuario \"matchea\" con un perfil, la seed permite reproducirlo idéntico.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3 (Usuario A/B/C)",
+          "is_ordered=false",
+          "n_images=0",
+          "has_code=false on this slide (the fence is on the next one)"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "code-example"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "code-example": "visual review: six explanation lines beside the code panel overflowed (users C and the two closing lines fell off the slide); the three user preferences moved to their own card slide, the fence stays a code-example on the next slide"
+        }
+      }
+    },
+    {
+      "template": "code-example",
+      "section": "TilTedTinder v2 y notebook",
+      "title": "De preferencias a prompts",
+      "language": "text",
+      "code": "A: prompt = \"a tilted portrait of a tall person with round glasses and curly hair, soft natural lighting, photorealistic, 4k\"\nB: prompt = \"a tilted portrait of a young person with a warm smile and short beard, soft daylight, candid photo, shallow depth of field\"\nC: prompt = \"a tilted portrait of an older person with a serious expression and angular features, dramatic shadows, black and white photography\"",
+      "explanation": [
+        "Un buen prompt combina **sujeto + atributos + estilo + luz**.",
+        "Mismo prompt + **misma seed** = mismo perfil estable cuando el usuario vuelve a abrir la app."
+      ],
+      "notes": "Fusión del recap (\"El desafío que dejamos pendiente\") y \"De preferencias a prompts\". La imagen final depende de la estructura del prompt tanto como del modelo: escribir prompts es una habilidad propia. Si el usuario \"matchea\" con un perfil, la seed permite reproducirlo idéntico.",
+      "_choice": {
+        "signals": [
+          "has_code=true (```text fence with the three prompts)",
+          "labeled_items=0",
+          "n_images=0"
+        ],
+        "candidates": [
+          "code-example",
+          "concept-breakdown"
+        ],
+        "picked": "code-example",
+        "rejected": {
+          "concept-breakdown": "has_code dominates: the prompts are meant to be read verbatim, not paraphrased into cards"
+        }
+      }
+    },
+    {
+      "template": "concept-breakdown",
+      "section": "TilTedTinder v2 y notebook",
+      "title": "Lo que el equipo va a encontrar",
+      "cards": [
+        {
+          "label": "Slanted Land no está en los datos de SD",
+          "body": "LAION-5B no tiene caras inclinadas, así que las primeras generaciones saldrán rectas. Solución: fine-tuning con las 4 fotos reales, con DreamBooth o LoRA."
+        },
+        {
+          "label": "Sesgo demográfico",
+          "body": "Hay grupos sobrerrepresentados y otros casi ausentes. El equipo tiene que auditar las generaciones."
+        },
+        {
+          "label": "Control de detalle limitado",
+          "body": "No podés pedir \"exactamente esa nariz\". Para detalles finos, iterar o usar ControlNet e Inpainting."
+        },
+        {
+          "label": "Costo",
+          "body": "50 perfiles por usuario en tiempo real es caro. Caché, generación batched offline o modelos rápidos (SDXL Turbo, FLUX Schnell)."
+        },
+        {
+          "label": "Ética",
+          "body": "¿Se le avisa al usuario que el perfil es sintético? ¿Hay riesgo de manipulación emocional?"
+        }
+      ],
+      "notes": "Stable Diffusion les resuelve el motor. El producto requiere muchas decisiones más, sobre datos, ética, cómputo y UX. Las de ética son decisiones de producto, no técnicas, pero alguien las tiene que tomar.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5",
+          "is_ordered=false",
+          "polarity=false",
+          "n_images=0",
+          "body_len=prose"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "process": "the five problems are unordered peers; no sequence"
+        }
+      }
+    },
+    {
+      "template": "process",
+      "section": "TilTedTinder v2 y notebook",
+      "title": "Pasamos al notebook",
+      "lead": "**Stack**: Google Colab con GPU (Tesla T4, 16 GB) · Hugging Face Diffusers · Stable Diffusion v1.4 (CompVis) en `float16`.",
+      "steps": [
+        {
+          "label": "Pipeline alto nivel",
+          "body": "`StableDiffusion​Pipeline.​from_pretrained(...)` y generar imágenes en pocas líneas."
+        },
+        {
+          "label": "Hiperparámetros",
+          "body": "Mover `num_inference_steps`, `guidance_scale` y `seed`, y ver qué cambia."
+        },
+        {
+          "label": "Grids",
+          "body": "Varias imágenes de un mismo prompt para ver la variabilidad."
+        },
+        {
+          "label": "Dimensiones",
+          "body": "Imágenes rectangulares (512×768)."
+        },
+        {
+          "label": "Pipeline manual",
+          "body": "Desarmar el pipeline en VAE + U-Net + CLIP y reconstruirlo a mano."
+        }
+      ],
+      "notes": "`float16` para que entre en la GPU gratuita. El último ejercicio es donde la sección de Stable Diffusion se vuelve tangible: ven el bucle de denoising, la cross-attention con el embedding de CLIP y el VAE decodificando al final. Cada bloque de la teoría aparece como código.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5 (numbered 1.–5.)",
+          "is_ordered=true",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "process",
+          "concept-breakdown"
+        ],
+        "picked": "process",
+        "rejected": {
+          "concept-breakdown": "is_ordered: numbered exercises done in order; concept-breakdown requires unordered items"
+        }
+      }
+    },
+    {
+      "template": "divider",
+      "title": "Conclusiones"
+    },
+    {
+      "template": "concept-breakdown",
+      "title": "Key takeaways",
+      "cards": [
+        {
+          "label": "Una convolución",
+          "body": "desliza un kernel chico de pesos compartidos sobre la señal: acepta cualquier largo y detecta un patrón esté donde esté. Su encoder resume la entrada en un embedding."
+        },
+        {
+          "label": "Segmentar",
+          "body": "es etiquetar cada píxel; en medicina, la máscara es el dato que se mide."
+        },
+        {
+          "label": "U-Net",
+          "body": "recupera los bordes que FCN pierde gracias a las skip connections, y funciona con pocas imágenes etiquetadas."
+        },
+        {
+          "label": "SAM",
+          "body": "segmenta cualquier objeto a partir de una pista: click, caja, máscara o texto."
+        },
+        {
+          "label": "Stable Diffusion",
+          "body": "combina tres piezas: CLIP convierte el prompt en un embedding, la U-Net quita ruido en el latente y el VAE lo vuelve imagen."
+        },
+        {
+          "label": "La misma U-Net",
+          "body": "aparece en las dos mitades de la clase: segmenta células y talla imágenes desde ruido."
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=6 (bold lead in each line)",
+          "is_ordered=false",
+          "is_cta=false (concepts, not resources or next steps)",
+          "is_terminal=true",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "closing-cta",
+          "process"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "closing-cta": "is_cta=false: the items are concepts to remember, not links or next steps",
+          "process": "the takeaways are unordered peers"
+        }
+      }
+    }
+  ],
+  "_source": {
+    "file": "final.md",
+    "sha256": "bd852c6caf07426da72a36ec565267fded88dd5df75e026411716bb65b48ee1a",
+    "bytes": 68795
+  }
+}
