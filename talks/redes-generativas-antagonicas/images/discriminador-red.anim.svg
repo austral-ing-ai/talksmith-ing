@@ -1,0 +1,116 @@
+<svg class="ts-anim-discriminador-red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420 990" width="1420" height="990" font-family="Helvetica, Arial, sans-serif">
+<title>Discriminador como red: entrada, oculta y salida</title>
+<desc>La grilla 2×2 de la cara prototipo (1, 0 / 0, 1) alimenta las cuatro neuronas de la capa de entrada, conectadas directamente a la neurona de salida (σ), sin capa oculta, con pesos +1 (rojo), -1, -1 (azul) y +1 (rojo); un nodo Bias de valor 1 aporta con peso -1 (verde).</desc>
+<style>/* talksmith-animation */
+.ts-anim-discriminador-red [data-beat]{animation:ts-anim-discriminador-red-in .6s ease-out both}
+.ts-anim-discriminador-red [data-beat="1"]{animation-delay:0.3s}
+.ts-anim-discriminador-red [data-beat="2"]{animation-delay:1.2s}
+.ts-anim-discriminador-red [data-beat="3"]{animation-delay:5.0s}
+.ts-anim-discriminador-red [data-beat="4"]{animation-delay:5.6s}
+.ts-anim-discriminador-red [data-beat="5"]{animation-delay:9.6s}
+.ts-anim-discriminador-red [data-beat="6"]{animation-delay:10.1s}
+.ts-anim-discriminador-red .tok1{offset-path:path("M145,422 C165,170 400,170 724.7,216.3");offset-rotate:0deg;animation:ts-anim-discriminador-red-tok1 1.4s linear 2.0s both}
+@keyframes ts-anim-discriminador-red-tok1{0%{offset-distance:3.96%;opacity:0}10%,82%{opacity:1}100%{offset-distance:91.23%;opacity:0}}
+.ts-anim-discriminador-red .xin1{animation:ts-anim-discriminador-red-lit .8s ease-out 3.20s both}
+.ts-anim-discriminador-red .tok2{offset-path:path("M315,422 C385,320 580,370 724.9,405.4");offset-rotate:0deg;animation:ts-anim-discriminador-red-tok2 1.4s linear 2.4s both}
+@keyframes ts-anim-discriminador-red-tok2{0%{offset-distance:6.47%;opacity:0}10%,82%{opacity:1}100%{offset-distance:85.67%;opacity:0}}
+.ts-anim-discriminador-red .xin2{animation:ts-anim-discriminador-red-lit .8s ease-out 3.60s both}
+.ts-anim-discriminador-red .tok3{offset-path:path("M145,778 C205,1000 520,890 734.8,644.3");offset-rotate:0deg;animation:ts-anim-discriminador-red-tok3 1.4s linear 2.7s both}
+@keyframes ts-anim-discriminador-red-tok3{0%{offset-distance:3.84%;opacity:0}10%,82%{opacity:1}100%{offset-distance:91.5%;opacity:0}}
+.ts-anim-discriminador-red .xin3{animation:ts-anim-discriminador-red-lit .8s ease-out 3.90s both}
+.ts-anim-discriminador-red .tok4{offset-path:path("M315,778 C305,970 520,780 723.2,795.1");offset-rotate:0deg;animation:ts-anim-discriminador-red-tok4 1.4s linear 3.6s both}
+@keyframes ts-anim-discriminador-red-tok4{0%{offset-distance:5.84%;opacity:0}10%,82%{opacity:1}100%{offset-distance:87.08%;opacity:0}}
+.ts-anim-discriminador-red .xin4{animation:ts-anim-discriminador-red-lit .8s ease-out 4.80s both}
+.ts-anim-discriminador-red .glow1{stroke-dasharray:100 200;animation:ts-anim-discriminador-red-glow 1.2s ease-in-out 6.3s both}
+.ts-anim-discriminador-red .wl1{transform-box:fill-box;transform-origin:center;animation:ts-anim-discriminador-red-pulse .55s ease-in-out 6.52s both}
+.ts-anim-discriminador-red .glow2{stroke-dasharray:100 200;animation:ts-anim-discriminador-red-glow 1.2s ease-in-out 6.9s both}
+.ts-anim-discriminador-red .wl2{transform-box:fill-box;transform-origin:center;animation:ts-anim-discriminador-red-pulse .55s ease-in-out 7.12s both}
+.ts-anim-discriminador-red .glow3{stroke-dasharray:100 200;animation:ts-anim-discriminador-red-glow 1.2s ease-in-out 7.5s both}
+.ts-anim-discriminador-red .wl3{transform-box:fill-box;transform-origin:center;animation:ts-anim-discriminador-red-pulse .55s ease-in-out 7.72s both}
+.ts-anim-discriminador-red .glow4{stroke-dasharray:100 200;animation:ts-anim-discriminador-red-glow 1.2s ease-in-out 8.1s both}
+.ts-anim-discriminador-red .wl4{transform-box:fill-box;transform-origin:center;animation:ts-anim-discriminador-red-pulse .55s ease-in-out 8.32s both}
+.ts-anim-discriminador-red .sig{animation:ts-anim-discriminador-red-sig 2.2s ease-in-out 9.0s both}
+@keyframes ts-anim-discriminador-red-in{from{opacity:0}}
+@keyframes ts-anim-discriminador-red-lit{0%,100%{fill:#ffffff}35%{fill:#B8E6F5}}
+@keyframes ts-anim-discriminador-red-glow{0%{stroke-dashoffset:100;opacity:0}6%{opacity:.38}65%{stroke-dashoffset:0;opacity:.38}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-discriminador-red-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+@keyframes ts-anim-discriminador-red-sig{0%,100%{fill:#3B3535}18%,72%{fill:#DA1B2E}}
+@media (prefers-reduced-motion:reduce){.ts-anim-discriminador-red *{animation:none}}
+</style>
+<defs><marker id="ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="ah-DA1B2E-34" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="34" markerHeight="34" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="ah-1F5FAD-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="ah-2E8540-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker></defs>
+<rect width="1420" height="990" fill="#ffffff"/>
+<rect data-beat="3" x="1022" y="140" width="96" height="830" rx="18" fill="#F4F2F0" stroke="#6B6560" stroke-width="3" stroke-dasharray="14 10"/>
+<line x1="40" y1="128" x2="1380" y2="128" stroke="#D9D4CF" stroke-width="3"/>
+<text data-beat="1" x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text data-beat="1" x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
+<text data-beat="2" x="780" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text data-beat="2" x="780" y="106" font-size="34" fill="#6B6560" text-anchor="middle">x₁…x₄, sin cálculo</text>
+<text data-beat="3" x="1070" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text data-beat="3" x="1070" y="106" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text data-beat="3" x="1280" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text data-beat="3" x="1280" y="106" font-size="34" fill="#6B6560" text-anchor="middle">1 neurona</text>
+<g transform="translate(0,150)">
+<g data-beat="1">
+<rect x="60.0" y="280.0" width="170" height="170" fill="#000000"/>
+<text x="145.0" y="387.3" font-size="62" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<rect x="230.0" y="280.0" width="170" height="170" fill="#ffffff"/>
+<text x="315.0" y="387.3" font-size="62" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="60.0" y="450.0" width="170" height="170" fill="#ffffff"/>
+<text x="145.0" y="557.3" font-size="62" fill="#3B3535" text-anchor="middle" font-weight="normal">0</text>
+<rect x="230.0" y="450.0" width="170" height="170" fill="#000000"/>
+<text x="315.0" y="557.3" font-size="62" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
+<line x1="230" y1="280" x2="230" y2="620" stroke="#1F1E1E" stroke-width="3.0"/>
+<line x1="60" y1="450" x2="400" y2="450" stroke="#1F1E1E" stroke-width="3.0"/>
+<rect x="60" y="280" width="340" height="340" fill="none" stroke="#1F1E1E" stroke-width="6.0"/>
+</g>
+<g data-beat="2">
+<path d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
+<path d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
+<path d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
+<path d="M315.0,628.0 C305.0,820.0 520.0,630.0 723.2,645.1" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
+</g>
+<g data-beat="4">
+<path class="glow1" opacity="0" d="M818.6,108.6 L1201.0,391.6" pathLength="100" stroke="#DA1B2E" stroke-width="20" stroke-linecap="round" fill="none"/>
+<path d="M818.6,108.6 L1233.2,415.4" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#ah-DA1B2E-34)"/>
+<g class="wl1"><rect x="902.3" y="172.0" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="945.4" y="225.5" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text></g>
+<path class="glow2" opacity="0" d="M825.2,286.3 L1189.9,417.6" pathLength="100" stroke="#1F5FAD" stroke-width="20" stroke-linecap="round" fill="none"/>
+<path d="M825.2,286.3 L1227.5,431.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#ah-1F5FAD-26)"/>
+<g class="wl2"><rect x="904.9" y="300.1" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="948.1" y="353.5" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text></g>
+<path class="glow3" opacity="0" d="M828.0,459.0 L1184.2,451.9" pathLength="100" stroke="#1F5FAD" stroke-width="20" stroke-linecap="round" fill="none"/>
+<path d="M828.0,459.0 L1224.2,451.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#ah-1F5FAD-26)"/>
+<g class="wl3"><rect x="906.1" y="426.2" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="949.2" y="479.7" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text></g>
+<path class="glow4" opacity="0" d="M824.6,632.2 L1188.9,486.5" pathLength="100" stroke="#DA1B2E" stroke-width="20" stroke-linecap="round" fill="none"/>
+<path d="M824.6,632.2 L1226.0,471.6" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#ah-DA1B2E-34)"/>
+<g class="wl4"><rect x="904.7" y="552.5" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="947.8" y="605.9" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text></g>
+</g>
+
+
+
+<g data-beat="2">
+<circle class="xin1" cx="780.0" cy="80.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="95.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₁</text>
+<circle class="xin2" cx="780.0" cy="270.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="285.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₂</text>
+<circle class="xin3" cx="780.0" cy="460.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="475.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₃</text>
+<circle class="xin4" cx="780.0" cy="650.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="665.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₄</text>
+</g>
+
+
+
+<g data-beat="3">
+<circle class="sig" cx="1280.0" cy="450.0" r="48" fill="#3B3535"/>
+<text x="1280.0" y="468.0" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
+</g>
+<g>
+<text data-beat="5" x="1280" y="565" font-size="44" fill="#1F1E1E" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">w·x + b</text>
+<text data-beat="6" x="1280" y="620" font-size="44" fill="#2E8540" text-anchor="middle">b = −1</text>
+</g>
+</g>
+<!-- narración: cada píxel viaja a su entrada; nace en el borde de su celda, lejos del dígito -->
+<g class="tok1" opacity="0"><circle r="26" fill="#1F1E1E" stroke="#ffffff" stroke-width="3"/><text y="12" font-size="34" fill="#ffffff" text-anchor="middle" font-weight="bold">1</text></g>
+<g class="tok2" opacity="0"><circle r="26" fill="#ffffff" stroke="#1F1E1E" stroke-width="3"/><text y="12" font-size="34" fill="#1F1E1E" text-anchor="middle" font-weight="bold">0</text></g>
+<g class="tok3" opacity="0"><circle r="26" fill="#ffffff" stroke="#1F1E1E" stroke-width="3"/><text y="12" font-size="34" fill="#1F1E1E" text-anchor="middle" font-weight="bold">0</text></g>
+<g class="tok4" opacity="0"><circle r="26" fill="#1F1E1E" stroke="#ffffff" stroke-width="3"/><text y="12" font-size="34" fill="#ffffff" text-anchor="middle" font-weight="bold">1</text></g>
+</svg>

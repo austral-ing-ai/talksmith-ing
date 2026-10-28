@@ -234,3 +234,64 @@
     animación en el deck) en editor.md Step 6 (b) y en el pre-flight de md-to-deck
   seen: 1
   plugin_version: 1.4.1
+
+- id: BUG-20261028-06
+  status: open
+  date: 2026-10-28
+  talk: redes-generativas-antagonicas
+  step: 6 (Polish) — animación de diagramas hechos a mano
+  where: agents/editor.md línea ~141 (bullet `animation:`) vs skills/animate-svg/SKILL.md
+  what: editor.md dice "The same section works in the `<!-- image-note: … -->` under a hand-drawn diagram", pero
+    ningún script ni otro spec define `image-note` (grep en el plugin 1.5.1: una sola mención). Para el presentador
+    esa clave no existe; la convención es el bloque ```ascii con su `<!-- ascii-note: -->`
+  expected: una sola convención documentada para la nota de un diagrama hecho a mano
+  actual: este Talk usó `image-note` siguiendo esa línea; se migró a un bloque ```ascii de documentación (la slide ya
+    tiene imagen → documentation_only) + `ascii-note` con intent/animation. polish-ascii scan los ve: 8 bloques,
+    documentation_only: true, nota adjunta
+  repro: grep -rn "image-note" ~/.claude/plugins/marketplaces/talksmith
+  impact: cosmetic — confunde al autor del draft; nada lee la clave
+  suggested_fix: SUGGESTION, unverified — reemplazar la frase por un puntero a *Optional ASCII alongside an image
+    link*: un bloque ```ascii de documentación + su ascii-note es la forma de anotar un diagrama hecho a mano
+  seen: 1
+  plugin_version: 1.5.1
+
+- id: BUG-20261028-07
+  status: open
+  date: 2026-10-28
+  talk: redes-generativas-antagonicas
+  step: 6 (Polish) — pasada de animación
+  where: plugin instalado (cache 1.4.1) vs checkout del marketplace (más nuevo) → skills/animate-svg/SKILL.md
+  what: el CLAUDE.md del repo manda leer el spec desde marketplaces/talksmith, que estaba adelante del plugin
+    instalado (1.4.1). Al actualizar a 1.5.1 en medio de la pasada, el contrato de animate-svg cambió (de editar
+    `<stem>.svg` en el lugar a escribir `<stem>.anim.svg` y apuntar la slide a `<stem>.anim.png`), y
+    `claude plugin marketplace update` re-clonó el directorio con subagentes trabajando sobre él
+  expected: que el spec cargado y los scripts sean de la misma versión, o una advertencia cuando difieren
+  actual: 3 animaciones se migraron a mano a la nueva estructura; las otras 5 las migraron sus subagentes al releer
+    el SKILL. Sin pérdida de trabajo
+  repro: comparar `git -C ~/.claude/plugins/marketplaces/talksmith log -1` con la versión en installed_plugins.json
+  impact: degraded — dos contratos de archivos en la misma pasada
+  suggested_fix: SUGGESTION, unverified — que el stub de CLAUDE.md prefiera `installPath` de installed_plugins.json
+    y avise si el marketplace está adelante
+  seen: 1
+  plugin_version: 1.4.1 → 1.5.1
+
+- id: BUG-20261028-08
+  status: open
+  date: 2026-10-28
+  talk: redes-generativas-antagonicas
+  step: 6 (Polish) — crítica de animaciones (diagram-critic, Animation mode)
+  where: skills/animate-svg/SKILL.md (paso 1: `.critique/<stem>.png` con rasterize.py → cairosvg) vs check_animation.py --frames (Chrome)
+  what: el still aprobado que recibe el crítico se rasteriza con cairosvg y los cuadros con Chrome. Un SVG que
+    declara font-style="italic" sale recto en cairosvg y en cursiva en Chrome, así que el último cuadro "no coincide
+    con el still" aunque la animación no tocó ese texto. El crítico lo carga a la animación (A13 / #6), porque
+    para él es una diferencia nueva respecto de approved_still
+  expected: still aprobado y cuadros dibujados por el mismo motor, o el crítico avisado de que son motores distintos
+  actual: discriminador-cara se descartó en la corrida anterior solo por esto (fórmula de la sigmoide); ciclo-lote
+    gastó su única revisión de esta corrida en lo mismo (12 rótulos en cursiva). Se arregló en la copia animada
+    forzando font-style normal. El deck HTML muestra esos textos en cursiva también en el SVG base, y el PDF/.pptx rectos
+  repro: un SVG con `<text font-style="italic">` → rasterize.py vs check_animation.py --frames; comparar el último cuadro con .critique/<stem>.png
+  impact: degraded — quema revisiones con defectos que no causó la animación, y deja la cursiva distinta entre el HTML y el PDF
+  suggested_fix: SUGGESTION, unverified — capturar approved_still con el mismo Chrome que los cuadros (un cuadro de
+    la base sin animar), o que validate_svg.py marque font-style/font-family que cairosvg ignora
+  seen: 2
+  plugin_version: 1.5.1
