@@ -96,6 +96,31 @@
     {
       "template": "image-full",
       "section": "Qué es una convolución",
+      "title": "Cómo se entrena una red densa",
+      "image": {
+        "src": "images/mlp-entrenamiento.gif",
+        "alt": "Un paso de entrenamiento de un MLP: forward, pérdida de entropía cruzada, backward con la regla de la cadena capa por capa y actualización de los pesos"
+      },
+      "notes": "Repaso de la clase de redes neuronales con un MLP de juguete en numpy (64→16→12→10, dígitos sintéticos de 8×8). Forward: el «3» entra y la salida da p(3) = 0,04. Pérdida: L = −log p(3) = 3,12. Backward con la regla de la cadena: δ₃ = p − y en la salida, después δ₂ y δ₁ hacia atrás; cada fila de ∂L/∂W se completa cuando su neurona recibe su δ. Se promedia sobre el mini-batch de 10 dígitos y se actualiza W ← W − η·∂L/∂W con η = 0,2. En 40 pasos la pérdida del mini-batch baja de 3,14 a 0,08 y p(3) sube a 0,92; los mapas de ∂L/∂W usan escala fija y se apagan a medida que baja L. Este mismo ciclo (forward, pérdida, backward, actualización) es el que entrena a todos los modelos de la clase; lo que cambia de uno a otro es la pérdida.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own training animation)",
+          "image_only=true",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "no body text on the slide; the animation needs full width to stay legible"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Qué es una convolución",
       "title": "El detector de voz: cada audio dura distinto",
       "image": {
         "src": "images/s1-2-1-recortar-rellenar-audio.png",
@@ -2562,7 +2587,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "ab3e7a434b022db3518bca055e04fc926ff1f13f391095401b42169781b61a99",
-    "bytes": 69808
+    "sha256": "b9912c0c42f4cf14771f0c909443a0b35da5b3d75bbc98508ddabbcdf87a4d83",
+    "bytes": 70899
   }
 }

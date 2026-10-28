@@ -78,7 +78,23 @@ Arrancar por lo que ya saben: el TP de precios de casas fue exactamente esto. La
 
 ---
 
-## 2. El detector de voz: cada audio dura distinto
+## 2. Cómo se entrena una red densa
+
+### Content
+
+![Un paso de entrenamiento de un MLP: forward, pérdida de entropía cruzada, backward con la regla de la cadena capa por capa y actualización de los pesos](images/mlp-entrenamiento.gif)
+
+### Sources
+
+- (animación propia)
+
+### Speaker notes
+
+Repaso de la clase de redes neuronales con un MLP de juguete en numpy (64→16→12→10, dígitos sintéticos de 8×8). Forward: el «3» entra y la salida da p(3) = 0,04. Pérdida: L = −log p(3) = 3,12. Backward con la regla de la cadena: δ₃ = p − y en la salida, después δ₂ y δ₁ hacia atrás; cada fila de ∂L/∂W se completa cuando su neurona recibe su δ. Se promedia sobre el mini-batch de 10 dígitos y se actualiza W ← W − η·∂L/∂W con η = 0,2. En 40 pasos la pérdida del mini-batch baja de 3,14 a 0,08 y p(3) sube a 0,92; los mapas de ∂L/∂W usan escala fija y se apagan a medida que baja L. Este mismo ciclo (forward, pérdida, backward, actualización) es el que entrena a todos los modelos de la clase; lo que cambia de uno a otro es la pérdida.
+
+---
+
+## 3. El detector de voz: cada audio dura distinto
 
 ### Content
 
@@ -114,7 +130,7 @@ Funciona en una demo y es poco elegante. Elegir L es una decisión arbitraria: s
 
 ---
 
-## 3. El sesgo inductivo equivocado
+## 4. El sesgo inductivo equivocado
 
 ### Content
 
@@ -133,7 +149,7 @@ Sesgo inductivo es lo que la arquitectura asume antes de ver un solo dato. La ca
 
 ---
 
-## 4. El problema aparece en cualquier señal, y en las imágenes
+## 5. El problema aparece en cualquier señal, y en las imágenes
 
 ### Content
 
@@ -159,7 +175,7 @@ En filtrado y upscaling la salida también es una señal, así que el largo vari
 
 ---
 
-## 5. La solución: un kernel que se desliza
+## 6. La solución: un kernel que se desliza
 
 ### Content
 
@@ -182,7 +198,7 @@ Dejar correr la animación una vez en silencio y después narrarla. La operació
 
 ---
 
-## 6. Mismo mecanismo, otra tarea: detectar voz
+## 7. Mismo mecanismo, otra tarea: detectar voz
 
 ### Content
 
@@ -203,7 +219,7 @@ Los dos ejemplos usan kernels diseñados a mano para que se vea qué hace cada u
 
 ---
 
-## 7. El largo variable deja de ser un problema
+## 8. El largo variable deja de ser un problema
 
 ### Content
 
@@ -223,7 +239,7 @@ Este es el punto de la sección en una lámina: la cantidad de pesos depende del
 
 ---
 
-## 8. Dos soluciones al largo variable
+## 9. Dos soluciones al largo variable
 
 ### Content
 
@@ -245,7 +261,7 @@ En "De la palabra al transformer" vieron la atención con texto: la representaci
 
 ---
 
-## 9. Convolución en imágenes
+## 10. Convolución en imágenes
 
 ### Content
 
@@ -267,7 +283,7 @@ En "De la palabra al transformer" vieron la atención con texto: la representaci
 
 ---
 
-## 10. Distintos kernels, distintos rasgos
+## 11. Distintos kernels, distintos rasgos
 
 ### Content
 
@@ -287,7 +303,7 @@ Con 32 kernels en una capa salen 32 feature maps, uno por rasgo. La capa siguien
 
 ---
 
-## 11. Embeddings más allá del texto
+## 12. Embeddings más allá del texto
 
 ### Content
 
