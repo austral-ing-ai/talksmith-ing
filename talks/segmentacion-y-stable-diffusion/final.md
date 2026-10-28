@@ -658,7 +658,23 @@ Fusión de "SAM: ¿qué hace y por qué fue revolucionario?" y "mejoras conceptu
 
 ---
 
-## 2. SAM 2: memoria para video
+## 2. Cómo se entrena SAM
+
+### Content
+
+![Entrenamiento de SAM con prompts simulados: un punto sorteado de la máscara verdadera, pérdida focal más dice, clics correctores en la zona de error, y el ciclo del data engine](images/sam-entrenamiento.gif)
+
+### Sources
+
+- `sam-kirillov-2023.web.md`
+
+### Speaker notes
+
+Un SAM de juguete real (los tres módulos se entrenan juntos, gradientes verificados contra diferencias finitas). El prompt no lo escribe nadie: se sortea un punto adentro de la máscara verdadera. Forward por image encoder, prompt encoder y mask decoder; la pérdida combina focal (castiga más los píxeles difíciles) y dice (mide el solapamiento entre máscara predicha y verdadera): L = 0,37. El gradiente llega a los tres módulos y se actualizan. Después se simula el uso interactivo: se sortea un clic corrector en la zona de error (un falso positivo da un clic negativo) y se repite; la pérdida baja 0,37 → 0,19 → 0,09 en las tres rondas. La parte de abajo es un esquema, no un cálculo: el data engine. SAM propone máscaras, anotadores las corrigen, con más datos se reentrena SAM, que propone mejores máscaras. Así se armó SA-1B: 11 millones de imágenes y más de 1.000 millones de máscaras.
+
+---
+
+## 3. SAM 2: memoria para video
 
 ### Content
 
@@ -700,7 +716,7 @@ La figura vieja de la lámina de SAM 1 era en realidad esta arquitectura de SAM 
 
 ---
 
-## 3. SAM 3 y 3.1: texto y muchos objetos
+## 4. SAM 3 y 3.1: texto y muchos objetos
 
 ### Content
 
@@ -727,7 +743,7 @@ Patrón: cada versión generaliza más, de imagen a video, de prompts visuales a
 
 ---
 
-## 4. U-Net es modular: adelanto
+## 5. U-Net es modular: adelanto
 
 ### Content
 

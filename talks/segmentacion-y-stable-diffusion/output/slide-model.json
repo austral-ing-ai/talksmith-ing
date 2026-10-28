@@ -1382,6 +1382,31 @@
     {
       "template": "image-full",
       "section": "SAM: segmentar lo que le señalás",
+      "title": "Cómo se entrena SAM",
+      "image": {
+        "src": "images/sam-entrenamiento.gif",
+        "alt": "Entrenamiento de SAM con prompts simulados: un punto sorteado de la máscara verdadera, pérdida focal más dice, clics correctores en la zona de error, y el ciclo del data engine"
+      },
+      "notes": "Un SAM de juguete real (los tres módulos se entrenan juntos, gradientes verificados contra diferencias finitas). El prompt no lo escribe nadie: se sortea un punto adentro de la máscara verdadera. Forward por image encoder, prompt encoder y mask decoder; la pérdida combina focal (castiga más los píxeles difíciles) y dice (mide el solapamiento entre máscara predicha y verdadera): L = 0,37. El gradiente llega a los tres módulos y se actualizan. Después se simula el uso interactivo: se sortea un clic corrector en la zona de error (un falso positivo da un clic negativo) y se repite; la pérdida baja 0,37 → 0,19 → 0,09 en las tres rondas. La parte de abajo es un esquema, no un cálculo: el data engine. SAM propone máscaras, anotadores las corrigen, con más datos se reentrena SAM, que propone mejores máscaras. Así se armó SA-1B: 11 millones de imágenes y más de 1.000 millones de máscaras.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own training animation)",
+          "image_only=true",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "no body text on the slide; the animation needs full width to stay legible"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "SAM: segmentar lo que le señalás",
       "title": "SAM 2: memoria para video",
       "image": {
         "src": "images/sam2-en-vivo.gif",
@@ -2662,7 +2687,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "e40317ef00de51a7cff129ab8974293f6963842d785606570dcf02a206fc6086",
-    "bytes": 74617
+    "sha256": "47245093c536c11d9245070ef3eb9ebe72eb46018ead85c05817195e9d30607e",
+    "bytes": 75856
   }
 }
