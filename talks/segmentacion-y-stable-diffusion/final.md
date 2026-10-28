@@ -303,7 +303,23 @@ Con 32 kernels en una capa salen 32 feature maps, uno por rasgo. La capa siguien
 
 ---
 
-## 12. Embeddings más allá del texto
+## 12. Cómo se aprende un kernel
+
+### Content
+
+![Un kernel 3×3 arranca al azar y aprende por descenso de gradiente a detectar bordes verticales: el gradiente se acumula en las 25 posiciones donde se aplicó](images/conv-entrenamiento.gif)
+
+### Sources
+
+- (animación propia)
+
+### Speaker notes
+
+Un kernel 3×3 que arranca con pesos al azar se entrena para que su feature map se parezca a un objetivo: el mapa de bordes verticales de una imagen de 7×7. La pérdida es la MSE entre salida y objetivo (al principio L = 83,93). Lo nuevo frente a una capa densa está en el backward: como el mismo kernel se aplicó en las 25 posiciones, su gradiente es la suma de las contribuciones de cada posición; en cada una se suma (2/25)·(salida − objetivo)·ventana. Después, kernel ← kernel − η·∂L/∂kernel. En 60 pasos el kernel llega a [−1 0 +1] en las tres filas y L baja a 0,01. Modelo de juguete en numpy, gradiente verificado con diferencias finitas. En una CNN nadie diseña los kernels: se aprenden, y una red real aprende miles a la vez.
+
+---
+
+## 13. Embeddings más allá del texto
 
 ### Content
 
