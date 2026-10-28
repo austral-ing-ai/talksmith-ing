@@ -274,3 +274,24 @@
     y avise si el marketplace está adelante
   seen: 1
   plugin_version: 1.4.1 → 1.5.1
+
+- id: BUG-20261028-08
+  status: open
+  date: 2026-10-28
+  talk: redes-generativas-antagonicas
+  step: 6 (Polish) — crítica de animaciones (diagram-critic, Animation mode)
+  where: skills/animate-svg/SKILL.md (paso 1: `.critique/<stem>.png` con rasterize.py → cairosvg) vs check_animation.py --frames (Chrome)
+  what: el still aprobado que recibe el crítico se rasteriza con cairosvg y los cuadros con Chrome. Un SVG que
+    declara font-style="italic" sale recto en cairosvg y en cursiva en Chrome, así que el último cuadro "no coincide
+    con el still" aunque la animación no tocó ese texto. El crítico lo carga a la animación (A13 / #6), porque
+    para él es una diferencia nueva respecto de approved_still
+  expected: still aprobado y cuadros dibujados por el mismo motor, o el crítico avisado de que son motores distintos
+  actual: discriminador-cara se descartó en la corrida anterior solo por esto (fórmula de la sigmoide); ciclo-lote
+    gastó su única revisión de esta corrida en lo mismo (12 rótulos en cursiva). Se arregló en la copia animada
+    forzando font-style normal. El deck HTML muestra esos textos en cursiva también en el SVG base, y el PDF/.pptx rectos
+  repro: un SVG con `<text font-style="italic">` → rasterize.py vs check_animation.py --frames; comparar el último cuadro con .critique/<stem>.png
+  impact: degraded — quema revisiones con defectos que no causó la animación, y deja la cursiva distinta entre el HTML y el PDF
+  suggested_fix: SUGGESTION, unverified — capturar approved_still con el mismo Chrome que los cuadros (un cuadro de
+    la base sin animar), o que validate_svg.py marque font-style/font-family que cairosvg ignora
+  seen: 2
+  plugin_version: 1.5.1

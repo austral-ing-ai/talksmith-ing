@@ -336,9 +336,9 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 ### Content
 
-![Arquitectura de una Vanilla GAN: el Discriminador recibe muestras reales y falsas y da un veredicto, P(real) entre 0 y 1. La pérdida de G usa los veredictos sobre las generadas y actualiza G; la pérdida de D usa los veredictos sobre reales y generadas y actualiza D](images/vanilla-gan-arquitectura.anim.png)
+![Arquitectura de una Vanilla GAN: el Discriminador recibe muestras reales y falsas y da un veredicto, P(real) entre 0 y 1. La pérdida de G usa los veredictos sobre las generadas y actualiza G; la pérdida de D usa los veredictos sobre reales y generadas y actualiza D](images/vanilla-gan-arquitectura.svg)
 
-<!-- images/vanilla-gan-arquitectura.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. La animación vive aparte, en images/vanilla-gan-arquitectura.anim.svg, y se rehace desde ese SVG base con la sección animation: de la nota. -->
+<!-- images/vanilla-gan-arquitectura.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. No tiene animación publicada. -->
 <!-- ascii-render: documentation-only -->
 ```ascii
 Ruido z ──▶ Generador (G) ──▶ Muestra falsa ──┐
@@ -597,9 +597,9 @@ El umbral 1 de esta slide es el que en la siguiente entra a la neurona como sesg
 |---|---|
 | 1(+1)+0(−1)+0(−1)+1(+1) + b = 2 − 1 = 1 | σ(1) ≈ 0.73 → imagen real |
 
-![Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada x₁…x₄ sin cálculo, ninguna capa oculta y una sola neurona de salida σ que calcula w·x + b; pesos +1, −1, −1, +1 y sesgo b = −1](images/discriminador-red.svg)
+![Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada x₁…x₄ sin cálculo, ninguna capa oculta y una sola neurona de salida σ que calcula w·x + b; pesos +1, −1, −1, +1 y sesgo b = −1](images/discriminador-red.anim.png)
 
-<!-- images/discriminador-red.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. No tiene animación publicada. -->
+<!-- images/discriminador-red.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. La animación vive aparte, en images/discriminador-red.anim.svg, y se rehace desde ese SVG base con la sección animation: de la nota. -->
 <!-- ascii-render: documentation-only -->
 ```ascii
 IMAGEN 2×2      ENTRADA          OCULTA       SALIDA (1 neurona)
@@ -689,9 +689,9 @@ animation:
   5. El punto 0.73 se marca en la curva «σ(x) = 1/(1 + e^−x)», y el diagrama queda completo.
 -->
 
-![La imagen de ruido pasa por la misma red: 0.25 − 1 − 0.5 + 0.75 + b = −1.5, y sale σ(−1.5) = 0.18, marcado en el gráfico de la sigmoide](images/discriminador-ruido.anim.png)
+![La imagen de ruido pasa por la misma red: 0.25 − 1 − 0.5 + 0.75 + b = −1.5, y sale σ(−1.5) = 0.18, marcado en el gráfico de la sigmoide](images/discriminador-ruido.svg)
 
-<!-- images/discriminador-ruido.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. La animación vive aparte, en images/discriminador-ruido.anim.svg, y se rehace desde ese SVG base con la sección animation: de la nota. -->
+<!-- images/discriminador-ruido.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. No tiene animación publicada. -->
 <!-- ascii-render: documentation-only -->
 ```ascii
 ┌──────┬──────┐   x₁ ── +1 ──┐
@@ -764,9 +764,9 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 - Con z = 0.7 como entrada y los pesos aprendidos, el Generador produce una imagen que reproduce el patrón diagonal de las caras reales. El Generador aprendió a engañar al Discriminador.
 - El resultado muestra el patrón diagonal característico de las caras de Slanted Land: valores altos en la diagonal principal, bajos en la secundaria. El Generador internalizó la estructura del dataset real.
 
-![Red del Generador: z = 0.7 entra sin cálculo; cada una de las cuatro neuronas σ suma su peso ±1 y su sesgo ±1, y entre las cuatro producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)](images/generador-red.anim.png)
+![Red del Generador: z = 0.7 entra sin cálculo; cada una de las cuatro neuronas σ suma su peso ±1 y su sesgo ±1, y entre las cuatro producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)](images/generador-red.svg)
 
-<!-- images/generador-red.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. La animación vive aparte, en images/generador-red.anim.svg, y se rehace desde ese SVG base con la sección animation: de la nota. -->
+<!-- images/generador-red.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. No tiene animación publicada. -->
 <!-- ascii-render: documentation-only -->
 ```ascii
 ENTRADA                OCULTA / SALIDA                  IMAGEN generada, 2×2

@@ -524,7 +524,7 @@
       "section": "Introducción a las GANs",
       "title": "Arquitectura de una \"Vanilla\" GAN",
       "image": {
-        "src": "images/vanilla-gan-arquitectura.anim.png",
+        "src": "images/vanilla-gan-arquitectura.svg",
         "alt": "Arquitectura de una Vanilla GAN: el Discriminador recibe muestras reales y falsas y da un veredicto, P(real) entre 0 y 1. La pérdida de G usa los veredictos sobre las generadas y actualiza G; la pérdida de D usa los veredictos sobre reales y generadas y actualiza D"
       },
       "highlights": [
@@ -936,7 +936,7 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/discriminador-red.svg",
+        "src": "images/discriminador-red.anim.png",
         "alt": "Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada x₁…x₄ sin cálculo, ninguna capa oculta y una sola neurona de salida σ que calcula w·x + b; pesos +1, −1, −1, +1 y sesgo b = −1"
       },
       "_choice": {
@@ -1049,7 +1049,7 @@
             "alt": "La cara prototipo pasa por la red del Discriminador y sale σ(1) = 0.73, marcado en el gráfico de la sigmoide"
           },
           {
-            "src": "images/discriminador-ruido.anim.png",
+            "src": "images/discriminador-ruido.svg",
             "alt": "La imagen de ruido pasa por la misma red: 0.25 − 1 − 0.5 + 0.75 + b = −1.5, y sale σ(−1.5) = 0.18, marcado en el gráfico de la sigmoide"
           }
         ]
@@ -1145,7 +1145,7 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/generador-red.anim.png",
+        "src": "images/generador-red.svg",
         "alt": "Red del Generador: z = 0.7 entra sin cálculo; cada una de las cuatro neuronas σ suma su peso ±1 y su sesgo ±1, y entre las cuatro producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)"
       },
       "_choice": {
@@ -2175,7 +2175,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "d50a3d2511a21c3c83385341e25157f01d96f04b22633b34621bf9775fb54edd",
-    "bytes": 94888
+    "sha256": "dc1f4537ab4459c1524fb35930086440518b70645c521d34b3cc2d0a6f29fa37",
+    "bytes": 94665
   }
 }
