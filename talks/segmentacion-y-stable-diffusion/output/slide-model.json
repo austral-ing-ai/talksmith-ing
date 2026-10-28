@@ -1473,6 +1473,31 @@
       }
     },
     {
+      "template": "image-full",
+      "section": "SAM: segmentar lo que le señalás",
+      "title": "Cómo se entrena SAM 2",
+      "image": {
+        "src": "images/sam2-entrenamiento.gif",
+        "alt": "Entrenamiento de SAM 2 sobre un clip: máscara verdadera en cada frame, pérdida sumada sobre los frames y un gradiente que vuelve por la memoria hasta memory attention y memory encoder"
+      },
+      "notes": "Primer paso de entrenamiento de un SAM 2 de juguete real (gradientes verificados). El dato es un clip de 8 frames, la pelota que pasa detrás del poste, con la máscara verdadera en todos los frames y el prompt solo en los frames 1 y 7. El forward va frame por frame y llena el memory bank. Cada frame tiene su pérdida (focal + dice) y se suman: L = 8,39. Lo distinto frente a SAM: el gradiente de un frame vuelve también a los frames anteriores a través de la memoria, así que memory attention y memory encoder se entrenan junto con el resto; el memory bank no tiene pesos, solo guarda. Este juguete usa el optimizador Adam. En 1.500 pasos la L del clip baja de 8,39 a 2,25; en los frames sin prompt la otra pelota todavía se cuela en la máscara. SAM 2 real se entrenó con SA-V, videos con máscaras en cada frame.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own training animation)",
+          "image_only=true",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "no body text on the slide; the animation needs full width to stay legible"
+        }
+      }
+    },
+    {
       "template": "timeline",
       "section": "SAM: segmentar lo que le señalás",
       "title": "SAM 3 y 3.1: texto y muchos objetos",
@@ -2712,7 +2737,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "f48c156542a00d9dc789fff78f2584fc1c45bde0d1c819a6aff5105dcdd9623f",
-    "bytes": 77104
+    "sha256": "4cf51deff43d661c00d219e8245825d701771dea8ea65579c7abbfb1f19da332",
+    "bytes": 78256
   }
 }

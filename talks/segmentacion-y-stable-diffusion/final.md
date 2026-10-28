@@ -716,7 +716,23 @@ La figura vieja de la lámina de SAM 1 era en realidad esta arquitectura de SAM 
 
 ---
 
-## 4. SAM 3 y 3.1: texto y muchos objetos
+## 4. Cómo se entrena SAM 2
+
+### Content
+
+![Entrenamiento de SAM 2 sobre un clip: máscara verdadera en cada frame, pérdida sumada sobre los frames y un gradiente que vuelve por la memoria hasta memory attention y memory encoder](images/sam2-entrenamiento.gif)
+
+### Sources
+
+- `sam2-ravi-2024.web.md`
+
+### Speaker notes
+
+Primer paso de entrenamiento de un SAM 2 de juguete real (gradientes verificados). El dato es un clip de 8 frames, la pelota que pasa detrás del poste, con la máscara verdadera en todos los frames y el prompt solo en los frames 1 y 7. El forward va frame por frame y llena el memory bank. Cada frame tiene su pérdida (focal + dice) y se suman: L = 8,39. Lo distinto frente a SAM: el gradiente de un frame vuelve también a los frames anteriores a través de la memoria, así que memory attention y memory encoder se entrenan junto con el resto; el memory bank no tiene pesos, solo guarda. Este juguete usa el optimizador Adam. En 1.500 pasos la L del clip baja de 8,39 a 2,25; en los frames sin prompt la otra pelota todavía se cuela en la máscara. SAM 2 real se entrenó con SA-V, videos con máscaras en cada frame.
+
+---
+
+## 5. SAM 3 y 3.1: texto y muchos objetos
 
 ### Content
 
@@ -743,7 +759,7 @@ Patrón: cada versión generaliza más, de imagen a video, de prompts visuales a
 
 ---
 
-## 5. U-Net es modular: adelanto
+## 6. U-Net es modular: adelanto
 
 ### Content
 
