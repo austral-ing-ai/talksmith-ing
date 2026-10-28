@@ -1,0 +1,50 @@
+<svg class="ts-anim-s6-5-1-subagentes-ventana-propia" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 310" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Estrella: orquestador y subagentes</title>
+<desc>Original: “The essence of search is compression” — Anthropic, jun-2025.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s6-5-1-subagentes-ventana-propia [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
+.ts-anim-s6-5-1-subagentes-ventana-propia [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s6-5-1-subagentes-ventana-propia [data-beat="1"]{animation-delay:0.50s}
+.ts-anim-s6-5-1-subagentes-ventana-propia [data-beat="2"]{animation-delay:1.60s}
+.ts-anim-s6-5-1-subagentes-ventana-propia [data-beat="3"]{animation-delay:2.70s}
+.ts-anim-s6-5-1-subagentes-ventana-propia [data-beat="4"]{animation-delay:3.80s}
+@keyframes ts-beat-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-beat-pulse{0%,100%{transform:none}50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s6-5-1-subagentes-ventana-propia [data-beat]{animation:none}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="310" fill="#ffffff"/>
+<g data-beat="1">
+<rect x="40" y="20" width="600" height="70" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="2"/>
+<text x="66" y="62" font-size="21" font-weight="bold" fill="#1F1E1E">Orquestador</text>
+<rect x="484" y="41" width="132" height="28" rx="14" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<text x="550" y="60" font-size="14" font-weight="bold" text-anchor="middle" fill="#DA1B2E">ventana propia</text>
+</g>
+<g data-beat="2">
+<line x1="130" y1="90" x2="130" y2="200" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="122" y="150" font-size="15" text-anchor="end">encargo</text>
+<line x1="480" y1="90" x2="480" y2="200" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="472" y="150" font-size="15" text-anchor="end">encargo</text>
+<rect x="40" y="200" width="250" height="90" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="2"/>
+<text x="165" y="234" font-size="18" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Subagente A</text>
+<rect x="99" y="250" width="132" height="28" rx="14" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<text x="165" y="269" font-size="14" font-weight="bold" text-anchor="middle" fill="#DA1B2E">ventana propia</text>
+<rect x="390" y="200" width="250" height="90" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="2"/>
+<text x="515" y="234" font-size="18" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Subagente B</text>
+<rect x="449" y="250" width="132" height="28" rx="14" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<text x="515" y="269" font-size="14" font-weight="bold" text-anchor="middle" fill="#DA1B2E">ventana propia</text>
+</g>
+<g data-beat="3">
+<line x1="340" y1="214" x2="340" y2="232" stroke="#D8D2CE" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="340" y="251" font-size="14" font-style="italic" text-anchor="middle">no se ven</text>
+<line x1="340" y1="260" x2="340" y2="278" stroke="#D8D2CE" stroke-width="2" stroke-dasharray="4 4"/>
+</g>
+<g data-beat="4">
+<line x1="200" y1="200" x2="200" y2="90" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="208" y="150" font-size="15">hallazgo</text>
+<line x1="550" y1="200" x2="550" y2="90" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="558" y="150" font-size="15">hallazgo</text>
+</g>
+</svg>

@@ -30,4 +30,12 @@
 intent: un solo texto de completado armado con tres bloques (instruccion, ejemplos, pregunta); el modelo escribe Thought y Action, la generacion corta en "Observation 1:" y el codigo pega la observacion antes de la llamada siguiente.
 emphasize: el corte "se detiene en Observation 1:" en rojo; los tres bloques del prompt apilados como un unico texto.
 labels: instruccion (3 tools), 6 ejemplos escritos a mano, pregunta nueva, Thought 1, Action 1, Observation 1, Finish o 7 pasos.
+animation:
+  1. Aparece el bloque instrucción (3 tools).
+  2. Debajo se suma el bloque 6 ejemplos escritos a mano.
+  3. Debajo se suma la pregunta nueva, que termina en Thought 1:; los tres bloques quedan como un solo texto.
+  4. el LLM continúa el texto: aparecen Thought 1: I need to search Apple Remote ... y Action 1: Search[Apple Remote].
+  5. La flecha se detiene en "Observation 1:" marca el corte.
+  6. el código ejecuta search[Apple Remote] en Wikipedia y agrega "Observation 1: The Apple Remote is ...".
+  7. nueva llamada con "Thought 2:" baja a sigue hasta Finish[...] o 7 pasos: la vuelta no se dibuja como flecha de retorno; se ve una pasada, en cada una el texto suma una Observation, y termina en Finish[...] o a los 7 pasos; el diagrama queda completo.
 -->

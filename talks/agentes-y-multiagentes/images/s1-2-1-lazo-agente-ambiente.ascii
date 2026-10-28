@@ -18,4 +18,10 @@
 intent: el loop agente-ambiente de la definicion clasica; es el lazo cerrado que todas las demas laminas de la seccion refinan.
 emphasize: la caja AGENTE como unico punto de decision (acento rojo); el lazo cerrado percepciones -> decision -> acciones -> ambiente.
 labels: AMBIENTE, Sensores, Actuadores, AGENTE, percepciones, acciones.
+animation:
+  1. Aparece AMBIENTE.
+  2. La flecha percepciones baja de AMBIENTE a Sensores.
+  3. De Sensores, la flecha llega a AGENTE: decide qué acción tomar a partir de lo que percibió.
+  4. Del AGENTE sube la flecha a Actuadores.
+  5. La flecha acciones vuelve de Actuadores a AMBIENTE y cierra el lazo: se dibuja una vuelta; la acción cambia el AMBIENTE y la vuelta siguiente parte de percepciones nuevas; el lazo no tiene fin y el diagrama queda completo.
 -->

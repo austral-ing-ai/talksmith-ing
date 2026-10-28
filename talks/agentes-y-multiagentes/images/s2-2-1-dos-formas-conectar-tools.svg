@@ -1,52 +1,64 @@
-<!-- talksmith-ascii-sha256: 7556ff0b18db96e11e6e577be7470c909429f6e41aab9a156e418a496ddb8c02 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 708 383" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<svg class="ts-anim-s2-2-1-dos-formas-conectar-tools" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 363" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535" text-anchor="middle">
 <title>Dos formas de conectar un LLM con tools</title>
-<desc>A la izquierda, el LLM está embebido en pasos fijos; a la derecha, el LLM elige en un loop qué tool usar y cuándo alcanza para responder.</desc>
+<desc>A la izquierda, el LLM está embebido en pasos fijos.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s2-2-1-dos-formas-conectar-tools [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
+.ts-anim-s2-2-1-dos-formas-conectar-tools [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s2-2-1-dos-formas-conectar-tools [data-beat="1"]{animation-delay:0.50s}
+.ts-anim-s2-2-1-dos-formas-conectar-tools [data-beat="2"]{animation-delay:1.60s}
+.ts-anim-s2-2-1-dos-formas-conectar-tools [data-beat="3"]{animation-delay:2.70s}
+.ts-anim-s2-2-1-dos-formas-conectar-tools [data-beat="4"]{animation-delay:3.80s}
+.ts-anim-s2-2-1-dos-formas-conectar-tools [data-beat="5"]{animation-delay:4.90s}
+.ts-anim-s2-2-1-dos-formas-conectar-tools [data-beat="6"]{animation-delay:6.00s}
+@keyframes ts-beat-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-beat-pulse{0%,100%{transform:none}50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s2-2-1-dos-formas-conectar-tools [data-beat]{animation:none}}
+</style>
 <defs>
-<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
-<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
-</marker>
-<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" viewBox="0 0 14 14" refX="14" refY="7" orient="auto">
-<path d="M0,0 L14,7 L0,14 z" fill="#DA1B2E"/>
-</marker>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
 </defs>
-<rect x="0" y="0" width="708" height="383" fill="#ffffff"/>
-<g transform="translate(-50,-9)">
-<text x="150" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E" letter-spacing="1">EL CÓDIGO DECIDE</text>
-<text x="490" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E" letter-spacing="1">EL LLM DECIDE</text>
-<line x1="275" y1="34" x2="275" y2="372" stroke="#D8D2CE" stroke-width="1.5"/>
-<rect x="95" y="64" width="110" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="150" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Pedido</text>
-<rect x="75" y="124" width="150" height="44" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="150" y="152" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">1. LLM</text>
-<rect x="75" y="196" width="150" height="44" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="150" y="224" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">2. tool</text>
-<rect x="75" y="268" width="150" height="44" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="150" y="296" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">3. LLM</text>
-<rect x="90" y="340" width="120" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="150" y="361" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Respuesta</text>
-<rect x="375" y="64" width="110" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="430" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Pedido</text>
-<rect x="340" y="124" width="180" height="72" rx="10" fill="#DA1B2E"/>
-<text x="430" y="154" text-anchor="middle" font-size="18" font-weight="bold" fill="#FFFFFF">LLM</text>
-<text x="430" y="178" text-anchor="middle" fill="#FFFFFF">elige el próximo paso</text>
-<rect x="430" y="250" width="140" height="44" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="500" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">tool</text>
-<rect x="320" y="340" width="120" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="380" y="361" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Respuesta</text>
-<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
-<line x1="150" y1="96" x2="150" y2="124"/>
-<line x1="150" y1="168" x2="150" y2="196"/>
-<line x1="150" y1="240" x2="150" y2="268"/>
-<line x1="150" y1="312" x2="150" y2="340"/>
-<line x1="430" y1="96" x2="430" y2="124"/>
-<line x1="380" y1="196" x2="380" y2="340"/>
-<line x1="480" y1="196" x2="480" y2="250"/>
+<rect x="0" y="0" width="660" height="363" fill="#FFFFFF"/>
+<line x1="250" y1="25" x2="250" y2="338" stroke="#D8D2CE" stroke-width="1.5"/>
+<g data-beat="1">
+<text x="100" y="36" font-size="15" font-weight="bold" fill="#1F1E1E">EL CÓDIGO DECIDE</text>
+<text x="100" y="76">Pedido</text>
+<line x1="100" y1="82" x2="100" y2="106" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="25" y="106" width="150" height="40" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="100" y="131">1. LLM</text>
 </g>
-<text x="370" y="272" text-anchor="end" font-size="13" font-style="italic">alcanza</text>
-<text x="490" y="228" font-size="13" font-style="italic">pide</text>
-<path d="M570,272 H640 V160 H520" fill="none" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ahr)"/>
-<text x="652" y="210" font-weight="bold" fill="#DA1B2E">resultado</text>
-<text x="652" y="228" font-weight="bold" fill="#DA1B2E">al contexto</text>
+<g data-beat="2" stroke="#3B3535" stroke-width="1.5">
+<line x1="100" y1="146" x2="100" y2="176" marker-end="url(#ah)"/>
+<rect x="25" y="176" width="150" height="40" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<line x1="100" y1="216" x2="100" y2="246" marker-end="url(#ah)"/>
+<rect x="25" y="246" width="150" height="40" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<line x1="100" y1="286" x2="100" y2="316" marker-end="url(#ah)"/>
+<text x="100" y="201" stroke="none">2. tool</text>
+<text x="100" y="271" stroke="none">3. LLM</text>
+<text x="100" y="334" stroke="none" font-weight="bold">Respuesta</text>
+</g>
+<g data-beat="3">
+<text x="400" y="36" font-size="15" font-weight="bold" fill="#1F1E1E">EL LLM DECIDE</text>
+<text x="400" y="76">Pedido</text>
+<line x1="400" y1="82" x2="400" y2="106" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<rect x="310" y="106" width="180" height="60" rx="6" fill="#DA1B2E"/>
+<text x="400" y="130" font-weight="bold" fill="#FFFFFF">LLM</text>
+<text x="400" y="151" font-size="13" fill="#FFFFFF">elige el próximo paso</text>
+</g>
+<g data-beat="4">
+<line x1="450" y1="166" x2="450" y2="206" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="458" y="191" font-size="13" text-anchor="start">pide</text>
+<rect x="390" y="206" width="120" height="40" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="450" y="231">tool</text>
+</g>
+<g data-beat="5">
+<path d="M510,226 H550 V136 H490" fill="none" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ahr)"/>
+<text x="560" y="176" font-size="13" text-anchor="start">resultado</text>
+<text x="560" y="192" font-size="13" text-anchor="start">al contexto</text>
+</g>
+<g data-beat="6">
+<line x1="350" y1="166" x2="350" y2="316" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="342" y="250" font-size="13" text-anchor="end">alcanza</text>
+<text x="350" y="334" font-weight="bold">Respuesta</text>
 </g>
 </svg>

@@ -21,4 +21,9 @@
 intent: separar quien decide (el LLM) de quien ejecuta (el programa); el LLM solo emite el pedido.
 emphasize: la caja programa (ejecuta) en rojo, porque es la que la sala suele olvidar; las tres flechas numeradas.
 labels: contexto, LLM, programa (ejecuta), pasos 1-3, el actuador.
+animation:
+  1. contexto: instrucciones + descripción de cada tool baja al LLM.
+  2. La flecha «1. pide la tool con nombre y argumentos» baja del LLM a programa (ejecuta).
+  3. programa (ejecuta) llega a «2. API, base de datos, búsqueda (el actuador)».
+  4. La flecha «3. el resultado vuelve al contexto» sube de programa (ejecuta) al LLM; el diagrama queda completo.
 -->

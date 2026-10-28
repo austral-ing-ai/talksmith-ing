@@ -1,0 +1,44 @@
+<svg class="ts-anim-s6-6-1-router-despacho" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 618 344" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" text-anchor="middle">
+<title>Router: despacho</title>
+<desc>Es el routing de la lámina 2.3 con un agente en cada salida.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s6-6-1-router-despacho [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
+.ts-anim-s6-6-1-router-despacho [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s6-6-1-router-despacho [data-beat="1"]{animation-delay:0.50s}
+.ts-anim-s6-6-1-router-despacho [data-beat="2"]{animation-delay:1.60s}
+.ts-anim-s6-6-1-router-despacho [data-beat="3"]{animation-delay:2.70s}
+.ts-anim-s6-6-1-router-despacho [data-beat="4"]{animation-delay:3.80s}
+@keyframes ts-beat-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-beat-pulse{0%,100%{transform:none}50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s6-6-1-router-despacho [data-beat]{animation:none}}
+</style>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="618" height="344" fill="#ffffff"/>
+<g data-beat="1">
+<text x="309" y="43" font-size="18" font-weight="bold" fill="#1F1E1E">Pedido</text>
+<line x1="309" y1="52" x2="309" y2="84" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="179" y="84" width="260" height="52" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="3"/>
+<text x="309" y="116" font-size="19" font-weight="bold" fill="#DA1B2E">Router: clasifica</text>
+</g>
+<g data-beat="2">
+<rect x="30" y="200" width="170" height="64" rx="8" fill="#F2EEEE" stroke="#3B3535" stroke-width="2"/>
+<text x="115" y="227" font-size="17" fill="#1F1E1E">Consultas</text>
+<text x="115" y="248" font-size="17" fill="#1F1E1E">generales</text>
+<rect x="224" y="200" width="170" height="64" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="309" y="238" font-size="17">Reembolso</text>
+<rect x="418" y="200" width="170" height="64" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="503" y="227" font-size="17">Soporte</text>
+<text x="503" y="248" font-size="17">técnico</text>
+<path d="M309 136 V200" fill="none" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+<path d="M378 136 V166 H503 V200" fill="none" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+</g>
+<g data-beat="3">
+<path d="M240 136 V166 H115 V200" fill="none" stroke="#3B3535" stroke-width="2.5" marker-end="url(#ah)"/>
+</g>
+<g data-beat="4">
+<line x1="115" y1="264" x2="115" y2="292" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="115" y="312" font-size="18" font-weight="bold" fill="#1F1E1E">Respuesta</text>
+</g>
+</svg>

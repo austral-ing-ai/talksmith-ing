@@ -108,6 +108,12 @@ Tiempo: unos 3 minutos con la votación.
 intent: el loop agente-ambiente de la definicion clasica; es el lazo cerrado que todas las demas laminas de la seccion refinan.
 emphasize: la caja AGENTE como unico punto de decision (acento rojo); el lazo cerrado percepciones -> decision -> acciones -> ambiente.
 labels: AMBIENTE, Sensores, Actuadores, AGENTE, percepciones, acciones.
+animation:
+  1. Aparece AMBIENTE.
+  2. La flecha percepciones baja de AMBIENTE a Sensores.
+  3. De Sensores, la flecha llega a AGENTE: decide qué acción tomar a partir de lo que percibió.
+  4. Del AGENTE sube la flecha a Actuadores.
+  5. La flecha acciones vuelve de Actuadores a AMBIENTE y cierra el lazo: se dibuja una vuelta; la acción cambia el AMBIENTE y la vuelta siguiente parte de percepciones nuevas; el lazo no tiene fin y el diagrama queda completo.
 -->
 
 ### Sources
@@ -441,6 +447,13 @@ Con el mismo LLM y las mismas tools, el próximo paso lo puede decidir el códig
 intent: las mismas piezas (LLM y tools) conectadas de dos formas; a la izquierda el codigo fija la secuencia, a la derecha el LLM elige en un loop.
 emphasize: la caja "LLM elige el proximo paso" (acento rojo) y la flecha que vuelve de la tool al LLM.
 labels: EL CODIGO DECIDE, EL LLM DECIDE, Pedido, pasos 1-3, tool, alcanza / pide, resultado al contexto, Respuesta.
+animation:
+  1. EL CÓDIGO DECIDE: Pedido baja a 1. LLM.
+  2. El orden fijo sigue sin decisiones: 2. tool, 3. LLM y Respuesta.
+  3. EL LLM DECIDE: Pedido baja a LLM elige el próximo paso.
+  4. El LLM pide: la flecha pide baja a tool.
+  5. La flecha de tool vuelve al LLM con resultado al contexto: se dibuja una vuelta; en cada vuelta el contexto suma un resultado, y el loop sigue mientras el LLM pida otra tool.
+  6. Cuando alcanza, la flecha alcanza baja a Respuesta y el loop termina; el diagrama queda completo.
 -->
 
 ### Sources
@@ -565,6 +578,11 @@ Con la definición de Russell & Norvig, cada tool es un actuador del agente LLM,
 intent: separar quien decide (el LLM) de quien ejecuta (el programa); el LLM solo emite el pedido.
 emphasize: la caja programa (ejecuta) en rojo, porque es la que la sala suele olvidar; las tres flechas numeradas.
 labels: contexto, LLM, programa (ejecuta), pasos 1-3, el actuador.
+animation:
+  1. contexto: instrucciones + descripción de cada tool baja al LLM.
+  2. La flecha «1. pide la tool con nombre y argumentos» baja del LLM a programa (ejecuta).
+  3. programa (ejecuta) llega a «2. API, base de datos, búsqueda (el actuador)».
+  4. La flecha «3. el resultado vuelve al contexto» sube de programa (ejecuta) al LLM; el diagrama queda completo.
 -->
 
 ### Sources
@@ -731,6 +749,12 @@ intent: la bifurcacion que define ReAct; una rama toca el ambiente y la otra sol
 emphasize: la rama del pensamiento (L) en rojo, que no pasa por el ambiente.
 labels: el LLM elige el proximo paso, accion en A, pensamiento en L, AMBIENTE, que suma el contexto en cada rama.
 consistency: los cinco diagramas de tipos de agente (4.1, 5.2, 5.5, 5.8 y 5.11) comparten lienzo, tipografia y tratamiento de cajas; cambia solo la forma.
+animation:
+  1. Aparece el LLM elige el próximo paso según el contexto.
+  2. Se abren las dos ramas: acción en A y pensamiento en L.
+  3. La rama acción en A baja a AMBIENTE.
+  4. De AMBIENTE baja hay observación: el contexto suma la acción y la observación.
+  5. La rama pensamiento en L baja directo, sin pasar por AMBIENTE, a no hay observación: el contexto suma solo el pensamiento; el diagrama queda completo.
 -->
 
 ### Sources
@@ -877,6 +901,14 @@ Cada paso es una llamada de completado. El modelo escribe Thought y Action; la g
 intent: un solo texto de completado armado con tres bloques (instruccion, ejemplos, pregunta); el modelo escribe Thought y Action, la generacion corta en "Observation 1:" y el codigo pega la observacion antes de la llamada siguiente.
 emphasize: el corte "se detiene en Observation 1:" en rojo; los tres bloques del prompt apilados como un unico texto.
 labels: instruccion (3 tools), 6 ejemplos escritos a mano, pregunta nueva, Thought 1, Action 1, Observation 1, Finish o 7 pasos.
+animation:
+  1. Aparece el bloque instrucción (3 tools).
+  2. Debajo se suma el bloque 6 ejemplos escritos a mano.
+  3. Debajo se suma la pregunta nueva, que termina en Thought 1:; los tres bloques quedan como un solo texto.
+  4. el LLM continúa el texto: aparecen Thought 1: I need to search Apple Remote ... y Action 1: Search[Apple Remote].
+  5. La flecha se detiene en "Observation 1:" marca el corte.
+  6. el código ejecuta search[Apple Remote] en Wikipedia y agrega "Observation 1: The Apple Remote is ...".
+  7. nueva llamada con "Thought 2:" baja a sigue hasta Finish[...] o 7 pasos: la vuelta no se dibuja como flecha de retorno; se ve una pasada, en cada una el texto suma una Observation, y termina en Finish[...] o a los 7 pasos; el diagrama queda completo.
 -->
 
 ### Sources
@@ -1048,6 +1080,12 @@ intent: separar el planner de la ejecucion; el LLM grande planifica al inicio y 
 emphasize: la caja Planner en rojo; la flecha de replanificar que cierra el lazo largo.
 labels: Pedido, Planner (LLM), lista de pasos, Executor, Re-planner (LLM), Respuesta al usuario.
 consistency: mismo lienzo y tratamiento de cajas que el diagrama de ReAct (4.1).
+animation:
+  1. Pedido baja al Planner (LLM).
+  2. El Planner (LLM) manda la lista de pasos (1. ... 2. ... 3. ...) al Executor.
+  3. El Executor resuelve un paso a la vez, con sus tools, y los resultados bajan al Re-planner (LLM).
+  4. El Re-planner (LLM) pregunta ¿terminó?; si no, la flecha replanificar vuelve al Planner (LLM): se dibuja una vuelta, y en cada vuelta el Planner rehace la lista de pasos con los resultados.
+  5. Cuando ¿terminó? da sí, la flecha baja a Respuesta al usuario y el lazo termina; el diagrama queda completo.
 -->
 
 ### Sources
@@ -1170,6 +1208,13 @@ intent: el lazo largo de Reflexion, entre intentos completos; tres roles LLM dis
 emphasize: la caja Self-Reflection en rojo; la flecha de la memoria que vuelve al Actor para el intento siguiente.
 labels: Actor, Evaluator, Self-Reflection, memoria, intento k / k+1, Respuesta.
 consistency: mismo lienzo y tratamiento de cajas que 4.1 y 5.2.
+animation:
+  1. intento k entra al Actor (LLM, tipo ReAct).
+  2. El Actor produce la trayectoria, que baja al Evaluator: ¿pasó? (tests, heurística o LLM).
+  3. no: la flecha baja a Self-Reflection (LLM), que escribe la crítica.
+  4. La crítica baja a memoria: 1 a 3 reflexiones previas.
+  5. La flecha intento k+1 vuelve de memoria al Actor: se dibuja una vuelta; en cada vuelta la memoria suma una reflexión y guarda de 1 a 3.
+  6. sí: el Evaluator aprueba, la flecha baja a Respuesta y el lazo termina; el diagrama queda completo.
 -->
 
 ### Sources
@@ -1295,6 +1340,11 @@ intent: tuberia sin lazo; el LLM razona al principio (Planner) y al final (Solve
 emphasize: las variables #E1 y #E2 dentro del plan, que conectan un paso con el siguiente; la ausencia de flecha de vuelta al Planner.
 labels: Pedido, Planner (LLM), Worker, Solver (LLM), E1-E3.
 consistency: mismo lienzo y tratamiento de cajas que 4.1, 5.2 y 5.5; aca la forma es una tuberia porque no hay lazo.
+animation:
+  1. Pedido baja al Planner (LLM): escribe todo el plan.
+  2. Las líneas del plan aparecen en orden: E1 = Search[...], E2 = LLM[... #E1], E3 = Search[... #E2].
+  3. El plan baja al Worker: ejecuta E1, E2, E3 en orden y reemplaza cada #E por su resultado.
+  4. La flecha baja al Solver (LLM): plan + evidencias -> respuesta; no hay flecha de vuelta al Planner y el diagrama queda completo.
 -->
 
 ### Sources
@@ -1562,6 +1612,11 @@ intent: fan-out / fan-in; las subtareas no estan predefinidas, las decide el orq
 emphasize: el orquestador en rojo arriba y abajo (es el mismo agente); los workers en paralelo.
 labels: Pedido, Orquestador (LLM), Worker 1-3, sintetiza, Respuesta.
 consistency: mismo lienzo y tratamiento de cajas que los otros cuatro tipos (4.1, 5.2, 5.5 y 5.8).
+animation:
+  1. Pedido baja a Orquestador (LLM): decide subtareas.
+  2. Tres flechas bajan a la vez a Worker 1, Worker 2 y Worker 3.
+  3. Las flechas de los tres workers convergen en Orquestador: sintetiza.
+  4. Orquestador: sintetiza baja a Respuesta; el diagrama queda completo.
 -->
 
 ### Sources
@@ -1637,6 +1692,11 @@ El orquestador con workers de la lámina 6.3, visto como comunicación, es una e
 intent: cada agente tiene su propia ventana de contexto; el orquestador le pasa un encargo a cada subagente y recibe un hallazgo.
 emphasize: las tres etiquetas [ventana propia] (acento rojo); el hueco "no se ven" entre hermanos queda como rotulo secundario.
 labels: Orquestador, Subagente A, Subagente B, encargo, hallazgo, ventana propia, no se ven.
+animation:
+  1. Aparece Orquestador con su [ventana propia].
+  2. encargo baja del Orquestador a Subagente A y a Subagente B, cada uno con su [ventana propia].
+  3. Entre Subagente A y Subagente B aparece no se ven.
+  4. hallazgo sube de cada subagente al Orquestador; el diagrama queda completo.
 -->
 
 ### Sources
@@ -1688,6 +1748,11 @@ Un router clasifica el pedido y lo despacha al especialista que corresponde, o a
 intent: un despacho de una sola decision; el router elige la salida y el especialista elegido responde, sin volver al router.
 emphasize: la caja Router (acento rojo) y la unica flecha continua; las salidas no elegidas punteadas.
 labels: Pedido, Router: clasifica, Consultas generales, Reembolso, Soporte tecnico, Respuesta.
+animation:
+  1. Pedido baja a Router: clasifica.
+  2. Aparecen las tres salidas, Consultas generales, Reembolso y Soporte técnico; las flechas a Reembolso y Soporte técnico, punteadas.
+  3. La flecha continua lleva el pedido a Consultas generales.
+  4. Consultas generales baja a Respuesta, sin volver al Router; el diagrama queda completo.
 -->
 
 ### Sources
@@ -1734,6 +1799,12 @@ En una red no hay un nodo que coordine. Cada agente atiende su parte y, cuando e
 intent: una topologia sin nodo central; el control pasa de un agente a otro y el que lo recibe sigue la conversacion con el usuario.
 emphasize: la arista directa entre Agente B y Agente C (acento rojo).
 labels: Usuario, Agente A/B/C, cada agente ejecuta, delega o enriquece y le pasa el control al siguiente.
+animation:
+  1. Usuario baja a Agente A.
+  2. Agente A pasa el control: la flecha baja a Agente B.
+  3. La arista entre Agente B y Agente C: el control pasa de uno a otro sin volver a Agente A.
+  4. La flecha de Agente A a Agente C: A también puede pasarle el control directo a C.
+  5. Aparece cada agente ejecuta, delega o enriquece y le pasa el control al siguiente; el diagrama queda completo.
 -->
 
 ### Sources
@@ -1786,6 +1857,13 @@ intent: una pizarra al estilo de MetaGPT; cuatro de sus cinco roles (sin el Proj
 emphasize: la caja PIZARRA (acento rojo) como unico punto de contacto; ninguna flecha une a dos agentes. Lecturas: Arquitecto lee PRD, Ingeniero lee diseño, QA lee código.
 labels: Producto, Arquitecto, Ingeniero, QA, PIZARRA, PRD, diseño, código, tests, v publica, ^ lee lo que pide su rol, cada agente actúa cuando ya está publicado lo que necesita.
 consistency: mismo tratamiento de cajas que la estrella (6.5) y la red (6.7).
+animation:
+  1. Aparecen la PIZARRA y los cuatro roles, Producto, Arquitecto, Ingeniero y QA, sin flechas entre ellos.
+  2. Producto publica: su flecha baja y aparece PRD en la PIZARRA.
+  3. Arquitecto lee PRD (su flecha sube) y publica diseño (su flecha baja).
+  4. Ingeniero lee diseño y publica código.
+  5. QA lee código y publica tests.
+  6. Aparecen v publica, ^ lee lo que pide su rol y cada agente actúa cuando ya está publicado lo que necesita; el diagrama queda completo.
 -->
 
 `Hong et al. (MetaGPT), 2023`
@@ -2072,6 +2150,12 @@ Aun con todo el contexto del orquestador, cada subagente sigue sin ver el trabaj
 intent: cada subagente hereda el contexto del orquestador pero no ve el de su hermano; la pila de fichas junto a cada caja es lo que ese agente puede ver.
 emphasize: que Subagente 1 tiene [G][B1] y NO [B2], y Subagente 2 tiene [G][B2] y NO [B1] (acento rojo en las fichas ausentes); la pila completa aparece recien en la caja que combina.
 labels: leyenda [G] [B1] [B2] [P] al pie.
+animation:
+  1. Tarea baja a Orquestador: divide la tarea, que lleva [G].
+  2. Dos flechas bajan a Subagente 1 y Subagente 2; cada uno hereda [G].
+  3. Cada subagente suma su trabajo: [B1] bajo Subagente 1, [B2] bajo Subagente 2; ninguno tiene el del otro.
+  4. Las dos flechas convergen en Orquestador: combina, que junta [G] [B1] [B2] y suma [P].
+  5. Orquestador: combina baja a Resultado y aparece la leyenda de [G], [B1], [B2] y [P]; el diagrama queda completo.
 -->
 
 `Cognition, jun-2025`
@@ -2190,6 +2274,12 @@ Pedido: "Pagá el crédito del auto con la plata de mi caja de ahorro".
 intent: el caso aplica la regla de la lamina anterior; dos lecturas en paralelo, validacion, y la unica escritura sola y al final.
 emphasize: la caja Payment Processor en rojo (la unica que escribe); la bifurcacion en paralelo de las dos lecturas.
 labels: Orquestador (descompone / valida), Loan Agent, Transaction Manager, Payment Processor, lee / escribe, replanifica.
+animation:
+  1. Aparece Orquestador: descompone.
+  2. en paralelo: dos flechas bajan a Loan Agent (cotiza saldo, lee) y a Transaction Manager (verifica fondos, lee).
+  3. Las dos lecturas convergen en Orquestador: valida.
+  4. no cierra: la flecha sale a replanifica.
+  5. cierra: la flecha baja a Payment Processor, que transfiere (escribe), sola y al final; el diagrama queda completo.
 -->
 
 `Kore.ai, oct-2025 (act. jul-2026)`
@@ -2277,6 +2367,12 @@ La quinta es la que conviene repetir: las tres fuentes más serias de la clase (
 intent: arbol de decision que resume la clase; cada pregunta descarta la opcion mas compleja si la simple alcanza.
 emphasize: la hoja "Multiagente" en rojo, al final del camino mas largo; las salidas laterales "si" / "no" que cortan antes.
 labels: las cuatro preguntas y sus salidas.
+animation:
+  1. Aparece ¿Alcanza una llamada al LLM, con RAG o ejemplos?; la salida sí lleva a una llamada; sin agente.
+  2. no baja a ¿Los pasos se conocen de antemano?; la salida sí lleva a workflow: pasos fijos en código.
+  3. no baja a Un agente con buenas tools (ReAct; planificar o reflexionar si la tarea lo pide).
+  4. Baja a ¿La información no entra en un contexto, hay equipos dueños de dominios distintos, o el trabajo se reparte en lecturas paralelas que valen ~15× tokens?; la salida no lleva a quedarse con un agente.
+  5. sí baja a Multiagente: estrella, router, red, pipeline, pizarra o jerarquía; el diagrama queda completo.
 -->
 
 ### Sources

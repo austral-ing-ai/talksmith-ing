@@ -1,7 +1,18 @@
-<!-- talksmith-ascii-sha256: fc02515b7807f480bb3ebc88bf68931bcb5febf102d2b5d9f5647f24583fe73e -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 658 450" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<svg class="ts-anim-s5-2-1-plan-and-execute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 444" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
 <title>Plan-and-Execute: planificar primero</title>
-<desc>La diferencia con ReAct está en el momento del razonamiento: Plan-and-Execute piensa todo al inicio, ejecuta, y vuelve a pensar solo al replanificar.</desc>
+<desc>La diferencia con ReAct está en el momento del razonamiento.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s5-2-1-plan-and-execute [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
+.ts-anim-s5-2-1-plan-and-execute [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s5-2-1-plan-and-execute [data-beat="1"]{animation-delay:0.50s}
+.ts-anim-s5-2-1-plan-and-execute [data-beat="2"]{animation-delay:1.60s}
+.ts-anim-s5-2-1-plan-and-execute [data-beat="3"]{animation-delay:2.70s}
+.ts-anim-s5-2-1-plan-and-execute [data-beat="4"]{animation-delay:3.80s}
+.ts-anim-s5-2-1-plan-and-execute [data-beat="5"]{animation-delay:4.90s}
+@keyframes ts-beat-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-beat-pulse{0%,100%{transform:none}50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s5-2-1-plan-and-execute [data-beat]{animation:none}}
+</style>
 <defs>
 <marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
 <path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
@@ -10,34 +21,44 @@
 <path d="M0,0 L14,7 L0,14 z" fill="#DA1B2E"/>
 </marker>
 </defs>
-<rect x="0" y="0" width="658" height="450" fill="#ffffff"/>
-<g transform="translate(-16,0)">
-<rect x="65" y="24" width="120" height="32" rx="16" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="125" y="45" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Pedido</text>
-<line x1="125" y1="56" x2="125" y2="100" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="40" y="100" width="170" height="84" rx="10" fill="#DA1B2E"/>
-<text x="125" y="137" text-anchor="middle" font-size="18" font-weight="bold" fill="#FFFFFF">Planner</text>
-<text x="125" y="160" text-anchor="middle" fill="#FFFFFF">(LLM)</text>
-<line x1="210" y1="118" x2="430" y2="118" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<text x="320" y="106" text-anchor="middle" font-size="13" font-style="italic">lista de pasos</text>
-<rect x="268" y="132" width="104" height="70" rx="6" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="284" y="153" font-size="13">1. paso</text>
-<text x="284" y="172" font-size="13">2. paso</text>
-<text x="284" y="191" font-size="13">3. paso</text>
-<rect x="430" y="100" width="220" height="84" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="540" y="128" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Executor</text>
-<text x="540" y="150" text-anchor="middle">un paso a la vez,</text>
-<text x="540" y="168" text-anchor="middle">con sus tools</text>
-<line x1="540" y1="184" x2="540" y2="250" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<text x="552" y="222" font-size="13" font-style="italic">resultados</text>
-<rect x="430" y="250" width="220" height="84" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="540" y="285" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Re-planner (LLM)</text>
-<text x="540" y="309" text-anchor="middle">¿terminó?</text>
-<path d="M430,292 H125 V184" fill="none" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ahr)"/>
-<text x="278" y="282" text-anchor="middle" font-size="14" font-weight="bold" fill="#DA1B2E">replanificar</text>
-<line x1="540" y1="334" x2="540" y2="390" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<text x="552" y="366" font-size="13" font-style="italic">sí</text>
-<rect x="450" y="390" width="180" height="36" rx="18" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="540" y="413" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Respuesta al usuario</text>
+<rect x="0" y="0" width="680" height="444" fill="#ffffff"/>
+<g transform="translate(-10,0)">
+<g data-beat="1">
+<rect x="50" y="20" width="120" height="36" rx="18" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="110" y="43" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Pedido</text>
+<line x1="110" y1="56" x2="110" y2="96" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="30" y="96" width="160" height="70" rx="10" fill="#DA1B2E"/>
+<text x="110" y="128" text-anchor="middle" font-size="18" font-weight="bold" fill="#FFFFFF">Planner</text>
+<text x="110" y="151" text-anchor="middle" font-size="15" fill="#FFFFFF">(LLM)</text>
+</g>
+<g data-beat="2">
+<line x1="190" y1="131" x2="430" y2="131" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="310" y="120" text-anchor="middle" font-style="italic">lista de pasos</text>
+<rect x="268" y="146" width="84" height="66" rx="6" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="282" y="166">1. ...</text>
+<text x="282" y="185">2. ...</text>
+<text x="282" y="204">3. ...</text>
+<rect x="430" y="86" width="240" height="90" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="550" y="115" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Executor</text>
+<text x="550" y="139" text-anchor="middle">un paso a la vez,</text>
+<text x="550" y="159" text-anchor="middle">con sus tools</text>
+</g>
+<g data-beat="3">
+<line x1="550" y1="176" x2="550" y2="246" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="562" y="216" font-size="13" font-style="italic">resultados</text>
+<rect x="430" y="246" width="240" height="80" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="550" y="280" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F1E1E">Re-planner (LLM)</text>
+<text x="550" y="306" text-anchor="middle" font-size="15">¿terminó?</text>
+</g>
+<g data-beat="4">
+<path d="M430,286 H110 V166" fill="none" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ahr)"/>
+<text x="270" y="276" text-anchor="middle" font-size="15" font-weight="bold" fill="#DA1B2E">replanificar</text>
+</g>
+<g data-beat="5">
+<line x1="550" y1="326" x2="550" y2="386" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="562" y="361" font-size="13" font-style="italic">sí</text>
+<rect x="450" y="386" width="200" height="38" rx="19" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="550" y="410" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Respuesta al usuario</text>
+</g>
 </g>
 </svg>

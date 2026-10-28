@@ -1,0 +1,26 @@
+                    Pedido
+                       |
+                       v
+           +-----------------------+
+           |   Router: clasifica   |
+           +-----------------------+
+             |          :         :
+             v          :         :
+      +-----------+ +-----------+ +-----------+
+      | Consultas | | Reembolso | | Soporte   |
+      | generales | |           | | técnico   |
+      +-----------+ +-----------+ +-----------+
+             |
+             v
+         Respuesta
+
+<!-- ascii-note:
+intent: un despacho de una sola decision; el router elige la salida y el especialista elegido responde, sin volver al router.
+emphasize: la caja Router (acento rojo) y la unica flecha continua; las salidas no elegidas punteadas.
+labels: Pedido, Router: clasifica, Consultas generales, Reembolso, Soporte tecnico, Respuesta.
+animation:
+  1. Pedido baja a Router: clasifica.
+  2. Aparecen las tres salidas, Consultas generales, Reembolso y Soporte técnico; las flechas a Reembolso y Soporte técnico, punteadas.
+  3. La flecha continua lleva el pedido a Consultas generales.
+  4. Consultas generales baja a Respuesta, sin volver al Router; el diagrama queda completo.
+-->

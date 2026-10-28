@@ -21,4 +21,10 @@ intent: separar el planner de la ejecucion; el LLM grande planifica al inicio y 
 emphasize: la caja Planner en rojo; la flecha de replanificar que cierra el lazo largo.
 labels: Pedido, Planner (LLM), lista de pasos, Executor, Re-planner (LLM), Respuesta al usuario.
 consistency: mismo lienzo y tratamiento de cajas que el diagrama de ReAct (4.1).
+animation:
+  1. Pedido baja al Planner (LLM).
+  2. El Planner (LLM) manda la lista de pasos (1. ... 2. ... 3. ...) al Executor.
+  3. El Executor resuelve un paso a la vez, con sus tools, y los resultados bajan al Re-planner (LLM).
+  4. El Re-planner (LLM) pregunta ¿terminó?; si no, la flecha replanificar vuelve al Planner (LLM): se dibuja una vuelta, y en cada vuelta el Planner rehace la lista de pasos con los resultados.
+  5. Cuando ¿terminó? da sí, la flecha baja a Respuesta al usuario y el lazo termina; el diagrama queda completo.
 -->

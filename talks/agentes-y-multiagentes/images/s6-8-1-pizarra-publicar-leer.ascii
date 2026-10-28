@@ -16,4 +16,11 @@ intent: una pizarra al estilo de MetaGPT; cuatro de sus cinco roles (sin el Proj
 emphasize: la caja PIZARRA (acento rojo) como unico punto de contacto; ninguna flecha une a dos agentes. Lecturas: Arquitecto lee PRD, Ingeniero lee diseño, QA lee código.
 labels: Producto, Arquitecto, Ingeniero, QA, PIZARRA, PRD, diseño, código, tests, v publica, ^ lee lo que pide su rol, cada agente actúa cuando ya está publicado lo que necesita.
 consistency: mismo tratamiento de cajas que la estrella (6.5) y la red (6.7).
+animation:
+  1. Aparecen la PIZARRA y los cuatro roles, Producto, Arquitecto, Ingeniero y QA, sin flechas entre ellos.
+  2. Producto publica: su flecha baja y aparece PRD en la PIZARRA.
+  3. Arquitecto lee PRD (su flecha sube) y publica diseño (su flecha baja).
+  4. Ingeniero lee diseño y publica código.
+  5. QA lee código y publica tests.
+  6. Aparecen v publica, ^ lee lo que pide su rol y cada agente actúa cuando ya está publicado lo que necesita; el diagrama queda completo.
 -->

@@ -258,3 +258,11 @@ El scope es hablar sobre agentes y multi-agentes. Definicion formal de un agente
 - What was decided: deck re-stamped, 7 audits ok, rendered 63 slides (55 content + 7 section openers + Conclusions divider; cover generated), fresh vs final.md.
 - Files created/modified: samples/multiagente-langgraph/{orquestador.py, README.md}; draft.md; final.md; output/slide-model.json; output/html/index.html; config/feedback-backlog.md
 - Pending open questions: Step-8 asks (promote C1–C5 + "sin frameworks en secciones de arquitectura"; clean backlog; library); Outcome School link; ReWOO paper figures unverified.
+
+## 2026-10-28 — Pasada fuera de banda: animation en las ascii-notes (draft.md)
+- Status: complete
+- Asks log:
+- What was decided: Presenter asked (via orchestrator) which diagrams can be animated, under the Talksmith 1.4.0 `animation:` rule (agents/editor.md → ASCII diagrams). The 19 ```ascii blocks were classified as 16 PROCESS and 3 STATIC. An `animation:` section (4–7 numbered beats each, 80 in total, in Spanish, named by the ASCII's own labels, last beat leaving the diagram complete) was added to the existing ascii-note of 1.2, 2.2, 3.1, 4.1, 4.4, 5.2, 5.5, 5.8, 6.3, 6.5, 6.6, 6.7, 6.8, 7.4, 7.7 and Conclusions.2. STATIC, no animation: 1.9 (PEAS comparison), 6.2 (one agent vs several), 6.9 (pipeline vs hierarchy shapes). No ASCII bytes, other note fields, slide prose or final.md changed (96 inserted lines, 0 deletions). animate_svg.note_beats parses every new section with the intended beat count.
+- Key inputs: agents/editor.md and skills/ascii-to-svg/SKILL.md → *Animation* (plugin 1.4.0); draft.md.
+- Files created/modified: draft.md.
+- Pending open questions: final.md is now stale for those 16 diagrams. The note is part of the render digest, so the next Polish re-renders all 16 as animated SVGs. Borderline calls the presenter can reverse: 6.5 (star, treated as an encargo/hallazgo exchange) and 6.9 (left STATIC although its pipeline half is a sequence).

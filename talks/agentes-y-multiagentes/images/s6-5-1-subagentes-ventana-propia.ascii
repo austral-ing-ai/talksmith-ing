@@ -1,0 +1,21 @@
+ +--------------------------------------------+
+ |  Orquestador            [ventana propia]   |
+ +--------------------------------------------+
+    | encargo   ^                | encargo  ^
+    v           | hallazgo       v          | hallazgo
+ +----------------+         +----------------+
+ |  Subagente A   |         |  Subagente B   |
+ | [ventana       |  no se  | [ventana       |
+ |  propia]       |   ven   |  propia]       |
+ +----------------+         +----------------+
+
+<!-- ascii-note:
+intent: cada agente tiene su propia ventana de contexto; el orquestador le pasa un encargo a cada subagente y recibe un hallazgo.
+emphasize: las tres etiquetas [ventana propia] (acento rojo); el hueco "no se ven" entre hermanos queda como rotulo secundario.
+labels: Orquestador, Subagente A, Subagente B, encargo, hallazgo, ventana propia, no se ven.
+animation:
+  1. Aparece Orquestador con su [ventana propia].
+  2. encargo baja del Orquestador a Subagente A y a Subagente B, cada uno con su [ventana propia].
+  3. Entre Subagente A y Subagente B aparece no se ven.
+  4. hallazgo sube de cada subagente al Orquestador; el diagrama queda completo.
+-->

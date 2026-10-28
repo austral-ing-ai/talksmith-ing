@@ -1,0 +1,45 @@
+<svg class="ts-anim-s6-7-1-red-control-agentes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 338" font-family="Helvetica, Arial, sans-serif" font-size="17" text-anchor="middle" fill="#3B3535">
+<title>Red: el control pasa de agente en agente</title>
+<desc>Un ejemplo de Kore.ai para contarlo en voz alta.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s6-7-1-red-control-agentes [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
+.ts-anim-s6-7-1-red-control-agentes [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s6-7-1-red-control-agentes [data-beat="1"]{animation-delay:0.50s}
+.ts-anim-s6-7-1-red-control-agentes [data-beat="2"]{animation-delay:1.60s}
+.ts-anim-s6-7-1-red-control-agentes [data-beat="3"]{animation-delay:2.70s}
+.ts-anim-s6-7-1-red-control-agentes [data-beat="4"]{animation-delay:3.80s}
+.ts-anim-s6-7-1-red-control-agentes [data-beat="5"]{animation-delay:4.90s}
+@keyframes ts-beat-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-beat-pulse{0%,100%{transform:none}50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s6-7-1-red-control-agentes [data-beat]{animation:none}}
+</style>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="rh" viewBox="0 0 10 10" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+<marker id="rt" viewBox="0 0 10 10" markerWidth="12" markerHeight="12" refX="0" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M10,0 L0,5 L10,10 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect x="0" y="0" width="408" height="338" fill="#ffffff"/>
+<text x="204" y="37" font-weight="bold" fill="#1F1E1E">Usuario</text>
+<g data-beat="1">
+<line x1="204" y1="46" x2="204" y2="80" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="129" y="80" width="150" height="50" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="204" y="111">Agente A</text>
+</g>
+<g data-beat="2">
+<line x1="174" y1="130" x2="114" y2="190" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="24" y="190" width="140" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="94" y="226">Agente B</text>
+</g>
+<g data-beat="3">
+<rect x="244" y="190" width="140" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="314" y="226">Agente C</text>
+<line x1="164" y1="220" x2="244" y2="220" stroke="#DA1B2E" stroke-width="3" marker-start="url(#rt)" marker-end="url(#rh)"/>
+</g>
+<g data-beat="4">
+<line x1="234" y1="130" x2="294" y2="190" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+</g>
+<g data-beat="5" font-size="16">
+<text x="204" y="288">cada agente ejecuta, delega o enriquece</text>
+<text x="204" y="310">y le pasa el control al siguiente</text>
+</g>
+</svg>

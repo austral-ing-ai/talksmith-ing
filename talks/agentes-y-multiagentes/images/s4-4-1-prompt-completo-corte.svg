@@ -1,59 +1,71 @@
-<!-- talksmith-ascii-sha256: 9facd32f372c159f1453ffc647a5312d60f62c47f12cf353405c8dcb0522b41c -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 580" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<svg class="ts-anim-s4-4-1-prompt-completo-corte" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 524" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3B3535">
 <title>El prompt completo y el corte</title>
-<desc>Es el loop de ReAct de la lámina 4.2 en código de 2022: un solo texto de completado, el modelo escribe Thought y Action, la generación corta en Observation y el código pega la observación.</desc>
+<desc>Es el loop de ReAct de la lámina 4.1 en código de 2022: un solo texto de completado con instrucción, ejemplos y pregunta; el modelo escribe Thought y Action, la generación corta en Observation 1 y el código pega la observación.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat="1"]{animation-delay:0.50s}
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat="2"]{animation-delay:1.60s}
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat="3"]{animation-delay:2.70s}
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat="4"]{animation-delay:3.80s}
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat="5"]{animation-delay:4.90s}
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat="6"]{animation-delay:6.00s}
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat="7"]{animation-delay:7.10s}
+@keyframes ts-beat-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-beat-pulse{0%,100%{transform:none}50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s4-4-1-prompt-completo-corte [data-beat]{animation:none}}
+</style>
 <defs>
-<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
-<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
-</marker>
-<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" viewBox="0 0 14 14" refX="14" refY="7" orient="auto">
-<path d="M0,0 L14,7 L0,14 z" fill="#DA1B2E"/>
-</marker>
+<marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ahr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
 </defs>
-<rect x="0" y="0" width="580" height="580" fill="#ffffff"/>
-<text x="20" y="31" font-style="italic">un solo texto de completado</text>
-<rect x="20" y="42" width="410" height="226" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<g stroke="#D8D2CE" stroke-width="1.5">
-<line x1="20" y1="102" x2="430" y2="102"/>
-<line x1="20" y1="194" x2="430" y2="194"/>
+<rect x="0" y="0" width="600" height="524" fill="#ffffff"/>
+<g data-beat="1">
+<rect x="20" y="20" width="450" height="52" fill="#F2F2F2" stroke="#D8D2CE"/>
+<text x="32" y="41" font-family="'Andale Mono', monospace" xml:space="preserve">Solve a question answering task ... three types:</text>
+<text x="32" y="60" font-family="'Andale Mono', monospace" xml:space="preserve">(1) Search[entity] (2) Lookup[keyword] (3) Finish</text>
+<text x="484" y="41" font-size="13" font-weight="bold" fill="#1F1E1E">instrucción</text>
+<text x="484" y="58">(3 tools)</text>
 </g>
-<g font-family="'Andale Mono', monospace" font-size="12" fill="#1F1E1E">
-<text x="34" y="66">Solve a question answering task ... three types:</text>
-<text x="34" y="86">(1) Search[entity] (2) Lookup[keyword] (3) Finish</text>
-<text x="34" y="124">Question: ... Milhouse, who Matt Groening named</text>
-<text x="34" y="142" xml:space="preserve">  after who?</text>
-<text x="34" y="160">Thought 1 / Action 1 / Observation 1 ...</text>
-<text x="34" y="180">Action 3: Finish[Richard Nixon]</text>
-<text x="34" y="216">Question: Aside from the Apple Remote, what other</text>
-<text x="34" y="234" xml:space="preserve">  device can control the program ...?</text>
-<text x="34" y="254">Thought 1:</text>
+<g data-beat="2">
+<rect x="20" y="72" width="450" height="88" fill="#F2F2F2" stroke="#D8D2CE"/>
+<text x="32" y="93" font-family="'Andale Mono', monospace" xml:space="preserve">Question: ... Milhouse, who Matt Groening named</text>
+<text x="32" y="111" font-family="'Andale Mono', monospace" xml:space="preserve">  after who?</text>
+<text x="32" y="129" font-family="'Andale Mono', monospace" xml:space="preserve">Thought 1 / Action 1 / Observation 1 ...</text>
+<text x="32" y="147" font-family="'Andale Mono', monospace" xml:space="preserve">Action 3: Finish[Richard Nixon]</text>
+<text x="458" y="147" text-anchor="end" font-style="italic" font-size="11">(y 5 más)</text>
+<text x="484" y="98" font-size="13" font-weight="bold" fill="#1F1E1E">6 ejemplos</text>
+<text x="484" y="115">escritos a mano</text>
 </g>
-<text x="416" y="180" text-anchor="end" font-size="12" font-style="italic">(y 5 más)</text>
-<g stroke="#3B3535" stroke-width="1.5" fill="none">
-<path d="M440,50 H446 V94 H440"/>
-<path d="M440,110 H446 V186 H440"/>
-<path d="M440,202 H446 V260 H440"/>
+<g data-beat="3">
+<rect x="20" y="160" width="450" height="70" fill="#F2F2F2" stroke="#D8D2CE"/>
+<text x="32" y="181" font-family="'Andale Mono', monospace" xml:space="preserve">Question: Aside from the Apple Remote, what other</text>
+<text x="32" y="199" font-family="'Andale Mono', monospace" xml:space="preserve">  device can control the program ...?</text>
+<text x="32" y="217" font-family="'Andale Mono', monospace" font-weight="bold" fill="#1F1E1E" xml:space="preserve">Thought 1:</text>
+<text x="484" y="191" font-size="13" font-weight="bold" fill="#1F1E1E">pregunta nueva</text>
+<rect x="20" y="20" width="450" height="210" fill="none" stroke="#3B3535" stroke-width="1.5"/>
 </g>
-<text x="458" y="68">instrucción</text>
-<text x="458" y="85">(3 tools)</text>
-<text x="458" y="144">6 ejemplos</text>
-<text x="458" y="161">escritos a mano</text>
-<text x="458" y="227">pregunta</text>
-<text x="458" y="244">nueva</text>
-<line x1="225" y1="268" x2="225" y2="312" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<text x="237" y="295" font-style="italic">el LLM continúa el texto</text>
-<rect x="40" y="312" width="370" height="58" rx="6" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1.5"/>
-<g font-family="'Andale Mono', monospace" font-size="12" fill="#1F1E1E">
-<text x="56" y="336">Thought 1: I need to search Apple Remote ...</text>
-<text x="56" y="356">Action 1: Search[Apple Remote]</text>
+<g data-beat="4">
+<line x1="245" y1="231" x2="245" y2="272" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="257" y="256" font-style="italic">el LLM continúa el texto</text>
+<rect x="60" y="272" width="370" height="50" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<text x="72" y="292" font-family="'Andale Mono', monospace" xml:space="preserve">Thought 1: I need to search Apple Remote ...</text>
+<text x="72" y="310" font-family="'Andale Mono', monospace" xml:space="preserve">Action 1: Search[Apple Remote]</text>
 </g>
-<line x1="225" y1="370" x2="225" y2="420" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ahr)"/>
-<text x="239" y="400" font-weight="bold" fill="#DA1B2E">se detiene en <tspan font-family="'Andale Mono', monospace" font-size="12">"Observation 1:"</tspan></text>
-<rect x="20" y="420" width="410" height="60" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="34" y="444">el código ejecuta <tspan font-family="'Andale Mono', monospace" font-size="12" fill="#1F1E1E">search[Apple Remote]</tspan> en Wikipedia</text>
-<text x="34" y="466">y agrega <tspan font-family="'Andale Mono', monospace" font-size="12" fill="#1F1E1E">"Observation 1: The Apple Remote is ..."</tspan></text>
-<line x1="225" y1="480" x2="225" y2="524" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<text x="237" y="507" font-style="italic">nueva llamada con <tspan font-family="'Andale Mono', monospace" font-size="12" font-style="normal">"Thought 2:"</tspan></text>
-<rect x="85" y="524" width="280" height="36" rx="18" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="112.5" y="547" font-size="14" fill="#1F1E1E">sigue hasta <tspan font-family="'Andale Mono', monospace" font-size="13">Finish[...]</tspan> o 7 pasos</text>
+<g data-beat="5">
+<line x1="245" y1="322" x2="245" y2="372" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#ahr)"/>
+<line x1="233" y1="340" x2="257" y2="340" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="265" y="345" font-size="13" font-weight="bold" fill="#DA1B2E">se detiene en "Observation 1:"</text>
+</g>
+<g data-beat="6">
+<rect x="40" y="372" width="410" height="52" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="52" y="393">el código ejecuta <tspan font-family="'Andale Mono', monospace">search[Apple Remote]</tspan> en Wikipedia</text>
+<text x="52" y="412">y agrega <tspan font-family="'Andale Mono', monospace">"Observation 1: The Apple Remote is ..."</tspan></text>
+</g>
+<g data-beat="7">
+<line x1="245" y1="424" x2="245" y2="466" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="257" y="449" font-style="italic">nueva llamada con "Thought 2:"</text>
+<rect x="130" y="466" width="230" height="38" rx="6" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/>
+<text x="245" y="490" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F1E1E">sigue hasta Finish[...] o 7 pasos</text>
+</g>
 </svg>
