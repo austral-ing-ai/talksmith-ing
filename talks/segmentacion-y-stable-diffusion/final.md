@@ -1068,7 +1068,23 @@ El VAE es un compresor inteligente: convierte el problema de "generar 800K píxe
 
 ---
 
-## 6. Componente 2: la U-Net, de vuelta
+## 6. Cómo se entrena el VAE
+
+### Content
+
+![Entrenamiento de un VAE: el encoder da μ y σ, se sortea ε, z = μ + σ·ε, el decoder reconstruye, y la pérdida suma reconstrucción y KL; el gradiente cruza z gracias a la reparametrización](images/vae-entrenamiento.gif)
+
+### Sources
+
+- `latent-diffusion-rombach-2022.web.md`
+
+### Speaker notes
+
+Un VAE real y chico en numpy (256 → 64 → μ, σ de 2 dimensiones; z → 64 → 256) sobre 96 formas de 16×16, entrenado con SGD. El encoder no devuelve un punto sino una distribución: μ y σ. Se sortea ε ~ N(0, I) y se arma z = μ + σ·ε; el decoder reconstruye x̂. La pérdida tiene dos términos: la reconstrucción ‖x − x̂‖² y β·KL, que empuja a cada N(μ, σ²) hacia N(0, I); en el primer paso, 63,28 + 1 × 0,08 = 63,35. El punto clave del backward: el sorteo no es derivable, pero z = μ + σ·ε sí (∂z/∂μ = 1, ∂z/∂σ = ε), así que el gradiente cruza z y llega al encoder. Eso es la reparametrización. En 1.000 épocas la pérdida baja de 62,6 a 4,9, las reconstrucciones se vuelven nítidas y en el plano latente las cuatro formas quedan separadas. En Stable Diffusion el VAE se entrena antes y por separado de la U-Net, y después queda congelado.
+
+---
+
+## 7. Componente 2: la U-Net, de vuelta
 
 ### Content
 
@@ -1110,7 +1126,7 @@ La conexión que cierra el círculo: la arquitectura que en 2015 segmentaba cél
 
 ---
 
-## 7. Componente 3: el CLIP Text Encoder
+## 8. Componente 3: el CLIP Text Encoder
 
 ### Content
 
@@ -1129,7 +1145,7 @@ Los 123M son del text encoder, no del CLIP completo (que suma el image encoder V
 
 ---
 
-## 8. Pipeline completo de inferencia
+## 9. Pipeline completo de inferencia
 
 ### Content
 
@@ -1177,7 +1193,7 @@ Todo lo que vimos (U-Net, embeddings de texto, condición) confluye en este pipe
 
 ---
 
-## 9. Cómo se entrena Stable Diffusion
+## 10. Cómo se entrena Stable Diffusion
 
 ### Content
 
@@ -1195,7 +1211,7 @@ Un paso de entrenamiento con un modelo de juguete en numpy (4 pares, entrenado d
 
 ---
 
-## 10. Los hiperparámetros que importan
+## 11. Los hiperparámetros que importan
 
 ### Content
 
@@ -1214,7 +1230,7 @@ Un paso de entrenamiento con un modelo de juguete en numpy (4 pares, entrenado d
 
 ---
 
-## 11. Limitaciones de Stable Diffusion
+## 12. Limitaciones de Stable Diffusion
 
 ### Content
 

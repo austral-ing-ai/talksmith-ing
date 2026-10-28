@@ -2168,6 +2168,31 @@
     {
       "template": "image-full",
       "section": "Stable Diffusion por dentro",
+      "title": "Cómo se entrena el VAE",
+      "image": {
+        "src": "images/vae-entrenamiento.gif",
+        "alt": "Entrenamiento de un VAE: el encoder da μ y σ, se sortea ε, z = μ + σ·ε, el decoder reconstruye, y la pérdida suma reconstrucción y KL; el gradiente cruza z gracias a la reparametrización"
+      },
+      "notes": "Un VAE real y chico en numpy (256 → 64 → μ, σ de 2 dimensiones; z → 64 → 256) sobre 96 formas de 16×16, entrenado con SGD. El encoder no devuelve un punto sino una distribución: μ y σ. Se sortea ε ~ N(0, I) y se arma z = μ + σ·ε; el decoder reconstruye x̂. La pérdida tiene dos términos: la reconstrucción ‖x − x̂‖² y β·KL, que empuja a cada N(μ, σ²) hacia N(0, I); en el primer paso, 63,28 + 1 × 0,08 = 63,35. El punto clave del backward: el sorteo no es derivable, pero z = μ + σ·ε sí (∂z/∂μ = 1, ∂z/∂σ = ε), así que el gradiente cruza z y llega al encoder. Eso es la reparametrización. En 1.000 épocas la pérdida baja de 62,6 a 4,9, las reconstrucciones se vuelven nítidas y en el plano latente las cuatro formas quedan separadas. En Stable Diffusion el VAE se entrena antes y por separado de la U-Net, y después queda congelado.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own training animation)",
+          "image_only=true",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "no body text on the slide; the animation needs full width to stay legible"
+        }
+      }
+    },
+    {
+      "template": "image-full",
+      "section": "Stable Diffusion por dentro",
       "title": "Componente 2: la U-Net, de vuelta",
       "image": {
         "src": "images/unet-sd-en-vivo.gif",
@@ -2687,7 +2712,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "47245093c536c11d9245070ef3eb9ebe72eb46018ead85c05817195e9d30607e",
-    "bytes": 75856
+    "sha256": "f48c156542a00d9dc789fff78f2584fc1c45bde0d1c819a6aff5105dcdd9623f",
+    "bytes": 77104
   }
 }
