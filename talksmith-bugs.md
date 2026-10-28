@@ -194,3 +194,43 @@
   suggested_fix: SUGGESTION, unverified — reemplazar la ruta fija por `${CLAUDE_PLUGIN_ROOT}`
   seen: 1
   plugin_version: 1.4.0
+
+- id: BUG-20261028-04
+  status: open
+  date: 2026-10-28
+  talk: redes-generativas-antagonicas
+  step: fuera de banda (análisis de animación, Talk en Step 7)
+  where: agents/editor.md → ASCII diagrams (`animation:`) + skills/ascii-to-svg/animate_svg.py
+  what: la animación solo tiene lugar en el pipeline a través de la `ascii-note` de un bloque ```ascii. Un Talk
+    con SVGs hechos a mano (importados) no tiene dónde declarar sus beats
+  expected: un lugar declarado para los beats de un SVG que no sale de ASCII (p. ej. una nota junto a la imagen)
+    que Polish vuelva a aplicar después de un redibujo
+  actual: animate_svg.py sí funciona sobre un SVG cualquiera con `<g data-beat="N">` (se probó en una copia de
+    ciclo-lote.svg: exit 0, "animation: 6 beats"), y el deck lo reproduce. Pero los beats quedan solo en el SVG,
+    y si alguien redibuja el archivo se pierden sin aviso
+  repro: en talks/redes-generativas-antagonicas (sin bloques ```ascii), buscar en editor.md o en el SKILL.md de
+    ascii-to-svg cómo animar images/ciclo-lote.svg: no hay ruta documentada
+  impact: degraded — la animación de figuras hechas a mano se puede hacer, pero ningún paso la registra ni la reaplica
+  suggested_fix: SUGGESTION, unverified — aceptar un comentario `<!-- image-note: animation: … -->` después de una
+    imagen SVG en draft.md, que el diagram-illustrator le pase a animate_svg.py en Polish
+  seen: 1
+  plugin_version: 1.4.1
+
+- id: BUG-20261028-05
+  status: open
+  date: 2026-10-28
+  talk: redes-generativas-antagonicas
+  step: 6 (Polish) — contrato de referencias de imagen
+  where: agents/editor.md → Step 6 (b) (refs solo .png/.jpg) vs md-to-deck (inlinea .svg)
+  what: el spec del Editor exige refs .png/.jpg en final.md, pero este Talk mantiene 20 refs .svg a pedido del
+    presentador (memory.md 2026-10-17), 6 de ellas sin PNG gemelo (bce-dos-casos, ciclo-lote, loss-curva-real,
+    loss-curva-falsa, stylegan-simple, qr-pytorch-gans)
+  expected: que el spec y el pre-flight de md-to-deck digan si las refs .svg están permitidas
+  actual: el render las maneja (inlinea el SVG en el deck y lo rasteriza para el .pptx), pero la auditoría del
+    Step 6 (b) las marcaría como fallas. La excepción no está documentada
+  repro: grep -c '\.svg)' talks/redes-generativas-antagonicas/final.md; comparar con editor.md Step 6 (b)
+  impact: cosmetic — el resultado es correcto; el riesgo es que un Polish futuro las "arregle" a .png y pierda la animación
+  suggested_fix: SUGGESTION, unverified — documentar las refs .svg como permitidas (y necesarias para que haya
+    animación en el deck) en editor.md Step 6 (b) y en el pre-flight de md-to-deck
+  seen: 1
+  plugin_version: 1.4.1
