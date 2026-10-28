@@ -58,6 +58,11 @@ a.deck:hover { background: var(--accent); color: var(--card); }
 .tpdeck { display: flex; flex-wrap: wrap; gap: 4px 16px; }
 .tp a.deck { border: 0; padding: 0; }
 .tp a.deck:hover { background: none; text-decoration: underline; color: var(--accent); }
+.cal { list-style: none; margin: 0; padding: 0; }
+.cal > li { padding: 10px 16px; border-bottom: 1px solid var(--line); }
+.cal strong { font-weight: 600; }
+.cal ul { margin: 6px 0 0; padding-left: 20px; color: var(--muted); }
+.cal a { color: var(--accent); }
 .ayuda { color: var(--muted); font-size: .9rem; margin-top: 40px; }
 kbd { border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-size: .85rem; }
 </style>
@@ -172,7 +177,7 @@ kbd { border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-si
         <div class="info">
           <p class="fecha">Miércoles 28 de octubre</p>
           <p class="tema">Vision: CNN (Senales &amp; Imagenes)</p>
-          <div class="decks"><span class="pend">Próximamente</span></div>
+          <div class="decks"><a class="deck" href="talks/segmentacion-y-stable-diffusion/output/html/index.html">Modelos generativos de señales, imágenes y multimodalidad</a></div>
         </div>
       </li>
       <li class="clase">
@@ -215,6 +220,19 @@ kbd { border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-si
         <span class="tpdeck"><a class="deck" href="missions/TPFinal/mission.md">El agente de admisión de guardia</a><a class="deck" href="https://github.com/austral-ing-ai/talksmith-ing/tree/main/missions/TPFinal">Kit y cómo correrlo</a><a class="deck" href="https://www.loom.com/share/2c56572757124aaf8e2a1e1398efe27d">Parte 1</a><a class="deck" href="https://www.loom.com/share/12f6cb81c76440cd8a86563dcc02b2f2">Parte 2</a></span>
       </li>
   </ol>
+
+  <h2>Calendario</h2>
+  <ul class="cal">
+      <li><strong>Inicio del cuatrimestre:</strong> lunes 3 de agosto.</li>
+      <li><strong>Primera clase de la materia:</strong> miércoles 5 de agosto.</li>
+      <li><strong>Finalización de clases:</strong> viernes 13 de noviembre.</li>
+      <li><strong>Exámenes extraordinarios:</strong> lunes 12 a viernes 16 de octubre.</li>
+      <li><strong>Recuperatorio:</strong> lunes 16 a jueves 19 de noviembre.</li>
+      <li><strong>Exámenes finales de diciembre:</strong> lunes 23 de noviembre a viernes 18 de diciembre.</li>
+      <li><strong>Entrega de la práctica</strong> (<a href="missions/TPFinal/mission.md">TP final</a>): viernes 20 de noviembre; correcciones: viernes 27 de noviembre.</li>
+      <li><strong>Re-entrega de la práctica:</strong> viernes 4 de diciembre; correcciones: martes 8 de diciembre.</li>
+      <li><strong>Examen final:</strong><ul><li>Primera fecha: viernes 4 de diciembre.</li><li>Segunda fecha: jueves 10 de diciembre.</li></ul></li>
+  </ul>
 
   <p class="ayuda">En cada presentación: <kbd>→</kbd> <kbd>←</kbd> para avanzar, <kbd>Esc</kbd> para ver todas las diapositivas, <kbd>F</kbd> pantalla completa y <kbd>S</kbd> notas del orador.</p>
 </main>

@@ -52,6 +52,36 @@ def links(celda: str) -> str:
     )
 
 
+def en_linea(texto: str) -> str:
+    """Negritas y links de una línea del README, en HTML."""
+    out, pos = [], 0
+    for m in re.finditer(r"\*\*(.+?)\*\*|\[([^\]]+)\]\(([^)]+)\)", texto):
+        out.append(html.escape(texto[pos:m.start()]))
+        if m.group(1) is not None:
+            out.append(f"<strong>{en_linea(m.group(1))}</strong>")
+        else:
+            out.append(f'<a href="{html.escape(relativo(m.group(3)))}">{html.escape(m.group(2))}</a>')
+        pos = m.end()
+    out.append(html.escape(texto[pos:]))
+    return "".join(out)
+
+
+def calendario(readme: str) -> str:
+    """La lista de "## Calendario académico" del README, con sus sub-ítems."""
+    seccion = readme.split("## Calendario académico", 1)[1].split("\n## ", 1)[0]
+    items: list[tuple[str, list[str]]] = []
+    for linea in seccion.splitlines():
+        if linea.startswith("- "):
+            items.append((linea[2:].strip(), []))
+        elif linea.lstrip().startswith("- ") and items:
+            items[-1][1].append(linea.strip()[2:].strip())
+    filas = []
+    for texto, subs in items:
+        sub = "".join(f"<li>{en_linea(t)}</li>" for t in subs)
+        filas.append(f"      <li>{en_linea(texto)}{'<ul>' + sub + '</ul>' if sub else ''}</li>")
+    return "\n".join(filas)
+
+
 def main() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     perfil = (ROOT / "config" / "profile.md").read_text(encoding="utf-8")
@@ -146,6 +176,11 @@ a.deck:hover {{ background: var(--accent); color: var(--card); }}
 .tpdeck {{ display: flex; flex-wrap: wrap; gap: 4px 16px; }}
 .tp a.deck {{ border: 0; padding: 0; }}
 .tp a.deck:hover {{ background: none; text-decoration: underline; color: var(--accent); }}
+.cal {{ list-style: none; margin: 0; padding: 0; }}
+.cal > li {{ padding: 10px 16px; border-bottom: 1px solid var(--line); }}
+.cal strong {{ font-weight: 600; }}
+.cal ul {{ margin: 6px 0 0; padding-left: 20px; color: var(--muted); }}
+.cal a {{ color: var(--accent); }}
 .ayuda {{ color: var(--muted); font-size: .9rem; margin-top: 40px; }}
 kbd {{ border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-size: .85rem; }}
 </style>
@@ -167,6 +202,11 @@ kbd {{ border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-s
   <ol>
 {chr(10).join(tps)}
   </ol>
+
+  <h2>Calendario</h2>
+  <ul class="cal">
+{calendario(readme)}
+  </ul>
 
   <p class="ayuda">En cada presentación: <kbd>→</kbd> <kbd>←</kbd> para avanzar, <kbd>Esc</kbd> para ver todas las diapositivas, <kbd>F</kbd> pantalla completa y <kbd>S</kbd> notas del orador.</p>
 </main>
