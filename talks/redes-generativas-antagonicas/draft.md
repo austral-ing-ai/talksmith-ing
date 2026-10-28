@@ -395,7 +395,20 @@ Esta es la definición que vamos a usar toda la clase. Dos palabras para retener
 
 ![Arquitectura de una Vanilla GAN: el Discriminador recibe muestras reales y falsas y da un veredicto, P(real) entre 0 y 1. La pérdida de G usa los veredictos sobre las generadas y actualiza G; la pérdida de D usa los veredictos sobre reales y generadas y actualiza D](images/vanilla-gan-arquitectura.anim.png)
 
-<!-- image-note:
+<!-- images/vanilla-gan-arquitectura.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. La animación vive aparte, en images/vanilla-gan-arquitectura.anim.svg, y se rehace desde ese SVG base con la sección animation: de la nota. -->
+<!-- ascii-render: documentation-only -->
+```ascii
+Ruido z ──▶ Generador (G) ──▶ Muestra falsa ──┐
+                                              ├──▶ Discriminador (D) ──▶ Veredicto · P(real)
+Datos reales ───────────────▶ Muestra real ───┘                              │
+                                               ┌─────────────────────────────┤
+                                               ▼                             ▼
+                                         Pérdida de G                  Pérdida de D
+                                               ┆ actualiza G                 ┆ actualiza D
+                                               ▼                             ▼
+                                         Generador (G)              Discriminador (D)
+```
+<!-- ascii-note:
 intent: el ciclo de una GAN: el Generador falsifica, el Discriminador juzga muestras reales y falsas, y cada pérdida vuelve a actualizar su red.
 animation:
   1. «Ruido z» entra al «Generador (G)», que produce la «Muestra falsa».
@@ -683,7 +696,17 @@ El umbral 1 de esta slide es el que en la siguiente entra a la neurona como sesg
 
 ![Red del Discriminador por capas, como en la clase de MLP: la imagen 2×2, la capa de entrada x₁…x₄ sin cálculo, ninguna capa oculta y una sola neurona de salida σ que calcula w·x + b; pesos +1, −1, −1, +1 y sesgo b = −1](images/discriminador-red.svg)
 
-<!-- image-note:
+<!-- images/discriminador-red.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. No tiene animación publicada. -->
+<!-- ascii-render: documentation-only -->
+```ascii
+IMAGEN 2×2      ENTRADA          OCULTA       SALIDA (1 neurona)
+┌───┬───┐       x₁ ── +1 ──┐
+│ 1 │ 0 │       x₂ ── −1 ──┤
+├───┼───┤       x₃ ── −1 ──┼── (ninguna) ──▶ ( σ )   w·x + b
+│ 0 │ 1 │       x₄ ── +1 ──┘                         b = −1
+└───┴───┘   (sin cálculo)
+```
+<!-- ascii-note:
 intent: el Discriminador como red de una sola neurona: la imagen entra píxel a píxel y la neurona de salida hace todo el cálculo.
 animation:
   1. «IMAGEN 2×2 píxeles»: la cara prototipo (1, 0 / 0, 1).
@@ -756,7 +779,17 @@ Es el mismo dibujo de la clase de MLP: la entrada no calcula, x₁…x₄ son lo
 
 ![La cara prototipo pasa por la red del Discriminador y sale σ(1) = 0.73, marcado en el gráfico de la sigmoide](images/discriminador-cara.svg)
 
-<!-- image-note:
+<!-- images/discriminador-cara.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. No tiene animación publicada. -->
+<!-- ascii-render: documentation-only -->
+```ascii
+┌───┬───┐       x₁ ── +1 ──┐
+│ 1 │ 0 │       x₂ ── −1 ──┤
+├───┼───┤       x₃ ── −1 ──┼──▶ ( σ )  w·x + b,  b = −1 ──▶ σ(1) = 0.73
+│ 0 │ 1 │       x₄ ── +1 ──┘                                   │
+└───┴───┘                                                       ▼
+                                              curva σ(x) = 1/(1 + e^−x): punto (1, 0.73)
+```
+<!-- ascii-note:
 intent: la pasada hacia adelante de la cara prototipo por el Discriminador, hasta su veredicto en la curva sigmoide.
 animation:
   1. La imagen 2×2 (1, 0 / 0, 1).
@@ -768,7 +801,17 @@ animation:
 
 ![La imagen de ruido pasa por la misma red: 0.25 − 1 − 0.5 + 0.75 + b = −1.5, y sale σ(−1.5) = 0.18, marcado en el gráfico de la sigmoide](images/discriminador-ruido.anim.png)
 
-<!-- image-note:
+<!-- images/discriminador-ruido.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. La animación vive aparte, en images/discriminador-ruido.anim.svg, y se rehace desde ese SVG base con la sección animation: de la nota. -->
+<!-- ascii-render: documentation-only -->
+```ascii
+┌──────┬──────┐   x₁ ── +1 ──┐
+│ 0.25 │  1   │   x₂ ── −1 ──┤
+├──────┼──────┤   x₃ ── −1 ──┼──▶ ( σ )  w·x + b,  b = −1 ──▶ σ(−1.5) = 0.18
+│ 0.5  │ 0.75 │   x₄ ── +1 ──┘                                    │
+└──────┴──────┘                                                    ▼
+                                            curva σ(x) = 1/(1 + e^−x): punto (−1.5, 0.18)
+```
+<!-- ascii-note:
 intent: la misma pasada hacia adelante con la imagen de ruido, hasta su veredicto en la curva sigmoide.
 animation:
   1. La imagen 2×2 (0.25, 1 / 0.5, 0.75).
@@ -843,7 +886,18 @@ En Slanted Land la arquitectura es mínima: entra 1 número y salen 4 píxeles. 
 
 ![Red del Generador: z = 0.7 entra sin cálculo; cada una de las cuatro neuronas σ suma su peso ±1 y su sesgo ±1, y entre las cuatro producen la imagen 2×2 (0.85, 0.15 / 0.15, 0.85)](images/generador-red.anim.png)
 
-<!-- image-note:
+<!-- images/generador-red.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. La animación vive aparte, en images/generador-red.anim.svg, y se rehace desde ese SVG base con la sección animation: de la nota. -->
+<!-- ascii-render: documentation-only -->
+```ascii
+ENTRADA                OCULTA / SALIDA                  IMAGEN generada, 2×2
+z = 0.7 ──┬── +1 ──▶ σ ──▶ 0.85 ──┐
+0 ──●── 1 ├── −1 ──▶ σ ──▶ 0.15 ──┤               ┌──────┬──────┐
+(sin      ├── −1 ──▶ σ ──▶ 0.15 ──┼─────────────▶ │ 0.85 │ 0.15 │
+ cálculo) └── +1 ──▶ σ ──▶ 0.85 ──┘               ├──────┼──────┤
+                                                   │ 0.15 │ 0.85 │
+                                                   └──────┴──────┘
+```
+<!-- ascii-note:
 intent: la pasada hacia adelante del Generador: un solo número z se convierte en una imagen 2×2 con el patrón de las caras.
 animation:
   1. «z = 0.7» en el deslizador de 0 a 1.
@@ -1056,7 +1110,22 @@ Los dos paneles son el error del Discriminador. D minimiza −ln(D(x)) con imág
 
 ![Un lote de 3 imágenes reales y 3 generadas. Paso del Discriminador: objetivos 1 y 0, un veredicto y un error por imagen (0.11, 0.22, 0.36, 1.14, 0.51, 0.80); se promedian en 0.52 y con ese número se hace un paso de backpropagation que actualiza solo el Discriminador. Paso del Generador: solo las 3 generadas, con objetivo 1; errores 0.39, 0.92 y 0.60, promedio 0.63, un paso de backpropagation que actualiza solo el Generador. Después, el siguiente lote](images/ciclo-lote.anim.png)
 
-<!-- image-note:
+<!-- images/ciclo-lote.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. La animación vive aparte, en images/ciclo-lote.anim.svg, y se rehace desde ese SVG base con la sección animation: de la nota. -->
+<!-- ascii-render: documentation-only -->
+```ascii
+Paso del Discriminador
+  lote: 3 reales (del dataset, objetivo 1) + 3 generadas por G (objetivo 0)
+  Discriminador ──▶ veredicto por imagen: 0.9  0.8  0.7  0.68  0.4  0.55
+  error por imagen:                       0.11 0.22 0.36 1.14  0.51 0.80
+     └── se promedian ──▶ error del lote (6 imágenes) 0.52 ──▶ un paso de backpropagation ──▶ actualiza solo el D
+
+Paso del Generador   (las reales no entran)
+  3 generadas (objetivo 1) ──▶ Discriminador (no cambia) ──▶ errores 0.39  0.92  0.60
+     └── se promedian ──▶ error del lote (3 imágenes) 0.63 ──▶ un paso de backpropagation ──▶ actualiza solo el G
+
+  ┄┄ siguiente lote… ┄┄▶ (vuelve al comienzo)
+```
+<!-- ascii-note:
 intent: un lote de entrenamiento: un error por imagen, un promedio por paso y un paso de backpropagation que actualiza una sola red.
 animation:
   1. El lote: 3 «reales (del dataset)» con objetivo 1 y 3 «generadas por G con 3 ruidos z» con objetivo 0.
@@ -1100,7 +1169,18 @@ Las cuentas de las slides anteriores eran con una sola imagen para que se vieran
 
 ![Generador y Discriminador: la imagen 2x2 generada recibe 0.68; quería 0, Error = −ln(1−0.68)](images/error-discriminador.anim.png)
 
-<!-- image-note:
+<!-- images/error-discriminador.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. La animación vive aparte, en images/error-discriminador.anim.svg, y se rehace desde ese SVG base con la sección animation: de la nota. -->
+<!-- ascii-render: documentation-only -->
+```ascii
+GENERADOR                                  DISCRIMINADOR
+z ──▶ 4 σ ──▶ IMAGEN generada        ──▶   x₁…x₄ ──▶ ( σ ) ──▶ 0.68
+(sin          ┌──────┬──────┐                                   Queremos 0
+ cálculo)     │ 0.25 │  1   │                                   Error = −ln(1 − 0.68)
+              ├──────┼──────┤
+              │ 0.5  │ 0.75 │
+              └──────┴──────┘
+```
+<!-- ascii-note:
 intent: Generador y Discriminador encadenados: la imagen falsa recibe 0.68 cuando el objetivo era 0, y de ahí sale el error.
 animation:
   1. «Generador»: z entra «sin cálculo» y sus pesos llegan a las cuatro σ.
@@ -1285,7 +1365,19 @@ Dos redes en lugar de una: la red de mapeo convierte el ruido z en un estilo w, 
 
 ![StyleGAN: el ruido z pasa por la red de mapeo (8 capas) y se convierte en el estilo w; la red de síntesis arma la imagen en bloques de 4×4 a 1024×1024, el estilo w entra en cada bloque por AdaIN y cada bloque recibe su propio ruido; las capas bajas deciden la pose y la forma, las altas la textura y el color](images/stylegan-simple.anim.png)
 
-<!-- image-note:
+<!-- images/stylegan-simple.svg está dibujado a mano y es la fuente de verdad: no se modifica ni se regenera desde este bloque ASCII, que solo documenta el diagrama. La animación vive aparte, en images/stylegan-simple.anim.svg, y se rehace desde ese SVG base con la sección animation: de la nota. -->
+<!-- ascii-render: documentation-only -->
+```ascii
+1 · RED DE MAPEO
+ruido z (512 números) ──▶ 8 capas ──▶ estilo w (512 números)
+                                            │ el estilo w entra en cada bloque (AdaIN)
+2 · RED DE SÍNTESIS                         ▼
+   4×4 ──▶ 8×8 ──▶ 16×16 ──▶ … ──▶ 1024×1024 ──▶ la cara final
+    ▲        ▲        ▲               ▲
+    └── ruido por bloque: detalles finos ──┘
+   capas bajas: pose y forma          capas altas: textura y color
+```
+<!-- ascii-note:
 intent: el recorrido de StyleGAN: el ruido se vuelve estilo y el estilo entra en cada bloque de la red de síntesis, de 4×4 a 1024×1024.
 animation:
   1. «ruido z» (512 números) entra a «1 · RED DE MAPEO» (8 capas).
