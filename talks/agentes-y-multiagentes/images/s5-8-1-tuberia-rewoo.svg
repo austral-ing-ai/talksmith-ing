@@ -1,9 +1,10 @@
+<!-- talksmith-ascii-sha256: 02095e5bdcd415b2a97c694fe6591826fd3aa0f9db1ca69f3172e6abd57e95f2 -->
 <svg class="ts-anim-s5-8-1-tuberia-rewoo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 542" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
 <title>ReWOO: planificar con variables</title>
 <desc>La diferencia con Plan-and-Execute es la variable.</desc>
 <style>/* talksmith-animation */
-.ts-anim-s5-8-1-tuberia-rewoo [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
-.ts-anim-s5-8-1-tuberia-rewoo [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s5-8-1-tuberia-rewoo [data-beat]{animation:ts-beat-in 0.6s ease-out both}
+.ts-anim-s5-8-1-tuberia-rewoo [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;transform-box:fill-box;transform-origin:center}
 .ts-anim-s5-8-1-tuberia-rewoo [data-beat="1"]{animation-delay:0.50s}
 .ts-anim-s5-8-1-tuberia-rewoo [data-beat="2"]{animation-delay:1.60s}
 .ts-anim-s5-8-1-tuberia-rewoo [data-beat="3"]{animation-delay:2.70s}

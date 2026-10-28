@@ -1447,7 +1447,7 @@
         }
       ],
       "media": {
-        "src": "images/s5-11-1-orquestador-workers.png",
+        "src": "images/s6-3-1-orquestador-workers.png",
         "alt": "Orquestador que reparte subtareas a workers en paralelo"
       },
       "_choice": {
@@ -1544,7 +1544,7 @@
         }
       ],
       "media": {
-        "src": "images/s7-1-1-subagentes-ventana-propia.png",
+        "src": "images/s6-5-1-subagentes-ventana-propia.png",
         "alt": "Cada subagente con su propia ventana de contexto"
       },
       "_choice": {
@@ -1575,7 +1575,7 @@
       "design": "split-right",
       "lead": "Un router clasifica el pedido y lo despacha al especialista que corresponde, o a varios en paralelo. Decide una vez, al inicio, y no vuelve a razonar sobre lo que devuelven.",
       "media": {
-        "src": "images/s7-2-1-router-despacho.png",
+        "src": "images/s6-6-1-router-despacho.png",
         "alt": "Router: clasifica el pedido y lo despacha a un especialista"
       },
       "_choice": {
@@ -1610,7 +1610,7 @@
         }
       ],
       "media": {
-        "src": "images/s7-3-1-red-control-agentes.png",
+        "src": "images/s6-7-1-red-control-agentes.png",
         "alt": "Red: el control pasa de agente en agente, sin nodo central"
       },
       "_choice": {
@@ -2022,7 +2022,7 @@
       "design": "split-right",
       "lead": "Aun con todo el contexto del orquestador, cada subagente sigue sin ver el trabajo de su hermano. Los dos toman decisiones que el otro no conoce, y el choque aparece al combinar.",
       "media": {
-        "src": "images/s8-5-1-contexto-no-compartido.png",
+        "src": "images/s7-4-1-contexto-no-compartido.png",
         "alt": "Cada subagente hereda el contexto del orquestador pero no el de su hermano"
       },
       "highlights": [
@@ -2166,7 +2166,7 @@
       "title": "Un caso: cómo se descompone",
       "lead": "Pedido: \"Pagá el crédito del auto con la plata de mi caja de ahorro\". · Kore.ai, oct-2025 (act. jul-2026)",
       "image": {
-        "src": "images/s8-7-1-caso-descomposicion.png",
+        "src": "images/s7-7-1-caso-descomposicion.png",
         "alt": "Un caso de descomposición en subagentes"
       },
       "_choice": {
@@ -2321,7 +2321,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "c52beb1c82db13f90c77fde145479478edb850ea7e20f302b5e2756f660c30c1",
-    "bytes": 229246
+    "sha256": "343b2244428ea92b037ca1ada09d3df629b30c3ef788b819a451188ce8739a7b",
+    "bytes": 236601
   }
 }

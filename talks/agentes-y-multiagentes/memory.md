@@ -1,6 +1,6 @@
 # memory.md — agentes-y-multiagentes
 
-**Current step:** 8 — Learnings awaiting_presenter
+**Current step:** 8 — Learnings awaiting_presenter (Polish + Render re-ran 2026-10-28 with animated diagrams)
 **Awaiting:** 2026-10-07 — "Step-8 pendiente: promover C1–C5 / limpiar backlog / biblioteca compartida; + bullet 7.1 (LangChain) y link de Outcome School"
 **Topic:** Agentes y multiagentes: definición formal de agente, tools, tipos de agentes (ReAct) y arquitecturas multiagente
 **Folder:** talks/agentes-y-multiagentes/
@@ -266,3 +266,20 @@ El scope es hablar sobre agentes y multi-agentes. Definicion formal de un agente
 - Key inputs: agents/editor.md and skills/ascii-to-svg/SKILL.md → *Animation* (plugin 1.4.0); draft.md.
 - Files created/modified: draft.md.
 - Pending open questions: final.md is now stale for those 16 diagrams. The note is part of the render digest, so the next Polish re-renders all 16 as animated SVGs. Borderline calls the presenter can reverse: 6.5 (star, treated as an encargo/hallazgo exchange) and 6.9 (left STATIC although its pipeline half is a sequence).
+
+## 2026-10-28 — Step 6 (Polish) — quinta pasada
+- Status: complete
+- Asks log:
+- What was decided: Polish re-run so final.md picks up the `animation:` beats added to draft.md earlier today. (0) draft.md → final.md verbatim copy (draft.md not touched afterwards). Diagram pass (diagram-illustrator): 19 ```ascii blocks, all rendered and stamped — 16 re-rendered as animated SVGs (the 16 PROCESS diagrams), 3 unchanged (1.9, 6.2, 6.9, STATIC), 0 failures; 0 generate-image directives, so no aside pass. Basenames for 6.3, 6.5, 6.6, 6.7, 7.4 and 7.7 changed vs the previous pass (renumbered slides); the old files stay on disk (no gc). Editor pre-cleanup check: all 19 `<stem>.svg` + `<stem>.png` present under images/. (a) polish-ascii cleanup: 19 fences rewritten, 0 skipped; 0 ```ascii fences left, 19 `ascii-source` echoes. (b) wikipedia ref (research/corpus/wikipedia-intelligent-agent.web/images/500px-Model_based_utility_based.png) → images/500px-Model_based_utility_based.png (byte-identical copy already present, no collision); 19 diagram refs .svg → .png companions. final.md carries 20 image refs, all .png, all present on disk; no .svg/.webp/.avif/.heic refs, no video refs. (c) rescue-open: 0 [open] bullets. (d) strip_feedback: 65 blocks removed (55 H3 + 10 paragraph); no `---` boundary preceded by a non-blank line. final.md: 2881 lines.
+- Key inputs: draft.md (with animation beats); scratchpad plan.annotated.json + renders.json from the diagram pass.
+- Files created/modified: final.md; images/ (16 animated SVGs + PNG companions re-rendered by the diagram-illustrator; new basenames s6-3-1, s6-5-1, s6-6-1, s6-7-1, s7-4-1, s7-7-1).
+- Pending open questions: (1) The blind critic flagged English words in the notes of s4-4-1, s5-2-1, s5-5-1 and sc-2-1. They are the presenter's own terms, so nothing was changed. Suggested `terms:` lines for those ascii-notes in draft.md (pending, presenter's call; editing a note re-renders its diagram): s4-4-1 `terms: tools`; s5-2-1 `terms: Planner, Executor, Re-planner, tools`; s5-5-1 `terms: Evaluator, Self-Reflection`; sc-2-1 `terms: tools, workflow, router, pipeline, tokens`. (2) Step 7 render of the updated final.md is next (the deck is stale against it). (3) Step-8 asks still pending (see Awaiting).
+
+## 2026-10-28 — Step 7 (Render) — quinta pasada
+- Status: complete
+- Asks log:
+  - 2026-10-28 — "¿Qué genero? HTML / HTML+PDF / HTML+PowerPoint / saltear" → presenter answered "Resume"; took the default (HTML, look default)
+- What was decided: Content of final.md unchanged vs the 10-07 render apart from 6 diagram basenames (renumbered slides), so the 10-07 slide-model was carried over with those 6 image refs rewritten (s5-11-1→s6-3-1, s7-1-1→s6-5-1, s7-2-1→s6-6-1, s7-3-1→s6-7-1, s8-5-1→s7-4-1, s8-7-1→s7-7-1) and re-stamped against the current final.md; no fresh classification critique (classification unchanged). Audits against final.md: degenerate-enum ok, diversity ok, image coverage ok, text coverage 841/841, notes 55/55, blocks ok; field_coverage advisory on 1.4 quote (title ignored — pre-existing). Render: 63 slides, deck fresh vs final.md; the PNG refs resolve to their animated SVG twins in the deck (33 @keyframes in index.html). Root index.html is not Talksmith's, so the landing page went to talksmith-index.html.
+- Key inputs: final.md; output/slide-model.json (10-07, refs updated).
+- Files created/modified: output/slide-model.json; output/html/index.html; ../../talksmith-index.html.
+- Pending open questions: Step-8 asks (see Awaiting); suggested `terms:` lines for 4.4, 5.2, 5.5, Conclusions.2 (see Polish quinta pasada).

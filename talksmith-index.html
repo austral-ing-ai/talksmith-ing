@@ -246,6 +246,14 @@ html.deck-ui .reveal .controls .navigate-left,html.deck-ui .reveal .controls .na
    a cropping design has to carry it itself. */
 .d-column>.smedia .imgph.has :is(img,video,iframe),.d-bleed>.smedia .imgph.has :is(img,video,iframe){
   width:100%;height:100%;max-height:none;object-fit:cover}
+/* Animated diagrams. The SVG carries its own beats (`ascii-to-svg/animate_svg.py`); the deck only
+   decides when they play. Off the present slide the animation is removed, so it starts over each
+   time the slide is entered rather than having played out at page load. Off as well with the
+   animations toggle off and in the print view — and so in the PDF and the `.pptx`, which are
+   measured from it. With no animation the diagram is its static, complete end state. */
+.reveal .slides section:not(.present) svg [data-beat],
+:root[data-deck-anim=off] svg [data-beat],
+html.print-pdf svg [data-beat],.reveal-print svg [data-beat]{animation:none!important}
 .d-column>.smedia .imgph.svg svg,.d-bleed>.smedia .imgph.svg svg{
   width:100%;height:100%;max-height:none}
 .big{font-size:calc(6.2cqw*var(--fit,1));font-weight:800;color:var(--ink);line-height:1.05;margin:0;letter-spacing:-.01em;text-wrap:balance}
@@ -970,7 +978,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/intro-redes-neuronales/output/html/index.html">
 <p class="ddate">2026-08-19</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Introducción a las Redes Neuronales Artificiales (ANN)</p>        <p class="dmeta">
-<span>50 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Marcos Sanchez Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-21</span>
+<span>50 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Marcos Sanchez Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-20</span>
         </p>
       </a>
     </li>
@@ -978,7 +986,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/modelado-redes-neuronales/output/html/index.html">
 <p class="ddate">2026-08-21</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Modelado de un Multi-Layer Perceptron (MLP)</p>        <p class="dmeta">
-<span>63 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-21</span>
+<span>63 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-20</span>
         </p>
       </a>
     </li>
@@ -986,7 +994,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/prompting/output/html/index.html">
 <p class="ddate">2026-09-02</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Trabajar con LLMs: prompts, costos y producción</p>        <p class="dmeta">
-<span>71 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-21</span>
+<span>71 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-20</span>
         </p>
       </a>
     </li>
@@ -994,7 +1002,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/rag-y-mcp/output/html/index.html">
 <p class="ddate">2026-09-09</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">RAG y MCP: recuperar contexto y conectar herramientas</p>        <p class="dmeta">
-<span>70 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-21</span>
+<span>70 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-20</span>
         </p>
       </a>
     </li>
@@ -1002,7 +1010,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/rag-mcp-rapida/output/html/index.html">
 <p class="ddate">2026-09-16</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Clase 7: MCP y herramientas, con repaso de RAG</p>        <p class="dmeta">
-<span>31 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-09-16</span>
+<span>31 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-09-23</span>
         </p>
       </a>
     </li>
@@ -1010,7 +1018,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/transformers-a-fondo/output/html/index.html">
 <p class="ddate">2026-09-23</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Clase 8: El transformer por dentro</p>        <p class="dmeta">
-<span>42 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-09-23</span>
+<span>42 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-20</span>
         </p>
       </a>
     </li>
@@ -1018,7 +1026,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/palabra-al-transformer/output/html/index.html">
 <p class="ddate">2026-09-23</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">De la palabra al transformer</p>        <p class="dmeta">
-<span>36 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-21</span>
+<span>36 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-20</span>
         </p>
       </a>
     </li>
@@ -1026,7 +1034,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/como-se-entrena-un-llm/output/html/index.html">
 <p class="ddate">2026-09-30</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Clase 9: Cómo se entrena un LLM</p>        <p class="dmeta">
-<span>59 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-21</span>
+<span>59 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-20</span>
         </p>
       </a>
     </li>
@@ -1034,7 +1042,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/agentes-y-multiagentes/output/html/index.html">
 <p class="ddate">2026-10-07</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Agentes y sistemas multiagente</p>        <p class="dmeta">
-<span>63 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-21</span>
+<span>63 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-28</span>
         </p>
       </a>
     </li>
@@ -1042,7 +1050,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/redes-generativas-antagonicas/output/html/index.html">
 <p class="ddate">2026-10-21</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Redes generativas antagónicas (GANs)</p>        <p class="dmeta">
-<span>53 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-23</span>
+<span>53 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti, Marco Sorondo (Universidad Austral)</span><span class="sep">·</span>          <span class="drender">renderizada 2026-10-21</span>
         </p>
       </a>
     </li>
@@ -1058,7 +1066,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/claude-cowork/output/html/index.html">
 <p class="ddate">Julio 2026</p>        <p class="dt">Agentes Inteligentes</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Claude Cowork</p>        <p class="dmeta">
-<span>31 diapositivas</span><span class="sep">·</span><span>Paulo Veiga y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-08-11</span>
+<span>31 diapositivas</span><span class="sep">·</span><span>Paulo Veiga y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-08-12</span>
         </p>
       </a>
     </li>
@@ -1066,15 +1074,7 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/claude-desktop-chat/output/html/index.html">
 <p class="ddate">Julio 2026</p>        <p class="dt">Agentes Inteligentes</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Claude Desktop - Chat</p>        <p class="dmeta">
-<span>32 diapositivas</span><span class="sep">·</span><span>Paulo Veiga y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-08-11</span>
-        </p>
-      </a>
-    </li>
-    <li>
-      <a class="deck" href="talks/cowork-intro/output/html/index.html">
-<p class="ddate">Agosto 2026</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
-<p class="dsub">Universidad Austral</p><p class="dsub">Clase 2: Agentes de código y la misión Corta</p>        <p class="dmeta">
-<span>33 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-09-02</span>
+<span>32 diapositivas</span><span class="sep">·</span><span>Paulo Veiga y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-08-12</span>
         </p>
       </a>
     </li>
@@ -1082,7 +1082,15 @@ body.tsindex{font-family:var(--sans);color:var(--fi);
       <a class="deck" href="talks/introduccion/output/html/index.html">
 <p class="ddate">Agosto de 2026</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
 <p class="dsub">Universidad Austral</p><p class="dsub">Clase 1: Bienvenidos / Introducción</p>        <p class="dmeta">
-<span>61 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-09-02</span>
+<span>61 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-08-26</span>
+        </p>
+      </a>
+    </li>
+    <li>
+      <a class="deck" href="talks/cowork-intro/output/html/index.html">
+<p class="ddate">Agosto 2026</p>        <p class="dt">Inteligencia Artificial Generativa (AI Gen)</p>
+<p class="dsub">Universidad Austral</p><p class="dsub">Clase 2: Agentes de código y la misión Corta</p>        <p class="dmeta">
+<span>33 diapositivas</span><span class="sep">·</span><span>Paulo Veiga, Claudio Righetti y Marco Sánchez Sorondo</span><span class="sep">·</span>          <span class="drender">renderizada 2026-08-26</span>
         </p>
       </a>
     </li>

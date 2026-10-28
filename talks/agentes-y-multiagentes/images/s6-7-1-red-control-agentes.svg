@@ -1,9 +1,10 @@
+<!-- talksmith-ascii-sha256: ea26f21698acd93d01d777638c9007a4e3b8f9c2488e22ebc9dee07287120d07 -->
 <svg class="ts-anim-s6-7-1-red-control-agentes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 338" font-family="Helvetica, Arial, sans-serif" font-size="17" text-anchor="middle" fill="#3B3535">
 <title>Red: el control pasa de agente en agente</title>
 <desc>Un ejemplo de Kore.ai para contarlo en voz alta.</desc>
 <style>/* talksmith-animation */
-.ts-anim-s6-7-1-red-control-agentes [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
-.ts-anim-s6-7-1-red-control-agentes [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s6-7-1-red-control-agentes [data-beat]{animation:ts-beat-in 0.6s ease-out both}
+.ts-anim-s6-7-1-red-control-agentes [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;transform-box:fill-box;transform-origin:center}
 .ts-anim-s6-7-1-red-control-agentes [data-beat="1"]{animation-delay:0.50s}
 .ts-anim-s6-7-1-red-control-agentes [data-beat="2"]{animation-delay:1.60s}
 .ts-anim-s6-7-1-red-control-agentes [data-beat="3"]{animation-delay:2.70s}

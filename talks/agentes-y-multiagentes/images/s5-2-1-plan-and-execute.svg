@@ -1,9 +1,10 @@
+<!-- talksmith-ascii-sha256: c5ecdf58a0bc012163b639fbcd0a86a43456deb29c86e2935765456f139f7568 -->
 <svg class="ts-anim-s5-2-1-plan-and-execute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 444" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
 <title>Plan-and-Execute: planificar primero</title>
 <desc>La diferencia con ReAct está en el momento del razonamiento.</desc>
 <style>/* talksmith-animation */
-.ts-anim-s5-2-1-plan-and-execute [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
-.ts-anim-s5-2-1-plan-and-execute [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s5-2-1-plan-and-execute [data-beat]{animation:ts-beat-in 0.6s ease-out both}
+.ts-anim-s5-2-1-plan-and-execute [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;transform-box:fill-box;transform-origin:center}
 .ts-anim-s5-2-1-plan-and-execute [data-beat="1"]{animation-delay:0.50s}
 .ts-anim-s5-2-1-plan-and-execute [data-beat="2"]{animation-delay:1.60s}
 .ts-anim-s5-2-1-plan-and-execute [data-beat="3"]{animation-delay:2.70s}

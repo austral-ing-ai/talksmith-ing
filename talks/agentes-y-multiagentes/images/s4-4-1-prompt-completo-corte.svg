@@ -1,9 +1,10 @@
+<!-- talksmith-ascii-sha256: e2115ee93a8d4ea9ab2c283bed6fc7e2b5f235fd331a6c9a1c95493170a69320 -->
 <svg class="ts-anim-s4-4-1-prompt-completo-corte" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 524" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#3B3535">
 <title>El prompt completo y el corte</title>
 <desc>Es el loop de ReAct de la lámina 4.1 en código de 2022: un solo texto de completado con instrucción, ejemplos y pregunta; el modelo escribe Thought y Action, la generación corta en Observation 1 y el código pega la observación.</desc>
 <style>/* talksmith-animation */
-.ts-anim-s4-4-1-prompt-completo-corte [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
-.ts-anim-s4-4-1-prompt-completo-corte [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat]{animation:ts-beat-in 0.6s ease-out both}
+.ts-anim-s4-4-1-prompt-completo-corte [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;transform-box:fill-box;transform-origin:center}
 .ts-anim-s4-4-1-prompt-completo-corte [data-beat="1"]{animation-delay:0.50s}
 .ts-anim-s4-4-1-prompt-completo-corte [data-beat="2"]{animation-delay:1.60s}
 .ts-anim-s4-4-1-prompt-completo-corte [data-beat="3"]{animation-delay:2.70s}

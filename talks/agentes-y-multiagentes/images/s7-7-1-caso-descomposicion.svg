@@ -1,9 +1,10 @@
+<!-- talksmith-ascii-sha256: 8d74538e998a085e9aceed13e19fc714250a9e8172a1ac5518e5751dfb216d0c -->
 <svg class="ts-anim-s7-7-1-caso-descomposicion" xmlns="http://www.w3.org/2000/svg" viewBox="40 0 730 470" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#3B3535">
 <title>Un caso: cómo se descompone</title>
 <desc>El orquestador reparte dos lecturas en paralelo, que no se pisan, y deja la única escritura, la transferencia, sola y al final, después de validar.</desc>
 <style>/* talksmith-animation */
-.ts-anim-s7-7-1-caso-descomposicion [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
-.ts-anim-s7-7-1-caso-descomposicion [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s7-7-1-caso-descomposicion [data-beat]{animation:ts-beat-in 0.6s ease-out both}
+.ts-anim-s7-7-1-caso-descomposicion [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;transform-box:fill-box;transform-origin:center}
 .ts-anim-s7-7-1-caso-descomposicion [data-beat="1"]{animation-delay:0.50s}
 .ts-anim-s7-7-1-caso-descomposicion [data-beat="2"]{animation-delay:1.60s}
 .ts-anim-s7-7-1-caso-descomposicion [data-beat="3"]{animation-delay:2.70s}

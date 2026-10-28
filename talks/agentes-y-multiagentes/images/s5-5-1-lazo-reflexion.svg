@@ -1,9 +1,10 @@
+<!-- talksmith-ascii-sha256: b5dcac1e16eab95e017cdbbbd72e57af10ccef6be716ae75a041708aa80a5d71 -->
 <svg class="ts-anim-s5-5-1-lazo-reflexion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 622 510" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
 <title>Reflexion: intentar, evaluar, reflexionar</title>
 <desc>Reflexion es el primer tipo con más de un rol de LLM: Actor, Evaluator y Self-Reflection, con una memoria de reflexiones que vuelve al Actor en el intento siguiente.</desc>
 <style>/* talksmith-animation */
-.ts-anim-s5-5-1-lazo-reflexion [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
-.ts-anim-s5-5-1-lazo-reflexion [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s5-5-1-lazo-reflexion [data-beat]{animation:ts-beat-in 0.6s ease-out both}
+.ts-anim-s5-5-1-lazo-reflexion [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;transform-box:fill-box;transform-origin:center}
 .ts-anim-s5-5-1-lazo-reflexion [data-beat="1"]{animation-delay:0.50s}
 .ts-anim-s5-5-1-lazo-reflexion [data-beat="2"]{animation-delay:1.60s}
 .ts-anim-s5-5-1-lazo-reflexion [data-beat="3"]{animation-delay:2.70s}

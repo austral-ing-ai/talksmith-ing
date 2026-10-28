@@ -1,9 +1,10 @@
+<!-- talksmith-ascii-sha256: 9445d4d24439f64e272c3c101bb05bb15a93db8b4e89847f44f197253dab26b7 -->
 <svg class="ts-anim-s6-3-1-orquestador-workers" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 540" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
 <title>Multiagente: orquestador y workers</title>
 <desc>El orquestador parte la tarea en tiempo de ejecución, cada worker trabaja en su pedazo con su propio loop, y el mismo orquestador sintetiza los resultados.</desc>
 <style>/* talksmith-animation */
-.ts-anim-s6-3-1-orquestador-workers [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
-.ts-anim-s6-3-1-orquestador-workers [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s6-3-1-orquestador-workers [data-beat]{animation:ts-beat-in 0.6s ease-out both}
+.ts-anim-s6-3-1-orquestador-workers [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;transform-box:fill-box;transform-origin:center}
 .ts-anim-s6-3-1-orquestador-workers [data-beat="1"]{animation-delay:0.50s}
 .ts-anim-s6-3-1-orquestador-workers [data-beat="2"]{animation-delay:1.60s}
 .ts-anim-s6-3-1-orquestador-workers [data-beat="3"]{animation-delay:2.70s}

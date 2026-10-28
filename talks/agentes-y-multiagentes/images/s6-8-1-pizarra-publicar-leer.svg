@@ -1,9 +1,10 @@
-<svg class="ts-anim-s6-8-1-pizarra-publicar-leer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 730 346" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<!-- talksmith-ascii-sha256: 093cb34fc2d374d7f389324c00e2ef89e0af683ed221823d7be1203190f628aa -->
+<svg class="ts-anim-s6-8-1-pizarra-publicar-leer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 730 356" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
 <title>Pizarra: publicar y leer</title>
 <desc>Original: “Any agent can directly retrieve required information from the shared pool, eliminating the need to inquire about other agents and await their responses.” — Hong et al., MetaGPT.</desc>
 <style>/* talksmith-animation */
-.ts-anim-s6-8-1-pizarra-publicar-leer [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
-.ts-anim-s6-8-1-pizarra-publicar-leer [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s6-8-1-pizarra-publicar-leer [data-beat]{animation:ts-beat-in 0.6s ease-out both}
+.ts-anim-s6-8-1-pizarra-publicar-leer [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;transform-box:fill-box;transform-origin:center}
 .ts-anim-s6-8-1-pizarra-publicar-leer [data-beat="1"]{animation-delay:0.50s}
 .ts-anim-s6-8-1-pizarra-publicar-leer [data-beat="2"]{animation-delay:1.60s}
 .ts-anim-s6-8-1-pizarra-publicar-leer [data-beat="3"]{animation-delay:2.70s}
@@ -17,10 +18,10 @@
 <defs>
 <marker id="ah" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" markerWidth="11" markerHeight="11" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
 </defs>
-<rect x="0" y="0" width="730" height="346" fill="#ffffff"/>
+<rect x="0" y="0" width="730" height="356" fill="#ffffff"/>
 <g data-beat="1">
-<rect x="20" y="150" width="690" height="100" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="3"/>
-<text x="365" y="182" font-size="20" font-weight="bold" text-anchor="middle" fill="#DA1B2E" letter-spacing="2">PIZARRA</text>
+<rect x="20" y="150" width="690" height="110" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="3"/>
+<text x="365" y="244" font-size="20" font-weight="bold" text-anchor="middle" fill="#DA1B2E" letter-spacing="2">PIZARRA</text>
 <rect x="20" y="20" width="150" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="2"/>
 <text x="95" y="56" font-size="18" font-weight="bold" text-anchor="middle" fill="#1F1E1E">Producto</text>
 <rect x="200" y="20" width="150" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="2"/>
@@ -31,33 +32,33 @@
 <text x="635" y="56" font-size="18" font-weight="bold" text-anchor="middle" fill="#1F1E1E">QA</text>
 </g>
 <g data-beat="2">
-<line x1="95" y1="81" x2="95" y2="149" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="45" y="203" width="100" height="32" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="95" y="225" font-size="16" text-anchor="middle">PRD</text>
+<line x1="95" y1="81" x2="95" y2="169" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="45" y="170" width="100" height="32" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="95" y="192" font-size="16" text-anchor="middle">PRD</text>
 </g>
 <g data-beat="3">
-<line x1="297" y1="149" x2="297" y2="81" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<line x1="253" y1="81" x2="253" y2="149" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="225" y="203" width="100" height="32" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="275" y="225" font-size="16" text-anchor="middle">diseño</text>
+<line x1="133" y1="169" x2="240" y2="81" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="290" y1="81" x2="290" y2="169" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="225" y="170" width="100" height="32" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="275" y="192" font-size="16" text-anchor="middle">diseño</text>
 </g>
 <g data-beat="4">
-<line x1="477" y1="149" x2="477" y2="81" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<line x1="433" y1="81" x2="433" y2="149" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="405" y="203" width="100" height="32" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="455" y="225" font-size="16" text-anchor="middle">código</text>
+<line x1="313" y1="169" x2="420" y2="81" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="470" y1="81" x2="470" y2="169" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="405" y="170" width="100" height="32" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="455" y="192" font-size="16" text-anchor="middle">código</text>
 </g>
 <g data-beat="5">
-<line x1="657" y1="149" x2="657" y2="81" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<line x1="613" y1="81" x2="613" y2="149" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="585" y="203" width="100" height="32" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
-<text x="635" y="225" font-size="16" text-anchor="middle">tests</text>
+<line x1="493" y1="169" x2="600" y2="81" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="650" y1="81" x2="650" y2="169" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="585" y="170" width="100" height="32" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="635" y="192" font-size="16" text-anchor="middle">tests</text>
 </g>
 <g data-beat="6">
-<line x1="30" y1="270" x2="30" y2="296" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<text x="44" y="289" font-size="15">publica</text>
-<line x1="150" y1="296" x2="150" y2="270" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
-<text x="164" y="289" font-size="15">lee lo que pide su rol</text>
-<text x="20" y="322" font-size="15" font-style="italic">cada agente actúa cuando ya está publicado lo que necesita</text>
+<line x1="30" y1="280" x2="30" y2="306" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="44" y="299" font-size="15">publica</text>
+<line x1="150" y1="306" x2="168" y2="280" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="180" y="299" font-size="15">lee lo que pide su rol</text>
+<text x="20" y="332" font-size="15" font-style="italic">cada agente actúa cuando ya está publicado lo que necesita</text>
 </g>
 </svg>

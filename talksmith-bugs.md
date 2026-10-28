@@ -67,7 +67,7 @@
     (b) que el CLAUDE.md nombre la ruta canónica del marketplace, para no tener que buscarla
     con find en cada arranque. Del lado del usuario no hay nada que hacer: abrir el mismo
     directorio en el CLI de Claude Code debería expandir el import solo
-  seen: 10
+  seen: 11
   plugin_version: visto en 0.87.0; reverificado en 0.88.0 → 0.89.2 y en 0.97.0 — persiste
     (el status vive una sola vez, en el encabezado de la entrada)
 
@@ -140,3 +140,57 @@
   suggested_fix: SUGGESTION, unverified — incluir el lead (o un tope de alto del encabezado) en el fit
   seen: 1
   plugin_version: 1.3.1
+
+- id: BUG-20261028-01
+  status: open
+  date: 2026-10-28
+  talk: agentes-y-multiagentes
+  step: 6 (Polish) — pasada de diagramas animados
+  where: skills/ascii-to-svg (validate_svg / animate_svg / audit_aspect) — ningún chequeo de texto agregado
+  what: el SVG de un render incluyó texto que no está ni en el ASCII ni en la nota
+  expected: el SVG lleva solo labels del bloque ASCII, de la nota (terms/animation) o del contexto del slide
+  actual: el primer render de s6-3-1 (orquestador-workers) agregó "loop propio" en las tres cajas de
+    worker. Ningún script lo detectó; lo marcó el crítico ciego, y solo porque la palabra era inglés.
+    Se corrigió en la revisión.
+  repro: unknown — es un comportamiento no determinista del render; la entrada fue el bloque de la slide 6.3
+    con su nota animation: de 2026-10-28
+  impact: degraded — un label inventado podría llegar al deck si está en el idioma de la charla
+  suggested_fix: SUGGESTION, unverified — un chequeo por script que compare los <text> del SVG con los
+    tokens del ASCII + nota + contexto y avise ante palabras nuevas
+  seen: 1
+  plugin_version: 1.4.0
+
+- id: BUG-20261028-02
+  status: open
+  date: 2026-10-28
+  talk: agentes-y-multiagentes
+  step: 6 (Polish)
+  where: agents/diagram-illustrator.md — despacho de las tandas de render/crítica
+  what: la spec pide despachar cada tanda con `run_in_background: false`, parámetro que la herramienta Agent
+    de este entorno (extensión de VS Code) no tiene; los subagentes vuelven siempre de forma asíncrona
+  expected: un mecanismo de despacho en primer plano que exista en la herramienta
+  actual: el ilustrador mandó cada tanda en un mensaje y esperó todos los resultados antes de seguir; funcionó,
+    pero no como lo describe la spec
+  repro: correr el Step 6 desde la extensión de VS Code y comparar el schema de la herramienta Agent con la spec
+  impact: cosmetic — no hubo efecto en el resultado
+  suggested_fix: SUGGESTION, unverified — describir el contrato como "esperar todos los resultados de la tanda
+    antes de la siguiente" en vez de nombrar un parámetro de la herramienta
+  seen: 1
+  plugin_version: 1.4.0
+
+- id: BUG-20261028-03
+  status: open
+  date: 2026-10-28
+  talk: agentes-y-multiagentes
+  step: 6 (Polish)
+  where: agents/diagram-illustrator.md — rutas de scripts
+  what: la spec tiene fija la ruta `~/.claude/plugins/cache/talksmith/talksmith/1.4.0/...` en vez de la raíz
+    del plugin
+  expected: rutas relativas a `${CLAUDE_PLUGIN_ROOT}` (o a la raíz resuelta en el arranque)
+  actual: esta sesión usó la raíz marketplaces (`~/.claude/plugins/marketplaces/talksmith`). Las dos son 1.4.0,
+    así que no hubo diferencia, pero la ruta fija se va a desactualizar en la próxima versión
+  repro: grep "cache/talksmith/talksmith/1.4.0" agents/diagram-illustrator.md
+  impact: degraded — en una versión futura puede llamar a scripts de una versión vieja
+  suggested_fix: SUGGESTION, unverified — reemplazar la ruta fija por `${CLAUDE_PLUGIN_ROOT}`
+  seen: 1
+  plugin_version: 1.4.0

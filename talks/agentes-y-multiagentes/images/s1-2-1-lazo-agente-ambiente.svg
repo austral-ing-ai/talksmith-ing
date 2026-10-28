@@ -1,9 +1,10 @@
+<!-- talksmith-ascii-sha256: ea60016cbcc5ddde9e5bdd8d73058cc98810cad150f3491c6b52c2f6f8e959cb -->
 <svg class="ts-anim-s1-2-1-lazo-agente-ambiente" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 400" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" text-anchor="middle">
 <title>La definición de Russell &amp; Norvig</title>
 <desc>El lazo agente-ambiente: el ambiente llega como percepciones a los sensores, el agente decide qué acción tomar y los actuadores devuelven acciones al ambiente.</desc>
 <style>/* talksmith-animation */
-.ts-anim-s1-2-1-lazo-agente-ambiente [data-beat]{animation:ts-beat-in 0.6s ease-out backwards}
-.ts-anim-s1-2-1-lazo-agente-ambiente [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;animation-fill-mode:none;transform-box:fill-box;transform-origin:center}
+.ts-anim-s1-2-1-lazo-agente-ambiente [data-beat]{animation:ts-beat-in 0.6s ease-out both}
+.ts-anim-s1-2-1-lazo-agente-ambiente [data-beat-effect=pulse]{animation-name:ts-beat-pulse;animation-duration:0.8s;transform-box:fill-box;transform-origin:center}
 .ts-anim-s1-2-1-lazo-agente-ambiente [data-beat="1"]{animation-delay:0.50s}
 .ts-anim-s1-2-1-lazo-agente-ambiente [data-beat="2"]{animation-delay:1.60s}
 .ts-anim-s1-2-1-lazo-agente-ambiente [data-beat="3"]{animation-delay:2.70s}
