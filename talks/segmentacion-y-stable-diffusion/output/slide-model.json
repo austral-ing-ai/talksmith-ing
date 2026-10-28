@@ -28,7 +28,7 @@
       "section": "Qué es una convolución",
       "title": "Una red neuronal clásica solo acepta entradas de largo fijo",
       "image": {
-        "src": "images/s1-1-1-mlp-entrada-fija.png",
+        "src": "images/mlp-en-vivo.gif",
         "alt": "Una red densa recibe un vector de largo fijo"
       },
       "notes": "Arrancar por lo que ya saben: el TP de precios de casas fue exactamente esto. La red funciona porque cada fila del dataset trae las mismas columnas. MNIST sirve de puente: es una imagen, pero todas miden 28×28, así que aplanarla a 784 números no rompe nada. La pregunta que abre la sección es qué pasa cuando la entrada no trae siempre la misma cantidad de números.",
@@ -686,7 +686,7 @@
       "section": "Qué es una convolución",
       "title": "Embeddings más allá del texto",
       "image": {
-        "src": "images/s1-11-1-embeddings-modalidades.png",
+        "src": "images/embeddings-en-vivo.gif",
         "alt": "Imagen, texto y audio pasan por encoders distintos y salen como vectores"
       },
       "notes": "Lo vieron con palabras y tokens; acá la idea se generaliza. Cuando lleguemos a CLIP, la novedad va a ser entrenar los dos encoders para que caigan en el mismo espacio. El latente del VAE es un pariente: no está entrenado para que lo cercano signifique lo mismo, pero también comprime la imagen en algo mucho más chico.",
@@ -1023,7 +1023,7 @@
       "section": "De FCN a U-Net",
       "title": "FCN por dentro",
       "image": {
-        "src": "images/s3-2-1-fcn-tres-pasos.png",
+        "src": "images/fcn-en-vivo.gif",
         "alt": "FCN en tres pasos: encoder convolucional, conv 1x1 en lugar de la capa densa y upsampling a una máscara H x W"
       },
       "notes": "Diagrama propio en lugar de la figura isométrica del paper de Long, Shelhamer y Darrell (dos gatos en un sofá).",
@@ -1137,7 +1137,7 @@
       "section": "De FCN a U-Net",
       "title": "U-Net: la U y sus atajos",
       "image": {
-        "src": "images/s3-4-1-unet-skip-connections.png",
+        "src": "images/unet-en-vivo.gif",
         "alt": "U-Net: encoder a la izquierda, bottleneck abajo, decoder a la derecha y skip connections horizontales entre niveles"
       },
       "notes": "Fusión de \"UNET: nacida en biomedicina\", \"La arquitectura en U\" y \"La clave: skip connections\". El bottleneck es la representación más comprimida y abstracta. Sin skip connections, U-Net sería un FCN más elegante: los detalles que el encoder vio antes de comprimir viajan por el atajo y el decoder los recupera, y por eso los contornos salen precisos. Es uno de los papers más citados de la última década en visión; diez años después sigue siendo la base por defecto para segmentación médica.",
@@ -1243,7 +1243,7 @@
       "section": "SAM: segmentar lo que le señalás",
       "title": "SAM: segmentación promptable",
       "image": {
-        "src": "images/s4-1-1-sam-promptable.png",
+        "src": "images/sam-en-vivo.gif",
         "alt": "SAM: el image encoder corre una vez; cada prompt se codifica y el mask decoder produce la máscara"
       },
       "notes": "Fusión de \"SAM: ¿qué hace y por qué fue revolucionario?\" y \"mejoras conceptuales internas\". SAM trajo a segmentación el paradigma \"foundation model + prompt en inferencia\" que ya había explotado en NLP con los LLMs. Frase para llevarse: SAM no está entrenado para una tarea sino para separar objetos en general, y vos le indicás con el prompt cuál querés. El reparto de cómputo del deck original (image encoder ~95%) no tiene fuente publicada: decir \"la gran mayoría\". Sin SA-1B, SAM no funcionaría: el secreto está tanto en el modelo como en los datos.",
@@ -1309,7 +1309,7 @@
       "section": "SAM: segmentar lo que le señalás",
       "title": "SAM 2: memoria para video",
       "image": {
-        "src": "images/s4-2-1-sam2-memoria-video.png",
+        "src": "images/sam2-en-vivo.gif",
         "alt": "SAM 2: la máscara de cada frame se guarda en el memory bank y condiciona el frame siguiente"
       },
       "notes": "La figura vieja de la lámina de SAM 1 era en realidad esta arquitectura de SAM 2; por eso ahora va acá, redibujada. El post de Meta sobre SAM 3 confirma que el memory bank y el memory encoder de SAM 2 son la base del tracker de SAM 3.",
@@ -1620,7 +1620,7 @@
       "section": "Generación condicionada por texto",
       "title": "CLIP: el puente texto ↔ imagen",
       "image": {
-        "src": "images/s5-4-1-clip-contrastivo.png",
+        "src": "images/clip-en-vivo.gif",
         "alt": "CLIP: matriz de similitudes entre embeddings de imagen y de texto, con los pares reales en la diagonal"
       },
       "notes": "Absorbe lo esencial de la lámina vieja sobre cómo una red neuronal representa texto (tokenización, embeddings, encoder contextual: \"banco de plaza\" vs \"banco financiero\"). Resultado del entrenamiento: la frase \"una foto de un perro corriendo en la playa\" aterriza en el mismo vecindario que una foto real de eso. CLIP proyecta el texto a un espacio que la U-Net usa como entrada.",
@@ -1690,6 +1690,31 @@
       }
     },
     {
+      "template": "image-full",
+      "section": "Generación condicionada por texto",
+      "title": "Cómo se entrena CLIP",
+      "image": {
+        "src": "images/clip-entrenamiento.gif",
+        "alt": "Un paso de entrenamiento de CLIP: forward, pérdida contrastiva simétrica, backward a los dos encoders y actualización de los pesos"
+      },
+      "notes": "Un paso de entrenamiento visto de cerca, con un modelo de juguete en numpy: un encoder de imagen lineal sobre imágenes de 8×8 y un encoder de texto que promedia embeddings de palabras. Forward: el batch de 4 pares pasa por los dos encoders y se arma la matriz S de cosenos. Pérdida: la de CLIP, cross-entropy simétrica (softmax por filas y por columnas, el objetivo es la diagonal), con τ = 0,07 fijo; en CLIP real la temperatura también se aprende. Backward: el gradiente de L llega a los pesos de los DOS encoders, que se entrenan a la vez; CLIP no tiene decoder. Actualización: W ← W − η·∂L/∂W. En 11 pasos L baja de 4,35 a 0,05 mientras la diagonal de cosenos sube solo hasta ~0,5: con τ chica alcanza con separar un poco los cosenos para que el softmax quede casi todo en la diagonal. El mapa de ∂L/∂W se apaga a medida que baja L.",
+      "_choice": {
+        "signals": [
+          "n_images=1 (own training animation)",
+          "image_only=true",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "no body text on the slide; the animation needs full width to stay legible"
+        }
+      }
+    },
+    {
       "template": "value-columns",
       "section": "Generación condicionada por texto",
       "title": "La idea de condición",
@@ -1751,7 +1776,7 @@
       "section": "Stable Diffusion por dentro",
       "title": "La idea de difusión: agregar y quitar ruido",
       "image": {
-        "src": "images/s6-1-1-difusion-forward-reverse.png",
+        "src": "images/difusion-en-vivo.gif",
         "alt": "Difusión: forward agrega ruido de x0 a xT; reverse lo quita con un predictor de ruido condicionado en c"
       },
       "notes": "Diferencia con las GANs: no hay dos redes compitiendo. Una sola red aprende a desruidizar, es más estable de entrenar, no tiene mode collapse y da más diversidad. Imagen para decir: Stable Diffusion talla la imagen, arranca de un bloque de ruido y saca lo que sobra hasta dejar la figura.",
@@ -1976,7 +2001,7 @@
       "section": "Stable Diffusion por dentro",
       "title": "Componente 1: el VAE",
       "image": {
-        "src": "images/s6-5-1-vae-latente.png",
+        "src": "images/vae-en-vivo.gif",
         "alt": "VAE: el encoder comprime la imagen a un latente 64x64x4 y el decoder la reconstruye"
       },
       "notes": "El VAE es un compresor inteligente: convierte el problema de \"generar 800K píxeles\" en el de \"generar 16K números latentes\". Lo variacional: el latente es una distribución, no un punto fijo (la campana gaussiana de la figura vieja).",
@@ -2045,7 +2070,7 @@
       "section": "Stable Diffusion por dentro",
       "title": "Componente 2: la U-Net, de vuelta",
       "image": {
-        "src": "images/s6-6-1-unet-cross-attention.png",
+        "src": "images/unet-sd-en-vivo.gif",
         "alt": "U-Net de Stable Diffusion: tres entradas, el ruido predicho como salida y el prompt entrando por cross-attention en cada nivel"
       },
       "notes": "La conexión que cierra el círculo: la arquitectura que en 2015 segmentaba células al microscopio hoy es el corazón de la generación de imágenes más usada. U-Net es un patrón arquitectónico reutilizable. El ciclo de cada paso se ve en el pipeline, dos láminas más adelante.",
@@ -2161,7 +2186,7 @@
       "section": "Stable Diffusion por dentro",
       "title": "Pipeline completo de inferencia",
       "image": {
-        "src": "images/s6-8-1-pipeline-inferencia.png",
+        "src": "images/pipeline-sd-en-vivo.gif",
         "alt": "Pipeline de inferencia: la U-Net predice ruido, el scheduler lo resta unas 50 veces y el VAE decodifica la imagen"
       },
       "notes": "Todo lo que vimos (U-Net, embeddings de texto, condición) confluye en este pipeline. Stable Diffusion no es un modelo monolítico: son tres piezas modulares orquestadas por un loop iterativo.",
@@ -2537,7 +2562,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "bd852c6caf07426da72a36ec565267fded88dd5df75e026411716bb65b48ee1a",
-    "bytes": 68795
+    "sha256": "ab3e7a434b022db3518bca055e04fc926ff1f13f391095401b42169781b61a99",
+    "bytes": 69808
   }
 }

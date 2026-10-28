@@ -49,7 +49,7 @@ date: 2026-10-28
 - **Dígitos manuscritos (MNIST)**: la imagen de 28×28 se aplana en 784 números y salen 10 probabilidades, una por dígito.
 - **Riesgo crediticio**: los datos de una solicitud entran normalizados y sale la probabilidad de que el cliente no pague.
 
-![Una red densa recibe un vector de largo fijo](images/s1-1-1-mlp-entrada-fija.png)
+![Una red densa recibe un vector de largo fijo](images/mlp-en-vivo.gif)
 <!-- ascii-source:
    entrada                     red neuronal profunda                      salida
  +---------+
@@ -296,7 +296,7 @@ Con 32 kernels en una capa salen 32 feature maps, uno por rasgo. La capa siguien
 - Vuelve dos veces en esta clase: CLIP pone imágenes y textos en el mismo espacio, y el VAE de Stable Diffusion comprime la imagen en un latente donde trabaja la difusión.
 - El encoder de texto de CLIP es un transformer, y un ViT trata la imagen como una secuencia de parches.
 
-![Imagen, texto y audio pasan por encoders distintos y salen como vectores](images/s1-11-1-embeddings-modalidades.png)
+![Imagen, texto y audio pasan por encoders distintos y salen como vectores](images/embeddings-en-vivo.gif)
 <!-- ascii-source:
  imagen  ---&gt; [ encoder convolucional ] ---&gt;  [ e1  e2  e3  ...  ed ]
  texto   ---&gt; [ encoder de texto      ] ---&gt;  [ e1  e2  e3  ...  ed ]
@@ -452,7 +452,7 @@ Cada fila es un paciente: el corte de eje corto del ventrículo izquierdo, la m�
 - **Upsampling**: convoluciones traspuestas estiran ese mapa hasta el tamaño original.
 - Resultado: una máscara con una etiqueta por píxel. Fue el primer modelo de segmentación end-to-end con deep learning.
 
-![FCN en tres pasos: encoder convolucional, conv 1x1 en lugar de la capa densa y upsampling a una máscara H x W](images/s3-2-1-fcn-tres-pasos.png)
+![FCN en tres pasos: encoder convolucional, conv 1x1 en lugar de la capa densa y upsampling a una máscara H x W](images/fcn-en-vivo.gif)
 <!-- ascii-source:
  imagen        +-----------+   +-----------+   +-------------+   +-------------+   mascara
  H x W  -----&gt; | conv+pool | ->| conv+pool | ->|  conv 1x1   | ->| upsampling  | ----&gt; H x W
@@ -504,7 +504,7 @@ Diagrama propio en lugar de la figura isométrica del paper de Long, Shelhamer y
 - **Decoder**: convoluciones traspuestas. La resolución se duplica en cada nivel y "dónde" se reconstruye.
 - **Skip connections**: la salida de cada nivel del encoder se concatena con la entrada del decoder en el mismo nivel. El decoder recibe qué es (desde abajo) y dónde está exactamente (desde el atajo).
 
-![U-Net: encoder a la izquierda, bottleneck abajo, decoder a la derecha y skip connections horizontales entre niveles](images/s3-4-1-unet-skip-connections.png)
+![U-Net: encoder a la izquierda, bottleneck abajo, decoder a la derecha y skip connections horizontales entre niveles](images/unet-en-vivo.gif)
 <!-- ascii-source:
  imagen                                                   mascara
    |                                                         ^
@@ -569,7 +569,7 @@ Fusión de "UNET: nacida en biomedicina", "La arquitectura en U" y "La clave: sk
 - Su encoder de imagen es un ViT, un transformer sobre parches de imagen.
 - **SA-1B**: 1.000 millones de máscaras sobre 11 millones de imágenes, armado con un data engine donde el propio SAM ayudaba a anotar.
 
-![SAM: el image encoder corre una vez; cada prompt se codifica y el mask decoder produce la máscara](images/s4-1-1-sam-promptable.png)
+![SAM: el image encoder corre una vez; cada prompt se codifica y el mask decoder produce la máscara](images/sam-en-vivo.gif)
 <!-- ascii-source:
  prompt                                     imagen
  +-------+  +-------+  +---------+  +-------+   +----------+
@@ -617,7 +617,7 @@ Fusión de "SAM: ¿qué hace y por qué fue revolucionario?" y "mejoras conceptu
 - Cada máscara que sale pasa por un memory encoder y se guarda en un **memory bank**.
 - En el frame siguiente, la memory attention combina las features del image encoder con lo que quedó guardado. Así la máscara sigue al mismo objeto aunque se mueva.
 
-![SAM 2: la máscara de cada frame se guarda en el memory bank y condiciona el frame siguiente](images/s4-2-1-sam2-memoria-video.png)
+![SAM 2: la máscara de cada frame se guarda en el memory bank y condiciona el frame siguiente](images/sam2-en-vivo.gif)
 <!-- ascii-source:
  frame t ---&gt; +---------------+    +------------------+    +--------------+
               | image encoder |---&gt;| memory attention |---&gt;| mask decoder |---&gt; mascara t
@@ -773,7 +773,7 @@ Fusión de "¿Por qué la GAN del año pasado no alcanza?" y "Una nueva tarea: d
 - Con 400 millones de pares (imagen, descripción) de internet: los pares reales quedan cerca y los mal apareados, lejos. Es entrenamiento contrastivo.
 - Ese embedding de texto es la entrada con la que la U-Net de Stable Diffusion se condiciona.
 
-![CLIP: matriz de similitudes entre embeddings de imagen y de texto, con los pares reales en la diagonal](images/s5-4-1-clip-contrastivo.png)
+![CLIP: matriz de similitudes entre embeddings de imagen y de texto, con los pares reales en la diagonal](images/clip-en-vivo.gif)
 <!-- ascii-source:
  "perro en la playa" --&gt; [ text encoder ]  --&gt; T1   T2   T3  ...  TN
  "gato en un sofa"   --&gt;                        |    |    |        |
@@ -804,7 +804,23 @@ Absorbe lo esencial de la lámina vieja sobre cómo una red neuronal representa 
 
 ---
 
-## 5. La idea de condición
+## 5. Cómo se entrena CLIP
+
+### Content
+
+![Un paso de entrenamiento de CLIP: forward, pérdida contrastiva simétrica, backward a los dos encoders y actualización de los pesos](images/clip-entrenamiento.gif)
+
+### Sources
+
+- `clip-radford-2021.web.md`
+
+### Speaker notes
+
+Un paso de entrenamiento visto de cerca, con un modelo de juguete en numpy: un encoder de imagen lineal sobre imágenes de 8×8 y un encoder de texto que promedia embeddings de palabras. Forward: el batch de 4 pares pasa por los dos encoders y se arma la matriz S de cosenos. Pérdida: la de CLIP, cross-entropy simétrica (softmax por filas y por columnas, el objetivo es la diagonal), con τ = 0,07 fijo; en CLIP real la temperatura también se aprende. Backward: el gradiente de L llega a los pesos de los DOS encoders, que se entrenan a la vez; CLIP no tiene decoder. Actualización: W ← W − η·∂L/∂W. En 11 pasos L baja de 4,35 a 0,05 mientras la diagonal de cosenos sube solo hasta ~0,5: con τ chica alcanza con separar un poco los cosenos para que el softmax quede casi todo en la diagonal. El mapa de ∂L/∂W se apaga a medida que baja L.
+
+---
+
+## 6. La idea de condición
 
 ### Content
 
@@ -840,7 +856,7 @@ Absorbe lo esencial de la lámina vieja sobre cómo una red neuronal representa 
 - **Reverse** (inferencia): la red hace el camino inverso. Arranca de ruido puro y quita ruido paso a paso, guiada por la condición c.
 - La red aprende una sola cosa: dado un latente ruidoso y un timestep, **predecir qué ruido fue agregado**. Con esa predicción, el ruido se puede restar.
 
-![Difusión: forward agrega ruido de x0 a xT; reverse lo quita con un predictor de ruido condicionado en c](images/s6-1-1-difusion-forward-reverse.png)
+![Difusión: forward agrega ruido de x0 a xT; reverse lo quita con un predictor de ruido condicionado en c](images/difusion-en-vivo.gif)
 <!-- ascii-source:
  FORWARD: agregar ruido (entrenamiento)
    x0 ------&gt; x1 ------&gt; ... ------&gt; x(t) ------&gt; ... ------&gt; xT
@@ -962,7 +978,7 @@ El prompt entra a CLIP, que produce un embedding. La U-Net usa ese embedding par
 - En el entrenamiento de SD se usa el encoder, para llevar las imágenes del dataset al latente. En inferencia **solo se usa el decoder**.
 - Se entrena antes y por separado de la U-Net, con un objetivo simple: `decoder(encoder(imagen)) ≈ imagen`. Después sus pesos quedan congelados.
 
-![VAE: el encoder comprime la imagen a un latente 64x64x4 y el decoder la reconstruye](images/s6-5-1-vae-latente.png)
+![VAE: el encoder comprime la imagen a un latente 64x64x4 y el decoder la reconstruye](images/vae-en-vivo.gif)
 <!-- ascii-source:
  imagen          +---------+      latente       +---------+      imagen
  512x512x3 ----&gt; | encoder | ---&gt; 64x64x4 ----&gt; | decoder | ---&gt; 512x512x3
@@ -996,7 +1012,7 @@ El VAE es un compresor inteligente: convierte el problema de "generar 800K píxe
 - **Cross-attention**: en cada nivel de la U, bajando y subiendo, un bloque calcula pesos entre las features de la imagen y cada token del embedding de CLIP, y suma la información de los tokens ponderada por esos pesos.
 - El cross-attention con el prompt es atención de transformer metida dentro de una red convolucional.
 
-![U-Net de Stable Diffusion: tres entradas, el ruido predicho como salida y el prompt entrando por cross-attention en cada nivel](images/s6-6-1-unet-cross-attention.png)
+![U-Net de Stable Diffusion: tres entradas, el ruido predicho como salida y el prompt entrando por cross-attention en cada nivel](images/unet-sd-en-vivo.gif)
 <!-- ascii-source:
  latente ruidoso --+                                        +--&gt; ruido predicho
  timestep t -------+--&gt; [enc] -------- skip ---------&gt; [dec] --+
@@ -1057,7 +1073,7 @@ Los 123M son del text encoder, no del CLIP completo (que suma el image encoder V
 3. **Bucle de denoising** (~50 pasos): la U-Net recibe (latente, t, embedding) y predice el ruido; el scheduler lo resta.
 4. **Decodificar**: latente final 64×64×4 → VAE Decoder → imagen 512×512×3.
 
-![Pipeline de inferencia: la U-Net predice ruido, el scheduler lo resta unas 50 veces y el VAE decodifica la imagen](images/s6-8-1-pipeline-inferencia.png)
+![Pipeline de inferencia: la U-Net predice ruido, el scheduler lo resta unas 50 veces y el VAE decodifica la imagen](images/pipeline-sd-en-vivo.gif)
 <!-- ascii-source:
  seed --&gt; latente ruidoso 64x64x4
                  |
