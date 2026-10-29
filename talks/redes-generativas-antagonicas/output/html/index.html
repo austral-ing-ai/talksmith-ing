@@ -1134,9 +1134,102 @@ html.print-pdf .cbfull{display:none}
 </svg></div></div></div>
 </section><section class="slide" data-kind="image-full"><div class="stage imgfull">
 <div class="shead"><span class="pill">Introducción a las GANs</span><h2 class="stitle">Arquitectura de una "Vanilla" GAN</h2></div>
-<div class="iffill"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 990 370" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<div class="iffill"><div class="imgph svg"><svg class="ts-anim-vanilla-gan-arquitectura" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 990 370" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
 <title>Arquitectura de una Vanilla GAN</title>
 <desc>Redibujo vectorial del diagrama del slide 15 del pptx original (AIG4B Clase 8), con las mismas piezas: el ruido z entra al Generador (G), que produce una muestra falsa; los datos reales aportan una muestra real; el Discriminador (D) recibe ambas y decide si es real o falsa; esa decisión da la pérdida de G y la pérdida de D, que vuelven para actualizar cada red. La salida del D es un veredicto, la probabilidad de que la imagen sea real; no es una bifurcación: la pérdida de G usa los veredictos sobre las generadas y la de D los veredictos sobre reales y generadas.</desc>
+<style>/* talksmith-animation */
+.ts-anim-vanilla-gan-arquitectura .b-z{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 0.20s both}
+.ts-anim-vanilla-gan-arquitectura .tk1{animation:ts-anim-vanilla-gan-arquitectura-tk1-op 1.00s linear 1.00s both}
+.ts-anim-vanilla-gan-arquitectura .tk1 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk1-mv 0.70s linear 1.00s both}
+.ts-anim-vanilla-gan-arquitectura .dr2{animation:ts-anim-vanilla-gan-arquitectura-dr2 0.73s linear 1.17s both}
+.ts-anim-vanilla-gan-arquitectura .c2{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 1.70s both}
+.ts-anim-vanilla-gan-arquitectura .b-g{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 1.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk3{animation:ts-anim-vanilla-gan-arquitectura-tk3-op 0.90s linear 2.40s both}
+.ts-anim-vanilla-gan-arquitectura .tk3 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk3-mv 0.60s linear 2.40s both}
+.ts-anim-vanilla-gan-arquitectura .dr4{animation:ts-anim-vanilla-gan-arquitectura-dr4 0.66s linear 2.54s both}
+.ts-anim-vanilla-gan-arquitectura .c4{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 3.00s both}
+.ts-anim-vanilla-gan-arquitectura .b-falsa{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 3.00s both}
+.ts-anim-vanilla-gan-arquitectura .b-datos{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 4.00s both}
+.ts-anim-vanilla-gan-arquitectura .tk5{animation:ts-anim-vanilla-gan-arquitectura-tk5-op 1.10s linear 4.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk5 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk5-mv 0.80s linear 4.70s both}
+.ts-anim-vanilla-gan-arquitectura .dr6{animation:ts-anim-vanilla-gan-arquitectura-dr6 0.89s linear 4.81s both}
+.ts-anim-vanilla-gan-arquitectura .c6{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 5.50s both}
+.ts-anim-vanilla-gan-arquitectura .b-real{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 5.50s both}
+.ts-anim-vanilla-gan-arquitectura .tk7{animation:ts-anim-vanilla-gan-arquitectura-tk7-op 1.10s linear 6.40s both}
+.ts-anim-vanilla-gan-arquitectura .tk7 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk7-mv 0.80s linear 6.40s both}
+.ts-anim-vanilla-gan-arquitectura .dr8{animation:ts-anim-vanilla-gan-arquitectura-dr8 0.88s linear 6.52s both}
+.ts-anim-vanilla-gan-arquitectura .c8{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 7.20s both}
+.ts-anim-vanilla-gan-arquitectura .tk9{animation:ts-anim-vanilla-gan-arquitectura-tk9-op 1.10s linear 6.40s both}
+.ts-anim-vanilla-gan-arquitectura .tk9 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk9-mv 0.80s linear 6.40s both}
+.ts-anim-vanilla-gan-arquitectura .dr10{animation:ts-anim-vanilla-gan-arquitectura-dr10 0.88s linear 6.52s both}
+.ts-anim-vanilla-gan-arquitectura .c10{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 7.20s both}
+.ts-anim-vanilla-gan-arquitectura .b-d{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 7.20s both}
+.ts-anim-vanilla-gan-arquitectura .tk11{animation:ts-anim-vanilla-gan-arquitectura-tk11-op 0.90s linear 8.10s both}
+.ts-anim-vanilla-gan-arquitectura .tk11 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk11-mv 0.60s linear 8.10s both}
+.ts-anim-vanilla-gan-arquitectura .dr12{animation:ts-anim-vanilla-gan-arquitectura-dr12 0.68s linear 8.22s both}
+.ts-anim-vanilla-gan-arquitectura .c12{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 8.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk13{animation:ts-anim-vanilla-gan-arquitectura-tk13-op 0.90s linear 8.10s both}
+.ts-anim-vanilla-gan-arquitectura .tk13 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk13-mv 0.60s linear 8.10s both}
+.ts-anim-vanilla-gan-arquitectura .b-v{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 8.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk14{animation:ts-anim-vanilla-gan-arquitectura-tk14-op 1.50s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk14 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk14-mv 1.20s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .dr15{animation:ts-anim-vanilla-gan-arquitectura-dr15 1.33s linear 9.77s both}
+.ts-anim-vanilla-gan-arquitectura .c15{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 10.90s both}
+.ts-anim-vanilla-gan-arquitectura .tk16{animation:ts-anim-vanilla-gan-arquitectura-tk16-op 1.50s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk16 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk16-mv 1.20s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .dr17{animation:ts-anim-vanilla-gan-arquitectura-dr17 1.33s linear 9.77s both}
+.ts-anim-vanilla-gan-arquitectura .c17{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 10.90s both}
+.ts-anim-vanilla-gan-arquitectura .tk18{animation:ts-anim-vanilla-gan-arquitectura-tk18-op 1.50s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk18 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk18-mv 1.20s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .b-loss{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 10.90s both}
+.ts-anim-vanilla-gan-arquitectura .b-vlab{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 11.60s both}
+.ts-anim-vanilla-gan-arquitectura .tk19{animation:ts-anim-vanilla-gan-arquitectura-tk19-op 2.96s linear 12.50s both}
+.ts-anim-vanilla-gan-arquitectura .tk19 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk19-mv 2.66s linear 12.50s both}
+.ts-anim-vanilla-gan-arquitectura .dr20{animation:ts-anim-vanilla-gan-arquitectura-dr20 2.80s linear 12.53s both}
+.ts-anim-vanilla-gan-arquitectura .c20{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 15.13s both}
+.ts-anim-vanilla-gan-arquitectura .tk21{animation:ts-anim-vanilla-gan-arquitectura-tk21-op 1.86s linear 12.50s both}
+.ts-anim-vanilla-gan-arquitectura .tk21 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk21-mv 1.56s linear 12.50s both}
+.ts-anim-vanilla-gan-arquitectura .dr22{animation:ts-anim-vanilla-gan-arquitectura-dr22 1.71s linear 12.53s both}
+.ts-anim-vanilla-gan-arquitectura .c22{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 14.03s both}
+.ts-anim-vanilla-gan-arquitectura .b-actD{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 14.03s both}
+.ts-anim-vanilla-gan-arquitectura .b-actG{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 15.13s both}
+@keyframes ts-anim-vanilla-gan-arquitectura-in{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-vanilla-gan-arquitectura *{animation:none}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk1-mv{0.00%{transform:translate(70.0px,125.0px)}100.00%{transform:translate(112.0px,125.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk1-op{0%{opacity:0}15.00%,70.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr2{0%{opacity:1;stroke-dashoffset:43.0px}72.73%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk3-mv{0.00%{transform:translate(300.0px,125.0px)}100.00%{transform:translate(343.0px,125.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk3-op{0%{opacity:0}16.67%,66.67%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr4{0%{opacity:1;stroke-dashoffset:43.0px}69.72%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk5-mv{0.00%{transform:translate(270.0px,266.0px)}100.00%{transform:translate(343.0px,266.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk5-op{0%{opacity:0}13.64%,72.73%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr6{0%{opacity:1;stroke-dashoffset:73.0px}77.54%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk7-mv{0.00%{transform:translate(452.3px,121.6px)}100.00%{transform:translate(504.6px,165.5px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk7-op{0%{opacity:0}13.64%,72.73%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr8{0%{opacity:1;stroke-dashoffset:68.3px}77.35%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk9-mv{0.00%{transform:translate(452.3px,268.4px)}100.00%{transform:translate(504.6px,224.5px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk9-op{0%{opacity:0}13.64%,72.73%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr10{0%{opacity:1;stroke-dashoffset:68.3px}77.35%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk11-mv{0.00%{transform:translate(682.0px,195.0px)}100.00%{transform:translate(721.0px,195.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk11-op{0%{opacity:0}16.67%,66.67%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr12{0%{opacity:1;stroke-dashoffset:41.0px}70.45%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk13-mv{0.00%{transform:translate(666.0px,195.0px)}100.00%{transform:translate(705.0px,195.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk13-op{0%{opacity:0}16.67%,66.67%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk14-mv{0.00%{transform:translate(790.0px,166.0px)}42.03%{transform:translate(790.0px,108.0px)}100.00%{transform:translate(870.0px,108.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk14-op{0%{opacity:0}10.00%,80.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr15{0%{opacity:1;stroke-dashoffset:140.0px}84.97%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk16-mv{0.00%{transform:translate(790.0px,224.0px)}43.66%{transform:translate(790.0px,286.0px)}100.00%{transform:translate(870.0px,286.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk16-op{0%{opacity:0}10.00%,80.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr17{0%{opacity:1;stroke-dashoffset:144.0px}84.99%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk18-mv{0.00%{transform:translate(790.0px,208.0px)}54.93%{transform:translate(790.0px,286.0px)}100.00%{transform:translate(854.0px,286.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk18-op{0%{opacity:0}10.00%,80.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk19-mv{0.00%{transform:translate(923.0px,80.0px)}5.01%{transform:translate(923.0px,40.0px)}93.73%{transform:translate(215.0px,40.0px)}100.00%{transform:translate(215.0px,90.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk19-op{0%{opacity:0}5.07%,89.86%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr20{0%{opacity:1;stroke-dashoffset:780.0px;animation-timing-function:steps(65,end)}92.87%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk21-mv{0.00%{transform:translate(923.0px,314.0px)}6.82%{transform:translate(923.0px,346.0px)}75.69%{transform:translate(600.0px,346.0px)}100.00%{transform:translate(600.0px,232.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk21-op{0%{opacity:0}8.05%,83.90%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr22{0%{opacity:1;stroke-dashoffset:456.0px;animation-timing-function:steps(38,end)}88.28%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+</style>
 <defs>
 <marker id="e2-ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
 <path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
@@ -1149,39 +1242,65 @@ html.print-pdf .cbfull{display:none}
 
 <g>
 <g stroke="#3B3535" stroke-width="1.6" fill="none" stroke-dasharray="7 5" marker-end="url(#e2-fb)">
-<path d="M923,72 V40 H215 V80"/>
-<path d="M923,322 V346 H600 V242"/>
+<path class="c20" d="M923,72 V40 H215 V80"/>
+<path class="c22" d="M923,322 V346 H600 V242"/>
 </g>
-<g font-size="15" font-style="italic" text-anchor="middle">
-<text x="569" y="31">actualiza G</text>
-<text x="761" y="337">actualiza D</text>
+<g fill="none" stroke="#3B3535" stroke-width="1.6">
+<path class="dr20" opacity="0" d="M923,72 L923,40 L215,40 L215,80" stroke-dasharray="7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 0 840"/>
+<path class="dr22" opacity="0" d="M923,322 L923,346 L600,346 L600,242" stroke-dasharray="7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 0 511"/>
+</g>
+<g font-size="15" font-style="normal" text-anchor="middle">
+<text class="b-actG" x="569" y="31">actualiza G</text>
+<text class="b-actD" x="761" y="337">actualiza D</text>
 </g>
 </g>
 
 <g stroke="#3B3535" stroke-width="1.8" fill="none" marker-end="url(#e2-ah)">
 <g>
-<path d="M80,125 L120,125"/>
-<path d="M310,125 L350,125"/>
+<path class="c2" d="M80,125 L120,125"/>
+<path class="c4" d="M310,125 L350,125"/>
 </g>
 <g>
-<path d="M460,128 L510,170"/>
+<path class="c8" d="M460,128 L510,170"/>
 </g>
 <g>
-<path d="M280,266 L350,266"/>
+<path class="c6" d="M280,266 L350,266"/>
 </g>
 <g>
-<path d="M460,262 L510,220"/>
+<path class="c10" d="M460,262 L510,220"/>
 </g>
 <g>
-<path d="M690,195 L728,195"/>
+<path class="c12" d="M690,195 L728,195"/>
 </g>
 <g>
-<path d="M790,158 V108 H877"/>
-<path d="M790,232 V286 H877"/>
+<path class="c15" d="M790,158 V108 H877"/>
+<path class="c17" d="M790,232 V286 H877"/>
 </g>
 </g>
+<g fill="none" stroke="#3B3535" stroke-width="1.8">
+<path class="dr2" opacity="0" d="M80,125 L120,125" stroke-dasharray="42.0 100.0"/>
+<path class="dr4" opacity="0" d="M310,125 L350,125" stroke-dasharray="42.0 100.0"/>
+<path class="dr6" opacity="0" d="M280,266 L350,266" stroke-dasharray="72.0 130.0"/>
+<path class="dr8" opacity="0" d="M460,128 L510,170" stroke-dasharray="67.3 125.3"/>
+<path class="dr10" opacity="0" d="M460,262 L510,220" stroke-dasharray="67.3 125.3"/>
+<path class="dr12" opacity="0" d="M690,195 L728,195" stroke-dasharray="40.0 98.0"/>
+<path class="dr15" opacity="0" d="M790,158 L790,108 L877,108" stroke-dasharray="139.0 197.0"/>
+<path class="dr17" opacity="0" d="M790,232 L790,286 L877,286" stroke-dasharray="143.0 201.0"/>
+</g>
+<g class="tk1" opacity="0"><g class="mv"><circle r="6.5" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.2"/><circle cx="-2.4" cy="-2" r="1.6" fill="#3B3535"/><circle cx="2.6" cy="-1" r="1.3" fill="#3B3535" opacity="0.7"/><circle cx="-0.6" cy="2.8" r="1.5" fill="#3B3535" opacity="0.85"/></g></g>
+<g class="tk3" opacity="0"><g class="mv"><circle r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk5" opacity="0"><g class="mv"><circle r="6" fill="#3B3535" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk7" opacity="0"><g class="mv"><circle r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk9" opacity="0"><g class="mv"><circle r="6" fill="#3B3535" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk11" opacity="0"><g class="mv"><circle r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk13" opacity="0"><g class="mv"><circle r="6" fill="#3B3535" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk14" opacity="0"><g class="mv"><circle r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk16" opacity="0"><g class="mv"><circle r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk18" opacity="0"><g class="mv"><circle r="6" fill="#3B3535" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk19" opacity="0"><g class="mv"><circle r="5" fill="#6B6560" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk21" opacity="0"><g class="mv"><circle r="5" fill="#6B6560" stroke="#ffffff" stroke-width="1.5"/></g></g>
 
-<g>
+<g class="b-z">
 <rect x="30" y="100" width="50" height="50" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <g fill="#3B3535">
 <circle cx="40" cy="110" r="2.6"/>
@@ -1198,19 +1317,19 @@ html.print-pdf .cbfull{display:none}
 <text x="55" y="174" text-anchor="middle" font-size="15">Ruido z</text>
 </g>
 
-<g>
+<g class="b-g">
 <rect x="120" y="80" width="190" height="90" rx="10" fill="#DA1B2E"/>
 <text x="215" y="121" text-anchor="middle" font-size="23" font-weight="bold" fill="#ffffff">Generador</text>
 <text x="215" y="148" text-anchor="middle" font-size="19" font-weight="bold" fill="#ffffff">(G)</text>
 </g>
 
-<g>
+<g class="b-falsa">
 <path d="M350,98 h110 v52 q-27.5,14 -55,0 t-55,0 z" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="405" y="119" text-anchor="middle" font-size="15">Muestra</text>
 <text x="405" y="138" text-anchor="middle" font-size="15">falsa</text>
 </g>
 
-<g>
+<g class="b-datos">
 <g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
 <path d="M150,236 v60 a65,15 0 0 0 130,0 v-60"/>
 <ellipse cx="215" cy="236" rx="65" ry="15"/>
@@ -1219,26 +1338,26 @@ html.print-pdf .cbfull{display:none}
 <text x="215" y="293" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">reales</text>
 </g>
 
-<g>
+<g class="b-real">
 <path d="M350,240 h110 v52 q-27.5,14 -55,0 t-55,0 z" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
 <text x="405" y="261" text-anchor="middle" font-size="15">Muestra</text>
 <text x="405" y="280" text-anchor="middle" font-size="15">real</text>
 </g>
 
-<g>
+<g class="b-d">
 <rect x="510" y="150" width="180" height="90" rx="10" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.8"/>
 <text x="600" y="191" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F1E1E">Discriminador</text>
 <text x="600" y="218" text-anchor="middle" font-size="19" font-weight="bold" fill="#1F1E1E">(D)</text>
 </g>
 
-<g>
+<g class="b-v">
 <rect x="728" y="158" width="124" height="74" rx="10" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
 <text x="790" y="184" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Veredicto</text>
 <text x="790" y="204" text-anchor="middle" font-size="15" fill="#1F1E1E">P(real)</text>
 <text x="790" y="222" text-anchor="middle" font-size="13" fill="#6B6560">entre 0 y 1</text>
 </g>
 
-<g>
+<g class="b-loss">
 <g fill="#ffffff" stroke="#3B3535" stroke-width="1.5">
 <path d="M878,72 h74 l16,16 v56 h-90 z"/>
 <path d="M952,72 v16 h16" fill="none"/>
@@ -1255,7 +1374,7 @@ html.print-pdf .cbfull{display:none}
 
 
 <g>
-<g font-size="14" font-style="italic" fill="#1F1E1E" text-anchor="end">
+<g class="b-vlab" font-size="14" font-style="normal" fill="#1F1E1E" text-anchor="end">
 <text x="872" y="100">veredictos sobre generadas</text>
 <text x="872" y="304">veredictos sobre reales y generadas</text>
 </g>
@@ -1833,23 +1952,83 @@ html.print-pdf .cbfull{display:none}
 </section><section class="slide" data-kind="value-columns"><div class="stage d-split side-left">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Pongamos todo junto del Discriminador</h2></div><div class="cbody"><div class="cfit"><div class="compare" style="--cc:2"><div class="chead"><span>Cuando la cara prototipo pasa por la red completa</span><span>Cuando la imagen de ruido pasa por la misma red</span></div><div class="crow"><span><b>σ(1) = 0.73 → "Estoy un 73% seguro de que esto es real"</b></span><span><b>σ(−1.5) = 0.18 → "Estoy solo un 18% seguro de que esto sea real"</b></span></div><div class="crow"><span><b>Como 0.73 &gt; 0.5, clasifica correctamente la imagen como real ✓</b></span><span><b>Como 0.18 &lt; 0.5, clasifica correctamente la imagen como falsa ✓</b></span></div></div>
 </div></div>
-<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 990" width="2160" height="990" font-family="Helvetica, Arial, sans-serif">
+<div class="smedia"><div class="imgph svg"><svg class="ts-anim-discriminador-cara" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 990" width="2160" height="990" font-family="Helvetica, Arial, sans-serif">
 <title>Discriminador con la cara</title>
-<desc>La cara prototipo (1, 0 / 0, 1) pasa por la red del Discriminador, con pesos +1, -1, -1, +1 y bias -1; la salida es σ(1) = 0.73. Arriba a la derecha, el gráfico de la sigmoide σ(x) = 1 / (1 + e^-x) marca el punto (1, 0.73).</desc>
+<desc>La cara prototipo (1, 0 / 0, 1) pasa por la red del Discriminador, con pesos +1, −1, −1, +1 y sesgo b = −1; la salida es σ(1) = 0.73. Arriba a la derecha, el gráfico de la sigmoide σ(x) = 1 / (1 + e^−x) marca el punto (1, 0.73).</desc>
+<style>/* talksmith-animation */
+.ts-anim-discriminador-cara .in{animation:ts-anim-discriminador-cara-in .6s ease-out both}
+.ts-anim-discriminador-cara .b1{animation-delay:0.3s}
+.ts-anim-discriminador-cara .b2{animation-delay:2.0s}
+.ts-anim-discriminador-cara .b3{animation-delay:7.0s}
+.ts-anim-discriminador-cara .plot{animation:ts-anim-discriminador-cara-in .5s ease-out 17.0s both}
+.ts-anim-discriminador-cara .wxb{animation:ts-anim-discriminador-cara-in .5s ease-out 13.0s both}
+.ts-anim-discriminador-cara .bias{animation:ts-anim-discriminador-cara-in .5s ease-out 13.0s both}
+.ts-anim-discriminador-cara .outv{animation:ts-anim-discriminador-cara-in .6s ease-out 15.6s both}
+.ts-anim-discriminador-cara .m1{animation:ts-anim-discriminador-cara-in .4s ease-out 18.0s both}
+.ts-anim-discriminador-cara .m2{animation:ts-anim-discriminador-cara-in .8s ease-out 18.8s both}
+.ts-anim-discriminador-cara .m3{animation:ts-anim-discriminador-cara-in .4s ease-out 19.91s both}
+.ts-anim-discriminador-cara .m4{animation:ts-anim-discriminador-cara-in .3s ease-out 20.14s both}
+.ts-anim-discriminador-cara .di1{stroke-dasharray:100 200;animation:ts-anim-discriminador-cara-di1 1.10s linear 3.0s both}
+.ts-anim-discriminador-cara .fdi1{animation:ts-anim-discriminador-cara-in 0.2s ease-out 3.90s both}
+.ts-anim-discriminador-cara .ti1{animation:ts-anim-discriminador-cara-in .2s ease-out 3.90s both}
+.ts-anim-discriminador-cara .di2{stroke-dasharray:100 200;animation:ts-anim-discriminador-cara-di2 0.75s linear 3.35s both}
+.ts-anim-discriminador-cara .fdi2{animation:ts-anim-discriminador-cara-in 0.2s ease-out 3.90s both}
+.ts-anim-discriminador-cara .ti2{animation:ts-anim-discriminador-cara-in .2s ease-out 3.90s both}
+.ts-anim-discriminador-cara .di3{stroke-dasharray:100 200;animation:ts-anim-discriminador-cara-di3 1.10s linear 3.0s both}
+.ts-anim-discriminador-cara .fdi3{animation:ts-anim-discriminador-cara-in 0.2s ease-out 3.90s both}
+.ts-anim-discriminador-cara .ti3{animation:ts-anim-discriminador-cara-in .2s ease-out 3.90s both}
+.ts-anim-discriminador-cara .di4{stroke-dasharray:100 200;animation:ts-anim-discriminador-cara-di4 0.80s linear 3.3s both}
+.ts-anim-discriminador-cara .fdi4{animation:ts-anim-discriminador-cara-in 0.2s ease-out 3.90s both}
+.ts-anim-discriminador-cara .ti4{animation:ts-anim-discriminador-cara-in .2s ease-out 3.90s both}
+.ts-anim-discriminador-cara .dw1{stroke-dasharray:100 200;animation:ts-anim-discriminador-cara-dw1 1.00s linear 8.2s both}
+.ts-anim-discriminador-cara .fdw1{animation:ts-anim-discriminador-cara-in 0.2s ease-out 9.00s both}
+.ts-anim-discriminador-cara .wl1{animation:ts-anim-discriminador-cara-in 0.77s ease-out 8.43s both}
+.ts-anim-discriminador-cara .c1{animation:ts-anim-discriminador-cara-tin .2s ease-out 9.00s both}
+.ts-anim-discriminador-cara .dw2{stroke-dasharray:100 200;animation:ts-anim-discriminador-cara-dw2 1.00s linear 9.3s both}
+.ts-anim-discriminador-cara .fdw2{animation:ts-anim-discriminador-cara-in 0.2s ease-out 10.10s both}
+.ts-anim-discriminador-cara .wl2{animation:ts-anim-discriminador-cara-in 0.76s ease-out 9.54s both}
+.ts-anim-discriminador-cara .c2{animation:ts-anim-discriminador-cara-tin .2s ease-out 10.10s both}
+.ts-anim-discriminador-cara .dw3{stroke-dasharray:100 200;animation:ts-anim-discriminador-cara-dw3 1.00s linear 10.4s both}
+.ts-anim-discriminador-cara .fdw3{animation:ts-anim-discriminador-cara-in 0.2s ease-out 11.20s both}
+.ts-anim-discriminador-cara .wl3{animation:ts-anim-discriminador-cara-in 0.78s ease-out 10.62s both}
+.ts-anim-discriminador-cara .c3{animation:ts-anim-discriminador-cara-tin .2s ease-out 11.20s both}
+.ts-anim-discriminador-cara .dw4{stroke-dasharray:100 200;animation:ts-anim-discriminador-cara-dw4 1.00s linear 11.5s both}
+.ts-anim-discriminador-cara .fdw4{animation:ts-anim-discriminador-cara-in 0.2s ease-out 12.30s both}
+.ts-anim-discriminador-cara .wl4{animation:ts-anim-discriminador-cara-in 0.76s ease-out 11.74s both}
+.ts-anim-discriminador-cara .c4{animation:ts-anim-discriminador-cara-tin .2s ease-out 12.30s both}
+.ts-anim-discriminador-cara .c5{animation:ts-anim-discriminador-cara-tin .5s ease-out 13.0s both}
+.ts-anim-discriminador-cara .c6{animation:ts-anim-discriminador-cara-tin .35s ease-out 14.3s both}
+.ts-anim-discriminador-cara .narr{animation:ts-anim-discriminador-cara-off .5s ease-in 17.0s both}
+.ts-anim-discriminador-cara .ball{animation:ts-anim-discriminador-cara-ball 1.6s linear 18.8s both}
+@keyframes ts-anim-discriminador-cara-in{from{opacity:0}}
+@keyframes ts-anim-discriminador-cara-tin{from{fill-opacity:0}to{fill-opacity:1}}
+@keyframes ts-anim-discriminador-cara-off{from{opacity:1}to{opacity:0}}
+@keyframes ts-anim-discriminador-cara-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@keyframes ts-anim-discriminador-cara-di1{0%{stroke-dashoffset:100;opacity:0}0.1%{opacity:1}81.8%{stroke-dashoffset:0}99.9%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-discriminador-cara-di2{0%{stroke-dashoffset:100;opacity:0}0.1%{opacity:1}73.3%{stroke-dashoffset:0}99.9%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-discriminador-cara-di3{0%{stroke-dashoffset:100;opacity:0}0.1%{opacity:1}81.8%{stroke-dashoffset:0}99.9%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-discriminador-cara-di4{0%{stroke-dashoffset:100;opacity:0}0.1%{opacity:1}75.0%{stroke-dashoffset:0}99.9%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-discriminador-cara-dw1{0%{stroke-dashoffset:100;opacity:0}0.1%{opacity:1}80.0%{stroke-dashoffset:0}99.9%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-discriminador-cara-dw2{0%{stroke-dashoffset:100;opacity:0}0.1%{opacity:1}80.0%{stroke-dashoffset:0}99.9%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-discriminador-cara-dw3{0%{stroke-dashoffset:100;opacity:0}0.1%{opacity:1}80.0%{stroke-dashoffset:0}99.9%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-discriminador-cara-dw4{0%{stroke-dashoffset:100;opacity:0}0.1%{opacity:1}80.0%{stroke-dashoffset:0}99.9%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-discriminador-cara-ball{0%{transform:translate(1906.7px,408.0px);opacity:0}4%{transform:translate(1906.7px,408.0px);opacity:1}69.4%{transform:translate(1906.7px,258.8px);opacity:1}90%{transform:translate(1862.5px,258.8px);opacity:1}100%{transform:translate(1862.5px,258.8px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-discriminador-cara *{animation:none}}
+</style>
 <defs><marker id="e10-ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="e10-ah-DA1B2E-34" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="34" markerHeight="34" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e10-ah-1F5FAD-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="e10-ah-2E8540-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker><marker id="e10-ah-3B3535-22" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="22" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker><marker id="e10-ah-3B3535-22s" viewBox="0 0 10 10" refX="3" refY="5" markerWidth="22" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#3B3535"/></marker></defs>
 <rect x="0" y="0" width="2160" height="990" fill="#ffffff"/>
 <line x1="40" y1="128" x2="2120" y2="128" stroke="#D9D4CF" stroke-width="3"/>
-<text x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
-<text x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
-<text x="780" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
-<text x="780" y="106" font-size="34" fill="#6B6560" text-anchor="middle">x₁…x₄, sin cálculo</text>
-<text x="1060" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
-<text x="1060" y="106" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
-<text x="1280" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
-<text x="1280" y="106" font-size="34" fill="#6B6560" text-anchor="middle">1 neurona</text>
+<text class="in b1" x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text class="in b1" x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
+<text class="in b2" x="780" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text class="in b2" x="780" y="106" font-size="34" fill="#6B6560" text-anchor="middle">x₁…x₄, sin cálculo</text>
+<text class="in b3" x="1060" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text class="in b3" x="1060" y="106" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text class="in b3" x="1280" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text class="in b3" x="1280" y="106" font-size="34" fill="#6B6560" text-anchor="middle">1 neurona</text>
 <g transform="translate(0,150)">
-<rect x="1020" y="-10" width="80" height="830" rx="18" fill="#F4F2F0" stroke="#6B6560" stroke-width="3" stroke-dasharray="14 10"/>
-<g>
+<rect class="in b3" x="1020" y="-10" width="80" height="830" rx="18" fill="#F4F2F0" stroke="#6B6560" stroke-width="3" stroke-dasharray="14 10"/>
+<g class="in b1">
 <rect x="60.0" y="280.0" width="170" height="170" fill="#000000"/>
 <text x="145.0" y="387.3" font-size="62" fill="#ffffff" text-anchor="middle" font-weight="normal">1</text>
 <rect x="230.0" y="280.0" width="170" height="170" fill="#ffffff"/>
@@ -1863,29 +2042,37 @@ html.print-pdf .cbfull{display:none}
 <rect x="60" y="280" width="340" height="340" fill="none" stroke="#1F1E1E" stroke-width="6.0"/>
 </g>
 <g>
-<path d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e10-ah-1F1E1E-30)"/>
-<path d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e10-ah-1F1E1E-30)"/>
-<path d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e10-ah-1F1E1E-30)"/>
-<path d="M315.0,628.0 C305.0,820.0 520.0,630.0 723.2,645.1" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e10-ah-1F1E1E-30)"/>
+<path class="fdi1" d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e10-ah-1F1E1E-30)"/>
+<path class="di1" opacity="0" d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="fdi2" d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e10-ah-1F1E1E-30)"/>
+<path class="di2" opacity="0" d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="fdi3" d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e10-ah-1F1E1E-30)"/>
+<path class="di3" opacity="0" d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="fdi4" d="M315.0,628.0 C305.0,820.0 520.0,630.0 723.2,645.1" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e10-ah-1F1E1E-30)"/>
+<path class="di4" opacity="0" d="M315.0,628.0 C305.0,820.0 520.0,630.0 723.2,645.1" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
 </g>
 <g>
-<path d="M818.6,108.6 L1233.2,415.4" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#e10-ah-DA1B2E-34)"/>
-<rect x="902.3" y="172.0" width="86.2" height="60.8" fill="#ffffff"/>
-<text x="945.4" y="225.5" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
-<path d="M825.2,286.3 L1227.5,431.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#e10-ah-1F5FAD-26)"/>
-<rect x="904.9" y="300.1" width="86.2" height="60.8" fill="#ffffff"/>
-<text x="948.1" y="353.5" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
-<path d="M828.0,459.0 L1224.2,451.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#e10-ah-1F5FAD-26)"/>
-<rect x="906.1" y="426.2" width="86.2" height="60.8" fill="#ffffff"/>
-<text x="949.2" y="479.7" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
-<path d="M824.6,632.2 L1226.0,471.6" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#e10-ah-DA1B2E-34)"/>
-<rect x="904.7" y="552.5" width="86.2" height="60.8" fill="#ffffff"/>
-<text x="947.8" y="605.9" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
+<path class="fdw1" d="M818.6,108.6 L1233.2,415.4" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#e10-ah-DA1B2E-34)"/>
+<path class="dw1" opacity="0" d="M818.6,108.6 L1233.2,415.4" pathLength="100" stroke="#DA1B2E" stroke-width="7" fill="none"/>
+<g class="wl1"><rect x="902.3" y="172.0" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="945.4" y="225.5" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text></g>
+<path class="fdw2" d="M825.2,286.3 L1227.5,431.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#e10-ah-1F5FAD-26)"/>
+<path class="dw2" opacity="0" d="M825.2,286.3 L1227.5,431.1" pathLength="100" stroke="#1F5FAD" stroke-width="4" fill="none"/>
+<g class="wl2"><rect x="904.9" y="300.1" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="948.1" y="353.5" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">−1</text></g>
+<path class="fdw3" d="M828.0,459.0 L1224.2,451.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#e10-ah-1F5FAD-26)"/>
+<path class="dw3" opacity="0" d="M828.0,459.0 L1224.2,451.1" pathLength="100" stroke="#1F5FAD" stroke-width="4" fill="none"/>
+<g class="wl3"><rect x="906.1" y="426.2" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="949.2" y="479.7" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">−1</text></g>
+<path class="fdw4" d="M824.6,632.2 L1226.0,471.6" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#e10-ah-DA1B2E-34)"/>
+<path class="dw4" opacity="0" d="M824.6,632.2 L1226.0,471.6" pathLength="100" stroke="#DA1B2E" stroke-width="7" fill="none"/>
+<g class="wl4"><rect x="904.7" y="552.5" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="947.8" y="605.9" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text></g>
 </g>
 
 
 
-<g>
+<g class="in b2">
 <circle cx="780.0" cy="80.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="95.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₁</text>
 <circle cx="780.0" cy="270.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="285.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₂</text>
 <circle cx="780.0" cy="460.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="475.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₃</text>
@@ -1894,55 +2081,136 @@ html.print-pdf .cbfull{display:none}
 
 
 
-<g>
+<g class="in b3"><g class="sig">
 <circle cx="1280.0" cy="450.0" r="48" fill="#3B3535"/>
 <text x="1280.0" y="468" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
-</g>
-<g>
+</g></g>
+<g class="outv">
 <text x="1360.0" y="480.0" font-size="84" fill="#1F1E1E" text-anchor="start" font-weight="normal">σ(1) = 0.73</text>
 </g>
 <g transform="translate(519.5,-17.4) scale(0.85)">
+<g class="in plot">
 <path d="M1138,324 L1867,324" stroke="#3B3535" stroke-width="3" marker-end="url(#e10-ah-3B3535-22)" marker-start="url(#e10-ah-3B3535-22s)"/>
 <path d="M1580,336 L1580,44" stroke="#3B3535" stroke-width="3" marker-end="url(#e10-ah-3B3535-22)"/>
 <line x1="1130" y1="84.0" x2="1875" y2="84.0" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
 <polyline points="1130.0,324.0 1135.2,324.0 1140.4,323.9 1145.6,323.9 1150.8,323.9 1156.0,323.9 1161.2,323.9 1166.4,323.9 1171.6,323.9 1176.8,323.9 1182.0,323.9 1187.2,323.9 1192.4,323.9 1197.6,323.8 1202.8,323.8 1208.0,323.8 1213.2,323.8 1218.4,323.8 1223.6,323.7 1228.8,323.7 1234.0,323.7 1239.2,323.7 1244.4,323.6 1249.6,323.6 1254.8,323.5 1260.0,323.5 1265.2,323.4 1270.4,323.4 1275.6,323.3 1280.8,323.2 1286.0,323.2 1291.2,323.1 1296.4,323.0 1301.6,322.9 1306.8,322.8 1312.0,322.6 1317.2,322.5 1322.4,322.3 1327.6,322.1 1332.8,321.9 1338.0,321.7 1343.2,321.5 1348.4,321.2 1353.6,321.0 1358.8,320.6 1364.0,320.3 1369.2,319.9 1374.4,319.5 1379.6,319.0 1384.8,318.5 1390.0,317.9 1395.2,317.3 1400.4,316.6 1405.6,315.9 1410.8,315.1 1416.0,314.2 1421.2,313.2 1426.4,312.1 1431.6,310.9 1436.8,309.6 1442.0,308.2 1447.2,306.7 1452.4,305.0 1457.6,303.2 1462.8,301.2 1468.0,299.0 1473.2,296.7 1478.4,294.2 1483.6,291.5 1488.8,288.6 1494.0,285.5 1499.2,282.1 1504.4,278.5 1509.6,274.7 1514.8,270.7 1520.0,266.5 1525.2,262.0 1530.4,257.3 1535.6,252.3 1540.8,247.2 1546.0,241.9 1551.2,236.4 1556.4,230.8 1561.6,225.0 1566.8,219.1 1572.0,213.2 1577.2,207.2 1582.4,201.2 1587.6,195.2 1592.8,189.3 1598.0,183.4 1603.2,177.7 1608.4,172.0 1613.6,166.5 1618.8,161.2 1624.0,156.1 1629.2,151.1 1634.4,146.4 1639.6,141.9 1644.8,137.6 1650.0,133.6 1655.2,129.7 1660.4,126.2 1665.6,122.8 1670.8,119.6 1676.0,116.7 1681.2,114.0 1686.4,111.5 1691.6,109.1 1696.8,107.0 1702.0,105.0 1707.2,103.1 1712.4,101.4 1717.6,99.9 1722.8,98.5 1728.0,97.2 1733.2,96.0 1738.4,94.9 1743.6,93.9 1748.8,93.0 1754.0,92.2 1759.2,91.4 1764.4,90.7 1769.6,90.1 1774.8,89.5 1780.0,89.0 1785.2,88.6 1790.4,88.1 1795.6,87.7 1800.8,87.4 1806.0,87.1 1811.2,86.8 1816.4,86.5 1821.6,86.3 1826.8,86.1 1832.0,85.9 1837.2,85.7 1842.4,85.5 1847.6,85.4 1852.8,85.3 1858.0,85.1" fill="none" stroke="#1F1E1E" stroke-width="6"/>
-<g>
-<line x1="1580" y1="148.5" x2="1632" y2="148.5" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
-<line x1="1632" y1="148.5" x2="1632" y2="324" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
-<circle cx="1580" cy="148.5" r="11" fill="#1F5FAD"/>
-<circle cx="1632" cy="324" r="11" fill="#1F5FAD"/>
-<text x="1560.0" y="163.5" font-size="44" fill="#3B3535" text-anchor="end" font-weight="normal">0.73</text>
-<text x="1632.0" y="376.0" font-size="44" fill="#3B3535" text-anchor="middle" font-weight="normal">1</text>
-</g>
-<text x="1596.0" y="60.0" font-size="44" fill="#3B3535" text-anchor="start" font-weight="normal">1</text>
-<text x="1130.0" y="207.0" font-size="50" fill="#3B3535" text-anchor="start" font-weight="normal" font-style="italic">σ(x) =</text>
-<text x="1360.0" y="176.0" font-size="46" fill="#3B3535" text-anchor="middle" font-weight="normal">1</text>
-<line x1="1286" y1="190" x2="1444" y2="190" stroke="#3B3535" stroke-width="3"/>
-<text x="1286.0" y="244.0" font-size="46" fill="#3B3535" text-anchor="start" font-weight="normal" font-style="italic">1 + e</text>
-<text x="1400.0" y="222.0" font-size="34" fill="#3B3535" text-anchor="start" font-weight="normal" font-style="italic">-x</text>
 </g>
 <g>
-<text x="1280" y="565" font-size="44" fill="#1F1E1E" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">w·x + b</text>
-<text x="1280" y="620" font-size="44" fill="#2E8540" text-anchor="middle">b = −1</text>
+<line class="m3" x1="1580" y1="148.5" x2="1632" y2="148.5" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
+<line class="m2" x1="1632" y1="148.5" x2="1632" y2="324" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
+<circle class="m4" cx="1580" cy="148.5" r="11" fill="#1F5FAD"/>
+<circle class="m1" cx="1632" cy="324" r="11" fill="#1F5FAD"/>
+<text class="m4" x="1560.0" y="163.5" font-size="44" fill="#3B3535" text-anchor="end" font-weight="normal">0.73</text>
+<text class="m1" x="1632.0" y="376.0" font-size="44" fill="#3B3535" text-anchor="middle" font-weight="normal">1</text>
+</g>
+<text class="in plot" x="1596.0" y="60.0" font-size="44" fill="#3B3535" text-anchor="start" font-weight="normal">1</text>
+<text class="in plot" x="1130.0" y="207.0" font-size="50" fill="#3B3535" text-anchor="start" font-weight="normal">σ(x) =</text>
+<text class="in plot" x="1360.0" y="176.0" font-size="46" fill="#3B3535" text-anchor="middle" font-weight="normal">1</text>
+<line class="in plot" x1="1286" y1="190" x2="1444" y2="190" stroke="#3B3535" stroke-width="3"/>
+<text class="in plot" x="1286.0" y="244.0" font-size="46" fill="#3B3535" text-anchor="start" font-weight="normal">1 + e</text>
+<text class="in plot" x="1400.0" y="222.0" font-size="34" fill="#3B3535" text-anchor="start" font-weight="normal">-x</text>
+</g>
+<g>
+<text class="wxb" x="1280" y="565" font-size="44" fill="#1F1E1E" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">w·x + b</text>
+<text class="bias" x="1280" y="620" font-size="44" fill="#2E8540" text-anchor="middle">b = −1</text>
+</g>
+<!-- narración: el valor de cada píxel junto a su entrada, y la suma que arma σ; se apaga antes de la curva -->
+<g class="narr" opacity="0">
+<g class="ti1"><rect x="756" y="140" width="48" height="48" fill="#000000" stroke="#1F1E1E" stroke-width="3"/><text x="780" y="177" font-size="36" fill="#ffffff" text-anchor="middle">1</text></g>
+<g class="ti2"><rect x="756" y="330" width="48" height="48" fill="#ffffff" stroke="#1F1E1E" stroke-width="3"/><text x="780" y="367" font-size="36" fill="#3B3535" text-anchor="middle">0</text></g>
+<g class="ti3"><rect x="756" y="520" width="48" height="48" fill="#ffffff" stroke="#1F1E1E" stroke-width="3"/><text x="780" y="557" font-size="36" fill="#3B3535" text-anchor="middle">0</text></g>
+<g class="ti4"><rect x="756" y="710" width="48" height="48" fill="#000000" stroke="#1F1E1E" stroke-width="3"/><text x="780" y="747" font-size="36" fill="#ffffff" text-anchor="middle">1</text></g>
+<text x="1140" y="720" font-size="44" fill="#1F1E1E"><tspan class="c1" fill-opacity="0"><tspan fill="#DA1B2E">(+1)</tspan>·1</tspan><tspan class="c2" fill-opacity="0"> + <tspan fill="#1F5FAD">(−1)</tspan>·0</tspan><tspan class="c3" fill-opacity="0"> + <tspan fill="#1F5FAD">(−1)</tspan>·0</tspan><tspan class="c4" fill-opacity="0"> + <tspan fill="#DA1B2E">(+1)</tspan>·1</tspan><tspan class="c5" fill-opacity="0"> + <tspan fill="#2E8540">(−1)</tspan></tspan><tspan class="c6" fill-opacity="0"> = 1</tspan></text>
 </g>
 </g>
-</svg></div><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 990" width="2160" height="990" font-family="Helvetica, Arial, sans-serif">
+<!-- narración: desde x = 1 sube a la curva y cruza al eje: 0.73 -->
+<circle class="ball" r="9.35" fill="#1F5FAD" opacity="0"/>
+</svg></div><div class="imgph svg"><svg class="ts-anim-discriminador-ruido" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 990" width="2160" height="990" font-family="Helvetica, Arial, sans-serif">
 <title>Discriminador con ruido</title>
-<desc>La imagen de ruido (0.25, 1 / 0.5, 0.75) pasa por la red del Discriminador, con pesos +1, -1, -1, +1 y bias -1; la salida es σ(-0.5) = 0.37. Arriba a la derecha, el gráfico de la sigmoide marca el punto (−1.5, 0.18).</desc>
+<desc>La imagen de ruido (0.25, 1 / 0.5, 0.75) pasa por la red del Discriminador, con pesos +1, −1, −1, +1 y sesgo b = −1; la salida es σ(−1.5) = 0.18. Arriba a la derecha, el gráfico de la sigmoide marca el punto (−1.5, 0.18).</desc>
+<style>/* talksmith-animation */
+.ts-anim-discriminador-ruido [data-beat]{animation:ts-anim-discriminador-ruido-in .6s ease-out both}
+.ts-anim-discriminador-ruido [data-beat="1"]{animation-delay:0.30s}
+.ts-anim-discriminador-ruido [data-beat="1h"]{animation-delay:0.70s}
+.ts-anim-discriminador-ruido [data-beat="1s"]{animation-delay:1.10s}
+.ts-anim-discriminador-ruido [data-beat="2"]{animation-delay:2.0s}
+.ts-anim-discriminador-ruido [data-beat="3"]{animation-delay:6.60s}
+.ts-anim-discriminador-ruido [data-beat="4"]{animation-delay:7.30s}
+.ts-anim-discriminador-ruido [data-beat="5"]{animation-delay:13.10s}
+.ts-anim-discriminador-ruido [data-beat="6"]{animation-delay:13.80s}
+.ts-anim-discriminador-ruido .res{animation:ts-anim-discriminador-ruido-in .7s ease-out 15.80s both}
+.ts-anim-discriminador-ruido .pbase,.ts-anim-discriminador-ruido .pbase2{animation:ts-anim-discriminador-ruido-in .7s ease-out 17.80s both}
+.ts-anim-discriminador-ruido .pm1{animation:ts-anim-discriminador-ruido-in .5s ease-out 19.00s both}
+.ts-anim-discriminador-ruido .pm2{animation:ts-anim-discriminador-ruido-in .5s ease-out 19.70s both}
+.ts-anim-discriminador-ruido .pm3{animation:ts-anim-discriminador-ruido-in .5s ease-out 20.80s both}
+.ts-anim-discriminador-ruido .pm4{animation:ts-anim-discriminador-ruido-in .5s ease-out 21.40s both}
+.ts-anim-discriminador-ruido .glow1{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-glow 1.2s ease-in-out 8.00s both}
+.ts-anim-discriminador-ruido .wl1{transform-box:fill-box;transform-origin:center;animation:ts-anim-discriminador-ruido-pulse .55s ease-in-out 8.22s both}
+.ts-anim-discriminador-ruido .glow2{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-glow 1.2s ease-in-out 8.70s both}
+.ts-anim-discriminador-ruido .wl2{transform-box:fill-box;transform-origin:center;animation:ts-anim-discriminador-ruido-pulse .55s ease-in-out 8.92s both}
+.ts-anim-discriminador-ruido .glow3{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-glow 1.2s ease-in-out 9.40s both}
+.ts-anim-discriminador-ruido .wl3{transform-box:fill-box;transform-origin:center;animation:ts-anim-discriminador-ruido-pulse .55s ease-in-out 9.62s both}
+.ts-anim-discriminador-ruido .glow4{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-glow 1.2s ease-in-out 10.10s both}
+.ts-anim-discriminador-ruido .wl4{transform-box:fill-box;transform-origin:center;animation:ts-anim-discriminador-ruido-pulse .55s ease-in-out 10.32s both}
+@keyframes ts-anim-discriminador-ruido-cap1{0%{opacity:0}5.2%,94.2%{opacity:1}100%{opacity:0}}
+.ts-anim-discriminador-ruido .cap1{animation:ts-anim-discriminador-ruido-cap1 8.65s linear 8.75s both}
+@keyframes ts-anim-discriminador-ruido-cap2{0%{opacity:0}15.5%,82.8%{opacity:1}100%{opacity:0}}
+.ts-anim-discriminador-ruido .cap2{animation:ts-anim-discriminador-ruido-cap2 2.90s linear 14.50s both}
+.ts-anim-discriminador-ruido .t2{animation:ts-anim-discriminador-ruido-tin .45s ease-out 9.45s both}
+.ts-anim-discriminador-ruido .t3{animation:ts-anim-discriminador-ruido-tin .45s ease-out 10.15s both}
+.ts-anim-discriminador-ruido .t4{animation:ts-anim-discriminador-ruido-tin .45s ease-out 10.85s both}
+.ts-anim-discriminador-ruido .t5{animation:ts-anim-discriminador-ruido-tin .45s ease-out 11.60s both}
+.ts-anim-discriminador-ruido .t7{animation:ts-anim-discriminador-ruido-tin .45s ease-out 15.10s both}
+.ts-anim-discriminador-ruido .sig{transform-box:fill-box;transform-origin:center;animation:ts-anim-discriminador-ruido-pulse2 .7s ease-in-out 15.10s both}
+@keyframes ts-anim-discriminador-ruido-ring{0%{opacity:0}18.2%,77.3%{opacity:1}100%{opacity:0}}
+.ts-anim-discriminador-ruido .ring{animation:ts-anim-discriminador-ruido-ring 2.20s linear 20.20s both}
+@keyframes ts-anim-discriminador-ruido-in{from{opacity:0}}
+@keyframes ts-anim-discriminador-ruido-gone{from{opacity:1}to{opacity:0}}
+@keyframes ts-anim-discriminador-ruido-tin{from{fill-opacity:0}}
+@keyframes ts-anim-discriminador-ruido-lit{0%,100%{fill:#ffffff}35%{fill:#B8E6F5}}
+@keyframes ts-anim-discriminador-ruido-glow{0%{stroke-dashoffset:100;opacity:0}6%{opacity:.38}65%{stroke-dashoffset:0;opacity:.38}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-discriminador-ruido-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+@keyframes ts-anim-discriminador-ruido-pulse2{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.ts-anim-discriminador-ruido *{animation:none}}
+@keyframes ts-anim-discriminador-ruido-path1{0.00%{transform:translate(148.5px,392.2px);opacity:0}3.70%{transform:translate(152.8px,370.6px);opacity:0.491}7.41%{transform:translate(158.7px,349.3px);opacity:0.981}11.11%{transform:translate(166.5px,328.6px);opacity:1}14.81%{transform:translate(176.2px,308.8px);opacity:1}18.52%{transform:translate(188.0px,290.2px);opacity:1}22.22%{transform:translate(201.9px,273.1px);opacity:1}25.93%{transform:translate(217.7px,257.7px);opacity:1}29.63%{transform:translate(235.2px,244.2px);opacity:1}33.33%{transform:translate(254.0px,232.7px);opacity:1}37.04%{transform:translate(273.8px,223.0px);opacity:1}40.74%{transform:translate(294.4px,215.0px);opacity:1}44.44%{transform:translate(315.5px,208.6px);opacity:1}48.15%{transform:translate(337.0px,203.5px);opacity:1}51.85%{transform:translate(358.7px,199.6px);opacity:1}55.56%{transform:translate(380.6px,196.7px);opacity:1}59.26%{transform:translate(402.6px,194.7px);opacity:1}62.96%{transform:translate(424.6px,193.4px);opacity:1}66.67%{transform:translate(446.7px,192.8px);opacity:1}70.37%{transform:translate(468.7px,192.7px);opacity:1}74.07%{transform:translate(490.8px,193.2px);opacity:1}77.78%{transform:translate(512.9px,194.0px);opacity:1}81.48%{transform:translate(534.9px,195.3px);opacity:1}85.19%{transform:translate(556.9px,196.8px);opacity:1}88.89%{transform:translate(578.9px,198.7px);opacity:0.946}92.59%{transform:translate(600.9px,200.8px);opacity:0.631}96.30%{transform:translate(622.8px,203.2px);opacity:0.315}100.00%{transform:translate(644.8px,205.7px);opacity:0}}
+.ts-anim-discriminador-ruido .tok1{animation:ts-anim-discriminador-ruido-path1 1.39s linear 3.00s 1 normal both}
+.ts-anim-discriminador-ruido .xin1{animation:ts-anim-discriminador-ruido-lit .8s ease-out 4.27s both}
+@keyframes ts-anim-discriminador-ruido-path2{0.00%{transform:translate(343.5px,392.8px);opacity:0}7.14%{transform:translate(363.7px,380.8px);opacity:0.522}14.29%{transform:translate(385.5px,372.2px);opacity:1}21.43%{transform:translate(408.3px,366.5px);opacity:1}28.57%{transform:translate(431.6px,363.1px);opacity:1}35.71%{transform:translate(455.0px,361.6px);opacity:1}42.86%{transform:translate(478.5px,361.6px);opacity:1}50.00%{transform:translate(502.0px,362.8px);opacity:1}57.14%{transform:translate(525.4px,365.0px);opacity:1}64.29%{transform:translate(548.7px,368.0px);opacity:1}71.43%{transform:translate(571.9px,371.7px);opacity:1}78.57%{transform:translate(595.0px,375.8px);opacity:1}85.71%{transform:translate(618.1px,380.5px);opacity:0.671}92.86%{transform:translate(641.0px,385.4px);opacity:0.336}100.00%{transform:translate(663.9px,390.7px);opacity:0}}
+.ts-anim-discriminador-ruido .tok2{animation:ts-anim-discriminador-ruido-path2 0.77s linear 3.85s 1 normal both}
+.ts-anim-discriminador-ruido .xin2{animation:ts-anim-discriminador-ruido-lit .8s ease-out 4.50s both}
+@keyframes ts-anim-discriminador-ruido-path3{0.00%{transform:translate(155.2px,807.3px);opacity:0}3.70%{transform:translate(165.5px,827.4px);opacity:0.505}7.41%{transform:translate(178.7px,845.9px);opacity:1}11.11%{transform:translate(194.5px,862.2px);opacity:1}14.81%{transform:translate(212.8px,875.5px);opacity:1}18.52%{transform:translate(233.1px,885.7px);opacity:1}22.22%{transform:translate(254.7px,892.6px);opacity:1}25.93%{transform:translate(277.0px,896.6px);opacity:1}29.63%{transform:translate(299.7px,898.0px);opacity:1}33.33%{transform:translate(322.4px,897.2px);opacity:1}37.04%{transform:translate(344.9px,894.5px);opacity:1}40.74%{transform:translate(367.2px,890.2px);opacity:1}44.44%{transform:translate(389.2px,884.5px);opacity:1}48.15%{transform:translate(410.8px,877.6px);opacity:1}51.85%{transform:translate(432.1px,869.7px);opacity:1}55.56%{transform:translate(453.0px,860.9px);opacity:1}59.26%{transform:translate(473.5px,851.2px);opacity:1}62.96%{transform:translate(493.7px,840.8px);opacity:1}66.67%{transform:translate(513.5px,829.7px);opacity:1}70.37%{transform:translate(533.0px,818.0px);opacity:1}74.07%{transform:translate(552.1px,805.7px);opacity:1}77.78%{transform:translate(570.8px,792.9px);opacity:1}81.48%{transform:translate(589.2px,779.6px);opacity:1}85.19%{transform:translate(607.2px,765.8px);opacity:1}88.89%{transform:translate(624.9px,751.5px);opacity:0.973}92.59%{transform:translate(642.2px,736.8px);opacity:0.649}96.30%{transform:translate(659.1px,721.7px);opacity:0.324}100.00%{transform:translate(675.7px,706.2px);opacity:0}}
+.ts-anim-discriminador-ruido .tok3{animation:ts-anim-discriminador-ruido-path3 1.43s linear 4.05s 1 normal both}
+.ts-anim-discriminador-ruido .xin3{animation:ts-anim-discriminador-ruido-lit .8s ease-out 5.36s both}
+@keyframes ts-anim-discriminador-ruido-path4{0.00%{transform:translate(315.5px,808.0px);opacity:0}6.25%{transform:translate(320.3px,830.5px);opacity:0.514}12.50%{transform:translate(332.1px,850.2px);opacity:1}18.75%{transform:translate(351.9px,861.7px);opacity:1}25.00%{transform:translate(374.8px,864.4px);opacity:1}31.25%{transform:translate(397.8px,862.3px);opacity:1}37.50%{transform:translate(420.5px,857.7px);opacity:1}43.75%{transform:translate(442.8px,851.9px);opacity:1}50.00%{transform:translate(465.0px,845.3px);opacity:1}56.25%{transform:translate(487.1px,838.4px);opacity:1}62.50%{transform:translate(509.1px,831.5px);opacity:1}68.75%{transform:translate(531.2px,824.7px);opacity:1}75.00%{transform:translate(553.4px,818.2px);opacity:1}81.25%{transform:translate(575.8px,812.2px);opacity:0.991}87.50%{transform:translate(598.2px,806.7px);opacity:0.661}93.75%{transform:translate(620.9px,802.1px);opacity:0.33}100.00%{transform:translate(643.7px,798.3px);opacity:0}}
+.ts-anim-discriminador-ruido .tok4{animation:ts-anim-discriminador-ruido-path4 0.86s linear 5.20s 1 normal both}
+.ts-anim-discriminador-ruido .xin4{animation:ts-anim-discriminador-ruido-lit .8s ease-out 5.94s both}
+@keyframes ts-anim-discriminador-ruido-di1{0%{stroke-dashoffset:100;opacity:1}100%{stroke-dashoffset:11.46;opacity:1}}
+.ts-anim-discriminador-ruido .di1{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di1 1.46s linear 2.93s both,ts-anim-discriminador-ruido-gone .05s linear 4.69s both}
+.ts-anim-discriminador-ruido .fa1{animation:ts-anim-discriminador-ruido-in .25s ease-out 4.39s both}
+@keyframes ts-anim-discriminador-ruido-di2{0%{stroke-dashoffset:100;opacity:1}100%{stroke-dashoffset:14.55;opacity:1}}
+.ts-anim-discriminador-ruido .di2{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di2 0.86s linear 3.75s both,ts-anim-discriminador-ruido-gone .05s linear 4.92s both}
+.ts-anim-discriminador-ruido .fa2{animation:ts-anim-discriminador-ruido-in .25s ease-out 4.62s both}
+@keyframes ts-anim-discriminador-ruido-di3{0%{stroke-dashoffset:100;opacity:1}100%{stroke-dashoffset:11.78;opacity:1}}
+.ts-anim-discriminador-ruido .di3{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di3 1.50s linear 3.98s both,ts-anim-discriminador-ruido-gone .05s linear 5.78s both}
+.ts-anim-discriminador-ruido .fa3{animation:ts-anim-discriminador-ruido-in .25s ease-out 5.48s both}
+@keyframes ts-anim-discriminador-ruido-di4{0%{stroke-dashoffset:100;opacity:1}100%{stroke-dashoffset:16.67;opacity:1}}
+.ts-anim-discriminador-ruido .di4{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di4 0.93s linear 5.13s both,ts-anim-discriminador-ruido-gone .05s linear 6.36s both}
+.ts-anim-discriminador-ruido .fa4{animation:ts-anim-discriminador-ruido-in .25s ease-out 6.06s both}
+</style>
 <defs><marker id="e11-ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="e11-ah-DA1B2E-34" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="34" markerHeight="34" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e11-ah-1F5FAD-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="e11-ah-2E8540-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker><marker id="e11-ah-3B3535-22" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="22" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker><marker id="e11-ah-3B3535-22s" viewBox="0 0 10 10" refX="3" refY="5" markerWidth="22" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#3B3535"/></marker></defs>
 <rect x="0" y="0" width="2160" height="990" fill="#ffffff"/>
 <line x1="40" y1="128" x2="2120" y2="128" stroke="#D9D4CF" stroke-width="3"/>
-<text x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
-<text x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
-<text x="780" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
-<text x="780" y="106" font-size="34" fill="#6B6560" text-anchor="middle">x₁…x₄, sin cálculo</text>
-<text x="1060" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
-<text x="1060" y="106" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
-<text x="1280" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
-<text x="1280" y="106" font-size="34" fill="#6B6560" text-anchor="middle">1 neurona</text>
+<text data-beat="1h" x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text data-beat="1s" x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
+<text data-beat="2" x="780" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text data-beat="2" x="780" y="106" font-size="34" fill="#6B6560" text-anchor="middle">x₁…x₄, sin cálculo</text>
+<text data-beat="3" x="1060" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text data-beat="3" x="1060" y="106" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
+<text data-beat="3" x="1280" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text data-beat="3" x="1280" y="106" font-size="34" fill="#6B6560" text-anchor="middle">1 neurona</text>
 <g transform="translate(0,150)">
-<rect x="1020" y="-10" width="80" height="830" rx="18" fill="#F4F2F0" stroke="#6B6560" stroke-width="3" stroke-dasharray="14 10"/>
-<g>
+<rect data-beat="3" x="1020" y="-10" width="80" height="830" rx="18" fill="#F4F2F0" stroke="#6B6560" stroke-width="3" stroke-dasharray="14 10"/>
+<g data-beat="1">
 <rect x="60.0" y="280.0" width="170" height="170" fill="#bfbfbf"/>
 <text x="145.0" y="387.3" font-size="62" fill="#3B3535" text-anchor="middle" font-weight="normal">0.25</text>
 <rect x="230.0" y="280.0" width="170" height="170" fill="#000000"/>
@@ -1956,69 +2224,90 @@ html.print-pdf .cbfull{display:none}
 <rect x="60" y="280" width="340" height="340" fill="none" stroke="#1F1E1E" stroke-width="6.0"/>
 </g>
 <g>
-<path d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e11-ah-1F1E1E-30)"/>
-<path d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e11-ah-1F1E1E-30)"/>
-<path d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e11-ah-1F1E1E-30)"/>
-<path d="M315.0,628.0 C305.0,820.0 520.0,630.0 723.2,645.1" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e11-ah-1F1E1E-30)"/>
+<path class="di1" opacity="0" d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="di2" opacity="0" d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="di3" opacity="0" d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="di4" opacity="0" d="M315.0,628.0 C305.0,820.0 520.0,630.0 723.2,645.1" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="fa1" d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e11-ah-1F1E1E-30)"/>
+<path class="fa2" d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e11-ah-1F1E1E-30)"/>
+<path class="fa3" d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e11-ah-1F1E1E-30)"/>
+<path class="fa4" d="M315.0,628.0 C305.0,820.0 520.0,630.0 723.2,645.1" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#e11-ah-1F1E1E-30)"/>
 </g>
-<g>
+<g data-beat="4">
+<path class="glow1" opacity="0" d="M818.6,108.6 L1201.0,391.6" pathLength="100" stroke="#DA1B2E" stroke-width="20" stroke-linecap="round" fill="none"/>
 <path d="M818.6,108.6 L1233.2,415.4" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#e11-ah-DA1B2E-34)"/>
-<rect x="902.3" y="172.0" width="86.2" height="60.8" fill="#ffffff"/>
-<text x="945.4" y="225.5" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
+<g class="wl1"><rect x="902.3" y="172.0" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="945.4" y="225.5" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text></g>
+<path class="glow2" opacity="0" d="M825.2,286.3 L1189.9,417.6" pathLength="100" stroke="#1F5FAD" stroke-width="20" stroke-linecap="round" fill="none"/>
 <path d="M825.2,286.3 L1227.5,431.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#e11-ah-1F5FAD-26)"/>
-<rect x="904.9" y="300.1" width="86.2" height="60.8" fill="#ffffff"/>
-<text x="948.1" y="353.5" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
+<g class="wl2"><rect x="904.9" y="300.1" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="948.1" y="353.5" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">−1</text></g>
+<path class="glow3" opacity="0" d="M828.0,459.0 L1184.2,451.9" pathLength="100" stroke="#1F5FAD" stroke-width="20" stroke-linecap="round" fill="none"/>
 <path d="M828.0,459.0 L1224.2,451.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#e11-ah-1F5FAD-26)"/>
-<rect x="906.1" y="426.2" width="86.2" height="60.8" fill="#ffffff"/>
-<text x="949.2" y="479.7" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
+<g class="wl3"><rect x="906.1" y="426.2" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="949.2" y="479.7" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">−1</text></g>
+<path class="glow4" opacity="0" d="M824.6,632.2 L1188.9,486.5" pathLength="100" stroke="#DA1B2E" stroke-width="20" stroke-linecap="round" fill="none"/>
 <path d="M824.6,632.2 L1226.0,471.6" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#e11-ah-DA1B2E-34)"/>
-<rect x="904.7" y="552.5" width="86.2" height="60.8" fill="#ffffff"/>
-<text x="947.8" y="605.9" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
+<g class="wl4"><rect x="904.7" y="552.5" width="86.2" height="60.8" fill="#ffffff"/>
+<text x="947.8" y="605.9" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text></g>
 </g>
 
 
 
-<g>
-<circle cx="780.0" cy="80.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="95.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₁</text>
-<circle cx="780.0" cy="270.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="285.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₂</text>
-<circle cx="780.0" cy="460.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="475.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₃</text>
-<circle cx="780.0" cy="650.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="665.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₄</text>
+<g data-beat="2">
+<circle class="xin1" cx="780.0" cy="80.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="95.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₁</text>
+<circle class="xin2" cx="780.0" cy="270.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="285.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₂</text>
+<circle class="xin3" cx="780.0" cy="460.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="475.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₃</text>
+<circle class="xin4" cx="780.0" cy="650.0" r="45.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="780.0" y="665.4" font-size="44" fill="#1F1E1E" text-anchor="middle">x₄</text>
 </g>
 
 
 
-<g>
+<g data-beat="3"><g class="sig">
 <circle cx="1280.0" cy="450.0" r="48" fill="#3B3535"/>
 <text x="1280.0" y="468" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
-</g>
-<g>
+</g></g>
+<g class="res">
 <text x="1360.0" y="480.0" font-size="84" fill="#1F1E1E" text-anchor="start" font-weight="normal">σ(−1.5) = 0.18</text>
 </g>
-<g transform="translate(519.5,-17.4) scale(0.85)">
-<path d="M1138,324 L1867,324" stroke="#3B3535" stroke-width="3" marker-end="url(#e11-ah-3B3535-22)" marker-start="url(#e11-ah-3B3535-22s)"/>
-<path d="M1580,336 L1580,44" stroke="#3B3535" stroke-width="3" marker-end="url(#e11-ah-3B3535-22)"/>
+<g class="plot" transform="translate(519.5,-17.4) scale(0.85)">
+<g class="pbase"><path d="M1138,324 L1867,324" stroke="#3B3535" stroke-width="3" marker-end="url(#e11-ah-3B3535-22)" marker-start="url(#e11-ah-3B3535-22s)"/>
+<path d="M1580,336 L1580,44" stroke="#3B3535" stroke-width="3" marker-end="url(#e11-ah-3B3535-22)"/></g>
 <g>
-<line x1="1502.0" y1="280.2" x2="1580" y2="280.2" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
-<line x1="1502.0" y1="280.2" x2="1502.0" y2="324" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
-<circle cx="1580" cy="280.2" r="11" fill="#1F5FAD"/>
-<circle cx="1502.0" cy="324" r="11" fill="#1F5FAD"/>
-<text x="1598" y="295.2" font-size="44" fill="#3B3535" text-anchor="start">0.18</text>
-<text x="1502.0" y="376.0" font-size="44" fill="#3B3535" text-anchor="middle">−1.5</text>
+<g class="pm1"><circle cx="1502.0" cy="324" r="11" fill="#1F5FAD"/>
+<text x="1502.0" y="376.0" font-size="44" fill="#3B3535" text-anchor="middle">−1.5</text></g>
+<line class="pm2" x1="1502.0" y1="280.2" x2="1502.0" y2="324" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
+<line class="pm3" x1="1502.0" y1="280.2" x2="1580" y2="280.2" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
+<g class="pm4"><circle cx="1580" cy="280.2" r="11" fill="#1F5FAD"/>
+<text x="1598" y="295.2" font-size="44" fill="#3B3535" text-anchor="start">0.18</text></g>
 </g>
-<line x1="1130" y1="84.0" x2="1875" y2="84.0" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
+<g class="pbase2"><line x1="1130" y1="84.0" x2="1875" y2="84.0" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="6 7"/>
 <polyline points="1130.0,324.0 1135.2,324.0 1140.4,323.9 1145.6,323.9 1150.8,323.9 1156.0,323.9 1161.2,323.9 1166.4,323.9 1171.6,323.9 1176.8,323.9 1182.0,323.9 1187.2,323.9 1192.4,323.9 1197.6,323.8 1202.8,323.8 1208.0,323.8 1213.2,323.8 1218.4,323.8 1223.6,323.7 1228.8,323.7 1234.0,323.7 1239.2,323.7 1244.4,323.6 1249.6,323.6 1254.8,323.5 1260.0,323.5 1265.2,323.4 1270.4,323.4 1275.6,323.3 1280.8,323.2 1286.0,323.2 1291.2,323.1 1296.4,323.0 1301.6,322.9 1306.8,322.8 1312.0,322.6 1317.2,322.5 1322.4,322.3 1327.6,322.1 1332.8,321.9 1338.0,321.7 1343.2,321.5 1348.4,321.2 1353.6,321.0 1358.8,320.6 1364.0,320.3 1369.2,319.9 1374.4,319.5 1379.6,319.0 1384.8,318.5 1390.0,317.9 1395.2,317.3 1400.4,316.6 1405.6,315.9 1410.8,315.1 1416.0,314.2 1421.2,313.2 1426.4,312.1 1431.6,310.9 1436.8,309.6 1442.0,308.2 1447.2,306.7 1452.4,305.0 1457.6,303.2 1462.8,301.2 1468.0,299.0 1473.2,296.7 1478.4,294.2 1483.6,291.5 1488.8,288.6 1494.0,285.5 1499.2,282.1 1504.4,278.5 1509.6,274.7 1514.8,270.7 1520.0,266.5 1525.2,262.0 1530.4,257.3 1535.6,252.3 1540.8,247.2 1546.0,241.9 1551.2,236.4 1556.4,230.8 1561.6,225.0 1566.8,219.1 1572.0,213.2 1577.2,207.2 1582.4,201.2 1587.6,195.2 1592.8,189.3 1598.0,183.4 1603.2,177.7 1608.4,172.0 1613.6,166.5 1618.8,161.2 1624.0,156.1 1629.2,151.1 1634.4,146.4 1639.6,141.9 1644.8,137.6 1650.0,133.6 1655.2,129.7 1660.4,126.2 1665.6,122.8 1670.8,119.6 1676.0,116.7 1681.2,114.0 1686.4,111.5 1691.6,109.1 1696.8,107.0 1702.0,105.0 1707.2,103.1 1712.4,101.4 1717.6,99.9 1722.8,98.5 1728.0,97.2 1733.2,96.0 1738.4,94.9 1743.6,93.9 1748.8,93.0 1754.0,92.2 1759.2,91.4 1764.4,90.7 1769.6,90.1 1774.8,89.5 1780.0,89.0 1785.2,88.6 1790.4,88.1 1795.6,87.7 1800.8,87.4 1806.0,87.1 1811.2,86.8 1816.4,86.5 1821.6,86.3 1826.8,86.1 1832.0,85.9 1837.2,85.7 1842.4,85.5 1847.6,85.4 1852.8,85.3 1858.0,85.1" fill="none" stroke="#1F1E1E" stroke-width="6"/>
 <text x="1596.0" y="60.0" font-size="44" fill="#3B3535" text-anchor="start" font-weight="normal">1</text>
-<text x="1130.0" y="207.0" font-size="50" fill="#3B3535" text-anchor="start" font-weight="normal" font-style="italic">σ(x) =</text>
+<text x="1130.0" y="207.0" font-size="50" fill="#3B3535" text-anchor="start" font-weight="normal">σ(x) =</text>
 <text x="1360.0" y="176.0" font-size="46" fill="#3B3535" text-anchor="middle" font-weight="normal">1</text>
 <line x1="1286" y1="190" x2="1444" y2="190" stroke="#3B3535" stroke-width="3"/>
-<text x="1286.0" y="244.0" font-size="46" fill="#3B3535" text-anchor="start" font-weight="normal" font-style="italic">1 + e</text>
-<text x="1400.0" y="222.0" font-size="34" fill="#3B3535" text-anchor="start" font-weight="normal" font-style="italic">-x</text>
+<text x="1286.0" y="244.0" font-size="46" fill="#3B3535" text-anchor="start" font-weight="normal">1 + e</text>
+<text x="1400.0" y="222.0" font-size="34" fill="#3B3535" text-anchor="start" font-weight="normal">-x</text>
+</g>
 </g>
 <g>
-<text x="1280" y="565" font-size="44" fill="#1F1E1E" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">w·x + b</text>
-<text x="1280" y="620" font-size="44" fill="#2E8540" text-anchor="middle">b = −1</text>
+<text data-beat="5" x="1280" y="565" font-size="44" fill="#1F1E1E" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">w·x + b</text>
+<text data-beat="6" x="1280" y="620" font-size="44" fill="#2E8540" text-anchor="middle">b = −1</text>
 </g>
 </g>
+<!-- narración: la cuenta de σ (se va antes del final) -->
+<g font-size="44" text-anchor="middle" fill="#1F1E1E">
+<text class="cap1" opacity="0" x="1640" y="872"><tspan font-family="Times New Roman, serif" font-style="italic">w·x</tspan> = <tspan fill="#DA1B2E">0.25</tspan><tspan class="t2" fill="#1F5FAD"> − 1</tspan><tspan class="t3" fill="#1F5FAD"> − 0.5</tspan><tspan class="t4" fill="#DA1B2E"> + 0.75</tspan><tspan class="t5"> = −0.5</tspan></text>
+<text class="cap2" opacity="0" x="1640" y="940"><tspan font-family="Times New Roman, serif" font-style="italic">w·x + b</tspan> = −0.5<tspan class="t6" fill="#2E8540"> − 1</tspan><tspan class="t7" font-weight="bold"> = −1.5</tspan></text>
+</g>
+<!-- narración: el punto sobre la curva -->
+<circle class="ring" opacity="0" cx="1796.2" cy="370.8" r="21" fill="none" stroke="#1F5FAD" stroke-width="5"/>
+<!-- narración: cada píxel viaja a su entrada; nace fuera de la imagen y se va antes de la flecha -->
+<g class="tok1" opacity="0"><rect x="-46" y="-26" width="92" height="52" rx="26" fill="#bfbfbf" stroke="#1F1E1E" stroke-width="3"/><text y="12" font-size="34" fill="#1F1E1E" text-anchor="middle" font-weight="bold">0.25</text></g>
+<g class="tok2" opacity="0"><rect x="-26" y="-26" width="52" height="52" rx="26" fill="#000000" stroke="#ffffff" stroke-width="3"/><text y="12" font-size="34" fill="#ffffff" text-anchor="middle" font-weight="bold">1</text></g>
+<g class="tok3" opacity="0"><rect x="-38" y="-26" width="76" height="52" rx="26" fill="#808080" stroke="#ffffff" stroke-width="3"/><text y="12" font-size="34" fill="#ffffff" text-anchor="middle" font-weight="bold">0.5</text></g>
+<g class="tok4" opacity="0"><rect x="-46" y="-26" width="92" height="52" rx="26" fill="#404040" stroke="#ffffff" stroke-width="3"/><text y="12" font-size="34" fill="#ffffff" text-anchor="middle" font-weight="bold">0.75</text></g>
 </svg></div></div></div>
 </section><section class="slide" data-kind="value-columns"><div class="stage d-full">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">El Generador: el objetivo opuesto</h2><p class="lead">Las dos redes leen el mismo número, D(·), pero quieren resultados contrarios.</p></div><div class="cbody"><div class="cfit"><div class="compare fac" style="--cc:3"><div class="chead"><span>Factor</span><span>Discriminador (D)</span><span>Generador (G)</span></div><div class="crow"><span>Entrada</span><span>Una imagen x de 4 píxeles</span><span>Un número aleatorio z, entre 0 y 1</span></div><div class="crow"><span>Salida</span><span>Un número, D(x)</span><span>Una imagen G(z) de 2×2</span></div><div class="crow"><span>Quiere</span><span>D(x) → 1 si la imagen es real; D(G(z)) → 0 si es falsa</span><span>D(G(z)) → 1</span></div></div>
@@ -2028,55 +2317,105 @@ html.print-pdf .cbfull{display:none}
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Construyendo el Generador</h2><p class="lead"><b>El Generador en acción: z = 0.7 → imagen</b></p></div><div class="cbody"><div class="cfit"><div class="citext">
 <ul class="cifacts"><li>Con z = 0.7 como entrada y los pesos aprendidos, el Generador produce una imagen que reproduce el patrón diagonal de las caras reales. El Generador aprendió a engañar al Discriminador.</li><li>El resultado muestra el patrón diagonal característico de las caras de Slanted Land: valores altos en la diagonal principal, bajos en la secundaria. El Generador internalizó la estructura del dataset real.</li></ul></div>
 </div></div>
-<div class="smedia"><div class="imgph svg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1940 1100" width="1940" height="1100" font-family="Helvetica, Arial, sans-serif">
+<div class="smedia"><div class="imgph svg"><svg class="ts-anim-generador-red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1940 1100" width="1940" height="1100" font-family="Helvetica, Arial, sans-serif">
 <title>Generador</title>
-<desc>El Generador recibe z = 0.7 (deslizador de 0 a 1) y un Bias de valor 1, los conecta con pesos +1, -1, -1, +1 a cuatro neuronas sigmoide: σ(1.7) = 0.85, σ(-1.7) = 0.15, σ(-1.7) = 0.15 y σ(1.7) = 0.85, que forman la imagen 2×2 (0.85, 0.15 / 0.15, 0.85).</desc>
+<desc>El Generador recibe z = 0.7 (deslizador de 0 a 1) y lo conecta con pesos +1, −1, −1, +1 a cuatro neuronas sigmoide, cada una con su sesgo ±1: σ(0.7 + 1) = 0.85, σ(−0.7 − 1) = 0.15, σ(−0.7 − 1) = 0.15 y σ(0.7 + 1) = 0.85, que forman la imagen 2×2 (0.85, 0.15 / 0.15, 0.85).</desc>
+<style>/* talksmith-animation */
+.ts-anim-generador-red [data-beat="sl"]{animation:ts-anim-generador-red-in 0.5s ease-out 0.2s 1 normal both}
+.ts-anim-generador-red .tok{animation:ts-anim-generador-red-slide 1s ease-in-out .9s 1 normal both}
+.ts-anim-generador-red .dot{animation:ts-anim-generador-red-show .01s linear 1.88s 1 normal both}
+.ts-anim-generador-red .v07{animation:ts-anim-generador-red-in 0.45s ease-out 1.95s 1 normal both}
+.ts-anim-generador-red [data-beat="in"]{animation:ts-anim-generador-red-in 0.5s ease-out 3.2s 1 normal both}
+.ts-anim-generador-red .zn{animation:ts-anim-generador-red-lit 1.1s ease-in-out 3.9s 1 normal both}
+.ts-anim-generador-red [data-beat="out"]{animation:ts-anim-generador-red-in 0.5s ease-out 5.4s 1 normal both}
+.ts-anim-generador-red .ed1{animation:ts-anim-generador-red-drawe 1.02s linear 6.4s 1 normal both}
+.ts-anim-generador-red .e1{animation:ts-anim-generador-red-show .01s linear 7.27s 1 normal both}
+.ts-anim-generador-red .w1{animation:ts-anim-generador-red-in 0.25s ease-out 6.68s 1 normal both}
+.ts-anim-generador-red .ed2{animation:ts-anim-generador-red-drawe 1.02s linear 6.65s 1 normal both}
+.ts-anim-generador-red .e2{animation:ts-anim-generador-red-show .01s linear 7.52s 1 normal both}
+.ts-anim-generador-red .w2{animation:ts-anim-generador-red-in 0.25s ease-out 6.92s 1 normal both}
+.ts-anim-generador-red .ed3{animation:ts-anim-generador-red-drawe 1.02s linear 6.9s 1 normal both}
+.ts-anim-generador-red .e3{animation:ts-anim-generador-red-show .01s linear 7.77s 1 normal both}
+.ts-anim-generador-red .w3{animation:ts-anim-generador-red-in 0.25s ease-out 7.22s 1 normal both}
+.ts-anim-generador-red .ed4{animation:ts-anim-generador-red-drawe 1.02s linear 7.15s 1 normal both}
+.ts-anim-generador-red .e4{animation:ts-anim-generador-red-show .01s linear 8.02s 1 normal both}
+.ts-anim-generador-red .w4{animation:ts-anim-generador-red-in 0.25s ease-out 7.32s 1 normal both}
+.ts-anim-generador-red .f1{animation:ts-anim-generador-red-in 0.5s ease-out 9.0s 1 normal both}
+.ts-anim-generador-red .f2{animation:ts-anim-generador-red-in 0.5s ease-out 9.35s 1 normal both}
+.ts-anim-generador-red .f3{animation:ts-anim-generador-red-in 0.5s ease-out 9.7s 1 normal both}
+.ts-anim-generador-red .f4{animation:ts-anim-generador-red-in 0.5s ease-out 10.05s 1 normal both}
+.ts-anim-generador-red [data-beat="fr"]{animation:ts-anim-generador-red-in 0.5s ease-out 11.3s 1 normal both}
+.ts-anim-generador-red .kd1{animation:ts-anim-generador-red-drawk 1.12s ease-in-out 12.0s 1 normal both}
+.ts-anim-generador-red .k1{animation:ts-anim-generador-red-show .01s linear 12.97s 1 normal both}
+.ts-anim-generador-red .c1{animation:ts-anim-generador-red-in 0.4s ease-out 13.0s 1 normal both}
+.ts-anim-generador-red .kd2{animation:ts-anim-generador-red-drawk 1.12s ease-in-out 12.25s 1 normal both}
+.ts-anim-generador-red .k2{animation:ts-anim-generador-red-show .01s linear 13.22s 1 normal both}
+.ts-anim-generador-red .c2{animation:ts-anim-generador-red-in 0.4s ease-out 13.25s 1 normal both}
+.ts-anim-generador-red .kd3{animation:ts-anim-generador-red-drawk 1.12s ease-in-out 12.5s 1 normal both}
+.ts-anim-generador-red .k3{animation:ts-anim-generador-red-show .01s linear 13.47s 1 normal both}
+.ts-anim-generador-red .c3{animation:ts-anim-generador-red-in 0.4s ease-out 13.5s 1 normal both}
+.ts-anim-generador-red .kd4{animation:ts-anim-generador-red-drawk 1.12s ease-in-out 12.75s 1 normal both}
+.ts-anim-generador-red .k4{animation:ts-anim-generador-red-show .01s linear 13.72s 1 normal both}
+.ts-anim-generador-red .c4{animation:ts-anim-generador-red-in 0.4s ease-out 13.75s 1 normal both}
+.ts-anim-generador-red [data-beat="img"]{animation:ts-anim-generador-red-in 0.5s ease-out 14.0s 1 normal both}
+@keyframes ts-anim-generador-red-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-generador-red-show{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-generador-red-drawe{0%{stroke-dashoffset:100;opacity:0}0.5%{stroke-dashoffset:99.43;opacity:1}88.24%{stroke-dashoffset:0;opacity:1}99.5%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-generador-red-drawk{0%{stroke-dashoffset:100;opacity:0}0.5%{stroke-dashoffset:99.44;opacity:1}89.29%{stroke-dashoffset:0;opacity:1}99.5%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-generador-red-lit{0%,100%{fill:#ffffff}30%,65%{fill:#CFEAD5}}
+@keyframes ts-anim-generador-red-slide{0%{transform:translate(40px,480px);opacity:0}8%{transform:translate(40px,480px);opacity:1}99.5%{transform:translate(194px,480px);opacity:1}100%{transform:translate(194px,480px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-generador-red *{animation:none}}
+</style>
 <defs><marker id="e12-ah-DA1B2E-32" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="32" markerHeight="32" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="e12-ah-1F5FAD-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="e12-ah-1F1E1E-56" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="56" markerHeight="56" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="e12-ah-1F1E1E-28" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="28" markerHeight="28" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker></defs>
 <rect x="0" y="0" width="1940" height="1100" fill="#ffffff"/>
 <line x1="40" y1="128" x2="1900" y2="128" stroke="#D9D4CF" stroke-width="3"/>
-<text x="420" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
-<text x="420" y="106" font-size="34" fill="#6B6560" text-anchor="middle">z, sin cálculo</text>
-<text x="670" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
-<text x="670" y="106" font-size="34" fill="#6B6560" text-anchor="middle">ninguna</text>
-<text x="920" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">SALIDA</text>
-<text x="920" y="106" font-size="34" fill="#6B6560" text-anchor="middle">4 neuronas</text>
-<text x="1740" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
-<text x="1740" y="106" font-size="34" fill="#6B6560" text-anchor="middle">generada, 2×2</text>
+<text x="420" y="58" font-size="36" fill="#6B6560" text-anchor="middle" data-beat="in" font-weight="bold" letter-spacing="2">ENTRADA</text>
+<text x="420" y="106" font-size="34" fill="#6B6560" data-beat="in" text-anchor="middle">z, sin cálculo</text>
+<text x="670" y="58" font-size="36" fill="#6B6560" text-anchor="middle" data-beat="out" font-weight="bold" letter-spacing="2">OCULTA</text>
+<text x="670" y="106" font-size="34" fill="#6B6560" data-beat="out" text-anchor="middle">ninguna</text>
+<text x="920" y="58" font-size="36" fill="#6B6560" text-anchor="middle" data-beat="out" font-weight="bold" letter-spacing="2">SALIDA</text>
+<text x="920" y="106" font-size="34" fill="#6B6560" data-beat="out" text-anchor="middle">4 neuronas</text>
+<text x="1740" y="58" font-size="36" fill="#6B6560" text-anchor="middle" data-beat="img" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text x="1740" y="106" font-size="34" fill="#6B6560" data-beat="img" text-anchor="middle">generada, 2×2</text>
 <g transform="translate(0,50)">
 
-<g>
+<g data-beat="sl">
 <line x1="40" y1="430" x2="260" y2="430" stroke="#1F1E1E" stroke-width="5"/>
 <line x1="40" y1="412" x2="40" y2="448" stroke="#1F1E1E" stroke-width="5"/>
 <line x1="260" y1="412" x2="260" y2="448" stroke="#1F1E1E" stroke-width="5"/>
 <text x="40.0" y="508.9" font-size="58" fill="#1F1E1E" text-anchor="middle" font-weight="normal">0</text>
 <text x="260.0" y="508.9" font-size="58" fill="#1F1E1E" text-anchor="middle" font-weight="normal">1</text>
-<circle cx="194.0" cy="430" r="20" fill="#2E8540"/>
-<text x="194.0" y="396.0" font-size="58" fill="#2E8540" text-anchor="middle" font-weight="normal">0.7</text>
+<circle class="dot" cx="194.0" cy="430" r="20" fill="#2E8540"/>
+<text x="194.0" y="396.0" font-size="58" class="v07" fill="#2E8540" text-anchor="middle" font-weight="normal">0.7</text>
 <text x="150.0" y="610.0" font-size="88" fill="#1F1E1E" text-anchor="middle" font-weight="normal">z</text>
 </g>
 <g>
-<path d="M465.8,409.9 L865.4,234.0" stroke="#DA1B2E" stroke-width="5" fill="none" marker-end="url(#e12-ah-DA1B2E-32)"/>
-<path d="M470.0,430.0 L862.8,430.0" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e12-ah-1F5FAD-24)"/>
-<path d="M465.8,450.1 L867.6,627.0" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e12-ah-1F5FAD-24)"/>
-<path d="M457.5,463.0 L875.3,830.6" stroke="#DA1B2E" stroke-width="5" fill="none" marker-end="url(#e12-ah-DA1B2E-32)"/>
+<path class="e1" d="M465.8,409.9 L865.4,234.0" stroke="#DA1B2E" stroke-width="5" fill="none" marker-end="url(#e12-ah-DA1B2E-32)"/>
+<path class="ed1" opacity="0" d="M465.8,409.9 L865.4,234.0" pathLength="100" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-dasharray="100 101"/>
+<path class="e2" d="M470.0,430.0 L862.8,430.0" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e12-ah-1F5FAD-24)"/>
+<path class="ed2" opacity="0" d="M470.0,430.0 L862.8,430.0" pathLength="100" stroke="#1F5FAD" stroke-width="3.5" fill="none" stroke-dasharray="100 101"/>
+<path class="e3" d="M465.8,450.1 L867.6,627.0" stroke="#1F5FAD" stroke-width="3.5" fill="none" marker-end="url(#e12-ah-1F5FAD-24)"/>
+<path class="ed3" opacity="0" d="M465.8,450.1 L867.6,627.0" pathLength="100" stroke="#1F5FAD" stroke-width="3.5" fill="none" stroke-dasharray="100 101"/>
+<path class="e4" d="M457.5,463.0 L875.3,830.6" stroke="#DA1B2E" stroke-width="5" fill="none" marker-end="url(#e12-ah-DA1B2E-32)"/>
+<path class="ed4" opacity="0" d="M457.5,463.0 L875.3,830.6" pathLength="100" stroke="#DA1B2E" stroke-width="5" fill="none" stroke-dasharray="100 101"/>
 </g>
 
 
 
 
 <g>
-<rect x="589.2" y="308.5" width="79.9" height="58.9" fill="#ffffff"/>
-<text x="629.2" y="360.3" font-size="62" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
-<rect x="590.0" y="400.6" width="79.9" height="58.9" fill="#ffffff"/>
-<text x="630.0" y="452.3" font-size="62" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
-<rect x="609.6" y="501.6" width="79.9" height="58.9" fill="#ffffff"/>
-<text x="649.6" y="553.3" font-size="62" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
+<rect class="w1" x="589.2" y="308.5" width="79.9" height="58.9" fill="#ffffff"/>
+<text class="w1" x="629.2" y="360.3" font-size="62" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
+<rect class="w2" x="590.0" y="400.6" width="79.9" height="58.9" fill="#ffffff"/>
+<text class="w2" x="630.0" y="452.3" font-size="62" fill="#1F5FAD" text-anchor="middle" font-weight="normal">−1</text>
+<rect class="w3" x="609.6" y="501.6" width="79.9" height="58.9" fill="#ffffff"/>
+<text class="w3" x="649.6" y="553.3" font-size="62" fill="#1F5FAD" text-anchor="middle" font-weight="normal">−1</text>
 </g>
 
 
 <g>
-<rect x="536.6" y="538.3" width="79.9" height="58.9" fill="#ffffff"/>
-<text x="576.5" y="590.1" font-size="62" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
+<rect class="w4" x="536.6" y="538.3" width="79.9" height="58.9" fill="#ffffff"/>
+<text class="w4" x="576.5" y="590.1" font-size="62" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
 </g>
 
 
@@ -2086,52 +2425,58 @@ html.print-pdf .cbfull{display:none}
 
 
 
-<g>
-<circle cx="420.0" cy="430.0" r="47.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="420.0" y="448.9" font-size="54" fill="#1F1E1E" text-anchor="middle">z</text>
+<g data-beat="in">
+<circle class="zn" cx="420.0" cy="430.0" r="47.5" fill="#ffffff" stroke="#3B3535" stroke-width="5"/><text x="420.0" y="448.9" font-size="54" fill="#1F1E1E" text-anchor="middle">z</text>
 </g>
 
 
 
-<g>
+<g data-beat="out">
 <circle cx="920.0" cy="210.0" r="50" fill="#3B3535"/><text x="920" y="230" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
 </g>
 <g>
-<text x="994" y="233" font-size="58" fill="#1F1E1E" text-anchor="start">σ(<tspan fill="#DA1B2E">0.7 + 1</tspan>) = 0.85</text>
+<text class="f1" x="994" y="233" font-size="58" fill="#1F1E1E" text-anchor="start">σ(<tspan fill="#DA1B2E">0.7 + 1</tspan>) = 0.85</text>
 </g>
-<g>
+<g data-beat="out">
 <circle cx="920.0" cy="430.0" r="50" fill="#3B3535"/><text x="920" y="450" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
 </g>
 <g>
-<text x="994" y="453" font-size="58" fill="#1F1E1E" text-anchor="start">σ(<tspan fill="#1F5FAD">−0.7 − 1</tspan>) = 0.15</text>
+<text class="f2" x="994" y="453" font-size="58" fill="#1F1E1E" text-anchor="start">σ(<tspan fill="#1F5FAD">−0.7 − 1</tspan>) = 0.15</text>
 </g>
-<g>
+<g data-beat="out">
 <circle cx="920.0" cy="650.0" r="50" fill="#3B3535"/><text x="920" y="670" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
 </g>
 <g>
-<text x="994" y="673" font-size="58" fill="#1F1E1E" text-anchor="start">σ(<tspan fill="#1F5FAD">−0.7 − 1</tspan>) = 0.15</text>
+<text class="f3" x="994" y="673" font-size="58" fill="#1F1E1E" text-anchor="start">σ(<tspan fill="#1F5FAD">−0.7 − 1</tspan>) = 0.15</text>
 </g>
-<g>
+<g data-beat="out">
 <circle cx="920.0" cy="870.0" r="50" fill="#3B3535"/><text x="920" y="890" font-size="56" fill="#ffffff" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic">σ</text>
 </g>
 <g>
-<text x="994" y="893" font-size="58" fill="#1F1E1E" text-anchor="start">σ(<tspan fill="#DA1B2E">0.7 + 1</tspan>) = 0.85</text>
-<rect x="1580.0" y="470.0" width="160" height="160" fill="#262626"/>
-<text x="1660.0" y="573.0" font-size="64" fill="#ffffff" text-anchor="middle" font-weight="normal">0.85</text>
-<rect x="1740.0" y="470.0" width="160" height="160" fill="#d9d9d9"/>
-<text x="1820.0" y="573.0" font-size="64" fill="#3B3535" text-anchor="middle" font-weight="normal">0.15</text>
-<rect x="1580.0" y="630.0" width="160" height="160" fill="#d9d9d9"/>
-<text x="1660.0" y="733.0" font-size="64" fill="#3B3535" text-anchor="middle" font-weight="normal">0.15</text>
-<rect x="1740.0" y="630.0" width="160" height="160" fill="#262626"/>
-<text x="1820.0" y="733.0" font-size="64" fill="#ffffff" text-anchor="middle" font-weight="normal">0.85</text>
-<line x1="1740" y1="470" x2="1740" y2="790" stroke="#1F1E1E" stroke-width="2.8"/>
-<line x1="1580" y1="630" x2="1900" y2="630" stroke="#1F1E1E" stroke-width="2.8"/>
-<rect x="1580" y="470" width="320" height="320" fill="none" stroke="#1F1E1E" stroke-width="5.6"/>
-<path d="M955.0,174.0 C1080.0,30.0 1560.0,150.0 1654.8,444.0" stroke="#1F1E1E" stroke-width="13" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-56)"/>
-<path d="M960.0,400.0 C1120.0,260.0 1700.0,280.0 1815.3,453.0" stroke="#1F1E1E" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-28)"/>
-<path d="M960.0,680.0 C1150.0,830.0 1560.0,880.0 1653.4,805.2" stroke="#1F1E1E" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-28)"/>
-<path d="M955.0,906.0 C1200.0,1110.0 1700.0,1010.0 1811.7,814.6" stroke="#1F1E1E" stroke-width="13" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-56)"/>
+<text class="f4" x="994" y="893" font-size="58" fill="#1F1E1E" text-anchor="start">σ(<tspan fill="#DA1B2E">0.7 + 1</tspan>) = 0.85</text>
+<rect class="c1" x="1580.0" y="470.0" width="160" height="160" fill="#262626"/>
+<text class="c1" x="1660.0" y="573.0" font-size="64" fill="#ffffff" text-anchor="middle" font-weight="normal">0.85</text>
+<rect class="c2" x="1740.0" y="470.0" width="160" height="160" fill="#d9d9d9"/>
+<text class="c2" x="1820.0" y="573.0" font-size="64" fill="#3B3535" text-anchor="middle" font-weight="normal">0.15</text>
+<rect class="c3" x="1580.0" y="630.0" width="160" height="160" fill="#d9d9d9"/>
+<text class="c3" x="1660.0" y="733.0" font-size="64" fill="#3B3535" text-anchor="middle" font-weight="normal">0.15</text>
+<rect class="c4" x="1740.0" y="630.0" width="160" height="160" fill="#262626"/>
+<text class="c4" x="1820.0" y="733.0" font-size="64" fill="#ffffff" text-anchor="middle" font-weight="normal">0.85</text>
+<line data-beat="fr" x1="1740" y1="470" x2="1740" y2="790" stroke="#1F1E1E" stroke-width="2.8"/>
+<line data-beat="fr" x1="1580" y1="630" x2="1900" y2="630" stroke="#1F1E1E" stroke-width="2.8"/>
+<rect data-beat="fr" x="1580" y="470" width="320" height="320" fill="none" stroke="#1F1E1E" stroke-width="5.6"/>
+<path class="k1" d="M955.0,174.0 C1060.0,40.0 1660.0,60.0 1654.8,444.0" stroke="#1F1E1E" stroke-width="13" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-56)"/>
+<path class="kd1" opacity="0" d="M955.0,174.0 C1060.0,40.0 1660.0,60.0 1654.8,444.0" pathLength="100" stroke="#1F1E1E" stroke-width="13" fill="none" stroke-linecap="round" stroke-dasharray="100 101"/>
+<path class="k2" d="M960.0,400.0 C1120.0,260.0 1700.0,280.0 1815.3,453.0" stroke="#1F1E1E" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-28)"/>
+<path class="kd2" opacity="0" d="M960.0,400.0 C1120.0,260.0 1700.0,280.0 1815.3,453.0" pathLength="100" stroke="#1F1E1E" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="100 101"/>
+<path class="k3" d="M960.0,680.0 C1150.0,830.0 1560.0,880.0 1653.4,805.2" stroke="#1F1E1E" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-28)"/>
+<path class="kd3" opacity="0" d="M960.0,680.0 C1150.0,830.0 1560.0,880.0 1653.4,805.2" pathLength="100" stroke="#1F1E1E" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="100 101"/>
+<path class="k4" d="M955.0,906.0 C1200.0,1110.0 1700.0,1010.0 1811.7,814.6" stroke="#1F1E1E" stroke-width="13" fill="none" stroke-linecap="round" marker-end="url(#e12-ah-1F1E1E-56)"/>
+<path class="kd4" opacity="0" d="M955.0,906.0 C1200.0,1110.0 1700.0,1010.0 1811.7,814.6" pathLength="100" stroke="#1F1E1E" stroke-width="13" fill="none" stroke-linecap="round" stroke-dasharray="100 101"/>
 </g>
 </g>
+<!-- narración: el punto del deslizador corre de 0 a 0.7; se dibuja en el origen y viaja por translate -->
+<circle class="tok" r="20" fill="#2E8540" opacity="0"/>
 </svg></div></div></div>
 </section><section class="slide" data-kind="process"><div class="stage d-full">
 <div class="shead"><span class="pill">Slanted Land</span><h2 class="stitle">Proceso de Entrenamiento</h2><p class="lead">Hasta acá pusimos los pesos a mano (+1 y −1, y los sesgos). En la práctica, cada red los aprende sola, repitiendo tres pasos:</p></div><div class="cbody"><div class="cfit"><div class="numrow">

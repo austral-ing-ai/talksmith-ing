@@ -4,6 +4,8 @@
 <style>/* talksmith-animation */
 .ts-anim-discriminador-ruido [data-beat]{animation:ts-anim-discriminador-ruido-in .6s ease-out both}
 .ts-anim-discriminador-ruido [data-beat="1"]{animation-delay:0.30s}
+.ts-anim-discriminador-ruido [data-beat="1h"]{animation-delay:0.70s}
+.ts-anim-discriminador-ruido [data-beat="1s"]{animation-delay:1.10s}
 .ts-anim-discriminador-ruido [data-beat="2"]{animation-delay:2.0s}
 .ts-anim-discriminador-ruido [data-beat="3"]{animation-delay:6.60s}
 .ts-anim-discriminador-ruido [data-beat="4"]{animation-delay:7.30s}
@@ -36,6 +38,7 @@
 @keyframes ts-anim-discriminador-ruido-ring{0%{opacity:0}18.2%,77.3%{opacity:1}100%{opacity:0}}
 .ts-anim-discriminador-ruido .ring{animation:ts-anim-discriminador-ruido-ring 2.20s linear 20.20s both}
 @keyframes ts-anim-discriminador-ruido-in{from{opacity:0}}
+@keyframes ts-anim-discriminador-ruido-gone{from{opacity:1}to{opacity:0}}
 @keyframes ts-anim-discriminador-ruido-tin{from{fill-opacity:0}}
 @keyframes ts-anim-discriminador-ruido-lit{0%,100%{fill:#ffffff}35%{fill:#B8E6F5}}
 @keyframes ts-anim-discriminador-ruido-glow{0%{stroke-dashoffset:100;opacity:0}6%{opacity:.38}65%{stroke-dashoffset:0;opacity:.38}100%{stroke-dashoffset:0;opacity:0}}
@@ -54,24 +57,24 @@
 @keyframes ts-anim-discriminador-ruido-path4{0.00%{transform:translate(315.5px,808.0px);opacity:0}6.25%{transform:translate(320.3px,830.5px);opacity:0.514}12.50%{transform:translate(332.1px,850.2px);opacity:1}18.75%{transform:translate(351.9px,861.7px);opacity:1}25.00%{transform:translate(374.8px,864.4px);opacity:1}31.25%{transform:translate(397.8px,862.3px);opacity:1}37.50%{transform:translate(420.5px,857.7px);opacity:1}43.75%{transform:translate(442.8px,851.9px);opacity:1}50.00%{transform:translate(465.0px,845.3px);opacity:1}56.25%{transform:translate(487.1px,838.4px);opacity:1}62.50%{transform:translate(509.1px,831.5px);opacity:1}68.75%{transform:translate(531.2px,824.7px);opacity:1}75.00%{transform:translate(553.4px,818.2px);opacity:1}81.25%{transform:translate(575.8px,812.2px);opacity:0.991}87.50%{transform:translate(598.2px,806.7px);opacity:0.661}93.75%{transform:translate(620.9px,802.1px);opacity:0.33}100.00%{transform:translate(643.7px,798.3px);opacity:0}}
 .ts-anim-discriminador-ruido .tok4{animation:ts-anim-discriminador-ruido-path4 0.86s linear 5.20s 1 normal both}
 .ts-anim-discriminador-ruido .xin4{animation:ts-anim-discriminador-ruido-lit .8s ease-out 5.94s both}
-@keyframes ts-anim-discriminador-ruido-di1{0%{stroke-dashoffset:100}100%{stroke-dashoffset:11.46}}
-.ts-anim-discriminador-ruido .di1{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di1 1.46s linear 2.93s both}
+@keyframes ts-anim-discriminador-ruido-di1{0%{stroke-dashoffset:100;opacity:1}100%{stroke-dashoffset:11.46;opacity:1}}
+.ts-anim-discriminador-ruido .di1{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di1 1.46s linear 2.93s both,ts-anim-discriminador-ruido-gone .05s linear 4.69s both}
 .ts-anim-discriminador-ruido .fa1{animation:ts-anim-discriminador-ruido-in .25s ease-out 4.39s both}
-@keyframes ts-anim-discriminador-ruido-di2{0%{stroke-dashoffset:100}100%{stroke-dashoffset:14.55}}
-.ts-anim-discriminador-ruido .di2{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di2 0.86s linear 3.75s both}
+@keyframes ts-anim-discriminador-ruido-di2{0%{stroke-dashoffset:100;opacity:1}100%{stroke-dashoffset:14.55;opacity:1}}
+.ts-anim-discriminador-ruido .di2{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di2 0.86s linear 3.75s both,ts-anim-discriminador-ruido-gone .05s linear 4.92s both}
 .ts-anim-discriminador-ruido .fa2{animation:ts-anim-discriminador-ruido-in .25s ease-out 4.62s both}
-@keyframes ts-anim-discriminador-ruido-di3{0%{stroke-dashoffset:100}100%{stroke-dashoffset:11.78}}
-.ts-anim-discriminador-ruido .di3{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di3 1.50s linear 3.98s both}
+@keyframes ts-anim-discriminador-ruido-di3{0%{stroke-dashoffset:100;opacity:1}100%{stroke-dashoffset:11.78;opacity:1}}
+.ts-anim-discriminador-ruido .di3{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di3 1.50s linear 3.98s both,ts-anim-discriminador-ruido-gone .05s linear 5.78s both}
 .ts-anim-discriminador-ruido .fa3{animation:ts-anim-discriminador-ruido-in .25s ease-out 5.48s both}
-@keyframes ts-anim-discriminador-ruido-di4{0%{stroke-dashoffset:100}100%{stroke-dashoffset:16.67}}
-.ts-anim-discriminador-ruido .di4{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di4 0.93s linear 5.13s both}
+@keyframes ts-anim-discriminador-ruido-di4{0%{stroke-dashoffset:100;opacity:1}100%{stroke-dashoffset:16.67;opacity:1}}
+.ts-anim-discriminador-ruido .di4{stroke-dasharray:100 200;animation:ts-anim-discriminador-ruido-di4 0.93s linear 5.13s both,ts-anim-discriminador-ruido-gone .05s linear 6.36s both}
 .ts-anim-discriminador-ruido .fa4{animation:ts-anim-discriminador-ruido-in .25s ease-out 6.06s both}
 </style>
 <defs><marker id="ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="ah-DA1B2E-34" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="34" markerHeight="34" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="ah-1F5FAD-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="ah-2E8540-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker><marker id="ah-3B3535-22" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="22" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker><marker id="ah-3B3535-22s" viewBox="0 0 10 10" refX="3" refY="5" markerWidth="22" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#3B3535"/></marker></defs>
 <rect x="0" y="0" width="2160" height="990" fill="#ffffff"/>
 <line x1="40" y1="128" x2="2120" y2="128" stroke="#D9D4CF" stroke-width="3"/>
-<text data-beat="1" x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
-<text data-beat="1" x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
+<text data-beat="1h" x="230" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">IMAGEN</text>
+<text data-beat="1s" x="230" y="106" font-size="34" fill="#6B6560" text-anchor="middle">2×2 píxeles</text>
 <text data-beat="2" x="780" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">ENTRADA</text>
 <text data-beat="2" x="780" y="106" font-size="34" fill="#6B6560" text-anchor="middle">x₁…x₄, sin cálculo</text>
 <text data-beat="3" x="1060" y="58" font-size="36" fill="#6B6560" text-anchor="middle" font-weight="bold" letter-spacing="2">OCULTA</text>
@@ -94,10 +97,10 @@
 <rect x="60" y="280" width="340" height="340" fill="none" stroke="#1F1E1E" stroke-width="6.0"/>
 </g>
 <g>
-<path class="di1" d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
-<path class="di2" d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
-<path class="di3" d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
-<path class="di4" d="M315.0,628.0 C305.0,820.0 520.0,630.0 723.2,645.1" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="di1" opacity="0" d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="di2" opacity="0" d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="di3" opacity="0" d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path class="di4" opacity="0" d="M315.0,628.0 C305.0,820.0 520.0,630.0 723.2,645.1" pathLength="100" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round"/>
 <path class="fa1" d="M145.0,272.0 C165.0,20.0 400.0,20.0 724.7,66.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
 <path class="fa2" d="M315.0,272.0 C385.0,170.0 580.0,220.0 724.9,255.4" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
 <path class="fa3" d="M145.0,628.0 C205.0,850.0 520.0,740.0 734.8,494.3" stroke="#1F1E1E" stroke-width="5" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-30)"/>
