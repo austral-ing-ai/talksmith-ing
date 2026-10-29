@@ -1,0 +1,21 @@
+  CLASE        PUNTAJE a           e^a                                 PROBABILIDAD
+
+  gato           -0,21   ------>   0,81  ---+               +---->   0,81 / 8  =  0,1
+                                            |               |
+  perro           0,47   ------>   1,60  ---+--->  Σ ≈ 8  --+---->   1,60 / 8  =  0,2
+                                            |               |
+  caballo         1,72   ------>   5,58  ---+               +---->   5,58 / 8  =  0,7
+                                                                     ----------------
+                                                                     suman           1
+
+<!-- ascii-note:
+intent: Softmax convierte los puntajes de la capa de salida en probabilidades que suman 1, y para eso mira los tres valores a la vez: cada exponencial se divide por el total de las tres.
+emphasize: «Σ ≈ 8», el total que junta las tres clases
+labels: e^a = exponencial del puntaje; decimales con coma
+animation:
+  1. Los puntajes «-0,21», «0,47» y «1,72» salen de la capa de salida, uno por clase: «gato», «perro», «caballo».
+  2. Cada puntaje pasa por «e^a» y se vuelve positivo: «0,81», «1,60», «5,58».
+  3. Los tres se suman en «Σ ≈ 8».
+  4. Cada uno se divide por ese total.
+  5. Salen «0,1», «0,2» y «0,7», que suman 1, con «caballo» como la clase más probable, y el diagrama queda completo.
+-->

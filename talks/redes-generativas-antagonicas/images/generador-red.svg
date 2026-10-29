@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1940 1100" width="1940" height="1100" font-family="Helvetica, Arial, sans-serif">
 <title>Generador</title>
-<desc>El Generador recibe z = 0.7 (deslizador de 0 a 1) y un Bias de valor 1, los conecta con pesos +1, -1, -1, +1 a cuatro neuronas sigmoide: σ(1.7) = 0.85, σ(-1.7) = 0.15, σ(-1.7) = 0.15 y σ(1.7) = 0.85, que forman la imagen 2×2 (0.85, 0.15 / 0.15, 0.85).</desc>
+<desc>El Generador recibe z = 0.7 (deslizador de 0 a 1) y lo conecta con pesos +1, −1, −1, +1 a cuatro neuronas sigmoide, cada una con su sesgo ±1: σ(0.7 + 1) = 0.85, σ(−0.7 − 1) = 0.15, σ(−0.7 − 1) = 0.15 y σ(0.7 + 1) = 0.85, que forman la imagen 2×2 (0.85, 0.15 / 0.15, 0.85).</desc>
 <defs><marker id="ah-DA1B2E-32" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="32" markerHeight="32" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="ah-1F5FAD-24" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="24" markerHeight="24" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="ah-1F1E1E-56" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="56" markerHeight="56" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="ah-1F1E1E-28" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="28" markerHeight="28" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker></defs>
 <rect x="0" y="0" width="1940" height="1100" fill="#ffffff"/>
 <line x1="40" y1="128" x2="1900" y2="128" stroke="#D9D4CF" stroke-width="3"/>
@@ -38,9 +38,9 @@
 <rect x="589.2" y="308.5" width="79.9" height="58.9" fill="#ffffff"/>
 <text x="629.2" y="360.3" font-size="62" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
 <rect x="590.0" y="400.6" width="79.9" height="58.9" fill="#ffffff"/>
-<text x="630.0" y="452.3" font-size="62" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
+<text x="630.0" y="452.3" font-size="62" fill="#1F5FAD" text-anchor="middle" font-weight="normal">−1</text>
 <rect x="609.6" y="501.6" width="79.9" height="58.9" fill="#ffffff"/>
-<text x="649.6" y="553.3" font-size="62" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
+<text x="649.6" y="553.3" font-size="62" fill="#1F5FAD" text-anchor="middle" font-weight="normal">−1</text>
 </g>
 
 
@@ -96,7 +96,7 @@
 <line x1="1740" y1="470" x2="1740" y2="790" stroke="#1F1E1E" stroke-width="2.8"/>
 <line x1="1580" y1="630" x2="1900" y2="630" stroke="#1F1E1E" stroke-width="2.8"/>
 <rect x="1580" y="470" width="320" height="320" fill="none" stroke="#1F1E1E" stroke-width="5.6"/>
-<path d="M955.0,174.0 C1080.0,30.0 1560.0,150.0 1654.8,444.0" stroke="#1F1E1E" stroke-width="13" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-56)"/>
+<path d="M955.0,174.0 C1060.0,40.0 1660.0,60.0 1654.8,444.0" stroke="#1F1E1E" stroke-width="13" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-56)"/>
 <path d="M960.0,400.0 C1120.0,260.0 1700.0,280.0 1815.3,453.0" stroke="#1F1E1E" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-28)"/>
 <path d="M960.0,680.0 C1150.0,830.0 1560.0,880.0 1653.4,805.2" stroke="#1F1E1E" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-28)"/>
 <path d="M955.0,906.0 C1200.0,1110.0 1700.0,1010.0 1811.7,814.6" stroke="#1F1E1E" stroke-width="13" fill="none" stroke-linecap="round" marker-end="url(#ah-1F1E1E-56)"/>

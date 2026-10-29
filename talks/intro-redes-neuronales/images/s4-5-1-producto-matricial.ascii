@@ -1,0 +1,26 @@
+        x                              W                                     h
+     (1 × 8)                        (8 × 9)                               (1 × 9)
+                                                                    antes de la activación
+
+                      +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                      |     |     |     |     |     |     |     |     |     |
+ [ x1  x2  ...  x8 ]  |col 1|col 2|col 3|col 4|col 5|col 6|col 7|col 8|col 9|  =  [ h1 | h2 | h3 | h4 | h5 | h6 | h7 | h8 | h9 ]
+                      |     |     |     |     |     |     |     |     |     |
+                      +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                              8 filas
+
+               1 × 8   ·   8 × 9   =   1 × 9
+                   |       |
+                   +-------+
+               tienen que coincidir
+
+<!-- ascii-note:
+intent: El producto x · W calcula la capa entera de una vez: cada uno de los 9 valores de h es x multiplicado por una columna de W, y las dimensiones encajan porque los dos 8 coinciden. h sale antes de la activación.
+emphasize: la llave «tienen que coincidir» entre los dos «8»
+labels: x = vector fila 1 × 8; W = matriz 8 × 9 (8 filas, 9 columnas); h = vector fila 1 × 9
+animation:
+  1. Aparecen «x» de «1 × 8» y «W» de «8 × 9»; se resaltan los dos «8» que tienen que coincidir.
+  2. «x» se cruza con «col 1» de «W» y el resultado llena la celda «h1».
+  3. Se repite con cada columna, de «col 2» a «col 9»: cada pasada llena una celda más de «h», y termina cuando no quedan columnas.
+  4. Con las nueve celdas llenas aparece «h» de «1 × 9», todavía «antes de la activación», y el diagrama queda completo.
+-->

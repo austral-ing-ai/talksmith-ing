@@ -1,0 +1,21 @@
+  ENTRADAS        PESOS
+
+  ( x1 ) -------- w1 --------+
+                             |
+  ( x2 ) -------- w2 --------+-----> (  Σ  ) -----> a = x · w + b
+                             |          ^
+  ( x3 ) -------- w3 --------+          |
+                                        b
+                                     (sesgo)
+
+<!-- ascii-note:
+intent: La parte lineal de una neurona y nada más: cada entrada se multiplica por su peso, los productos se suman en Σ, el sesgo b desplaza la suma y sale un único número a. Todavía sin no linealidad.
+emphasize: el nodo «Σ», donde todo se junta en un solo número
+labels: x1, x2, x3 = entradas; w1, w2, w3 = pesos; b = sesgo; a = salida lineal
+animation:
+  1. Aparecen las entradas «x1», «x2» y «x3», cada una con su valor.
+  2. Cada valor recorre su flecha y se multiplica por su peso «w1», «w2», «w3».
+  3. Los tres productos llegan a «Σ» y se suman en un solo número.
+  4. Entra el sesgo «b» desde abajo y desplaza ese número.
+  5. Sale «a = x · w + b», un único número, y el diagrama queda completo.
+-->

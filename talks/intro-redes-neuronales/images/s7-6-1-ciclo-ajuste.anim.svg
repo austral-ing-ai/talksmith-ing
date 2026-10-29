@@ -1,0 +1,87 @@
+<svg class="ts-anim-s7-6-1-ciclo-ajuste" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 569 478" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>El ciclo de ajuste</title>
+<desc>Extiende la 3.3, el ciclo externo contra el interno: elegir la configuración, entrenar, medir el error en validación y volver a elegir hasta que el error deja de mejorar.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s7-6-1-ciclo-ajuste .c1{animation:ts-anim-s7-6-1-ciclo-ajuste-in .5s ease-out .2s both}
+.ts-anim-s7-6-1-ciclo-ajuste .sub{animation:ts-anim-s7-6-1-ciclo-ajuste-in .5s ease-out .2s both,ts-anim-s7-6-1-ciclo-ajuste-out .4s ease-in 1s forwards,ts-anim-s7-6-1-ciclo-ajuste-in .5s ease-out 19.2s forwards}
+.ts-anim-s7-6-1-ciclo-ajuste .e1{animation:ts-anim-s7-6-1-ciclo-ajuste-in .5s ease-out 1.6s both}
+.ts-anim-s7-6-1-ciclo-ajuste .p1{animation:ts-anim-s7-6-1-ciclo-ajuste-in .5s ease-out 3.3s both}
+.ts-anim-s7-6-1-ciclo-ajuste .r1{animation:ts-anim-s7-6-1-ciclo-ajuste-in .5s ease-out 4s both}
+.ts-anim-s7-6-1-ciclo-ajuste .loop{animation:ts-anim-s7-6-1-ciclo-ajuste-in .5s ease-out 4.8s both}
+.ts-anim-s7-6-1-ciclo-ajuste .x1{animation:ts-anim-s7-6-1-ciclo-ajuste-in .5s ease-out 16.4s both}
+.ts-anim-s7-6-1-ciclo-ajuste .m1{animation:ts-anim-s7-6-1-ciclo-ajuste-in .5s ease-out 16.7s both}
+.ts-anim-s7-6-1-ciclo-ajuste .v1{animation:ts-anim-s7-6-1-ciclo-ajuste-in .4s ease-out 1s both,ts-anim-s7-6-1-ciclo-ajuste-out .3s ease-in 6.5s forwards}
+.ts-anim-s7-6-1-ciclo-ajuste .v2{animation:ts-anim-s7-6-1-ciclo-ajuste-in .4s ease-out 6.6s both,ts-anim-s7-6-1-ciclo-ajuste-out .3s ease-in 12s forwards}
+.ts-anim-s7-6-1-ciclo-ajuste .v3{animation:ts-anim-s7-6-1-ciclo-ajuste-in .4s ease-out 12.1s both,ts-anim-s7-6-1-ciclo-ajuste-out .4s ease-in 19.2s forwards}
+.ts-anim-s7-6-1-ciclo-ajuste .ea{animation:ts-anim-s7-6-1-ciclo-ajuste-in .3s ease-out 4.6s both,ts-anim-s7-6-1-ciclo-ajuste-out .3s ease-in 6.3s forwards}
+.ts-anim-s7-6-1-ciclo-ajuste .eb{animation:ts-anim-s7-6-1-ciclo-ajuste-in .3s ease-out 10s both,ts-anim-s7-6-1-ciclo-ajuste-out .3s ease-in 11.7s forwards}
+.ts-anim-s7-6-1-ciclo-ajuste .ec{animation:ts-anim-s7-6-1-ciclo-ajuste-in .3s ease-out 15.4s both,ts-anim-s7-6-1-ciclo-ajuste-out .4s ease-in 19.2s forwards}
+.ts-anim-s7-6-1-ciclo-ajuste .ilu{animation:ts-anim-s7-6-1-ciclo-ajuste-in .4s ease-out 1s both}
+.ts-anim-s7-6-1-ciclo-ajuste .best{animation:ts-anim-s7-6-1-ciclo-ajuste-in .5s ease-out 18s both}
+.ts-anim-s7-6-1-ciclo-ajuste .t1{animation:ts-anim-s7-6-1-ciclo-ajuste-tok 5s linear 2s both}
+.ts-anim-s7-6-1-ciclo-ajuste .t1 .ball{animation:ts-anim-s7-6-1-ciclo-ajuste-path1 5s linear 2s 1 normal both}
+.ts-anim-s7-6-1-ciclo-ajuste .t2{animation:ts-anim-s7-6-1-ciclo-ajuste-tok 5s linear 7.4s both}
+.ts-anim-s7-6-1-ciclo-ajuste .t2 .ball{animation:ts-anim-s7-6-1-ciclo-ajuste-path2 5s linear 7.4s 1 normal both}
+.ts-anim-s7-6-1-ciclo-ajuste .t3{animation:ts-anim-s7-6-1-ciclo-ajuste-tok 6s linear 12.8s both}
+.ts-anim-s7-6-1-ciclo-ajuste .t3 .ball{animation:ts-anim-s7-6-1-ciclo-ajuste-path3 6s linear 12.8s 1 normal both}
+@keyframes ts-anim-s7-6-1-ciclo-ajuste-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s7-6-1-ciclo-ajuste-out{from{opacity:1}to{opacity:0}}
+@keyframes ts-anim-s7-6-1-ciclo-ajuste-tok{0%{opacity:0}4%,96%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s7-6-1-ciclo-ajuste *{animation:none}}
+@keyframes ts-anim-s7-6-1-ciclo-ajuste-path1{0.00%{transform:translate(154.0px,64.0px)}1.67%{transform:translate(154.0px,67.6px)}3.33%{transform:translate(154.0px,78.4px)}5.00%{transform:translate(154.0px,92.3px)}6.67%{transform:translate(154.0px,101.8px)}8.33%{transform:translate(154.0px,104.1px)}10.00%{transform:translate(154.0px,108.5px)}11.67%{transform:translate(154.0px,119.4px)}13.33%{transform:translate(154.0px,134.7px)}15.00%{transform:translate(154.0px,148.7px)}16.67%{transform:translate(154.0px,157.0px)}18.33%{transform:translate(154.0px,159.0px)}28.33%{transform:translate(154.0px,159.3px)}30.00%{transform:translate(154.0px,169.3px)}31.67%{transform:translate(154.0px,193.3px)}33.33%{transform:translate(154.0px,220.5px)}35.00%{transform:translate(154.0px,236.5px)}36.67%{transform:translate(154.0px,239.0px)}41.67%{transform:translate(154.0px,239.0px)}43.33%{transform:translate(154.0px,241.8px)}45.00%{transform:translate(154.0px,254.0px)}46.67%{transform:translate(154.0px,274.4px)}48.33%{transform:translate(154.0px,296.6px)}50.00%{transform:translate(154.0px,312.5px)}51.67%{transform:translate(154.0px,318.8px)}60.00%{transform:translate(154.0px,319.0px)}61.67%{transform:translate(157.8px,319.0px)}63.33%{transform:translate(169.8px,319.0px)}65.00%{transform:translate(190.2px,319.0px)}66.67%{transform:translate(219.4px,319.0px)}68.33%{transform:translate(257.0px,319.0px)}70.00%{transform:translate(302.0px,319.0px)}71.67%{transform:translate(352.3px,319.0px)}73.33%{transform:translate(405.1px,319.0px)}75.00%{transform:translate(420.0px,281.7px)}76.67%{transform:translate(420.0px,233.2px)}78.33%{transform:translate(420.0px,191.0px)}80.00%{transform:translate(420.0px,156.7px)}81.67%{transform:translate(420.0px,131.0px)}83.33%{transform:translate(420.0px,114.0px)}85.00%{transform:translate(420.0px,105.4px)}86.67%{transform:translate(420.0px,101.8px)}88.33%{transform:translate(420.0px,78.4px)}90.00%{transform:translate(420.0px,64.0px)}91.67%{transform:translate(405.1px,64.0px)}93.33%{transform:translate(358.3px,64.0px)}96.67%{transform:translate(215.7px,64.0px)}98.33%{transform:translate(168.9px,64.0px)}100.00%{transform:translate(154.0px,64.0px)}}
+@keyframes ts-anim-s7-6-1-ciclo-ajuste-path2{0.00%{transform:translate(154.0px,64.0px)}1.67%{transform:translate(154.0px,67.6px)}3.33%{transform:translate(154.0px,78.4px)}5.00%{transform:translate(154.0px,92.3px)}6.67%{transform:translate(154.0px,101.8px)}8.33%{transform:translate(154.0px,104.1px)}10.00%{transform:translate(154.0px,108.5px)}11.67%{transform:translate(154.0px,119.4px)}13.33%{transform:translate(154.0px,134.7px)}15.00%{transform:translate(154.0px,148.7px)}16.67%{transform:translate(154.0px,157.0px)}18.33%{transform:translate(154.0px,159.0px)}28.33%{transform:translate(154.0px,159.3px)}30.00%{transform:translate(154.0px,169.3px)}31.67%{transform:translate(154.0px,193.3px)}33.33%{transform:translate(154.0px,220.5px)}35.00%{transform:translate(154.0px,236.5px)}36.67%{transform:translate(154.0px,239.0px)}41.67%{transform:translate(154.0px,239.0px)}43.33%{transform:translate(154.0px,241.8px)}45.00%{transform:translate(154.0px,254.0px)}46.67%{transform:translate(154.0px,274.4px)}48.33%{transform:translate(154.0px,296.6px)}50.00%{transform:translate(154.0px,312.5px)}51.67%{transform:translate(154.0px,318.8px)}60.00%{transform:translate(154.0px,319.0px)}61.67%{transform:translate(157.8px,319.0px)}63.33%{transform:translate(169.8px,319.0px)}65.00%{transform:translate(190.2px,319.0px)}66.67%{transform:translate(219.4px,319.0px)}68.33%{transform:translate(257.0px,319.0px)}70.00%{transform:translate(302.0px,319.0px)}71.67%{transform:translate(352.3px,319.0px)}73.33%{transform:translate(405.1px,319.0px)}75.00%{transform:translate(420.0px,281.7px)}76.67%{transform:translate(420.0px,233.2px)}78.33%{transform:translate(420.0px,191.0px)}80.00%{transform:translate(420.0px,156.7px)}81.67%{transform:translate(420.0px,131.0px)}83.33%{transform:translate(420.0px,114.0px)}85.00%{transform:translate(420.0px,105.4px)}86.67%{transform:translate(420.0px,101.8px)}88.33%{transform:translate(420.0px,78.4px)}90.00%{transform:translate(420.0px,64.0px)}91.67%{transform:translate(405.1px,64.0px)}93.33%{transform:translate(358.3px,64.0px)}96.67%{transform:translate(215.7px,64.0px)}98.33%{transform:translate(168.9px,64.0px)}100.00%{transform:translate(154.0px,64.0px)}}
+@keyframes ts-anim-s7-6-1-ciclo-ajuste-path3{0.00%{transform:translate(154.0px,64.0px)}1.67%{transform:translate(154.0px,68.7px)}3.33%{transform:translate(154.0px,82.4px)}5.00%{transform:translate(154.0px,97.2px)}6.67%{transform:translate(154.0px,103.8px)}8.33%{transform:translate(154.0px,107.1px)}10.00%{transform:translate(154.0px,120.1px)}11.67%{transform:translate(154.0px,139.3px)}13.33%{transform:translate(154.0px,154.1px)}15.00%{transform:translate(154.0px,159.0px)}23.33%{transform:translate(154.0px,159.4px)}25.00%{transform:translate(154.0px,172.6px)}26.67%{transform:translate(154.0px,202.3px)}28.33%{transform:translate(154.0px,229.7px)}30.00%{transform:translate(154.0px,239.0px)}35.00%{transform:translate(154.0px,239.0px)}36.67%{transform:translate(154.0px,246.1px)}38.33%{transform:translate(154.0px,267.7px)}40.00%{transform:translate(154.0px,295.6px)}41.67%{transform:translate(154.0px,314.5px)}43.33%{transform:translate(154.0px,319.0px)}75.00%{transform:translate(154.0px,319.0px)}76.67%{transform:translate(154.0px,323.8px)}78.33%{transform:translate(154.0px,338.7px)}81.67%{transform:translate(154.0px,384.3px)}83.33%{transform:translate(154.0px,399.2px)}85.00%{transform:translate(154.0px,404.0px)}86.67%{transform:translate(154.0px,404.6px)}88.33%{transform:translate(154.0px,406.5px)}90.00%{transform:translate(154.0px,409.8px)}95.00%{transform:translate(154.0px,423.2px)}96.67%{transform:translate(154.0px,426.5px)}98.33%{transform:translate(154.0px,428.4px)}100.00%{transform:translate(154.0px,429.0px)}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0 L14,7 L0,14 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="569" height="478" fill="#ffffff"/>
+<!-- tokens: drawn under the boxes, so each box swallows the configuration while it works on it -->
+<g class="t1" opacity="0"><g class="ball"><circle r="8" fill="#3B3535" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="t2" opacity="0"><g class="ball"><circle r="8" fill="#3B3535" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="t3" opacity="0"><g class="ball"><circle r="8" fill="#3B3535" stroke="#ffffff" stroke-width="2"/></g></g>
+<g stroke="#D8D2CE" stroke-width="1.5" fill="#F2EEEE">
+<rect class="c1" x="24" y="24" width="450" height="80" rx="8"/>
+<rect class="e1" x="24" y="134" width="260" height="50" rx="8"/>
+<rect class="p1" x="24" y="214" width="260" height="50" rx="8"/>
+<rect class="r1" x="24" y="294" width="260" height="50" rx="8"/>
+<rect class="m1" x="24" y="404" width="260" height="50" rx="8" stroke="#3B3535"/>
+</g>
+<g text-anchor="middle" font-size="18">
+<text class="c1" x="249" y="57" font-size="20" font-weight="bold" fill="#1F1E1E">Configuración</text>
+<text class="sub" x="249" y="86" font-size="15">ancho · profundidad · tasa de aprendizaje (η)</text>
+<text class="e1" x="154" y="165">Entrenamiento</text>
+<text class="p1" x="154" y="245">Parámetros del modelo</text>
+<text class="r1" x="154" y="325">Error de validación</text>
+<text class="m1" x="154" y="435" font-weight="bold" fill="#1F1E1E">Mejor configuración</text>
+</g>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line class="e1" x1="154" y1="104" x2="154" y2="134"/>
+<line class="p1" x1="154" y1="184" x2="154" y2="214"/>
+<line class="r1" x1="154" y1="264" x2="154" y2="294"/>
+<line class="x1" x1="154" y1="344" x2="154" y2="404"/>
+</g>
+<text class="x1" x="166" y="379" font-size="14" font-style="italic">cuando el error deja de mejorar</text>
+<path class="loop" d="M284,319 H420 V104" stroke="#DA1B2E" stroke-width="3" fill="none" stroke-linejoin="round" marker-end="url(#ahr)"/>
+<g class="loop" font-size="15" font-weight="bold" fill="#DA1B2E">
+<text x="434" y="196">cambiar la</text>
+<text x="434" y="216">configuración y</text>
+<text x="434" y="236">volver a probar</text>
+</g>
+<!-- narration: one concrete configuration per lap, written where the generic labels sit -->
+<g fill="#3B3535">
+<g class="v1" opacity="0"><text x="40" y="57" font-size="14" font-style="italic">vuelta 1</text><text x="249" y="86" font-size="15" font-weight="bold" text-anchor="middle">ancho 32 · profundidad 1 · η = 0,1</text></g>
+<g class="v2" opacity="0"><text x="40" y="57" font-size="14" font-style="italic">vuelta 2</text><text x="249" y="86" font-size="15" font-weight="bold" text-anchor="middle">ancho 64 · profundidad 2 · η = 0,05</text></g>
+<g class="v3" opacity="0"><text x="40" y="57" font-size="14" font-style="italic">vuelta 3</text><text x="249" y="86" font-size="15" font-weight="bold" text-anchor="middle">ancho 128 · profundidad 3 · η = 0,05</text></g>
+</g>
+<!-- narration: the validation error each lap measures -->
+<g class="ea" opacity="0"><rect x="298" y="282" width="108" height="24" rx="12" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/><text x="352" y="299" font-size="14" font-weight="bold" fill="#3B3535" text-anchor="middle">error 0,31</text></g>
+<g class="eb" opacity="0"><rect x="298" y="282" width="108" height="24" rx="12" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/><text x="352" y="299" font-size="14" font-weight="bold" fill="#3B3535" text-anchor="middle">error 0,24</text>
+<g font-size="13" font-style="italic" text-anchor="middle"><text x="352" y="340">mejora</text><text x="352" y="356">(antes 0,31)</text></g></g>
+<g class="ec" opacity="0"><rect x="298" y="282" width="108" height="24" rx="12" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/><text x="352" y="299" font-size="14" font-weight="bold" fill="#3B3535" text-anchor="middle">error 0,25</text>
+<g font-size="13" font-style="italic" text-anchor="middle"><text x="352" y="340">ya no mejora</text><text x="352" y="356">(antes 0,24)</text></g></g>
+<!-- narration: the configuration that is kept is the one with the lowest error -->
+<g class="best" opacity="0" fill="#3B3535"><text x="300" y="426" font-size="14" font-weight="bold">= la de menor error (0,24)</text><text x="300" y="445" font-size="13">ancho 64 · profundidad 2 · η = 0,05</text></g>
+<text class="ilu" opacity="0" x="545" y="470" font-size="12" font-style="italic" fill="#3B3535" text-anchor="end">valores ilustrativos</text>
+</svg>

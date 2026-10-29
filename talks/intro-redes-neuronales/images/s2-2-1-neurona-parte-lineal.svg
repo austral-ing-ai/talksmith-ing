@@ -1,0 +1,53 @@
+<!-- talksmith-ascii-sha256: 61f6a2c28584dfbb2ea8088c7bf2e76bc1384691a0f83784441a079d910277af -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 766 356" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>La neurona: primero, una combinación lineal</title>
+<desc>Cada entrada se multiplica por su peso, los productos se suman en un solo nodo, el sesgo desplaza la suma y sale un único número: la parte lineal de la neurona, todavía sin no linealidad.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="766" height="356" fill="#ffffff"/>
+<g transform="translate(-8,-10)">
+<g font-size="14" font-weight="bold" fill="#1F1E1E" text-anchor="middle" letter-spacing="1">
+<text x="70" y="44">ENTRADAS</text>
+<text x="220" y="44">PESOS</text>
+</g>
+<g stroke="#3B3535" stroke-width="2" fill="none">
+<line x1="96" y1="90" x2="188" y2="90"/>
+<line x1="96" y1="170" x2="188" y2="170"/>
+<line x1="96" y1="250" x2="188" y2="250"/>
+<line x1="252" y1="90" x2="444.1" y2="157.4" marker-end="url(#ah)"/>
+<line x1="252" y1="170" x2="442" y2="170" marker-end="url(#ah)"/>
+<line x1="252" y1="250" x2="444.1" y2="182.6" marker-end="url(#ah)"/>
+<line x1="480" y1="266" x2="480" y2="208" marker-end="url(#ah)"/>
+<line x1="518" y1="170" x2="590" y2="170" marker-end="url(#ah)"/>
+</g>
+<g fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5">
+<circle cx="70" cy="90" r="26"/>
+<circle cx="70" cy="170" r="26"/>
+<circle cx="70" cy="250" r="26"/>
+<rect x="188" y="73" width="64" height="34" rx="17"/>
+<rect x="188" y="153" width="64" height="34" rx="17"/>
+<rect x="188" y="233" width="64" height="34" rx="17"/>
+<circle cx="480" cy="290" r="24"/>
+<rect x="590" y="145" width="160" height="50" rx="8"/>
+</g>
+<circle cx="480" cy="170" r="38" fill="#DA1B2E"/>
+<path d="M492,159 L492,154 L467,154 L482,170 L467,186 L492,186 L492,181" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="miter" stroke-linecap="butt"/>
+<g font-size="22" fill="#1F1E1E">
+<text x="60.5" y="178">x</text><text x="72" y="183" font-size="14">2</text>
+<text x="60.5" y="258">x</text><text x="72" y="263" font-size="14">3</text>
+<text x="60.5" y="98">x</text><text x="70.6" y="103" font-size="14">1</text>
+<text x="208" y="98">w</text><text x="222.3" y="103" font-size="14">1</text>
+<text x="208" y="178">w</text><text x="224.5" y="183" font-size="14">2</text>
+<text x="208" y="258">w</text><text x="224.5" y="263" font-size="14">3</text>
+<text x="474" y="298">b</text>
+<text x="610.5" y="178">a = x</text>
+<text x="675" y="178">w + b</text>
+</g>
+<circle cx="667" cy="171" r="2.2" fill="#1F1E1E"/>
+<g font-size="15" text-anchor="middle">
+<text x="480" y="338">sesgo</text>
+<text x="670" y="220">salida lineal</text>
+</g>
+</g>
+</svg>

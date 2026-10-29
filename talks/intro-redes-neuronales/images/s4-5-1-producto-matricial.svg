@@ -1,0 +1,152 @@
+<!-- talksmith-ascii-sha256: ee85516ff3af21e36bd919b552b760ee66a3b1ad6c89e2fc73cadee49960840a -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 944 364" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" text-anchor="middle">
+<title>El cálculo de la capa es un producto matricial</title>
+<desc>El vector de entrada x (1 × 8) multiplica a la matriz de pesos W (8 × 9) y da el vector h (1 × 9) de la capa oculta, antes de aplicar la activación; las dimensiones encajan porque los dos 8 coinciden.</desc>
+<rect width="944" height="364" fill="#ffffff"/>
+<text x="96" y="42" font-size="24" font-weight="bold" fill="#1F1E1E">x</text>
+<text x="96" y="62" font-size="14">1 × 8</text>
+<text x="370" y="42" font-size="24" font-weight="bold" fill="#1F1E1E">W</text>
+<text x="370" y="62" font-size="14">8 × 9</text>
+<text x="758" y="42" font-size="24" font-weight="bold" fill="#1F1E1E">h</text>
+<text x="758" y="62" font-size="14">1 × 9</text>
+<text x="758" y="80" font-size="13" font-style="italic">antes de la activación</text>
+<rect x="24" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="43.0" y="175" font-size="15" text-anchor="end">x</text>
+<text x="43.5" y="179" font-size="10" text-anchor="start">1</text>
+<rect x="60" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="79.0" y="175" font-size="15" text-anchor="end">x</text>
+<text x="79.5" y="179" font-size="10" text-anchor="start">2</text>
+<rect x="96" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="114.0" y="175" font-size="15">...</text>
+<rect x="132" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="151.0" y="175" font-size="15" text-anchor="end">x</text>
+<text x="151.5" y="179" font-size="10" text-anchor="start">8</text>
+<rect x="24" y="153" width="144" height="34" fill="none" stroke="#3B3535" stroke-width="1.2"/>
+<rect x="208" y="106" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="208" y="122" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="208" y="138" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="208" y="154" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="208" y="170" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="208" y="186" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="208" y="202" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="208" y="218" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="226.0" y="99" font-size="11">col 1</text>
+<rect x="244" y="106" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="244" y="122" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="244" y="138" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="244" y="154" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="244" y="170" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="244" y="186" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="244" y="202" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="244" y="218" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="262.0" y="99" font-size="11">col 2</text>
+<rect x="280" y="106" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="280" y="122" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="280" y="138" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="280" y="154" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="280" y="170" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="280" y="186" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="280" y="202" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="280" y="218" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="298.0" y="99" font-size="11">col 3</text>
+<rect x="316" y="106" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="316" y="122" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="316" y="138" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="316" y="154" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="316" y="170" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="316" y="186" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="316" y="202" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="316" y="218" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="334.0" y="99" font-size="11">col 4</text>
+<rect x="352" y="106" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="352" y="122" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="352" y="138" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="352" y="154" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="352" y="170" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="352" y="186" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="352" y="202" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="352" y="218" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="370.0" y="99" font-size="11">col 5</text>
+<rect x="388" y="106" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="388" y="122" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="388" y="138" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="388" y="154" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="388" y="170" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="388" y="186" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="388" y="202" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="388" y="218" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="406.0" y="99" font-size="11">col 6</text>
+<rect x="424" y="106" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="424" y="122" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="424" y="138" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="424" y="154" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="424" y="170" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="424" y="186" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="424" y="202" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="424" y="218" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="442.0" y="99" font-size="11">col 7</text>
+<rect x="460" y="106" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="460" y="122" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="460" y="138" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="460" y="154" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="460" y="170" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="460" y="186" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="460" y="202" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="460" y="218" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="478.0" y="99" font-size="11">col 8</text>
+<rect x="496" y="106" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="496" y="122" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="496" y="138" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="496" y="154" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="496" y="170" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="496" y="186" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="496" y="202" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<rect x="496" y="218" width="36" height="16" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="514.0" y="99" font-size="11">col 9</text>
+<rect x="208" y="106" width="324" height="128" fill="none" stroke="#3B3535" stroke-width="1.2"/>
+<text x="370" y="254" font-size="12">8 filas, 9 columnas</text>
+<circle cx="188" cy="171" r="3.2" fill="#3B3535"/>
+<text x="564" y="179" font-size="28">=</text>
+<rect x="596" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="615.0" y="175" font-size="15" text-anchor="end">h</text>
+<text x="615.5" y="179" font-size="10" text-anchor="start">1</text>
+<rect x="632" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="651.0" y="175" font-size="15" text-anchor="end">h</text>
+<text x="651.5" y="179" font-size="10" text-anchor="start">2</text>
+<rect x="668" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="687.0" y="175" font-size="15" text-anchor="end">h</text>
+<text x="687.5" y="179" font-size="10" text-anchor="start">3</text>
+<rect x="704" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="723.0" y="175" font-size="15" text-anchor="end">h</text>
+<text x="723.5" y="179" font-size="10" text-anchor="start">4</text>
+<rect x="740" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="759.0" y="175" font-size="15" text-anchor="end">h</text>
+<text x="759.5" y="179" font-size="10" text-anchor="start">5</text>
+<rect x="776" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="795.0" y="175" font-size="15" text-anchor="end">h</text>
+<text x="795.5" y="179" font-size="10" text-anchor="start">6</text>
+<rect x="812" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="831.0" y="175" font-size="15" text-anchor="end">h</text>
+<text x="831.5" y="179" font-size="10" text-anchor="start">7</text>
+<rect x="848" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="867.0" y="175" font-size="15" text-anchor="end">h</text>
+<text x="867.5" y="179" font-size="10" text-anchor="start">8</text>
+<rect x="884" y="153" width="36" height="34" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="903.0" y="175" font-size="15" text-anchor="end">h</text>
+<text x="903.5" y="179" font-size="10" text-anchor="start">9</text>
+<rect x="596" y="153" width="324" height="34" fill="none" stroke="#3B3535" stroke-width="1.2"/>
+<text x="361" y="296" font-size="20">1</text>
+<text x="379" y="296" font-size="20">×</text>
+<text x="397" y="296" font-size="20" font-weight="bold" fill="#DA1B2E">8</text>
+<text x="424" y="296" font-size="20">·</text>
+<text x="451" y="296" font-size="20" font-weight="bold" fill="#DA1B2E">8</text>
+<text x="469" y="296" font-size="20">×</text>
+<text x="487" y="296" font-size="20">9</text>
+<text x="517" y="296" font-size="20">=</text>
+<text x="547" y="296" font-size="20">1</text>
+<text x="565" y="296" font-size="20">×</text>
+<text x="583" y="296" font-size="20">9</text>
+<path d="M397 303 V313 H451 V303" fill="none" stroke="#DA1B2E" stroke-width="2" stroke-linejoin="round"/>
+<path d="M424 313 V319" fill="none" stroke="#DA1B2E" stroke-width="2"/>
+<text x="424" y="336" font-size="14" font-weight="bold" fill="#DA1B2E">tienen que coincidir</text>
+</svg>

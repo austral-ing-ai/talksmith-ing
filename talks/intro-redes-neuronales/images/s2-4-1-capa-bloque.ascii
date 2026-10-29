@@ -1,0 +1,19 @@
+             +----------------------------- CAPA -----------------------------+
+             |                                                                |
+ Entrada     |    Combinación lineal              No linealidad               |    Salida               Siguiente capa
+[ vector ] --+--> [   x · w + b    ] ---------->  [     f( )     ] -----------+--> [ vector ] ---------> [  entrada  ]
+             |    un número por unidad            uno por uno                 |
+             |                                                                |
+             +----------------------------------------------------------------+
+
+<!-- ascii-note:
+intent: Una capa es el par combinación lineal más no linealidad: toma un vector, devuelve otro, y ese vector es la entrada de la capa siguiente.
+emphasize: el recuadro «CAPA» que encierra los dos pasos
+labels: Entrada y Salida son vectores; f( ) es la no linealidad, aplicada a cada número
+animation:
+  1. Un vector entra por «Entrada».
+  2. Pasa por «Combinación lineal» («x · w + b») y sale un número por unidad.
+  3. «No linealidad» transforma cada uno de esos números, uno por uno.
+  4. Sale un vector nuevo por «Salida», y el recuadro «CAPA» se marca alrededor de los dos pasos.
+  5. Ese vector entra a «Siguiente capa» como su entrada, y el diagrama queda completo.
+-->

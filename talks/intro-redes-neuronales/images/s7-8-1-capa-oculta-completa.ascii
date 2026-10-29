@@ -1,0 +1,34 @@
+                         CAPA DE ENTRADA      x · W  (8 × 9)       CAPA OCULTA
+                                            72 conexiones a la vez
+
+  temperatura media       ( x1 ) ---\ /---\ /---\ /---\ /---> ( h1 )
+                                     X     X     X     X
+  temperatura máxima      ( x2 ) ---/ \---/ \---/ \---/ \---> ( h2 )
+                                     X     X     X     X
+  temperatura mínima      ( x3 ) ---\ /---\ /---\ /---\ /---> ( h3 )
+                                     X     X     X     X
+  humedad                 ( x4 ) ---/ \---/ \---/ \---/ \---> ( h4 )
+                                     X     X     X     X
+  precipitación           ( x5 ) ---\ /---\ /---\ /---\ /---> ( h5 )  <-- columna 5 de W: w15 ... w85
+                                     X     X     X     X
+  presión                 ( x6 ) ---/ \---/ \---/ \---/ \---> ( h6 )
+                                     X     X     X     X
+  nubosidad               ( x7 ) ---\ /---\ /---\ /---\ /---> ( h7 )
+                                     X     X     X     X
+  visibilidad             ( x8 ) ---/ \---/ \---/ \---/ \---> ( h8 )
+                                                         \
+                                                          \-> ( h9 )
+                                                                 |
+                                                                 v
+                                                            activación
+
+<!-- ascii-note:
+intent: Una capa oculta entera se calcula de una vez: cada una de las ocho entradas se conecta con cada una de las nueve unidades (72 conexiones, todas a la vez, con un solo producto x · W), y después viene la activación. La malla del ASCII resume las 72 conexiones: en el SVG van las 72 líneas, cada entrada con cada unidad oculta.
+emphasize: la unidad «h5» con sus ocho conexiones de entrada, su «columna 5 de W»
+labels: x1 ... x8 = las ocho variables del clima; h1 ... h9 = unidades ocultas; w15 ... w85 = pesos de cada entrada a h5 (primer índice la entrada, segundo la unidad oculta)
+animation:
+  1. Las ocho variables entran por «x1» … «x8».
+  2. Las 72 conexiones hacia la «CAPA OCULTA» se encienden a la vez, no una unidad después de otra.
+  3. Las nueve unidades «h1» … «h9» reciben su suma ponderada en el mismo instante; «h5» se destaca con su «columna 5 de W»: las mismas ocho entradas, con otros pesos.
+  4. Sobre las nueve unidades se aplica la «activación», y el diagrama queda completo.
+-->

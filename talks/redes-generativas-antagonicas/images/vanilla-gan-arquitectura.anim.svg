@@ -1,0 +1,246 @@
+<svg class="ts-anim-vanilla-gan-arquitectura" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 990 370" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Arquitectura de una Vanilla GAN</title>
+<desc>Redibujo vectorial del diagrama del slide 15 del pptx original (AIG4B Clase 8), con las mismas piezas: el ruido z entra al Generador (G), que produce una muestra falsa; los datos reales aportan una muestra real; el Discriminador (D) recibe ambas y decide si es real o falsa; esa decisión da la pérdida de G y la pérdida de D, que vuelven para actualizar cada red. La salida del D es un veredicto, la probabilidad de que la imagen sea real; no es una bifurcación: la pérdida de G usa los veredictos sobre las generadas y la de D los veredictos sobre reales y generadas.</desc>
+<style>/* talksmith-animation */
+.ts-anim-vanilla-gan-arquitectura .b-z{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 0.20s both}
+.ts-anim-vanilla-gan-arquitectura .tk1{animation:ts-anim-vanilla-gan-arquitectura-tk1-op 1.00s linear 1.00s both}
+.ts-anim-vanilla-gan-arquitectura .tk1 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk1-mv 0.70s linear 1.00s both}
+.ts-anim-vanilla-gan-arquitectura .dr2{animation:ts-anim-vanilla-gan-arquitectura-dr2 0.73s linear 1.17s both}
+.ts-anim-vanilla-gan-arquitectura .c2{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 1.70s both}
+.ts-anim-vanilla-gan-arquitectura .b-g{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 1.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk3{animation:ts-anim-vanilla-gan-arquitectura-tk3-op 0.90s linear 2.40s both}
+.ts-anim-vanilla-gan-arquitectura .tk3 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk3-mv 0.60s linear 2.40s both}
+.ts-anim-vanilla-gan-arquitectura .dr4{animation:ts-anim-vanilla-gan-arquitectura-dr4 0.66s linear 2.54s both}
+.ts-anim-vanilla-gan-arquitectura .c4{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 3.00s both}
+.ts-anim-vanilla-gan-arquitectura .b-falsa{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 3.00s both}
+.ts-anim-vanilla-gan-arquitectura .b-datos{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 4.00s both}
+.ts-anim-vanilla-gan-arquitectura .tk5{animation:ts-anim-vanilla-gan-arquitectura-tk5-op 1.10s linear 4.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk5 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk5-mv 0.80s linear 4.70s both}
+.ts-anim-vanilla-gan-arquitectura .dr6{animation:ts-anim-vanilla-gan-arquitectura-dr6 0.89s linear 4.81s both}
+.ts-anim-vanilla-gan-arquitectura .c6{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 5.50s both}
+.ts-anim-vanilla-gan-arquitectura .b-real{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 5.50s both}
+.ts-anim-vanilla-gan-arquitectura .tk7{animation:ts-anim-vanilla-gan-arquitectura-tk7-op 1.10s linear 6.40s both}
+.ts-anim-vanilla-gan-arquitectura .tk7 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk7-mv 0.80s linear 6.40s both}
+.ts-anim-vanilla-gan-arquitectura .dr8{animation:ts-anim-vanilla-gan-arquitectura-dr8 0.88s linear 6.52s both}
+.ts-anim-vanilla-gan-arquitectura .c8{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 7.20s both}
+.ts-anim-vanilla-gan-arquitectura .tk9{animation:ts-anim-vanilla-gan-arquitectura-tk9-op 1.10s linear 6.40s both}
+.ts-anim-vanilla-gan-arquitectura .tk9 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk9-mv 0.80s linear 6.40s both}
+.ts-anim-vanilla-gan-arquitectura .dr10{animation:ts-anim-vanilla-gan-arquitectura-dr10 0.88s linear 6.52s both}
+.ts-anim-vanilla-gan-arquitectura .c10{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 7.20s both}
+.ts-anim-vanilla-gan-arquitectura .b-d{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 7.20s both}
+.ts-anim-vanilla-gan-arquitectura .tk11{animation:ts-anim-vanilla-gan-arquitectura-tk11-op 0.90s linear 8.10s both}
+.ts-anim-vanilla-gan-arquitectura .tk11 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk11-mv 0.60s linear 8.10s both}
+.ts-anim-vanilla-gan-arquitectura .dr12{animation:ts-anim-vanilla-gan-arquitectura-dr12 0.68s linear 8.22s both}
+.ts-anim-vanilla-gan-arquitectura .c12{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 8.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk13{animation:ts-anim-vanilla-gan-arquitectura-tk13-op 0.90s linear 8.10s both}
+.ts-anim-vanilla-gan-arquitectura .tk13 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk13-mv 0.60s linear 8.10s both}
+.ts-anim-vanilla-gan-arquitectura .b-v{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 8.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk14{animation:ts-anim-vanilla-gan-arquitectura-tk14-op 1.50s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk14 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk14-mv 1.20s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .dr15{animation:ts-anim-vanilla-gan-arquitectura-dr15 1.33s linear 9.77s both}
+.ts-anim-vanilla-gan-arquitectura .c15{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 10.90s both}
+.ts-anim-vanilla-gan-arquitectura .tk16{animation:ts-anim-vanilla-gan-arquitectura-tk16-op 1.50s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk16 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk16-mv 1.20s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .dr17{animation:ts-anim-vanilla-gan-arquitectura-dr17 1.33s linear 9.77s both}
+.ts-anim-vanilla-gan-arquitectura .c17{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 10.90s both}
+.ts-anim-vanilla-gan-arquitectura .tk18{animation:ts-anim-vanilla-gan-arquitectura-tk18-op 1.50s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .tk18 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk18-mv 1.20s linear 9.70s both}
+.ts-anim-vanilla-gan-arquitectura .b-loss{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 10.90s both}
+.ts-anim-vanilla-gan-arquitectura .b-vlab{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 11.60s both}
+.ts-anim-vanilla-gan-arquitectura .tk19{animation:ts-anim-vanilla-gan-arquitectura-tk19-op 2.96s linear 12.50s both}
+.ts-anim-vanilla-gan-arquitectura .tk19 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk19-mv 2.66s linear 12.50s both}
+.ts-anim-vanilla-gan-arquitectura .dr20{animation:ts-anim-vanilla-gan-arquitectura-dr20 2.80s linear 12.53s both}
+.ts-anim-vanilla-gan-arquitectura .c20{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 15.13s both}
+.ts-anim-vanilla-gan-arquitectura .tk21{animation:ts-anim-vanilla-gan-arquitectura-tk21-op 1.86s linear 12.50s both}
+.ts-anim-vanilla-gan-arquitectura .tk21 .mv{animation:ts-anim-vanilla-gan-arquitectura-tk21-mv 1.56s linear 12.50s both}
+.ts-anim-vanilla-gan-arquitectura .dr22{animation:ts-anim-vanilla-gan-arquitectura-dr22 1.71s linear 12.53s both}
+.ts-anim-vanilla-gan-arquitectura .c22{animation:ts-anim-vanilla-gan-arquitectura-in 0.12s linear 14.03s both}
+.ts-anim-vanilla-gan-arquitectura .b-actD{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 14.03s both}
+.ts-anim-vanilla-gan-arquitectura .b-actG{animation:ts-anim-vanilla-gan-arquitectura-in 0.50s ease-out 15.13s both}
+@keyframes ts-anim-vanilla-gan-arquitectura-in{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-vanilla-gan-arquitectura *{animation:none}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk1-mv{0.00%{transform:translate(70.0px,125.0px)}100.00%{transform:translate(112.0px,125.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk1-op{0%{opacity:0}15.00%,70.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr2{0%{opacity:1;stroke-dashoffset:43.0px}72.73%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk3-mv{0.00%{transform:translate(300.0px,125.0px)}100.00%{transform:translate(343.0px,125.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk3-op{0%{opacity:0}16.67%,66.67%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr4{0%{opacity:1;stroke-dashoffset:43.0px}69.72%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk5-mv{0.00%{transform:translate(270.0px,266.0px)}100.00%{transform:translate(343.0px,266.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk5-op{0%{opacity:0}13.64%,72.73%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr6{0%{opacity:1;stroke-dashoffset:73.0px}77.54%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk7-mv{0.00%{transform:translate(452.3px,121.6px)}100.00%{transform:translate(504.6px,165.5px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk7-op{0%{opacity:0}13.64%,72.73%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr8{0%{opacity:1;stroke-dashoffset:68.3px}77.35%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk9-mv{0.00%{transform:translate(452.3px,268.4px)}100.00%{transform:translate(504.6px,224.5px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk9-op{0%{opacity:0}13.64%,72.73%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr10{0%{opacity:1;stroke-dashoffset:68.3px}77.35%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk11-mv{0.00%{transform:translate(682.0px,195.0px)}100.00%{transform:translate(721.0px,195.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk11-op{0%{opacity:0}16.67%,66.67%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr12{0%{opacity:1;stroke-dashoffset:41.0px}70.45%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk13-mv{0.00%{transform:translate(666.0px,195.0px)}100.00%{transform:translate(705.0px,195.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk13-op{0%{opacity:0}16.67%,66.67%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk14-mv{0.00%{transform:translate(790.0px,166.0px)}42.03%{transform:translate(790.0px,108.0px)}100.00%{transform:translate(870.0px,108.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk14-op{0%{opacity:0}10.00%,80.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr15{0%{opacity:1;stroke-dashoffset:140.0px}84.97%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk16-mv{0.00%{transform:translate(790.0px,224.0px)}43.66%{transform:translate(790.0px,286.0px)}100.00%{transform:translate(870.0px,286.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk16-op{0%{opacity:0}10.00%,80.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr17{0%{opacity:1;stroke-dashoffset:144.0px}84.99%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk18-mv{0.00%{transform:translate(790.0px,208.0px)}54.93%{transform:translate(790.0px,286.0px)}100.00%{transform:translate(854.0px,286.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk18-op{0%{opacity:0}10.00%,80.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk19-mv{0.00%{transform:translate(923.0px,80.0px)}5.01%{transform:translate(923.0px,40.0px)}93.73%{transform:translate(215.0px,40.0px)}100.00%{transform:translate(215.0px,90.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk19-op{0%{opacity:0}5.07%,89.86%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr20{0%{opacity:1;stroke-dashoffset:780.0px;animation-timing-function:steps(65,end)}92.87%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk21-mv{0.00%{transform:translate(923.0px,314.0px)}6.82%{transform:translate(923.0px,346.0px)}75.69%{transform:translate(600.0px,346.0px)}100.00%{transform:translate(600.0px,232.0px)}}
+@keyframes ts-anim-vanilla-gan-arquitectura-tk21-op{0%{opacity:0}8.05%,83.90%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-vanilla-gan-arquitectura-dr22{0%{opacity:1;stroke-dashoffset:456.0px;animation-timing-function:steps(38,end)}88.28%{opacity:1;stroke-dashoffset:0px}99%{opacity:1;stroke-dashoffset:0px}100%{opacity:0;stroke-dashoffset:0px}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="12" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/>
+</marker>
+<marker id="fb" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="11" refY="6" orient="auto">
+<path d="M1,1 L11,6 L1,11" fill="none" stroke="#3B3535" stroke-width="1.8" stroke-linejoin="miter"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="990" height="370" fill="#ffffff"/>
+
+<g>
+<g stroke="#3B3535" stroke-width="1.6" fill="none" stroke-dasharray="7 5" marker-end="url(#fb)">
+<path class="c20" d="M923,72 V40 H215 V80"/>
+<path class="c22" d="M923,322 V346 H600 V242"/>
+</g>
+<g fill="none" stroke="#3B3535" stroke-width="1.6">
+<path class="dr20" opacity="0" d="M923,72 L923,40 L215,40 L215,80" stroke-dasharray="7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 0 840"/>
+<path class="dr22" opacity="0" d="M923,322 L923,346 L600,346 L600,242" stroke-dasharray="7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 7 5 0 511"/>
+</g>
+<g font-size="15" font-style="normal" text-anchor="middle">
+<text class="b-actG" x="569" y="31">actualiza G</text>
+<text class="b-actD" x="761" y="337">actualiza D</text>
+</g>
+</g>
+
+<g stroke="#3B3535" stroke-width="1.8" fill="none" marker-end="url(#ah)">
+<g>
+<path class="c2" d="M80,125 L120,125"/>
+<path class="c4" d="M310,125 L350,125"/>
+</g>
+<g>
+<path class="c8" d="M460,128 L510,170"/>
+</g>
+<g>
+<path class="c6" d="M280,266 L350,266"/>
+</g>
+<g>
+<path class="c10" d="M460,262 L510,220"/>
+</g>
+<g>
+<path class="c12" d="M690,195 L728,195"/>
+</g>
+<g>
+<path class="c15" d="M790,158 V108 H877"/>
+<path class="c17" d="M790,232 V286 H877"/>
+</g>
+</g>
+<g fill="none" stroke="#3B3535" stroke-width="1.8">
+<path class="dr2" opacity="0" d="M80,125 L120,125" stroke-dasharray="42.0 100.0"/>
+<path class="dr4" opacity="0" d="M310,125 L350,125" stroke-dasharray="42.0 100.0"/>
+<path class="dr6" opacity="0" d="M280,266 L350,266" stroke-dasharray="72.0 130.0"/>
+<path class="dr8" opacity="0" d="M460,128 L510,170" stroke-dasharray="67.3 125.3"/>
+<path class="dr10" opacity="0" d="M460,262 L510,220" stroke-dasharray="67.3 125.3"/>
+<path class="dr12" opacity="0" d="M690,195 L728,195" stroke-dasharray="40.0 98.0"/>
+<path class="dr15" opacity="0" d="M790,158 L790,108 L877,108" stroke-dasharray="139.0 197.0"/>
+<path class="dr17" opacity="0" d="M790,232 L790,286 L877,286" stroke-dasharray="143.0 201.0"/>
+</g>
+<g class="tk1" opacity="0"><g class="mv"><circle r="6.5" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.2"/><circle cx="-2.4" cy="-2" r="1.6" fill="#3B3535"/><circle cx="2.6" cy="-1" r="1.3" fill="#3B3535" opacity="0.7"/><circle cx="-0.6" cy="2.8" r="1.5" fill="#3B3535" opacity="0.85"/></g></g>
+<g class="tk3" opacity="0"><g class="mv"><circle r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk5" opacity="0"><g class="mv"><circle r="6" fill="#3B3535" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk7" opacity="0"><g class="mv"><circle r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk9" opacity="0"><g class="mv"><circle r="6" fill="#3B3535" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk11" opacity="0"><g class="mv"><circle r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk13" opacity="0"><g class="mv"><circle r="6" fill="#3B3535" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk14" opacity="0"><g class="mv"><circle r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk16" opacity="0"><g class="mv"><circle r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk18" opacity="0"><g class="mv"><circle r="6" fill="#3B3535" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk19" opacity="0"><g class="mv"><circle r="5" fill="#6B6560" stroke="#ffffff" stroke-width="1.5"/></g></g>
+<g class="tk21" opacity="0"><g class="mv"><circle r="5" fill="#6B6560" stroke="#ffffff" stroke-width="1.5"/></g></g>
+
+<g class="b-z">
+<rect x="30" y="100" width="50" height="50" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<g fill="#3B3535">
+<circle cx="40" cy="110" r="2.6"/>
+<circle cx="57" cy="108" r="1.8" opacity="0.6"/>
+<circle cx="70" cy="113" r="2.4" opacity="0.8"/>
+<circle cx="47" cy="121" r="1.8" opacity="0.5"/>
+<circle cx="62" cy="124" r="2.8"/>
+<circle cx="38" cy="132" r="2.0" opacity="0.7"/>
+<circle cx="72" cy="131" r="1.8" opacity="0.5"/>
+<circle cx="52" cy="139" r="2.4" opacity="0.8"/>
+<circle cx="66" cy="142" r="2.0" opacity="0.6"/>
+<circle cx="41" cy="143" r="1.6" opacity="0.5"/>
+</g>
+<text x="55" y="174" text-anchor="middle" font-size="15">Ruido z</text>
+</g>
+
+<g class="b-g">
+<rect x="120" y="80" width="190" height="90" rx="10" fill="#DA1B2E"/>
+<text x="215" y="121" text-anchor="middle" font-size="23" font-weight="bold" fill="#ffffff">Generador</text>
+<text x="215" y="148" text-anchor="middle" font-size="19" font-weight="bold" fill="#ffffff">(G)</text>
+</g>
+
+<g class="b-falsa">
+<path d="M350,98 h110 v52 q-27.5,14 -55,0 t-55,0 z" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="405" y="119" text-anchor="middle" font-size="15">Muestra</text>
+<text x="405" y="138" text-anchor="middle" font-size="15">falsa</text>
+</g>
+
+<g class="b-datos">
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<path d="M150,236 v60 a65,15 0 0 0 130,0 v-60"/>
+<ellipse cx="215" cy="236" rx="65" ry="15"/>
+</g>
+<text x="215" y="272" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">Datos</text>
+<text x="215" y="293" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">reales</text>
+</g>
+
+<g class="b-real">
+<path d="M350,240 h110 v52 q-27.5,14 -55,0 t-55,0 z" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="405" y="261" text-anchor="middle" font-size="15">Muestra</text>
+<text x="405" y="280" text-anchor="middle" font-size="15">real</text>
+</g>
+
+<g class="b-d">
+<rect x="510" y="150" width="180" height="90" rx="10" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.8"/>
+<text x="600" y="191" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F1E1E">Discriminador</text>
+<text x="600" y="218" text-anchor="middle" font-size="19" font-weight="bold" fill="#1F1E1E">(D)</text>
+</g>
+
+<g class="b-v">
+<rect x="728" y="158" width="124" height="74" rx="10" fill="#ffffff" stroke="#3B3535" stroke-width="1.8"/>
+<text x="790" y="184" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Veredicto</text>
+<text x="790" y="204" text-anchor="middle" font-size="15" fill="#1F1E1E">P(real)</text>
+<text x="790" y="222" text-anchor="middle" font-size="13" fill="#6B6560">entre 0 y 1</text>
+</g>
+
+<g class="b-loss">
+<g fill="#ffffff" stroke="#3B3535" stroke-width="1.5">
+<path d="M878,72 h74 l16,16 v56 h-90 z"/>
+<path d="M952,72 v16 h16" fill="none"/>
+<path d="M878,250 h74 l16,16 v56 h-90 z"/>
+<path d="M952,250 v16 h16" fill="none"/>
+</g>
+<g text-anchor="middle" font-size="15">
+<text x="923" y="112">Pérdida</text>
+<text x="923" y="130">de G</text>
+<text x="923" y="290">Pérdida</text>
+<text x="923" y="308">de D</text>
+</g>
+</g>
+
+
+<g>
+<g class="b-vlab" font-size="14" font-style="normal" fill="#1F1E1E" text-anchor="end">
+<text x="872" y="100">veredictos sobre generadas</text>
+<text x="872" y="304">veredictos sobre reales y generadas</text>
+</g>
+</g>
+</svg>

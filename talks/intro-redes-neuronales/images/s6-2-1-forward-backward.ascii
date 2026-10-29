@@ -1,0 +1,29 @@
+ 1. HACIA ADELANTE (forward): la predicción
+
+                    pesos w_ij                     pesos w_jk                         objetivo
+ datos --> ( x1 ) ==============> ( h1 ) ==============> ( y1 ) ---- e1 ---- ( t1 )
+                  todas con todas ( h2 ) todas con todas
+ datos --> ( x2 ) ==============> ( h3 ) ==============> ( y2 ) ---- e2 ---- ( t2 )
+
+
+ 2. HACIA ATRÁS (backward): el error
+
+                    ajusta w_ij                    ajusta w_jk
+           ( x1 )   [ w_ij ] <=========== ( h1 ) <=========== ( y1 ) <--- e1 ---- ( t1 )
+                                          ( h2 )
+           ( x2 )   [ w_ij ] <=========== ( h3 ) <=========== ( y2 ) <--- e2 ---- ( t2 )
+        sin parámetros
+
+<!-- ascii-note:
+intent: El entrenamiento como dos pasadas sobre la misma red 2-3-2: la predicción viaja hacia adelante por todas las conexiones, y el error vuelve hacia atrás ajustando los pesos. Las flechas de vuelta terminan en los primeros pesos «w_ij», nunca dentro de «x1» y «x2»: las entradas no tienen parámetros. Cada capa se conecta con todas las unidades de la siguiente.
+emphasize: los errores «e1» y «e2», donde la pasada de ida se da vuelta
+labels: w_ij = pesos de entrada a capa oculta; w_jk = pesos de capa oculta a salida; t1, t2 = objetivos
+terms: forward, backward
+animation:
+  1. Entran los datos por «x1» y «x2».
+  2. La señal recorre todas las conexiones «pesos w_ij» y llega a «h1», «h2» y «h3».
+  3. Desde la capa oculta sigue por «pesos w_jk» hasta «y1» e «y2».
+  4. Cada salida se compara con su objetivo: aparece «e1» frente a «t1» y «e2» frente a «t2».
+  5. El error arranca de vuelta desde «y1» e «y2» y recorre las conexiones «w_jk» hasta la capa oculta; esos pesos quedan ajustados.
+  6. Desde «h1», «h2» y «h3» sigue hasta los pesos «w_ij» y se detiene ahí, sin entrar a «x1» ni «x2»; esos pesos quedan ajustados y el diagrama queda completo.
+-->

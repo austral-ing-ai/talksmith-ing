@@ -1,0 +1,39 @@
+     +----------------------------------------------+
+     |                Configuración                 |
+     | ancho · profundidad · tasa de aprendizaje    |
+     +----------------------------------------------+
+               |                          ^
+               v                          |
+     +----------------------+             |
+     |    Entrenamiento     |             |
+     +----------------------+             |
+               |                          |  cambiar la
+               v                          |  configuración y
+     +----------------------+             |  volver a probar
+     |     Parámetros       |             |
+     |     del modelo       |             |
+     +----------------------+             |
+               |                          |
+               v                          |
+     +----------------------+             |
+     |       Error de       | ------------+
+     |      validación      |
+     +----------------------+
+               |
+               |  cuando el error deja de mejorar
+               v
+     +----------------------+
+     |  Mejor configuración |
+     +----------------------+
+
+<!-- ascii-note:
+intent: El ciclo externo de ajuste: elegir la configuración, entrenar, medir el error en validación y volver a elegir, hasta que el error deja de mejorar. El entrenamiento produce los parámetros del modelo; el ciclo produce la mejor configuración.
+emphasize: la flecha de vuelta «cambiar la configuración y volver a probar»
+labels: tasa de aprendizaje = η
+animation:
+  1. Se fija una «Configuración»: «ancho», «profundidad» y «tasa de aprendizaje».
+  2. La configuración entra a «Entrenamiento», que devuelve los «Parámetros del modelo».
+  3. Con esos parámetros se mide el «Error de validación».
+  4. El error vuelve por «cambiar la configuración y volver a probar» a «Configuración», que cambia, y el ciclo da otra vuelta con un error menor.
+  5. En la última vuelta el error ya no mejora: el recorrido sale por «cuando el error deja de mejorar» y esa configuración queda como «Mejor configuración», y el diagrama queda completo.
+-->

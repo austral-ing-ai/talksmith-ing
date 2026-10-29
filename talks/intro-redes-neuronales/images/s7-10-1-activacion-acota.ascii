@@ -1,0 +1,18 @@
+   ENTRADA
+
+   ( x1 ) ----+
+              |
+              +----> ( Combinación lineal ) ----> [ Función de activación ] ----> valor entre 0 y 1
+              |        cualquier número real            curva en S
+   ( x2 ) ----+
+
+<!-- ascii-note:
+intent: La activación cambia la naturaleza del número: la combinación lineal da cualquier número real y la función de activación lo convierte en un valor acotado entre 0 y 1. El recuadro de la activación lleva dibujada una curva en S pequeña.
+emphasize: el recuadro «Función de activación»
+labels: x1, x2 = entradas
+animation:
+  1. Salen dos valores de «x1» y «x2».
+  2. Se combinan en «Combinación lineal» y aparece un número cualquiera, sin límites: «cualquier número real».
+  3. Ese número entra a «Función de activación» y la «curva en S» lo aplasta.
+  4. Por la flecha de salida sale un «valor entre 0 y 1», y el diagrama queda completo.
+-->

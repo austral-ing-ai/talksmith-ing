@@ -1,0 +1,49 @@
+<!-- talksmith-ascii-sha256: 37703a3e0046c358c0b166657c415569f1237048109790a91fd2671de21a8a35 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1058 263" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>La capa: el bloque que se repite</title>
+<desc>Esta es la diapositiva más importante del capítulo y vuelve en el cierre como la segunda idea.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="11" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 Z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="1058" height="263" fill="#ffffff"/>
+<g transform="translate(-16,-32)">
+<rect x="130" y="70" width="560" height="200" rx="10" fill="none" stroke="#DA1B2E" stroke-width="2.5"/>
+<rect x="370" y="57" width="80" height="26" rx="13" fill="#DA1B2E"/>
+<text x="410" y="75" text-anchor="middle" font-weight="bold" font-size="14" fill="#FFFFFF" letter-spacing="1.5">CAPA</text>
+<text x="60" y="105" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Entrada</text>
+<g fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5">
+<rect x="40" y="122" width="40" height="24"/>
+<rect x="40" y="146" width="40" height="24"/>
+<rect x="40" y="170" width="40" height="24"/>
+<rect x="40" y="194" width="40" height="24"/>
+</g>
+<text x="60" y="242" text-anchor="middle" font-size="14">vector</text>
+<text x="275" y="122" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Combinación lineal</text>
+<rect x="165" y="135" width="220" height="70" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="221" y="177" font-family="'Andale Mono', monospace" font-size="20" fill="#1F1E1E" xml:space="preserve">x   w + b</text>
+<circle cx="251" cy="170" r="2.2" fill="#1F1E1E"/>
+<text x="275" y="228" text-anchor="middle" font-size="14">un número por unidad</text>
+<text x="550" y="122" text-anchor="middle" font-weight="bold" fill="#1F1E1E">No linealidad</text>
+<rect x="445" y="135" width="210" height="70" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="550" y="177" text-anchor="middle" font-family="'Andale Mono', monospace" font-size="20" fill="#1F1E1E">f( )</text>
+<text x="550" y="228" text-anchor="middle" font-size="14">uno por uno</text>
+<text x="770" y="105" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Salida</text>
+<g fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5">
+<rect x="750" y="134" width="40" height="24"/>
+<rect x="750" y="158" width="40" height="24"/>
+<rect x="750" y="182" width="40" height="24"/>
+</g>
+<text x="770" y="242" text-anchor="middle" font-size="14">vector</text>
+<text x="960" y="122" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Siguiente capa</text>
+<rect x="870" y="135" width="180" height="70" rx="6" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="960" y="176" text-anchor="middle">entrada</text>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="81" y1="170" x2="165" y2="170"/>
+<line x1="385" y1="170" x2="445" y2="170"/>
+<line x1="655" y1="170" x2="750" y2="170"/>
+<line x1="791" y1="170" x2="870" y2="170"/>
+</g>
+</g>
+</svg>

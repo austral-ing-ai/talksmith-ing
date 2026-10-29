@@ -1,0 +1,118 @@
+<svg class="ts-anim-s2-4-1-capa-bloque" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1058 263" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>La capa: el bloque que se repite</title>
+<desc>Una capa: combinación lineal seguida de una no linealidad. Animación con valores de ejemplo: entra el vector (0.5, −1.2, 2.0, 0.3); la combinación lineal da un número por unidad (1.4, −0.7, 0.2); f, la sigmoide, transforma cada uno por separado (0.80, 0.33, 0.55); ese vector sale de la capa y entra a la siguiente.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s2-4-1-capa-bloque .xin{animation:ts-anim-s2-4-1-capa-bloque-in .3s ease-out both}
+.ts-anim-s2-4-1-capa-bloque .xin0{animation-delay:0.3s}
+.ts-anim-s2-4-1-capa-bloque .xin1{animation-delay:0.5s}
+.ts-anim-s2-4-1-capa-bloque .xin2{animation-delay:0.7s}
+.ts-anim-s2-4-1-capa-bloque .xin3{animation-delay:0.9s}
+.ts-anim-s2-4-1-capa-bloque .cap{animation:ts-anim-s2-4-1-capa-bloque-in .4s ease-out .3s both}
+.ts-anim-s2-4-1-capa-bloque .dot1{animation:ts-anim-s2-4-1-capa-bloque-go84 .8s ease-in-out 1.4s both}
+.ts-anim-s2-4-1-capa-bloque .lin-hi{animation:ts-anim-s2-4-1-capa-bloque-flash 2s linear 2.1s both}
+.ts-anim-s2-4-1-capa-bloque .lead{animation:ts-anim-s2-4-1-capa-bloque-in .3s ease-out 2.6s both}
+.ts-anim-s2-4-1-capa-bloque .zc{animation:ts-anim-s2-4-1-capa-bloque-in .3s ease-out both}
+.ts-anim-s2-4-1-capa-bloque .zc0{animation-delay:2.8s}
+.ts-anim-s2-4-1-capa-bloque .zc1{animation-delay:3.1s}
+.ts-anim-s2-4-1-capa-bloque .zc2{animation-delay:3.4s}
+.ts-anim-s2-4-1-capa-bloque .f-hi{animation:ts-anim-s2-4-1-capa-bloque-flash 3.6s linear 4s both}
+.ts-anim-s2-4-1-capa-bloque .zhi0{animation:ts-anim-s2-4-1-capa-bloque-pulse .9s ease-in-out 4.2s both}
+.ts-anim-s2-4-1-capa-bloque .fd0{animation:ts-anim-s2-4-1-capa-bloque-path1 0.9s linear 4.3s 1 normal both}
+.ts-anim-s2-4-1-capa-bloque .ac0{animation:ts-anim-s2-4-1-capa-bloque-in .3s ease-out 5.1s both}
+.ts-anim-s2-4-1-capa-bloque .zhi1{animation:ts-anim-s2-4-1-capa-bloque-pulse .9s ease-in-out 5.3s both}
+.ts-anim-s2-4-1-capa-bloque .fd1{animation:ts-anim-s2-4-1-capa-bloque-path2 0.9s linear 5.4s 1 normal both}
+.ts-anim-s2-4-1-capa-bloque .ac1{animation:ts-anim-s2-4-1-capa-bloque-in .3s ease-out 6.2s both}
+.ts-anim-s2-4-1-capa-bloque .zhi2{animation:ts-anim-s2-4-1-capa-bloque-pulse .9s ease-in-out 6.4s both}
+.ts-anim-s2-4-1-capa-bloque .fd2{animation:ts-anim-s2-4-1-capa-bloque-path3 0.9s linear 6.5s 1 normal both}
+.ts-anim-s2-4-1-capa-bloque .ac2{animation:ts-anim-s2-4-1-capa-bloque-in .3s ease-out 7.3s both}
+.ts-anim-s2-4-1-capa-bloque .capa-ring{animation:ts-anim-s2-4-1-capa-bloque-pulse 1.6s ease-out 7.8s both}
+.ts-anim-s2-4-1-capa-bloque .capa-tint{animation:ts-anim-s2-4-1-capa-bloque-in .6s ease-out 7.8s both}
+.ts-anim-s2-4-1-capa-bloque .dot5{animation:ts-anim-s2-4-1-capa-bloque-go79 .8s ease-in-out 9.3s both}
+.ts-anim-s2-4-1-capa-bloque .sig-hi{animation:ts-anim-s2-4-1-capa-bloque-flash 1.4s linear 9.9s both}
+.ts-anim-s2-4-1-capa-bloque .sig-val{animation:ts-anim-s2-4-1-capa-bloque-in .4s ease-out 10.1s both}
+@keyframes ts-anim-s2-4-1-capa-bloque-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s2-4-1-capa-bloque-flash{0%{opacity:0}15%,85%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-capa-bloque-pulse{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-capa-bloque-go84{0%{opacity:0;transform:translateX(0)}12%{opacity:1}85%{opacity:1;transform:translateX(84px)}100%{opacity:0;transform:translateX(84px)}}
+@keyframes ts-anim-s2-4-1-capa-bloque-go79{0%{opacity:0;transform:translateX(0)}12%{opacity:1}85%{opacity:1;transform:translateX(79px)}100%{opacity:0;transform:translateX(79px)}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s2-4-1-capa-bloque *{animation:none}}
+@keyframes ts-anim-s2-4-1-capa-bloque-path1{0.00%{transform:translate(353.0px,204.0px);opacity:0}1.67%{transform:translate(353.3px,203.9px);opacity:0.0561308}3.33%{transform:translate(354.1px,203.6px);opacity:0.231775}6.67%{transform:translate(357.6px,202.2px);opacity:0.768225}8.33%{transform:translate(360.2px,201.2px);opacity:0.943869}10.00%{transform:translate(363.5px,200.0px);opacity:1}13.33%{transform:translate(371.9px,196.8px);opacity:1}16.67%{transform:translate(382.8px,192.6px);opacity:1}20.00%{transform:translate(396.4px,187.4px);opacity:1}23.33%{transform:translate(412.5px,181.2px);opacity:1}26.67%{transform:translate(431.1px,174.1px);opacity:1}30.00%{transform:translate(452.0px,166.1px);opacity:1}31.67%{transform:translate(463.9px,165.0px);opacity:1}35.00%{transform:translate(489.4px,165.0px);opacity:1}41.67%{transform:translate(544.5px,165.0px);opacity:1}50.00%{transform:translate(615.3px,165.0px);opacity:1}51.67%{transform:translate(624.5px,157.3px);opacity:1}55.00%{transform:translate(637.8px,134.7px);opacity:1}56.67%{transform:translate(644.1px,124.0px);opacity:1}58.33%{transform:translate(650.3px,114.0px);opacity:1}61.67%{transform:translate(672.5px,114.0px);opacity:1}65.00%{transform:translate(692.1px,114.0px);opacity:1}68.33%{transform:translate(709.1px,114.0px);opacity:1}71.67%{transform:translate(723.4px,114.0px);opacity:1}75.00%{transform:translate(734.8px,114.0px);opacity:1}78.33%{transform:translate(743.6px,114.0px);opacity:1}81.67%{transform:translate(749.6px,114.0px);opacity:1}85.00%{transform:translate(753.0px,114.0px);opacity:1}88.33%{transform:translate(754.0px,114.0px);opacity:0.998524}90.00%{transform:translate(754.0px,114.0px);opacity:0.943869}91.67%{transform:translate(754.0px,114.0px);opacity:0.805503}93.33%{transform:translate(754.0px,114.0px);opacity:0.595037}95.00%{transform:translate(754.0px,114.0px);opacity:0.358826}96.67%{transform:translate(754.0px,114.0px);opacity:0.160231}98.33%{transform:translate(754.0px,114.0px);opacity:0.0386085}100.00%{transform:translate(754.0px,114.0px);opacity:0}}
+@keyframes ts-anim-s2-4-1-capa-bloque-path2{0.00%{transform:translate(399.0px,204.0px);opacity:0}1.67%{transform:translate(399.2px,203.9px);opacity:0.0561308}3.33%{transform:translate(399.9px,203.4px);opacity:0.231775}6.67%{transform:translate(402.5px,201.6px);opacity:0.768225}8.33%{transform:translate(404.5px,200.2px);opacity:0.943869}10.00%{transform:translate(406.9px,198.5px);opacity:1}13.33%{transform:translate(413.3px,194.0px);opacity:1}16.67%{transform:translate(421.6px,188.2px);opacity:1}20.00%{transform:translate(431.9px,181.1px);opacity:1}23.33%{transform:translate(444.1px,172.6px);opacity:1}25.00%{transform:translate(451.0px,167.8px);opacity:1}26.67%{transform:translate(459.0px,165.0px);opacity:1}30.00%{transform:translate(478.3px,165.0px);opacity:1}33.33%{transform:translate(499.5px,165.0px);opacity:1}38.33%{transform:translate(534.1px,165.0px);opacity:1}50.00%{transform:translate(619.4px,165.0px);opacity:1}55.00%{transform:translate(645.1px,142.4px);opacity:1}56.67%{transform:translate(654.2px,138.0px);opacity:1}60.00%{transform:translate(674.3px,138.0px);opacity:1}63.33%{transform:translate(692.4px,138.0px);opacity:1}66.67%{transform:translate(708.2px,138.0px);opacity:1}70.00%{transform:translate(721.7px,138.0px);opacity:1}73.33%{transform:translate(732.8px,138.0px);opacity:1}76.67%{transform:translate(741.5px,138.0px);opacity:1}80.00%{transform:translate(747.9px,138.0px);opacity:1}83.33%{transform:translate(751.9px,138.0px);opacity:1}86.67%{transform:translate(753.8px,138.0px);opacity:1}88.33%{transform:translate(754.0px,138.0px);opacity:0.998524}90.00%{transform:translate(754.0px,138.0px);opacity:0.943869}91.67%{transform:translate(754.0px,138.0px);opacity:0.805503}93.33%{transform:translate(754.0px,138.0px);opacity:0.595037}95.00%{transform:translate(754.0px,138.0px);opacity:0.358826}96.67%{transform:translate(754.0px,138.0px);opacity:0.160231}98.33%{transform:translate(754.0px,138.0px);opacity:0.0386085}100.00%{transform:translate(754.0px,138.0px);opacity:0}}
+@keyframes ts-anim-s2-4-1-capa-bloque-path3{0.00%{transform:translate(445.0px,204.0px);opacity:0}1.67%{transform:translate(445.1px,203.8px);opacity:0.0561308}3.33%{transform:translate(445.2px,203.1px);opacity:0.231775}6.67%{transform:translate(445.9px,200.3px);opacity:0.768225}8.33%{transform:translate(446.5px,198.2px);opacity:0.943869}10.00%{transform:translate(447.2px,195.6px);opacity:1}13.33%{transform:translate(448.9px,188.8px);opacity:1}16.67%{transform:translate(451.2px,180.0px);opacity:1}20.00%{transform:translate(454.0px,169.1px);opacity:1}21.67%{transform:translate(457.2px,165.0px);opacity:1}25.00%{transform:translate(471.7px,165.0px);opacity:1}28.33%{transform:translate(488.1px,165.0px);opacity:1}31.67%{transform:translate(506.4px,165.0px);opacity:1}36.67%{transform:translate(536.5px,165.0px);opacity:1}50.00%{transform:translate(623.9px,164.6px);opacity:1}55.00%{transform:translate(654.6px,162.0px);opacity:1}58.33%{transform:translate(673.5px,162.0px);opacity:1}61.67%{transform:translate(690.7px,162.0px);opacity:1}65.00%{transform:translate(706.0px,162.0px);opacity:1}68.33%{transform:translate(719.2px,162.0px);opacity:1}71.67%{transform:translate(730.2px,162.0px);opacity:1}75.00%{transform:translate(739.1px,162.0px);opacity:1}78.33%{transform:translate(745.9px,162.0px);opacity:1}81.67%{transform:translate(750.6px,162.0px);opacity:1}85.00%{transform:translate(753.2px,162.0px);opacity:1}88.33%{transform:translate(754.0px,162.0px);opacity:0.998524}90.00%{transform:translate(754.0px,162.0px);opacity:0.943869}91.67%{transform:translate(754.0px,162.0px);opacity:0.805503}93.33%{transform:translate(754.0px,162.0px);opacity:0.595037}95.00%{transform:translate(754.0px,162.0px);opacity:0.358826}96.67%{transform:translate(754.0px,162.0px);opacity:0.160231}98.33%{transform:translate(754.0px,162.0px);opacity:0.0386085}100.00%{transform:translate(754.0px,162.0px);opacity:0}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="11" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 Z" fill="#3B3535"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="1058" height="263" fill="#ffffff"/>
+<g transform="translate(-16,-32)">
+<rect x="130" y="70" width="560" height="200" rx="10" fill="none" stroke="#DA1B2E" stroke-width="2.5"/>
+<rect x="370" y="57" width="80" height="26" rx="13" fill="#DA1B2E"/>
+<text x="410" y="75" text-anchor="middle" font-weight="bold" font-size="14" fill="#FFFFFF" letter-spacing="1.5">CAPA</text>
+<text x="60" y="105" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Entrada</text>
+<g fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5">
+<rect x="40" y="122" width="40" height="24"/>
+<rect x="40" y="146" width="40" height="24"/>
+<rect x="40" y="170" width="40" height="24"/>
+<rect x="40" y="194" width="40" height="24"/>
+</g>
+<text x="60" y="242" text-anchor="middle" font-size="14">vector</text>
+<text x="275" y="122" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Combinación lineal</text>
+<rect x="165" y="135" width="220" height="70" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="221" y="177" font-family="'Andale Mono', monospace" font-size="20" fill="#1F1E1E" xml:space="preserve">x   w + b</text>
+<circle cx="251" cy="170" r="2.2" fill="#1F1E1E"/>
+<text x="275" y="228" text-anchor="middle" font-size="14">un número por unidad</text>
+<text x="550" y="122" text-anchor="middle" font-weight="bold" fill="#1F1E1E">No linealidad</text>
+<rect x="445" y="135" width="210" height="70" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="550" y="177" text-anchor="middle" font-family="'Andale Mono', monospace" font-size="20" fill="#1F1E1E">f( )</text>
+<text x="550" y="228" text-anchor="middle" font-size="14">uno por uno</text>
+<text x="770" y="105" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Salida</text>
+<g fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5">
+<rect x="750" y="134" width="40" height="24"/>
+<rect x="750" y="158" width="40" height="24"/>
+<rect x="750" y="182" width="40" height="24"/>
+</g>
+<text x="770" y="242" text-anchor="middle" font-size="14">vector</text>
+<text x="960" y="122" text-anchor="middle" font-weight="bold" fill="#1F1E1E">Siguiente capa</text>
+<rect x="870" y="135" width="180" height="70" rx="6" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="960" y="176" text-anchor="middle">entrada</text>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="81" y1="170" x2="165" y2="170"/>
+<line x1="385" y1="170" x2="445" y2="170"/>
+<line x1="655" y1="170" x2="750" y2="170"/>
+<line x1="791" y1="170" x2="870" y2="170"/>
+</g>
+</g>
+<!-- animation narration: absolute coordinates (outside the translated group); every piece starts at opacity 0, so the still is the approved diagram -->
+<rect class="lin-hi" opacity="0" x="149" y="103" width="220" height="70" rx="6" fill="none" stroke="#DA1B2E" stroke-width="2.5"/>
+<rect class="f-hi" opacity="0" x="429" y="103" width="210" height="70" rx="6" fill="none" stroke="#DA1B2E" stroke-width="2.5"/>
+<rect class="capa-tint" opacity="0" x="114" y="38" width="560" height="200" rx="10" fill="#DA1B2E" fill-opacity="0.05"/>
+<rect class="capa-ring" opacity="0" x="114" y="38" width="560" height="200" rx="10" fill="none" stroke="#DA1B2E" stroke-width="6"/>
+<!-- the CAPA label redrawn above the ring and tint, identical to the base -->
+<rect x="354" y="25" width="80" height="26" rx="13" fill="#DA1B2E"/>
+<text x="394" y="43" text-anchor="middle" font-weight="bold" font-size="14" fill="#FFFFFF" letter-spacing="1.5">CAPA</text>
+<!-- example values are labelled as such -->
+<text class="cap" opacity="0" x="1034" y="252" text-anchor="end" font-size="14" font-style="italic" fill="#3B3535">valores de ejemplo</text>
+<text class="xin xin0" opacity="0" x="44" y="107.5" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">0.5</text>
+<text class="xin xin1" opacity="0" x="44" y="131.5" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">−1.2</text>
+<text class="xin xin2" opacity="0" x="44" y="155.5" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">2.0</text>
+<text class="xin xin3" opacity="0" x="44" y="179.5" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">0.3</text>
+<circle class="dot1" opacity="0" cx="65" cy="138" r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/>
+<g class="lead" opacity="0" fill="none" stroke="#3B3535" stroke-width="1.2" stroke-dasharray="3 3"><path d="M399,143 L399,206"/><path d="M353,206 L353,200 L445,200 L445,206"/></g>
+<g class="zc zc0" opacity="0"><rect x="333" y="206" width="40" height="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/><text x="353" y="223.5" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">1.4</text></g>
+<rect class="zhi0" opacity="0" x="333" y="206" width="40" height="24" fill="none" stroke="#DA1B2E" stroke-width="2.5"/>
+<g class="zc zc1" opacity="0"><rect x="379" y="206" width="40" height="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/><text x="399" y="223.5" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">−0.7</text></g>
+<rect class="zhi1" opacity="0" x="379" y="206" width="40" height="24" fill="none" stroke="#DA1B2E" stroke-width="2.5"/>
+<g class="zc zc2" opacity="0"><rect x="425" y="206" width="40" height="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/><text x="445" y="223.5" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">0.2</text></g>
+<rect class="zhi2" opacity="0" x="425" y="206" width="40" height="24" fill="none" stroke="#DA1B2E" stroke-width="2.5"/>
+<circle class="fd0" opacity="0" cx="0" cy="0" r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/>
+<circle class="fd1" opacity="0" cx="0" cy="0" r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/>
+<circle class="fd2" opacity="0" cx="0" cy="0" r="6" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/>
+<text class="ac0" opacity="0" x="754" y="119.5" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">0.80</text>
+<text class="ac1" opacity="0" x="754" y="143.5" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">0.33</text>
+<text class="ac2" opacity="0" x="754" y="167.5" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">0.55</text>
+<circle class="dot5" opacity="0" cx="775" cy="138" r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/>
+<rect class="sig-hi" opacity="0" x="854" y="103" width="180" height="70" rx="6" fill="none" stroke="#3B3535" stroke-width="2.5"/>
+<text class="sig-val" opacity="0" x="944" y="164" font-size="15" font-weight="bold" text-anchor="middle" fill="#1F1E1E">(0.80, 0.33, 0.55)</text>
+</svg>

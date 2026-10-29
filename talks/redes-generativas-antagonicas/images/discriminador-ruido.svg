@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 990" width="2160" height="990" font-family="Helvetica, Arial, sans-serif">
 <title>Discriminador con ruido</title>
-<desc>La imagen de ruido (0.25, 1 / 0.5, 0.75) pasa por la red del Discriminador, con pesos +1, -1, -1, +1 y bias -1; la salida es σ(-0.5) = 0.37. Arriba a la derecha, el gráfico de la sigmoide marca el punto (−1.5, 0.18).</desc>
+<desc>La imagen de ruido (0.25, 1 / 0.5, 0.75) pasa por la red del Discriminador, con pesos +1, −1, −1, +1 y sesgo b = −1; la salida es σ(−1.5) = 0.18. Arriba a la derecha, el gráfico de la sigmoide marca el punto (−1.5, 0.18).</desc>
 <defs><marker id="ah-1F1E1E-30" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="30" markerHeight="30" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F1E1E"/></marker><marker id="ah-DA1B2E-34" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="34" markerHeight="34" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker><marker id="ah-1F5FAD-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1F5FAD"/></marker><marker id="ah-2E8540-26" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="26" markerHeight="26" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E8540"/></marker><marker id="ah-3B3535-22" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="22" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker><marker id="ah-3B3535-22s" viewBox="0 0 10 10" refX="3" refY="5" markerWidth="22" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#3B3535"/></marker></defs>
 <rect x="0" y="0" width="2160" height="990" fill="#ffffff"/>
 <line x1="40" y1="128" x2="2120" y2="128" stroke="#D9D4CF" stroke-width="3"/>
@@ -39,10 +39,10 @@
 <text x="945.4" y="225.5" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>
 <path d="M825.2,286.3 L1227.5,431.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#ah-1F5FAD-26)"/>
 <rect x="904.9" y="300.1" width="86.2" height="60.8" fill="#ffffff"/>
-<text x="948.1" y="353.5" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
+<text x="948.1" y="353.5" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">−1</text>
 <path d="M828.0,459.0 L1224.2,451.1" stroke="#1F5FAD" stroke-width="4" fill="none" marker-end="url(#ah-1F5FAD-26)"/>
 <rect x="906.1" y="426.2" width="86.2" height="60.8" fill="#ffffff"/>
-<text x="949.2" y="479.7" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">-1</text>
+<text x="949.2" y="479.7" font-size="64" fill="#1F5FAD" text-anchor="middle" font-weight="normal">−1</text>
 <path d="M824.6,632.2 L1226.0,471.6" stroke="#DA1B2E" stroke-width="7" fill="none" marker-end="url(#ah-DA1B2E-34)"/>
 <rect x="904.7" y="552.5" width="86.2" height="60.8" fill="#ffffff"/>
 <text x="947.8" y="605.9" font-size="64" fill="#DA1B2E" text-anchor="middle" font-weight="normal">+1</text>

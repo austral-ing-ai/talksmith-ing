@@ -1,0 +1,22 @@
+   ENTRADA               UNIDAD OCULTA j                      SALIDAS
+
+   ( x_i ) --- w_ij ---> (     j     ) ------ w_j1 ------> ( k = 1 )   δ1  <--- e1
+                          activación y_j \
+                                          \--- w_j2 ------> ( k = 2 )   δ2  <--- e2
+
+
+   δ_j  =  ( δ1 · w_j1  +  δ2 · w_j2 ) · y_j (1 - y_j)
+
+   gradiente de w_ij  =  δ_j · x_i
+
+<!-- ascii-note:
+intent: Una unidad oculta no tiene objetivo propio: su delta δ_j se arma sumando los deltas de las salidas que alimenta, ponderados por los pesos w_jk que las conectan, y multiplicando por la derivada de su activación. Con δ_j, el gradiente del peso que llega desde la entrada es una multiplicación. Misma notación que la fórmula de la diapositiva: w_jk va de la unidad oculta j a la salida k.
+emphasize: «δ_j», el delta que hereda la unidad oculta
+labels: w_ij = peso de la entrada i a la unidad oculta j; w_j1, w_j2 = pesos de j a las salidas k = 1 y k = 2; y_j = activación de j; δ1, δ2 = deltas de las salidas
+animation:
+  1. Aparecen los errores «e1» y «e2» en las salidas «k = 1» y «k = 2», y se convierten en sus deltas «δ1» y «δ2».
+  2. Desde «k = 1», «δ1» vuelve por «w_j1» hasta la unidad «j».
+  3. Desde «k = 2», «δ2» vuelve por «w_j2» hasta la unidad «j».
+  4. Los dos aportes se suman en «j» y se multiplican por la derivada de la activación, «y_j (1 - y_j)»: queda «δ_j».
+  5. «δ_j» sigue hacia atrás hasta «w_ij», el peso que llega desde «x_i», y su gradiente queda «δ_j · x_i»; el diagrama queda completo.
+-->

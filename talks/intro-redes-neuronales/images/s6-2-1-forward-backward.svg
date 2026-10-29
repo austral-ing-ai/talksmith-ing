@@ -1,0 +1,102 @@
+<!-- talksmith-ascii-sha256: 4031e32fdc1179829d6a35b00fe560162c8236b1a3b69487495ac9f0f951bceb -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 652" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Ida y vuelta: forward y backward</title>
+<desc>El mapa del capítulo: forward es dejar que el auto ande, backward es retocar las compuertas después de ver dónde chocó.</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker></defs>
+<rect x="0" y="0" width="940" height="652" fill="#ffffff"/>
+<rect x="16" y="16" width="908" height="300" rx="14" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="38" y="52" font-size="18" font-weight="bold" fill="#1F1E1E">1 · Hacia adelante (forward): la predicción</text>
+<text x="245.0" y="90" font-size="15">pesos <tspan font-style="italic">w</tspan><tspan font-size="11" dy="4">ij</tspan></text>
+<text x="493.5" y="90" font-size="15">pesos <tspan font-style="italic">w</tspan><tspan font-size="11" dy="4">jk</tspan></text>
+<text x="870" y="90" font-size="15" text-anchor="middle">objetivo</text>
+<line x1="173.8" y1="153.1" x2="376.2" y2="128.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="173.8" y1="159.3" x2="376.2" y2="187.7" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="172.3" y1="164.9" x2="377.7" y2="247.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="172.3" y1="217.1" x2="377.7" y2="134.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="173.8" y1="222.7" x2="376.2" y2="194.3" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="173.8" y1="228.9" x2="376.2" y2="253.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="423.8" y1="128.9" x2="626.2" y2="153.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="422.3" y1="134.9" x2="627.7" y2="217.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="423.8" y1="187.7" x2="626.2" y2="159.3" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="423.8" y1="194.3" x2="626.2" y2="222.7" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="422.3" y1="247.1" x2="627.7" y2="164.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="423.8" y1="253.1" x2="626.2" y2="228.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="86" y="161" font-size="15" text-anchor="end">datos</text>
+<line x1="94.0" y1="156.0" x2="126.0" y2="156.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="86" y="231" font-size="15" text-anchor="end">datos</text>
+<line x1="94.0" y1="226.0" x2="126.0" y2="226.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="674.0" y1="156.0" x2="738.0" y2="156.0" stroke="#3B3535" stroke-width="1.6"/>
+<line x1="782.0" y1="156.0" x2="846.0" y2="156.0" stroke="#3B3535" stroke-width="1.6"/>
+<line x1="674.0" y1="226.0" x2="738.0" y2="226.0" stroke="#3B3535" stroke-width="1.6"/>
+<line x1="782.0" y1="226.0" x2="846.0" y2="226.0" stroke="#3B3535" stroke-width="1.6"/>
+<circle cx="150" cy="156" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="141.9" y="162.5" font-size="19" font-style="italic">x<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="150" cy="226" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="141.9" y="232.5" font-size="19" font-style="italic">x<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="400" cy="126" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="132.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="400" cy="191" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="197.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="400" cy="256" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="262.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">3</tspan></text>
+<circle cx="650" cy="156" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="641.9" y="162.5" font-size="19" font-style="italic">y<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="650" cy="226" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="641.9" y="232.5" font-size="19" font-style="italic">y<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="870" cy="156" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="864.0" y="162.5" font-size="19" font-style="italic">t<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="870" cy="226" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="864.0" y="232.5" font-size="19" font-style="italic">t<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<rect x="738" y="141" width="44" height="30" rx="15" fill="#DA1B2E"/>
+<text x="751.7" y="161.0" font-size="18" font-style="italic" fill="#ffffff">e<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<text x="730.6" y="190.0" font-size="13"><tspan font-style="italic">e</tspan><tspan font-size="9" dy="3">1</tspan><tspan dy="-3"> = </tspan><tspan font-style="italic">y</tspan><tspan font-size="9" dy="3">1</tspan><tspan dy="-3"> - </tspan><tspan font-style="italic">t</tspan><tspan font-size="9" dy="3">1</tspan></text>
+<rect x="738" y="211" width="44" height="30" rx="15" fill="#DA1B2E"/>
+<text x="751.7" y="231.0" font-size="18" font-style="italic" fill="#ffffff">e<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<text x="730.6" y="260.0" font-size="13"><tspan font-style="italic">e</tspan><tspan font-size="9" dy="3">2</tspan><tspan dy="-3"> = </tspan><tspan font-style="italic">y</tspan><tspan font-size="9" dy="3">2</tspan><tspan dy="-3"> - </tspan><tspan font-style="italic">t</tspan><tspan font-size="9" dy="3">2</tspan></text>
+<text x="275.0" y="300" font-size="13" font-style="italic" text-anchor="middle">todas con todas</text>
+<text x="525.0" y="300" font-size="13" font-style="italic" text-anchor="middle">todas con todas</text>
+<rect x="16" y="336" width="908" height="300" rx="14" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="38" y="372" font-size="18" font-weight="bold" fill="#1F1E1E">2 · Hacia atrás (backward): el error</text>
+<text x="222.0" y="410" font-size="15">ajusta <tspan font-style="italic">w</tspan><tspan font-size="11" dy="4">ij</tspan></text>
+<text x="493.5" y="410" font-size="15">ajusta <tspan font-style="italic">w</tspan><tspan font-size="11" dy="4">jk</tspan></text>
+<rect x="224" y="426" width="56" height="170" rx="8" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="242.5" y="517.5" font-size="19" font-style="italic">w<tspan font-size="12" font-style="normal" dy="4">ij</tspan></text>
+<line x1="626.2" y1="473.1" x2="423.8" y2="448.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="626.2" y1="479.3" x2="423.8" y2="507.7" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="627.7" y1="484.9" x2="422.3" y2="567.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="627.7" y1="537.1" x2="422.3" y2="454.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="626.2" y1="542.7" x2="423.8" y2="514.3" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="626.2" y1="548.9" x2="423.8" y2="573.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="376.0" y1="446.0" x2="280.0" y2="446.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="376.0" y1="511.0" x2="280.0" y2="511.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="376.0" y1="576.0" x2="280.0" y2="576.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="738.0" y1="476.0" x2="674.0" y2="476.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="846.0" y1="476.0" x2="782.0" y2="476.0" stroke="#3B3535" stroke-width="1.6"/>
+<line x1="738.0" y1="546.0" x2="674.0" y2="546.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="846.0" y1="546.0" x2="782.0" y2="546.0" stroke="#3B3535" stroke-width="1.6"/>
+<circle cx="150" cy="476" r="24" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="141.9" y="482.5" font-size="19" font-style="italic">x<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="150" cy="546" r="24" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="141.9" y="552.5" font-size="19" font-style="italic">x<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="400" cy="446" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="452.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="400" cy="511" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="517.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="400" cy="576" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="582.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">3</tspan></text>
+<circle cx="650" cy="476" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="641.9" y="482.5" font-size="19" font-style="italic">y<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="650" cy="546" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="641.9" y="552.5" font-size="19" font-style="italic">y<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="870" cy="476" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="864.0" y="482.5" font-size="19" font-style="italic">t<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="870" cy="546" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="864.0" y="552.5" font-size="19" font-style="italic">t<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<rect x="738" y="461" width="44" height="30" rx="15" fill="#DA1B2E"/>
+<text x="751.7" y="481.0" font-size="18" font-style="italic" fill="#ffffff">e<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<text x="730.6" y="510.0" font-size="13"><tspan font-style="italic">e</tspan><tspan font-size="9" dy="3">1</tspan><tspan dy="-3"> = </tspan><tspan font-style="italic">y</tspan><tspan font-size="9" dy="3">1</tspan><tspan dy="-3"> - </tspan><tspan font-style="italic">t</tspan><tspan font-size="9" dy="3">1</tspan></text>
+<rect x="738" y="531" width="44" height="30" rx="15" fill="#DA1B2E"/>
+<text x="751.7" y="551.0" font-size="18" font-style="italic" fill="#ffffff">e<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<text x="730.6" y="580.0" font-size="13"><tspan font-style="italic">e</tspan><tspan font-size="9" dy="3">2</tspan><tspan dy="-3"> = </tspan><tspan font-style="italic">y</tspan><tspan font-size="9" dy="3">2</tspan><tspan dy="-3"> - </tspan><tspan font-style="italic">t</tspan><tspan font-size="9" dy="3">2</tspan></text>
+<text x="150" y="600" font-size="13" font-style="italic" text-anchor="middle">sin parámetros</text>
+</svg>

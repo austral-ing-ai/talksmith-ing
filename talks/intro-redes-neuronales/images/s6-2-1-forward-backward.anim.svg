@@ -1,0 +1,301 @@
+<svg class="ts-anim-s6-2-1-forward-backward" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 652" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Ida y vuelta: forward y backward</title>
+<desc>El mapa del capítulo: forward es dejar que el auto ande, backward es retocar las compuertas después de ver dónde chocó.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s6-2-1-forward-backward .tk1{animation:ts-anim-s6-2-1-forward-backward-show 0.8s linear 0.3s both}
+.ts-anim-s6-2-1-forward-backward .tk1 .ball{animation:ts-anim-s6-2-1-forward-backward-path1 0.8s linear 0.3s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk2{animation:ts-anim-s6-2-1-forward-backward-show 0.8s linear 0.3s both}
+.ts-anim-s6-2-1-forward-backward .tk2 .ball{animation:ts-anim-s6-2-1-forward-backward-path2 0.8s linear 0.3s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rg1{animation:ts-anim-s6-2-1-forward-backward-pulse 1.0s ease-in-out 1.0s both}
+.ts-anim-s6-2-1-forward-backward .rg2{animation:ts-anim-s6-2-1-forward-backward-pulse 1.0s ease-in-out 1.0s both}
+.ts-anim-s6-2-1-forward-backward .tk3{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 1.7s both}
+.ts-anim-s6-2-1-forward-backward .tk3 .ball{animation:ts-anim-s6-2-1-forward-backward-path3 1.2s linear 1.7s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk4{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 1.7s both}
+.ts-anim-s6-2-1-forward-backward .tk4 .ball{animation:ts-anim-s6-2-1-forward-backward-path4 1.2s linear 1.7s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk5{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 1.7s both}
+.ts-anim-s6-2-1-forward-backward .tk5 .ball{animation:ts-anim-s6-2-1-forward-backward-path5 1.2s linear 1.7s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk6{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 1.7s both}
+.ts-anim-s6-2-1-forward-backward .tk6 .ball{animation:ts-anim-s6-2-1-forward-backward-path6 1.2s linear 1.7s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk7{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 1.7s both}
+.ts-anim-s6-2-1-forward-backward .tk7 .ball{animation:ts-anim-s6-2-1-forward-backward-path7 1.2s linear 1.7s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk8{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 1.7s both}
+.ts-anim-s6-2-1-forward-backward .tk8 .ball{animation:ts-anim-s6-2-1-forward-backward-path8 1.2s linear 1.7s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rg3{animation:ts-anim-s6-2-1-forward-backward-pulse 1.0s ease-in-out 2.8s both}
+.ts-anim-s6-2-1-forward-backward .rg4{animation:ts-anim-s6-2-1-forward-backward-pulse 1.0s ease-in-out 2.8s both}
+.ts-anim-s6-2-1-forward-backward .rg5{animation:ts-anim-s6-2-1-forward-backward-pulse 1.0s ease-in-out 2.8s both}
+.ts-anim-s6-2-1-forward-backward .tk9{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 3.6s both}
+.ts-anim-s6-2-1-forward-backward .tk9 .ball{animation:ts-anim-s6-2-1-forward-backward-path9 1.2s linear 3.6s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk10{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 3.6s both}
+.ts-anim-s6-2-1-forward-backward .tk10 .ball{animation:ts-anim-s6-2-1-forward-backward-path10 1.2s linear 3.6s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk11{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 3.6s both}
+.ts-anim-s6-2-1-forward-backward .tk11 .ball{animation:ts-anim-s6-2-1-forward-backward-path11 1.2s linear 3.6s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk12{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 3.6s both}
+.ts-anim-s6-2-1-forward-backward .tk12 .ball{animation:ts-anim-s6-2-1-forward-backward-path12 1.2s linear 3.6s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk13{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 3.6s both}
+.ts-anim-s6-2-1-forward-backward .tk13 .ball{animation:ts-anim-s6-2-1-forward-backward-path13 1.2s linear 3.6s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk14{animation:ts-anim-s6-2-1-forward-backward-show 1.2s linear 3.6s both}
+.ts-anim-s6-2-1-forward-backward .tk14 .ball{animation:ts-anim-s6-2-1-forward-backward-path14 1.2s linear 3.6s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rg6{animation:ts-anim-s6-2-1-forward-backward-pulse 1.0s ease-in-out 4.7s both}
+.ts-anim-s6-2-1-forward-backward .rg7{animation:ts-anim-s6-2-1-forward-backward-pulse 1.0s ease-in-out 4.7s both}
+.ts-anim-s6-2-1-forward-backward .tk15{animation:ts-anim-s6-2-1-forward-backward-show 0.7s linear 5.5s both}
+.ts-anim-s6-2-1-forward-backward .tk15 .ball{animation:ts-anim-s6-2-1-forward-backward-path15 0.7s linear 5.5s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk16{animation:ts-anim-s6-2-1-forward-backward-show 0.7s linear 5.5s both}
+.ts-anim-s6-2-1-forward-backward .tk16 .ball{animation:ts-anim-s6-2-1-forward-backward-path16 0.7s linear 5.5s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk17{animation:ts-anim-s6-2-1-forward-backward-show 0.7s linear 5.5s both}
+.ts-anim-s6-2-1-forward-backward .tk17 .ball{animation:ts-anim-s6-2-1-forward-backward-path17 0.7s linear 5.5s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .tk18{animation:ts-anim-s6-2-1-forward-backward-show 0.7s linear 5.5s both}
+.ts-anim-s6-2-1-forward-backward .tk18 .ball{animation:ts-anim-s6-2-1-forward-backward-path18 0.7s linear 5.5s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .epop{transform-box:fill-box;transform-origin:center;animation:ts-anim-s6-2-1-forward-backward-pop .5s ease-out 6.1s both}
+.ts-anim-s6-2-1-forward-backward .rg8{animation:ts-anim-s6-2-1-forward-backward-pulse 1.0s ease-in-out 6.5s both}
+.ts-anim-s6-2-1-forward-backward .rg9{animation:ts-anim-s6-2-1-forward-backward-pulse 1.0s ease-in-out 6.5s both}
+.ts-anim-s6-2-1-forward-backward .panel2{animation:ts-anim-s6-2-1-forward-backward-in .7s ease-out 7.3s both}
+.ts-anim-s6-2-1-forward-backward .rl1{stroke-dasharray:54.0;stroke-dashoffset:54.0;animation:ts-anim-s6-2-1-forward-backward-draw 0.6s ease-in-out 8.1s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .rl1h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 8.60s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .tk19{animation:ts-anim-s6-2-1-forward-backward-show 0.6s linear 8.1s both}
+.ts-anim-s6-2-1-forward-backward .tk19 .ball{animation:ts-anim-s6-2-1-forward-backward-path19 0.6s linear 8.1s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rl2{stroke-dasharray:54.0;stroke-dashoffset:54.0;animation:ts-anim-s6-2-1-forward-backward-draw 0.6s ease-in-out 8.1s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .rl2h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 8.60s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .tk20{animation:ts-anim-s6-2-1-forward-backward-show 0.6s linear 8.1s both}
+.ts-anim-s6-2-1-forward-backward .tk20 .ball{animation:ts-anim-s6-2-1-forward-backward-path20 0.6s linear 8.1s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rl3{stroke-dasharray:193.8;stroke-dashoffset:193.8;animation:ts-anim-s6-2-1-forward-backward-draw 1.3s ease-in-out 8.8s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .rl3h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 10.00s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .tk21{animation:ts-anim-s6-2-1-forward-backward-show 1.3s linear 8.8s both}
+.ts-anim-s6-2-1-forward-backward .tk21 .ball{animation:ts-anim-s6-2-1-forward-backward-path21 1.3s linear 8.8s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rl4{stroke-dasharray:194.4;stroke-dashoffset:194.4;animation:ts-anim-s6-2-1-forward-backward-draw 1.3s ease-in-out 8.8s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .rl4h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 10.00s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .tk22{animation:ts-anim-s6-2-1-forward-backward-show 1.3s linear 8.8s both}
+.ts-anim-s6-2-1-forward-backward .tk22 .ball{animation:ts-anim-s6-2-1-forward-backward-path22 1.3s linear 8.8s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rl5{stroke-dasharray:211.2;stroke-dashoffset:211.2;animation:ts-anim-s6-2-1-forward-backward-draw 1.3s ease-in-out 8.8s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .rl5h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 10.00s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .tk23{animation:ts-anim-s6-2-1-forward-backward-show 1.3s linear 8.8s both}
+.ts-anim-s6-2-1-forward-backward .tk23 .ball{animation:ts-anim-s6-2-1-forward-backward-path23 1.3s linear 8.8s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rl6{stroke-dasharray:211.2;stroke-dashoffset:211.2;animation:ts-anim-s6-2-1-forward-backward-draw 1.3s ease-in-out 8.8s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .rl6h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 10.00s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .tk24{animation:ts-anim-s6-2-1-forward-backward-show 1.3s linear 8.8s both}
+.ts-anim-s6-2-1-forward-backward .tk24 .ball{animation:ts-anim-s6-2-1-forward-backward-path24 1.3s linear 8.8s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rl7{stroke-dasharray:194.4;stroke-dashoffset:194.4;animation:ts-anim-s6-2-1-forward-backward-draw 1.3s ease-in-out 8.8s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .rl7h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 10.00s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .tk25{animation:ts-anim-s6-2-1-forward-backward-show 1.3s linear 8.8s both}
+.ts-anim-s6-2-1-forward-backward .tk25 .ball{animation:ts-anim-s6-2-1-forward-backward-path25 1.3s linear 8.8s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rl8{stroke-dasharray:193.8;stroke-dashoffset:193.8;animation:ts-anim-s6-2-1-forward-backward-draw 1.3s ease-in-out 8.8s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .rl8h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 10.00s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .tk26{animation:ts-anim-s6-2-1-forward-backward-show 1.3s linear 8.8s both}
+.ts-anim-s6-2-1-forward-backward .tk26 .ball{animation:ts-anim-s6-2-1-forward-backward-path26 1.3s linear 8.8s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .adj-jk{animation:ts-anim-s6-2-1-forward-backward-in .4s ease-out 10.1s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 10.9s forwards}
+.ts-anim-s6-2-1-forward-backward .rl9{stroke-dasharray:86.0;stroke-dashoffset:86.0;animation:ts-anim-s6-2-1-forward-backward-draw 0.9s ease-in-out 10.6s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 12.5s forwards}
+.ts-anim-s6-2-1-forward-backward .rl9h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 11.40s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 12.5s forwards}
+.ts-anim-s6-2-1-forward-backward .tk27{animation:ts-anim-s6-2-1-forward-backward-show 0.9s linear 10.6s both}
+.ts-anim-s6-2-1-forward-backward .tk27 .ball{animation:ts-anim-s6-2-1-forward-backward-path27 0.9s linear 10.6s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rl10{stroke-dasharray:86.0;stroke-dashoffset:86.0;animation:ts-anim-s6-2-1-forward-backward-draw 0.9s ease-in-out 10.6s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 12.5s forwards}
+.ts-anim-s6-2-1-forward-backward .rl10h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 11.40s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 12.5s forwards}
+.ts-anim-s6-2-1-forward-backward .tk28{animation:ts-anim-s6-2-1-forward-backward-show 0.9s linear 10.6s both}
+.ts-anim-s6-2-1-forward-backward .tk28 .ball{animation:ts-anim-s6-2-1-forward-backward-path28 0.9s linear 10.6s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .rl11{stroke-dasharray:86.0;stroke-dashoffset:86.0;animation:ts-anim-s6-2-1-forward-backward-draw 0.9s ease-in-out 10.6s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 12.5s forwards}
+.ts-anim-s6-2-1-forward-backward .rl11h{animation:ts-anim-s6-2-1-forward-backward-in .25s ease-out 11.40s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 12.5s forwards}
+.ts-anim-s6-2-1-forward-backward .tk29{animation:ts-anim-s6-2-1-forward-backward-show 0.9s linear 10.6s both}
+.ts-anim-s6-2-1-forward-backward .tk29 .ball{animation:ts-anim-s6-2-1-forward-backward-path29 0.9s linear 10.6s 1 normal both}
+.ts-anim-s6-2-1-forward-backward .adj-ij{animation:ts-anim-s6-2-1-forward-backward-in .4s ease-out 11.5s both, ts-anim-s6-2-1-forward-backward-out .6s ease-in 12.5s forwards}
+.ts-anim-s6-2-1-forward-backward .rg10{animation:ts-anim-s6-2-1-forward-backward-pulse 1.1s ease-in-out 13.1s both}
+.ts-anim-s6-2-1-forward-backward .rg11{animation:ts-anim-s6-2-1-forward-backward-pulse 1.1s ease-in-out 13.1s both}
+@keyframes ts-anim-s6-2-1-forward-backward-out{from{opacity:1}to{opacity:0}}
+@keyframes ts-anim-s6-2-1-forward-backward-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-2-1-forward-backward-show{0%{opacity:0}10%,85%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s6-2-1-forward-backward-pulse{0%{opacity:0}35%{opacity:.9}100%{opacity:0}}
+@keyframes ts-anim-s6-2-1-forward-backward-draw{0%{opacity:1}to{opacity:1;stroke-dashoffset:0}}
+@keyframes ts-anim-s6-2-1-forward-backward-pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s6-2-1-forward-backward *{animation:none}}
+@keyframes ts-anim-s6-2-1-forward-backward-path1{0.00%{transform:translate(94.0px,156.0px)}31.67%{transform:translate(100.7px,156.0px)}81.67%{transform:translate(123.8px,156.0px)}100.00%{transform:translate(126.0px,156.0px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path2{0.00%{transform:translate(94.0px,226.0px)}31.67%{transform:translate(100.7px,226.0px)}81.67%{transform:translate(123.8px,226.0px)}100.00%{transform:translate(126.0px,226.0px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path3{0.00%{transform:translate(173.8px,153.1px)}6.67%{transform:translate(175.6px,152.9px)}11.67%{transform:translate(179.3px,152.4px)}16.67%{transform:translate(185.2px,151.7px)}21.67%{transform:translate(193.3px,150.8px)}26.67%{transform:translate(203.6px,149.5px)}33.33%{transform:translate(220.7px,147.5px)}41.67%{transform:translate(246.4px,144.4px)}61.67%{transform:translate(314.3px,136.3px)}68.33%{transform:translate(333.9px,134.0px)}75.00%{transform:translate(350.1px,132.0px)}80.00%{transform:translate(359.7px,130.9px)}85.00%{transform:translate(367.0px,130.0px)}90.00%{transform:translate(372.2px,129.4px)}96.67%{transform:translate(375.8px,129.0px)}100.00%{transform:translate(376.2px,128.9px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path4{0.00%{transform:translate(173.8px,159.3px)}6.67%{transform:translate(175.6px,159.5px)}11.67%{transform:translate(179.3px,160.1px)}16.67%{transform:translate(185.2px,160.9px)}21.67%{transform:translate(193.3px,162.0px)}26.67%{transform:translate(203.6px,163.5px)}33.33%{transform:translate(220.7px,165.9px)}41.67%{transform:translate(246.4px,169.5px)}61.67%{transform:translate(314.3px,179.0px)}68.33%{transform:translate(333.9px,181.8px)}75.00%{transform:translate(350.1px,184.0px)}80.00%{transform:translate(359.7px,185.4px)}85.00%{transform:translate(367.0px,186.4px)}90.00%{transform:translate(372.2px,187.1px)}96.67%{transform:translate(375.8px,187.6px)}100.00%{transform:translate(376.2px,187.7px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path5{0.00%{transform:translate(172.3px,164.9px)}6.67%{transform:translate(174.1px,165.6px)}11.67%{transform:translate(177.8px,167.1px)}16.67%{transform:translate(183.8px,169.5px)}21.67%{transform:translate(192.1px,172.8px)}26.67%{transform:translate(202.6px,177.0px)}33.33%{transform:translate(219.9px,184.0px)}41.67%{transform:translate(246.0px,194.4px)}61.67%{transform:translate(314.9px,222.0px)}68.33%{transform:translate(334.8px,229.9px)}73.33%{transform:translate(347.4px,235.0px)}78.33%{transform:translate(357.9px,239.2px)}83.33%{transform:translate(366.2px,242.5px)}88.33%{transform:translate(372.2px,244.9px)}93.33%{transform:translate(375.9px,246.4px)}100.00%{transform:translate(377.7px,247.1px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path6{0.00%{transform:translate(172.3px,217.1px)}6.67%{transform:translate(174.1px,216.4px)}11.67%{transform:translate(177.8px,214.9px)}16.67%{transform:translate(183.8px,212.5px)}21.67%{transform:translate(192.1px,209.2px)}26.67%{transform:translate(202.6px,205.0px)}33.33%{transform:translate(219.9px,198.0px)}41.67%{transform:translate(246.0px,187.6px)}61.67%{transform:translate(314.9px,160.0px)}68.33%{transform:translate(334.8px,152.1px)}73.33%{transform:translate(347.4px,147.0px)}78.33%{transform:translate(357.9px,142.8px)}83.33%{transform:translate(366.2px,139.5px)}88.33%{transform:translate(372.2px,137.1px)}93.33%{transform:translate(375.9px,135.6px)}100.00%{transform:translate(377.7px,134.9px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path7{0.00%{transform:translate(173.8px,222.7px)}6.67%{transform:translate(175.6px,222.5px)}11.67%{transform:translate(179.3px,221.9px)}16.67%{transform:translate(185.2px,221.1px)}21.67%{transform:translate(193.3px,220.0px)}26.67%{transform:translate(203.6px,218.5px)}33.33%{transform:translate(220.7px,216.1px)}41.67%{transform:translate(246.4px,212.5px)}61.67%{transform:translate(314.3px,203.0px)}68.33%{transform:translate(333.9px,200.2px)}75.00%{transform:translate(350.1px,198.0px)}80.00%{transform:translate(359.7px,196.6px)}85.00%{transform:translate(367.0px,195.6px)}90.00%{transform:translate(372.2px,194.9px)}96.67%{transform:translate(375.8px,194.4px)}100.00%{transform:translate(376.2px,194.3px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path8{0.00%{transform:translate(173.8px,228.9px)}6.67%{transform:translate(175.6px,229.1px)}11.67%{transform:translate(179.3px,229.6px)}16.67%{transform:translate(185.2px,230.3px)}21.67%{transform:translate(193.3px,231.2px)}26.67%{transform:translate(203.6px,232.5px)}33.33%{transform:translate(220.7px,234.5px)}41.67%{transform:translate(246.4px,237.6px)}61.67%{transform:translate(314.3px,245.7px)}68.33%{transform:translate(333.9px,248.0px)}75.00%{transform:translate(350.1px,250.0px)}80.00%{transform:translate(359.7px,251.1px)}85.00%{transform:translate(367.0px,252.0px)}90.00%{transform:translate(372.2px,252.6px)}96.67%{transform:translate(375.8px,253.0px)}100.00%{transform:translate(376.2px,253.1px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path9{0.00%{transform:translate(423.8px,128.9px)}6.67%{transform:translate(425.6px,129.1px)}11.67%{transform:translate(429.3px,129.6px)}16.67%{transform:translate(435.2px,130.3px)}21.67%{transform:translate(443.3px,131.2px)}26.67%{transform:translate(453.6px,132.5px)}33.33%{transform:translate(470.7px,134.5px)}41.67%{transform:translate(496.4px,137.6px)}61.67%{transform:translate(564.3px,145.7px)}68.33%{transform:translate(583.9px,148.0px)}75.00%{transform:translate(600.1px,150.0px)}80.00%{transform:translate(609.7px,151.1px)}85.00%{transform:translate(617.0px,152.0px)}90.00%{transform:translate(622.2px,152.6px)}96.67%{transform:translate(625.8px,153.0px)}100.00%{transform:translate(626.2px,153.1px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path10{0.00%{transform:translate(422.3px,134.9px)}6.67%{transform:translate(424.1px,135.6px)}11.67%{transform:translate(427.8px,137.1px)}16.67%{transform:translate(433.8px,139.5px)}21.67%{transform:translate(442.1px,142.8px)}26.67%{transform:translate(452.6px,147.0px)}33.33%{transform:translate(469.9px,154.0px)}41.67%{transform:translate(496.0px,164.4px)}61.67%{transform:translate(564.9px,192.0px)}68.33%{transform:translate(584.8px,199.9px)}73.33%{transform:translate(597.4px,205.0px)}78.33%{transform:translate(607.9px,209.2px)}83.33%{transform:translate(616.2px,212.5px)}88.33%{transform:translate(622.2px,214.9px)}93.33%{transform:translate(625.9px,216.4px)}100.00%{transform:translate(627.7px,217.1px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path11{0.00%{transform:translate(423.8px,187.7px)}6.67%{transform:translate(425.6px,187.5px)}11.67%{transform:translate(429.3px,186.9px)}16.67%{transform:translate(435.2px,186.1px)}21.67%{transform:translate(443.3px,185.0px)}26.67%{transform:translate(453.6px,183.5px)}33.33%{transform:translate(470.7px,181.1px)}41.67%{transform:translate(496.4px,177.5px)}61.67%{transform:translate(564.3px,168.0px)}68.33%{transform:translate(583.9px,165.2px)}75.00%{transform:translate(600.1px,163.0px)}80.00%{transform:translate(609.7px,161.6px)}85.00%{transform:translate(617.0px,160.6px)}90.00%{transform:translate(622.2px,159.9px)}96.67%{transform:translate(625.8px,159.4px)}100.00%{transform:translate(626.2px,159.3px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path12{0.00%{transform:translate(423.8px,194.3px)}6.67%{transform:translate(425.6px,194.5px)}11.67%{transform:translate(429.3px,195.1px)}16.67%{transform:translate(435.2px,195.9px)}21.67%{transform:translate(443.3px,197.0px)}26.67%{transform:translate(453.6px,198.5px)}33.33%{transform:translate(470.7px,200.9px)}41.67%{transform:translate(496.4px,204.5px)}61.67%{transform:translate(564.3px,214.0px)}68.33%{transform:translate(583.9px,216.8px)}75.00%{transform:translate(600.1px,219.0px)}80.00%{transform:translate(609.7px,220.4px)}85.00%{transform:translate(617.0px,221.4px)}90.00%{transform:translate(622.2px,222.1px)}96.67%{transform:translate(625.8px,222.6px)}100.00%{transform:translate(626.2px,222.7px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path13{0.00%{transform:translate(422.3px,247.1px)}6.67%{transform:translate(424.1px,246.4px)}11.67%{transform:translate(427.8px,244.9px)}16.67%{transform:translate(433.8px,242.5px)}21.67%{transform:translate(442.1px,239.2px)}26.67%{transform:translate(452.6px,235.0px)}33.33%{transform:translate(469.9px,228.0px)}41.67%{transform:translate(496.0px,217.6px)}61.67%{transform:translate(564.9px,190.0px)}68.33%{transform:translate(584.8px,182.1px)}73.33%{transform:translate(597.4px,177.0px)}78.33%{transform:translate(607.9px,172.8px)}83.33%{transform:translate(616.2px,169.5px)}88.33%{transform:translate(622.2px,167.1px)}93.33%{transform:translate(625.9px,165.6px)}100.00%{transform:translate(627.7px,164.9px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path14{0.00%{transform:translate(423.8px,253.1px)}6.67%{transform:translate(425.6px,252.9px)}11.67%{transform:translate(429.3px,252.4px)}16.67%{transform:translate(435.2px,251.7px)}21.67%{transform:translate(443.3px,250.8px)}26.67%{transform:translate(453.6px,249.5px)}33.33%{transform:translate(470.7px,247.5px)}41.67%{transform:translate(496.4px,244.4px)}61.67%{transform:translate(564.3px,236.3px)}68.33%{transform:translate(583.9px,234.0px)}75.00%{transform:translate(600.1px,232.0px)}80.00%{transform:translate(609.7px,230.9px)}85.00%{transform:translate(617.0px,230.0px)}90.00%{transform:translate(622.2px,229.4px)}96.67%{transform:translate(625.8px,229.0px)}100.00%{transform:translate(626.2px,228.9px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path15{0.00%{transform:translate(674.0px,156.0px)}16.67%{transform:translate(677.6px,156.0px)}33.33%{transform:translate(688.8px,156.0px)}70.00%{transform:translate(726.0px,156.0px)}85.00%{transform:translate(735.1px,156.0px)}100.00%{transform:translate(738.0px,156.0px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path16{0.00%{transform:translate(846.0px,156.0px)}16.67%{transform:translate(842.4px,156.0px)}33.33%{transform:translate(831.2px,156.0px)}70.00%{transform:translate(794.0px,156.0px)}85.00%{transform:translate(784.9px,156.0px)}100.00%{transform:translate(782.0px,156.0px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path17{0.00%{transform:translate(674.0px,226.0px)}16.67%{transform:translate(677.6px,226.0px)}33.33%{transform:translate(688.8px,226.0px)}70.00%{transform:translate(726.0px,226.0px)}85.00%{transform:translate(735.1px,226.0px)}100.00%{transform:translate(738.0px,226.0px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path18{0.00%{transform:translate(846.0px,226.0px)}16.67%{transform:translate(842.4px,226.0px)}33.33%{transform:translate(831.2px,226.0px)}70.00%{transform:translate(794.0px,226.0px)}85.00%{transform:translate(784.9px,226.0px)}100.00%{transform:translate(782.0px,226.0px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path19{0.00%{transform:translate(738.0px,476.0px)}16.67%{transform:translate(734.4px,476.0px)}33.33%{transform:translate(723.2px,476.0px)}70.00%{transform:translate(686.0px,476.0px)}85.00%{transform:translate(676.9px,476.0px)}100.00%{transform:translate(674.0px,476.0px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path20{0.00%{transform:translate(738.0px,546.0px)}16.67%{transform:translate(734.4px,546.0px)}33.33%{transform:translate(723.2px,546.0px)}70.00%{transform:translate(686.0px,546.0px)}85.00%{transform:translate(676.9px,546.0px)}100.00%{transform:translate(674.0px,546.0px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path21{0.00%{transform:translate(626.2px,473.1px)}6.67%{transform:translate(624.4px,472.9px)}11.67%{transform:translate(620.7px,472.4px)}16.67%{transform:translate(614.8px,471.7px)}21.67%{transform:translate(606.7px,470.8px)}26.67%{transform:translate(596.4px,469.5px)}33.33%{transform:translate(579.3px,467.5px)}41.67%{transform:translate(553.6px,464.4px)}61.67%{transform:translate(485.7px,456.3px)}68.33%{transform:translate(466.1px,454.0px)}75.00%{transform:translate(449.9px,452.0px)}80.00%{transform:translate(440.3px,450.9px)}85.00%{transform:translate(433.0px,450.0px)}90.00%{transform:translate(427.8px,449.4px)}96.67%{transform:translate(424.2px,449.0px)}100.00%{transform:translate(423.8px,448.9px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path22{0.00%{transform:translate(626.2px,479.3px)}6.67%{transform:translate(624.4px,479.5px)}11.67%{transform:translate(620.7px,480.1px)}16.67%{transform:translate(614.8px,480.9px)}21.67%{transform:translate(606.7px,482.0px)}26.67%{transform:translate(596.4px,483.5px)}33.33%{transform:translate(579.3px,485.9px)}41.67%{transform:translate(553.6px,489.5px)}61.67%{transform:translate(485.7px,499.0px)}68.33%{transform:translate(466.1px,501.8px)}75.00%{transform:translate(449.9px,504.0px)}80.00%{transform:translate(440.3px,505.4px)}85.00%{transform:translate(433.0px,506.4px)}90.00%{transform:translate(427.8px,507.1px)}96.67%{transform:translate(424.2px,507.6px)}100.00%{transform:translate(423.8px,507.7px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path23{0.00%{transform:translate(627.7px,484.9px)}6.67%{transform:translate(625.9px,485.6px)}11.67%{transform:translate(622.2px,487.1px)}16.67%{transform:translate(616.2px,489.5px)}21.67%{transform:translate(607.9px,492.8px)}26.67%{transform:translate(597.4px,497.0px)}33.33%{transform:translate(580.1px,504.0px)}41.67%{transform:translate(554.0px,514.4px)}61.67%{transform:translate(485.1px,542.0px)}68.33%{transform:translate(465.2px,549.9px)}73.33%{transform:translate(452.6px,555.0px)}78.33%{transform:translate(442.1px,559.2px)}83.33%{transform:translate(433.8px,562.5px)}88.33%{transform:translate(427.8px,564.9px)}93.33%{transform:translate(424.1px,566.4px)}100.00%{transform:translate(422.3px,567.1px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path24{0.00%{transform:translate(627.7px,537.1px)}6.67%{transform:translate(625.9px,536.4px)}11.67%{transform:translate(622.2px,534.9px)}16.67%{transform:translate(616.2px,532.5px)}21.67%{transform:translate(607.9px,529.2px)}26.67%{transform:translate(597.4px,525.0px)}33.33%{transform:translate(580.1px,518.0px)}41.67%{transform:translate(554.0px,507.6px)}61.67%{transform:translate(485.1px,480.0px)}68.33%{transform:translate(465.2px,472.1px)}73.33%{transform:translate(452.6px,467.0px)}78.33%{transform:translate(442.1px,462.8px)}83.33%{transform:translate(433.8px,459.5px)}88.33%{transform:translate(427.8px,457.1px)}93.33%{transform:translate(424.1px,455.6px)}100.00%{transform:translate(422.3px,454.9px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path25{0.00%{transform:translate(626.2px,542.7px)}6.67%{transform:translate(624.4px,542.5px)}11.67%{transform:translate(620.7px,541.9px)}16.67%{transform:translate(614.8px,541.1px)}21.67%{transform:translate(606.7px,540.0px)}26.67%{transform:translate(596.4px,538.5px)}33.33%{transform:translate(579.3px,536.1px)}41.67%{transform:translate(553.6px,532.5px)}61.67%{transform:translate(485.7px,523.0px)}68.33%{transform:translate(466.1px,520.2px)}75.00%{transform:translate(449.9px,518.0px)}80.00%{transform:translate(440.3px,516.6px)}85.00%{transform:translate(433.0px,515.6px)}90.00%{transform:translate(427.8px,514.9px)}96.67%{transform:translate(424.2px,514.4px)}100.00%{transform:translate(423.8px,514.3px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path26{0.00%{transform:translate(626.2px,548.9px)}6.67%{transform:translate(624.4px,549.1px)}11.67%{transform:translate(620.7px,549.6px)}16.67%{transform:translate(614.8px,550.3px)}21.67%{transform:translate(606.7px,551.2px)}26.67%{transform:translate(596.4px,552.5px)}33.33%{transform:translate(579.3px,554.5px)}41.67%{transform:translate(553.6px,557.6px)}61.67%{transform:translate(485.7px,565.7px)}68.33%{transform:translate(466.1px,568.0px)}75.00%{transform:translate(449.9px,570.0px)}80.00%{transform:translate(440.3px,571.1px)}85.00%{transform:translate(433.0px,572.0px)}90.00%{transform:translate(427.8px,572.6px)}96.67%{transform:translate(424.2px,573.0px)}100.00%{transform:translate(423.8px,573.1px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path27{0.00%{transform:translate(376.0px,446.0px)}11.67%{transform:translate(373.4px,446.0px)}21.67%{transform:translate(366.8px,446.0px)}33.33%{transform:translate(353.7px,446.0px)}66.67%{transform:translate(302.3px,446.0px)}78.33%{transform:translate(289.2px,446.0px)}90.00%{transform:translate(281.9px,446.0px)}100.00%{transform:translate(280.0px,446.0px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path28{0.00%{transform:translate(376.0px,511.0px)}11.67%{transform:translate(373.4px,511.0px)}21.67%{transform:translate(366.8px,511.0px)}33.33%{transform:translate(353.7px,511.0px)}66.67%{transform:translate(302.3px,511.0px)}78.33%{transform:translate(289.2px,511.0px)}90.00%{transform:translate(281.9px,511.0px)}100.00%{transform:translate(280.0px,511.0px)}}
+@keyframes ts-anim-s6-2-1-forward-backward-path29{0.00%{transform:translate(376.0px,576.0px)}11.67%{transform:translate(373.4px,576.0px)}21.67%{transform:translate(366.8px,576.0px)}33.33%{transform:translate(353.7px,576.0px)}66.67%{transform:translate(302.3px,576.0px)}78.33%{transform:translate(289.2px,576.0px)}90.00%{transform:translate(281.9px,576.0px)}100.00%{transform:translate(280.0px,576.0px)}}
+</style>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker></defs>
+<rect x="0" y="0" width="940" height="652" fill="#ffffff"/>
+<rect x="16" y="16" width="908" height="300" rx="14" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="38" y="52" font-size="18" font-weight="bold" fill="#1F1E1E">1 · Hacia adelante (forward): la predicción</text>
+<text x="245.0" y="90" font-size="15">pesos <tspan font-style="italic">w</tspan><tspan font-size="11" dy="4">ij</tspan></text>
+<text x="493.5" y="90" font-size="15">pesos <tspan font-style="italic">w</tspan><tspan font-size="11" dy="4">jk</tspan></text>
+<text x="870" y="90" font-size="15" text-anchor="middle">objetivo</text>
+<line x1="173.8" y1="153.1" x2="376.2" y2="128.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="173.8" y1="159.3" x2="376.2" y2="187.7" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="172.3" y1="164.9" x2="377.7" y2="247.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="172.3" y1="217.1" x2="377.7" y2="134.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="173.8" y1="222.7" x2="376.2" y2="194.3" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="173.8" y1="228.9" x2="376.2" y2="253.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="423.8" y1="128.9" x2="626.2" y2="153.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="422.3" y1="134.9" x2="627.7" y2="217.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="423.8" y1="187.7" x2="626.2" y2="159.3" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="423.8" y1="194.3" x2="626.2" y2="222.7" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="422.3" y1="247.1" x2="627.7" y2="164.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="423.8" y1="253.1" x2="626.2" y2="228.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="86" y="161" font-size="15" text-anchor="end">datos</text>
+<line x1="94.0" y1="156.0" x2="126.0" y2="156.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="86" y="231" font-size="15" text-anchor="end">datos</text>
+<line x1="94.0" y1="226.0" x2="126.0" y2="226.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="674.0" y1="156.0" x2="738.0" y2="156.0" stroke="#3B3535" stroke-width="1.6"/>
+<line x1="782.0" y1="156.0" x2="846.0" y2="156.0" stroke="#3B3535" stroke-width="1.6"/>
+<line x1="674.0" y1="226.0" x2="738.0" y2="226.0" stroke="#3B3535" stroke-width="1.6"/>
+<line x1="782.0" y1="226.0" x2="846.0" y2="226.0" stroke="#3B3535" stroke-width="1.6"/>
+<circle cx="150" cy="156" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="141.9" y="162.5" font-size="19" font-style="italic">x<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="150" cy="226" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="141.9" y="232.5" font-size="19" font-style="italic">x<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="400" cy="126" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="132.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="400" cy="191" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="197.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="400" cy="256" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="262.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">3</tspan></text>
+<circle cx="650" cy="156" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="641.9" y="162.5" font-size="19" font-style="italic">y<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="650" cy="226" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="641.9" y="232.5" font-size="19" font-style="italic">y<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="870" cy="156" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="864.0" y="162.5" font-size="19" font-style="italic">t<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="870" cy="226" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="864.0" y="232.5" font-size="19" font-style="italic">t<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<g class="epop"><rect x="738" y="141" width="44" height="30" rx="15" fill="#DA1B2E"/>
+<text x="751.7" y="161.0" font-size="18" font-style="italic" fill="#ffffff">e<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<text x="730.6" y="190.0" font-size="13"><tspan font-style="italic">e</tspan><tspan font-size="9" dy="3">1</tspan><tspan dy="-3"> = </tspan><tspan font-style="italic">y</tspan><tspan font-size="9" dy="3">1</tspan><tspan dy="-3"> - </tspan><tspan font-style="italic">t</tspan><tspan font-size="9" dy="3">1</tspan></text></g>
+<g class="epop"><rect x="738" y="211" width="44" height="30" rx="15" fill="#DA1B2E"/>
+<text x="751.7" y="231.0" font-size="18" font-style="italic" fill="#ffffff">e<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<text x="730.6" y="260.0" font-size="13"><tspan font-style="italic">e</tspan><tspan font-size="9" dy="3">2</tspan><tspan dy="-3"> = </tspan><tspan font-style="italic">y</tspan><tspan font-size="9" dy="3">2</tspan><tspan dy="-3"> - </tspan><tspan font-style="italic">t</tspan><tspan font-size="9" dy="3">2</tspan></text></g>
+<text x="275.0" y="300" font-size="13" font-style="italic" text-anchor="middle">todas con todas</text>
+<text x="525.0" y="300" font-size="13" font-style="italic" text-anchor="middle">todas con todas</text>
+<g class="panel2">
+<rect x="16" y="336" width="908" height="300" rx="14" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="38" y="372" font-size="18" font-weight="bold" fill="#1F1E1E">2 · Hacia atrás (backward): el error</text>
+<text x="222.0" y="410" font-size="15">ajusta <tspan font-style="italic">w</tspan><tspan font-size="11" dy="4">ij</tspan></text>
+<text x="493.5" y="410" font-size="15">ajusta <tspan font-style="italic">w</tspan><tspan font-size="11" dy="4">jk</tspan></text>
+<rect x="224" y="426" width="56" height="170" rx="8" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="242.5" y="517.5" font-size="19" font-style="italic">w<tspan font-size="12" font-style="normal" dy="4">ij</tspan></text>
+<line x1="626.2" y1="473.1" x2="423.8" y2="448.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="626.2" y1="479.3" x2="423.8" y2="507.7" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="627.7" y1="484.9" x2="422.3" y2="567.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="627.7" y1="537.1" x2="422.3" y2="454.9" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="626.2" y1="542.7" x2="423.8" y2="514.3" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="626.2" y1="548.9" x2="423.8" y2="573.1" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="376.0" y1="446.0" x2="280.0" y2="446.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="376.0" y1="511.0" x2="280.0" y2="511.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="376.0" y1="576.0" x2="280.0" y2="576.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="738.0" y1="476.0" x2="674.0" y2="476.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="846.0" y1="476.0" x2="782.0" y2="476.0" stroke="#3B3535" stroke-width="1.6"/>
+<line x1="738.0" y1="546.0" x2="674.0" y2="546.0" stroke="#3B3535" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="846.0" y1="546.0" x2="782.0" y2="546.0" stroke="#3B3535" stroke-width="1.6"/>
+<circle cx="150" cy="476" r="24" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="141.9" y="482.5" font-size="19" font-style="italic">x<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="150" cy="546" r="24" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="141.9" y="552.5" font-size="19" font-style="italic">x<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="400" cy="446" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="452.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="400" cy="511" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="517.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="400" cy="576" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="391.4" y="582.5" font-size="19" font-style="italic">h<tspan font-size="12" font-style="normal" dy="4">3</tspan></text>
+<circle cx="650" cy="476" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="641.9" y="482.5" font-size="19" font-style="italic">y<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="650" cy="546" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="641.9" y="552.5" font-size="19" font-style="italic">y<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<circle cx="870" cy="476" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="864.0" y="482.5" font-size="19" font-style="italic">t<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<circle cx="870" cy="546" r="24" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.6"/>
+<text x="864.0" y="552.5" font-size="19" font-style="italic">t<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<rect x="738" y="461" width="44" height="30" rx="15" fill="#DA1B2E"/>
+<text x="751.7" y="481.0" font-size="18" font-style="italic" fill="#ffffff">e<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+<text x="730.6" y="510.0" font-size="13"><tspan font-style="italic">e</tspan><tspan font-size="9" dy="3">1</tspan><tspan dy="-3"> = </tspan><tspan font-style="italic">y</tspan><tspan font-size="9" dy="3">1</tspan><tspan dy="-3"> - </tspan><tspan font-style="italic">t</tspan><tspan font-size="9" dy="3">1</tspan></text>
+<rect x="738" y="531" width="44" height="30" rx="15" fill="#DA1B2E"/>
+<text x="751.7" y="551.0" font-size="18" font-style="italic" fill="#ffffff">e<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+<text x="730.6" y="580.0" font-size="13"><tspan font-style="italic">e</tspan><tspan font-size="9" dy="3">2</tspan><tspan dy="-3"> = </tspan><tspan font-style="italic">y</tspan><tspan font-size="9" dy="3">2</tspan><tspan dy="-3"> - </tspan><tspan font-style="italic">t</tspan><tspan font-size="9" dy="3">2</tspan></text>
+<text x="150" y="600" font-size="13" font-style="italic" text-anchor="middle">sin parámetros</text>
+</g>
+<g class="tk1" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk2" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<circle class="rg1" cx="150" cy="156" r="30" fill="none" stroke="#1F1E1E" stroke-width="2.4" opacity="0"/>
+<circle class="rg2" cx="150" cy="226" r="30" fill="none" stroke="#1F1E1E" stroke-width="2.4" opacity="0"/>
+<g class="tk3" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk4" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk5" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk6" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk7" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk8" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<circle class="rg3" cx="400" cy="126" r="30" fill="none" stroke="#1F1E1E" stroke-width="2.4" opacity="0"/>
+<circle class="rg4" cx="400" cy="191" r="30" fill="none" stroke="#1F1E1E" stroke-width="2.4" opacity="0"/>
+<circle class="rg5" cx="400" cy="256" r="30" fill="none" stroke="#1F1E1E" stroke-width="2.4" opacity="0"/>
+<g class="tk9" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk10" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk11" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk12" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk13" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk14" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<circle class="rg6" cx="650" cy="156" r="30" fill="none" stroke="#1F1E1E" stroke-width="2.4" opacity="0"/>
+<circle class="rg7" cx="650" cy="226" r="30" fill="none" stroke="#1F1E1E" stroke-width="2.4" opacity="0"/>
+<g class="tk15" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk16" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk17" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<g class="tk18" opacity="0"><g class="ball"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g></g>
+<circle class="rg8" cx="760" cy="156" r="27" fill="none" stroke="#DA1B2E" stroke-width="2.4" opacity="0"/>
+<circle class="rg9" cx="760" cy="226" r="27" fill="none" stroke="#DA1B2E" stroke-width="2.4" opacity="0"/>
+<line class="rl1" x1="738.0" y1="476" x2="684.0" y2="476.0" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl1h" d="M674.0,476 L684.0,471.0 L684.0,481.0 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk19" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<line class="rl2" x1="738.0" y1="546" x2="684.0" y2="546.0" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl2h" d="M674.0,546 L684.0,541.0 L684.0,551.0 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk20" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<line class="rl3" x1="626.2" y1="473.1" x2="433.7" y2="450.1" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl3h" d="M423.8,448.9 L434.3,445.1 L433.1,455.1 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk21" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<line class="rl4" x1="626.2" y1="479.3" x2="433.7" y2="506.3" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl4h" d="M423.8,507.7 L433.0,501.4 L434.4,511.3 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk22" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<line class="rl5" x1="627.7" y1="484.9" x2="431.6" y2="563.4" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl5h" d="M422.3,567.1 L429.7,558.7 L433.4,568.0 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk23" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<line class="rl6" x1="627.7" y1="537.1" x2="431.6" y2="458.6" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl6h" d="M422.3,454.9 L433.4,454.0 L429.7,463.3 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk24" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<line class="rl7" x1="626.2" y1="542.7" x2="433.7" y2="515.7" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl7h" d="M423.8,514.3 L434.4,510.7 L433.0,520.6 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk25" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<line class="rl8" x1="626.2" y1="548.9" x2="433.7" y2="571.9" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl8h" d="M423.8,573.1 L433.1,566.9 L434.3,576.9 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk26" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<line class="rl9" x1="376.0" y1="446.0" x2="290.0" y2="446.0" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl9h" d="M280.0,446.0 L290.0,441.0 L290.0,451.0 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk27" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<line class="rl10" x1="376.0" y1="511.0" x2="290.0" y2="511.0" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl10h" d="M280.0,511.0 L290.0,506.0 L290.0,516.0 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk28" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<line class="rl11" x1="376.0" y1="576.0" x2="290.0" y2="576.0" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<path class="rl11h" d="M280.0,576.0 L290.0,571.0 L290.0,581.0 z" fill="#DA1B2E" opacity="0"/>
+<g class="tk29" opacity="0"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g>
+<rect class="adj-jk" x="493.5" y="421" width="76" height="3" rx="1.5" fill="#DA1B2E" opacity="0"/>
+<rect class="adj-ij" x="222" y="421" width="70" height="3" rx="1.5" fill="#DA1B2E" opacity="0"/>
+<rect class="adj-ij" x="224" y="426" width="56" height="170" rx="8" fill="none" stroke="#DA1B2E" stroke-width="2.6" opacity="0"/>
+<circle class="rg10" cx="760" cy="476" r="27" fill="none" stroke="#DA1B2E" stroke-width="2.4" opacity="0"/>
+<circle class="rg11" cx="760" cy="546" r="27" fill="none" stroke="#DA1B2E" stroke-width="2.4" opacity="0"/>
+</svg>

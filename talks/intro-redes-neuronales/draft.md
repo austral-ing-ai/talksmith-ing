@@ -151,13 +151,35 @@ Cada neurona recibe varias entradas, las multiplica por sus pesos, las suma y le
 
 `x` es el vector de entradas, `w` los pesos que la neurona aprendió y `b` el sesgo: un desplazamiento que le permite activarse antes o después.
 
-![Una neurona: entradas, pesos, suma y sesgo](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s09-4d516fc1e6a4.png)
+<!-- ascii-render: force -->
+```ascii
+  ENTRADAS        PESOS
+
+  ( x1 ) -------- w1 --------+
+                             |
+  ( x2 ) -------- w2 --------+-----> (  Σ  ) -----> a = x · w + b
+                             |          ^
+  ( x3 ) -------- w3 --------+          |
+                                        b
+                                     (sesgo)
+```
+<!-- ascii-note:
+intent: La parte lineal de una neurona y nada más: cada entrada se multiplica por su peso, los productos se suman en Σ, el sesgo b desplaza la suma y sale un único número a. Todavía sin no linealidad.
+emphasize: el nodo «Σ», donde todo se junta en un solo número
+labels: x1, x2, x3 = entradas; w1, w2, w3 = pesos; b = sesgo; a = salida lineal
+animation:
+  1. Aparecen las entradas «x1», «x2» y «x3», cada una con su valor.
+  2. Cada valor recorre su flecha y se multiplica por su peso «w1», «w2», «w3».
+  3. Los tres productos llegan a «Σ» y se suman en un solo número.
+  4. Entra el sesgo «b» desde abajo y desplaza ese número.
+  5. Sale «a = x · w + b», un único número, y el diagrama queda completo.
+-->
 
 ![La fórmula de la combinación lineal](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s09-d050a6977b8b.png)
 
 ### Sources
 
-corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 9)
+corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 9); diagrama redibujado de corpus/Intro-Redes-Neuronales-105min.pptx/images/s09-4d516fc1e6a4.png, solo la parte lineal
 
 ### Speaker notes
 
@@ -200,11 +222,31 @@ Combinación lineal seguida de una no linealidad. Ese par es una capa, y es la u
 
 Una capa toma un vector y devuelve otro vector. Encadenarlas es simplemente pasarle a la siguiente lo que produjo la anterior.
 
-![La capa: combinación lineal más no linealidad](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s11-54a05bc4894e.png)
+```ascii
+             +----------------------------- CAPA -----------------------------+
+             |                                                                |
+ Entrada     |    Combinación lineal              No linealidad               |    Salida               Siguiente capa
+[ vector ] --+--> [   x · w + b    ] ---------->  [     f( )     ] -----------+--> [ vector ] ---------> [  entrada  ]
+             |    un número por unidad            uno por uno                 |
+             |                                                                |
+             +----------------------------------------------------------------+
+```
+<!-- ascii-note:
+intent: Una capa es el par combinación lineal más no linealidad: toma un vector, devuelve otro, y ese vector es la entrada de la capa siguiente.
+emphasize: el recuadro «CAPA» que encierra los dos pasos
+labels: Entrada y Salida son vectores; f( ) es la no linealidad, aplicada a cada número
+animation:
+  1. Un vector entra por «Entrada».
+  2. Pasa por «Combinación lineal» («x · w + b») y sale un número por unidad.
+  3. «No linealidad» transforma cada uno de esos números, uno por uno.
+  4. Sale un vector nuevo por «Salida», y el recuadro «CAPA» se marca alrededor de los dos pasos.
+  5. Ese vector entra a «Siguiente capa» como su entrada, y el diagrama queda completo.
+-->
+
 
 ### Sources
 
-corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 11)
+corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 11); diagrama redibujado de corpus/Intro-Redes-Neuronales-105min.pptx/images/s11-54a05bc4894e.png
 
 ### Speaker notes
 
@@ -407,13 +449,40 @@ El vector de entrada multiplica a la matriz de pesos, y el resultado es el vecto
 - **02 · Pesos.** La matriz de 8×9 que la red aprendió.
 - **03 · Salida.** Un vector de 9 números: la capa oculta, antes de aplicar la activación.
 
-![El producto matricial de la capa](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s21-51491d0e73ef.png)
+<!-- ascii-render: force -->
+```ascii
+        x                              W                                     h
+     (1 × 8)                        (8 × 9)                               (1 × 9)
+                                                                    antes de la activación
+
+                      +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                      |     |     |     |     |     |     |     |     |     |
+ [ x1  x2  ...  x8 ]  |col 1|col 2|col 3|col 4|col 5|col 6|col 7|col 8|col 9|  =  [ h1 | h2 | h3 | h4 | h5 | h6 | h7 | h8 | h9 ]
+                      |     |     |     |     |     |     |     |     |     |
+                      +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                              8 filas
+
+               1 × 8   ·   8 × 9   =   1 × 9
+                   |       |
+                   +-------+
+               tienen que coincidir
+```
+<!-- ascii-note:
+intent: El producto x · W calcula la capa entera de una vez: cada uno de los 9 valores de h es x multiplicado por una columna de W, y las dimensiones encajan porque los dos 8 coinciden. h sale antes de la activación.
+emphasize: la llave «tienen que coincidir» entre los dos «8»
+labels: x = vector fila 1 × 8; W = matriz 8 × 9 (8 filas, 9 columnas); h = vector fila 1 × 9
+animation:
+  1. Aparecen «x» de «1 × 8» y «W» de «8 × 9»; se resaltan los dos «8» que tienen que coincidir.
+  2. «x» se cruza con «col 1» de «W» y el resultado llena la celda «h1».
+  3. Se repite con cada columna, de «col 2» a «col 9»: cada pasada llena una celda más de «h», y termina cuando no quedan columnas.
+  4. Con las nueve celdas llenas aparece «h» de «1 × 9», todavía «antes de la activación», y el diagrama queda completo.
+-->
 
 ![La fórmula del producto](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s21-cf87887ddd74.png)
 
 ### Sources
 
-corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 21)
+corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 21); diagrama redibujado de corpus/Intro-Redes-Neuronales-105min.pptx/images/s21-51491d0e73ef.png (1 × 8 · 8 × 9 = 1 × 9), sin el fragmento de neurona
 
 ### Speaker notes
 
@@ -514,11 +583,37 @@ Dos transformaciones lineales encadenadas equivalen a una sola. Multiplicar por 
 
 **Diez capas lineales tienen exactamente el mismo poder expresivo que una.** La no linealidad es lo único que impide ese colapso.
 
-![Dos matrices encadenadas colapsan en una](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s26-6bddaf9b74ea.png)
+```ascii
+ ANTES: dos capas lineales, sin activación
+
+     x  -----> [ W1  (8 × 9) ] ----->  h  -----> [ W2  (9 × 4) ] ----->  y
+  (1 × 8)                           (1 × 9)                           (1 × 4)
+
+                      +---------------------------------+
+                      |    W1 (8 × 9)  ·  W2 (9 × 4)    |
+                      +---------------------------------+
+                                       |
+                                       v
+ DESPUÉS: una sola capa
+
+     x  ---------------------> [ W*  (8 × 4) ] ------------------------>  y
+  (1 × 8)                                                             (1 × 4)
+```
+<!-- ascii-note:
+intent: Sin activación, dos capas lineales encadenadas equivalen a una: W1 y W2 se multiplican en una única W* y la capa oculta h desaparece.
+emphasize: «W* (8 × 4)», la matriz única que reemplaza a las dos
+labels: dimensiones entre paréntesis (filas × columnas)
+animation:
+  1. «x» pasa por «W1 (8 × 9)» y produce «h».
+  2. «h» pasa por «W2 (9 × 4)» y produce «y».
+  3. «W1» y «W2» se juntan en el recuadro del medio y se multiplican.
+  4. El recuadro se convierte en «W* (8 × 4)» y «h» se desvanece.
+  5. «x» llega directo a «y» por «W*», sin capa oculta, y el diagrama queda completo con «ANTES» arriba y «DESPUÉS» abajo.
+-->
 
 ### Sources
 
-corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 26)
+corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 26); diagrama redibujado de corpus/Intro-Redes-Neuronales-105min.pptx/images/s26-6bddaf9b74ea.png (x 1 × 8, W1 8 × 9, h 1 × 9, W2 9 × 4, y 1 × 4, W* 8 × 4)
 
 ### Speaker notes
 
@@ -563,13 +658,35 @@ En la capa de salida no queremos números sueltos sino una distribución. Softma
 
 **Ojo con dónde se aplica.** Softmax se usa en la activación de la capa final. Si se la aplica en una capa oculta, se pierde información sobre la magnitud de los valores y solo sobrevive su proporción.
 
-![Softmax convierte puntajes en probabilidades](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s28-c9cadec7c247.png)
+<!-- ascii-render: force -->
+```ascii
+  CLASE        PUNTAJE a           e^a                                 PROBABILIDAD
+
+  gato           -0,21   ------>   0,81  ---+               +---->   0,81 / 8  =  0,1
+                                            |               |
+  perro           0,47   ------>   1,60  ---+--->  Σ ≈ 8  --+---->   1,60 / 8  =  0,2
+                                            |               |
+  caballo         1,72   ------>   5,58  ---+               +---->   5,58 / 8  =  0,7
+                                                                     ----------------
+                                                                     suman           1
+```
+<!-- ascii-note:
+intent: Softmax convierte los puntajes de la capa de salida en probabilidades que suman 1, y para eso mira los tres valores a la vez: cada exponencial se divide por el total de las tres.
+emphasize: «Σ ≈ 8», el total que junta las tres clases
+labels: e^a = exponencial del puntaje; decimales con coma
+animation:
+  1. Los puntajes «-0,21», «0,47» y «1,72» salen de la capa de salida, uno por clase: «gato», «perro», «caballo».
+  2. Cada puntaje pasa por «e^a» y se vuelve positivo: «0,81», «1,60», «5,58».
+  3. Los tres se suman en «Σ ≈ 8».
+  4. Cada uno se divide por ese total.
+  5. Salen «0,1», «0,2» y «0,7», que suman 1, con «caballo» como la clase más probable, y el diagrama queda completo.
+-->
 
 ![La fórmula de softmax](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s28-6322673fdf1b.png)
 
 ### Sources
 
-corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 28)
+corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 28); ejemplo numérico de corpus/Intro-Redes-Neuronales-105min.pptx/images/s28-c9cadec7c247.png (a = [-0,21; 0,47; 1,72], Σ = 8, y = [0,1; 0,2; 0,7]). Derivación del diagrama: e^-0,21 = 0,81; e^0,47 = 1,60; e^1,72 = 5,58; Σ = 7,99 ≈ 8; 0,81 / 8 = 0,10, 1,60 / 8 = 0,20, 5,58 / 8 = 0,70.
 
 ### Speaker notes
 
@@ -618,11 +735,40 @@ El entrenamiento es un ciclo de dos movimientos. Hacia adelante, la red calcula 
 - **01 · Propagación hacia adelante.** Empujar la entrada a través de la red. Al final de cada época, comparamos las salidas obtenidas con los objetivos y formamos el error.
 - **02 · Propagación hacia atrás.** Propagar ese error hacia atrás por la red y actualizar los parámetros, pesos y sesgos, en consecuencia.
 
-![El ciclo forward y backward](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s31-222a372707cc.png)
+```ascii
+ 1. HACIA ADELANTE (forward): la predicción
+
+                    pesos w_ij                     pesos w_jk                         objetivo
+ datos --> ( x1 ) ==============> ( h1 ) ==============> ( y1 ) ---- e1 ---- ( t1 )
+                  todas con todas ( h2 ) todas con todas
+ datos --> ( x2 ) ==============> ( h3 ) ==============> ( y2 ) ---- e2 ---- ( t2 )
+
+
+ 2. HACIA ATRÁS (backward): el error
+
+                    ajusta w_ij                    ajusta w_jk
+           ( x1 )   [ w_ij ] <=========== ( h1 ) <=========== ( y1 ) <--- e1 ---- ( t1 )
+                                          ( h2 )
+           ( x2 )   [ w_ij ] <=========== ( h3 ) <=========== ( y2 ) <--- e2 ---- ( t2 )
+        sin parámetros
+```
+<!-- ascii-note:
+intent: El entrenamiento como dos pasadas sobre la misma red 2-3-2: la predicción viaja hacia adelante por todas las conexiones, y el error vuelve hacia atrás ajustando los pesos. Las flechas de vuelta terminan en los primeros pesos «w_ij», nunca dentro de «x1» y «x2»: las entradas no tienen parámetros. Cada capa se conecta con todas las unidades de la siguiente.
+emphasize: los errores «e1» y «e2», donde la pasada de ida se da vuelta
+labels: w_ij = pesos de entrada a capa oculta; w_jk = pesos de capa oculta a salida; t1, t2 = objetivos
+terms: forward, backward
+animation:
+  1. Entran los datos por «x1» y «x2».
+  2. La señal recorre todas las conexiones «pesos w_ij» y llega a «h1», «h2» y «h3».
+  3. Desde la capa oculta sigue por «pesos w_jk» hasta «y1» e «y2».
+  4. Cada salida se compara con su objetivo: aparece «e1» frente a «t1» y «e2» frente a «t2».
+  5. El error arranca de vuelta desde «y1» e «y2» y recorre las conexiones «w_jk» hasta la capa oculta; esos pesos quedan ajustados.
+  6. Desde «h1», «h2» y «h3» sigue hasta los pesos «w_ij» y se detiene ahí, sin entrar a «x1» ni «x2»; esos pesos quedan ajustados y el diagrama queda completo.
+-->
 
 ### Sources
 
-corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 31)
+corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 31); diagrama redibujado de corpus/Intro-Redes-Neuronales-105min.pptx/images/s31-222a372707cc.png, con las flechas de vuelta terminando en los pesos w_ij y la notación w_ij / w_jk de las diapositivas 34 y 35
 
 ### Speaker notes
 
@@ -694,8 +840,6 @@ Con `δ` calculado, el gradiente de cualquier peso que llega a la unidad es una 
 
 ![El gradiente en términos de delta](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s34-7e1441f8b259.png)
 
-![Delta en la capa de salida](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s34-453542b3b9d8.png)
-
 ### Sources
 
 corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 34)
@@ -720,11 +864,36 @@ Una unidad oculta no tiene un objetivo con el cual compararse: nadie le dice cu�
 
 **Acá está el corazón del algoritmo.** El error se reparte hacia atrás capa por capa: cada unidad recibe la parte de culpa que le corresponde según cuánto influyó en las que venían después. De ahí el nombre "propagación hacia atrás".
 
+<!-- ascii-render: force -->
+```ascii
+   ENTRADA               UNIDAD OCULTA j                      SALIDAS
+
+   ( x_i ) --- w_ij ---> (     j     ) ------ w_j1 ------> ( k = 1 )   δ1  <--- e1
+                          activación y_j \
+                                          \--- w_j2 ------> ( k = 2 )   δ2  <--- e2
+
+
+   δ_j  =  ( δ1 · w_j1  +  δ2 · w_j2 ) · y_j (1 - y_j)
+
+   gradiente de w_ij  =  δ_j · x_i
+```
+<!-- ascii-note:
+intent: Una unidad oculta no tiene objetivo propio: su delta δ_j se arma sumando los deltas de las salidas que alimenta, ponderados por los pesos w_jk que las conectan, y multiplicando por la derivada de su activación. Con δ_j, el gradiente del peso que llega desde la entrada es una multiplicación. Misma notación que la fórmula de la diapositiva: w_jk va de la unidad oculta j a la salida k.
+emphasize: «δ_j», el delta que hereda la unidad oculta
+labels: w_ij = peso de la entrada i a la unidad oculta j; w_j1, w_j2 = pesos de j a las salidas k = 1 y k = 2; y_j = activación de j; δ1, δ2 = deltas de las salidas
+animation:
+  1. Aparecen los errores «e1» y «e2» en las salidas «k = 1» y «k = 2», y se convierten en sus deltas «δ1» y «δ2».
+  2. Desde «k = 1», «δ1» vuelve por «w_j1» hasta la unidad «j».
+  3. Desde «k = 2», «δ2» vuelve por «w_j2» hasta la unidad «j».
+  4. Los dos aportes se suman en «j» y se multiplican por la derivada de la activación, «y_j (1 - y_j)»: queda «δ_j».
+  5. «δ_j» sigue hacia atrás hasta «w_ij», el peso que llega desde «x_i», y su gradiente queda «δ_j · x_i»; el diagrama queda completo.
+-->
+
 ![Delta heredado de la capa siguiente](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s35-747d5b5238c4.png)
 
 ### Sources
 
-corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 35)
+corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositivas 34 y 35); el diagrama redibuja corpus/Intro-Redes-Neuronales-105min.pptx/images/s34-453542b3b9d8.png con la notación w_jk de la fórmula de la diapositiva 35
 
 ### Speaker notes
 
@@ -891,11 +1060,50 @@ Elegimos una configuración, entrenamos, medimos, y volvemos a elegir. El entren
 - **02 · Entrenar y medir.** La red ajusta sus pesos, y nosotros evaluamos el error en validación.
 - **03 · Volver a probar.** Cambiamos la configuración y repetimos, hasta que el error deja de mejorar.
 
-![El ciclo externo de ajuste de hiperparámetros](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s45-f160ea1eefb4.png)
+```ascii
+     +----------------------------------------------+
+     |                Configuración                 |
+     | ancho · profundidad · tasa de aprendizaje    |
+     +----------------------------------------------+
+               |                          ^
+               v                          |
+     +----------------------+             |
+     |    Entrenamiento     |             |
+     +----------------------+             |
+               |                          |  cambiar la
+               v                          |  configuración y
+     +----------------------+             |  volver a probar
+     |     Parámetros       |             |
+     |     del modelo       |             |
+     +----------------------+             |
+               |                          |
+               v                          |
+     +----------------------+             |
+     |       Error de       | ------------+
+     |      validación      |
+     +----------------------+
+               |
+               |  cuando el error deja de mejorar
+               v
+     +----------------------+
+     |  Mejor configuración |
+     +----------------------+
+```
+<!-- ascii-note:
+intent: El ciclo externo de ajuste: elegir la configuración, entrenar, medir el error en validación y volver a elegir, hasta que el error deja de mejorar. El entrenamiento produce los parámetros del modelo; el ciclo produce la mejor configuración.
+emphasize: la flecha de vuelta «cambiar la configuración y volver a probar»
+labels: tasa de aprendizaje = η
+animation:
+  1. Se fija una «Configuración»: «ancho», «profundidad» y «tasa de aprendizaje».
+  2. La configuración entra a «Entrenamiento», que devuelve los «Parámetros del modelo».
+  3. Con esos parámetros se mide el «Error de validación».
+  4. El error vuelve por «cambiar la configuración y volver a probar» a «Configuración», que cambia, y el ciclo da otra vuelta con un error menor.
+  5. En la última vuelta el error ya no mejora: el recorrido sale por «cuando el error deja de mejorar» y esa configuración queda como «Mejor configuración», y el diagrama queda completo.
+-->
 
 ### Sources
 
-corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 45, anexo)
+corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 45, anexo); diagrama del ciclo dibujado a partir del texto de esta diapositiva (corpus/Intro-Redes-Neuronales-105min.pptx/images/s45-f160ea1eefb4.png solo muestra entrenamiento y parámetros, sin el ciclo)
 
 ### Speaker notes
 
@@ -938,11 +1146,45 @@ Cada una de las nueve unidades recibe una combinación de las ocho entradas, con
 
 Después del producto matricial viene la activación. Sin ese paso la capa sería lineal y toda la profundidad se desperdiciaría.
 
-![La capa oculta completa](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s47-842a83c0c695.png)
+```ascii
+                         CAPA DE ENTRADA      x · W  (8 × 9)       CAPA OCULTA
+                                            72 conexiones a la vez
+
+  temperatura media       ( x1 ) ---\ /---\ /---\ /---\ /---> ( h1 )
+                                     X     X     X     X
+  temperatura máxima      ( x2 ) ---/ \---/ \---/ \---/ \---> ( h2 )
+                                     X     X     X     X
+  temperatura mínima      ( x3 ) ---\ /---\ /---\ /---\ /---> ( h3 )
+                                     X     X     X     X
+  humedad                 ( x4 ) ---/ \---/ \---/ \---/ \---> ( h4 )
+                                     X     X     X     X
+  precipitación           ( x5 ) ---\ /---\ /---\ /---\ /---> ( h5 )  <-- columna 5 de W: w15 ... w85
+                                     X     X     X     X
+  presión                 ( x6 ) ---/ \---/ \---/ \---/ \---> ( h6 )
+                                     X     X     X     X
+  nubosidad               ( x7 ) ---\ /---\ /---\ /---\ /---> ( h7 )
+                                     X     X     X     X
+  visibilidad             ( x8 ) ---/ \---/ \---/ \---/ \---> ( h8 )
+                                                         \
+                                                          \-> ( h9 )
+                                                                 |
+                                                                 v
+                                                            activación
+```
+<!-- ascii-note:
+intent: Una capa oculta entera se calcula de una vez: cada una de las ocho entradas se conecta con cada una de las nueve unidades (72 conexiones, todas a la vez, con un solo producto x · W), y después viene la activación. La malla del ASCII resume las 72 conexiones: en el SVG van las 72 líneas, cada entrada con cada unidad oculta.
+emphasize: la unidad «h5» con sus ocho conexiones de entrada, su «columna 5 de W»
+labels: x1 ... x8 = las ocho variables del clima; h1 ... h9 = unidades ocultas; w15 ... w85 = pesos de cada entrada a h5 (primer índice la entrada, segundo la unidad oculta)
+animation:
+  1. Las ocho variables entran por «x1» … «x8».
+  2. Las 72 conexiones hacia la «CAPA OCULTA» se encienden a la vez, no una unidad después de otra.
+  3. Las nueve unidades «h1» … «h9» reciben su suma ponderada en el mismo instante; «h5» se destaca con su «columna 5 de W»: las mismas ocho entradas, con otros pesos.
+  4. Sobre las nueve unidades se aplica la «activación», y el diagrama queda completo.
+-->
 
 ### Sources
 
-corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 47, anexo)
+corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 47, anexo); diagrama redibujado de corpus/Intro-Redes-Neuronales-105min.pptx/images/s47-842a83c0c695.png con las variables de la diapositiva 18; 72 = 8 × 9 conexiones
 
 ### Speaker notes
 
@@ -984,13 +1226,32 @@ Pensémosla como el termostato: la temperatura baja de forma continua, pero nues
 - **02 · La activación decide.** Aplasta, corta o normaliza ese número.
 - **03 · La salida cambia de naturaleza.** Pasa a ser una probabilidad, una activación o un cero.
 
-![La analogía del termostato](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s49-1361be4b725f.png)
+<!-- ascii-render: force -->
+```ascii
+   ENTRADA
 
-![Continuo a discreto](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s49-0c5c7d04e27c.png)
+   ( x1 ) ----+
+              |
+              +----> ( Combinación lineal ) ----> [ Función de activación ] ----> valor entre 0 y 1
+              |        cualquier número real            curva en S
+   ( x2 ) ----+
+```
+<!-- ascii-note:
+intent: La activación cambia la naturaleza del número: la combinación lineal da cualquier número real y la función de activación lo convierte en un valor acotado entre 0 y 1. El recuadro de la activación lleva dibujada una curva en S pequeña.
+emphasize: el recuadro «Función de activación»
+labels: x1, x2 = entradas
+animation:
+  1. Salen dos valores de «x1» y «x2».
+  2. Se combinan en «Combinación lineal» y aparece un número cualquiera, sin límites: «cualquier número real».
+  3. Ese número entra a «Función de activación» y la «curva en S» lo aplasta.
+  4. Por la flecha de salida sale un «valor entre 0 y 1», y el diagrama queda completo.
+-->
+
+![La analogía del termostato: la temperatura entra, la activación decide si abrigarse o no](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s49-0c5c7d04e27c.png)
 
 ### Sources
 
-corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 49, anexo)
+corpus/Intro-Redes-Neuronales-105min.pptx.md (diapositiva 49, anexo); diagrama redibujado de corpus/Intro-Redes-Neuronales-105min.pptx/images/s49-1361be4b725f.png
 
 ### Speaker notes
 
@@ -1008,7 +1269,7 @@ Antes de derivar la red completa hace falta una pieza. La derivada de la sigmoid
 
 Por eso la sigmoide fue la activación por defecto durante años: **su derivada sale casi gratis.** Su problema aparece en los extremos, donde se aplana y el gradiente se desvanece.
 
-![La derivada de la sigmoide](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s50-fd950a8d8f36.png)
+![La función sigmoide σ(x)](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s50-fd950a8d8f36.png)
 
 ![La fórmula de la derivada](research/corpus/Intro-Redes-Neuronales-105min.pptx/images/s50-3f7e68cecb38.png)
 
@@ -1113,6 +1374,16 @@ El cierre del mazo original apunta a la clase 8 de la materia de biomedicina, y 
 - **El mazo original no tiene notas del orador en ninguna diapositiva.** Todas las de este borrador están escritas de cero y no vienen de la fuente; conviene leerlas antes del ensayo.
 - **El salto de la tabla de dimensiones** (diapositiva 4.6) quedó tal cual está en el original, con el 100×4 sin introducir. La aclaración está en la 7.9 del anexo y la nota del orador de la 4.6 avisa que hay que taparlo en vivo. Si se prefiere, se puede arreglar en la diapositiva.
 - **La sigmoide como default.** El original la presenta como la no linealidad clásica en el capítulo 2 y recién en el 5 dice que el estándar es ReLU. Se conservó el orden histórico y las notas del orador de 2.3 y 5.4 avisan. Si se quiere evitar la impresión equivocada, hay que reordenar.
+- **«Hidden layer 100» (7.9 y 4.6).** La imagen s48-080d39f77284 dice «Hidden layer 100», que se lee como la capa número 100, de 9 unidades, con 9 × 4 = 36 pesos hacia la salida. El texto de la 7.9 y la tabla de la 4.6 leen 100 unidades, con 100 × 4 = 400 pesos. Hay que elegir una lectura y alinear imagen, texto y tabla.
+- **Matriz de la 4.4.** La imagen s20-21f2fd47d0a3 dibuja una matriz de 9 × 9 (81 celdas) y el texto dice 8 × 9 (72 pesos). Sin corregir.
+- **Imagen contra texto, pendientes (2026-10-28).** Lo que sigue quedó fuera de las diez figuras redibujadas:
+  - 2.3 (s10-3c2d24dbb626): el alt promete «la curva sigmoide» y la imagen no tiene curva; además repite la misma neurona que traían la 2.2 y la 2.4.
+  - 1.1 (s04-5f38a6a6454d) y 7.1 (s40-8cc2e024855d): el boceto tiene 3 actuadores (incluye el volante) y el texto dice 2. Entre la 1.1 y la 1.2 cambia la forma de la red.
+  - 1.3 (s06-8bfdede90321): solo muestra la fórmula del error, con el título «Linear model».
+  - 3.2 (s14-1d954f83773d): marca solo el ancho, junto a la capa de 8; el texto dice que el ancho es la capa más grande, la de 9.
+  - 4.3 (s19-4331b60351e7): dibuja combinación más sigmoide sobre una sola conexión.
+  - 7.5 (s44-eda1f816d334): enseña ancho, profundidad e hiperparámetros; el texto habla de las tres convenciones de lectura.
+  - Menores: «tf.placeholder» en s18-f1889f090f73 (4.2) y en las imágenes s46 de la 7.7; recortes en varias imágenes del pptx; la 5.5 dice «proporción» donde el original dice «variability» (variabilidad).
 
 # Cut material
 

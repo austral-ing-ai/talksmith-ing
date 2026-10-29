@@ -1,0 +1,26 @@
+ ANTES: dos capas lineales, sin activación
+
+     x  -----> [ W1  (8 × 9) ] ----->  h  -----> [ W2  (9 × 4) ] ----->  y
+  (1 × 8)                           (1 × 9)                           (1 × 4)
+
+                      +---------------------------------+
+                      |    W1 (8 × 9)  ·  W2 (9 × 4)    |
+                      +---------------------------------+
+                                       |
+                                       v
+ DESPUÉS: una sola capa
+
+     x  ---------------------> [ W*  (8 × 4) ] ------------------------>  y
+  (1 × 8)                                                             (1 × 4)
+
+<!-- ascii-note:
+intent: Sin activación, dos capas lineales encadenadas equivalen a una: W1 y W2 se multiplican en una única W* y la capa oculta h desaparece.
+emphasize: «W* (8 × 4)», la matriz única que reemplaza a las dos
+labels: dimensiones entre paréntesis (filas × columnas)
+animation:
+  1. «x» pasa por «W1 (8 × 9)» y produce «h».
+  2. «h» pasa por «W2 (9 × 4)» y produce «y».
+  3. «W1» y «W2» se juntan en el recuadro del medio y se multiplican.
+  4. El recuadro se convierte en «W* (8 × 4)» y «h» se desvanece.
+  5. «x» llega directo a «y» por «W*», sin capa oculta, y el diagrama queda completo con «ANTES» arriba y «DESPUÉS» abajo.
+-->

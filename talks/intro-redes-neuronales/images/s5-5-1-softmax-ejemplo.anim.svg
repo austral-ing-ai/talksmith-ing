@@ -1,0 +1,183 @@
+<svg class="ts-anim-s5-5-1-softmax-ejemplo" xmlns="http://www.w3.org/2000/svg" viewBox="10 26 890 356" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Softmax: de puntajes a probabilidades</title>
+<desc>Softmax convierte los puntajes de gato, perro y caballo en probabilidades: cada exponencial se divide por el total de las tres, aproximadamente 8, y el resultado suma 1.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s5-5-1-softmax-ejemplo [data-beat]{animation:ts-anim-s5-5-1-softmax-ejemplo-in .6s ease-out both}
+.ts-anim-s5-5-1-softmax-ejemplo [data-beat="1"]{animation-delay:.3s}
+.ts-anim-s5-5-1-softmax-ejemplo [data-beat="2a"]{animation-delay:1.3s}
+.ts-anim-s5-5-1-softmax-ejemplo [data-beat="2b"]{animation-delay:2.2s}
+.ts-anim-s5-5-1-softmax-ejemplo [data-beat="3a"]{animation-delay:3.0s}
+.ts-anim-s5-5-1-softmax-ejemplo [data-beat="3b"]{animation-delay:4.1s}
+.ts-anim-s5-5-1-softmax-ejemplo [data-beat="4a"]{animation-delay:5.6s}
+.ts-anim-s5-5-1-softmax-ejemplo [data-beat="4b"]{animation-delay:6.6s}
+.ts-anim-s5-5-1-softmax-ejemplo [data-beat="5a"]{animation-delay:7.5s}
+.ts-anim-s5-5-1-softmax-ejemplo [data-beat="5b"]{animation-delay:8.3s}
+.ts-anim-s5-5-1-softmax-ejemplo .tok-exp{animation:ts-anim-s5-5-1-softmax-ejemplo-show .8s linear 1.5s both}
+.ts-anim-s5-5-1-softmax-ejemplo .tok-sum{animation:ts-anim-s5-5-1-softmax-ejemplo-show 1s linear 3.2s both}
+.ts-anim-s5-5-1-softmax-ejemplo .tok-div{animation:ts-anim-s5-5-1-softmax-ejemplo-show .9s linear 5.8s both}
+.ts-anim-s5-5-1-softmax-ejemplo .tok-exp .ball{animation:ts-anim-s5-5-1-softmax-ejemplo-move .8s ease-in-out 1.5s both}
+.ts-anim-s5-5-1-softmax-ejemplo .tok-sum .ball{animation:ts-anim-s5-5-1-softmax-ejemplo-move 1s ease-in-out 3.2s both}
+.ts-anim-s5-5-1-softmax-ejemplo .tok-div .ball{animation:ts-anim-s5-5-1-softmax-ejemplo-move .9s ease-in-out 5.8s both}
+.ts-anim-s5-5-1-softmax-ejemplo .e1 .ball{}
+.ts-anim-s5-5-1-softmax-ejemplo .e2 .ball{}
+.ts-anim-s5-5-1-softmax-ejemplo .e3 .ball{}
+.ts-anim-s5-5-1-softmax-ejemplo .s1 .ball{}
+.ts-anim-s5-5-1-softmax-ejemplo .s2 .ball{}
+.ts-anim-s5-5-1-softmax-ejemplo .s3 .ball{}
+.ts-anim-s5-5-1-softmax-ejemplo .d1 .ball{}
+.ts-anim-s5-5-1-softmax-ejemplo .d2 .ball{}
+.ts-anim-s5-5-1-softmax-ejemplo .d3 .ball{}
+.ts-anim-s5-5-1-softmax-ejemplo .ring{animation:ts-anim-s5-5-1-softmax-ejemplo-pulse 1s ease-in-out 4.6s both}
+.ts-anim-s5-5-1-softmax-ejemplo .best{animation:ts-anim-s5-5-1-softmax-ejemplo-pulse 2.4s ease-in-out 8.9s both}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-in{from{opacity:0}}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-show{0%{opacity:0}12%,85%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-move{from{}to{}}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-pulse{0%{opacity:0}35%,65%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s5-5-1-softmax-ejemplo *{animation:none}}
+
+.ts-anim-s5-5-1-softmax-ejemplo .ts-anim-s5-5-1-softmax-ejemplo-w1{animation:ts-anim-s5-5-1-softmax-ejemplo-w1 0.8s linear 1.5s 1 normal both}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-w1{0.00%{transform:translate(244.0px,120.0px)}20.00%{transform:translate(248.2px,120.0px)}76.67%{transform:translate(290.2px,120.0px)}96.67%{transform:translate(295.9px,120.0px)}100.00%{transform:translate(296.0px,120.0px)}}
+.ts-anim-s5-5-1-softmax-ejemplo .ts-anim-s5-5-1-softmax-ejemplo-w2{animation:ts-anim-s5-5-1-softmax-ejemplo-w2 0.8s linear 1.5s 1 normal both}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-w2{0.00%{transform:translate(244.0px,185.0px)}20.00%{transform:translate(248.2px,185.0px)}76.67%{transform:translate(290.2px,185.0px)}96.67%{transform:translate(295.9px,185.0px)}100.00%{transform:translate(296.0px,185.0px)}}
+.ts-anim-s5-5-1-softmax-ejemplo .ts-anim-s5-5-1-softmax-ejemplo-w3{animation:ts-anim-s5-5-1-softmax-ejemplo-w3 0.8s linear 1.5s 1 normal both}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-w3{0.00%{transform:translate(244.0px,250.0px)}20.00%{transform:translate(248.2px,250.0px)}76.67%{transform:translate(290.2px,250.0px)}96.67%{transform:translate(295.9px,250.0px)}100.00%{transform:translate(296.0px,250.0px)}}
+.ts-anim-s5-5-1-softmax-ejemplo .ts-anim-s5-5-1-softmax-ejemplo-w4{animation:ts-anim-s5-5-1-softmax-ejemplo-w4 1s linear 3.2s 1 normal both}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-w4{0.00%{transform:translate(392.0px,120.0px)}8.33%{transform:translate(393.9px,120.0px)}16.67%{transform:translate(399.8px,120.0px)}25.00%{transform:translate(410.0px,120.0px)}30.00%{transform:translate(418.0px,120.0px)}31.67%{transform:translate(420.0px,121.1px)}60.00%{transform:translate(420.0px,184.9px)}70.00%{transform:translate(440.0px,185.0px)}78.33%{transform:translate(452.6px,185.0px)}86.67%{transform:translate(461.1px,185.0px)}95.00%{transform:translate(465.3px,185.0px)}100.00%{transform:translate(466.0px,185.0px)}}
+.ts-anim-s5-5-1-softmax-ejemplo .ts-anim-s5-5-1-softmax-ejemplo-w5{animation:ts-anim-s5-5-1-softmax-ejemplo-w5 1s linear 3.2s 1 normal both}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-w5{0.00%{transform:translate(392.0px,185.0px)}15.00%{transform:translate(395.3px,185.0px)}28.33%{transform:translate(404.3px,185.0px)}70.00%{transform:translate(452.1px,185.0px)}83.33%{transform:translate(461.8px,185.0px)}98.33%{transform:translate(466.0px,185.0px)}100.00%{transform:translate(466.0px,185.0px)}}
+.ts-anim-s5-5-1-softmax-ejemplo .ts-anim-s5-5-1-softmax-ejemplo-w6{animation:ts-anim-s5-5-1-softmax-ejemplo-w6 1s linear 3.2s 1 normal both}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-w6{0.00%{transform:translate(392.0px,250.0px)}8.33%{transform:translate(393.9px,250.0px)}16.67%{transform:translate(399.8px,250.0px)}25.00%{transform:translate(410.0px,250.0px)}30.00%{transform:translate(418.0px,250.0px)}31.67%{transform:translate(420.0px,248.9px)}60.00%{transform:translate(420.0px,185.1px)}70.00%{transform:translate(440.0px,185.0px)}78.33%{transform:translate(452.6px,185.0px)}86.67%{transform:translate(461.1px,185.0px)}95.00%{transform:translate(465.3px,185.0px)}100.00%{transform:translate(466.0px,185.0px)}}
+.ts-anim-s5-5-1-softmax-ejemplo .ts-anim-s5-5-1-softmax-ejemplo-w7{animation:ts-anim-s5-5-1-softmax-ejemplo-w7 0.9s linear 5.8s 1 normal both}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-w7{0.00%{transform:translate(594.0px,185.0px)}10.00%{transform:translate(596.3px,185.0px)}18.33%{transform:translate(602.0px,185.0px)}26.67%{transform:translate(611.2px,185.0px)}31.67%{transform:translate(618.5px,185.0px)}33.33%{transform:translate(620.0px,183.9px)}65.00%{transform:translate(620.0px,123.9px)}66.67%{transform:translate(620.0px,121.1px)}68.33%{transform:translate(621.5px,120.0px)}78.33%{transform:translate(634.7px,120.0px)}86.67%{transform:translate(641.8px,120.0px)}96.67%{transform:translate(645.8px,120.0px)}100.00%{transform:translate(646.0px,120.0px)}}
+.ts-anim-s5-5-1-softmax-ejemplo .ts-anim-s5-5-1-softmax-ejemplo-w8{animation:ts-anim-s5-5-1-softmax-ejemplo-w8 0.9s linear 5.8s 1 normal both}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-w8{0.00%{transform:translate(594.0px,185.0px)}20.00%{transform:translate(598.2px,185.0px)}76.67%{transform:translate(640.2px,185.0px)}96.67%{transform:translate(645.9px,185.0px)}100.00%{transform:translate(646.0px,185.0px)}}
+.ts-anim-s5-5-1-softmax-ejemplo .ts-anim-s5-5-1-softmax-ejemplo-w9{animation:ts-anim-s5-5-1-softmax-ejemplo-w9 0.9s linear 5.8s 1 normal both}
+@keyframes ts-anim-s5-5-1-softmax-ejemplo-w9{0.00%{transform:translate(594.0px,185.0px)}10.00%{transform:translate(596.3px,185.0px)}18.33%{transform:translate(602.0px,185.0px)}26.67%{transform:translate(611.2px,185.0px)}31.67%{transform:translate(618.5px,185.0px)}33.33%{transform:translate(620.0px,186.1px)}65.00%{transform:translate(620.0px,246.1px)}66.67%{transform:translate(620.0px,248.9px)}68.33%{transform:translate(621.5px,250.0px)}78.33%{transform:translate(634.7px,250.0px)}86.67%{transform:translate(641.8px,250.0px)}96.67%{transform:translate(645.8px,250.0px)}100.00%{transform:translate(646.0px,250.0px)}}
+</style>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+<path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/>
+</marker>
+<marker id="ahr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto">
+<path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/>
+</marker>
+</defs>
+<rect x="10" y="26" width="890" height="356" fill="#ffffff"/>
+
+<!-- connectors first: the tokens ride above them and under the boxes, so a box swallows a token on arrival -->
+<g data-beat="2a" stroke="#3B3535" stroke-width="1.5" fill="none" marker-end="url(#ah)">
+<line x1="240" y1="120" x2="300" y2="120"/>
+<line x1="240" y1="185" x2="300" y2="185"/>
+<line x1="240" y1="250" x2="300" y2="250"/>
+</g>
+
+<g data-beat="3a" stroke="#3B3535" stroke-width="1.5" fill="none">
+<line x1="390" y1="120" x2="420" y2="120"/>
+<line x1="390" y1="185" x2="420" y2="185"/>
+<line x1="390" y1="250" x2="420" y2="250"/>
+<line x1="420" y1="120" x2="420" y2="250"/>
+<line x1="420" y1="185" x2="470" y2="185" marker-end="url(#ah)"/>
+</g>
+
+<g data-beat="4a" stroke="#3B3535" stroke-width="1.5" fill="none">
+<line x1="590" y1="185" x2="620" y2="185"/>
+<line x1="620" y1="120" x2="620" y2="250"/>
+<line x1="620" y1="120" x2="650" y2="120" marker-end="url(#ah)"/>
+<line x1="620" y1="185" x2="650" y2="185" marker-end="url(#ah)"/>
+<line x1="620" y1="250" x2="650" y2="250" marker-end="url(#ah)"/>
+</g>
+
+<!-- narration tokens: one per class, hidden at rest -->
+<g class="tok-exp e1" opacity="0"><g class="ts-anim-s5-5-1-softmax-ejemplo-w1"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g></g>
+<g class="tok-exp e2" opacity="0"><g class="ts-anim-s5-5-1-softmax-ejemplo-w2"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g></g>
+<g class="tok-exp e3" opacity="0"><g class="ts-anim-s5-5-1-softmax-ejemplo-w3"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g></g>
+<g class="tok-sum s1" opacity="0"><g class="ts-anim-s5-5-1-softmax-ejemplo-w4"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g></g>
+<g class="tok-sum s2" opacity="0"><g class="ts-anim-s5-5-1-softmax-ejemplo-w5"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g></g>
+<g class="tok-sum s3" opacity="0"><g class="ts-anim-s5-5-1-softmax-ejemplo-w6"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g></g>
+<g class="tok-div d1" opacity="0"><g class="ts-anim-s5-5-1-softmax-ejemplo-w7"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g></g>
+<g class="tok-div d2" opacity="0"><g class="ts-anim-s5-5-1-softmax-ejemplo-w8"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g></g>
+<g class="tok-div d3" opacity="0"><g class="ts-anim-s5-5-1-softmax-ejemplo-w9"><g class="ball"><circle r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2"/></g></g></g>
+
+<!-- beat 1: the output layer's scores, one per class -->
+<g data-beat="1">
+<g font-size="12" font-weight="bold" fill="#1F1E1E" letter-spacing="1">
+<text x="40" y="70">CLASE</text>
+<text x="195" y="70" text-anchor="middle">PUNTAJE  a</text>
+</g>
+<g font-size="16" font-weight="bold" fill="#1F1E1E">
+<text x="40" y="126">gato</text>
+<text x="40" y="191">perro</text>
+<text x="40" y="256">caballo</text>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="150" y="100" width="90" height="40" rx="6"/>
+<rect x="150" y="165" width="90" height="40" rx="6"/>
+<rect x="150" y="230" width="90" height="40" rx="6"/>
+</g>
+<g font-size="16" text-anchor="middle">
+<text x="195" y="126">-0,21</text>
+<text x="195" y="191">0,47</text>
+<text x="195" y="256">1,72</text>
+</g>
+</g>
+
+<!-- beat 2: each score through e^a, now positive -->
+<g data-beat="2b">
+<text x="338" y="71" font-size="16" font-weight="bold" fill="#1F1E1E">e</text>
+<text x="348" y="63" font-size="11" font-weight="bold" fill="#1F1E1E">a</text>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="300" y="100" width="90" height="40" rx="6"/>
+<rect x="300" y="165" width="90" height="40" rx="6"/>
+<rect x="300" y="230" width="90" height="40" rx="6"/>
+</g>
+<g font-size="16" text-anchor="middle">
+<text x="345" y="126">0,81</text>
+<text x="345" y="191">1,60</text>
+<text x="345" y="256">5,58</text>
+</g>
+</g>
+
+<!-- beat 3: the three together into the total -->
+<g data-beat="3b">
+<rect x="470" y="150" width="120" height="70" rx="10" fill="#DA1B2E"/>
+<path d="M514,172 L490,172 L504,185 L490,198 L514,198" stroke="#ffffff" stroke-width="3.5" fill="none" stroke-linejoin="miter"/>
+<path d="M524,181 q5.5,-5 11,0 t11,0 M524,190 q5.5,-5 11,0 t11,0" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<text x="556" y="195" font-size="26" font-weight="bold" fill="#ffffff">8</text>
+<text x="530" y="242" font-size="12" text-anchor="middle">total de las tres</text>
+</g>
+<rect class="ring" opacity="0" x="461" y="141" width="138" height="88" rx="15" fill="none" stroke="#DA1B2E" stroke-width="3"/>
+
+<!-- beat 4: each one divided by that total -->
+<g data-beat="4b">
+<text x="760" y="70" font-size="12" font-weight="bold" fill="#1F1E1E" letter-spacing="1" text-anchor="middle">PROBABILIDAD</text>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="650" y="100" width="220" height="40" rx="6"/>
+<rect x="650" y="165" width="220" height="40" rx="6"/>
+<rect x="650" y="230" width="220" height="40" rx="6"/>
+</g>
+<g font-size="16" text-anchor="end">
+<text x="779" y="126">0,81 / 8  =</text>
+<text x="779" y="191">1,60 / 8  =</text>
+<text x="779" y="256">5,58 / 8  =</text>
+</g>
+</g>
+
+<!-- beat 5: the probabilities, which add up to 1 -->
+<g data-beat="5a" font-size="16" font-weight="bold" fill="#1F1E1E">
+<text x="790" y="126">0,1</text>
+<text x="790" y="191">0,2</text>
+<text x="790" y="256">0,7</text>
+</g>
+<g data-beat="5b">
+<line x1="650" y1="288" x2="870" y2="288" stroke="#3B3535" stroke-width="1.5"/>
+<text x="779" y="312" font-size="16" text-anchor="end">suman</text>
+<text x="790" y="312" font-size="16" font-weight="bold" fill="#1F1E1E">1</text>
+<text x="455" y="354" font-size="14" font-style="italic" text-anchor="middle">Softmax usa las tres salidas a la vez: cada exponencial se divide por el total.</text>
+</g>
+
+<!-- narration: caballo, the most probable class: a dark-ink outline that comes and goes, so the end frame is the approved still with its single red accent -->
+<g class="best" opacity="0" fill="none" stroke="#1F1E1E" stroke-width="2">
+<rect x="646" y="226" width="228" height="48" rx="8"/>
+<rect x="32" y="234" width="76" height="30" rx="6"/>
+</g>
+</svg>
