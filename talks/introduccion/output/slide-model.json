@@ -25,6 +25,28 @@
       "title": "Bienvenidos"
     },
     {
+      "template": "statement",
+      "section": "Bienvenidos",
+      "title": "Inteligencia General Generativa",
+      "sub": "Clase 1: Bienvenida y Logistica · Autor: Paulo Gustavo Veiga, Marco Sorondo · Ultima Modification: Aug, 2026",
+      "notes": "Referencia PPTX: diapositiva 1.\n\nDiscurso Sugerido: \"Bienvenidos. Hoy vamos a desmitificar la Inteligencia Artificial. Intuitivamente, solemos pensar en la IA como 'máquinas haciendo cosas que requerirían inteligencia si las hiciera un humano'. Pero si queremos ser rigurosos, como proponen Russell y Norvig, la IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. No se trata de crear humanos sintéticos, sino de resolver problemas complejos con matemáticas a gran escala.\"\n\nContexto Técnico Profundo: La definición de agente racional evita el debate filosófico sobre la \"conciencia\" y se centra en la función matemática que mapea secuencias de percepciones a acciones (arquitectura de agentes).\n\nEnlace Recomendado: Sitio oficial del libro \"Artificial Intelligence: A Modern Approach\" (Russell & Norvig)",
+      "_choice": {
+        "signals": [
+          "one_claim=true",
+          "labeled_items=0",
+          "is_voiced=false"
+        ],
+        "candidates": [
+          "statement",
+          "content-text"
+        ],
+        "picked": "statement",
+        "rejected": {
+          "content-text": "one claim with a one-line reveal, no prose points — One-claim family, not verbatim prose; author pin <!-- template: statement --> honoured — the template holds every field of the body"
+        }
+      }
+    },
+    {
       "template": "content-image",
       "section": "Bienvenidos",
       "title": "Bienvenidos!",
@@ -41,7 +63,21 @@
         "alt": "Ilustración de bienvenida"
       },
       "design": "column-right",
-      "notes": "Referencia PPTX: diapositiva 2.\n\nPrimera vez que dictamos esta materia (contar brevemente la historia de la materia)."
+      "notes": "Referencia PPTX: diapositiva 2.\n\nPrimera vez que dictamos esta materia (contar brevemente la historia de la materia).",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "prose_lines=2"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "image-full": "carries supporting prose — image-full is one image and no prose; author pin <!-- template: content-image --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "content-image",
@@ -58,7 +94,21 @@
         "alt": "Ilustración sobre inteligencia artificial"
       },
       "design": "column-right",
-      "notes": "Referencia PPTX: diapositiva 3.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 3.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "prose_lines=1"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "image-full": "carries supporting prose — image-full is one image and no prose; author pin <!-- template: content-image --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -80,7 +130,23 @@
         }
       ],
       "format": "grid",
-      "notes": "Este slide anticipa el tipo de materia: no se trata sólo de aprender a usar una herramienta. Vamos a entrar en cómo se construyen y evalúan los modelos, y en cada clase llevar los conceptos a una práctica concreta de ingeniería."
+      "notes": "Este slide anticipa el tipo de materia: no se trata sólo de aprender a usar una herramienta. Vamos a entrar en cómo se construyen y evalúan los modelos, y en cada clase llevar los conceptos a una práctica concreta de ingeniería.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "figures",
@@ -93,7 +159,7 @@
             "alt": "Ilustración de Paulo Veiga"
           },
           "label": "Paulo Veiga",
-          "body": "pveiga@austral.edu.ar"
+          "body": "Email: pveiga@austral.edu.ar"
         },
         {
           "image": {
@@ -101,7 +167,7 @@
             "alt": "Ilustración de Marco Sanchez Sorondo"
           },
           "label": "Marco Sanchez Sorondo",
-          "body": "msanchezSorondo@austral.edu.ar"
+          "body": "Email: msanchezSorondo@austral.edu.ar"
         },
         {
           "image": {
@@ -112,7 +178,21 @@
           "body": "Docente"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 4.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 4.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "n_images=3"
+        ],
+        "candidates": [
+          "figures",
+          "concept-breakdown"
+        ],
+        "picked": "figures",
+        "rejected": {
+          "concept-breakdown": "each item has its own content image; concept-breakdown requires images == 0; author pin <!-- template: figures --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "process",
@@ -140,7 +220,24 @@
           "position": "bottom"
         }
       ],
-      "notes": "Momento sugerido: al cierre de la bienvenida, después de presentar a los docentes y antes de entrar en por qué esta materia. Da un corte de ritmo y pone a la clase a hablar antes de la primera diapositiva de contenido.\n\nCómo correrlo: proyectar la diapositiva, dar dos o tres minutos para que respondan desde el celular y después mostrar los resultados en pantalla desde el panel de Slido. Conviene abrir el evento antes de que arranque la clase.\n\nLas respuestas a la tercera pregunta sirven de calibración para el resto del cuatrimestre: si la mayoría ya usa asistentes a diario, los módulos de ingeniería de prompts pueden ir más rápido y conviene invertir el tiempo ganado en evaluación y límites.\n\nLas respuestas a la cuarta se pueden retomar en la diapositiva de limitaciones y en la del riesgo macroeconómico. Anotar dos o tres preocupaciones concretas y nombrarlas cuando lleguen esos temas.\n\nLas preguntas de la diapositiva tienen que coincidir con las que estén cargadas en el evento de Slido."
+      "notes": "Momento sugerido: al cierre de la bienvenida, después de presentar a los docentes y antes de entrar en por qué esta materia. Da un corte de ritmo y pone a la clase a hablar antes de la primera diapositiva de contenido.\n\nCómo correrlo: proyectar la diapositiva, dar dos o tres minutos para que respondan desde el celular y después mostrar los resultados en pantalla desde el panel de Slido. Conviene abrir el evento antes de que arranque la clase.\n\nLas respuestas a la tercera pregunta sirven de calibración para el resto del cuatrimestre: si la mayoría ya usa asistentes a diario, los módulos de ingeniería de prompts pueden ir más rápido y conviene invertir el tiempo ganado en evaluación y límites.\n\nLas respuestas a la cuarta se pueden retomar en la diapositiva de limitaciones y en la del riesgo macroeconómico. Anotar dos o tres preocupaciones concretas y nombrarlas cuando lleguen esos temas.\n\nLas preguntas de la diapositiva tienen que coincidir con las que estén cargadas en el evento de Slido.",
+      "_choice": {
+        "signals": [
+          "is_ordered=true",
+          "date_labels=false",
+          "labeled_items=4"
+        ],
+        "candidates": [
+          "process",
+          "timeline",
+          "concept-breakdown"
+        ],
+        "picked": "process",
+        "rejected": {
+          "timeline": "no date/period labels — order without dates is a process; author pin <!-- template: process --> honoured — the template holds every field of the body",
+          "concept-breakdown": "order carries meaning — Ordered sequence family"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -170,7 +267,23 @@
         }
       ],
       "format": "grid",
-      "notes": "Referencia PPTX: diapositiva 5.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 5.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -201,7 +314,23 @@
           "kind": "source"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 6.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 6.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "image-full",
@@ -211,7 +340,21 @@
         "src": "images/impacto-por-industria.jpeg",
         "alt": "Impacto de la IA generativa por industria y función"
       },
-      "notes": "Referencia PPTX: diapositiva 7.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 7.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the image is the payload; no supporting prose points to set beside it; author pin <!-- template: image-full --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -240,7 +383,23 @@
         }
       ],
       "format": "grid",
-      "notes": "Referencia PPTX: diapositiva 8.\n\nDiscurso sugerido:\n\n“La IA generativa puede acelerar partes del trabajo de ingeniería, pero no convierte un problema ambiguo en una solución correcta por sí sola. Puede leer un repositorio, proponer una migración, escribir pruebas o resumir un incidente. El equipo sigue teniendo que definir el objetivo, revisar el cambio y hacerse cargo de las consecuencias.”\n\nContexto técnico: los asistentes de código trabajan sobre representaciones incompletas del sistema. Pueden desconocer dependencias privadas, decisiones de arquitectura, reglas de negocio, restricciones de seguridad o el estado actual de producción. Un equipo confiable combina la velocidad de propuesta del modelo con pruebas automatizadas, revisión de pares, despliegues graduales y observabilidad.\n\nCaso 1. Desarrollo y mantenimiento\n\nUn modelo puede explicar una función compleja, proponer un refactor y generar pruebas para los casos que el desarrollador enumera. El equipo debe ejecutar esas pruebas, revisar cambios de comportamiento y comprobar que el resultado respeta las convenciones del repositorio.\n\nCaso 2. Conocimiento técnico\n\nUn sistema de búsqueda semántica puede recuperar decisiones de arquitectura, tickets y documentación. El resultado debe mostrar de dónde obtuvo cada respuesta para que quien consulta pueda verificar si esa información sigue vigente.\n\nCaso 3. Calidad y seguridad\n\nUn asistente puede proponer reglas de análisis estático, casos de prueba y correcciones para vulnerabilidades conocidas. Las recomendaciones no reemplazan una revisión de seguridad ni dan permiso para ejecutar código sin aislamiento.\n\nCaso 4. Operación\n\nUn agente puede resumir alertas, sugerir hipótesis y ejecutar acciones acotadas de un runbook. El diseño debe limitar permisos, registrar cada acción y permitir detener o revertir una automatización.\n\nPregunta para la clase: “¿Qué evidencia pedirían antes de aceptar una modificación de código generada por un modelo?”\n\nPunto clave: la IA amplifica las habilidades de un equipo cuando el proceso conserva responsabilidad, trazabilidad y controles humanos."
+      "notes": "Referencia PPTX: diapositiva 8.\n\nDiscurso sugerido:\n\n“La IA generativa puede acelerar partes del trabajo de ingeniería, pero no convierte un problema ambiguo en una solución correcta por sí sola. Puede leer un repositorio, proponer una migración, escribir pruebas o resumir un incidente. El equipo sigue teniendo que definir el objetivo, revisar el cambio y hacerse cargo de las consecuencias.”\n\nContexto técnico: los asistentes de código trabajan sobre representaciones incompletas del sistema. Pueden desconocer dependencias privadas, decisiones de arquitectura, reglas de negocio, restricciones de seguridad o el estado actual de producción. Un equipo confiable combina la velocidad de propuesta del modelo con pruebas automatizadas, revisión de pares, despliegues graduales y observabilidad.\n\nCaso 1. Desarrollo y mantenimiento\n\nUn modelo puede explicar una función compleja, proponer un refactor y generar pruebas para los casos que el desarrollador enumera. El equipo debe ejecutar esas pruebas, revisar cambios de comportamiento y comprobar que el resultado respeta las convenciones del repositorio.\n\nCaso 2. Conocimiento técnico\n\nUn sistema de búsqueda semántica puede recuperar decisiones de arquitectura, tickets y documentación. El resultado debe mostrar de dónde obtuvo cada respuesta para que quien consulta pueda verificar si esa información sigue vigente.\n\nCaso 3. Calidad y seguridad\n\nUn asistente puede proponer reglas de análisis estático, casos de prueba y correcciones para vulnerabilidades conocidas. Las recomendaciones no reemplazan una revisión de seguridad ni dan permiso para ejecutar código sin aislamiento.\n\nCaso 4. Operación\n\nUn agente puede resumir alertas, sugerir hipótesis y ejecutar acciones acotadas de un runbook. El diseño debe limitar permisos, registrar cada acción y permitir detener o revertir una automatización.\n\nPregunta para la clase: “¿Qué evidencia pedirían antes de aceptar una modificación de código generada por un modelo?”\n\nPunto clave: la IA amplifica las habilidades de un equipo cuando el proceso conserva responsabilidad, trazabilidad y controles humanos.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -277,7 +436,23 @@
         }
       ],
       "format": "grid",
-      "notes": "Referencia PPTX: diapositiva 9.\n\nCómo presentar este slide\n\nApertura: “Vimos qué puede aportar la IA generativa a un equipo de software. Ahora revisemos los problemas que aparecen cuando una salida se acepta sin evidencia, cuando los datos no tienen controles o cuando un sistema obtiene permisos que no debería tener.”\n\n1. Alucinaciones y respuestas falsas\n\nExplicación: los modelos generan secuencias plausibles a partir de patrones. Pueden inventar una API, recomendar un paquete inexistente, omitir una condición de seguridad o explicar de forma convincente un comportamiento equivocado.\n\nEjemplo: un desarrollador pide una integración con una librería y el modelo produce funciones que no existen en esa versión. El código puede compilar si se agregan sustitutos improvisados, pero falla en producción o deja un comportamiento inseguro. Una revisión debe contrastar la propuesta con documentación oficial, pruebas y el contexto del repositorio.\n\nPregunta para la clase: “¿Aceptarían un cambio que el modelo no puede justificar con una fuente y una prueba reproducible?”\n\n2. Sesgos en los datos\n\nExplicación: los modelos aprenden de datos históricos. Repositorios públicos y documentación contienen decisiones de diseño, dependencias desactualizadas, prácticas inseguras y sesgos sobre quién usa un producto.\n\nEjemplo: un sistema entrenado con tickets históricos puede asignar menor prioridad a problemas que afectan a un grupo poco representado. Un asistente de código puede sugerir patrones antiguos porque aparecen con frecuencia en sus datos, aunque el proyecto ya los haya reemplazado.\n\nPunto clave: los equipos necesitan revisar qué datos entran a un sistema, qué casos faltan y cómo miden errores por segmento o contexto.\n\n3. Privacidad y protección de datos\n\nExplicación: un prompt puede incluir código propietario, claves, información de clientes, registros de incidentes o decisiones internas. El proveedor puede almacenar, procesar o usar ese contexto según el contrato y la configuración elegida.\n\nEjemplo: si alguien copia una traza con un token de acceso o una base de datos de prueba con datos personales, el equipo puede exponer información sensible fuera de su perímetro. Las políticas deben definir qué puede enviarse, qué se debe anonimizar y qué modelos se autorizan para cada clase de dato.\n\nPunto clave: un chat no reemplaza un canal seguro ni una revisión de cumplimiento.\n\n4. Sesgo de automatización\n\nExplicación: una respuesta bien escrita puede recibir más confianza que una respuesta verificada. El riesgo aumenta cuando una herramienta aparece dentro del editor, el pipeline o el panel de operaciones.\n\nEjemplo: un asistente propone silenciar una alerta porque la clasifica como ruido. Si el operador acepta sin revisar señales relacionadas, puede ocultar un incidente real. La interfaz debe mostrar evidencia, incertidumbre y mecanismos para inspeccionar la decisión.\n\n5. Acceso desigual\n\nExplicación: los modelos de mayor capacidad requieren suscripciones, infraestructura y datos que no todos los equipos pueden pagar. La calidad también varía por idioma, contexto cultural y disponibilidad de datos locales.\n\nEjemplo: una empresa grande puede integrar modelos privados con sus repositorios y telemetría. Un equipo pequeño puede depender de una herramienta pública con límites de uso y menor control sobre privacidad. La diferencia modifica quién puede experimentar y quién puede construir productos competitivos.\n\n6. Impacto ambiental\n\nExplicación: entrenar y servir modelos consume energía, agua e infraestructura. Una arquitectura que invoca un modelo en cada interacción puede elevar costo y consumo sin mejorar la experiencia.\n\nEjemplo: antes de agregar una llamada a un modelo, el equipo puede comparar alternativas: una regla determinista, una búsqueda, un modelo pequeño, un caché o una revisión asíncrona. La decisión debe considerar precisión, latencia, costo y consumo.\n\n7. Degradación de habilidades técnicas\n\nExplicación: un uso continuo de asistentes sin comprensión puede reducir la práctica de depurar, modelar datos, leer documentación y diseñar pruebas. El problema aparece con fuerza cuando una herramienta falla, cambia de proveedor o produce una salida incorrecta.\n\nEjemplo: si un equipo acepta parches generados durante meses sin revisar arquitectura ni pruebas, pierde contexto sobre el sistema. Durante un incidente grave, ese equipo tarda más en decidir qué hipótesis descartar y qué acción es segura.\n\nPunto clave: la IA debe ampliar la capacidad de ingeniería, no sustituir el aprendizaje ni la responsabilidad técnica.\n\nCierre para debate:\n\n“¿Qué controles deberían exigir una universidad, una empresa y un equipo de producto antes de permitir que un agente modifique datos, despliegue código o responda a usuarios?”"
+      "notes": "Referencia PPTX: diapositiva 9.\n\nCómo presentar este slide\n\nApertura: “Vimos qué puede aportar la IA generativa a un equipo de software. Ahora revisemos los problemas que aparecen cuando una salida se acepta sin evidencia, cuando los datos no tienen controles o cuando un sistema obtiene permisos que no debería tener.”\n\n1. Alucinaciones y respuestas falsas\n\nExplicación: los modelos generan secuencias plausibles a partir de patrones. Pueden inventar una API, recomendar un paquete inexistente, omitir una condición de seguridad o explicar de forma convincente un comportamiento equivocado.\n\nEjemplo: un desarrollador pide una integración con una librería y el modelo produce funciones que no existen en esa versión. El código puede compilar si se agregan sustitutos improvisados, pero falla en producción o deja un comportamiento inseguro. Una revisión debe contrastar la propuesta con documentación oficial, pruebas y el contexto del repositorio.\n\nPregunta para la clase: “¿Aceptarían un cambio que el modelo no puede justificar con una fuente y una prueba reproducible?”\n\n2. Sesgos en los datos\n\nExplicación: los modelos aprenden de datos históricos. Repositorios públicos y documentación contienen decisiones de diseño, dependencias desactualizadas, prácticas inseguras y sesgos sobre quién usa un producto.\n\nEjemplo: un sistema entrenado con tickets históricos puede asignar menor prioridad a problemas que afectan a un grupo poco representado. Un asistente de código puede sugerir patrones antiguos porque aparecen con frecuencia en sus datos, aunque el proyecto ya los haya reemplazado.\n\nPunto clave: los equipos necesitan revisar qué datos entran a un sistema, qué casos faltan y cómo miden errores por segmento o contexto.\n\n3. Privacidad y protección de datos\n\nExplicación: un prompt puede incluir código propietario, claves, información de clientes, registros de incidentes o decisiones internas. El proveedor puede almacenar, procesar o usar ese contexto según el contrato y la configuración elegida.\n\nEjemplo: si alguien copia una traza con un token de acceso o una base de datos de prueba con datos personales, el equipo puede exponer información sensible fuera de su perímetro. Las políticas deben definir qué puede enviarse, qué se debe anonimizar y qué modelos se autorizan para cada clase de dato.\n\nPunto clave: un chat no reemplaza un canal seguro ni una revisión de cumplimiento.\n\n4. Sesgo de automatización\n\nExplicación: una respuesta bien escrita puede recibir más confianza que una respuesta verificada. El riesgo aumenta cuando una herramienta aparece dentro del editor, el pipeline o el panel de operaciones.\n\nEjemplo: un asistente propone silenciar una alerta porque la clasifica como ruido. Si el operador acepta sin revisar señales relacionadas, puede ocultar un incidente real. La interfaz debe mostrar evidencia, incertidumbre y mecanismos para inspeccionar la decisión.\n\n5. Acceso desigual\n\nExplicación: los modelos de mayor capacidad requieren suscripciones, infraestructura y datos que no todos los equipos pueden pagar. La calidad también varía por idioma, contexto cultural y disponibilidad de datos locales.\n\nEjemplo: una empresa grande puede integrar modelos privados con sus repositorios y telemetría. Un equipo pequeño puede depender de una herramienta pública con límites de uso y menor control sobre privacidad. La diferencia modifica quién puede experimentar y quién puede construir productos competitivos.\n\n6. Impacto ambiental\n\nExplicación: entrenar y servir modelos consume energía, agua e infraestructura. Una arquitectura que invoca un modelo en cada interacción puede elevar costo y consumo sin mejorar la experiencia.\n\nEjemplo: antes de agregar una llamada a un modelo, el equipo puede comparar alternativas: una regla determinista, una búsqueda, un modelo pequeño, un caché o una revisión asíncrona. La decisión debe considerar precisión, latencia, costo y consumo.\n\n7. Degradación de habilidades técnicas\n\nExplicación: un uso continuo de asistentes sin comprensión puede reducir la práctica de depurar, modelar datos, leer documentación y diseñar pruebas. El problema aparece con fuerza cuando una herramienta falla, cambia de proveedor o produce una salida incorrecta.\n\nEjemplo: si un equipo acepta parches generados durante meses sin revisar arquitectura ni pruebas, pierde contexto sobre el sistema. Durante un incidente grave, ese equipo tarda más en decidir qué hipótesis descartar y qué acción es segura.\n\nPunto clave: la IA debe ampliar la capacidad de ingeniería, no sustituir el aprendizaje ni la responsabilidad técnica.\n\nCierre para debate:\n\n“¿Qué controles deberían exigir una universidad, una empresa y un equipo de producto antes de permitir que un agente modifique datos, despliegue código o responda a usuarios?”",
+      "_choice": {
+        "signals": [
+          "labeled_items=7",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -308,7 +483,23 @@
           "kind": "source"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 10.\n\n. Technology improved slowly enough that humans could adapt. Intelligence, the ability to analyze, decide, create, persuade, and coordinate, was the thing that could not be replicated at scale.\n\nHuman intelligence derived its inherent premium from its scarcity. Every institution in our economy, from the labor market to the mortgage market to the tax code, was designed for a world in which that assumption held.\n\nWe are now experiencing the unwind of that premium. Machine intelligence is now a competent and rapidly improving substitute for human intelligence across a growing range of tasks\n\nEntrada sugerida (del PPTX de referencia): \"¿Cómo va? Vos que ya viste varias corridas y pánico en el mundo:\"\n\nPregunta para debate: ¿qué decisiones de diseño, formación y regulación reducen estos riesgos sin bloquear la innovación?"
+      "notes": "Referencia PPTX: diapositiva 10.\n\n. Technology improved slowly enough that humans could adapt. Intelligence, the ability to analyze, decide, create, persuade, and coordinate, was the thing that could not be replicated at scale.\n\nHuman intelligence derived its inherent premium from its scarcity. Every institution in our economy, from the labor market to the mortgage market to the tax code, was designed for a world in which that assumption held.\n\nWe are now experiencing the unwind of that premium. Machine intelligence is now a competent and rapidly improving substitute for human intelligence across a growing range of tasks\n\nEntrada sugerida (del PPTX de referencia): \"¿Cómo va? Vos que ya viste varias corridas y pánico en el mundo:\"\n\nPregunta para debate: ¿qué decisiones de diseño, formación y regulación reducen estos riesgos sin bloquear la innovación?",
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -335,7 +526,24 @@
         {
           "body": "Esperamos presencia y participación activa."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "is_ordered=true",
+          "date_labels=false",
+          "labeled_items=5"
+        ],
+        "candidates": [
+          "process",
+          "timeline",
+          "concept-breakdown"
+        ],
+        "picked": "process",
+        "rejected": {
+          "timeline": "no date/period labels — order without dates is a process; author pin <!-- template: process --> honoured — the template holds every field of the body",
+          "concept-breakdown": "order carries meaning — Ordered sequence family"
+        }
+      }
     },
     {
       "template": "process",
@@ -364,7 +572,24 @@
           "body": "Se entrega por el canal que indique la cátedra, con repositorio o artefactos reproducibles cuando corresponda.",
           "label": "Entrega obligatoria"
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "is_ordered=true",
+          "date_labels=false",
+          "labeled_items=5"
+        ],
+        "candidates": [
+          "process",
+          "timeline",
+          "concept-breakdown"
+        ],
+        "picked": "process",
+        "rejected": {
+          "timeline": "no date/period labels — order without dates is a process; author pin <!-- template: process --> honoured — the template holds every field of the body",
+          "concept-breakdown": "order carries meaning — Ordered sequence family"
+        }
+      }
     },
     {
       "template": "process",
@@ -391,7 +616,24 @@
         {
           "body": "Se entrega la documentación del diseño, los datos, la estrategia de evaluación, los riesgos y las decisiones de seguridad."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "is_ordered=true",
+          "date_labels=false",
+          "labeled_items=6"
+        ],
+        "candidates": [
+          "process",
+          "timeline",
+          "concept-breakdown"
+        ],
+        "picked": "process",
+        "rejected": {
+          "timeline": "no date/period labels — order without dates is a process; author pin <!-- template: process --> honoured — the template holds every field of the body",
+          "concept-breakdown": "order carries meaning — Ordered sequence family"
+        }
+      }
     },
     {
       "template": "stat",
@@ -415,7 +657,20 @@
           "position": "bottom"
         }
       ],
-      "notes": "La evaluación combina el trabajo sostenido durante la cursada con la capacidad de integrar lo aprendido en un proyecto final."
+      "notes": "La evaluación combina el trabajo sostenido durante la cursada con la capacidad de integrar lo aprendido en un proyecto final.",
+      "_choice": {
+        "signals": [
+          "big_metrics=2"
+        ],
+        "candidates": [
+          "stat",
+          "concept-breakdown"
+        ],
+        "picked": "stat",
+        "rejected": {
+          "concept-breakdown": "the figures are the payload, not prose points — Metrics family; author pin <!-- template: stat --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "process",
@@ -440,21 +695,71 @@
           "body": "Clases 12–14",
           "label": "Módulo 4: Agentes, evaluación, ética, seguridad y regulación"
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "is_ordered=true",
+          "date_labels=false",
+          "labeled_items=4"
+        ],
+        "candidates": [
+          "process",
+          "timeline",
+          "concept-breakdown"
+        ],
+        "picked": "process",
+        "rejected": {
+          "timeline": "no date/period labels — order without dates is a process; author pin <!-- template: process --> honoured — the template holds every field of the body",
+          "concept-breakdown": "order carries meaning — Ordered sequence family"
+        }
+      }
     },
     {
       "template": "closing-hero",
       "section": "Logística",
       "title": "Preguntas",
       "body": "Abrimos la conversación.",
-      "notes": "Referencia PPTX: diapositiva 17.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 17.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "position=section-close",
+          "is_cta=false"
+        ],
+        "candidates": [
+          "closing-hero",
+          "statement"
+        ],
+        "picked": "closing-hero",
+        "rejected": {
+          "statement": "closes the block — Frame family by position; author pin <!-- template: closing-hero --> honoured — the template holds every field of the body"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "Fundamento de AI"
     },
     {
       "template": "statement",
       "section": "Fundamento de AI",
       "title": "Inteligencia General Generativa",
       "sub": "Clase 1: Fundamentos, Modelos y el Ecosistema Actual",
-      "notes": "Referencia PPTX: diapositiva 18.\n\nDiscurso Sugerido: \"Bienvenidos. Hoy vamos a desmitificar la Inteligencia Artificial. Intuitivamente, solemos pensar en la IA como 'máquinas haciendo cosas que requerirían inteligencia si las hiciera un humano'. Pero si queremos ser rigurosos, como proponen Russell y Norvig, la IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. No se trata de crear humanos sintéticos, sino de resolver problemas complejos con matemáticas a gran escala.\"\n\nContexto Técnico Profundo: La definición de agente racional evita el debate filosófico sobre la \"conciencia\" y se centra en la función matemática que mapea secuencias de percepciones a acciones (arquitectura de agentes).\n\nEnlace Recomendado: Sitio oficial del libro \"Artificial Intelligence: A Modern Approach\" (Russell & Norvig)"
+      "notes": "Referencia PPTX: diapositiva 18.\n\nDiscurso Sugerido: \"Bienvenidos. Hoy vamos a desmitificar la Inteligencia Artificial. Intuitivamente, solemos pensar en la IA como 'máquinas haciendo cosas que requerirían inteligencia si las hiciera un humano'. Pero si queremos ser rigurosos, como proponen Russell y Norvig, la IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. No se trata de crear humanos sintéticos, sino de resolver problemas complejos con matemáticas a gran escala.\"\n\nContexto Técnico Profundo: La definición de agente racional evita el debate filosófico sobre la \"conciencia\" y se centra en la función matemática que mapea secuencias de percepciones a acciones (arquitectura de agentes).\n\nEnlace Recomendado: Sitio oficial del libro \"Artificial Intelligence: A Modern Approach\" (Russell & Norvig)",
+      "_choice": {
+        "signals": [
+          "one_claim=true",
+          "labeled_items=0",
+          "is_voiced=false"
+        ],
+        "candidates": [
+          "statement",
+          "content-text"
+        ],
+        "picked": "statement",
+        "rejected": {
+          "content-text": "one claim with a one-line reveal, no prose points — One-claim family, not verbatim prose; author pin <!-- template: statement --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-columns",
@@ -483,7 +788,22 @@
           "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 19.\n\nDiapositiva 1: ¿Qué es la Inteligencia Artificial? (De la teoría a la intuición)\n\nDiscurso Sugerido: \"Bienvenidos. Hoy vamos a desmitificar la Inteligencia Artificial. Intuitivamente, solemos pensar en la IA como 'máquinas haciendo cosas que requerirían inteligencia si las hiciera un humano'. Pero si queremos ser rigurosos, como proponen Russell y Norvig, la IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. No se trata de crear humanos sintéticos, sino de resolver problemas complejos con matemáticas a gran escala.\"\n\nContexto Técnico Profundo: La definición de agente racional evita el debate filosófico sobre la \"conciencia\" y se centra en la función matemática que mapea secuencias de percepciones a acciones (arquitectura de agentes).\n\nEnlace Recomendado: Sitio oficial del libro \"Artificial Intelligence: A Modern Approach\" (Russell & Norvig)"
+      "notes": "Referencia PPTX: diapositiva 19.\n\nDiapositiva 1: ¿Qué es la Inteligencia Artificial? (De la teoría a la intuición)\n\nDiscurso Sugerido: \"Bienvenidos. Hoy vamos a desmitificar la Inteligencia Artificial. Intuitivamente, solemos pensar en la IA como 'máquinas haciendo cosas que requerirían inteligencia si las hiciera un humano'. Pero si queremos ser rigurosos, como proponen Russell y Norvig, la IA es el diseño de agentes racionales: sistemas que perciben su entorno y toman acciones para maximizar sus posibilidades de éxito en un objetivo dado. No se trata de crear humanos sintéticos, sino de resolver problemas complejos con matemáticas a gran escala.\"\n\nContexto Técnico Profundo: La definición de agente racional evita el debate filosófico sobre la \"conciencia\" y se centra en la función matemática que mapea secuencias de percepciones a acciones (arquitectura de agentes).\n\nEnlace Recomendado: Sitio oficial del libro \"Artificial Intelligence: A Modern Approach\" (Russell & Norvig)",
+      "_choice": {
+        "signals": [
+          "two_groups=true",
+          "shared_rows=false",
+          "n_columns=2"
+        ],
+        "candidates": [
+          "concept-columns",
+          "value-columns"
+        ],
+        "picked": "concept-columns",
+        "rejected": {
+          "value-columns": "the columns share no row structure — each explains its own term; author pin <!-- template: concept-columns --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "timeline",
@@ -520,7 +840,22 @@
           "body": "**Deep Blue vence a Kasparov** — La supercomputadora de IBM derrota al campeón mundial Garry Kasparov por 3½-2½. Primera vez que una máquina gana un match completo contra el mejor ajedrecista del mundo. No hay aprendizaje: es fuerza bruta (200M de posiciones por segundo) más reglas escritas por humanos."
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 20.\n\nDiapositiva 2: Una Breve Historia (De Turing a la Generación)\n\nDiscurso sugerido: \"La IA no nació con ChatGPT. Sus bases matemáticas tienen más de 70 años. Desde el Test de Turing en 1950 y la Conferencia de Dartmouth en 1956, pasamos por 'inviernos de la IA' por falta de cómputo. El punto de inflexión llegó en 2012 con las redes neuronales profundas (AlexNet) y en 2017 con una arquitectura llamada 'Transformer', creada por Google, que cambió las reglas del juego y nos trajo a la era generativa en la que estamos hoy.\"\n\nContexto técnico profundo: el artículo \"Attention Is All You Need\" (2017) introdujo el mecanismo de autoatención (self-attention) y eliminó la necesidad de procesamiento secuencial (RNNs). Eso habilitó la paralelización masiva en GPUs y, con ella, el entrenamiento de los LLMs modernos. Los dos hitos que cierran el arco, AlexNet y el Transformer, se desarrollan en la Parte 2; acá funcionan como anticipo.\n\nEnlace recomendado: paper original \"Attention Is All You Need\" (arXiv:1706.03762).\n\nNota de ritmo: siete entradas, unos 12 minutos si se cuenta todo. Los tres hitos que más dan para desarrollar son 1950, 1958 y 1997."
+      "notes": "Referencia PPTX: diapositiva 20.\n\nDiapositiva 2: Una Breve Historia (De Turing a la Generación)\n\nDiscurso sugerido: \"La IA no nació con ChatGPT. Sus bases matemáticas tienen más de 70 años. Desde el Test de Turing en 1950 y la Conferencia de Dartmouth en 1956, pasamos por 'inviernos de la IA' por falta de cómputo. El punto de inflexión llegó en 2012 con las redes neuronales profundas (AlexNet) y en 2017 con una arquitectura llamada 'Transformer', creada por Google, que cambió las reglas del juego y nos trajo a la era generativa en la que estamos hoy.\"\n\nContexto técnico profundo: el artículo \"Attention Is All You Need\" (2017) introdujo el mecanismo de autoatención (self-attention) y eliminó la necesidad de procesamiento secuencial (RNNs). Eso habilitó la paralelización masiva en GPUs y, con ella, el entrenamiento de los LLMs modernos. Los dos hitos que cierran el arco, AlexNet y el Transformer, se desarrollan en la Parte 2; acá funcionan como anticipo.\n\nEnlace recomendado: paper original \"Attention Is All You Need\" (arXiv:1706.03762).\n\nNota de ritmo: siete entradas, unos 12 minutos si se cuenta todo. Los tres hitos que más dan para desarrollar son 1950, 1958 y 1997.\n\n---\n\n1936 · La máquina universal de Turing\n\nNo es un objeto físico con engranajes ni cables, sino un modelo matemático que Turing definió en \"On Computable Numbers\" para responder qué significa que algo sea calculable. La máquina tiene una cinta infinita, un cabezal que lee y escribe un símbolo por vez y una tabla de estados. Nada más.\n\nTuring demostró que ese modelo mínimo resuelve cualquier problema que tenga una solución algorítmica. Es el plano original de cualquier procesador moderno: un CPU con miles de millones de transistores no calcula nada que una máquina de Turing no pueda calcular, solo lo hace más rápido.\n\nEl problema de la parada. En el mismo trabajo Turing mostró que hay límites que ninguna cantidad de memoria o velocidad levanta. Supongamos un programa CALCULADOR_DE_PARADA que recibe cualquier otro programa y responde, antes de ejecutarlo, si va a terminar o si va a quedar colgado en un bucle infinito. Construimos entonces un programa rebelde que consulta al CALCULADOR sobre sí mismo: si la respuesta es \"termina\", el rebelde entra en un bucle infinito; si es \"no termina\", el rebelde se detiene. La paradoja es la misma de \"esta oración es falsa\". El CALCULADOR no puede existir.\n\nPor qué importa en 2026: cuando un alumno pregunta si un modelo puede verificar automáticamente que el código que generó es correcto, la respuesta de fondo tiene 90 años. Hay preguntas sobre programas que ninguna máquina responde en general, por más grande que sea el modelo.\n\n1948 · La teoría de la información (Claude Shannon)\n\nShannon publica \"A Mathematical Theory of Communication\" en el Bell System Technical Journal. Define el bit como unidad de información, la entropía como medida de incertidumbre y la capacidad de un canal como límite de lo que se puede transmitir con ruido.\n\nConexión directa con la clase: la entropía de Shannon es la misma función de pérdida con la que se entrena un LLM. Cuando un modelo predice el token siguiente, lo que minimiza es la entropía cruzada entre su distribución y la real. La métrica de perplejidad es la exponencial de ese número.\n\n1950 · El juego de la imitación\n\nTuring publica \"Computing Machinery and Intelligence\" en la revista Mind. En 1950 nadie lograba definir \"pensar\" de una forma que todos aceptaran, así que Turing cambió la pregunta: si una máquina actúa de manera indistinguible de un ser humano, la tratamos como inteligente.\n\nCómo funciona el juego. Tres participantes en habitaciones separadas, comunicados solo por texto: un interrogador humano, un hombre (o la máquina, en la versión de IA) y una mujer (o un humano, que sirve de control). El interrogador hace preguntas por escrito y tiene que decidir quién es quién. La máquina pasa la prueba si el interrogador se equivoca con la misma frecuencia con que se equivocaría entre dos personas.\n\nDiscusión para la clase: los LLMs actuales pasan versiones cortas del test y siguen fallando en aritmética de varios pasos o en mantener coherencia en un texto largo. Sirve para preguntar si el test mide inteligencia o mide imitación del lenguaje, que es exactamente lo que Turing eligió medir.\n\n1956 · Nacimiento oficial\n\nLa conferencia de Dartmouth reúne durante un verano a John McCarthy, Marvin Minsky, Nathaniel Rochester y el propio Shannon. McCarthy acuña el término \"Inteligencia Artificial\" en la propuesta de financiamiento de 1955. La propuesta estimaba que un grupo de diez personas podía avanzar de forma significativa en dos meses.\n\nEse optimismo de calendario es un patrón que se repite en cada ola, incluida la actual. Vale la pena señalarlo acá y volver a él cuando se hable de plazos de adopción.\n\n1958 · El perceptrón (Frank Rosenblatt)\n\nRosenblatt construye en el Cornell Aeronautical Laboratory la primera red neuronal artificial que aprende de ejemplos en lugar de seguir reglas escritas. El Mark I Perceptron era hardware: una cámara de 400 fotoceldas y potenciómetros que ajustaban los pesos con motores.\n\n1969 · Minsky y Papert\n\nEl libro \"Perceptrons\" demuestra que un perceptrón de una sola capa no puede representar la función XOR. El resultado era correcto y limitado a esa arquitectura, pero se leyó como una condena a las redes neuronales en general. La inversión en el área se cortó y empezó el primer invierno de la IA.\n\n1980-90s · Sistemas expertos e inviernos\n\nUn sistema experto es un programa que imita el razonamiento de un especialista humano en un dominio acotado, con una base de reglas del tipo \"si estos síntomas, entonces esta hipótesis\" y un motor de inferencia que las encadena. MYCIN diagnosticaba infecciones bacterianas, DENDRAL identificaba estructuras moleculares y XCON configuraba equipos en Digital Equipment Corporation, donde llegó a ahorrar decenas de millones de dólares al año.\n\nPor qué se cayeron: cada regla se escribía a mano, el mantenimiento crecía más rápido que el sistema y ninguno generalizaba fuera de su dominio. El mercado de las máquinas LISP colapsó a fines de los 80 y llegó el segundo invierno.\n\nParalelo útil para la clase: la ingeniería de prompts tiene el mismo riesgo si se convierte en una colección de reglas escritas a mano que nadie puede mantener.\n\n1986 · Backpropagation\n\nRumelhart, Hinton y Williams publican en Nature \"Learning representations by back-propagating errors\" y popularizan el algoritmo que permite entrenar redes de varias capas. La idea ya circulaba (Linnainmaa en 1970, Werbos en 1974); lo que cambió fue mostrar que funcionaba en la práctica y que las capas ocultas aprendían representaciones útiles.\n\nCon varias capas la limitación del XOR desaparece. Faltaban los datos y el cómputo, que llegaron recién con las GPUs.\n\n1997 · Deep Blue vence a Kasparov\n\nEn mayo de 1997, en Nueva York, la supercomputadora de IBM gana el match por 3½-2½. En 1996 Kasparov había ganado el enfrentamiento anterior por 4-2, así que la revancha es la primera vez que una máquina gana un match completo contra el campeón mundial.\n\nCómo lo hacía: búsqueda alfa-beta sobre el árbol de jugadas, unos 200 millones de posiciones por segundo en hardware dedicado, y una función de evaluación con miles de parámetros que ajustaron grandes maestros humanos. No hay aprendizaje. Deep Blue es búsqueda más poder de cómputo más heurísticas escritas por personas.\n\nEl contraste con lo que viene: AlphaGo en 2016 y los LLMs de hoy aprenden de datos en lugar de recibir la heurística escrita. Deep Blue cierra la era de las reglas y la Parte 2 abre la del aprendizaje.",
+      "_choice": {
+        "signals": [
+          "is_ordered=true",
+          "date_labels=true",
+          "labeled_items=7"
+        ],
+        "candidates": [
+          "timeline",
+          "process"
+        ],
+        "picked": "timeline",
+        "rejected": {
+          "process": "date/period labels make this a timeline, not a process; author pin <!-- template: timeline --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "content-image",
@@ -558,7 +893,21 @@
           "body": "Output: ŷ = f(z)"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 21.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 21.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "prose_lines=6"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "image-full": "carries supporting prose — image-full is one image and no prose; author pin <!-- template: content-image --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "timeline",
@@ -599,7 +948,22 @@
           "body": "**La IA encuentra lo que décadas de revisión humana no vieron** — Anthropic reporta más de 10.000 vulnerabilidades halladas por Claude Mythos en el primer mes de Glasswing: 2.000 en Cloudflare y 271 de Firefox ya corregidas. El caso más citado, una ejecución remota de 17 años en el NFS de FreeBSD explotada sin intervención humana, circula sin CVE ni aviso de seguridad y el propio foro de FreeBSD lo discute."
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 22.\n\nNota de ritmo: ocho entradas. Las que más dan para desarrollar son 2012, 2016, 2017 y 2026. La diapositiva siguiente (Move 37) desarrolla 2016."
+      "notes": "Referencia PPTX: diapositiva 22.\n\nNota de ritmo: ocho entradas. Las que más dan para desarrollar son 2012, 2016, 2017 y 2026. La diapositiva siguiente (Move 37) desarrolla 2016.\n\n---\n\n2011 · Watson gana en Jeopardy!\n\nIBM Watson derrota a Ken Jennings y Brad Rutter, los dos mejores jugadores en la historia del programa. Watson corría sobre 2.880 núcleos POWER7 con 16 TB de memoria y unos 4 TB de contenido indexado. Durante el juego estuvo desconectado de internet: todo lo que sabía estaba cargado de antemano.\n\nCómo funcionaba: la arquitectura DeepQA generaba cientos de hipótesis por pregunta, buscaba evidencia para cada una en paralelo y las puntuaba con alrededor de cien algoritmos distintos. Respondía solo cuando la confianza superaba un umbral.\n\nEl error que vale contar: en el Final Jeopardy de categoría \"Ciudades de Estados Unidos\", Watson respondió \"Toronto\". Sirve para mostrar que un sistema puede ganar un torneo y equivocarse en algo que ningún humano erraría, porque su noción de categoría no es la nuestra.\n\n2012 · La revolución del deep learning\n\nAlexNet, de Krizhevsky, Sutskever y Hinton, gana el ImageNet Large Scale Visual Recognition Challenge con 15,3% de error top-5 contra 26,2% del segundo. Una diferencia de más de diez puntos en una competencia donde se peleaba por décimas.\n\nLos números de ImageNet: más de 14 millones de imágenes etiquetadas y más de 20.000 categorías en el dataset completo. La competencia usaba un subconjunto de 1.000 clases y 1,2 millones de imágenes de entrenamiento.\n\nLo que cambió: la red se entrenó en dos GPUs GTX 580 de consumo. El salto no fue una idea nueva (las redes convolucionales son de los 80) sino la combinación de datos etiquetados a escala, GPUs baratas y ReLU + dropout para entrenar redes profundas sin que se degraden. De acá sale la frase de la diapositiva sobre pasar de codificar a entrenar: antes un ingeniero de visión escribía a mano los detectores de bordes y texturas; después los aprende la red.\n\n2016 · AlphaGo vence a Lee Sedol\n\nDeepMind gana el match 4-1 en Seúl, en marzo. El Go tiene un factor de ramificación de alrededor de 250 contra 35 del ajedrez, así que la búsqueda por fuerza bruta que le alcanzó a Deep Blue acá no sirve.\n\nCómo funcionaba: dos redes neuronales (una de política, que propone jugadas, y una de valor, que evalúa posiciones) guiando una búsqueda Monte Carlo por árbol. El entrenamiento tuvo dos etapas: primero aprendizaje supervisado sobre partidas de jugadores humanos fuertes, después aprendizaje por refuerzo jugando millones de partidas contra versiones de sí mismo.\n\nLa aclaración que conviene hacer en clase: AlphaGo sí aprendió de humanos. El que se entrenó sin ningún dato humano fue AlphaGo Zero, un año después, y jugaba mejor.\n\nLa jugada 78 de Lee Sedol en la cuarta partida, la única que ganó, es el espejo de la jugada 37: una jugada que AlphaGo no tenía contemplada y que le desarmó la evaluación.\n\n2017 · Atención es todo\n\nVaswani y otros publican \"Attention Is All You Need\" en NeurIPS. La propuesta es eliminar las redes recurrentes (RNN/LSTM) y quedarse solo con mecanismos de atención.\n\nPor qué fue revolucionario, en tres puntos:\n\n1. Paralelización total. Las RNN procesaban la secuencia palabra por palabra, cada paso dependiendo del anterior. Los Transformers procesan toda la secuencia a la vez, y eso los vuelve mucho más rápidos en GPUs.\n\n2. Mejor manejo de contexto largo. Las RNN olvidaban información lejana. La atención conecta cualquier palabra con cualquier otra de forma directa, sin importar la distancia.\n\n3. Escalabilidad. La arquitectura mejora de forma predecible con más datos, más parámetros y más cómputo, y eso abrió la puerta a los modelos gigantes.\n\nEl costo que no está en la diapositiva: la atención es cuadrática en la longitud de la secuencia. Duplicar el contexto cuadruplica el cómputo. Es la razón por la que el contexto largo sigue siendo caro y por la que hay tanta investigación en variantes eficientes.\n\n2020s · Era generativa\n\nGPT-3 llega en 2020 con 175.000 millones de parámetros y muestra que un modelo suficientemente grande resuelve tareas nuevas con solo verlas descritas en el prompt, sin reentrenamiento.\n\nDos referencias que ordenan la década y ya están en el corpus: las leyes de escala de Kaplan y otros (arXiv:2001.08361), que muestran que la performance mejora como una ley de potencia frente a datos, parámetros y cómputo; y el reporte de Stanford que acuña el término foundation model (arXiv:2108.07258).\n\n2022 · ChatGPT rompe internet\n\nOpenAI lanza ChatGPT el 30 de noviembre de 2022. Llegó al millón de usuarios en cinco días y se le estimaron 100 millones de usuarios mensuales en enero de 2023.\n\nPrecisión que conviene tener a mano: esa cifra de 100 millones es una estimación de UBS, no un dato publicado por OpenAI, y el título de producto de más rápido crecimiento se lo quitó Threads en julio de 2023. La afirmación de la diapositiva vale para el momento, no para siempre.\n\nLo que cambió no fue el modelo: GPT-3.5 ya existía. Cambió la interfaz. Un chat gratuito y sin fricción convirtió una API para desarrolladores en un producto masivo, y ese es el punto que vale para una carrera de Ingeniería de Software.\n\n2025 · La IA se abarata y empieza a actuar\n\nDeepSeek publica R1 el 20 de enero de 2025, un modelo de razonamiento con pesos abiertos y un costo por token muy por debajo del de sus competidores cerrados. El 27 de enero Nvidia pierde alrededor de 589.000 millones de dólares de capitalización en una sola rueda, la mayor caída diaria de una empresa en la historia del mercado estadounidense. La tesis que se rompió ese día no fue técnica sino económica: que el razonamiento de frontera exigía siempre más cómputo y más gasto.\n\nEl segundo movimiento del año es el paso de los agentes de la demo a la producción. Un agente no responde una pregunta: ejecuta una secuencia de acciones sobre sistemas reales, con permisos, registros y posibilidad de reversión. Eso convierte el problema en uno de ingeniería, no de prompt.\n\nMCP (Model Context Protocol) es el protocolo abierto que estandariza cómo un modelo se conecta a herramientas y fuentes de datos. Durante 2025 lo adoptaron los principales proveedores, y con eso la integración dejó de ser un desarrollo a medida por cada par modelo-herramienta.\n\nPor qué cierra la clase: los tres movimientos apuntan al mismo lugar. Si el costo baja, si el modelo actúa y si conectarlo es estándar, lo que queda como trabajo distintivo del ingeniero de software es el criterio, los controles y la responsabilidad sobre lo que el sistema hace. Es la tesis de la materia.\n\n2026 · La IA encuentra lo que décadas de revisión humana no vieron\n\nAnthropic publica Claude Mythos Preview el 7 de abril de 2026 con acceso restringido: 12 empresas socias y 40 organizaciones de infraestructura crítica, bajo el programa Project Glasswing. No lo liberó al público, con el argumento de que el modelo es demasiado capaz para publicarlo de forma segura.\n\nEl caso de FreeBSD es el que conviene contar. Mythos identificó y explotó por su cuenta una vulnerabilidad de ejecución remota de código en el servicio NFS que llevaba 17 años en el árbol, y obtuvo acceso root sin autenticación. Sin que nadie le pidiera buscar ahí.\n\nLas cifras del primer mes, del reporte de Anthropic del 23 de mayo de 2026: más de 10.000 vulnerabilidades entre los socios, con la mayoría reportando cientos de severidad alta o crítica. Cloudflare encontró 2.000 bugs, 400 de ellos altos o críticos. Mozilla corrigió 271 vulnerabilidades de Firefox. Un barrido sobre 1.000 proyectos de código abierto devolvió 6.202 vulnerabilidades altas o críticas sobre 23.019 halladas.\n\nQué discutir en clase: NFS es código revisado durante 17 años por una comunidad que se toma la seguridad en serio, con auditorías, fuzzing y análisis estático encima. Que un modelo lo encuentre solo no dice que los humanos sean malos revisando; dice que el costo de buscar exhaustivamente se derrumbó. La pregunta para un ingeniero es qué cambia en su proceso cuando esa búsqueda deja de ser cara, y qué pasa cuando la misma capacidad está del otro lado.\n\nLa cadena de procedencia del caso de FreeBSD, que vale la pena mostrar en clase tal cual: la frase la escribe Valentin Monteiro en un post de dev.to, blackbird9 la pega en el foro de FreeBSD el 9 de abril de 2026, y el enlace de respaldo apunta a una página de Anthropic sobre sí misma. Tres saltos y ninguna verificación independiente. No hay número de CVE ni aviso FreeBSD-SA en toda la captura, y en el hilo participa al menos un desarrollador del proyecto sin aportar ninguno. La comunidad discute la afirmación con escepticismo.\n\nPor qué eso es material de clase y no un problema: la diapositiva enseña dos cosas a la vez. Una capacidad nueva, y cómo se verifica una afirmación técnica antes de repetirla. Si alguien pregunta si el bug de FreeBSD es real, la respuesta honesta es que Anthropic lo afirma, la prensa lo repite y el proyecto afectado no lo confirmó. Esa es la respuesta correcta y es la que conviene modelar.\n\nLas cifras de Glasswing son autoinformadas por Anthropic. La única con respaldo de un tercero es la de Mozilla, que publicó por su cuenta las 271 vulnerabilidades de Firefox corregidas. No sumar los 10.000 con los 23.019 del barrido de código abierto: son ventanas y poblaciones distintas.",
+      "_choice": {
+        "signals": [
+          "is_ordered=true",
+          "date_labels=true",
+          "labeled_items=8"
+        ],
+        "candidates": [
+          "timeline",
+          "process"
+        ],
+        "picked": "timeline",
+        "rejected": {
+          "process": "date/period labels make this a timeline, not a process; author pin <!-- template: timeline --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "single-point",
@@ -622,7 +986,21 @@
           "kind": "source"
         }
       ],
-      "notes": "Momento sugerido: proyectar el video justo después de la diapositiva de la Breve Historia (Parte 2), cuando aparece la entrada de 2016.\n\nPor qué esta jugada y no otra: es el caso más limpio para mostrar que un sistema entrenado por refuerzo no imita al humano, sino que lo supera por caminos que el humano no considera. Fan Hui, el jugador europeo al que AlphaGo había derrotado meses antes, la describió como hermosa después de entenderla.\n\nEl contrapunto honesto: en la cuarta partida Lee Sedol jugó la 78, una cuña que AlphaGo no tenía contemplada, y el sistema se desarmó durante varias jugadas. Fue la única partida que AlphaGo perdió. Conviene contar las dos.\n\nPregunta para la clase: si un sistema propone una decisión de arquitectura que ningún miembro del equipo habría propuesto, ¿qué evidencia hace falta para aceptarla? Es la misma pregunta que enfrentaron los comentaristas en 2016, trasladada a un code review.\n\nAclaración técnica: AlphaGo (2016) sí se entrenó con partidas humanas antes de la etapa de refuerzo. AlphaGo Zero, un año después, aprendió sin ningún dato humano y jugaba mejor. Si alguien pregunta, la distinción importa."
+      "notes": "Momento sugerido: proyectar el video justo después de la diapositiva de la Breve Historia (Parte 2), cuando aparece la entrada de 2016.\n\nPor qué esta jugada y no otra: es el caso más limpio para mostrar que un sistema entrenado por refuerzo no imita al humano, sino que lo supera por caminos que el humano no considera. Fan Hui, el jugador europeo al que AlphaGo había derrotado meses antes, la describió como hermosa después de entenderla.\n\nEl contrapunto honesto: en la cuarta partida Lee Sedol jugó la 78, una cuña que AlphaGo no tenía contemplada, y el sistema se desarmó durante varias jugadas. Fue la única partida que AlphaGo perdió. Conviene contar las dos.\n\nPregunta para la clase: si un sistema propone una decisión de arquitectura que ningún miembro del equipo habría propuesto, ¿qué evidencia hace falta para aceptarla? Es la misma pregunta que enfrentaron los comentaristas en 2016, trasladada a un code review.\n\nAclaración técnica: AlphaGo (2016) sí se entrenó con partidas humanas antes de la etapa de refuerzo. AlphaGo Zero, un año después, aprendió sin ningún dato humano y jugaba mejor. Si alguien pregunta, la distinción importa.",
+      "_choice": {
+        "signals": [
+          "labeled_items=1",
+          "one_claim=true"
+        ],
+        "candidates": [
+          "single-point",
+          "statement"
+        ],
+        "picked": "single-point",
+        "rejected": {
+          "statement": "one labeled point with a lead — single-point, per labeled_items == 1; author pin <!-- template: single-point --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -669,7 +1047,23 @@
           "kind": "example"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 23.\n\nDiapositiva 3: La Taxonomía de Problemas: ¿Qué resolvemos?\n\nDiscurso Sugerido: \"Para entender la IA, hay que verla como una caja de herramientas. ¿Qué problemas resuelve? Principalmente, podemos categorizarlos en siete áreas clave. Por ejemplo, en Predicción, la IA puede predecir categorías o valores continuos, como si una planta tiene una plaga o estimar el rendimiento de una cosecha. En Percepción, la IA extrae significado de imágenes o audio. La Generación nos permite crear nuevo contenido. Los sistemas de Decisión Secuencial aprenden a tomar series de acciones para lograr objetivos, como en los juegos. Y el Razonamiento Simbólico permite a la IA usar reglas lógicas.\"\n\nContexto Técnico Profundo: La Predicción mapea entradas $X$ a salidas $Y$ (discretas o continuas). La Percepción extrae características de datos crudos. La Representación busca estructuras subyacentes (embeddings). La Generación modela distribuciones de probabilidad. La Decisión Secuencial optimiza acciones a lo largo del tiempo (Reinforcement Learning). La Búsqueda y Planificación encuentran secuencias óptimas de acciones. El Razonamiento Simbólico se basa en sistemas expertos y lógica."
+      "notes": "Referencia PPTX: diapositiva 23.\n\nDiapositiva 3: La Taxonomía de Problemas: ¿Qué resolvemos?\n\nDiscurso Sugerido: \"Para entender la IA, hay que verla como una caja de herramientas. ¿Qué problemas resuelve? Principalmente, podemos categorizarlos en siete áreas clave. Por ejemplo, en Predicción, la IA puede predecir categorías o valores continuos, como si una planta tiene una plaga o estimar el rendimiento de una cosecha. En Percepción, la IA extrae significado de imágenes o audio. La Generación nos permite crear nuevo contenido. Los sistemas de Decisión Secuencial aprenden a tomar series de acciones para lograr objetivos, como en los juegos. Y el Razonamiento Simbólico permite a la IA usar reglas lógicas.\"\n\nContexto Técnico Profundo: La Predicción mapea entradas $X$ a salidas $Y$ (discretas o continuas). La Percepción extrae características de datos crudos. La Representación busca estructuras subyacentes (embeddings). La Generación modela distribuciones de probabilidad. La Decisión Secuencial optimiza acciones a lo largo del tiempo (Reinforcement Learning). La Búsqueda y Planificación encuentran secuencias óptimas de acciones. El Razonamiento Simbólico se basa en sistemas expertos y lógica.",
+      "_choice": {
+        "signals": [
+          "labeled_items=7",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "image-full",
@@ -680,7 +1074,21 @@
         "src": "images/s5-1-1-prediccion-funcion-aprendida.png",
         "alt": "Predicción: se aprende una función a partir de ejemplos con respuesta conocida y se aplica a un caso nuevo"
       },
-      "notes": "Presentar Predicción como una de las familias más frecuentes de problemas de IA antes de recorrer sus variantes."
+      "notes": "Presentar Predicción como una de las familias más frecuentes de problemas de IA antes de recorrer sus variantes.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the image is the payload; no supporting prose points to set beside it; author pin <!-- template: image-full --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -723,7 +1131,23 @@
           "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 24.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en dos GPUs de consumo. Más de diez puntos de diferencia con el segundo puesto, en una competencia donde se peleaba por décimas, abrieron la década del deep learning. La misma cifra aparece en la Breve Historia (Parte 2)."
+      "notes": "Referencia PPTX: diapositiva 24.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: AlexNet compitió en ImageNet 2012 con una red convolucional entrenada en dos GPUs de consumo. Más de diez puntos de diferencia con el segundo puesto, en una competencia donde se peleaba por décimas, abrieron la década del deep learning. La misma cifra aparece en la Breve Historia (Parte 2).",
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "image-full",
@@ -734,7 +1158,21 @@
         "src": "images/s5-2-1-percepcion-senal-a-simbolos.png",
         "alt": "Percepción: de señal cruda a estructura nombrada — entrada, modelo y salida"
       },
-      "notes": "Los sistemas de percepción convierten datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos y conceptos interpretables. Sostienen la visión por computadora y el procesamiento del habla.\n\nEncuadrar Percepción antes de los ejemplos. Acá el sistema lee señales crudas y las traduce a entidades sobre las que después se decide."
+      "notes": "Los sistemas de percepción convierten datos crudos (píxeles, ondas de audio, frames de video) en objetos, eventos y conceptos interpretables. Sostienen la visión por computadora y el procesamiento del habla.\n\nEncuadrar Percepción antes de los ejemplos. Acá el sistema lee señales crudas y las traduce a entidades sobre las que después se decide.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the image is the payload; no supporting prose points to set beside it; author pin <!-- template: image-full --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -785,7 +1223,23 @@
           "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 25.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: ResNet introdujo las conexiones residuales, que permitieron entrenar redes mucho más profundas. El 3.57% de error quedó por debajo del 5% que se atribuye a un anotador humano en la misma tarea."
+      "notes": "Referencia PPTX: diapositiva 25.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: ResNet introdujo las conexiones residuales, que permitieron entrenar redes mucho más profundas. El 3.57% de error quedó por debajo del 5% que se atribuye a un anotador humano en la misma tarea.",
+      "_choice": {
+        "signals": [
+          "labeled_items=6",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "image-full",
@@ -796,7 +1250,21 @@
         "src": "images/s5-3-1-representacion-espacio-vectores.png",
         "alt": "Representación: de símbolos sueltos a un espacio de vectores donde la distancia mide el parecido"
       },
-      "notes": "Un modelo de representación ubica cada objeto en un espacio de vectores donde la cercanía significa parecido. Ese espacio es lo que después permite buscar por significado, recomendar y detectar lo anómalo.\n\nEncuadrar Representación como la familia que produce embeddings y espacios latentes. Es la pieza que después usan la búsqueda semántica, la recomendación y buena parte de los LLMs."
+      "notes": "Un modelo de representación ubica cada objeto en un espacio de vectores donde la cercanía significa parecido. Ese espacio es lo que después permite buscar por significado, recomendar y detectar lo anómalo.\n\nEncuadrar Representación como la familia que produce embeddings y espacios latentes. Es la pieza que después usan la búsqueda semántica, la recomendación y buena parte de los LLMs.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the image is the payload; no supporting prose points to set beside it; author pin <!-- template: image-full --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -838,7 +1306,23 @@
           "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 26.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: la aritmética vectorial de Word2Vec mostró que la geometría del espacio codifica relaciones de género, número y categoría sin que nadie las declare. De ahí bajan las bases de datos vectoriales que hoy sostienen RAG."
+      "notes": "Referencia PPTX: diapositiva 26.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: la aritmética vectorial de Word2Vec mostró que la geometría del espacio codifica relaciones de género, número y categoría sin que nadie las declare. De ahí bajan las bases de datos vectoriales que hoy sostienen RAG.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "image-full",
@@ -849,7 +1333,21 @@
         "src": "images/s5-4-1-decision-secuencial-lazo.png",
         "alt": "Decisión secuencial: el lazo entre agente, acción y entorno que devuelve recompensa"
       },
-      "notes": "Encuadrar Decisión Secuencial marcando la diferencia con Predicción. Acá no hay una etiqueta correcta por ejemplo, sino una señal de recompensa que llega tarde y evalúa una secuencia entera."
+      "notes": "Encuadrar Decisión Secuencial marcando la diferencia con Predicción. Acá no hay una etiqueta correcta por ejemplo, sino una señal de recompensa que llega tarde y evalúa una secuencia entera.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the image is the payload; no supporting prose points to set beside it; author pin <!-- template: image-full --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -896,7 +1394,23 @@
           "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 27.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: AlphaGo combinó redes de política y valor con búsqueda Monte Carlo. AlphaZero eliminó las partidas humanas del entrenamiento y aprendió solo por autojuego. RLHF es la aplicación de esta misma familia sobre modelos de lenguaje."
+      "notes": "Referencia PPTX: diapositiva 27.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: AlphaGo combinó redes de política y valor con búsqueda Monte Carlo. AlphaZero eliminó las partidas humanas del entrenamiento y aprendió solo por autojuego. RLHF es la aplicación de esta misma familia sobre modelos de lenguaje.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "image-full",
@@ -907,7 +1421,21 @@
         "src": "images/s5-5-1-busqueda-arbol-camino.png",
         "alt": "Búsqueda y planificación: recorrer un árbol de opciones para encontrar el mejor camino"
       },
-      "notes": "Encuadrar Búsqueda y Planificación como la familia con modelo del entorno conocido. Conviene anticipar la comparación con RL, que aparece en la diapositiva siguiente."
+      "notes": "Encuadrar Búsqueda y Planificación como la familia con modelo del entorno conocido. Conviene anticipar la comparación con RL, que aparece en la diapositiva siguiente.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the image is the payload; no supporting prose points to set beside it; author pin <!-- template: image-full --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -958,7 +1486,23 @@
           "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 28.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: el sistema de DeepMind ajustaba refrigeración a partir de miles de sensores. El 40% corresponde a la energía de enfriamiento, no al consumo total del data center."
+      "notes": "Referencia PPTX: diapositiva 28.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: el sistema de DeepMind ajustaba refrigeración a partir de miles de sensores. El 40% corresponde a la energía de enfriamiento, no al consumo total del data center.",
+      "_choice": {
+        "signals": [
+          "labeled_items=6",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "image-full",
@@ -969,7 +1513,21 @@
         "src": "images/s5-6-1-razonamiento-cadena-reglas.png",
         "alt": "Razonamiento simbólico: hechos y reglas escritas por personas llevan a una conclusión auditable"
       },
-      "notes": "Encuadrar Razonamiento Simbólico como la familia anterior al aprendizaje estadístico y todavía vigente donde hace falta trazabilidad: crédito, seguros, cumplimiento normativo, verificación de código."
+      "notes": "Encuadrar Razonamiento Simbólico como la familia anterior al aprendizaje estadístico y todavía vigente donde hace falta trazabilidad: crédito, seguros, cumplimiento normativo, verificación de código.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the image is the payload; no supporting prose points to set beside it; author pin <!-- template: image-full --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -1016,7 +1574,23 @@
           "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 29.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: Deep Blue evaluaba unas 200 millones de posiciones por segundo con una función escrita por sus autores. Ninguna parte del sistema aprendía de los datos, lo que ilustra hasta dónde llega el enfoque simbólico puro."
+      "notes": "Referencia PPTX: diapositiva 29.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: Deep Blue evaluaba unas 200 millones de posiciones por segundo con una función escrita por sus autores. Ninguna parte del sistema aprendía de los datos, lo que ilustra hasta dónde llega el enfoque simbólico puro.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "image-full",
@@ -1027,7 +1601,21 @@
         "src": "images/s5-7-1-generacion-muestras-nuevas.png",
         "alt": "Generación: a partir de la distribución de los datos se producen muestras nuevas"
       },
-      "notes": "Encuadrar Generación señalando lo que la separa de Predicción: la cantidad de salidas válidas no está acotada, así que la evaluación deja de apoyarse en accuracy."
+      "notes": "Encuadrar Generación señalando lo que la separa de Predicción: la cantidad de salidas válidas no está acotada, así que la evaluación deja de apoyarse en accuracy.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the image is the payload; no supporting prose points to set beside it; author pin <!-- template: image-full --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -1074,7 +1662,23 @@
           "position": "bottom"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 30.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: los 100 millones de usuarios en 2 meses se comparan con los 9 meses de TikTok y los 30 meses de Instagram. El PPTX original cierra esta familia con Moléculas y candidatos a fármacos; acá el ejemplo equivalente son los datos sintéticos, y AlphaFold queda en la lista de herramientas."
+      "notes": "Referencia PPTX: diapositiva 30.\n\n[Sin notas en el PPTX de referencia.]\n\nContexto del hito: los 100 millones de usuarios en 2 meses se comparan con los 9 meses de TikTok y los 30 meses de Instagram. El PPTX original cierra esta familia con Moléculas y candidatos a fármacos; acá el ejemplo equivalente son los datos sintéticos, y AlphaFold queda en la lista de herramientas.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -1089,7 +1693,21 @@
         "src": "images/s6-0-1-foundation-model-contiene.png",
         "alt": "LLM y multimodal son dos cajas contenidas dentro de Foundation Model; modelo de lenguaje es un linaje aparte, más viejo y más amplio"
       },
-      "notes": "Encuadre antes del detalle. La diapositiva siguiente define los cuatro términos uno por uno; esta muestra cómo se relacionan, que es lo que la lista no deja ver.\n\nEl punto que más cuesta: un LLM no es algo distinto de un Foundation Model, es un Foundation Model especializado en texto. La lista de cuatro columnas los pone al mismo nivel y eso confunde.\n\nEl término \"foundation model\" lo acuña el reporte de Stanford de 2021 (arXiv:2108.07258), que está en el corpus de la materia."
+      "notes": "Encuadre antes del detalle. La diapositiva siguiente define los cuatro términos uno por uno; esta muestra cómo se relacionan, que es lo que la lista no deja ver.\n\nEl punto que más cuesta: un LLM no es algo distinto de un Foundation Model, es un Foundation Model especializado en texto. La lista de cuatro columnas los pone al mismo nivel y eso confunde.\n\nEl término \"foundation model\" lo acuña el reporte de Stanford de 2021 (arXiv:2108.07258), que está en el corpus de la materia.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the image is the payload; no supporting prose points to set beside it; author pin <!-- template: image-full --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-columns",
@@ -1147,7 +1765,22 @@
           "kind": "takeaway"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 31.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 31.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "two_groups=true",
+          "shared_rows=false",
+          "n_columns=4"
+        ],
+        "candidates": [
+          "concept-columns",
+          "value-columns"
+        ],
+        "picked": "concept-columns",
+        "rejected": {
+          "value-columns": "the columns share no row structure — each explains its own term; author pin <!-- template: concept-columns --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-columns",
@@ -1176,7 +1809,26 @@
           "kind": "source"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 32.\n\nDiapositiva 5: El Salto Cuantitativo: IA Tradicional vs. Foundation Models\n\nDiscurso Sugerido: \"Hasta hace pocos años, la IA era 'artesanal'. Si una empresa en el Parque Industrial de Pilar quería un modelo para detectar fallas en autopartes, entrenaba una IA solo para eso. Hoy entramos en la era de los Foundation Models (Modelos Fundacionales). Son modelos gigantescos, entrenados con datos a gran escala, que no saben hacer una sola cosa, sino que tienen una comprensión general del mundo y pueden adaptarse a múltiples tareas: desde traducir texto hasta escribir código o analizar un contrato legal.\"\n\nContexto Técnico Profundo: El término fue acuñado por el Stanford Institute for Human-Centered AI (HAI) en 2021 para describir modelos entrenados con datos amplios a gran escala que pueden adaptarse (fine-tuning o in-context learning) a una amplia gama de tareas downstream.\n\nEnlace Recomendado: On the Opportunities and Risks of Foundation Models (Stanford HAI, arXiv:2108.07258)"
+      "notes": "Referencia PPTX: diapositiva 32.\n\nDiapositiva 5: El Salto Cuantitativo: IA Tradicional vs. Foundation Models\n\nDiscurso Sugerido: \"Hasta hace pocos años, la IA era 'artesanal'. Si una empresa en el Parque Industrial de Pilar quería un modelo para detectar fallas en autopartes, entrenaba una IA solo para eso. Hoy entramos en la era de los Foundation Models (Modelos Fundacionales). Son modelos gigantescos, entrenados con datos a gran escala, que no saben hacer una sola cosa, sino que tienen una comprensión general del mundo y pueden adaptarse a múltiples tareas: desde traducir texto hasta escribir código o analizar un contrato legal.\"\n\nContexto Técnico Profundo: El término fue acuñado por el Stanford Institute for Human-Centered AI (HAI) en 2021 para describir modelos entrenados con datos amplios a gran escala que pueden adaptarse (fine-tuning o in-context learning) a una amplia gama de tareas downstream.\n\nEnlace Recomendado: On the Opportunities and Risks of Foundation Models (Stanford HAI, arXiv:2108.07258)",
+      "_choice": {
+        "signals": [
+          "two_groups=true",
+          "shared_rows=false",
+          "n_columns=2"
+        ],
+        "candidates": [
+          "concept-columns",
+          "value-columns"
+        ],
+        "picked": "concept-columns",
+        "rejected": {
+          "value-columns": "the columns share no row structure — each explains its own term; author pin <!-- template: concept-columns --> honoured — the template holds every field of the body"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "Datos"
     },
     {
       "template": "concept-breakdown",
@@ -1216,7 +1868,23 @@
           "kind": "takeaway"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 33.\n\n¿Por qué tantos datos?\n\nSelf-supervised learning no requiere etiquetas humanas:\n\nel texto mismo genera sus propios objetivos (por ejemplo, predecir la próxima palabra), lo que permite entrenar con volúmenes masivos de datos crudos sin costo de etiquetado explícito.\n\n Evolución histórica de la escala\n\nEn 2018-2020, cientos de miles de millones de tokens eran “enorme”.\n\nPara 2024-2025, los modelos de vanguardia usan decenas de trillones de tokens, con algunos conjuntos de datos incluso públicos superando 100 trillones de tokens.\n\n Implicaciones\n\nMás datos → mejor comprensión y generalización del lenguaje.\n\nEscala de datos y tamaño del modelo (parámetros) suelen crecer juntos.\n\nNecesita infraestructura enorme (clusters de GPUs / TPUs)."
+      "notes": "Referencia PPTX: diapositiva 33.\n\n¿Por qué tantos datos?\n\nSelf-supervised learning no requiere etiquetas humanas:\n\nel texto mismo genera sus propios objetivos (por ejemplo, predecir la próxima palabra), lo que permite entrenar con volúmenes masivos de datos crudos sin costo de etiquetado explícito.\n\n Evolución histórica de la escala\n\nEn 2018-2020, cientos de miles de millones de tokens eran “enorme”.\n\nPara 2024-2025, los modelos de vanguardia usan decenas de trillones de tokens, con algunos conjuntos de datos incluso públicos superando 100 trillones de tokens.\n\n Implicaciones\n\nMás datos → mejor comprensión y generalización del lenguaje.\n\nEscala de datos y tamaño del modelo (parámetros) suelen crecer juntos.\n\nNecesita infraestructura enorme (clusters de GPUs / TPUs).",
+      "_choice": {
+        "signals": [
+          "labeled_items=6",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "timeline",
@@ -1259,7 +1927,22 @@
           "kind": "definition"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 34.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 34.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "is_ordered=true",
+          "date_labels=true",
+          "labeled_items=7"
+        ],
+        "candidates": [
+          "timeline",
+          "process"
+        ],
+        "picked": "timeline",
+        "rejected": {
+          "process": "date/period labels make this a timeline, not a process; author pin <!-- template: timeline --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -1307,7 +1990,23 @@
           "kind": "important"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 35.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 35.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "labeled_items=8",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "value-columns",
@@ -1358,7 +2057,21 @@
           "kind": "takeaway"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 36.\n\nDiapositiva 6: La Anatomía de un Foundation Model (Escala y Datos)\n\nDiscurso Sugerido: \"La magia de estos modelos no radica en un algoritmo místico, sino en la fuerza bruta y la escala. Estamos hablando de modelos entrenados con billones de palabras (prácticamente todo el internet público). Sus 'cerebros' tienen cientos o miles de millones de 'parámetros', que son las conexiones neuronales artificiales. Entrenar uno de estos modelos requiere miles de tarjetas gráficas (GPUs) funcionando durante meses y millones de dólares en electricidad.\"\n\nContexto Técnico Profundo: La relación entre el volumen de datos (tokens), el tamaño del modelo (parámetros) y el cómputo (FLOPs) se rige por las \"Scaling Laws\" (Leyes de Escalamiento). Modelos actuales como GPT-4 o Gemini manejan arquitecturas Mixture-of-Experts (MoE) con billones de parámetros dispersos.\n\nEnlace Recomendado: Scaling Laws for Neural Language Models (OpenAI, arXiv:2001.08361)"
+      "notes": "Referencia PPTX: diapositiva 36.\n\nDiapositiva 6: La Anatomía de un Foundation Model (Escala y Datos)\n\nDiscurso Sugerido: \"La magia de estos modelos no radica en un algoritmo místico, sino en la fuerza bruta y la escala. Estamos hablando de modelos entrenados con billones de palabras (prácticamente todo el internet público). Sus 'cerebros' tienen cientos o miles de millones de 'parámetros', que son las conexiones neuronales artificiales. Entrenar uno de estos modelos requiere miles de tarjetas gráficas (GPUs) funcionando durante meses y millones de dólares en electricidad.\"\n\nContexto Técnico Profundo: La relación entre el volumen de datos (tokens), el tamaño del modelo (parámetros) y el cómputo (FLOPs) se rige por las \"Scaling Laws\" (Leyes de Escalamiento). Modelos actuales como GPT-4 o Gemini manejan arquitecturas Mixture-of-Experts (MoE) con billones de parámetros dispersos.\n\nEnlace Recomendado: Scaling Laws for Neural Language Models (OpenAI, arXiv:2001.08361)",
+      "_choice": {
+        "signals": [
+          "shared_rows=true",
+          "n_columns=3"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-columns"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-columns": "parallel values read across one shared factor per row; author pin <!-- template: value-columns --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "image-full",
@@ -1368,7 +2081,25 @@
         "src": "images/ikp-calibration-curve.png",
         "alt": "Curva de calibración IKP: conocimiento factual y tamaño total estimado de modelos"
       },
-      "notes": "La figura calibra puntajes de conocimiento factual contra el tamaño conocido de modelos abiertos. Las líneas punteadas de la derecha son estimaciones para modelos cerrados, no revelaciones de arquitectura por parte de los laboratorios. El paper presenta estas cifras como capacidad efectiva de orden de magnitud: su intervalo de predicción al 90% es aproximadamente un factor de 3 en cada dirección. La figura indica 89 modelos abiertos; la versión 2 del abstract reporta una calibración sobre 93."
+      "notes": "La figura calibra puntajes de conocimiento factual contra el tamaño conocido de modelos abiertos. Las líneas punteadas de la derecha son estimaciones para modelos cerrados, no revelaciones de arquitectura por parte de los laboratorios. El paper presenta estas cifras como capacidad efectiva de orden de magnitud: su intervalo de predicción al 90% es aproximadamente un factor de 3 en cada dirección. La figura indica 89 modelos abiertos; la versión 2 del abstract reporta una calibración sobre 93.",
+      "_choice": {
+        "signals": [
+          "n_images=1",
+          "image_only=true"
+        ],
+        "candidates": [
+          "image-full",
+          "content-image"
+        ],
+        "picked": "image-full",
+        "rejected": {
+          "content-image": "the image is the payload; no supporting prose points to set beside it; author pin <!-- template: image-full --> honoured — the template holds every field of the body"
+        }
+      }
+    },
+    {
+      "template": "section-agenda",
+      "title": "Ecosistema Actual"
     },
     {
       "template": "concept-breakdown",
@@ -1411,7 +2142,23 @@
           "kind": "note"
         }
       ],
-      "notes": "Actualizado el 4 de agosto de 2026. Esta slide ofrece un mapa de familias y modelos representativos, no un ranking. Antes de adoptar un modelo, verificar versión, disponibilidad regional, licencia, precio, límites de uso y políticas de datos."
+      "notes": "Actualizado el 4 de agosto de 2026. Esta slide ofrece un mapa de familias y modelos representativos, no un ranking. Antes de adoptar un modelo, verificar versión, disponibilidad regional, licencia, precio, límites de uso y políticas de datos.",
+      "_choice": {
+        "signals": [
+          "labeled_items=7",
+          "is_ordered=false",
+          "date_labels=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "a labeled set of 2+ renders as cards, never bullets (universal invariant); author pin <!-- template: concept-breakdown --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -1442,13 +2189,44 @@
         {
           "body": "Los agentes y la multimodalidad amplían las capacidades de los sistemas. Los equipos deben diseñar permisos, trazabilidad y mecanismos de supervisión."
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "is_ordered=true",
+          "date_labels=false",
+          "labeled_items=4"
+        ],
+        "candidates": [
+          "process",
+          "timeline",
+          "concept-breakdown"
+        ],
+        "picked": "process",
+        "rejected": {
+          "timeline": "no date/period labels — order without dates is a process; author pin <!-- template: process --> honoured — the template holds every field of the body",
+          "concept-breakdown": "order carries meaning — Ordered sequence family"
+        }
+      }
     },
     {
       "template": "divider",
       "section": "Cierre y anexo",
       "title": "Anexo",
-      "notes": "Referencia PPTX: diapositiva 39.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 39.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "position=sub-opener",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "divider",
+          "statement"
+        ],
+        "picked": "divider",
+        "rejected": {
+          "statement": "a sub-opener inside a section is a Frame slide (divider), not a claim; author pin <!-- template: divider --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-columns",
@@ -1481,7 +2259,22 @@
           "kind": "takeaway"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 40.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 40.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "two_groups=true",
+          "shared_rows=false",
+          "n_columns=2"
+        ],
+        "candidates": [
+          "concept-columns",
+          "value-columns"
+        ],
+        "picked": "concept-columns",
+        "rejected": {
+          "value-columns": "the columns share no row structure — each explains its own term; author pin <!-- template: concept-columns --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "concept-columns",
@@ -1506,7 +2299,22 @@
           "kind": "important"
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 41.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 41.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "two_groups=true",
+          "shared_rows=false",
+          "n_columns=2"
+        ],
+        "candidates": [
+          "concept-columns",
+          "value-columns"
+        ],
+        "picked": "concept-columns",
+        "rejected": {
+          "value-columns": "the columns share no row structure — each explains its own term; author pin <!-- template: concept-columns --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -1531,7 +2339,21 @@
           "body": "La autonomía requiere permisos acotados, auditoría de acciones, evaluación y capacidad de detener el sistema."
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 42.\n\nDiapositiva 9: El Futuro: Agentes Autónomos e IA Multimodal (Tema Crítico Sugerido 2)\n\nDiscurso Sugerido: \"¿Hacia dónde vamos? La IA ya no solo es un 'chatbot' al que le haces preguntas. Estamos entrando en la era de los Agentes Autónomos e IA Multimodal. Pronto veremos sistemas que no solo generan texto, sino que 'ven' tu pantalla, 'escuchan' tu voz y ejecutan tareas complejas de forma independiente, como gestionar toda la logística de una exportación para una PyME en Pilar interactuando con otros softwares, sin intervención humana constante.\"\n\nContexto Técnico Profundo: La multimodalidad nativa permite procesar diferentes tensores de entrada (audio, visión, texto) en un mismo espacio latente. La \"Agentic AI\" implica el uso de LLMs como motores de razonamiento que utilizan herramientas externas (Tool Calling/Function Calling) y memoria a largo plazo.\n\nEnlace Recomendado: Gartner: Top Strategic Technology Trends (Agentic AI)"
+      "notes": "Referencia PPTX: diapositiva 42.\n\nDiapositiva 9: El Futuro: Agentes Autónomos e IA Multimodal (Tema Crítico Sugerido 2)\n\nDiscurso Sugerido: \"¿Hacia dónde vamos? La IA ya no solo es un 'chatbot' al que le haces preguntas. Estamos entrando en la era de los Agentes Autónomos e IA Multimodal. Pronto veremos sistemas que no solo generan texto, sino que 'ven' tu pantalla, 'escuchan' tu voz y ejecutan tareas complejas de forma independiente, como gestionar toda la logística de una exportación para una PyME en Pilar interactuando con otros softwares, sin intervención humana constante.\"\n\nContexto Técnico Profundo: La multimodalidad nativa permite procesar diferentes tensores de entrada (audio, visión, texto) en un mismo espacio latente. La \"Agentic AI\" implica el uso de LLMs como motores de razonamiento que utilizan herramientas externas (Tool Calling/Function Calling) y memoria a largo plazo.\n\nEnlace Recomendado: Gartner: Top Strategic Technology Trends (Agentic AI)",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; keeping it would drop the shared image; author pin <!-- template: content+cards+image --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "value-columns",
@@ -1580,7 +2402,21 @@
           ]
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 43.\n\n[Sin notas en el PPTX de referencia.]"
+      "notes": "Referencia PPTX: diapositiva 43.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "shared_rows=true",
+          "n_columns=4"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-columns"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-columns": "parallel values read across one shared factor per row; author pin <!-- template: value-columns --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "value-columns",
@@ -1637,18 +2473,46 @@
           ]
         }
       ],
-      "notes": "Referencia PPTX: diapositiva 44.\n\nPara darle dinamismo a tu clase, podés usar esta tabla para mostrar que el gran salto de la IA en los últimos años fue salir de la columna del \"Entorno Simple\" (donde triunfaba en los años 90) para empezar a dominar la columna del \"Entorno Complejo\".\n\nCon las bases de \"Qué es un agente\" y \"Dónde opera\" ya resueltas de forma muy visual, el siguiente bloque lógico en el enfoque de Russell y Norvig es cómo la IA toma acción."
+      "notes": "Referencia PPTX: diapositiva 44.\n\nPara darle dinamismo a tu clase, podés usar esta tabla para mostrar que el gran salto de la IA en los últimos años fue salir de la columna del \"Entorno Simple\" (donde triunfaba en los años 90) para empezar a dominar la columna del \"Entorno Complejo\".\n\nCon las bases de \"Qué es un agente\" y \"Dónde opera\" ya resueltas de forma muy visual, el siguiente bloque lógico en el enfoque de Russell y Norvig es cómo la IA toma acción.",
+      "_choice": {
+        "signals": [
+          "shared_rows=true",
+          "n_columns=4"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-columns"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-columns": "parallel values read across one shared factor per row; author pin <!-- template: value-columns --> honoured — the template holds every field of the body"
+        }
+      }
     },
     {
       "template": "divider",
       "section": "Cierre y anexo",
       "title": "Diapositiva de reserva",
-      "notes": "Referencia PPTX: diapositiva 45.\n\n[Sin notas en el PPTX de referencia.]\n\n# Conclusions\n\nLa diapositiva de conclusiones se conserva como 5.1 porque el PPTX original continúa con un anexo técnico.\n\n# Open questions\n\n- El contenido completo se conserva por instrucción del presentador, aunque algunas diapositivas excedan la densidad habitual para una proyección en vivo.\n- Confirmar días, horarios, aula, plataforma de entregas y ponderación final de la cursada.\n- Decidir qué diapositivas del anexo se mostrarán dentro de los 90 minutos y cuáles quedarán como material de consulta.\n- Validar qué recursos visuales del PPTX original se reutilizarán en la versión de Ingeniería de Software.\n\n# Cut material\n\nNinguno. El contenido del PPTX de referencia permanece preservado en el corpus y en este borrador 1:1."
+      "notes": "Referencia PPTX: diapositiva 45.\n\n[Sin notas en el PPTX de referencia.]",
+      "_choice": {
+        "signals": [
+          "position=sub-opener",
+          "labeled_items=0"
+        ],
+        "candidates": [
+          "divider",
+          "statement"
+        ],
+        "picked": "divider",
+        "rejected": {
+          "statement": "a sub-opener inside a section is a Frame slide (divider), not a claim; author pin <!-- template: divider --> honoured — the template holds every field of the body"
+        }
+      }
     }
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "1fd4886c5159206ffd873312d97f2f7ea6d39f6d68603630e776a9445fb1dc05",
+    "sha256": "81d7c5878d64af0a5fc50aa40dc75dd92d15e4e210140d3eff4aba005771af40",
     "bytes": 107996
   }
 }

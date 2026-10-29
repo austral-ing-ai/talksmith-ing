@@ -36,11 +36,33 @@
           "body": "No reemplazan la recuperación, por tres motivos. El corpus crece más rápido que la ventana. El modelo rinde peor cuando busca dentro de entradas muy largas. Y cada consulta que reenvía el corpus entero paga todos esos tokens."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s1-1-1-rag-tres-pasos.png",
         "alt": "RAG en tres pasos: recuperar, aumentar, generar; los pesos del modelo no cambian"
       },
-      "notes": "Una sola lámina de repaso, porque la clase pasada ya hizo el recorrido completo. Lo que hay que reinstalar en dos minutos: los tres pasos, que \"aumentar\" es concatenar texto en el prompt, y que los pesos no se tocan. El segundo bullet contesta la objeción que quedó de la clase de prompting, y la respuesta que más aguanta es la del medio: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. Desde acá la clase se concentra en lo que se decide al armar el pipeline. Tiempo objetivo: ~3 min."
+      "design": "split-right",
+      "notes": "Una sola lámina de repaso, porque la clase pasada ya hizo el recorrido completo. Lo que hay que reinstalar en dos minutos: los tres pasos, que \"aumentar\" es concatenar texto en el prompt, y que los pesos no se tocan. El segundo bullet contesta la objeción que quedó de la clase de prompting, y la respuesta que más aguanta es la del medio: el modelo se pierde adentro de entradas muy largas, y eso no lo arregla una ventana más grande. Desde acá la clase se concentra en lo que se decide al armar el pipeline. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons",
+          "process": "the diagram shows the three steps; the two cards are not ordered steps but a phase note and a counter-argument"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -50,18 +72,41 @@
       "cards": [
         {
           "label": "El orden lo decide un score",
-          "body": "TF-IDF premia el término frecuente en el documento y raro en el corpus; BM25, la línea de base de producción, satura la frecuencia y normaliza por longitud."
+          "body": "TF-IDF premia el término frecuente en el documento y raro en el corpus; BM25, la línea de base de producción, satura la frecuencia y normaliza por longitud.",
+          "icon": "sort"
         },
         {
           "label": "Cuándo conviene",
-          "body": "Identificadores exactos (código de error, SKU, nombre de función, versión). Rápido, sin GPU, y ciego a sinónimos y paráfrasis."
+          "body": "Identificadores exactos (código de error, SKU, nombre de función, versión). Rápido, sin GPU, y ciego a sinónimos y paráfrasis.",
+          "icon": "fingerprint"
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s1-2-1-indice-invertido.png",
         "alt": "Como se invierte un indice: de documento a terminos, a termino a documentos, y una consulta resuelta por interseccion"
       },
-      "notes": "Primera forma. El diagrama muestra la inversión y alcanza con señalar el giro del encabezado. Lo que se repasa en voz: el score ordena la intersección, TF-IDF es la idea y BM25 la implementación que usa todo el mundo. Y el límite, que es lo que justifica la lámina siguiente: un runbook que dice \"timeout del upstream\" puntúa cero para la consulta \"el servicio no responde\", y es exactamente el documento que hacía falta. Tiempo objetivo: ~3 min."
+      "design": "split-left",
+      "notes": "Primera forma. El diagrama muestra la inversión y alcanza con señalar el giro del encabezado. Lo que se repasa en voz: el score ordena la intersección, TF-IDF es la idea y BM25 la implementación que usa todo el mundo. Y el límite, que es lo que justifica la lámina siguiente: un runbook que dice \"timeout del upstream\" puntúa cero para la consulta \"el servicio no responde\", y es exactamente el documento que hacía falta. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -82,11 +127,32 @@
           "body": "Preguntas en lenguaje natural sobre documentación, FAQs y mesa de ayuda. Reconoce sinónimos, paráfrasis y otros idiomas. Cuesta una inferencia por consulta."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s1-3-1-lexico-vs-vectorial.png",
         "alt": "Un indice lexico compara cadenas y uno vectorial compara posiciones: dos frases sin palabras en comun resultan muy parecidas"
       },
-      "notes": "Segunda forma. El par del diagrama es el argumento entero: mismo problema, cero palabras en común, y el índice invertido no lo puede resolver. Los tres bullets van rápido porque la clase pasada los desarrolló: coseno para que el largo no pese, HNSW para no recorrer diez millones de vectores, y el criterio de uso. Si preguntan por valores de similitud concretos, decir que dependen por completo del modelo de embeddings. Tiempo objetivo: ~3 min."
+      "design": "split-right",
+      "notes": "Segunda forma. El par del diagrama es el argumento entero: mismo problema, cero palabras en común, y el índice invertido no lo puede resolver. Los tres bullets van rápido porque la clase pasada los desarrolló: coseno para que el largo no pese, HNSW para no recorrer diez millones de vectores, y el criterio de uso. Si preguntan por valores de similitud concretos, decir que dependen por completo del modelo de embeddings. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -107,11 +173,30 @@
           "body": "Un buscador expuesto como herramienta es un servidor MCP más en el catálogo del agente."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s1-4-1-recuperacion-como-herramienta.png",
         "alt": "Pipeline clasico con recuperacion fija frente a recuperacion como herramienta donde el modelo decide cuando y que buscar"
       },
-      "notes": "Tercera forma, y la que conecta las dos mitades de la clase. El contraste del diagrama es todo: a la izquierda el modelo recibe contexto sin opinar; a la derecha lo pide, y puede pedirlo dos veces con consultas distintas o no pedirlo. Ejemplo para decir en voz alta: la pregunta \"¿qué versión de Node usamos?\" con el pipeline clásico recupera k fragmentos de lo que sea; con la herramienta, el modelo busca en el package.json y listo, o no busca porque la respuesta ya estaba en la conversación. El costo se dice también: más llamadas y una dependencia nueva, la descripción de la herramienta, que es lo que la sección 5 enseña a escribir. Tiempo objetivo: ~4 min."
+      "design": "split-left",
+      "notes": "Tercera forma, y la que conecta las dos mitades de la clase. El contraste del diagrama es todo: a la izquierda el modelo recibe contexto sin opinar; a la derecha lo pide, y puede pedirlo dos veces con consultas distintas o no pedirlo. Ejemplo para decir en voz alta: la pregunta \"¿qué versión de Node usamos?\" con el pipeline clásico recupera k fragmentos de lo que sea; con la herramienta, el modelo busca en el package.json y listo, o no busca porque la respuesta ya estaba en la conversación. El costo se dice también: más llamadas y una dependencia nueva, la descripción de la herramienta, que es lo que la sección 5 enseña a escribir. Tiempo objetivo: ~4 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "polarity=partial (Ventajas/Costos + a third neutral item)",
+          "is_ordered=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "pros-cons",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "pros-cons": "two_groups fails: a third item (Puente a MCP) is neither upside nor downside, and pros-cons has no image slot",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -121,18 +206,39 @@
       "cards": [
         {
           "label": "Fusión por posición",
-          "body": "BM25 puntúa de cero a infinito y el coseno de menos uno a uno, así que los scores no se comparan. RRF suma 1/(k + posición) de cada documento en cada ranking, y gana el que está arriba en los dos."
+          "body": "BM25 puntúa de cero a infinito y el coseno de menos uno a uno, así que los scores no se comparan. RRF suma `1/(k + posición)` de cada documento en cada ranking, y gana el que está arriba en los dos."
         },
         {
           "label": "Cobertura",
           "body": "Los dos índices fallan en casos distintos: el léxico cuando el usuario no usa las palabras del documento, el vectorial con identificadores exactos. La fusión cubre los dos."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s1-5-1-pipeline-hibrido.png",
         "alt": "Pipeline hibrido de produccion: BM25 y vectorial en paralelo, fusion RRF, reranking de 50 a 5 y el LLM al final"
       },
-      "notes": "Mención, a grandes rasgos y en dos minutos: las dos búsquedas en paralelo, un ranking único por posiciones y el modelo al final viendo cinco documentos. La cuenta de RRF no se hace en el pizarrón (está en el deck de la clase 6 para quien quiera); alcanza con la intuición de que el acuerdo entre rankings pesa más que el entusiasmo de uno solo. El diagrama ya muestra el reranking en el medio, y eso sirve de puente: la sección siguiente lo trata como una perilla del pipeline. Tiempo objetivo: ~2 min."
+      "design": "split-right",
+      "notes": "Mención, a grandes rasgos y en dos minutos: las dos búsquedas en paralelo, un ranking único por posiciones y el modelo al final viendo cinco documentos. La cuenta de RRF no se hace en el pizarrón (está en el deck de la clase 6 para quien quiera); alcanza con la intuición de que el acuerdo entre rankings pesa más que el entusiasmo de uno solo. El diagrama ya muestra el reranking en el medio, y eso sirve de puente: la sección siguiente lo trata como una perilla del pipeline. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -142,6 +248,7 @@
       "template": "concept-breakdown",
       "section": "Los hiperparámetros de RAG",
       "title": "Top-k y similitud mínima",
+      "lead": "Dos perillas deciden cuánto contexto entra al prompt: cuántos fragmentos se traen y cuán parecidos tienen que ser para entrar.",
       "cards": [
         {
           "label": "Top-k",
@@ -165,7 +272,29 @@
           "kind": "important"
         }
       ],
-      "notes": "Las dos perillas más baratas de tocar y las que más cambian el resultado. El caso que justifica el umbral es el de la pregunta fuera del corpus: sin piso de similitud, el recuperador siempre devuelve algo, y ese algo es basura con cara de contexto. Con umbral, el sistema puede decir \"no tengo información sobre eso\", que es una respuesta mucho mejor que una inventada sobre fragmentos ajenos. La advertencia es importante para esta audiencia: el umbral no se copia de un tutorial, se calibra sobre las similitudes reales del corpus propio. Tiempo objetivo: ~4 min."
+      "notes": "Las dos perillas más baratas de tocar y las que más cambian el resultado. El caso que justifica el umbral es el de la pregunta fuera del corpus: sin piso de similitud, el recuperador siempre devuelve algo, y ese algo es basura con cara de contexto. Con umbral, el sistema puede decir \"no tengo información sobre eso\", que es una respuesta mucho mejor que una inventada sobre fragmentos ajenos. La advertencia es importante para esta audiencia: el umbral no se copia de un tutorial, se calibra sobre las similitudes reales del corpus propio. Tiempo objetivo: ~4 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=0",
+          "body_len=prose"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "labeled_items ≥ 2 matches a richer template; never fall to prose panels",
+          "process": "the items are parallel concepts, not steps; no ordinal or flow between them",
+          "stat": "the numbers (20–100, 3–5) sit inside prose bodies; they are not standalone metrics"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -186,11 +315,32 @@
           "body": "Es el que más rinde con documentación técnica, referencias de API y código, porque los encabezados marcan dónde cortar."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s2-2-1-estrategias-de-corte.png",
         "alt": "Tres estrategias de chunking sobre el mismo documento: largo fijo, semantico y por estructura"
       },
-      "notes": "La perilla que más se subestima. El diagrama muestra que la diferencia entre estrategias no es de tamaño sino de dónde caen los cortes respecto de la estructura. Para esta audiencia el ejemplo que funciona es una referencia de API donde cada endpoint es una sección: cortar por encabezado da un fragmento por endpoint, gratis. Sobre el tamaño, los rangos que circulan (600 a 1000 caracteres) son orientativos y no salen de ninguna medición: el tamaño correcto se mide sobre el corpus propio con las consultas reales. Tiempo objetivo: ~3 min."
+      "design": "split-left",
+      "notes": "La perilla que más se subestima. El diagrama muestra que la diferencia entre estrategias no es de tamaño sino de dónde caen los cortes respecto de la estructura. Para esta audiencia el ejemplo que funciona es una referencia de API donde cada endpoint es una sección: cortar por encabezado da un fragmento por endpoint, gratis. Sobre el tamaño, los rangos que circulan (600 a 1000 caracteres) son orientativos y no salen de ninguna medición: el tamaño correcto se mide sobre el corpus propio con las consultas reales. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -211,11 +361,33 @@
           "body": "Los campos también se indexan. El título y la ruta de sección entran al índice léxico con peso propio, o se anteponen al texto del fragmento antes de calcular el embedding, y así el vector sabe de qué documento viene. La técnica inversa también es común: se embebe un resumen del documento entero, se recupera por ese resumen y se devuelven los fragmentos del documento."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s2-3-1-fragmento-con-metadatos.png",
         "alt": "Un fragmento indexado con metadatos y texto, y el filtrado por metadatos antes de la busqueda vectorial"
       },
-      "notes": "El tercer bullet contesta la pregunta de si los metadatos solo filtran: también se buscan. Dos formas comunes, en una frase cada una. Una, el título y la ruta de sección se indexan como campos léxicos con peso propio, o se pegan adelante del texto del fragmento antes de embeber, así un fragmento que dice \"el token expira a los 3600 segundos\" lleva encima \"docs/api/pagos.md > Autenticación > Tokens\" y su vector queda ubicado. Dos, la inversa: un resumen por documento con su propio vector, se recupera el documento por el resumen y recién ahí se traen sus fragmentos; es lo que hacen los recuperadores de documento padre y los índices por resumen de LangChain y LlamaIndex.\n\nLos metadatos son lo que se decide al diseñar el índice, y los dos obligatorios habilitan todo lo demás: sin identificador de fuente no hay cita, sin timestamp no se sabe si un fragmento quedó viejo. El punto operativo del diagrama es que el filtro corre antes de la búsqueda vectorial: una consulta sobre la versión 3 no tiene por qué mirar los fragmentos de la versión 1. Tiempo objetivo: ~2 min."
+      "design": "split-right",
+      "notes": "El tercer bullet contesta la pregunta de si los metadatos solo filtran: también se buscan. Dos formas comunes, en una frase cada una. Una, el título y la ruta de sección se indexan como campos léxicos con peso propio, o se pegan adelante del texto del fragmento antes de embeber, así un fragmento que dice \"el token expira a los 3600 segundos\" lleva encima \"docs/api/pagos.md > Autenticación > Tokens\" y su vector queda ubicado. Dos, la inversa: un resumen por documento con su propio vector, se recupera el documento por el resumen y recién ahí se traen sus fragmentos; es lo que hacen los recuperadores de documento padre y los índices por resumen de LangChain y LlamaIndex.\n\nLos metadatos son lo que se decide al diseñar el índice, y los dos obligatorios habilitan todo lo demás: sin identificador de fuente no hay cita, sin timestamp no se sabe si un fragmento quedó viejo. El punto operativo del diagrama es que el filtro corre antes de la búsqueda vectorial: una consulta sobre la versión 3 no tiene por qué mirar los fragmentos de la versión 1. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons",
+          "value-columns": "Siempre/Según el caso are two groups but the third item is a technique, not a column; nothing reads across"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -240,11 +412,30 @@
           "body": "El tamaño del pool (20 a 100) y el top-k final (3 a 5) son los mismos de la lámina 2.1. Con reranking, un pool generoso no se paga en el prompt."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s2-4-1-embudo-dos-etapas.png",
         "alt": "Embudo de recuperacion en dos etapas: de 100.000 documentos a 50 candidatos y a 5 en el prompt"
       },
-      "notes": "El reranking cierra la sección de perillas porque es la que hace viables las otras: un pool de 50 con umbral bajo sería un desastre en el prompt, y con la segunda etapa se convierte en 5 buenos. El ejemplo de \"banco\" sirve si hay tiempo: el vector de la palabra no depende de la consulta, y la desambiguación tiene que pasar en algún lado; el cross-encoder es ese lado. Si preguntan si un LLM puede hacer de reranker, sí, con la misma cuenta de costo: una llamada por candidato. Tiempo objetivo: ~3 min."
+      "design": "split-left",
+      "notes": "El reranking cierra la sección de perillas porque es la que hace viables las otras: un pool de 50 con umbral bajo sería un desastre en el prompt, y con la segunda etapa se convierte en 5 buenos. El ejemplo de \"banco\" sirve si hay tiempo: el vector de la palabra no depende de la consulta, y la desambiguación tiene que pasar en algún lado; el cross-encoder es ese lado. Si preguntan si un LLM puede hacer de reranker, sí, con la misma cuenta de costo: una llamada por candidato. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "is_ordered=partial (Etapa 1, Etapa 2 + two non-step items)",
+          "date_labels=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "process",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "process": "only 2 of 4 items are stages; Cross-encoder and Como perilla are properties, not steps — the funnel diagram already carries the order",
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -269,11 +460,32 @@
           "body": "Preguntas reales con sus documentos correctos anotados. Sin él no hay forma de saber si un ajuste de la sección 2 mejoró algo."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s3-1-1-metricas-por-etapa.png",
         "alt": "Tres metricas colgando de dos etapas: context relevance en la recuperacion, faithfulness y relevance en la generacion"
       },
-      "notes": "La lámina que convierte la sección anterior en ingeniería: todas las perillas se ajustan contra Context Relevance, y sin un conjunto de evaluación propio no hay forma de saber si un cambio mejoró algo. La calidad es una cadena, así que medir por etapa es la única forma de saber dónde intervenir; el instinto de culpar al modelo casi siempre se equivoca de etapa. Herramientas si preguntan: RAGAS y TruLens. Tiempo objetivo: ~3 min."
+      "design": "split-right",
+      "notes": "La lámina que convierte la sección anterior en ingeniería: todas las perillas se ajustan contra Context Relevance, y sin un conjunto de evaluación propio no hay forma de saber si un cambio mejoró algo. La calidad es una cadena, así que medir por etapa es la única forma de saber dónde intervenir; el instinto de culpar al modelo casi siempre se equivoca de etapa. Herramientas si preguntan: RAGAS y TruLens. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -294,11 +506,32 @@
           "body": "Restringir qué fuentes entran al índice y aplicar permisos por documento al recuperar. Tratar cada fragmento como entrada no confiable al decidir qué acciones dispara la respuesta, y validar la salida cuando alimenta una herramienta."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s3-2-1-inyeccion-indirecta.png",
         "alt": "Inyeccion indirecta en cuatro pasos: envenenar, indexar, recuperar y ejecutar; el ataque entra por el corpus"
       },
-      "notes": "Recorrer los cuatro pasos del diagrama despacio: lo que sorprende es la distancia temporal entre el paso 1 y el paso 3, que pueden estar a meses. La advertencia se dice tal cual: no hay defensa de prompt que funcione, y quien venda una está vendiendo humo. El segundo bullet es el que más aplica a sistemas internos: filtrar después de generar llega tarde. Y el tercero deja sembrada la segunda mitad: un servidor MCP que trae contenido externo abre exactamente la misma puerta, y la salida del modelo que dispara una herramienta es donde el daño deja de ser texto. Tiempo objetivo: ~4 min."
+      "design": "split-left",
+      "notes": "Recorrer los cuatro pasos del diagrama despacio: lo que sorprende es la distancia temporal entre el paso 1 y el paso 3, que pueden estar a meses. La advertencia se dice tal cual: no hay defensa de prompt que funcione, y quien venda una está vendiendo humo. El segundo bullet es el que más aplica a sistemas internos: filtrar después de generar llega tarde. Y el tercero deja sembrada la segunda mitad: un servidor MCP que trae contenido externo abre exactamente la misma puerta, y la salida del modelo que dispara una herramienta es donde el daño deja de ser texto. Tiempo objetivo: ~4 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -308,6 +541,7 @@
       "template": "concept-breakdown",
       "section": "MCP: el protocolo",
       "title": "MCP conecta modelos con herramientas",
+      "lead": "Model Context Protocol define cómo una aplicación de IA le pide datos y acciones a un sistema externo, con un único formato de mensajes en lugar de un conector por integración. Anthropic lo publicó en noviembre de 2024 como especificación abierta con SDKs.",
       "cards": [
         {
           "label": "Servidor MCP",
@@ -327,32 +561,67 @@
       ],
       "highlights": [
         {
-          "body": "Model Context Protocol define cómo una aplicación de IA le pide datos y acciones a un sistema externo, con un único formato de mensajes en lugar de un conector por integración. Anthropic lo publicó en noviembre de 2024 como especificación abierta con SDKs.",
-          "kind": "definition"
-        },
-        {
           "body": "Cliente y servidor son roles, no procesos. Una misma implementación puede cumplir los dos al mismo tiempo.",
-          "kind": "note"
+          "kind": "takeaway"
         }
       ],
-      "notes": "Apertura de la segunda mitad, con la frase de la agenda: hasta acá el contexto que el modelo no tiene, de acá en adelante las acciones que no puede ejecutar. Tres definiciones y la tercera es la que ordena el resto: la unidad de MCP es la herramienta, y el modelo la elige leyendo su descripción. Color histórico si hay tiempo: el anuncio original de Anthropic no usa la palabra \"tool\" ni una vez; hablaba de fuentes de datos, y la centralidad de las herramientas es posterior. Tiempo objetivo: ~3 min."
+      "notes": "Apertura de la segunda mitad, con la frase de la agenda: hasta acá el contexto que el modelo no tiene, de acá en adelante las acciones que no puede ejecutar. Tres definiciones y la tercera es la que ordena el resto: la unidad de MCP es la herramienta, y el modelo la elige leyendo su descripción. Color histórico si hay tiempo: el anuncio original de Anthropic no usa la palabra \"tool\" ni una vez; hablaba de fuentes de datos, y la centralidad de las herramientas es posterior. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "labeled_items ≥ 2 matches a richer template; never fall to prose panels",
+          "process": "the items are parallel concepts, not steps; no ordinal or flow between them",
+          "single-point": "labeled_items is 3, not 1"
+        }
+      }
     },
     {
       "template": "content-image",
       "section": "MCP: el protocolo",
       "title": "M×N conectores, o M+N piezas",
       "lead": "Con M aplicaciones y N fuentes, sin protocolo hacen falta M×N integraciones. Con un protocolo, cada lado implementa una vez.",
-      "image": {
-        "src": "images/s4-2-1-mxn-vs-mmasn.png",
-        "alt": "Sin protocolo M por N conectores; con MCP M mas N implementaciones"
-      },
       "facts": [
         {
           "label": "Por qué no alcanzaba HTTP ni GraphQL",
-          "body": "HTTP resuelve el transporte y no la interfaz: no hay forma estándar de que el cliente pregunte \"¿qué sabés hacer?\". GraphQL resuelve la consulta de datos y no la ejecución de acciones. MCP agrega descubrimiento de capacidades (tools/list), una sesión con estado y un formato común para describir herramientas de modo que un modelo pueda elegirlas."
+          "body": "HTTP resuelve el transporte y no la interfaz: no hay forma estándar de que el cliente pregunte \"¿qué sabés hacer?\". GraphQL resuelve la consulta de datos y no la ejecución de acciones. MCP agrega descubrimiento de capacidades (`tools/list`), una sesión con estado y un formato común para describir herramientas de modo que un modelo pueda elegirlas."
         }
       ],
-      "notes": "El argumento de crecimiento con el diagrama: la malla crece con el producto, la estrella con la suma, y se ve en cuánto cuesta agregar un actor nuevo. El bullet de HTTP y GraphQL contesta la pregunta que alguien va a hacer (\"¿por qué un protocolo nuevo?\"): lo que faltaba era el descubrimiento y un formato de descripción que un modelo pueda leer. Nota de honestidad para vos: la cuenta M×N es el argumento estándar, pero el anuncio de Anthropic no la enuncia; se presenta como razonamiento de la clase. Tiempo objetivo: ~3 min."
+      "media": {
+        "src": "images/s4-2-1-mxn-vs-mmasn.png",
+        "alt": "Sin protocolo M por N conectores; con MCP M mas N implementaciones"
+      },
+      "design": "split-right",
+      "notes": "El argumento de crecimiento con el diagrama: la malla crece con el producto, la estrella con la suma, y se ve en cuánto cuesta agregar un actor nuevo. El bullet de HTTP y GraphQL contesta la pregunta que alguien va a hacer (\"¿por qué un protocolo nuevo?\"): lo que faltaba era el descubrimiento y un formato de descripción que un modelo pueda leer. Nota de honestidad para vos: la cuenta M×N es el argumento estándar, pero el anuncio de Anthropic no la enuncia; se presenta como razonamiento de la clase. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=1",
+          "n_images=1",
+          "one_claim=false (lead is >16 words)"
+        ],
+        "candidates": [
+          "content-image",
+          "single-point",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "single-point": "labeled_items == 1 with a supporting image → content-image",
+          "image-full": "the slide has a lead and a fact, so image_only is false"
+        }
+      }
     },
     {
       "template": "content+cards+image",
@@ -361,7 +630,7 @@
       "lead": "MCP no inventó un formato de mensajes. Usa JSON-RPC 2.0, liviano, agnóstico del transporte y lo bastante viejo como para estar implementado en todos lados.",
       "cards": [
         {
-          "label": "result y error son excluyentes",
+          "label": "`result` y `error` son mutuamente excluyentes",
           "body": "Una respuesta lleva uno de los dos."
         },
         {
@@ -373,16 +642,43 @@
           "body": "La sesión MCP tiene estado (qué se acordó al conectarse); la capa de mensajes JSON-RPC no lo tiene."
         }
       ],
-      "image": {
+      "media": {
         "src": "images/s4-3-1-mensajes-jsonrpc.png",
         "alt": "Intercambio JSON-RPC entre cliente y servidor MCP: tools/list, tools/call y una notificacion sin id"
       },
-      "notes": "Para esta audiencia esta lámina es la que más se lee sola: dos métodos, `tools/list` y `tools/call`, y el `id` que aparea pedido con respuesta. La notificación del final conviene explicarla bien, porque es lo que permite que el servidor le hable al cliente sin que nadie haya preguntado. Y la distinción del tercer bullet evita una confusión clásica: MCP tiene sesión con estado y JSON-RPC es sin estado, en niveles distintos. Tiempo objetivo: ~3 min."
+      "design": "split-right",
+      "notes": "Para esta audiencia esta lámina es la que más se lee sola: dos métodos, `tools/list` y `tools/call`, y el `id` que aparea pedido con respuesta. La notificación del final conviene explicarla bien, porque es lo que permite que el servidor le hable al cliente sin que nadie haya preguntado. Y la distinción del tercer bullet evita una confusión clásica: MCP tiene sesión con estado y JSON-RPC es sin estado, en niveles distintos. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons"
+        }
+      }
     },
     {
-      "template": "comparison",
+      "template": "value-columns",
       "section": "MCP: el protocolo",
       "title": "Herramienta hardcodeada o servidor aparte",
+      "highlights": [
+        {
+          "body": "Lo que decide el transporte es quién arranca el proceso. Con **stdio** lo lanza el cliente como subproceso y hablan por entrada y salida estándar, sin red: el caso más común para una herramienta local. Con **HTTP en streaming** o **SSE** el servidor ya está corriendo y escuchando en una URL.",
+          "kind": "important"
+        }
+      ],
       "columns": [
         {
           "header": "Herramienta hardcodeada",
@@ -397,68 +693,105 @@
           "header": "Servidor MCP",
           "cells": [
             "La herramienta corre como un proceso aparte.",
-            "El agente las descubre en tiempo de ejecución, con tools/list.",
+            "El agente las descubre en tiempo de ejecución, con `tools/list`.",
             "Cualquier cliente que hable MCP se conecta al mismo servidor.",
             "Cambiar la herramienta obliga a reiniciar el servidor."
           ]
         }
       ],
-      "highlights": [
-        {
-          "body": "Lo que decide el transporte es quién arranca el proceso. Con stdio lo lanza el cliente como subproceso y hablan por entrada y salida estándar, sin red: el caso más común para una herramienta local. Con HTTP en streaming o SSE el servidor ya está corriendo y escuchando en una URL.",
-          "kind": "important"
+      "notes": "La tabla es la separación que MCP introduce: un mismo servidor lo usan Claude, Cursor o un agente propio sin que ninguno sepa de los otros. La advertencia corrige el error mental más frecuente: la configuración con `command` y `args` que viene en la lámina 4.6 es stdio, y no hay ningún puerto. Quien busque en qué puerto quedó el servidor cuando algo falla, no lo va a encontrar. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "has_table=true",
+          "two_groups=true",
+          "polarity=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "value-columns",
+          "pros-cons",
+          "concept-breakdown"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "pros-cons": "the two sides are a neutral A vs B, not upside vs downside",
+          "concept-breakdown": "the rows read across (same factor, two answers); card-per-row would lose the alignment"
         }
-      ],
-      "notes": "La tabla es la separación que MCP introduce: un mismo servidor lo usan Claude, Cursor o un agente propio sin que ninguno sepa de los otros. La advertencia corrige el error mental más frecuente: la configuración con `command` y `args` que viene en la lámina 4.6 es stdio, y no hay ningún puerto. Quien busque en qué puerto quedó el servidor cuando algo falla, no lo va a encontrar. Tiempo objetivo: ~2 min."
+      }
     },
     {
       "template": "content-image",
       "section": "MCP: el protocolo",
       "title": "El ciclo de vida de una herramienta",
-      "image": {
+      "facts": [
+        {
+          "body": "El paso 2 ocurre en tiempo de ejecución, y por eso agregar una herramienta no obliga a tocar el agente."
+        },
+        {
+          "body": "El paso 3 ocurre dentro del modelo, leyendo texto: ahí se gana o se pierde la precisión de todo el sistema."
+        }
+      ],
+      "media": {
         "src": "images/s4-5-1-ciclo-vida-herramienta.png",
         "alt": "Ciclo de vida de una herramienta MCP en seis pasos, del arranque al uso del resultado"
       },
-      "facts": [
-        {
-          "label": "Descubrimiento en tiempo de ejecución",
-          "body": "El paso 2 ocurre al conectarse, y por eso agregar una herramienta no obliga a tocar el agente."
-        },
-        {
-          "label": "La elección ocurre dentro del modelo",
-          "body": "El paso 3 se resuelve leyendo texto: ahí se gana o se pierde la precisión de todo el sistema."
+      "design": "split-left",
+      "notes": "Lo único que hay que dejar clavado es el pie: la descripción de la herramienta es la interfaz que consume el modelo, así que escribirla es trabajo de diseño y no de documentación. La sección 5 entera sale de ahí. Y es la misma idea de la lámina 1.4 vista desde el otro lado: el buscador expuesto como herramienta es una entrada más en este catálogo. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=0",
+          "n_images=1",
+          "image_only=false (two sentences of prose about the diagram)"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "image-full": "image_only needs ≤ one short framing line; the body carries two sentences that comment on steps 2 and 3"
         }
-      ],
-      "notes": "Lo único que hay que dejar clavado es el pie: la descripción de la herramienta es la interfaz que consume el modelo, así que escribirla es trabajo de diseño y no de documentación. La sección 5 entera sale de ahí. Y es la misma idea de la lámina 1.4 vista desde el otro lado: el buscador expuesto como herramienta es una entrada más en este catálogo. Tiempo objetivo: ~3 min."
+      }
     },
     {
       "template": "code-example",
       "section": "MCP: el protocolo",
       "title": "Conectar un servidor: los caminos y la configuración",
-      "language": "json",
-      "code": "{\n  \"mcpServers\": {\n    \"github\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],\n      \"env\": { \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"tu_token\" }\n    },\n    \"mi-servidor-local\": { \"type\": \"http\", \"url\": \"http://localhost:8002/mcp\" }\n  }\n}",
-      "explanation": [
-        "Extensiones de escritorio: el camino corto. En Claude Desktop, Configuración → Extensions, buscar el servidor, instalarlo y conceder permisos.",
-        "Configuración manual (stdio): se declara en el archivo de configuración del cliente el comando que lanza el servidor; el cliente lo arranca como subproceso.",
-        "Servidor propio por HTTP: el servidor ya corre en su puerto y el cliente solo apunta a la URL."
-      ],
       "highlights": [
         {
           "body": "Un servidor MCP ejecuta código, lee archivos y hace pedidos de red con tus permisos. Instalar uno se parece más a instalar una extensión de navegador que a agregar una dependencia. Los que traen contenido externo abren la misma puerta de inyección indirecta de la lámina 3.2.",
           "kind": "important"
         }
       ],
-      "notes": "Lo pedagógico está en el contraste entre las dos entradas del JSON: la primera no tiene URL ni puerto porque el cliente lanza el proceso; la segunda no tiene comando porque el proceso ya está corriendo. La advertencia de seguridad se dice con tiempo, y engancha con la misión de la clase 2, donde ya configuraron los MCPs de GitHub y Railway: en ese momento le dieron a un proceso de terceros sus credenciales, y eso es lo que hay que mirar antes de instalar cualquiera. Dónde buscar servidores, si preguntan: el registro oficial y el repo de servidores de referencia; los marketplaces comunitarios como mcp.so venden posiciones. Tiempo objetivo: ~3 min."
+      "notes": "Lo pedagógico está en el contraste entre las dos entradas del JSON: la primera no tiene URL ni puerto porque el cliente lanza el proceso; la segunda no tiene comando porque el proceso ya está corriendo. La advertencia de seguridad se dice con tiempo, y engancha con la misión de la clase 2, donde ya configuraron los MCPs de GitHub y Railway: en ese momento le dieron a un proceso de terceros sus credenciales, y eso es lo que hay que mirar antes de instalar cualquiera. Dónde buscar servidores, si preguntan: el registro oficial y el repo de servidores de referencia; los marketplaces comunitarios como mcp.so venden posiciones. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "has_code=true (json)",
+          "labeled_items=3",
+          "n_images=0"
+        ],
+        "candidates": [
+          "code-example",
+          "concept-breakdown"
+        ],
+        "picked": "code-example",
+        "rejected": {
+          "concept-breakdown": "has_code → code-example before anything else; the three paths become the explanation"
+        }
+      },
+      "language": "json",
+      "code": "{\n  \"mcpServers\": {\n    \"github\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],\n      \"env\": { \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"tu_token\" }\n    },\n    \"mi-servidor-local\": { \"type\": \"http\", \"url\": \"http://localhost:8002/mcp\" }\n  }\n}",
+      "explanation": [
+        "**Extensiones de escritorio**: El camino corto. En Claude Desktop: Configuración → Extensions, buscar el servidor, instalarlo y conceder permisos.",
+        "**Configuración manual (stdio)**: Se declara en el archivo de configuración del cliente el comando que lanza el servidor; el cliente lo arranca como subproceso.",
+        "**Servidor propio por HTTP**: El servidor ya corre en su puerto y el cliente solo apunta a la URL."
+      ]
     },
     {
-      "template": "content-image",
+      "template": "content+cards+image",
       "section": "MCP: el protocolo",
       "title": "Un agente, varios servidores",
-      "image": {
-        "src": "images/s4-7-1-agente-varios-servidores.png",
-        "alt": "Un agente de soporte conectado a cuatro servidores MCP que ve un catalogo plano"
-      },
-      "facts": [
+      "cards": [
         {
           "label": "Independencia operativa",
           "body": "Cada servidor gestiona su dominio, con su despliegue y su autenticación. Un servidor caído deja al agente sin ese dominio y con el resto funcionando."
@@ -468,12 +801,38 @@
           "body": "El agente descubre todas las herramientas juntas. Si dos servidores registran una herramienta con el mismo nombre, MCP no tiene forma de desambiguarlas: no hay namespaces en la especificación."
         }
       ],
-      "notes": "El diagrama es la lámina. La segunda viñeta es el puente a la sección 5 y conviene decirla como problema abierto: el agente ve todo junto, y todo junto es exactamente el escenario donde elige peor. El mismo agente de soporte vuelve como caso en las láminas de routing y de fases. Tiempo objetivo: ~2 min."
+      "media": {
+        "src": "images/s4-7-1-agente-varios-servidores.png",
+        "alt": "Un agente de soporte conectado a cuatro servidores MCP que ve un catalogo plano"
+      },
+      "design": "split-right",
+      "notes": "El diagrama es la lámina. La segunda viñeta es el puente a la sección 5 y conviene decirla como problema abierto: el agente ve todo junto, y todo junto es exactamente el escenario donde elige peor. El mismo agente de soporte vuelve como caso en las láminas de routing y de fases. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
       "section": "MCP: el protocolo",
       "title": "Un día de trabajo con servidores conectados",
+      "lead": "Con servidores conectados, el mismo pedido en lenguaje natural atraviesa varios sistemas sin que nadie escriba el pegamento.",
       "cards": [
         {
           "label": "Código y repositorios",
@@ -507,7 +866,27 @@
           "kind": "takeaway"
         }
       ],
-      "notes": "Contarlo en orden, como el día de trabajo de alguien: la feature ENG-4521 hilvana los cinco pedidos. Es el cierre de la sección del protocolo y el momento de conectar con lo que ya usaron en la misión de Corta: GitHub y Railway por MCP fueron exactamente esto, a escala chica. Tiempo objetivo: ~2 min."
+      "notes": "Contarlo en orden, como el día de trabajo de alguien: la feature ENG-4521 hilvana los cinco pedidos. Es el cierre de la sección del protocolo y el momento de conectar con lo que ya usaron en la misión de Corta: GitHub y Railway por MCP fueron exactamente esto, a escala chica. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=5",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "labeled_items ≥ 2 matches a richer template; never fall to prose panels",
+          "process": "the items are parallel concepts, not steps; no ordinal or flow between them"
+        }
+      }
     },
     {
       "template": "section-agenda",
@@ -520,7 +899,7 @@
       "cards": [
         {
           "label": "Nombres explícitos",
-          "body": "Convención [verbo]_[sustantivo]_[contexto]: get_customer_by_email, search_products_by_category. Nombres como process, fetch o do_thing no le dicen nada al modelo.",
+          "body": "Convención `[verbo]_[sustantivo]_[contexto]`: `get_customer_by_email`, `search_products_by_category`. Nombres como `process`, `fetch` o `do_thing` no le dicen nada al modelo.",
           "icon": "label"
         },
         {
@@ -535,104 +914,199 @@
         },
         {
           "label": "Formato de respuesta consistente",
-          "body": "Un envoltorio estándar del tipo { success, data, error, message }, igual en todas las herramientas del servidor.",
+          "body": "Un envoltorio estándar del tipo `{ success, data, error, message }`, igual en todas las herramientas del servidor.",
           "icon": "check_box"
         }
       ],
       "highlights": [
         {
           "body": "Microsoft Research midió el estado real del ecosistema: sobre 5.983 resultados que los servidores marcaron como exitosos, un juez automático encontró 3.536 que describían errores en su contenido.",
-          "kind": "note"
+          "kind": "takeaway"
         }
       ],
-      "notes": "Los cuatro principios se sostienen, y el dato de MSR es el que le da peso al cuarto: casi seis de cada diez respuestas marcadas como exitosas contenían un error en el texto. Dos ejemplos verbatim del estudio que siempre funcionan: una herramienta de búsqueda web que falló con el string \"error: job\", y una de búsqueda académica que devolvió \"Please retry with 0 or fewer IDs.\" Tiempo objetivo: ~3 min."
+      "notes": "Los cuatro principios se sostienen, y el dato de MSR es el que le da peso al cuarto: casi seis de cada diez respuestas marcadas como exitosas contenían un error en el texto. Dos ejemplos verbatim del estudio que siempre funcionan: una herramienta de búsqueda web que falló con el string \"error: job\", y una de búsqueda académica que devolvió \"Please retry with 0 or fewer IDs.\" Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "labeled_items ≥ 2 matches a richer template; never fall to prose panels",
+          "process": "the items are parallel concepts, not steps; no ordinal or flow between them"
+        }
+      }
     },
     {
-      "template": "content-image",
+      "template": "content+cards+image",
       "section": "Diseño de herramientas",
       "title": "Más herramientas, peor elección",
       "lead": "El modelo hace coincidencia de patrones sobre descripciones en lenguaje natural. Un espacio de opciones grande lo desborda, y eso no lo arregla un modelo mejor.",
-      "image": {
-        "src": "images/s5-2-1-menos-de-20-funciones.png",
-        "alt": "El numero accionable: menos de 20 funciones a la vez, con la escala sin fuente subordinada al pie"
-      },
-      "facts": [
+      "cards": [
         {
           "label": "El problema ya está en el catálogo real",
-          "body": "Microsoft Research inspeccionó 1.470 servidores MCP: veintitrés nombres distintos para la misma herramienta de búsqueda web, 775 herramientas con colisión de nombre exacta, y search en 32 servidores distintos."
+          "body": "Microsoft Research inspeccionó 1.470 servidores MCP: veintitrés nombres distintos para la misma herramienta de búsqueda web, 775 herramientas con colisión de nombre exacta, y `search` en 32 servidores distintos."
         },
         {
           "label": "Es la misma lección de RAG",
           "body": "Recuperar cincuenta fragmentos envenena la respuesta; exponer cincuenta herramientas envenena la elección."
         }
       ],
-      "notes": "El número accionable es el de OpenAI, menos de 20, y tiene fuente. La escala de abajo se muestra con su procedencia a la vista: viene de un tutorial sin autor que dice \"Research shows\" y no cita a nadie. El primer bullet es el que hace tangible el problema, y si hay tiempo vale mostrar la lista de los veintitrés nombres del deck de la clase 6 y preguntar cuál elegiría el modelo. El segundo bullet es la tesis de la clase en una frase. Tiempo objetivo: ~3 min."
+      "media": {
+        "src": "images/s5-2-1-menos-de-20-funciones.png",
+        "alt": "El numero accionable: menos de 20 funciones a la vez, con la escala sin fuente subordinada al pie"
+      },
+      "design": "split-left",
+      "notes": "El número accionable es el de OpenAI, menos de 20, y tiene fuente. La escala de abajo se muestra con su procedencia a la vista: viene de un tutorial sin autor que dice \"Research shows\" y no cita a nadie. El primer bullet es el que hace tangible el problema, y si hay tiempo vale mostrar la lista de los veintitrés nombres del deck de la clase 6 y preguntar cuál elegiría el modelo. El segundo bullet es la tesis de la clase en una frase. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; the slide has a shared content diagram, dropping it is forbidden",
+          "content-image": "a labeled set of ≥2 with a shared image is content+cards+image; dissolving the labels into facts loses their per-concept icons",
+          "stat": "the figures (1.470, 775, 32) sit inside a prose body; the slide's payload is the argument"
+        }
+      }
     },
     {
       "template": "content-image",
       "section": "Diseño de herramientas",
       "title": "Routing jerárquico y catálogo por fase",
       "lead": "Dos patrones para que el agente nunca vea el catálogo entero: mudar las opciones del nombre al esquema, o mostrar solo las de la fase en curso.",
-      "image": {
-        "src": "images/s5-3-1-routing-jerarquico.png",
-        "alt": "Lista plana de 20 herramientas frente a una unica herramienta de ruteo con dos enumeraciones cerradas"
-      },
       "facts": [
         {
           "label": "Catálogo por fase",
           "body": "Una conversación de soporte tiene fases (autenticación, diagnóstico, resolución) y cada una necesita dos o tres herramientas. Se expone solo el grupo de la fase en curso; el resto queda oculto."
         }
       ],
+      "media": {
+        "src": "images/s5-3-1-routing-jerarquico.png",
+        "alt": "Lista plana de 20 herramientas frente a una unica herramienta de ruteo con dos enumeraciones cerradas"
+      },
+      "design": "split-right",
       "highlights": [
         {
-          "body": "Los dos patrones dejan algo afuera: el routing no define qué pasa cuando el par (domain, action) no existe, y el catálogo por fase no dice quién clasifica la fase. Si lo hace el mismo LLM, el problema de selección vuelve un nivel más arriba.",
+          "body": "Los dos patrones dejan algo afuera: el routing no define qué pasa cuando el par `(domain, action)` no existe, y el catálogo por fase no dice quién clasifica la fase. Si lo hace el mismo LLM, el problema de selección vuelve un nivel más arriba.",
           "kind": "important"
         }
       ],
-      "notes": "Dos patrones en una lámina. El de ruteo se lee con el diagrama y el pie: las 20 opciones no desaparecen, se mudan a un espacio cerrado y chico. El de fases va hablado sobre el bullet: nunca más de dos o tres herramientas visibles aunque el sistema tenga veinte. La advertencia es la lectura crítica que evita venderlos como magia, y el dato interesante para esta audiencia es que Microsoft Research pide lo mismo a nivel de protocolo: hoy hay que hacerlo a mano, servidor por servidor. Tiempo objetivo: ~4 min."
+      "notes": "Dos patrones en una lámina. El de ruteo se lee con el diagrama y el pie: las 20 opciones no desaparecen, se mudan a un espacio cerrado y chico. El de fases va hablado sobre el bullet: nunca más de dos o tres herramientas visibles aunque el sistema tenga veinte. La advertencia es la lectura crítica que evita venderlos como magia, y el dato interesante para esta audiencia es que Microsoft Research pide lo mismo a nivel de protocolo: hoy hay que hacerlo a mano, servidor por servidor. Tiempo objetivo: ~4 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=1",
+          "n_images=1",
+          "lead=true"
+        ],
+        "candidates": [
+          "content-image",
+          "single-point",
+          "content+cards+image"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "single-point": "labeled_items == 1 with a supporting image → content-image",
+          "content+cards+image": "needs labeled_items ≥ 2; one card would be a degenerate set"
+        }
+      }
+    },
+    {
+      "template": "value-columns",
+      "section": "Diseño de herramientas",
+      "title": "La descripción dice cuándo NO usarla",
+      "lead": "Con tres herramientas alcanza para romper la precisión, si las tres suenan igual. La descripción tiene que decir cuándo usar cada una y cuándo no.",
+      "highlights": [
+        {
+          "body": "Con las descripciones diferenciadas, la elección deja de ser ambigua: \"mouse inalámbrico\" → texto · \"PROD-001\" → SKU · \"mouses de menos de $20\" → atributos.",
+          "kind": "takeaway"
+        }
+      ],
+      "columns": [
+        {
+          "header": "",
+          "factor": true,
+          "cells": [
+            "Qué hace",
+            "Usar cuando",
+            "No usar cuando",
+            "Parámetros"
+          ]
+        },
+        {
+          "header": "`search_products_by_text`",
+          "cells": [
+            "Búsqueda de texto completo.",
+            "El cliente describe el producto con palabras (\"mouse inalámbrico\").",
+            "Ya se tiene el SKU exacto.",
+            "`query: string`"
+          ]
+        },
+        {
+          "header": "`get_product_by_sku`",
+          "cells": [
+            "Búsqueda exacta por identificador.",
+            "El cliente da un SKU (\"PROD-001\").",
+            "Para búsqueda de texto libre.",
+            "`sku: string`"
+          ]
+        },
+        {
+          "header": "`filter_products_by_attributes`",
+          "cells": [
+            "Filtro estructurado.",
+            "El cliente especifica categoría, precio o marca.",
+            "Para búsqueda de texto.",
+            "`category?: string`, `priceMax?: number`"
+          ]
+        }
+      ],
+      "notes": "La lámina más aplicable de la sección. El problema no es de cantidad sino de distinguibilidad: con tres herramientas superpuestas el modelo elige al azar o llama a las tres. El \"NO usar cuando\" es la parte que casi nadie escribe y la que más rinde. Puente con la práctica: es la misma disciplina que la descripción de una Skill o de un subagente en Claude Code (clase 2), la descripción es el disparador. Tiempo objetivo: ~3 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "two_groups=false",
+          "rows_over_shared_factor=true (qué hace / usar cuando / no usar cuando / parámetros)",
+          "n_images=0"
+        ],
+        "candidates": [
+          "value-columns",
+          "concept-breakdown"
+        ],
+        "picked": "value-columns",
+        "rejected": {
+          "concept-breakdown": "the three items align row by row over shared factors; card bodies would collapse those four aligned rows into one run of prose"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
       "section": "Diseño de herramientas",
-      "title": "La descripción dice cuándo NO usarla",
-      "cards": [
-        {
-          "label": "search_products_by_text",
-          "body": "Búsqueda de texto completo. Usar cuando el cliente describe el producto con palabras (\"mouse inalámbrico\"). No usar cuando ya se tiene el SKU exacto. Parámetro: query: string",
-          "icon": "manage_search"
-        },
-        {
-          "label": "get_product_by_sku",
-          "body": "Búsqueda exacta por identificador. Usar cuando el cliente da un SKU (\"PROD-001\"). No usar para búsqueda de texto libre. Parámetro: sku: string",
-          "icon": "qr_code"
-        },
-        {
-          "label": "filter_products_by_attributes",
-          "body": "Filtro estructurado. Usar cuando el cliente especifica categoría, precio o marca. No usar para búsqueda de texto. Parámetros: category?: string, priceMax?: number",
-          "icon": "tune"
-        }
-      ],
-      "highlights": [
-        {
-          "body": "Con tres herramientas alcanza para romper la precisión, si las tres suenan igual. La descripción tiene que decir cuándo usar cada una y cuándo no.",
-          "kind": "takeaway"
-        },
-        {
-          "body": "Con las descripciones diferenciadas, la elección deja de ser ambigua: \"mouse inalámbrico\" → texto · \"PROD-001\" → SKU · \"mouses de menos de $20\" → atributos.",
-          "kind": "example"
-        }
-      ],
-      "notes": "La lámina más aplicable de la sección. El problema no es de cantidad sino de distinguibilidad: con tres herramientas superpuestas el modelo elige al azar o llama a las tres. El \"NO usar cuando\" es la parte que casi nadie escribe y la que más rinde. Puente con la práctica: es la misma disciplina que la descripción de una Skill o de un subagente en Claude Code (clase 2), la descripción es el disparador. Tiempo objetivo: ~3 min."
-    },
-    {
-      "template": "icon-list",
-      "section": "Diseño de herramientas",
       "title": "Analítica en producción",
       "lead": "Instrumentar cada llamada convierte el diseño del catálogo en algo medible.",
-      "rows": [
+      "cards": [
         {
           "label": "Qué medir por herramienta",
-          "body": "call_count, success_rate, avg_latency_ms y last_used."
+          "body": "`call_count`, `success_rate`, `avg_latency_ms` y `last_used`."
         },
         {
           "label": "Herramientas sin uso",
@@ -653,7 +1127,29 @@
           "kind": "takeaway"
         }
       ],
-      "notes": "El espejo de la lámina 3.1 del lado de las herramientas: sin medición, cualquier ajuste del catálogo es una opinión. El pie es la conclusión que conecta las dos mitades: en RAG el problema casi nunca está en el modelo sino en el corpus y el corte; en MCP casi nunca está en el modelo sino en las descripciones y el tamaño del catálogo. Tiempo objetivo: ~2 min."
+      "notes": "El espejo de la lámina 3.1 del lado de las herramientas: sin medición, cualquier ajuste del catálogo es una opinión. El pie es la conclusión que conecta las dos mitades: en RAG el problema casi nunca está en el modelo sino en el corpus y el corte; en MCP casi nunca está en el modelo sino en las descripciones y el tamaño del catálogo. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=4",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=0"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "labeled_items ≥ 2 matches a richer template; never fall to prose panels",
+          "process": "the items are parallel concepts, not steps; no ordinal or flow between them",
+          "stat": "the metric names are identifiers, not figures"
+        }
+      },
+      "format": "editorial"
     },
     {
       "template": "section-agenda",
@@ -680,7 +1176,29 @@
           "icon": "analytics"
         }
       ],
-      "notes": "Tres frases y ninguna es un resumen de la agenda. La primera es la tesis desplegada; la segunda es la que más rápido pueden aplicar; la tercera es lo que convierte esto en ingeniería. Cierre con una pregunta abierta: en el sistema que estén construyendo, ¿el problema es que el modelo no sabe, o que no le estamos mostrando lo correcto? Casi siempre es lo segundo. Si hay ejercitación después, este es el momento de anunciarla. Tiempo objetivo: ~2 min."
+      "notes": "Tres frases y ninguna es un resumen de la agenda. La primera es la tesis desplegada; la segunda es la que más rápido pueden aplicar; la tercera es lo que convierte esto en ingeniería. Cierre con una pregunta abierta: en el sistema que estén construyendo, ¿el problema es que el modelo no sabe, o que no le estamos mostrando lo correcto? Casi siempre es lo segundo. Si hay ejercitación después, este es el momento de anunciarla. Tiempo objetivo: ~2 min.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=0",
+          "is_terminal=true"
+        ],
+        "candidates": [
+          "concept-breakdown",
+          "process",
+          "content-text"
+        ],
+        "picked": "concept-breakdown",
+        "rejected": {
+          "content-text": "labeled_items ≥ 2 matches a richer template; never fall to prose panels",
+          "process": "the items are parallel concepts, not steps; no ordinal or flow between them",
+          "closing-cta": "is_cta false: the items are conclusions, not next steps or resources"
+        }
+      }
     }
   ],
   "_source": {

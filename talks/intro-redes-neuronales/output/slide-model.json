@@ -108,33 +108,51 @@
     {
       "section": "La neurona y la capa",
       "title": "La neurona: primero, una combinación lineal",
-      "notes": "Marcá el \"primero\" del título: la neurona todavía no está completa, falta la no linealidad, y eso llega en dos diapositivas. El sesgo es lo que más se pasa por alto; la frase que lo fija es la del mazo, \"un desplazamiento que le permite activarse antes o después\". Si querés una imagen, el sesgo mueve el umbral de decisión sin cambiar la pendiente. ---",
+      "template": "content-image",
+      "design": "split-right",
       "lead": "Cada neurona recibe varias entradas, las multiplica por sus pesos, las suma y le agrega un sesgo. Ese único número es todo lo que produce la parte lineal.",
-      "template": "figures",
-      "figures": [
+      "facts": [
         {
-          "image": {
-            "src": "images/s09-4d516fc1e6a4.png",
-            "alt": "Una neurona: entradas, pesos, suma y sesgo"
-          },
-          "label": "Una neurona: entradas, pesos, suma y sesgo",
-          "body": ""
-        },
-        {
-          "image": {
-            "src": "images/s09-d050a6977b8b.png",
-            "alt": "La fórmula de la combinación lineal"
-          },
-          "label": "La fórmula de la combinación lineal",
-          "body": ""
+          "body": "`x` es el vector de entradas, `w` los pesos que la neurona aprendió y `b` el sesgo: un desplazamiento que le permite activarse antes o después."
         }
       ],
       "highlights": [
         {
-          "body": "`x` es el vector de entradas, `w` los pesos que la neurona aprendió y `b` el sesgo: un desplazamiento que le permite activarse antes o después.",
-          "kind": "note"
+          "label": "La fórmula de la combinación lineal",
+          "body": "`a = x · w + b`",
+          "kind": "definition"
         }
-      ]
+      ],
+      "media": {
+        "src": "images/s2-2-1-neurona-parte-lineal.anim.png",
+        "alt": "La parte lineal de una neurona: x₁, x₂, x₃ por sus pesos w₁, w₂, w₃, sumados en Σ con el sesgo b, dan un único número a = x · w + b"
+      },
+      "_omitted": [
+        {
+          "src": "images/s09-d050a6977b8b.png",
+          "reason": "formula"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=0",
+          "n_images=1",
+          "decoration=0",
+          "formula_strip=1 (s09-d050a6977b8b, 5.3:1, one line, legible → transcribed)",
+          "image_only=false"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full",
+          "figures"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "image-full": "two sentences of prose lead the slide; image_only needs at most one short framing line",
+          "figures": "needs labeled_items ≥ 2 each with its own image, and a formula strip is never a figure"
+        }
+      },
+      "notes": "Marcá el \"primero\" del título: la neurona todavía no está completa, falta la no linealidad, y eso llega en dos diapositivas. El sesgo es lo que más se pasa por alto; la frase que lo fija es la del mazo, \"un desplazamiento que le permite activarse antes o después\". Si querés una imagen, el sesgo mueve el umbral de decisión sin cambiar la pendiente. ---"
     },
     {
       "section": "La neurona y la capa",
@@ -169,19 +187,35 @@
     {
       "section": "La neurona y la capa",
       "title": "La capa: el bloque que se repite",
-      "notes": "Esta es la diapositiva más importante del capítulo y vuelve en el cierre como la segunda idea. La frase que se llevan: no hay una pieza más grande que entender. Sirve para bajar la ansiedad de quien cree que las arquitecturas modernas son otra cosa; son esta pieza repetida con variaciones. El \"toma un vector y devuelve otro vector\" es lo que hace obvio el encadenado, y prepara el producto matricial del capítulo 4. ---",
-      "lead": "Combinación lineal seguida de una no linealidad. Ese par es una capa, y es la unidad con la que se construye cualquier red: **no hay una pieza más grande que aprender, solo esta repetida.**",
       "template": "content-image",
-      "design": "split-right",
-      "media": {
-        "src": "images/s11-54a05bc4894e.png",
-        "alt": "La capa: combinación lineal más no linealidad"
-      },
+      "design": "banded",
+      "lead": "Combinación lineal seguida de una no linealidad. Ese par es una capa, y es la unidad con la que se construye cualquier red: **no hay una pieza más grande que aprender, solo esta repetida.**",
       "facts": [
         {
           "body": "Una capa toma un vector y devuelve otro vector. Encadenarlas es simplemente pasarle a la siguiente lo que produjo la anterior."
         }
-      ]
+      ],
+      "media": {
+        "src": "images/s2-4-1-capa-bloque.anim.png",
+        "alt": "Una capa: la entrada pasa por la combinación lineal x · w + b y por la no linealidad, y el vector de salida es la entrada de la capa siguiente"
+      },
+      "_choice": {
+        "signals": [
+          "labeled_items=0",
+          "n_images=1",
+          "image_only=false",
+          "image aspect 4:1 (banded keeps it legible)"
+        ],
+        "candidates": [
+          "content-image",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "image-full": "two prose lines lead the slide; image_only allows one short framing line at most"
+        }
+      },
+      "notes": "Esta es la diapositiva más importante del capítulo y vuelve en el cierre como la segunda idea. La frase que se llevan: no hay una pieza más grande que entender. Sirve para bajar la ansiedad de quien cree que las arquitecturas modernas son otra cosa; son esta pieza repetida con variaciones. El \"toma un vector y devuelve otro vector\" es lo que hace obvio el encadenado, y prepara el producto matricial del capítulo 4. ---"
     },
     {
       "template": "section-agenda",
@@ -379,41 +413,64 @@
     {
       "section": "El recorrido completo",
       "title": "El cálculo de la capa es un producto matricial",
-      "notes": "Marcá el \"antes de aplicar la activación\" del punto tres: la capa todavía no está terminada, falta la no linealidad, que es el capítulo que sigue. Es el enganche entre los dos capítulos y conviene dejarlo explícito. La frase \"las dimensiones encajan de una única manera posible\" es la que prepara la regla práctica de la diapositiva siguiente. ---",
+      "template": "content+cards+image",
+      "design": "split-right",
       "lead": "El vector de entrada multiplica a la matriz de pesos, y el resultado es el vector de la capa oculta. Las dimensiones encajan de una única manera posible.",
-      "template": "figures",
-      "figures": [
+      "cards": [
         {
-          "image": {
-            "src": "images/s21-51491d0e73ef.png",
-            "alt": "El producto matricial de la capa"
-          },
-          "label": "El producto matricial de la capa",
-          "body": ""
+          "label": "Entrada",
+          "body": "Un vector fila de 8 números: una observación del clima."
         },
         {
-          "image": {
-            "src": "images/s21-cf87887ddd74.png",
-            "alt": "La fórmula del producto"
-          },
-          "label": "La fórmula del producto",
-          "body": ""
+          "label": "Pesos",
+          "body": "La matriz de 8×9 que la red aprendió."
+        },
+        {
+          "label": "Salida",
+          "body": "Un vector de 9 números: la capa oculta, antes de aplicar la activación."
         }
       ],
       "highlights": [
         {
-          "body": "**Entrada.** Un vector fila de 8 números: una observación del clima.",
-          "kind": "note"
-        },
-        {
-          "body": "**Pesos.** La matriz de 8×9 que la red aprendió.",
-          "kind": "note"
-        },
-        {
-          "body": "**Salida.** Un vector de 9 números: la capa oculta, antes de aplicar la activación.",
-          "kind": "note"
+          "label": "La fórmula del producto",
+          "body": "`[1 × 8] · [8 × 9] = [1 × 9]`",
+          "kind": "definition"
         }
-      ]
+      ],
+      "media": {
+        "src": "images/s4-5-1-producto-matricial.anim.png",
+        "alt": "x de 1 × 8 por W de 8 × 9 da h de 1 × 9, antes de la activación: cada columna de W llena una celda de h, y los dos 8 tienen que coincidir"
+      },
+      "_omitted": [
+        {
+          "src": "images/s21-cf87887ddd74.png",
+          "reason": "formula"
+        }
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false (01/02/03 is the deck's house numbering; the three are operands of one product, not steps)",
+          "date_labels=false",
+          "two_groups=false",
+          "big_metrics=false",
+          "n_images=1",
+          "formula_strip=1 (s21-cf87887ddd74, 11:1 → transcribed)"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "process",
+          "figures",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "process": "entrada, pesos y salida are the operands of a single multiplication, not an ordered sequence of steps",
+          "figures": "the items share one diagram; figures needs one content image per item",
+          "concept-breakdown": "requires images == 0; it would drop the shared diagram"
+        }
+      },
+      "notes": "Marcá el \"antes de aplicar la activación\" del punto tres: la capa todavía no está terminada, falta la no linealidad, que es el capítulo que sigue. Es el enganche entre los dos capítulos y conviene dejarlo explícito. La frase \"las dimensiones encajan de una única manera posible\" es la que prepara la regla práctica de la diapositiva siguiente. ---"
     },
     {
       "section": "El recorrido completo",
@@ -517,19 +574,37 @@
     {
       "section": "Funciones de activación",
       "title": "Sin activación, la red colapsa",
-      "notes": "La demostración es de una línea y conviene hacerla en el pizarrón, no leerla: W₂(W₁x) = (W₂W₁)x = W*x. Cuando lo ven escrito ya no se discute. La pregunta de control que funciona: ¿qué pasa si saco la activación de una red de diez capas? Respuesta, te queda una regresión lineal disfrazada. Conecta directo con el capítulo 2, donde la capa se definió como el par lineal más no lineal. ---",
-      "lead": "Dos transformaciones lineales encadenadas equivalen a una sola. Multiplicar por `W₁` y después por `W₂` es lo mismo que multiplicar por una única matriz `W*`: la profundidad desaparece.",
       "template": "content-image",
       "design": "split-right",
-      "media": {
-        "src": "images/s26-6bddaf9b74ea.png",
-        "alt": "Dos matrices encadenadas colapsan en una"
-      },
+      "lead": "Dos transformaciones lineales encadenadas equivalen a una sola. Multiplicar por `W₁` y después por `W₂` es lo mismo que multiplicar por una única matriz `W*`: la profundidad desaparece.",
       "facts": [
         {
-          "body": "Diez capas lineales tienen exactamente el mismo poder expresivo que una. La no linealidad es lo único que impide ese colapso."
+          "body": "**Diez capas lineales tienen exactamente el mismo poder expresivo que una.** La no linealidad es lo único que impide ese colapso."
         }
-      ]
+      ],
+      "media": {
+        "src": "images/s5-3-1-colapso-lineal.anim.png",
+        "alt": "Sin activación, W₁ (8 × 9) y W₂ (9 × 4) se multiplican en una única W* (8 × 4): antes x → h → y, después x → y sin capa oculta"
+      },
+      "_choice": {
+        "signals": [
+          "labeled_items=0",
+          "n_images=1",
+          "image_only=false",
+          "one_claim=false (the claim needs its two-sentence argument)"
+        ],
+        "candidates": [
+          "content-image",
+          "single-point",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "single-point": "an image supports the point → content-image, per the labeled_items == 1 rule",
+          "image-full": "the prose leads; image_only allows one short framing line at most"
+        }
+      },
+      "notes": "La demostración es de una línea y conviene hacerla en el pizarrón, no leerla: W₂(W₁x) = (W₂W₁)x = W*x. Cuando lo ven escrito ya no se discute. La pregunta de control que funciona: ¿qué pasa si saco la activación de una red de diez capas? Respuesta, te queda una regresión lineal disfrazada. Conecta directo con el capítulo 2, donde la capa se definió como el par lineal más no lineal. ---"
     },
     {
       "section": "Funciones de activación",
@@ -585,33 +660,46 @@
     {
       "section": "Funciones de activación",
       "title": "Softmax: de puntajes a probabilidades",
-      "notes": "La advertencia es el punto de la diapositiva, no la fórmula. Softmax en una capa oculta es un error que se ve en trabajos de alumnos, y la razón es concreta: normaliza, así que la magnitud se pierde y solo queda la proporción. Softmax es también la única de las cuatro que mira todas las unidades de salida a la vez; las otras tres se aplican número por número. Vale la pena marcarlo. ---",
+      "template": "content-image",
+      "design": "banded",
       "lead": "En la capa de salida no queremos números sueltos sino una distribución. Softmax toma valores arbitrariamente grandes o chicos y devuelve probabilidades que suman exactamente 1.",
-      "template": "figures",
-      "figures": [
-        {
-          "image": {
-            "src": "images/s28-c9cadec7c247.png",
-            "alt": "Softmax convierte puntajes en probabilidades"
-          },
-          "label": "Softmax convierte puntajes en probabilidades",
-          "body": ""
-        },
-        {
-          "image": {
-            "src": "images/s28-6322673fdf1b.png",
-            "alt": "La fórmula de softmax"
-          },
-          "label": "La fórmula de softmax",
-          "body": ""
-        }
-      ],
       "highlights": [
         {
-          "body": "Ojo con dónde se aplica. Softmax se usa en la activación de la capa final. Si se la aplica en una capa oculta, se pierde información sobre la magnitud de los valores y solo sobrevive su proporción.",
-          "kind": "takeaway"
+          "label": "Ojo con dónde se aplica",
+          "body": "Softmax se usa en la activación de la capa final. Si se la aplica en una capa oculta, se pierde información sobre la magnitud de los valores y solo sobrevive su proporción.",
+          "kind": "important"
         }
-      ]
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "images/s5-5-1-softmax-ejemplo.anim.png",
+            "alt": "Softmax con gato, perro y caballo: puntajes −0,21, 0,47 y 1,72; eᵃ da 0,81, 1,60 y 5,58; la suma ≈ 8; al dividir salen 0,1, 0,2 y 0,7, que suman 1"
+          },
+          {
+            "src": "images/s28-6322673fdf1b.png",
+            "alt": "La fórmula de softmax"
+          }
+        ]
+      },
+      "_choice": {
+        "signals": [
+          "labeled_items=0 (the bold-led line is one tone-carrying aside, not a set)",
+          "n_images=2 (worked example + a two-line formula, 1.7:1, not a strip)",
+          "image_only=false"
+        ],
+        "candidates": [
+          "content-image",
+          "figures",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "figures": "needs labeled_items ≥ 2 each carrying its own image; the source has no per-item labels",
+          "image-full": "the prose leads and there is a warning aside; image_only allows one short framing line"
+        }
+      },
+      "notes": "La advertencia es el punto de la diapositiva, no la fórmula. Softmax en una capa oculta es un error que se ve en trabajos de alumnos, y la razón es concreta: normaliza, así que la magnitud se pierde y solo queda la proporción. Softmax es también la única de las cuatro que mira todas las unidades de salida a la vez; las otras tres se aplican número por número. Vale la pena marcarlo. ---"
     },
     {
       "template": "section-agenda",
@@ -642,10 +730,9 @@
     {
       "section": "Backpropagation",
       "title": "Ida y vuelta: forward y backward",
-      "notes": "El mapa del capítulo. Volvé explícitamente al auto del capítulo 1: forward es dejar que el auto ande, backward es retocar las compuertas después de ver dónde chocó. Es el mismo ciclo, ahora con nombre. La palabra \"época\" aparece por primera vez acá; definila al pasar, una pasada completa por todos los datos de entrenamiento. ---",
-      "lead": "El entrenamiento es un ciclo de dos movimientos. Hacia adelante, la red calcula su predicción; hacia atrás, propaga el error y ajusta cada peso según cuánto contribuyó a equivocarse.",
       "template": "content+cards+image",
       "design": "split-right",
+      "lead": "El entrenamiento es un ciclo de dos movimientos. Hacia adelante, la red calcula su predicción; hacia atrás, propaga el error y ajusta cada peso según cuánto contribuyó a equivocarse.",
       "cards": [
         {
           "label": "Propagación hacia adelante",
@@ -657,9 +744,30 @@
         }
       ],
       "media": {
-        "src": "images/s31-222a372707cc.png",
-        "alt": "El ciclo forward y backward"
-      }
+        "src": "images/s6-2-1-forward-backward.anim.png",
+        "alt": "La misma red 2-3-2 recorrida dos veces: forward, de la entrada a la salida y al error; backward, del error de vuelta hasta los pesos"
+      },
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "is_ordered=false (two directions of one cycle)",
+          "two_groups=false (the halves are not compared on shared factors)",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "value-columns",
+          "process",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "value-columns": "the two movements are described, not compared row by row over shared factors",
+          "process": "two movements of a loop, not a numbered sequence of ≥3 steps",
+          "concept-breakdown": "requires images == 0; it would drop the shared diagram"
+        }
+      },
+      "notes": "El mapa del capítulo. Volvé explícitamente al auto del capítulo 1: forward es dejar que el auto ande, backward es retocar las compuertas después de ver dónde chocó. Es el mismo ciclo, ahora con nombre. La palabra \"época\" aparece por primera vez acá; definila al pasar, una pasada completa por todos los datos de entrenamiento. ---"
     },
     {
       "section": "Backpropagation",
@@ -722,49 +830,54 @@
     {
       "section": "Backpropagation",
       "title": "Capa de salida: el delta",
-      "notes": "Delta es una abreviatura, no un concepto nuevo, y conviene decirlo así para que no asuste: son los dos primeros factores de la diapositiva anterior, juntos. La ganancia es concreta: una vez que tenés delta, el gradiente de cualquier peso que llega a esa unidad es una multiplicación, no hay que rehacer la cadena. Esa economía es la que hace viable entrenar millones de parámetros. ---",
+      "template": "content-image",
+      "design": "split-right",
       "lead": "Agrupamos los dos primeros factores en un solo término, `δ`, que representa la sensibilidad del error respecto de la suma ponderada de esa unidad.",
-      "template": "figures",
-      "figures": [
+      "facts": [
         {
-          "image": {
-            "src": "images/s34-4c04b498f28d.png",
-            "alt": "La definición de delta"
-          },
           "label": "La definición de delta",
-          "body": ""
+          "body": "`δⱼ = (yⱼ − tⱼ) · yⱼ (1 − yⱼ)`"
         },
         {
-          "image": {
-            "src": "images/s34-7e1441f8b259.png",
-            "alt": "El gradiente en términos de delta"
-          },
-          "label": "El gradiente en términos de delta",
-          "body": ""
-        },
-        {
-          "image": {
-            "src": "images/s34-453542b3b9d8.png",
-            "alt": "Delta en la capa de salida"
-          },
-          "label": "Delta en la capa de salida",
-          "body": ""
+          "body": "Con `δ` calculado, el gradiente de cualquier peso que llega a la unidad es una multiplicación."
         }
       ],
-      "highlights": [
+      "media": {
+        "src": "images/s34-7e1441f8b259.png",
+        "alt": "El gradiente en términos de delta"
+      },
+      "_omitted": [
         {
-          "body": "Con `δ` calculado, el gradiente de cualquier peso que llega a la unidad es una multiplicación.",
-          "kind": "note"
+          "src": "images/s34-4c04b498f28d.png",
+          "reason": "formula"
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=0",
+          "n_images=1 (the gradient fraction, 2.3:1, two lines tall — kept as an image)",
+          "formula_strip=1 (s34-4c04b498f28d, 7.8:1 → transcribed)",
+          "image_only=false"
+        ],
+        "candidates": [
+          "content-image",
+          "figures",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "figures": "needs ≥ 2 labeled items each with its own image; a formula strip is never a figure",
+          "image-full": "two prose lines and a definition lead the slide"
+        }
+      },
+      "notes": "Delta es una abreviatura, no un concepto nuevo, y conviene decirlo así para que no asuste: son los dos primeros factores de la diapositiva anterior, juntos. La ganancia es concreta: una vez que tenés delta, el gradiente de cualquier peso que llega a esa unidad es una multiplicación, no hay que rehacer la cadena. Esa economía es la que hace viable entrenar millones de parámetros. ---"
     },
     {
       "section": "Backpropagation",
       "title": "Capa oculta: propagar el delta hacia atrás",
-      "notes": "Esta es la diapositiva que le da nombre al algoritmo, y la pregunta que la abre es la correcta: ¿contra qué se compara una unidad oculta? Contra nada, no tiene objetivo propio. La respuesta, que hereda la culpa de las unidades que alimenta, es lo que hay que dejar firme. La palabra \"culpa\" funciona mejor que \"error\" para explicarlo: cada unidad recibe la parte que le toca según cuánto influyó. ---",
-      "lead": "Una unidad oculta no tiene un objetivo con el cual compararse: nadie le dice cuál era su valor correcto. Su culpa se calcula sumando los deltas de todas las unidades de la capa siguiente a las que alimenta, ponderados por los pesos que las conectan.",
       "template": "content+cards+image",
       "design": "split-right",
+      "lead": "Una unidad oculta no tiene un objetivo con el cual compararse: nadie le dice cuál era su valor correcto. Su culpa se calcula sumando los deltas de todas las unidades de la capa siguiente a las que alimenta, ponderados por los pesos que las conectan.",
       "cards": [
         {
           "label": "Capa de salida",
@@ -779,16 +892,44 @@
           "body": "El mismo cálculo se repite hacia atrás, hasta llegar a la primera capa."
         }
       ],
-      "media": {
-        "src": "images/s35-747d5b5238c4.png",
-        "alt": "Delta heredado de la capa siguiente"
-      },
       "highlights": [
         {
-          "body": "Acá está el corazón del algoritmo. El error se reparte hacia atrás capa por capa: cada unidad recibe la parte de culpa que le corresponde según cuánto influyó en las que venían después. De ahí el nombre \"propagación hacia atrás\".",
+          "body": "**Acá está el corazón del algoritmo.** El error se reparte hacia atrás capa por capa: cada unidad recibe la parte de culpa que le corresponde según cuánto influyó en las que venían después. De ahí el nombre \"propagación hacia atrás\".",
           "kind": "takeaway"
         }
-      ]
+      ],
+      "media": {
+        "images": [
+          {
+            "src": "images/s6-6-1-delta-capa-oculta.png",
+            "alt": "El delta de una unidad oculta j se arma con los deltas δ1 y δ2 de las salidas que alimenta, ponderados por w_j1 y w_j2, y da el gradiente de w_ij"
+          },
+          {
+            "src": "images/s35-747d5b5238c4.png",
+            "alt": "Delta heredado de la capa siguiente"
+          }
+        ]
+      },
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false",
+          "date_labels=false",
+          "two_groups=false",
+          "n_images=2 (diagram + the general summation formula, 410 px tall, not a strip)"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "process",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "process": "output layer, hidden layers and recursion are cases of one rule, not steps performed in order",
+          "concept-breakdown": "requires images == 0; it would drop both shared pictures"
+        }
+      },
+      "notes": "Esta es la diapositiva que le da nombre al algoritmo, y la pregunta que la abre es la correcta: ¿contra qué se compara una unidad oculta? Contra nada, no tiene objetivo propio. La respuesta, que hereda la culpa de las unidades que alimenta, es lo que hay que dejar firme. La palabra \"culpa\" funciona mejor que \"error\" para explicarlo: cada unidad recibe la parte que le toca según cuánto influyó. ---"
     },
     {
       "section": "Backpropagation",
@@ -939,11 +1080,10 @@
     {
       "section": "Anexo: material de apoyo",
       "title": "El ciclo de ajuste",
-      "notes": "Extiende la 3.3, el ciclo externo contra el interno. Es la que hace concreto de dónde salen los hiperparámetros. ---",
-      "lead": "Elegimos una configuración, entrenamos, medimos, y volvemos a elegir. El entrenamiento produce los parámetros del modelo; la búsqueda de hiperparámetros produce la mejor configuración.",
-      "template": "content+cards+image",
+      "template": "process",
       "design": "split-right",
-      "cards": [
+      "lead": "Elegimos una configuración, entrenamos, medimos, y volvemos a elegir. El entrenamiento produce los parámetros del modelo; la búsqueda de hiperparámetros produce la mejor configuración.",
+      "steps": [
         {
           "label": "Elegir la configuración",
           "body": "Fijamos ancho, profundidad y tasa de aprendizaje antes de empezar."
@@ -958,9 +1098,28 @@
         }
       ],
       "media": {
-        "src": "images/s45-f160ea1eefb4.png",
-        "alt": "El ciclo externo de ajuste de hiperparámetros"
-      }
+        "src": "images/s7-6-1-ciclo-ajuste.anim.png",
+        "alt": "El ciclo de ajuste: configuración, entrenamiento, parámetros del modelo y error de validación; se vuelve a cambiar la configuración hasta que el error deja de mejorar"
+      },
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=true (choose → train and measure → retry: a stepwise loop the lead narrates in order)",
+          "date_labels=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "process",
+          "content+cards+image",
+          "concept-breakdown"
+        ],
+        "picked": "process",
+        "rejected": {
+          "content+cards+image": "is_ordered fires — the escape check sends an ordered set with a supporting image to process, which carries the image",
+          "concept-breakdown": "the items are ordered and there is a content image"
+        }
+      },
+      "notes": "Extiende la 3.3, el ciclo externo contra el interno. Es la que hace concreto de dónde salen los hiperparámetros. ---"
     },
     {
       "section": "Anexo: material de apoyo",
@@ -990,10 +1149,9 @@
     {
       "section": "Anexo: material de apoyo",
       "title": "La capa oculta, completa",
-      "notes": "Extiende la 4.5. El punto que aporta es \"mismo input, distinto peso\": lo único que diferencia a dos unidades de la misma capa es su columna. ---",
-      "lead": "Cada una de las nueve unidades recibe una combinación de las ocho entradas, con sus propios pesos. Todas se calculan a la vez, no una después de la otra.",
       "template": "content+cards+image",
       "design": "split-right",
+      "lead": "Cada una de las nueve unidades recibe una combinación de las ocho entradas, con sus propios pesos. Todas se calculan a la vez, no una después de la otra.",
       "cards": [
         {
           "label": "Todo a la vez",
@@ -1004,16 +1162,35 @@
           "body": "Todas ven las mismas ocho variables; lo que las diferencia es su columna de pesos."
         }
       ],
-      "media": {
-        "src": "images/s47-842a83c0c695.png",
-        "alt": "La capa oculta completa"
-      },
       "highlights": [
         {
           "body": "Después del producto matricial viene la activación. Sin ese paso la capa sería lineal y toda la profundidad se desperdiciaría.",
           "kind": "note"
         }
-      ]
+      ],
+      "media": {
+        "src": "images/s7-8-1-capa-oculta-completa.anim.png",
+        "alt": "Las ocho variables del clima x1 a x8 conectadas a las nueve unidades h1 a h9: 72 conexiones a la vez, y después la activación"
+      },
+      "_choice": {
+        "signals": [
+          "labeled_items=2",
+          "is_ordered=false",
+          "two_groups=false",
+          "n_images=1"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "concept-breakdown",
+          "content-image"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "concept-breakdown": "requires images == 0; it would drop the shared diagram",
+          "content-image": "dissolves the two labeled points into facts, losing their labels and icons"
+        }
+      },
+      "notes": "Extiende la 4.5. El punto que aporta es \"mismo input, distinto peso\": lo único que diferencia a dos unidades de la misma capa es su columna. ---"
     },
     {
       "section": "Anexo: material de apoyo",
@@ -1043,72 +1220,101 @@
     {
       "section": "Anexo: material de apoyo",
       "title": "La función de activación, con el termostato",
-      "notes": "La mejor analogía del mazo para explicar qué hace una activación. Si en el capítulo 5 ves caras de duda, esta es la que la destraba. ---",
+      "template": "content+cards+image",
+      "design": "split-right",
       "lead": "Pensémosla como el termostato: la temperatura baja de forma continua, pero nuestra decisión, ponerse el abrigo o no, es binaria. La activación es lo que convierte una magnitud continua en una respuesta de otra naturaleza.",
-      "template": "figures",
-      "figures": [
+      "cards": [
         {
-          "image": {
-            "src": "images/s49-1361be4b725f.png",
-            "alt": "La analogía del termostato"
-          },
-          "label": "La analogía del termostato",
-          "body": ""
+          "label": "La entrada es continua",
+          "body": "La suma ponderada da cualquier número real."
         },
         {
-          "image": {
-            "src": "images/s49-0c5c7d04e27c.png",
-            "alt": "Continuo a discreto"
-          },
-          "label": "Continuo a discreto",
-          "body": ""
+          "label": "La activación decide",
+          "body": "Aplasta, corta o normaliza ese número."
+        },
+        {
+          "label": "La salida cambia de naturaleza",
+          "body": "Pasa a ser una probabilidad, una activación o un cero."
         }
       ],
-      "highlights": [
-        {
-          "body": "**La entrada es continua.** La suma ponderada da cualquier número real.",
-          "kind": "note"
-        },
-        {
-          "body": "**La activación decide.** Aplasta, corta o normaliza ese número.",
-          "kind": "note"
-        },
-        {
-          "body": "**La salida cambia de naturaleza.** Pasa a ser una probabilidad, una activación o un cero.",
-          "kind": "note"
+      "media": {
+        "images": [
+          {
+            "src": "images/s7-10-1-activacion-acota.png",
+            "alt": "Dos entradas pasan por la combinación lineal, que da cualquier número real, y por la función de activación, que lo convierte en un valor entre 0 y 1"
+          },
+          {
+            "src": "images/s49-0c5c7d04e27c.png",
+            "alt": "La analogía del termostato: la temperatura entra, la activación decide si abrigarse o no"
+          }
+        ]
+      },
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "is_ordered=false (three properties of one mapping, not steps to perform)",
+          "date_labels=false",
+          "n_images=2 (shared by the set, not one per item)"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "figures",
+          "process",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "figures": "the two pictures illustrate the whole set; figures needs one image per labeled item",
+          "process": "the items describe what changes across one function, not an ordered procedure",
+          "concept-breakdown": "requires images == 0; it would drop both pictures"
         }
-      ]
+      },
+      "notes": "La mejor analogía del mazo para explicar qué hace una activación. Si en el capítulo 5 ves caras de duda, esta es la que la destraba. ---"
     },
     {
       "section": "Anexo: material de apoyo",
       "title": "La sigmoide y su derivada",
-      "notes": "Es la que cierra el círculo entre el capítulo 2 y el 5: por qué la sigmoide fue el default y por qué dejó de serlo. El gradiente que se desvanece se entiende solo cuando se ve que la derivada se aplana en los extremos. ---",
+      "template": "content-image",
+      "design": "banded",
       "lead": "Antes de derivar la red completa hace falta una pieza. La derivada de la sigmoide tiene una forma notablemente cómoda: se escribe en términos de la propia sigmoide, así que no hay que recalcular nada.",
-      "template": "figures",
-      "figures": [
+      "facts": [
         {
-          "image": {
-            "src": "images/s50-fd950a8d8f36.png",
-            "alt": "La derivada de la sigmoide"
-          },
-          "label": "La derivada de la sigmoide",
-          "body": ""
+          "label": "La fórmula de la derivada",
+          "body": "`σ′(x) = σ(x) (1 − σ(x))`"
         },
         {
-          "image": {
-            "src": "images/s50-3f7e68cecb38.png",
-            "alt": "La fórmula de la derivada"
-          },
-          "label": "La fórmula de la derivada",
-          "body": ""
+          "body": "Por eso la sigmoide fue la activación por defecto durante años: **su derivada sale casi gratis.** Su problema aparece en los extremos, donde se aplana y el gradiente se desvanece."
         }
       ],
-      "highlights": [
+      "media": {
+        "src": "images/s50-fd950a8d8f36.png",
+        "alt": "La función sigmoide σ(x)"
+      },
+      "_omitted": [
         {
-          "body": "Por eso la sigmoide fue la activación por defecto durante años: su derivada sale casi gratis. Su problema aparece en los extremos, donde se aplana y el gradiente se desvanece.",
-          "kind": "note"
+          "src": "images/s50-3f7e68cecb38.png",
+          "reason": "formula"
         }
-      ]
+      ],
+      "_choice": {
+        "signals": [
+          "labeled_items=0",
+          "n_images=1 (the sigmoid curve)",
+          "formula_strip=1 (s50-3f7e68cecb38, 9:1 → transcribed)",
+          "image_only=false"
+        ],
+        "candidates": [
+          "content-image",
+          "figures",
+          "image-full"
+        ],
+        "picked": "content-image",
+        "rejected": {
+          "figures": "needs ≥ 2 labeled items each with its own image; a formula strip is never a figure",
+          "image-full": "two prose lines lead the slide"
+        }
+      },
+      "notes": "Es la que cierra el círculo entre el capítulo 2 y el 5: por qué la sigmoide fue el default y por qué dejó de serlo. El gradiente que se desvanece se entiende solo cuando se ve que la derivada se aplana en los extremos. ---"
     },
     {
       "section": "Anexo: material de apoyo",
@@ -1225,7 +1431,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "97d5751ab19bac8ab32a71295468c670eb8d75cadc0bbb4329be9ffdcf33c67a",
-    "bytes": 50226
+    "sha256": "e16b55461ebf033c2acf3a8659fe265e78aefcac5c57790da4efd247dd5a782a",
+    "bytes": 71264
   }
 }

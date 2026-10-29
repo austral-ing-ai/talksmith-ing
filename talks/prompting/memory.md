@@ -1,7 +1,7 @@
 # memory.md — prompting
 
-**Current step:** 5 (Review) — ronda de densidad aplicada a las secciones 5 y 6 de `draft.md`. **`final.md` quedó desactualizado**: hay que re-correr Step 6 (Polish) desde `draft.md` antes de cualquier render.
-**Awaiting:** confirmación de a qué clase del README corresponde (candidata: clase 5, miércoles 2 de septiembre)
+**Current step:** 5 (Review) — **reabierta 2026-10-29** a pedido del presentador: `draft.md` vuelve a ser editable. Motivo: decidir qué diagramas llevan `animation:` (la Talk se pulió antes de que existiera la etapa de animación). El `final.md` actual (69 láminas, pulido 2026-09-02) queda vigente hasta el próximo Step 6, que hay que re-correr para generar las animaciones.
+**Awaiting:** aprobación de los briefs `animation:` propuestos por el Editor (2026-10-29): animar 11 diagramas (1.7, 1.9, 2.2, 2.3, 5.2, 5.4, 5.6, 5.8, 6.1, 6.5, 7.1), dejar estáticos 1.2, 1.3, 3.1, 4.1; dudosos 1.2, 6.5, 7.1 y el caso de ejemplo de 2.2. Pendiente previo: confirmación de a qué clase del README corresponde (candidata: clase 5, miércoles 2 de septiembre)
 **Topic:** Trabajar con LLMs: prompts, costos y producción — fundamentos de foundational models, ventana de contexto, tokens, técnicas de prompting
 **Folder:** talks/prompting/
 **Started:** 2026-08-28 (importada; original de 2026-08-14)
