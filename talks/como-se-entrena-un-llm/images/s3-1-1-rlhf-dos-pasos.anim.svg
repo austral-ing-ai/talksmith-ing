@@ -1,0 +1,226 @@
+<svg class="ts-anim-s3-1-1-rlhf-dos-pasos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>RLHF en dos pasos</title>
+<desc>El mapa de la sección antes del detalle: primero se entrena un juez (reward model) con comparaciones entre respuestas y después PPO optimiza el modelo SFT contra ese juez, en un ciclo que se repite muchas veces hasta dar el modelo final.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s3-1-1-rlhf-dos-pasos .h1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.5s ease-out 0.30s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .bx-datos{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.5s ease-out 1.00s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .c1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink1 2.80s linear 1.20s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .bx-copia{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.5s ease-out 2.00s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-d1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-d1 0.800s linear 2.700s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .ln-1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-draw2 0.242s linear 2.979s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .hd-1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in .15s linear 3.22s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .c2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink2 3.00s linear 4.15s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-d2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-d2 0.700s linear 4.600s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .ln-2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-draw5 0.305s linear 4.893s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .hd-2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in .15s linear 5.20s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .bx-rm{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.45s ease-out 5.15s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tx-aprende{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.5s ease-out 6.00s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .h2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.5s ease-out 6.80s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .c3{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink3 1.90s linear 7.20s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-j{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-j 1.000s linear 7.400s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .ln-j{animation:ts-anim-s3-1-1-rlhf-dos-pasos-draw8 0.813s linear 7.513s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .hd-j{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in .15s linear 8.33s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .bx-punt{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.4s ease-out 8.28s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tx-juez{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.4s ease-out 8.33s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .bx-prompts{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.5s ease-out 9.20s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .bx-sft{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.5s ease-out 9.90s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .bx-ppo{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.5s ease-out 13.10s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-p1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-p1 0.700s linear 10.450s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .ln-3{animation:ts-anim-s3-1-1-rlhf-dos-pasos-draw10 0.268s linear 10.656s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .hd-3{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in .15s linear 10.92s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-r1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-r1 0.700s linear 11.500s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .ln-4{animation:ts-anim-s3-1-1-rlhf-dos-pasos-draw12 0.260s linear 11.720s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .hd-4{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in .15s linear 11.98s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-s1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-s1 0.700s linear 13.600s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .ln-5{animation:ts-anim-s3-1-1-rlhf-dos-pasos-draw14 0.233s linear 13.797s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .hd-5{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in .15s linear 14.03s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .sc1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink4 1.65s linear 12.30s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-u1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-u1 1.400s linear 14.600s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .ln-loop{animation:ts-anim-s3-1-1-rlhf-dos-pasos-draw17 1.192s linear 14.704s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .hd-loop{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in .15s linear 15.90s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .fl1{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink5 0.70s linear 15.90s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .c4{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink6 5.70s linear 10.45s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tx-repite{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.5s ease-out 16.20s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-p2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-p2 0.350s linear 16.400s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-r2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-r2 0.350s linear 16.925s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-s2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-s2 0.350s linear 18.175s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .sc2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink7 0.98s linear 17.37s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-u2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-u2 0.700s linear 18.675s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .fl2{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink8 0.70s linear 19.32s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .c5{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink9 3.12s linear 16.20s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-p3{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-p3 0.266s linear 19.575s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-r3{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-r3 0.266s linear 19.974s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-s3{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-s3 0.266s linear 21.140s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .sc3{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink10 0.93s linear 20.34s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-u3{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-u3 0.532s linear 21.520s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .fl3{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink11 0.70s linear 22.01s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .c6{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink12 3.13s linear 19.37s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .tk-f{animation:ts-anim-s3-1-1-rlhf-dos-pasos-tk-f 0.900s linear 22.604s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .ln-f{animation:ts-anim-s3-1-1-rlhf-dos-pasos-draw35 0.329s linear 22.977s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .hd-f{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in .15s linear 23.31s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .bx-final{animation:ts-anim-s3-1-1-rlhf-dos-pasos-in 0.45s ease-out 23.26s both}
+.ts-anim-s3-1-1-rlhf-dos-pasos .c7{animation:ts-anim-s3-1-1-rlhf-dos-pasos-blink13 2.50s linear 23.81s both}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink1{0%{opacity:0}12.50%,87.50%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-d1{0.00%{transform:translate(175px,95px)}100.00%{transform:translate(175px,161px)}0%{opacity:0}15.00%,85.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-draw2{from{stroke-dashoffset:20px}to{stroke-dashoffset:0px}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink2{0%{opacity:0}11.67%,88.33%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-d2{0.00%{transform:translate(175px,161px)}100.00%{transform:translate(175px,216px)}0%{opacity:0}17.14%,82.86%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-draw5{from{stroke-dashoffset:24px}to{stroke-dashoffset:0px}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink3{0%{opacity:0}18.42%,81.58%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-j{0.00%{transform:translate(292px,234px)}100.00%{transform:translate(452px,234px)}0%{opacity:0}12.00%,88.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-draw8{from{stroke-dashoffset:130px}to{stroke-dashoffset:0px}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-p1{0.00%{transform:translate(575px,96px)}100.00%{transform:translate(575px,164px)}0%{opacity:0}17.14%,82.86%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-draw10{from{stroke-dashoffset:26px}to{stroke-dashoffset:0px}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-r1{0.00%{transform:translate(575px,164px)}100.00%{transform:translate(575px,234px)}0%{opacity:0}17.14%,82.86%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-draw12{from{stroke-dashoffset:26px}to{stroke-dashoffset:0px}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-s1{0.00%{transform:translate(575px,234px)}100.00%{transform:translate(575px,312px)}0%{opacity:0}17.14%,82.86%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-draw14{from{stroke-dashoffset:26px}to{stroke-dashoffset:0px}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink4{0%{opacity:0}18.18%,81.82%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-u1{0.00%{transform:translate(692px,314px)}19.01%{transform:translate(738px,314px)}80.99%{transform:translate(738px,164px)}100.00%{transform:translate(692px,164px)}0%{opacity:0}8.57%,91.43%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-draw17{from{stroke-dashoffset:206px}to{stroke-dashoffset:0px}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink5{0%{opacity:0}21.43%,78.57%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink6{0%{opacity:0}6.14%,93.86%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-p2{0.00%{transform:translate(575px,96px)}100.00%{transform:translate(575px,164px)}0%{opacity:0}34.29%,65.71%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-r2{0.00%{transform:translate(575px,164px)}100.00%{transform:translate(575px,234px)}0%{opacity:0}34.29%,65.71%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-s2{0.00%{transform:translate(575px,234px)}100.00%{transform:translate(575px,312px)}0%{opacity:0}34.29%,65.71%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink7{0%{opacity:0}30.77%,69.23%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-u2{0.00%{transform:translate(692px,314px)}19.01%{transform:translate(738px,314px)}80.99%{transform:translate(738px,164px)}100.00%{transform:translate(692px,164px)}0%{opacity:0}17.14%,82.86%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink8{0%{opacity:0}21.43%,78.57%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink9{0%{opacity:0}11.20%,88.80%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-p3{0.00%{transform:translate(575px,96px)}100.00%{transform:translate(575px,164px)}0%{opacity:0}45.11%,54.89%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-r3{0.00%{transform:translate(575px,164px)}100.00%{transform:translate(575px,234px)}0%{opacity:0}45.11%,54.89%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-s3{0.00%{transform:translate(575px,234px)}100.00%{transform:translate(575px,312px)}0%{opacity:0}45.11%,54.89%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink10{0%{opacity:0}32.15%,67.85%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-u3{0.00%{transform:translate(692px,314px)}19.01%{transform:translate(738px,314px)}80.99%{transform:translate(738px,164px)}100.00%{transform:translate(692px,164px)}0%{opacity:0}22.56%,77.44%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink11{0%{opacity:0}21.43%,78.57%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink12{0%{opacity:0}11.19%,88.81%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-tk-f{0.00%{transform:translate(575px,326px)}100.00%{transform:translate(575px,408px)}0%{opacity:0}13.33%,86.67%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-draw35{from{stroke-dashoffset:30px}to{stroke-dashoffset:0px}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-blink13{0%{opacity:0}14.00%,86.00%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s3-1-1-rlhf-dos-pasos *{animation:none !important}}
+@keyframes ts-anim-s3-1-1-rlhf-dos-pasos-in{from{opacity:0}}
+</style>
+<defs>
+<marker id="ag" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+<marker id="ar" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="13" markerHeight="13" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="800" height="450" fill="#FFFFFF"/>
+
+<rect x="20" y="20" width="310" height="340" rx="10" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="420" y="20" width="360" height="340" rx="10" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1.5"/>
+
+<!-- narration: tokens ride under every box, so a box swallows what it processes -->
+<g class="tk-d1" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-d2" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-j" opacity="0"><circle r="6" fill="#DA1B2E" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-p1" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-r1" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-s1" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-u1" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-p2" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-r2" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-s2" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-u2" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-p3" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-r3" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-s3" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-u3" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="tk-f" opacity="0"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g>
+
+<g class="h1">
+<rect x="40" y="37" width="62" height="22" rx="11" fill="#F9D2D6"/>
+<text x="71" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F1E1E">PASO 1</text>
+<text x="112" y="53" font-size="15" font-weight="bold" fill="#1F1E1E">Entrenar un juez</text>
+</g>
+
+<g class="h2">
+<rect x="440" y="37" width="62" height="22" rx="11" fill="#F9D2D6"/>
+<text x="471" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F1E1E">PASO 2</text>
+<text x="512" y="53" font-size="15" font-weight="bold" fill="#1F1E1E">Optimizar contra el juez</text>
+</g>
+
+<g class="bx-datos">
+<rect x="40" y="72" width="270" height="46" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="175" y="91" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">Datos de comparación</text>
+<text x="175" y="109" text-anchor="middle" font-size="12">(prompt, ganadora, perdedora)</text>
+</g>
+<line class="ln-1" x1="175" y1="118" x2="175" y2="138" stroke="#3B3535" stroke-width="1.75" stroke-dasharray="20 20"/>
+<path class="hd-1" d="M170,128 L175,138 L180,128 z" fill="#3B3535"/>
+
+<g class="bx-copia">
+<rect x="40" y="138" width="270" height="46" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="175" y="157" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">Copia del modelo SFT</text>
+<text x="175" y="175" text-anchor="middle" font-size="12">con una salida de un solo número</text>
+</g>
+<line class="ln-2" x1="175" y1="184" x2="175" y2="208" stroke="#3B3535" stroke-width="1.75" stroke-dasharray="24 24"/>
+<path class="hd-2" d="M170,198 L175,208 L180,198 z" fill="#3B3535"/>
+
+<g class="bx-rm">
+<rect x="40" y="208" width="270" height="52" rx="6" fill="#DA1B2E"/>
+<text x="175" y="230" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">REWARD MODEL</text>
+<text x="175" y="249" text-anchor="middle" font-size="13" fill="#FFFFFF">(el juez)</text>
+</g>
+
+<g class="tx-aprende">
+<text x="175" y="296" text-anchor="middle" font-size="13" font-style="italic">aprende de las preferencias</text>
+<text x="175" y="314" text-anchor="middle" font-size="13" font-style="italic">de las personas</text>
+</g>
+
+<line class="ln-j" x1="310" y1="234" x2="440" y2="234" stroke="#DA1B2E" stroke-width="2.5" stroke-dasharray="130 130"/>
+<path class="hd-j" d="M427,227.5 L440,234 L427,240.5 z" fill="#DA1B2E"/>
+<text class="tx-juez" x="375" y="224" text-anchor="middle" font-size="12" font-weight="bold" fill="#DA1B2E">el juez</text>
+
+<g class="bx-prompts">
+<rect x="440" y="76" width="270" height="40" rx="6" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1.25"/>
+<text x="575" y="101" text-anchor="middle" font-size="14">Prompts, sin respuestas</text>
+</g>
+<line class="ln-3" x1="575" y1="116" x2="575" y2="142" stroke="#3B3535" stroke-width="1.75" stroke-dasharray="26 26"/>
+<path class="hd-3" d="M570,132 L575,142 L580,132 z" fill="#3B3535"/>
+
+<g class="bx-sft">
+<rect x="440" y="142" width="270" height="44" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="575" y="169" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">El modelo SFT genera una respuesta</text>
+</g>
+<line class="ln-4" x1="575" y1="186" x2="575" y2="212" stroke="#3B3535" stroke-width="1.75" stroke-dasharray="26 26"/>
+<path class="hd-4" d="M570,202 L575,212 L580,202 z" fill="#3B3535"/>
+
+<g class="bx-punt">
+<rect x="440" y="212" width="270" height="44" rx="6" fill="#FFFFFF" stroke="#DA1B2E" stroke-width="1.75"/>
+<text x="575" y="239" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">El reward model la puntúa</text>
+</g>
+<line class="ln-5" x1="575" y1="256" x2="575" y2="282" stroke="#3B3535" stroke-width="1.75" stroke-dasharray="26 26"/>
+<path class="hd-5" d="M570,272 L575,282 L580,272 z" fill="#3B3535"/>
+
+<g class="bx-ppo">
+<rect x="440" y="282" width="270" height="64" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="575" y="302" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">PPO ajusta el modelo</text>
+<text x="575" y="320" text-anchor="middle" font-size="12">para subir el puntaje,</text>
+<text x="575" y="336" text-anchor="middle" font-size="12">sin alejarse del SFT</text>
+</g>
+
+<path class="ln-loop" d="M710,314 H738 V164 H710" fill="none" stroke="#3B3535" stroke-width="2" stroke-linejoin="round" stroke-dasharray="206 206"/>
+<path class="hd-loop" d="M720,159 L710,164 L720,169 z" fill="#3B3535"/>
+<text class="tx-repite" x="760" y="239" text-anchor="middle" font-size="12" font-style="italic" transform="rotate(-90 760 239)">se repite muchas veces</text>
+
+<line class="ln-f" x1="575" y1="360" x2="575" y2="390" stroke="#3B3535" stroke-width="1.75" stroke-dasharray="30 30"/>
+<path class="hd-f" d="M570,380 L575,390 L580,380 z" fill="#3B3535"/>
+<g class="bx-final">
+<rect x="490" y="390" width="170" height="40" rx="6" fill="#F2EEEE" stroke="#3B3535" stroke-width="2"/>
+<text x="575" y="415" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">MODELO FINAL</text>
+</g>
+
+<!-- narration: update flashes, scores, captions (all end at opacity 0) -->
+<rect class="fl1" x="440" y="142" width="270" height="44" rx="6" fill="none" stroke="#3B3535" stroke-width="3" opacity="0"/>
+<rect class="fl2" x="440" y="142" width="270" height="44" rx="6" fill="none" stroke="#3B3535" stroke-width="3" opacity="0"/>
+<rect class="fl3" x="440" y="142" width="270" height="44" rx="6" fill="none" stroke="#3B3535" stroke-width="3" opacity="0"/>
+<text class="sc1" x="590" y="274" font-size="13" font-weight="bold" fill="#DA1B2E" opacity="0">puntaje 0,4</text>
+<text class="sc2" x="590" y="274" font-size="13" font-weight="bold" fill="#DA1B2E" opacity="0">puntaje 0,6</text>
+<text class="sc3" x="590" y="274" font-size="13" font-weight="bold" fill="#DA1B2E" opacity="0">puntaje 0,8</text>
+<text class="c1" x="30" y="404" font-size="15" fill="#3B3535" opacity="0">Paso 1: personas eligen la mejor de dos respuestas</text>
+<text class="c2" x="30" y="404" font-size="15" fill="#3B3535" opacity="0">La copia aprende a puntuar como esas personas</text>
+<text class="c3" x="30" y="404" font-size="15" fill="#3B3535" opacity="0">El juez pasa al paso 2</text>
+<text class="c4" x="30" y="404" font-size="15" fill="#3B3535" opacity="0">Paso 2 · vuelta 1</text>
+<text class="c5" x="30" y="404" font-size="15" fill="#3B3535" opacity="0">Vuelta 2</text>
+<text class="c6" x="30" y="404" font-size="15" fill="#3B3535" opacity="0">Vuelta 3 … y así muchas veces</text>
+<text class="c7" x="30" y="404" font-size="15" fill="#3B3535" opacity="0">Tras muchas vueltas: el modelo final</text>
+</svg>

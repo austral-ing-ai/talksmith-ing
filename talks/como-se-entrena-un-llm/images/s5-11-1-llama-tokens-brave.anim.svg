@@ -1,0 +1,118 @@
+<svg class="ts-anim-s5-11-1-llama-tokens-brave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 567" font-family="Helvetica, Arial, sans-serif" font-size="19" fill="#3B3535">
+<title>Buscar: lo que escribe Llama 3.1</title>
+<desc>Es la misma lámina que la de Wolfram Alpha, con otra herramienta: el system prompt trae la fecha de corte y la de hoy, el usuario pide un precio actual, el assistant escribe la consulta entre python_tag y eom_id y se detiene, y el agente agrega los resultados con el rol ipython.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s5-11-1-llama-tokens-brave .b{animation:ts-anim-s5-11-1-llama-tokens-brave-in .6s ease-out both}
+.ts-anim-s5-11-1-llama-tokens-brave .b1{animation-delay:.3s}
+.ts-anim-s5-11-1-llama-tokens-brave .b2{animation-delay:1.6s}
+.ts-anim-s5-11-1-llama-tokens-brave .b3{animation-delay:4.2s}
+.ts-anim-s5-11-1-llama-tokens-brave .b4{animation-delay:5.6s}
+.ts-anim-s5-11-1-llama-tokens-brave .b5{animation-delay:6.6s}
+.ts-anim-s5-11-1-llama-tokens-brave .b6{animation-delay:7.4s}
+.ts-anim-s5-11-1-llama-tokens-brave .b7{animation-delay:10.2s}
+.ts-anim-s5-11-1-llama-tokens-brave .b8{animation-delay:11.3s}
+.ts-anim-s5-11-1-llama-tokens-brave .b10{animation-delay:14.2s}
+.ts-anim-s5-11-1-llama-tokens-brave .b11{animation-delay:15.5s}
+.ts-anim-s5-11-1-llama-tokens-brave .b12{animation-delay:17.0s}
+.ts-anim-s5-11-1-llama-tokens-brave .cap1{animation:ts-anim-s5-11-1-llama-tokens-brave-cap 2.4s linear 1.8s both}
+.ts-anim-s5-11-1-llama-tokens-brave .type1{transform-origin:642px 0;animation:ts-anim-s5-11-1-llama-tokens-brave-type 1.1s linear 7.4s both}
+.ts-anim-s5-11-1-llama-tokens-brave .type2{transform-origin:857px 0;animation:ts-anim-s5-11-1-llama-tokens-brave-type 1.6s linear 8.7s both}
+.ts-anim-s5-11-1-llama-tokens-brave .draw{stroke-dasharray:420;animation:ts-anim-s5-11-1-llama-tokens-brave-draw .9s linear 12.3s both}
+.ts-anim-s5-11-1-llama-tokens-brave .head{animation:ts-anim-s5-11-1-llama-tokens-brave-in .15s linear 13.2s both}
+@keyframes ts-anim-s5-11-1-llama-tokens-brave-in{from{opacity:0}}
+@keyframes ts-anim-s5-11-1-llama-tokens-brave-cap{0%{opacity:0}17%,83%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s5-11-1-llama-tokens-brave-type{0%{opacity:1;transform:scaleX(1)}99.9%{opacity:1;transform:scaleX(0)}100%{opacity:0;transform:scaleX(0)}}
+@keyframes ts-anim-s5-11-1-llama-tokens-brave-draw{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s5-11-1-llama-tokens-brave *{animation:none!important}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto"><path d="M0,1 L12,7 L0,13 z" fill="#DA1B2E"/></marker>
+</defs>
+<rect width="1080" height="567" fill="#FFFFFF"/>
+<g font-size="15" font-weight="bold" letter-spacing="1">
+<text x="36" y="31">ROL</text>
+<text x="186" y="31">LO QUE VE EL MODELO</text>
+</g>
+<rect x="20" y="44" width="1040" height="460" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="2"/>
+<rect x="21" y="45" width="149" height="458" fill="#F2EEEE"/>
+<rect class="b b4" x="21" y="265" width="149" height="126" fill="#F9D2D6"/>
+<rect class="b b2" x="178" y="128" width="552" height="72" rx="6" fill="#F2EEEE" stroke="#F7BBC1" stroke-width="2"/>
+<g stroke="#D8D2CE" stroke-width="2">
+<line x1="170" y1="44" x2="170" y2="504"/>
+<line x1="20" y1="208" x2="1060" y2="208"/>
+<line x1="20" y1="264" x2="1060" y2="264"/>
+<line x1="20" y1="392" x2="1060" y2="392"/>
+<line x1="20" y1="448" x2="1060" y2="448"/>
+</g>
+<rect class="b b4" x="21.5" y="265.5" width="1037" height="125" fill="none" stroke="#DA1B2E" stroke-width="3"/>
+<g font-size="22" font-weight="bold" fill="#1F1E1E">
+<text class="b b1" x="36" y="80">system</text>
+<text class="b b3" x="36" y="243">user</text>
+<text class="b b4" x="36" y="298" fill="#DA1B2E">assistant</text>
+<text class="b b10" x="36" y="427">ipython</text>
+<text class="b b12" x="36" y="483">assistant</text>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="24" fill="#1F1E1E" xml:space="preserve">
+<text class="b b1" x="186" y="82">Environment: ipython</text>
+<text class="b b1" x="186" y="118">Tools: brave_search, wolfram_alpha</text>
+<text class="b b1" x="186" y="154">Cutting Knowledge Date: December 2023</text>
+<text class="b b1" x="186" y="190">Today Date: 21 September 2024</text>
+<text class="b b3" x="186" y="245">Search the web for the latest price of 1oz gold?</text>
+<text class="b b6" x="372" y="300" fill="#DA1B2E">brave_search.call(</text>
+<text class="b b6" x="372" y="336" fill="#DA1B2E">query="latest price of 1oz gold")</text>
+</g>
+<rect class="type1" x="370" y="279" width="272" height="30" fill="#FFFFFF" opacity="0"/>
+<rect class="type2" x="370" y="315" width="487" height="30" fill="#FFFFFF" opacity="0"/>
+<g font-family="Arial, Helvetica, sans-serif" font-size="24" font-style="italic" fill="#6E6767">
+<text class="b b10" x="186" y="429">[resultados de la búsqueda]</text>
+<text class="b b12" x="186" y="485">[respuesta con el precio y la fuente]</text>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect class="b b1" x="918" y="165.5" width="128" height="32" rx="6"/>
+<rect class="b b3" x="918" y="220.5" width="128" height="32" rx="6"/>
+<rect class="b b10" x="918" y="404.5" width="128" height="32" rx="6"/>
+<rect class="b b12" x="918" y="460.5" width="128" height="32" rx="6"/>
+</g>
+<g fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2">
+<rect class="b b5" x="186" y="275.5" width="174" height="32" rx="6"/>
+<rect class="b b7" x="918" y="348.5" width="128" height="32" rx="6"/>
+</g>
+<g font-family="'Andale Mono', monospace" fill="#1F1E1E">
+<text class="b b1" x="925" y="188">&lt;|eot_id|&gt;</text>
+<text class="b b3" x="925" y="243">&lt;|eot_id|&gt;</text>
+<text class="b b10" x="925" y="427">&lt;|eot_id|&gt;</text>
+<text class="b b12" x="925" y="483">&lt;|eot_id|&gt;</text>
+<text class="b b5" x="193" y="298" fill="#DA1B2E">&lt;|python_tag|&gt;</text>
+<text class="b b7" x="925" y="371" fill="#DA1B2E">&lt;|eom_id|&gt;</text>
+</g>
+<text class="b b8" x="186" y="372" font-size="21" font-weight="bold" fill="#DA1B2E">paro acá: falta la búsqueda</text>
+<line class="draw" x1="486" y1="364.5" x2="906" y2="364.5" stroke="#DA1B2E" stroke-width="2.5"/>
+<path class="head" d="M906,358.5 L918,364.5 L906,370.5 z" fill="#DA1B2E"/>
+<rect class="b b11" x="528" y="406" width="192" height="30" rx="15" fill="#B8E6F5"/>
+<text class="b b11" x="624" y="427" fill="#1F1E1E" text-anchor="middle">lo agrega el agente</text>
+<g class="cap1" opacity="0" font-weight="bold" fill="#1F1E1E">
+<text x="748" y="150">lo que sabe termina</text>
+<text x="748" y="176">antes de hoy</text>
+</g>
+<text x="20" y="540">cada turno empieza con</text>
+<text x="450" y="540" font-style="italic">rol</text>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="234" y="519" width="206" height="28" rx="6"/>
+<rect x="481" y="519" width="185" height="28" rx="6"/>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="17" fill="#1F1E1E">
+<text x="240" y="539">&lt;|start_header_id|&gt;</text>
+<text x="487" y="539">&lt;|end_header_id|&gt;</text>
+</g>
+</svg>
+<!-- ascii-note:
+intent: la misma conversación que la lámina de Wolfram Alpha, ahora con brave_search: el modelo escribe la consulta, se detiene, el agente agrega los resultados
+emphasize: la fecha de corte contra la fecha de hoy en el turno system (acento suave); la llamada <|python_tag|> brave_search.call(...) <|eom_id|> en rojo con "paro acá: falta la búsqueda"; el turno ipython con "lo agrega el agente"
+labels: mismo estilo que la lámina de Wolfram Alpha (rol a la izquierda, tokens como chips grises, texto en monoespaciado); los dos turnos entre corchetes son esquemáticos: dibujarlos en gris e itálica
+animation:
+  1. Aparece el turno system; se resaltan Cutting Knowledge Date: December 2023 y Today Date: 21 September 2024: lo que el modelo sabe termina antes de hoy.
+  2. Aparece el turno user: Search the web for the latest price of 1oz gold?
+  3. El turno assistant se escribe: <|python_tag|> brave_search.call(query="latest price of 1oz gold") y termina en <|eom_id|>; aparece "paro acá: falta la búsqueda".
+  4. El agente agrega el turno ipython con [resultados de la búsqueda]; aparece "lo agrega el agente".
+  5. El modelo sigue con el último turno assistant: [respuesta con el precio y la fuente]; el diagrama queda completo.
+-->

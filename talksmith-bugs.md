@@ -293,5 +293,28 @@
   impact: degraded — quema revisiones con defectos que no causó la animación, y deja la cursiva distinta entre el HTML y el PDF
   suggested_fix: SUGGESTION, unverified — capturar approved_still con el mismo Chrome que los cuadros (un cuadro de
     la base sin animar), o que validate_svg.py marque font-style/font-family que cairosvg ignora
-  seen: 2
-  plugin_version: 1.5.1
+  seen: 3
+  plugin_version: 1.5.1 · 1.6.2
+  evidence_20261029: como-se-entrena-un-llm, Polish (still, no animación): s5-11-1-llama-tokens-brave gastó su
+    única revisión en lo mismo. Hallazgo nuevo del renderer: en macOS una pila Helvetica-first con
+    font-style="italic" sale recta en cairosvg porque la cara inclinada de Helvetica es "Oblique"; Arial italic,
+    Helvetica Neue italic y Helvetica oblique sí se inclinan. Arreglo local: font-family="Arial, Helvetica, sans-serif".
+
+- id: BUG-20261029-01
+  status: open
+  date: 2026-10-29
+  talk: como-se-entrena-un-llm
+  step: 6 (Polish) — revisión de un diagrama (ascii-to-svg, Mode B)
+  where: skills/ascii-to-svg (render/revisión) + scripts/rasterize.py (cairosvg)
+  what: un `<text text-anchor="end">` con varios `<tspan>` (uno en negrita) desaparece en el PNG de cairosvg. En
+    s3-6-1-lazo-rlhf-ppo la revisión que corrigió un hueco pasó "objetivo = r - beta ·" a end-anchored y el PNG
+    quedó "objetivo = KL( LLM || modelo SFT )": fórmula conceptualmente incorrecta. El crítico lo vio como regresión
+  expected: el texto se dibuja igual que con start-anchor, o validate_svg.py avisa del patrón
+  actual: el texto "r − beta ·" no aparece en el PNG; hizo falta una 3.ª pasada (fuera del tope de 2) con corridas
+    start-anchored medidas a mano
+  repro: unknown — no se aisló un SVG mínimo; el patrón fue `<text text-anchor="end" x=350>objetivo = <tspan font-weight="bold">r</tspan> - beta ·</text>` rasterizado con rasterize.py
+  impact: degraded — un diagrama casi sale con una fórmula incorrecta; consume una pasada extra
+  suggested_fix: SUGGESTION, unverified — que validate_svg.py marque text-anchor middle/end sobre `<text>` con
+    varios tspans (o que diagram-style.md los prohíba), ya que cairosvg ya mostró problemas con tspans centrados
+  seen: 1
+  plugin_version: 1.6.2

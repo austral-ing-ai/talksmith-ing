@@ -1,0 +1,242 @@
+<svg class="ts-anim-sa-2-1-tres-etapas-cuatro-datos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 683" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
+<title>Tres etapas, cuatro conjuntos de datos</title>
+<desc>La lámina es el mapa de la clase: las tres etapas de entrenamiento de un LLM (pre-training, SFT y RLHF) con sus cuatro conjuntos de datos, y la escala de datos que cae de más de un billón de tokens a decenas de miles de ejemplos.</desc>
+<style>/* talksmith-animation */
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .a1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 0.27s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .p1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 0.81s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-t1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-t1 0.45s linear 1.35s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-t1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-t1 0.45s linear 1.35s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-t1 0.70s linear 1.35s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-t1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 1.78s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-o1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-o1 0.54s linear 2.07s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-o1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-o1 0.54s linear 2.07s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-o1 0.79s linear 2.07s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-o1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 2.59s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .m1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 2.66s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .s1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 3.33s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .a2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 4.05s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .p2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 4.59s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-l1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-l1 0.81s linear 5.13s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-l1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-l1 0.81s linear 5.13s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-l1 1.06s linear 5.13s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-l1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 5.92s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-t2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-t2 0.45s linear 5.85s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-t2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-t2 0.45s linear 5.85s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-t2 0.70s linear 5.85s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-t2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 6.28s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-o2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-o2 0.54s linear 6.57s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-o2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-o2 0.54s linear 6.57s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-o2 0.79s linear 6.57s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-o2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 7.09s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .m2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 7.16s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .s2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 7.83s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .a3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.6s ease-out 8.55s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .d3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 9.18s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .p3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 9.72s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-l2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-l2 0.81s linear 10.26s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-l2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-l2 0.81s linear 10.26s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-l2 1.06s linear 10.26s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-l2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 11.05s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-t3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-t3 0.45s linear 10.98s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-t3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-t3 0.45s linear 10.98s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-t3 0.70s linear 10.98s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-t3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 11.41s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-o3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-o3 0.54s linear 11.7s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-o3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-o3 0.54s linear 11.7s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-o3 0.79s linear 11.7s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-o3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 12.22s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .m3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 12.29s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .s3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 12.96s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .d4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 13.68s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .p4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 14.22s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-t4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-t4 0.45s linear 14.76s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-t4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-t4 0.45s linear 14.76s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-t4 0.70s linear 14.76s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-t4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 15.19s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-l4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-l4 1.22s linear 14.76s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-l4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-l4 1.22s linear 14.76s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-l4 1.47s linear 14.76s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-l4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 15.96s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-l3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-l3 0.54s linear 15.88s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-l3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-l3 0.54s linear 15.88s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-l3 0.79s linear 15.88s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-l3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 16.4s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ln-o4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-o4 0.54s linear 16.74s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .ball-o4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-o4 0.54s linear 16.74s both,ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-o4 0.79s linear 16.74s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .hd-o4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.15s linear 17.26s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .m4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 17.32s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .s4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-in 0.45s ease-out 18.0s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .h1{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-hl 1.1s ease-in-out 18.81s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .h2{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-hl 1.1s ease-in-out 19.53s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .h3{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-hl 1.1s ease-in-out 20.25s both}
+.ts-anim-sa-2-1-tres-etapas-cuatro-datos .h4{animation:ts-anim-sa-2-1-tres-etapas-cuatro-datos-hl 1.1s ease-in-out 20.97s both}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-in{from{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-hl{0%{opacity:0}25%,70%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-t1{from{stroke-dasharray:40.0 42.0;stroke-dashoffset:40.0}to{stroke-dasharray:40.0 42.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-t1{0.00%{transform:translate(180px,200px)}100.00%{transform:translate(180px,240px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-t1{0%{opacity:0}8.0%,64.3%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-o1{from{stroke-dasharray:102.0 104.0;stroke-dashoffset:102.0}to{stroke-dasharray:102.0 104.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-o1{0.00%{transform:translate(58px,318px)}100.00%{transform:translate(58px,420px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-o1{0%{opacity:0}8.0%,68.4%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-l1{from{stroke-dasharray:242.0 244.0;stroke-dashoffset:242.0}to{stroke-dasharray:242.0 244.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-l1{0.00%{transform:translate(330px,451px)}14.46%{transform:translate(365px,451px)}85.54%{transform:translate(365px,279px)}100.00%{transform:translate(400px,279px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-l1{0%{opacity:0}8.0%,76.4%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-t2{from{stroke-dasharray:40.0 42.0;stroke-dashoffset:40.0}to{stroke-dasharray:40.0 42.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-t2{0.00%{transform:translate(550px,200px)}100.00%{transform:translate(550px,240px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-t2{0%{opacity:0}8.0%,64.3%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-o2{from{stroke-dasharray:102.0 104.0;stroke-dashoffset:102.0}to{stroke-dasharray:102.0 104.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-o2{0.00%{transform:translate(428px,318px)}100.00%{transform:translate(428px,420px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-o2{0%{opacity:0}8.0%,68.4%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-l2{from{stroke-dasharray:252.0 254.0;stroke-dashoffset:252.0}to{stroke-dasharray:252.0 254.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-l2{0.00%{transform:translate(700px,451px)}11.11%{transform:translate(728px,451px)}79.37%{transform:translate(728px,279px)}100.00%{transform:translate(780px,279px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-l2{0%{opacity:0}8.0%,76.4%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-t3{from{stroke-dasharray:40.0 42.0;stroke-dashoffset:40.0}to{stroke-dasharray:40.0 42.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-t3{0.00%{transform:translate(930px,200px)}100.00%{transform:translate(930px,240px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-t3{0%{opacity:0}8.0%,64.3%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-o3{from{stroke-dasharray:102.0 104.0;stroke-dashoffset:102.0}to{stroke-dasharray:102.0 104.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-o3{0.00%{transform:translate(808px,318px)}100.00%{transform:translate(808px,420px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-o3{0%{opacity:0}8.0%,68.4%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-t4{from{stroke-dasharray:40.0 42.0;stroke-dashoffset:40.0}to{stroke-dasharray:40.0 42.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-t4{0.00%{transform:translate(1300px,200px)}100.00%{transform:translate(1300px,240px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-t4{0%{opacity:0}8.0%,64.3%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-l4{from{stroke-dasharray:854.0 856.0;stroke-dashoffset:854.0}to{stroke-dasharray:854.0 856.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-l4{0.00%{transform:translate(550px,482px)}3.75%{transform:translate(550px,514px)}71.31%{transform:translate(1127px,514px)}97.31%{transform:translate(1127px,292px)}100.00%{transform:translate(1150px,292px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-l4{0%{opacity:0}8.0%,83.0%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-l3{from{stroke-dasharray:255.0 257.0;stroke-dashoffset:255.0}to{stroke-dasharray:255.0 257.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-l3{0.00%{transform:translate(1080px,451px)}9.02%{transform:translate(1103px,451px)}81.57%{transform:translate(1103px,266px)}100.00%{transform:translate(1150px,266px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-l3{0%{opacity:0}8.0%,68.4%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-draw-o4{from{stroke-dasharray:102.0 104.0;stroke-dashoffset:102.0}to{stroke-dasharray:102.0 104.0;stroke-dashoffset:0}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-mv-o4{0.00%{transform:translate(1178px,318px)}100.00%{transform:translate(1178px,420px)}}
+@keyframes ts-anim-sa-2-1-tres-etapas-cuatro-datos-op-o4{0%{opacity:0}8.0%,68.4%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-sa-2-1-tres-etapas-cuatro-datos *{animation:none !important}}</style>
+<rect x="0" y="0" width="1500" height="683" fill="#ffffff"/>
+
+<g font-size="19" text-anchor="middle" fill="#3B3535">
+<text class="a1" x="180" y="58">Datos de baja calidad</text>
+<text class="a2" x="550" y="58">Datos de alta calidad</text>
+<text class="a3" x="1115" y="58">Feedback humano</text>
+</g>
+<g fill="none" stroke="#3B3535" stroke-width="1.5">
+<path class="a1" d="M30,80 V72 H330 V80"/>
+<path class="a2" d="M400,80 V72 H700 V80"/>
+<path class="a3" d="M780,80 V72 H1450 V80"/>
+</g>
+
+<rect class="a3" x="757" y="30" width="713" height="506" rx="10" fill="none" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="9 6"/>
+
+<g font-size="23" font-weight="bold" text-anchor="middle">
+<text class="a1" x="180" y="120">Pre-training</text>
+<text class="a2" x="550" y="120" font-size="21">SFT · Supervised Fine-Tuning</text>
+<text class="a3" x="1113" y="120" font-size="21">RLHF · Reinforcement Learning from Human Feedback</text>
+</g>
+
+<g fill="#ffffff" stroke="#D8D2CE" stroke-width="2">
+<rect class="a1" x="30" y="138" width="300" height="62" rx="16"/>
+<rect class="a2" x="400" y="138" width="300" height="62" rx="16"/>
+<rect class="d3" x="780" y="138" width="300" height="62" rx="16"/>
+<rect class="d4" x="1150" y="138" width="300" height="62" rx="16"/>
+</g>
+<g font-size="20" text-anchor="middle">
+<text class="a1" x="180" y="176">Texto (p. ej. internet)</text>
+<text class="a2" x="550" y="176">Datos de demostración</text>
+<text class="d3" x="930" y="176">Datos de comparación</text>
+<text class="d4" x="1300" y="176">Prompts</text>
+</g>
+
+<g fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5">
+<rect class="p1" x="30" y="240" width="300" height="78"/>
+<rect class="p2" x="400" y="240" width="300" height="78"/>
+<rect class="p3" x="780" y="240" width="300" height="78"/>
+<rect class="p4" x="1150" y="240" width="300" height="78"/>
+</g>
+<g font-size="21" font-weight="bold" text-anchor="middle">
+<text class="p1" x="180" y="273">Modelado de</text>
+<text class="p1" x="180" y="299">lenguaje</text>
+<text class="p2" x="550" y="273">Fine-tuning</text>
+<text class="p2" x="550" y="299">supervisado</text>
+<text class="p3" x="930" y="286">Clasificación</text>
+<text class="p4" x="1300" y="273">Aprendizaje por</text>
+<text class="p4" x="1300" y="299">refuerzo</text>
+</g>
+
+<g font-size="19" fill="#3B3535">
+<text class="m1" x="78" y="350">optimizado para</text>
+<text class="m1" x="78" y="374">completar texto</text>
+<text class="m2" x="448" y="350">ajustado para</text>
+<text class="m2" x="448" y="374">diálogo</text>
+<text class="m3" x="828" y="350">entrenado para dar un</text>
+<text class="m3" x="828" y="374">puntaje a (prompt,</text>
+<text class="m3" x="828" y="398">respuesta)</text>
+<text class="m4" x="1198" y="350">optimizado para generar</text>
+<text class="m4" x="1198" y="374">respuestas que maximicen</text>
+<text class="m4" x="1198" y="398">el puntaje</text>
+</g>
+
+<g fill="#ffffff" stroke="#1F1E1E" stroke-width="2">
+<rect class="m1" x="30" y="420" width="300" height="62"/>
+<rect class="m2" x="400" y="420" width="300" height="62"/>
+<rect class="m3" x="780" y="420" width="300" height="62"/>
+<rect class="m4" x="1150" y="420" width="300" height="62"/>
+</g>
+<g font-size="21" font-weight="bold" text-anchor="middle">
+<text class="m1" x="180" y="458">LLM preentrenado</text>
+<text class="m2" x="550" y="458">Modelo SFT</text>
+<text class="m3" x="930" y="458">Reward model</text>
+<text class="m4" x="1300" y="458">Modelo final</text>
+</g>
+
+<g fill="none" stroke="#3B3535" stroke-width="2">
+<path class="ln-t1" d="M180,200 V240"/>
+<path class="ln-t2" d="M550,200 V240"/>
+<path class="ln-t3" d="M930,200 V240"/>
+<path class="ln-t4" d="M1300,200 V240"/>
+<path class="ln-o1" d="M58,318 V420"/>
+<path class="ln-o2" d="M428,318 V420"/>
+<path class="ln-o3" d="M808,318 V420"/>
+<path class="ln-o4" d="M1178,318 V420"/>
+<path class="ln-l1" d="M330,451 H365 V279 H400"/>
+<path class="ln-l2" d="M700,451 H728 V279 H780"/>
+<path class="ln-l3" d="M1080,451 H1103 V266 H1150"/>
+<path class="ln-l4" d="M550,482 V514 H1127 V292 H1150"/>
+</g>
+<g fill="#3B3535">
+<polygon class="hd-t1" points="173.5,227 186.5,227 180,240"/>
+<polygon class="hd-t2" points="543.5,227 556.5,227 550,240"/>
+<polygon class="hd-t3" points="923.5,227 936.5,227 930,240"/>
+<polygon class="hd-t4" points="1293.5,227 1306.5,227 1300,240"/>
+<polygon class="hd-o1" points="51.5,407 64.5,407 58,420"/>
+<polygon class="hd-o2" points="421.5,407 434.5,407 428,420"/>
+<polygon class="hd-o3" points="801.5,407 814.5,407 808,420"/>
+<polygon class="hd-o4" points="1171.5,407 1184.5,407 1178,420"/>
+<polygon class="hd-l1" points="387,272.5 387,285.5 400,279"/>
+<polygon class="hd-l2" points="767,272.5 767,285.5 780,279"/>
+<polygon class="hd-l3" points="1137,259.5 1137,272.5 1150,266"/>
+<polygon class="hd-l4" points="1137,285.5 1137,298.5 1150,292"/>
+</g>
+<g fill="#3B3535" stroke="#ffffff" stroke-width="2">
+<circle class="ball-t1" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-t2" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-t3" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-t4" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-o1" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-o2" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-o3" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-o4" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-l1" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-l2" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-l3" cx="0" cy="0" r="7" opacity="0"/>
+<circle class="ball-l4" cx="0" cy="0" r="7" opacity="0"/>
+</g>
+
+<line x1="30" y1="560" x2="1470" y2="560" stroke="#D8D2CE" stroke-width="1.5"/>
+
+<g fill="#DA1B2E" fill-opacity="0.12">
+<rect class="h1" x="20" y="572" width="320" height="38" rx="8" opacity="0"/>
+<rect class="h2" x="390" y="572" width="320" height="62" rx="8" opacity="0"/>
+<rect class="h3" x="770" y="572" width="320" height="86" rx="8" opacity="0"/>
+<rect class="h4" x="1140" y="572" width="320" height="38" rx="8" opacity="0"/>
+</g>
+
+<g fill="#DA1B2E" text-anchor="middle">
+<g font-size="23" font-weight="bold">
+<text class="s1" x="180" y="598">&gt;1 billón de tokens</text>
+<text class="s2" x="550" y="598">10K-100K</text>
+<text class="s3" x="930" y="598">100K-1M comparaciones</text>
+<text class="s4" x="1300" y="598">10K-100K prompts</text>
+</g>
+<g font-size="19">
+<text class="s2" x="550" y="624">(prompt, respuesta)</text>
+<text class="s3" x="930" y="624">(prompt, respuesta ganadora,</text>
+<text class="s3" x="930" y="648">respuesta perdedora)</text>
+</g>
+</g>
+</svg>

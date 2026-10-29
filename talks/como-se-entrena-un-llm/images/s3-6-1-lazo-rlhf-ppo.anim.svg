@@ -1,0 +1,124 @@
+<svg class="ts-anim-s3-6-1-lazo-rlhf-ppo" xmlns="http://www.w3.org/2000/svg" viewBox="6 16 719 474" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Paso 2: optimizar con PPO</title>
+<desc>La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen): el LLM genera una respuesta, el modelo de recompensa la puntúa y PPO ajusta el LLM para subir el puntaje r menos beta por el KL contra el modelo SFT.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s3-6-1-lazo-rlhf-ppo .tok1 .ball{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-route1 13.32s linear 0.60s 1 normal both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .tok1{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-vis1 13.32s linear 0.60s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .d-a1{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-draw-a1 1.45s linear 0.75s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .a1{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-in 0.3s ease-out 1.75s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .d-a2{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-draw-a2 1.25s linear 2.98s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .a2{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-in 0.3s ease-out 3.78s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .d-a3{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-draw-a3 1.25s linear 5.00s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .a3{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-in 0.3s ease-out 5.80s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .d-a4{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-draw-a4 1.15s linear 9.70s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .a4{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-in 0.3s ease-out 10.40s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .d-a5{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-draw-a5 2.86s linear 11.40s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .a5{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-in 0.3s ease-out 13.81s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .f1{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-in 0.5s ease-out 6.10s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .f2{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-in 0.5s ease-out 7.40s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .kl-ring{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-pulse 1.0s ease-in-out 8.10s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .llm-flash1{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-pulse 0.7s ease-in-out 13.85s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .cap1{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-cap1 14.50s linear 0.20s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .tok2a .ball{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-prompt-leg 1.30s linear 15.45s 1 normal both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .tok2a{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-vis 1.30s linear 15.45s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .tok2b .ball{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-rest 2.60s linear 16.75s 1 normal both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .tok2b{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-vis 2.60s linear 16.75s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .tok3a .ball{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-prompt-leg 1.00s linear 20.25s 1 normal both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .tok3a{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-vis 1.00s linear 20.25s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .tok3b .ball{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-rest 1.90s linear 21.25s 1 normal both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .tok3b{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-vis 1.90s linear 21.25s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .prompts-flash2{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-pulse 0.70s ease-in-out 15.25s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .prompts-flash3{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-pulse 0.60s ease-in-out 20.10s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .llm-flash2{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-pulse 0.7s ease-in-out 19.30s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .llm-flash3{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-pulse 0.7s ease-in-out 23.10s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .cap2{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-cap2 4.90s linear 15.00s both}
+.ts-anim-s3-6-1-lazo-rlhf-ppo .cap3{animation:ts-anim-s3-6-1-lazo-rlhf-ppo-cap3 3.90s linear 20.00s both}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-in{from{opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-route1{0.00%{transform:translate(150px,70px)}1.13%{transform:translate(170px,70px)}8.63%{transform:translate(290px,70px)}16.89%{transform:translate(400px,90px)}17.27%{transform:translate(400px,90px)}17.87%{transform:translate(400px,96px)}23.87%{transform:translate(400px,156px)}26.88%{transform:translate(400px,186px)}30.03%{transform:translate(400px,186px)}33.03%{transform:translate(400px,216px)}39.04%{transform:translate(400px,276px)}41.29%{transform:translate(400px,300px)}64.56%{transform:translate(400px,300px)}68.32%{transform:translate(400px,360px)}73.57%{transform:translate(400px,410px)}75.08%{transform:translate(400px,438px)}77.33%{transform:translate(400px,438px)}81.08%{transform:translate(575px,438px)}84.38%{transform:translate(700px,438px)}94.14%{transform:translate(700px,70px)}99.17%{transform:translate(510px,70px)}100.00%{transform:translate(480px,70px)}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-vis1{0%{opacity:1}99%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-draw-a1{0%{stroke-dashoffset:120;opacity:1}68.97%{stroke-dashoffset:0;opacity:1}98%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-draw-a2{0%{stroke-dashoffset:60;opacity:1}64.00%{stroke-dashoffset:0;opacity:1}98%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-draw-a3{0%{stroke-dashoffset:60;opacity:1}64.00%{stroke-dashoffset:0;opacity:1}98%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-draw-a4{0%{stroke-dashoffset:50;opacity:1}60.87%{stroke-dashoffset:0;opacity:1}98%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-draw-a5{0%{stroke-dashoffset:685;opacity:1}84.27%{stroke-dashoffset:0;opacity:1}98%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-pulse{0%{opacity:0}30%,65%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-cap1{0%{opacity:0}2.07%,97.93%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-prompt-leg{0%{transform:translate(150px,70px)}20%{transform:translate(190px,70px)}55%{transform:translate(190px,70px)}100%{transform:translate(300px,70px)}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-rest{0.00%{transform:translate(300px,70px)}7.32%{transform:translate(400px,70px)}34.26%{transform:translate(400px,438px)}56.22%{transform:translate(700px,438px)}83.16%{transform:translate(700px,70px)}100.00%{transform:translate(470px,70px)}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-vis{0%{opacity:1}99%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-cap2{0%{opacity:0}6.12%,93.88%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-6-1-lazo-rlhf-ppo-cap3{0%{opacity:0}7.69%,92.31%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s3-6-1-lazo-rlhf-ppo *{animation:none !important}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="6" y="16" width="719" height="474" fill="#FFFFFF"/>
+<!-- narration: tokens ride under the boxes, which swallow them while they process -->
+<g class="tok1" opacity="0"><g class="ball"><circle r="4.5" fill="#3B3535"/></g></g>
+<g class="tok2a" opacity="0"><g class="ball"><circle r="4.5" fill="#3B3535"/></g></g>
+<g class="tok2b" opacity="0"><g class="ball"><circle r="4.5" fill="#3B3535"/></g></g>
+<g class="tok3a" opacity="0"><g class="ball"><circle r="4.5" fill="#3B3535"/></g></g>
+<g class="tok3b" opacity="0"><g class="ball"><circle r="4.5" fill="#3B3535"/></g></g>
+<g stroke="#D8D2CE" stroke-width="1.5" fill="#F2EEEE">
+<rect x="30" y="40" width="140" height="56" rx="8"/>
+<rect x="290" y="40" width="220" height="56" rx="8"/>
+<rect x="290" y="156" width="220" height="60" rx="8"/>
+<rect x="170" y="276" width="460" height="84" rx="8"/>
+<rect x="225" y="410" width="350" height="56" rx="8"/>
+</g>
+<!-- narration: each arrow draws itself as its token travels -->
+<g stroke="#3B3535" stroke-width="2" fill="none">
+<line class="d-a1" opacity="0" stroke-dasharray="120 120" x1="170" y1="68" x2="290" y2="68"/>
+<line class="d-a2" opacity="0" stroke-dasharray="60 60" x1="400" y1="96" x2="400" y2="156"/>
+<line class="d-a3" opacity="0" stroke-dasharray="60 60" x1="400" y1="216" x2="400" y2="276"/>
+<line class="d-a4" opacity="0" stroke-dasharray="50 50" x1="400" y1="360" x2="400" y2="410"/>
+<path class="d-a5" opacity="0" stroke-dasharray="685 685" d="M575,438 H700 V68 H510"/>
+</g>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line class="a1" x1="170" y1="68" x2="290" y2="68"/>
+<line class="a2" x1="400" y1="96" x2="400" y2="156"/>
+<line class="a3" x1="400" y1="216" x2="400" y2="276"/>
+<line class="a4" x1="400" y1="360" x2="400" y2="410"/>
+<path class="a5" d="M575,438 H700 V68 H510"/>
+</g>
+<g font-size="17" text-anchor="middle" fill="#1F1E1E" font-weight="bold">
+<text x="100" y="74">prompts</text>
+<text x="400" y="65">LLM</text>
+<text x="400" y="182">modelo de recompensa</text>
+<text x="400" y="434">PPO actualiza los pesos del LLM</text>
+</g>
+<g font-size="14" text-anchor="middle">
+<text x="400" y="85">(política)</text>
+<text x="400" y="203">(reward model)</text>
+<text x="400" y="455">(Proximal Policy Optimization)</text>
+<text class="a1" x="230" y="59">prompt</text>
+<text class="a5" x="605" y="59">pesos nuevos</text>
+</g>
+<g font-size="15">
+<text class="a2" x="410" y="131">respuesta</text>
+<text class="a3" x="410" y="251">puntaje <tspan font-weight="bold">r</tspan></text>
+</g>
+<g font-size="17" fill="#1F1E1E">
+<text class="f1" x="206" y="313">objetivo =</text>
+<text class="f1" x="284" y="313" font-weight="bold">r</text>
+<text class="f2" x="296" y="313">− beta ·</text>
+</g>
+<rect class="f2" x="361" y="290" width="234" height="34" rx="17" fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2"/>
+<text class="f2" x="478" y="313" font-size="17" font-weight="bold" fill="#DA1B2E" text-anchor="middle">KL( LLM || modelo SFT )</text>
+<text class="f2" x="478" y="346" font-size="13" fill="#DA1B2E" text-anchor="middle">freno: no alejarse del modelo SFT</text>
+<!-- narration: KL emphasis, LLM update flashes, pass counter -->
+<rect class="kl-ring" opacity="0" x="355" y="284" width="246" height="46" rx="23" fill="none" stroke="#DA1B2E" stroke-width="2.5"/>
+<g fill="none" stroke="#3B3535" stroke-width="3">
+<rect class="llm-flash1" opacity="0" x="285" y="35" width="230" height="66" rx="11"/>
+<rect class="llm-flash2" opacity="0" x="285" y="35" width="230" height="66" rx="11"/>
+<rect class="llm-flash3" opacity="0" x="285" y="35" width="230" height="66" rx="11"/>
+<rect class="prompts-flash2" opacity="0" x="25" y="35" width="150" height="66" rx="11"/>
+<rect class="prompts-flash3" opacity="0" x="25" y="35" width="150" height="66" rx="11"/>
+</g>
+<g font-size="15" fill="#3B3535">
+<text class="cap1" opacity="0" x="30" y="132">pasada 1</text>
+<text class="cap2" opacity="0" x="30" y="132">pasada 2 · otro prompt</text>
+<text class="cap3" opacity="0" x="30" y="132">pasada 3 · otro prompt</text>
+</g>
+</svg>

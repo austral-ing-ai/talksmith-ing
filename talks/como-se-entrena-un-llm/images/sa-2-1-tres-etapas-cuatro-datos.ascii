@@ -30,4 +30,10 @@
 intent: mapa de las tres etapas con sus cuatro conjuntos de datos, redibujado de la figura de Chip Huyen (rlhf.png)
 emphasize: la caída de escala en la fila de abajo y la caja punteada RLHF; acento rojo solo en la fila de escalas
 labels: "billón" = 10^12 (el "trillion" del inglés); escalas 10K-100K y 100K-1M; encabezados de columna con los acrónimos expandidos: "Pre-training", "SFT · Supervised Fine-Tuning", "RLHF · Reinforcement Learning from Human Feedback" (pedido del presentador)
+animation:
+  1. Texto (p. ej. internet) baja a Modelado de lenguaje y sale el LLM preentrenado, optimizado para completar texto; abajo aparece >1 billón de tokens.
+  2. El LLM preentrenado pasa a Fine-tuning supervisado, adonde bajan los Datos de demostración, y sale el Modelo SFT, ajustado para diálogo; abajo aparece 10K-100K (prompt, respuesta).
+  3. Se abre la caja punteada RLHF: el Modelo SFT y los Datos de comparación llegan a Clasificación y sale el Reward model; abajo aparece 100K-1M comparaciones.
+  4. Los Prompts, el Modelo SFT y el Reward model llegan a Aprendizaje por refuerzo y sale el Modelo final; abajo aparece 10K-100K prompts.
+  5. Se resalta la fila de escalas de izquierda a derecha: la cantidad de datos cae en cada etapa; el diagrama queda completo.
 -->

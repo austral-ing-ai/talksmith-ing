@@ -1,0 +1,116 @@
+<svg class="ts-anim-s5-2-1-loop-llm-agente" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1005 624" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>El circuito con un agente</title>
+<desc>Es la pieza de arriba del mapa anterior, tu aplicación, vista en el tiempo: el chat es el agente que llama al LLM y ejecuta las herramientas.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s5-2-1-loop-llm-agente .tk-1{animation:ts-anim-s5-2-1-loop-llm-agente-vis 0.90s linear 0.60s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-1 .m{animation:ts-anim-s5-2-1-loop-llm-agente-tk-1 0.90s linear 0.60s both}
+.ts-anim-s5-2-1-loop-llm-agente .ln-1{animation:ts-anim-s5-2-1-loop-llm-agente-dr-1 0.90s linear 0.60s both}
+.ts-anim-s5-2-1-loop-llm-agente .dn-1{animation:ts-anim-s5-2-1-loop-llm-agente-in .4s ease-out 1.50s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-2{animation:ts-anim-s5-2-1-loop-llm-agente-vis 0.90s linear 2.80s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-2 .m{animation:ts-anim-s5-2-1-loop-llm-agente-tk-2 0.90s linear 2.80s both}
+.ts-anim-s5-2-1-loop-llm-agente .ln-2{animation:ts-anim-s5-2-1-loop-llm-agente-dr-2 0.90s linear 2.80s both}
+.ts-anim-s5-2-1-loop-llm-agente .dn-2{animation:ts-anim-s5-2-1-loop-llm-agente-in .4s ease-out 3.70s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-3{animation:ts-anim-s5-2-1-loop-llm-agente-vis 0.90s linear 5.00s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-3 .m{animation:ts-anim-s5-2-1-loop-llm-agente-tk-3 0.90s linear 5.00s both}
+.ts-anim-s5-2-1-loop-llm-agente .ln-3{animation:ts-anim-s5-2-1-loop-llm-agente-dr-3 0.90s linear 5.00s both}
+.ts-anim-s5-2-1-loop-llm-agente .dn-3{animation:ts-anim-s5-2-1-loop-llm-agente-in .4s ease-out 5.90s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-4a{animation:ts-anim-s5-2-1-loop-llm-agente-vis 0.60s linear 7.20s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-4a .m{animation:ts-anim-s5-2-1-loop-llm-agente-tk-4a 0.60s linear 7.20s both}
+.ts-anim-s5-2-1-loop-llm-agente .ln-4a{animation:ts-anim-s5-2-1-loop-llm-agente-dr-4a 0.60s linear 7.20s both}
+.ts-anim-s5-2-1-loop-llm-agente .dn-4a{animation:ts-anim-s5-2-1-loop-llm-agente-in .4s ease-out 7.80s both}
+.ts-anim-s5-2-1-loop-llm-agente .hl-tool{animation:ts-anim-s5-2-1-loop-llm-agente-pulse 1.0s ease-in-out 8.30s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-4b{animation:ts-anim-s5-2-1-loop-llm-agente-vis 0.60s linear 9.50s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-4b .m{animation:ts-anim-s5-2-1-loop-llm-agente-tk-4b 0.60s linear 9.50s both}
+.ts-anim-s5-2-1-loop-llm-agente .ln-4b{animation:ts-anim-s5-2-1-loop-llm-agente-dr-4b 0.60s linear 9.50s both}
+.ts-anim-s5-2-1-loop-llm-agente .dn-4b{animation:ts-anim-s5-2-1-loop-llm-agente-in .4s ease-out 10.10s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-5{animation:ts-anim-s5-2-1-loop-llm-agente-vis 0.90s linear 11.40s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-5 .m{animation:ts-anim-s5-2-1-loop-llm-agente-tk-5 0.90s linear 11.40s both}
+.ts-anim-s5-2-1-loop-llm-agente .ln-5{animation:ts-anim-s5-2-1-loop-llm-agente-dr-5 0.90s linear 11.40s both}
+.ts-anim-s5-2-1-loop-llm-agente .dn-5{animation:ts-anim-s5-2-1-loop-llm-agente-in .4s ease-out 12.30s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-6{animation:ts-anim-s5-2-1-loop-llm-agente-vis 0.90s linear 13.60s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-6 .m{animation:ts-anim-s5-2-1-loop-llm-agente-tk-6 0.90s linear 13.60s both}
+.ts-anim-s5-2-1-loop-llm-agente .ln-6{animation:ts-anim-s5-2-1-loop-llm-agente-dr-6 0.90s linear 13.60s both}
+.ts-anim-s5-2-1-loop-llm-agente .dn-6{animation:ts-anim-s5-2-1-loop-llm-agente-in .4s ease-out 14.50s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-7{animation:ts-anim-s5-2-1-loop-llm-agente-vis 0.90s linear 15.80s both}
+.ts-anim-s5-2-1-loop-llm-agente .tk-7 .m{animation:ts-anim-s5-2-1-loop-llm-agente-tk-7 0.90s linear 15.80s both}
+.ts-anim-s5-2-1-loop-llm-agente .ln-7{animation:ts-anim-s5-2-1-loop-llm-agente-dr-7 0.90s linear 15.80s both}
+.ts-anim-s5-2-1-loop-llm-agente .dn-7{animation:ts-anim-s5-2-1-loop-llm-agente-in .4s ease-out 16.70s both}
+.ts-anim-s5-2-1-loop-llm-agente .ln-lp{animation:ts-anim-s5-2-1-loop-llm-agente-dr-lp 0.9s linear 17.70s both}
+.ts-anim-s5-2-1-loop-llm-agente .dn-lp{animation:ts-anim-s5-2-1-loop-llm-agente-in .4s ease-out 18.60s both}
+.ts-anim-s5-2-1-loop-llm-agente .dn-note{animation:ts-anim-s5-2-1-loop-llm-agente-in .5s ease-out 19.60s both}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-tk-1{0.00%{transform:translate(120px,140px)}100.00%{transform:translate(508px,140px)}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-dr-1{from{stroke-dasharray:388.0 388.0;stroke-dashoffset:388.0}to{stroke-dasharray:388.0 388.0;stroke-dashoffset:0}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-tk-2{0.00%{transform:translate(512px,195px)}100.00%{transform:translate(868px,195px)}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-dr-2{from{stroke-dasharray:356.0 356.0;stroke-dashoffset:356.0}to{stroke-dasharray:356.0 356.0;stroke-dashoffset:0}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-tk-3{0.00%{transform:translate(870px,265px)}100.00%{transform:translate(512px,265px)}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-dr-3{from{stroke-dasharray:358.0 358.0;stroke-dashoffset:358.0}to{stroke-dasharray:358.0 358.0;stroke-dashoffset:0}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-tk-4a{0.00%{transform:translate(508px,316px)}100.00%{transform:translate(390px,316px)}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-dr-4a{from{stroke-dasharray:118.0 118.0;stroke-dashoffset:118.0}to{stroke-dasharray:118.0 118.0;stroke-dashoffset:0}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-tk-4b{0.00%{transform:translate(390px,342px)}100.00%{transform:translate(508px,342px)}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-dr-4b{from{stroke-dasharray:118.0 118.0;stroke-dashoffset:118.0}to{stroke-dasharray:118.0 118.0;stroke-dashoffset:0}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-tk-5{0.00%{transform:translate(512px,420px)}100.00%{transform:translate(868px,420px)}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-dr-5{from{stroke-dasharray:356.0 356.0;stroke-dashoffset:356.0}to{stroke-dasharray:356.0 356.0;stroke-dashoffset:0}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-tk-6{0.00%{transform:translate(870px,480px)}100.00%{transform:translate(512px,480px)}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-dr-6{from{stroke-dasharray:358.0 358.0;stroke-dashoffset:358.0}to{stroke-dasharray:358.0 358.0;stroke-dashoffset:0}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-tk-7{0.00%{transform:translate(510px,540px)}100.00%{transform:translate(122px,540px)}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-dr-7{from{stroke-dasharray:388.0 388.0;stroke-dashoffset:388.0}to{stroke-dasharray:388.0 388.0;stroke-dashoffset:0}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-dr-lp{from{stroke-dasharray:229.0 229.0;stroke-dashoffset:229.0}to{stroke-dasharray:229.0 229.0;stroke-dashoffset:0}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-vis{0%{opacity:0}8%,92%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s5-2-1-loop-llm-agente-pulse{0%{opacity:0}30%,70%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s5-2-1-loop-llm-agente *{animation:none!important}}
+</style>
+<rect x="0" y="0" width="1005" height="624" fill="#ffffff"/>
+<g stroke-width="2" stroke-dasharray="6 5" stroke="#D8D2CE">
+<line x1="120" y1="84" x2="120" y2="565"/>
+<line x1="870" y1="84" x2="870" y2="565"/>
+</g>
+<line x1="510" y1="84" x2="510" y2="565" stroke="#DA1B2E" stroke-width="3"/>
+<rect x="20" y="20" width="200" height="64" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="410" y="20" width="200" height="64" rx="8" fill="#DA1B2E"/>
+<rect x="770" y="20" width="200" height="64" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<g text-anchor="middle" font-weight="bold" font-size="17" fill="#1F1E1E">
+<text x="120" y="47">Usuario</text>
+<text x="510" y="47" fill="#FFFFFF">Chat = agente</text>
+<text x="870" y="47">LLM (API)</text>
+</g>
+<g text-anchor="middle" font-size="13">
+<text x="120" y="70">escribe en el chat</text>
+<text x="510" y="70" fill="#FFFFFF">orquesta el circuito</text>
+<text x="870" y="70">recibe y devuelve texto</text>
+</g>
+<path class="ln-1" d="M120,140 L508,140" fill="none" stroke="#3B3535" stroke-width="2"/>
+<path class="ln-2" d="M512,195 L868,195" fill="none" stroke="#3B3535" stroke-width="2"/>
+<path class="ln-3" d="M870,265 L512,265" fill="none" stroke="#3B3535" stroke-width="2"/>
+<path class="ln-4a" d="M508,316 L390,316" fill="none" stroke="#3B3535" stroke-width="2"/>
+<path class="ln-4b" d="M390,342 L508,342" fill="none" stroke="#3B3535" stroke-width="2"/>
+<path class="ln-5" d="M512,420 L868,420" fill="none" stroke="#3B3535" stroke-width="2"/>
+<path class="ln-6" d="M870,480 L512,480" fill="none" stroke="#3B3535" stroke-width="2"/>
+<path class="ln-7" d="M510,540 L122,540" fill="none" stroke="#3B3535" stroke-width="2"/>
+<path class="ln-lp" d="M872,420 L910,420 L910,265 L874,265" fill="none" stroke="#3B3535" stroke-width="2"/>
+<!-- tokens ride over the lines, under the boxes and labels -->
+<g class="tk-1" opacity="0"><g class="m"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g></g>
+<g class="tk-2" opacity="0"><g class="m"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g></g>
+<g class="tk-3" opacity="0"><g class="m"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g></g>
+<g class="tk-4a" opacity="0"><g class="m"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g></g>
+<g class="tk-4b" opacity="0"><g class="m"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g></g>
+<g class="tk-5" opacity="0"><g class="m"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g></g>
+<g class="tk-6" opacity="0"><g class="m"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g></g>
+<g class="tk-7" opacity="0"><g class="m"><circle r="6" fill="#3B3535" stroke="#FFFFFF" stroke-width="2"/></g></g>
+<rect x="250" y="298" width="140" height="62" rx="8" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/>
+<g text-anchor="middle" font-weight="bold" fill="#1F1E1E">
+<text x="320" y="325">herramienta</text>
+<text x="320" y="345">del clima</text>
+</g>
+<rect class="hl-tool" x="246" y="294" width="148" height="70" rx="10" fill="none" stroke="#DA1B2E" stroke-width="3" opacity="0"/>
+<g class="dn-1"><path d="M497,146 L509,140 L497,134 z" fill="#3B3535"/><circle cx="150" cy="121" r="11" fill="#1F1E1E"/><text x="150" y="126" text-anchor="middle" font-weight="bold" font-size="13" fill="#FFFFFF">1</text><text x="168" y="126">"¿Qué tiempo hace hoy en Córdoba?"</text></g>
+<g class="dn-2"><path d="M857,201 L869,195 L857,189 z" fill="#3B3535"/><circle cx="540" cy="176" r="11" fill="#1F1E1E"/><text x="540" y="181" text-anchor="middle" font-weight="bold" font-size="13" fill="#FFFFFF">2</text><text x="558" y="181">historial + herramientas</text></g>
+<g class="dn-3"><path d="M523,259 L511,265 L523,271 z" fill="#3B3535"/><circle cx="540" cy="223" r="11" fill="#1F1E1E"/><text x="540" y="228" text-anchor="middle" font-weight="bold" font-size="13" fill="#FFFFFF">3</text><text x="558" y="228">llamada:</text><text x="558" y="252" font-family="'Andale Mono', monospace" font-size="14">get_weather(location="Córdoba")</text></g>
+<g class="dn-4a"><path d="M401,310 L389,316 L401,322 z" fill="#3B3535"/><circle cx="412" cy="301" r="11" fill="#1F1E1E"/><text x="412" y="306" text-anchor="middle" font-weight="bold" font-size="13" fill="#FFFFFF">4</text><text x="429" y="306">ejecuta</text></g>
+<g class="dn-4b"><path d="M497,348 L509,342 L497,336 z" fill="#3B3535"/><text x="408" y="362">resultado</text></g>
+<g class="dn-5"><path d="M857,426 L869,420 L857,414 z" fill="#3B3535"/><circle cx="540" cy="401" r="11" fill="#1F1E1E"/><text x="540" y="406" text-anchor="middle" font-weight="bold" font-size="13" fill="#FFFFFF">5</text><text x="558" y="406">historial + resultado</text></g>
+<g class="dn-6"><path d="M523,474 L511,480 L523,486 z" fill="#3B3535"/><circle cx="540" cy="461" r="11" fill="#1F1E1E"/><text x="540" y="466" text-anchor="middle" font-weight="bold" font-size="13" fill="#FFFFFF">6</text><text x="558" y="466">respuesta final (sin llamadas)</text></g>
+<g class="dn-7"><path d="M133,534 L121,540 L133,546 z" fill="#3B3535"/><circle cx="150" cy="521" r="11" fill="#1F1E1E"/><text x="150" y="526" text-anchor="middle" font-weight="bold" font-size="13" fill="#FFFFFF">7</text><text x="168" y="526">muestra la respuesta</text></g>
+<g class="dn-lp"><path d="M885,259 L873,265 L885,271 z" fill="#3B3535"/><text x="920" y="338">se repite</text><text x="920" y="356">(3 a 5)</text></g>
+<text class="dn-note" x="502" y="602" text-anchor="middle" font-style="italic" font-size="14">Los pasos 3 a 5 se repiten mientras el LLM pida herramientas</text>
+</svg>

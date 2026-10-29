@@ -1,0 +1,26 @@
+        +-----------+  prompt   +----------------+
+        | prompts   | --------> |  LLM (política)|
+        +-----------+           +----------------+
+                                        | respuesta
+                                        v
+                              +--------------------+
+                              | modelo de          |
+                              | recompensa         | --> puntaje r
+                              +--------------------+
+                                        |
+   objetivo = r  -  beta * KL( LLM || modelo SFT )
+                                        |
+                                        v
+                          PPO actualiza los pesos del LLM
+
+<!-- ascii-note:
+intent: el lazo de RLHF con PPO y la penalización KL contra el modelo SFT
+emphasize: el término KL que ata el modelo al SFT
+labels: política, reward model, r, beta, KL
+animation:
+  1. De prompts sale un prompt hacia el LLM (política).
+  2. El LLM escribe una respuesta, que baja al modelo de recompensa.
+  3. El modelo de recompensa devuelve el puntaje r.
+  4. Aparece el objetivo = r - beta * KL( LLM || modelo SFT ): el término KL resta cuanto más se aleja el LLM del modelo SFT.
+  5. PPO actualiza los pesos del LLM y el lazo vuelve a empezar con otro prompt: se ven una o dos pasadas más, más rápidas; el diagrama queda completo.
+-->

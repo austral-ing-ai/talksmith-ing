@@ -1,0 +1,48 @@
+<!-- talksmith-ascii-sha256: 827a20f22e824125e0c48c2d17d9a6ad9149f6727ef322634e2061a95f27f8c4 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 16 719 474" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Paso 2: optimizar con PPO</title>
+<desc>La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen): el LLM genera una respuesta, el modelo de recompensa la puntúa y PPO ajusta el LLM para subir el puntaje r menos beta por el KL contra el modelo SFT.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="6" y="16" width="719" height="474" fill="#FFFFFF"/>
+<g stroke="#D8D2CE" stroke-width="1.5" fill="#F2EEEE">
+<rect x="30" y="40" width="140" height="56" rx="8"/>
+<rect x="290" y="40" width="220" height="56" rx="8"/>
+<rect x="290" y="156" width="220" height="60" rx="8"/>
+<rect x="170" y="276" width="460" height="84" rx="8"/>
+<rect x="225" y="410" width="350" height="56" rx="8"/>
+</g>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="170" y1="68" x2="290" y2="68"/>
+<line x1="400" y1="96" x2="400" y2="156"/>
+<line x1="400" y1="216" x2="400" y2="276"/>
+<line x1="400" y1="360" x2="400" y2="410"/>
+<path d="M575,438 H700 V68 H510"/>
+</g>
+<g font-size="17" text-anchor="middle" fill="#1F1E1E" font-weight="bold">
+<text x="100" y="74">prompts</text>
+<text x="400" y="65">LLM</text>
+<text x="400" y="182">modelo de recompensa</text>
+<text x="400" y="434">PPO actualiza los pesos del LLM</text>
+</g>
+<g font-size="14" text-anchor="middle">
+<text x="400" y="85">(política)</text>
+<text x="400" y="203">(reward model)</text>
+<text x="400" y="455">(Proximal Policy Optimization)</text>
+<text x="230" y="59">prompt</text>
+<text x="605" y="59">pesos nuevos</text>
+</g>
+<g font-size="15">
+<text x="410" y="131">respuesta</text>
+<text x="410" y="251">puntaje <tspan font-weight="bold">r</tspan></text>
+</g>
+<g font-size="17" fill="#1F1E1E">
+<text x="206" y="313">objetivo =</text>
+<text x="284" y="313" font-weight="bold">r</text>
+<text x="296" y="313">− beta ·</text>
+</g>
+<rect x="361" y="290" width="234" height="34" rx="17" fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2"/>
+<text x="478" y="313" font-size="17" font-weight="bold" fill="#DA1B2E" text-anchor="middle">KL( LLM || modelo SFT )</text>
+<text x="478" y="346" font-size="13" fill="#DA1B2E" text-anchor="middle">freno: no alejarse del modelo SFT</text>
+</svg>

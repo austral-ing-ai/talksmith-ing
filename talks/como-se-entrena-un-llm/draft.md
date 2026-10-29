@@ -111,6 +111,12 @@ Es el gancho de la clase, contado sin nombres de etapas todavía. Un GPT-3 de 1.
 intent: mapa de las tres etapas con sus cuatro conjuntos de datos, redibujado de la figura de Chip Huyen (rlhf.png)
 emphasize: la caída de escala en la fila de abajo y la caja punteada RLHF; acento rojo solo en la fila de escalas
 labels: "billón" = 10^12 (el "trillion" del inglés); escalas 10K-100K y 100K-1M; encabezados de columna con los acrónimos expandidos: "Pre-training", "SFT · Supervised Fine-Tuning", "RLHF · Reinforcement Learning from Human Feedback" (pedido del presentador)
+animation:
+  1. Texto (p. ej. internet) baja a Modelado de lenguaje y sale el LLM preentrenado, optimizado para completar texto; abajo aparece >1 billón de tokens.
+  2. El LLM preentrenado pasa a Fine-tuning supervisado, adonde bajan los Datos de demostración, y sale el Modelo SFT, ajustado para diálogo; abajo aparece 10K-100K (prompt, respuesta).
+  3. Se abre la caja punteada RLHF: el Modelo SFT y los Datos de comparación llegan a Clasificación y sale el Reward model; abajo aparece 100K-1M comparaciones.
+  4. Los Prompts, el Modelo SFT y el Reward model llegan a Aprendizaje por refuerzo y sale el Modelo final; abajo aparece 10K-100K prompts.
+  5. Se resalta la fila de escalas de izquierda a derecha: la cantidad de datos cae en cada etapa; el diagrama queda completo.
 -->
 
 - **Fuente.** [Huyen, 2023](https://huyenchip.com/2023/05/02/rlhf.html)
@@ -718,6 +724,13 @@ Votación a mano alzada. Mucha gente elige la A. El SFT ve una sola respuesta po
 intent: resumen de RLHF en dos pasos lado a lado: primero se entrena un juez con comparaciones, después se optimiza el modelo contra ese juez
 emphasize: el reward model como puente entre los dos pasos (flecha del paso 1 al paso 2); el loop del paso 2
 labels: PASO 1 y PASO 2 como títulos de caja; "juez" = reward model
+animation:
+  1. PASO 1: aparecen los datos de comparación (prompt, ganadora, perdedora).
+  2. Bajan a la copia del modelo SFT con una salida de un solo número, que se entrena y queda como REWARD MODEL (el juez).
+  3. La flecha lleva el REWARD MODEL del PASO 1 al PASO 2.
+  4. PASO 2: un prompt, sin respuesta, llega al modelo SFT, que genera una respuesta; el reward model la puntúa; PPO ajusta el modelo para subir el puntaje, sin alejarse del SFT.
+  5. Se ven una o dos vueltas más del PASO 2, más rápidas (se repite muchas veces).
+  6. Del PASO 2 sale MODELO FINAL; el diagrama queda completo.
 -->
 
 - **Fuente.** [Ouyang et al., 2022 (OpenAI)](https://arxiv.org/abs/2203.02155) · [Huyen, 2023](https://huyenchip.com/2023/05/02/rlhf.html)
@@ -812,6 +825,11 @@ Preguntar a la clase cuál prefieren. Chip Huyen prefiere la perdedora. Ese desa
 intent: el mismo modelo puntúa las dos respuestas del par; entrenar es lograr que la ganadora quede arriba
 emphasize: la comparación s_w > s_l
 labels: s_w (ganadora), s_l (perdedora)
+animation:
+  1. (prompt, respuesta ganadora) entra al reward model y sale s_w.
+  2. (prompt, respuesta perdedora) entra al reward model, con los mismos pesos, y sale s_l.
+  3. Se comparan los dos puntajes: bien ordenado, s_w > s_l.
+  4. El caso al revés, s_w < s_l, es el que el entrenamiento corrige; el diagrama queda completo.
 -->
 
 - **De dónde sale.** Del modelo SFT, cambiando la capa de salida por una que da un escalar.
@@ -864,6 +882,12 @@ Acá va solo la idea. El mismo modelo puntúa las dos respuestas, y entrenarlo e
 intent: cómo se arma un batch de 64 pares de preferencia y el camino hasta un solo backward
 emphasize: la fórmula de la pérdida por par y el reagrupado de filas de a dos
 labels: Pᵢ = prompt del par i, Aᵢ = respuesta preferida, Bᵢ = la otra, r = puntaje del reward model
+animation:
+  1. Los 64 pares se despliegan en 128 filas, de a dos por par: fila 0 P₁ + A₁ (preferida), fila 1 P₁ + B₁, ... hasta la fila 127.
+  2. Un solo forward: aparecen los 128 puntajes, uno por fila.
+  3. Reagrupar por par: la fila 0 se junta con la 1, la 2 con la 3, ...
+  4. Cada par da su pérdida: -log σ( r(Aᵢ) - r(Bᵢ) ).
+  5. Las 64 pérdidas se promedian y sale un solo backward; el diagrama queda completo.
 -->
 
 - **Orden.** Las filas van de a pares, con la preferida primero, y el código tiene que saber qué puntaje va con cuál.
@@ -910,6 +934,12 @@ Recorrer el diagrama de arriba abajo. Cada fila repite el prompt, así que 64 pa
 intent: el lazo de RLHF con PPO y la penalización KL contra el modelo SFT
 emphasize: el término KL que ata el modelo al SFT
 labels: política, reward model, r, beta, KL
+animation:
+  1. De prompts sale un prompt hacia el LLM (política).
+  2. El LLM escribe una respuesta, que baja al modelo de recompensa.
+  3. El modelo de recompensa devuelve el puntaje r.
+  4. Aparece el objetivo = r - beta * KL( LLM || modelo SFT ): el término KL resta cuanto más se aleja el LLM del modelo SFT.
+  5. PPO actualiza los pesos del LLM y el lazo vuelve a empezar con otro prompt: se ven una o dos pasadas más, más rápidas; el diagrama queda completo.
 -->
 
 - **En términos de RL.** La política es el LLM; cada acción es elegir un token; la recompensa la da el RM.
@@ -976,6 +1006,13 @@ La fórmula es la del paper de OpenAI de 2022 (y la de la lámina de Chip Huyen)
 intent: el proceso de RL con recompensas verificables de DeepSeek-R1-Zero, de los datos a la actualización del modelo
 emphasize: el VERIFICADOR como reemplazo de las personas (acento rojo); los datos arriba con sus cantidades; el loop de vuelta al modelo
 labels: 16 respuestas por problema; recompensas 1/0; GRPO compara con el promedio del grupo
+animation:
+  1. Aparecen los DATOS: problemas con respuesta verificable, con sus cantidades (matemática 26K · código 17K · STEM 22K · lógica 15K).
+  2. Un problema baja al modelo, que genera 16 respuestas, cada una con <think> razonamiento </think> y la respuesta final.
+  3. Las 16 respuestas pasan por el VERIFICADOR (reglas, sin personas): ¿la respuesta es correcta? ¿respeta el formato <think>?
+  4. Salen las 16 recompensas: 1, 0, 1, 1, 0, ...
+  5. GRPO compara cada recompensa contra el promedio del grupo: sube la probabilidad de las respuestas mejores que el promedio y baja la de las peores.
+  6. La flecha se repite vuelve al modelo con el problema siguiente; se ve una vuelta más, rápida; el diagrama queda completo.
 -->
 
 - **Fuente.** [DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948)
@@ -1105,6 +1142,13 @@ Recompensa: exactitud (la respuesta coincide con la de referencia o el código p
 intent: el mapa de las piezas que intervienen cuando se usa un LLM por API, para que cada lámina siguiente de la sección sea un zoom sobre una pieza
 emphasize: el MODELO en el medio con "no la ejecuta"; los dos lugares donde corre una herramienta (TU APLICACIÓN arriba y HERRAMIENTAS NATIVAS abajo) con acento rojo; la plantilla de chat (ida) y el parser (vuelta) como los dos traductores, uno bajando y otro subiendo
 labels: TU APLICACIÓN fuera de la caja PLATAFORMA; la PLATAFORMA como un contenedor con sus cuatro piezas apiladas; flechas de ida a la izquierda y de vuelta a la derecha
+animation:
+  1. TU APLICACIÓN arma el pedido: mensajes + definición de las herramientas.
+  2. El pedido baja como JSON: messages + tools a la API: entra y sale JSON.
+  3. La PLANTILLA DE CHAT lo traduce a texto con tags (ida) y lo pasa al MODELO.
+  4. El MODELO escribe la llamada como texto con tags; no la ejecuta.
+  5. El PARSER DE LLAMADAS convierte ese texto en tool_calls (vuelta) y la API lo devuelve a TU APLICACIÓN como JSON: tool_calls o texto; TU APLICACIÓN ejecuta su herramienta.
+  6. El otro lugar donde corre una herramienta: el MODELO pide una nativa, la ejecutan las HERRAMIENTAS NATIVAS dentro de la plataforma y el resultado vuelve al MODELO; el diagrama queda completo.
 -->
 
 - **Plantilla de chat.** Convierte los mensajes y las definiciones de herramientas en el texto con tags que el modelo vio al entrenarse. El modelo ve la definición de cada herramienta, nunca su código.
@@ -1168,6 +1212,14 @@ Dónde reaparece cada pieza: tu aplicación, en el circuito y en el intercambio 
 intent: el circuito visto desde el usuario: el texto entra a un chat, y el chat es el agente que llama al LLM y ejecuta las herramientas
 emphasize: el chat/agente en el centro como orquestador; el LLM solo recibe texto y devuelve texto (una llamada o la respuesta); la herramienta la ejecuta el agente; el loop de los pasos 3 a 5
 labels: tres columnas (usuario, chat = agente, LLM) como diagrama de secuencia con flechas numeradas 1 a 7; la herramienta como caja debajo del agente
+animation:
+  1. USUARIO escribe 1 "¿Qué tiempo hace hoy en Córdoba?" y la flecha llega al CHAT = AGENTE.
+  2. El agente manda 2 historial + herramientas al LLM (API).
+  3. El LLM devuelve 3 llamada: get_weather(location="Córdoba"); no la ejecuta.
+  4. 4 el agente ejecuta la herramienta del clima y recibe el resultado.
+  5. El agente manda 5 historial + resultado al LLM.
+  6. El LLM devuelve 6 respuesta final (sin llamadas).
+  7. El agente hace 7 muestra la respuesta al USUARIO; aparece la nota de que los pasos 3 a 5 se repiten mientras el LLM pida herramientas; el diagrama queda completo.
 -->
 
 - **Qué hace el modelo.** Genera la llamada (nombre de la herramienta y argumentos) y decide cuándo llamar y cuándo responder. Es la parte que se entrena.
@@ -1324,6 +1376,12 @@ Es la primera pregunta de la calculadora: ¿para qué hace falta? GSM8K es un da
 intent: la conversación de Llama 3.1 con una llamada a Wolfram Alpha, turno por turno, tal como la ve el modelo
 emphasize: el turno del assistant que llama a la herramienta (<|python_tag|> … <|eom_id|>) en rojo con su anotación "paro acá: falta la herramienta"; el turno ipython anotado como agregado por el agente
 labels: columna de rol a la izquierda (system, user, assistant, ipython, assistant); tokens especiales como chips grises chicos; texto de los turnos en monoespaciado; la nota del start_header_id al pie en gris
+animation:
+  1. Aparece el turno system: Environment: ipython y Tools: brave_search, wolfram_alpha.
+  2. Aparece el turno user: What is the 100th decimal of pi?
+  3. El turno assistant se escribe: <|python_tag|> wolfram_alpha.call(query="100th decimal of pi") y termina en <|eom_id|>; aparece "paro acá: falta la herramienta".
+  4. El agente ejecuta la llamada y agrega el turno ipython con {"Result": "7"}; aparece "lo agrega el agente".
+  5. El modelo sigue con el último turno assistant: The 100th decimal of pi is 7.; el diagrama queda completo.
 -->
 
 - **Lo que escribe el modelo.** `<|python_tag|>` abre la llamada y `<|eom_id|>` la cierra: "paro acá, falta el resultado de la herramienta".
@@ -1382,6 +1440,12 @@ Llama 3.1, de Meta, trae tres herramientas incorporadas, y una es Wolfram Alpha 
 intent: la traducción entre los tokens que escribe el modelo y el JSON de la API, en las dos direcciones, con la misma cuenta de la calculadora
 emphasize: los tags especiales (<|python_tag|>, <|eom_id|>, ipython) en rojo del lado del modelo; el JSON del lado de la API en gris; las flechas "el servidor convierte" como el punto de la lámina
 labels: dos columnas IDA (modelo -> código) y VUELTA (código -> modelo); arriba de cada caja quién la produce (modelo / servidor / tu código)
+animation:
+  1. IDA: aparece lo que escribe el modelo (texto): <|python_tag|>, el JSON de calcular con "1234 * 5678" y <|eom_id|>.
+  2. El servidor saca los tags y lee el JSON: aparece lo que recibe tu código, "tool_calls" con calcular y la misma expresión.
+  3. Tu código calcula: 7006652, y la flecha cruza a la VUELTA.
+  4. VUELTA: aparece lo que manda tu código (JSON): role tool, tool_name calcular, content 7006652.
+  5. El servidor lo convierte en un turno que el modelo sabe leer: <|start_header_id|>ipython<|end_header_id|> 7006652<|eot_id|>; el diagrama queda completo.
 -->
 
 - **Fuente.** [Meta, formato de prompt de Llama 3.1](https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/prompt_format.md) · [Ollama, docs de tool calling](https://docs.ollama.com/capabilities/tool-calling)
@@ -1533,6 +1597,12 @@ Es el problema de la búsqueda, igual que la lámina de "no calcula bien" para l
 intent: la misma conversación que la lámina de Wolfram Alpha, ahora con brave_search: el modelo escribe la consulta, se detiene, el agente agrega los resultados
 emphasize: la fecha de corte contra la fecha de hoy en el turno system (acento suave); la llamada <|python_tag|> brave_search.call(...) <|eom_id|> en rojo con "paro acá: falta la búsqueda"; el turno ipython con "lo agrega el agente"
 labels: mismo estilo que la lámina de Wolfram Alpha (rol a la izquierda, tokens como chips grises, texto en monoespaciado); los dos turnos entre corchetes son esquemáticos: dibujarlos en gris e itálica
+animation:
+  1. Aparece el turno system; se resaltan Cutting Knowledge Date: December 2023 y Today Date: 21 September 2024: lo que el modelo sabe termina antes de hoy.
+  2. Aparece el turno user: Search the web for the latest price of 1oz gold?
+  3. El turno assistant se escribe: <|python_tag|> brave_search.call(query="latest price of 1oz gold") y termina en <|eom_id|>; aparece "paro acá: falta la búsqueda".
+  4. El agente agrega el turno ipython con [resultados de la búsqueda]; aparece "lo agrega el agente".
+  5. El modelo sigue con el último turno assistant: [respuesta con el precio y la fuente]; el diagrama queda completo.
 -->
 
 - **Lo que escribe el modelo.** La consulta, no el resultado: `brave_search.call(query="latest price of 1oz gold")`.
@@ -1573,6 +1643,12 @@ Es la misma lámina que la de Wolfram Alpha, con otra herramienta. El system pro
 intent: los cuatro bloques de una respuesta con búsqueda web y quién produce cada uno
 emphasize: la columna de la derecha (modelo contra plataforma); el bloque 3 es el único que no genera el modelo
 labels: server_tool_use, web_search_tool_result, cita
+animation:
+  1. Aparece el encabezado: una respuesta de la API (stop_reason: "end_turn", web_search_requests: 1).
+  2. Bloque 1, texto: el modelo escribe "I'll search for when Claude Shannon was born."
+  3. Bloque 2, server_tool_use: el modelo escribe la consulta "claude shannon birth date".
+  4. Bloque 3, web_search_tool_result: la plataforma agrega el resultado de Wikipedia; es el único bloque que no genera el modelo.
+  5. Bloque 4, texto con cita: el modelo escribe la respuesta con la cita; el diagrama queda completo.
 -->
 
 - **Lo que genera el modelo.** La decisión de buscar, la consulta (bloque 2) y la respuesta final con citas (bloque 4).
@@ -1892,6 +1968,12 @@ Leer la tabla por filas y decir la fecha: las listas cambian rápido. OpenAI anu
 intent: los cinco pasos de un fine-tuning local, de arriba abajo, con la herramienta de cada paso
 emphasize: el paso 3 (entrenamiento) y la bifurcación del paso 5 entre una máquina y varios usuarios
 labels: TRL, PEFT, Unsloth, GGUF, vLLM
+animation:
+  1. 1 modelo abierto: Llama 3.2 8B, Qwen3, Gemma 4.
+  2. 2 datos: ejemplos en JSONL.
+  3. 3 entrenamiento: TRL SFTTrainer + PEFT (LoraConfig), o Unsloth; con QLoRA el modelo base se carga en 4 bits.
+  4. 4 resultado: un adaptador LoRA, o el modelo con el adaptador unido (merge_and_unload).
+  5. 5 servir: se abre la bifurcación entre GGUF con llama.cpp -> Ollama, LM Studio (una máquina) y vLLM (varios usuarios); el diagrama queda completo.
 -->
 
 - **Un ejemplo completo.** La guía de Google ajusta Gemma 4 E2B cargado en 4 bits (NF4), con LoRA de rango 16, para traducir preguntas a SQL. Enmascara todo lo que viene antes de la respuesta.

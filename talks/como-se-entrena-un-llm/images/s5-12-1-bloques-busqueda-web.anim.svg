@@ -1,0 +1,89 @@
+<svg class="ts-anim-s5-12-1-bloques-busqueda-web" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 412" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Buscar: la respuesta de la API</title>
+<desc>Es el mismo esquema que la calculadora: los cuatro bloques de una respuesta con búsqueda web y quién produce cada uno; el bloque 3 lo agrega la plataforma, los demás los genera el modelo.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s5-12-1-bloques-busqueda-web .hdr{animation:ts-anim-s5-12-1-bloques-busqueda-web-in 0.6s ease-out 0.3s 1 normal both}
+.ts-anim-s5-12-1-bloques-busqueda-web .r1{animation:ts-anim-s5-12-1-bloques-busqueda-web-in 0.4s ease-out 1.8s 1 normal both}
+.ts-anim-s5-12-1-bloques-busqueda-web .r2{animation:ts-anim-s5-12-1-bloques-busqueda-web-in 0.4s ease-out 4.8s 1 normal both}
+.ts-anim-s5-12-1-bloques-busqueda-web .r3{animation:ts-anim-s5-12-1-bloques-busqueda-web-in 0.5s ease-out 7.5s 1 normal both}
+.ts-anim-s5-12-1-bloques-busqueda-web .r4{animation:ts-anim-s5-12-1-bloques-busqueda-web-in 0.4s ease-out 9.4s 1 normal both}
+.ts-anim-s5-12-1-bloques-busqueda-web .c1{animation:ts-anim-s5-12-1-bloques-busqueda-web-type-c1 1.3s steps(47,end) 2.5s 1 normal both,ts-anim-s5-12-1-bloques-busqueda-web-hide 0.05s linear 3.8s 1 normal both}
+.ts-anim-s5-12-1-bloques-busqueda-web .c2{animation:ts-anim-s5-12-1-bloques-busqueda-web-type-c2 1.0s steps(34,end) 5.5s 1 normal both,ts-anim-s5-12-1-bloques-busqueda-web-hide 0.05s linear 6.5s 1 normal both}
+.ts-anim-s5-12-1-bloques-busqueda-web .c4a{animation:ts-anim-s5-12-1-bloques-busqueda-web-type-c4a 1.1s steps(43,end) 10.1s 1 normal both,ts-anim-s5-12-1-bloques-busqueda-web-hide 0.05s linear 11.2s 1 normal both}
+.ts-anim-s5-12-1-bloques-busqueda-web .c4b{animation:ts-anim-s5-12-1-bloques-busqueda-web-type-c4b 0.6s steps(23,end) 11.2s 1 normal both,ts-anim-s5-12-1-bloques-busqueda-web-hide 0.05s linear 11.8s 1 normal both}
+.ts-anim-s5-12-1-bloques-busqueda-web .c4c{animation:ts-anim-s5-12-1-bloques-busqueda-web-type-c4c 1.2s steps(51,end) 12.3s 1 normal both,ts-anim-s5-12-1-bloques-busqueda-web-hide 0.05s linear 13.5s 1 normal both}
+@keyframes ts-anim-s5-12-1-bloques-busqueda-web-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s5-12-1-bloques-busqueda-web-hide{from{opacity:1}to{opacity:0}}
+@keyframes ts-anim-s5-12-1-bloques-busqueda-web-type-c1{from{transform:translate(0px,0px)}to{transform:translate(394.8px,0px)}}
+@keyframes ts-anim-s5-12-1-bloques-busqueda-web-type-c2{from{transform:translate(0px,0px)}to{transform:translate(285.6px,0px)}}
+@keyframes ts-anim-s5-12-1-bloques-busqueda-web-type-c4a{from{transform:translate(0px,0px)}to{transform:translate(361.2px,0px)}}
+@keyframes ts-anim-s5-12-1-bloques-busqueda-web-type-c4b{from{transform:translate(0px,0px)}to{transform:translate(193.2px,0px)}}
+@keyframes ts-anim-s5-12-1-bloques-busqueda-web-type-c4c{from{transform:translate(0px,0px)}to{transform:translate(397.8px,0px)}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s5-12-1-bloques-busqueda-web *{animation:none !important}}
+</style>
+<defs>
+<clipPath id="ts-anim-s5-12-1-bloques-busqueda-web-kc1"><rect x="298" y="124" width="444" height="44"/></clipPath>
+<clipPath id="ts-anim-s5-12-1-bloques-busqueda-web-kc2"><rect x="298" y="180" width="444" height="44"/></clipPath>
+<clipPath id="ts-anim-s5-12-1-bloques-busqueda-web-kc4a"><rect x="298" y="298" width="444" height="22"/></clipPath>
+<clipPath id="ts-anim-s5-12-1-bloques-busqueda-web-kc4b"><rect x="298" y="320" width="444" height="20"/></clipPath>
+<clipPath id="ts-anim-s5-12-1-bloques-busqueda-web-kc4c"><rect x="297.5" y="345.5" width="434" height="22"/></clipPath>
+</defs>
+<rect x="0" y="0" width="940" height="412" fill="#ffffff"/>
+<rect x="20" y="20" width="900" height="372" rx="10" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.5"/>
+<line x1="20" y1="88" x2="920" y2="88" stroke="#D8D2CE" stroke-width="1"/>
+<g class="hdr">
+<text x="40" y="49" font-size="18" font-weight="bold" fill="#1F1E1E">Una respuesta de la API</text>
+<text x="40" y="72" font-size="13" font-family="'Andale Mono', monospace" xml:space="preserve">stop_reason: "end_turn"     web_search_requests: 1</text>
+<g font-size="12" font-weight="bold" fill="#3B3535" letter-spacing="1">
+<text x="48" y="111">BLOQUE</text>
+<text x="300" y="111">CONTENIDO</text>
+<text x="815" y="111" text-anchor="middle" fill="#1F1E1E">QUIÉN LO GENERA</text>
+</g>
+</g>
+<g class="r1">
+<rect x="36" y="122" width="868" height="48" rx="6" fill="#F2EEEE"/>
+<circle cx="60" cy="146" r="12" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<text x="60" y="151" font-size="13" font-weight="bold" text-anchor="middle">1</text>
+<text x="84" y="151" font-weight="bold" fill="#1F1E1E">texto</text>
+<rect x="751" y="133" width="128" height="26" rx="13" fill="#ffffff" stroke="#D8D2CE"/>
+<text x="815" y="151" text-anchor="middle">modelo</text>
+<text x="300" y="151" font-family="'Andale Mono', monospace">"I'll search for when Claude Shannon was born."</text>
+<g clip-path="url(#ts-anim-s5-12-1-bloques-busqueda-web-kc1)"><rect class="c1" x="298" y="124" width="444" height="44" fill="#F2EEEE" opacity="0"/></g>
+</g>
+<g class="r2">
+<rect x="36" y="178" width="868" height="48" rx="6" fill="#F2EEEE"/>
+<circle cx="60" cy="202" r="12" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<text x="60" y="207" font-size="13" font-weight="bold" text-anchor="middle">2</text>
+<text x="84" y="207" font-weight="bold" fill="#1F1E1E" font-family="'Andale Mono', monospace">server_tool_use</text>
+<rect x="751" y="189" width="128" height="26" rx="13" fill="#ffffff" stroke="#D8D2CE"/>
+<text x="815" y="207" text-anchor="middle">modelo</text>
+<text x="300" y="207" font-family="'Andale Mono', monospace">query: "claude shannon birth date"</text>
+<g clip-path="url(#ts-anim-s5-12-1-bloques-busqueda-web-kc2)"><rect class="c2" x="298" y="180" width="444" height="44" fill="#F2EEEE" opacity="0"/></g>
+</g>
+<g class="r3">
+<rect x="36" y="234" width="868" height="48" rx="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<circle cx="60" cy="258" r="12" fill="#DA1B2E"/>
+<text x="60" y="263" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">3</text>
+<text x="84" y="263" font-weight="bold" fill="#1F1E1E" font-family="'Andale Mono', monospace">web_search_tool_result</text>
+<text x="300" y="263">resultado de Wikipedia <tspan font-family="'Andale Mono', monospace">(url, title, page_age)</tspan></text>
+<rect x="751" y="245" width="128" height="26" rx="13" fill="#DA1B2E"/>
+<text x="815" y="263" text-anchor="middle" fill="#ffffff" font-weight="bold">plataforma</text>
+</g>
+<g class="r4">
+<rect x="36" y="290" width="868" height="86" rx="6" fill="#F2EEEE"/>
+<circle cx="60" cy="309" r="12" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<text x="60" y="314" font-size="13" font-weight="bold" text-anchor="middle">4</text>
+<text x="84" y="314" font-weight="bold" fill="#1F1E1E">texto con cita</text>
+<rect x="751" y="296" width="128" height="26" rx="13" fill="#ffffff" stroke="#D8D2CE"/>
+<text x="815" y="314" text-anchor="middle">modelo</text>
+<g font-family="'Andale Mono', monospace">
+<text x="300" y="314">"Claude Shannon was born on April 30, 1916,</text>
+<text x="300" y="333" xml:space="preserve"> in Petoskey, Michigan"</text>
+</g>
+<g clip-path="url(#ts-anim-s5-12-1-bloques-busqueda-web-kc4a)"><rect class="c4a" x="298" y="298" width="444" height="22" fill="#F2EEEE" opacity="0"/></g>
+<g clip-path="url(#ts-anim-s5-12-1-bloques-busqueda-web-kc4b)"><rect class="c4b" x="298" y="320" width="444" height="20" fill="#F2EEEE" opacity="0"/></g>
+<rect x="296" y="344" width="436" height="24" rx="4" fill="#ffffff" stroke="#D8D2CE"/>
+<text x="306" y="361" font-size="13"><tspan font-weight="bold" fill="#1F1E1E">cita: </tspan><tspan font-family="'Andale Mono', monospace">"Claude Elwood Shannon (April 30, 1916 – ..."</tspan></text>
+<g clip-path="url(#ts-anim-s5-12-1-bloques-busqueda-web-kc4c)"><rect class="c4c" x="297.5" y="345.5" width="434" height="22" fill="#ffffff" opacity="0"/></g>
+</g>
+</svg>

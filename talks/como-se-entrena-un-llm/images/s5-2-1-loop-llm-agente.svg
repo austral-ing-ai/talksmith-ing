@@ -1,0 +1,73 @@
+<!-- talksmith-ascii-sha256: 27ea84cbce6878fc61f9206f5b0d0e9af35690c0703c02be5fdd9cb88439d8a4 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1005 624" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>El circuito con un agente</title>
+<desc>Es la pieza de arriba del mapa anterior, tu aplicación, vista en el tiempo: el chat es el agente que llama al LLM y ejecuta las herramientas.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="1005" height="624" fill="#ffffff"/>
+<g stroke-width="2" stroke-dasharray="6 5" stroke="#D8D2CE">
+<line x1="120" y1="84" x2="120" y2="565"/>
+<line x1="870" y1="84" x2="870" y2="565"/>
+</g>
+<line x1="510" y1="84" x2="510" y2="565" stroke="#DA1B2E" stroke-width="3"/>
+<rect x="20" y="20" width="200" height="64" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="410" y="20" width="200" height="64" rx="8" fill="#DA1B2E"/>
+<rect x="770" y="20" width="200" height="64" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<g text-anchor="middle" font-weight="bold" font-size="17" fill="#1F1E1E">
+<text x="120" y="47">Usuario</text>
+<text x="510" y="47" fill="#FFFFFF">Chat = agente</text>
+<text x="870" y="47">LLM (API)</text>
+</g>
+<g text-anchor="middle" font-size="13">
+<text x="120" y="70">escribe en el chat</text>
+<text x="510" y="70" fill="#FFFFFF">orquesta el circuito</text>
+<text x="870" y="70">recibe y devuelve texto</text>
+</g>
+<g stroke="#3B3535" stroke-width="2" marker-end="url(#ah)">
+<line x1="120" y1="140" x2="508" y2="140"/>
+<line x1="512" y1="195" x2="868" y2="195"/>
+<line x1="870" y1="265" x2="512" y2="265"/>
+<line x1="508" y1="316" x2="390" y2="316"/>
+<line x1="390" y1="342" x2="508" y2="342"/>
+<line x1="512" y1="420" x2="868" y2="420"/>
+<line x1="870" y1="480" x2="512" y2="480"/>
+<line x1="510" y1="540" x2="122" y2="540"/>
+<path d="M872 420 H910 V265 H874" fill="none"/>
+</g>
+<rect x="250" y="298" width="140" height="62" rx="8" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/>
+<g text-anchor="middle" font-weight="bold" fill="#1F1E1E">
+<text x="320" y="325">herramienta</text>
+<text x="320" y="345">del clima</text>
+</g>
+<g fill="#1F1E1E">
+<circle cx="150" cy="121" r="11"/>
+<circle cx="540" cy="176" r="11"/>
+<circle cx="540" cy="223" r="11"/>
+<circle cx="412" cy="301" r="11"/>
+<circle cx="540" cy="401" r="11"/>
+<circle cx="540" cy="461" r="11"/>
+<circle cx="150" cy="521" r="11"/>
+</g>
+<g text-anchor="middle" font-weight="bold" font-size="13" fill="#FFFFFF">
+<text x="150" y="126">1</text>
+<text x="540" y="181">2</text>
+<text x="540" y="228">3</text>
+<text x="412" y="306">4</text>
+<text x="540" y="406">5</text>
+<text x="540" y="466">6</text>
+<text x="150" y="526">7</text>
+</g>
+<text x="168" y="126">"¿Qué tiempo hace hoy en Córdoba?"</text>
+<text x="558" y="181">historial + herramientas</text>
+<text x="558" y="228">llamada:</text>
+<text x="558" y="252" font-family="'Andale Mono', monospace" font-size="14">get_weather(location="Córdoba")</text>
+<text x="429" y="306">ejecuta</text>
+<text x="408" y="362">resultado</text>
+<text x="558" y="406">historial + resultado</text>
+<text x="558" y="466">respuesta final (sin llamadas)</text>
+<text x="168" y="526">muestra la respuesta</text>
+<text x="920" y="338">se repite</text>
+<text x="920" y="356">(3 a 5)</text>
+<text x="502" y="602" text-anchor="middle" font-style="italic" font-size="14">Los pasos 3 a 5 se repiten mientras el LLM pida herramientas</text>
+</svg>

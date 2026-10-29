@@ -1,0 +1,56 @@
+<!-- talksmith-ascii-sha256: 926db2b07c84bdcee9493d74ea0adb1e44c78f3c3d6113066d0eacab968a613b -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 487" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>Calcular: de los tokens al JSON</title>
+<desc>Ida y vuelta de una llamada a la calculadora: el modelo escribe la llamada entre python_tag y eom_id, el servidor la traduce al JSON tool_calls que recibe tu código, y traduce el resultado con rol tool a un turno ipython que el modelo sabe leer.</desc>
+<defs>
+<marker id="ar" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker>
+<marker id="ak" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect width="940" height="487" fill="#FFFFFF"/>
+<text x="230.0" y="35" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">IDA: DEL MODELO A TU CÓDIGO</text>
+<line x1="20" y1="47" x2="440" y2="47" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="710.0" y="35" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">VUELTA: DE TU CÓDIGO AL MODELO</text>
+<line x1="500" y1="47" x2="920" y2="47" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="20" y="62" width="420" height="144" rx="8" fill="#F2F2F2" stroke="#D8D2CE" stroke-width="1.5"/>
+<path d="M20,90 V70 Q20,62 28,62 H432 Q440,62 440,70 V90 Z" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="34" y="81"><tspan font-weight="bold" fill="#1F1E1E">lo que escribe el modelo</tspan> (texto)</text>
+<text x="34" y="112" font-family="'Andale Mono', monospace" xml:space="preserve"><tspan fill="#DA1B2E" font-weight="bold">&lt;|python_tag|&gt;</tspan>{&quot;type&quot;: &quot;function&quot;,</text>
+<text x="34" y="132" font-family="'Andale Mono', monospace" xml:space="preserve">  &quot;name&quot;: &quot;calcular&quot;,</text>
+<text x="34" y="152" font-family="'Andale Mono', monospace" xml:space="preserve">  &quot;parameters&quot;:</text>
+<text x="34" y="172" font-family="'Andale Mono', monospace" xml:space="preserve">    {&quot;expresion&quot;: &quot;1234 * 5678&quot;}}</text>
+<text x="34" y="192" font-family="'Andale Mono', monospace" xml:space="preserve"><tspan fill="#DA1B2E" font-weight="bold">&lt;|eom_id|&gt;</tspan></text>
+<line x1="230.0" y1="206" x2="230.0" y2="222" stroke="#DA1B2E" stroke-width="2"/>
+<rect x="65.0" y="222" width="330" height="33" rx="16" fill="#F9D2D6" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="230.0" y="243" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1F1E1E">el servidor saca los tags y lee el JSON</text>
+<line x1="230.0" y1="255" x2="230.0" y2="279" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="20" y="279" width="420" height="124" rx="8" fill="#F2F2F2" stroke="#D8D2CE" stroke-width="1.5"/>
+<path d="M20,307 V287 Q20,279 28,279 H432 Q440,279 440,287 V307 Z" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="34" y="298"><tspan font-weight="bold" fill="#1F1E1E">lo que recibe tu código</tspan> (JSON de la API)</text>
+<text x="34" y="329" font-family="'Andale Mono', monospace" xml:space="preserve">&quot;tool_calls&quot;: [{&quot;function&quot;: {</text>
+<text x="34" y="349" font-family="'Andale Mono', monospace" xml:space="preserve">  &quot;name&quot;: &quot;calcular&quot;,</text>
+<text x="34" y="369" font-family="'Andale Mono', monospace" xml:space="preserve">  &quot;arguments&quot;:</text>
+<text x="34" y="389" font-family="'Andale Mono', monospace" xml:space="preserve">    {&quot;expresion&quot;: &quot;1234 * 5678&quot;}}}]</text>
+<line x1="230.0" y1="403" x2="230.0" y2="429" stroke="#3B3535" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="105.0" y="429" width="250" height="38" rx="8" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/>
+<text x="230.0" y="453" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">tu código calcula: 7006652</text>
+<rect x="500" y="62" width="420" height="104" rx="8" fill="#F2F2F2" stroke="#D8D2CE" stroke-width="1.5"/>
+<path d="M500,90 V70 Q500,62 508,62 H912 Q920,62 920,70 V90 Z" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="514" y="81"><tspan font-weight="bold" fill="#1F1E1E">lo que manda tu código</tspan> (JSON)</text>
+<text x="514" y="112" font-family="'Andale Mono', monospace" xml:space="preserve">{&quot;role&quot;: &quot;tool&quot;,</text>
+<text x="514" y="132" font-family="'Andale Mono', monospace" xml:space="preserve"> &quot;tool_name&quot;: &quot;calcular&quot;,</text>
+<text x="514" y="152" font-family="'Andale Mono', monospace" xml:space="preserve"> &quot;content&quot;: &quot;7006652&quot;}</text>
+<path d="M355.0,448 H462.0 Q470.0,448 470.0,440 V130 Q470.0,122 478.0,122 H500" fill="none" stroke="#3B3535" stroke-width="2" marker-end="url(#ak)"/>
+<line x1="710.0" y1="166" x2="710.0" y2="182" stroke="#DA1B2E" stroke-width="2"/>
+<rect x="540.0" y="182" width="340" height="50" rx="16" fill="#F9D2D6" stroke="#DA1B2E" stroke-width="1.5"/>
+<text x="710.0" y="203" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1F1E1E">el servidor lo convierte en un turno</text>
+<text x="710.0" y="220" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1F1E1E">que el modelo sabe leer</text>
+<line x1="710.0" y1="232" x2="710.0" y2="256" stroke="#DA1B2E" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="500" y="256" width="420" height="84" rx="8" fill="#F2F2F2" stroke="#D8D2CE" stroke-width="1.5"/>
+<path d="M500,284 V264 Q500,256 508,256 H912 Q920,256 920,264 V284 Z" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="514" y="275"><tspan font-weight="bold" fill="#1F1E1E">lo que lee el modelo</tspan> (texto)</text>
+<text x="514" y="306" font-family="'Andale Mono', monospace" xml:space="preserve"><tspan fill="#DA1B2E" font-weight="bold">&lt;|start_header_id|&gt;ipython&lt;|end_header_id|&gt;</tspan></text>
+<text x="514" y="326" font-family="'Andale Mono', monospace" xml:space="preserve">7006652<tspan fill="#DA1B2E" font-weight="bold">&lt;|eot_id|&gt;</tspan></text>
+<rect x="530" y="417" width="360" height="50" rx="8" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="710.0" y="438" text-anchor="middle" font-size="13.5" font-style="italic">El modelo nunca ve el JSON de la API</text>
+<text x="710.0" y="456" text-anchor="middle" font-size="13.5" font-style="italic">y tu código nunca ve los tags.</text>
+</svg>

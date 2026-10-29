@@ -1,0 +1,169 @@
+<svg class="ts-anim-s5-1-1-piezas-plataforma" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 684" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Las piezas de una plataforma</title>
+<desc>El mapa de toda la sección: tu aplicación arriba, la plataforma abajo con la API, la plantilla de chat, el parser de llamadas, el modelo y las herramientas nativas; el modelo está en el medio y nunca ejecuta nada.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s5-1-1-piezas-plataforma .a1{animation:ts-anim-s5-1-1-piezas-plataforma-draw108 1.2s linear 3s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .h1{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.15s ease-out 4.2s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .a2{animation:ts-anim-s5-1-1-piezas-plataforma-draw108 1.2s linear 13.8s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .h2{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.15s ease-out 15s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .a3{animation:ts-anim-s5-1-1-piezas-plataforma-draw40 0.45s linear 4.65s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .h3{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.15s ease-out 5.1s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .a4{animation:ts-anim-s5-1-1-piezas-plataforma-draw40 0.45s linear 12.9s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .h4{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.15s ease-out 13.35s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .a5{animation:ts-anim-s5-1-1-piezas-plataforma-draw40 0.45s linear 7s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .h5{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.15s ease-out 7.45s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .a6{animation:ts-anim-s5-1-1-piezas-plataforma-draw40 0.45s linear 10.6s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .h6{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.15s ease-out 11.05s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .a7{animation:ts-anim-s5-1-1-piezas-plataforma-draw40 0.45s linear 18.85s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .h7{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.15s ease-out 19.3s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .a8{animation:ts-anim-s5-1-1-piezas-plataforma-draw40 0.45s linear 21.8s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .h8{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.15s ease-out 22.25s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .bA{animation:ts-anim-s5-1-1-piezas-plataforma-bA 5.25s linear 2.5s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-bA{0%{transform:translate(160px,114px);opacity:0}5.71%{transform:translate(160px,114px);opacity:1}9.52%{transform:translate(160px,114px);opacity:1}32.38%{transform:translate(160px,222px);opacity:1}40.95%{transform:translate(160px,262px);opacity:1}49.52%{transform:translate(160px,302px);opacity:1}57.14%{transform:translate(160px,302px);opacity:1}85.71%{transform:translate(160px,382px);opacity:1}94.29%{transform:translate(160px,422px);opacity:1}98.1%{transform:translate(160px,440px);opacity:1}100%{transform:translate(160px,440px);opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .bB{animation:ts-anim-s5-1-1-piezas-plataforma-bB 5.2s linear 10.3s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-bB{0%{transform:translate(600px,440px);opacity:0}1.92%{transform:translate(600px,440px);opacity:1}5.77%{transform:translate(600px,422px);opacity:1}14.42%{transform:translate(600px,382px);opacity:1}25%{transform:translate(600px,382px);opacity:1}50%{transform:translate(600px,302px);opacity:1}58.65%{transform:translate(600px,262px);opacity:1}67.31%{transform:translate(600px,222px);opacity:1}90.38%{transform:translate(600px,114px);opacity:1}94.23%{transform:translate(600px,114px);opacity:1}100%{transform:translate(600px,114px);opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .bC{animation:ts-anim-s5-1-1-piezas-plataforma-bC 3.95s linear 18.6s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-bC{0%{transform:translate(366px,490px);opacity:0}2.53%{transform:translate(366px,490px);opacity:1}6.33%{transform:translate(366px,502px);opacity:1}17.72%{transform:translate(366px,542px);opacity:1}25.32%{transform:translate(366px,560px);opacity:1}65.82%{transform:translate(394px,560px);opacity:1}81.01%{transform:translate(394px,542px);opacity:1}92.41%{transform:translate(394px,502px);opacity:1}97.47%{transform:translate(394px,490px);opacity:1}100%{transform:translate(394px,490px);opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .lj1{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.4s ease-out 3.2s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .lj2{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.4s ease-out 14.4s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .lll{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.4s ease-out 18.95s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .lres{animation:ts-anim-s5-1-1-piezas-plataforma-in 0.4s ease-out 21.9s 1 both}
+.ts-anim-s5-1-1-piezas-plataforma .hz1{animation:ts-anim-s5-1-1-piezas-plataforma-w-hz1 2.4s linear 0.4s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-hz1{0%{opacity:0}12.5%{opacity:1}87.5%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .hz2{animation:ts-anim-s5-1-1-piezas-plataforma-w-hz2 1.2s linear 4.2s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-hz2{0%{opacity:0}25%{opacity:1}75%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .hz3{animation:ts-anim-s5-1-1-piezas-plataforma-w-hz3 2.2s linear 5.1s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-hz3{0%{opacity:0}13.64%{opacity:1}86.36%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .hz4{animation:ts-anim-s5-1-1-piezas-plataforma-w-hz4 2.95s linear 7.45s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-hz4{0%{opacity:0}10.17%{opacity:1}89.83%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .hz5{animation:ts-anim-s5-1-1-piezas-plataforma-w-hz5 1.95s linear 11.05s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-hz5{0%{opacity:0}15.38%{opacity:1}84.62%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .hz6{animation:ts-anim-s5-1-1-piezas-plataforma-w-hz6 0.95s linear 13.35s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-hz6{0%{opacity:0}31.58%{opacity:1}68.42%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .hz7{animation:ts-anim-s5-1-1-piezas-plataforma-w-hz7 2.6s linear 15s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-hz7{0%{opacity:0}11.54%{opacity:1}88.46%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .hz8{animation:ts-anim-s5-1-1-piezas-plataforma-w-hz8 1.1s linear 18s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-hz8{0%{opacity:0}27.27%{opacity:1}72.73%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .hz9{animation:ts-anim-s5-1-1-piezas-plataforma-w-hz9 2.5s linear 19.3s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-hz9{0%{opacity:0}12%{opacity:1}88%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .hz10{animation:ts-anim-s5-1-1-piezas-plataforma-w-hz10 2.05s linear 22.25s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-hz10{0%{opacity:0}14.63%{opacity:1}85.37%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .c1{animation:ts-anim-s5-1-1-piezas-plataforma-w-c1 2.4s linear 0.4s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-c1{0%{opacity:0}12.5%{opacity:1}87.5%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .c2{animation:ts-anim-s5-1-1-piezas-plataforma-w-c2 2s linear 3s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-c2{0%{opacity:0}15%{opacity:1}85%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .c3{animation:ts-anim-s5-1-1-piezas-plataforma-w-c3 2.1s linear 5.3s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-c3{0%{opacity:0}14.29%{opacity:1}85.71%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .c4{animation:ts-anim-s5-1-1-piezas-plataforma-w-c4 2.6s linear 7.8s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-c4{0%{opacity:0}11.54%{opacity:1}88.46%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .c5{animation:ts-anim-s5-1-1-piezas-plataforma-w-c5 3.5s linear 11.3s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-c5{0%{opacity:0}8.57%{opacity:1}91.43%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .c6{animation:ts-anim-s5-1-1-piezas-plataforma-w-c6 2.5s linear 15.1s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-c6{0%{opacity:0}12%{opacity:1}88%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .c7{animation:ts-anim-s5-1-1-piezas-plataforma-w-c7 1.9s linear 18s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-c7{0%{opacity:0}15.79%{opacity:1}84.21%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .c8{animation:ts-anim-s5-1-1-piezas-plataforma-w-c8 1.7s linear 20.2s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-c8{0%{opacity:0}17.65%{opacity:1}82.35%{opacity:1}100%{opacity:0}}
+.ts-anim-s5-1-1-piezas-plataforma .c9{animation:ts-anim-s5-1-1-piezas-plataforma-w-c9 2.1s linear 22.3s 1 both}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-w-c9{0%{opacity:0}14.29%{opacity:1}85.71%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-draw108{from{stroke-dashoffset:120}to{stroke-dashoffset:12}}
+@keyframes ts-anim-s5-1-1-piezas-plataforma-draw40{from{stroke-dashoffset:120}to{stroke-dashoffset:80}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s5-1-1-piezas-plataforma *{animation:none !important}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="11" refY="6" orient="auto"><path d="M0,1 L11,6 L0,11 Z" fill="#3B3535"/></marker>
+</defs>
+<rect width="760" height="684" fill="#ffffff"/>
+<text x="20" y="33" font-size="15" font-weight="bold" fill="#1F1E1E">TU APLICACIÓN <tspan font-weight="normal" fill="#3B3535">(tu agente)</tspan></text>
+<rect x="20" y="42" width="720" height="72" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<text x="40" y="70" font-size="14">arma el pedido: mensajes + definición de las herramientas</text>
+<text x="40" y="96" font-size="14"><tspan font-weight="bold" fill="#1F1E1E">ejecuta TUS herramientas:</tspan> funciones, base de datos, servidores MCP</text>
+<g stroke="#3B3535" stroke-width="1.8" fill="none">
+<line class="a1" x1="160" y1="114" x2="160" y2="222" stroke-dasharray="120 120"/>
+<line class="a2" x1="600" y1="222" x2="600" y2="114" stroke-dasharray="120 120"/>
+<line class="a3" x1="160" y1="262" x2="160" y2="302" stroke-dasharray="120 120"/>
+<line class="a4" x1="600" y1="302" x2="600" y2="262" stroke-dasharray="120 120"/>
+<line class="a5" x1="160" y1="382" x2="160" y2="422" stroke-dasharray="120 120"/>
+<line class="a6" x1="600" y1="422" x2="600" y2="382" stroke-dasharray="120 120"/>
+<line class="a7" x1="366" y1="502" x2="366" y2="542" stroke-dasharray="120 120"/>
+<line class="a8" x1="394" y1="542" x2="394" y2="502" stroke-dasharray="120 120"/>
+</g>
+<g fill="#3B3535">
+<path class="h1" d="M155,211 L160,222 L165,211 Z"/>
+<path class="h2" d="M595,125 L600,114 L605,125 Z"/>
+<path class="h3" d="M155,291 L160,302 L165,291 Z"/>
+<path class="h4" d="M595,273 L600,262 L605,273 Z"/>
+<path class="h5" d="M155,411 L160,422 L165,411 Z"/>
+<path class="h6" d="M595,393 L600,382 L605,393 Z"/>
+<path class="h7" d="M361,531 L366,542 L371,531 Z"/>
+<path class="h8" d="M389,513 L394,502 L399,513 Z"/>
+</g>
+<!-- the request token: rides above the connectors, under every platform box -->
+<g class="bA" opacity="0"><circle r="6.5" fill="#B8E6F5" stroke="#1F1E1E" stroke-width="1.8"/></g>
+<g class="bB" opacity="0"><circle r="6.5" fill="#B8E6F5" stroke="#1F1E1E" stroke-width="1.8"/></g>
+<g class="bC" opacity="0"><circle r="6.5" fill="#B8E6F5" stroke="#1F1E1E" stroke-width="1.8"/></g>
+<text class="lj1" x="172" y="145" font-size="13">JSON: messages + tools</text>
+<text class="lj2" x="588" y="145" font-size="13" text-anchor="end">JSON: tool_calls o texto</text>
+<rect x="20" y="166" width="720" height="476" rx="10" fill="none" stroke="#3B3535" stroke-width="1.5"/>
+<text x="380" y="191" font-size="15" font-weight="bold" fill="#1F1E1E" text-anchor="middle">PLATAFORMA</text>
+<text x="380" y="209" font-size="13" text-anchor="middle">un proveedor, o vLLM / Ollama en tu máquina</text>
+<rect x="40" y="222" width="680" height="40" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="306" y="247" font-size="14"><tspan font-weight="bold" fill="#1F1E1E">API:</tspan> entra y sale JSON</text>
+<rect x="40" y="302" width="240" height="80" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="160" y="326" font-size="14" font-weight="bold" fill="#1F1E1E" text-anchor="middle">PLANTILLA DE CHAT</text>
+<text x="160" y="348" font-size="13" text-anchor="middle">de JSON a texto con tags</text>
+<text x="160" y="367" font-size="13" font-style="italic" text-anchor="middle">(ida)</text>
+<rect x="480" y="302" width="240" height="80" rx="6" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="600" y="326" font-size="14" font-weight="bold" fill="#1F1E1E" text-anchor="middle">PARSER DE LLAMADAS</text>
+<text x="600" y="348" font-size="13" text-anchor="middle">de texto del modelo a tool_calls</text>
+<text x="600" y="367" font-size="13" font-style="italic" text-anchor="middle">(vuelta)</text>
+<rect x="40" y="422" width="680" height="80" rx="6" fill="#F2EEEE" stroke="#1F1E1E" stroke-width="2.5"/>
+<text x="380" y="447" font-size="16" font-weight="bold" fill="#1F1E1E" text-anchor="middle">MODELO</text>
+<text x="380" y="469" font-size="14" text-anchor="middle">lee y escribe texto con tags; escribe la llamada,</text>
+<text x="380" y="491" font-size="14" font-weight="bold" fill="#DA1B2E" text-anchor="middle">no la ejecuta</text>
+<text class="lll" x="356" y="527" font-size="12" text-anchor="end">llamada</text>
+<text class="lres" x="404" y="527" font-size="12">resultado</text>
+<rect x="40" y="542" width="680" height="80" rx="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<text x="380" y="566" font-size="14" font-weight="bold" fill="#1F1E1E" text-anchor="middle">HERRAMIENTAS NATIVAS (solo proveedores)</text>
+<text x="380" y="587" font-size="13" text-anchor="middle">búsqueda web, ejecución de código</text>
+<text x="380" y="607" font-size="13" font-weight="bold" fill="#1F1E1E" text-anchor="middle">las ejecuta la plataforma y agrega el resultado</text>
+<!-- narration: where the request is now, and what it looks like -->
+<rect class="hz1" x="26" y="48" width="708" height="60" rx="4" fill="none" stroke="#B8E6F5" stroke-width="4" opacity="0"/>
+<rect class="hz2" x="36" y="218" width="688" height="48" rx="9" fill="none" stroke="#B8E6F5" stroke-width="4" opacity="0"/>
+<rect class="hz3" x="36" y="298" width="248" height="88" rx="9" fill="none" stroke="#B8E6F5" stroke-width="4" opacity="0"/>
+<rect class="hz4" x="36" y="418" width="688" height="88" rx="9" fill="none" stroke="#B8E6F5" stroke-width="4" opacity="0"/>
+<rect class="hz5" x="476" y="298" width="248" height="88" rx="9" fill="none" stroke="#B8E6F5" stroke-width="4" opacity="0"/>
+<rect class="hz6" x="36" y="218" width="688" height="48" rx="9" fill="none" stroke="#B8E6F5" stroke-width="4" opacity="0"/>
+<rect class="hz7" x="26" y="48" width="708" height="60" rx="4" fill="none" stroke="#B8E6F5" stroke-width="4" opacity="0"/>
+<rect class="hz8" x="36" y="418" width="688" height="88" rx="9" fill="none" stroke="#B8E6F5" stroke-width="4" opacity="0"/>
+<rect class="hz9" x="46" y="548" width="668" height="68" rx="3" fill="none" stroke="#B8E6F5" stroke-width="4" opacity="0"/>
+<rect class="hz10" x="36" y="418" width="688" height="88" rx="9" fill="none" stroke="#B8E6F5" stroke-width="4" opacity="0"/>
+<g class="c1" opacity="0">
+<text x="20" y="667" font-size="14" fill="#1F1E1E"><tspan font-weight="bold">1 · </tspan>Tu aplicación arma el pedido: <tspan font-family="Menlo, Consolas, 'Courier New', monospace" font-size="13.5">{"messages": […], "tools": [calculadora]}</tspan></text>
+</g>
+<g class="c2" opacity="0">
+<text x="20" y="667" font-size="14" fill="#1F1E1E"><tspan font-weight="bold">2 · </tspan>El pedido baja a la API como JSON: <tspan font-family="Menlo, Consolas, 'Courier New', monospace" font-size="13.5">{"messages": […], "tools": [calculadora]}</tspan></text>
+</g>
+<g class="c3" opacity="0">
+<text x="20" y="667" font-size="14" fill="#1F1E1E"><tspan font-weight="bold">3 · </tspan>La plantilla de chat lo pasa a texto con tags: <tspan font-family="Menlo, Consolas, 'Courier New', monospace" font-size="13.5">&lt;|im_start|&gt;user ¿37 × 91?&lt;|im_end|&gt;</tspan></text>
+</g>
+<g class="c4" opacity="0">
+<text x="20" y="667" font-size="14" fill="#1F1E1E"><tspan font-weight="bold">4 · </tspan>El modelo escribe <tspan font-family="Menlo, Consolas, 'Courier New', monospace" font-size="13.5">&lt;tool_call&gt;{"name":"calculadora",…}&lt;/tool_call&gt;</tspan> y <tspan font-weight="bold" fill="#DA1B2E">no la ejecuta</tspan></text>
+</g>
+<g class="c5" opacity="0">
+<text x="20" y="667" font-size="14" fill="#1F1E1E"><tspan font-weight="bold">5 · </tspan>El parser lo convierte en <tspan font-family="Menlo, Consolas, 'Courier New', monospace" font-size="13.5">"tool_calls": [{"name": "calculadora", …}]</tspan></text>
+</g>
+<g class="c6" opacity="0">
+<text x="20" y="667" font-size="14" fill="#1F1E1E"><tspan font-weight="bold">5 · </tspan>Tu aplicación lo recibe como JSON y ejecuta <tspan font-family="Menlo, Consolas, 'Courier New', monospace" font-size="13.5">calculadora("37*91") → 3367</tspan></text>
+</g>
+<g class="c7" opacity="0">
+<text x="20" y="667" font-size="14" fill="#1F1E1E"><tspan font-weight="bold">6 · </tspan>El otro lugar donde corre una herramienta: el modelo pide una nativa</text>
+</g>
+<g class="c8" opacity="0">
+<text x="20" y="667" font-size="14" fill="#1F1E1E"><tspan font-weight="bold">6 · </tspan>La plataforma la ejecuta: búsqueda web, ejecución de código</text>
+</g>
+<g class="c9" opacity="0">
+<text x="20" y="667" font-size="14" fill="#1F1E1E"><tspan font-weight="bold">6 · </tspan>El resultado vuelve al modelo, dentro del mismo pedido</text>
+</g>
+</svg>

@@ -1,0 +1,58 @@
+<!-- talksmith-ascii-sha256: 1e03f59240bc4a6b9719e07c3127f185b230d0ad98ed4ae9bd9328988fabea31 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 412" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3B3535">
+<title>Buscar: la respuesta de la API</title>
+<desc>Es el mismo esquema que la calculadora: los cuatro bloques de una respuesta con búsqueda web y quién produce cada uno; el bloque 3 lo agrega la plataforma, los demás los genera el modelo.</desc>
+<rect x="0" y="0" width="940" height="412" fill="#ffffff"/>
+<rect x="20" y="20" width="900" height="372" rx="10" fill="#ffffff" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="40" y="49" font-size="18" font-weight="bold" fill="#1F1E1E">Una respuesta de la API</text>
+<text x="40" y="72" font-size="13" font-family="'Andale Mono', monospace" xml:space="preserve">stop_reason: "end_turn"     web_search_requests: 1</text>
+<line x1="20" y1="88" x2="920" y2="88" stroke="#D8D2CE" stroke-width="1"/>
+<g font-size="12" font-weight="bold" fill="#3B3535" letter-spacing="1">
+<text x="48" y="111">BLOQUE</text>
+<text x="300" y="111">CONTENIDO</text>
+<text x="815" y="111" text-anchor="middle" fill="#1F1E1E">QUIÉN LO GENERA</text>
+</g>
+<rect x="36" y="122" width="868" height="48" rx="6" fill="#F2EEEE"/>
+<rect x="36" y="178" width="868" height="48" rx="6" fill="#F2EEEE"/>
+<rect x="36" y="234" width="868" height="48" rx="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="2"/>
+<rect x="36" y="290" width="868" height="86" rx="6" fill="#F2EEEE"/>
+<g fill="#ffffff" stroke="#3B3535" stroke-width="1.5">
+<circle cx="60" cy="146" r="12"/>
+<circle cx="60" cy="202" r="12"/>
+<circle cx="60" cy="309" r="12"/>
+</g>
+<circle cx="60" cy="258" r="12" fill="#DA1B2E"/>
+<g font-size="13" font-weight="bold" text-anchor="middle">
+<text x="60" y="151">1</text>
+<text x="60" y="207">2</text>
+<text x="60" y="263" fill="#ffffff">3</text>
+<text x="60" y="314">4</text>
+</g>
+<g font-weight="bold" fill="#1F1E1E">
+<text x="84" y="151">texto</text>
+<text x="84" y="207" font-family="'Andale Mono', monospace">server_tool_use</text>
+<text x="84" y="263" font-family="'Andale Mono', monospace">web_search_tool_result</text>
+<text x="84" y="314">texto con cita</text>
+</g>
+<g font-family="'Andale Mono', monospace">
+<text x="300" y="151">"I'll search for when Claude Shannon was born."</text>
+<text x="300" y="207">query: "claude shannon birth date"</text>
+<text x="300" y="314">"Claude Shannon was born on April 30, 1916,</text>
+<text x="300" y="333" xml:space="preserve"> in Petoskey, Michigan"</text>
+</g>
+<text x="300" y="263">resultado de Wikipedia <tspan font-family="'Andale Mono', monospace">(url, title, page_age)</tspan></text>
+<rect x="296" y="344" width="436" height="24" rx="4" fill="#ffffff" stroke="#D8D2CE"/>
+<text x="306" y="361" font-size="13"><tspan font-weight="bold" fill="#1F1E1E">cita: </tspan><tspan font-family="'Andale Mono', monospace">"Claude Elwood Shannon (April 30, 1916 – ..."</tspan></text>
+<g fill="#ffffff" stroke="#D8D2CE">
+<rect x="751" y="133" width="128" height="26" rx="13"/>
+<rect x="751" y="189" width="128" height="26" rx="13"/>
+<rect x="751" y="296" width="128" height="26" rx="13"/>
+</g>
+<rect x="751" y="245" width="128" height="26" rx="13" fill="#DA1B2E"/>
+<g text-anchor="middle" font-size="14">
+<text x="815" y="151">modelo</text>
+<text x="815" y="207">modelo</text>
+<text x="815" y="263" fill="#ffffff" font-weight="bold">plataforma</text>
+<text x="815" y="314">modelo</text>
+</g>
+</svg>

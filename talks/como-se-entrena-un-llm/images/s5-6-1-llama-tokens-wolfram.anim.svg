@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 459" font-family="Helvetica, Arial, sans-serif" font-size="19" fill="#3B3535" class="ts-anim-s5-6-1-llama-tokens-wolfram">
+<title>Calcular: lo que escribe Llama 3.1</title>
+<desc>La conversación de Llama 3.1 con una llamada a Wolfram Alpha, turno por turno, tal como la ve el modelo: el assistant escribe la llamada entre python_tag y eom_id y se detiene; el agente agrega el resultado con el rol ipython.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s5-6-1-llama-tokens-wolfram .r1{animation:ts-anim-s5-6-1-llama-tokens-wolfram-in 0.5s ease-out 0.4s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .r2{animation:ts-anim-s5-6-1-llama-tokens-wolfram-in 0.5s ease-out 1.6s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .af{animation:ts-anim-s5-6-1-llama-tokens-wolfram-in 0.5s ease-out 3.3s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .pt{animation:ts-anim-s5-6-1-llama-tokens-wolfram-sA 2.4s linear 4.4s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .c1{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s1 2.4s linear 4.4s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .c2{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s2 2.4s linear 4.4s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .c3{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s3 2.4s linear 4.4s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .c4{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s4 2.4s linear 4.4s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .c5{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s5 2.4s linear 4.4s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .c6{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s6 2.4s linear 4.4s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .eom{animation:ts-anim-s5-6-1-llama-tokens-wolfram-in 0.3s ease-out 6.6s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .paro{animation:ts-anim-s5-6-1-llama-tokens-wolfram-in 0.4s ease-out 7.3s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .arr{animation:ts-anim-s5-6-1-llama-tokens-wolfram-draw 0.8s ease-in-out 8.0s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .head{animation:ts-anim-s5-6-1-llama-tokens-wolfram-hd 0.8s linear 8.0s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .r4{animation:ts-anim-s5-6-1-llama-tokens-wolfram-in 0.5s ease-out 9.8s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .ag{animation:ts-anim-s5-6-1-llama-tokens-wolfram-in 0.4s ease-out 11.0s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .r5{animation:ts-anim-s5-6-1-llama-tokens-wolfram-sA 2.4s linear 12.2s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .d1{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s1 2.4s linear 12.2s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .d2{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s2 2.4s linear 12.2s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .d3{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s3 2.4s linear 12.2s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .d4{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s5 2.4s linear 12.2s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .d5{animation:ts-anim-s5-6-1-llama-tokens-wolfram-s6 2.4s linear 12.2s 1 both}
+.ts-anim-s5-6-1-llama-tokens-wolfram .eot5{animation:ts-anim-s5-6-1-llama-tokens-wolfram-sE 2.4s linear 12.2s 1 both}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-in{from{opacity:0}}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-sA{0%{opacity:0}12%,100%{opacity:1}}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-s1{0%,18%{fill-opacity:0}21%,100%{fill-opacity:1}}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-s2{0%,28%{fill-opacity:0}31%,100%{fill-opacity:1}}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-s3{0%,38%{fill-opacity:0}41%,100%{fill-opacity:1}}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-s4{0%,45%{fill-opacity:0}48%,100%{fill-opacity:1}}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-s5{0%,58%{fill-opacity:0}61%,100%{fill-opacity:1}}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-s6{0%,68%{fill-opacity:0}71%,100%{fill-opacity:1}}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-sE{0%,82%{opacity:0}90%,100%{opacity:1}}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-hd{0%,94%{opacity:0}100%{opacity:1}}
+@keyframes ts-anim-s5-6-1-llama-tokens-wolfram-draw{from{stroke-dasharray:422;stroke-dashoffset:422}to{stroke-dasharray:422;stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s5-6-1-llama-tokens-wolfram *{animation:none}}
+</style>
+<rect width="1080" height="459" fill="#FFFFFF"/>
+<g font-size="15" font-weight="bold" letter-spacing="1">
+<text x="36" y="31">ROL</text>
+<text x="186" y="31">LO QUE VE EL MODELO</text>
+</g>
+<rect x="20" y="44" width="1040" height="352" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="2"/>
+<rect x="21" y="45" width="149" height="350" fill="#F2EEEE"/>
+<rect class="af" x="21" y="193" width="149" height="90" fill="#F9D2D6"/>
+<g stroke="#D8D2CE" stroke-width="2">
+<line x1="170" y1="44" x2="170" y2="396"/>
+<line x1="20" y1="136" x2="1060" y2="136"/>
+<line x1="20" y1="192" x2="1060" y2="192"/>
+<line x1="20" y1="284" x2="1060" y2="284"/>
+<line x1="20" y1="340" x2="1060" y2="340"/>
+</g>
+<rect class="af" x="21.5" y="193.5" width="1037" height="89" fill="none" stroke="#DA1B2E" stroke-width="3"/>
+<g font-size="22" font-weight="bold" fill="#1F1E1E">
+<text class="r1" x="36" y="80">system</text>
+<text class="r2" x="36" y="171">user</text>
+<text class="af" x="36" y="226" fill="#DA1B2E">assistant</text>
+<text class="r4" x="36" y="318">ipython</text>
+<text class="r5" x="36" y="374">assistant</text>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="24" fill="#1F1E1E" xml:space="preserve">
+<text class="r1" x="186" y="82">Environment: ipython</text>
+<text class="r1" x="186" y="118">Tools: brave_search, wolfram_alpha</text>
+<text class="r2" x="186" y="173">What is the 100th decimal of pi?</text>
+<text x="372" y="228" fill="#DA1B2E"><tspan class="c1">wolfram_alpha</tspan><tspan class="c2">.call(</tspan><tspan class="c3">query=</tspan><tspan class="c4">"100th decimal</tspan><tspan class="c5"> of pi"</tspan><tspan class="c6">)</tspan></text>
+<text class="r4" x="186" y="320">{"Result": "7"}</text>
+<text x="186" y="376"><tspan class="d1">The</tspan><tspan class="d2"> 100th</tspan><tspan class="d3"> decimal</tspan><tspan class="d4"> of pi</tspan><tspan class="d5"> is 7.</tspan></text>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect class="r1" x="918" y="93.5" width="128" height="32" rx="6"/>
+<rect class="r2" x="918" y="148.5" width="128" height="32" rx="6"/>
+<rect class="r4" x="918" y="295.5" width="128" height="32" rx="6"/>
+<rect class="eot5" x="918" y="351.5" width="128" height="32" rx="6"/>
+</g>
+<g fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2">
+<rect class="pt" x="186" y="203.5" width="174" height="32" rx="6"/>
+<rect class="eom" x="918" y="239.5" width="128" height="32" rx="6"/>
+</g>
+<g font-family="'Andale Mono', monospace" fill="#1F1E1E">
+<text class="r1" x="925" y="116">&lt;|eot_id|&gt;</text>
+<text class="r2" x="925" y="171">&lt;|eot_id|&gt;</text>
+<text class="r4" x="925" y="318">&lt;|eot_id|&gt;</text>
+<text class="eot5" x="925" y="374">&lt;|eot_id|&gt;</text>
+<text class="pt" x="193" y="226" fill="#DA1B2E">&lt;|python_tag|&gt;</text>
+<text class="eom" x="925" y="262" fill="#DA1B2E">&lt;|eom_id|&gt;</text>
+</g>
+<text class="paro" x="186" y="263" font-size="21" font-weight="bold" fill="#DA1B2E">paro acá: falta la herramienta</text>
+<!-- the arrow draws itself toward <|eom_id|>; its head (same shape as the base's marker) lands on arrival -->
+<line class="arr" x1="496" y1="255.5" x2="918" y2="255.5" stroke="#DA1B2E" stroke-width="2.5"/>
+<path class="head" d="M906,249.5 L918,255.5 L906,261.5 z" fill="#DA1B2E"/>
+<rect class="ag" x="428" y="297" width="192" height="30" rx="15" fill="#B8E6F5"/>
+<text class="ag" x="524" y="318" fill="#1F1E1E" text-anchor="middle">lo agrega el agente</text>
+<text x="20" y="432">cada turno empieza con</text>
+<text x="450" y="432" font-style="italic">rol</text>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="234" y="411" width="206" height="28" rx="6"/>
+<rect x="481" y="411" width="185" height="28" rx="6"/>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="17" fill="#1F1E1E">
+<text x="240" y="431">&lt;|start_header_id|&gt;</text>
+<text x="487" y="431">&lt;|end_header_id|&gt;</text>
+</g>
+</svg>

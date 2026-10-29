@@ -102,7 +102,7 @@
         "rationale": "Wide diagram + source line: image-full has no slot for highlights, so content-image banded keeps the diagram full width and the source under it."
       },
       "media": {
-        "src": "images/sa-2-1-tres-etapas-cuatro-datos.png",
+        "src": "images/sa-2-1-tres-etapas-cuatro-datos.anim.png",
         "alt": "Las tres etapas del entrenamiento con sus cuatro conjuntos de datos y la escala de cada uno"
       },
       "design": "banded",
@@ -787,7 +787,7 @@
         }
       ],
       "media": {
-        "src": "images/s2-3-1-mascara-perdida-sft.png",
+        "src": "images/s2-4-1-mascara-perdida-sft.png",
         "alt": "Un ejemplo de SFT con la máscara de pérdida sobre el prompt"
       },
       "design": "split-right",
@@ -926,7 +926,7 @@
       "title": "RLHF en dos pasos",
       "lead": "**RLHF entrena primero un juez que aprende de las preferencias de las personas, y después usa ese juez para mejorar el modelo.**",
       "media": {
-        "src": "images/s3-1-1-rlhf-dos-pasos.png",
+        "src": "images/s3-1-1-rlhf-dos-pasos.anim.png",
         "alt": "RLHF en dos pasos: con datos de comparación se entrena un reward model (el juez); después el modelo SFT genera respuestas, el juez las puntúa y PPO ajusta el modelo para subir el puntaje"
       },
       "design": "split-right",
@@ -1084,7 +1084,7 @@
         }
       ],
       "media": {
-        "src": "images/s3-3-1-puntajes-reward-model.png",
+        "src": "images/s3-4-1-puntajes-reward-model.png",
         "alt": "El mismo reward model puntúa la respuesta ganadora y la perdedora; entrenar es lograr que la ganadora quede arriba"
       },
       "design": "split-right",
@@ -1135,7 +1135,7 @@
         }
       ],
       "media": {
-        "src": "images/s3-4-1-batch-reward-model.png",
+        "src": "images/s3-5-1-batch-reward-model.png",
         "alt": "Cómo se arma un batch de 64 pares de preferencia hasta un solo backward"
       },
       "design": "split-left",
@@ -1186,7 +1186,7 @@
         }
       ],
       "media": {
-        "src": "images/s3-5-1-lazo-rlhf-ppo.png",
+        "src": "images/s3-6-1-lazo-rlhf-ppo.anim.png",
         "alt": "El lazo de RLHF con PPO y la penalización KL contra el modelo SFT"
       },
       "design": "split-right",
@@ -1412,7 +1412,7 @@
         }
       ],
       "media": {
-        "src": "images/s5-1-1-piezas-plataforma.png",
+        "src": "images/s5-1-1-piezas-plataforma.anim.png",
         "alt": "Las piezas de una plataforma: tu aplicación arriba, fuera de la plataforma, arma el pedido y ejecuta tus herramientas; dentro de la plataforma, la API, la plantilla de chat (ida) y el parser de llamadas (vuelta) rodean al modelo, que escribe la llamada pero no la ejecuta; abajo, las herramientas nativas que ejecuta la plataforma"
       },
       "design": "split-right",
@@ -1467,7 +1467,7 @@
         }
       ],
       "media": {
-        "src": "images/s4-2-1-loop-llm-agente.png",
+        "src": "images/s5-2-1-loop-llm-agente.anim.png",
         "alt": "El circuito con herramientas: el usuario escribe en un chat, que es el agente; el agente llama al LLM, ejecuta la herramienta que el LLM pide y le devuelve el resultado hasta la respuesta final"
       },
       "design": "split-right",
@@ -1694,7 +1694,7 @@
         }
       ],
       "media": {
-        "src": "images/s5-7-1-llama-tokens-wolfram.png",
+        "src": "images/s5-6-1-llama-tokens-wolfram.anim.png",
         "alt": "La conversación de Llama 3.1 turno por turno: system activa las herramientas, user pregunta, assistant escribe la llamada a wolfram_alpha entre python_tag y eom_id y se detiene, ipython trae el resultado que agrega el agente, assistant responde"
       },
       "design": "split-left",
@@ -1728,7 +1728,7 @@
       "title": "Calcular: de los tokens al JSON",
       "lead": "**El modelo escribe la llamada como texto entre tags especiales. El servidor la traduce al JSON que recibe tu código, y traduce el resultado de vuelta a un turno que el modelo sabe leer.**",
       "media": {
-        "src": "images/s5-8-1-tokens-a-json.png",
+        "src": "images/s5-7-1-tokens-a-json.anim.png",
         "alt": "De los tokens al JSON y de vuelta: el modelo escribe la llamada como JSON entre python_tag y eom_id, el servidor saca los tags y entrega tool_calls a tu código; tu código manda un mensaje tool con 7006652 y el servidor lo convierte en un turno ipython"
       },
       "design": "split-right",
@@ -1936,7 +1936,7 @@
         }
       ],
       "media": {
-        "src": "images/s5-12-1-llama-tokens-brave.png",
+        "src": "images/s5-11-1-llama-tokens-brave.anim.png",
         "alt": "La conversación de Llama 3.1 con brave_search: el system prompt con la fecha de corte y la fecha de hoy, la pregunta por el precio del oro, la llamada brave_search entre python_tag y eom_id, los resultados que agrega el agente y la respuesta"
       },
       "design": "split-left",
@@ -1991,7 +1991,7 @@
         }
       ],
       "media": {
-        "src": "images/s4-7-1-bloques-busqueda-web.png",
+        "src": "images/s5-12-1-bloques-busqueda-web.anim.png",
         "alt": "Los cuatro bloques de una respuesta con búsqueda web y quién produce cada uno"
       },
       "design": "split-left",
@@ -2029,7 +2029,7 @@
       "title": "MCP: host, cliente y servidor",
       "lead": "**MCP es un estándar abierto para conectar aplicaciones de IA con herramientas y datos. La aplicación crea un cliente MCP por cada servidor y le pasa al modelo las herramientas de todos.**",
       "media": {
-        "src": "images/s4-9-1-arquitectura-mcp.png",
+        "src": "images/s5-13-1-arquitectura-mcp.png",
         "alt": "La arquitectura de MCP: host, clientes y servidores"
       },
       "design": "banded",
@@ -2359,7 +2359,7 @@
       "title": "Fine-tuning local: el recorrido",
       "lead": "**Con un modelo de pesos abiertos, el fine-tuning corre en una GPU propia o en un notebook de Colab. Las librerías de Hugging Face (TRL y PEFT) o Unsloth resuelven el entrenamiento.**",
       "media": {
-        "src": "images/s6-6-1-recorrido-fine-tuning-local.png",
+        "src": "images/s6-5-1-recorrido-fine-tuning-local.anim.png",
         "alt": "Los cinco pasos de un fine-tuning local con la herramienta de cada paso"
       },
       "design": "split-right",
@@ -2557,7 +2557,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "a11a4e649fb27976254a78fa314436f91c25926f045c93624b4645f74c8306d9",
-    "bytes": 255043
+    "sha256": "3de86ee484b16641f15f1a9b080cbc6fa8b64ddc2ebd3995b6dbc131d06084b0",
+    "bytes": 319990
   }
 }

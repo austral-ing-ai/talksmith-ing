@@ -1,22 +1,24 @@
-<!-- talksmith-ascii-sha256: 1df373be4fff9db93db6f06def05f8f78a5e8c773f85a4807eb5d65cea7dc554 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 686" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
+<!-- talksmith-ascii-sha256: d29036650ac77c139a61278583419a189a4c45a9f9d9d7eb8ff53c70c4e44185 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 683" font-family="Helvetica, Arial, sans-serif" fill="#1F1E1E">
 <title>Tres etapas, cuatro conjuntos de datos</title>
-<desc>Mapa de la clase: las tres etapas de entrenamiento de un LLM (pre-training, SFT o Supervised Fine-Tuning y RLHF o Reinforcement Learning from Human Feedback) con sus cuatro conjuntos de datos y la escala de cada uno.</desc>
+<desc>La lámina es el mapa de la clase: las tres etapas de entrenamiento de un LLM (pre-training, SFT y RLHF) con sus cuatro conjuntos de datos, y la escala de datos que cae de más de un billón de tokens a decenas de miles de ejemplos.</desc>
 <defs>
 <marker id="ah" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="13" markerHeight="13" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
 </defs>
-<rect x="0" y="0" width="1500" height="686" fill="#ffffff"/>
+<rect x="0" y="0" width="1500" height="683" fill="#ffffff"/>
 
 <g font-size="19" text-anchor="middle" fill="#3B3535">
-<text x="180" y="48">Datos de baja calidad</text>
-<text x="925" y="48">Datos de alta calidad</text>
+<text x="180" y="58">Datos de baja calidad</text>
+<text x="550" y="58">Datos de alta calidad</text>
+<text x="1115" y="58">Feedback humano</text>
 </g>
 <g fill="none" stroke="#3B3535" stroke-width="1.5">
-<path d="M30,70 V62 H330 V70"/>
-<path d="M400,70 V62 H1450 V70"/>
+<path d="M30,80 V72 H330 V80"/>
+<path d="M400,80 V72 H700 V80"/>
+<path d="M780,80 V72 H1450 V80"/>
 </g>
 
-<rect x="757" y="86" width="713" height="450" rx="10" fill="none" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="9 6"/>
+<rect x="757" y="30" width="713" height="506" rx="10" fill="none" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="9 6"/>
 
 <g font-size="23" font-weight="bold" text-anchor="middle">
 <text x="180" y="120">Pre-training</text>

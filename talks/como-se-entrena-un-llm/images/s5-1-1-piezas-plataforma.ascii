@@ -34,4 +34,11 @@
 intent: el mapa de las piezas que intervienen cuando se usa un LLM por API, para que cada lámina siguiente de la sección sea un zoom sobre una pieza
 emphasize: el MODELO en el medio con "no la ejecuta"; los dos lugares donde corre una herramienta (TU APLICACIÓN arriba y HERRAMIENTAS NATIVAS abajo) con acento rojo; la plantilla de chat (ida) y el parser (vuelta) como los dos traductores, uno bajando y otro subiendo
 labels: TU APLICACIÓN fuera de la caja PLATAFORMA; la PLATAFORMA como un contenedor con sus cuatro piezas apiladas; flechas de ida a la izquierda y de vuelta a la derecha
+animation:
+  1. TU APLICACIÓN arma el pedido: mensajes + definición de las herramientas.
+  2. El pedido baja como JSON: messages + tools a la API: entra y sale JSON.
+  3. La PLANTILLA DE CHAT lo traduce a texto con tags (ida) y lo pasa al MODELO.
+  4. El MODELO escribe la llamada como texto con tags; no la ejecuta.
+  5. El PARSER DE LLAMADAS convierte ese texto en tool_calls (vuelta) y la API lo devuelve a TU APLICACIÓN como JSON: tool_calls o texto; TU APLICACIÓN ejecuta su herramienta.
+  6. El otro lugar donde corre una herramienta: el MODELO pide una nativa, la ejecutan las HERRAMIENTAS NATIVAS dentro de la plataforma y el resultado vuelve al MODELO; el diagrama queda completo.
 -->
