@@ -21,4 +21,9 @@
 intent: mostrar las dos curvas del paper a la vez -- la precision sube durante el entrenamiento por refuerzo, y el largo de la respuesta crece por su cuenta como efecto emergente
 emphasize: los tres numeros (15,6% inicio / 77,9% final / 86,7% con self-consistency) y la linea de cierre sobre el largo de respuesta creciendo sin que nadie lo pida
 labels: eje Y precision AIME 2024 pass@1, eje X pasos de entrenamiento por refuerzo
+animation:
+  1. al inicio del entrenamiento la precision esta en 15,6% y el largo de respuesta esta abajo
+  2. avanzan los pasos de refuerzo: la curva de precision sube y, al mismo tiempo, la del largo de respuesta crece sin que nadie la empuje
+  3. al final del entrenamiento la precision llega a 77,9%
+  4. en el mismo punto, evaluando con self-consistency (cons@16), aparece el 86,7%
 -->

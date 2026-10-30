@@ -1,51 +1,49 @@
-<!-- talksmith-ascii-sha256: 45b7c7913f724a923aca0f3efd3cc36c4773499dad3299606cc11ea2005e4891 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="12.5">
+<!-- talksmith-ascii-sha256: 55239ae5d83a96404f8f07cae48b536b53f435e61d270f03402959a3ab21662d -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="36 0 792 522" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
 <title>Prompt chaining</title>
-<desc>Pipeline de triage de tickets en cuatro etapas encadenadas: la salida de cada paso es la entrada del siguiente, y el modelo caro entra recien en el paso 4 con el contexto ya filtrado.</desc>
+<desc>Tubería de cuatro pasos: el ticket se clasifica y se extraen sus detalles con un modelo chico, se buscan runbooks sin modelo, y recién el paso 4 usa el modelo caro, con el contexto ya filtrado.</desc>
 <defs>
-<marker id="ag" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,4 L0,8 Z" fill="#9C9595"/></marker>
+<marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
 </defs>
-<rect x="0" y="0" width="800" height="470" fill="#ffffff"/>
-
-<rect x="120" y="40" width="120" height="34" rx="17" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.5"/>
-<text x="180" y="62" text-anchor="middle" font-size="13.5" fill="#7A7373">ticket</text>
-<line x1="180" y1="74" x2="180" y2="104" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
-
-<rect x="40" y="104" width="280" height="80" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
-<text x="180" y="137" text-anchor="middle" font-size="16" font-weight="bold">1 &#183; Clasificar</text>
-<text x="180" y="161" text-anchor="middle" font-size="13" fill="#7A7373">urgencia del ticket</text>
-<text x="42" y="201" font-size="12" fill="#7A7373">modelo chico</text>
-
-<line x1="320" y1="144" x2="480" y2="144" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
-<text x="400" y="135" text-anchor="middle" fill="#7A7373">urgencia</text>
-<text x="400" y="163" text-anchor="middle" font-size="11.5" fill="#9C9595">alta / media / baja</text>
-
-<rect x="480" y="104" width="280" height="80" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
-<text x="620" y="137" text-anchor="middle" font-size="16" font-weight="bold">2 &#183; Extraer</text>
-<text x="620" y="161" text-anchor="middle" font-size="13" fill="#7A7373">detalles del caso</text>
-<text x="482" y="201" font-size="12" fill="#7A7373">modelo chico</text>
-
-<line x1="620" y1="184" x2="620" y2="268" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
-<text x="632" y="230" fill="#7A7373">detalles</text>
-
-<rect x="480" y="268" width="280" height="80" rx="3" fill="#F5F4F4" stroke="#B8B2B2" stroke-width="1.5"/>
-<text x="620" y="301" text-anchor="middle" font-size="16" font-weight="bold">3 &#183; Buscar</text>
-<text x="620" y="325" text-anchor="middle" font-size="13" fill="#7A7373">runbooks (RAG)</text>
-<text x="482" y="365" font-size="12" fill="#7A7373">sin modelo</text>
-
-<line x1="480" y1="308" x2="320" y2="308" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
-<text x="400" y="299" text-anchor="middle" fill="#7A7373">runbooks</text>
-<text x="400" y="327" text-anchor="middle" font-size="11.5" fill="#9C9595">+ contexto</text>
-
-<rect x="40" y="268" width="280" height="80" rx="3" fill="#FDEEF0" stroke="#DA1B2E" stroke-width="2.5"/>
-<text x="180" y="301" text-anchor="middle" font-size="16" font-weight="bold">4 &#183; Redactar</text>
-<text x="180" y="325" text-anchor="middle" font-size="13" fill="#7A7373">respuesta</text>
-<text x="42" y="365" font-size="12" font-weight="bold" fill="#DA1B2E">modelo caro</text>
-
-<line x1="180" y1="348" x2="180" y2="392" stroke="#9C9595" stroke-width="1.5" marker-end="url(#ag)"/>
-<rect x="80" y="392" width="200" height="38" rx="19" fill="#ffffff" stroke="#B8B2B2" stroke-width="1.5"/>
-<text x="180" y="416" text-anchor="middle" font-size="13.5">respuesta estructurada</text>
-
-<text x="400" y="402" fill="#7A7373">La salida de cada paso es la entrada del siguiente.</text>
-<text x="400" y="422" fill="#7A7373">El modelo caro entra &#250;ltimo, con el contexto ya filtrado.</text>
+<rect x="36" y="0" width="792" height="522" fill="#ffffff"/>
+<g text-anchor="middle">
+<rect x="110" y="24" width="120" height="36" rx="18" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="170" y="47" font-size="16" font-weight="bold" fill="#1F1E1E">ticket</text>
+<rect x="60" y="90" width="220" height="100" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="170" y="122" font-size="18" font-weight="bold" fill="#1F1E1E">1 CLASIFICAR</text>
+<text x="170" y="146" font-size="15">urgencia</text>
+<line x1="80" y1="160" x2="260" y2="160" stroke="#D8D2CE"/>
+<text x="170" y="180" font-size="14" font-style="italic" fill="#6B6363">modelo chico</text>
+<rect x="440" y="90" width="220" height="100" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="550" y="122" font-size="18" font-weight="bold" fill="#1F1E1E">2 EXTRAER</text>
+<text x="550" y="146" font-size="15">detalles</text>
+<line x1="460" y1="160" x2="640" y2="160" stroke="#D8D2CE"/>
+<text x="550" y="180" font-size="14" font-style="italic" fill="#6B6363">modelo chico</text>
+<rect x="440" y="250" width="220" height="100" rx="10" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="550" y="282" font-size="18" font-weight="bold" fill="#1F1E1E">3 BUSCAR</text>
+<text x="550" y="306" font-size="15">(RAG)</text>
+<line x1="460" y1="320" x2="640" y2="320" stroke="#D8D2CE"/>
+<text x="550" y="340" font-size="14" font-style="italic" fill="#6B6363">sin modelo</text>
+<rect x="60" y="250" width="220" height="100" rx="10" fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="170" y="282" font-size="18" font-weight="bold" fill="#1F1E1E">4 REDACTAR</text>
+<text x="170" y="306" font-size="15">respuesta</text>
+<line x1="80" y1="320" x2="260" y2="320" stroke="#F7BBC1"/>
+<text x="170" y="340" font-size="14" font-weight="bold" fill="#DA1B2E">modelo caro</text>
+<rect x="60" y="390" width="220" height="36" rx="18" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="170" y="413" font-size="15" font-weight="bold" fill="#1F1E1E">respuesta estructurada</text>
+<text x="360" y="128" font-size="15" font-weight="bold" fill="#1F1E1E">urgencia</text>
+<text x="360" y="160" font-size="13">alta/med/baja</text>
+<text x="360" y="288" font-size="15" font-weight="bold" fill="#1F1E1E">runbooks</text>
+<text x="360" y="320" font-size="13">+ contexto</text>
+</g>
+<text x="742" y="225" font-size="15" font-weight="bold" fill="#1F1E1E">detalles</text>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="170" y1="60" x2="170" y2="90"/>
+<line x1="280" y1="140" x2="440" y2="140"/>
+<polyline points="660,140 730,140 730,300 660,300"/>
+<line x1="440" y1="300" x2="280" y2="300"/>
+<line x1="170" y1="350" x2="170" y2="390"/>
+</g>
+<text x="60" y="470" font-size="15" font-weight="bold" fill="#1F1E1E">La salida de cada paso ES la entrada del siguiente.</text>
+<text x="60" y="494" font-size="15">El modelo caro entra solo en el paso 4, con el contexto ya filtrado.</text>
 </svg>

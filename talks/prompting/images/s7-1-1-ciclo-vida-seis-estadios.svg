@@ -1,63 +1,64 @@
-<!-- talksmith-ascii-sha256: 1596b392da7da4763f3b47b7634e0da8d88a259f0ff36b29d6dbd17e5721186e -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 456" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535" text-anchor="middle">
+<!-- talksmith-ascii-sha256: 44b569c97575bedcaedfef67b5726685f92904a49613603cd980d7e691dc563f -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 512" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
 <title>Ciclo de vida: dónde entra el LLM</title>
-<desc>El recorrido de un cambio en seis estadios, con la tarea concreta que hace un LLM en cada uno.</desc>
-<defs>
-<marker id="ah" markerWidth="10" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0.6 L10,4.5 L0,8.4 Z" fill="#7A7070"/></marker>
-<marker id="ahr" markerWidth="10" markerHeight="9" refX="10" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0.6 L10,4.5 L0,8.4 Z" fill="#DA1B2E"/></marker>
-</defs>
-<rect x="0" y="0" width="800" height="456" fill="#ffffff"/>
-<text x="400" y="44" font-size="17.5" font-weight="bold" letter-spacing="1.1">DÓNDE ENTRA EL LLM EN CADA ESTADIO</text>
-<path d="M30 86 A6 6 0 0 1 36 80 L234 80 A6 6 0 0 1 240 86 L240 132 L30 132 Z" fill="#F4F1F1"/>
-<rect x="30" y="80" width="210" height="110" rx="6" fill="none" stroke="#B8AFAF" stroke-width="1.3"/>
-<line x1="30" y1="132" x2="240" y2="132" stroke="#B8AFAF" stroke-width="1.3"/>
-<text x="135" y="106" font-size="15.5" font-weight="bold" letter-spacing="0.6">ISSUE</text>
-<text x="135" y="122" font-size="10.5" fill="#8A8080">triage</text>
-<text x="135" y="157">clasifica, deduplica</text>
-<text x="135" y="175">y pide lo que falta</text>
-<path d="M295 86 A6 6 0 0 1 301 80 L499 80 A6 6 0 0 1 505 86 L505 132 L295 132 Z" fill="#F4F1F1"/>
-<rect x="295" y="80" width="210" height="110" rx="6" fill="none" stroke="#B8AFAF" stroke-width="1.3"/>
-<line x1="295" y1="132" x2="505" y2="132" stroke="#B8AFAF" stroke-width="1.3"/>
-<text x="400" y="106" font-size="15.5" font-weight="bold" letter-spacing="0.6">DISEÑO</text>
-<text x="400" y="122" font-size="10.5" fill="#8A8080">ADRs</text>
-<text x="400" y="157">contrasta alternativas</text>
-<text x="400" y="175">y redacta el ADR</text>
-<path d="M560 86 A6 6 0 0 1 566 80 L764 80 A6 6 0 0 1 770 86 L770 132 L560 132 Z" fill="#F4F1F1"/>
-<rect x="560" y="80" width="210" height="110" rx="6" fill="none" stroke="#B8AFAF" stroke-width="1.3"/>
-<line x1="560" y1="132" x2="770" y2="132" stroke="#B8AFAF" stroke-width="1.3"/>
-<text x="665" y="106" font-size="15.5" font-weight="bold" letter-spacing="0.6">IMPLEMENTACIÓN</text>
-<text x="665" y="122" font-size="10.5" fill="#8A8080">código, tests</text>
-<text x="665" y="157">escribe el test antes</text>
-<text x="665" y="175">que la implementación</text>
-<path d="M560 266 A6 6 0 0 1 566 260 L764 260 A6 6 0 0 1 770 266 L770 312 L560 312 Z" fill="#F4F1F1"/>
-<rect x="560" y="260" width="210" height="110" rx="6" fill="none" stroke="#B8AFAF" stroke-width="1.3"/>
-<line x1="560" y1="312" x2="770" y2="312" stroke="#B8AFAF" stroke-width="1.3"/>
-<text x="665" y="286" font-size="15.5" font-weight="bold" letter-spacing="0.6">REVIEW</text>
-<text x="665" y="302" font-size="10.5" fill="#8A8080">diff</text>
-<text x="665" y="337">resume el diff y marca</text>
-<text x="665" y="355">lo que hay que mirar</text>
-<path d="M295 266 A6 6 0 0 1 301 260 L499 260 A6 6 0 0 1 505 266 L505 312 L295 312 Z" fill="#F4F1F1"/>
-<rect x="295" y="260" width="210" height="110" rx="6" fill="none" stroke="#B8AFAF" stroke-width="1.3"/>
-<line x1="295" y1="312" x2="505" y2="312" stroke="#B8AFAF" stroke-width="1.3"/>
-<text x="400" y="286" font-size="15.5" font-weight="bold" letter-spacing="0.6">DEPLOY</text>
-<text x="400" y="302" font-size="10.5" fill="#8A8080">release notes</text>
-<text x="400" y="337">redacta las notas de</text>
-<text x="400" y="355">versión desde commits</text>
-<path d="M30 266 A6 6 0 0 1 36 260 L234 260 A6 6 0 0 1 240 266 L240 312 L30 312 Z" fill="#F4F1F1"/>
-<rect x="30" y="260" width="210" height="110" rx="6" fill="none" stroke="#B8AFAF" stroke-width="1.3"/>
-<line x1="30" y1="312" x2="240" y2="312" stroke="#B8AFAF" stroke-width="1.3"/>
-<text x="135" y="286" font-size="15.5" font-weight="bold" letter-spacing="0.6">INCIDENTE</text>
-<text x="135" y="302" font-size="10.5" fill="#8A8080">logs, post-mortem</text>
-<text x="135" y="337">correlaciona logs y</text>
-<text x="135" y="355">propone la hipótesis</text>
-<line x1="240" y1="135" x2="295" y2="135" stroke="#7A7070" stroke-width="1.8" marker-end="url(#ah)" fill="none"/>
-<line x1="505" y1="135" x2="560" y2="135" stroke="#7A7070" stroke-width="1.8" marker-end="url(#ah)" fill="none"/>
-<line x1="665" y1="190" x2="665" y2="260" stroke="#7A7070" stroke-width="1.8" marker-end="url(#ah)" fill="none"/>
-<line x1="560" y1="315" x2="505" y2="315" stroke="#7A7070" stroke-width="1.8" marker-end="url(#ah)" fill="none"/>
-<line x1="295" y1="315" x2="240" y2="315" stroke="#7A7070" stroke-width="1.8" marker-end="url(#ah)" fill="none"/>
-<line x1="135" y1="260" x2="135" y2="190" stroke="#DA1B2E" stroke-width="2.4" marker-end="url(#ahr)" fill="none"/>
-<text x="150" y="215" font-size="10.5" fill="#DA1B2E" text-anchor="start" font-weight="bold">el post-mortem</text>
-<text x="150" y="229" font-size="10.5" fill="#DA1B2E" text-anchor="start" font-weight="bold">vuelve como issue</text>
-<text x="400" y="404" font-size="12.5">El ciclo se cierra, no termina: el incidente alimenta el próximo issue.</text>
-<text x="400" y="424" font-size="12.5" font-weight="bold">Hay un LLM útil en los seis estadios, no solo en “escribir código”.</text>
+<desc>Esta slide reordena toda la clase en el eje que a ellos les resulta natural: el flujo de trabajo.</desc>
+<defs><marker id="ag" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker><marker id="ar" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="13" markerHeight="13" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker></defs>
+<rect x="0" y="0" width="980" height="512" fill="#ffffff"/>
+<text x="30" y="44" font-size="14" font-weight="bold" fill="#1F1E1E" letter-spacing="1">DÓNDE ENTRA EL LLM EN CADA ESTADIO</text>
+<rect x="30" y="64" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M30,108 V72 Q30,64 38,64 H222 Q230,64 230,72 V108 Z" fill="#F2EEEE"/>
+<line x1="30" y1="108" x2="230" y2="108" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="30" y="64" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="130" y="92" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">ISSUE</text>
+<text x="130" y="143" text-anchor="middle" font-size="14">clasifica, agrupa</text>
+<text x="130" y="161" text-anchor="middle" font-size="14">duplicados y pide</text>
+<text x="130" y="179" text-anchor="middle" font-size="14">lo que falta</text>
+<rect x="270" y="64" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M270,108 V72 Q270,64 278,64 H462 Q470,64 470,72 V108 Z" fill="#F2EEEE"/>
+<line x1="270" y1="108" x2="470" y2="108" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="270" y="64" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="370" y="92" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">DISEÑO</text>
+<text x="370" y="152" text-anchor="middle" font-size="14">contrasta alternativas</text>
+<text x="370" y="170" text-anchor="middle" font-size="14">y redacta el ADR</text>
+<rect x="510" y="64" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M510,108 V72 Q510,64 518,64 H702 Q710,64 710,72 V108 Z" fill="#F2EEEE"/>
+<line x1="510" y1="108" x2="710" y2="108" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="510" y="64" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="610" y="92" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">IMPLEMENTACIÓN</text>
+<text x="610" y="143" text-anchor="middle" font-size="14">escribe el test</text>
+<text x="610" y="161" text-anchor="middle" font-size="14">antes que la</text>
+<text x="610" y="179" text-anchor="middle" font-size="14">implementación</text>
+<rect x="750" y="64" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M750,108 V72 Q750,64 758,64 H942 Q950,64 950,72 V108 Z" fill="#F2EEEE"/>
+<line x1="750" y1="108" x2="950" y2="108" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="750" y="64" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="850" y="92" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">REVIEW</text>
+<text x="850" y="143" text-anchor="middle" font-size="14">resume el diff y</text>
+<text x="850" y="161" text-anchor="middle" font-size="14">marca lo que hay</text>
+<text x="850" y="179" text-anchor="middle" font-size="14">que mirar a mano</text>
+<rect x="750" y="284" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M750,328 V292 Q750,284 758,284 H942 Q950,284 950,292 V328 Z" fill="#F2EEEE"/>
+<line x1="750" y1="328" x2="950" y2="328" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="750" y="284" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="850" y="312" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">DEPLOY</text>
+<text x="850" y="363" text-anchor="middle" font-size="14">redacta las notas</text>
+<text x="850" y="381" text-anchor="middle" font-size="14">de versión desde</text>
+<text x="850" y="399" text-anchor="middle" font-size="14">los commits</text>
+<rect x="30" y="284" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M30,328 V292 Q30,284 38,284 H222 Q230,284 230,292 V328 Z" fill="#F2EEEE"/>
+<line x1="30" y1="328" x2="230" y2="328" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="30" y="284" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="130" y="312" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">INCIDENTE</text>
+<text x="130" y="363" text-anchor="middle" font-size="14">correlaciona logs</text>
+<text x="130" y="381" text-anchor="middle" font-size="14">y propone la</text>
+<text x="130" y="399" text-anchor="middle" font-size="14">hipótesis</text>
+<line x1="230" y1="134" x2="270" y2="134" stroke="#3B3535" stroke-width="2" marker-end="url(#ag)"/>
+<line x1="470" y1="134" x2="510" y2="134" stroke="#3B3535" stroke-width="2" marker-end="url(#ag)"/>
+<line x1="710" y1="134" x2="750" y2="134" stroke="#3B3535" stroke-width="2" marker-end="url(#ag)"/>
+<line x1="850" y1="204" x2="850" y2="284" stroke="#3B3535" stroke-width="2" marker-end="url(#ag)"/>
+<line x1="750" y1="354" x2="230" y2="354" stroke="#3B3535" stroke-width="2" marker-end="url(#ag)"/>
+<line x1="130" y1="284" x2="130" y2="204" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ar)"/>
+<text x="144" y="249" font-size="13" font-weight="bold" fill="#DA1B2E">post-mortem</text>
+<text x="30" y="464" font-size="15">El post-mortem vuelve como issue: el ciclo se cierra, no termina.</text>
+<text x="30" y="488" font-size="15">Hay un LLM útil en los seis estadios, no solo en “escribir código”.</text>
 </svg>

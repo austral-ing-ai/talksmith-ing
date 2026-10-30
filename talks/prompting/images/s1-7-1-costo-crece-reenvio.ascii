@@ -17,4 +17,10 @@
 intent: mostrar la desproporcion entre lo que el usuario escribe (constante) y lo que la aplicacion manda al modelo (crece en cada turno); que el crecimiento no viene del usuario sino del reenvio del historial
 emphasize: las dos columnas contrastadas, la izquierda que no crece y la derecha que si; la llave que separa lo ya pagado varias veces de lo nuevo del turno; la linea de cierre
 labels: "LO QUE EL USUARIO ESCRIBE (siempre parecido)", "LO QUE LA APP LE MANDA AL MODELO (crece en cada turno)", "turno 1..4", "M = mensaje del usuario", "R = respuesta del modelo", "ya se pago 3 veces", "lo nuevo"
+animation:
+  1. turno 1: el usuario escribe M1 a la izquierda y el mismo M1 llega solo a la derecha; aparece "1 bloque"
+  2. turno 2: a la izquierda entra M2, del mismo tamano que M1; a la derecha se reenvian M1 y R1 y despues se suma M2; aparece "3"
+  3. turno 3: entra M3; a la derecha se reenvia todo lo anterior (M1 R1 M2 R2) y se suma M3; aparece "5"
+  4. turno 4: entra M4; se reenvian seis bloques y se suma M4; aparece "7"
+  5. la llave marca los seis bloques reenviados como "ya se pago 3 veces" y M4 como "lo nuevo"; la columna de la izquierda no crecio en ningun turno
 -->

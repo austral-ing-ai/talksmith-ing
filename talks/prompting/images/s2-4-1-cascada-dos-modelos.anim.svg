@@ -1,0 +1,128 @@
+<svg class="ts-anim-s2-4-1-cascada-dos-modelos" xmlns="http://www.w3.org/2000/svg" viewBox="46 2 698 598" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Model cascading</title>
+<desc>La idea es de una línea y la trampa está en el rombo del medio.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s2-4-1-cascada-dos-modelos .b1{animation:ts-anim-s2-4-1-cascada-dos-modelos-b1 5.50s linear 0.40s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rc1{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc1 1.94s linear 1.01s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rp1{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp1 1.00s linear 5.14s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .b2{animation:ts-anim-s2-4-1-cascada-dos-modelos-b2 2.75s linear 6.90s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rc2{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc2 0.97s linear 7.20s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rp2{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp2 0.60s linear 9.27s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .b3{animation:ts-anim-s2-4-1-cascada-dos-modelos-b3 1.92s linear 9.90s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rc3{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc3 0.68s linear 10.11s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rp3{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp3 0.60s linear 11.56s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .b4{animation:ts-anim-s2-4-1-cascada-dos-modelos-b4 1.54s linear 12.07s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rc4{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc4 0.54s linear 12.25s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rp4{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp4 0.60s linear 13.40s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .b5{animation:ts-anim-s2-4-1-cascada-dos-modelos-b5 7.30s linear 14.46s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rc5{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc5 1.94s linear 15.07s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .re5{animation:ts-anim-s2-4-1-cascada-dos-modelos-re5 1.65s linear 19.32s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rb5{animation:ts-anim-s2-4-1-cascada-dos-modelos-rb5 1.00s linear 21.14s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c1{animation:ts-anim-s2-4-1-cascada-dos-modelos-c1 3.20s linear 0.40s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c2{animation:ts-anim-s2-4-1-cascada-dos-modelos-c2 3.10s linear 3.70s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c3{animation:ts-anim-s2-4-1-cascada-dos-modelos-c3 7.11s linear 7.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c4{animation:ts-anim-s2-4-1-cascada-dos-modelos-c4 2.99s linear 14.67s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c5{animation:ts-anim-s2-4-1-cascada-dos-modelos-c5 3.21s linear 17.77s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c6{animation:ts-anim-s2-4-1-cascada-dos-modelos-c6 2.49s linear 21.07s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .close{animation:ts-anim-s2-4-1-cascada-dos-modelos-close 0.70s linear 23.77s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .k1{animation:ts-anim-s2-4-1-cascada-dos-modelos-k1 4.13s linear 5.14s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .k2{animation:ts-anim-s2-4-1-cascada-dos-modelos-k2 2.29s linear 9.27s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .k3{animation:ts-anim-s2-4-1-cascada-dos-modelos-k3 1.84s linear 11.56s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .k4{animation:ts-anim-s2-4-1-cascada-dos-modelos-k4 12.56s linear 13.40s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .k5{animation:ts-anim-s2-4-1-cascada-dos-modelos-k5 4.82s linear 21.14s 1 normal both}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b1{0.00%{transform:translate(200px,48px);opacity:0}5.45%{transform:translate(200px,48px);opacity:1}23.64%{transform:translate(200px,116px);opacity:1}40.00%{transform:translate(200px,116px);opacity:1}58.18%{transform:translate(200px,250px);opacity:1}70.91%{transform:translate(200px,250px);opacity:1}94.55%{transform:translate(500px,250px);opacity:1}100.00%{transform:translate(500px,250px);opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc1{0%{opacity:0}10.30%,89.70%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp1{0%{opacity:0}20.00%,80.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b2{0.00%{transform:translate(200px,48px);opacity:0}5.45%{transform:translate(200px,48px);opacity:1}23.64%{transform:translate(200px,116px);opacity:1}40.00%{transform:translate(200px,116px);opacity:1}58.18%{transform:translate(200px,250px);opacity:1}70.91%{transform:translate(200px,250px);opacity:1}94.55%{transform:translate(500px,250px);opacity:1}100.00%{transform:translate(500px,250px);opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc2{0%{opacity:0}20.60%,79.40%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp2{0%{opacity:0}25.00%,75.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b3{0.00%{transform:translate(200px,48px);opacity:0}5.45%{transform:translate(200px,48px);opacity:1}23.64%{transform:translate(200px,116px);opacity:1}40.00%{transform:translate(200px,116px);opacity:1}58.18%{transform:translate(200px,250px);opacity:1}70.91%{transform:translate(200px,250px);opacity:1}94.55%{transform:translate(500px,250px);opacity:1}100.00%{transform:translate(500px,250px);opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc3{0%{opacity:0}25.00%,75.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp3{0%{opacity:0}25.00%,75.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b4{0.00%{transform:translate(200px,48px);opacity:0}5.45%{transform:translate(200px,48px);opacity:1}23.64%{transform:translate(200px,116px);opacity:1}40.00%{transform:translate(200px,116px);opacity:1}58.18%{transform:translate(200px,250px);opacity:1}70.91%{transform:translate(200px,250px);opacity:1}94.55%{transform:translate(500px,250px);opacity:1}100.00%{transform:translate(500px,250px);opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc4{0%{opacity:0}25.00%,75.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp4{0%{opacity:0}25.00%,75.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b5{0.00%{transform:translate(200px,48px);opacity:0}4.11%{transform:translate(200px,48px);opacity:1}17.81%{transform:translate(200px,116px);opacity:1}30.14%{transform:translate(200px,116px);opacity:1}43.84%{transform:translate(200px,250px);opacity:1}56.16%{transform:translate(200px,250px);opacity:1}71.23%{transform:translate(200px,400px);opacity:1}83.56%{transform:translate(200px,400px);opacity:1}95.89%{transform:translate(200px,504px);opacity:1}100.00%{transform:translate(200px,504px);opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc5{0%{opacity:0}10.30%,89.70%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-re5{0%{opacity:0}12.11%,87.89%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rb5{0%{opacity:0}20.00%,80.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c1{0%{opacity:0}9.38%,90.63%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c2{0%{opacity:0}9.68%,90.32%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c3{0%{opacity:0}4.22%,95.78%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c4{0%{opacity:0}10.03%,89.97%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c5{0%{opacity:0}9.36%,90.64%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c6{0%{opacity:0}12.03%,87.97%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-close{0%{opacity:0}100.00%,100%{opacity:1}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k1{0%{opacity:0}1.94%,98.06%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k2{0%{opacity:0}3.49%,96.51%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k3{0%{opacity:0}4.34%,95.66%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k4{0%{opacity:0}0.64%,96.82%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k5{0%{opacity:0}3.11%,91.70%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s2-4-1-cascada-dos-modelos *{animation:none}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="46" y="2" width="698" height="598" fill="#FFFFFF"/>
+<text x="200" y="36" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Pedido entra</text>
+<g stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)">
+<line x1="200" y1="46" x2="200" y2="76"/>
+<line x1="200" y1="156" x2="200" y2="190"/>
+<line x1="330" y1="250" x2="400" y2="250"/>
+<line x1="200" y1="310" x2="200" y2="360"/>
+<line x1="200" y1="440" x2="200" y2="474"/>
+</g>
+<!-- pedidos: ride under the boxes, which swallow them while they process -->
+<g class="b1" opacity="0"><circle r="8" fill="#1F5FA8" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="b2" opacity="0"><circle r="8" fill="#1F5FA8" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="b3" opacity="0"><circle r="8" fill="#1F5FA8" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="b4" opacity="0"><circle r="8" fill="#1F5FA8" stroke="#FFFFFF" stroke-width="2"/></g>
+<g class="b5" opacity="0"><circle r="8" fill="#1F5FA8" stroke="#FFFFFF" stroke-width="2"/></g>
+<rect x="80" y="76" width="240" height="80" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="200" y="104" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Modelo barato</text>
+<text x="200" y="124" text-anchor="middle" font-size="14">(Haiku 4.5)</text>
+<text x="200" y="144" text-anchor="middle" font-size="13">intenta resolver</text>
+<path d="M200,190 L330,250 L200,310 L70,250 Z" fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="200" y="246" text-anchor="middle" font-size="15" font-weight="bold" fill="#DA1B2E">¿confianza</text>
+<text x="200" y="266" text-anchor="middle" font-size="15" font-weight="bold" fill="#DA1B2E">suficiente?</text>
+<text x="365" y="240" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F1E1E">SÍ</text>
+<text x="186" y="340" text-anchor="end" font-size="14" font-weight="bold" fill="#1F1E1E">NO</text>
+<rect x="400" y="220" width="200" height="60" rx="30" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.5"/>
+<text x="500" y="246" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Retornar respuesta</text>
+<text x="500" y="265" text-anchor="middle" font-size="12">costo mínimo, latencia baja</text>
+<text x="616" y="246" font-size="14" font-weight="bold" fill="#1F1E1E">UNA llamada</text>
+<text x="616" y="265" font-size="14">el caso frecuente</text>
+<rect x="80" y="360" width="240" height="80" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="200" y="388" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Modelo caro</text>
+<text x="200" y="408" text-anchor="middle" font-size="14">(Opus 4.8)</text>
+<text x="200" y="428" text-anchor="middle" font-size="13">resuelve</text>
+<rect x="100" y="474" width="200" height="60" rx="30" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.5"/>
+<text x="200" y="500" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">Retornar respuesta</text>
+<text x="200" y="519" text-anchor="middle" font-size="12">solo cuando hace falta</text>
+<text x="316" y="500" font-size="14" font-weight="bold" fill="#1F1E1E">DOS llamadas</text>
+<text x="316" y="519" font-size="14">la excepción</text>
+<text class="close" x="402" y="574" text-anchor="middle" font-size="15" font-style="italic" fill="#1F1E1E">El ahorro sale de que la rama corta sea la mayoritaria.</text>
+<!-- narration -->
+<rect class="rc1" x="73" y="69" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rp1" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rc2" x="73" y="69" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rp2" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rc3" x="73" y="69" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rp3" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rc4" x="73" y="69" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rp4" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rc5" x="73" y="69" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="re5" x="73" y="353" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rb5" x="93" y="467" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<text class="k1" x="365" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×1</text>
+<text class="k2" x="365" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×2</text>
+<text class="k3" x="365" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×3</text>
+<text class="k4" x="365" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×4</text>
+<text class="c1" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Entra un pedido: el modelo barato intenta resolverlo</text>
+<text class="c2" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Confianza suficiente: SÍ, sale por la rama corta</text>
+<text class="c3" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Otros pedidos hacen el mismo recorrido corto, cada vez más rápido</text>
+<text class="c4" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Llega un pedido más</text>
+<text class="c5" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">La confianza no alcanza: NO, baja al modelo caro, que resuelve</text>
+<text class="c6" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Sale por el retorno de abajo: DOS llamadas, una sola vez</text>
+<text class="k5" x="214" y="340" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×1</text>
+</svg>

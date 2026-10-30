@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="ts-anim-s6-2-1-thinking-bifurcacion-peticion" viewBox="0 0 740 560" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Thinking: el mecanismo</title>
+<desc>Esta es la lámina del mecanismo, y la palabra que hay que fijar es "adaptativo".</desc>
+<style>/* talksmith-animation */
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .tk1{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-tk1 7.23s linear 0.80s 1 both}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .tk2{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-tk2 8.43s linear 9.60s 1 both}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .c1{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 0.30s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 2.60s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .hE1{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 1.60s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 2.60s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .c2{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 2.90s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 8.83s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .hS{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 4.61s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 5.66s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .hT1{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 7.78s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 8.83s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .c3{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 9.23s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 11.40s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .hE2{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 10.40s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 11.40s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .c4{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 11.70s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 15.66s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .hK{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 13.41s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 15.66s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .k1{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 13.76s both}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .k2{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 14.36s both}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .k3{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 14.96s both}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .c5{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 15.96s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 18.83s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .hT2{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 17.78s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.30s ease-in 18.83s forwards}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .mframe{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.60s ease-out 19.33s both}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .mlabel{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 20.03s both}
+.ts-anim-s6-2-1-thinking-bifurcacion-peticion .hM{animation:ts-anim-s6-2-1-thinking-bifurcacion-peticion-in 0.40s ease-out 20.63s both,ts-anim-s6-2-1-thinking-bifurcacion-peticion-out 0.40s ease-in 21.73s forwards}
+@keyframes ts-anim-s6-2-1-thinking-bifurcacion-peticion-tk1{0.00%{opacity:0;transform:translate(150.0px,96.0px)}0.28%{opacity:1;transform:translate(150.0px,96.0px)}11.07%{opacity:1;transform:translate(250.0px,96.0px)}24.90%{opacity:1;transform:translate(250.0px,96.0px)}29.05%{opacity:1;transform:translate(320.0px,120.0px)}33.20%{opacity:1;transform:translate(320.0px,162.0px)}45.06%{opacity:1;transform:translate(200.0px,162.0px)}53.36%{opacity:1;transform:translate(200.0px,246.0px)}67.19%{opacity:1;transform:translate(200.0px,246.0px)}71.34%{opacity:1;transform:translate(200.0px,346.0px)}76.09%{opacity:1;transform:translate(200.0px,394.0px)}92.89%{opacity:1;transform:translate(370.0px,394.0px)}97.23%{opacity:1;transform:translate(370.0px,438.0px)}100.00%{opacity:0;transform:translate(370.0px,438.0px)}}
+@keyframes ts-anim-s6-2-1-thinking-bifurcacion-peticion-tk2{0.00%{opacity:0;transform:translate(150.0px,96.0px)}0.24%{opacity:1;transform:translate(150.0px,96.0px)}9.49%{opacity:1;transform:translate(250.0px,96.0px)}21.36%{opacity:1;transform:translate(250.0px,96.0px)}24.92%{opacity:1;transform:translate(420.0px,120.0px)}28.47%{opacity:1;transform:translate(420.0px,162.0px)}38.64%{opacity:1;transform:translate(540.0px,162.0px)}45.76%{opacity:1;transform:translate(540.0px,246.0px)}71.86%{opacity:1;transform:translate(540.0px,246.0px)}75.42%{opacity:1;transform:translate(540.0px,346.0px)}79.49%{opacity:1;transform:translate(540.0px,394.0px)}93.90%{opacity:1;transform:translate(370.0px,394.0px)}97.63%{opacity:1;transform:translate(370.0px,438.0px)}100.00%{opacity:0;transform:translate(370.0px,438.0px)}}
+@keyframes ts-anim-s6-2-1-thinking-bifurcacion-peticion-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-2-1-thinking-bifurcacion-peticion-out{from{opacity:1}to{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s6-2-1-thinking-bifurcacion-peticion *{animation:none!important}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="740" height="560" fill="#ffffff"/>
+<!-- conectores debajo: el token viaja sobre las líneas y por debajo de las cajas -->
+<path d="M170 96 H230" stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+<path d="M320 134 V162 H200 V230" stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+<path d="M420 134 V162 H540 V230" stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+<path d="M200 362 V394 H540 V362" stroke="#3B3535" stroke-width="2" fill="none"/>
+<path d="M370 394 V422" stroke="#3B3535" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+<g class="tk1" opacity="0"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g>
+<g class="tk2" opacity="0"><circle r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2"/></g>
+<text x="370" y="38" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1.5" fill="#1F1E1E">LO QUE PASA EN UNA PETICIÓN</text>
+<rect x="40" y="66" width="130" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="105" y="102" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">prompt</text>
+<rect x="230" y="58" width="280" height="76" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="370" y="91" text-anchor="middle" font-size="15" font-weight="bold" fill="#1F1E1E">el modelo evalúa la dificultad</text>
+<text x="370" y="114" text-anchor="middle" font-size="14">y decide, en esta misma petición</text>
+<text x="190" y="186" text-anchor="end" font-size="14" font-style="italic">tarea simple</text>
+<text x="550" y="186" font-size="14" font-style="italic">tarea de varios pasos</text>
+<g class="mframe"><rect x="46" y="204" width="648" height="298" rx="12" fill="none" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="6 5"/></g>
+<rect x="60" y="230" width="280" height="132" rx="8" fill="#FFFFFF" stroke="#D8D2CE" stroke-width="2"/>
+<path d="M60 266 V238 a8 8 0 0 1 8 -8 H332 a8 8 0 0 1 8 8 V266 z" fill="#D8D2CE"/>
+<text x="200" y="254" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1" fill="#1F1E1E">SIN BLOQUE</text>
+<text x="200" y="296" text-anchor="middle" font-size="15">la respuesta vuelve</text>
+<text x="200" y="319" text-anchor="middle" font-size="15">directo, sin pasos</text>
+<text x="200" y="342" text-anchor="middle" font-size="15">intermedios</text>
+<rect x="400" y="230" width="280" height="132" rx="8" fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2"/>
+<path d="M400 266 V238 a8 8 0 0 1 8 -8 H672 a8 8 0 0 1 8 8 V266 z" fill="#DA1B2E"/>
+<text x="540" y="254" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1" fill="#FFFFFF">BLOQUE DE THINKING</text>
+<g class="k1"><text x="540" y="296" text-anchor="middle" font-size="15">tipo propio, aparte del texto</text></g>
+<g class="k2"><text x="456" y="321" font-size="14" font-family="'Andale Mono', monospace" xml:space="preserve">display: summarized</text></g>
+<g class="k3"><text x="456" y="342" font-size="14" font-family="'Andale Mono', monospace" xml:space="preserve">         u omitted</text></g>
+<rect x="200" y="422" width="340" height="64" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="370" y="449" text-anchor="middle" font-size="15" font-weight="bold" letter-spacing="1" fill="#1F1E1E">TEXTO DE LA RESPUESTA</text>
+<text x="370" y="471" text-anchor="middle" font-size="14">lo único que ve el usuario</text>
+<g class="mlabel"><text x="152" y="530" font-size="15" xml:space="preserve"><tspan font-family="'Andale Mono', monospace" font-weight="bold" fill="#1F1E1E">max_tokens</tspan><tspan> es el techo duro de TODA la salida: thinking + texto</tspan></text></g>
+<!-- narración: resaltes y leyendas, empiezan y terminan en opacity 0 -->
+<rect class="hE1" opacity="0" x="230" y="58" width="280" height="76" rx="8" fill="none" stroke="#3B3535" stroke-width="3.5"/>
+<rect class="hE2" opacity="0" x="230" y="58" width="280" height="76" rx="8" fill="none" stroke="#3B3535" stroke-width="3.5"/>
+<rect class="hS" opacity="0" x="60" y="230" width="280" height="132" rx="8" fill="none" stroke="#3B3535" stroke-width="3.5"/>
+<rect class="hK" opacity="0" x="400" y="230" width="280" height="132" rx="8" fill="none" stroke="#DA1B2E" stroke-width="4"/>
+<rect class="hT1" opacity="0" x="200" y="422" width="340" height="64" rx="8" fill="none" stroke="#3B3535" stroke-width="3.5"/>
+<rect class="hT2" opacity="0" x="200" y="422" width="340" height="64" rx="8" fill="none" stroke="#3B3535" stroke-width="3.5"/>
+<rect class="hM" opacity="0" x="46" y="204" width="648" height="298" rx="12" fill="none" stroke="#1F1E1E" stroke-width="3" stroke-dasharray="6 5"/>
+<text class="c1" opacity="0" x="370" y="530" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Llega una pregunta simple: el modelo evalúa la dificultad</text>
+<text class="c2" opacity="0" x="370" y="530" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Tarea simple: no escribe bloque; la respuesta baja directo al texto</text>
+<text class="c3" opacity="0" x="370" y="530" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Llega un problema de varios pasos: el modelo vuelve a evaluar</text>
+<text class="c4" opacity="0" x="370" y="530" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Varios pasos: escribe el BLOQUE DE THINKING, aparte del texto</text>
+<text class="c5" opacity="0" x="370" y="530" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E">Recién después del bloque sale el texto, lo único que ve el usuario</text>
+</svg>

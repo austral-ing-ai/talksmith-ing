@@ -21,4 +21,9 @@
 intent: mostrar la eleccion de modelo como una cascada de tres preguntas en orden fijo, donde la primera que da "si" corta la decision; el orden de las preguntas es el contenido, no los nombres de modelo que devuelve
 emphasize: la columna de decisiones encadenadas y las salidas de cada rama SI; que la pregunta de costo va ultima, despues de resolver dificultad y contexto
 labels: "¿La tarea es simple?", "¿Necesita mas de 1M de contexto?", "¿El costo es critico por volumen?", y las salidas de cada rama
+animation:
+  1. llega una tarea: revisar el diff de cada pull request, miles por dia; se detiene en "¿La tarea es simple?"
+  2. NO: baja a "¿Necesita mas de 1M de contexto?"
+  3. NO: baja a "¿El costo es critico por volumen?"
+  4. SI: sale por la rama lateral hacia "model cascading" y la decision termina ahi; la salida final, "el mejor modelo para la calidad que se necesita", queda sin recorrer
 -->

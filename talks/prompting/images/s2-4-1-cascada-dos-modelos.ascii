@@ -32,4 +32,10 @@
 intent: mostrar el flujo de dos etapas del model cascading, con el gate de confianza como el punto de decision que define si el ahorro existe
 emphasize: la asimetria de las dos ramas. SI es una salida lateral CORTA (una llamada, el caso frecuente) y NO continua hacia ABAJO por el camino largo (dos llamadas, la excepcion). El camino barato tiene que verse mas corto que el caro, no al reves; las dos cajas "retornar respuesta" no deben quedar a la misma altura
 labels: "Modelo barato (Haiku 4.5)", "¿confianza suficiente?", "Modelo caro (Opus 4.8)", "UNA llamada / el caso frecuente", "DOS llamadas / la excepcion", y la linea de cierre sobre la rama mayoritaria
+animation:
+  1. entra un pedido y baja al Modelo barato (Haiku 4.5), que intenta resolver
+  2. llega a "¿confianza suficiente?": SI; sale por la rama lateral corta a "retornar respuesta", UNA llamada
+  3. otros pedidos hacen el mismo recorrido corto, cada vez mas rapido
+  4. llega un pedido mas: la confianza no alcanza; NO baja al Modelo caro (Opus 4.8), que resuelve
+  5. sale por el "retornar respuesta" de abajo, DOS llamadas; la rama corta se recorrio varias veces y la larga una sola, y de ahi sale el ahorro
 -->

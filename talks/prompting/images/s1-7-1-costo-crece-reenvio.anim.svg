@@ -1,0 +1,139 @@
+<svg class="ts-anim-s1-7-1-costo-crece-reenvio" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 408" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3B3535">
+<title>La fórmula del costo</title>
+<desc>Esta es la slide que explica por qué la factura de un chatbot crece sin que crezca el uso.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat]{animation:ts-anim-s1-7-1-costo-crece-reenvio-in .6s ease-out both}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat].resend{animation-name:ts-anim-s1-7-1-costo-crece-reenvio-resend;animation-duration:.7s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="1"]{animation-delay:0.5s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="2"]{animation-delay:1.3s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="3"]{animation-delay:2.1s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="4"]{animation-delay:3.2s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="5"]{animation-delay:4.0s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="6"]{animation-delay:4.9s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="7"]{animation-delay:5.7s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="8"]{animation-delay:6.8s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="9"]{animation-delay:7.6s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="10"]{animation-delay:8.5s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="11"]{animation-delay:9.3s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="12"]{animation-delay:10.4s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="13"]{animation-delay:11.2s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="14"]{animation-delay:12.1s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="15"]{animation-delay:12.9s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="16"]{animation-delay:14.0s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="17"]{animation-delay:15.0s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="18"]{animation-delay:16.2s}
+.ts-anim-s1-7-1-costo-crece-reenvio [data-beat="19"]{animation-delay:17.2s}
+.ts-anim-s1-7-1-costo-crece-reenvio .left-mark{animation:ts-anim-s1-7-1-costo-crece-reenvio-mark 2.6s ease-in-out 16.0s both}
+@keyframes ts-anim-s1-7-1-costo-crece-reenvio-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s1-7-1-costo-crece-reenvio-resend{from{opacity:0;transform:translate(0px,-14px)}to{opacity:1;transform:translate(0px,0px)}}
+@keyframes ts-anim-s1-7-1-costo-crece-reenvio-mark{0%{opacity:0}20%{opacity:1}75%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s1-7-1-costo-crece-reenvio *{animation:none !important}}
+</style>
+<rect x="0" y="0" width="780" height="408" fill="#ffffff"/>
+<text x="200" y="34" text-anchor="middle" font-weight="bold" font-size="13" fill="#1F1E1E">LO QUE EL USUARIO ESCRIBE</text>
+<text x="200" y="53" text-anchor="middle" font-style="italic" font-size="12">(siempre parecido)</text>
+<text x="510" y="34" text-anchor="middle" font-weight="bold" font-size="13" fill="#1F1E1E">LO QUE LA APP LE MANDA AL MODELO</text>
+<text x="510" y="53" text-anchor="middle" font-style="italic" font-size="12">(crece en cada turno)</text>
+<line x1="322" y1="70" x2="322" y2="250" stroke="#D8D2CE" stroke-width="1"/>
+<!-- narration: marks the left column as unchanged at the close; starts and ends invisible -->
+<rect class="left-mark" opacity="0" x="168" y="70" width="64" height="184" rx="7" fill="none" stroke="#3B3535" stroke-width="1.6" stroke-dasharray="6 4"/>
+<!-- turno 1 -->
+<g data-beat="1">
+<text x="24" y="98" font-size="13">turno 1</text>
+<rect x="178" y="78" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="200" y="98" text-anchor="middle">M1</text>
+</g>
+<g data-beat="2">
+<rect x="344" y="78" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="366" y="98" text-anchor="middle">M1</text>
+</g>
+<g data-beat="3">
+<text x="692" y="98" font-weight="bold" fill="#1F1E1E">1 bloque</text>
+</g>
+<!-- turno 2 -->
+<g data-beat="4">
+<text x="24" y="144" font-size="13">turno 2</text>
+<rect x="178" y="124" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="200" y="144" text-anchor="middle">M2</text>
+</g>
+<g data-beat="5" class="resend">
+<rect x="344" y="124" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="366" y="144" text-anchor="middle">M1</text>
+<rect x="392" y="124" width="44" height="30" rx="4" fill="#F2EEEE" stroke="#B9B1AC" stroke-width="1.2"/>
+<text x="414" y="144" text-anchor="middle">R1</text>
+</g>
+<g data-beat="6">
+<rect x="440" y="124" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="462" y="144" text-anchor="middle">M2</text>
+</g>
+<g data-beat="7">
+<text x="692" y="144" font-weight="bold" fill="#1F1E1E">3 bloques</text>
+</g>
+<!-- turno 3 -->
+<g data-beat="8">
+<text x="24" y="190" font-size="13">turno 3</text>
+<rect x="178" y="170" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="200" y="190" text-anchor="middle">M3</text>
+</g>
+<g data-beat="9" class="resend">
+<rect x="344" y="170" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="366" y="190" text-anchor="middle">M1</text>
+<rect x="392" y="170" width="44" height="30" rx="4" fill="#F2EEEE" stroke="#B9B1AC" stroke-width="1.2"/>
+<text x="414" y="190" text-anchor="middle">R1</text>
+<rect x="440" y="170" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="462" y="190" text-anchor="middle">M2</text>
+<rect x="488" y="170" width="44" height="30" rx="4" fill="#F2EEEE" stroke="#B9B1AC" stroke-width="1.2"/>
+<text x="510" y="190" text-anchor="middle">R2</text>
+</g>
+<g data-beat="10">
+<rect x="536" y="170" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="558" y="190" text-anchor="middle">M3</text>
+</g>
+<g data-beat="11">
+<text x="692" y="190" font-weight="bold" fill="#1F1E1E">5 bloques</text>
+</g>
+<!-- turno 4 -->
+<g data-beat="12">
+<text x="24" y="236" font-size="13">turno 4</text>
+<rect x="178" y="216" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="200" y="236" text-anchor="middle">M4</text>
+</g>
+<g data-beat="13" class="resend">
+<rect x="344" y="216" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="366" y="236" text-anchor="middle">M1</text>
+<rect x="392" y="216" width="44" height="30" rx="4" fill="#F2EEEE" stroke="#B9B1AC" stroke-width="1.2"/>
+<text x="414" y="236" text-anchor="middle">R1</text>
+<rect x="440" y="216" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="462" y="236" text-anchor="middle">M2</text>
+<rect x="488" y="216" width="44" height="30" rx="4" fill="#F2EEEE" stroke="#B9B1AC" stroke-width="1.2"/>
+<text x="510" y="236" text-anchor="middle">R2</text>
+<rect x="536" y="216" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="558" y="236" text-anchor="middle">M3</text>
+<rect x="584" y="216" width="44" height="30" rx="4" fill="#F2EEEE" stroke="#B9B1AC" stroke-width="1.2"/>
+<text x="606" y="236" text-anchor="middle">R3</text>
+</g>
+<g data-beat="14">
+<rect x="632" y="216" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="654" y="236" text-anchor="middle">M4</text>
+</g>
+<g data-beat="15">
+<text x="692" y="236" font-weight="bold" fill="#1F1E1E">7 bloques</text>
+</g>
+<!-- the braces -->
+<g data-beat="16">
+<path d="M344 256 q0 7 7 7 H479.0 q7 0 7 7 q0 -7 7 -7 H621 q7 0 7 -7" fill="none" stroke="#DA1B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="486" y="294" text-anchor="middle" font-weight="bold" font-size="14" fill="#DA1B2E">ya pagado en turnos anteriores</text>
+</g>
+<g data-beat="17">
+<path d="M632 256 q0 7 7 7 H647.0 q7 0 7 7 q0 -7 7 -7 H669 q7 0 7 -7" fill="none" stroke="#3B3535" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="654" y="294" text-anchor="middle" font-size="14">lo nuevo</text>
+</g>
+<rect x="24" y="312" width="18" height="14" rx="3" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.2"/>
+<text x="50" y="323" font-size="12">M = mensaje del usuario</text>
+<rect x="220" y="312" width="18" height="14" rx="3" fill="#F2EEEE" stroke="#B9B1AC" stroke-width="1.2"/>
+<text x="246" y="323" font-size="12">R = respuesta del modelo</text>
+<line x1="24" y1="340" x2="756" y2="340" stroke="#D8D2CE" stroke-width="1"/>
+<!-- the closing line -->
+<text data-beat="18" x="24" y="362" font-size="15" fill="#1F1E1E">El usuario escribe lo mismo en cada turno. La cuenta crece igual,</text>
+<text data-beat="19" x="24" y="382" font-size="15" fill="#1F1E1E">porque cada llamada reenvía toda la conversación anterior.</text>
+</svg>

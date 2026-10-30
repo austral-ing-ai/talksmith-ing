@@ -18,3 +18,16 @@
    [ solucion ]                                       4. SELECCIONAR
 
   CoT es este arbol con una sola rama y sin vuelta atras.
+
+<!-- ascii-note:
+intent: mostrar Tree of Thought como un algoritmo de busqueda en cuatro fases (generar, evaluar, expandir la mejor, seleccionar), donde las ramas con puntaje bajo se podan y solo la mejor se sigue desarrollando
+emphasize: el camino ganador, de problema a rama A, A.1 y solucion
+labels: "problema", "rama A/B/C", "A.1", "A.2", puntajes 8, 5, 2, 9 y 4, "podada", "1. GENERAR ramas", "2. EVALUAR cada rama", "3. EXPANDIR la mejor", "4. SELECCIONAR", y la linea de cierre sobre CoT
+animation:
+  1. GENERAR: del problema salen tres ramas, A, B y C
+  2. EVALUAR: cada rama recibe su puntaje, una por vez: 8, 5 y 2
+  3. las ramas B y C se podan
+  4. EXPANDIR: la rama A, la mejor, se abre en A.1 y A.2, que reciben 9 y 4
+  5. A.2 se poda
+  6. SELECCIONAR: A.1 lleva a la solucion
+-->

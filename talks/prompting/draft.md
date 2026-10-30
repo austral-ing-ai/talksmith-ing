@@ -342,6 +342,12 @@ Momento de abrir gpt-tokenizer.dev en vivo y pegar una línea de código. El efe
 intent: mostrar la desproporcion entre lo que el usuario escribe (constante) y lo que la aplicacion manda al modelo (crece en cada turno); que el crecimiento no viene del usuario sino del reenvio del historial
 emphasize: las dos columnas contrastadas, la izquierda que no crece y la derecha que si; la llave que separa lo ya pagado varias veces de lo nuevo del turno; la linea de cierre
 labels: "LO QUE EL USUARIO ESCRIBE (siempre parecido)", "LO QUE LA APP LE MANDA AL MODELO (crece en cada turno)", "turno 1..4", "M = mensaje del usuario", "R = respuesta del modelo", "ya se pago 3 veces", "lo nuevo"
+animation:
+  1. turno 1: el usuario escribe M1 a la izquierda y el mismo M1 llega solo a la derecha; aparece "1 bloque"
+  2. turno 2: a la izquierda entra M2, del mismo tamano que M1; a la derecha se reenvian M1 y R1 y despues se suma M2; aparece "3"
+  3. turno 3: entra M3; a la derecha se reenvia todo lo anterior (M1 R1 M2 R2) y se suma M3; aparece "5"
+  4. turno 4: entra M4; se reenvian seis bloques y se suma M4; aparece "7"
+  5. la llave marca los seis bloques reenviados como "ya se pago 3 veces" y M4 como "lo nuevo"; la columna de la izquierda no crecio en ningun turno
 -->
 
 - 💡 **¿Por qué no explota el consumo?** El modelo no recuerda nada entre llamadas: cada turno reenvía todo y lo vuelve a leer desde cero. Debería costar una fortuna. No la cuesta.
@@ -411,6 +417,11 @@ Esta lámina existe para que el caching no se lea como magia cuando lleguen a la
 intent: mostrar que el caching hace match por PREFIJO, no por contenido: la frontera entre lo estatico y lo dinamico es lo que decide si hay hit, y por eso el orden dentro del prompt es load-bearing
 emphasize: la linea divisoria entre prefijo y sufijo con la marca [ cache_control ]; la desproporcion 50.000 contra 100 tokens; la advertencia final del fallo silencioso
 labels: "PREFIJO ESTATICO", "SUFIJO DINAMICO", "se cachea: 10% del precio", "precio lleno", "cache_control", "MISS", "HIT", "hit rate 0"
+animation:
+  1. Request 1: el request entero (system prompt, guia de estilo, ADRs, base de codigo, el pedido del usuario) se procesa de punta a punta; MISS, y el prefijo hasta la marca de cache_control queda guardado
+  2. Request 2: llega con el mismo prefijo y otro pedido del usuario; el prefijo coincide byte a byte y se reutiliza: HIT, cobrado al 10%; solo el sufijo se procesa a precio lleno
+  3. en la llamada siguiente cambia un solo byte dentro del system prompt; desde ese punto el prefijo deja de coincidir y se procesa entero otra vez
+  4. aparece la advertencia: hit rate 0, sin ningun error, solo una factura mas alta
 -->
 
 - **Monitorear el hit rate** Si `cache_read_input_tokens` da cero, algo está invalidando el prefijo en silencio.
@@ -751,6 +762,11 @@ Dos cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la ent
 intent: mostrar la eleccion de modelo como una cascada de tres preguntas en orden fijo, donde la primera que da "si" corta la decision; el orden de las preguntas es el contenido, no los nombres de modelo que devuelve
 emphasize: la columna de decisiones encadenadas y las salidas de cada rama SI; que la pregunta de costo va ultima, despues de resolver dificultad y contexto
 labels: "¿La tarea es simple?", "¿Necesita mas de 1M de contexto?", "¿El costo es critico por volumen?", y las salidas de cada rama
+animation:
+  1. llega una tarea: revisar el diff de cada pull request, miles por dia; se detiene en "¿La tarea es simple?"
+  2. NO: baja a "¿Necesita mas de 1M de contexto?"
+  3. NO: baja a "¿El costo es critico por volumen?"
+  4. SI: sale por la rama lateral hacia "model cascading" y la decision termina ahi; la salida final, "el mejor modelo para la calidad que se necesita", queda sin recorrer
 -->
 
 ### Sources
@@ -812,6 +828,12 @@ El árbol vale más por el orden de las preguntas que por los nombres que devuel
 intent: mostrar el flujo de dos etapas del model cascading, con el gate de confianza como el punto de decision que define si el ahorro existe
 emphasize: la asimetria de las dos ramas. SI es una salida lateral CORTA (una llamada, el caso frecuente) y NO continua hacia ABAJO por el camino largo (dos llamadas, la excepcion). El camino barato tiene que verse mas corto que el caro, no al reves; las dos cajas "retornar respuesta" no deben quedar a la misma altura
 labels: "Modelo barato (Haiku 4.5)", "¿confianza suficiente?", "Modelo caro (Opus 4.8)", "UNA llamada / el caso frecuente", "DOS llamadas / la excepcion", y la linea de cierre sobre la rama mayoritaria
+animation:
+  1. entra un pedido y baja al Modelo barato (Haiku 4.5), que intenta resolver
+  2. llega a "¿confianza suficiente?": SI; sale por la rama lateral corta a "retornar respuesta", UNA llamada
+  3. otros pedidos hacen el mismo recorrido corto, cada vez mas rapido
+  4. llega un pedido mas: la confianza no alcanza; NO baja al Modelo caro (Opus 4.8), que resuelve
+  5. sale por el "retornar respuesta" de abajo, DOS llamadas; la rama corta se recorrio varias veces y la larga una sola, y de ahi sale el ahorro
 -->
 
 ### Sources
@@ -1418,6 +1440,13 @@ Mapa de la sección. Cuatro técnicas y una sola idea de fondo, que se explica r
 intent: mostrar que CoT no agrega una explicacion al final sino pasos escritos EN EL MEDIO, y que cada paso escrito entra al contexto y condiciona el siguiente. ORIENTACION VERTICAL: dos columnas lado a lado, cada una fluyendo de arriba hacia abajo, para que las dos rutas se comparen a la misma altura
 emphasize: el contraste de ALTURA entre las dos columnas: a la izquierda una flecha larga que baja sin nada en el medio, a la derecha la misma distancia poblada de pasos. Las cajas "pregunta" arriba y "respuesta" abajo tienen que quedar alineadas entre columnas, para que se vea que el recorrido es el mismo y lo que cambia es lo que pasa en el medio
 labels: "SIN CoT", "CON CoT", "pregunta", "paso 1/2/3", "respuesta", "un solo salto / nada escrito entre medio", y "cada paso escrito entra al contexto y condiciona la prediccion del siguiente"
+animation:
+  1. arriba, las dos columnas reciben la misma pregunta
+  2. SIN CoT: de la pregunta se salta directo a la respuesta, sin nada escrito entre medio
+  3. CON CoT: se escribe el paso 1
+  4. el paso 2 se escribe a partir del paso 1, que ya esta en el contexto
+  5. el paso 3 se escribe a partir de los dos anteriores
+  6. recien entonces llega la respuesta de la derecha, a la misma altura que la de la izquierda
 -->
 
 - **Instrucción directa** Pedirle que razone antes de responder, en el propio prompt.
@@ -1520,6 +1549,12 @@ El ejemplo es trivial a propósito y hay que decirlo, porque la pregunta obvia e
 intent: mostrar self-consistency como un fan-out y un fan-in sobre el MISMO prompt: se muestrean varios caminos de razonamiento independientes y se agrega el resultado por frecuencia, no por calidad individual
 emphasize: el hilo GANADOR es lo que va destacado en color: los cuatro caminos que dicen "A", la caja de VOTACION y el resultado final. El camino 3 disidente ("B") va en gris apagado, como outlier. Regla del deck: el color marca lo que hay que mirar, nunca el caso perdido
 labels: "UN MISMO PROMPT", "camino 1..5", "cada camino se genera por separado", las salidas "A"/"B", "VOTACION", "4 de 5 -- confianza 80%", y la linea de cierre sobre convergencia
+animation:
+  1. UN MISMO PROMPT se abre en cinco caminos
+  2. los cinco caminos bajan por separado, cada uno a su ritmo
+  3. cada camino llega a su respuesta: cuatro dicen "A" y el camino 3 dice "B"
+  4. las cinco respuestas bajan juntas a la VOTACION
+  5. sale el resultado: "A", 4 de 5, confianza 80%; la "B" queda afuera
 -->
 
 - **Alto riesgo** Un deploy, una migración de datos, un cambio en facturación.
@@ -1623,6 +1658,18 @@ Lo interesante del ejemplo es la corrida 3, y conviene señalarla. No es una alu
 
   CoT es este arbol con una sola rama y sin vuelta atras.
 ```
+<!-- ascii-note:
+intent: mostrar Tree of Thought como un algoritmo de busqueda en cuatro fases (generar, evaluar, expandir la mejor, seleccionar), donde las ramas con puntaje bajo se podan y solo la mejor se sigue desarrollando
+emphasize: el camino ganador, de problema a rama A, A.1 y solucion
+labels: "problema", "rama A/B/C", "A.1", "A.2", puntajes 8, 5, 2, 9 y 4, "podada", "1. GENERAR ramas", "2. EVALUAR cada rama", "3. EXPANDIR la mejor", "4. SELECCIONAR", y la linea de cierre sobre CoT
+animation:
+  1. GENERAR: del problema salen tres ramas, A, B y C
+  2. EVALUAR: cada rama recibe su puntaje, una por vez: 8, 5 y 2
+  3. las ramas B y C se podan
+  4. EXPANDIR: la rama A, la mejor, se abre en A.1 y A.2, que reciben 9 y 4
+  5. A.2 se poda
+  6. SELECCIONAR: A.1 lleva a la solucion
+-->
 
 **Limitaciones**
 
@@ -1714,6 +1761,12 @@ Este ejemplo funciona porque las tres ramas son defendibles, y eso es justo el t
 intent: mostrar el encadenamiento como una tuberia de etapas donde la salida de cada una es la entrada de la siguiente, y hacer visible por que sale mas barato: los pasos baratos filtran antes de que intervenga el modelo caro
 emphasize: las flechas etiquetadas entre etapas (urgencia, detalles, runbooks, contexto), que son el dato concreto que viaja; la anotacion de que modelo usa cada paso, con el caro solo al final
 labels: "ticket", "1 CLASIFICAR urgencia", "2 EXTRAER detalles", "3 BUSCAR (RAG)", "4 REDACTAR respuesta", "modelo chico / sin modelo / modelo caro", "respuesta estructurada"
+animation:
+  1. el ticket entra a 1 CLASIFICAR, con un modelo chico
+  2. sale la urgencia (alta/media/baja) y viaja a 2 EXTRAER, tambien con un modelo chico
+  3. salen los detalles y bajan a 3 BUSCAR (RAG), que no usa modelo
+  4. los runbooks y el contexto viajan a 4 REDACTAR: recien aca entra el modelo caro
+  5. sale la respuesta estructurada
 -->
 
 - 🎯 **Prompt chaining convierte tareas imposibles en secuencias manejables. Es la base de los agentes de IA modernos.**
@@ -1918,6 +1971,13 @@ Esta es la slide de la tesis y merece el tiempo que haga falta. Todo lo que vier
 intent: mostrar que el thinking es una rama condicional decidida por el modelo dentro de una misma peticion, y que el bloque de razonamiento es una salida separada del texto
 emphasize: las dos ramas como cajas de PESO VISUAL EQUIVALENTE, lado a lado y a la misma altura, que convergen en el texto de la respuesta. La rama simple no puede ser una caida vertical vacia. El bloque de thinking se destaca en color; max_tokens se rotula UNA sola vez, como techo que abarca las dos salidas
 labels: prompt, evaluacion, "SIN BLOQUE", "BLOQUE DE THINKING", "TEXTO DE LA RESPUESTA", max_tokens
+animation:
+  1. llega un prompt simple y el modelo evalua la dificultad
+  2. lo manda por "tarea simple" a SIN BLOQUE, y la respuesta baja directo al TEXTO DE LA RESPUESTA
+  3. llega un prompt de varios pasos y el modelo vuelve a evaluar, en esa misma peticion
+  4. esta vez lo manda por "tarea de varios pasos" y se escribe el BLOQUE DE THINKING, aparte del texto
+  5. recien despues del bloque sale el TEXTO DE LA RESPUESTA, lo unico que ve el usuario
+  6. max_tokens abarca las dos salidas juntas: thinking mas texto
 -->
 
 ### Sources
@@ -2097,6 +2157,11 @@ La tabla existe para cerrar una confusión que aparece siempre: que el thinking 
 intent: mostrar las dos curvas del paper a la vez -- la precision sube durante el entrenamiento por refuerzo, y el largo de la respuesta crece por su cuenta como efecto emergente
 emphasize: los tres numeros (15,6% inicio / 77,9% final / 86,7% con self-consistency) y la linea de cierre sobre el largo de respuesta creciendo sin que nadie lo pida
 labels: eje Y precision AIME 2024 pass@1, eje X pasos de entrenamiento por refuerzo
+animation:
+  1. al inicio del entrenamiento la precision esta en 15,6% y el largo de respuesta esta abajo
+  2. avanzan los pasos de refuerzo: la curva de precision sube y, al mismo tiempo, la del largo de respuesta crece sin que nadie la empuje
+  3. al final del entrenamiento la precision llega a 77,9%
+  4. en el mismo punto, evaluando con self-consistency (cons@16), aparece el 86,7%
 -->
 
 ### Sources
@@ -2386,6 +2451,14 @@ Las tres frases están en inglés a propósito, porque son las que la documentac
 intent: mostrar el ciclo de vida de un cambio como un lazo cerrado de seis estadios y, DENTRO de cada estadio, la tarea concreta que hace el LLM ahi. El aporte esta repartido en los seis y no concentrado en la implementacion, que es donde la intuicion lo pone
 emphasize: cada caja tiene dos registros separados por una linea: arriba el estadio, abajo la tarea del LLM en ese estadio. Ese segundo registro es el contenido de la lamina y tiene que leerse en los seis. Ademas, la flecha de retorno de INCIDENTE a ISSUE, que convierte la secuencia en ciclo; IMPLEMENTACION es uno mas entre seis, no el centro
 labels: los seis estadios con su tarea de LLM debajo -- ISSUE (clasifica y deduplica), DISENO (contrasta alternativas y redacta el ADR), IMPLEMENTACION (escribe el test antes que la implementacion), REVIEW (resume el diff), DEPLOY (redacta las notas de version), INCIDENTE (correlaciona logs y propone la hipotesis) -- y las dos lineas de cierre
+animation:
+  1. un cambio nace en ISSUE: el LLM clasifica, agrupa duplicados y pide lo que falta
+  2. pasa a DISENO: contrasta alternativas y redacta el ADR
+  3. pasa a IMPLEMENTACION: escribe el test antes que la implementacion
+  4. pasa a REVIEW: resume el diff y marca lo que hay que mirar a mano
+  5. pasa a DEPLOY: redacta las notas de version desde los commits
+  6. algo falla en produccion y llega a INCIDENTE: correlaciona logs y propone la hipotesis
+  7. el post-mortem vuelve por la flecha de retorno a ISSUE y el ciclo se cierra
 -->
 
 | Etapa | Qué hace hoy |

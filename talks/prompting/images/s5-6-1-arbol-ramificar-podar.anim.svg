@@ -1,0 +1,143 @@
+<svg class="ts-anim-s5-6-1-arbol-ramificar-podar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 776 474" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Tree of Thought (ToT)</title>
+<desc>El árbol de la lámina es el punto entero de la técnica: se generan varias ramas, cada una recibe un puntaje, las malas se podan y solo la mejor se expande.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s5-6-1-arbol-ramificar-podar .l1{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 0.5s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .g2l{animation:ts-anim-s5-6-1-arbol-ramificar-podar-draw 0.6s linear 0.3s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 7.2s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .g2c{animation:ts-anim-s5-6-1-arbol-ramificar-podar-draw 0.6s linear 0.3s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 1.0s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .g2r{animation:ts-anim-s5-6-1-arbol-ramificar-podar-draw 0.6s linear 0.3s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 1.0s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .oa{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.01s ease-out 0.89s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 7.2s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .obc{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.01s ease-out 0.89s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 1.0s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .na{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 1.0s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 7.2s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .nbc{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 1.0s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 5.8s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .cgray1{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.01s ease-out 1.0s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .l2{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 2.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .sa{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 2.4s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 7.2s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .sb{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 3.4s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 5.8s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .sc{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 4.4s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 5.8s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .stbc{animation:ts-anim-s5-6-1-arbol-ramificar-podar-draw 0.4s linear 5.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .xbc{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 5.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .podbc{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 5.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .bbc{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 5.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .l3{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.6s ease-out 6.6s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .ba{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.6s ease-out 6.6s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .cred1{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.6s ease-out 6.6s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .h2l{animation:ts-anim-s5-6-1-arbol-ramificar-podar-draw 0.6s linear 7.7s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 13.0s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .h2r{animation:ts-anim-s5-6-1-arbol-ramificar-podar-draw 0.6s linear 7.7s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 8.4s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .oa1{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.01s ease-out 8.29s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 13.0s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .oa2{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.01s ease-out 8.29s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 8.4s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .na1{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 8.4s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 13.0s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .na2{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 8.4s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 11.8s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .cgray2{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.01s ease-out 8.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .sa1{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 9.4s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 13.0s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .sa2{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 10.4s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 11.8s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .sta2{animation:ts-anim-s5-6-1-arbol-ramificar-podar-draw 0.4s linear 11.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .xa2{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 11.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .poda2{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 11.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .ba2{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.4s ease-out 11.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .l4{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.6s ease-out 12.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .ba1{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.6s ease-out 12.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .cred2{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.6s ease-out 12.4s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .rdraw{animation:ts-anim-s5-6-1-arbol-ramificar-podar-draw 0.4s linear 13.6s both, ts-anim-s5-6-1-arbol-ramificar-podar-out .01s linear 14.0s forwards}
+.ts-anim-s5-6-1-arbol-ramificar-podar .sol{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.3s ease-out 13.7s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .cred3{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.01s ease-out 13.99s both}
+.ts-anim-s5-6-1-arbol-ramificar-podar .cot{animation:ts-anim-s5-6-1-arbol-ramificar-podar-in 0.6s ease-out 14.6s both}
+@keyframes ts-anim-s5-6-1-arbol-ramificar-podar-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s5-6-1-arbol-ramificar-podar-out{from{opacity:1}to{opacity:0}}
+@keyframes ts-anim-s5-6-1-arbol-ramificar-podar-draw{0%{stroke-dashoffset:100;opacity:0}1%{opacity:1}100%{stroke-dashoffset:0;opacity:1}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s5-6-1-arbol-ramificar-podar *{animation:none !important}}
+</style>
+<defs>
+<marker id="ar" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="11" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11 Z" fill="#DA1B2E"/></marker>
+<marker id="ag" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" refX="11" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11 Z" fill="#9A9090"/></marker>
+</defs>
+<rect x="0" y="0" width="776" height="474" fill="#ffffff"/>
+<g fill="none" stroke="#9A9090" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path class="g2l" d="M330,64 L330,90 L150,90 L150,110" pathLength="100" stroke-dasharray="100 102"/>
+<path class="g2c" d="M330,64 L330,110" pathLength="100" stroke-dasharray="100 102"/>
+<path class="g2r" d="M330,64 L330,90 L510,90 L510,110" pathLength="100" stroke-dasharray="100 102"/>
+<path class="oa" d="M150,110 L150,118" marker-end="url(#ag)"/>
+<path class="obc" d="M330,110 L330,118" marker-end="url(#ag)"/>
+<path class="obc" d="M510,110 L510,118" marker-end="url(#ag)"/>
+<path class="h2l" d="M150,180 L150,205 L80,205 L80,225" pathLength="100" stroke-dasharray="100 102"/>
+<path class="h2r" d="M150,180 L150,205 L220,205 L220,225" pathLength="100" stroke-dasharray="100 102"/>
+<path class="oa1" d="M80,225 L80,233" marker-end="url(#ag)"/>
+<path class="oa2" d="M220,225 L220,233" marker-end="url(#ag)"/>
+<path class="rdraw" d="M80,295 L80,350" stroke="#DA1B2E" stroke-width="3" pathLength="100" stroke-dasharray="100 102"/>
+</g>
+<g fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<g class="cgray1">
+<path d="M330,90 L510,90 M330,90 L330,120" stroke="#9A9090"/>
+<path d="M330,90 L330,118 M510,90 L510,118" stroke="#9A9090" marker-end="url(#ag)"/>
+</g>
+<path class="cred1" d="M330,64 L330,90 L150,90 L150,118" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ar)"/>
+<path class="cgray2" d="M150,205 L220,205 L220,233" stroke="#9A9090" marker-end="url(#ag)"/>
+<path class="cred2" d="M150,180 L150,205 L80,205 L80,233" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ar)"/>
+<path class="cred3" d="M80,295 L80,358" stroke="#DA1B2E" stroke-width="3" marker-end="url(#ar)"/>
+<path class="stbc" d="M330,180 L330,200" stroke="#9A9090" pathLength="100" stroke-dasharray="100 102"/>
+<path class="stbc" d="M510,180 L510,200" stroke="#9A9090" pathLength="100" stroke-dasharray="100 102"/>
+<path class="sta2" d="M220,295 L220,315" stroke="#9A9090" pathLength="100" stroke-dasharray="100 102"/>
+<path class="xbc" d="M323,201 L337,215 M337,201 L323,215 M503,201 L517,215 M517,201 L503,215" stroke="#3B3535" stroke-width="2.5"/>
+<path class="xa2" d="M213,316 L227,330 M227,316 L213,330" stroke="#3B3535" stroke-width="2.5"/>
+<line x1="605" y1="20" x2="605" y2="404" stroke="#D8D2CE" stroke-width="1"/>
+<line x1="20" y1="426" x2="756" y2="426" stroke="#D8D2CE" stroke-width="1"/>
+</g>
+<g text-anchor="middle">
+<g class="na"><rect x="85" y="120" width="130" height="60" rx="8" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/><text x="150" y="146" font-size="16" font-weight="bold" fill="#1F1E1E">rama A</text></g>
+<g class="nbc"><rect x="265" y="120" width="130" height="60" rx="8" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/><text x="330" y="146" font-size="16" font-weight="bold" fill="#1F1E1E">rama B</text>
+<rect x="445" y="120" width="130" height="60" rx="8" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/><text x="510" y="146" font-size="16" font-weight="bold" fill="#1F1E1E">rama C</text></g>
+<text class="sa" x="150" y="168" font-size="13">puntaje 8</text>
+<text class="sb" x="330" y="168" font-size="13">puntaje 5</text>
+<text class="sc" x="510" y="168" font-size="13">puntaje 2</text>
+<g class="na1"><rect x="25" y="235" width="110" height="60" rx="8" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/><text x="80" y="261" font-size="16" font-weight="bold" fill="#1F1E1E">A.1</text></g>
+<g class="na2"><rect x="165" y="235" width="110" height="60" rx="8" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/><text x="220" y="261" font-size="16" font-weight="bold" fill="#1F1E1E">A.2</text></g>
+<text class="sa1" x="80" y="283" font-size="13">puntaje 9</text>
+<text class="sa2" x="220" y="283" font-size="13">puntaje 4</text>
+</g>
+<g text-anchor="middle">
+<rect x="260" y="20" width="140" height="44" rx="8" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/>
+<text x="330" y="48" font-size="16" font-weight="bold" fill="#1F1E1E">problema</text>
+<g class="ba">
+<rect x="85" y="120" width="130" height="60" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="3"/>
+<text x="150" y="146" font-size="16" font-weight="bold" fill="#1F1E1E">rama A</text>
+<text x="150" y="168" font-size="13">puntaje 8</text>
+</g>
+<g class="bbc">
+<rect x="265" y="120" width="130" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="330" y="146" font-size="16" font-weight="bold" fill="#8A8080">rama B</text>
+<text x="330" y="168" font-size="13" fill="#8A8080">puntaje 5</text>
+<rect x="445" y="120" width="130" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="510" y="146" font-size="16" font-weight="bold" fill="#8A8080">rama C</text>
+<text x="510" y="168" font-size="13" fill="#8A8080">puntaje 2</text>
+</g>
+<g class="podbc">
+<text x="330" y="236" font-size="13" font-style="italic">podada</text>
+<text x="510" y="236" font-size="13" font-style="italic">podada</text>
+</g>
+<g class="ba1">
+<rect x="25" y="235" width="110" height="60" rx="8" fill="#ffffff" stroke="#DA1B2E" stroke-width="3"/>
+<text x="80" y="261" font-size="16" font-weight="bold" fill="#1F1E1E">A.1</text>
+<text x="80" y="283" font-size="13">puntaje 9</text>
+</g>
+<g class="ba2">
+<rect x="165" y="235" width="110" height="60" rx="8" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="220" y="261" font-size="16" font-weight="bold" fill="#8A8080">A.2</text>
+<text x="220" y="283" font-size="13" fill="#8A8080">puntaje 4</text>
+</g>
+<text class="poda2" x="220" y="351" font-size="13" font-style="italic">podada</text>
+<g class="sol">
+<rect x="20" y="360" width="120" height="44" rx="8" fill="#DA1B2E"/>
+<text x="80" y="388" font-size="16" font-weight="bold" fill="#ffffff">solución</text>
+</g>
+</g>
+<g font-size="13">
+<g class="l1"><text x="625" y="88" font-size="15" font-weight="bold" fill="#1F1E1E">1. GENERAR</text>
+<text x="625" y="106">ramas</text></g>
+<g class="l2"><text x="625" y="146" font-size="15" font-weight="bold" fill="#1F1E1E">2. EVALUAR</text>
+<text x="625" y="164">cada rama</text></g>
+<g class="l3"><text x="625" y="256" font-size="15" font-weight="bold" fill="#1F1E1E">3. EXPANDIR</text>
+<text x="625" y="274">la mejor</text></g>
+<text class="l4" x="625" y="387" font-size="15" font-weight="bold" fill="#1F1E1E">4. SELECCIONAR</text>
+<text class="cot" x="20" y="452" font-size="15" font-style="italic">CoT es este árbol con una sola rama y sin vuelta atrás.</text>
+</g>
+</svg>

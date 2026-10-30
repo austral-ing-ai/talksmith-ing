@@ -23,4 +23,10 @@
 intent: mostrar el encadenamiento como una tuberia de etapas donde la salida de cada una es la entrada de la siguiente, y hacer visible por que sale mas barato: los pasos baratos filtran antes de que intervenga el modelo caro
 emphasize: las flechas etiquetadas entre etapas (urgencia, detalles, runbooks, contexto), que son el dato concreto que viaja; la anotacion de que modelo usa cada paso, con el caro solo al final
 labels: "ticket", "1 CLASIFICAR urgencia", "2 EXTRAER detalles", "3 BUSCAR (RAG)", "4 REDACTAR respuesta", "modelo chico / sin modelo / modelo caro", "respuesta estructurada"
+animation:
+  1. el ticket entra a 1 CLASIFICAR, con un modelo chico
+  2. sale la urgencia (alta/media/baja) y viaja a 2 EXTRAER, tambien con un modelo chico
+  3. salen los detalles y bajan a 3 BUSCAR (RAG), que no usa modelo
+  4. los runbooks y el contexto viajan a 4 REDACTAR: recien aca entra el modelo caro
+  5. sale la respuesta estructurada
 -->

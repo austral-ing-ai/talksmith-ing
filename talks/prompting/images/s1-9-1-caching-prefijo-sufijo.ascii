@@ -19,4 +19,9 @@
 intent: mostrar que el caching hace match por PREFIJO, no por contenido: la frontera entre lo estatico y lo dinamico es lo que decide si hay hit, y por eso el orden dentro del prompt es load-bearing
 emphasize: la linea divisoria entre prefijo y sufijo con la marca [ cache_control ]; la desproporcion 50.000 contra 100 tokens; la advertencia final del fallo silencioso
 labels: "PREFIJO ESTATICO", "SUFIJO DINAMICO", "se cachea: 10% del precio", "precio lleno", "cache_control", "MISS", "HIT", "hit rate 0"
+animation:
+  1. Request 1: el request entero (system prompt, guia de estilo, ADRs, base de codigo, el pedido del usuario) se procesa de punta a punta; MISS, y el prefijo hasta la marca de cache_control queda guardado
+  2. Request 2: llega con el mismo prefijo y otro pedido del usuario; el prefijo coincide byte a byte y se reutiliza: HIT, cobrado al 10%; solo el sufijo se procesa a precio lleno
+  3. en la llamada siguiente cambia un solo byte dentro del system prompt; desde ese punto el prefijo deja de coincidir y se procesa entero otra vez
+  4. aparece la advertencia: hit rate 0, sin ningun error, solo una factura mas alta
 -->

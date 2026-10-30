@@ -1,0 +1,115 @@
+<svg class="ts-anim-s1-9-1-caching-prefijo-sufijo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#3B3535">
+<title>Del chat al caché programático</title>
+<desc>Esta es la lámina que cierra el puente, y conviene abrirla con una pregunta: cuando chatean con un asistente, ¿quién marca el corte?</desc>
+<style>/* talksmith-animation */
+.ts-anim-s1-9-1-caching-prefijo-sufijo .capA{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-capA 4.20s linear 0.40s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .sw1{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-sw1 4.70s linear 0.90s 1 both, ts-anim-s1-9-1-caching-prefijo-sufijo-sw1g 2.50s linear 1.00s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .row1{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-in 0.6s ease-out 3.70s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .capB{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-capB 3.00s linear 5.00s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .blue{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-blue 15.20s linear 5.20s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .capC{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-capC 3.80s linear 8.40s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .capH{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-capH 3.00s linear 12.40s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .scan2{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-scan2 2.00s linear 8.90s 1 both, ts-anim-s1-9-1-caching-prefijo-sufijo-scan2t 1.60s linear 9.10s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .sw2{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-sw2 4.70s linear 10.90s 1 both, ts-anim-s1-9-1-caching-prefijo-sufijo-sw2g 0.70s linear 11.00s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .row2{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-in 0.6s ease-out 12.40s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .capD{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-capD 3.60s linear 16.00s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .byte{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-byte 9.20s linear 15.80s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .scan3{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-scan3 1.60s linear 17.00s 1 both, ts-anim-s1-9-1-caching-prefijo-sufijo-scan3t 0.50s linear 17.20s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .capE{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-capE 3.50s linear 19.80s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .sw3{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-sw3 5.00s linear 20.00s 1 both, ts-anim-s1-9-1-caching-prefijo-sufijo-sw3g 2.50s linear 20.10s 1 both}
+.ts-anim-s1-9-1-caching-prefijo-sufijo .warn{animation:ts-anim-s1-9-1-caching-prefijo-sufijo-in 0.8s ease-out 23.40s 1 both}
+@media (prefers-reduced-motion:reduce){.ts-anim-s1-9-1-caching-prefijo-sufijo *{animation:none !important}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-capA{0%{opacity:0}9.52%,90.48%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-sw1{0%{opacity:0}4.26%,89.36%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-sw1g{0%{transform:translate(30.75px,0px) scaleX(0)}100%{transform:translate(30.75px,0px) scaleX(1)}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-capB{0%{opacity:0}13.33%,86.67%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-blue{0%{opacity:0}3.95%,96.05%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-capC{0%{opacity:0}10.53%,89.47%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-capH{0%{opacity:0}13.33%,86.67%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-scan2{0%{opacity:0}10.00%,90.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-scan2t{0%{transform:translate(31.5px,0px)}100%{transform:translate(868.5px,0px)}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-sw2{0%{opacity:0}4.26%,89.36%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-sw2g{0%{transform:translate(870.75px,0px) scaleX(0)}100%{transform:translate(870.75px,0px) scaleX(1)}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-capD{0%{opacity:0}11.11%,88.89%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-byte{0%{opacity:0}4.35%,95.65%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-scan3{0%{opacity:0}12.50%,87.50%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-scan3t{0%{transform:translate(31.5px,0px)}100%{transform:translate(211px,0px)}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-capE{0%{opacity:0}11.43%,88.57%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-sw3{0%{opacity:0}4.00%,90.00%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s1-9-1-caching-prefijo-sufijo-sw3g{0%{transform:translate(30.75px,0px) scaleX(0)}100%{transform:translate(30.75px,0px) scaleX(1)}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L11,6 L0,12 Z" fill="#3B3535"/></marker>
+<marker id="ahd" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L11,6 L0,12 Z" fill="#1F1E1E"/></marker>
+</defs>
+<rect width="1000" height="580" fill="#ffffff"/>
+<text x="500" y="46" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F1E1E">UNA SOLICITUD = PREFIJO ESTÁTICO + SUFIJO DINÁMICO</text>
+<g stroke="#3B3535" stroke-width="1.5" fill="none">
+<path d="M30,100 V112 M30,106 H862 M862,100 V112"/>
+<path d="M878,100 V112 M878,106 H970 M970,100 V112"/>
+</g>
+<text x="446" y="92" text-anchor="middle" font-weight="bold">se cachea: 10% del precio</text>
+<text x="924" y="92" text-anchor="middle" font-size="15" font-weight="bold">precio lleno</text>
+<rect x="30" y="120" width="840" height="70" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="870" y="120" width="100" height="70" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="blue" x="30.75" y="120.75" width="838.50" height="68.5" fill="#B8E6F5" opacity="0"/>
+<rect class="sw1" x="0" y="120.75" width="938.50" height="68.5" fill="#3B3535" fill-opacity="0.22" opacity="0"/>
+<rect class="sw2" x="0" y="120.75" width="98.50" height="68.5" fill="#3B3535" fill-opacity="0.22" opacity="0"/>
+<rect class="sw3" x="0" y="120.75" width="938.50" height="68.5" fill="#3B3535" fill-opacity="0.22" opacity="0"/>
+<path class="scan2" d="M0,121 V143 M0,170 V189" stroke="#1F1E1E" stroke-width="3" opacity="0"/>
+<path class="scan3" d="M0,121 V143 M0,170 V189" stroke="#1F1E1E" stroke-width="3" opacity="0"/>
+<g class="byte" opacity="0"><rect x="215" y="170" width="14" height="14" fill="#F7BBC1" stroke="#1F1E1E" stroke-width="2"/><path d="M222,186 V199" stroke="#1F1E1E" stroke-width="1.5"/></g>
+<path d="M240,120 V190 M450,120 V190 M660,120 V190" stroke="#D8D2CE" stroke-width="1.5"/>
+<g text-anchor="middle" font-size="17" fill="#1F1E1E">
+<text x="135" y="161">prompt de sistema</text>
+<text x="345" y="161">guía de estilo</text>
+<text x="555" y="161">ADRs</text>
+<text x="765" y="161">base de código</text>
+</g>
+<g text-anchor="middle" font-size="15" fill="#1F1E1E">
+<text x="920" y="151">pedido</text>
+<text x="920" y="171">del usuario</text>
+</g>
+<text x="450" y="236" text-anchor="middle" font-size="32" font-weight="bold" fill="#1F1E1E">50.000 tokens</text>
+<text x="450" y="262" text-anchor="middle">idénticos en cada llamada</text>
+<text x="920" y="236" text-anchor="middle" font-size="32" font-weight="bold" fill="#1F1E1E">100</text>
+<text x="920" y="258" text-anchor="middle" font-size="15">tokens,</text>
+<text x="920" y="276" text-anchor="middle" font-size="15">cambian</text>
+<path d="M870,100 V300" stroke="#DA1B2E" stroke-width="4"/>
+<rect x="790" y="300" width="160" height="34" rx="17" fill="#DA1B2E"/>
+<text x="870" y="323" text-anchor="middle" font-family="'Andale Mono', monospace" font-size="17" fill="#ffffff">cache_control</text>
+<text x="778" y="323" text-anchor="end" font-weight="bold" fill="#DA1B2E">marca el corte</text>
+<g font-size="17">
+<g class="row1">
+<text x="30" y="391" font-weight="bold" fill="#1F1E1E">Solicitud 1</text>
+<rect x="160" y="369" width="74" height="30" rx="6" fill="#F2EEEE" stroke="#3B3535" stroke-width="1.5"/>
+<text x="197" y="390" text-anchor="middle" font-weight="bold" fill="#1F1E1E">MISS</text>
+<path d="M246,384 H294" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="308" y="390">se procesa entero y se guarda el prefijo</text>
+</g>
+<g class="row2">
+<text x="30" y="439" font-weight="bold" fill="#1F1E1E">Solicitud 2+</text>
+<rect x="160" y="417" width="74" height="30" rx="6" fill="#B8E6F5" stroke="#3B3535" stroke-width="1.5"/>
+<text x="197" y="438" text-anchor="middle" font-weight="bold" fill="#1F1E1E">HIT</text>
+<path d="M246,432 H294" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<text x="308" y="438">se reutiliza el prefijo y se cobra al 10%</text>
+</g>
+</g>
+<g class="warn">
+<rect x="30" y="470" width="940" height="80" rx="8" fill="#F7BBC1"/>
+<circle cx="68" cy="510" r="18" fill="none" stroke="#1F1E1E" stroke-width="2.5"/>
+<text x="68" y="518" text-anchor="middle" font-size="22" font-weight="bold" fill="#1F1E1E">!</text>
+<text x="104" y="503" font-size="17" font-weight="bold" fill="#1F1E1E">Un byte distinto en cualquier punto del prefijo</text>
+<path d="M512,497 H558" stroke="#1F1E1E" stroke-width="2" marker-end="url(#ahd)"/>
+<text x="572" y="503" font-size="17" font-weight="bold" fill="#1F1E1E">hit rate 0</text>
+<text x="104" y="531">y no hay ningún error: solo una factura más alta</text>
+</g>
+<text class="byte" x="222" y="216" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F1E1E" opacity="0">1 byte distinto</text>
+<text class="capA" x="30" y="323" font-size="17" fill="#1F1E1E" opacity="0"><tspan font-weight="bold">Solicitud 1:</tspan> se procesa de punta a punta</text>
+<text class="capB" x="30" y="323" font-size="17" fill="#1F1E1E" opacity="0"><tspan font-weight="bold">MISS:</tspan> el prefijo hasta cache_control queda guardado</text>
+<text class="capC" x="30" y="323" font-size="17" fill="#1F1E1E" opacity="0"><tspan font-weight="bold">Solicitud 2:</tspan> mismo prefijo, otro pedido del usuario</text>
+<text class="capH" x="30" y="323" font-size="17" fill="#1F1E1E" opacity="0"><tspan font-weight="bold">HIT:</tspan> el prefijo se cobra al 10%; el sufijo, a precio lleno</text>
+<text class="capD" x="30" y="323" font-size="17" fill="#1F1E1E" opacity="0"><tspan font-weight="bold">Solicitud 3:</tspan> cambia un byte del prompt de sistema</text>
+<text class="capE" x="30" y="323" font-size="17" fill="#1F1E1E" opacity="0"><tspan font-weight="bold">MISS:</tspan> deja de coincidir, se procesa entero otra vez</text>
+</svg>

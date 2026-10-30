@@ -1,0 +1,105 @@
+<svg class="ts-anim-s5-2-1-cot-salto-vs-cadena" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 528 492" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>Chain of Thought (CoT)</title>
+<desc>Sin CoT el modelo salta de la pregunta a la respuesta sin nada escrito entre medio; con CoT escribe pasos intermedios, y cada paso escrito entra al contexto y condiciona la predicción del siguiente.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s5-2-1-cot-salto-vs-cadena .preg{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-in 0.6s ease-out 0.3s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .lnL{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-drawL .8s ease-in 1.6s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .hdL{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-in 0.15s ease-out 2.4s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .respL{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-in 0.5s ease-out 2.6s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .nota{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-in 0.5s ease-out 3.2s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .ln1{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-drawS .4s ease-in 4.6s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .hd1{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-in 0.15s ease-out 5.0s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p1 .c0{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 5.10s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p1 .c1{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 5.26s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p1 .c2{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 5.42s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p1 .c3{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 5.58s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p1 .c4{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 5.74s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .halo1{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-halo1 6.0s ease-in-out 6.9s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .ln2{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-drawS .4s ease-in 7.4s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .hd2{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-in 0.15s ease-out 7.800000000000001s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p2 .c0{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 7.90s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p2 .c1{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 8.06s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p2 .c2{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 8.22s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p2 .c3{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 8.38s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p2 .c4{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 8.54s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .pie{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-in 0.6s ease-out 9.0s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .halo2{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-halo2 2.7s ease-in-out 10.2s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .ln3{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-drawS .4s ease-in 10.6s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .hd3{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-in 0.15s ease-out 11.0s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p3 .c0{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 11.10s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p3 .c1{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 11.26s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p3 .c2{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 11.42s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p3 .c3{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 11.58s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .p3 .c4{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-type .15s linear 11.74s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .ln4{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-drawS .4s ease-in 13.4s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .hd4{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-in 0.15s ease-out 13.8s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .respR{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-in 0.5s ease-out 13.9s both}
+.ts-anim-s5-2-1-cot-salto-vs-cadena .alin{animation:ts-anim-s5-2-1-cot-salto-vs-cadena-guide 3.0s ease-in-out 14.6s both}
+@keyframes ts-anim-s5-2-1-cot-salto-vs-cadena-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s5-2-1-cot-salto-vs-cadena-type{from{fill-opacity:0}to{fill-opacity:1}}
+@keyframes ts-anim-s5-2-1-cot-salto-vs-cadena-drawL{from{stroke-dashoffset:264px}to{stroke-dashoffset:0px}}
+@keyframes ts-anim-s5-2-1-cot-salto-vs-cadena-drawS{from{stroke-dashoffset:36px}to{stroke-dashoffset:0px}}
+@keyframes ts-anim-s5-2-1-cot-salto-vs-cadena-halo1{0%{opacity:0}5%,95%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s5-2-1-cot-salto-vs-cadena-halo2{0%{opacity:0}11%,89%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s5-2-1-cot-salto-vs-cadena-guide{0%{opacity:0}15%,80%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s5-2-1-cot-salto-vs-cadena *{animation:none !important}}
+</style>
+<rect x="0" y="0" width="528" height="492" fill="#FFFFFF"/>
+<g font-size="18" font-weight="bold" fill="#1F1E1E" text-anchor="middle">
+<text x="114" y="37">SIN CoT</text>
+<text x="414" y="37">CON CoT</text>
+</g>
+<g fill="#DA1B2E" fill-opacity="0.14" stroke="#DA1B2E" stroke-opacity="0.45" stroke-width="2">
+<rect class="halo1" opacity="0" x="317" y="130" width="194" height="54" rx="11"/>
+<rect class="halo2" opacity="0" x="317" y="206" width="194" height="54" rx="11"/>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="24" y="57" width="180" height="44" rx="8"/>
+<rect x="324" y="57" width="180" height="44" rx="8"/>
+<rect x="24" y="365" width="180" height="44" rx="8"/>
+<rect x="324" y="365" width="180" height="44" rx="8"/>
+</g>
+<g fill="#FFFFFF" stroke="#DA1B2E" stroke-width="2">
+<rect x="324" y="137" width="180" height="40" rx="8"/>
+<rect x="324" y="213" width="180" height="40" rx="8"/>
+<rect x="324" y="289" width="180" height="40" rx="8"/>
+</g>
+<g font-size="16" fill="#1F1E1E" text-anchor="middle">
+<text class="preg" x="114" y="84">pregunta</text>
+<text class="preg" x="414" y="84">pregunta</text>
+<text class="respL" x="114" y="392">respuesta</text>
+<text class="respR" x="414" y="392">respuesta</text>
+</g>
+<g font-size="16" font-weight="bold" fill="#DA1B2E" text-anchor="middle">
+<text class="p1" x="414" y="162"><tspan class="c0">p</tspan><tspan class="c1">a</tspan><tspan class="c2">s</tspan><tspan class="c3">o</tspan><tspan class="c4"> 1</tspan></text>
+<text class="p2" x="414" y="238"><tspan class="c0">p</tspan><tspan class="c1">a</tspan><tspan class="c2">s</tspan><tspan class="c3">o</tspan><tspan class="c4"> 2</tspan></text>
+<text class="p3" x="414" y="314"><tspan class="c0">p</tspan><tspan class="c1">a</tspan><tspan class="c2">s</tspan><tspan class="c3">o</tspan><tspan class="c4"> 3</tspan></text>
+</g>
+<g stroke="#3B3535" stroke-width="2">
+<line class="lnL" x1="114" y1="101" x2="114" y2="365" stroke-dasharray="264 264"/>
+<line class="ln1" x1="414" y1="101" x2="414" y2="137" stroke-dasharray="36 36"/>
+<line class="ln4" x1="414" y1="329" x2="414" y2="365" stroke-dasharray="36 36"/>
+</g>
+<path class="hdL" d="M109,355 L114,365 L119,355 z" fill="#3B3535"/>
+<path class="hd1" d="M409,127 L414,137 L419,127 z" fill="#3B3535"/>
+<path class="hd4" d="M409,355 L414,365 L419,355 z" fill="#3B3535"/>
+<g stroke="#DA1B2E" stroke-width="2">
+<line class="ln2" x1="414" y1="177" x2="414" y2="213" stroke-dasharray="36 36"/>
+<line class="ln3" x1="414" y1="253" x2="414" y2="289" stroke-dasharray="36 36"/>
+</g>
+<path class="hd2" d="M409,203 L414,213 L419,203 z" fill="#DA1B2E"/>
+<path class="hd3" d="M409,279 L414,289 L419,279 z" fill="#DA1B2E"/>
+<g class="nota">
+<text x="128" y="220" font-weight="bold" fill="#1F1E1E">un solo salto</text>
+<text x="128" y="240">nada escrito</text>
+<text x="128" y="258">entre medio</text>
+</g>
+<g class="alin" opacity="0" fill="#5E5757" stroke="#5E5757">
+<line x1="210" y1="387" x2="318" y2="387" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="264" y="378" stroke="none" text-anchor="middle">misma altura</text>
+</g>
+<g class="pie" text-anchor="middle">
+<text x="264" y="446">cada paso escrito entra al contexto</text>
+<text x="264" y="466">y condiciona la predicción del siguiente</text>
+</g>
+</svg>

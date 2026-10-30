@@ -29,4 +29,11 @@
 intent: mostrar que el thinking es una rama condicional decidida por el modelo dentro de una misma peticion, y que el bloque de razonamiento es una salida separada del texto
 emphasize: las dos ramas como cajas de PESO VISUAL EQUIVALENTE, lado a lado y a la misma altura, que convergen en el texto de la respuesta. La rama simple no puede ser una caida vertical vacia. El bloque de thinking se destaca en color; max_tokens se rotula UNA sola vez, como techo que abarca las dos salidas
 labels: prompt, evaluacion, "SIN BLOQUE", "BLOQUE DE THINKING", "TEXTO DE LA RESPUESTA", max_tokens
+animation:
+  1. llega un prompt simple y el modelo evalua la dificultad
+  2. lo manda por "tarea simple" a SIN BLOQUE, y la respuesta baja directo al TEXTO DE LA RESPUESTA
+  3. llega un prompt de varios pasos y el modelo vuelve a evaluar, en esa misma peticion
+  4. esta vez lo manda por "tarea de varios pasos" y se escribe el BLOQUE DE THINKING, aparte del texto
+  5. recien despues del bloque sale el TEXTO DE LA RESPUESTA, lo unico que ve el usuario
+  6. max_tokens abarca las dos salidas juntas: thinking mas texto
 -->

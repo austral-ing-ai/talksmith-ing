@@ -26,4 +26,12 @@
 intent: mostrar el ciclo de vida de un cambio como un lazo cerrado de seis estadios y, DENTRO de cada estadio, la tarea concreta que hace el LLM ahi. El aporte esta repartido en los seis y no concentrado en la implementacion, que es donde la intuicion lo pone
 emphasize: cada caja tiene dos registros separados por una linea: arriba el estadio, abajo la tarea del LLM en ese estadio. Ese segundo registro es el contenido de la lamina y tiene que leerse en los seis. Ademas, la flecha de retorno de INCIDENTE a ISSUE, que convierte la secuencia en ciclo; IMPLEMENTACION es uno mas entre seis, no el centro
 labels: los seis estadios con su tarea de LLM debajo -- ISSUE (clasifica y deduplica), DISENO (contrasta alternativas y redacta el ADR), IMPLEMENTACION (escribe el test antes que la implementacion), REVIEW (resume el diff), DEPLOY (redacta las notas de version), INCIDENTE (correlaciona logs y propone la hipotesis) -- y las dos lineas de cierre
+animation:
+  1. un cambio nace en ISSUE: el LLM clasifica, agrupa duplicados y pide lo que falta
+  2. pasa a DISENO: contrasta alternativas y redacta el ADR
+  3. pasa a IMPLEMENTACION: escribe el test antes que la implementacion
+  4. pasa a REVIEW: resume el diff y marca lo que hay que mirar a mano
+  5. pasa a DEPLOY: redacta las notas de version desde los commits
+  6. algo falla en produccion y llega a INCIDENTE: correlaciona logs y propone la hipotesis
+  7. el post-mortem vuelve por la flecha de retorno a ISSUE y el ciclo se cierra
 -->

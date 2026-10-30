@@ -25,4 +25,10 @@
 intent: mostrar self-consistency como un fan-out y un fan-in sobre el MISMO prompt: se muestrean varios caminos de razonamiento independientes y se agrega el resultado por frecuencia, no por calidad individual
 emphasize: el hilo GANADOR es lo que va destacado en color: los cuatro caminos que dicen "A", la caja de VOTACION y el resultado final. El camino 3 disidente ("B") va en gris apagado, como outlier. Regla del deck: el color marca lo que hay que mirar, nunca el caso perdido
 labels: "UN MISMO PROMPT", "camino 1..5", "cada camino se genera por separado", las salidas "A"/"B", "VOTACION", "4 de 5 -- confianza 80%", y la linea de cierre sobre convergencia
+animation:
+  1. UN MISMO PROMPT se abre en cinco caminos
+  2. los cinco caminos bajan por separado, cada uno a su ritmo
+  3. cada camino llega a su respuesta: cuatro dicen "A" y el camino 3 dice "B"
+  4. las cinco respuestas bajan juntas a la VOTACION
+  5. sale el resultado: "A", 4 de 5, confianza 80%; la "B" queda afuera
 -->

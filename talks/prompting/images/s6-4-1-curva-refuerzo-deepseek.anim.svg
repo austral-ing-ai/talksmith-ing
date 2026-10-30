@@ -1,0 +1,85 @@
+<svg class="ts-anim-s6-4-1-curva-refuerzo-deepseek" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 515" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="14">
+<title>De dónde salió el thinking</title>
+<desc>Esta es la lámina que contesta la pregunta que la sección nunca contestaba: cómo se logró que un modelo razone.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .p-start{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-p-start 0.50s ease-out 0.40s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .n-156{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-n-156 0.50s ease-out 0.60s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .c-red{stroke-dasharray:510.33px 510.33px}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .c-red{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-red 5.00s linear 3.20s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .eraser{stroke-dasharray:502.68px 502.68px}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .eraser{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-eraser 8.20s linear 0.00s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .pen-red{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-pen-red 7.82s linear 0.40s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .pen-len{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-pen-len 8.20s linear 0.40s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .p-end{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-p-end 0.02s ease-out 8.20s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .lbl-len{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-lbl-len 0.50s ease-out 8.50s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .n-779{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-n-779 0.50s ease-out 9.70s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .conn{transform-origin:560px 170px;animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-conn 0.5s ease-out 12.0s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .p-sc{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-p-sc 0.40s ease-out 12.50s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .n-867{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-n-867 0.50s ease-out 12.90s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .close1{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-close1 0.60s ease-out 15.60s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .close2{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-close2 0.60s ease-out 16.40s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .cap1{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-cap1 2.60s linear 0.50s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .cap2{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-cap2 6.30s linear 3.10s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .cap3{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-cap3 2.40s linear 9.40s 1 normal both}
+.ts-anim-s6-4-1-curva-refuerzo-deepseek .cap4{animation:ts-anim-s6-4-1-curva-refuerzo-deepseek-cap4 3.60s linear 11.80s 1 normal both}
+@media (prefers-reduced-motion: reduce){.ts-anim-s6-4-1-curva-refuerzo-deepseek *{animation:none !important}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-p-start{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-n-156{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-red{0%{stroke-dashoffset:510.33px}4.17%{stroke-dashoffset:490.22px}8.33%{stroke-dashoffset:469.87px}12.50%{stroke-dashoffset:449.25px}16.67%{stroke-dashoffset:428.35px}20.83%{stroke-dashoffset:407.17px}25.00%{stroke-dashoffset:385.73px}29.17%{stroke-dashoffset:364.05px}33.33%{stroke-dashoffset:342.17px}37.50%{stroke-dashoffset:320.14px}41.67%{stroke-dashoffset:298.01px}45.83%{stroke-dashoffset:275.84px}50.00%{stroke-dashoffset:253.69px}54.17%{stroke-dashoffset:231.61px}58.33%{stroke-dashoffset:209.65px}62.50%{stroke-dashoffset:187.86px}66.67%{stroke-dashoffset:166.28px}70.83%{stroke-dashoffset:144.92px}75.00%{stroke-dashoffset:123.81px}79.17%{stroke-dashoffset:102.95px}83.33%{stroke-dashoffset:82.34px}87.50%{stroke-dashoffset:61.96px}91.67%{stroke-dashoffset:41.80px}95.83%{stroke-dashoffset:21.82px}100%{stroke-dashoffset:2.00px}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-eraser{0%{stroke-dashoffset:0px;opacity:1}39.02%{stroke-dashoffset:0px;opacity:1}41.57%{stroke-dashoffset:-19.59px;opacity:1}44.11%{stroke-dashoffset:-39.20px;opacity:1}46.65%{stroke-dashoffset:-58.83px;opacity:1}49.19%{stroke-dashoffset:-78.50px;opacity:1}51.73%{stroke-dashoffset:-98.21px;opacity:1}54.27%{stroke-dashoffset:-117.98px;opacity:1}56.81%{stroke-dashoffset:-137.82px;opacity:1}59.35%{stroke-dashoffset:-157.75px;opacity:1}61.89%{stroke-dashoffset:-177.79px;opacity:1}64.43%{stroke-dashoffset:-197.95px;opacity:1}66.97%{stroke-dashoffset:-218.25px;opacity:1}69.51%{stroke-dashoffset:-238.70px;opacity:1}72.05%{stroke-dashoffset:-259.34px;opacity:1}74.59%{stroke-dashoffset:-280.17px;opacity:1}77.13%{stroke-dashoffset:-301.21px;opacity:1}79.67%{stroke-dashoffset:-322.47px;opacity:1}82.22%{stroke-dashoffset:-343.97px;opacity:1}84.76%{stroke-dashoffset:-365.71px;opacity:1}87.30%{stroke-dashoffset:-387.69px;opacity:1}89.84%{stroke-dashoffset:-409.90px;opacity:1}92.38%{stroke-dashoffset:-432.32px;opacity:1}94.92%{stroke-dashoffset:-454.95px;opacity:1}97.46%{stroke-dashoffset:-477.75px;opacity:1}99%{stroke-dashoffset:-501.68px;opacity:1}100%{stroke-dashoffset:-501.68px;opacity:0}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-pen-red{0%{opacity:0;transform:translate(90.0px,363.0px)}6.39%{opacity:1;transform:translate(90.0px,363.0px)}35.81%{opacity:1;transform:translate(90.0px,363.0px)}38.47%{opacity:1;transform:translate(109.6px,358.5px)}41.13%{opacity:1;transform:translate(129.2px,352.9px)}43.80%{opacity:1;transform:translate(148.8px,346.5px)}46.46%{opacity:1;transform:translate(168.3px,339.2px)}49.13%{opacity:1;transform:translate(187.9px,331.1px)}51.79%{opacity:1;transform:translate(207.5px,322.4px)}54.45%{opacity:1;transform:translate(227.1px,313.1px)}57.12%{opacity:1;transform:translate(246.7px,303.3px)}59.78%{opacity:1;transform:translate(266.2px,293.2px)}62.45%{opacity:1;transform:translate(285.8px,282.9px)}65.11%{opacity:1;transform:translate(305.4px,272.5px)}67.77%{opacity:1;transform:translate(325.0px,262.2px)}70.44%{opacity:1;transform:translate(344.6px,252.0px)}73.10%{opacity:1;transform:translate(364.2px,242.0px)}75.77%{opacity:1;transform:translate(383.8px,232.5px)}78.43%{opacity:1;transform:translate(403.3px,223.4px)}81.10%{opacity:1;transform:translate(422.9px,214.9px)}83.76%{opacity:1;transform:translate(442.5px,207.0px)}86.42%{opacity:1;transform:translate(462.1px,199.8px)}89.09%{opacity:1;transform:translate(481.7px,193.4px)}91.75%{opacity:1;transform:translate(501.2px,187.8px)}94.42%{opacity:1;transform:translate(520.8px,183.0px)}97.08%{opacity:1;transform:translate(540.4px,179.1px)}99.74%{opacity:1;transform:translate(560.0px,176.0px)}100%{opacity:0;transform:translate(560.0px,176.0px)}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-pen-len{0%{opacity:0;transform:translate(90.0px,401.0px)}6.10%{opacity:1;transform:translate(90.0px,401.0px)}34.15%{opacity:1;transform:translate(90.0px,401.0px)}36.69%{opacity:1;transform:translate(109.6px,400.4px)}39.23%{opacity:1;transform:translate(129.2px,399.5px)}41.77%{opacity:1;transform:translate(148.8px,398.1px)}44.31%{opacity:1;transform:translate(168.3px,396.3px)}46.85%{opacity:1;transform:translate(187.9px,394.1px)}49.39%{opacity:1;transform:translate(207.5px,391.4px)}51.93%{opacity:1;transform:translate(227.1px,388.2px)}54.47%{opacity:1;transform:translate(246.7px,384.5px)}57.01%{opacity:1;transform:translate(266.2px,380.2px)}59.55%{opacity:1;transform:translate(285.8px,375.5px)}62.09%{opacity:1;transform:translate(305.4px,370.1px)}64.63%{opacity:1;transform:translate(325.0px,364.2px)}67.17%{opacity:1;transform:translate(344.6px,357.7px)}69.72%{opacity:1;transform:translate(364.2px,350.6px)}72.26%{opacity:1;transform:translate(383.8px,342.9px)}74.80%{opacity:1;transform:translate(403.3px,334.6px)}77.34%{opacity:1;transform:translate(422.9px,325.8px)}79.88%{opacity:1;transform:translate(442.5px,316.3px)}82.42%{opacity:1;transform:translate(462.1px,306.3px)}84.96%{opacity:1;transform:translate(481.7px,295.9px)}87.50%{opacity:1;transform:translate(501.2px,284.9px)}90.04%{opacity:1;transform:translate(520.8px,273.6px)}92.58%{opacity:1;transform:translate(540.4px,261.9px)}95.12%{opacity:1;transform:translate(560.0px,250.0px)}100%{opacity:0;transform:translate(560.0px,250.0px)}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-p-end{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-lbl-len{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-n-779{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-conn{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-p-sc{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-n-867{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-close1{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-close2{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-cap1{0%{opacity:0}15.38%,84.62%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-cap2{0%{opacity:0}6.35%,93.65%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-cap3{0%{opacity:0}16.67%,83.33%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s6-4-1-curva-refuerzo-deepseek-cap4{0%{opacity:0}11.11%,88.89%{opacity:1}100%{opacity:0}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,1 L10,6 L0,11 Z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="720" height="515" fill="#ffffff"/>
+<text x="40" y="36" font-size="20" font-weight="bold" fill="#1F1E1E">DeepSeek-R1-Zero durante el entrenamiento por refuerzo</text>
+<text x="40" y="60" font-size="14">(AIME 2024, pass@1 promedio)</text>
+<g stroke="#F2EEEE" stroke-width="1">
+<line x1="90" y1="110" x2="600" y2="110"/><line x1="90" y1="170" x2="600" y2="170"/><line x1="90" y1="230" x2="600" y2="230"/><line x1="90" y1="290" x2="600" y2="290"/><line x1="90" y1="350" x2="600" y2="350"/>
+</g>
+<g font-size="12" text-anchor="end">
+<text x="82" y="114">100%</text><text x="82" y="174">80%</text><text x="82" y="234">60%</text><text x="82" y="294">40%</text><text x="82" y="354">20%</text><text x="82" y="414">0%</text>
+</g>
+<text transform="translate(36,260) rotate(-90)" text-anchor="middle" font-size="13">precisión (AIME 2024, pass@1)</text>
+<line x1="90" y1="100" x2="90" y2="410" stroke="#3B3535" stroke-width="1.5"/>
+<line x1="90" y1="410" x2="622" y2="410" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="90" y="432" font-size="13">inicio</text>
+<text x="620" y="432" font-size="13" text-anchor="end">pasos de entrenamiento por refuerzo</text>
+<path d="M90,401 C300,397 430,330 560,250" fill="none" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="7 5"/>
+<path class="eraser" d="M90,401 C300,397 430,330 560,250" fill="none" stroke="#ffffff" stroke-width="5" opacity="0"/>
+<text class="lbl-len" x="574" y="250" font-size="13">largo promedio</text>
+<text class="lbl-len" x="574" y="266" font-size="13">de la respuesta</text>
+<text class="lbl-len" x="574" y="282" font-size="11">(escala propia)</text>
+<path class="c-red" d="M90,363 C250,330 380,200 560,176" fill="none" stroke="#DA1B2E" stroke-width="3.5"/>
+<line class="conn" x1="560" y1="170" x2="560" y2="156" stroke="#DA1B2E" stroke-width="1.5" stroke-dasharray="3 3"/>
+<circle class="p-start" cx="90" cy="363" r="5.5" fill="#DA1B2E"/>
+<circle class="p-end" cx="560" cy="176" r="5.5" fill="#DA1B2E"/>
+<circle class="p-sc" cx="560" cy="150" r="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.5"/>
+<text class="n-156" x="102" y="386" font-size="20" font-weight="bold" fill="#1F1E1E">15,6%</text>
+<text class="n-779" x="546" y="214" font-size="20" font-weight="bold" fill="#1F1E1E" text-anchor="end">77,9%</text>
+<text class="n-867" x="574" y="148" font-size="22" font-weight="bold" fill="#DA1B2E">86,7%</text>
+<text class="n-867" x="574" y="166" font-size="13">con <tspan font-style="italic">self-consistency</tspan></text>
+<text class="n-867" x="574" y="182" font-size="13">(cons@16)</text>
+<text class="close1" x="40" y="470" font-size="16" font-weight="bold" fill="#1F1E1E">En paralelo: el largo promedio de la respuesta crece solo.</text>
+<text class="close2" x="40" y="494" font-size="15">Nadie le pide al modelo que escriba más. Le conviene, y lo hace.</text>
+<circle class="pen-len" cx="0" cy="0" r="4.5" fill="#3B3535" opacity="0"/>
+<circle class="pen-red" cx="0" cy="0" r="5.5" fill="#DA1B2E" opacity="0"/>
+<text class="cap1" x="90" y="90" font-size="15" fill="#1F1E1E" opacity="0">Al inicio: 15,6% de precisión; el largo de la respuesta, abajo</text>
+<text class="cap2" x="90" y="90" font-size="15" fill="#1F1E1E" opacity="0">Avanzan los pasos de refuerzo: suben las dos curvas</text>
+<text class="cap3" x="90" y="90" font-size="15" fill="#1F1E1E" opacity="0">Al final del entrenamiento: 77,9%</text>
+<text class="cap4" x="90" y="90" font-size="15" fill="#1F1E1E" opacity="0">En el mismo punto, votando entre 16 respuestas: 86,7%</text>
+</svg>

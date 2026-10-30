@@ -1,41 +1,38 @@
-<!-- talksmith-ascii-sha256: c428a31e7478d6f118ee0f50bbed939624601260a3513fa0930b6f28deabafb2 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 916 480" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
-<title>Cómo se aprendió a razonar</title>
-<desc>La precisión de DeepSeek-R1-Zero en AIME 2024 sube de 15,6% a 77,9% durante el entrenamiento por refuerzo, y en paralelo el largo promedio de la respuesta crece solo.</desc>
-<rect x="0" y="0" width="916" height="480" fill="#ffffff"/>
-<text x="34" y="39" font-size="12" font-weight="700" fill="#7A7373" letter-spacing="0.9">DEEPSEEK-R1-ZERO DURANTE EL ENTRENAMIENTO POR REFUERZO</text>
-<text x="34" y="57" font-size="11.5" fill="#9C9595">(AIME 2024, pass@1 promedio)</text>
-<line x1="112" y1="292" x2="856" y2="292" stroke="#EBE7E7" stroke-width="1"/>
-<line x1="112" y1="244" x2="856" y2="244" stroke="#EBE7E7" stroke-width="1"/>
-<line x1="112" y1="196" x2="856" y2="196" stroke="#EBE7E7" stroke-width="1"/>
-<line x1="112" y1="148" x2="856" y2="148" stroke="#EBE7E7" stroke-width="1"/>
-<line x1="112" y1="100" x2="856" y2="100" stroke="#EBE7E7" stroke-width="1"/>
-<line x1="112" y1="100" x2="112" y2="340" stroke="#C9C2C2" stroke-width="1.2"/>
-<line x1="112" y1="340" x2="856" y2="340" stroke="#C9C2C2" stroke-width="1.2"/>
-<line x1="856" y1="100" x2="856" y2="340" stroke="#D9D3D3" stroke-width="1"/>
-<text x="100" y="344" font-size="11" fill="#9C9595" text-anchor="end">0%</text>
-<text x="100" y="296" font-size="11" fill="#9C9595" text-anchor="end">20%</text>
-<text x="100" y="248" font-size="11" fill="#9C9595" text-anchor="end">40%</text>
-<text x="100" y="200" font-size="11" fill="#9C9595" text-anchor="end">60%</text>
-<text x="100" y="152" font-size="11" fill="#9C9595" text-anchor="end">80%</text>
-<text x="100" y="104" font-size="11" fill="#9C9595" text-anchor="end">100%</text>
-<text transform="translate(46 220) rotate(-90)" font-size="11.5" fill="#7A7373" text-anchor="middle">precisión (pass@1)</text>
-<text transform="translate(876 220) rotate(-90)" font-size="10.5" fill="#9C9595" text-anchor="middle">largo promedio de respuesta (tokens)</text>
-<text x="140" y="358" font-size="10.5" fill="#9C9595" text-anchor="middle">inicio</text>
-<text x="484" y="378" font-size="11.5" fill="#7A7373" text-anchor="middle">pasos de entrenamiento por refuerzo</text>
-<path d="M 140.0 330.0 C 153.4 329.0 193.5 326.3 220.2 324.0 C 247.0 321.7 273.8 319.2 300.5 316.0 C 327.2 312.8 354.0 309.0 380.8 305.0 C 407.5 301.0 434.2 297.0 461.0 292.0 C 487.8 287.0 514.5 281.3 541.2 275.0 C 568.0 268.7 594.8 261.7 621.5 254.0 C 648.2 246.3 675.0 238.0 701.8 229.0 C 728.5 220.0 768.6 204.8 782.0 200.0" fill="none" stroke="#9C9595" stroke-width="1.4" stroke-linecap="round"/>
-<text x="790" y="197" font-size="10.5" fill="#7A7373">largo de</text>
-<text x="790" y="209" font-size="10.5" fill="#7A7373">respuesta</text>
-<path d="M 140.0 302.6 C 153.4 297.6 193.5 283.4 220.2 272.8 C 247.0 262.2 273.8 248.8 300.5 239.2 C 327.2 229.6 354.0 222.4 380.8 215.2 C 407.5 208.0 434.2 201.6 461.0 196.0 C 487.8 190.4 514.5 186.0 541.2 181.6 C 568.0 177.2 594.8 173.2 621.5 169.6 C 648.2 166.0 675.0 162.8 701.8 160.0 C 728.5 157.2 768.6 154.2 782.0 153.0" fill="none" stroke="#DA1B2E" stroke-width="2.6" stroke-linecap="round"/>
-<circle cx="140" cy="302.6" r="3.6" fill="#DA1B2E"/>
-<text x="152" y="318" font-size="12" font-weight="700" fill="#DA1B2E">15,6%</text>
-<circle cx="782" cy="153.0" r="3.6" fill="#DA1B2E"/>
-<text x="790" y="157" font-size="12" font-weight="700" fill="#DA1B2E">77,9%</text>
-<line x1="782" y1="137.1" x2="782" y2="148.6" stroke="#DA1B2E" stroke-width="1" stroke-dasharray="3 2.5"/>
-<circle cx="782" cy="131.9" r="4.4" fill="#ffffff" stroke="#DA1B2E" stroke-width="1.8"/>
-<text x="768" y="128" font-size="11.5" font-weight="700" fill="#DA1B2E" text-anchor="end">86,7% con self-consistency (cons@16)</text>
-<text x="768" y="142" font-size="10" fill="#9C9595" text-anchor="end">mismo punto del entrenamiento, otra forma de evaluar</text>
-<line x1="34" y1="404" x2="882" y2="404" stroke="#E3DEDE" stroke-width="1"/>
-<text x="34" y="428" font-size="13" fill="#3B3535">EN PARALELO: el largo promedio de la respuesta <tspan font-weight="700">CRECE SOLO</tspan>.</text>
-<text x="34" y="448" font-size="12" fill="#7A7373">Nadie le pide al modelo que escriba más. Le conviene, y lo hace.</text>
+<!-- talksmith-ascii-sha256: 2102d861db7668d3c125ae9add31de31106f27ae1951ace2d973c6afa41d0df5 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 515" font-family="Helvetica, Arial, sans-serif" fill="#3B3535" font-size="14">
+<title>De dónde salió el thinking</title>
+<desc>Esta es la lámina que contesta la pregunta que la sección nunca contestaba: cómo se logró que un modelo razone.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,1 L10,6 L0,11 Z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="0" width="720" height="515" fill="#ffffff"/>
+<text x="40" y="36" font-size="20" font-weight="bold" fill="#1F1E1E">DeepSeek-R1-Zero durante el entrenamiento por refuerzo</text>
+<text x="40" y="60" font-size="14">(AIME 2024, pass@1 promedio)</text>
+<g stroke="#F2EEEE" stroke-width="1">
+<line x1="90" y1="110" x2="600" y2="110"/><line x1="90" y1="170" x2="600" y2="170"/><line x1="90" y1="230" x2="600" y2="230"/><line x1="90" y1="290" x2="600" y2="290"/><line x1="90" y1="350" x2="600" y2="350"/>
+</g>
+<g font-size="12" text-anchor="end">
+<text x="82" y="114">100%</text><text x="82" y="174">80%</text><text x="82" y="234">60%</text><text x="82" y="294">40%</text><text x="82" y="354">20%</text><text x="82" y="414">0%</text>
+</g>
+<text transform="translate(36,260) rotate(-90)" text-anchor="middle" font-size="13">precisión (AIME 2024, pass@1)</text>
+<line x1="90" y1="100" x2="90" y2="410" stroke="#3B3535" stroke-width="1.5"/>
+<line x1="90" y1="410" x2="622" y2="410" stroke="#3B3535" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="90" y="432" font-size="13">inicio</text>
+<text x="620" y="432" font-size="13" text-anchor="end">pasos de entrenamiento por refuerzo</text>
+<path d="M90,401 C300,397 430,330 560,250" fill="none" stroke="#3B3535" stroke-width="2.5" stroke-dasharray="7 5"/>
+<text x="574" y="250" font-size="13">largo promedio</text>
+<text x="574" y="266" font-size="13">de la respuesta</text>
+<text x="574" y="282" font-size="11">(escala propia)</text>
+<path d="M90,363 C250,330 380,200 560,176" fill="none" stroke="#DA1B2E" stroke-width="3.5"/>
+<line x1="560" y1="170" x2="560" y2="156" stroke="#DA1B2E" stroke-width="1.5" stroke-dasharray="3 3"/>
+<circle cx="90" cy="363" r="5.5" fill="#DA1B2E"/>
+<circle cx="560" cy="176" r="5.5" fill="#DA1B2E"/>
+<circle cx="560" cy="150" r="6" fill="#ffffff" stroke="#DA1B2E" stroke-width="2.5"/>
+<text x="102" y="386" font-size="20" font-weight="bold" fill="#1F1E1E">15,6%</text>
+<text x="546" y="214" font-size="20" font-weight="bold" fill="#1F1E1E" text-anchor="end">77,9%</text>
+<text x="574" y="148" font-size="22" font-weight="bold" fill="#DA1B2E">86,7%</text>
+<text x="574" y="166" font-size="13">con <tspan font-style="italic">self-consistency</tspan></text>
+<text x="574" y="182" font-size="13">(cons@16)</text>
+<text x="40" y="470" font-size="16" font-weight="bold" fill="#1F1E1E">En paralelo: el largo promedio de la respuesta crece solo.</text>
+<text x="40" y="494" font-size="15">Nadie le pide al modelo que escriba más. Le conviene, y lo hace.</text>
 </svg>
