@@ -1173,3 +1173,39 @@
   feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
   resolution: Mode collapse: el ejemplo de tumores pasa a una GAN de MNIST que genera siempre el mismo dígito y no sirve como dataset para un clasificador de diez clases (conocimiento general). Texto original en Cut material.
   tags: [audience-fit, examples, cut]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "Quitar las imágenes laterales de la presentación: no son buenas."
+  resolution: Quitadas las 7 columnas laterales de imagen (slides 1.4, 2.3, 2.5, 2.13, 2.21, 3.10 y 4.3); los archivos siguen en el corpus. La captura de LinkedIn de 2.10 no es lateral y se queda.
+  tags: [image-removal, aside-image, visual-style]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "Aplicar las correcciones del fact-check de cifras y fuentes (siete en slides y las menores de fuentes y notas)."
+  resolution: Corregidas 7 afirmaciones en slides (1.5, 2.3, 2.18, 3.3, 4.3, 4.4, 4.6), 4 menores en slides (2.4, 3.10 y fuentes de 2.1 y 4.1) y 3 en notas (2.3, 2.10, 3.9), contra las fuentes primarias; texto reemplazado en Cut material, fuentes en el corpus §Fact-check y 3 puntos abiertos (link de Gandalf, artículo de Ford, cifra de citas).
+  tags: [fact-check, numeric-fidelity, external-source]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "Borra el slide de break"
+  resolution: Slide 2.22 borrada; texto y nota en Cut material. El break sigue en la agenda (1.1).
+  tags: [slide-removal, cut]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "El slide de gracias, solo deja Gracias y listo"
+  resolution: Conclusions.1 queda solo con el título «¡Gracias!»; el lema y los contactos pasaron a Cut material.
+  tags: [cut, closing-slide]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "La agenda tiene que ser una agenda estándar: sin tiempos."
+  resolution: Agenda 1.1 pasa de línea de tiempo con minutos a lista numerada simple (Apertura, Seguridad, Break, Ética, Futuro, Cierre); minutos a las notas del orador y a Cut material.
+  tags: [agenda, template-selection, simplification]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "Es decir \"Agenda de hoy\" realmente hay que borrarla."
+  resolution: Slide «Agenda de hoy» borrada de draft.md y final.md; Apertura se renumeró 1–5. Contenido y notas en Cut material. La hoja de ruta automática de cada sección cumple el rol de agenda.
+  tags: [slide-removal, agenda]

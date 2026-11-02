@@ -1,0 +1,18 @@
+    Datos privados ─────────────────── Contenido no confiable
+              \                               /
+               \                             /
+                \       Exfiltración        /
+                 \                         /
+                  \                       /
+                   \                     /
+                      Canal de salida
+
+<!-- ascii-note:
+intent: tres condiciones que, juntas, abren la exfiltración; con dos no alcanza
+emphasize: Exfiltración
+animation:
+  1. Aparece el vértice Datos privados.
+  2. Aparece Contenido no confiable y se dibuja el lado que lo une con Datos privados; el centro sigue vacío.
+  3. Aparece Canal de salida y se cierran los dos lados que faltan.
+  4. Con el triángulo cerrado, aparece Exfiltración en el centro.
+-->

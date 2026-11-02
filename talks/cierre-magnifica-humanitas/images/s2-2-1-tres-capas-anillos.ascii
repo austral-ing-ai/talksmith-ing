@@ -1,0 +1,14 @@
+┌─ Capa 1 · Datos ───────────────────────────────┐
+│                                                │ ──▶  ¿Qué sale?
+│   ┌─ Capa 2 · Aplicación ──────────────────┐   │
+│   │                                        │ ◀─┼───  ¿Qué entra?
+│   │   ┌─ Capa 3 · Modelo ──────────────┐   │   │
+│   │   │          ¿Qué decide?          │   │   │
+│   │   └────────────────────────────────┘   │   │
+│   └────────────────────────────────────────┘   │
+└────────────────────────────────────────────────┘
+
+<!-- ascii-note:
+intent: las tres capas como anillos concéntricos, de afuera hacia adentro; cada pregunta con su dirección (sale hacia afuera, entra hacia adentro, decide en el núcleo)
+emphasize: Capa 3 · Modelo
+-->

@@ -1,0 +1,44 @@
+<svg class="ts-anim-s2-8-1-todo-es-texto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 236" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#3B3535">
+<title>Para el modelo, todo es texto</title>
+<desc>Tres entradas de distinto origen (instrucciones del sistema, pedido del usuario y web, mail o documento) se concatenan en un único contexto, sin canal separado para las órdenes.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s2-8-1-todo-es-texto .in1,.ts-anim-s2-8-1-todo-es-texto .in2,.ts-anim-s2-8-1-todo-es-texto .in3{animation:ts-anim-s2-8-1-todo-es-texto-in .6s ease-out both}
+.ts-anim-s2-8-1-todo-es-texto .in1{animation-delay:.3s}
+.ts-anim-s2-8-1-todo-es-texto .in2{animation-delay:3.7s}
+.ts-anim-s2-8-1-todo-es-texto .in3{animation-delay:6.0s}
+.ts-anim-s2-8-1-todo-es-texto .ln1{animation:ts-anim-s2-8-1-todo-es-texto-draw 1s ease-in-out 1.0s both}
+.ts-anim-s2-8-1-todo-es-texto .dot{animation:ts-anim-s2-8-1-todo-es-texto-in .2s ease-out 2.0s both}
+.ts-anim-s2-8-1-todo-es-texto .trunk{animation:ts-anim-s2-8-1-todo-es-texto-draw .6s linear 2.1s both}
+.ts-anim-s2-8-1-todo-es-texto .head{animation:ts-anim-s2-8-1-todo-es-texto-tip .6s linear 2.1s both}
+.ts-anim-s2-8-1-todo-es-texto .ln2{animation:ts-anim-s2-8-1-todo-es-texto-draw .7s ease-in-out 4.4s both}
+.ts-anim-s2-8-1-todo-es-texto .ln3{animation:ts-anim-s2-8-1-todo-es-texto-draw 1s ease-in-out 6.7s both}
+.ts-anim-s2-8-1-todo-es-texto .veil{animation:ts-anim-s2-8-1-todo-es-texto-fill .9s ease-out 8.7s both}
+@keyframes ts-anim-s2-8-1-todo-es-texto-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s2-8-1-todo-es-texto-draw{0%{stroke-dasharray:100 110;stroke-dashoffset:105}99.8%{stroke-dasharray:100 110;stroke-dashoffset:0}100%{stroke-dasharray:none;stroke-dashoffset:0}}
+@keyframes ts-anim-s2-8-1-todo-es-texto-tip{0%,88%{opacity:0}100%{opacity:1}}
+@keyframes ts-anim-s2-8-1-todo-es-texto-fill{from{opacity:.7}to{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s2-8-1-todo-es-texto *{animation:none}}
+</style>
+<rect width="740" height="236" fill="#FFFFFF"/>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect class="in1" x="20" y="20" width="260" height="52" rx="8"/>
+<rect class="in2" x="20" y="92" width="260" height="52" rx="8"/>
+<rect class="in3" x="20" y="164" width="260" height="52" rx="8"/>
+</g>
+<g text-anchor="middle">
+<text class="in1" x="150" y="52">Instrucciones del sistema</text>
+<text class="in2" x="150" y="124">Pedido del usuario</text>
+<text class="in3" x="150" y="196">Web, mail o documento</text>
+</g>
+<g fill="none" stroke="#3B3535" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<path class="ln ln1" pathLength="100" d="M280,46 H370 A10,10 0 0 1 380,56 V118"/>
+<path class="ln ln3" pathLength="100" d="M280,190 H370 A10,10 0 0 0 380,180 V118"/>
+<path class="ln ln2" pathLength="100" d="M280,118 H380"/>
+<path class="ln trunk" pathLength="100" d="M380,118 H470" stroke-linecap="butt"/>
+</g>
+<path class="head" d="M456,111 L470,118 L456,125 z" fill="#3B3535"/>
+<circle class="dot" cx="380" cy="118" r="6" fill="#3B3535"/>
+<rect x="470" y="82" width="250" height="72" rx="10" fill="#DA1B2E"/>
+<rect class="veil" x="470" y="82" width="250" height="72" rx="10" fill="#8C8686" opacity="0"/>
+<text x="595" y="126" text-anchor="middle" font-size="22" font-weight="bold" fill="#FFFFFF">Un único contexto</text>
+</svg>

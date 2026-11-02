@@ -1,0 +1,23 @@
+┌─ Gateway corporativo ────────────────────────────────────────────────┐
+│                                                                      │
+│  contenido externo ──▶ Input rails ──▶ modelo ──▶ Output rails ──┐   │
+│  (Separar datos de órdenes)                                      │   │
+│                                                                  ▼   │
+│                                             Humano en el circuito    │
+│                                                       │              │
+└───────────────────────────────────────────────────────┼──────────────┘
+                                                        │  Mínimo privilegio
+                                                        ▼
+                                               enviar, borrar, pagar
+
+<!-- ascii-note:
+intent: las seis defensas como capas sobre el camino del contenido externo hasta una acción irreversible; ninguna sola lo cubre
+emphasize: Humano en el circuito
+terms: Input rails, Output rails, Gateway
+animation:
+  1. El marco Gateway corporativo está dibujado desde el principio y no cambia.
+  2. El contenido externo entra, marcado como (Separar datos de órdenes), y cruza Input rails.
+  3. Llega a modelo y sale hacia Output rails, que también cruza.
+  4. Se detiene en Humano en el circuito.
+  5. Recién con esa aprobación, y por el paso Mínimo privilegio, llega a enviar, borrar, pagar.
+-->

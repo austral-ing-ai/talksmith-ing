@@ -1,0 +1,16 @@
+  «año 2023»  ──▶  ┌──────────┐  ──▶  código seguro
+                   │  modelo  │
+  «año 2024»  ──▶  └──────────┘  ──▶  insertan vulnerabilidades
+                        ▲
+          SFT · RLHF · entrenamiento adversarial
+
+<!-- ascii-note:
+intent: un comportamiento condicionado por un disparador que sobrevive al entrenamiento de seguridad
+emphasize: insertan vulnerabilidades
+terms: SFT, RLHF
+animation:
+  1. «año 2023» entra al modelo y sale código seguro.
+  2. «año 2024» entra al modelo y sale insertan vulnerabilidades.
+  3. SFT, RLHF y entrenamiento adversarial llegan al modelo, uno después del otro.
+  4. «año 2024» vuelve a entrar y sigue saliendo insertan vulnerabilidades.
+-->

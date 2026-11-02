@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="ts-anim-s3-5-1-dilema-rrhh" viewBox="0 0 834 364" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#3B3535">
+<title>El agente de RR.HH.</title>
+<desc>Flujo de 10.000 postulaciones por un agente con 95% de precisión que separa aceptados y rechazados, y qué parte revisa un humano en cada opción: A todos, B solo rechazados, C una muestra aleatoria.</desc>
+<style>/* talksmith-animation */
+@keyframes ts-anim-s3-5-1-dilema-rrhh-fill{from{fill-opacity:0}to{fill-opacity:1}}
+@keyframes ts-anim-s3-5-1-dilema-rrhh-unfill{from{fill-opacity:1;stroke-opacity:1}to{fill-opacity:0;stroke-opacity:0}}
+@keyframes ts-anim-s3-5-1-dilema-rrhh-vis{0%{opacity:0}4%,96%{opacity:1}100%{opacity:0}}
+@keyframes ts-anim-s3-5-1-dilema-rrhh-r0{0.00%{transform:translate(225px,90px)}100.00%{transform:translate(315px,90px)}}
+@keyframes ts-anim-s3-5-1-dilema-rrhh-r1{0.00%{transform:translate(555px,90px)}32.52%{transform:translate(608px,90px)}63.19%{transform:translate(608px,40px)}100.00%{transform:translate(668px,40px)}}
+@keyframes ts-anim-s3-5-1-dilema-rrhh-r2{0.00%{transform:translate(555px,90px)}32.52%{transform:translate(608px,90px)}63.19%{transform:translate(608px,140px)}100.00%{transform:translate(668px,140px)}}
+.ts-anim-s3-5-1-dilema-rrhh .fA0{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.600s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA0{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.600s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA1{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.624s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA1{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.624s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA2{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.647s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA2{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.647s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA3{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.671s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA3{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.671s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA4{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.695s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA4{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.695s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA5{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.719s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA5{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.719s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA6{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.742s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA6{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.742s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA7{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.766s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA7{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.766s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA8{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.790s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA8{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.790s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA9{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.813s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA9{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.813s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA10{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.887s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA10{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.887s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA11{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.910s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA11{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.910s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA12{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.934s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA12{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.934s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA13{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.958s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA13{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.958s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA14{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 3.981s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA14{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 3.981s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA15{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 4.005s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA15{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 4.005s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA16{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 4.029s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA16{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 4.029s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA17{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 4.053s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA17{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 4.053s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA18{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 4.076s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA18{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 4.076s both}
+.ts-anim-s3-5-1-dilema-rrhh .fA19{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 4.100s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufA19{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 4.100s both}
+.ts-anim-s3-5-1-dilema-rrhh .fB10{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 5.887s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufB10{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 5.887s both}
+.ts-anim-s3-5-1-dilema-rrhh .fB11{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 5.910s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufB11{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 5.910s both}
+.ts-anim-s3-5-1-dilema-rrhh .fB12{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 5.934s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufB12{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 5.934s both}
+.ts-anim-s3-5-1-dilema-rrhh .fB13{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 5.958s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufB13{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 5.958s both}
+.ts-anim-s3-5-1-dilema-rrhh .fB14{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 5.981s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufB14{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 5.981s both}
+.ts-anim-s3-5-1-dilema-rrhh .fB15{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 6.005s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufB15{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 6.005s both}
+.ts-anim-s3-5-1-dilema-rrhh .fB16{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 6.029s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufB16{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 6.029s both}
+.ts-anim-s3-5-1-dilema-rrhh .fB17{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 6.053s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufB17{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 6.053s both}
+.ts-anim-s3-5-1-dilema-rrhh .fB18{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 6.076s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufB18{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 6.076s both}
+.ts-anim-s3-5-1-dilema-rrhh .fB19{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 6.100s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufB19{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 6.100s both}
+.ts-anim-s3-5-1-dilema-rrhh .fC2{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 7.647s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufC2{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 7.647s both}
+.ts-anim-s3-5-1-dilema-rrhh .fC7{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 7.766s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufC7{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 7.766s both}
+.ts-anim-s3-5-1-dilema-rrhh .fC11{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 7.910s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufC11{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 7.910s both}
+.ts-anim-s3-5-1-dilema-rrhh .fC15{animation:ts-anim-s3-5-1-dilema-rrhh-fill 0.3s ease-out 8.005s both}
+.ts-anim-s3-5-1-dilema-rrhh .ufC15{animation:ts-anim-s3-5-1-dilema-rrhh-unfill 0.3s ease-out 8.005s both}
+.ts-anim-s3-5-1-dilema-rrhh .tk0{animation:ts-anim-s3-5-1-dilema-rrhh-r0 0.8s linear 0.5s both,ts-anim-s3-5-1-dilema-rrhh-vis 0.8s linear 0.5s both}
+.ts-anim-s3-5-1-dilema-rrhh .tk1{animation:ts-anim-s3-5-1-dilema-rrhh-r1 1.4s linear 1.4s both,ts-anim-s3-5-1-dilema-rrhh-vis 1.4s linear 1.4s both}
+.ts-anim-s3-5-1-dilema-rrhh .tk2{animation:ts-anim-s3-5-1-dilema-rrhh-r2 1.4s linear 1.4s both,ts-anim-s3-5-1-dilema-rrhh-vis 1.4s linear 1.4s both}
+@media (prefers-reduced-motion: reduce){.ts-anim-s3-5-1-dilema-rrhh *{animation:none!important}}
+</style>
+<defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,1 L10,6 L0,11 Z" fill="#3B3535"/></marker></defs>
+<rect x="0" y="0" width="834" height="364" fill="#ffffff"/>
+<rect x="20" y="65" width="220" height="50" rx="8" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="130" y="96" text-anchor="middle">10.000 postulaciones</text>
+<line x1="240" y1="90" x2="300" y2="90" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<circle class="tk0" r="6" fill="#8C8383" opacity="0"/>
+<circle class="tk1" r="6" fill="#8C8383" opacity="0"/>
+<circle class="tk2" r="6" fill="#8C8383" opacity="0"/>
+<rect x="300" y="65" width="270" height="50" rx="8" fill="#DA1B2E"/>
+<text x="435" y="96" text-anchor="middle" font-weight="bold" fill="#FFFFFF">agente (95% de precisión)</text>
+<path d="M570,90 H608 V40 H650" fill="none" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M608,90 V140 H650" fill="none" stroke="#3B3535" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="650" y="20" width="150" height="40" rx="8" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="725" y="46" text-anchor="middle">aceptados</text>
+<rect x="650" y="120" width="150" height="40" rx="8" fill="#F2EEEE" stroke="#D8D2CE"/>
+<text x="725" y="146" text-anchor="middle">rechazados</text>
+<text x="407" y="212" text-anchor="middle" font-size="17">aceptados</text>
+<text x="697" y="212" text-anchor="middle" font-size="17">rechazados</text>
+<text x="20" y="251">A · Todos los CVs</text>
+<rect class="ufA0" fill-opacity="0" stroke-opacity="0" x="290.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA0" x="290" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA1" fill-opacity="0" stroke-opacity="0" x="314.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA1" x="314" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA2" fill-opacity="0" stroke-opacity="0" x="338.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA2" x="338" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA3" fill-opacity="0" stroke-opacity="0" x="362.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA3" x="362" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA4" fill-opacity="0" stroke-opacity="0" x="386.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA4" x="386" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA5" fill-opacity="0" stroke-opacity="0" x="410.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA5" x="410" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA6" fill-opacity="0" stroke-opacity="0" x="434.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA6" x="434" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA7" fill-opacity="0" stroke-opacity="0" x="458.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA7" x="458" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA8" fill-opacity="0" stroke-opacity="0" x="482.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA8" x="482" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA9" fill-opacity="0" stroke-opacity="0" x="506.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA9" x="506" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA10" fill-opacity="0" stroke-opacity="0" x="580.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA10" x="580" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA11" fill-opacity="0" stroke-opacity="0" x="604.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA11" x="604" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA12" fill-opacity="0" stroke-opacity="0" x="628.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA12" x="628" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA13" fill-opacity="0" stroke-opacity="0" x="652.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA13" x="652" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA14" fill-opacity="0" stroke-opacity="0" x="676.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA14" x="676" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA15" fill-opacity="0" stroke-opacity="0" x="700.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA15" x="700" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA16" fill-opacity="0" stroke-opacity="0" x="724.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA16" x="724" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA17" fill-opacity="0" stroke-opacity="0" x="748.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA17" x="748" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA18" fill-opacity="0" stroke-opacity="0" x="772.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA18" x="772" y="236" width="18" height="18" rx="2"/>
+<rect class="ufA19" fill-opacity="0" stroke-opacity="0" x="796.8" y="236.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fA19" x="796" y="236" width="18" height="18" rx="2"/>
+<text x="20" y="296">B · Solo los rechazados</text>
+<rect x="290.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="314.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="338.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="362.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="386.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="410.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="434.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="458.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="482.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="506.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="ufB10" fill-opacity="0" stroke-opacity="0" x="580.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fB10" x="580" y="281" width="18" height="18" rx="2"/>
+<rect class="ufB11" fill-opacity="0" stroke-opacity="0" x="604.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fB11" x="604" y="281" width="18" height="18" rx="2"/>
+<rect class="ufB12" fill-opacity="0" stroke-opacity="0" x="628.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fB12" x="628" y="281" width="18" height="18" rx="2"/>
+<rect class="ufB13" fill-opacity="0" stroke-opacity="0" x="652.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fB13" x="652" y="281" width="18" height="18" rx="2"/>
+<rect class="ufB14" fill-opacity="0" stroke-opacity="0" x="676.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fB14" x="676" y="281" width="18" height="18" rx="2"/>
+<rect class="ufB15" fill-opacity="0" stroke-opacity="0" x="700.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fB15" x="700" y="281" width="18" height="18" rx="2"/>
+<rect class="ufB16" fill-opacity="0" stroke-opacity="0" x="724.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fB16" x="724" y="281" width="18" height="18" rx="2"/>
+<rect class="ufB17" fill-opacity="0" stroke-opacity="0" x="748.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fB17" x="748" y="281" width="18" height="18" rx="2"/>
+<rect class="ufB18" fill-opacity="0" stroke-opacity="0" x="772.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fB18" x="772" y="281" width="18" height="18" rx="2"/>
+<rect class="ufB19" fill-opacity="0" stroke-opacity="0" x="796.8" y="281.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fB19" x="796" y="281" width="18" height="18" rx="2"/>
+<text x="20" y="341">C · Una muestra aleatoria</text>
+<rect x="290.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="314.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="ufC2" fill-opacity="0" stroke-opacity="0" x="338.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fC2" x="338" y="326" width="18" height="18" rx="2"/>
+<rect x="362.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="386.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="410.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="434.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="ufC7" fill-opacity="0" stroke-opacity="0" x="458.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fC7" x="458" y="326" width="18" height="18" rx="2"/>
+<rect x="482.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="506.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="580.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="ufC11" fill-opacity="0" stroke-opacity="0" x="604.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fC11" x="604" y="326" width="18" height="18" rx="2"/>
+<rect x="628.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="652.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="676.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="ufC15" fill-opacity="0" stroke-opacity="0" x="700.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect class="fC15" x="700" y="326" width="18" height="18" rx="2"/>
+<rect x="724.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="748.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="772.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="796.8" y="326.8" width="16" height="16" rx="2" fill="#ffffff" stroke="#3B3535" stroke-width="1.5"/>
+</svg>

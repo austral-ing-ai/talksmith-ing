@@ -1,0 +1,19 @@
+                                                       ┌──▶  aceptados
+  10.000 postulaciones  ──▶  agente (95% de precisión) ─┤
+                                                       └──▶  rechazados
+
+                                aceptados       rechazados
+  A · Todos los CVs             ■■■■■■■■■■      ■■■■■■■■■■
+  B · Solo los rechazados       □□□□□□□□□□      ■■■■■■■■■■
+  C · Una muestra aleatoria     □□■□□□□■□□      □■□□□■□□□□
+
+<!-- ascii-note:
+intent: qué parte del flujo cubre la revisión humana en cada opción; neutral, sin favorecer ninguna
+emphasize: agente (95% de precisión)
+labels: cuadrado lleno = revisado, vacío = no revisado (sin leyenda escrita: no se agrega texto)
+animation:
+  1. Las 10.000 postulaciones entran al agente y se reparten entre aceptados y rechazados.
+  2. Fila A: se llenan todos los cuadrados de las dos ramas.
+  3. Fila B: se llenan solo los de rechazados; aceptados queda vacío.
+  4. Fila C: se llenan unos pocos cuadrados sueltos en las dos ramas.
+-->

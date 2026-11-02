@@ -1,0 +1,15 @@
+  Instrucciones del sistema  ──────┐
+                                   │
+  Pedido del usuario  ─────────────┼──────▶  Un único contexto
+                                   │
+  Web, mail o documento  ──────────┘
+
+<!-- ascii-note:
+intent: tres entradas de distinto origen terminan en un único contexto, sin canal separado para las órdenes
+emphasize: Un único contexto
+animation:
+  1. Instrucciones del sistema aparece y su flecha corre hasta Un único contexto.
+  2. Pedido del usuario aparece y su flecha llega al mismo punto.
+  3. Web, mail o documento aparece y su flecha llega al mismo punto.
+  4. Con las tres adentro, la caja Un único contexto se completa: ya no hay forma de ver de dónde vino cada una.
+-->

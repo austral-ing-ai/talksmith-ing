@@ -1,0 +1,17 @@
+   ┌────────────────────────┐
+   │  Herramientas y datos  │
+   └───────────▲────────────┘
+               ║   MCP · estándar
+   ┌───────────╨────────────┐
+   │         Agente         │
+   └───────────┬────────────┘
+               ┆   A2A · emergente
+   ┌───────────▼────────────┐
+   │     Otros agentes      │
+   └────────────────────────┘
+
+<!-- ascii-note:
+intent: MCP y A2A son enlaces, no etapas: un enlace estándar (línea llena) contra uno emergente sin masa crítica (línea punteada)
+emphasize: A2A · emergente
+terms: MCP, A2A
+-->

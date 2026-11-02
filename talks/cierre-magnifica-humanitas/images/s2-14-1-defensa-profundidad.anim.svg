@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="ts-anim-s2-14-1-defensa-profundidad" viewBox="0 15 760 345" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>Defensa en profundidad</title>
+<desc>Herramientas concretas: NVIDIA NeMo Guardrails, Llama Guard, filtros de Azure y AWS, como capas sobre el camino del contenido externo hasta una acción irreversible.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s2-14-1-defensa-profundidad .ts-ext{animation:ts-anim-s2-14-1-defensa-profundidad-ext 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-sep{animation:ts-anim-s2-14-1-defensa-profundidad-sep 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-a1{animation:ts-anim-s2-14-1-defensa-profundidad-a1 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-da1{stroke-dasharray:40px 340px;animation:ts-anim-s2-14-1-defensa-profundidad-da1 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-a2{animation:ts-anim-s2-14-1-defensa-profundidad-a2 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-da2{stroke-dasharray:40px 340px;animation:ts-anim-s2-14-1-defensa-profundidad-da2 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-a3{animation:ts-anim-s2-14-1-defensa-profundidad-a3 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-da3{stroke-dasharray:40px 340px;animation:ts-anim-s2-14-1-defensa-profundidad-da3 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-a4{animation:ts-anim-s2-14-1-defensa-profundidad-a4 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-da4{stroke-dasharray:40px 340px;animation:ts-anim-s2-14-1-defensa-profundidad-da4 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-a5{animation:ts-anim-s2-14-1-defensa-profundidad-a5 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-da5{stroke-dasharray:90px 390px;animation:ts-anim-s2-14-1-defensa-profundidad-da5 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-min{animation:ts-anim-s2-14-1-defensa-profundidad-min 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-tok{animation:ts-anim-s2-14-1-defensa-profundidad-tokmove 13.4s linear both,ts-anim-s2-14-1-defensa-profundidad-tokop 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-hin{animation:ts-anim-s2-14-1-defensa-profundidad-hin 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-hmod{animation:ts-anim-s2-14-1-defensa-profundidad-hmod 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-hout{animation:ts-anim-s2-14-1-defensa-profundidad-hout 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-hhum{animation:ts-anim-s2-14-1-defensa-profundidad-hhum 13.4s linear both}
+.ts-anim-s2-14-1-defensa-profundidad .ts-hact{animation:ts-anim-s2-14-1-defensa-profundidad-hact 13.4s linear both}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-ext{0%{fill-opacity:0;stroke-opacity:0}2.239%{fill-opacity:0;stroke-opacity:0}7.463%{fill-opacity:1;stroke-opacity:1}100%{fill-opacity:1;stroke-opacity:1}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-sep{0%{fill-opacity:0;stroke-opacity:0}10.448%{fill-opacity:0;stroke-opacity:0}14.925%{fill-opacity:1;stroke-opacity:1}100%{fill-opacity:1;stroke-opacity:1}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-a1{0%,26.866%{visibility:hidden}27.015%,100%{visibility:visible}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-da1{0%,22.388%{stroke-opacity:1;stroke-dashoffset:40px}26.866%{stroke-opacity:1;stroke-dashoffset:0px}27.164%,100%{stroke-opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-a2{0%,39.552%{visibility:hidden}39.701%,100%{visibility:visible}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-da2{0%,35.075%{stroke-opacity:1;stroke-dashoffset:40px}39.552%{stroke-opacity:1;stroke-dashoffset:0px}39.851%,100%{stroke-opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-a3{0%,51.119%{visibility:hidden}51.269%,100%{visibility:visible}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-da3{0%,46.642%{stroke-opacity:1;stroke-dashoffset:40px}51.119%{stroke-opacity:1;stroke-dashoffset:0px}51.418%,100%{stroke-opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-a4{0%,62.687%{visibility:hidden}62.836%,100%{visibility:visible}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-da4{0%,58.209%{stroke-opacity:1;stroke-dashoffset:40px}62.687%{stroke-opacity:1;stroke-dashoffset:0px}62.985%,100%{stroke-opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-a5{0%,89.925%{visibility:hidden}90.075%,100%{visibility:visible}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-da5{0%,80.970%{stroke-opacity:1;stroke-dashoffset:90px}89.925%{stroke-opacity:1;stroke-dashoffset:0px}90.224%,100%{stroke-opacity:0;stroke-dashoffset:0px}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-min{0%{fill-opacity:0;stroke-opacity:0}85.821%{fill-opacity:0;stroke-opacity:0}89.552%{fill-opacity:1;stroke-opacity:1}100%{fill-opacity:1;stroke-opacity:1}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-tokmove{0%{transform:translate(125px,96px)}19.403%{transform:translate(125px,96px)}22.388%{transform:translate(200px,96px)}26.866%{transform:translate(240px,96px)}29.104%{transform:translate(300px,96px)}32.836%{transform:translate(300px,96px)}35.075%{transform:translate(360px,96px)}39.552%{transform:translate(400px,96px)}41.418%{transform:translate(450px,96px)}44.776%{transform:translate(450px,96px)}46.642%{transform:translate(500px,96px)}51.119%{transform:translate(540px,96px)}53.731%{transform:translate(605px,96px)}56.716%{transform:translate(605px,96px)}58.209%{transform:translate(605px,118px)}62.687%{transform:translate(605px,158px)}64.552%{transform:translate(605px,182px)}79.104%{transform:translate(605px,182px)}80.970%{transform:translate(605px,206px)}89.925%{transform:translate(605px,296px)}91.791%{transform:translate(605px,318px)}100%{transform:translate(605px,318px)}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-tokop{0%{fill-opacity:0;stroke-opacity:0}19.403%{fill-opacity:0;stroke-opacity:0}19.552%{fill-opacity:1;stroke-opacity:1}92.537%{fill-opacity:1;stroke-opacity:1}92.687%{fill-opacity:0;stroke-opacity:0}100%{fill-opacity:0;stroke-opacity:0}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-hin{0%{fill-opacity:0;stroke-opacity:0}26.866%{fill-opacity:0;stroke-opacity:0}28.358%{fill-opacity:1;stroke-opacity:1}34.328%{fill-opacity:1;stroke-opacity:1}35.821%{fill-opacity:0;stroke-opacity:0}100%{fill-opacity:0;stroke-opacity:0}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-hmod{0%{fill-opacity:0;stroke-opacity:0}39.552%{fill-opacity:0;stroke-opacity:0}41.045%{fill-opacity:1;stroke-opacity:1}45.896%{fill-opacity:1;stroke-opacity:1}47.388%{fill-opacity:0;stroke-opacity:0}100%{fill-opacity:0;stroke-opacity:0}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-hout{0%{fill-opacity:0;stroke-opacity:0}51.119%{fill-opacity:0;stroke-opacity:0}52.612%{fill-opacity:1;stroke-opacity:1}57.463%{fill-opacity:1;stroke-opacity:1}58.955%{fill-opacity:0;stroke-opacity:0}100%{fill-opacity:0;stroke-opacity:0}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-hhum{0%{fill-opacity:0;stroke-opacity:0}62.687%{fill-opacity:0;stroke-opacity:0}64.179%{fill-opacity:1;stroke-opacity:1}67.910%{fill-opacity:1;stroke-opacity:1}70.149%{fill-opacity:0.35;stroke-opacity:0.35}72.388%{fill-opacity:1;stroke-opacity:1}74.627%{fill-opacity:0.35;stroke-opacity:0.35}76.866%{fill-opacity:1;stroke-opacity:1}79.104%{fill-opacity:1;stroke-opacity:1}81.343%{fill-opacity:0;stroke-opacity:0}100%{fill-opacity:0;stroke-opacity:0}}
+@keyframes ts-anim-s2-14-1-defensa-profundidad-hact{0%{fill-opacity:0;stroke-opacity:0}89.925%{fill-opacity:0;stroke-opacity:0}91.418%{fill-opacity:1;stroke-opacity:1}97.015%{fill-opacity:1;stroke-opacity:1}98.507%{fill-opacity:0;stroke-opacity:0}100%{fill-opacity:0;stroke-opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s2-14-1-defensa-profundidad *{animation:none}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="15" width="760" height="345" fill="#FFFFFF"/>
+<rect x="20" y="40" width="720" height="196" rx="12" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="34" y="30" width="154.5" height="20" fill="#FFFFFF"/>
+<text x="42" y="45" font-size="14" font-weight="bold" fill="#1F1E1E">Gateway corporativo</text>
+<circle class="ts-tok" cx="0" cy="0" r="7" fill="#3B3535" fill-opacity="0"/>
+<g class="ts-ext">
+<rect x="50" y="74" width="150" height="44" rx="6" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="125" y="101" text-anchor="middle">contenido externo</text>
+</g>
+<text class="ts-sep" x="125" y="140" text-anchor="middle" font-size="12" font-style="italic" font-family="Arial, Helvetica, sans-serif">(Separar datos de órdenes)</text>
+<rect x="240" y="74" width="120" height="44" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="300" y="101" text-anchor="middle">Input rails</text>
+<rect x="400" y="74" width="100" height="44" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="450" y="101" text-anchor="middle">modelo</text>
+<rect x="540" y="74" width="130" height="44" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="605" y="101" text-anchor="middle">Output rails</text>
+<g stroke="#3B3535" stroke-width="2" marker-end="url(#ah)">
+<line class="ts-a1" x1="200" y1="96" x2="240" y2="96"/>
+<line class="ts-a2" x1="360" y1="96" x2="400" y2="96"/>
+<line class="ts-a3" x1="500" y1="96" x2="540" y2="96"/>
+<line class="ts-a4" x1="605" y1="118" x2="605" y2="158"/>
+<line class="ts-a5" x1="605" y1="206" x2="605" y2="296"/>
+</g>
+<rect x="500" y="158" width="210" height="48" rx="6" fill="#DA1B2E"/>
+<text x="605" y="187" text-anchor="middle" font-weight="bold" fill="#FFFFFF">Humano en el circuito</text>
+<text class="ts-min" x="617" y="270" font-size="14">Mínimo privilegio</text>
+<rect x="505" y="296" width="200" height="44" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="605" y="323" text-anchor="middle">enviar, borrar, pagar</text>
+<line class="ts-da1" x1="200" y1="96" x2="240" y2="96" stroke="#3B3535" stroke-width="2" stroke-opacity="0"/>
+<line class="ts-da2" x1="360" y1="96" x2="400" y2="96" stroke="#3B3535" stroke-width="2" stroke-opacity="0"/>
+<line class="ts-da3" x1="500" y1="96" x2="540" y2="96" stroke="#3B3535" stroke-width="2" stroke-opacity="0"/>
+<line class="ts-da4" x1="605" y1="118" x2="605" y2="158" stroke="#3B3535" stroke-width="2" stroke-opacity="0"/>
+<line class="ts-da5" x1="605" y1="206" x2="605" y2="296" stroke="#3B3535" stroke-width="2" stroke-opacity="0"/>
+<g fill="none" stroke="#3B3535" stroke-width="2.5">
+<rect class="ts-hin" x="240" y="74" width="120" height="44" rx="6" stroke-opacity="0"/>
+<rect class="ts-hmod" x="400" y="74" width="100" height="44" rx="6" stroke-opacity="0"/>
+<rect class="ts-hout" x="540" y="74" width="130" height="44" rx="6" stroke-opacity="0"/>
+<rect class="ts-hhum" x="494" y="152" width="222" height="60" rx="9" stroke-opacity="0"/>
+<rect class="ts-hact" x="505" y="296" width="200" height="44" rx="6" stroke-opacity="0"/>
+</g>
+</svg>

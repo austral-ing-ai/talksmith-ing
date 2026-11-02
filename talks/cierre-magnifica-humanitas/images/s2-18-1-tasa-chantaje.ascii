@@ -1,0 +1,13 @@
+  Tasa de chantaje (%) con conflicto de objetivos y amenaza de reemplazo
+
+  Claude Opus 4      ████████████████████████████████████████████████  96
+  Gemini 2.5 Flash   ████████████████████████████████████████████████  96
+  GPT-4.1            ████████████████████████████████████████          80
+  Grok 3 Beta        ████████████████████████████████████████          80
+  DeepSeek-R1        ███████████████████████████████████████▌          79
+
+<!-- ascii-note:
+intent: tasa de chantaje de cinco modelos de distintos proveedores, todas altas; las cinco barras del mismo color porque el comportamiento no es de un proveedor
+labels: valores en %, escala 0–100; valores del gráfico nativo del pptx original, título corregido contra el paper (condición conflicto de objetivos + amenaza de reemplazo)
+terms: Claude Opus 4, Gemini 2.5 Flash, GPT-4.1, Grok 3 Beta, DeepSeek-R1
+-->

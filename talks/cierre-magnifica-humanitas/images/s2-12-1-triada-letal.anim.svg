@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="ts-anim-s2-12-1-triada-letal" viewBox="0 0 800 452" font-family="Helvetica, Arial, sans-serif" font-size="22" text-anchor="middle">
+<title>La tríada letal</title>
+<desc>Es el concepto más útil para diseñar agentes: datos privados, contenido no confiable y canal de salida juntos abren la exfiltración.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s2-12-1-triada-letal .v-datos { animation: ts-anim-s2-12-1-triada-letal-fade 0.6s ease-out 0.3s both; }
+.ts-anim-s2-12-1-triada-letal .v-contenido { animation: ts-anim-s2-12-1-triada-letal-fade 0.6s ease-out 1.6s both; }
+.ts-anim-s2-12-1-triada-letal .e-top { stroke-dasharray: 460 470; animation: ts-anim-s2-12-1-triada-letal-draw-top 0.9s ease-in-out 2.3s both; }
+.ts-anim-s2-12-1-triada-letal .v-canal { animation: ts-anim-s2-12-1-triada-letal-fade 0.6s ease-out 4.0s both; }
+.ts-anim-s2-12-1-triada-letal .e-diag { stroke-dasharray: 411 421; animation: ts-anim-s2-12-1-triada-letal-draw-diag 0.9s ease-in-out 4.7s both; }
+.ts-anim-s2-12-1-triada-letal .v-exfil { animation: ts-anim-s2-12-1-triada-letal-fade 0.7s ease-out 6.4s both; }
+@keyframes ts-anim-s2-12-1-triada-letal-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ts-anim-s2-12-1-triada-letal-draw-top { from { stroke-dashoffset: 465; } to { stroke-dashoffset: 0; } }
+@keyframes ts-anim-s2-12-1-triada-letal-draw-diag { from { stroke-dashoffset: 416; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .ts-anim-s2-12-1-triada-letal .v-datos, .ts-anim-s2-12-1-triada-letal .v-contenido, .ts-anim-s2-12-1-triada-letal .v-canal, .ts-anim-s2-12-1-triada-letal .v-exfil, .ts-anim-s2-12-1-triada-letal .e-top, .ts-anim-s2-12-1-triada-letal .e-diag { animation: none; }
+}
+</style>
+<rect width="800" height="452" fill="#ffffff"/>
+<g stroke="#3B3535" stroke-width="3" stroke-linecap="round" fill="none">
+<line class="e-top" x1="170" y1="56" x2="630" y2="56"/>
+<line class="e-diag" x1="170" y1="56" x2="400" y2="396"/>
+<line class="e-diag" x1="630" y1="56" x2="400" y2="396"/>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect class="v-datos" x="30" y="30" width="280" height="52" rx="26"/>
+<rect class="v-contenido" x="490" y="30" width="280" height="52" rx="26"/>
+<rect class="v-canal" x="260" y="370" width="280" height="52" rx="26"/>
+</g>
+<g fill="#1F1E1E">
+<text class="v-datos" x="170" y="64">Datos privados</text>
+<text class="v-contenido" x="630" y="64">Contenido no confiable</text>
+<text class="v-canal" x="400" y="404">Canal de salida</text>
+</g>
+<rect class="v-exfil" x="295" y="148" width="210" height="56" rx="28" fill="#DA1B2E"/>
+<text class="v-exfil" x="400" y="184.5" font-size="25" font-weight="bold" fill="#ffffff">Exfiltración</text>
+</svg>

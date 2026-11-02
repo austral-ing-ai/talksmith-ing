@@ -102,3 +102,60 @@
     y avise si el marketplace está adelante
   seen: 1
   plugin_version: 1.4.1 → 1.5.1
+
+- id: BUG-20261102-1
+  status: open
+  date: 2026-11-02
+  talk: cierre-magnifica-humanitas
+  step: 5.5 (Live HTML view)
+  where: agents/editor.md (Step 4 — hint `<!-- aside: [left|right] ![alt](path) -->`) vs. schemas/slide-model.md (*`design` + `media`*)
+  what: editor.md still documents the `aside:` hint as the way to give a slide a full-bleed image column, but
+    slide-model.md says the parallel `aside` column "is not read any more" and that `design` + `media` is the
+    only spelling. The draft-time spec and the render-time spec disagree.
+  expected: one documented way to ask for a side image column, the same in both specs
+  actual: the FILL had to translate 7 `aside: right` hints by hand into `design: column-right` + `media`
+  repro: write a slide with `<!-- aside: right ![x](img.png) -->` per editor.md, run md-to-deck FILL, then check
+    slide-model.md: the hint has no field to map to except by reinterpretation
+  impact: cosmetic — the result matched the intent, but only because the FILL inferred it
+  suggested_fix: SUGGESTION, unverified — likely editor.md should tell authors to write `<!-- design: column-right -->`
+    plus a body image ref, or slide-model.md should document `aside:` as a recognised alias
+  seen: 1
+  plugin_version: 1.6.4
+
+- id: BUG-20261102-2
+  status: open
+  date: 2026-11-02
+  talk: cierre-magnifica-humanitas
+  step: 5.5 (Live HTML view)
+  where: skills/md-to-deck/templates/html/code-example.j2 (line 6, `s.explanation[:3]`)
+  what: the code-example template renders only the first 3 `explanation` entries and drops the rest with no
+    build warning
+  expected: either every entry renders, or the build warns that entries were dropped
+  actual: entries 4+ disappear silently. The coverage check would not catch it, because the text is in the model
+  repro: a `code-example` slide whose `explanation` has 4+ items; render with build_html.py and count the `<p>` elements
+  impact: degraded (latent) — this Talk has one explanation line and was not affected
+  suggested_fix: SUGGESTION, unverified — worth checking whether a warning in build_html.py (like the editorial-format
+    body-budget warning) or removing the slice fits the template's intent
+  seen: 1
+  plugin_version: 1.6.4
+
+- id: BUG-20261102-3
+  status: open
+  date: 2026-11-02
+  talk: cierre-magnifica-humanitas
+  step: 6 (Polish) — incremental re-render after a draft edit
+  where: skills/polish-ascii (`stamp-renders`) × agents/diagram-animator.md (step 2, *Retire what is stale*, PRACTICES F1)
+  what: `stamp-renders` rewrites every SVG it stamps, including ones whose digest already matches, so unchanged
+    base SVGs get a fresh mtime. The animator treats "base newer than `.anim.svg`" as stale and deletes the animation.
+  expected: an unchanged diagram keeps its mtime (or the animator compares digests rather than mtimes), so its
+    approved animation survives an incremental re-run
+  actual: after re-rendering 2 of 8 diagrams, the 6 unchanged bases were newer than their 5 approved `.anim.svg`;
+    a following animator pass would have deleted all 5. Caught by the illustrator, which reset the 6 mtimes by hand
+    (bytes identical)
+  repro: render + animate a Talk; edit one diagram's ASCII; re-run the diagram-illustrator; compare `stat` mtimes of
+    the untouched `<stem>.svg` vs `<stem>.anim.svg`
+  impact: degraded — silent loss of approved animations on any incremental Polish re-run
+  suggested_fix: SUGGESTION, unverified — likely skip the write in `stamp-renders` when the stamp is unchanged, or have
+    the animator's staleness rule compare the base's digest stamp with one recorded in the `.anim.svg`
+  seen: 1
+  plugin_version: 1.6.4

@@ -1,0 +1,116 @@
+<svg class="ts-anim-s2-17-1-sleeper-agents" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 758 268" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#3B3535">
+<title>Sleeper Agents: la puerta trasera</title>
+<desc>Es un experimento a propósito: los investigadores plantaron la puerta trasera.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s2-17-1-sleeper-agents .l2023{animation:ts-anim-s2-17-1-sleeper-agents-l62 0.400s linear 0.450s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .kA1{animation:ts-anim-s2-17-1-sleeper-agents-kA1 0.970s linear 0.580s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .dA62{animation:ts-anim-s2-17-1-sleeper-agents-dA62 0.725s linear 0.580s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .aA62{animation:ts-anim-s2-17-1-sleeper-agents-aA62 0.050s linear 1.255s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .kB1{animation:ts-anim-s2-17-1-sleeper-agents-kB1 0.970s linear 1.830s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .dB62{animation:ts-anim-s2-17-1-sleeper-agents-dB62 0.718s linear 1.982s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .aB62{animation:ts-anim-s2-17-1-sleeper-agents-aB62 0.050s linear 2.650s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .oSeg{animation:ts-anim-s2-17-1-sleeper-agents-oSeg 0.250s linear 2.650s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .l2024{animation:ts-anim-s2-17-1-sleeper-agents-l132 0.400s linear 4.150s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .kA2{animation:ts-anim-s2-17-1-sleeper-agents-kA2 0.970s linear 4.280s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .dA132{animation:ts-anim-s2-17-1-sleeper-agents-dA132 0.725s linear 4.280s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .aA132{animation:ts-anim-s2-17-1-sleeper-agents-aA132 0.050s linear 4.955s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .kB2{animation:ts-anim-s2-17-1-sleeper-agents-kB2 0.970s linear 5.530s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .dB132{animation:ts-anim-s2-17-1-sleeper-agents-dB132 0.718s linear 5.682s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .aB132{animation:ts-anim-s2-17-1-sleeper-agents-aB132 0.050s linear 6.350s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .oVul{animation:ts-anim-s2-17-1-sleeper-agents-oVul 0.250s linear 6.350s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .mSFT{animation:ts-anim-s2-17-1-sleeper-agents-mSFT 0.300s linear 8.200s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .kV1{animation:ts-anim-s2-17-1-sleeper-agents-kV1 1.010s linear 8.180s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .mRLHF{animation:ts-anim-s2-17-1-sleeper-agents-mRLHF 0.300s linear 9.900s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .kV2{animation:ts-anim-s2-17-1-sleeper-agents-kV2 1.010s linear 9.880s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .mADV{animation:ts-anim-s2-17-1-sleeper-agents-mADV 0.300s linear 11.600s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .kV3{animation:ts-anim-s2-17-1-sleeper-agents-kV3 1.010s linear 11.580s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .dV{animation:ts-anim-s2-17-1-sleeper-agents-dV 0.763s linear 8.180s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .aV{animation:ts-anim-s2-17-1-sleeper-agents-aV 0.050s linear 8.893s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .hlIn{animation:ts-anim-s2-17-1-sleeper-agents-hlInA 0.350s linear 13.300s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .kA3{animation:ts-anim-s2-17-1-sleeper-agents-kA3 1.020s linear 13.380s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .kB3{animation:ts-anim-s2-17-1-sleeper-agents-kB3 0.970s linear 14.630s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .hl{animation:ts-anim-s2-17-1-sleeper-agents-hlA 0.350s linear 15.550s 1 normal both}
+.ts-anim-s2-17-1-sleeper-agents .hlOut{animation:ts-anim-s2-17-1-sleeper-agents-hlOut 0.500s linear 16.950s 1 normal both}
+@keyframes ts-anim-s2-17-1-sleeper-agents-l62{0.00%{fill-opacity:0}100.00%{fill-opacity:1}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-kA1{0.00%{transform:translate(148px,62px);opacity:0}2.06%{transform:translate(148px,62px);opacity:1}84.54%{transform:translate(236px,62px);opacity:1}100.00%{transform:translate(236px,62px);opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-dA62{0.00%{stroke-dashoffset:72.00px;stroke-opacity:0}2.76%{stroke-dashoffset:72.00px;stroke-opacity:1}93.10%{stroke-dashoffset:0.00px;stroke-opacity:1}100.00%{stroke-dashoffset:0.00px;stroke-opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-aA62{0.00%{visibility:hidden}100.00%{visibility:visible}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-kB1{0.00%{transform:translate(384px,62px);opacity:0}2.06%{transform:translate(384px,62px);opacity:1}84.54%{transform:translate(468px,62px);opacity:1}100.00%{transform:translate(468px,62px);opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-dB62{0.00%{stroke-dashoffset:78px;stroke-opacity:0}2.79%{stroke-dashoffset:78px;stroke-opacity:1}93.03%{stroke-dashoffset:10px;stroke-opacity:1}100.00%{stroke-dashoffset:10px;stroke-opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-aB62{0.00%{visibility:hidden}100.00%{visibility:visible}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-oSeg{0.00%{fill-opacity:0}100.00%{fill-opacity:1}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-l132{0.00%{fill-opacity:0}100.00%{fill-opacity:1}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-kA2{0.00%{transform:translate(148px,132px);opacity:0}2.06%{transform:translate(148px,132px);opacity:1}84.54%{transform:translate(236px,132px);opacity:1}100.00%{transform:translate(236px,132px);opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-dA132{0.00%{stroke-dashoffset:72.00px;stroke-opacity:0}2.76%{stroke-dashoffset:72.00px;stroke-opacity:1}93.10%{stroke-dashoffset:0.00px;stroke-opacity:1}100.00%{stroke-dashoffset:0.00px;stroke-opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-aA132{0.00%{visibility:hidden}100.00%{visibility:visible}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-kB2{0.00%{transform:translate(384px,132px);opacity:0}2.06%{transform:translate(384px,132px);opacity:1}84.54%{transform:translate(468px,132px);opacity:1}100.00%{transform:translate(468px,132px);opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-dB132{0.00%{stroke-dashoffset:78px;stroke-opacity:0}2.79%{stroke-dashoffset:78px;stroke-opacity:1}93.03%{stroke-dashoffset:10px;stroke-opacity:1}100.00%{stroke-dashoffset:10px;stroke-opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-aB132{0.00%{visibility:hidden}100.00%{visibility:visible}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-oVul{0.00%{fill-opacity:0}100.00%{fill-opacity:1}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-mSFT{0.00%{fill-opacity:1}100.00%{fill-opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-kV1{0.00%{transform:translate(310px,212px);opacity:0}1.98%{transform:translate(310px,212px);opacity:1}85.15%{transform:translate(310px,155px);opacity:1}100.00%{transform:translate(310px,155px);opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-mRLHF{0.00%{fill-opacity:1}100.00%{fill-opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-kV2{0.00%{transform:translate(310px,212px);opacity:0}1.98%{transform:translate(310px,212px);opacity:1}85.15%{transform:translate(310px,155px);opacity:1}100.00%{transform:translate(310px,155px);opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-mADV{0.00%{fill-opacity:1}100.00%{fill-opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-kV3{0.00%{transform:translate(310px,212px);opacity:0}1.98%{transform:translate(310px,212px);opacity:1}85.15%{transform:translate(310px,155px);opacity:1}100.00%{transform:translate(310px,155px);opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-dV{0.00%{stroke-dashoffset:47.00px;stroke-opacity:0}2.62%{stroke-dashoffset:47.00px;stroke-opacity:1}93.44%{stroke-dashoffset:0.00px;stroke-opacity:1}100.00%{stroke-dashoffset:0.00px;stroke-opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-aV{0.00%{visibility:hidden}100.00%{visibility:visible}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-hlInA{0.00%{fill-opacity:0}100.00%{fill-opacity:0.12}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-kA3{0.00%{transform:translate(148px,132px);opacity:0}1.96%{transform:translate(148px,132px);opacity:1}85.29%{transform:translate(236px,132px);opacity:1}100.00%{transform:translate(236px,132px);opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-kB3{0.00%{transform:translate(384px,132px);opacity:0}2.06%{transform:translate(384px,132px);opacity:1}84.54%{transform:translate(468px,132px);opacity:1}100.00%{transform:translate(468px,132px);opacity:0}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-hlA{0.00%{fill-opacity:0}100.00%{fill-opacity:0.12}}
+@keyframes ts-anim-s2-17-1-sleeper-agents-hlOut{0.00%{opacity:1}100.00%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s2-17-1-sleeper-agents *{animation:none !important}}
+</style>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto"><path d="M0,1 L12,7 L0,13 Z" fill="#3B3535"/></marker>
+<marker id="ahr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto"><path d="M0,1 L12,7 L0,13 Z" fill="#DA1B2E"/></marker>
+<clipPath id="ts-anim-s2-17-1-sleeper-agents-clip"><path clip-rule="evenodd" d="M0,0 H758 V268 H0 Z M230,29 H390 A11,11 0 0 1 401,40 V155 A11,11 0 0 1 390,166 H230 A11,11 0 0 1 219,155 V40 A11,11 0 0 1 230,29 Z"/></clipPath>
+</defs>
+<rect width="758" height="268" fill="#ffffff"/>
+<!-- narration: highlights behind the re-entered trigger and the persisting output (step 4); hidden at rest -->
+<g class="hlOut">
+<rect class="hlIn" x="20" y="116" width="118" height="32" rx="6" fill="#3B3535" fill-opacity="0"/>
+<rect class="hl" x="482" y="116" width="258" height="32" rx="6" fill="#DA1B2E" fill-opacity="0"/>
+</g>
+<text class="l2023" x="130" y="69" text-anchor="end">«año 2023»</text>
+<text class="l2024" x="130" y="139" text-anchor="end">«año 2024»</text>
+<!-- narration: overlays that draw each connector as its token travels; hidden at rest -->
+<g stroke="#3B3535" stroke-width="2" fill="none">
+<line class="dA62" x1="142" y1="62" x2="220" y2="62" stroke-dasharray="78 78" stroke-opacity="0"/>
+<line class="dA132" x1="142" y1="132" x2="220" y2="132" stroke-dasharray="78 78" stroke-opacity="0"/>
+<line class="dB62" x1="400" y1="62" x2="478" y2="62" stroke-dasharray="78 78" stroke-opacity="0"/>
+<line class="dV" x1="310" y1="214" x2="310" y2="165" stroke-dasharray="49 49" stroke-opacity="0"/>
+</g>
+<line class="dB132" x1="400" y1="132" x2="478" y2="132" stroke="#DA1B2E" stroke-width="2.5" stroke-dasharray="78 78" stroke-opacity="0"/>
+<g stroke="#3B3535" stroke-width="2" fill="none">
+<line class="aA62" x1="142" y1="62" x2="220" y2="62" marker-end="url(#ah)"/>
+<line class="aA132" x1="142" y1="132" x2="220" y2="132" marker-end="url(#ah)"/>
+<line class="aB62" x1="400" y1="62" x2="478" y2="62" marker-end="url(#ah)"/>
+<line class="aV" x1="310" y1="214" x2="310" y2="165" marker-end="url(#ah)"/>
+</g>
+<line class="aB132" x1="400" y1="132" x2="478" y2="132" stroke="#DA1B2E" stroke-width="2.5" marker-end="url(#ahr)"/>
+<rect x="220" y="30" width="180" height="135" rx="10" fill="#F2EEEE" stroke="#3B3535" stroke-width="2"/>
+<text x="310" y="105" text-anchor="middle" font-size="24" font-weight="bold" fill="#1F1E1E">modelo</text>
+<text class="oSeg" x="490" y="69">código seguro</text>
+<text class="oVul" x="490" y="139" font-weight="bold" fill="#DA1B2E">insertan vulnerabilidades</text>
+<text x="310" y="240" text-anchor="middle" font-size="18">SFT · RLHF · entrenamiento adversarial</text>
+<!-- narration: white covers that lift one by one to reveal each training method; at rest opacity 0, so the label is unchanged -->
+<g fill="#ffffff">
+<rect class="mSFT" x="130" y="219" width="56.8" height="34" fill-opacity="0"/>
+<rect class="mRLHF" x="186.8" y="219" width="62" height="34" fill-opacity="0"/>
+<rect class="mADV" x="248.8" y="219" width="250" height="34" fill-opacity="0"/>
+</g>
+<!-- narration: tokens, clipped out of the model box so it swallows them while it processes -->
+<g clip-path="url(#ts-anim-s2-17-1-sleeper-agents-clip)">
+<g class="kA1" opacity="0"><circle r="6" fill="#3B3535"/></g>
+<g class="kA2" opacity="0"><circle r="6" fill="#3B3535"/></g>
+<g class="kA3" opacity="0"><circle r="6" fill="#3B3535"/></g>
+<g class="kV1" opacity="0"><circle r="6" fill="#3B3535"/></g>
+<g class="kV2" opacity="0"><circle r="6" fill="#3B3535"/></g>
+<g class="kV3" opacity="0"><circle r="6" fill="#3B3535"/></g>
+<g class="kB1" opacity="0"><circle r="6" fill="#3B3535"/></g>
+<g class="kB2" opacity="0"><circle r="6" fill="#DA1B2E"/></g>
+<g class="kB3" opacity="0"><circle r="6" fill="#DA1B2E"/></g>
+</g>
+</svg>

@@ -1,0 +1,22 @@
+<!-- talksmith-ascii-sha256: 638e070e5dce368af2622197513d629bfd69a6ce26521ce4f059888a80945d2b -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 848 326" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>El experimento del chantaje</title>
+<desc>Corregido respecto del deck de 2024: este experimento es de Anthropic (2025), no de Apollo Research.</desc>
+<rect width="848" height="326" fill="#ffffff"/>
+<text x="24" y="41" font-size="22" font-weight="bold" fill="#1F1E1E">Tasa de chantaje (%) con conflicto de objetivos y amenaza de reemplazo</text>
+<text x="24" y="91" font-size="18">Claude Opus 4</text>
+<rect x="210" y="68" width="576" height="34" fill="#DA1B2E"/>
+<text x="800" y="92" font-size="20" font-weight="bold" fill="#1F1E1E">96</text>
+<text x="24" y="141" font-size="18">Gemini 2.5 Flash</text>
+<rect x="210" y="118" width="576" height="34" fill="#DA1B2E"/>
+<text x="800" y="142" font-size="20" font-weight="bold" fill="#1F1E1E">96</text>
+<text x="24" y="191" font-size="18">GPT-4.1</text>
+<rect x="210" y="168" width="480" height="34" fill="#DA1B2E"/>
+<text x="800" y="192" font-size="20" font-weight="bold" fill="#1F1E1E">80</text>
+<text x="24" y="241" font-size="18">Grok 3 Beta</text>
+<rect x="210" y="218" width="480" height="34" fill="#DA1B2E"/>
+<text x="800" y="242" font-size="20" font-weight="bold" fill="#1F1E1E">80</text>
+<text x="24" y="291" font-size="18">DeepSeek-R1</text>
+<rect x="210" y="268" width="474" height="34" fill="#DA1B2E"/>
+<text x="800" y="292" font-size="20" font-weight="bold" fill="#1F1E1E">79</text>
+</svg>
