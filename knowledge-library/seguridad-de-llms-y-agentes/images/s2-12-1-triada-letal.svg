@@ -1,0 +1,23 @@
+<!-- talksmith-ascii-sha256: f2fb0986bdf7113f181f1d2105d2fa6e114af0fc367335cde6efa25a9378577c -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 452" font-family="Helvetica, Arial, sans-serif" font-size="22" text-anchor="middle">
+<title>La tríada letal</title>
+<desc>Es el concepto más útil para diseñar agentes: datos privados, contenido no confiable y canal de salida juntos abren la exfiltración.</desc>
+<rect width="800" height="452" fill="#ffffff"/>
+<g stroke="#3B3535" stroke-width="3" stroke-linecap="round" fill="none">
+<line x1="170" y1="56" x2="630" y2="56"/>
+<line x1="170" y1="56" x2="400" y2="396"/>
+<line x1="630" y1="56" x2="400" y2="396"/>
+</g>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="30" y="30" width="280" height="52" rx="26"/>
+<rect x="490" y="30" width="280" height="52" rx="26"/>
+<rect x="260" y="370" width="280" height="52" rx="26"/>
+</g>
+<g fill="#1F1E1E">
+<text x="170" y="64">Datos privados</text>
+<text x="630" y="64">Contenido no confiable</text>
+<text x="400" y="404">Canal de salida</text>
+</g>
+<rect x="295" y="148" width="210" height="56" rx="28" fill="#DA1B2E"/>
+<text x="400" y="184.5" font-size="25" font-weight="bold" fill="#ffffff">Exfiltración</text>
+</svg>

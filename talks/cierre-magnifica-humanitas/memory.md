@@ -92,3 +92,5 @@ Importación 1:1 de un deck existente (55 slides, con notas del orador en todas)
 ## 2026-11-02 — Step 8 (Learnings)
 - Status: in_progress
 
+  - 2026-11-02 — «¿Promover regla L11 (verificar cifras contra fuente primaria)?» / «¿Promover a knowledge-library?» → presentador: «yes» (ambas).
+- What was decided: L11 agregada a `config/learnings.md`; 12 filas de evidencia movidas de `feedback-backlog.md` a `feedback-processed.md` (promoted_to: L11). Promoción a `knowledge-library/` en curso.

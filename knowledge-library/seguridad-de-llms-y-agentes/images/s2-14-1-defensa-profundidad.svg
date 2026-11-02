@@ -1,0 +1,33 @@
+<!-- talksmith-ascii-sha256: 6cf50f315a727b0a4b0810054b2d69d65a41ef3f05bcc161311c44ba704d56ee -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 15 760 345" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#3B3535">
+<title>Defensa en profundidad</title>
+<desc>Herramientas concretas: NVIDIA NeMo Guardrails, Llama Guard, filtros de Azure y AWS, como capas sobre el camino del contenido externo hasta una acción irreversible.</desc>
+<defs>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker>
+</defs>
+<rect x="0" y="15" width="760" height="345" fill="#FFFFFF"/>
+<rect x="20" y="40" width="720" height="196" rx="12" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.5"/>
+<rect x="34" y="30" width="154.5" height="20" fill="#FFFFFF"/>
+<text x="42" y="45" font-size="14" font-weight="bold" fill="#1F1E1E">Gateway corporativo</text>
+<rect x="50" y="74" width="150" height="44" rx="6" fill="#FFFFFF" stroke="#3B3535" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="125" y="101" text-anchor="middle">contenido externo</text>
+<text x="125" y="140" text-anchor="middle" font-size="12" font-style="italic" font-family="Arial, Helvetica, sans-serif">(Separar datos de órdenes)</text>
+<rect x="240" y="74" width="120" height="44" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="300" y="101" text-anchor="middle">Input rails</text>
+<rect x="400" y="74" width="100" height="44" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="450" y="101" text-anchor="middle">modelo</text>
+<rect x="540" y="74" width="130" height="44" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="605" y="101" text-anchor="middle">Output rails</text>
+<g stroke="#3B3535" stroke-width="2" marker-end="url(#ah)">
+<line x1="200" y1="96" x2="240" y2="96"/>
+<line x1="360" y1="96" x2="400" y2="96"/>
+<line x1="500" y1="96" x2="540" y2="96"/>
+<line x1="605" y1="118" x2="605" y2="158"/>
+<line x1="605" y1="206" x2="605" y2="296"/>
+</g>
+<rect x="500" y="158" width="210" height="48" rx="6" fill="#DA1B2E"/>
+<text x="605" y="187" text-anchor="middle" font-weight="bold" fill="#FFFFFF">Humano en el circuito</text>
+<text x="617" y="270" font-size="14">Mínimo privilegio</text>
+<rect x="505" y="296" width="200" height="44" rx="6" fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="605" y="323" text-anchor="middle">enviar, borrar, pagar</text>
+</svg>

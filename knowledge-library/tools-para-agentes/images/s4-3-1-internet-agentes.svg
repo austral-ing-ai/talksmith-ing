@@ -1,0 +1,24 @@
+<!-- talksmith-ascii-sha256: 9d1a5294e608f8f122bda98e1a33d6b25b0d9979ac8249b9a91b0184d5c35780 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 412" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Hacia un Internet de Agentes</title>
+<desc>Un agente usa herramientas y datos mediante MCP, un enlace estándar, y se conecta con otros agentes mediante A2A, un enlace emergente todavía sin masa crítica.</desc>
+<defs>
+<marker id="hd" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" viewBox="0 0 16 16" refX="16" refY="8" orient="auto"><path d="M0,1 L16,8 L0,15 z" fill="#3B3535"/></marker>
+</defs>
+<rect width="360" height="412" fill="#ffffff"/>
+<g stroke="#D8D2CE" stroke-width="2" fill="#F2EEEE">
+<rect x="20" y="20" width="320" height="64" rx="10"/>
+<rect x="20" y="174" width="320" height="64" rx="10"/>
+<rect x="20" y="328" width="320" height="64" rx="10"/>
+</g>
+<g font-size="22" font-weight="bold" fill="#1F1E1E" text-anchor="middle">
+<text x="180" y="60">Herramientas y datos</text>
+<text x="180" y="214">Agente</text>
+<text x="180" y="368">Otros agentes</text>
+</g>
+<line x1="180" y1="173" x2="180" y2="85" stroke="#3B3535" stroke-width="3" marker-end="url(#hd)"/>
+<line x1="180" y1="241" x2="180" y2="305" stroke="#DA1B2E" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 9"/>
+<path d="M173,311 L180,327 L187,311 z" fill="#DA1B2E"/>
+<text x="196" y="135" font-size="17">MCP · estándar</text>
+<text x="196" y="289" font-size="17" font-weight="bold" fill="#DA1B2E">A2A · emergente</text>
+</svg>

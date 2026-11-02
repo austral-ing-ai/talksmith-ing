@@ -200,3 +200,30 @@ este repositorio y aplican sin volver a pedirlas.
   está bien", que era el mismo problema en otra forma: describir la imagen RGB como tres matrices
   apiladas sugería un tercer eje espacial y contradecía lo que la card enseñaba.
 - **Fecha:** 2026-08-20
+
+## L11 — Verificar cada cifra y cita contra la fuente primaria antes de Polish
+
+- **Regla:** toda cifra, fecha, porcentaje y cita textual de una Talk (y en especial de un deck
+  importado) se verifica contra su fuente primaria **antes de Polish**. Lo que no se puede confirmar
+  se marca como no verificado en las notas o en `# Open questions`; nunca se deja en la slide en
+  silencio. La línea «Fuente:» de una slide no prueba nada por sí sola: hay que haber visto el dato en
+  esa fuente.
+- **Por qué:** un deck importado trae cifras que parecen citadas y no lo están, o que están citadas
+  a la fuente equivocada. Corregirlas tarde obliga a reabrir el draft, re-derivar `final.md` y
+  redibujar diagramas cuyas etiquetas llevaban el dato. Verificar antes cuesta menos y evita que la
+  clase afirme algo que un estudiante puede desmentir con una búsqueda.
+- **Dónde aplica:** todo el repositorio; obligatorio cuando la Talk nace de un pptx o de un deck
+  ajeno, y en toda slide con números, rankings, montos de inversión o citas de documentos.
+- **Cómo se revisa:** antes de pasar a Polish, una pasada por las slides con cifras o comillas:
+  cada dato con su URL primaria registrada en el corpus (sección de fact-check del registro), con
+  veredicto respaldado / parcial / no coincide / no verificado. Las correcciones se aplican como
+  feedback del presentador y el texto reemplazado queda en `# Cut material`.
+- **Evidencia:** recurrió en 3 Talks. En `talks/prompting` (2026-08), una afirmación sobre effort
+  quedó apoyada «de forma indirecta» por el corpus. En `talks/redes-generativas-antagonicas`
+  (2026-10-17), el presentador pidió aplicar los reemplazos del editor solo con fuentes del corpus
+  (10 filas en el backlog). En
+  `talks/cierre-magnifica-humanitas` (2026-11-02), el fact-check de ~45 afirmaciones encontró siete
+  errores en slides (entre ellos un gráfico con la condición experimental mal rotulada, un total de
+  inversión que mezclaba rondas semilla con otras y una cifra de citas sin fuente) y varios en
+  fuentes y notas, después de que los diagramas ya estaban dibujados.
+- **Fecha:** 2026-11-02

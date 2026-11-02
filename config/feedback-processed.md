@@ -117,3 +117,99 @@
   tags: [factual-correction, external-source]
   promoted_to: L10
   promoted_at: 2026-08-20
+- talk: prompting
+  date: 2026-08-28
+  location: Slide "5. Del prompt al entrenamiento"
+  feedback: "La afirmación de que el comportamiento se movió al entrenamiento está apoyada de forma indirecta: el corpus tiene a Wei et al. para el mecanismo, y el catálogo de la API para el costo y las perillas removidas, pero no hay un registro sobre el post-entrenamiento por refuerzo de los modelos de razonamiento. ¿Ingestamos una fuente para eso, o la lámina se queda en el nivel de afirmación que la evidencia actual sostiene?"
+  resolution: se ingestó DeepSeek-R1 (Nature 2025, DOI 10.1038/s41586-025-09422-z, más el arXiv 2501.12948) y se le dedicaron dos láminas nuevas, 6.3 y 6.4. La afirmación del post-entrenamiento por refuerzo queda apoyada de forma directa. Además se re-ancló la mitad de tiempo de ejecución al system prompt especializado que la API inyecta cuando el thinking está activo, documentado en la captura de Steering thinking. Se retiró la afirmación sobre temperatura y top-p deshabilitados, que ninguna de las capturas sostiene (ver Cut material).
+  tags: [add-source, external-source, sources, new-slides]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: redes-generativas-antagonicas
+  date: 2026-10-17
+  location: Slide "2. ¿Qué es la IA Generativa de Visión?"
+  feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
+  resolution: Tabla: «¿Esto es un tumor maligno o benigno?» / «Genera una imagen de un tumor maligno» → «¿Este dígito es un 7?» / «Genera un 7»; fila de ejemplo → clasificador de dígitos de MNIST y cGAN que genera el dígito pedido (cgan-mirza-osindero-2014). Texto original en Cut material.
+  tags: [audience-fit, examples, generalize-examples, cut]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: redes-generativas-antagonicas
+  date: 2026-10-17
+  location: Slide "3. ¿Por qué importa en ingeniería?"
+  feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
+  resolution: Cifra de la U-Net (Dice 0.9524 vs 0.9459, sin estudio citado) → Salimans et al. (2016), estado del arte semi-supervisado en MNIST, CIFAR-10 y SVHN; notas actualizadas. Texto original en Cut material.
+  tags: [audience-fit, examples, factual-correction, external-source, speaker-notes, cut]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: redes-generativas-antagonicas
+  date: 2026-10-17
+  location: Slide "6. Tabla comparativa rápida"
+  feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
+  resolution: Fila «Caso en biomedicina» → «Caso de uso típico»: SRGAN y Pix2Pix/CycleGAN; Stable Diffusion, DALL·E y Midjourney; SAM para segmentar cualquier objeto y asistir el etiquetado (SA-1B). Texto original en Cut material.
+  tags: [audience-fit, examples, tabular, external-source, cut]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: redes-generativas-antagonicas
+  date: 2026-10-17
+  location: Slide "1. El Problema: ¡Bienvenidos a Slanted Land! 🌀"
+  feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
+  resolution: Crédito corregido: el tutorial y el video son de Luis Serrano («A Friendly Introduction to Generative Adversarial Networks»), no de Rowel Atienza (inconsistencia #1). Fuente serrano-gans-lab agregada.
+  tags: [factual-correction, source-link, sources]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: redes-generativas-antagonicas
+  date: 2026-10-17
+  location: Slide "1. Tipos de GANs: el punto de partida"
+  feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
+  resolution: cGAN: «Genera una imagen histológica de carcinoma ductal» → «Genera un 7» (MNIST, Mirza & Osindero, 2014). Texto original en Cut material.
+  tags: [audience-fit, examples, external-source, cut]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: redes-generativas-antagonicas
+  date: 2026-10-17
+  location: Slide "5. Fortaleza 1: Generación de imágenes realistas"
+  feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
+  resolution: Tarjeta «Imágenes médicas sintéticas» (neurorradiólogos, sin fuente) → «Test de Turing visual (Salimans et al., 2016)»: MNIST indistinguible, 21,3 % de error humano en CIFAR-10. Notas sobre cómo leer la tasa de error. Texto original en Cut material.
+  tags: [audience-fit, examples, factual-correction, external-source, speaker-notes, cut]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: redes-generativas-antagonicas
+  date: 2026-10-17
+  location: Slide "6. Fortaleza 2: Transformación de imágenes (Image Translation)"
+  feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
+  resolution: Fila «Foto de día → noche»: el modelo pasa de CycleGAN a Pix2Pix.
+  tags: [factual-correction]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: redes-generativas-antagonicas
+  date: 2026-10-17
+  location: Slide "7. Fortaleza 3: Completado de imágenes (Image Inpainting)"
+  feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
+  resolution: Quitada la tabla de artefactos de MRI y biopsias; queda solo el caso de tomografías con dosis reducida. Texto original en Cut material.
+  tags: [audience-fit, examples, cut]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: redes-generativas-antagonicas
+  date: 2026-10-17
+  location: Slide "8. Fortaleza 4: Generación de datos sintéticos para entrenamiento"
+  feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
+  resolution: El caso de biopsias (+30 %, sin fuente) pasa a Salimans et al. (2016): GAN y clasificador con pocas etiquetas, estado del arte semi-supervisado en MNIST, CIFAR-10 y SVHN. Bonus de privacidad quitado (sin fuente, y una GAN puede memorizar el entrenamiento). Notas nuevas con el mecanismo. Texto original en Cut material.
+  tags: [audience-fit, examples, factual-correction, external-source, speaker-notes, cut]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: redes-generativas-antagonicas
+  date: 2026-10-17
+  location: Slide "1. Limitaciones (1 de 2): los problemas de entrenamiento"
+  feedback: "Aplicar los reemplazos ★ del editor solo con fuentes del corpus (Salimans 2016 en 1.3 y 4.8; en 4.7 solo la TC de baja dosis); corregir el crédito de Slanted Land y día→noche (Pix2Pix); deepfakes a Open questions."
+  resolution: Mode collapse: el ejemplo de tumores pasa a una GAN de MNIST que genera siempre el mismo dígito y no sirve como dataset para un clasificador de diez clases (conocimiento general). Texto original en Cut material.
+  tags: [audience-fit, examples, cut]
+  promoted_to: L11
+  promoted_at: 2026-11-02
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "Aplicar las correcciones del fact-check de cifras y fuentes (siete en slides y las menores de fuentes y notas)."
+  resolution: Corregidas 7 afirmaciones en slides (1.5, 2.3, 2.18, 3.3, 4.3, 4.4, 4.6), 4 menores en slides (2.4, 3.10 y fuentes de 2.1 y 4.1) y 3 en notas (2.3, 2.10, 3.9), contra las fuentes primarias; texto reemplazado en Cut material, fuentes en el corpus §Fact-check y 3 puntos abiertos (link de Gandalf, artículo de Ford, cifra de citas).
+  tags: [fact-check, numeric-fidelity, external-source]
+  promoted_to: L11
+  promoted_at: 2026-11-02
