@@ -1143,3 +1143,45 @@
   feedback: "Cambia ¿Verdadero o falso? a que sea un Quiz"
   resolution: 2.5 pasa a quiz: pregunta «¿Verdadero o falso?», los dos mitos como opciones y, al revelar, «Los dos son engañosos.» (título de 2.6, reutilizado); «Mano alzada para cada uno.» queda como nota. Cambio aplicado en draft, final y modelo; deck reconstruido.
   tags: [template-selection, quiz]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "En la slide del flujo, poné el pseudocódigo en la próxima slide."
+  resolution: Nueva slide 2.11 «El código del bot reclutador» (code-example) con el código verbatim; la pregunta «¿qué tres cambios harían al código?» pasó a sus notas. Sección 2 renumerada desde 2.12.
+  tags: [new-slide, code-example]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "Borrá «Mi apuesta 2030» (Actividad · 5 minutos)."
+  resolution: Slide 4.8 borrada; texto y notas en Cut material; objetivo de la sección 4 ajustado.
+  tags: [slide-removal, cut]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "En fuentes poné todos los links."
+  resolution: Las 16 referencias de «Fuentes» enlazan a su fuente (texto visible sin cambios); sin link: Cloud Security Alliance, Bedrax-Weiss (ESE) y C. Ford.
+  tags: [external-source, links]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "En «Lo que construimos en 12 clases» agregá Claude, mejor como timeline; sin cuándo se dio cada clase sino lo que querían que se lleven. Claude dentro del timeline."
+  resolution: 1.2 pasa a línea de tiempo de 5 etapas (Claude, Fundamentos, Trabajar con LLMs, Por dentro, Agentes y visión) con lo que se quería que se lleven, tomado de la tesis de cada clase; sin fechas (a Cut material).
+  tags: [template-selection, timeline, content-addition]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "Transforma ¿Se puede alinear algo más inteligente que su supervisor? en un quiz"
+  resolution: 2.21 pasa a quiz de votación: dos posiciones como opciones, sin respuesta correcta; al revelar, «¿Existe algún test inmune al camuflaje?» con la etiqueta «Pregunta abierta».
+  tags: [template-selection, quiz]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "El código del bot reclutador se podría poner como un diagrama que muestre el flujo."
+  resolution: El código de 2.10 se reemplazó por un diagrama de flujo animado (s2-10-1) junto a la captura, con las palabras del propio código; diseño en banda.
+  tags: [diagram, animation, template-selection]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "En el timeline, mencioná las clases. «Por dentro» es confuso."
+  resolution: Cada etapa del timeline nombra sus clases en cursiva antes de lo que se llevan; «Por dentro» pasa a «Cómo funciona un LLM».
+  tags: [timeline, terminology, clarity]

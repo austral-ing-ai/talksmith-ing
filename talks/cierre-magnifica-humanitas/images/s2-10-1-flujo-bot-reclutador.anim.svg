@@ -1,0 +1,95 @@
+<svg class="ts-anim-s2-10-1-flujo-bot-reclutador" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 770 500" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#3B3535">
+<title>El bot reclutador que cayó en la trampa</title>
+<desc>El About del candidato, texto que no controlamos, se pega crudo junto a la orden del reclutador; el modelo genera el mensaje y se envía sin revisión humana.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s2-10-1-flujo-bot-reclutador .l1{animation:ts-anim-s2-10-1-flujo-bot-reclutador-draw 1s linear .4s both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .l2,.ts-anim-s2-10-1-flujo-bot-reclutador .l3{animation:ts-anim-s2-10-1-flujo-bot-reclutador-draw 1s linear 3.6s both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .dot{animation:ts-anim-s2-10-1-flujo-bot-reclutador-in .1s linear 4.6s both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .l4,.ts-anim-s2-10-1-flujo-bot-reclutador .h4{animation-duration:.7s;animation-delay:4.7s}
+.ts-anim-s2-10-1-flujo-bot-reclutador .l5,.ts-anim-s2-10-1-flujo-bot-reclutador .h5{animation-duration:.4s;animation-delay:7s}
+.ts-anim-s2-10-1-flujo-bot-reclutador .l6,.ts-anim-s2-10-1-flujo-bot-reclutador .h6{animation-duration:.8s;animation-delay:8.2s}
+.ts-anim-s2-10-1-flujo-bot-reclutador .l4,.ts-anim-s2-10-1-flujo-bot-reclutador .l5,.ts-anim-s2-10-1-flujo-bot-reclutador .l6{animation-name:ts-anim-s2-10-1-flujo-bot-reclutador-draw;animation-timing-function:linear;animation-fill-mode:both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .h4,.ts-anim-s2-10-1-flujo-bot-reclutador .h5,.ts-anim-s2-10-1-flujo-bot-reclutador .h6{animation-name:ts-anim-s2-10-1-flujo-bot-reclutador-tip;animation-timing-function:linear;animation-fill-mode:both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .t-about{animation:ts-anim-s2-10-1-flujo-bot-reclutador-in .4s ease-out 1.4s both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .pill{animation:ts-anim-s2-10-1-flujo-bot-reclutador-in .6s ease-out 2s both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .t-plus{animation:ts-anim-s2-10-1-flujo-bot-reclutador-in .4s ease-out 5s both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .t-pega{animation:ts-anim-s2-10-1-flujo-bot-reclutador-in .5s ease-out 5.5s both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .t-msg{animation:ts-anim-s2-10-1-flujo-bot-reclutador-in .4s ease-out 8.3s both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .t-sin{animation:ts-anim-s2-10-1-flujo-bot-reclutador-in .6s ease-out 9.6s both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .tokR{animation:ts-anim-s2-10-1-flujo-bot-reclutador-r 9.5s linear both}
+.ts-anim-s2-10-1-flujo-bot-reclutador .tokG{animation:ts-anim-s2-10-1-flujo-bot-reclutador-g 4.75s linear both}
+@keyframes ts-anim-s2-10-1-flujo-bot-reclutador-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s2-10-1-flujo-bot-reclutador-draw{0%{stroke-dasharray:100 110;stroke-dashoffset:100}99.8%{stroke-dasharray:100 110;stroke-dashoffset:0}100%{stroke-dasharray:none;stroke-dashoffset:0}}
+@keyframes ts-anim-s2-10-1-flujo-bot-reclutador-tip{0%,88%{opacity:0}100%{opacity:1}}
+@keyframes ts-anim-s2-10-1-flujo-bot-reclutador-r{
+0%,4.21%{transform:translate(160px,72px);opacity:0}
+4.74%{transform:translate(160px,78px);opacity:1}
+13.4%{transform:translate(160px,180px)}
+14.06%{transform:translate(162.9px,187.1px)}
+14.74%,37.89%{transform:translate(170px,190px)}
+48.42%,49.47%{transform:translate(350px,190px)}
+56.84%{transform:translate(350px,256px)}
+58.95%,71.58%{transform:translate(350px,280px)}
+73.68%{transform:translate(350px,304px)}
+77.89%{transform:translate(350px,336px)}
+80%,84.21%{transform:translate(350px,360px)}
+86.32%{transform:translate(350px,384px)}
+94.74%{transform:translate(350px,432px)}
+98.95%{transform:translate(350px,456px);opacity:1}
+100%{transform:translate(350px,456px);opacity:0}}
+@keyframes ts-anim-s2-10-1-flujo-bot-reclutador-g{
+0%,75.79%{transform:translate(540px,92px);opacity:0}
+76.84%{transform:translate(540px,106px);opacity:1}
+82.32%{transform:translate(540px,180px)}
+82.91%{transform:translate(537.1px,187.1px)}
+83.47%{transform:translate(530px,190px)}
+96.84%{transform:translate(350px,190px);opacity:1}
+100%{transform:translate(350px,190px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s2-10-1-flujo-bot-reclutador *{animation:none}}
+</style>
+<rect width="770" height="500" fill="#FFFFFF"/>
+<g fill="none" stroke="#3B3535" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<path class="l1" pathLength="100" d="M160,72 V180 A10,10 0 0 0 170,190"/>
+<path class="l2" pathLength="100" d="M170,190 H350"/>
+<path class="l3" pathLength="100" d="M540,92 V180 A10,10 0 0 1 530,190 H350"/>
+<path class="l4" pathLength="100" d="M350,190 V256" stroke-linecap="butt"/>
+<path class="l5" pathLength="100" d="M350,304 V336" stroke-linecap="butt"/>
+<path class="l6" pathLength="100" d="M350,384 V432" stroke-linecap="butt"/>
+</g>
+<g fill="#3B3535">
+<path class="h4" d="M343,242 L350,256 L357,242 z"/>
+<path class="h5" d="M343,322 L350,336 L357,322 z"/>
+<path class="h6" d="M343,418 L350,432 L357,418 z"/>
+</g>
+<circle class="dot" cx="350" cy="190" r="6" fill="#3B3535"/>
+<circle class="tokG" r="7" fill="#3B3535" opacity="0"/>
+<circle class="tokR" r="7" fill="#DA1B2E" opacity="0"/>
+<g fill="#F2EEEE" stroke="#D8D2CE" stroke-width="1.5">
+<rect x="20" y="20" width="280" height="52" rx="8"/>
+<rect x="330" y="20" width="420" height="72" rx="8"/>
+<rect x="280" y="256" width="140" height="48" rx="8"/>
+<rect x="255" y="336" width="190" height="48" rx="8"/>
+<rect x="280" y="432" width="140" height="48" rx="8"/>
+</g>
+<g font-family="'Andale Mono', monospace" font-size="17">
+<text x="160" y="52" text-anchor="middle">leer_linkedin(candidato)</text>
+<text x="350" y="286" text-anchor="middle">prompt</text>
+<text x="350" y="366" text-anchor="middle">modelo.generar</text>
+<text x="350" y="462" text-anchor="middle">enviar</text>
+<text class="t-about" x="174" y="106">about</text>
+<text class="t-plus" x="364" y="220">+ about</text>
+<text class="t-msg" x="364" y="414">mensaje</text>
+</g>
+<g text-anchor="middle">
+<text x="540" y="50">“Sos un reclutador. Escribí una</text>
+<text x="540" y="74">invitación cordial usando este perfil:”</text>
+</g>
+<g class="pill">
+<rect x="172" y="118" width="256" height="34" rx="17" fill="#DA1B2E"/>
+<text x="300" y="141" text-anchor="middle" font-size="17" font-weight="bold" fill="#FFFFFF">texto que NO controlamos</text>
+</g>
+<g font-size="16">
+<text class="t-pega" x="364" y="244">pegamos el About crudo junto a la orden</text>
+<text class="t-sin" x="436" y="462">sin revisión humana</text>
+</g>
+</svg>
