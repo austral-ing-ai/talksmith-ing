@@ -1,0 +1,103 @@
+<svg class="ts-anim-s7-1-1-ciclo-vida-seis-estadios" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 512" font-family="Helvetica, Arial, sans-serif" fill="#3B3535">
+<title>Ciclo de vida: dónde entra el LLM</title>
+<desc>Esta slide reordena toda la clase en el eje que a ellos les resulta natural: el flujo de trabajo.</desc>
+<style>/* talksmith-animation */
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .t0{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-in 0.80s linear 0.50s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .t1{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-in 0.80s linear 3.00s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .t2{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-in 0.80s linear 5.60s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .t3{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-in 0.80s linear 8.20s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .t4{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-in 0.80s linear 10.50s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .t5{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-in 0.80s linear 14.10s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .hl0{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-on 0.80s linear 0.50s both,ts-anim-s7-1-1-ciclo-vida-seis-estadios-off 0.80s linear 3.00s forwards}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .hl1{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-on 0.80s linear 3.00s both,ts-anim-s7-1-1-ciclo-vida-seis-estadios-off 0.80s linear 5.60s forwards}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .hl2{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-on 0.80s linear 5.60s both,ts-anim-s7-1-1-ciclo-vida-seis-estadios-off 0.80s linear 8.20s forwards}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .hl3{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-on 0.80s linear 8.20s both,ts-anim-s7-1-1-ciclo-vida-seis-estadios-off 0.80s linear 10.50s forwards}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .hl4{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-on 0.80s linear 10.50s both,ts-anim-s7-1-1-ciclo-vida-seis-estadios-off 0.80s linear 14.10s forwards}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .hl5{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-on 0.80s linear 14.10s both,ts-anim-s7-1-1-ciclo-vida-seis-estadios-off 0.60s linear 17.00s forwards}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .hl6{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-on 0.60s linear 17.00s both,ts-anim-s7-1-1-ciclo-vida-seis-estadios-off 0.60s linear 18.40s forwards}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .cap{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-on .60s linear 12.50s both,ts-anim-s7-1-1-ciclo-vida-seis-estadios-off .30s linear 16.00s forwards}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .ret{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-draw 1.00s linear 16.00s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .rethead{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-in 0.15s linear 16.85s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .retlbl{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-in 0.60s linear 17.00s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .c1{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-in 0.60s linear 18.40s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .c2{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-in 0.60s linear 19.80s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .tok{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-dark 10.40s linear 0.10s both}
+.ts-anim-s7-1-1-ciclo-vida-seis-estadios .tokr{animation:ts-anim-s7-1-1-ciclo-vida-seis-estadios-red 6.40s linear 11.70s both}
+@keyframes ts-anim-s7-1-1-ciclo-vida-seis-estadios-in{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s7-1-1-ciclo-vida-seis-estadios-on{from{opacity:0}to{opacity:1}}
+@keyframes ts-anim-s7-1-1-ciclo-vida-seis-estadios-off{from{opacity:1}to{opacity:0}}
+@keyframes ts-anim-s7-1-1-ciclo-vida-seis-estadios-draw{from{stroke-dasharray:80;stroke-dashoffset:80}to{stroke-dasharray:80;stroke-dashoffset:0}}
+@keyframes ts-anim-s7-1-1-ciclo-vida-seis-estadios-dark{0.000%{transform:translate(230.0px,134.0px);opacity:0}22.115%{transform:translate(230.0px,134.0px);opacity:0}23.269%{transform:translate(238.0px,134.0px);opacity:1}26.731%{transform:translate(262.0px,134.0px);opacity:1}27.885%{transform:translate(270.0px,134.0px);opacity:0}47.115%{transform:translate(470.0px,134.0px);opacity:0}48.269%{transform:translate(478.0px,134.0px);opacity:1}51.731%{transform:translate(502.0px,134.0px);opacity:1}52.885%{transform:translate(510.0px,134.0px);opacity:0}72.115%{transform:translate(710.0px,134.0px);opacity:0}73.269%{transform:translate(718.0px,134.0px);opacity:1}76.731%{transform:translate(742.0px,134.0px);opacity:1}77.885%{transform:translate(750.0px,134.0px);opacity:0}93.269%{transform:translate(850.0px,204.0px);opacity:0}94.423%{transform:translate(850.0px,217.7px);opacity:1}98.846%{transform:translate(850.0px,270.3px);opacity:1}100.000%{transform:translate(850.0px,284.0px);opacity:0}100.000%{transform:translate(850.0px,284.0px);opacity:0}}
+@keyframes ts-anim-s7-1-1-ciclo-vida-seis-estadios-red{0.000%{transform:translate(750.0px,354.0px);opacity:0}12.500%{transform:translate(750.0px,354.0px);opacity:0}14.375%{transform:translate(711.0px,354.0px);opacity:1}35.625%{transform:translate(269.0px,354.0px);opacity:1}37.500%{transform:translate(230.0px,354.0px);opacity:0}67.188%{transform:translate(130.0px,284.0px);opacity:0}69.063%{transform:translate(130.0px,274.4px);opacity:1}80.938%{transform:translate(130.0px,213.6px);opacity:1}82.813%{transform:translate(130.0px,204.0px);opacity:0}100.000%{transform:translate(130.0px,204.0px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.ts-anim-s7-1-1-ciclo-vida-seis-estadios *{animation:none !important}}</style>
+<defs><marker id="ag" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3B3535"/></marker><marker id="ar" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="13" markerHeight="13" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DA1B2E"/></marker></defs>
+<rect x="0" y="0" width="980" height="512" fill="#ffffff"/>
+<text x="30" y="44" font-size="14" font-weight="bold" fill="#1F1E1E" letter-spacing="1">DÓNDE ENTRA EL LLM EN CADA ESTADIO</text>
+<rect x="30" y="64" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M30,108 V72 Q30,64 38,64 H222 Q230,64 230,72 V108 Z" fill="#F2EEEE"/>
+<line x1="30" y1="108" x2="230" y2="108" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="30" y="64" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="130" y="92" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">ISSUE</text>
+<g class="t0"><text x="130" y="143" text-anchor="middle" font-size="14">clasifica, agrupa</text>
+<text x="130" y="161" text-anchor="middle" font-size="14">duplicados y pide</text>
+<text x="130" y="179" text-anchor="middle" font-size="14">lo que falta</text></g>
+<rect x="270" y="64" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M270,108 V72 Q270,64 278,64 H462 Q470,64 470,72 V108 Z" fill="#F2EEEE"/>
+<line x1="270" y1="108" x2="470" y2="108" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="270" y="64" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="370" y="92" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">DISEÑO</text>
+<g class="t1"><text x="370" y="152" text-anchor="middle" font-size="14">contrasta alternativas</text>
+<text x="370" y="170" text-anchor="middle" font-size="14">y redacta el ADR</text></g>
+<rect x="510" y="64" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M510,108 V72 Q510,64 518,64 H702 Q710,64 710,72 V108 Z" fill="#F2EEEE"/>
+<line x1="510" y1="108" x2="710" y2="108" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="510" y="64" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="610" y="92" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">IMPLEMENTACIÓN</text>
+<g class="t2"><text x="610" y="143" text-anchor="middle" font-size="14">escribe el test</text>
+<text x="610" y="161" text-anchor="middle" font-size="14">antes que la</text>
+<text x="610" y="179" text-anchor="middle" font-size="14">implementación</text></g>
+<rect x="750" y="64" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M750,108 V72 Q750,64 758,64 H942 Q950,64 950,72 V108 Z" fill="#F2EEEE"/>
+<line x1="750" y1="108" x2="950" y2="108" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="750" y="64" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="850" y="92" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">REVIEW</text>
+<g class="t3"><text x="850" y="143" text-anchor="middle" font-size="14">resume el diff y</text>
+<text x="850" y="161" text-anchor="middle" font-size="14">marca lo que hay</text>
+<text x="850" y="179" text-anchor="middle" font-size="14">que mirar a mano</text></g>
+<rect x="750" y="284" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M750,328 V292 Q750,284 758,284 H942 Q950,284 950,292 V328 Z" fill="#F2EEEE"/>
+<line x1="750" y1="328" x2="950" y2="328" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="750" y="284" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="850" y="312" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">DEPLOY</text>
+<g class="t4"><text x="850" y="363" text-anchor="middle" font-size="14">redacta las notas</text>
+<text x="850" y="381" text-anchor="middle" font-size="14">de versión desde</text>
+<text x="850" y="399" text-anchor="middle" font-size="14">los commits</text></g>
+<rect x="30" y="284" width="200" height="140" rx="8" fill="#ffffff"/>
+<path d="M30,328 V292 Q30,284 38,284 H222 Q230,284 230,292 V328 Z" fill="#F2EEEE"/>
+<line x1="30" y1="328" x2="230" y2="328" stroke="#D8D2CE" stroke-width="1.5"/>
+<rect x="30" y="284" width="200" height="140" rx="8" fill="none" stroke="#D8D2CE" stroke-width="1.5"/>
+<text x="130" y="312" text-anchor="middle" font-size="17" font-weight="bold" fill="#1F1E1E">INCIDENTE</text>
+<g class="t5"><text x="130" y="363" text-anchor="middle" font-size="14">correlaciona logs</text>
+<text x="130" y="381" text-anchor="middle" font-size="14">y propone la</text>
+<text x="130" y="399" text-anchor="middle" font-size="14">hipótesis</text></g>
+<line x1="230" y1="134" x2="270" y2="134" stroke="#3B3535" stroke-width="2" marker-end="url(#ag)"/>
+<line x1="470" y1="134" x2="510" y2="134" stroke="#3B3535" stroke-width="2" marker-end="url(#ag)"/>
+<line x1="710" y1="134" x2="750" y2="134" stroke="#3B3535" stroke-width="2" marker-end="url(#ag)"/>
+<line x1="850" y1="204" x2="850" y2="284" stroke="#3B3535" stroke-width="2" marker-end="url(#ag)"/>
+<line x1="750" y1="354" x2="230" y2="354" stroke="#3B3535" stroke-width="2" marker-end="url(#ag)"/>
+<line class="ret" x1="130" y1="284" x2="130" y2="204" stroke="#DA1B2E" stroke-width="3"/>
+<path class="rethead" d="M123.5,217 L130,204 L136.5,217 z" fill="#DA1B2E"/>
+<text class="retlbl" x="144" y="249" font-size="13" font-weight="bold" fill="#DA1B2E">post-mortem</text>
+<text class="c1" x="30" y="464" font-size="15">El post-mortem vuelve como issue: el ciclo se cierra, no termina.</text>
+<text class="c2" x="30" y="488" font-size="15">Hay un LLM útil en los seis estadios, no solo en “escribir código”.</text>
+<rect class="hl0" x="30" y="64" width="200" height="140" rx="8" fill="none" stroke="#3B3535" stroke-width="3" opacity="0"/>
+<rect class="hl1" x="270" y="64" width="200" height="140" rx="8" fill="none" stroke="#3B3535" stroke-width="3" opacity="0"/>
+<rect class="hl2" x="510" y="64" width="200" height="140" rx="8" fill="none" stroke="#3B3535" stroke-width="3" opacity="0"/>
+<rect class="hl3" x="750" y="64" width="200" height="140" rx="8" fill="none" stroke="#3B3535" stroke-width="3" opacity="0"/>
+<rect class="hl4" x="750" y="284" width="200" height="140" rx="8" fill="none" stroke="#3B3535" stroke-width="3" opacity="0"/>
+<rect class="hl5" x="30" y="284" width="200" height="140" rx="8" fill="none" stroke="#3B3535" stroke-width="3" opacity="0"/>
+<rect class="hl6" x="30" y="64" width="200" height="140" rx="8" fill="none" stroke="#3B3535" stroke-width="3" opacity="0"/>
+<text class="cap" x="490" y="334" text-anchor="middle" font-size="15" font-weight="bold" fill="#DA1B2E" opacity="0">algo falla en producción</text>
+<circle class="tok" cx="0" cy="0" r="7" fill="#1F1E1E" stroke="#ffffff" stroke-width="2" opacity="0"/>
+<circle class="tokr" cx="0" cy="0" r="7" fill="#DA1B2E" stroke="#ffffff" stroke-width="2" opacity="0"/>
+</svg>

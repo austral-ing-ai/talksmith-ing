@@ -100,7 +100,7 @@
       "lead": "Todo lo que el modelo ve en un turno vive en la ventana de contexto, y todo compite por su atención al mismo tiempo.",
       "media": {
         "src": "images/s1-2-1-ventana-contexto-contenedor.svg",
-        "alt": "La ventana de contexto como contenedor finito: system prompt, historial, datos inyectados y respuestas compiten adentro del mismo límite duro"
+        "alt": "La ventana de contexto como un contenedor finito con cuatro tipos de contenido"
       },
       "design": "split-right",
       "highlights": [
@@ -148,7 +148,7 @@
       ],
       "media": {
         "src": "images/s1-3-1-escala-ventanas-modelos.svg",
-        "alt": "Escala relativa de la ventana de contexto por modelo, de 200K a 10M tokens"
+        "alt": "Tamaño de la ventana de contexto de distintos modelos, a escala"
       },
       "design": "split-right",
       "notes": "La definición primero y la tabla después: la ventana es memoria de trabajo, no memoria a largo plazo. La analogía útil acá es la RAM contra el disco. Nada de lo que está en la ventana persiste entre sesiones, y nada de lo que quedó afuera existe para el modelo. Sobre la tabla: la fila de Anthropic está verificada contra el catálogo vigente de la API; las tres filas de otros proveedores vienen del deck original y no las pude verificar, así que decilas como orden de magnitud y no como dato preciso. El punto pedagógico está en otro lado: un millón de tokens ya dejó de ser una restricción práctica para casi todo trabajo de software, y que el cuello de botella se mudó del tamaño de la ventana al costo de llenarla.",
@@ -230,7 +230,6 @@
       "title": "Cómo se tokeniza",
       "lead": "**Antes de llegar al modelo, todo texto se parte en piezas de un vocabulario fijo. Ese vocabulario es lo que decide cuántos tokens cuesta una frase, y cada familia de modelos tiene el suyo.**",
       "design": "split-left",
-      "notes": "Esta lámina responde la pregunta que quedó abierta en la anterior: si un millón de tokens es toda la obra de Tolkien, ¿quién decide dónde se corta? La respuesta es BPE, y la intuición vale más que el algoritmo: se empieza con caracteres sueltos y se fusionan los pares que más aparecen, hasta llenar un vocabulario de tamaño fijo. Por eso las palabras comunes son un token y las raras se parten en pedazos. La tabla no la leas fila por fila; usala para mostrar una sola cosa, que es la columna del medio: el vocabulario se cuadruplicó en pocos años. Y de ahí sale la consecuencia práctica: un vocabulario más grande corta menos, así que el mismo texto da menos tokens en un modelo nuevo que en uno viejo. Los conteos no son comparables entre familias. El cierre es el que más les va a servir y el error que más se ve: estimar el costo de un prompt de Claude con tiktoken. Son tokenizadores distintos y el número no sirve; para Claude hay un endpoint que lo cuenta. Si querés hacerlo vivo, abrí el playground y pegá una línea de código: un identificador en camelCase se parte en tres o cuatro tokens, y eso explica por qué el código consume más de lo que uno cree.",
       "_choice": {
         "signals": [
           "una tabla de consulta que se lee primero y tres conceptos que la interpretan"
@@ -349,13 +348,14 @@
       },
       "design": "split-right",
       "media": {
-        "src": "images/s1-7-1-costo-crece-reenvio.svg",
+        "src": "images/s1-7-1-costo-crece-reenvio.anim.svg",
         "alt": "Lo que el usuario escribe no crece; lo que la app le manda al modelo sí, porque reenvía toda la conversación anterior"
       },
-      "facts": [
+      "highlights": [
         {
           "label": "¿Por qué no explota el consumo?",
-          "body": "El modelo no recuerda nada entre llamadas: cada turno reenvía todo y lo vuelve a leer desde cero. Debería costar una fortuna. No la cuesta."
+          "body": "El modelo no recuerda nada entre llamadas: cada turno reenvía todo y lo vuelve a leer desde cero. Debería costar una fortuna. No la cuesta.",
+          "kind": "note"
         }
       ]
     },
@@ -410,8 +410,8 @@
       "section": "Fundamentos",
       "title": "Del chat al caché programático",
       "media": {
-        "src": "images/s1-9-1-caching-prefijo-sufijo.svg",
-        "alt": "Prompt caching por prefijo: el prefijo estático se cobra al 10% y el sufijo dinámico a precio lleno"
+        "src": "images/s1-9-1-caching-prefijo-sufijo.anim.svg",
+        "alt": "El caching hace match por prefijo: la parte estable se reutiliza, el sufijo variable se procesa de nuevo"
       },
       "design": "split-right",
       "highlights": [
@@ -453,30 +453,49 @@
       "lead": "**En un chat el prefijo crece solo: cada turno agrega al final y deja intacto todo lo anterior. En una aplicación no hay esa suerte — el pedido lo armás vos, y sos vos quien decide dónde corta la frontera entre lo que se reutiliza y lo que cambia.**"
     },
     {
-      "template": "code-example",
+      "template": "content+cards+image",
       "section": "Fundamentos",
       "title": "Prompt caching: implementación",
-      "lead": "**Marcar el prefijo con `cache_control`, y comprobar en la respuesta dónde cayó cada token.**",
-      "notes": "Veinte líneas y tres cosas para señalar con el dedo. La primera es el TTL: por defecto el caché dura cinco minutos, y con `\"ttl\": \"1h\"` se estira a una hora pagando el doble por la escritura. La regla práctica: cinco minutos alcanza para una conversación activa; la hora conviene cuando el mismo prefijo se reusa a lo largo de una jornada de trabajo. La segunda son los tres contadores, y conviene leerlos como un reparto: cada token de entrada cae en exactamente uno de los tres. En el primer request los 50.000 aparecen en `cache_creation`; del segundo en adelante, en `cache_read`. Y los cien del diff caen siempre en `input_tokens`, porque están después del corte. Esa es la forma de comprobar que el caching está funcionando de verdad, en vez de suponerlo mirando la factura a fin de mes. La tercera es la línea de abajo, y es la que más les va a servir: si los dos primeros contadores dan cero, el prompt no se cacheó y nadie te avisó. No hay excepción, no hay warning, solo una factura más alta. Preguntales qué haría que diera cero; la respuesta es lo que vimos antes, cualquier byte que cambie en el prefijo o un prefijo por debajo del mínimo del modelo.",
-      "_choice": {
-        "signals": [
-          "el bloque de código es el contenido de la lámina, sin conceptos etiquetados al lado"
-        ],
-        "candidates": [
-          "code-example",
-          "content-image"
-        ],
-        "picked": "code-example",
-        "rejected": {
-          "content-image": "ya no hay lista de puntos que acompañe: el código quedó solo y ocupa la lámina entera"
+      "lead": "**El caching se activa marcando las partes estáticas del prompt con un bloque `cache_control`.**",
+      "cards": [
+        {
+          "label": "Parte estática (cacheable)",
+          "body": "System prompt, guía de estilo, decisiones de arquitectura, base de conocimiento. Se marca con `cache_control`."
+        },
+        {
+          "label": "Parte dinámica (no cacheable)",
+          "body": "El diff, el ticket, la consulta puntual. Cambia en cada request, así que va después del corte."
+        },
+        {
+          "label": "Hit de caché",
+          "body": "Si el prefijo ya fue procesado, el proveedor lo reutiliza en vez de recalcularlo."
         }
-      },
+      ],
+      "design": "split-right",
       "media": {
         "code": "import anthropic\nclient = anthropic.Anthropic()\n\n# ESTATICO -- se cachea (50K tokens)\nsystem_prompt = \"\"\"Sos un revisor de codigo senior.\nGuia de estilo, ADRs y convenciones: [... 50K ...]\"\"\"\n\nresponse = client.messages.create(\n    model=\"claude-sonnet-5\",\n    system=[{\"type\": \"text\", \"text\": system_prompt,\n             \"cache_control\": {\"type\": \"ephemeral\"}}],\n    # DINAMICO -- cambia en cada request\n    messages=[{\"role\": \"user\",\n               \"content\": \"Revisa este diff: [... 100 ...]\"}])\n\n# Request 1     cache MISS  ->  se procesa y se guarda\n# Request 2+    cache HIT   ->  se cobra al 10%",
         "language": "python"
       },
-      "code": "import anthropic\nclient = anthropic.Anthropic()\n\nresp = client.messages.create(\n    model=\"claude-sonnet-5\",\n    max_tokens=1024,\n    system=[{\n        \"type\": \"text\",\n        \"text\": system_prompt,                  # 50K tokens: guia de estilo, ADRs, base de codigo\n        \"cache_control\": {\"type\": \"ephemeral\", \"ttl\": \"1h\"},\n    }],\n    messages=[{\"role\": \"user\", \"content\": \"Revisa este diff: [... 100 tokens ...]\"}],\n)\n\nu = resp.usage\nprint(u.cache_creation_input_tokens)   # escritos al cache        (request 1: 50000)\nprint(u.cache_read_input_tokens)       # leidos del cache         (request 2+: 50000)\nprint(u.input_tokens)                  # ni leidos ni escritos    (siempre: ~100)\n\n# Si los dos primeros dan 0, el prompt NO se cacheo y no hay error que lo avise.",
-      "language": "python"
+      "notes": "Veinte líneas de código y una sola idea: la frontera entre lo que se cachea y lo que no la dibuja el programador, poniendo `cache_control` en el bloque correcto. Señalá el orden. Lo estático arriba, lo dinámico abajo, siempre, porque el match es por prefijo. Si alguien pone el diff arriba del system prompt, el caché no sirve para nada y no hay ningún error que lo avise. El ejemplo pasó de un system prompt de guías clínicas a la guía de estilo y los ADRs del repo, que es el caso real de un asistente de revisión de código: cincuenta mil tokens de convenciones que no cambian, cien tokens de diff que cambian siempre.",
+      "_choice": {
+        "signals": [
+          "labeled_items=3",
+          "has_code=true (one python fence, 19 lines)",
+          "n_images=0",
+          "is_ordered=false",
+          "date_labels=false"
+        ],
+        "candidates": [
+          "content+cards+image",
+          "code-example",
+          "concept-breakdown"
+        ],
+        "picked": "content+cards+image",
+        "rejected": {
+          "code-example": "its only companion field is explanation:[str], which would flatten the three labeled parts (estática, dinámica, hit) into plain bullets — the universal invariant says a labeled set is cards",
+          "concept-breakdown": "has nowhere to place the code fence, which is half the slide; the schema puts a code panel beside a card set as media {code, language}"
+        }
+      }
     },
     {
       "template": "concept-breakdown",
@@ -948,7 +967,7 @@
           "kind": "note"
         }
       ],
-      "notes": "Tres cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la entrada en toda la familia, así que la variable que hay que vigilar es cuánto habla el modelo, no cuánto se le manda. La segunda: entre Haiku 4.5 y Fable 5 hay un factor diez de precio, y esa distancia es la que hace que valga la pena la cascada de la próxima slide. La tercera es la que nadie mira, y es el effort. Los tokens de razonamiento se facturan como salida aunque el usuario nunca los vea, y el default es `high`. Un equipo que nunca tocó ese parámetro está pagando razonamiento de sobra en cada clasificación trivial. Mostrales la captura: el selector está a la vista en la interfaz, no escondido en la API. Si preguntan por Fable 5, aclará que la captura lo muestra como no disponible en ese momento y que la tabla sí le pone precio: son dos estados del mismo producto en fechas distintas.",
+      "notes": "Dos cosas y ninguna es la tabla. La primera: la salida cuesta cinco veces la entrada en toda la familia, así que la variable que hay que vigilar es cuánto habla el modelo, no cuánto se le manda. La segunda: entre Haiku 4.5 y Fable 5 hay un factor diez de precio, y esa distancia es la que hace que valga la pena la cascada que viene después. Mostrales la captura: el selector de modelo y de esfuerzo está a la vista en la interfaz, no escondido en la API — el esfuerzo lo trabajamos en detalle en la sección de técnicas avanzadas. Si preguntan por Fable 5, aclará que la captura lo muestra como no disponible en ese momento y que la tabla sí le pone precio: son dos estados del mismo producto en fechas distintas.",
       "_choice": {
         "signals": [
           "has_table=true",
@@ -976,8 +995,8 @@
       "section": "Modelos y costos",
       "title": "Elegir modelo: la primera pregunta que dé \"sí\" decide",
       "image": {
-        "src": "images/s2-2-1-arbol-eleccion-modelo.svg",
-        "alt": "Árbol de decisión para elegir modelo: dificultad de la tarea, contexto y recién al final costo"
+        "src": "images/s2-2-1-arbol-eleccion-modelo.anim.svg",
+        "alt": "Elegir modelo como una cascada de tres preguntas: la primera que dé sí decide"
       },
       "notes": "El árbol vale más por el orden de las preguntas que por los nombres que devuelve. Primero la dificultad de la tarea, porque es la que más plata mueve: si clasificar tickets se puede hacer con un modelo chico, cualquier discusión sobre caching es secundaria. Segundo el contexto, que es una restricción dura y no negociable. Y tercero el costo, porque optimizar costo antes de saber si la calidad alcanza es optimizar lo que no importa. Decí también por qué el árbol nombra familias y no versiones: los nombres cambian cada seis meses, las preguntas no. El árbol no pregunta por el formato de salida a propósito: structured outputs es GA en toda la generación actual, incluido Haiku 4.5, así que pedir JSON garantizado ya no descarta a nadie ni obliga a subir de modelo.",
       "_choice": {
@@ -1007,8 +1026,8 @@
       "title": "Model cascading",
       "lead": "**Intentar primero con el modelo barato. Si la confianza es baja, escalar al caro. El ahorro depende de que el gating de confianza sea confiable.**",
       "image": {
-        "src": "images/s2-4-1-cascada-dos-modelos.svg",
-        "alt": "Model cascading: el modelo barato intenta primero y el gate de confianza decide si escala al caro"
+        "src": "images/s2-4-1-cascada-dos-modelos.anim.svg",
+        "alt": "Model cascading: un modelo barato responde primero y un gate de confianza decide si escalar al modelo grande"
       },
       "notes": "La idea es de una línea y la trampa está en el rombo del medio. Todo el ahorro del cascading depende de que el sistema sepa cuándo la respuesta barata no alcanza, y esa señal casi nunca viene servida. Algunos proveedores devuelven log-probabilities y sirven; con otros hay que armar el gate a mano, por ejemplo pidiéndole al modelo chico que declare su confianza, con el problema obvio de que un modelo mal calibrado declara alta confianza sobre cosas que inventó. Preguntales cómo lo resolverían. Suele salir la idea de una segunda llamada de verificación, y ahí conviene señalar que esa llamada también cuesta y puede comerse el ahorro. La slide siguiente da los criterios para decidir si vale la pena.",
       "_choice": {
@@ -1118,7 +1137,7 @@
       "lead": "**La diferencia entre un prototipo que a veces anda y un sistema de producción suele estar en la estructura del prompt, no en la redacción.**",
       "image": {
         "src": "images/s3-1-1-anatomia-prompt-seis-partes.svg",
-        "alt": "Anatomía de un prompt de producción: seis bandas apiladas y la curva de atención alta-baja-alta"
+        "alt": "Anatomía de un prompt: seis componentes apilados en orden"
       },
       "notes": "Seis componentes y el orden importa. Las definiciones ya no están en la lámina, así que van habladas mientras señalás cada banda. **Rol**: fija el nivel de expertise y los patrones de comportamiento. **Contexto**: la información de fondo que la tarea necesita, el servicio, las convenciones del equipo. **Instrucciones**: qué hacer, paso a paso, y cuanto más específicas mejor. **Restricciones**: los límites y el formato de salida. **Ejemplos**: casos resueltos que demuestran el comportamiento esperado. **Input**: los datos concretos de esta llamada. Rol y contexto van arriba porque condicionan todo lo que sigue, y porque el modelo presta más atención al principio del prompt. El input va último por la misma razón invertida: es lo que tiene que estar fresco cuando empieza a generar. La discusión que suele aparecer es si hace falta todo esto para pedir un resumen. No, y conviene decirlo: los seis componentes son la anatomía de un prompt de producción, el que corre diez mil veces por día y tiene que dar el mismo formato siempre. Para una consulta única en el chat, alcanza con instrucciones e input. El ejemplo de la slide siguiente muestra los seis armados.",
       "_choice": {
@@ -1182,6 +1201,21 @@
       },
       "highlights": [
         {
+          "label": "Validación automática",
+          "body": "La salida se verifica con el esquema, sin leerla a mano.",
+          "kind": "takeaway"
+        },
+        {
+          "label": "Menos errores de parseo",
+          "body": "Menos fallos en el pipeline y menos reintentos.",
+          "kind": "takeaway"
+        },
+        {
+          "label": "Integración directa",
+          "body": "El JSON entra al issue tracker o al bot de review sin traducción intermedia.",
+          "kind": "takeaway"
+        },
+        {
           "body": "[Ver ejemplo interactivo en aitutorial.dev →](https://aitutorial.dev/prompting/structured-prompt-engineering)",
           "kind": "source"
         }
@@ -1208,18 +1242,6 @@
         {
           "label": "Modo JSON de la API",
           "body": "Usar `response_format: json_object`. Más confiable: garantiza estructura válida."
-        },
-        {
-          "label": "Validación automática",
-          "body": "La salida se verifica con el esquema, sin leerla a mano."
-        },
-        {
-          "label": "Menos errores de parseo",
-          "body": "Menos fallos en el pipeline y menos reintentos."
-        },
-        {
-          "label": "Integración directa",
-          "body": "El JSON entra al issue tracker o al bot de review sin traducción intermedia."
         }
       ]
     },
@@ -1293,7 +1315,7 @@
       "design": "split-left",
       "media": {
         "src": "images/s4-1-1-tres-regimenes-icl.svg",
-        "alt": "Zero-shot, few-shot y many-shot como el mismo prompt con distinta cantidad de ejemplos intercalados"
+        "alt": "Zero-shot, one-shot y few-shot: el mismo prompt con distinta cantidad de ejemplos"
       },
       "notes": "La frase que hay que dejar clavada es \"sin modificar los pesos\", y el diagrama la sostiene: las tres columnas son el mismo prompt, con más o menos ejemplos metidos entre la instrucción y el caso. Las definiciones van habladas. **Zero-shot**: solo la instrucción, sin ejemplos, todo depende del conocimiento preentrenado. **Few-shot**: entre 2 y 10 casos resueltos antes del caso a resolver, y es el régimen más usado en producción. **Many-shot**: decenas o cientos de ejemplos, para tareas complejas o con mucha variabilidad. Señalá los tres ejes del pie, porque ahí está la decisión: la precisión satura y el costo no. Para esta audiencia el contraste natural es con fine-tuning: fine-tuning cambia el artefacto y cuesta una corrida de entrenamiento, in-context learning cambia el prompt y cuesta tokens. Eso reordena la intuición de cuándo conviene cada cosa. El dato histórico ayuda: la capacidad se documentó en el paper de GPT-3 en 2020, y lo llamativo entonces fue que nadie la había programado, apareció al escalar. Un matiz de honestidad, por si alguien va a la fuente: el término \"in-context learning\" y la taxonomía de zero, one y few-shot están en el cuerpo del paper, no en el abstract.",
       "_choice": {
@@ -1491,8 +1513,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/s5-2-1-cot-salto-vs-cadena.svg",
-        "alt": "Sin CoT la pregunta salta directo a la respuesta; con CoT cada paso escrito entra al contexto y condiciona la predicción del siguiente"
+        "src": "images/s5-2-1-cot-salto-vs-cadena.anim.svg",
+        "alt": "Chain of Thought: del salto directo a la respuesta a una cadena de pasos intermedios"
       },
       "highlights": [
         {
@@ -1600,16 +1622,9 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/s5-4-1-self-consistency-votacion.svg",
-        "alt": "Un mismo prompt se muestrea por cinco caminos independientes que convergen en una votación: cuatro de cinco responden A, con 80% de confianza"
+        "src": "images/s5-4-1-self-consistency-votacion.anim.svg",
+        "alt": "Self-consistency: varias muestras del mismo prompt y una votación por mayoría"
       },
-      "highlights": [
-        {
-          "body": "**Una sola respuesta puede estar mal por no-determinismo o por ambigüedad del prompt. Self-consistency genera varias respuestas independientes y vota entre ellas.**",
-          "kind": "definition",
-          "position": "top"
-        }
-      ],
       "_choice": {
         "signals": [
           "labeled_items=4",
@@ -1702,7 +1717,7 @@
       "design": "split-right",
       "media": {
         "src": "images/s5-6-1-arbol-ramificar-podar.svg",
-        "alt": "Árbol de Tree of Thought: generar ramas, puntuar cada una, podar las peores y expandir solo la mejor hasta la solución"
+        "alt": "Tree of Thought: generar, evaluar, podar y expandir ramas de razonamiento"
       },
       "highlights": [
         {
@@ -1791,8 +1806,8 @@
       "lead": "**Dividir una tarea compleja en una secuencia de prompts simples, donde el output de cada paso alimenta al siguiente. Cada paso es más preciso porque se enfoca en una sola sub-tarea.**",
       "design": "split-right",
       "media": {
-        "src": "images/s5-8-1-cadena-cuatro-etapas.svg",
-        "alt": "Pipeline de cuatro etapas encadenadas — clasificar, extraer, buscar y redactar — donde la salida de cada paso es la entrada del siguiente y el modelo caro entra solo al final"
+        "src": "images/s5-8-1-cadena-cuatro-etapas.anim.svg",
+        "alt": "Prompt chaining: una tubería de cuatro etapas donde la salida de una es la entrada de la siguiente"
       },
       "highlights": [
         {
@@ -2086,8 +2101,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/s6-2-1-thinking-bifurcacion-peticion.svg",
-        "alt": "Dentro de una petición el modelo evalúa la dificultad y bifurca: una tarea simple no genera bloque de thinking y una de varios pasos sí; max_tokens es el techo de las dos salidas"
+        "src": "images/s6-2-1-thinking-bifurcacion-peticion.anim.svg",
+        "alt": "Thinking: el modelo decide si razonar antes de responder dentro de la misma petición"
       },
       "_choice": {
         "signals": [
@@ -2234,8 +2249,8 @@
       ],
       "design": "split-right",
       "media": {
-        "src": "images/s6-4-1-curva-refuerzo-deepseek.svg",
-        "alt": "Curva de DeepSeek-R1-Zero durante el entrenamiento por refuerzo: el pass@1 promedio en AIME 2024 sube de 15,6% a 77,9%, y a 86,7% con self-consistency, mientras el largo de la respuesta crece solo"
+        "src": "images/s6-4-1-curva-refuerzo-deepseek.anim.svg",
+        "alt": "DeepSeek-R1: la precisión y la longitud del razonamiento suben juntas durante el entrenamiento por refuerzo"
       },
       "highlights": [
         {
@@ -2420,7 +2435,7 @@
           "position": "bottom"
         }
       ],
-      "notes": "Esta es la lámina de referencia del bloque y la que más plata les puede ahorrar. De la tabla no leas las filas, que están para consultar; lee la columna de la derecha y di lo importante, que la disponibilidad no es uniforme y que hay modelos que soportan `max` sin soportar `xhigh`. Si el que pregunta necesita el detalle, la tabla de la documentación es la autoridad. El remate tiene un matiz que se pierde si vas rápido: el effort no es un presupuesto de tokens, es una señal. Con effort bajo el modelo sigue pensando cuando el problema es difícil de verdad. Piensa menos que con effort alto, y no deja de pensar. El segundo bullet es el que se le escapa a todo el mundo y vale marcarlo: bajar el effort no solo acorta el razonamiento, también hace que el modelo llame menos herramientas y de forma más escueta, lo cual cambia el comportamiento de un agente entero. Un detalle que ya no está en la tabla y conviene tener a mano: la disponibilidad no es uniforme. Los niveles `high`, `medium` y `low` los soporta todo modelo que acepte `effort`, pero `max` y `xhigh` no van en todos, y no se implican entre sí: hay modelos que soportan `max` y no soportan `xhigh`.",
+      "notes": "Esta es la lámina de referencia del bloque y la que más plata les puede ahorrar. De la tabla no leas las filas, que están para consultar; lee la columna de la derecha y di lo importante, que la disponibilidad no es uniforme y que hay modelos que soportan `max` sin soportar `xhigh`. Si el que pregunta necesita el detalle, la tabla de la documentación es la autoridad. El remate tiene un matiz que se pierde si vas rápido: el effort no es un presupuesto de tokens, es una señal. Con effort bajo el modelo sigue pensando cuando el problema es difícil de verdad. Piensa menos que con effort alto, y no deja de pensar. El segundo bullet es el que se le escapa a todo el mundo y vale marcarlo: bajar el effort no solo acorta el razonamiento, también hace que el modelo llame menos herramientas y de forma más escueta, lo cual cambia el comportamiento de un agente entero.",
       "_choice": {
         "signals": [
           "has_table=true",
@@ -2636,8 +2651,8 @@
       ],
       "design": "split-left",
       "media": {
-        "src": "images/s7-1-1-ciclo-vida-seis-estadios.svg",
-        "alt": "Ciclo de vida de un cambio en seis estadios, cerrado por el post-mortem que vuelve como issue"
+        "src": "images/s7-1-1-ciclo-vida-seis-estadios.anim.svg",
+        "alt": "El ciclo de vida de un cambio en seis estadios y dónde entra el LLM"
       },
       "notes": "Esta slide reordena toda la clase en el eje que a ellos les resulta natural: el flujo de trabajo. La columna \"hacia dónde va\" salió de la lámina y va hablada, estadio por estadio: en **issue**, priorización con el contexto del roadmap y de la deuda técnica; en **diseño**, exploración de alternativas con costo y riesgo estimados; en **implementación**, agentes que abren un pull request completo a partir del issue; en **review**, revisión con el contexto histórico del módulo y de sus incidentes; en **deploy**, estimación de riesgo del despliegue a partir del diff; y en **incidente**, diagnóstico asistido mientras el incidente sigue abierto. Marcalas como especulación, que es lo que son. Vale la pena decir de entrada que las seis etapas no son igual de maduras, y que la columna del medio es lo que ya se usa hoy en equipos reales, no una promesa. La fila de review es la que más pega, porque es donde el LLM aporta y donde más rápido se ve el límite: encuentra el bug obvio y no entiende por qué ese módulo está escrito así. La fila de incidente es la que más entusiasma y la más peligrosa, porque un post-mortem con una causa raíz inventada es peor que no tener post-mortem. Aviso de honestidad: la versión original de esta slide traía cifras del dominio médico, y no las traduje a números de software porque no tengo fuente. Lo que queda es cualitativo a propósito.",
       "_choice": {
@@ -3143,7 +3158,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "f5c56c12ffe463c44563d8351f0212f5ad4cde9783f0a5bd555181079ee7ea3a",
-    "bytes": 175153
+    "sha256": "da49b292b36c6b85fff5f735de4987a7a3776c6e187d7cd3df81623476b80951",
+    "bytes": 183167
   }
 }

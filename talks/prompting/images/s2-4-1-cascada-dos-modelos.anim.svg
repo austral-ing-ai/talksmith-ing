@@ -2,62 +2,72 @@
 <title>Model cascading</title>
 <desc>La idea es de una línea y la trampa está en el rombo del medio.</desc>
 <style>/* talksmith-animation */
-.ts-anim-s2-4-1-cascada-dos-modelos .b1{animation:ts-anim-s2-4-1-cascada-dos-modelos-b1 5.50s linear 0.40s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .rc1{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc1 1.94s linear 1.01s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .rp1{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp1 1.00s linear 5.14s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .b2{animation:ts-anim-s2-4-1-cascada-dos-modelos-b2 2.75s linear 6.90s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .rc2{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc2 0.97s linear 7.20s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .rp2{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp2 0.60s linear 9.27s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .b3{animation:ts-anim-s2-4-1-cascada-dos-modelos-b3 1.92s linear 9.90s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .rc3{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc3 0.68s linear 10.11s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .rp3{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp3 0.60s linear 11.56s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .b4{animation:ts-anim-s2-4-1-cascada-dos-modelos-b4 1.54s linear 12.07s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .rc4{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc4 0.54s linear 12.25s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .rp4{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp4 0.60s linear 13.40s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .b5{animation:ts-anim-s2-4-1-cascada-dos-modelos-b5 7.30s linear 14.46s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .rc5{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc5 1.94s linear 15.07s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .re5{animation:ts-anim-s2-4-1-cascada-dos-modelos-re5 1.65s linear 19.32s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .rb5{animation:ts-anim-s2-4-1-cascada-dos-modelos-rb5 1.00s linear 21.14s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .c1{animation:ts-anim-s2-4-1-cascada-dos-modelos-c1 3.20s linear 0.40s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .c2{animation:ts-anim-s2-4-1-cascada-dos-modelos-c2 3.10s linear 3.70s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .c3{animation:ts-anim-s2-4-1-cascada-dos-modelos-c3 7.11s linear 7.00s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .c4{animation:ts-anim-s2-4-1-cascada-dos-modelos-c4 2.99s linear 14.67s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .c5{animation:ts-anim-s2-4-1-cascada-dos-modelos-c5 3.21s linear 17.77s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .c6{animation:ts-anim-s2-4-1-cascada-dos-modelos-c6 2.49s linear 21.07s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .close{animation:ts-anim-s2-4-1-cascada-dos-modelos-close 0.70s linear 23.77s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .k1{animation:ts-anim-s2-4-1-cascada-dos-modelos-k1 4.13s linear 5.14s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .k2{animation:ts-anim-s2-4-1-cascada-dos-modelos-k2 2.29s linear 9.27s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .k3{animation:ts-anim-s2-4-1-cascada-dos-modelos-k3 1.84s linear 11.56s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .k4{animation:ts-anim-s2-4-1-cascada-dos-modelos-k4 12.56s linear 13.40s 1 normal both}
-.ts-anim-s2-4-1-cascada-dos-modelos .k5{animation:ts-anim-s2-4-1-cascada-dos-modelos-k5 4.82s linear 21.14s 1 normal both}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b1{0.00%{transform:translate(200px,48px);opacity:0}5.45%{transform:translate(200px,48px);opacity:1}23.64%{transform:translate(200px,116px);opacity:1}40.00%{transform:translate(200px,116px);opacity:1}58.18%{transform:translate(200px,250px);opacity:1}70.91%{transform:translate(200px,250px);opacity:1}94.55%{transform:translate(500px,250px);opacity:1}100.00%{transform:translate(500px,250px);opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc1{0%{opacity:0}10.30%,89.70%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp1{0%{opacity:0}20.00%,80.00%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b2{0.00%{transform:translate(200px,48px);opacity:0}5.45%{transform:translate(200px,48px);opacity:1}23.64%{transform:translate(200px,116px);opacity:1}40.00%{transform:translate(200px,116px);opacity:1}58.18%{transform:translate(200px,250px);opacity:1}70.91%{transform:translate(200px,250px);opacity:1}94.55%{transform:translate(500px,250px);opacity:1}100.00%{transform:translate(500px,250px);opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc2{0%{opacity:0}20.60%,79.40%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp2{0%{opacity:0}25.00%,75.00%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b3{0.00%{transform:translate(200px,48px);opacity:0}5.45%{transform:translate(200px,48px);opacity:1}23.64%{transform:translate(200px,116px);opacity:1}40.00%{transform:translate(200px,116px);opacity:1}58.18%{transform:translate(200px,250px);opacity:1}70.91%{transform:translate(200px,250px);opacity:1}94.55%{transform:translate(500px,250px);opacity:1}100.00%{transform:translate(500px,250px);opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc3{0%{opacity:0}25.00%,75.00%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp3{0%{opacity:0}25.00%,75.00%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b4{0.00%{transform:translate(200px,48px);opacity:0}5.45%{transform:translate(200px,48px);opacity:1}23.64%{transform:translate(200px,116px);opacity:1}40.00%{transform:translate(200px,116px);opacity:1}58.18%{transform:translate(200px,250px);opacity:1}70.91%{transform:translate(200px,250px);opacity:1}94.55%{transform:translate(500px,250px);opacity:1}100.00%{transform:translate(500px,250px);opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc4{0%{opacity:0}25.00%,75.00%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp4{0%{opacity:0}25.00%,75.00%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b5{0.00%{transform:translate(200px,48px);opacity:0}4.11%{transform:translate(200px,48px);opacity:1}17.81%{transform:translate(200px,116px);opacity:1}30.14%{transform:translate(200px,116px);opacity:1}43.84%{transform:translate(200px,250px);opacity:1}56.16%{transform:translate(200px,250px);opacity:1}71.23%{transform:translate(200px,400px);opacity:1}83.56%{transform:translate(200px,400px);opacity:1}95.89%{transform:translate(200px,504px);opacity:1}100.00%{transform:translate(200px,504px);opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc5{0%{opacity:0}10.30%,89.70%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-re5{0%{opacity:0}12.11%,87.89%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rb5{0%{opacity:0}20.00%,80.00%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c1{0%{opacity:0}9.38%,90.63%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c2{0%{opacity:0}9.68%,90.32%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c3{0%{opacity:0}4.22%,95.78%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c4{0%{opacity:0}10.03%,89.97%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c5{0%{opacity:0}9.36%,90.64%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c6{0%{opacity:0}12.03%,87.97%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-close{0%{opacity:0}100.00%,100%{opacity:1}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k1{0%{opacity:0}1.94%,98.06%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k2{0%{opacity:0}3.49%,96.51%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k3{0%{opacity:0}4.34%,95.66%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k4{0%{opacity:0}0.64%,96.82%{opacity:1}100%{opacity:0}}
-@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k5{0%{opacity:0}3.11%,91.70%{opacity:1}100%{opacity:0}}
+.ts-anim-s2-4-1-cascada-dos-modelos .b1{animation:ts-anim-s2-4-1-cascada-dos-modelos-b1 6.00s linear 0.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .b2{animation:ts-anim-s2-4-1-cascada-dos-modelos-b2 6.00s linear 6.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .b3{animation:ts-anim-s2-4-1-cascada-dos-modelos-b3 6.00s linear 9.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .b4{animation:ts-anim-s2-4-1-cascada-dos-modelos-b4 6.00s linear 12.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .b5{animation:ts-anim-s2-4-1-cascada-dos-modelos-b5 6.00s linear 15.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rc1{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc1 6.00s linear 0.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rg1{animation:ts-anim-s2-4-1-cascada-dos-modelos-rg1 6.00s linear 0.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rp1{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp1 6.00s linear 4.50s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rc2{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc2 6.00s linear 6.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rp2{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp2 6.00s linear 6.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rc3{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc3 6.00s linear 9.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rp3{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp3 6.00s linear 9.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rc4{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc4 6.00s linear 12.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rp4{animation:ts-anim-s2-4-1-cascada-dos-modelos-rp4 6.00s linear 12.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rc5{animation:ts-anim-s2-4-1-cascada-dos-modelos-rc5 6.00s linear 15.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rg5{animation:ts-anim-s2-4-1-cascada-dos-modelos-rg5 6.00s linear 15.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .re5{animation:ts-anim-s2-4-1-cascada-dos-modelos-re5 6.00s linear 15.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .rb5{animation:ts-anim-s2-4-1-cascada-dos-modelos-rb5 6.00s linear 16.50s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .k1{animation:ts-anim-s2-4-1-cascada-dos-modelos-k1 6.00s linear 4.50s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .k2{animation:ts-anim-s2-4-1-cascada-dos-modelos-k2 6.00s linear 6.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .k3{animation:ts-anim-s2-4-1-cascada-dos-modelos-k3 6.00s linear 9.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .k4{animation:ts-anim-s2-4-1-cascada-dos-modelos-k4 12.00s linear 10.50s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .k5{animation:ts-anim-s2-4-1-cascada-dos-modelos-k5 6.00s linear 16.50s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c1{animation:ts-anim-s2-4-1-cascada-dos-modelos-c1 6.00s linear 0.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c2{animation:ts-anim-s2-4-1-cascada-dos-modelos-c2 6.00s linear 0.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c3{animation:ts-anim-s2-4-1-cascada-dos-modelos-c3 6.00s linear 0.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c4{animation:ts-anim-s2-4-1-cascada-dos-modelos-c4 6.00s linear 4.50s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c5{animation:ts-anim-s2-4-1-cascada-dos-modelos-c5 12.00s linear 6.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c6{animation:ts-anim-s2-4-1-cascada-dos-modelos-c6 6.00s linear 15.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c7{animation:ts-anim-s2-4-1-cascada-dos-modelos-c7 6.00s linear 15.00s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c8{animation:ts-anim-s2-4-1-cascada-dos-modelos-c8 6.00s linear 16.50s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .c9{animation:ts-anim-s2-4-1-cascada-dos-modelos-c9 6.00s linear 16.50s 1 normal both}
+.ts-anim-s2-4-1-cascada-dos-modelos .close{animation:ts-anim-s2-4-1-cascada-dos-modelos-close 6.00s linear 16.50s 1 normal both}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b1{0.000%{transform:translate(200px,60px);opacity:0}15.000%{transform:translate(200px,60px);opacity:0}20.000%{transform:translate(200px,60px);opacity:1}30.000%{transform:translate(200px,60px);opacity:1}36.667%{transform:translate(200px,116px);opacity:1}56.667%{transform:translate(200px,116px);opacity:1}63.333%{transform:translate(200px,250px);opacity:1}66.667%{transform:translate(200px,250px);opacity:1}70.833%{transform:translate(365px,250px);opacity:1}83.333%{transform:translate(365px,250px);opacity:1}89.167%{transform:translate(500px,250px);opacity:1}90.833%{transform:translate(500px,250px);opacity:0}100.000%{transform:translate(500px,250px);opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b2{0.000%{transform:translate(200px,60px);opacity:0}8.333%{transform:translate(200px,60px);opacity:0}10.000%{transform:translate(200px,60px);opacity:1}14.167%{transform:translate(200px,116px);opacity:1}16.667%{transform:translate(200px,116px);opacity:1}20.833%{transform:translate(200px,250px);opacity:1}23.333%{transform:translate(365px,250px);opacity:1}31.667%{transform:translate(365px,250px);opacity:1}35.833%{transform:translate(500px,250px);opacity:1}37.500%{transform:translate(500px,250px);opacity:0}100.000%{transform:translate(500px,250px);opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b3{0.000%{transform:translate(200px,60px);opacity:0}7.500%{transform:translate(200px,60px);opacity:0}9.167%{transform:translate(200px,60px);opacity:1}12.500%{transform:translate(200px,116px);opacity:1}14.167%{transform:translate(200px,116px);opacity:1}17.500%{transform:translate(200px,250px);opacity:1}19.667%{transform:translate(365px,250px);opacity:1}29.167%{transform:translate(365px,250px);opacity:1}32.500%{transform:translate(500px,250px);opacity:1}34.167%{transform:translate(500px,250px);opacity:0}100.000%{transform:translate(500px,250px);opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b4{0.000%{transform:translate(200px,60px);opacity:0}10.000%{transform:translate(200px,60px);opacity:0}11.667%{transform:translate(200px,60px);opacity:1}14.500%{transform:translate(200px,116px);opacity:1}15.833%{transform:translate(200px,116px);opacity:1}18.667%{transform:translate(200px,250px);opacity:1}20.667%{transform:translate(365px,250px);opacity:1}29.167%{transform:translate(365px,250px);opacity:1}32.000%{transform:translate(500px,250px);opacity:1}33.667%{transform:translate(500px,250px);opacity:0}100.000%{transform:translate(500px,250px);opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-b5{0.000%{transform:translate(200px,60px);opacity:0}10.000%{transform:translate(200px,60px);opacity:0}13.333%{transform:translate(200px,60px);opacity:1}30.000%{transform:translate(200px,60px);opacity:1}35.000%{transform:translate(200px,116px);opacity:1}37.500%{transform:translate(200px,116px);opacity:1}40.833%{transform:translate(200px,250px);opacity:1}42.500%{transform:translate(200px,250px);opacity:1}45.833%{transform:translate(200px,335px);opacity:1}56.667%{transform:translate(200px,335px);opacity:1}60.833%{transform:translate(200px,400px);opacity:1}81.667%{transform:translate(200px,400px);opacity:1}85.833%{transform:translate(200px,457px);opacity:1}89.167%{transform:translate(200px,457px);opacity:1}92.500%{transform:translate(200px,504px);opacity:1}94.167%{transform:translate(200px,504px);opacity:0}100.000%{transform:translate(200px,504px);opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc1{0.000%{opacity:0}33.333%{opacity:0}38.333%{opacity:1}56.667%{opacity:1}60.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rg1{0.000%{opacity:0}61.667%{opacity:0}65.000%{opacity:1}88.333%{opacity:1}91.667%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp1{0.000%{opacity:0}13.333%{opacity:0}18.333%{opacity:1}31.667%{opacity:1}35.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc2{0.000%{opacity:0}11.667%{opacity:0}13.333%{opacity:1}15.833%{opacity:1}17.500%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp2{0.000%{opacity:0}35.000%{opacity:0}39.167%{opacity:1}53.333%{opacity:1}56.667%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc3{0.000%{opacity:0}10.333%{opacity:0}11.667%{opacity:1}14.167%{opacity:1}15.833%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp3{0.000%{opacity:0}31.667%{opacity:0}35.000%{opacity:1}51.667%{opacity:1}55.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc4{0.000%{opacity:0}13.000%{opacity:0}14.167%{opacity:1}15.833%{opacity:1}17.167%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rp4{0.000%{opacity:0}31.167%{opacity:0}34.167%{opacity:1}53.333%{opacity:1}56.667%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rc5{0.000%{opacity:0}32.500%{opacity:0}35.833%{opacity:1}37.500%{opacity:1}40.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rg5{0.000%{opacity:0}40.000%{opacity:0}43.333%{opacity:1}58.333%{opacity:1}61.667%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-re5{0.000%{opacity:0}59.167%{opacity:0}63.333%{opacity:1}81.667%{opacity:1}85.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-rb5{0.000%{opacity:0}65.833%{opacity:0}70.000%{opacity:1}85.000%{opacity:1}90.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k1{0.000%{opacity:0}16.667%{opacity:0}21.667%{opacity:1}63.333%{opacity:1}65.833%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k2{0.000%{opacity:0}40.833%{opacity:0}45.000%{opacity:1}85.000%{opacity:1}87.500%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k3{0.000%{opacity:0}37.500%{opacity:0}41.667%{opacity:1}82.500%{opacity:1}85.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k4{0.000%{opacity:0}30.000%{opacity:0}32.083%{opacity:1}92.500%{opacity:1}95.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-k5{0.000%{opacity:0}67.500%{opacity:0}71.667%{opacity:1}85.000%{opacity:1}90.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c1{0.000%{opacity:0}16.667%{opacity:0}21.667%{opacity:1}31.667%{opacity:1}35.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c2{0.000%{opacity:0}36.667%{opacity:0}41.667%{opacity:1}58.333%{opacity:1}61.667%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c3{0.000%{opacity:0}66.667%{opacity:0}71.667%{opacity:1}83.333%{opacity:1}86.667%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c4{0.000%{opacity:0}16.667%{opacity:0}21.667%{opacity:1}31.667%{opacity:1}35.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c5{0.000%{opacity:0}5.833%{opacity:0}8.333%{opacity:1}76.667%{opacity:1}78.333%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c6{0.000%{opacity:0}10.000%{opacity:0}15.000%{opacity:1}30.000%{opacity:1}33.333%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c7{0.000%{opacity:0}45.000%{opacity:0}49.167%{opacity:1}58.333%{opacity:1}61.667%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c8{0.000%{opacity:0}38.333%{opacity:0}43.333%{opacity:1}56.667%{opacity:1}60.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-c9{0.000%{opacity:0}66.667%{opacity:0}71.667%{opacity:1}85.000%{opacity:1}90.000%{opacity:0}100.000%{opacity:0}}
+@keyframes ts-anim-s2-4-1-cascada-dos-modelos-close{0.000%{opacity:0}91.667%{opacity:0}98.333%{opacity:1}100.000%{opacity:1}}
 @media (prefers-reduced-motion:reduce){.ts-anim-s2-4-1-cascada-dos-modelos *{animation:none}}
 </style>
 <defs>
@@ -104,25 +114,30 @@
 <text class="close" x="402" y="574" text-anchor="middle" font-size="15" font-style="italic" fill="#1F1E1E">El ahorro sale de que la rama corta sea la mayoritaria.</text>
 <!-- narration -->
 <rect class="rc1" x="73" y="69" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
-<rect class="rp1" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
 <rect class="rc2" x="73" y="69" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
-<rect class="rp2" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
 <rect class="rc3" x="73" y="69" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
-<rect class="rp3" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
 <rect class="rc4" x="73" y="69" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
-<rect class="rp4" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
 <rect class="rc5" x="73" y="69" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rp1" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rp2" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rp3" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<rect class="rp4" x="393" y="213" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
+<path class="rg1" d="M200,182.3 L346.7,250 L200,317.7 L53.3,250 Z" fill="none" stroke="#1F5FA8" stroke-width="3" stroke-linejoin="round" opacity="0"/>
+<path class="rg5" d="M200,182.3 L346.7,250 L200,317.7 L53.3,250 Z" fill="none" stroke="#1F5FA8" stroke-width="3" stroke-linejoin="round" opacity="0"/>
 <rect class="re5" x="73" y="353" width="254" height="94" rx="11" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
 <rect class="rb5" x="93" y="467" width="214" height="74" rx="37" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="0"/>
-<text class="k1" x="365" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×1</text>
-<text class="k2" x="365" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×2</text>
-<text class="k3" x="365" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×3</text>
-<text class="k4" x="365" y="278" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×4</text>
-<text class="c1" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Entra un pedido: el modelo barato intenta resolverlo</text>
-<text class="c2" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Confianza suficiente: SÍ, sale por la rama corta</text>
-<text class="c3" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Otros pedidos hacen el mismo recorrido corto, cada vez más rápido</text>
-<text class="c4" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Llega un pedido más</text>
-<text class="c5" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">La confianza no alcanza: NO, baja al modelo caro, que resuelve</text>
-<text class="c6" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Sale por el retorno de abajo: DOS llamadas, una sola vez</text>
-<text class="k5" x="214" y="340" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×1</text>
+<text class="k1" x="365" y="280" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×1</text>
+<text class="k2" x="365" y="280" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×2</text>
+<text class="k3" x="365" y="280" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×3</text>
+<text class="k4" x="365" y="280" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×4</text>
+<text class="k5" x="214" y="341" font-size="16" font-weight="bold" fill="#1F5FA8" opacity="0">×1</text>
+<text class="c1" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Entra un pedido</text>
+<text class="c2" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">El modelo barato (Haiku 4.5) intenta resolverlo</text>
+<text class="c3" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">¿Confianza suficiente? SÍ: sale por la rama corta</text>
+<text class="c4" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Retorna la respuesta: UNA llamada</text>
+<text class="c5" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Otros pedidos hacen el mismo recorrido corto, cada vez más rápido</text>
+<text class="c6" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Llega un pedido más</text>
+<text class="c7" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">La confianza no alcanza: NO, baja al modelo caro</text>
+<text class="c8" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">El modelo caro (Opus 4.8) resuelve</text>
+<text class="c9" x="402" y="574" text-anchor="middle" font-size="15" fill="#1F1E1E" opacity="0">Sale por el retorno de abajo: DOS llamadas, una sola vez</text>
 </svg>
