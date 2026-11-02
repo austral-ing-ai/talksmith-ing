@@ -1185,3 +1185,9 @@
   feedback: "En el timeline, mencioná las clases. «Por dentro» es confuso."
   resolution: Cada etapa del timeline nombra sus clases en cursiva antes de lo que se llevan; «Por dentro» pasa a «Cómo funciona un LLM».
   tags: [timeline, terminology, clarity]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "Arreglá el leftover: en «Mi manifiesto» sacá la referencia al formulario de la apuesta 2030."
+  resolution: En 5.2 el remate queda «Escríbanlo en una línea cada uno.»; la frase quitada, en Cut material.
+  tags: [consistency, cut]

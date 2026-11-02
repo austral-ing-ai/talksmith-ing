@@ -2157,7 +2157,7 @@
       "highlights": [
         {
           "kind": "note",
-          "body": "Escríbanlo en una línea cada uno. Va al mismo formulario que la apuesta 2030."
+          "body": "Escríbanlo en una línea cada uno."
         }
       ],
       "_choice": {
@@ -2318,7 +2318,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "89aa353c30e3fd14123cd7f0bea4b12920f91a1d75b7d0fb3db0fc665b49796b",
-    "bytes": 68753
+    "sha256": "24a0e5b96d91007639baaa2cda2d64b9ededfdf2b5ede0e7ea9e077f2304cd8f",
+    "bytes": 68854
   }
 }

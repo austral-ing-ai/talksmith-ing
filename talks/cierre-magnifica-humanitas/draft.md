@@ -38,6 +38,8 @@ La clase abre recorriendo la cursada y el cambio de fondo (de contestar a hacer)
 
 **Presenter feedback:**
 
+- [closed] 2026-11-02 — "Arreglá el leftover: en «Mi manifiesto» sacá la referencia al formulario de la apuesta 2030."
+  Resolution: En 5.2 el remate queda «Escríbanlo en una línea cada uno.»; la frase quitada, en Cut material.
 - [closed] 2026-11-02 (editor) — "Layout: el caso del bot reclutador pasa a tres slides: captura + texto (2.10), flujo animado a ancho completo (2.11, título nuevo «El flujo del bot reclutador») y código a ancho completo (2.12)."
   Resolution: con la captura al lado del código, el código se cortaba; con la captura y el diagrama en banda, el diagrama era ilegible. Cada pieza en su slide se lee entera. Único texto nuevo: el título de 2.11.
 - [closed] 2026-11-02 — "En el timeline, mencioná las clases. «Por dentro» es confuso."
@@ -1593,7 +1595,7 @@ Fuentes: C. Ford (2026); Anthropic, “When AI Builds Itself” (2026).
 - **Voy a proteger…** Los datos, las personas o los sistemas a mi cargo.
 - **Voy a construir…** El problema real que quiero resolver con IA.
 
-> Escríbanlo en una línea cada uno. Va al mismo formulario que la apuesta 2030.
+> Escríbanlo en una línea cada uno.
 
 ### Sources
 
@@ -1727,3 +1729,4 @@ Fuentes de la clase.
   
 - **Slide 1.2 «Lo que construimos en 12 clases» — pasa a línea de tiempo** a pedido del presentador (2026-11-02: agregar Claude, sin fechas, con lo que se querían llevar). Original: «Fundamentos: 19/8 · Introducción a las redes neuronales; 26/8 · Diseño de redes neuronales» · «Trabajar con LLMs: 2/9 · Prompting, costos y producción; 9/9 · RAG y MCP; 16/9 · MCP y herramientas» · «Por dentro: 16/9 · De la palabra al transformer; 23/9 · El transformer por dentro; 30/9 · Cómo se entrena un LLM» · «Agentes y visión: 7/10 · Agentes y multiagentes; 21/10 · GANs y difusión; 28/10 · Señales, imágenes y multimodalidad» · «Arrancamos con CoWork (5 y 12/8).» Las frases nuevas de cada etapa salen de la tesis de las clases (talks/introduccion, claude-cowork, intro-redes-neuronales, modelado-redes-neuronales, prompting, rag-y-mcp, palabra-al-transformer, transformers-a-fondo, como-se-entrena-un-llm, agentes-y-multiagentes, segmentacion-y-stable-diffusion).
 - **Slide 4.8 «Mi apuesta 2030»** (slide 50 del original) — borrada a pedido del presentador (2026-11-02). Texto: «Actividad · 5 minutos» / «En 2030, la IA generativa va a ________________» / «y lo que más me preocupa es ________________» / «y el escenario que creo es ________________» / «Lo cargan en el formulario. Se los mandamos en noviembre de 2027 para ver quién acertó.» Notas: «5 minutos. Preparar un Google Form o Padlet con el link/QR. Leer 2 o 3 en voz alta. Es un gesto que deja vínculo con el departamento después de la materia.»
+- **Slide 5.2 «Mi manifiesto»** — quitado «Va al mismo formulario que la apuesta 2030.» (2026-11-02), que remitía a la slide 4.8 borrada.

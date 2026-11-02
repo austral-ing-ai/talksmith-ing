@@ -101,3 +101,4 @@ Importación 1:1 de un deck existente (55 slides, con notas del orador en todas)
 - Status: complete
 
   - 2026-11-02 — presentador: 2.21 → quiz; 2.10 código → diagrama de flujo animado (s2-10-1, dibujado aparte por tener captura); «Fuentes» con links; 1.2 → timeline con Claude y lo que se llevan; 4.8 «Mi apuesta 2030» borrada; pseudocódigo en nueva slide 2.11 (sección 2 renumerada; los archivos de diagramas conservan sus nombres s2-12/14/17/18). Deck reconstruido: 54 slides.
+  - 2026-11-02 — caso del bot en 3 slides (captura+texto / flujo animado / código); timeline con nombres de clases y «Cómo funciona un LLM»; 5.2 sin la referencia a la apuesta 2030. Deck: 55 slides, verificado con capturas.
