@@ -1,6 +1,6 @@
 # memory.md — cierre-magnifica-humanitas
 
-**Current step:** 8 (Learnings) — in_progress
+**Current step:** 8 (Learnings) — complete
 **Topic:** Del poder a la responsabilidad — clase de cierre: seguridad, ética y lo que viene
 **Folder:** talks/cierre-magnifica-humanitas/
 **Started:** 2026-11-02
@@ -94,3 +94,9 @@ Importación 1:1 de un deck existente (55 slides, con notas del orador en todas)
 
   - 2026-11-02 — «¿Promover regla L11 (verificar cifras contra fuente primaria)?» / «¿Promover a knowledge-library?» → presentador: «yes» (ambas).
 - What was decided: L11 agregada a `config/learnings.md`; 12 filas de evidencia movidas de `feedback-backlog.md` a `feedback-processed.md` (promoted_to: L11). Promoción a `knowledge-library/` en curso.
+  - 2026-11-02 — presentador: «Cambia ¿Verdadero o falso? a que sea un Quiz» → 2.5 quiz (draft, final, slide-model.json re-stampeado, deck reconstruido; 54 slides). README.md: clase 13 enlazada (pendiente de push).
+- Knowledge library: 5 temas nuevos (seguridad-de-llms-y-agentes, alineacion-y-desalineacion, humano-en-el-circuito, etica-y-regulacion-de-la-ia, evaluacion-y-tendencias-de-la-ia) y 1 extendido (tools-para-agentes: MCP vs A2A, conectores como decisión de confianza). Cifras en versión verificada; lo no verificado, marcado.
+- Files created/modified: config/learnings.md (L11), config/feedback-backlog.md, config/feedback-processed.md, knowledge-library/
+- Pending: push a GitHub del README (clase 13), del quiz 2.5 y de lo de Step 8 — esperando confirmación del presentador.
+- Status: complete
+

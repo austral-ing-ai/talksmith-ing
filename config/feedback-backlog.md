@@ -1137,3 +1137,9 @@
   feedback: "Es decir \"Agenda de hoy\" realmente hay que borrarla."
   resolution: Slide «Agenda de hoy» borrada de draft.md y final.md; Apertura se renumeró 1–5. Contenido y notas en Cut material. La hoja de ruta automática de cada sección cumple el rol de agenda.
   tags: [slide-removal, agenda]
+- talk: cierre-magnifica-humanitas
+  date: 2026-11-02
+  location: Agenda
+  feedback: "Cambia ¿Verdadero o falso? a que sea un Quiz"
+  resolution: 2.5 pasa a quiz: pregunta «¿Verdadero o falso?», los dos mitos como opciones y, al revelar, «Los dos son engañosos.» (título de 2.6, reutilizado); «Mano alzada para cada uno.» queda como nota. Cambio aplicado en draft, final y modelo; deck reconstruido.
+  tags: [template-selection, quiz]

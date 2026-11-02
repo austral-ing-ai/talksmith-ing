@@ -446,54 +446,38 @@
       "notes": "2 minutos. Shadow AI: herramientas que la gente usa sin que la organización lo sepa. Es la versión cotidiana del caso Samsung."
     },
     {
-      "template": "concept-breakdown",
-      "title": "¿Verdadero o falso?",
-      "lead": "*Rompemitos · Votan V o F*",
-      "cards": [
-        {
-          "label": "“El proveedor me dice que no usa mis datos para entrenar. Entonces no hay problema.”",
-          "body": ""
-        },
-        {
-          "label": "“Si corro el modelo en mis propios servidores, mis datos están seguros.”",
-          "body": ""
-        }
+      "template": "quiz",
+      "title": "Rompemitos · Votan V o F",
+      "question": "¿Verdadero o falso?",
+      "options": [
+        "“El proveedor me dice que no usa mis datos para entrenar. Entonces no hay problema.”",
+        "“Si corro el modelo en mis propios servidores, mis datos están seguros.”"
       ],
+      "answer": "Los dos son engañosos.",
       "highlights": [
         {
           "kind": "note",
           "body": "Mano alzada para cada uno."
         }
       ],
+      "section": "Seguridad",
+      "notes": "2 minutos con la siguiente. Leer cada mito, votación rápida, y pasar a la revelación.",
       "_choice": {
         "signals": [
-          "labeled_items=0",
-          "unlabeled parallel lines=2",
-          "is_question=false (answer is on the next slide)",
-          "is_voiced=true per line (quotation marks) but no single dominant line",
-          "one_claim=false (two claims)",
-          "n_images=0"
+          "author hint: <!-- template: quiz -->",
+          "is_question=true (the slide asks ¿Verdadero o falso? and now carries its answer)",
+          "options=2 (the two myths)",
+          "answer on slide: «Los dos son engañosos.» (the next slide's title, reused verbatim)"
         ],
         "candidates": [
-          "concept-breakdown",
           "quiz",
-          "quote",
-          "statement",
-          "single-point",
-          "process"
+          "concept-breakdown"
         ],
-        "picked": "concept-breakdown",
+        "picked": "quiz",
         "rejected": {
-          "quiz": "is_question needs the answer on the slide — the reveal is the next slide",
-          "quote": "quote needs one dominant voiced line; there are two parallel myths",
-          "statement": "one_claim=false — two claims, not one",
-          "single-point": "no lead + one labeled point; two parallel lines",
-          "process": "a plain enumeration needs 3–8 lines; there are 2",
-          "concept-breakdown (why it fires)": "grid format holds 2–5 parallel lines with no bodies as label-only cards"
+          "concept-breakdown": "presenter asked for a quiz; with the answer now on the slide the quiz discriminator holds"
         }
-      },
-      "section": "Seguridad",
-      "notes": "2 minutos con la siguiente. Leer cada mito, votación rápida, y pasar a la revelación."
+      }
     },
     {
       "template": "concept-columns",
@@ -2360,7 +2344,7 @@
   ],
   "_source": {
     "file": "final.md",
-    "sha256": "1b7a2233fcf9e2a9c1ac35cf335106e44b8fb38f04a14fd1be7259968723c9fb",
-    "bytes": 62820
+    "sha256": "521c137fcad3fd572e3d13df8e7c5d6830c2acaeb5ee581a74fab57cb032ea7b",
+    "bytes": 62885
   }
 }

@@ -5,7 +5,10 @@ sources:
   - talk: agentes-y-multiagentes
     date: 2026-10-28
     contributed: La tool como actuador del agente LLM (el LLM pide, el programa ejecuta), el contexto como secuencia de percepciones, la tool como contrato con un sistema no determinístico, un ejemplo en LangChain con sus defectos, y los cinco principios de diseño de Anthropic.
-last_updated: 2026-10-28
+  - talk: cierre-magnifica-humanitas
+    date: 2026-11-02
+    contributed: MCP y A2A como enlaces (estándar contra emergente, con ACP fusionado en A2A), cada tool o servidor MCP como decisión de confianza, y lo que falta para un internet de agentes.
+last_updated: 2026-11-02
 ---
 
 # Tools para agentes
@@ -85,6 +88,23 @@ El hilo común: el contexto de un agente es limitado y la memoria de la computad
 
 Detalle del dato de Slack: la versión concisa omite `thread_ts`, `channel_id` y `user_id`. Anthropic propone exponer un parámetro `response_format` para que el agente elija entre respuesta concisa y detallada.
 
+## MCP y A2A: del agente con tools al internet de agentes
+
+![Internet de agentes: MCP como enlace estándar, A2A como enlace emergente](images/s4-3-1-internet-agentes.png)
+
+MCP y A2A son enlaces, no etapas ([clase-cierre](../../talks/cierre-magnifica-humanitas/research/corpus/IA_Generativa_Clase_Cierre_v2_Magnifica_Humanitas.pptx.md), slide 45):
+
+| Enlace | Une | Estado (nov. 2026) |
+|---|---|---|
+| **MCP** | El agente (modelo + memoria + bucle de razonamiento) con herramientas y datos: APIs, archivos, código | Estándar. La cátedra lo cuenta como "consolidado" |
+| **A2A** | Un agente con otros agentes, incluso de otras organizaciones | Emergente, todavía sin masa crítica |
+
+El deck original listaba "A2A · ACP" como dos protocolos emergentes; ACP se fusionó con A2A en agosto de 2025 (fact-check del corpus).
+
+**Cada tool es una decisión de confianza.** Todo lo que una tool devuelve entra al contexto, y el modelo no distingue datos de órdenes. Un servidor MCP enchufado al agente puede ser la puerta de una filtración aunque el LLM esté aprobado y con contrato. Por eso valen aquí el mínimo privilegio, la regla de la tríada letal (no juntar datos privados, contenido no confiable y canal de salida en el mismo agente) y el OWASP MCP Top 10, en beta. El desarrollo completo está en [seguridad-de-llms-y-agentes](../seguridad-de-llms-y-agentes/index.md).
+
+**Lo que falta para un internet de agentes:** identidad verificable de agentes, descubrimiento y reputación. La pregunta de seguridad es cómo confía un agente en otro que no conoce; las respuestas en discusión son identidades descentralizadas y las tarjetas de agente de A2A. Sin eso, la tríada letal escala a toda la red. Arquitecturas con varios agentes dentro de un mismo sistema: [sistemas-multiagente](../sistemas-multiagente/index.md).
+
 ## References
 
 - [anthropic-writing-tools-for-agents](../../talks/agentes-y-multiagentes/research/corpus/anthropic-writing-tools-for-agents.web.md): el contrato determinístico/no determinístico y los principios de diseño. URL: https://www.anthropic.com/engineering/writing-tools-for-agents
@@ -93,3 +113,6 @@ Detalle del dato de Slack: la versión concisa omite `thread_ts`, `channel_id` y
 - [AIG4B-Clase-6-Agent.pptx](../../talks/agentes-y-multiagentes/research/corpus/AIG4B-Clase-6-Agent.pptx.md): slide 22, tools "descriptas en el contexto".
 - [orquestacion-de-agentes-clase](../../talks/agentes-y-multiagentes/research/corpus/orquestacion-de-agentes-clase.md.md): definición del contexto de un modelo.
 - [mcp-spec](../../talks/agentes-y-multiagentes/research/corpus/mcp-spec.web.md): el protocolo estándar para exponer tools (fuera del alcance de esta clase).
+- [IA_Generativa_Clase_Cierre_v2_Magnifica_Humanitas.pptx](../../talks/cierre-magnifica-humanitas/research/corpus/IA_Generativa_Clase_Cierre_v2_Magnifica_Humanitas.pptx.md): slides 19 y 45 (MCP como riesgo, internet de agentes) y el fact-check de ACP/A2A.
+- P. Perrone, "The AI Agents Stack (2026 Edition)", O'Reilly Radar, listada entre las fuentes de la clase de cierre (verificada): https://www.oreilly.com/radar/?p=18870
+- Sobre la fusión ACP → A2A: https://philippdubach.com/posts/mcp-vs-a2a-in-2026-how-the-ai-protocol-war-ends/
