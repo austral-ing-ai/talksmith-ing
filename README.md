@@ -43,7 +43,7 @@ La materia contempla 13 clases, los miércoles. No se programa clase durante el 
 | — | Miércoles 14 de octubre | Sin clase | — |
 | 11 | Miércoles 21 de octubre | Vision: Stable Difussion y Adversarial Networks | [Redes generativas antagónicas (GANs)](https://austral-ing-ai.github.io/talksmith-ing/talks/redes-generativas-antagonicas/output/html/) |
 | 12 | Miércoles 28 de octubre | Vision: CNN (Senales & Imagenes) | [Modelos generativos de señales, imágenes y multimodalidad](https://austral-ing-ai.github.io/talksmith-ing/talks/segmentacion-y-stable-diffusion/output/html/) |
-| 13 | Miércoles 4 de noviembre | Seguridad y Etica | — |
+| 13 | Miércoles 4 de noviembre | Seguridad y Etica | [Del poder a la responsabilidad: seguridad, ética y lo que viene](https://austral-ing-ai.github.io/talksmith-ing/talks/cierre-magnifica-humanitas/output/html/) |
 | — | Miércoles 11 de noviembre | Sin clase (feriado) | — |
 
 ## Calendario de entregas — trabajos prácticos
