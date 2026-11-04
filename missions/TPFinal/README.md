@@ -9,7 +9,8 @@ El enunciado (qué hay que hacer, qué se entrega y cómo se corrige) está en [
 | `normas/original/` | 20 secciones de las normas del hospital, una por archivo, y `parametros.yaml` con los valores |
 | `normas/b/`, `normas/c/` | Las mismas normas con otros números, como hará el test de la cátedra |
 | `practica/` | 50 casos de práctica (`casos.jsonl`) y la ficha esperada de cada uno con cada versión de las normas (`esperadas-<versión>.jsonl`) |
-| `historial/historial.csv` | 2.000 admisiones pasadas, sin marcar |
+| `historial/` | 2.000 admisiones pasadas, sin marcar (`historial.csv`), y los pasos de cada una, en orden (`trazas.jsonl`) |
+| `entrenamiento/trazas.jsonl` | Las 800 trazas con las que la cátedra entrenó su modelo de referencia, en el mismo formato |
 | `rag/consultas_dev.jsonl` | Consultas con la evidencia esperada, para evaluar el buscador |
 | `admision/` | El entorno, el comparador, el generador de casos, el agente de ejemplo, el programa que corre los casos y la evaluación del buscador |
 
@@ -135,6 +136,21 @@ Una fila por admisión pasada, como la exportación del sistema de admisión:
 
 No está marcado. Hay filas correctas, errores y ruido, y el hospital tiene costumbres que no están escritas en las
 normas.
+
+**Las trazas.** `historial/trazas.jsonl` tiene una línea por fila del historial, en el mismo orden, con los pasos que
+siguió el operador: cada llamada a una herramienta, numerada, con sus argumentos y el resultado que devolvió el entorno,
+y la ficha que registró.
+
+`entrenamiento/trazas.jsonl` tiene, en el mismo formato, las 800 trazas con las que la cátedra entrenó su modelo de
+referencia. Los valores de las normas cambian de una traza a otra.
+
+Para entrenar, cada traza se pasa a una conversación con el formato del agente de ejemplo (`admision/ejemplo.py`):
+
+1. el mensaje de sistema;
+2. un mensaje del usuario: `Ingresó a la guardia el paciente <paciente_id>. Completá su ficha de admisión.`;
+3. por cada paso, un mensaje del asistente con la llamada en JSON (`{"herramienta": ..., "argumentos": ...}`) y,
+   salvo después de `registrar_decision`, un mensaje del usuario con `Resultado de <herramienta>:`, un salto de línea
+   y el resultado.
 
 **Qué se entrega de la clasificación:**
 

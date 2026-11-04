@@ -107,7 +107,7 @@ No modifiquen `admision/`: la cátedra corre la entrega con su propia copia.
    - **ruido**: la fila hace algo que las normas no cubren, distinto de lo que hacen casi todos los operadores en esa situación (o sea, se aparta de una costumbre);
    - **correcta**: todas las demás.
 2. **Describan las costumbres que descubrieron**, con las filas que las respaldan.
-3. **Conviertan las filas que sirven en conversaciones de entrenamiento** del agente.
+3. **Conviertan las trazas de las filas que sirven en conversaciones de entrenamiento** del agente. Las trazas están en `historial/trazas.jsonl`, y el formato de la conversación, en el README del kit. En el mismo formato, `entrenamiento/trazas.jsonl` tiene las 800 trazas con las que la cátedra entrenó su modelo de referencia.
 4. Pueden **generar conversaciones sintéticas**, inventadas por un programa propio o por cualquier modelo, también uno pago. Por ejemplo, para tener más casos de los que más cuestan.
 
 ## Parte 2: buscador propio (RAG)
@@ -287,4 +287,4 @@ En orden de importancia:
 
 El buscador cuenta por lo que rinde el agente con él. La evaluación aparte del buscador y la optimización de prompt cuentan como prácticas obligatorias documentadas. `admision.correr` informa, por caso, cuántas búsquedas hizo el agente, cuánto contexto le pasó al modelo y cuánto tardó.
 
-**Referencia de la cátedra.** Se midió sobre los 50 casos de práctica, con las tres versiones de las normas (la original y las dos con los números cambiados), siempre con las normas completas, incluidas las secciones de otras áreas del hospital. Gemma 4 E4B sin entrenar resuelve 12, 15 y 12 casos en cada versión. Con un fine-tuning supervisado simple, resuelve 25, 24 y 25. Ese entrenamiento usó datos perfectos, generados por la cátedra. Ustedes van a entrenar con lo que curen.
+**Referencia de la cátedra.** Se midió sobre los 50 casos de práctica, con las tres versiones de las normas (la original y las dos con los números cambiados), siempre con las normas completas, incluidas las secciones de otras áreas del hospital. Gemma 4 E4B sin entrenar resuelve 12, 15 y 12 casos en cada versión. Con un fine-tuning supervisado simple, resuelve 25, 24 y 25. Ese entrenamiento usó las 800 trazas de `entrenamiento/trazas.jsonl`.
